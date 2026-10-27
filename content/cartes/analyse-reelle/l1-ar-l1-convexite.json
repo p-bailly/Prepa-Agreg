@@ -1,0 +1,291 @@
+{
+ "cartes": [
+  {
+   "id": "ar-l1-convexite-jensen",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-convexite",
+   "type": "theoreme",
+   "titre": "Fonction convexe et inégalité de Jensen",
+   "recto": "Donner la définition d'une fonction convexe sur un intervalle et énoncer l'inégalité de Jensen discrète avec ses hypothèses.",
+   "cours": "Une fonction est **convexe** sur un intervalle $I$ quand, entre deux points quelconques de sa courbe, l'arc est au-dessous de la corde : pour $x,y\\in I$ et $t\\in[0,1]$, le réel $(1-t)x+ty$ parcourt le segment d'extrémités $x$ et $y$, et $(1-t)f(x)+tf(y)$ est l'ordonnée du point de la corde situé à sa verticale. En Terminale, c'était déjà la définition, mais on reconnaissait surtout la convexité au signe de $f''$ (équivalence admise) ; ici, on travaille directement avec la définition, qui a un sens même sans dérivée (penser à $x\\mapsto|x|$). Une fonction est **concave** quand $-f$ est convexe.\n\nL'inégalité de **Jensen** étend la définition de deux à $n$ points : l'image d'une moyenne pondérée à poids positifs est au plus la moyenne pondérée des images, $f\\left(\\sum\\lambda_ix_i\\right)\\le\\sum\\lambda_if(x_i)$. Elle se démontre par récurrence sur $n$, en regroupant les $n-1$ premiers points en un seul barycentre.\n\nMéthode : pour majorer $f$ en un point, l'écrire comme barycentre de points où l'on connaît $f$ ; pour comparer des moyennes, choisir une fonction convexe ($x\\mapsto x^2$, $\\exp$, $-\\ln$, $x\\mapsto\\frac1x$ sur $\\left]0,+\\infty\\right[$…) et des poids tous égaux à $\\frac1n$. Pour une fonction concave, l'inégalité est renversée.\n\nPièges : les poids doivent être **positifs ou nuls et de somme $1$** (avec un poids négatif, l'inégalité est fausse en général), et la convexité doit avoir lieu sur tout un intervalle contenant les points, pas seulement près de chacun d'eux. Enfin, la somme et le maximum de deux fonctions convexes sont convexes, mais pas leur produit ni leur composée en général.",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ est convexe sur $I$.",
+    "$x_1,\\dots,x_n$ sont des points de $I$.",
+    "Les réels $\\lambda_1,\\dots,\\lambda_n$ sont positifs ou nuls.",
+    "$\\lambda_1+\\dots+\\lambda_n=1$."
+   ],
+   "hypotheses_pieges": [
+    "Les $\\lambda_i$ sont des réels de signes quelconques (à la place de positifs ou nuls).",
+    "Les $\\lambda_i$ sont positifs ou nuls, de somme quelconque (à la place d'une somme égale à $1$).",
+    "$f$ est convexe au voisinage de chaque point $x_i$ seulement (à la place de convexe sur tout l'intervalle $I$)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$. On dit que $f$ est **convexe** sur $I$ si\n$$\\forall x,y\\in I,\\ \\forall t\\in[0,1],\\quad f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y),$$\net **concave** sur $I$ si $-f$ est convexe sur $I$.\n\n**Inégalité de Jensen.** Si $f$ est convexe sur $I$, alors pour tout entier $n\\ge1$, tous $x_1,\\dots,x_n\\in I$ et tous réels $\\lambda_1,\\dots,\\lambda_n$ **positifs ou nuls** tels que $\\lambda_1+\\dots+\\lambda_n=1$, le réel $\\sum_{i=1}^n\\lambda_ix_i$ appartient à $I$ et\n$$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\le\\sum_{i=1}^n\\lambda_if(x_i).$$\nSi $f$ est concave sur $I$, l'inégalité est renversée.",
+   "enonce_trous": "Une fonction $f$ est convexe sur l'intervalle $I$ si, pour tous $x,y\\in I$ et tout $t\\in[0,1]$, {{1}}. Dans ce cas, pour tous $x_1,\\dots,x_n\\in I$ et tous réels $\\lambda_1,\\dots,\\lambda_n$ {{2}} de somme $1$, on a {{3}}.",
+   "trous": [
+    {
+     "reponse": "$f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$",
+     "leurres": [
+      "$f\\big((1-t)x+ty\\big)\\ge(1-t)f(x)+tf(y)$",
+      "$f\\big((1-t)x+ty\\big)\\ge\\min\\big(f(x),f(y)\\big)$",
+      "$f\\big((1-t)x+ty\\big)\\le\\max\\big(f(x),f(y)\\big)$"
+     ]
+    },
+    {
+     "reponse": "positifs ou nuls",
+     "leurres": [
+      "de signes quelconques",
+      "non nuls",
+      "rationnels"
+     ]
+    },
+    {
+     "reponse": "$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\le\\sum_{i=1}^n\\lambda_if(x_i)$",
+     "leurres": [
+      "$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\ge\\sum_{i=1}^n\\lambda_if(x_i)$",
+      "$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)=\\sum_{i=1}^n\\lambda_if(x_i)$",
+      "$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\le\\sum_{i=1}^nf(\\lambda_ix_i)$"
+     ]
+    }
+   ],
+   "demo": "**Le point $\\sum\\lambda_ix_i$ est dans $I$.** Les $\\lambda_i$ étant positifs de somme $1$, $\\min_jx_j=\\sum_i\\lambda_i\\min_jx_j\\le\\sum_i\\lambda_ix_i\\le\\sum_i\\lambda_i\\max_jx_j=\\max_jx_j$. Or $I$ est un intervalle qui contient $\\min_jx_j$ et $\\max_jx_j$, donc tout réel compris entre les deux.\n\n**Récurrence sur $n$.** Pour $n=1$, $\\lambda_1=1$ et il y a égalité. Soit $n\\ge2$ ; supposons l'inégalité établie pour $n-1$ points (et tous poids positifs de somme $1$). Si $\\lambda_n=1$, les autres poids sont nuls et il y a égalité. Sinon, $\\mu=1-\\lambda_n=\\lambda_1+\\dots+\\lambda_{n-1}>0$ ; on pose $y=\\sum_{i=1}^{n-1}\\frac{\\lambda_i}{\\mu}x_i$. Les poids $\\frac{\\lambda_i}{\\mu}$ sont positifs de somme $1$, donc $y\\in I$ par le premier point. Alors\n$$\\sum_{i=1}^n\\lambda_ix_i=\\mu y+\\lambda_nx_n=(1-\\lambda_n)y+\\lambda_nx_n,$$\net la définition de la convexité, avec $t=\\lambda_n\\in[0,1]$, donne\n$$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\le(1-\\lambda_n)f(y)+\\lambda_nf(x_n)=\\mu f(y)+\\lambda_nf(x_n).$$\nL'hypothèse de récurrence appliquée aux points $x_1,\\dots,x_{n-1}$ et aux poids $\\frac{\\lambda_i}{\\mu}$ donne $f(y)\\le\\sum_{i=1}^{n-1}\\frac{\\lambda_i}{\\mu}f(x_i)$, donc, comme $\\mu>0$,\n$$f\\Big(\\sum_{i=1}^n\\lambda_ix_i\\Big)\\le\\sum_{i=1}^{n-1}\\lambda_if(x_i)+\\lambda_nf(x_n)=\\sum_{i=1}^n\\lambda_if(x_i).$$\n\n**Cas concave.** On applique ce qui précède à $-f$, qui est convexe, et l'on multiplie par $-1$.",
+   "exemple": "- **Valeur absolue.** Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, l'inégalité triangulaire donne $|(1-t)x+ty|\\le(1-t)|x|+t|y|$ : $x\\mapsto|x|$ est convexe sur $\\mathbb{R}$, sans être dérivable en $0$.\n- **Carré.** $x\\mapsto x^2$ est convexe sur $\\mathbb{R}$ ; l'inégalité de Jensen avec $\\lambda_i=\\frac1n$ donne $\\left(\\frac{x_1+\\dots+x_n}{n}\\right)^2\\le\\frac{x_1^2+\\dots+x_n^2}{n}$, c'est-à-dire $(x_1+\\dots+x_n)^2\\le n\\left(x_1^2+\\dots+x_n^2\\right)$.\n- **Exponentielle.** $\\exp$ est convexe sur $\\mathbb{R}$ (sa dérivée seconde est positive) : pour tous réels $a,b,c$, $e^{\\frac{a+b+c}{3}}\\le\\frac{e^a+e^b+e^c}{3}$.",
+   "contre_exemple": "- **Poids positifs indispensables** : $f(x)=x^2$, $x_1=1$, $x_2=0$, $\\lambda_1=2$, $\\lambda_2=-1$ (somme $1$) : $f(2\\cdot1-1\\cdot0)=f(2)=4$, alors que $2f(1)-f(0)=2$, et $4>2$.\n- **Somme des poids égale à $1$ indispensable** : la fonction constante $f=1$ est convexe ; avec $\\lambda_1=\\frac12$ et $\\lambda_2=\\frac14$, $f(\\lambda_1x_1+\\lambda_2x_2)=1>\\frac34=\\lambda_1f(x_1)+\\lambda_2f(x_2)$.\n- **Convexité sur tout l'intervalle indispensable** : $f(x)=\\cos(\\pi x)$ vérifie $f''(x)=-\\pi^2\\cos(\\pi x)>0$ près de $-1$ et de $1$ (où $\\cos(\\pm\\pi)=-1$), donc est convexe au voisinage de ces deux points ; mais $f\\left(\\frac{-1+1}{2}\\right)=f(0)=1>-1=\\frac{f(-1)+f(1)}{2}$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ et $g$ sont convexes sur $I$, alors $f+g$ est convexe sur $I$.",
+     "vrai": true,
+     "justification": "On additionne les inégalités de la définition écrites pour $f$ et pour $g$ avec les mêmes $x$, $y$, $t$."
+    },
+    {
+     "texte": "Si $f$ et $g$ sont convexes sur $I$, alors le produit $fg$ est convexe sur $I$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x$ (affine, donc convexe) et $g(x)=x^2$ sur $\\mathbb{R}$ : $fg(x)=x^3$, et $fg(-1)=-1>-4=\\frac{fg(-2)+fg(0)}{2}$, donc $x\\mapsto x^3$ n'est pas convexe sur $\\mathbb{R}$."
+    },
+    {
+     "texte": "Si $f$ et $g$ sont convexes sur $\\mathbb{R}$, alors $g\\circ f$ est convexe sur $\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^2$ et $g(x)=-x$ (affine, donc convexe) : $g\\circ f(x)=-x^2$, et $g\\circ f(0)=0>-1=\\frac{g\\circ f(-1)+g\\circ f(1)}{2}$."
+    },
+    {
+     "texte": "Si $f$ et $g$ sont convexes sur $I$, alors $h=\\max(f,g)$ est convexe sur $I$.",
+     "vrai": true,
+     "justification": "Pour $x,y\\in I$ et $t\\in[0,1]$ : $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)\\le(1-t)h(x)+th(y)$, de même pour $g$, donc $h\\big((1-t)x+ty\\big)\\le(1-t)h(x)+th(y)$."
+    }
+   ],
+   "prerequis": [
+    "ar-t-derivation-convexite",
+    "ar-t-suites-recurrence"
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-pentes",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-convexite",
+   "type": "theoreme",
+   "titre": "Croissance des pentes et inégalité des trois pentes",
+   "recto": "Énoncer la caractérisation des fonctions convexes par la croissance des pentes (inégalité des trois pentes), avec ses hypothèses.",
+   "cours": "Pour une fonction $f$ et deux réels $u\\neq v$, la **pente de la corde** est $p(u,v)=\\frac{f(v)-f(u)}{v-u}$ (elle ne dépend pas de l'ordre de $u$ et $v$). Sur un dessin, la courbe d'une fonction convexe « tourne vers le haut » : quand on déplace une extrémité de la corde vers la droite, sa pente augmente. C'est le contenu de l'**inégalité des trois pentes** : pour $x<y<z$, $p(x,y)\\le p(x,z)\\le p(y,z)$ ; de façon équivalente, pour tout $a$, la fonction pente $\\tau_a:x\\mapsto\\frac{f(x)-f(a)}{x-a}$ est croissante. On la démontre en écrivant $y$ comme barycentre de $x$ et $z$ et en réarrangeant l'inégalité de convexité ; réciproquement, la croissance des pentes redonne la convexité.\n\nCette caractérisation n'utilise aucune dérivée : c'est l'outil de base pour étudier une fonction convexe quelconque. Elle donne la continuité d'une fonction convexe en tout point **intérieur** à $I$, et l'existence en ces points d'une dérivée à gauche et d'une dérivée à droite, avec $f'_g(a)\\le f'_d(a)$ (théorème de la limite monotone appliqué à $\\tau_a$). Elle donne aussi des inégalités hors d'un segment : si $x<y<z$, la droite qui passe par les points de la courbe d'abscisses $x$ et $y$ passe au-dessous du point d'abscisse $z$, d'où une minoration de $f(z)$.\n\nPièges : aux **bornes** de $I$, une fonction convexe peut être discontinue (la fonction nulle sur $\\left[0,1\\right[$ et égale à $1$ en $1$ est convexe sur $[0,1]$) ; une fonction convexe n'est pas forcément dérivable ($x\\mapsto|x|$ en $0$) ; et il faut la convexité sur tout le segment $[x,z]$, pas sur $[x,y]$ et $[y,z]$ séparément.",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ est convexe sur $I$.",
+    "$x<y<z$ sont trois points de $I$, rangés dans cet ordre."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est croissante sur $I$ (à la place de convexe).",
+    "$f$ est convexe sur $[x,y]$ et sur $[y,z]$ séparément (à la place de convexe sur tout l'intervalle $I$).",
+    "$x$, $y$, $z$ sont trois points distincts de $I$ dans un ordre quelconque (à la place de $x<y<z$)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$. Pour $u\\neq v$ dans $I$, on note $p(u,v)=\\frac{f(v)-f(u)}{v-u}$ la pente de la corde. Les propriétés suivantes sont équivalentes :\n- $f$ est convexe sur $I$ ;\n- (**inégalité des trois pentes**) pour tous $x<y<z$ dans $I$,\n$$\\frac{f(y)-f(x)}{y-x}\\le\\frac{f(z)-f(x)}{z-x}\\le\\frac{f(z)-f(y)}{z-y}\\ ;$$\n- (**croissance des pentes**) pour tout $a\\in I$, la fonction $\\tau_a:x\\mapsto\\frac{f(x)-f(a)}{x-a}$ est croissante sur $I\\setminus\\{a\\}$.",
+   "enonce_trous": "Si $f$ est convexe sur un intervalle $I$ et si $x<y<z$ sont trois points de $I$, alors {{1}}. De façon équivalente, pour tout $a\\in I$, la fonction $x\\mapsto\\frac{f(x)-f(a)}{x-a}$ est {{2}} sur $I\\setminus\\{a\\}$.",
+   "trous": [
+    {
+     "reponse": "$\\frac{f(y)-f(x)}{y-x}\\le\\frac{f(z)-f(x)}{z-x}\\le\\frac{f(z)-f(y)}{z-y}$",
+     "leurres": [
+      "$\\frac{f(z)-f(x)}{z-x}\\le\\frac{f(y)-f(x)}{y-x}\\le\\frac{f(z)-f(y)}{z-y}$",
+      "$\\frac{f(y)-f(x)}{y-x}\\le\\frac{f(z)-f(y)}{z-y}\\le\\frac{f(z)-f(x)}{z-x}$",
+      "$\\frac{f(z)-f(y)}{z-y}\\le\\frac{f(z)-f(x)}{z-x}\\le\\frac{f(y)-f(x)}{y-x}$"
+     ]
+    },
+    {
+     "reponse": "croissante",
+     "leurres": [
+      "décroissante",
+      "strictement croissante",
+      "positive"
+     ]
+    }
+   ],
+   "demo": "**Convexe $\\Rightarrow$ trois pentes.** Soient $x<y<z$ dans $I$ et $t=\\frac{y-x}{z-x}\\in\\left]0,1\\right[$, de sorte que $y=(1-t)x+tz$, $y-x=t(z-x)$ et $z-y=(1-t)(z-x)$. La convexité donne $f(y)\\le(1-t)f(x)+tf(z)$, que l'on écrit de deux façons :\n- $f(y)-f(x)\\le t\\big(f(z)-f(x)\\big)$ ; en divisant par $y-x=t(z-x)>0$ : $p(x,y)\\le p(x,z)$ ;\n- $f(y)-f(z)\\le(1-t)\\big(f(x)-f(z)\\big)$, soit $f(z)-f(y)\\ge(1-t)\\big(f(z)-f(x)\\big)$ ; en divisant par $z-y=(1-t)(z-x)>0$ : $p(y,z)\\ge p(x,z)$.\n\n**Trois pentes $\\Rightarrow$ croissance de $\\tau_a$.** Soient $a\\in I$ et $u<v$ dans $I\\setminus\\{a\\}$ ; on rappelle que $p(u,v)=p(v,u)$ et $\\tau_a(x)=p(a,x)$.\n- Si $a<u<v$ : $\\tau_a(u)=p(a,u)\\le p(a,v)=\\tau_a(v)$ (première inégalité avec $a<u<v$).\n- Si $u<a<v$ : $\\tau_a(u)=p(u,a)\\le p(a,v)=\\tau_a(v)$ (les deux inégalités, avec $u<a<v$, donnent $p(u,a)\\le p(u,v)\\le p(a,v)$).\n- Si $u<v<a$ : $\\tau_a(u)=p(u,a)\\le p(v,a)=\\tau_a(v)$ (seconde inégalité avec $u<v<a$).\n\n**Croissance des pentes $\\Rightarrow$ convexe.** Soient $x,z\\in I$ et $t\\in[0,1]$. Si $t\\in\\{0,1\\}$ ou $x=z$, l'inégalité de convexité est une égalité. Quitte à échanger $x$ et $z$ (et $t$ avec $1-t$), on suppose $x<z$ et $0<t<1$ ; alors $y=(1-t)x+tz$ vérifie $x<y<z$. La croissance de $\\tau_x$ donne $\\tau_x(y)\\le\\tau_x(z)$, soit $f(y)-f(x)\\le\\frac{y-x}{z-x}\\big(f(z)-f(x)\\big)=t\\big(f(z)-f(x)\\big)$, c'est-à-dire $f(y)\\le(1-t)f(x)+tf(z)$.",
+   "exemple": "- Pour $f(x)=x^2$ et $a\\in\\mathbb{R}$ : $\\tau_a(x)=\\frac{x^2-a^2}{x-a}=x+a$, qui est bien croissante.\n- Pour $f=\\exp$ et $(x,y,z)=(0,1,2)$ : $p(0,1)=e-1\\approx1{,}72$, $p(0,2)=\\frac{e^2-1}{2}\\approx3{,}19$ et $p(1,2)=e^2-e\\approx4{,}67$.\n- Pour $f(x)=|x|$ et $a=0$ : $\\tau_0(x)=-1$ si $x<0$ et $\\tau_0(x)=1$ si $x>0$. Elle est croissante, avec un saut : $f$ a en $0$ une dérivée à gauche égale à $-1$ et une dérivée à droite égale à $1$, et n'y est pas dérivable.",
+   "contre_exemple": "- **Croissante ne suffit pas** : $f(x)=\\sqrt x$ est croissante sur $\\left[0,+\\infty\\right[$ ; avec $(x,y,z)=(1,4,9)$, $p(1,4)=\\frac13>\\frac14=p(1,9)$.\n- **Convexe sur tout $[x,z]$, pas par morceaux** : $f(t)=-|t|$ est affine, donc convexe, sur $[-1,0]$ et sur $[0,1]$ ; avec $(x,y,z)=(-1,0,1)$, $p(-1,0)=1$, $p(-1,1)=0$ et $p(0,1)=-1$ : les pentes décroissent.\n- **L'ordre $x<y<z$ compte** : pour $f(t)=t^2$ et $(x,y,z)=(0,2,1)$, $p(x,y)=p(0,2)=2>1=p(0,1)=p(x,z)$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est convexe sur un intervalle ouvert $I$, elle admet en tout point $a\\in I$ une dérivée à gauche et une dérivée à droite, et $f'_g(a)\\le f'_d(a)$.",
+     "vrai": true,
+     "justification": "Soient $u<a<v$ dans $I$. Sur $\\left]a,v\\right[$, $\\tau_a$ est croissante et minorée par $\\tau_a(u)$ : elle a une limite finie à droite en $a$, qui est $f'_d(a)$. Sur $\\left]u,a\\right[$, elle est croissante et majorée par $\\tau_a(v)$ : limite finie à gauche $f'_g(a)$. Enfin $\\tau_a(s)\\le\\tau_a(s')$ pour $s<a<s'$ donne, à la limite, $f'_g(a)\\le f'_d(a)$."
+    },
+    {
+     "texte": "Une fonction convexe sur $[0,1]$ est continue sur $[0,1]$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=0$ pour $x\\in\\left[0,1\\right[$ et $f(1)=1$ : $f$ est convexe sur $[0,1]$ (pour $x<1$ et $t<1$, $f\\big((1-t)x+t\\big)=0\\le t=(1-t)f(x)+tf(1)$, les autres cas sont immédiats), mais n'est pas continue en $1$."
+    },
+    {
+     "texte": "Une fonction convexe sur $\\mathbb{R}$ est dérivable sur $\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "$x\\mapsto|x|$ est convexe sur $\\mathbb{R}$, avec une dérivée à gauche $-1$ et une dérivée à droite $1$ en $0$ : elle n'est pas dérivable en $0$."
+    },
+    {
+     "texte": "Si $f$ est convexe sur un intervalle ouvert $I$ et dérivable en un point $a\\in I$, alors $f(x)\\ge f(a)+f'(a)(x-a)$ pour tout $x\\in I$.",
+     "vrai": true,
+     "justification": "Pour $x>a$ : $\\tau_a(x)\\ge\\tau_a(s)$ pour tout $s\\in\\left]a,x\\right[$, et en faisant tendre $s$ vers $a$, $\\tau_a(x)\\ge f'(a)$ ; on multiplie par $x-a>0$. Pour $x<a$ : de même $\\tau_a(x)\\le f'(a)$, et l'on multiplie par $x-a<0$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-convexite-jensen",
+    "ar-t-limite-monotone"
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-derivables",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-convexite",
+   "type": "theoreme",
+   "titre": "Convexité des fonctions dérivables",
+   "recto": "Énoncer la caractérisation de la convexité d'une fonction dérivable sur un intervalle (dérivée, tangentes, dérivée seconde), avec ses hypothèses.",
+   "cours": "En Terminale, on a admis qu'une fonction deux fois dérivable est convexe si et seulement si $f''\\ge0$. Le théorème démontre ce critère et l'améliore : pour une fonction seulement **dérivable** sur un intervalle, la convexité équivaut à la **croissance de $f'$**, et aussi au fait que la courbe est **au-dessus de toutes ses tangentes**. La preuve combine les deux outils du chapitre : l'inégalité des trois pentes (en faisant tendre une extrémité de la corde vers l'autre, la pente devient une dérivée) et l'égalité des accroissements finis.\n\nMéthode : pour montrer que $f$ est convexe, montrer que $f'$ est croissante, soit par des opérations (somme de fonctions croissantes), soit par le signe de $f''$ quand $f$ est deux fois dérivable. On en tire alors des inégalités par les tangentes : $f(x)\\ge f(a)+f'(a)(x-a)$ pour tous $a$, $x$. En particulier, si $f'(a)=0$, $f$ atteint en $a$ son **minimum** sur l'intervalle : pour une fonction convexe dérivable, un point critique est un minimum global.\n\nPièges : il faut $f'$ **croissante**, pas $f'$ positive (qui donne $f$ croissante, ce qui n'a rien à voir : $\\ln$ est croissante et concave) ; il faut un **intervalle** ; et la condition $f''(a)>0$ en un seul point ne donne pas la convexité sur $I$ ($x\\mapsto x^3$ et $a=1$, sur $\\mathbb{R}$).",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$.",
+    "$f$ est dérivable sur $I$, y compris aux bornes de $I$ qui lui appartiennent (une seule dérivation suffit)."
+   ],
+   "hypotheses_pieges": [
+    "$f'$ est positive sur $I$ (à la place de croissante).",
+    "$f''(a)\\ge0$ en un point $a$ de $I$ seulement (à la place de $f''\\ge0$ en tout point de $I$).",
+    "$f$ est dérivable à l'intérieur de $I$ seulement, sans hypothèse aux bornes de $I$ qui lui appartiennent (à la place de dérivable sur $I$)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ **dérivable** sur $I$. Les propriétés suivantes sont équivalentes :\n- $f$ est convexe sur $I$ ;\n- $f'$ est croissante sur $I$ ;\n- la courbe de $f$ est au-dessus de chacune de ses tangentes : pour tous $a,x\\in I$, $f(x)\\ge f(a)+f'(a)(x-a)$.\n\nSi de plus $f$ est deux fois dérivable sur $I$, $f$ est convexe sur $I$ si et seulement si $f''(x)\\ge0$ pour tout $x\\in I$. De même, $f$ est concave sur $I$ si et seulement si $f'$ est décroissante, si et seulement si sa courbe est au-dessous de ses tangentes.",
+   "enonce_trous": "Soit $f$ dérivable sur un intervalle $I$. Alors $f$ est convexe sur $I$ si et seulement si {{1}}, si et seulement si sa courbe est {{2}}.",
+   "trous": [
+    {
+     "reponse": "$f'$ est croissante sur $I$",
+     "leurres": [
+      "$f'$ est positive sur $I$",
+      "$f$ est croissante sur $I$",
+      "$f'$ est strictement croissante sur $I$"
+     ]
+    },
+    {
+     "reponse": "au-dessus de chacune de ses tangentes",
+     "leurres": [
+      "au-dessous de chacune de ses tangentes",
+      "au-dessus de chacune de ses cordes",
+      "au-dessus de l'axe des abscisses"
+     ]
+    }
+   ],
+   "demo": "**Convexe $\\Rightarrow$ $f'$ croissante.** Soient $a<b$ dans $I$. Pour $x\\in\\left]a,b\\right[$, l'inégalité des trois pentes donne\n$$\\frac{f(x)-f(a)}{x-a}\\le\\frac{f(b)-f(a)}{b-a}\\le\\frac{f(b)-f(x)}{b-x}.$$\nQuand $x\\to a^+$, le membre de gauche tend vers $f'(a)$ ; quand $x\\to b^-$, le membre de droite tend vers $f'(b)$. Par passage à la limite dans les inégalités larges, $f'(a)\\le\\frac{f(b)-f(a)}{b-a}\\le f'(b)$.\n\n**$f'$ croissante $\\Rightarrow$ tangentes.** Soient $a,x\\in I$ avec $x\\neq a$. $f$ est continue sur le segment d'extrémités $a$ et $x$ et dérivable sur l'intérieur : l'égalité des accroissements finis donne $c$ strictement entre $a$ et $x$ tel que $f(x)-f(a)=f'(c)(x-a)$. Si $x>a$, alors $c>a$, $f'(c)\\ge f'(a)$ et $x-a>0$, d'où $f'(c)(x-a)\\ge f'(a)(x-a)$. Si $x<a$, alors $c<a$, $f'(c)\\le f'(a)$ et $x-a<0$, d'où encore $f'(c)(x-a)\\ge f'(a)(x-a)$. Dans les deux cas, $f(x)\\ge f(a)+f'(a)(x-a)$.\n\n**Tangentes $\\Rightarrow$ convexe.** Soient $x,y\\in I$, $t\\in[0,1]$ et $z=(1-t)x+ty\\in I$. Les tangentes au point d'abscisse $z$ donnent $f(x)\\ge f(z)+f'(z)(x-z)$ et $f(y)\\ge f(z)+f'(z)(y-z)$. On multiplie par $1-t\\ge0$ et $t\\ge0$ et l'on additionne :\n$$(1-t)f(x)+tf(y)\\ge f(z)+f'(z)\\big((1-t)x+ty-z\\big)=f(z).$$\n\n**Cas deux fois dérivable.** Si $f''\\ge0$ sur l'intervalle $I$, alors $f'$ est croissante (théorème de monotonie, conséquence des accroissements finis). Réciproquement, si $f'$ est croissante, pour tout $a\\in I$ le taux $\\frac{f'(x)-f'(a)}{x-a}$ est positif ou nul, et sa limite $f''(a)$ aussi.\n\n**Cas concave.** On applique ce qui précède à $-f$.",
+   "exemple": "- $f(x)=x\\ln x$ sur $\\left]0,+\\infty\\right[$ : $f'(x)=\\ln x+1$ est croissante, donc $f$ est convexe ; sa tangente en $1$ a pour équation $y=x-1$, d'où $x\\ln x\\ge x-1$ pour tout $x>0$.\n- Le critère ne demande qu'une dérivée : $f(x)=\\frac{x^2}{2}$ pour $x\\ge0$ et $f(x)=0$ pour $x<0$ est dérivable sur $\\mathbb{R}$, avec $f'(x)=\\max(x,0)$, qui est croissante. Donc $f$ est convexe, alors que $f'$ n'est pas dérivable en $0$ (dérivée à gauche $0$, à droite $1$) : on ne peut pas utiliser le signe de $f''$ sur $\\mathbb{R}$.",
+   "contre_exemple": "- **$f'$ positive ne suffit pas** : $\\ln$ est dérivable sur $\\left]0,+\\infty\\right[$ avec $\\ln'(x)=\\frac1x>0$, mais $\\ln2\\approx0{,}693>\\frac{\\ln1+\\ln3}{2}\\approx0{,}549$ : le milieu de la corde entre $1$ et $3$ est au-dessous de la courbe, donc $\\ln$ n'est pas convexe.\n- **Une condition en un point ne suffit pas** : $f(x)=x^3$ vérifie $f''(1)=6>0$, mais $f(-1)=-1>-4=\\frac{f(-2)+f(0)}{2}$ : $f$ n'est pas convexe sur $\\mathbb{R}$ (elle l'est seulement sur $\\left[0,+\\infty\\right[$).\n- **Les bornes comptent** : $f(x)=0$ pour $x\\in\\left[0,1\\right[$ et $f(1)=-1$ a une dérivée nulle, donc croissante, sur $\\left]0,1\\right[$, mais $f\\left(\\frac12\\right)=0>-\\frac12=\\frac{f(0)+f(1)}{2}$ : $f$ n'est pas convexe sur $[0,1]$ (elle n'est ni dérivable ni même continue en $1$).",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est deux fois dérivable et convexe sur $I$, alors $f''(x)>0$ pour tout $x\\in I$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^4$ est convexe sur $\\mathbb{R}$ ($f''(x)=12x^2\\ge0$), mais $f''(0)=0$. Une fonction affine est convexe avec $f''=0$."
+    },
+    {
+     "texte": "Si $f$ est dérivable et convexe sur un intervalle $I$ et si $f'(a)=0$ en un point $a\\in I$, alors $f$ atteint en $a$ son minimum sur $I$.",
+     "vrai": true,
+     "justification": "La tangente en $a$ est horizontale : $f(x)\\ge f(a)+f'(a)(x-a)=f(a)$ pour tout $x\\in I$."
+    },
+    {
+     "texte": "Une fonction dérivable, convexe et bornée sur $\\mathbb{R}$ est constante.",
+     "vrai": true,
+     "justification": "Si $f'(a)>0$ pour un $a$, la tangente donne $f(x)\\ge f(a)+f'(a)(x-a)\\to+\\infty$ quand $x\\to+\\infty$ ; si $f'(a)<0$, de même quand $x\\to-\\infty$. Les deux cas contredisent le fait que $f$ est majorée : $f'=0$ sur l'intervalle $\\mathbb{R}$, et $f$ est constante."
+    },
+    {
+     "texte": "Si $f$ est dérivable sur un intervalle $I$ et si $f'$ est croissante sur $I$, alors $f$ est croissante sur $I$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^2$ sur $\\mathbb{R}$ : $f'(x)=2x$ est croissante, mais $f$ est décroissante sur $\\left]-\\infty,0\\right]$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-convexite-pentes",
+    "ar-l1-taf",
+    "ar-t-derivation-tangentes"
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-iag",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-convexite",
+   "type": "theoreme",
+   "titre": "Inégalité entre moyennes arithmétique et géométrique",
+   "recto": "Énoncer l'inégalité entre moyennes arithmétique et géométrique, avec ses hypothèses et son cas d'égalité, ainsi que sa version pondérée.",
+   "cours": "Pour des réels positifs $x_1,\\dots,x_n$, la **moyenne arithmétique** est $\\frac{x_1+\\dots+x_n}{n}$ et la **moyenne géométrique** est $\\sqrt[n]{x_1\\cdots x_n}$. L'inégalité arithmético-géométrique affirme que la seconde est toujours au plus la première, avec égalité seulement quand tous les nombres sont égaux. Pour $n=2$, c'est $\\sqrt{ab}\\le\\frac{a+b}{2}$, qui équivaut à $\\left(\\sqrt a-\\sqrt b\\right)^2\\ge0$ ; en général, c'est une inégalité de convexité : en passant au logarithme, elle dit que $\\ln$ de la moyenne est au moins la moyenne des $\\ln$, ce qui est l'inégalité de Jensen pour la fonction concave $\\ln$.\n\nÀ quoi elle sert : **majorer un produit dont la somme est fixée**, ou **minorer une somme dont le produit est fixé**, et le cas d'égalité dit où l'extremum est atteint. Exemple type : parmi les rectangles de périmètre donné, le carré a la plus grande aire. Méthode : faire apparaître des termes positifs dont le produit (ou la somme) est constant, quitte à couper un terme en plusieurs morceaux égaux, puis vérifier que le cas d'égalité est réalisable.\n\nLa version pondérée $x_1^{\\lambda_1}\\cdots x_n^{\\lambda_n}\\le\\lambda_1x_1+\\dots+\\lambda_nx_n$ (poids positifs de somme $1$) donne l'inégalité de Young, puis celle de Hölder. Piège principal : tous les $x_i$ doivent être **positifs ou nuls** ; avec des réels négatifs, l'inégalité peut être fausse même quand la racine a un sens ($\\sqrt{(-2)(-8)}=4>-5$), et la moyenne harmonique demande des $x_i$ strictement positifs.",
+   "hypotheses": [
+    "$n\\ge1$ est un entier.",
+    "$x_1,\\dots,x_n$ sont des réels positifs ou nuls."
+   ],
+   "hypotheses_pieges": [
+    "$x_1,\\dots,x_n$ sont des réels quelconques (à la place de positifs ou nuls).",
+    "$x_1,\\dots,x_n$ sont des réels dont le produit est positif ou nul (à la place de tous positifs ou nuls).",
+    "$x_1,\\dots,x_n$ sont des réels dont la somme est positive (à la place de tous positifs ou nuls)."
+   ],
+   "enonce": "Soient $n\\ge1$ et $x_1,\\dots,x_n$ des réels **positifs ou nuls**. Alors\n$$\\sqrt[n]{x_1x_2\\cdots x_n}\\le\\frac{x_1+x_2+\\dots+x_n}{n},$$\navec égalité si et seulement si $x_1=x_2=\\dots=x_n$.\n\n- **Version pondérée** : si $x_1,\\dots,x_n>0$ et si $\\lambda_1,\\dots,\\lambda_n\\ge0$ vérifient $\\lambda_1+\\dots+\\lambda_n=1$, alors $x_1^{\\lambda_1}\\cdots x_n^{\\lambda_n}\\le\\lambda_1x_1+\\dots+\\lambda_nx_n$.\n- **Moyenne harmonique** : si $x_1,\\dots,x_n>0$, alors $\\frac{n}{\\frac1{x_1}+\\dots+\\frac1{x_n}}\\le\\sqrt[n]{x_1\\cdots x_n}$, avec égalité si et seulement si les $x_i$ sont égaux.",
+   "enonce_trous": "Pour tout entier $n\\ge1$ et tous réels $x_1,\\dots,x_n$ {{1}}, on a {{2}}, avec égalité si et seulement si {{3}}.",
+   "trous": [
+    {
+     "reponse": "positifs ou nuls",
+     "leurres": [
+      "quelconques",
+      "non nuls",
+      "de produit positif"
+     ]
+    },
+    {
+     "reponse": "$\\sqrt[n]{x_1\\cdots x_n}\\le\\frac{x_1+\\dots+x_n}{n}$",
+     "leurres": [
+      "$\\frac{x_1+\\dots+x_n}{n}\\le\\sqrt[n]{x_1\\cdots x_n}$",
+      "$x_1\\cdots x_n\\le\\frac{x_1+\\dots+x_n}{n}$",
+      "$\\sqrt[n]{x_1\\cdots x_n}\\le\\frac{x_1^2+\\dots+x_n^2}{n}$"
+     ]
+    },
+    {
+     "reponse": "$x_1=\\dots=x_n$",
+     "leurres": [
+      "l'un des $x_i$ est nul",
+      "$x_1=\\dots=x_n=1$",
+      "$x_1+\\dots+x_n=n$"
+     ]
+    }
+   ],
+   "demo": "**Si l'un des $x_i$ est nul**, le membre de gauche est nul et l'inégalité est vraie ; il y a égalité si et seulement si la moyenne $\\frac{x_1+\\dots+x_n}{n}$ est nulle, c'est-à-dire si tous les $x_i$ sont nuls, ce qui revient ici à dire qu'ils sont égaux (puisque l'un d'eux est nul).\n\n**Si tous les $x_i$ sont strictement positifs**, notons $m=\\frac{x_1+\\dots+x_n}{n}>0$. La fonction $\\ln$ est concave (sa dérivée $\\frac1u$ est décroissante), et sa tangente en $1$ donne $\\ln u\\le u-1$ pour tout $u>0$, avec égalité seulement pour $u=1$. En effet, $g(u)=u-1-\\ln u$ a pour dérivée $1-\\frac1u$, strictement négative sur $\\left]0,1\\right[$ et strictement positive sur $\\left]1,+\\infty\\right[$ : $g$ est strictement décroissante sur $\\left]0,1\\right]$ et strictement croissante sur $\\left[1,+\\infty\\right[$, donc $g(u)>g(1)=0$ pour $u\\neq1$. Avec $u=\\frac{x_i}{m}$ et en sommant :\n$$\\sum_{i=1}^n\\ln\\frac{x_i}{m}\\le\\sum_{i=1}^n\\Big(\\frac{x_i}{m}-1\\Big)=\\frac{nm}{m}-n=0.$$\nAinsi $\\ln\\frac{x_1\\cdots x_n}{m^n}\\le0$, donc $x_1\\cdots x_n\\le m^n$, et par croissance de la racine $n$-ième sur $\\left[0,+\\infty\\right[$, $\\sqrt[n]{x_1\\cdots x_n}\\le m$. Il y a égalité si et seulement si chacune des inégalités $\\ln\\frac{x_i}{m}\\le\\frac{x_i}{m}-1$ est une égalité, c'est-à-dire si $x_i=m$ pour tout $i$. Réciproquement, si tous les $x_i$ valent $c$, les deux moyennes valent $c$.\n\n**Version pondérée.** $-\\ln$ est convexe sur $\\left]0,+\\infty\\right[$ (sa dérivée $-\\frac1u$ est croissante). L'inégalité de Jensen donne $-\\ln\\big(\\sum\\lambda_ix_i\\big)\\le-\\sum\\lambda_i\\ln x_i$, c'est-à-dire $\\ln\\big(x_1^{\\lambda_1}\\cdots x_n^{\\lambda_n}\\big)\\le\\ln\\big(\\sum\\lambda_ix_i\\big)$, et l'on conclut par croissance de $\\exp$.\n\n**Moyenne harmonique.** On applique l'inégalité aux réels $\\frac1{x_i}>0$ : $\\frac{1}{\\sqrt[n]{x_1\\cdots x_n}}=\\sqrt[n]{\\frac1{x_1}\\cdots\\frac1{x_n}}\\le\\frac1n\\sum_{i=1}^n\\frac1{x_i}$, puis on passe aux inverses (tout est strictement positif). Il y a égalité si et seulement si les $\\frac1{x_i}$ sont égaux, c'est-à-dire si les $x_i$ le sont.",
+   "exemple": "- Pour $x>0$ : $x+\\frac1x\\ge2\\sqrt{x\\cdot\\frac1x}=2$, avec égalité si et seulement si $x=\\frac1x$, c'est-à-dire $x=1$.\n- Parmi les rectangles de côtés $a,b>0$ de périmètre $4p$ (donc $a+b=2p$), l'aire vérifie $ab\\le\\left(\\frac{a+b}{2}\\right)^2=p^2$, avec égalité seulement pour le carré $a=b=p$.\n- Pour $x,y,z\\ge0$, en appliquant l'inégalité à $x^3$, $y^3$, $z^3$ : $xyz=\\sqrt[3]{x^3y^3z^3}\\le\\frac{x^3+y^3+z^3}{3}$, soit $x^3+y^3+z^3\\ge3xyz$.",
+   "contre_exemple": "- **Réels négatifs** : pour $n=2$, $x_1=-2$, $x_2=-8$, le produit $16$ est positif, mais $\\sqrt{16}=4>-5=\\frac{-2-8}{2}$.\n- **Somme positive ne suffit pas** : pour $n=3$, $(x_1,x_2,x_3)=(-1,-1,4)$ a pour somme $2>0$ et pour produit $4$, mais $\\sqrt[3]4\\approx1{,}59>\\frac23$.\n- **Cas d'égalité** : il faut que tous les $x_i$ soient égaux, pas seulement que l'un soit nul ni que leur somme vaille $n$ : pour $(0,1)$, $\\sqrt{0}=0<\\frac12$ ; pour $\\left(\\frac12,\\frac32\\right)$, de somme $2$, $\\sqrt{\\frac34}\\approx0{,}87<1$.",
+   "affirmations": [
+    {
+     "texte": "Pour tous réels $x$ et $y$ (de signes quelconques), $xy\\le\\left(\\frac{x+y}{2}\\right)^2$.",
+     "vrai": true,
+     "justification": "$\\left(\\frac{x+y}{2}\\right)^2-xy=\\left(\\frac{x-y}{2}\\right)^2\\ge0$. Pour deux nombres, cette forme « au carré » reste vraie sans hypothèse de signe."
+    },
+    {
+     "texte": "Pour tous réels $x$, $y$, $z$ (de signes quelconques), $xyz\\le\\left(\\frac{x+y+z}{3}\\right)^3$.",
+     "vrai": false,
+     "contre_exemple": "$(x,y,z)=(-1,-1,2)$ : $xyz=2$ alors que $\\left(\\frac{x+y+z}{3}\\right)^3=0$."
+    },
+    {
+     "texte": "Si $x_1,\\dots,x_n\\ge0$ vérifient $x_1x_2\\cdots x_n=1$, alors $x_1+\\dots+x_n\\ge n$.",
+     "vrai": true,
+     "justification": "$\\frac{x_1+\\dots+x_n}{n}\\ge\\sqrt[n]{x_1\\cdots x_n}=1$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-convexite-jensen",
+    "ar-l1-convexite-derivables",
+    "ar-t-fonctions-usuelles-ln"
+   ]
+  }
+ ]
+}

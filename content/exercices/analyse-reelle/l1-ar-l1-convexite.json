@@ -1,0 +1,828 @@
+{
+ "exercices": [
+  {
+   "id": "ar-l1-convexite-jensen-ex1",
+   "carte": "ar-l1-convexite-jensen",
+   "difficulte": 1,
+   "titre": "Convexité d'un trinôme par la définition",
+   "enonce": "Soit $f(x)=x^2$ sur $\\mathbb{R}$. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, on pose $D=(1-t)f(x)+tf(y)-f\\big((1-t)x+ty\\big)$. Exprimer $D$ en fonction de $t$, $x$ et $y$, et en déduire si $f$ est convexe sur $\\mathbb{R}$, en revenant à la définition.",
+   "duree_min": 8,
+   "indices": [
+    "Développer $\\big((1-t)x+ty\\big)^2$ et regrouper les termes en $x^2$, en $xy$ et en $y^2$.",
+    "Utiliser $(1-t)-(1-t)^2=t(1-t)$ et $t-t^2=t(1-t)$."
+   ],
+   "reponse_finale": {
+    "question": "Que vaut $D$, et que peut-on en conclure ?",
+    "propositions": [
+     "$D=t(1-t)(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+     "$D=t(1-t)(x+y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+     "$D=-t(1-t)(x-y)^2$, donc $f$ est concave sur $\\mathbb{R}$",
+     "$D=t^2(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Posons $z=(1-t)x+ty$. On a $z^2=(1-t)^2x^2+2t(1-t)xy+t^2y^2$, donc\n$$D=(1-t)x^2+ty^2-z^2=\\big[(1-t)-(1-t)^2\\big]x^2-2t(1-t)xy+\\big[t-t^2\\big]y^2.$$\nOr $(1-t)-(1-t)^2=(1-t)t$ et $t-t^2=t(1-t)$, d'où\n$$D=t(1-t)\\big(x^2-2xy+y^2\\big)=t(1-t)(x-y)^2.$$\nPour $t\\in[0,1]$, $t(1-t)\\ge0$, donc $D\\ge0$ : $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$ pour tous $x,y,t$. La fonction carré est convexe sur $\\mathbb{R}$.",
+   "variantes": [
+    {
+     "enonce": "Soit $f(x)=3x^2-4x+1$ sur $\\mathbb{R}$. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, on pose $D=(1-t)f(x)+tf(y)-f\\big((1-t)x+ty\\big)$. Exprimer $D$ en fonction de $t$, $x$ et $y$, et en déduire si $f$ est convexe sur $\\mathbb{R}$, en revenant à la définition.",
+     "indices": [
+      "Pour une fonction affine, la différence correspondante est nulle : seule la partie $3x^2$ compte.",
+      "Développer $\\big((1-t)x+ty\\big)^2$ et utiliser $(1-t)-(1-t)^2=t(1-t)$."
+     ],
+     "reponse_finale": {
+      "question": "Que vaut $D$, et que peut-on en conclure ?",
+      "propositions": [
+       "$D=3t(1-t)(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+       "$D=t(1-t)(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+       "$D=-3t(1-t)(x-y)^2$, donc $f$ est concave sur $\\mathbb{R}$",
+       "$D=3t(1-t)(x-y)^2-4t(1-t)(x-y)$, donc $f$ n'est ni convexe ni concave"
+      ],
+      "bonne": 0
+     },
+     "correction": "Pour la partie affine $g(x)=-4x+1$ : $(1-t)g(x)+tg(y)-g\\big((1-t)x+ty\\big)=0$, car $g\\big((1-t)x+ty\\big)=-4(1-t)x-4ty+(1-t)+t$. Il reste la partie $3x^2$ : avec $z=(1-t)x+ty$ et $z^2=(1-t)^2x^2+2t(1-t)xy+t^2y^2$,\n$$D=3\\big[(1-t)x^2+ty^2-z^2\\big]=3\\big[t(1-t)x^2-2t(1-t)xy+t(1-t)y^2\\big]=3t(1-t)(x-y)^2.$$\nPour $t\\in[0,1]$, $D\\ge0$ : $f$ est convexe sur $\\mathbb{R}$."
+    },
+    {
+     "enonce": "Soit $f(x)=-x^2+2x$ sur $\\mathbb{R}$. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, on pose $D=(1-t)f(x)+tf(y)-f\\big((1-t)x+ty\\big)$. Exprimer $D$ en fonction de $t$, $x$ et $y$, et en déduire si $f$ est convexe sur $\\mathbb{R}$, en revenant à la définition.",
+     "indices": [
+      "La partie affine $2x$ ne contribue pas à $D$.",
+      "Développer $\\big((1-t)x+ty\\big)^2$ ; le signe du résultat décide entre convexe et concave."
+     ],
+     "reponse_finale": {
+      "question": "Que vaut $D$, et que peut-on en conclure ?",
+      "propositions": [
+       "$D=-t(1-t)(x-y)^2$, donc $f$ est concave et n'est pas convexe sur $\\mathbb{R}$",
+       "$D=t(1-t)(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+       "$D=-t(1-t)(x-y)^2$, donc $f$ est convexe sur $\\mathbb{R}$",
+       "$D=-t(1-t)(x-y)^2+2t(1-t)(x-y)$, donc $f$ n'est ni convexe ni concave"
+      ],
+      "bonne": 0
+     },
+     "correction": "La partie affine $x\\mapsto2x$ donne une contribution nulle. Pour la partie $-x^2$, avec $z=(1-t)x+ty$ :\n$$D=-\\big[(1-t)x^2+ty^2-z^2\\big]=-t(1-t)(x-y)^2\\le0.$$\nDonc $f\\big((1-t)x+ty\\big)\\ge(1-t)f(x)+tf(y)$ : $f$ est concave sur $\\mathbb{R}$. Elle n'est pas convexe : pour $x=0$, $y=2$, $t=\\frac12$, $D=-\\frac14\\cdot4=-1<0$ (en effet $f(1)=1>0=\\frac{f(0)+f(2)}{2}$)."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-jensen-ex2",
+   "carte": "ar-l1-convexite-jensen",
+   "difficulte": 2,
+   "titre": "Majorer une fonction convexe par une corde",
+   "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=2$, $f(2)=-1$ et $f(6)=5$.\n\n**1.** Écrire $3$ sous la forme $(1-t)\\cdot2+t\\cdot6$, puis sous la forme $(1-s)\\cdot0+s\\cdot6$, avec $t,s\\in[0,1]$, et en déduire deux majorations de $f(3)$.\n\n**2.** Montrer que la meilleure des deux est atteinte par une fonction convexe sur $\\mathbb{R}$ qui vérifie les trois conditions.",
+   "duree_min": 10,
+   "indices": [
+    "$t=\\frac14$ et $s=\\frac12$ ; la corde la plus courte autour de $3$ donne la meilleure majoration.",
+    "Pour la question 2, chercher le maximum de deux fonctions affines passant par les points connus."
+   ],
+   "reponse_finale": {
+    "question": "Quel est le plus petit réel $M$ tel que $f(3)\\le M$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+    "propositions": [
+     "$\\frac12$",
+     "$\\frac72$",
+     "$2$",
+     "$-\\frac52$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** $3=\\frac34\\cdot2+\\frac14\\cdot6$ ($t=\\frac14$) : par convexité, $f(3)\\le\\frac34f(2)+\\frac14f(6)=-\\frac34+\\frac54=\\frac12$. Et $3=\\frac12\\cdot0+\\frac12\\cdot6$ ($s=\\frac12$) : $f(3)\\le\\frac{f(0)+f(6)}{2}=\\frac72$. La meilleure est $f(3)\\le\\frac12$.\n\n**2.** Soit $g(x)=\\max\\left(2-\\frac32x,\\ -4+\\frac32x\\right)$, maximum de deux fonctions affines, donc convexe sur $\\mathbb{R}$. On vérifie $g(0)=\\max(2,-4)=2$, $g(2)=\\max(-1,-1)=-1$, $g(6)=\\max(-7,5)=5$ et $g(3)=\\max\\left(-\\frac52,\\frac12\\right)=\\frac12$. Ainsi $f(3)\\le\\frac12$ pour toute $f$ convexe vérifiant les conditions, et cette borne est atteinte : le plus petit $M$ est $\\frac12$.",
+   "variantes": [
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(-1)=4$, $f(1)=0$ et $f(4)=3$.\n\n**1.** Écrire $2$ sous la forme $(1-t)\\cdot1+t\\cdot4$, puis sous la forme $(1-s)\\cdot(-1)+s\\cdot4$, avec $t,s\\in[0,1]$, et en déduire deux majorations de $f(2)$.\n\n**2.** Montrer que la meilleure des deux est atteinte par une fonction convexe sur $\\mathbb{R}$ qui vérifie les trois conditions.",
+     "indices": [
+      "$t=\\frac13$ et $s=\\frac35$ ; la corde la plus courte autour de $2$ donne la meilleure majoration.",
+      "Pour la question 2, chercher le maximum de deux fonctions affines passant par les points connus."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le plus petit réel $M$ tel que $f(2)\\le M$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+      "propositions": [
+       "$1$",
+       "$\\frac{17}{5}$",
+       "$\\frac32$",
+       "$-2$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $2=\\frac23\\cdot1+\\frac13\\cdot4$ : $f(2)\\le\\frac23f(1)+\\frac13f(4)=0+1=1$. Et $2=\\frac25\\cdot(-1)+\\frac35\\cdot4$ : $f(2)\\le\\frac25\\cdot4+\\frac35\\cdot3=\\frac{17}{5}$. La meilleure est $f(2)\\le1$.\n\n**2.** $g(x)=\\max(2-2x,\\ x-1)$ est convexe (maximum de deux fonctions affines), et $g(-1)=\\max(4,-2)=4$, $g(1)=\\max(0,0)=0$, $g(4)=\\max(-6,3)=3$, $g(2)=\\max(-2,1)=1$. Le plus petit $M$ est $1$."
+    },
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=0$, $f(1)=-2$ et $f(5)=6$.\n\n**1.** Écrire $2$ sous la forme $(1-t)\\cdot1+t\\cdot5$, puis sous la forme $(1-s)\\cdot0+s\\cdot5$, avec $t,s\\in[0,1]$, et en déduire deux majorations de $f(2)$.\n\n**2.** Montrer que la meilleure des deux est atteinte par une fonction convexe sur $\\mathbb{R}$ qui vérifie les trois conditions.",
+     "indices": [
+      "$t=\\frac14$ et $s=\\frac25$ ; la corde la plus courte autour de $2$ donne la meilleure majoration.",
+      "Pour la question 2, chercher le maximum de deux fonctions affines passant par les points connus."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le plus petit réel $M$ tel que $f(2)\\le M$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+      "propositions": [
+       "$0$",
+       "$\\frac{12}{5}$",
+       "$2$",
+       "$-4$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $2=\\frac34\\cdot1+\\frac14\\cdot5$ : $f(2)\\le\\frac34\\cdot(-2)+\\frac14\\cdot6=-\\frac32+\\frac32=0$. Et $2=\\frac35\\cdot0+\\frac25\\cdot5$ : $f(2)\\le\\frac25\\cdot6=\\frac{12}{5}$. La meilleure est $f(2)\\le0$.\n\n**2.** $g(x)=\\max(-2x,\\ 2x-4)$ est convexe, et $g(0)=0$, $g(1)=\\max(-2,-2)=-2$, $g(5)=\\max(-10,6)=6$, $g(2)=\\max(-4,0)=0$. Le plus petit $M$ est $0$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-jensen-ex3",
+   "carte": "ar-l1-convexite-jensen",
+   "difficulte": 2,
+   "titre": "Minimum d'une somme sous contrainte",
+   "enonce": "Soit $n\\ge2$ un entier. On considère les $n$-uplets $(x_1,\\dots,x_n)$ de réels tels que $x_1+\\dots+x_n=1$. À l'aide de l'inégalité de Jensen, déterminer la valeur minimale de $x_1^2+\\dots+x_n^2$ et un $n$-uplet où elle est atteinte.",
+   "duree_min": 8,
+   "indices": [
+    "Appliquer l'inégalité de Jensen à la fonction carré avec les poids $\\frac1n$.",
+    "Chercher un $n$-uplet de somme $1$ qui réalise l'égalité."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la valeur minimale de la somme étudiée ?",
+    "propositions": [
+     "$\\frac1n$",
+     "$1$",
+     "$\\frac1{n^2}$",
+     "$0$"
+    ],
+    "bonne": 0
+   },
+   "correction": "La fonction $x\\mapsto x^2$ est convexe sur $\\mathbb{R}$. L'inégalité de Jensen avec les poids $\\lambda_i=\\frac1n$ (positifs, de somme $1$) donne\n$$\\left(\\frac{x_1+\\dots+x_n}{n}\\right)^2\\le\\frac{x_1^2+\\dots+x_n^2}{n},\\quad\\text{soit}\\quad\\frac1{n^2}\\le\\frac{x_1^2+\\dots+x_n^2}{n},$$\ndonc $x_1^2+\\dots+x_n^2\\ge\\frac1n$. Pour $x_1=\\dots=x_n=\\frac1n$, la somme vaut $1$ et $x_1^2+\\dots+x_n^2=n\\cdot\\frac1{n^2}=\\frac1n$. Le minimum est $\\frac1n$.",
+   "variantes": [
+    {
+     "enonce": "Soit $n\\ge2$ un entier. On considère les $n$-uplets $(x_1,\\dots,x_n)$ de réels **positifs ou nuls** tels que $x_1+\\dots+x_n=n$. À l'aide de l'inégalité de Jensen, déterminer la valeur minimale de $x_1^3+\\dots+x_n^3$ et un $n$-uplet où elle est atteinte.",
+     "indices": [
+      "La fonction cube est convexe sur $\\left[0,+\\infty\\right[$ : le vérifier, puis appliquer l'inégalité de Jensen avec les poids $\\frac1n$.",
+      "Chercher un $n$-uplet de somme $n$ qui réalise l'égalité."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur minimale de la somme étudiée ?",
+      "propositions": [
+       "$n$",
+       "$1$",
+       "$n^3$",
+       "$n^2$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Sur l'intervalle $\\left[0,+\\infty\\right[$, $x\\mapsto x^3$ a pour dérivée seconde $6x\\ge0$ : elle est convexe. Les $x_i$ sont dans cet intervalle, et l'inégalité de Jensen avec les poids $\\frac1n$ donne\n$$\\left(\\frac{x_1+\\dots+x_n}{n}\\right)^3\\le\\frac{x_1^3+\\dots+x_n^3}{n},\\quad\\text{soit}\\quad1\\le\\frac{x_1^3+\\dots+x_n^3}{n}.$$\nDonc $x_1^3+\\dots+x_n^3\\ge n$, avec égalité pour $x_1=\\dots=x_n=1$ (de somme $n$). Le minimum est $n$."
+    },
+    {
+     "enonce": "Soit $n\\ge2$ un entier. On considère les $n$-uplets $(x_1,\\dots,x_n)$ de réels **strictement positifs** tels que $x_1+\\dots+x_n=1$. À l'aide de l'inégalité de Jensen, déterminer la valeur minimale de $\\frac1{x_1}+\\dots+\\frac1{x_n}$ et un $n$-uplet où elle est atteinte.",
+     "indices": [
+      "La fonction $x\\mapsto\\frac1x$ est convexe sur $\\left]0,+\\infty\\right[$ : le vérifier, puis appliquer l'inégalité de Jensen avec les poids $\\frac1n$.",
+      "Chercher un $n$-uplet de somme $1$ qui réalise l'égalité."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur minimale de la somme étudiée ?",
+      "propositions": [
+       "$n^2$",
+       "$n$",
+       "$\\frac1n$",
+       "$1$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Sur $\\left]0,+\\infty\\right[$, $x\\mapsto\\frac1x$ a pour dérivée seconde $\\frac2{x^3}>0$ : elle est convexe. L'inégalité de Jensen avec les poids $\\frac1n$ donne\n$$\\frac{1}{\\frac{x_1+\\dots+x_n}{n}}\\le\\frac1n\\left(\\frac1{x_1}+\\dots+\\frac1{x_n}\\right),\\quad\\text{soit}\\quad n\\le\\frac1n\\left(\\frac1{x_1}+\\dots+\\frac1{x_n}\\right).$$\nDonc $\\frac1{x_1}+\\dots+\\frac1{x_n}\\ge n^2$, avec égalité pour $x_1=\\dots=x_n=\\frac1n$, où la somme vaut $n\\cdot n=n^2$. Le minimum est $n^2$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-jensen-ex4",
+   "carte": "ar-l1-convexite-jensen",
+   "difficulte": 3,
+   "titre": "Maximum sur les angles d'un triangle",
+   "enonce": "On considère les triplets $(A,B,C)$ de réels strictement positifs tels que $A+B+C=\\pi$ (les angles d'un triangle). Montrer que $\\sin A+\\sin B+\\sin C$ est majoré, déterminer sa valeur maximale et les triplets où elle est atteinte.",
+   "duree_min": 12,
+   "indices": [
+    "Étudier la concavité de $\\sin$ sur l'intervalle $[0,\\pi]$, qui contient $A$, $B$ et $C$.",
+    "Appliquer l'inégalité de Jensen (sens concave) avec les poids $\\frac13$ ; la moyenne des angles vaut $\\frac\\pi3$."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la valeur maximale de la quantité étudiée ?",
+    "propositions": [
+     "$\\frac{3\\sqrt3}{2}$",
+     "$3$",
+     "$\\frac32$",
+     "$\\frac{3\\sqrt3}{4}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Sur l'intervalle $[0,\\pi]$, $\\sin''=-\\sin\\le0$ : $\\sin$ est concave sur $[0,\\pi]$. Les réels $A$, $B$, $C$ sont dans cet intervalle, et l'inégalité de Jensen pour une fonction concave, avec les poids $\\frac13$, donne\n$$\\frac{\\sin A+\\sin B+\\sin C}{3}\\le\\sin\\left(\\frac{A+B+C}{3}\\right)=\\sin\\frac\\pi3=\\frac{\\sqrt3}{2}.$$\nDonc $\\sin A+\\sin B+\\sin C\\le\\frac{3\\sqrt3}{2}$, avec égalité pour $A=B=C=\\frac\\pi3$ (triangle équilatéral). La valeur maximale est $\\frac{3\\sqrt3}{2}$.\n\n**C'est le seul triplet.** Si les trois angles ne sont pas égaux, deux d'entre eux diffèrent, disons $A\\neq B$. Alors $0<\\frac{|A-B|}{2}<\\frac\\pi2$ et $\\frac{A+B}{2}\\in\\left]0,\\frac\\pi2\\right[$, donc\n$$\\sin A+\\sin B=2\\sin\\frac{A+B}{2}\\cos\\frac{A-B}{2}<2\\sin\\frac{A+B}{2}.$$\nLe triplet $\\left(\\frac{A+B}2,\\frac{A+B}2,C\\right)$ est admissible et donne une somme strictement plus grande : $(A,B,C)$ ne réalisait pas le maximum.\n\nRemarque : la majoration $\\sin A+\\sin B+\\sin C\\le3$ est vraie mais jamais atteinte, puisque les trois sinus ne peuvent valoir $1$ en même temps.",
+   "variantes": [
+    {
+     "enonce": "On considère les triplets $(A,B,C)$ de réels strictement positifs tels que $A+B+C=\\pi$ (les angles d'un triangle). Montrer que $\\sin A\\sin B\\sin C$ est majoré, déterminer sa valeur maximale et les triplets où elle est atteinte.",
+     "indices": [
+      "Passer au logarithme : étudier la concavité de $\\ln\\circ\\sin$ sur $\\left]0,\\pi\\right[$.",
+      "Appliquer l'inégalité de Jensen (sens concave) avec les poids $\\frac13$, puis revenir au produit par l'exponentielle."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur maximale de la quantité étudiée ?",
+      "propositions": [
+       "$\\frac{3\\sqrt3}{8}$",
+       "$1$",
+       "$\\frac{3\\sqrt3}{2}$",
+       "$\\frac18$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Sur $\\left]0,\\pi\\right[$, $\\sin>0$ et $\\varphi=\\ln\\circ\\sin$ est deux fois dérivable : $\\varphi'=\\frac{\\cos}{\\sin}$ et $\\varphi''=\\frac{-\\sin^2-\\cos^2}{\\sin^2}=-\\frac1{\\sin^2}<0$. Donc $\\varphi$ est concave sur $\\left]0,\\pi\\right[$, qui contient $A$, $B$, $C$. L'inégalité de Jensen avec les poids $\\frac13$ donne\n$$\\frac{\\ln\\sin A+\\ln\\sin B+\\ln\\sin C}{3}\\le\\ln\\sin\\frac\\pi3=\\ln\\frac{\\sqrt3}{2},$$\nd'où $\\ln(\\sin A\\sin B\\sin C)\\le3\\ln\\frac{\\sqrt3}2$ et, par croissance de $\\exp$, $\\sin A\\sin B\\sin C\\le\\left(\\frac{\\sqrt3}{2}\\right)^3=\\frac{3\\sqrt3}{8}$. Égalité pour $A=B=C=\\frac\\pi3$. La valeur maximale est $\\frac{3\\sqrt3}{8}$.\n\n**C'est le seul triplet.** Si, par exemple, $A\\neq B$, alors $0<|A-B|<\\pi$, donc $\\cos(A-B)<1$ et\n$$\\sin A\\sin B=\\frac{\\cos(A-B)-\\cos(A+B)}{2}<\\frac{1-\\cos(A+B)}{2}=\\sin^2\\frac{A+B}{2}.$$\nComme $\\sin C>0$, le triplet admissible $\\left(\\frac{A+B}2,\\frac{A+B}2,C\\right)$ donne un produit strictement plus grand : le maximum n'est atteint que si les trois angles sont égaux."
+    },
+    {
+     "enonce": "On considère les triplets $(A,B,C)$ de réels strictement positifs tels que $A+B+C=\\pi$ (les angles d'un triangle). Montrer que $\\sin\\frac A2\\sin\\frac B2\\sin\\frac C2$ est majoré, déterminer sa valeur maximale et les triplets où elle est atteinte.",
+     "indices": [
+      "Les réels $\\frac A2$, $\\frac B2$, $\\frac C2$ sont dans $\\left]0,\\frac\\pi2\\right[$ et ont pour somme $\\frac\\pi2$ ; étudier la concavité de $\\ln\\circ\\sin$ sur cet intervalle.",
+      "Appliquer l'inégalité de Jensen (sens concave) avec les poids $\\frac13$ ; la moyenne des demi-angles vaut $\\frac\\pi6$."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur maximale de la quantité étudiée ?",
+      "propositions": [
+       "$\\frac18$",
+       "$\\frac{3\\sqrt3}{8}$",
+       "$\\frac12$",
+       "$\\frac1{27}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Les demi-angles $a=\\frac A2$, $b=\\frac B2$, $c=\\frac C2$ sont dans $\\left]0,\\frac\\pi2\\right[$, de somme $\\frac\\pi2$. Sur cet intervalle, $\\varphi=\\ln\\circ\\sin$ vérifie $\\varphi''=-\\frac1{\\sin^2}<0$ : elle est concave. Par l'inégalité de Jensen avec les poids $\\frac13$ :\n$$\\frac{\\varphi(a)+\\varphi(b)+\\varphi(c)}{3}\\le\\varphi\\left(\\frac{a+b+c}{3}\\right)=\\ln\\sin\\frac\\pi6=\\ln\\frac12,$$\nd'où $\\sin\\frac A2\\sin\\frac B2\\sin\\frac C2\\le\\left(\\frac12\\right)^3=\\frac18$, avec égalité pour $A=B=C=\\frac\\pi3$. La valeur maximale est $\\frac18$.\n\n**C'est le seul triplet.** Si, par exemple, $A\\neq B$, alors $0<\\frac{|A-B|}2<\\frac\\pi2$, donc $\\cos\\frac{A-B}{2}<1$ et\n$$\\sin\\frac A2\\sin\\frac B2=\\frac{\\cos\\frac{A-B}{2}-\\cos\\frac{A+B}{2}}{2}<\\frac{1-\\cos\\frac{A+B}{2}}{2}=\\sin^2\\frac{A+B}{4}.$$\nComme $\\sin\\frac C2>0$, le triplet admissible $\\left(\\frac{A+B}2,\\frac{A+B}2,C\\right)$ donne un produit strictement plus grand : le maximum n'est atteint que si les trois angles sont égaux."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-jensen-ex5",
+   "carte": "ar-l1-convexite-jensen",
+   "difficulte": 4,
+   "titre": "Convexité à partir des milieux",
+   "enonce": "Soient $I$ un intervalle et $f:I\\to\\mathbb{R}$ une fonction **continue** telle que, pour tous $x,y\\in I$, $f\\left(\\frac{x+y}{2}\\right)\\le\\frac{f(x)+f(y)}{2}$.\n\n**1.** Montrer par récurrence sur l'entier $k\\ge0$ que, pour tous $x_1,\\dots,x_{2^k}\\in I$,\n$$f\\Big(\\frac1{2^k}\\sum_{i=1}^{2^k}x_i\\Big)\\le\\frac1{2^k}\\sum_{i=1}^{2^k}f(x_i).$$\n\n**2.** En déduire que, pour tous $x,y\\in I$ et tout $t$ de la forme $\\frac{p}{2^k}$ ($k\\ge0$ et $p$ entiers, $0\\le p\\le2^k$), $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$.\n\n**3.** Conclure que $f$ est convexe sur $I$.",
+   "duree_min": 25,
+   "indices": [
+    "Question 1 : couper les $2^{k+1}$ points en deux paquets de $2^k$ points, et appliquer l'hypothèse aux deux moyennes partielles.",
+    "Question 2 : prendre $p$ fois le point $y$ et $2^k-p$ fois le point $x$.",
+    "Question 3 : approcher $t\\in[0,1]$ par $t_k=\\frac{\\lfloor2^kt\\rfloor}{2^k}$ et utiliser la continuité de $f$."
+   ],
+   "correction": "**1.** Pour $k=0$, il y a un seul point et l'inégalité est une égalité. Supposons-la vraie au rang $k$ et soient $x_1,\\dots,x_{2^{k+1}}\\in I$. Notons $m_1=\\frac1{2^k}\\sum_{i=1}^{2^k}x_i$ et $m_2=\\frac1{2^k}\\sum_{i=2^k+1}^{2^{k+1}}x_i$ ; ce sont des moyennes de points de l'intervalle $I$, donc $m_1,m_2\\in I$, et la moyenne des $2^{k+1}$ points vaut $\\frac{m_1+m_2}{2}$. Par hypothèse puis par l'hypothèse de récurrence appliquée à chaque paquet :\n$$f\\left(\\frac{m_1+m_2}{2}\\right)\\le\\frac{f(m_1)+f(m_2)}{2}\\le\\frac12\\Big(\\frac1{2^k}\\sum_{i=1}^{2^k}f(x_i)+\\frac1{2^k}\\sum_{i=2^k+1}^{2^{k+1}}f(x_i)\\Big)=\\frac1{2^{k+1}}\\sum_{i=1}^{2^{k+1}}f(x_i).$$\n\n**2.** Soit $t=\\frac p{2^k}$. On applique la question 1 aux $2^k$ points formés de $2^k-p$ copies de $x$ et $p$ copies de $y$ : leur moyenne est $\\frac{(2^k-p)x+py}{2^k}=(1-t)x+ty$, et la moyenne de leurs images est $(1-t)f(x)+tf(y)$.\n\n**3.** Soient $x,y\\in I$ et $\\varphi(s)=f\\big((1-s)x+sy\\big)-(1-s)f(x)-sf(y)$ pour $s\\in[0,1]$. Comme $s\\mapsto(1-s)x+sy$ est continue à valeurs dans $I$ et $f$ est continue, $\\varphi$ est continue sur $[0,1]$. Soit $t\\in[0,1]$ et $t_k=\\frac{\\lfloor2^kt\\rfloor}{2^k}$ : c'est un rationnel dyadique de $[0,1]$ (car $0\\le\\lfloor2^kt\\rfloor\\le2^k$), et $0\\le t-t_k<\\frac1{2^k}$, donc $t_k\\to t$. Par la question 2, $\\varphi(t_k)\\le0$ pour tout $k$ ; par continuité, $\\varphi(t)=\\lim\\varphi(t_k)\\le0$. C'est l'inégalité de convexité : $f$ est convexe sur $I$."
+  },
+  {
+   "id": "ar-l1-convexite-pentes-ex1",
+   "carte": "ar-l1-convexite-pentes",
+   "difficulte": 1,
+   "titre": "Minorer une fonction convexe hors d'une corde",
+   "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=1$ et $f(2)=3$. À l'aide de l'inégalité des trois pentes appliquée à $0<2<5$, minorer $f(5)$. Cette minoration est-elle la meilleure possible ?",
+   "duree_min": 6,
+   "indices": [
+    "Comparer la pente de la corde entre $0$ et $2$ et celle de la corde entre $2$ et $5$.",
+    "Pour l'optimalité, chercher une fonction affine qui vérifie les deux conditions."
+   ],
+   "reponse_finale": {
+    "question": "Quel est le plus grand réel $m$ tel que $f(5)\\ge m$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+    "propositions": [
+     "$6$",
+     "$3$",
+     "$4$",
+     "$\\frac{15}{2}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Pour $0<2<5$, l'inégalité des trois pentes donne $\\frac{f(2)-f(0)}{2-0}\\le\\frac{f(5)-f(2)}{5-2}$, soit $1\\le\\frac{f(5)-3}{3}$, donc $f(5)\\ge6$.\n\nC'est optimal : $g(x)=x+1$ est affine, donc convexe, avec $g(0)=1$, $g(2)=3$ et $g(5)=6$. Le plus grand $m$ est $6$. Géométriquement, la droite qui passe par les points d'abscisses $0$ et $2$ de la courbe reste au-dessous de la courbe (au sens large) au-delà de $2$.",
+   "variantes": [
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(1)=2$ et $f(3)=-2$. À l'aide de l'inégalité des trois pentes appliquée à $1<3<6$, minorer $f(6)$. Cette minoration est-elle la meilleure possible ?",
+     "indices": [
+      "Comparer la pente de la corde entre $1$ et $3$ et celle de la corde entre $3$ et $6$.",
+      "Pour l'optimalité, chercher une fonction affine qui vérifie les deux conditions."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le plus grand réel $m$ tel que $f(6)\\ge m$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+      "propositions": [
+       "$-8$",
+       "$4$",
+       "$-2$",
+       "$-14$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Pour $1<3<6$ : $\\frac{f(3)-f(1)}{2}\\le\\frac{f(6)-f(3)}{3}$, soit $-2\\le\\frac{f(6)+2}{3}$, donc $f(6)\\ge-8$.\n\nC'est optimal : $g(x)=4-2x$ est affine, donc convexe, avec $g(1)=2$, $g(3)=-2$, $g(6)=-8$. Le plus grand $m$ est $-8$."
+    },
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(-2)=5$ et $f(0)=1$. À l'aide de l'inégalité des trois pentes appliquée à $-2<0<3$, minorer $f(3)$. Cette minoration est-elle la meilleure possible ?",
+     "indices": [
+      "Comparer la pente de la corde entre $-2$ et $0$ et celle de la corde entre $0$ et $3$.",
+      "Pour l'optimalité, chercher une fonction affine qui vérifie les deux conditions."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le plus grand réel $m$ tel que $f(3)\\ge m$ pour toute fonction $f$ convexe vérifiant ces conditions ?",
+      "propositions": [
+       "$-5$",
+       "$7$",
+       "$1$",
+       "$-3$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Pour $-2<0<3$ : $\\frac{f(0)-f(-2)}{2}\\le\\frac{f(3)-f(0)}{3}$, soit $-2\\le\\frac{f(3)-1}{3}$, donc $f(3)\\ge-5$.\n\nC'est optimal : $g(x)=1-2x$ est affine, donc convexe, avec $g(-2)=5$, $g(0)=1$, $g(3)=-5$. Le plus grand $m$ est $-5$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-pentes-ex2",
+   "carte": "ar-l1-convexite-pentes",
+   "difficulte": 2,
+   "titre": "Dérivées à gauche et à droite d'un maximum",
+   "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{R}$ définie par $f(x)=\\max\\left(x^2,\\ x+2\\right)$.\n\n**1.** Justifier que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Résoudre $x^2\\ge x+2$ et expliciter $f(x)$ selon les valeurs de $x$.\n\n**3.** Calculer la dérivée à gauche $f'_g(2)$ et la dérivée à droite $f'_d(2)$, et vérifier l'inégalité $f'_g(2)\\le f'_d(2)$ prévue par la croissance des pentes.",
+   "duree_min": 12,
+   "indices": [
+    "Le maximum de deux fonctions convexes est convexe ; une fonction affine est convexe.",
+    "$x^2-x-2=(x-2)(x+1)$ ; à gauche de $2$ et près de $2$, $f(x)=x+2$."
+   ],
+   "reponse_finale": {
+    "question": "Que valent la dérivée à gauche et la dérivée à droite de $f$ au point étudié ?",
+    "propositions": [
+     "$f'_g(2)=1$ et $f'_d(2)=4$",
+     "$f'_g(2)=4$ et $f'_d(2)=1$",
+     "$f'_g(2)=f'_d(2)=4$",
+     "$f'_g(2)=1$ et $f'_d(2)=2$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** $x\\mapsto x^2$ est convexe et $x\\mapsto x+2$ est affine, donc convexe. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, chacune des deux fonctions $u$ vérifie $u\\big((1-t)x+ty\\big)\\le(1-t)u(x)+tu(y)\\le(1-t)f(x)+tf(y)$ ; en prenant le maximum, $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$.\n\n**2.** $x^2-x-2=(x-2)(x+1)\\ge0$ si et seulement si $x\\le-1$ ou $x\\ge2$. Donc $f(x)=x^2$ sur $\\left]-\\infty,-1\\right]$ et sur $\\left[2,+\\infty\\right[$, et $f(x)=x+2$ sur $[-1,2]$.\n\n**3.** $f(2)=4$. Pour $x\\in\\left[-1,2\\right[$, $\\frac{f(x)-f(2)}{x-2}=\\frac{x+2-4}{x-2}=1$, donc $f'_g(2)=1$. Pour $x>2$, $\\frac{f(x)-f(2)}{x-2}=\\frac{x^2-4}{x-2}=x+2\\to4$, donc $f'_d(2)=4$. On a bien $1\\le4$ ; comme $1\\neq4$, $f$ n'est pas dérivable en $2$ (sa courbe y a un point anguleux).",
+   "variantes": [
+    {
+     "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{R}$ définie par $f(x)=\\max\\left(x^2,\\ 2x+3\\right)$.\n\n**1.** Justifier que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Résoudre $x^2\\ge2x+3$ et expliciter $f(x)$ selon les valeurs de $x$.\n\n**3.** Calculer la dérivée à gauche $f'_g(-1)$ et la dérivée à droite $f'_d(-1)$, et vérifier l'inégalité $f'_g(-1)\\le f'_d(-1)$ prévue par la croissance des pentes.",
+     "indices": [
+      "Le maximum de deux fonctions convexes est convexe ; une fonction affine est convexe.",
+      "$x^2-2x-3=(x-3)(x+1)$ ; à gauche de $-1$, $f(x)=x^2$, et juste à droite, $f(x)=2x+3$."
+     ],
+     "reponse_finale": {
+      "question": "Que valent la dérivée à gauche et la dérivée à droite de $f$ au point étudié ?",
+      "propositions": [
+       "$f'_g(-1)=-2$ et $f'_d(-1)=2$",
+       "$f'_g(-1)=2$ et $f'_d(-1)=-2$",
+       "$f'_g(-1)=f'_d(-1)=2$",
+       "$f'_g(-1)=-2$ et $f'_d(-1)=6$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $x\\mapsto x^2$ est convexe et $x\\mapsto2x+3$ est affine, donc convexe. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, chacune des deux fonctions $u$ vérifie $u\\big((1-t)x+ty\\big)\\le(1-t)u(x)+tu(y)\\le(1-t)f(x)+tf(y)$ ; en prenant le maximum, $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$.\n\n**2.** $x^2-2x-3=(x-3)(x+1)\\ge0$ si et seulement si $x\\le-1$ ou $x\\ge3$. Donc $f(x)=x^2$ sur $\\left]-\\infty,-1\\right]$ et sur $\\left[3,+\\infty\\right[$, et $f(x)=2x+3$ sur $[-1,3]$.\n\n**3.** $f(-1)=1$. Pour $x<-1$, $\\frac{f(x)-f(-1)}{x+1}=\\frac{x^2-1}{x+1}=x-1\\to-2$, donc $f'_g(-1)=-2$. Pour $x\\in\\left]-1,3\\right]$, $\\frac{f(x)-f(-1)}{x+1}=\\frac{2x+2}{x+1}=2$, donc $f'_d(-1)=2$. On a bien $-2\\le2$, et $f$ n'est pas dérivable en $-1$."
+    },
+    {
+     "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{R}$ définie par $f(x)=\\max\\left(x^2,\\ 3x-2\\right)$.\n\n**1.** Justifier que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Résoudre $x^2\\ge3x-2$ et expliciter $f(x)$ selon les valeurs de $x$.\n\n**3.** Calculer la dérivée à gauche $f'_g(1)$ et la dérivée à droite $f'_d(1)$, et vérifier l'inégalité $f'_g(1)\\le f'_d(1)$ prévue par la croissance des pentes.",
+     "indices": [
+      "Le maximum de deux fonctions convexes est convexe ; une fonction affine est convexe.",
+      "$x^2-3x+2=(x-1)(x-2)$ ; à gauche de $1$, $f(x)=x^2$, et juste à droite, $f(x)=3x-2$."
+     ],
+     "reponse_finale": {
+      "question": "Que valent la dérivée à gauche et la dérivée à droite de $f$ au point étudié ?",
+      "propositions": [
+       "$f'_g(1)=2$ et $f'_d(1)=3$",
+       "$f'_g(1)=3$ et $f'_d(1)=2$",
+       "$f'_g(1)=f'_d(1)=2$",
+       "$f'_g(1)=2$ et $f'_d(1)=4$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $x\\mapsto x^2$ est convexe et $x\\mapsto3x-2$ est affine, donc convexe. Pour $x,y\\in\\mathbb{R}$ et $t\\in[0,1]$, chacune des deux fonctions $u$ vérifie $u\\big((1-t)x+ty\\big)\\le(1-t)u(x)+tu(y)\\le(1-t)f(x)+tf(y)$ ; en prenant le maximum, $f\\big((1-t)x+ty\\big)\\le(1-t)f(x)+tf(y)$.\n\n**2.** $x^2-3x+2=(x-1)(x-2)\\ge0$ si et seulement si $x\\le1$ ou $x\\ge2$. Donc $f(x)=x^2$ sur $\\left]-\\infty,1\\right]$ et sur $\\left[2,+\\infty\\right[$, et $f(x)=3x-2$ sur $[1,2]$.\n\n**3.** $f(1)=1$. Pour $x<1$, $\\frac{f(x)-f(1)}{x-1}=\\frac{x^2-1}{x-1}=x+1\\to2$, donc $f'_g(1)=2$. Pour $x\\in\\left]1,2\\right]$, $\\frac{f(x)-f(1)}{x-1}=\\frac{3x-3}{x-1}=3$, donc $f'_d(1)=3$. On a bien $2\\le3$, et $f$ n'est pas dérivable en $1$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-pentes-ex3",
+   "carte": "ar-l1-convexite-pentes",
+   "difficulte": 3,
+   "titre": "Une fonction convexe majorée sur la droite réelle",
+   "enonce": "**1.** Soit $f$ une fonction convexe et majorée sur $\\mathbb{R}$. On suppose qu'il existe $a<b$ tels que $f(a)\\neq f(b)$. En distinguant les cas $f(a)<f(b)$ et $f(a)>f(b)$, et en utilisant l'inégalité des trois pentes, aboutir à une contradiction. Conclure.\n\n**2.** Le résultat subsiste-t-il pour une fonction convexe et majorée sur $\\left]0,+\\infty\\right[$ ? Pour une fonction convexe et minorée sur $\\mathbb{R}$ ?",
+   "duree_min": 15,
+   "indices": [
+    "Si $f(a)<f(b)$, la pente $p(a,b)$ est strictement positive : comparer avec la pente entre $b$ et un point $x>b$.",
+    "Si $f(a)>f(b)$, travailler de même avec un point $x<a$ et faire tendre $x$ vers $-\\infty$."
+   ],
+   "correction": "**1.** Notons $p=\\frac{f(b)-f(a)}{b-a}$.\n\n- Si $f(a)<f(b)$, alors $p>0$. Pour $x>b$, l'inégalité des trois pentes appliquée à $a<b<x$ donne $p\\le\\frac{f(x)-f(b)}{x-b}$, donc $f(x)\\ge f(b)+p(x-b)\\to+\\infty$ quand $x\\to+\\infty$ : $f$ n'est pas majorée.\n- Si $f(a)>f(b)$, alors $p<0$. Pour $x<a$, l'inégalité appliquée à $x<a<b$ donne $\\frac{f(a)-f(x)}{a-x}\\le p$, donc $f(x)\\ge f(a)-p(a-x)=f(a)+|p|(a-x)\\to+\\infty$ quand $x\\to-\\infty$ : contradiction.\n\nAinsi $f(a)=f(b)$ pour tous $a<b$ : une fonction convexe et majorée sur $\\mathbb{R}$ est constante.\n\n**2.** Non dans les deux cas.\n- Sur $\\left]0,+\\infty\\right[$, $x\\mapsto e^{-x}$ est convexe (dérivée seconde $e^{-x}>0$), majorée par $1$, et n'est pas constante : l'argument ci-dessus utilise des points $x<a$ arbitrairement loin, qui n'existent pas ici.\n- Sur $\\mathbb{R}$, $x\\mapsto x^2$ est convexe, minorée par $0$, et n'est pas constante."
+  },
+  {
+   "id": "ar-l1-convexite-pentes-ex4",
+   "carte": "ar-l1-convexite-pentes",
+   "difficulte": 4,
+   "titre": "Continuité d'une fonction convexe sur un intervalle ouvert",
+   "enonce": "Soient $I$ un intervalle **ouvert** et $f:I\\to\\mathbb{R}$ convexe. Soit $a\\in I$ ; pour $x\\in I\\setminus\\{a\\}$, on note $\\tau_a(x)=\\frac{f(x)-f(a)}{x-a}$.\n\n**1.** Justifier qu'il existe $u,v\\in I$ tels que $u<a<v$. Montrer que, pour tout $x\\in\\left]u,v\\right[$ différent de $a$, $|f(x)-f(a)|\\le M|x-a|$, où $M=\\max\\big(|\\tau_a(u)|,|\\tau_a(v)|\\big)$. En déduire que $f$ est continue en $a$.\n\n**2.** Montrer que $\\tau_a$ admet une limite finie à droite et une limite finie à gauche en $a$, et que la dérivée à gauche et la dérivée à droite de $f$ en $a$ vérifient $f'_g(a)\\le f'_d(a)$.\n\n**3.** Donner une fonction convexe sur $[0,1]$ qui n'est pas continue en $1$. Quelle étape de la question 1 tombe en défaut en $a=1$ ?",
+   "duree_min": 25,
+   "indices": [
+    "Question 1 : $\\tau_a$ est croissante sur $I\\setminus\\{a\\}$ ; encadrer $\\tau_a(x)$ entre $\\tau_a(u)$ et $\\tau_a(v)$.",
+    "Question 2 : une fonction croissante et minorée sur $\\left]a,v\\right[$ a une limite finie en $a^+$.",
+    "Question 3 : modifier la valeur en $1$ de la fonction nulle."
+   ],
+   "correction": "**1.** $I$ est ouvert et contient $a$ : il existe $\\varepsilon>0$ tel que $\\left]a-\\varepsilon,a+\\varepsilon\\right[\\subset I$ ; on prend $u=a-\\frac\\varepsilon2$ et $v=a+\\frac\\varepsilon2$. Par la croissance des pentes, $\\tau_a$ est croissante sur $I\\setminus\\{a\\}$. Pour $x\\in\\left]u,v\\right[$, $x\\neq a$, on a $u<x<v$ avec $u,x,v\\neq a$, donc $\\tau_a(u)\\le\\tau_a(x)\\le\\tau_a(v)$, d'où $|\\tau_a(x)|\\le M$, c'est-à-dire $|f(x)-f(a)|\\le M|x-a|$. Quand $x\\to a$, le membre de droite tend vers $0$ : $f(x)\\to f(a)$, et $f$ est continue en $a$.\n\n**2.** Sur $\\left]a,v\\right[$, $\\tau_a$ est croissante et minorée par $\\tau_a(u)$ : par le théorème de la limite monotone, elle a en $a^+$ une limite finie, égale à $\\inf_{\\left]a,v\\right[}\\tau_a$. C'est la limite du taux d'accroissement à droite, donc $f'_d(a)$ existe. Sur $\\left]u,a\\right[$, $\\tau_a$ est croissante et majorée par $\\tau_a(v)$ : elle a en $a^-$ une limite finie $f'_g(a)=\\sup_{\\left]u,a\\right[}\\tau_a$. Pour $s\\in\\left]u,a\\right[$ et $s'\\in\\left]a,v\\right[$, $\\tau_a(s)\\le\\tau_a(s')$ ; en faisant tendre $s$ vers $a^-$, $f'_g(a)\\le\\tau_a(s')$, puis $s'$ vers $a^+$ : $f'_g(a)\\le f'_d(a)$.\n\n**3.** $f(x)=0$ pour $x\\in\\left[0,1\\right[$ et $f(1)=1$. Elle est convexe sur $[0,1]$ : pour $x,y\\in\\left[0,1\\right[$ les deux membres de l'inégalité de convexité sont nuls ; pour $x<1$, $y=1$ et $t\\in\\left[0,1\\right[$, $f\\big((1-t)x+t\\big)=0\\le t=(1-t)f(x)+tf(1)$ ; les cas $t=1$ ou $x=y$ sont des égalités. Elle n'est pas continue en $1$. En $a=1$, il n'existe aucun $v\\in[0,1]$ avec $v>a$ : $\\tau_1$ n'est plus majorée près de $1$, et en effet $\\tau_1(x)=\\frac{0-1}{x-1}=\\frac1{1-x}\\to+\\infty$ quand $x\\to1^-$."
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex1",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 1,
+   "titre": "Intervalles de convexité",
+   "enonce": "Soit $f(x)=x^4-6x^2+1$ sur $\\mathbb{R}$. Calculer $f'$ et étudier ses variations ; en déduire les plus grands intervalles sur lesquels $f$ est convexe, et ceux sur lesquels elle est concave.",
+   "duree_min": 6,
+   "indices": [
+    "Les variations de $f'$ se lisent sur le signe de $f''$.",
+    "$f''(x)=12(x^2-1)$."
+   ],
+   "reponse_finale": {
+    "question": "Quels sont les plus grands intervalles sur lesquels $f$ est convexe ?",
+    "propositions": [
+     "Sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$",
+     "Sur $[-1,1]$",
+     "Sur $\\left]-\\infty,-\\sqrt3\\right]$ et sur $\\left[\\sqrt3,+\\infty\\right[$",
+     "Sur $\\left[0,+\\infty\\right[$"
+    ],
+    "bonne": 0
+   },
+   "correction": "$f'(x)=4x^3-12x$ et $f''(x)=12x^2-12=12(x-1)(x+1)$. Donc $f''\\ge0$ sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$, $f''\\le0$ sur $[-1,1]$ : $f'$ est croissante sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$, décroissante sur $[-1,1]$.\n\nPar le critère de convexité des fonctions dérivables, $f$ est convexe sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$, et concave sur $[-1,1]$. Ces intervalles de convexité sont les plus grands : un intervalle qui déborde $\\left[1,+\\infty\\right[$ (ou $\\left]-\\infty,-1\\right]$) contient un segment $[1-\\varepsilon,1]$ (ou $[-1,-1+\\varepsilon]$) avec $0<\\varepsilon<2$, sur lequel $f''<0$ sauf en une extrémité, donc où $f'$ décroît strictement. Les réels $\\pm\\sqrt3$ annulent $f'$, pas $f''$ : ils renseignent sur les variations de $f$, pas sur sa convexité.",
+   "variantes": [
+    {
+     "enonce": "Soit $f(x)=xe^x$ sur $\\mathbb{R}$. Calculer $f'$ et étudier ses variations ; en déduire les plus grands intervalles sur lesquels $f$ est convexe, et ceux sur lesquels elle est concave.",
+     "indices": [
+      "Les variations de $f'$ se lisent sur le signe de $f''$.",
+      "$f''(x)=(x+2)e^x$."
+     ],
+     "reponse_finale": {
+      "question": "Quels sont les plus grands intervalles sur lesquels $f$ est convexe ?",
+      "propositions": [
+       "Sur $\\left[-2,+\\infty\\right[$",
+       "Sur $\\left[-1,+\\infty\\right[$",
+       "Sur $\\left]-\\infty,-2\\right]$",
+       "Sur $\\mathbb{R}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "$f'(x)=(x+1)e^x$ et $f''(x)=(x+2)e^x$, du signe de $x+2$. Donc $f'$ est croissante sur $\\left[-2,+\\infty\\right[$ et décroissante sur $\\left]-\\infty,-2\\right]$ : $f$ est convexe sur $\\left[-2,+\\infty\\right[$ et concave sur $\\left]-\\infty,-2\\right]$ ; c'est le plus grand intervalle de convexité, car un intervalle qui le déborde contient un segment $[-2-\\varepsilon,-2]$ ($\\varepsilon>0$) où $f''<0$ sauf en $-2$, donc où $f'$ décroît strictement. Le réel $-1$ annule $f'$ (minimum de $f$), il ne concerne pas la convexité."
+    },
+    {
+     "enonce": "Soit $f(x)=\\frac{1}{1+x^2}$ sur $\\mathbb{R}$. Calculer $f'$ et étudier ses variations ; en déduire les plus grands intervalles sur lesquels $f$ est convexe, et ceux sur lesquels elle est concave.",
+     "indices": [
+      "Les variations de $f'$ se lisent sur le signe de $f''$.",
+      "$f''(x)=\\frac{6x^2-2}{(1+x^2)^3}$."
+     ],
+     "reponse_finale": {
+      "question": "Quels sont les plus grands intervalles sur lesquels $f$ est convexe ?",
+      "propositions": [
+       "Sur $\\left]-\\infty,-\\frac{1}{\\sqrt3}\\right]$ et sur $\\left[\\frac{1}{\\sqrt3},+\\infty\\right[$",
+       "Sur $\\left[-\\frac{1}{\\sqrt3},\\frac{1}{\\sqrt3}\\right]$",
+       "Sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$",
+       "Sur $\\left[0,+\\infty\\right[$"
+      ],
+      "bonne": 0
+     },
+     "correction": "$f'(x)=-\\frac{2x}{(1+x^2)^2}$, et en dérivant le quotient :\n$$f''(x)=\\frac{-2(1+x^2)^2+2x\\cdot2(1+x^2)\\cdot2x}{(1+x^2)^4}=\\frac{-2(1+x^2)+8x^2}{(1+x^2)^3}=\\frac{6x^2-2}{(1+x^2)^3}.$$\n$f''(x)\\ge0$ si et seulement si $x^2\\ge\\frac13$, c'est-à-dire $|x|\\ge\\frac1{\\sqrt3}$. Donc $f$ est convexe sur $\\left]-\\infty,-\\frac1{\\sqrt3}\\right]$ et sur $\\left[\\frac1{\\sqrt3},+\\infty\\right[$, et concave sur $\\left[-\\frac1{\\sqrt3},\\frac1{\\sqrt3}\\right]$. Ce sont les plus grands intervalles de convexité : un intervalle qui déborde l'un d'eux contient un segment non réduit à un point de $\\left[-\\frac1{\\sqrt3},\\frac1{\\sqrt3}\\right]$, où $f''<0$ sauf aux extrémités, donc où $f'$ décroît strictement."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex2",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 2,
+   "titre": "Une inégalité tirée d'une tangente",
+   "enonce": "Justifier que $\\ln$ est concave sur $\\left]0,+\\infty\\right[$, écrire l'équation de sa tangente au point d'abscisse $e$, et en déduire une inégalité valable pour tout $x>0$.",
+   "duree_min": 6,
+   "indices": [
+    "Étudier la monotonie de la dérivée $x\\mapsto\\frac1x$.",
+    "Une fonction concave dérivable est au-dessous de ses tangentes."
+   ],
+   "reponse_finale": {
+    "question": "Quelle inégalité obtient-on ?",
+    "propositions": [
+     "$\\ln x\\le\\frac xe$ pour tout $x>0$",
+     "$\\ln x\\ge\\frac xe$ pour tout $x>0$",
+     "$\\ln x\\le\\frac xe-1$ pour tout $x>0$",
+     "$\\ln x\\le x-e$ pour tout $x>0$"
+    ],
+    "bonne": 0
+   },
+   "correction": "$\\ln$ est dérivable sur l'intervalle $\\left]0,+\\infty\\right[$, de dérivée $x\\mapsto\\frac1x$, qui est décroissante : $\\ln$ est concave. Sa tangente au point d'abscisse $e$ a pour équation $y=\\ln e+\\frac1e(x-e)=\\frac xe$. Une fonction concave et dérivable est au-dessous de ses tangentes, donc $\\ln x\\le\\frac xe$ pour tout $x>0$, avec égalité en $x=e$.",
+   "variantes": [
+    {
+     "enonce": "Justifier que $\\exp$ est convexe sur $\\mathbb{R}$, écrire l'équation de sa tangente au point d'abscisse $1$, et en déduire une inégalité valable pour tout réel $x$.",
+     "indices": [
+      "Étudier la monotonie de la dérivée de $\\exp$.",
+      "Une fonction convexe dérivable est au-dessus de ses tangentes."
+     ],
+     "reponse_finale": {
+      "question": "Quelle inégalité obtient-on ?",
+      "propositions": [
+       "$e^x\\ge ex$ pour tout réel $x$",
+       "$e^x\\le ex$ pour tout réel $x$",
+       "$e^x\\ge ex+1$ pour tout réel $x$",
+       "$e^x\\ge x+e$ pour tout réel $x$"
+      ],
+      "bonne": 0
+     },
+     "correction": "$\\exp$ est dérivable sur $\\mathbb{R}$, de dérivée $\\exp$, qui est croissante : $\\exp$ est convexe. Sa tangente au point d'abscisse $1$ a pour équation $y=e+e(x-1)=ex$. Une fonction convexe et dérivable est au-dessus de ses tangentes : $e^x\\ge ex$ pour tout réel $x$, avec égalité en $x=1$."
+    },
+    {
+     "enonce": "Justifier que la fonction racine carrée est concave sur $\\left]0,+\\infty\\right[$, écrire l'équation de sa tangente au point d'abscisse $4$, et en déduire une inégalité valable pour tout $x\\ge0$.",
+     "indices": [
+      "Étudier la monotonie de la dérivée $x\\mapsto\\frac1{2\\sqrt x}$.",
+      "Une fonction concave dérivable est au-dessous de ses tangentes ; traiter $x=0$ à part."
+     ],
+     "reponse_finale": {
+      "question": "Quelle inégalité obtient-on ?",
+      "propositions": [
+       "$\\sqrt x\\le1+\\frac x4$ pour tout $x\\ge0$",
+       "$\\sqrt x\\ge1+\\frac x4$ pour tout $x\\ge0$",
+       "$\\sqrt x\\le\\frac x4$ pour tout $x\\ge0$",
+       "$\\sqrt x\\le\\frac32+\\frac x8$ pour tout $x\\ge0$"
+      ],
+      "bonne": 0
+     },
+     "correction": "La racine carrée est dérivable sur l'intervalle $\\left]0,+\\infty\\right[$, de dérivée $x\\mapsto\\frac1{2\\sqrt x}$, qui est décroissante : elle y est concave. Sa tangente au point d'abscisse $4$ a pour équation $y=2+\\frac14(x-4)=1+\\frac x4$. Une fonction concave et dérivable est au-dessous de ses tangentes : $\\sqrt x\\le1+\\frac x4$ pour tout $x>0$ ; c'est encore vrai pour $x=0$ ($0\\le1$). D'où l'inégalité pour tout $x\\ge0$, avec égalité en $x=4$ (on retrouve $\\left(\\sqrt x-2\\right)^2\\ge0$)."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex3",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 3,
+   "titre": "Minimum d'une fonction convexe",
+   "enonce": "Soit $f(x)=e^x+e^{-2x}$ pour $x\\in\\mathbb{R}$.\n\n**1.** Montrer que $f'$ est strictement croissante sans calculer $f''$, et en déduire que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Montrer que $f'$ s'annule en un unique réel $x_0$, que l'on déterminera, et en déduire, à l'aide des tangentes, que $f$ atteint en $x_0$ son minimum sur $\\mathbb{R}$.\n\n**3.** Calculer ce minimum.",
+   "duree_min": 12,
+   "indices": [
+    "$f'$ est une somme de deux fonctions strictement croissantes.",
+    "Pour $f$ convexe et dérivable, la tangente en un point où $f'$ s'annule est horizontale et minore $f$."
+   ],
+   "reponse_finale": {
+    "question": "Que vaut le minimum de $f$ sur $\\mathbb{R}$ ?",
+    "propositions": [
+     "$\\frac{3}{\\sqrt[3]4}$",
+     "$2$",
+     "$\\frac32$",
+     "$\\sqrt[3]2$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** $f'(x)=e^x-2e^{-2x}$. Les fonctions $x\\mapsto e^x$ et $x\\mapsto-2e^{-2x}$ sont strictement croissantes (la seconde car $x\\mapsto e^{-2x}$ est strictement décroissante), donc $f'$ l'est. $f$ est dérivable sur l'intervalle $\\mathbb{R}$ avec $f'$ croissante : elle est convexe.\n\n**2.** $f'(x)=0\\iff e^x=2e^{-2x}\\iff e^{3x}=2\\iff x=\\frac{\\ln2}{3}$. Comme $f'$ est strictement croissante, ce zéro $x_0=\\frac{\\ln2}3$ est unique. La courbe de la fonction convexe $f$ est au-dessus de sa tangente en $x_0$ : $f(x)\\ge f(x_0)+f'(x_0)(x-x_0)=f(x_0)$ pour tout $x$. Le minimum est atteint en $x_0$.\n\n**3.** $e^{x_0}=2^{1/3}$ et $e^{-2x_0}=2^{-2/3}$, donc $f(x_0)=2^{1/3}+2^{-2/3}=2^{-2/3}(2+1)=\\frac{3}{\\sqrt[3]4}\\approx1{,}89$. On vérifie que c'est moins que $f(0)=2$.",
+   "variantes": [
+    {
+     "enonce": "Soit $f(x)=e^{2x}+4e^{-x}$ pour $x\\in\\mathbb{R}$.\n\n**1.** Montrer que $f'$ est strictement croissante sans calculer $f''$, et en déduire que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Montrer que $f'$ s'annule en un unique réel $x_0$, que l'on déterminera, et en déduire, à l'aide des tangentes, que $f$ atteint en $x_0$ son minimum sur $\\mathbb{R}$.\n\n**3.** Calculer ce minimum.",
+     "indices": [
+      "$f'(x)=2e^{2x}-4e^{-x}$ est une somme de deux fonctions strictement croissantes.",
+      "Pour $f$ convexe et dérivable, la tangente en un point où $f'$ s'annule est horizontale et minore $f$."
+     ],
+     "reponse_finale": {
+      "question": "Que vaut le minimum de $f$ sur $\\mathbb{R}$ ?",
+      "propositions": [
+       "$3\\sqrt[3]4$",
+       "$5$",
+       "$3\\sqrt[3]2$",
+       "$4$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $f'(x)=2e^{2x}-4e^{-x}$, somme de $x\\mapsto2e^{2x}$ et de $x\\mapsto-4e^{-x}$, strictement croissantes : $f'$ est strictement croissante et $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** $f'(x)=0\\iff2e^{2x}=4e^{-x}\\iff e^{3x}=2\\iff x=\\frac{\\ln2}{3}$, zéro unique de $f'$. La tangente en $x_0=\\frac{\\ln2}3$ est horizontale et la courbe est au-dessus : $f(x)\\ge f(x_0)$ pour tout $x$.\n\n**3.** $e^{2x_0}=2^{2/3}$ et $e^{-x_0}=2^{-1/3}$, donc $f(x_0)=2^{2/3}+4\\cdot2^{-1/3}=2^{2/3}+2^{5/3}=2^{2/3}(1+2)=3\\sqrt[3]4\\approx4{,}76$, moins que $f(0)=5$."
+    },
+    {
+     "enonce": "Soit $f(x)=e^{3x}+6e^{-x}$ pour $x\\in\\mathbb{R}$.\n\n**1.** Montrer que $f'$ est strictement croissante sans calculer $f''$, et en déduire que $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** Montrer que $f'$ s'annule en un unique réel $x_0$, que l'on déterminera, et en déduire, à l'aide des tangentes, que $f$ atteint en $x_0$ son minimum sur $\\mathbb{R}$.\n\n**3.** Calculer ce minimum.",
+     "indices": [
+      "$f'(x)=3e^{3x}-6e^{-x}$ est une somme de deux fonctions strictement croissantes.",
+      "Pour $f$ convexe et dérivable, la tangente en un point où $f'$ s'annule est horizontale et minore $f$."
+     ],
+     "reponse_finale": {
+      "question": "Que vaut le minimum de $f$ sur $\\mathbb{R}$ ?",
+      "propositions": [
+       "$4\\sqrt[4]8$",
+       "$7$",
+       "$8$",
+       "$4\\sqrt[4]2$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $f'(x)=3e^{3x}-6e^{-x}$, somme de deux fonctions strictement croissantes : $f'$ est strictement croissante et $f$ est convexe sur $\\mathbb{R}$.\n\n**2.** $f'(x)=0\\iff3e^{3x}=6e^{-x}\\iff e^{4x}=2\\iff x=\\frac{\\ln2}{4}$, zéro unique de $f'$. La tangente en $x_0=\\frac{\\ln2}4$ est horizontale et minore $f$ : le minimum est atteint en $x_0$.\n\n**3.** $e^{3x_0}=2^{3/4}$ et $e^{-x_0}=2^{-1/4}$, donc $f(x_0)=2^{3/4}+6\\cdot2^{-1/4}=2^{-1/4}(2+6)=8\\cdot2^{-1/4}=2^{11/4}=4\\sqrt[4]8\\approx6{,}73$, moins que $f(0)=7$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex4",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 4,
+   "titre": "Inégalité de Bernoulli pour un exposant réel",
+   "enonce": "Pour $\\alpha\\in\\mathbb{R}$, on pose $f_\\alpha(x)=(1+x)^\\alpha=e^{\\alpha\\ln(1+x)}$ pour $x>-1$.\n\n**1.** Étudier, selon la valeur de $\\alpha$, la convexité de $f_\\alpha$ sur $\\left]-1,+\\infty\\right[$.\n\n**2.** En déduire que si $\\alpha\\le0$ ou $\\alpha\\ge1$, alors $(1+x)^\\alpha\\ge1+\\alpha x$ pour tout $x>-1$.\n\n**3.** Montrer que si $0<\\alpha<1$, alors $(1+x)^\\alpha<1+\\alpha x$ pour tout $x>-1$ non nul.\n\n**4.** Conclure : pour quels réels $\\alpha$ l'inégalité $(1+x)^\\alpha\\ge1+\\alpha x$ est-elle vraie pour tout $x>-1$ ?",
+   "duree_min": 20,
+   "indices": [
+    "$f_\\alpha''(x)=\\alpha(\\alpha-1)(1+x)^{\\alpha-2}$ : seul le signe de $\\alpha(\\alpha-1)$ compte.",
+    "La droite $y=1+\\alpha x$ est la tangente à la courbe de $f_\\alpha$ au point d'abscisse $0$.",
+    "Question 3 : étudier les variations de $g(x)=1+\\alpha x-(1+x)^\\alpha$."
+   ],
+   "reponse_finale": {
+    "question": "Pour quels réels $\\alpha$ a-t-on $(1+x)^\\alpha\\ge1+\\alpha x$ pour tout $x>-1$ ?",
+    "propositions": [
+     "Pour $\\alpha\\le0$ ou $\\alpha\\ge1$",
+     "Pour $\\alpha\\ge1$ seulement",
+     "Pour $0\\le\\alpha\\le1$",
+     "Pour $\\alpha\\ge0$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** $f_\\alpha$ est deux fois dérivable sur l'intervalle $\\left]-1,+\\infty\\right[$, avec $f_\\alpha'(x)=\\alpha(1+x)^{\\alpha-1}$ et $f_\\alpha''(x)=\\alpha(\\alpha-1)(1+x)^{\\alpha-2}$, du signe de $\\alpha(\\alpha-1)$ car $(1+x)^{\\alpha-2}>0$. Donc $f_\\alpha$ est convexe si $\\alpha\\le0$ ou $\\alpha\\ge1$, concave si $0\\le\\alpha\\le1$ (affine pour $\\alpha\\in\\{0,1\\}$).\n\n**2.** La tangente au point d'abscisse $0$ a pour équation $y=f_\\alpha(0)+f_\\alpha'(0)x=1+\\alpha x$. Si $\\alpha\\le0$ ou $\\alpha\\ge1$, $f_\\alpha$ est convexe et dérivable sur un intervalle, donc au-dessus de ses tangentes : $(1+x)^\\alpha\\ge1+\\alpha x$ pour tout $x>-1$.\n\n**3.** Soit $0<\\alpha<1$ et $g(x)=1+\\alpha x-(1+x)^\\alpha$, de sorte que $g(0)=0$ et $g'(x)=\\alpha\\big(1-(1+x)^{\\alpha-1}\\big)$. Comme $\\alpha-1<0$ : pour $x>0$, $1+x>1$ donne $(1+x)^{\\alpha-1}<1$, donc $g'(x)>0$ ; pour $-1<x<0$, $0<1+x<1$ donne $(1+x)^{\\alpha-1}>1$, donc $g'(x)<0$. Ainsi $g$ est strictement décroissante sur $\\left]-1,0\\right]$ et strictement croissante sur $\\left[0,+\\infty\\right[$ : $g(x)>g(0)=0$ pour $x\\neq0$, c'est-à-dire $(1+x)^\\alpha<1+\\alpha x$.\n\n**4.** L'inégalité est vraie pour tout $x>-1$ si et seulement si $\\alpha\\le0$ ou $\\alpha\\ge1$ : c'est la question 2 dans un sens et, pour $0<\\alpha<1$, la question 3 la met en défaut en tout $x\\neq0$ (par exemple $\\sqrt2<\\frac32$ pour $\\alpha=\\frac12$ et $x=1$). Le cas $\\alpha$ entier naturel $n\\ge1$ est l'inégalité de Bernoulli $(1+x)^n\\ge1+nx$."
+  },
+  {
+   "id": "ar-l1-convexite-iag-ex1",
+   "carte": "ar-l1-convexite-iag",
+   "difficulte": 1,
+   "titre": "Minimum d'une somme à produit constant",
+   "enonce": "Soit $f(x)=x+\\frac4x$ pour $x>0$. À l'aide de l'inégalité arithmético-géométrique appliquée à deux réels bien choisis, déterminer le minimum de $f$ sur $\\left]0,+\\infty\\right[$ et le point où il est atteint.",
+   "duree_min": 5,
+   "indices": [
+    "Le produit $x\\cdot\\frac4x$ ne dépend pas de $x$.",
+    "Le cas d'égalité donne le point où le minimum est atteint."
+   ],
+   "reponse_finale": {
+    "question": "Quel est le minimum de $f$ sur $\\left]0,+\\infty\\right[$, et où est-il atteint ?",
+    "propositions": [
+     "$4$, atteint en $x=2$",
+     "$2$, atteint en $x=1$",
+     "$4$, atteint en $x=4$",
+     "$5$, atteint en $x=1$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Pour $x>0$, les réels $x$ et $\\frac4x$ sont positifs, de produit $4$. L'inégalité arithmético-géométrique donne $\\frac{x+\\frac4x}{2}\\ge\\sqrt{x\\cdot\\frac4x}=2$, donc $f(x)\\ge4$, avec égalité si et seulement si $x=\\frac4x$, c'est-à-dire $x^2=4$, soit $x=2$ (car $x>0$). Le minimum de $f$ est $4$, atteint en $x=2$ : $f(2)=2+2=4$.",
+   "variantes": [
+    {
+     "enonce": "Soit $f(x)=2x+\\frac9x$ pour $x>0$. À l'aide de l'inégalité arithmético-géométrique appliquée à deux réels bien choisis, déterminer le minimum de $f$ sur $\\left]0,+\\infty\\right[$ et le point où il est atteint.",
+     "indices": [
+      "Le produit $2x\\cdot\\frac9x$ ne dépend pas de $x$.",
+      "Le cas d'égalité donne le point où le minimum est atteint."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le minimum de $f$ sur $\\left]0,+\\infty\\right[$, et où est-il atteint ?",
+      "propositions": [
+       "$6\\sqrt2$, atteint en $x=\\frac{3\\sqrt2}{2}$",
+       "$6$, atteint en $x=\\frac32$",
+       "$3\\sqrt2$, atteint en $x=\\frac{3\\sqrt2}{2}$",
+       "$6\\sqrt2$, atteint en $x=\\frac32$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Pour $x>0$, $2x$ et $\\frac9x$ sont positifs, de produit $18$. Donc $2x+\\frac9x\\ge2\\sqrt{18}=6\\sqrt2$, avec égalité si et seulement si $2x=\\frac9x$, soit $x^2=\\frac92$, $x=\\frac{3}{\\sqrt2}=\\frac{3\\sqrt2}{2}$. Le minimum est $6\\sqrt2\\approx8{,}49$, atteint en $x=\\frac{3\\sqrt2}2$ (alors que $f\\left(\\frac32\\right)=9$)."
+    },
+    {
+     "enonce": "Soit $f(x)=3x+\\frac{12}x$ pour $x>0$. À l'aide de l'inégalité arithmético-géométrique appliquée à deux réels bien choisis, déterminer le minimum de $f$ sur $\\left]0,+\\infty\\right[$ et le point où il est atteint.",
+     "indices": [
+      "Le produit $3x\\cdot\\frac{12}x$ ne dépend pas de $x$.",
+      "Le cas d'égalité donne le point où le minimum est atteint."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le minimum de $f$ sur $\\left]0,+\\infty\\right[$, et où est-il atteint ?",
+      "propositions": [
+       "$12$, atteint en $x=2$",
+       "$6$, atteint en $x=2$",
+       "$12$, atteint en $x=4$",
+       "$15$, atteint en $x=1$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Pour $x>0$, $3x$ et $\\frac{12}x$ sont positifs, de produit $36$. Donc $3x+\\frac{12}x\\ge2\\sqrt{36}=12$, avec égalité si et seulement si $3x=\\frac{12}x$, soit $x^2=4$, $x=2$. Le minimum est $12$, atteint en $x=2$ : $f(2)=6+6=12$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-iag-ex2",
+   "carte": "ar-l1-convexite-iag",
+   "difficulte": 2,
+   "titre": "Volume maximal d'un pavé",
+   "enonce": "On considère les pavés droits dont les dimensions $a,b,c>0$ vérifient $a+b+c=12$. Montrer que leur volume $abc$ est majoré, déterminer le volume maximal et les dimensions correspondantes.",
+   "duree_min": 6,
+   "indices": [
+    "Appliquer l'inégalité arithmético-géométrique aux trois réels $a$, $b$, $c$.",
+    "Le cas d'égalité donne les dimensions du pavé optimal."
+   ],
+   "reponse_finale": {
+    "question": "Quel est le volume maximal ?",
+    "propositions": [
+     "$64$",
+     "$48$",
+     "$36$",
+     "$216$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Par l'inégalité arithmético-géométrique, $\\sqrt[3]{abc}\\le\\frac{a+b+c}{3}=4$, donc $abc\\le4^3=64$, avec égalité si et seulement si $a=b=c$, c'est-à-dire $a=b=c=4$. Le volume maximal est $64$, atteint pour le cube de côté $4$.",
+   "variantes": [
+    {
+     "enonce": "On considère les pavés droits à base carrée de côté $a>0$ et de hauteur $h>0$ tels que $2a+h=18$. Montrer que leur volume $a^2h$ est majoré, déterminer le volume maximal et les dimensions correspondantes.",
+     "indices": [
+      "Appliquer l'inégalité arithmético-géométrique aux trois réels $a$, $a$ et $h$.",
+      "Le cas d'égalité donne les dimensions du pavé optimal."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le volume maximal ?",
+      "propositions": [
+       "$216$",
+       "$324$",
+       "$108$",
+       "$162$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Les trois réels $a$, $a$, $h$ sont positifs, de somme $2a+h=18$. Donc $\\sqrt[3]{a\\cdot a\\cdot h}\\le\\frac{18}{3}=6$, soit $a^2h\\le216$, avec égalité si et seulement si $a=a=h$, c'est-à-dire $a=h=6$ (et l'on a bien $2\\cdot6+6=18$). Le volume maximal est $216$, atteint pour le cube de côté $6$."
+    },
+    {
+     "enonce": "On considère les pavés droits dont les dimensions $a,b,c>0$ vérifient $a+2b+3c=18$. Montrer que leur volume $abc$ est majoré, déterminer le volume maximal et les dimensions correspondantes.",
+     "indices": [
+      "Appliquer l'inégalité arithmético-géométrique aux trois réels $a$, $2b$ et $3c$, de somme fixée.",
+      "Le cas d'égalité $a=2b=3c$ donne les dimensions du pavé optimal."
+     ],
+     "reponse_finale": {
+      "question": "Quel est le volume maximal ?",
+      "propositions": [
+       "$36$",
+       "$216$",
+       "$8$",
+       "$24$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Les réels $a$, $2b$, $3c$ sont positifs, de somme $18$. Donc $\\sqrt[3]{a\\cdot2b\\cdot3c}\\le\\frac{18}{3}=6$, soit $6abc\\le216$ et $abc\\le36$, avec égalité si et seulement si $a=2b=3c=6$, c'est-à-dire $a=6$, $b=3$, $c=2$ (et $6+6+6=18$). Le volume maximal est $36$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-iag-ex3",
+   "carte": "ar-l1-convexite-iag",
+   "difficulte": 3,
+   "titre": "Minimum d'une expression en trois variables",
+   "enonce": "Déterminer la valeur minimale de $\\frac{(a+b)(b+c)(c+a)}{abc}$ lorsque $a$, $b$, $c$ parcourent $\\left]0,+\\infty\\right[$, et les triplets où elle est atteinte.",
+   "duree_min": 12,
+   "indices": [
+    "Minorer séparément chacun des trois facteurs du numérateur.",
+    "Pour $x,y>0$, $x+y\\ge2\\sqrt{xy}$ ; multiplier des inégalités entre réels positifs."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la valeur minimale de l'expression ?",
+    "propositions": [
+     "$8$",
+     "$6$",
+     "$9$",
+     "$2$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Pour $a,b,c>0$, l'inégalité arithmético-géométrique à deux termes donne $a+b\\ge2\\sqrt{ab}$, $b+c\\ge2\\sqrt{bc}$ et $c+a\\ge2\\sqrt{ca}$. Ces inégalités portent sur des réels strictement positifs : on peut les multiplier membre à membre,\n$$(a+b)(b+c)(c+a)\\ge8\\sqrt{ab\\cdot bc\\cdot ca}=8abc.$$\nDonc l'expression est au moins $8$. Si $a=b=c$, elle vaut $\\frac{2a\\cdot2a\\cdot2a}{a^3}=8$. Réciproquement, si elle vaut $8$, chacune des trois inégalités est une égalité (sinon le produit serait strictement plus grand), donc $a=b$, $b=c$ et $c=a$. Le minimum est $8$, atteint exactement pour $a=b=c$.",
+   "variantes": [
+    {
+     "enonce": "Déterminer la valeur minimale de $\\frac ab+\\frac bc+\\frac ca$ lorsque $a$, $b$, $c$ parcourent $\\left]0,+\\infty\\right[$, et les triplets où elle est atteinte.",
+     "indices": [
+      "Calculer le produit des trois termes.",
+      "Appliquer l'inégalité arithmético-géométrique à trois termes, puis étudier le cas d'égalité."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur minimale de l'expression ?",
+      "propositions": [
+       "$3$",
+       "$1$",
+       "$\\frac32$",
+       "$6$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Les réels $\\frac ab$, $\\frac bc$, $\\frac ca$ sont strictement positifs, de produit $1$. L'inégalité arithmético-géométrique donne $\\frac ab+\\frac bc+\\frac ca\\ge3\\sqrt[3]{1}=3$, avec égalité si et seulement si $\\frac ab=\\frac bc=\\frac ca$ ; ces trois nombres ont alors pour produit $1$ et sont égaux, donc valent $1$ : $a=b=c$. Le minimum est $3$, atteint exactement pour $a=b=c$."
+    },
+    {
+     "enonce": "Déterminer la valeur minimale de $(a+b+c)\\left(\\frac1a+\\frac1b+\\frac1c\\right)$ lorsque $a$, $b$, $c$ parcourent $\\left]0,+\\infty\\right[$, et les triplets où elle est atteinte.",
+     "indices": [
+      "Minorer séparément chacun des deux facteurs à l'aide de $\\sqrt[3]{abc}$.",
+      "Multiplier les deux minorations (tout est positif), puis étudier le cas d'égalité."
+     ],
+     "reponse_finale": {
+      "question": "Quelle est la valeur minimale de l'expression ?",
+      "propositions": [
+       "$9$",
+       "$3$",
+       "$6$",
+       "$27$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Par l'inégalité arithmético-géométrique, $a+b+c\\ge3\\sqrt[3]{abc}$ et $\\frac1a+\\frac1b+\\frac1c\\ge3\\sqrt[3]{\\frac1{abc}}=\\frac{3}{\\sqrt[3]{abc}}$. Tout est strictement positif : en multipliant, $(a+b+c)\\left(\\frac1a+\\frac1b+\\frac1c\\right)\\ge9$. Pour $a=b=c$, l'expression vaut $3a\\cdot\\frac3a=9$. Réciproquement, l'égalité impose l'égalité dans la première inégalité, donc $a=b=c$. Le minimum est $9$, atteint exactement pour $a=b=c$."
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-iag-ex4",
+   "carte": "ar-l1-convexite-iag",
+   "difficulte": 4,
+   "titre": "Deux suites adjacentes par l'inégalité arithmético-géométrique",
+   "enonce": "Pour $n\\ge1$, on pose $u_n=\\left(1+\\frac1n\\right)^n$ et $v_n=\\left(1+\\frac1n\\right)^{n+1}$.\n\n**1.** En appliquant l'inégalité arithmético-géométrique aux $n+1$ réels $1,1+\\frac1n,\\dots,1+\\frac1n$ (le réel $1+\\frac1n$ étant répété $n$ fois), montrer que la suite $(u_n)$ est strictement croissante.\n\n**2.** En l'appliquant aux $n+2$ réels $1,\\frac{n}{n+1},\\dots,\\frac{n}{n+1}$ (le réel $\\frac n{n+1}$ étant répété $n+1$ fois), montrer que la suite $(v_n)$ est strictement décroissante.\n\n**3.** En déduire que les suites $(u_n)$ et $(v_n)$ sont adjacentes.",
+   "duree_min": 25,
+   "indices": [
+    "Question 1 : la moyenne arithmétique des $n+1$ réels vaut $1+\\frac1{n+1}$ ; les réels ne sont pas tous égaux, donc l'inégalité est stricte.",
+    "Question 2 : la moyenne arithmétique vaut $\\frac{n+1}{n+2}$ ; relier $\\left(\\frac n{n+1}\\right)^{n+1}$ à $\\frac1{v_n}$.",
+    "Question 3 : $v_n-u_n=\\frac{u_n}{n}$ et $u_n\\le v_n\\le v_1$."
+   ],
+   "correction": "**1.** Les $n+1$ réels sont strictement positifs, de produit $\\left(1+\\frac1n\\right)^n=u_n$ et de somme $1+n\\left(1+\\frac1n\\right)=n+2$. Ils ne sont pas tous égaux ($1\\neq1+\\frac1n$), donc l'inégalité arithmético-géométrique est stricte :\n$$u_n^{\\frac1{n+1}}<\\frac{n+2}{n+1}=1+\\frac1{n+1},\\quad\\text{d'où}\\quad u_n<\\left(1+\\frac1{n+1}\\right)^{n+1}=u_{n+1}.$$\n\n**2.** Les $n+2$ réels sont strictement positifs, non tous égaux, de produit $\\left(\\frac n{n+1}\\right)^{n+1}=\\frac1{v_n}$ et de somme $1+(n+1)\\frac n{n+1}=n+1$. Donc\n$$\\left(\\frac1{v_n}\\right)^{\\frac1{n+2}}<\\frac{n+1}{n+2},\\quad\\text{d'où}\\quad\\frac1{v_n}<\\left(\\frac{n+1}{n+2}\\right)^{n+2}=\\frac{1}{\\left(1+\\frac1{n+1}\\right)^{n+2}}=\\frac1{v_{n+1}}.$$\nAinsi $v_{n+1}<v_n$ : $(v_n)$ est strictement décroissante.\n\n**3.** $(u_n)$ est croissante, $(v_n)$ est décroissante, et $v_n-u_n=u_n\\left(1+\\frac1n-1\\right)=\\frac{u_n}{n}>0$. De plus $u_n\\le v_n\\le v_1=4$, donc $0<v_n-u_n\\le\\frac4n\\to0$. Les suites sont adjacentes : elles convergent vers une même limite $\\ell$, avec $u_n<\\ell<v_n$ pour tout $n$ (on montre par ailleurs, avec le logarithme, que $\\ell=e$). Par exemple $u_1=2$ et $v_5=\\left(\\frac65\\right)^6\\approx2{,}99$ encadrent $\\ell$."
+  },
+  {
+   "id": "ar-l1-convexite-iag-ex5",
+   "carte": "ar-l1-convexite-iag",
+   "difficulte": 4,
+   "titre": "Inégalités de Young et de Hölder",
+   "enonce": "Soient $p,q>1$ deux réels tels que $\\frac1p+\\frac1q=1$.\n\n**1.** Montrer que pour tous réels $a,b\\ge0$, $ab\\le\\frac{a^p}{p}+\\frac{b^q}{q}$ (inégalité de Young).\n\n**2.** Soient $n\\ge1$ et des réels $a_1,\\dots,a_n,b_1,\\dots,b_n\\ge0$. On pose $A=\\left(\\sum_{i=1}^na_i^p\\right)^{1/p}$ et $B=\\left(\\sum_{i=1}^nb_i^q\\right)^{1/q}$, et l'on suppose $A>0$ et $B>0$. En appliquant la question 1 à $\\frac{a_i}{A}$ et $\\frac{b_i}{B}$, montrer que $\\sum_{i=1}^na_ib_i\\le AB$ (inégalité de Hölder).\n\n**3.** Que devient l'inégalité de Hölder si $A=0$ ou $B=0$ ? Quelle inégalité connue obtient-on pour $p=q=2$ ?",
+   "duree_min": 25,
+   "indices": [
+    "Question 1 : utiliser la version pondérée de l'inégalité arithmético-géométrique avec les poids $\\frac1p$ et $\\frac1q$, en traitant à part le cas $a=0$ ou $b=0$.",
+    "Question 2 : sommer les $n$ inégalités de Young ; la somme des $\\left(\\frac{a_i}{A}\\right)^p$ vaut $1$."
+   ],
+   "correction": "**1.** Si $a=0$ ou $b=0$, le membre de gauche est nul et le membre de droite positif. Sinon, $a^p>0$ et $b^q>0$, et la version pondérée de l'inégalité arithmético-géométrique, avec les poids $\\frac1p,\\frac1q\\ge0$ de somme $1$, donne\n$$\\left(a^p\\right)^{1/p}\\left(b^q\\right)^{1/q}\\le\\frac1pa^p+\\frac1qb^q,\\quad\\text{c'est-à-dire}\\quad ab\\le\\frac{a^p}{p}+\\frac{b^q}{q}.$$\n\n**2.** Pour chaque $i$, la question 1 donne $\\frac{a_i}{A}\\cdot\\frac{b_i}{B}\\le\\frac1p\\cdot\\frac{a_i^p}{A^p}+\\frac1q\\cdot\\frac{b_i^q}{B^q}$. En sommant sur $i$ et comme $\\sum a_i^p=A^p$, $\\sum b_i^q=B^q$ :\n$$\\frac1{AB}\\sum_{i=1}^na_ib_i\\le\\frac1p\\cdot\\frac{A^p}{A^p}+\\frac1q\\cdot\\frac{B^q}{B^q}=\\frac1p+\\frac1q=1,$$\nd'où $\\sum a_ib_i\\le AB$.\n\n**3.** Si $A=0$, tous les $a_i^p$ sont nuls (somme nulle de termes positifs), donc tous les $a_i$ ; alors $\\sum a_ib_i=0=AB$ et l'inégalité reste vraie ; de même si $B=0$. Pour $p=q=2$ (on a bien $\\frac12+\\frac12=1$), on obtient $\\sum a_ib_i\\le\\sqrt{\\sum a_i^2}\\sqrt{\\sum b_i^2}$ : l'inégalité de Cauchy-Schwarz pour des réels positifs (pour des réels quelconques, on l'applique à $|a_i|$ et $|b_i|$, puisque $\\left|\\sum a_ib_i\\right|\\le\\sum|a_i||b_i|$)."
+  }
+ ]
+}
