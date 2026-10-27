@@ -114,6 +114,8 @@ export function validerContenu(c: Contenu): string[] {
           if (v.titre !== undefined && !texteNonVide(v.titre)) err.push(`${ouV} : « titre » vide`)
           if (!!v.reponse_finale !== !!e.reponse_finale) err.push(`${ouV} : « reponse_finale » présente ici et pas dans l'exercice, ou l'inverse`)
           err.push(...validerReponse(ouV, v.reponse_finale))
+          // Les indices d'un exercice citent souvent ses valeurs : chaque variante doit avoir les siens.
+          if (e.indices?.length && v.indices === undefined) err.push(`${ouV} : « indices » propres à la variante manquants`)
           if (v.indices !== undefined && (!listeDeTextes(v.indices) || (e.difficulte >= 3 && v.indices.length < 2)))
             err.push(`${ouV} : « indices » invalides`)
         })

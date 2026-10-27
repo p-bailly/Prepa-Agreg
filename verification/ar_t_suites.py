@@ -346,8 +346,8 @@ for b, n0, leurres, u_n0 in ((2, 3, (1, 2, 4), F(3, 4)), (3, 5, (2, 6, 3), F(40,
 # ---------------------------------------------------------------------------
 # ar-t-suites-comparaison-ex4 : u_{n+1} = u_n + 1/u_n, u_0 = 1 : u_n^2 >= 2n + 1.
 # ---------------------------------------------------------------------------
-u = suite(1, lambda t: t + 1 / t, 25)
-assert all(u[k] >= 1 and u[k] ** 2 >= 2 * k + 1 for k in range(26))
-assert all(u[k + 1] ** 2 == u[k] ** 2 + 2 + 1 / u[k] ** 2 for k in range(25))
+u = suite(1, lambda t: t + 1 / t, 12)  # fractions exactes : la taille double à chaque pas
+assert all(u[k] >= 1 and u[k] ** 2 >= 2 * k + 1 for k in range(13))
+assert all(u[k + 1] ** 2 == u[k] ** 2 + 2 + 1 / u[k] ** 2 for k in range(12))
 
 print("ar_t_suites : toutes les vérifications passent.")

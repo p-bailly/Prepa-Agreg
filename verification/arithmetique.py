@@ -808,4 +808,41 @@ bonne("arith-l1-racines-polynome-ex4", 2, "$1$", ["$18$", "$0$", "$17$"])
 # Les exercices d'origine gardent leur bonne réponse (variante 0).
 bonne("arith-t-division-euclidienne-ex1", 0, "$q = -290$, $r = 4$", ["$q = -289$, $r = -3$", "$q = -289$, $r = 3$", "$q = -290$, $r = -4$"])
 
+# --- Phase 3 (relecture enr-arithmetique) : champs « cours » et introductions de chapitre.
+# arith-t-bezout (cours) : 2 × 2 + 1 × 1 = 5 alors que 2 ∧ 1 = 1 ; si d > 0 divise a et b et d = au + bv, alors d = a ∧ b.
+assert 2 * 2 + 1 * 1 == 5 and gcd(2, 1) == 1
+for a in range(1, 30):
+    for b in range(1, 30):
+        g = gcd(a, b)
+        assert all(not (a % d == 0 and b % d == 0 and any((d - a * u) % b == 0 for u in range(b))) or d == g for d in range(1, 30))
+# arith-t-fermat (cours) : test de Fermat seulement si n ∤ a (5 premier mais 5^4 ≡ 0 [5]) ; 2^340 ≡ 1 [341], 341 composé.
+assert isprime(5) and pow(5, 4, 5) == 0 and pow(2, 340, 341) == 1 and not isprime(341)
+for nn in range(2, 400):
+    for a in range(1, 12):
+        if a % nn and pow(a, nn - 1, nn) != 1:
+            assert not isprime(nn)
+# arith-t-gauss (cours) : 6 | 4 × 3, 6 ∤ 4, 6 ∤ 3.
+assert (4 * 3) % 6 == 0 and 4 % 6 and 3 % 6
+# arith-l1-chinois (cours) : x ≡ 0 [2] et x ≡ 1 [4] sans solution.
+assert solutions_systeme(0, 2, 1, 4, 100) == []
+# arith-l1-racines-polynome (cours) : X² - 1 a 4 racines dans Z/8Z.
+assert [t for t in range(8) if (t * t) % 8 == 1] == [1, 3, 5, 7]
+# Introduction arith-l1-congruences : Euler exige a ∧ n = 1 (2^φ(4) ≡ 0 [4]) ; seuls ±1 sont leur propre inverse modulo p.
+assert pow(2, int(totient(4)), 4) == 0
+for nn in range(2, 60):
+    for a in range(1, nn):
+        if gcd(a, nn) == 1:
+            assert pow(a, int(totient(nn)), nn) == 1
+for pp in [3, 5, 7, 11, 13, 17, 19, 23]:
+    assert [t for t in range(1, pp) if (t * t) % pp == 1] == [1, pp - 1]
+
+# Titres et indices hérités par les variantes : tout nombre cité figure dans l'énoncé de la variante.
+import re
+for ident, e in EXOS.items():
+    for v in e.get("variantes", []):
+        herite = ([] if "titre" in v else [e["titre"]]) + ([] if "indices" in v else e["indices"])
+        for t in herite:
+            for nombre in re.findall(r"\d+", t):
+                assert nombre in ("1", "2") or nombre in re.findall(r"\d+", v["enonce"]), (ident, t, nombre)
+
 print("Toutes les vérifications du thème arithmetique passent.")
