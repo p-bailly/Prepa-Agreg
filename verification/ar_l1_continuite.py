@@ -26,6 +26,8 @@ def egal(u, v):
 assert sin(2 * n * pi) == 0 and sin(2 * n * pi + pi / 2) == 1
 # Contre-exemple 1 / affirmation 1 : sin(π n) = 0, sin(π (4n+1)/2) = 1.
 assert sin(pi * n) == 0 and sin(pi * (4 * n + 1) / 2) == 1
+# Affirmation 1 : 2/(4n+1) est dans ]0,1] seulement pour n ≥ 1 (pour n = 0, il vaut 2).
+assert all(0 < Rational(2, 4 * k + 1) <= 1 for k in range(1, 20)) and Rational(2, 1) > 1
 # Exemple : r_n = floor(10^n x)/10^n vérifie x - 10^-n < r_n ≤ x (contrôle numérique pour x = sqrt 2, n ≤ 8).
 for k in range(9):
     r = floor(10**k * sqrt(2)) / S(10)**k

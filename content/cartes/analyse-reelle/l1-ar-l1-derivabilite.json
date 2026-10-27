@@ -42,7 +42,7 @@
     }
    ],
    "demo": "Soit $x\\in I$, $x\\neq a$. La fonction $f$ est continue sur le segment d'extrémités $a$ et $x$ (contenu dans $I$) et dérivable sur l'intervalle ouvert correspondant, qui ne contient pas $a$. L'égalité des accroissements finis donne $c_x$ strictement compris entre $a$ et $x$ tel que\n$$\\frac{f(x)-f(a)}{x-a}=f'(c_x),\\qquad\\text{avec }0<|c_x-a|<|x-a|.$$\n\n**Cas $\\ell$ réel.** Soit $\\varepsilon>0$ : il existe $\\eta>0$ tel que $|f'(t)-\\ell|\\le\\varepsilon$ pour tout $t\\in I$ vérifiant $0<|t-a|<\\eta$. Si $0<|x-a|<\\eta$, alors $0<|c_x-a|<\\eta$, donc $\\left|\\frac{f(x)-f(a)}{x-a}-\\ell\\right|=|f'(c_x)-\\ell|\\le\\varepsilon$. Le taux d'accroissement tend vers $\\ell$ : $f$ est dérivable en $a$ et $f'(a)=\\ell=\\lim_{x\\to a}f'(x)$, ce qui est exactement la continuité de $f'$ en $a$.\n\n**Cas $\\ell=+\\infty$** (de même pour $-\\infty$). Pour tout réel $A$, il existe $\\eta>0$ tel que $f'(t)\\ge A$ si $0<|t-a|<\\eta$ ; alors $\\frac{f(x)-f(a)}{x-a}=f'(c_x)\\ge A$ pour $0<|x-a|<\\eta$. Le taux tend vers $+\\infty$ : il n'a pas de limite finie, et $f$ n'est pas dérivable en $a$.",
-   "exemple": "Soit $f(x)=x|x|$ sur $\\mathbb{R}$. Elle est continue, dérivable sur $\\mathbb{R}^*$ avec $f'(x)=2x$ pour $x>0$ et $f'(x)=-2x$ pour $x<0$, soit $f'(x)=2|x|\\to0$ quand $x\\to0$. Le théorème donne : $f$ est dérivable en $0$, $f'(0)=0$, et $f$ est de classe $C^1$ sur $\\mathbb{R}$.\n\nÀ l'inverse, $\\arcsin$ est continue sur $[-1,1]$, dérivable sur $\\left]-1,1\\right[$ avec $\\arcsin'(x)=\\frac{1}{\\sqrt{1-x^2}}\\to+\\infty$ quand $x\\to1^-$ : $\\arcsin$ n'est pas dérivable en $1$, et sa courbe a une tangente verticale en ce point.",
+   "exemple": "Soit $f(x)=x|x|$ sur $\\mathbb{R}$. Elle est continue, dérivable sur $\\mathbb{R}^*$ avec $f'(x)=2x$ pour $x>0$ et $f'(x)=-2x$ pour $x<0$, soit $f'(x)=2|x|\\to0$ quand $x\\to0$. Le théorème donne : $f$ est dérivable en $0$, $f'(0)=0$, et $f$ est de classe $C^1$ sur $\\mathbb{R}$.\n\nÀ l'inverse, $\\arcsin$ est continue sur $I=[0,1]$, dérivable sur $\\left[0,1\\right[$ avec $\\arcsin'(x)=\\frac{1}{\\sqrt{1-x^2}}\\to+\\infty$ quand $x\\to1^-$ : le théorème, avec $a=1$, montre que $\\arcsin$ n'est pas dérivable en $1$, et que sa courbe a une tangente verticale en ce point.",
    "contre_exemple": "- **La réciproque est fausse** : $f(x)=x^2\\sin\\frac1x$ pour $x\\neq0$, $f(0)=0$ : le taux $\\frac{f(x)}{x}=x\\sin\\frac1x\\to0$, donc $f'(0)=0$ ; mais $f'(x)=2x\\sin\\frac1x-\\cos\\frac1x$ vaut $-1$ en $\\frac{1}{2n\\pi}$ et $1$ en $\\frac{1}{(2n+1)\\pi}$ : elle n'a pas de limite en $0$.\n- **Continuité en $a$ indispensable** : $f(x)=0$ pour $x<0$ et $f(x)=1$ pour $x\\ge0$ est dérivable sur $\\mathbb{R}^*$ de dérivée nulle, donc $f'(x)\\to0$, mais $f$ n'est pas dérivable en $0$, où elle n'est pas continue.\n- **Une limite, pas seulement une dérivée bornée** : $f(x)=|x|$ est continue, $|f'(x)|=1$ sur $\\mathbb{R}^*$, mais $f'$ n'a pas de limite en $0$ (elle vaut $-1$ à gauche et $1$ à droite), et $f$ n'est pas dérivable en $0$.",
    "affirmations": [
     {
@@ -58,7 +58,7 @@
     {
      "texte": "Si $f$ est dérivable sur un intervalle $I$ et si $f'$ admet une limite réelle $\\ell$ en $a\\in I$, alors $\\ell=f'(a)$.",
      "vrai": true,
-     "justification": "$f$, dérivable, est continue sur $I$ : le théorème s'applique et donne $f'(a)=\\ell$. Une dérivée ne peut donc pas avoir de discontinuité « à limite », par exemple de saut."
+     "justification": "$f$, dérivable, est continue sur $I$ : le théorème s'applique et donne $f'(a)=\\ell$. En appliquant le théorème sur $I\\cap\\left]-\\infty,a\\right]$ et sur $I\\cap\\left[a,+\\infty\\right[$, les limites à gauche et à droite de $f'$ en $a$, si elles existent, valent toutes deux $f'(a)$ : une dérivée n'a pas de discontinuité de saut."
     },
     {
      "texte": "Si $f$ est continue sur $I$, dérivable sur $I\\setminus\\{a\\}$, et si $f'$ n'a pas de limite en $a$, alors $f$ n'est pas dérivable en $a$.",
@@ -143,7 +143,7 @@
    "type": "theoreme",
    "titre": "Formule de Leibniz",
    "recto": "Énoncer la formule de Leibniz pour la dérivée $n$-ième d'un produit, avec ses hypothèses.",
-   "cours": "La dérivée d'un produit est $(fg)'=f'g+fg'$ ; en dérivant à nouveau, $(fg)''=f''g+2f'g'+fg''$, puis $(fg)'''=f'''g+3f''g'+3f'g''+fg'''$ : on reconnaît les coefficients du binôme. La formule de Leibniz généralise ce constat, $(fg)^{(n)}=\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n-k)}$, exactement comme $(x+y)^n=\\sum_{k=0}^n\\binom nk x^ky^{n-k}$, et elle se démontre de la même façon, par récurrence avec la relation de Pascal.\n\nElle est efficace quand l'un des facteurs a des dérivées qui s'annulent vite (un polynôme de degré $d$ : seuls $d+1$ termes subsistent) et l'autre des dérivées connues ($e^{ax}$, $\\sin$, $\\cos$). Méthode : identifier les deux facteurs, écrire leurs dérivées successives, ne garder que les termes non nuls. Elle sert aussi à dériver $n$ fois une relation comme $(1+x^2)f'(x)=1$, ce qui donne une relation de récurrence entre les dérivées successives en un point, et à étudier des polynômes comme $\\left((x^2-1)^n\\right)^{(n)}$.\n\nLe piège principal : les coefficients binomiaux ne disparaissent pas ($(fg)''\\neq f''g+fg''$), et l'hypothèse porte sur **chacun** des facteurs : $f$ et $g$ doivent être $n$ fois dérivables. Un produit peut d'ailleurs être très régulier sans que ses facteurs le soient : $|x|\\cdot|x|=x^2$.",
+   "cours": "La dérivée d'un produit est $(fg)'=f'g+fg'$ ; en dérivant à nouveau, $(fg)''=f''g+2f'g'+fg''$, puis $(fg)'''=f'''g+3f''g'+3f'g''+fg'''$ : on reconnaît les coefficients du binôme. La formule de Leibniz généralise ce constat, $(fg)^{(n)}=\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n-k)}$, exactement comme $(x+y)^n=\\sum_{k=0}^n\\binom nk x^ky^{n-k}$, et elle se démontre de la même façon, par récurrence avec la relation de Pascal.\n\nElle est efficace quand l'un des facteurs a des dérivées qui s'annulent vite (un polynôme de degré $d$ : au plus $d+1$ termes subsistent) et l'autre des dérivées connues ($e^{ax}$, $\\sin$, $\\cos$). Méthode : identifier les deux facteurs, écrire leurs dérivées successives, ne garder que les termes non nuls. Elle sert aussi à dériver $n$ fois une relation comme $(1+x^2)f'(x)=1$, ce qui donne une relation de récurrence entre les dérivées successives en un point, et à étudier des polynômes comme $\\left((x^2-1)^n\\right)^{(n)}$.\n\nLe piège principal : les coefficients binomiaux ne disparaissent pas ($(fg)''\\neq f''g+fg''$), et l'hypothèse porte sur **chacun** des facteurs : $f$ et $g$ doivent être $n$ fois dérivables. Un produit peut d'ailleurs être très régulier sans que ses facteurs le soient : $|x|\\cdot|x|=x^2$.",
    "hypotheses": [
     "$I$ est un intervalle et $n\\in\\mathbb{N}$.",
     "$f$ est $n$ fois dérivable sur $I$.",
@@ -200,7 +200,8 @@
     }
    ],
    "prerequis": [
-    "ar-t-suites-recurrence"
+    "ar-t-suites-recurrence",
+    "proba-t-binomiale-pascal"
    ]
   },
   {
