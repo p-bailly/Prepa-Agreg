@@ -1,0 +1,240 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l1-congruences-inversibles",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-congruences",
+      "type": "theoreme",
+      "titre": "Inversibles de $\\mathbb{Z}/n\\mathbb{Z}$",
+      "recto": "Énoncer la caractérisation des classes inversibles de $\\mathbb{Z}/n\\mathbb{Z}$ et la résolution de $ax \\equiv b \\pmod{n}$, avec leurs hypothèses.",
+      "cours": "Dans $\\mathbb{Z}/n\\mathbb{Z}$, on sait additionner et multiplier les classes ; reste à savoir quand on peut diviser, c'est-à-dire quand une classe $\\overline{a}$ a un inverse $\\overline{b}$, avec $ab \\equiv 1 \\pmod{n}$. La réponse tient au PGCD : $\\overline{a}$ est inversible exactement quand $a \\wedge n = 1$. Dans un sens, une relation de Bézout $au + nv = 1$ se lit modulo $n$ comme $au \\equiv 1$ ; dans l'autre, $ab - 1 = kn$ est une relation de Bézout entre $a$ et $n$.\n\nL'inverse sert à résoudre les congruences linéaires : si $a \\wedge n = 1$ et si $\\overline{u}$ est l'inverse de $\\overline{a}$, alors $ax \\equiv b \\pmod{n}$ équivaut à $x \\equiv ub \\pmod{n}$, comme on résout $ax = b$ dans $\\mathbb{R}$ en multipliant par $1/a$. Les classes inversibles forment un groupe pour la multiplication, noté $(\\mathbb{Z}/n\\mathbb{Z})^\\times$, dont le cardinal est l'indicatrice d'Euler.\n\n**Méthode.** Pour inverser $a$ modulo $n$ : remplacer $a$ par son reste modulo $n$, puis appliquer l'algorithme d'Euclide à $n$ et $a$ ; si le dernier reste non nul vaut $1$, remonter les divisions pour écrire $au + nv = 1$ ; l'inverse est la classe de $u$, ce que l'on vérifie en calculant $au$ modulo $n$.\n\n**Piège principal.** « $n$ ne divise pas $a$ » ne suffit pas : modulo $12$, la classe de $8$ est non nulle mais n'est pas inversible ($8 \\wedge 12 = 4$), et l'on ne peut pas simplifier par $8$ : $8 \\times 3 \\equiv 8 \\times 6 \\pmod{12}$ alors que $3 \\not\\equiv 6 \\pmod{12}$.",
+      "hypotheses": [
+        "$n$ est un entier supérieur ou égal à $1$.",
+        "$a$ est un entier relatif.",
+        "Pour l'inversibilité et la résolution de $ax \\equiv b \\pmod{n}$ : $a$ et $n$ sont premiers entre eux."
+      ],
+      "hypotheses_pieges": [
+        "$n$ ne divise pas $a$ (à la place de : $a$ et $n$ premiers entre eux).",
+        "$a$ est un nombre premier (à la place de : $a$ et $n$ premiers entre eux).",
+        "$n$ est un nombre premier et $a$ un entier quelconque (à la place de : $a$ et $n$ premiers entre eux).",
+        "$a$ et $n$ sont impairs (à la place de : premiers entre eux)."
+      ],
+      "enonce": "Soient $n \\geq 1$ un entier et $a \\in \\mathbb{Z}$. La classe $\\overline{a}$ est inversible dans $\\mathbb{Z}/n\\mathbb{Z}$ (c'est-à-dire qu'il existe $b \\in \\mathbb{Z}$ tel que $ab \\equiv 1 \\pmod{n}$) si et seulement si $a \\wedge n = 1$. Dans ce cas :\n\n- si $au + nv = 1$ avec $u, v \\in \\mathbb{Z}$ (relation de Bézout), l'inverse de $\\overline{a}$ est $\\overline{u}$, et c'est le seul inverse de $\\overline{a}$ ;\n- pour tout $b \\in \\mathbb{Z}$, les solutions de $ax \\equiv b \\pmod{n}$ sont exactement les entiers $x$ tels que $x \\equiv ub \\pmod{n}$.\n\nLes classes inversibles forment un groupe pour la multiplication, noté $(\\mathbb{Z}/n\\mathbb{Z})^\\times$.",
+      "enonce_trous": "Soient $n \\geq 1$ un entier et $a \\in \\mathbb{Z}$. La classe $\\overline{a}$ est inversible dans $\\mathbb{Z}/n\\mathbb{Z}$ si et seulement si {{1}}. Dans ce cas, si $au + nv = 1$ avec $u, v \\in \\mathbb{Z}$, l'inverse de $\\overline{a}$ est {{2}}. Les classes inversibles de $\\mathbb{Z}/n\\mathbb{Z}$ forment {{3}}.",
+      "trous": [
+        {
+          "reponse": "$a$ et $n$ sont premiers entre eux",
+          "leurres": [
+            "$n$ ne divise pas $a$",
+            "$a$ est un nombre premier",
+            "$n$ est un nombre premier"
+          ]
+        },
+        {
+          "reponse": "la classe de $u$",
+          "leurres": [
+            "la classe de $v$",
+            "la classe de $-u$",
+            "la classe de $a^{n-2}$"
+          ]
+        },
+        {
+          "reponse": "un groupe pour la multiplication",
+          "leurres": [
+            "un groupe pour l'addition",
+            "un sous-anneau de $\\mathbb{Z}/n\\mathbb{Z}$",
+            "un ensemble à $n - 1$ éléments"
+          ]
+        }
+      ],
+      "demo": "**L'inversibilité ne dépend que de la classe.** Si $a' \\equiv a \\pmod{n}$, alors $ab \\equiv 1$ équivaut à $a'b \\equiv 1$ ; et $a' \\wedge n = a \\wedge n$, car $a' = a + kn$ avec $k \\in \\mathbb{Z}$, de sorte que tout diviseur commun de $a$ et $n$ divise $a'$, et inversement.\n\n**Si $a \\wedge n = 1$, $\\overline{a}$ est inversible.** Le théorème de Bézout donne $u, v \\in \\mathbb{Z}$ tels que $au + nv = 1$ ; alors $au = 1 - nv \\equiv 1 \\pmod{n}$, donc $\\overline{u}$ est un inverse de $\\overline{a}$.\n\n**Si $\\overline{a}$ est inversible, $a \\wedge n = 1$.** Si $ab \\equiv 1 \\pmod{n}$, il existe $k \\in \\mathbb{Z}$ tel que $ab - 1 = kn$, soit $ab + (-k)n = 1$. Tout diviseur commun de $a$ et $n$ divise alors $1$, donc $a \\wedge n = 1$.\n\n**Unicité de l'inverse.** Si $ab \\equiv 1$ et $ab' \\equiv 1 \\pmod{n}$, alors $b \\equiv b(ab') = (ab)b' \\equiv b' \\pmod{n}$.\n\n**Congruence $ax \\equiv b$.** Soit $\\overline{u}$ l'inverse de $\\overline{a}$. Si $ax \\equiv b \\pmod{n}$, en multipliant par $u$ : $x \\equiv (ua)x = u(ax) \\equiv ub \\pmod{n}$. Réciproquement, si $x \\equiv ub \\pmod{n}$, alors $ax \\equiv (au)b \\equiv b \\pmod{n}$.\n\n**Structure de groupe.** $\\overline{1}$ est inversible. Si $\\overline{a}$ et $\\overline{a'}$ sont inversibles, d'inverses $\\overline{b}$ et $\\overline{b'}$, alors $(aa')(b'b) = a(a'b')b \\equiv ab \\equiv 1 \\pmod{n}$ : le produit de deux inversibles est inversible. L'inverse $\\overline{b}$ de $\\overline{a}$ est lui-même inversible, d'inverse $\\overline{a}$. La multiplication de $\\mathbb{Z}/n\\mathbb{Z}$ étant associative et commutative, $(\\mathbb{Z}/n\\mathbb{Z})^\\times$ est un groupe commutatif.",
+      "exemple": "Inverse de $17$ modulo $60$. L'algorithme d'Euclide donne $60 = 3 \\times 17 + 9$, $17 = 1 \\times 9 + 8$, $9 = 1 \\times 8 + 1$ : $17 \\wedge 60 = 1$. En remontant : $1 = 9 - 8 = 9 - (17 - 9) = 2 \\times 9 - 17 = 2 \\times (60 - 3 \\times 17) - 17 = 2 \\times 60 - 7 \\times 17$. L'inverse de $\\overline{17}$ est donc $\\overline{-7} = \\overline{53}$ ; vérification : $17 \\times 53 = 901 = 15 \\times 60 + 1$.\n\nPar suite, $17x \\equiv 5 \\pmod{60}$ équivaut à $x \\equiv 53 \\times 5 = 265 \\equiv 25 \\pmod{60}$ ; vérification : $17 \\times 25 = 425 = 7 \\times 60 + 5$.",
+      "contre_exemple": "- **Classe non nulle non inversible** : modulo $15$, on a $6 \\wedge 15 = 3$, et $6x \\equiv 1 \\pmod{15}$ n'a pas de solution : si $6x = 1 + 15k$, alors $3$ divise $6x - 15k = 1$, ce qui est impossible. Pourtant $15$ ne divise pas $6$ : « $\\overline{a} \\neq \\overline{0}$ » ne suffit pas.\n- **Pas de simplification par un non-inversible** : $6 \\times 2 = 12$ et $6 \\times 7 = 42 = 2 \\times 15 + 12$, donc $6 \\times 2 \\equiv 6 \\times 7 \\pmod{15}$, alors que $2 \\not\\equiv 7 \\pmod{15}$. De même, $6 \\times 5 = 30 \\equiv 0 \\pmod{15}$ avec $\\overline{6} \\neq \\overline{0}$ et $\\overline{5} \\neq \\overline{0}$.\n- **Un nombre premier n'est pas toujours inversible** : $3$ est premier, mais $\\overline{3}$ n'est pas inversible modulo $6$, car $3 \\wedge 6 = 3$.",
+      "affirmations": [
+        {
+          "texte": "Si $n \\geq 2$ ne divise pas $a$, alors la classe de $a$ est inversible dans $\\mathbb{Z}/n\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 4$, $a = 2$ : pour tout $b \\in \\mathbb{Z}$, $2b - 1$ est impair, donc n'est pas multiple de $4$, et $2b \\not\\equiv 1 \\pmod{4}$. Il faut $a \\wedge n = 1$, et ici $2 \\wedge 4 = 2$."
+        },
+        {
+          "texte": "Si $ab \\equiv ac \\pmod{n}$ et si $n$ ne divise pas $a$, alors $b \\equiv c \\pmod{n}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 15$, $a = 6$, $b = 2$, $c = 7$ : $6 \\times 2 = 12$ et $6 \\times 7 = 42 \\equiv 12 \\pmod{15}$, mais $2 \\not\\equiv 7 \\pmod{15}$. On ne simplifie que par une classe inversible, c'est-à-dire lorsque $a \\wedge n = 1$."
+        },
+        {
+          "texte": "Si $a \\wedge n = 1$, alors pour tout $b \\in \\mathbb{Z}$ la congruence $ax \\equiv b \\pmod{n}$ a exactement une solution $x$ dans $\\{0, 1, \\dots, n - 1\\}$.",
+          "vrai": true,
+          "justification": "Les solutions sont les $x$ tels que $x \\equiv ub \\pmod{n}$, où $\\overline{u}$ est l'inverse de $\\overline{a}$ : elles forment une seule classe modulo $n$, qui a un unique représentant dans $\\{0, \\dots, n - 1\\}$."
+        },
+        {
+          "texte": "La somme de deux classes inversibles de $\\mathbb{Z}/n\\mathbb{Z}$ est inversible.",
+          "vrai": false,
+          "contre_exemple": "$n = 4$ : $\\overline{1}$ est inversible, mais $\\overline{1} + \\overline{1} = \\overline{2}$ ne l'est pas, car $2 \\wedge 4 = 2$. Les inversibles sont stables par produit, pas par somme."
+        }
+      ],
+      "prerequis": [
+        "arith-t-bezout",
+        "arith-t-pgcd-euclide",
+        "arith-t-divisibilite-congruences"
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-congruences",
+      "type": "theoreme",
+      "titre": "Indicatrice d'Euler et théorème d'Euler",
+      "recto": "Définir l'indicatrice d'Euler, donner les formules qui la calculent et énoncer le théorème d'Euler, avec leurs hypothèses.",
+      "cours": "L'indicatrice d'Euler compte les inversibles modulo $n$ : $\\varphi(n)$ est le nombre d'entiers $k \\in \\{1, \\dots, n\\}$ premiers avec $n$, c'est-à-dire le cardinal de $(\\mathbb{Z}/n\\mathbb{Z})^\\times$. Pour $p$ premier, $\\varphi(p) = p - 1$ ; pour une puissance $p^\\alpha$, on retire les $p^{\\alpha-1}$ multiples de $p$ ; enfin, le lemme chinois rend $\\varphi$ multiplicative sur les entiers premiers entre eux, ce qui donne $\\varphi(n)$ à partir de la décomposition de $n$ en facteurs premiers.\n\nLe théorème d'Euler, $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$ pour $a$ premier avec $n$, généralise le petit théorème de Fermat (cas où $n = p$ est premier) à un module quelconque. Idée de la preuve : multiplier par $\\overline{a}$ permute les inversibles, donc le produit de tous les inversibles est égal à $\\overline{a}^{\\varphi(n)}$ fois lui-même. C'est aussi un cas particulier du théorème de Lagrange appliqué au groupe $(\\mathbb{Z}/n\\mathbb{Z})^\\times$.\n\n**Méthode.** Pour calculer $a^N$ modulo $n$ avec $a \\wedge n = 1$ : calculer $\\varphi(n)$ par la formule $\\varphi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)$, écrire $N = q\\varphi(n) + r$ (division euclidienne), puis $a^N = (a^{\\varphi(n)})^q a^r \\equiv a^r \\pmod{n}$.\n\n**Piège principal.** L'hypothèse $a \\wedge n = 1$ est indispensable : modulo $12$, aucune puissance $2^k$ ($k \\geq 1$) n'est congrue à $1$, car elles sont toutes paires. Et $\\varphi(n)$ n'est pas forcément le plus petit exposant qui convient : $3^2 = 9 \\equiv 1 \\pmod{8}$ alors que $\\varphi(8) = 4$.",
+      "hypotheses": [
+        "$n$ est un entier supérieur ou égal à $1$.",
+        "Pour la formule de $\\varphi(p^\\alpha)$ : $p$ est un nombre premier et $\\alpha \\geq 1$.",
+        "Pour la multiplicativité : $m$ et $n$ sont premiers entre eux.",
+        "Pour le théorème d'Euler : $a$ est un entier premier avec $n$."
+      ],
+      "hypotheses_pieges": [
+        "Pour le théorème d'Euler : $n$ ne divise pas $a$ (à la place de : $a$ premier avec $n$).",
+        "Pour le théorème d'Euler : $n$ est un nombre premier et $a$ un entier quelconque (à la place de : $a$ premier avec $n$).",
+        "Pour la formule de $\\varphi(p^\\alpha)$ : $p$ est un entier supérieur ou égal à $2$ quelconque (à la place de : premier).",
+        "Pour la multiplicativité : $m$ et $n$ sont des entiers supérieurs ou égaux à $1$ quelconques (à la place de : premiers entre eux)."
+      ],
+      "enonce": "Pour un entier $n \\geq 1$, l'indicatrice d'Euler $\\varphi(n)$ est le nombre d'entiers $k \\in \\{1, \\dots, n\\}$ premiers avec $n$ ; c'est aussi le nombre d'éléments de $(\\mathbb{Z}/n\\mathbb{Z})^\\times$.\n\n- Si $p$ est premier et $\\alpha \\geq 1$, $\\varphi(p^\\alpha) = p^\\alpha - p^{\\alpha - 1}$.\n- Si $m, n \\geq 1$ sont premiers entre eux, $\\varphi(mn) = \\varphi(m)\\varphi(n)$.\n- Par conséquent, si $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$ est la décomposition de $n \\geq 2$ en facteurs premiers ($p_i$ distincts, $\\alpha_i \\geq 1$), $\\varphi(n) = n \\prod_{i=1}^{r} \\left(1 - \\frac{1}{p_i}\\right)$.\n\n**Théorème d'Euler.** Soit $n \\geq 1$. Pour tout entier $a$ premier avec $n$, $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$.",
+      "enonce_trous": "Pour $p$ premier et $\\alpha \\geq 1$, $\\varphi(p^\\alpha)$ vaut {{1}}. Si {{2}}, alors $\\varphi(mn) = \\varphi(m)\\varphi(n)$. Théorème d'Euler : pour $n \\geq 1$ et pour tout entier $a$ {{3}}, on a $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$.",
+      "trous": [
+        {
+          "reponse": "$p^\\alpha - p^{\\alpha-1}$",
+          "leurres": [
+            "$p^\\alpha - 1$",
+            "$(p-1)^\\alpha$",
+            "$p^{\\alpha}(p-1)$"
+          ]
+        },
+        {
+          "reponse": "$m$ et $n$ sont premiers entre eux",
+          "leurres": [
+            "$m$ et $n$ sont distincts",
+            "$m$ divise $n$",
+            "$m$ et $n$ sont des entiers supérieurs ou égaux à $1$ quelconques"
+          ]
+        },
+        {
+          "reponse": "premier avec $n$",
+          "leurres": [
+            "non divisible par $n$",
+            "premier",
+            "quelconque"
+          ]
+        }
+      ],
+      "demo": "**$\\varphi(n)$ compte les inversibles.** Les entiers $1, \\dots, n$ représentent chacune des $n$ classes de $\\mathbb{Z}/n\\mathbb{Z}$ une seule fois, et la classe de $k$ est inversible si et seulement si $k \\wedge n = 1$. Donc $\\varphi(n)$ est le cardinal de $(\\mathbb{Z}/n\\mathbb{Z})^\\times$.\n\n**Puissance d'un nombre premier.** Les diviseurs positifs de $p^\\alpha$ sont les $p^j$, $0 \\leq j \\leq \\alpha$ (unicité de la décomposition en facteurs premiers). Ainsi $k \\wedge p^\\alpha \\neq 1$ si et seulement si $p$ divise $k$. Les multiples de $p$ dans $\\{1, \\dots, p^\\alpha\\}$ sont $p, 2p, \\dots, p^{\\alpha-1} \\times p$ : il y en a $p^{\\alpha-1}$. Donc $\\varphi(p^\\alpha) = p^\\alpha - p^{\\alpha-1}$.\n\n**Multiplicativité.** Soient $m, n \\geq 1$ premiers entre eux. Par le lemme chinois, $\\psi : \\mathbb{Z}/mn\\mathbb{Z} \\to \\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$, $\\overline{x} \\mapsto (\\overline{x}, \\overline{x})$, est un isomorphisme d'anneaux ; il envoie donc les inversibles bijectivement sur les inversibles (si $xy = 1$, alors $\\psi(x)\\psi(y) = \\psi(1) = (\\overline{1}, \\overline{1})$, et de même pour $\\psi^{-1}$). Or un couple $(y, z)$ est inversible dans l'anneau produit si et seulement si $y$ et $z$ le sont, puisque $(y, z)(y', z') = (yy', zz')$. Les inversibles de $\\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$ sont donc au nombre de $\\varphi(m)\\varphi(n)$, d'où $\\varphi(mn) = \\varphi(m)\\varphi(n)$.\n\n**Formule générale.** Par récurrence sur $r$ : $p_1^{\\alpha_1} \\cdots p_{r-1}^{\\alpha_{r-1}}$ et $p_r^{\\alpha_r}$ sont premiers entre eux (aucun nombre premier ne divise les deux), donc $\\varphi(n) = \\prod_{i=1}^{r} \\left(p_i^{\\alpha_i} - p_i^{\\alpha_i - 1}\\right) = \\prod_{i=1}^{r} p_i^{\\alpha_i}\\left(1 - \\frac{1}{p_i}\\right) = n \\prod_{i=1}^{r} \\left(1 - \\frac{1}{p_i}\\right)$.\n\n**Théorème d'Euler.** Notons $G = (\\mathbb{Z}/n\\mathbb{Z})^\\times$, de cardinal $\\varphi(n)$ ; comme $a \\wedge n = 1$, $\\overline{a} \\in G$. L'application $x \\mapsto \\overline{a}x$ envoie $G$ dans $G$ (un produit d'inversibles est inversible) et elle est injective : si $\\overline{a}x = \\overline{a}y$, on multiplie par l'inverse de $\\overline{a}$ et $x = y$. Comme $G$ est fini, elle est bijective. Le produit $P$ de tous les éléments de $G$ vérifie donc, la multiplication étant commutative, $P = \\prod_{x \\in G} (\\overline{a}x) = \\overline{a}^{\\varphi(n)} P$. Comme $P$ est inversible (produit d'inversibles), on simplifie : $\\overline{a}^{\\varphi(n)} = \\overline{1}$, c'est-à-dire $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$.",
+      "exemple": "$360 = 2^3 \\times 3^2 \\times 5$, donc $\\varphi(360) = (8 - 4)(9 - 3)(5 - 1) = 4 \\times 6 \\times 4 = 96$, ce que confirme la formule produit : $360 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 96$.\n\nReste de $5^{100}$ modulo $36$ : $5 \\wedge 36 = 1$ et $\\varphi(36) = \\varphi(4)\\varphi(9) = 2 \\times 6 = 12$, donc $5^{12} \\equiv 1 \\pmod{36}$. Comme $100 = 8 \\times 12 + 4$, $5^{100} \\equiv 5^4 = 625 = 17 \\times 36 + 13$, et le reste est $13$.",
+      "contre_exemple": "- **$a$ non premier avec $n$** : modulo $12$, les puissances $2^k$ ($k \\geq 1$) sont paires, donc jamais congrues à $1$ ; en particulier $2^{\\varphi(12)} = 2^4 = 16 \\equiv 4 \\pmod{12}$.\n- **Multiplicativité sans coprimalité** : $\\varphi(4) = 2$ (les entiers $1$ et $3$), alors que $\\varphi(2)\\varphi(2) = 1$.\n- **Formule de $\\varphi(p^\\alpha)$ avec $p$ non premier** : pour $p = 6$ et $\\alpha = 1$, la formule donnerait $6 - 1 = 5$, alors que $\\varphi(6) = 2$ (les entiers $1$ et $5$).\n- **$\\varphi(n)$ n'est pas le plus petit exposant** : $3^2 = 9 \\equiv 1 \\pmod{8}$ alors que $\\varphi(8) = 4$.",
+      "affirmations": [
+        {
+          "texte": "Si $a \\wedge n = 1$ et $a^k \\equiv 1 \\pmod{n}$ avec $k \\geq 1$, alors $\\varphi(n)$ divise $k$.",
+          "vrai": false,
+          "contre_exemple": "$n = 8$, $a = 3$, $k = 2$ : $3^2 = 9 \\equiv 1 \\pmod{8}$, mais $\\varphi(8) = 4$ ne divise pas $2$. C'est l'inverse qui est vrai : le plus petit exposant $k \\geq 1$ tel que $a^k \\equiv 1$ divise $\\varphi(n)$ (théorème de Lagrange)."
+        },
+        {
+          "texte": "Pour tous entiers $m, n \\geq 1$, $\\varphi(mn) = \\varphi(m)\\varphi(n)$.",
+          "vrai": false,
+          "contre_exemple": "$m = n = 2$ : $\\varphi(4) = 2$ alors que $\\varphi(2)^2 = 1$. La multiplicativité demande $m \\wedge n = 1$."
+        },
+        {
+          "texte": "Pour tout entier $n \\geq 3$, $\\varphi(n)$ est pair.",
+          "vrai": true,
+          "justification": "Pour $n \\geq 2$, les entiers de $\\{1, \\dots, n\\}$ premiers avec $n$ sont dans $\\{1, \\dots, n - 1\\}$, et $k \\mapsto n - k$ les permute, car $(n - k) \\wedge n = k \\wedge n$. Cette involution n'a pas de point fixe : $k = n - k$ donnerait $n = 2k$ et $k \\wedge n = k$, donc $k = 1$ et $n = 2$. Ces entiers se regroupent donc en paires $\\{k, n - k\\}$."
+        },
+        {
+          "texte": "Pour un entier $n \\geq 2$, $\\varphi(n) = n - 1$ si et seulement si $n$ est premier.",
+          "vrai": true,
+          "justification": "Comme $n \\wedge n = n \\neq 1$, $\\varphi(n) = n - 1$ signifie que $1, \\dots, n - 1$ sont tous premiers avec $n$, c'est-à-dire que $n$ n'a aucun diviseur $d$ tel que $1 < d < n$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-congruences-inversibles",
+        "arith-l1-chinois",
+        "arith-t-fermat",
+        "arith-t-premiers-decomposition"
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-wilson",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-congruences",
+      "type": "theoreme",
+      "titre": "Théorème de Wilson",
+      "recto": "Énoncer le théorème de Wilson et sa réciproque, avec leurs hypothèses.",
+      "cours": "Modulo un nombre premier $p$, les entiers $1, 2, \\dots, p - 1$ sont tous inversibles ; le théorème de Wilson calcule leur produit : $(p - 1)! \\equiv -1 \\pmod{p}$. L'idée est de regrouper chaque classe avec son inverse : chaque paire a pour produit $1$, et il ne reste que les classes égales à leur propre inverse, c'est-à-dire les solutions de $x^2 \\equiv 1$, qui sont seulement $1$ et $-1$ modulo un nombre premier. Pour $p = 7$ : $6! = 1 \\times (2 \\times 4) \\times (3 \\times 5) \\times 6 \\equiv 1 \\times 1 \\times 1 \\times (-1) \\pmod{7}$.\n\nLa réciproque est vraie, ce qui fait du théorème une caractérisation des nombres premiers : si $n \\geq 2$ est composé, un diviseur $d$ de $n$ tel que $1 < d < n$ divise $(n - 1)!$, donc ne divise pas $(n - 1)! + 1$. Ce critère n'est pas un test de primalité pratique (calculer $(n - 1)!$ modulo $n$ demande environ $n$ multiplications), mais il sert à calculer des factorielles modulo $p$ et à étudier les carrés modulo $p$.\n\n**Méthode.** Pour calculer $k!$ modulo $p$ premier lorsque $k$ est proche de $p$, partir de $(p - 1)! \\equiv -1$, remarquer que $(p - 1)(p - 2) \\cdots (k + 1) \\equiv (-1)(-2) \\cdots (-(p - 1 - k)) \\pmod{p}$, puis multiplier par l'inverse de ce produit.\n\n**Piège principal.** L'argument des paires utilise que $x^2 \\equiv 1$ n'a que les solutions $\\pm 1$, ce qui est faux modulo un entier composé : modulo $8$, le produit des inversibles $1 \\times 3 \\times 5 \\times 7 = 105$ est congru à $1$, et non à $-1$.",
+      "hypotheses": [
+        "Pour le sens direct : $p$ est un nombre premier.",
+        "Pour la réciproque : $n$ est un entier supérieur ou égal à $2$."
+      ],
+      "hypotheses_pieges": [
+        "Pour le sens direct : $p$ est un entier impair supérieur ou égal à $3$ (à la place de : premier).",
+        "Pour le sens direct : $p \\geq 2$ est un entier tel que $2^{p-1} \\equiv 1 \\pmod{p}$ (à la place de : premier).",
+        "Pour la réciproque : $n$ est un entier supérieur ou égal à $1$ (à la place de : $n \\geq 2$)."
+      ],
+      "enonce": "**Théorème de Wilson.** Si $p$ est un nombre premier, alors $(p - 1)! \\equiv -1 \\pmod{p}$.\n\n**Réciproque.** Si $n \\geq 2$ est un entier tel que $(n - 1)! \\equiv -1 \\pmod{n}$, alors $n$ est premier. Plus précisément, si $n \\geq 2$ est composé, alors $(n - 1)! \\equiv 0 \\pmod{n}$, sauf pour $n = 4$, où $3! = 6 \\equiv 2 \\pmod{4}$.\n\nAinsi, pour $n \\geq 2$ : $n$ est premier si et seulement si $n$ divise $(n - 1)! + 1$.",
+      "enonce_trous": "Soit {{1}}. Alors $(p - 1)!$ est congru à {{2}} modulo $p$. Si $n \\geq 2$ est composé et $n \\neq 4$, alors $(n - 1)!$ est congru à {{3}} modulo $n$.",
+      "trous": [
+        {
+          "reponse": "$p$ un nombre premier",
+          "leurres": [
+            "$p$ un entier impair supérieur ou égal à $3$",
+            "$p \\geq 2$ un entier quelconque",
+            "$p \\geq 2$ un entier tel que $2^{p-1} \\equiv 1 \\pmod{p}$"
+          ]
+        },
+        {
+          "reponse": "$-1$",
+          "leurres": [
+            "$1$",
+            "$0$",
+            "$p - 2$"
+          ]
+        },
+        {
+          "reponse": "$0$",
+          "leurres": [
+            "$-1$",
+            "$1$",
+            "$2$"
+          ]
+        }
+      ],
+      "demo": "**Sens direct.** Pour $p = 2$ : $1! = 1 \\equiv -1 \\pmod{2}$. Soit $p \\geq 3$ premier. Les classes $\\overline{1}, \\dots, \\overline{p - 1}$ sont les classes non nulles de $\\mathbb{Z}/p\\mathbb{Z}$, toutes inversibles car $k \\wedge p = 1$ pour $1 \\leq k \\leq p - 1$.\n\n- Une classe $x = \\overline{k}$ est son propre inverse si et seulement si $x^2 = \\overline{1}$, c'est-à-dire $p \\mid (k - 1)(k + 1)$ ; par le lemme d'Euclide, $p \\mid k - 1$ ou $p \\mid k + 1$, soit $x = \\overline{1}$ ou $x = \\overline{-1}$. Ces deux classes sont distinctes car $p \\geq 3$.\n- Sur l'ensemble $S = \\{\\overline{2}, \\dots, \\overline{p - 2}\\}$ (vide si $p = 3$), l'application $\\sigma : x \\mapsto x^{-1}$ est à valeurs dans $S$ (l'inverse de $x$ n'est pas $\\overline{0}$, qui n'est pas inversible, ni $\\overline{1}$ ni $\\overline{-1}$, sinon $x$, inverse de son inverse, le serait aussi), vérifie $\\sigma \\circ \\sigma = \\mathrm{id}$ et n'a pas de point fixe. $S$ se partage donc en paires $\\{x, x^{-1}\\}$ de produit $\\overline{1}$, et le produit des éléments de $S$ vaut $\\overline{1}$.\n\nPar suite, $\\overline{(p - 1)!} = \\overline{1} \\times \\Big(\\prod_{x \\in S} x\\Big) \\times \\overline{p - 1} = \\overline{-1}$.\n\n**Réciproque et cas composé.** Soit $n \\geq 2$ composé ; en prenant pour $a$ le plus petit diviseur de $n$ strictement supérieur à $1$, on écrit $n = ab$ avec $1 < a \\leq b < n$. Si $a < b$, les facteurs $a$ et $b$ apparaissent séparément dans $(n - 1)! = 1 \\times 2 \\times \\cdots \\times (n - 1)$, donc $n = ab$ divise $(n - 1)!$. Si $a = b$, alors $n = a^2$ ; si de plus $n \\neq 4$, on a $a \\geq 3$, donc $2a < a^2 = n$, et les facteurs distincts $a$ et $2a$ apparaissent dans $(n - 1)!$, qui est donc divisible par $2a^2 = 2n$. Dans les deux cas $(n - 1)! \\equiv 0 \\pmod{n}$ ; pour $n = 4$, $3! = 6 \\equiv 2 \\pmod{4}$.\n\nComme $n \\geq 4$, ni $0$ ni $2$ n'est congru à $-1$ modulo $n$ : $(n - 1)! \\not\\equiv -1 \\pmod{n}$ pour tout $n \\geq 2$ composé. Par contraposée, si $(n - 1)! \\equiv -1 \\pmod{n}$ avec $n \\geq 2$, alors $n$ est premier.",
+      "exemple": "Pour $p = 11$ : $10! = 3\\,628\\,800 = 11 \\times 329\\,891 - 1$, donc $10! \\equiv -1 \\pmod{11}$. Par regroupement : $2 \\times 6 = 12$, $3 \\times 4 = 12$, $5 \\times 9 = 45$ et $7 \\times 8 = 56$ sont congrus à $1$ modulo $11$, et il reste $1 \\times 10 \\equiv -1$.\n\nPour $n = 6$, composé : $5! = 120 = 20 \\times 6 \\equiv 0 \\pmod{6}$.",
+      "contre_exemple": "- **Entier impair non premier** : pour $n = 9$, $8! = 40\\,320 = 9 \\times 4\\,480$, donc $8! \\equiv 0 \\pmod{9}$, et non $-1$.\n- **Pseudo-premier de Fermat** : $341 = 11 \\times 31$ vérifie $2^{340} \\equiv 1 \\pmod{341}$, mais $11$ et $31$ figurent parmi les facteurs de $340!$, donc $340! \\equiv 0 \\pmod{341}$.\n- **Réciproque avec $n = 1$** : $0! = 1$ et tout entier est congru à $-1$ modulo $1$, alors que $1$ n'est pas premier ; d'où l'hypothèse $n \\geq 2$.\n- **Le cas $n = 4$** : $3! = 6 \\equiv 2 \\pmod{4}$, ni $0$ ni $-1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout entier $n \\geq 2$, $(n - 1)! \\equiv -1 \\pmod{n}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 6$ : $5! = 120 = 20 \\times 6 \\equiv 0 \\pmod{6}$. La congruence caractérise les nombres premiers."
+        },
+        {
+          "texte": "Si $p$ est premier, alors $(p - 2)! \\equiv 1 \\pmod{p}$.",
+          "vrai": true,
+          "justification": "$(p - 1)! = (p - 1) \\times (p - 2)! \\equiv -(p - 2)! \\pmod{p}$, et le théorème de Wilson donne $-(p - 2)! \\equiv -1$, d'où $(p - 2)! \\equiv 1 \\pmod{p}$ (pour $p = 2$, $0! = 1$)."
+        },
+        {
+          "texte": "Pour tout entier $n \\geq 2$, le produit des classes inversibles de $\\mathbb{Z}/n\\mathbb{Z}$ vaut $\\overline{-1}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 8$ : les inversibles sont $\\overline{1}, \\overline{3}, \\overline{5}, \\overline{7}$, et $1 \\times 3 \\times 5 \\times 7 = 105 = 13 \\times 8 + 1 \\equiv 1 \\pmod{8}$. L'argument des paires échoue car $x^2 = \\overline{1}$ a quatre solutions modulo $8$."
+        },
+        {
+          "texte": "Si $p \\geq 5$ est premier, alors $p^2$ divise $(p - 1)! + 1$.",
+          "vrai": false,
+          "contre_exemple": "$p = 7$ : $6! + 1 = 721 = 7 \\times 103$, et $7$ ne divise pas $103 = 7 \\times 14 + 5$, donc $49$ ne divise pas $721$. (C'est vrai pour $p = 5$ : $4! + 1 = 25$.)"
+        }
+      ],
+      "prerequis": [
+        "arith-l1-congruences-inversibles",
+        "arith-t-premiers-euclide"
+      ]
+    }
+  ]
+}
