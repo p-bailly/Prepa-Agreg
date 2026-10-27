@@ -16,7 +16,7 @@
       ],
       "hypotheses_pieges": [
         "$(u_n)$ est bornée, sans hypothèse de monotonie.",
-        "$(u_n)$ est minorée (à la place de majorée).",
+        "$(u_n)$ est décroissante (à la place de croissante).",
         "Les écarts $u_{n+1}-u_n$ tendent vers $0$ (à la place de majorée).",
         "$(u_n)$ est à termes positifs."
       ],
@@ -92,8 +92,8 @@
       "hypotheses_pieges": [
         "$(v_n)$ et $(w_n)$ convergent, vers des limites éventuellement différentes.",
         "$v_n\\le u_n\\le w_n$ pour une infinité d'indices $n$.",
-        "$(u_n)$ est bornée.",
-        "La suite $(w_n-v_n)$ est bornée."
+        "$(u_n)$ est monotone.",
+        "$(v_n)$ est croissante et $(w_n)$ est décroissante."
       ],
       "enonce": "Soient $(u_n)$, $(v_n)$ et $(w_n)$ trois suites réelles. On suppose qu'il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ pour tout $n\\ge N$, et que $(v_n)$ et $(w_n)$ convergent vers une même limite $\\ell\\in\\mathbb{R}$. Alors $(u_n)$ converge et $\\lim u_n=\\ell$.",
       "enonce_trous": "S'il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ {{1}}, et si $(v_n)$ et $(w_n)$ {{2}}, alors $(u_n)$ converge vers $\\ell$.",
@@ -155,7 +155,7 @@
         "$f$ est strictement monotone sur $[a,b]$ (à la place de la continuité).",
         "$f$ est continue sur $\\left]a,b\\right[$ seulement.",
         "$f$ est continue en $a$ et en $b$ seulement.",
-        "$f$ est bornée sur $[a,b]$."
+        "$f$ est bornée sur $[a,b]$ (à la place de la continuité)."
       ],
       "enonce": "Soient $a<b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ une fonction continue sur $[a,b]$. Pour tout réel $k$ compris entre $f(a)$ et $f(b)$, il existe **au moins un** réel $c\\in[a,b]$ tel que $f(c)=k$.",
       "enonce_trous": "Si $f$ est {{1}} sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, il existe {{2}} réel $c\\in[a,b]$ tel que $f(c)=k$.",
@@ -197,7 +197,9 @@
           "justification": "Si $y_1=f(x_1)<y<y_2=f(x_2)$, le théorème appliqué sur le segment d'extrémités $x_1$ et $x_2$ (contenu dans l'intervalle) donne $c$ avec $f(c)=y$ : l'image contient tout réel compris entre deux de ses éléments."
         }
       ],
-      "prerequis": []
+      "prerequis": [
+        "ar-t-limite-monotone"
+      ]
     },
     {
       "id": "ar-t-point-fixe",
@@ -207,7 +209,7 @@
       "type": "theoreme",
       "titre": "Limite d'une suite récurrente : théorème du point fixe",
       "recto": "Énoncer le théorème donnant la limite éventuelle d'une suite définie par $u_{n+1}=f(u_n)$, avec ses hypothèses.",
-      "cours": "Une suite récurrente $u_{n+1}=f(u_n)$ est l'exemple type d'un processus itératif : on applique sans cesse la même transformation. Si ce processus se stabilise vers une valeur $\\ell$, il est naturel que $\\ell$ soit « stable » par la transformation, c'est-à-dire $f(\\ell)=\\ell$ : c'est ce que dit ce théorème, en passant à la limite dans la relation de récurrence grâce à la continuité de $f$ en $\\ell$.\n\nLe théorème ne donne que des **candidats** : il sert à identifier la limite une fois la convergence acquise par un autre moyen, le plus souvent la limite monotone. Le plan type est : trouver un intervalle $I$ stable par $f$ contenant $u_0$ ; étudier la monotonie de $(u_n)$ (signe de $f(x)-x$ sur $I$, ou sens de variation de $f$) ; conclure à la convergence ; résoudre $f(\\ell)=\\ell$ et ne garder que les solutions compatibles avec la position de la suite (souvent un intervalle fermé qui contient tous les termes).\n\nLes pièges principaux : conclure à la convergence parce que $f$ a un point fixe (la suite peut tendre vers $\\pm\\infty$), oublier de vérifier que $\\ell$ est dans l'ensemble où $f$ est continue, et garder une solution de $f(\\ell)=\\ell$ incompatible avec les bornes des termes. Quand $f$ est décroissante, la suite n'est pas monotone : on étudie les sous-suites des rangs pairs et impairs, récurrentes pour $f\\circ f$.",
+      "cours": "Une suite récurrente $u_{n+1}=f(u_n)$ est l'exemple type d'un processus itératif : on applique sans cesse la même transformation. Si ce processus se stabilise vers une valeur $\\ell$, il est naturel que $\\ell$ soit « stable » par la transformation, c'est-à-dire $f(\\ell)=\\ell$ : c'est ce que dit ce théorème, en passant à la limite dans la relation de récurrence grâce à la continuité de $f$ en $\\ell$.\n\nLe théorème ne donne que des **candidats** : il sert à identifier la limite une fois la convergence acquise par un autre moyen, le plus souvent la limite monotone. Le plan type est : trouver un intervalle $I$ stable par $f$ contenant $u_0$ ; étudier la monotonie de $(u_n)$ (signe de $f(x)-x$ sur $I$, ou sens de variation de $f$) ; conclure à la convergence ; résoudre $f(\\ell)=\\ell$ et ne garder que les solutions compatibles avec la position de la suite (souvent un intervalle fermé qui contient tous les termes).\n\nLes pièges principaux : conclure à la convergence parce que $f$ a un point fixe (la suite peut tendre vers $\\pm\\infty$), oublier de vérifier que $\\ell$ est dans l'ensemble où $f$ est continue, et garder une solution de $f(\\ell)=\\ell$ incompatible avec les bornes des termes. Quand $f$ est décroissante, la suite n'est en général pas monotone (elle ne l'est que si elle est constante à partir du rang $1$) : on étudie les sous-suites des rangs pairs et impairs, récurrentes pour $f\\circ f$.",
       "hypotheses": [
         "$f$ est définie sur un intervalle $I$ et $f(I)\\subset I$ ; $u_0\\in I$ (la suite est bien définie et à valeurs dans $I$).",
         "$(u_n)$ converge vers un réel $\\ell$.",
