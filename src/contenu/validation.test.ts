@@ -99,6 +99,15 @@ describe('contenu de content/', () => {
       .map(({ ou, f }) => `${ou} : ${f}`)
     expect(fautes).toEqual([])
   })
+
+  it('n’a pas de formule mal composée que KaTeX accepte', () => {
+    // \mathbb8 (valeur substituée par un générateur) ou P^-1 (s'affiche P⁻1) passent KaTeX mais s'affichent mal.
+    const fautes = textesDe(tout)
+      .flatMap(({ ou, texte }) => formulesDe(texte).map((f) => ({ ou, f: f.t })))
+      .filter(({ f }) => /\\mathbb(?!\s*\{?[A-Z])|\^-[0-9A-Za-z]/.test(f))
+      .map(({ ou, f }) => `${ou} : ${f}`)
+    expect(fautes).toEqual([])
+  })
 })
 
 describe('le contrôle du contenu repère les erreurs', () => {
