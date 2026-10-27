@@ -255,12 +255,16 @@ assert egal(1 + ap * phi_, (1 + ap**2) / (1 + ap * u))
 assert egal(diff(phi_, u) / (1 + phi_**2), -1 / (1 + u**2))
 for a, val, leurres, ou in [
     (1, pi * log(2) / 8, [pi * log(2) / 4, pi * log(2) / 16, log(2) / 2], "cv-ex5"),
-    (sqrt(3), pi / 3 * log(2), [pi / 6 * log(2), 2 * pi / 3 * log(2), pi / 3 * log(4)], "cv-ex5 v1"),
+    (sqrt(3), pi / 3 * log(2), [pi / 6 * log(2), 2 * pi / 3 * log(2), pi / 4 * log(2)], "cv-ex5 v1"),  # leurre pi/4 ln2 (remplace pi/3 ln4 = 2pi/3 ln2, en double)
     (1 / sqrt(3), pi / 12 * log(Rational(4, 3)),
      [pi / 6 * log(Rational(4, 3)), pi / 24 * log(Rational(4, 3)), pi / 12 * log(Rational(3, 4))], "cv-ex5 v2"),
 ]:
     formule = atan(a) * log(1 + a**2) / 2
     bonne_et_leurres(formule, val, leurres, ou)
+    # leurres deux à deux distincts (propositions de valeurs distinctes)
+    for i_, l1 in enumerate(leurres):
+        for l2 in leurres[i_ + 1:]:
+            assert different(l1, l2), (ou, l1, l2)
     af = float(a)
     numv = num_integrale(lambda z: math.log(1 + af * z) / (1 + z * z), 0, af)
     assert abs(numv - float(val)) < 1e-9, (ou, numv)
