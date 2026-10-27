@@ -88,6 +88,18 @@ assert meme_vect(noyau(N), [(1, 0)]) and meme_vect(image(N), [(1, 0)])
 # x -> (x, 0) de R dans R^2 : dim E = 1, dim Ker = 0, rg = 1, dim F = 2.
 assert 2 - 0 != 1 and 0 + 2 != 1  # dim F - dim Ker, dim Ker + dim F
 assert 0 - 1 != 1  # application nulle sur R : rg - dim Ker = -1 ≠ dim E = 1
+# al-l1-applications-rang, trou 1 (texte corrigé) : leurres « F » et « Im f » faux avec l'évaluation en 0 de R[X] dans R
+# (image R, noyau contenant X, X^2, ..., X^n libres pour tout n : dimension infinie) ; leurre « Ker f » faux avec id de R[X]
+# (noyau nul, image contenant 1, X, ..., X^n libres pour tout n).
+for n in (5, 12):
+    ev0 = Matrix([[1] + [0] * n])  # P -> P(0) sur R_n[X], dans la base (1, X, ..., X^n)
+    assert ev0.rank() == 1 and len(ev0.nullspace()) == n  # le noyau grandit avec n
+    assert eye(n + 1).rank() == n + 1 and eye(n + 1).nullspace() == []
+# al-l1-applications-rang, contre-exemple : restrictions de f(x, y) = (y, 0) à Vect((1, 1)) (isomorphisme sur Im f) et au noyau (nulle).
+assert N * Matrix([1, 1]) == Matrix([1, 0]) and N * Matrix([1, 0]) == zeros(2, 1)
+# al-l1-applications-rang-matrice, cours : le rang peut être conservé par une matrice non inversible (E·E = E).
+Bm1 = mat((1, 0), (0, 0))
+assert Bm1 * Bm1 == Bm1 and Bm1.rank() == 1 and Bm1.det() == 0
 # al-l1-applications-rang, affirmations : (x, y, z) -> (x, y) s'annule en (0, 0, 1).
 assert mat((1, 0, 0), (0, 1, 0)) * Matrix([0, 0, 1]) == zeros(2, 1)
 

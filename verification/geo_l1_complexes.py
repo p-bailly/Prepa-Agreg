@@ -259,6 +259,16 @@ for nom, a_, b_, d in [("ex2", 1, 3 * I, sqrt(10)), ("ex2 v1", -2, 2 * I, 2 * sq
             tpar = ((P_ - A) / (B - A))
             assert abs(tpar.imag) < 1e-9 and -1e-9 <= tpar.real <= 1 + 1e-9  # E ⊂ segment (rarement testé)
 
+# triangulaire-ex2 (et variantes) : expressions de la correction (u + v, z en fonction de λ, puis de t).
+lam = sp.symbols("lambda", nonnegative=True)
+for nom, a_, b_, uv, zl in [("ex2", 1, 3 * I, -1 + 3 * I, (1 + 3 * I * lam) / (1 + lam)),
+                            ("ex2 v1", -2, 2 * I, 2 + 2 * I, (-2 + 2 * I * lam) / (1 + lam)),
+                            ("ex2 v2", 1 + I, -3 - 2 * I, -4 - 3 * I, (1 + I + lam * (-3 - 2 * I)) / (1 + lam))]:
+    assert egal(b_ - a_, uv), nom  # triangulaire-ex2 : u + v = b - a
+    zz = sp.solve(sp.Eq(z - a_, lam * (b_ - z)), z)[0]
+    assert sp.simplify(zz - zl) == 0, nom  # z = (a + λb)/(1 + λ)
+    assert sp.simplify(zl - (a_ + lam / (1 + lam) * uv)) == 0, nom  # = a + t(b - a), t = λ/(1+λ)
+
 # --- ex3 et variantes : |P(z)| ≥ m sur le disque unité, égalité seulement en z = 1.
 for nom, P, m, cube in [("ex3", z**3 + 2 * z - 6, 3, False), ("ex3 v1", z**4 + 3 * z - 8, 4, True), ("ex3 v2", z**5 + 4 * z**2 - 10, 5, True)]:
     f = sp.lambdify(z, P, "math")
