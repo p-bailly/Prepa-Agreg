@@ -478,7 +478,6 @@ for nom, nvec, d, v, bon, leurres in [
     assert pv == Matrix(bon) and (nn.T * pv)[0, 0] == 0, nom
     for L in leurres:
         assert Matrix(L) != pv, (nom, L)
-    assert 2 * pv - vv == Matrix(leurres[-1 if nom == "projecteurs-ex2" else 1]) or True
 assert 2 * Matrix([-5, 2, 3]) - Matrix([1, 2, 3]) == Matrix([-11, 2, 3])  # projecteurs-ex2 : leurre s(v)
 assert Matrix([1, 2, 3]) - 2 * Matrix([1, 1, 1]) == Matrix([-1, 0, 1])  # projecteurs-ex2 : leurre projection orthogonale
 assert 2 * Matrix([1, 3, 1]) - Matrix([1, 3, 2]) == Matrix([1, 3, 0])  # v1 : leurre s(v)
