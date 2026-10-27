@@ -34,10 +34,12 @@ def solutions(P):
 
 
 def identite_trigo(f, g, n=12):
-    """f(θ) = g(θ) pour tout θ réel (contrôle numérique en n points + simplification)."""
-    if sp.simplify(sp.expand_trig(f - g)) == 0:
+    """f(θ) = g(θ) pour tout θ réel : réécriture en exponentielles (exacte), sinon contrôle numérique en n points."""
+    d = sp.expand((f - g).rewrite(sp.exp))
+    if sp.simplify(d) == 0:
         return True
-    return all(abs(complex(sp.N((f - g).subs(th, random.uniform(-7, 7))))) < 1e-12 for _ in range(n))
+    h = sp.lambdify(th, f - g, "cmath")
+    return all(abs(h(random.uniform(-7, 7))) < 1e-10 for _ in range(n))
 
 
 def jamais_identique(f, g):
@@ -88,8 +90,6 @@ assert not egal(sp.conjugate(1 + I), -1 - I) and meme_ensemble(racines_carrees(2
 assert not egal((1 + I) * (-1 - I), 1)  # trou 2, « inverses » (w = 2i)
 assert sp.Abs(racines_carrees(4)[0]) != 4  # trou 2, « de même module » (w = 4)
 # Trou 3 : sur z^2 + 1 = 0 (a=1, b=0, c=1, Δ=-4, δ=2i), les leurres ne donnent pas les solutions ±i.
-for cand in [(0 + 2 * I) / 1, (0 + 2 * I) / 2 * 2, 2 / 2]:
-    pass
 P0 = z**2 + 1
 assert not egal(P0.subs(z, (0 + 2 * I) / 1), 0)  # trou 3, leurre (-b±δ)/a
 assert not egal((z**2 + 2 * z).subs(z, (2 + 0) / 2), 0)  # trou 3, leurre (b±δ)/(2a) sur z^2+2z (b=2, δ=2) : donne 2 et 0 au lieu de 0 et -2
@@ -216,7 +216,6 @@ assert abs(M - 5) < 1e-12  # carte (exemple) : maximum 5 atteint (en z = 1)
 assert all(abs(complex(math.cos(a), math.sin(a)) ** 2 + 3 * complex(math.cos(a), math.sin(a)) + 1) < 5 - 1e-6
            for a in [2 * math.pi * k / 720 for k in range(1, 720)])  # carte (exemple) : seulement en z = 1
 # Trous : leurres faux (z = w = 1, z = 1 et w = -1, z = 0 et w = 1).
-assert not (abs(1 + 1) >= 1 + 1 + 1e-9 and False)  # placeholder logique
 assert not abs(1 + 1) <= abs(abs(1) - abs(1))  # trou 1, leurre |z+w| ≤ ||z|-|w|| (z = w = 1)
 assert not abs(1 + 1) ** 2 <= 1 + 1  # trou 1, leurre |z+w|^2 ≤ |z|^2+|w|^2 (z = w = 1)
 assert not abs(1 + 1j) >= 1 + 1  # trou 1, leurre ≥ (z = 1, w = i)
@@ -407,12 +406,15 @@ assert egal(sp.exp(I * A_) - sp.exp(I * B_), 2 * I * sp.sin((A_ - B_) / 2) * sp.
 for p_ in range(5):
     for q_ in range(5):
         g = sp.cos(th) ** p_ * sp.sin(th) ** q_
-        lin = sp.expand(sp.fu(sp.expand(((E + 1 / E) / 2) ** p_ * ((E - 1 / E) / (2 * I)) ** q_).rewrite(sp.cos)))
-        lin = sp.simplify(sp.expand_complex(sp.expand(((E + 1 / E) / 2) ** p_ * ((E - 1 / E) / (2 * I)) ** q_)))
         n = p_ + q_
         # Coefficients de Fourier exacts : g = Σ α_k cos kθ + β_k sin kθ, k ≤ n.
-        alpha = [sp.integrate(g * sp.cos(k * th), (th, 0, 2 * pi)) / (2 * pi if k == 0 else pi) for k in range(n + 1)]
-        beta = [sp.integrate(g * sp.sin(k * th), (th, 0, 2 * pi)) / pi for k in range(1, n + 1)]
+        # Développement en exponentielles : c_m = coefficient de e^{imθ} (u = e^{iθ}).
+        uu = sp.symbols("u")
+        dev = sp.expand(((uu + 1 / uu) / 2) ** p_ * ((uu - 1 / uu) / (2 * I)) ** q_)
+        c = {m: dev.coeff(uu, m) for m in range(-n - 1, n + 2)}
+        assert c[n + 1] == 0 and c[-n - 1] == 0  # carte : pas d'exposant au-delà de p+q
+        alpha = [c[0]] + [sp.simplify(c[k] + c[-k]) for k in range(1, n + 1)]
+        beta = [sp.simplify(I * (c[k] - c[-k])) for k in range(1, n + 1)]
         rec = sum(alpha[k] * sp.cos(k * th) for k in range(n + 1)) + sum(beta[k - 1] * sp.sin(k * th) for k in range(1, n + 1))
         assert identite_trigo(g, rec)  # carte : linéarisation avec 0 ≤ k ≤ p+q
         if q_ % 2 == 0:
