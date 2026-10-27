@@ -312,8 +312,8 @@ assert sol2(x * exp(x), 1, -2, 1, 0) and not sol2(exp(-x), 1, -2, 1, 0) and not 
 assert sol2(exp(-x) * cos(2 * x), 1, 2, 5, 0) and sol2(exp(-x) * sin(2 * x), 1, 2, 5, 0)
 for l in [exp(2 * x) * cos(-x), exp(-x) + 0 * x, exp(-x) * cos(x)]:
     assert not sol2(l, 1, 2, 5, 0)
-# Trou 3 / piège / contre-exemple : sin x et 2 sin x, mêmes y(0) = 0 et y''(0) = 0, pour y'' + y = 0 ; même y'(0) : cos x et 2cos x... :
-assert sol2(sin(x), 1, 0, 1, 0, [(0, 0, 0), (2, 0, 0)]) and sol2(2 * sin(x), 1, 0, 1, 0, [(0, 0, 0), (2, 0, 0)])
+# Trou 3, leurres / piège / contre-exemple (y'' + y = 0) : sin x et 2 sin x ont même y(0) et même y(π) ; cos x et 2 cos x même y'(0).
+assert sol2(sin(x), 1, 0, 1, 0, [(0, 0, 0), (0, pi, 0)]) and sol2(2 * sin(x), 1, 0, 1, 0, [(0, 0, 0), (0, pi, 0)])
 assert sol2(cos(x), 1, 0, 1, 0, [(1, 0, 0)]) and sol2(2 * cos(x), 1, 0, 1, 0, [(1, 0, 0)])
 # Exemples.
 assert sol2(exp(2 * x) - exp(x), 1, -3, 2, 0, [(0, 0, 0), (1, 0, 1)])
@@ -412,7 +412,7 @@ assert nul(L2(al2 * cos(x) + be2 * sin(x), 1, 0, 1))
 assert nul(diff(log(x) + lam * x + mu, x, 2) + 1 / x**2, POS)
 assert limit(log(x) / x, x, oo) == 0
 # Trou 1 et 2, leurres (unicité de la solution polynôme × e^{mx} à un terme homogène près) :
-#  y'' + y = x : la solution polynomiale est x (unique, m = 0 non racine) ⇒ « k = deg P », « Q de degré n + 1 », « au plus n - 1 » faux ;
+#  y'' + y = x : la solution polynomiale est x (unique, m = 0 non racine) ⇒ « k = deg P », « Q de degré n + 1 », « n + 2 », « au plus n - 1 » faux ;
 Pa, Pb, Pc = symbols("Pa Pb Pc")
 from sympy import solve
 sols = solve([c for c in __import__("sympy").Poly(L2(Pa * x**2 + Pb * x + Pc, 1, 0, 1) - x, x).all_coeffs()], [Pa, Pb, Pc], dict=True)
@@ -423,6 +423,9 @@ assert solve(__import__("sympy").Poly(simplify(L2(Pa * x**2 * exp(2 * x), 1, 0, 
 #  y'' - y = e^x (m = 1 racine simple, n = 0) : x(αx + β)e^x solution ⇔ α = 0 (« Q de degré n + k = 1 » faux).
 eqs = __import__("sympy").Poly(simplify(L2(x * (Pa * x + Pb) * exp(x), 1, 0, -1) * exp(-x) - 1), x).all_coeffs()
 assert solve(eqs, [Pa, Pb], dict=True) == [{Pa: 0, Pb: Rational(1, 2)}]
+#  y'' = 1 (m = 0 racine double, n = 0) : x²(αx + β) solution ⇔ α = 0, β = 1/2 (« Q de degré n + 2 » ou « n + 1 » faux).
+eqs2 = __import__("sympy").Poly(diff(x**2 * (Pa * x + Pb), x, 2) - 1, x).all_coeffs()
+assert solve(eqs2, [Pa, Pb], dict=True) == [{Pa: 0, Pb: Rational(1, 2)}]
 #  « k = 0 toujours » : y'' - 3y' + 2y = e^x sans solution c e^x (ci-dessus).
 # Affirmations : -x e^x (ci-dessus) ; α cos 2x + β sin 2x donne 0 pour y'' + 4y ; x sin(2x)/4 solution de y'' + 4y = cos 2x ;
 # -x² - 2 (ci-dessus) ; x² e^{-x}/2 solution de y' + y = x e^{-x}.
@@ -443,9 +446,9 @@ for (a, b, c), f, bon, leurres in [
 
 # ed-l1-lineaires-exp-polynome-ex2 (et v1, v2) : racine simple, χ'(m).
 for (a, b, c), m, f, bon, leurres in [
-    ((1, -1, -2), 2, 3 * exp(2 * x), x * exp(2 * x), [exp(2 * x), 3 * x * exp(2 * x), x**2 * exp(2 * x)]),
-    ((1, 1, -6), 2, 10 * exp(2 * x), 2 * x * exp(2 * x), [x * exp(2 * x), Rational(5, 2) * exp(2 * x), 10 * x * exp(2 * x)]),
-    ((1, 0, -4), -2, 8 * exp(-2 * x), -2 * x * exp(-2 * x), [2 * x * exp(-2 * x), -2 * exp(-2 * x), -8 * x * exp(-2 * x)]),
+    ((1, -1, -2), 2, 3 * exp(2 * x), x * exp(2 * x), [-x * exp(2 * x), 3 * x * exp(2 * x), Rational(3, 2) * x * exp(2 * x)]),
+    ((1, 1, -6), 2, 10 * exp(2 * x), 2 * x * exp(2 * x), [x * exp(2 * x), Rational(10, 3) * x * exp(2 * x), 10 * x * exp(2 * x)]),
+    ((1, 0, -4), -2, 8 * exp(-2 * x), -2 * x * exp(-2 * x), [2 * x * exp(-2 * x), -x * exp(-2 * x), -8 * x * exp(-2 * x)]),
 ]:
     assert a * m**2 + b * m + c == 0 and 2 * a * m + b != 0  # racine simple
     assert sol2(bon, a, b, c, f)
