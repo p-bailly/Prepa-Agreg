@@ -164,7 +164,9 @@ assert factorial(3) != 2 ** 3 and 2 ** 3 - 1 != 2 ** 3 and 2 ** 4 != 2 ** 3, "pa
 # Exemple : ligne 5
 assert [comb(5, j) for j in range(6)] == [1, 5, 10, 10, 5, 1] and comb(4, 1) + comb(4, 2) == 10 == comb(5, 3) and 2 ** 5 == 32
 # Contre-exemples et affirmations
-assert comb(4, 2) == 6 and factorial(4) // factorial(2) == 12, "pascal contre-exemple n!/k!"
+assert comb(5, 2) == 10 and factorial(5) // factorial(2) == 60 and factorial(5) // factorial(3) == 20 == factorial(2) * comb(5, 2), "pascal contre-exemple n!/k!"
+# denombrement (cours, piège) : avec répétitions, le rapport ordonné / non ordonné n'est pas k! (9 couples, 6 tirages non ordonnés)
+assert F(3 ** 2, len({tuple(sorted(t)) for t in product("abc", repeat=2)})) == F(3, 2) != factorial(2), "denombrement cours : facteur k! seulement pour des éléments distincts"
 assert comb(4, 1) + comb(4, 2) == comb(5, 2) == 10 and comb(5, 1) == 5, "pascal contre-exemple mauvaise colonne"
 assert comb(4, 2) == 6 and 2 * comb(2, 2) == 2, "pascal contre-exemple additivité"
 for n in range(1, 40):
