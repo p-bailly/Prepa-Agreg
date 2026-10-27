@@ -209,6 +209,8 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 
 ## Pièges
 - Formules : `\\` en JSON ; jamais de trou `{{n}}` dans une formule (le test le refuse) ; intervalles `\left]…\right[`.
+- Générateurs de variantes : une valeur substituée par erreur (`\mathbb8` au lieu de `\mathbb{N}`) ou un `P^-1` sans
+  accolades passent KaTeX mais s'affichent mal ; le test « formule mal composée » les refuse.
 - `content/` est importé à la construction : après un ajout de fichier, relancer `npm run dev`.
 - Les symboles ■ ◧ □ ● ◐ ○, le cadenas, les icônes d'onglets et le chevron des volets sont dessinés en SVG
   (`src/composants/Icones.tsx`) : Latin Modern et Plus Jakarta Sans n'ont pas ces glyphes.
