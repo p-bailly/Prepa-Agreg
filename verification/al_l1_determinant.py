@@ -155,6 +155,8 @@ assert P.det() == 3 and D.det() == d1 and D.det() not in (-d1, 1 / d1, P.det() *
 Am = Matrix([[1, 1, 1], [1, m, 1], [1, 1, m]])
 assert factor(Am.det()) == (m - 1) ** 2  # al-l1-determinant-inversibilite (exemple)
 assert Am.subs(m, 2).inv().det() == 1  # al-l1-determinant-inversibilite (exemple, m = 2)
+Ac = Matrix.hstack(Am[:, 0], Am[:, 1] - Am[:, 0], Am[:, 2] - Am[:, 0])
+assert Ac == Matrix([[1, 0, 0], [1, m - 1, 0], [1, 0, m - 1]]) and expand(Ac.det() - Am.det()) == 0  # inversibilite (exemple, colonnes)
 assert Matrix([[1, 2], [2, 4]]).det() == 0  # al-l1-determinant-inversibilite (coefficients non nuls)
 assert colonnes((1, 0, 1), (0, 1, 1), (1, 1, 2)).det() == 0  # al-l1-determinant-inversibilite (deux à deux non colinéaires)
 for u, v in (((1, 0, 1), (0, 1, 1)), ((1, 0, 1), (1, 1, 2)), ((0, 1, 1), (1, 1, 2))):
