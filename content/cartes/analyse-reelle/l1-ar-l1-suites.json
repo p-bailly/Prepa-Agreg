@@ -1,0 +1,383 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l1-suites-adjacentes",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Suites adjacentes",
+      "recto": "Définir deux suites adjacentes et énoncer le théorème des suites adjacentes avec ses hypothèses.",
+      "cours": "Deux suites sont adjacentes quand l'une croît, l'autre décroît, et que leur écart tend vers $0$ : elles se rapprochent l'une de l'autre en se coinçant mutuellement. Le théorème affirme qu'elles convergent alors vers une même limite $\\ell$, encadrée à chaque rang : $u_n\\le\\ell\\le v_n$. C'est une conséquence du théorème de la limite monotone, donc de la propriété de la borne supérieure.\n\nSon intérêt est double : il prouve la convergence sans connaître la limite, et il fournit à chaque rang un encadrement explicite de la limite, d'amplitude $v_n-u_n$, ce qui sert à approcher des constantes comme $e$, $\\sqrt2$ ou $\\frac{\\pi^2}{6}$.\n\nEn pratique, on vérifie trois points : le sens de variation de chaque suite (signe de $u_{n+1}-u_n$ et de $v_{n+1}-v_n$), puis la limite de $v_n-u_n$. Exemples typiques : les approximations décimales par défaut et par excès d'un réel, les sommes partielles de rangs pairs et impairs d'une somme alternée, les sommes $\\sum\\frac1{k!}$ corrigées par un terme d'erreur.\n\nLe piège principal : savoir seulement que $u_n\\le v_n$ ne suffit pas, il faut que l'écart tende vers $0$ ; sinon les deux suites convergent encore, mais leurs limites peuvent être différentes.",
+      "hypotheses": [
+        "$(u_n)$ est croissante.",
+        "$(v_n)$ est décroissante.",
+        "$v_n-u_n\\to0$."
+      ],
+      "hypotheses_pieges": [
+        "$(v_n-u_n)$ est bornée (à la place de $v_n-u_n\\to0$).",
+        "$(u_n)$ et $(v_n)$ sont toutes deux croissantes (à la place de : $(u_n)$ croissante et $(v_n)$ décroissante).",
+        "$u_{n+1}-u_n\\to0$ et $v_{n+1}-v_n\\to0$ (à la place de $v_n-u_n\\to0$)."
+      ],
+      "enonce": "Deux suites réelles $(u_n)$ et $(v_n)$ sont dites **adjacentes** si l'une est croissante, l'autre décroissante, et si $v_n-u_n\\to0$.\n\n**Théorème.** Si $(u_n)$ est croissante, $(v_n)$ décroissante et $v_n-u_n\\to0$, alors $(u_n)$ et $(v_n)$ convergent vers une même limite $\\ell$, et pour tout $n$ : $u_n\\le\\ell\\le v_n$.",
+      "enonce_trous": "Si $(u_n)$ est {{1}}, $(v_n)$ est décroissante et {{2}}, alors $(u_n)$ et $(v_n)$ convergent vers une même limite $\\ell$, et {{3}} pour tout $n$.",
+      "trous": [
+        {
+          "reponse": "croissante",
+          "leurres": [
+            "décroissante",
+            "majorée",
+            "positive"
+          ]
+        },
+        {
+          "reponse": "$v_n-u_n\\to0$",
+          "leurres": [
+            "$u_n\\le v_n$ pour tout $n$",
+            "$(v_n-u_n)$ est bornée",
+            "$v_{n+1}-u_{n+1}\\le v_n-u_n$ pour tout $n$"
+          ]
+        },
+        {
+          "reponse": "$u_n\\le\\ell\\le v_n$",
+          "leurres": [
+            "$v_n\\le\\ell\\le u_n$",
+            "$u_n<\\ell<v_n$",
+            "$|v_n-\\ell|\\le|u_n-\\ell|$"
+          ]
+        }
+      ],
+      "demo": "Posons $w_n=v_n-u_n$. Alors $w_{n+1}-w_n=(v_{n+1}-v_n)-(u_{n+1}-u_n)\\le0$ : $(w_n)$ est décroissante, et elle tend vers $0$.\n\n**$w_n\\ge0$ pour tout $n$.** Sinon, il existe $N$ avec $w_N<0$ ; par décroissance, $w_n\\le w_N$ pour $n\\ge N$, et à la limite $0\\le w_N<0$ : contradiction.\n\n**Convergence.** Pour tout $n$, $u_0\\le u_n\\le v_n\\le v_0$. La suite $(u_n)$ est croissante et majorée par $v_0$ : elle converge vers un réel $\\ell$ (théorème de la limite monotone). La suite $(v_n)$ est décroissante et minorée par $u_0$ : elle converge vers un réel $\\ell'$. Enfin $\\ell'-\\ell=\\lim(v_n-u_n)=0$.\n\n**Encadrement.** Une suite croissante convergente est majorée par sa limite : $u_n\\le\\ell$ (pour $p\\ge n$, $u_n\\le u_p$, puis on fait tendre $p$ vers $+\\infty$). De même, $v_n\\ge\\ell$.",
+      "exemple": "Pour $x=\\sqrt2$, les suites $u_n=\\frac{\\lfloor10^n\\sqrt2\\rfloor}{10^n}$ (approximation décimale par défaut) et $v_n=u_n+10^{-n}$ (par excès) sont adjacentes : $u_n\\le\\sqrt2<v_n$, $v_n-u_n=10^{-n}\\to0$, $(u_n)$ est croissante et $(v_n)$ décroissante. Par exemple $1{,}414\\le\\sqrt2\\le1{,}415$.",
+      "contre_exemple": "- **$v_n-u_n\\to0$ est nécessaire** : $u_n=-\\frac1{n+1}$ est croissante, $v_n=1+\\frac1{n+1}$ est décroissante, $u_n\\le v_n$, mais $u_n\\to0$ et $v_n\\to1$.\n- **Les monotonies sont nécessaires** : $u_n=v_n=(-1)^n$ vérifient $v_n-u_n=0\\to0$ mais divergent ; et $u_n=n$, $v_n=n+\\frac1{n+1}$ sont toutes deux croissantes, avec $v_n-u_n\\to0$, et divergent.",
+      "affirmations": [
+        {
+          "texte": "Si $(u_n)$ et $(v_n)$ sont adjacentes, avec $(u_n)$ croissante, alors $u_n\\le v_m$ pour tous entiers $n$ et $m$.",
+          "vrai": true,
+          "justification": "Pour tous $n$ et $m$, $u_n\\le\\ell\\le v_m$, où $\\ell$ est la limite commune."
+        },
+        {
+          "texte": "Si $(u_n)$ est croissante, $(v_n)$ décroissante et $u_n\\le v_n$ pour tout $n$, alors $(u_n)$ et $(v_n)$ ont la même limite.",
+          "vrai": false,
+          "contre_exemple": "$u_n=0$ et $v_n=1$ pour tout $n$ (une suite constante est à la fois croissante et décroissante) : les limites sont $0$ et $1$."
+        },
+        {
+          "texte": "Si $(u_n)$ est croissante, $(v_n)$ décroissante et $v_n-u_n\\to0$, alors $u_n<v_n$ pour tout $n$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=v_n=0$ pour tout $n$ : les hypothèses sont vérifiées et $u_n=v_n$. On a seulement $u_n\\le v_n$."
+        },
+        {
+          "texte": "Si $(u_n)$ et $(v_n)$ convergent vers la même limite, alors elles sont adjacentes.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac{(-1)^n}{n+1}$ et $v_n=\\frac{2(-1)^n}{n+1}$ tendent toutes deux vers $0$, mais aucune n'est monotone."
+        }
+      ],
+      "prerequis": [
+        "ar-t-limite-monotone"
+      ]
+    },
+    {
+      "id": "ar-l1-suites-pairs-impairs",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Suites extraites des rangs pairs et impairs",
+      "recto": "Énoncer le lien entre la convergence d'une suite et celle de ses suites extraites, en particulier celles des rangs pairs et impairs.",
+      "cours": "Une suite extraite (ou sous-suite) de $(u_n)$ est une suite $(u_{\\varphi(n)})$ où $\\varphi:\\mathbb{N}\\to\\mathbb{N}$ est strictement croissante : on garde une infinité de termes, dans l'ordre. Si $u_n\\to\\ell$, toutes ses suites extraites tendent vers $\\ell$, car $\\varphi(n)\\ge n$. Par contraposée, deux suites extraites de limites différentes prouvent que $(u_n)$ diverge : c'est la méthode standard pour montrer une divergence, comme pour $(-1)^n$.\n\nDans l'autre sens, les rangs pairs et impairs jouent un rôle particulier : ensemble, ils recouvrent tous les entiers, si bien que $(u_n)$ converge vers $\\ell$ dès que $(u_{2n})$ et $(u_{2n+1})$ convergent toutes deux vers $\\ell$. C'est utile pour les suites qui alternent : sommes alternées, suites $(-1)^na_n$, suites récurrentes $u_{n+1}=f(u_n)$ avec $f$ décroissante, dont les termes de rangs pairs et impairs sont monotones.\n\nMéthode : étudier séparément $(u_{2n})$ et $(u_{2n+1})$, puis comparer leurs limites. Le piège principal : il faut la **même** limite pour les deux ; et deux familles d'indices qui ne recouvrent pas tous les entiers à partir d'un certain rang, par exemple les pairs et les multiples de $3$, ne suffisent pas.",
+      "hypotheses": [
+        "$(u_{2n})$ converge vers $\\ell$.",
+        "$(u_{2n+1})$ converge vers $\\ell$, la même limite."
+      ],
+      "hypotheses_pieges": [
+        "$(u_{2n})$ et $(u_{2n+1})$ convergent, vers des limites éventuellement différentes (à la place de : vers la même limite $\\ell$).",
+        "$(u_{2n})$ et $(u_{3n})$ convergent vers $\\ell$ (à la place des rangs pairs et impairs).",
+        "$(u_{2n})$ converge vers $\\ell$ et $(u_{2n+1})$ est seulement bornée (à la place de : converge vers $\\ell$)."
+      ],
+      "enonce": "Soit $(u_n)$ une suite réelle et $\\ell\\in\\mathbb{R}$.\n\n- Si $u_n\\to\\ell$, alors toute suite extraite $(u_{\\varphi(n)})$, avec $\\varphi:\\mathbb{N}\\to\\mathbb{N}$ strictement croissante, converge vers $\\ell$.\n- $(u_n)$ converge vers $\\ell$ si et seulement si $(u_{2n})$ et $(u_{2n+1})$ convergent toutes deux vers $\\ell$.\n\nEn particulier, si deux suites extraites de $(u_n)$ ont des limites différentes, $(u_n)$ diverge. Ces énoncés restent vrais pour $\\ell=+\\infty$ et $\\ell=-\\infty$.",
+      "enonce_trous": "Une suite $(u_n)$ converge vers $\\ell$ si et seulement si {{1}} convergent {{2}}. Plus généralement, toute suite extraite d'une suite qui converge vers $\\ell$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$(u_{2n})$ et $(u_{2n+1})$",
+          "leurres": [
+            "$(u_{2n})$ et $(u_{3n})$",
+            "$(u_{2n})$ et $(u_{4n})$",
+            "$(u_{2n+1})$ et $(u_{4n+1})$"
+          ]
+        },
+        {
+          "reponse": "toutes deux vers $\\ell$",
+          "leurres": [
+            "vers des limites éventuellement différentes",
+            "l'une vers $\\ell$, l'autre vers $-\\ell$",
+            "toutes deux vers $\\frac{\\ell}{2}$"
+          ]
+        },
+        {
+          "reponse": "converge aussi vers $\\ell$",
+          "leurres": [
+            "converge, mais pas forcément vers $\\ell$",
+            "est monotone à partir d'un certain rang",
+            "est stationnaire"
+          ]
+        }
+      ],
+      "demo": "**Lemme.** Si $\\varphi:\\mathbb{N}\\to\\mathbb{N}$ est strictement croissante, $\\varphi(n)\\ge n$ pour tout $n$ : c'est vrai pour $n=0$, et si $\\varphi(n)\\ge n$, alors $\\varphi(n+1)>\\varphi(n)\\ge n$, donc $\\varphi(n+1)\\ge n+1$ (entiers).\n\n**Suites extraites.** Supposons $u_n\\to\\ell$. Soit $\\varepsilon>0$ et $N$ tel que $|u_n-\\ell|<\\varepsilon$ pour $n\\ge N$. Pour $n\\ge N$, $\\varphi(n)\\ge n\\ge N$, donc $|u_{\\varphi(n)}-\\ell|<\\varepsilon$. (Pour $\\ell=+\\infty$ : même preuve avec « $u_n>A$ ».) En particulier $(u_{2n})$ et $(u_{2n+1})$ tendent vers $\\ell$.\n\n**Réciproque.** Supposons $u_{2n}\\to\\ell$ et $u_{2n+1}\\to\\ell$. Soit $\\varepsilon>0$ : il existe $N_1$ tel que $|u_{2n}-\\ell|<\\varepsilon$ pour $n\\ge N_1$, et $N_2$ tel que $|u_{2n+1}-\\ell|<\\varepsilon$ pour $n\\ge N_2$. Posons $N=\\max(2N_1,2N_2+1)$. Soit $m\\ge N$ : si $m=2n$ est pair, $n\\ge N_1$ ; si $m=2n+1$ est impair, $n\\ge N_2$. Dans les deux cas $|u_m-\\ell|<\\varepsilon$. Donc $u_m\\to\\ell$.\n\n**Divergence.** Si $(u_n)$ convergeait vers $\\ell$, toutes ses suites extraites tendraient vers $\\ell$ : deux d'entre elles ne peuvent pas avoir des limites différentes.",
+      "exemple": "$u_n=(-1)^n\\frac{n}{n+1}$ : $u_{2n}=\\frac{2n}{2n+1}\\to1$ et $u_{2n+1}=-\\frac{2n+1}{2n+2}\\to-1$, donc $(u_n)$ diverge. En revanche, pour $u_n=\\frac{(-1)^n}{n+1}$, $u_{2n}\\to0$ et $u_{2n+1}\\to0$, donc $u_n\\to0$.",
+      "contre_exemple": "- **La même limite est nécessaire** : $u_n=(-1)^n$ ; $u_{2n}=1\\to1$ et $u_{2n+1}=-1\\to-1$, et $(u_n)$ diverge.\n- **Pairs et multiples de $3$ ne suffisent pas** : soit $u_n=0$ si $n$ est pair ou multiple de $3$, et $u_n=1$ sinon. Alors $u_{2n}=u_{3n}=0$, mais $u_{6n+1}=1$ : $(u_n)$ diverge.\n- **Une sous-suite seulement bornée ne suffit pas** : pour $u_n=(-1)^n$, $(u_{2n})$ converge vers $1$ et $(u_{2n+1})$ est bornée, mais $(u_n)$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Si $(u_{2n})$, $(u_{2n+1})$ et $(u_{3n})$ convergent, alors $(u_n)$ converge.",
+          "vrai": true,
+          "justification": "$(u_{6n})$ est extraite de $(u_{2n})$ et de $(u_{3n})$, donc leurs limites sont égales ; $(u_{6n+3})$ est extraite de $(u_{2n+1})$ et de $(u_{3n})$, donc leurs limites sont égales. Ainsi $(u_{2n})$ et $(u_{2n+1})$ ont la même limite, et $(u_n)$ converge."
+        },
+        {
+          "texte": "Si $(u_{2n})$ et $(u_{2n+1})$ convergent, alors $(u_n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ : $u_{2n}\\to1$ et $u_{2n+1}\\to-1$, mais $(u_n)$ diverge."
+        },
+        {
+          "texte": "Si $(u_n)$ diverge, alors $(u_{2n})$ diverge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ diverge, mais $u_{2n}=1$ converge."
+        },
+        {
+          "texte": "Si $u_{2n}\\to+\\infty$ et $u_{2n+1}\\to+\\infty$, alors $u_n\\to+\\infty$.",
+          "vrai": true,
+          "justification": "Même preuve que pour une limite finie : pour $A$ réel, les termes de rangs pairs et impairs dépassent $A$ à partir de rangs $2N_1$ et $2N_2+1$, donc tous les termes à partir de $\\max(2N_1,2N_2+1)$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-bolzano-weierstrass"
+      ]
+    },
+    {
+      "id": "ar-l1-suites-cauchy",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Suites de Cauchy dans $\\mathbb{R}$",
+      "recto": "Définir une suite de Cauchy et énoncer le critère de Cauchy dans $\\mathbb{R}$ avec ses hypothèses.",
+      "cours": "Une suite de Cauchy est une suite dont les termes finissent par être arbitrairement proches **les uns des autres** : pour tout $\\varepsilon>0$, à partir d'un certain rang $N$, deux termes quelconques $u_p$ et $u_q$ (avec $p,q\\ge N$) diffèrent de moins de $\\varepsilon$. La définition ne fait intervenir aucune limite : c'est tout son intérêt.\n\nToute suite convergente est de Cauchy, et dans $\\mathbb{R}$ la réciproque est vraie : c'est la **complétude** de $\\mathbb{R}$, conséquence de Bolzano–Weierstrass (une suite de Cauchy est bornée, a une sous-suite convergente, et converge alors tout entière).\n\nOn s'en sert pour prouver qu'une suite converge sans connaître sa limite, typiquement en majorant $|u_p-u_q|$ par une quantité qui tend vers $0$, par exemple le reste d'une somme géométrique quand $|u_{n+1}-u_n|\\le Ck^n$ avec $0\\le k<1$. Le critère sert aussi à prouver une divergence : si $u_{2n}-u_n$ ne tend pas vers $0$, la suite n'est pas de Cauchy.\n\nLe piège principal : il ne suffit pas que deux termes **consécutifs** se rapprochent ; $\\sqrt n$ et la somme harmonique $\\sum_{k=1}^n\\frac1k$ ont des écarts consécutifs qui tendent vers $0$, et divergent. Le résultat est faux dans $\\mathbb{Q}$ : les approximations décimales de $\\sqrt2$ forment une suite de Cauchy de rationnels sans limite rationnelle.",
+      "hypotheses": [
+        "$(u_n)$ est une suite de réels (le résultat vaut aussi pour les suites complexes).",
+        "Pour tout $\\varepsilon>0$, il existe $N\\in\\mathbb{N}$ tel que pour tous $p,q\\ge N$, $|u_p-u_q|<\\varepsilon$."
+      ],
+      "hypotheses_pieges": [
+        "Pour tout $\\varepsilon>0$, il existe $N$ tel que pour tout $n\\ge N$, $|u_{n+1}-u_n|<\\varepsilon$ (à la place de $|u_p-u_q|<\\varepsilon$ pour tous $p,q\\ge N$).",
+        "Pour tout entier $p\\ge1$ fixé, $u_{n+p}-u_n\\to0$ quand $n\\to+\\infty$ (à la place de la condition uniforme en $p$ et $q$).",
+        "$(u_n)$ est une suite de rationnels et la limite est cherchée dans $\\mathbb{Q}$ (à la place de $\\mathbb{R}$).",
+        "Il existe $\\varepsilon>0$ et $N$ tels que pour tous $p,q\\ge N$, $|u_p-u_q|<\\varepsilon$ (à la place de : pour tout $\\varepsilon>0$)."
+      ],
+      "enonce": "Une suite réelle $(u_n)$ est **de Cauchy** si :\n$$\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N},\\ \\forall p,q\\ge N,\\quad |u_p-u_q|<\\varepsilon.$$\n\n**Théorème (complétude de $\\mathbb{R}$).** Une suite réelle converge si et seulement si elle est de Cauchy. Le résultat vaut aussi pour les suites complexes ; il est faux dans $\\mathbb{Q}$.",
+      "enonce_trous": "Une suite réelle $(u_n)$ est de Cauchy si pour tout $\\varepsilon>0$, il existe $N$ tel que, {{1}}, $|u_p-u_q|<\\varepsilon$. Dans $\\mathbb{R}$, une suite est de Cauchy si et seulement si {{2}} ; cette équivalence est fausse dans {{3}}.",
+      "trous": [
+        {
+          "reponse": "pour tous $p,q\\ge N$",
+          "leurres": [
+            "pour tout $p\\ge N$ et $q=p+1$",
+            "pour tous $p,q\\le N$",
+            "pour au moins un couple $p,q\\ge N$"
+          ]
+        },
+        {
+          "reponse": "elle converge",
+          "leurres": [
+            "elle est bornée",
+            "elle est monotone",
+            "$u_{n+1}-u_n\\to0$"
+          ]
+        },
+        {
+          "reponse": "$\\mathbb{Q}$",
+          "leurres": [
+            "$\\mathbb{C}$",
+            "$[0,1]$",
+            "$\\mathbb{R}^2$"
+          ]
+        }
+      ],
+      "demo": "**Une suite convergente est de Cauchy.** Si $u_n\\to\\ell$, soit $\\varepsilon>0$ et $N$ tel que $|u_n-\\ell|<\\frac\\varepsilon2$ pour $n\\ge N$. Pour $p,q\\ge N$ : $|u_p-u_q|\\le|u_p-\\ell|+|\\ell-u_q|<\\varepsilon$.\n\n**Une suite de Cauchy est bornée.** Avec $\\varepsilon=1$, il existe $N$ tel que $|u_n-u_N|<1$ pour $n\\ge N$, donc $|u_n|\\le|u_N|+1$ ; ainsi $|u_n|\\le\\max(|u_0|,\\dots,|u_{N-1}|,|u_N|+1)$ pour tout $n$.\n\n**Une suite de Cauchy réelle converge.** Elle est bornée ; par Bolzano–Weierstrass, elle admet une suite extraite $(u_{\\varphi(k)})$ qui converge vers un réel $\\ell$. Soit $\\varepsilon>0$ et $N$ tel que $|u_p-u_q|<\\frac\\varepsilon2$ pour $p,q\\ge N$. Choisissons $k\\ge N$ tel que $|u_{\\varphi(k)}-\\ell|<\\frac\\varepsilon2$ ; comme $\\varphi(k)\\ge k\\ge N$, pour tout $n\\ge N$ :\n$$|u_n-\\ell|\\le|u_n-u_{\\varphi(k)}|+|u_{\\varphi(k)}-\\ell|<\\varepsilon.$$\nDonc $u_n\\to\\ell$. Pour une suite complexe, on applique ce résultat aux parties réelle et imaginaire, qui sont de Cauchy.",
+      "exemple": "$u_n=\\sum_{k=1}^{n}\\frac{\\cos k}{k^2}$. Pour $p>q\\ge1$ :\n$$|u_p-u_q|\\le\\sum_{k=q+1}^{p}\\frac1{k^2}\\le\\sum_{k=q+1}^{p}\\left(\\frac1{k-1}-\\frac1k\\right)=\\frac1q-\\frac1p<\\frac1q.$$\nPour $\\varepsilon>0$, il suffit de prendre $N>\\frac1\\varepsilon$ : la suite est de Cauchy, donc converge, sans qu'on connaisse sa limite.",
+      "contre_exemple": "- **Écarts consécutifs** : $H_n=\\sum_{k=1}^{n}\\frac1k$ vérifie $H_{n+1}-H_n=\\frac1{n+1}\\to0$, mais $H_{2n}-H_n=\\sum_{k=n+1}^{2n}\\frac1k\\ge n\\cdot\\frac1{2n}=\\frac12$ : $(H_n)$ n'est pas de Cauchy et diverge. Elle vérifie aussi $H_{n+p}-H_n\\le\\frac p{n+1}\\to0$ pour chaque $p$ fixé.\n- **Dans $\\mathbb{Q}$** : les approximations décimales par défaut $q_n$ de $\\sqrt2$ sont des rationnels et vérifient $|q_p-q_q|\\le10^{-\\min(p,q)}$ : la suite est de Cauchy, mais sa limite $\\sqrt2$ n'est pas rationnelle.\n- **Un seul $\\varepsilon$ ne suffit pas** : $u_n=(-1)^n$ vérifie $|u_p-u_q|\\le2<3$ pour tous $p,q$, et diverge.",
+      "affirmations": [
+        {
+          "texte": "Toute suite de Cauchy est bornée.",
+          "vrai": true,
+          "justification": "Avec $\\varepsilon=1$, $|u_n|\\le|u_N|+1$ pour $n\\ge N$, et il n'y a qu'un nombre fini de termes avant $N$."
+        },
+        {
+          "texte": "Si $u_{n+1}-u_n\\to0$, alors $(u_n)$ est de Cauchy.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\sqrt n$ : $u_{n+1}-u_n=\\frac1{\\sqrt{n+1}+\\sqrt n}\\to0$, mais $u_n\\to+\\infty$, donc la suite ne converge pas et n'est pas de Cauchy."
+        },
+        {
+          "texte": "Si $|u_{n+1}-u_n|\\le\\frac1{2^n}$ pour tout $n$, alors $(u_n)$ converge.",
+          "vrai": true,
+          "justification": "Pour $p>q$, $|u_p-u_q|\\le\\sum_{k=q}^{p-1}\\frac1{2^k}<\\frac{2}{2^q}$, qui tend vers $0$ : la suite est de Cauchy, donc converge."
+        },
+        {
+          "texte": "Si $|u_{n+1}-u_n|\\le\\frac1n$ pour tout $n\\ge1$, alors $(u_n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_0=u_1=0$ et $u_n=\\sum_{k=1}^{n-1}\\frac1k$ pour $n\\ge2$ : $|u_{n+1}-u_n|=\\frac1n$ pour $n\\ge1$, mais $u_n\\to+\\infty$ (somme harmonique)."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-bolzano-weierstrass",
+        "ar-l1-reels-triangulaire"
+      ]
+    },
+    {
+      "id": "ar-l1-suites-cesaro",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Lemme de Cesàro",
+      "recto": "Énoncer le lemme de Cesàro avec ses hypothèses, et sa conséquence sur les accroissements.",
+      "cours": "Le lemme de Cesàro compare une suite à la suite de ses moyennes $v_n=\\frac{u_1+\\cdots+u_n}{n}$. Intuitivement, si les $u_k$ finissent par être tous proches de $\\ell$, leur moyenne aussi : les premiers termes, éventuellement très différents de $\\ell$, sont en nombre fixe et leur poids $\\frac1n$ s'efface. La preuve suit exactement cette idée : on coupe la somme en une partie fixe, divisée par $n$, et une partie où chaque terme est à moins de $\\varepsilon$ de $\\ell$. Le résultat reste vrai pour $\\ell=+\\infty$ et $\\ell=-\\infty$.\n\nSa conséquence la plus utile porte sur les accroissements : si $u_{n+1}-u_n\\to\\ell$, alors $\\frac{u_n}{n}\\to\\ell$. On l'applique par exemple à $u_n^2$ pour trouver le comportement de suites récurrentes comme $u_{n+1}=u_n+\\frac1{u_n}$. Il existe une version multiplicative : si $u_n>0$ et $u_n\\to\\ell>0$, alors $(u_1\\cdots u_n)^{1/n}\\to\\ell$ (on passe au logarithme).\n\nLe piège principal : la réciproque est fausse, la suite $(-1)^n$ diverge alors que ses moyennes tendent vers $0$ ; et une suite seulement bornée peut avoir des moyennes qui ne convergent pas.",
+      "hypotheses": [
+        "$(u_n)_{n\\ge1}$ est une suite de réels.",
+        "$(u_n)$ converge vers $\\ell$."
+      ],
+      "hypotheses_pieges": [
+        "$(u_n)$ est seulement bornée (à la place de convergente).",
+        "$(u_n)$ est seulement monotone (à la place de convergente).",
+        "$u_{n+1}-u_n\\to0$ (à la place de la convergence de $(u_n)$)."
+      ],
+      "enonce": "Soit $(u_n)_{n\\ge1}$ une suite réelle et, pour $n\\ge1$, $v_n=\\frac{u_1+u_2+\\cdots+u_n}{n}$. Si $(u_n)$ converge vers un réel $\\ell$, alors $(v_n)$ converge aussi vers $\\ell$. Le résultat reste vrai si $u_n\\to+\\infty$ (resp. $-\\infty$) : alors $v_n\\to+\\infty$ (resp. $-\\infty$).\n\n**Conséquence.** Si $(u_n)_{n\\ge0}$ vérifie $u_{n+1}-u_n\\to\\ell$ ($\\ell$ réel ou infini), alors $\\frac{u_n}{n}\\to\\ell$.\n\nLa réciproque est fausse : $(v_n)$ peut converger sans que $(u_n)$ converge.",
+      "enonce_trous": "Si $(u_n)_{n\\ge1}$ {{1}}, alors la suite des moyennes $v_n=\\frac{u_1+\\cdots+u_n}{n}$ {{2}}. La réciproque est {{3}}.",
+      "trous": [
+        {
+          "reponse": "converge vers $\\ell$",
+          "leurres": [
+            "est bornée",
+            "vérifie $u_{n+1}-u_n\\to\\ell$",
+            "converge vers $2\\ell$"
+          ]
+        },
+        {
+          "reponse": "converge aussi vers $\\ell$",
+          "leurres": [
+            "converge vers $\\frac{\\ell}{2}$",
+            "est monotone",
+            "est stationnaire"
+          ]
+        },
+        {
+          "reponse": "fausse",
+          "leurres": [
+            "vraie",
+            "vraie pour les suites bornées",
+            "vraie dès que $(u_n)$ est à termes positifs"
+          ]
+        }
+      ],
+      "demo": "**Cas $\\ell$ réel.** Soit $\\varepsilon>0$ et $N\\ge1$ tel que $|u_k-\\ell|<\\frac\\varepsilon2$ pour $k>N$. Pour $n>N$ :\n$$|v_n-\\ell|=\\left|\\frac1n\\sum_{k=1}^{n}(u_k-\\ell)\\right|\\le\\frac{C}{n}+\\frac1n\\sum_{k=N+1}^{n}|u_k-\\ell|\\le\\frac Cn+\\frac{n-N}{n}\\cdot\\frac\\varepsilon2,$$\noù $C=\\sum_{k=1}^{N}|u_k-\\ell|$ ne dépend pas de $n$. Comme $\\frac Cn\\to0$, il existe $N'\\ge N$ tel que $\\frac Cn<\\frac\\varepsilon2$ pour $n>N'$ ; alors $|v_n-\\ell|<\\varepsilon$.\n\n**Cas $\\ell=+\\infty$.** Soit $A>0$ et $N$ tel que $u_k>2A$ pour $k>N$. Pour $n>N$, $v_n\\ge\\frac{S_N}{n}+\\frac{n-N}{n}\\cdot2A$, où $S_N=u_1+\\cdots+u_N$ ; le membre de droite tend vers $2A$, donc $v_n>A$ pour $n$ assez grand. Le cas $-\\infty$ s'en déduit en changeant $u_n$ en $-u_n$.\n\n**Conséquence.** On applique le lemme à $w_k=u_k-u_{k-1}$ ($k\\ge1$), qui tend vers $\\ell$ : $\\frac1n\\sum_{k=1}^{n}w_k=\\frac{u_n-u_0}{n}\\to\\ell$, et $\\frac{u_0}{n}\\to0$, donc $\\frac{u_n}{n}\\to\\ell$.",
+      "exemple": "$u_n=\\frac1n\\to0$ donne $\\frac{1}{n}\\left(1+\\frac12+\\cdots+\\frac1n\\right)\\to0$. Pour la conséquence : si $u_0=0$ et $u_{n+1}=u_n+2+\\frac1{n+1}$, alors $u_{n+1}-u_n\\to2$, donc $\\frac{u_n}n\\to2$.",
+      "contre_exemple": "- **Réciproque fausse** : $u_n=(-1)^n$ diverge, mais $u_1+\\cdots+u_n$ vaut $-1$ ou $0$, donc $v_n\\to0$.\n- **Bornée ne suffit pas** : soit $u_n=1$ si $4^m\\le n<2\\cdot4^m$ pour un entier $m\\ge0$, et $u_n=0$ sinon. Jusqu'au rang $2\\cdot4^m-1$, il y a $1+4+\\cdots+4^m=\\frac{4^{m+1}-1}{3}$ termes égaux à $1$ ; donc $v_{2\\cdot4^m-1}=\\frac{4^{m+1}-1}{3(2\\cdot4^m-1)}\\to\\frac23$, alors que $v_{4^{m+1}-1}=\\frac13$. Les moyennes ne convergent pas.\n- **Monotone ne suffit pas** : $u_n=n$ est croissante, et $v_n=\\frac{n+1}{2}$ ne converge pas.\n- **Écarts consécutifs** : $u_n=\\sqrt n$ vérifie $u_{n+1}-u_n\\to0$, et $v_n\\ge\\frac1n\\sum_{k=\\lceil n/2\\rceil}^{n}\\sqrt k\\ge\\frac12\\sqrt{\\frac n2}\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $(v_n)$ converge vers $\\ell$, alors $(u_n)$ converge vers $\\ell$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ : $v_n\\to0$, et $(u_n)$ diverge."
+        },
+        {
+          "texte": "Si $u_n\\to+\\infty$, alors $v_n\\to+\\infty$.",
+          "vrai": true,
+          "justification": "C'est la version infinie du lemme : au-delà d'un rang $N$, $u_k>2A$, et la contribution des $N$ premiers termes, divisée par $n$, tend vers $0$."
+        },
+        {
+          "texte": "Si $(u_n)$ est croissante et si $(v_n)$ converge vers $\\ell$, alors $(u_n)$ converge vers $\\ell$.",
+          "vrai": true,
+          "justification": "Une suite croissante converge ou tend vers $+\\infty$. Dans le second cas, $v_n\\to+\\infty$ par le lemme, ce qui est exclu ; donc $u_n\\to L$ réel, puis $v_n\\to L$, et $L=\\ell$ par unicité de la limite."
+        },
+        {
+          "texte": "Si $\\frac{u_n}{n}\\to\\ell$, alors $u_{n+1}-u_n\\to\\ell$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ : $\\frac{u_n}n\\to0$, mais $u_{n+1}-u_n=\\pm2$ ne tend pas vers $0$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-reels-triangulaire"
+      ]
+    },
+    {
+      "id": "ar-l1-suites-recurrence-lineaire",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Suites récurrentes linéaires d'ordre 2",
+      "recto": "Énoncer la forme des suites réelles vérifiant $u_{n+2}=au_{n+1}+bu_n$, selon l'équation caractéristique, avec les hypothèses.",
+      "cours": "Une suite récurrente linéaire d'ordre $2$ est définie par ses deux premiers termes et une relation $u_{n+2}=au_{n+1}+bu_n$ à coefficients constants ; la suite de Fibonacci en est l'exemple type. L'idée est de chercher des solutions géométriques $u_n=r^n$ : en reportant, on trouve qu'il faut et il suffit que $r^2=ar+b$, l'**équation caractéristique**.\n\nComme la relation est linéaire, toute combinaison $\\lambda r_1^n+\\mu r_2^n$ de deux solutions est encore solution, et l'on peut choisir $\\lambda$ et $\\mu$ pour que les deux premiers termes soient les bons ; une récurrence double montre qu'on obtient ainsi toutes les solutions. Quand la racine est double, $r_0^n$ ne suffit plus et on lui adjoint $nr_0^n$ ; quand les racines sont complexes conjuguées $\\rho e^{\\pm i\\theta}$, on garde les parties réelle et imaginaire $\\rho^n\\cos(n\\theta)$ et $\\rho^n\\sin(n\\theta)$.\n\nMéthode : écrire l'équation caractéristique, calculer son discriminant $a^2+4b$, écrire la forme générale, puis déterminer $\\lambda$ et $\\mu$ par $u_0$ et $u_1$ (un système $2\\times2$). Le comportement à l'infini se lit alors sur les modules des racines.\n\nPièges : oublier le terme $nr_0^n$ en cas de racine double, oublier le facteur $\\rho^n$ dans le cas complexe, et appliquer la méthode à une relation avec second membre ($+c$) sans chercher d'abord une solution particulière.",
+      "hypotheses": [
+        "$a$ et $b$ sont des réels constants (indépendants de $n$), avec $b\\neq0$.",
+        "$(u_n)$ vérifie $u_{n+2}=au_{n+1}+bu_n$ pour tout $n\\in\\mathbb{N}$, sans second membre."
+      ],
+      "hypotheses_pieges": [
+        "$b$ est un réel quelconque, éventuellement nul (à la place de $b\\neq0$).",
+        "Les coefficients $a$ et $b$ peuvent dépendre de $n$ (à la place de constants).",
+        "$(u_n)$ vérifie $u_{n+2}=au_{n+1}+bu_n+c$ avec une constante $c\\neq0$ (à la place de la relation sans second membre)."
+      ],
+      "enonce": "Soient $a$ et $b$ deux réels avec $b\\neq0$, et $(u_n)$ une suite réelle vérifiant $u_{n+2}=au_{n+1}+bu_n$ pour tout $n\\in\\mathbb{N}$. On note $(E)$ l'équation caractéristique $r^2=ar+b$, de discriminant $\\Delta=a^2+4b$.\n\n- Si $\\Delta>0$, $(E)$ a deux racines réelles distinctes $r_1,r_2$, et il existe des réels $\\lambda,\\mu$ tels que $u_n=\\lambda r_1^n+\\mu r_2^n$ pour tout $n$.\n- Si $\\Delta=0$, $(E)$ a une racine double $r_0=\\frac a2$, et il existe des réels $\\lambda,\\mu$ tels que $u_n=(\\lambda+\\mu n)r_0^n$ pour tout $n$.\n- Si $\\Delta<0$, $(E)$ a deux racines complexes conjuguées $\\rho e^{\\pm i\\theta}$, avec $\\rho>0$ et $\\theta\\in\\left]0,\\pi\\right[$, et il existe des réels $\\lambda,\\mu$ tels que $u_n=\\rho^n\\big(\\lambda\\cos(n\\theta)+\\mu\\sin(n\\theta)\\big)$ pour tout $n$.\n\nDans chaque cas, $\\lambda$ et $\\mu$ sont déterminés de façon unique par $u_0$ et $u_1$, et réciproquement toute suite de cette forme vérifie la relation.",
+      "enonce_trous": "Soit $(u_n)$ telle que $u_{n+2}=au_{n+1}+bu_n$, avec $b\\neq0$. Si l'équation $r^2=ar+b$ a deux racines réelles distinctes $r_1,r_2$, il existe des réels $\\lambda,\\mu$ tels que $u_n$ s'écrive {{1}} ; si elle a une racine double $r_0$, $u_n$ s'écrit {{2}} ; si elle a deux racines non réelles $\\rho e^{\\pm i\\theta}$, $u_n$ s'écrit {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\lambda r_1^n+\\mu r_2^n$",
+          "leurres": [
+            "$(\\lambda+\\mu n)r_1^n$",
+            "$\\lambda nr_1^n+\\mu nr_2^n$",
+            "$(\\lambda r_1+\\mu r_2)^n$"
+          ]
+        },
+        {
+          "reponse": "$(\\lambda+\\mu n)r_0^n$",
+          "leurres": [
+            "$\\lambda r_0^n$",
+            "$\\lambda r_0^n+\\mu r_0^{n+1}$",
+            "$\\lambda r_0^n+\\mu n$"
+          ]
+        },
+        {
+          "reponse": "$\\rho^n\\big(\\lambda\\cos(n\\theta)+\\mu\\sin(n\\theta)\\big)$",
+          "leurres": [
+            "$\\lambda\\cos(n\\theta)+\\mu\\sin(n\\theta)$",
+            "$\\lambda\\rho^n\\cos(n\\theta)$",
+            "$\\rho\\big(\\lambda\\cos(n\\theta)+\\mu\\sin(n\\theta)\\big)^n$"
+          ]
+        }
+      ],
+      "demo": "**Solutions géométriques.** Pour $r\\neq0$, la suite $(r^n)$ vérifie la relation si et seulement si $r^{n+2}=ar^{n+1}+br^n$ pour tout $n$, c'est-à-dire $r^2=ar+b$. Comme $b\\neq0$, $0$ n'est pas racine de $(E)$.\n\n**Linéarité.** Si $(x_n)$ et $(y_n)$ vérifient la relation, $(\\lambda x_n+\\mu y_n)$ aussi. Et une solution $(w_n)$ telle que $w_0=w_1=0$ est nulle, par récurrence double ($w_{n+2}=aw_{n+1}+bw_n$).\n\n**Cas $\\Delta>0$.** $(r_1^n)$ et $(r_2^n)$ sont solutions. Le système $\\lambda+\\mu=u_0$, $\\lambda r_1+\\mu r_2=u_1$ a pour déterminant $r_2-r_1\\neq0$ : il a une unique solution $(\\lambda,\\mu)$. La suite $w_n=u_n-\\lambda r_1^n-\\mu r_2^n$ est solution avec $w_0=w_1=0$, donc nulle.\n\n**Cas $\\Delta=0$.** Alors $r_0=\\frac a2$ et $b=-\\frac{a^2}{4}$ ; comme $b\\neq0$, $r_0\\neq0$. La suite $(nr_0^n)$ est solution :\n$$(n+2)r_0^{n+2}-a(n+1)r_0^{n+1}-bnr_0^n=r_0^n\\big[n(r_0^2-ar_0-b)+r_0(2r_0-a)\\big]=0.$$\nLe système $\\lambda=u_0$, $(\\lambda+\\mu)r_0=u_1$ a une unique solution car $r_0\\neq0$ ; on conclut comme ci-dessus.\n\n**Cas $\\Delta<0$.** Les racines $z=\\rho e^{i\\theta}$ et $\\bar z$ ne sont pas réelles ; quitte à les échanger, $\\theta\\in\\left]0,\\pi\\right[$, donc $\\sin\\theta\\neq0$. La suite complexe $(z^n)$ vérifie la relation ; comme $a$ et $b$ sont réels, ses parties réelle $\\rho^n\\cos(n\\theta)$ et imaginaire $\\rho^n\\sin(n\\theta)$ la vérifient aussi. Le système $\\lambda=u_0$, $\\rho(\\lambda\\cos\\theta+\\mu\\sin\\theta)=u_1$ a une unique solution car $\\rho\\sin\\theta\\neq0$ ; on conclut de même.",
+      "exemple": "Suite de Fibonacci : $F_0=0$, $F_1=1$, $F_{n+2}=F_{n+1}+F_n$. L'équation $r^2=r+1$ a pour racines $\\varphi=\\frac{1+\\sqrt5}2$ et $\\psi=\\frac{1-\\sqrt5}2$. Avec $\\lambda+\\mu=0$ et $\\lambda\\varphi+\\mu\\psi=1$, on trouve $\\lambda=-\\mu=\\frac1{\\sqrt5}$ : c'est la formule de Binet, $F_n=\\frac{\\varphi^n-\\psi^n}{\\sqrt5}$.",
+      "contre_exemple": "- **$b\\neq0$ est nécessaire** : avec $a=b=0$, la relation $u_{n+2}=0$ admet la solution $u_0=0$, $u_1=1$, $u_n=0$ pour $n\\ge2$. L'équation $r^2=0$ a la racine double $0$, et $(\\lambda+\\mu n)0^n$ (avec $0^0=1$) vaut $0$ en $n=1$ : la formule ne donne pas $u_1=1$.\n- **Racine double** : $u_n=n2^n$ vérifie $u_{n+2}=4u_{n+1}-4u_n$ (racine double $2$) mais n'est pas de la forme $\\lambda2^n$.\n- **Second membre** : la suite $u_0=u_1=0$, $u_{n+2}=u_{n+1}+2u_n+1$ vaut $u_2=1$ ; elle n'est pas de la forme $\\lambda2^n+\\mu(-1)^n$ (les conditions $u_0=u_1=0$ imposeraient $\\lambda=\\mu=0$, donc $u_2=0$).",
+      "affirmations": [
+        {
+          "texte": "Si les racines de l'équation caractéristique sont toutes de module strictement inférieur à $1$, toute solution tend vers $0$.",
+          "vrai": true,
+          "justification": "Dans chaque cas, $u_n$ est combinaison de $r^n$, $nr_0^n$ ou $\\rho^n\\cos(n\\theta)$, $\\rho^n\\sin(n\\theta)$, qui tendent vers $0$ quand le module est $<1$ (croissances comparées pour $nr_0^n$)."
+        },
+        {
+          "texte": "Toute suite non nulle vérifiant $u_{n+2}=u_{n+1}+u_n$ tend vers $+\\infty$ ou vers $-\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\psi^n$ avec $\\psi=\\frac{1-\\sqrt5}2$ : $\\psi$ est racine de $r^2=r+1$, donc la suite vérifie la relation, et $|\\psi|<1$ donne $u_n\\to0$."
+        },
+        {
+          "texte": "Une suite vérifiant $u_{n+2}=2u_{n+1}-u_n$ pour tout $n$ est arithmétique.",
+          "vrai": true,
+          "justification": "L'équation $r^2=2r-1$ a la racine double $1$, donc $u_n=\\lambda+\\mu n$. (Directement : $u_{n+2}-u_{n+1}=u_{n+1}-u_n$.)"
+        },
+        {
+          "texte": "Si $\\Delta<0$, toute solution est bornée.",
+          "vrai": false,
+          "contre_exemple": "$u_{n+2}=2u_{n+1}-4u_n$ : les racines $1\\pm i\\sqrt3=2e^{\\pm i\\pi/3}$ ont pour module $2$, et la solution $u_n=2^n\\cos\\frac{n\\pi}3$ vérifie $u_{6m}=2^{6m}\\to+\\infty$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-suites-geometrique",
+        "geo-t-complexes-second-degre"
+      ]
+    }
+  ]
+}

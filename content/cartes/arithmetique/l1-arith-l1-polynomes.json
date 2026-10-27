@@ -1,0 +1,417 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l1-polynomes-division",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Division euclidienne des polynômes",
+      "recto": "Énoncer le théorème de division euclidienne dans $\\mathbb{K}[X]$ avec ses hypothèses.",
+      "cours": "La division euclidienne des polynômes imite celle des entiers, le degré jouant le rôle de la taille : diviser $A$ par $B \\neq 0$, c'est écrire $A = BQ + R$ avec un reste $R$ « plus petit » que $B$, au sens où $\\deg R < \\deg B$ (avec la convention $\\deg 0 = -\\infty$). L'algorithme est celui de l'école : on élimine le terme de plus haut degré de $A$ en lui retranchant un multiple $c X^k B$ bien choisi, et on recommence avec ce qui reste. Pour choisir $c$, on divise par le coefficient dominant de $B$ : c'est là que sert l'hypothèse de corps.\n\nCe résultat est partout : il relie racines et facteurs ($\\alpha$ est racine de $P$ si et seulement si $X - \\alpha$ divise $P$), il fonde l'algorithme d'Euclide et le PGCD, et il permet de calculer « modulo » un polynôme.\n\n**Méthode.** Pour obtenir un reste sans poser la division, on exploite que $\\deg R < \\deg B$ et que $A$ et $R$ prennent les mêmes valeurs aux racines de $B$ ; ou bien on calcule modulo $B$, par exemple avec $X^3 \\equiv 1$ modulo $X^2 + X + 1$, puisque $X^3 - 1 = (X - 1)(X^2 + X + 1)$.\n\n**Piège principal.** Hors d'un corps, la division peut être impossible : dans $\\mathbb{Z}[X]$, on ne peut pas diviser $X$ par $2X$ en restant à coefficients entiers.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "$A, B \\in \\mathbb{K}[X]$ avec $B \\neq 0$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est seulement un anneau commutatif intègre, par exemple $\\mathbb{Z}$ (à la place d'un corps).",
+        "$B$ est un polynôme quelconque, éventuellement nul (à la place de $B \\neq 0$).",
+        "$\\deg A \\geq \\deg B$.",
+        "$\\mathbb{K}$ est un corps infini."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif et $A, B \\in \\mathbb{K}[X]$ avec $B \\neq 0$. Il existe un unique couple $(Q, R) \\in \\mathbb{K}[X]^2$ tel que $A = BQ + R$ et $\\deg R < \\deg B$ (avec la convention $\\deg 0 = -\\infty$). $Q$ est le quotient et $R$ le reste de la division euclidienne de $A$ par $B$ ; $B$ divise $A$ si et seulement si $R = 0$.",
+      "enonce_trous": "Soient $\\mathbb{K}$ {{1}} et $A, B \\in \\mathbb{K}[X]$ avec $B \\neq 0$. Il existe un unique couple $(Q, R) \\in \\mathbb{K}[X]^2$ tel que $A = BQ + R$ et {{2}}.",
+      "trous": [
+        {
+          "reponse": "un corps commutatif",
+          "leurres": [
+            "un anneau commutatif intègre",
+            "un anneau principal",
+            "un anneau commutatif"
+          ]
+        },
+        {
+          "reponse": "$\\deg R < \\deg B$",
+          "leurres": [
+            "$\\deg R \\leq \\deg B$",
+            "$\\deg R < \\deg A$",
+            "$\\deg Q < \\deg B$"
+          ]
+        }
+      ],
+      "demo": "On note $q = \\deg B \\geq 0$ et $b \\neq 0$ le coefficient dominant de $B$ ; comme $\\mathbb{K}$ est un corps, $b$ est inversible.\n\n**Existence**, par récurrence forte sur le degré de $A$. Si $\\deg A < q$ (en particulier si $A = 0$), le couple $(0, A)$ convient. Sinon, soient $p = \\deg A \\geq q$ et $a$ le coefficient dominant de $A$. Le polynôme $A_1 = A - a b^{-1} X^{p - q} B$ a un degré strictement inférieur à $p$, car les termes de degré $p$ se compensent. Par hypothèse de récurrence, $A_1 = BQ_1 + R_1$ avec $\\deg R_1 < q$, d'où $A = B\\,(Q_1 + a b^{-1} X^{p-q}) + R_1$.\n\n**Unicité.** Si $A = BQ + R = BQ' + R'$ avec $\\deg R < q$ et $\\deg R' < q$, alors $B(Q - Q') = R' - R$. Si $Q \\neq Q'$, le membre de gauche a pour degré $q + \\deg(Q - Q') \\geq q$ (le degré d'un produit de deux polynômes non nuls est la somme des degrés, car $\\mathbb{K}$ est intègre), alors que $\\deg(R' - R) < q$ : contradiction. Donc $Q = Q'$, puis $R = R'$.\n\n**Divisibilité.** Si $R = 0$, alors $A = BQ$ et $B \\mid A$. Réciproquement, si $A = BC$, le couple $(C, 0)$ convient, donc par unicité $R = 0$.\n\n**Remarque.** La preuve n'utilise que l'inversibilité du coefficient dominant de $B$ : dans $\\mathbb{Z}[X]$, on peut diviser par tout polynôme unitaire.",
+      "exemple": "$X^3 + 2X + 1 = (X^2 + 1) \\cdot X + (X + 1)$, et $\\deg(X + 1) = 1 < 2$ : le quotient de $X^3 + 2X + 1$ par $X^2 + 1$ est $X$, le reste $X + 1$.\n\nCas d'un diviseur de degré $1$ : pour $\\alpha \\in \\mathbb{K}$, le reste de $A$ par $X - \\alpha$ est la constante $A(\\alpha)$ (évaluer $A = (X - \\alpha)Q + R$ en $\\alpha$). Par exemple le reste de $X^5 + 1$ par $X - 2$ est $33$.",
+      "contre_exemple": "- **Anneau qui n'est pas un corps** : dans $\\mathbb{Z}[X]$, on ne peut pas diviser $A = X$ par $B = 2X$. Un reste de degré $< 1$ est une constante $c$, et $X - c = 2XQ$ donne, en comparant les coefficients de degré $1$, $1 = 2q_0$ où $q_0 \\in \\mathbb{Z}$ est le coefficient constant de $Q$ : impossible. Dans $\\mathbb{Q}[X]$, en revanche, $X = 2X \\cdot \\frac{1}{2} + 0$.\n- **Condition $\\deg R \\leq \\deg B$** : $X = X \\cdot 1 + 0 = X \\cdot 0 + X$ donne deux écritures distinctes ; l'unicité tombe.\n- **$B = 0$** : $A = 0 \\cdot Q + R$ impose $R = A$, et $\\deg A < \\deg 0 = -\\infty$ est impossible si $A \\neq 0$ ; si $A = 0$, tout $Q$ convient.",
+      "affirmations": [
+        {
+          "texte": "Dans $\\mathbb{Z}[X]$, on peut effectuer la division euclidienne de tout polynôme par tout polynôme non nul, avec un quotient et un reste à coefficients entiers.",
+          "vrai": false,
+          "contre_exemple": "$X$ ne peut pas être divisé par $2X$ dans $\\mathbb{Z}[X]$ : un reste constant $c$ donnerait $X - c = 2XQ$, d'où $1 = 2q_0$ avec $q_0 \\in \\mathbb{Z}$."
+        },
+        {
+          "texte": "Si $A, B \\in \\mathbb{Z}[X]$ et si $B$ est unitaire, le quotient et le reste de la division euclidienne de $A$ par $B$ dans $\\mathbb{Q}[X]$ sont à coefficients entiers.",
+          "vrai": true,
+          "justification": "L'algorithme ne divise que par le coefficient dominant de $B$, égal à $1$ : il fournit un quotient et un reste dans $\\mathbb{Z}[X]$, qui sont ceux de $\\mathbb{Q}[X]$ par unicité."
+        },
+        {
+          "texte": "Si $A = BQ + R$ avec $\\deg R < \\deg A$, alors $R$ est le reste de la division euclidienne de $A$ par $B$.",
+          "vrai": false,
+          "contre_exemple": "$X^2 = (X + 1)(X - 2) + (X + 2)$ avec $\\deg(X + 2) = 1 < 2$, mais le reste de $X^2$ par $X + 1$ est $1$, car $X^2 = (X + 1)(X - 1) + 1$. La condition est $\\deg R < \\deg B$."
+        },
+        {
+          "texte": "Pour $\\alpha \\in \\mathbb{K}$, le reste de la division euclidienne de $A$ par $X - \\alpha$ est $A(\\alpha)$.",
+          "vrai": true,
+          "justification": "Le reste $R$ est de degré $< 1$, donc constant, et l'évaluation de $A = (X - \\alpha)Q + R$ en $\\alpha$ donne $R = A(\\alpha)$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-division-euclidienne"
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-multiplicite",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Multiplicité d'une racine et dérivées",
+      "recto": "Énoncer la caractérisation de la multiplicité d'une racine par les dérivées successives, avec ses hypothèses.",
+      "cours": "Une racine $\\alpha$ de $P$ est « multiple » quand $(X - \\alpha)^2$ divise $P$ : sur $\\mathbb{R}$, la courbe de $P$ est alors tangente à l'axe des abscisses en $\\alpha$. La multiplicité de $\\alpha$ est le plus grand entier $m$ tel que $(X - \\alpha)^m$ divise $P$.\n\nLe test pratique passe par les dérivées : sur $\\mathbb{Q}$, $\\mathbb{R}$ ou $\\mathbb{C}$, $\\alpha$ est racine d'ordre au moins $m$ si et seulement si $P$ et ses $m - 1$ premières dérivées s'annulent en $\\alpha$. L'outil sous-jacent est la formule de Taylor pour les polynômes, $P = \\sum_{k} \\frac{P^{(k)}(\\alpha)}{k!}(X - \\alpha)^k$, qui écrit $P$ dans la base des puissances de $X - \\alpha$.\n\n**Méthode.** Pour trouver la multiplicité, on calcule $P(\\alpha), P'(\\alpha), P''(\\alpha), \\dots$ jusqu'à la première valeur non nulle : son ordre de dérivation est la multiplicité. Pour imposer une racine au moins double à un polynôme à paramètres, on écrit les deux équations $P(\\alpha) = 0$ et $P'(\\alpha) = 0$. Conséquence utile : une racine multiple de $P$ est racine commune de $P$ et $P'$.\n\n**Piège principal.** La formule de Taylor divise par $k!$ ; en caractéristique $p$, le critère tombe : dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$, toutes les dérivées de $X^2$ sont nulles, alors que $0$ n'est racine que double.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un sous-corps de $\\mathbb{C}$ (ou, plus généralement, un corps commutatif de caractéristique nulle).",
+        "$P \\in \\mathbb{K}[X]$ est non nul et $\\alpha \\in \\mathbb{K}$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est un corps commutatif quelconque, de caractéristique éventuellement non nulle (à la place de caractéristique nulle).",
+        "$\\mathbb{K}$ est algébriquement clos.",
+        "$P$ est scindé sur $\\mathbb{K}$."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un sous-corps de $\\mathbb{C}$ (par exemple $\\mathbb{Q}$, $\\mathbb{R}$ ou $\\mathbb{C}$), $P \\in \\mathbb{K}[X]$ non nul, $\\alpha \\in \\mathbb{K}$ et $m \\in \\mathbb{N}^*$. Alors $(X - \\alpha)^m$ divise $P$ si et seulement si $P(\\alpha) = P'(\\alpha) = \\dots = P^{(m-1)}(\\alpha) = 0$.\n\nPar conséquent, $\\alpha$ est racine de $P$ de multiplicité exactement $m$ si et seulement si $P(\\alpha) = P'(\\alpha) = \\dots = P^{(m-1)}(\\alpha) = 0$ et $P^{(m)}(\\alpha) \\neq 0$. Le résultat vaut sur tout corps commutatif de caractéristique nulle.",
+      "enonce_trous": "Soient {{1}}, $P \\in \\mathbb{K}[X]$ non nul, $\\alpha \\in \\mathbb{K}$ et $m \\in \\mathbb{N}^*$. Alors $(X - \\alpha)^m$ divise $P$ si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\mathbb{K}$ un sous-corps de $\\mathbb{C}$",
+          "leurres": [
+            "$\\mathbb{K}$ un corps commutatif quelconque",
+            "$\\mathbb{K}$ un corps commutatif fini",
+            "$\\mathbb{K} = \\mathbb{Z}/p\\mathbb{Z}$ avec $p$ premier"
+          ]
+        },
+        {
+          "reponse": "$P(\\alpha) = P'(\\alpha) = \\dots = P^{(m-1)}(\\alpha) = 0$",
+          "leurres": [
+            "$P(\\alpha) = P'(\\alpha) = \\dots = P^{(m)}(\\alpha) = 0$",
+            "$P^{(m-1)}(\\alpha) = 0$",
+            "$P(\\alpha) = 0$ et $P^{(m)}(\\alpha) \\neq 0$"
+          ]
+        }
+      ],
+      "demo": "**Formule de Taylor.** Soit $n = \\deg P$. Les polynômes $(X - \\alpha)^k$, $0 \\leq k \\leq n$, ont des degrés échelonnés $0, 1, \\dots, n$ : ils forment une base de $\\mathbb{K}_n[X]$, et $P = \\sum_{k=0}^{n} c_k (X - \\alpha)^k$ de manière unique. Pour $j \\leq k$, la dérivée $j$-ième de $(X - \\alpha)^k$ est $\\frac{k!}{(k-j)!}(X - \\alpha)^{k-j}$, qui s'annule en $\\alpha$ sauf si $k = j$ (elle vaut alors $j!$) ; pour $j > k$, elle est nulle. Donc $P^{(j)}(\\alpha) = j!\\, c_j$. Comme $\\mathbb{K}$ est de caractéristique nulle, $j! \\neq 0$ dans $\\mathbb{K}$ et $c_j = \\frac{P^{(j)}(\\alpha)}{j!}$.\n\n**Sens réciproque.** Si $P^{(k)}(\\alpha) = 0$ pour $0 \\leq k \\leq m - 1$, alors $c_0 = \\dots = c_{m-1} = 0$ et $P = (X - \\alpha)^m \\sum_{k \\geq m} c_k (X - \\alpha)^{k - m}$, donc $(X - \\alpha)^m \\mid P$. (Si $m > n$, tous les $c_k$ seraient nuls et $P = 0$, ce qui est exclu : ce cas ne se produit pas.)\n\n**Sens direct.** Si $P = (X - \\alpha)^m Q$, on écrit $Q = \\sum_j d_j (X - \\alpha)^j$ ; alors $P = \\sum_j d_j (X - \\alpha)^{j + m}$, et par unicité des coordonnées dans la base, $c_k = 0$ pour $k < m$, c'est-à-dire $P^{(k)}(\\alpha) = k!\\, c_k = 0$.\n\n**Multiplicité exacte.** $\\alpha$ est de multiplicité exactement $m$ si et seulement si $(X - \\alpha)^m \\mid P$ et $(X - \\alpha)^{m+1} \\nmid P$, c'est-à-dire, d'après ce qui précède, $P^{(k)}(\\alpha) = 0$ pour $k \\leq m - 1$ et $P^{(m)}(\\alpha) \\neq 0$.",
+      "exemple": "$P = X^4 - 2X^2 + 1$ : $P(1) = 0$ ; $P' = 4X^3 - 4X$, $P'(1) = 0$ ; $P'' = 12X^2 - 4$, $P''(1) = 8 \\neq 0$. Donc $1$ est racine double, et en effet $P = (X^2 - 1)^2 = (X - 1)^2 (X + 1)^2$.",
+      "contre_exemple": "- **Caractéristique non nulle** : dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$, $P = X^2$ a pour dérivée $P' = \\overline{2}X = 0$ ; donc $P(0) = P'(0) = P''(0) = 0$, alors que $X^3$ ne divise pas $X^2$. Plus généralement, dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, toutes les dérivées de $X^p$ sont nulles, mais $X^{p+1}$ ne divise pas $X^p$.\n- **Oublier $P(\\alpha) = 0$** : $P = X^2 + 1 \\in \\mathbb{R}[X]$ vérifie $P'(0) = 0$, mais $0$ n'est pas racine de $P$ : une racine de $P'$ n'est pas forcément racine multiple de $P$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\alpha$ est racine de $P'$, alors $\\alpha$ est racine multiple de $P$.",
+          "vrai": false,
+          "contre_exemple": "$P = X^2 + 1 \\in \\mathbb{R}[X]$ : $P'(0) = 0$ mais $P(0) = 1 \\neq 0$. Il faut aussi $P(\\alpha) = 0$."
+        },
+        {
+          "texte": "Si $\\alpha$ est racine de multiplicité $m \\geq 1$ de $P \\in \\mathbb{R}[X]$, alors $\\alpha$ est racine de multiplicité exactement $m - 1$ de $P'$ (multiplicité $0$ signifiant « n'est pas racine »).",
+          "vrai": true,
+          "justification": "$P = (X - \\alpha)^m Q$ avec $Q(\\alpha) \\neq 0$, donc $P' = (X - \\alpha)^{m-1}\\big(mQ + (X - \\alpha)Q'\\big)$, et le second facteur vaut $mQ(\\alpha) \\neq 0$ en $\\alpha$ (caractéristique nulle)."
+        },
+        {
+          "texte": "Dans $(\\mathbb{Z}/3\\mathbb{Z})[X]$, si $P(\\alpha) = P'(\\alpha) = P''(\\alpha) = P'''(\\alpha) = 0$, alors $(X - \\alpha)^4$ divise $P$.",
+          "vrai": false,
+          "contre_exemple": "$P = X^3$ et $\\alpha = 0$ : $P' = \\overline{3}X^2 = 0$, donc toutes les dérivées sont nulles et $P(0) = 0$, mais $X^4$ ne divise pas $X^3$."
+        },
+        {
+          "texte": "Un polynôme non constant $P \\in \\mathbb{C}[X]$ n'a que des racines simples si et seulement si $P$ et $P'$ n'ont aucune racine commune.",
+          "vrai": true,
+          "justification": "Une racine $\\alpha$ de $P$ est multiple si et seulement si $P(\\alpha) = P'(\\alpha) = 0$ (critère avec $m = 2$)."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-racines-polynome",
+        "arith-l1-polynomes-division"
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-irreductibles",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Polynômes irréductibles de $\\mathbb{R}[X]$ et $\\mathbb{C}[X]$",
+      "recto": "Décrire les polynômes irréductibles de $\\mathbb{C}[X]$ et de $\\mathbb{R}[X]$, et la factorisation qui en résulte.",
+      "cours": "Dans $\\mathbb{K}[X]$, les polynômes irréductibles jouent le rôle des nombres premiers : $P$ est irréductible s'il est non constant et si toute écriture $P = AB$ impose que $A$ ou $B$ soit constant. Tout polynôme non constant se décompose en produit d'irréductibles, de façon unique à l'ordre et aux constantes près.\n\nSur $\\mathbb{C}$, le théorème de d'Alembert-Gauss (tout polynôme non constant a une racine complexe, admis en L1) ramène tout au degré $1$ : un polynôme complexe est toujours scindé. Sur $\\mathbb{R}$, les racines non réelles d'un polynôme réel vont par paires conjuguées $z, \\overline{z}$, et chaque paire fournit le facteur réel $(X - z)(X - \\overline{z}) = X^2 - 2\\,\\mathrm{Re}(z)\\,X + |z|^2$, de discriminant $-4\\,\\mathrm{Im}(z)^2 < 0$.\n\n**Méthode.** Pour factoriser dans $\\mathbb{R}[X]$, on factorise d'abord dans $\\mathbb{C}[X]$ (racines évidentes, racines $n$-ièmes de l'unité), puis on regroupe chaque racine non réelle avec sa conjuguée ; une identité remarquable, comme $X^4 + 4 = (X^2 + 2)^2 - (2X)^2$, peut accélérer le calcul.\n\n**Piège principal.** « Sans racine » n'entraîne « irréductible » qu'en degré $2$ ou $3$ : $X^4 + 1$ et $(X^2 + 1)^2$ n'ont aucune racine réelle mais sont réductibles dans $\\mathbb{R}[X]$.",
+      "hypotheses": [
+        "$P$ est à coefficients réels (pour la factorisation dans $\\mathbb{R}[X]$).",
+        "$P$ est non nul."
+      ],
+      "hypotheses_pieges": [
+        "$P$ est scindé sur $\\mathbb{R}$.",
+        "$P$ est unitaire.",
+        "Les racines complexes de $P$ sont simples."
+      ],
+      "enonce": "On admet le théorème de d'Alembert-Gauss : tout polynôme non constant de $\\mathbb{C}[X]$ a au moins une racine dans $\\mathbb{C}$. Alors :\n\n- les polynômes irréductibles de $\\mathbb{C}[X]$ sont exactement les polynômes de degré $1$, et tout $P \\in \\mathbb{C}[X]$ non nul s'écrit $P = \\lambda \\prod_{k=1}^{r} (X - z_k)^{m_k}$ avec $\\lambda \\in \\mathbb{C}^*$, des $z_k$ distincts et des $m_k \\in \\mathbb{N}^*$ ;\n- les polynômes irréductibles de $\\mathbb{R}[X]$ sont exactement les polynômes de degré $1$ et les polynômes de degré $2$ de discriminant strictement négatif, et tout $P \\in \\mathbb{R}[X]$ non nul s'écrit $P = \\lambda \\prod_{i} (X - a_i)^{m_i} \\prod_{j} (X^2 + b_j X + c_j)^{n_j}$ avec $\\lambda \\in \\mathbb{R}^*$, des réels $a_i$ distincts, des couples $(b_j, c_j)$ distincts tels que $b_j^2 - 4c_j < 0$, et des exposants $m_i, n_j \\in \\mathbb{N}^*$.\n\nCes écritures sont uniques à l'ordre des facteurs près.",
+      "enonce_trous": "Les polynômes irréductibles de $\\mathbb{R}[X]$ sont exactement les polynômes de degré $1$ et les polynômes de degré {{1}} de discriminant {{2}}.",
+      "trous": [
+        {
+          "reponse": "$2$",
+          "leurres": [
+            "pair",
+            "au plus $4$",
+            "$3$"
+          ]
+        },
+        {
+          "reponse": "strictement négatif",
+          "leurres": [
+            "négatif ou nul",
+            "strictement positif",
+            "non nul"
+          ]
+        }
+      ],
+      "demo": "**Dans $\\mathbb{C}[X]$.** Un polynôme de degré $1$ est irréductible : si $P = AB$, alors $\\deg A + \\deg B = 1$, donc $A$ ou $B$ est constant. Réciproquement, si $P$ est de degré $n \\geq 2$, il a une racine $z$ (d'Alembert-Gauss), donc $P = (X - z)Q$ avec $\\deg Q = n - 1 \\geq 1$ : $P$ n'est pas irréductible. La factorisation s'obtient par récurrence sur le degré, en extrayant une racine à chaque étape.\n\n**Dans $\\mathbb{R}[X]$.** Les polynômes de degré $1$ sont irréductibles. Si $P$ est de degré $2$ et de discriminant $< 0$, une factorisation $P = AB$ non triviale aurait deux facteurs de degré $1$, donc $P$ aurait une racine réelle : impossible. Réciproquement, soit $P$ irréductible de degré $n \\geq 2$. Il n'a pas de racine réelle $a$ (sinon $X - a$ serait un facteur non trivial). Soit $z \\in \\mathbb{C} \\setminus \\mathbb{R}$ une racine complexe. Comme les coefficients de $P$ sont réels, $P(\\overline{z}) = \\overline{P(z)} = 0$, avec $\\overline{z} \\neq z$. Posons $S = (X - z)(X - \\overline{z}) = X^2 - 2\\,\\mathrm{Re}(z)\\,X + |z|^2 \\in \\mathbb{R}[X]$. La division euclidienne dans $\\mathbb{R}[X]$ donne $P = SQ + R$ avec $\\deg R \\leq 1$ ; or $R(z) = R(\\overline{z}) = 0$, deux racines distinctes, donc $R = 0$. Ainsi $S \\mid P$ dans $\\mathbb{R}[X]$, et l'irréductibilité donne $P = \\lambda S$ : $P$ est de degré $2$, de discriminant $4\\,\\mathrm{Re}(z)^2 - 4|z|^2 = -4\\,\\mathrm{Im}(z)^2 < 0$.\n\n**Factorisation réelle.** Tout polynôme non constant est produit d'irréductibles (récurrence forte sur le degré : s'il n'est pas irréductible, il est produit de deux facteurs de degrés plus petits). En regroupant les facteurs égaux et en sortant les coefficients dominants, on obtient l'écriture annoncée.\n\n**Unicité.** Dans $\\mathbb{C}[X]$, $\\lambda$ est le coefficient dominant, les $z_k$ sont les racines de $P$ et $m_k$ leurs multiplicités, car les autres facteurs ne s'annulent pas en $z_k$. Dans $\\mathbb{R}[X]$, en factorisant chaque $X^2 + b_jX + c_j = (X - w_j)(X - \\overline{w_j})$ avec $\\mathrm{Im}(w_j) > 0$, les $a_i$ sont les racines réelles de $P$ avec leurs multiplicités, et les $w_j$ ses racines de partie imaginaire strictement positive avec leurs multiplicités : tout est déterminé par $P$.",
+      "exemple": "$X^3 + 1 = (X + 1)(X^2 - X + 1)$ dans $\\mathbb{R}[X]$, le facteur $X^2 - X + 1$ ayant pour discriminant $-3 < 0$ ; dans $\\mathbb{C}[X]$, $X^2 - X + 1 = (X - e^{i\\pi/3})(X - e^{-i\\pi/3})$.",
+      "contre_exemple": "- $(X^2 + 1)^2$ n'a aucune racine réelle, mais il est réductible dans $\\mathbb{R}[X]$ (et dans $\\mathbb{Q}[X]$).\n- $X^4 + 1 = (X^2 + \\sqrt{2}X + 1)(X^2 - \\sqrt{2}X + 1)$ n'a aucune racine réelle et n'est pas irréductible dans $\\mathbb{R}[X]$.\n- La description est propre à $\\mathbb{R}$ et $\\mathbb{C}$ : dans $\\mathbb{Q}[X]$, $X^2 - 2$ est irréductible bien que son discriminant $8$ soit positif, et $X^3 - 2$ est irréductible de degré $3$ (une factorisation contiendrait un facteur de degré $1$, donc une racine rationnelle, or $\\sqrt[3]{2}$ est irrationnel).",
+      "affirmations": [
+        {
+          "texte": "Un polynôme de $\\mathbb{R}[X]$ sans racine réelle est irréductible dans $\\mathbb{R}[X]$.",
+          "vrai": false,
+          "contre_exemple": "$X^4 + 1 = (X^2 + \\sqrt{2}X + 1)(X^2 - \\sqrt{2}X + 1)$ n'a aucune racine réelle mais est réductible."
+        },
+        {
+          "texte": "Tout polynôme de $\\mathbb{R}[X]$ de degré impair a au moins une racine réelle.",
+          "vrai": true,
+          "justification": "Dans sa factorisation, les facteurs de degré $2$ apportent un degré pair ; le degré étant impair, il y a au moins un facteur de degré $1$, donc une racine réelle."
+        },
+        {
+          "texte": "Les polynômes irréductibles de $\\mathbb{Q}[X]$ sont tous de degré au plus $2$.",
+          "vrai": false,
+          "contre_exemple": "$X^3 - 2$ est irréductible dans $\\mathbb{Q}[X]$ : de degré $3$, il serait sinon divisible par un facteur de degré $1$ et aurait une racine rationnelle, alors que sa seule racine réelle $\\sqrt[3]{2}$ est irrationnelle."
+        },
+        {
+          "texte": "Si $z \\in \\mathbb{C}$ est racine de multiplicité $m$ de $P \\in \\mathbb{R}[X]$, alors $\\overline{z}$ est racine de $P$ de même multiplicité $m$.",
+          "vrai": true,
+          "justification": "Les coefficients étant réels, $P^{(k)}(\\overline{z}) = \\overline{P^{(k)}(z)}$ pour tout $k$ ; le critère de multiplicité par les dérivées donne la même multiplicité."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-polynomes-division",
+        "arith-l1-racines-polynome",
+        "arith-l1-polynomes-multiplicite",
+        "geo-t-complexes-conjugue"
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-viete",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Relations entre coefficients et racines",
+      "recto": "Énoncer les relations entre les coefficients et les racines d'un polynôme, avec leurs hypothèses.",
+      "cours": "Quand un polynôme est scindé, $P = a_n(X - x_1)\\cdots(X - x_n)$, développer le produit exprime chaque coefficient à l'aide des racines : ce sont les relations de Viète. Les quantités qui apparaissent sont les fonctions symétriques élémentaires $\\sigma_1 = \\sum_i x_i$, $\\sigma_2 = \\sum_{i<j} x_ix_j$, …, $\\sigma_n = x_1 \\cdots x_n$ ; en degré $2$, on retrouve la somme $-b/a$ et le produit $c/a$ des racines de $aX^2 + bX + c$.\n\nElles servent à calculer des expressions symétriques des racines sans connaître les racines (somme des carrés, des inverses…), et en sens inverse à retrouver des nombres dont on connaît $\\sigma_1, \\dots, \\sigma_n$ : ce sont les racines de $X^n - \\sigma_1 X^{n-1} + \\sigma_2 X^{n-2} - \\dots + (-1)^n \\sigma_n$.\n\n**Méthode.** Exprimer la quantité cherchée à l'aide des $\\sigma_k$ (par exemple $\\sum_i x_i^2 = \\sigma_1^2 - 2\\sigma_2$), puis lire les $\\sigma_k$ sur les coefficients.\n\n**Piège principal.** Les signes alternent, $\\sigma_k = (-1)^k a_{n-k}/a_n$ ; le polynôme doit être scindé et les racines répétées selon leur multiplicité (sur $\\mathbb{C}$, tout polynôme non constant est scindé).",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "$P = a_nX^n + \\dots + a_0$ est de degré $n \\geq 1$, de coefficient dominant $a_n \\neq 0$.",
+        "$P$ est scindé sur $\\mathbb{K}$, ses racines $x_1, \\dots, x_n$ étant répétées selon leur multiplicité."
+      ],
+      "hypotheses_pieges": [
+        "$P$ est seulement de degré $n$, non nécessairement scindé sur $\\mathbb{K}$ (à la place de scindé).",
+        "$P$ est unitaire.",
+        "Les racines de $P$ sont deux à deux distinctes.",
+        "$\\mathbb{K}$ est algébriquement clos."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif et $P = a_nX^n + a_{n-1}X^{n-1} + \\dots + a_0 \\in \\mathbb{K}[X]$ de degré $n \\geq 1$ (donc $a_n \\neq 0$), scindé sur $\\mathbb{K}$ : $P = a_n \\prod_{i=1}^{n} (X - x_i)$, où $x_1, \\dots, x_n$ sont les racines de $P$ répétées selon leur multiplicité. Alors, pour tout $k \\in \\{1, \\dots, n\\}$,\n\n$$\\sigma_k = \\sum_{1 \\leq i_1 < \\dots < i_k \\leq n} x_{i_1} \\cdots x_{i_k} = (-1)^k \\frac{a_{n-k}}{a_n}.$$\n\nEn particulier $x_1 + \\dots + x_n = -\\frac{a_{n-1}}{a_n}$ et $x_1 \\cdots x_n = (-1)^n \\frac{a_0}{a_n}$.",
+      "enonce_trous": "Soient $\\mathbb{K}$ un corps commutatif et $P = a_nX^n + \\dots + a_0 \\in \\mathbb{K}[X]$ de degré $n \\geq 1$, {{1}}, de racines $x_1, \\dots, x_n$ répétées selon leur multiplicité. Alors, pour tout $k \\in \\{1, \\dots, n\\}$, la $k$-ième fonction symétrique élémentaire des racines vaut {{2}}.",
+      "trous": [
+        {
+          "reponse": "scindé sur $\\mathbb{K}$",
+          "leurres": [
+            "non nul",
+            "unitaire",
+            "à coefficients tous non nuls"
+          ]
+        },
+        {
+          "reponse": "$(-1)^k \\frac{a_{n-k}}{a_n}$",
+          "leurres": [
+            "$\\frac{a_{n-k}}{a_n}$",
+            "$(-1)^k \\frac{a_k}{a_n}$",
+            "$(-1)^k \\frac{a_n}{a_{n-k}}$"
+          ]
+        }
+      ],
+      "demo": "**Développement du produit.** Montrons par récurrence sur $n \\geq 1$ que $\\prod_{i=1}^{n}(X - x_i) = \\sum_{k=0}^{n} (-1)^k \\sigma_k^{(n)} X^{n-k}$, où $\\sigma_k^{(n)}$ est la $k$-ième fonction symétrique élémentaire de $x_1, \\dots, x_n$ (avec $\\sigma_0^{(n)} = 1$, et $\\sigma_k^{(n)} = 0$ pour $k < 0$ ou $k > n$). Pour $n = 1$ : $X - x_1 = X - \\sigma_1^{(1)}$. Si c'est vrai au rang $n$, alors\n\n$$\\prod_{i=1}^{n+1}(X - x_i) = \\sum_{k=0}^{n} (-1)^k \\sigma_k^{(n)} X^{n+1-k} - x_{n+1} \\sum_{k=0}^{n} (-1)^k \\sigma_k^{(n)} X^{n-k},$$\n\net le coefficient de $X^{n+1-k}$ vaut $(-1)^k\\big(\\sigma_k^{(n)} + x_{n+1}\\sigma_{k-1}^{(n)}\\big) = (-1)^k \\sigma_k^{(n+1)}$ : un produit de $k$ racines parmi $x_1, \\dots, x_{n+1}$ contient $x_{n+1}$ ou non.\n\n**Identification.** Ainsi $P = a_n \\sum_{k=0}^{n} (-1)^k \\sigma_k X^{n-k}$ ; deux polynômes égaux ont les mêmes coefficients, donc $a_{n-k} = (-1)^k a_n \\sigma_k$, et l'on divise par $a_n \\neq 0$.",
+      "exemple": "$X^3 - 6X^2 + 11X - 6 = (X - 1)(X - 2)(X - 3)$ : $\\sigma_1 = 6$, $\\sigma_2 = 2 + 3 + 6 = 11$, $\\sigma_3 = 6$, et l'on retrouve $-a_2/a_3 = 6$, $a_1/a_3 = 11$ et $-a_0/a_3 = 6$.",
+      "contre_exemple": "- **Polynôme non scindé** : $X^2 + 1 \\in \\mathbb{R}[X]$ n'a pas de racine réelle ; les relations n'ont de sens que dans $\\mathbb{C}$, où ses racines $i$ et $-i$ ont pour somme $0$ et pour produit $1$.\n- **Multiplicités oubliées** : $X^3 - 3X + 2 = (X - 1)^2(X + 2)$. Les racines distinctes $1$ et $-2$ ont pour somme $-1$, alors que $-a_2/a_3 = 0$ : il faut compter $1$ deux fois, $1 + 1 - 2 = 0$.\n- **Signe** : pour $X^2 - 5X + 6 = (X - 2)(X - 3)$, la somme des racines vaut $5 = -a_1/a_2$, et non $a_1/a_2 = -5$.",
+      "affirmations": [
+        {
+          "texte": "Si $x_1, x_2, x_3$ sont les racines complexes de $X^3 + pX + q$, comptées avec multiplicité, alors $x_1 + x_2 + x_3 = 0$.",
+          "vrai": true,
+          "justification": "$\\sigma_1 = -a_2/a_3 = 0$, le coefficient de $X^2$ étant nul."
+        },
+        {
+          "texte": "Le produit des racines complexes de $2X^3 - X + 4$, comptées avec multiplicité, vaut $2$.",
+          "vrai": false,
+          "contre_exemple": "Il vaut $\\sigma_3 = (-1)^3 a_0/a_3 = -4/2 = -2$ : le signe $(-1)^n$ et la division par $a_n$ comptent."
+        },
+        {
+          "texte": "Pour $P \\in \\mathbb{R}[X]$ de degré $n \\geq 1$, la somme des racines réelles de $P$, comptées avec multiplicité, vaut $-a_{n-1}/a_n$.",
+          "vrai": false,
+          "contre_exemple": "$X^3 - 1$ a pour seule racine réelle $1$, simple, alors que $-a_2/a_3 = 0$. La relation porte sur toutes les racines complexes."
+        },
+        {
+          "texte": "Si $a, b \\in \\mathbb{C}$ vérifient $a + b = s$ et $ab = p$, alors $a$ et $b$ sont les racines de $X^2 - sX + p$.",
+          "vrai": true,
+          "justification": "$(X - a)(X - b) = X^2 - (a + b)X + ab = X^2 - sX + p$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-racines-polynome"
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-bezout",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "PGCD de polynômes et théorème de Bézout",
+      "recto": "Énoncer l'existence du PGCD de deux polynômes et le théorème de Bézout dans $\\mathbb{K}[X]$, avec leurs hypothèses.",
+      "cours": "Comme dans $\\mathbb{Z}$, la division euclidienne permet de définir un PGCD dans $\\mathbb{K}[X]$ et de le calculer par l'algorithme d'Euclide : on remplace le couple $(A, B)$ par $(B, R)$, où $R$ est le reste de $A$ par $B$, jusqu'à obtenir un reste nul ; le dernier reste non nul, rendu unitaire, est le PGCD $A \\wedge B$.\n\nLa normalisation « unitaire » remplace la convention « positif » des entiers : les inversibles de $\\mathbb{K}[X]$ sont les constantes non nulles, et un diviseur commun de degré maximal n'est défini qu'à une constante près. En remontant les calculs d'Euclide, on obtient une relation de Bézout $AU + BV = A \\wedge B$ ; en particulier $A$ et $B$ sont premiers entre eux si et seulement s'il existe $U, V$ tels que $AU + BV = 1$.\n\nLes conséquences sont les mêmes que dans $\\mathbb{Z}$ : lemme de Gauss, unicité de la décomposition en irréductibles, et sur $\\mathbb{C}$ un critère pratique : $A \\wedge B = 1$ si et seulement si $A$ et $B$ n'ont aucune racine complexe commune.\n\n**Méthode.** Pour une relation de Bézout explicite, écrire chaque division de l'algorithme d'Euclide et remonter ; pour de petits degrés, on peut aussi chercher $U$ et $V$ de degrés respectifs $< \\deg B$ et $< \\deg A$ par identification.\n\n**Piège principal.** Il faut un corps : dans $\\mathbb{Z}[X]$, $2$ et $X$ n'ont que $\\pm 1$ comme diviseurs communs, mais aucune relation $2U + XV = 1$ n'existe.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "$A, B \\in \\mathbb{K}[X]$ ne sont pas tous les deux nuls."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est seulement un anneau commutatif intègre, par exemple $\\mathbb{Z}$ (à la place d'un corps).",
+        "$A$ et $B$ sont quelconques, éventuellement tous les deux nuls (à la place de non tous deux nuls).",
+        "$A$ et $B$ sont unitaires.",
+        "$\\deg A \\geq \\deg B$."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif et $A, B \\in \\mathbb{K}[X]$ non tous les deux nuls. Il existe un unique polynôme unitaire $D$, noté $A \\wedge B$, tel que, pour tout $C \\in \\mathbb{K}[X]$, $C$ divise à la fois $A$ et $B$ si et seulement si $C$ divise $D$. De plus, il existe $U, V \\in \\mathbb{K}[X]$ tels que $AU + BV = D$ (relation de Bézout).\n\nEn particulier (théorème de Bézout), $A$ et $B$ sont premiers entre eux, c'est-à-dire $A \\wedge B = 1$, si et seulement s'il existe $U, V \\in \\mathbb{K}[X]$ tels que $AU + BV = 1$.",
+      "enonce_trous": "Soient $\\mathbb{K}$ {{1}} et $A, B \\in \\mathbb{K}[X]$ non tous les deux nuls. Alors $A$ et $B$ sont premiers entre eux si et seulement s'il existe {{2}} tels que $AU + BV = 1$.",
+      "trous": [
+        {
+          "reponse": "un corps commutatif",
+          "leurres": [
+            "un anneau commutatif intègre",
+            "un anneau principal",
+            "un anneau commutatif"
+          ]
+        },
+        {
+          "reponse": "$U, V \\in \\mathbb{K}[X]$",
+          "leurres": [
+            "$U, V \\in \\mathbb{K}$",
+            "$U, V \\in \\mathbb{K}[X]$ unitaires",
+            "$U, V \\in \\mathbb{K}[X]$ de même degré"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Soit $I = \\{AU + BV : U, V \\in \\mathbb{K}[X]\\}$. Il contient $A$ et $B$, dont l'un est non nul, donc $I$ contient des polynômes non nuls. Soit $D_0 \\in I$ non nul de degré minimal, et $D$ le polynôme unitaire obtenu en divisant $D_0$ par son coefficient dominant (possible dans un corps) ; $D \\in I$, car $I$ est stable par multiplication par une constante. Écrivons $D = AU + BV$.\n\n- $D$ divise $A$ : la division euclidienne donne $A = DQ + R$ avec $\\deg R < \\deg D$, et $R = A - DQ = A(1 - UQ) + B(-VQ) \\in I$. Par minimalité du degré, $R = 0$. De même, $D$ divise $B$. Donc tout diviseur de $D$ divise $A$ et $B$.\n- Réciproquement, si $C$ divise $A$ et $B$, il divise $AU + BV = D$.\n\n**Unicité.** Si $D$ et $D'$ unitaires conviennent tous deux, $D$ divise $D$, donc divise $A$ et $B$, donc divise $D'$ ; de même $D'$ divise $D$. Ainsi $D' = cD$ avec $c$ constante non nulle, et $c = 1$ car les deux sont unitaires.\n\n**Théorème de Bézout.** Si $A \\wedge B = 1$, la relation de Bézout donne $AU + BV = 1$. Réciproquement, si $AU + BV = 1$, le diviseur commun $A \\wedge B$ divise $1$, donc est constant, et vaut $1$ puisqu'il est unitaire.\n\n**Calcul.** Si $B \\neq 0$ et $A = BQ + R$, les diviseurs communs de $A$ et $B$ sont ceux de $B$ et $R$ ; d'où $A \\wedge B = B \\wedge R$, ce qui justifie l'algorithme d'Euclide (les degrés des restes décroissent strictement, il s'arrête).",
+      "exemple": "$A = X^3 - 1$, $B = X^2 - 1$ : $A = X \\cdot B + (X - 1)$, puis $B = (X + 1)(X - 1) + 0$. Le dernier reste non nul est $X - 1$, déjà unitaire : $A \\wedge B = X - 1$, et $X - 1 = A - XB$ est une relation de Bézout.",
+      "contre_exemple": "- **Anneau qui n'est pas un corps** : dans $\\mathbb{Z}[X]$, les diviseurs communs de $2$ et $X$ sont $\\pm 1$, mais $2U + XV = 1$ est impossible, car l'évaluation en $0$ donnerait $2U(0) = 1$ dans $\\mathbb{Z}$.\n- **Deux polynômes nuls** : tout polynôme divise $0$. Un $D$ dont les diviseurs seraient tous les polynômes serait divisible par $X^{\\deg D + 1}$, donc nul, et $0$ n'est pas unitaire.\n- **Normalisation** : $2X - 2$ est un diviseur commun de $X^2 - 1$ et de $2X - 2$ de degré maximal, mais $(X^2 - 1) \\wedge (2X - 2) = X - 1$ : on impose « unitaire » pour avoir l'unicité.",
+      "affirmations": [
+        {
+          "texte": "Si $A, B \\in \\mathbb{Q}[X]$ ne sont pas tous deux nuls, leur PGCD dans $\\mathbb{C}[X]$ est le même que dans $\\mathbb{Q}[X]$.",
+          "vrai": true,
+          "justification": "L'algorithme d'Euclide, mené dans $\\mathbb{Q}[X]$, fournit les divisions euclidiennes dans $\\mathbb{C}[X]$ par unicité de la division ; le dernier reste non nul est le même."
+        },
+        {
+          "texte": "Deux polynômes de $\\mathbb{R}[X]$ sans racine réelle commune sont premiers entre eux.",
+          "vrai": false,
+          "contre_exemple": "$A = B = X^2 + 1$ n'ont aucune racine réelle (commune ou non), mais $A \\wedge B = X^2 + 1$. Le critère par les racines vaut avec les racines complexes."
+        },
+        {
+          "texte": "Si $AU + BV = X - 1$ pour certains $U, V \\in \\mathbb{K}[X]$, alors $A \\wedge B = X - 1$.",
+          "vrai": false,
+          "contre_exemple": "$A = X$, $B = 1$ : $A \\cdot 1 + B \\cdot (-1) = X - 1$, mais $A \\wedge B = 1$. Une relation $AU + BV = D$ montre seulement que $A \\wedge B$ divise $D$."
+        },
+        {
+          "texte": "Si $A$ divise $BC$ et $A \\wedge B = 1$, alors $A$ divise $C$ (lemme de Gauss dans $\\mathbb{K}[X]$).",
+          "vrai": true,
+          "justification": "$AU + BV = 1$ donne $C = ACU + BCV$, et $A$ divise les deux termes."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-polynomes-division",
+        "arith-t-bezout"
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-lagrange",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Interpolation de Lagrange",
+      "recto": "Énoncer le théorème d'interpolation de Lagrange avec ses hypothèses.",
+      "cours": "Par deux points d'abscisses distinctes passe une unique droite ; plus généralement, par $n + 1$ points d'abscisses deux à deux distinctes passe le graphe d'un unique polynôme de degré au plus $n$. C'est l'interpolation de Lagrange, qui sert à reconstruire un polynôme à partir de ses valeurs, à approcher une fonction (en analyse numérique) et, en algèbre linéaire, à fabriquer une base de $\\mathbb{K}_n[X]$ adaptée à l'évaluation.\n\nLa construction est explicite : le polynôme $L_i = \\prod_{j \\neq i} \\frac{X - x_j}{x_i - x_j}$ vaut $1$ en $x_i$ et $0$ aux autres points, donc $P = \\sum_i y_i L_i$ prend la valeur $y_i$ en $x_i$. L'unicité vient de ce qu'un polynôme non nul de degré au plus $n$ a au plus $n$ racines.\n\n**Méthode.** Pour une valeur isolée $P(a)$, calculer les nombres $L_i(a)$ plutôt que développer $P$. Pour une identité comme $\\sum_i x_i^k L_i = X^k$ ($k \\leq n$), invoquer l'unicité. Sans contrainte de degré, les polynômes qui prennent les valeurs $y_i$ en les $x_i$ sont les $P + S \\prod_j (X - x_j)$.\n\n**Piège principal.** Avec $n + 1$ points, l'unicité vaut parmi les polynômes de degré au plus $n$, pas au-delà ; et les abscisses doivent être deux à deux distinctes.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "Les $n + 1$ abscisses $x_0, \\dots, x_n \\in \\mathbb{K}$ sont deux à deux distinctes.",
+        "On cherche $P$ de degré au plus $n$ (un de moins que le nombre de points)."
+      ],
+      "hypotheses_pieges": [
+        "Les abscisses $x_0, \\dots, x_n$ sont seulement non toutes égales (à la place de deux à deux distinctes).",
+        "On cherche $P$ de degré au plus $n + 1$ (à la place de $n$).",
+        "$\\mathbb{K}$ est seulement un anneau commutatif intègre, par exemple $\\mathbb{Z}$ (à la place d'un corps).",
+        "Les valeurs $y_0, \\dots, y_n$ sont deux à deux distinctes."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif, $n \\in \\mathbb{N}$, $x_0, \\dots, x_n \\in \\mathbb{K}$ deux à deux distincts et $y_0, \\dots, y_n \\in \\mathbb{K}$. Il existe un unique polynôme $P \\in \\mathbb{K}_n[X]$ (de degré au plus $n$) tel que $P(x_i) = y_i$ pour tout $i \\in \\{0, \\dots, n\\}$, à savoir\n\n$$P = \\sum_{i=0}^{n} y_i L_i, \\qquad L_i = \\prod_{j \\neq i} \\frac{X - x_j}{x_i - x_j}.$$\n\nLes polynômes $Q \\in \\mathbb{K}[X]$ tels que $Q(x_i) = y_i$ pour tout $i$ sont exactement les $P + S \\prod_{j=0}^{n} (X - x_j)$ avec $S \\in \\mathbb{K}[X]$.",
+      "enonce_trous": "Soient $\\mathbb{K}$ un corps commutatif, $x_0, \\dots, x_n \\in \\mathbb{K}$ {{1}} et $y_0, \\dots, y_n \\in \\mathbb{K}$. Il existe un unique polynôme $P$ {{2}} tel que $P(x_i) = y_i$ pour tout $i \\in \\{0, \\dots, n\\}$.",
+      "trous": [
+        {
+          "reponse": "deux à deux distincts",
+          "leurres": [
+            "non tous égaux",
+            "non nuls",
+            "quelconques"
+          ]
+        },
+        {
+          "reponse": "de degré au plus $n$",
+          "leurres": [
+            "de degré au plus $n + 1$",
+            "de degré exactement $n$",
+            "de degré au moins $n$"
+          ]
+        }
+      ],
+      "demo": "**Les polynômes $L_i$.** Les $x_j$ étant deux à deux distincts, les nombres $x_i - x_j$ ($j \\neq i$) sont non nuls, donc inversibles dans le corps $\\mathbb{K}$ : $L_i$ est bien défini, de degré $n$. On a $L_i(x_i) = 1$ et, pour $k \\neq i$, $L_i(x_k) = 0$ car le facteur $X - x_k$ s'annule.\n\n**Existence.** $P = \\sum_i y_i L_i$ est de degré au plus $n$ et $P(x_k) = \\sum_i y_i L_i(x_k) = y_k$.\n\n**Unicité.** Si $P_1, P_2 \\in \\mathbb{K}_n[X]$ conviennent, $P_1 - P_2$ est de degré au plus $n$ et s'annule en les $n + 1$ points distincts $x_0, \\dots, x_n$ ; c'est donc le polynôme nul.\n\n**Toutes les solutions.** Soit $N = \\prod_{j=0}^{n} (X - x_j)$, de degré $n + 1$. Si $Q(x_i) = y_i$ pour tout $i$, la division euclidienne donne $Q = NS + R$ avec $\\deg R \\leq n$, et $R(x_i) = Q(x_i) - N(x_i)S(x_i) = y_i$ ; par unicité, $R = P$, donc $Q = P + SN$. Réciproquement, $P + SN$ prend les valeurs $y_i$ puisque $N(x_i) = 0$.",
+      "exemple": "Points $(-1, 0)$, $(0, 1)$, $(1, 0)$ : $L_0 = \\frac{X(X - 1)}{2}$, $L_1 = 1 - X^2$, $L_2 = \\frac{X(X + 1)}{2}$, et $P = 0 \\cdot L_0 + 1 \\cdot L_1 + 0 \\cdot L_2 = 1 - X^2$. On vérifie que $L_0 + L_1 + L_2 = 1$ : c'est l'interpolation de la constante $1$.",
+      "contre_exemple": "- **Abscisses non distinctes** : on ne peut pas imposer à la fois $P(0) = 0$ et $P(0) = 1$ ; et si l'on impose deux fois $P(0) = 0$ avec $n = 1$, tous les $P = aX$ conviennent : ni existence ni unicité en général.\n- **Degré trop grand** : $0$ et $X(X - 1)$ sont de degré au plus $2$ et prennent tous deux la valeur $0$ en $0$ et en $1$ : avec $2$ points, l'unicité ne vaut qu'en degré au plus $1$.\n- **Anneau $\\mathbb{Z}$** : le seul polynôme de $\\mathbb{Q}[X]$ de degré au plus $1$ valant $0$ en $0$ et $1$ en $2$ est $\\frac{X}{2}$, qui n'est pas à coefficients entiers : il n'y a pas de solution dans $\\mathbb{Z}[X]$ de degré au plus $1$.",
+      "affirmations": [
+        {
+          "texte": "Pour des abscisses $x_0, \\dots, x_n$ deux à deux distinctes, $\\sum_{i=0}^{n} L_i = 1$.",
+          "vrai": true,
+          "justification": "$\\sum_i L_i$ est de degré au plus $n$ et vaut $1$ en chaque $x_k$, comme le polynôme constant $1$ ; par unicité, ils sont égaux."
+        },
+        {
+          "texte": "Si $P \\in \\mathbb{R}[X]$ vérifie $P(0) = 1$, $P(1) = 2$ et $P(2) = 4$, alors $P(3) = 8$.",
+          "vrai": false,
+          "contre_exemple": "$P = \\frac{X^2 + X + 2}{2}$ vérifie $P(0) = 1$, $P(1) = 2$, $P(2) = 4$ et $P(3) = 7$. Des valeurs en trois points ne déterminent pas $P(3)$ sans contrainte de degré, et ne suivent pas forcément la « loi » $2^k$."
+        },
+        {
+          "texte": "Il existe un unique polynôme $P \\in \\mathbb{R}[X]$ tel que $P(0) = 1$ et $P(1) = 2$.",
+          "vrai": false,
+          "contre_exemple": "$X + 1$ et $X + 1 + X(X - 1)$ conviennent tous deux. L'unicité ne vaut que parmi les polynômes de degré au plus $1$."
+        },
+        {
+          "texte": "Les polynômes de Lagrange $L_0, \\dots, L_n$ associés à des abscisses deux à deux distinctes forment une base de $\\mathbb{K}_n[X]$.",
+          "vrai": true,
+          "justification": "Tout $P \\in \\mathbb{K}_n[X]$ s'écrit $P = \\sum_i P(x_i) L_i$ (unicité de l'interpolation) : la famille, de $n + 1$ éléments, est génératrice dans un espace de dimension $n + 1$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-racines-polynome"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1384 @@
+{
+  "exercices": [
+    {
+      "id": "arith-l1-polynomes-division-ex1",
+      "carte": "arith-l1-polynomes-division",
+      "difficulte": 1,
+      "titre": "Poser une division euclidienne de polynômes",
+      "enonce": "Effectuer la division euclidienne de $A = X^4 + 2X^3 - X + 3$ par $B = X^2 + X + 1$ dans $\\mathbb{R}[X]$.",
+      "duree_min": 5,
+      "indices": [
+        "Éliminer à chaque étape le terme de plus haut degré : commencer par retrancher $X^2 B$ à $A$."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont le quotient $Q$ et le reste $R$ ?",
+        "propositions": [
+          "$Q = X^2 + X - 2$ et $R = 5$",
+          "$Q = X^2 + X - 2$ et $R = -2X + 5$",
+          "$Q = X^2 + X$ et $R = -2X^2 - 2X + 3$",
+          "$Q = X^2 + 3X + 2$ et $R = -6X + 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On élimine successivement les termes de plus haut degré :\n\n- $A - X^2 B = X^4 + 2X^3 - X + 3 - (X^4 + X^3 + X^2) = X^3 - X^2 - X + 3$ ;\n- $X^3 - X^2 - X + 3 - X \\cdot B = X^3 - X^2 - X + 3 - (X^3 + X^2 + X) = -2X^2 - 2X + 3$ ;\n- $-2X^2 - 2X + 3 - (-2) \\cdot B = -2X^2 - 2X + 3 + 2X^2 + 2X + 2 = 5$.\n\nDonc $A = (X^2 + X - 2)B + 5$ avec $\\deg 5 = 0 < 2 = \\deg B$ : par unicité, $Q = X^2 + X - 2$ et $R = 5$.",
+      "variantes": [
+        {
+          "enonce": "Effectuer la division euclidienne de $A = X^5 - 3X^3 + 2X - 1$ par $B = X^2 - 2X + 2$ dans $\\mathbb{R}[X]$.",
+          "indices": [
+            "Éliminer à chaque étape le terme de plus haut degré : commencer par retrancher $X^3 B$ à $A$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont le quotient $Q$ et le reste $R$ ?",
+            "propositions": [
+              "$Q = X^3 + 2X^2 - X - 6$ et $R = -8X + 11$",
+              "$Q = X^3 + 2X^2 - X - 6$ et $R = 8X - 11$",
+              "$Q = X^3 - 2X^2 - X + 6$ et $R = -8X + 11$",
+              "$Q = X^3 + 2X^2 - X$ et $R = -6X^2 + 4X - 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On élimine successivement les termes de plus haut degré :\n\n- $A - X^3 B = X^5 - 3X^3 + 2X - 1 - (X^5 - 2X^4 + 2X^3) = 2X^4 - 5X^3 + 2X - 1$ ;\n- on retranche $2X^2 B = 2X^4 - 4X^3 + 4X^2$ : il reste $-X^3 - 4X^2 + 2X - 1$ ;\n- on retranche $-X \\cdot B = -X^3 + 2X^2 - 2X$ : il reste $-6X^2 + 4X - 1$ ;\n- on retranche $-6B = -6X^2 + 12X - 12$ : il reste $-8X + 11$.\n\nDonc $A = (X^3 + 2X^2 - X - 6)B + (-8X + 11)$ avec $\\deg(-8X + 11) = 1 < 2$ : $Q = X^3 + 2X^2 - X - 6$ et $R = -8X + 11$."
+        },
+        {
+          "enonce": "Effectuer la division euclidienne de $A = 2X^4 - X^3 + X^2 + 4$ par $B = X^2 + 1$ dans $\\mathbb{R}[X]$.",
+          "indices": [
+            "Éliminer à chaque étape le terme de plus haut degré : commencer par retrancher $2X^2 B$ à $A$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont le quotient $Q$ et le reste $R$ ?",
+            "propositions": [
+              "$Q = 2X^2 - X - 1$ et $R = X + 5$",
+              "$Q = 2X^2 - X - 1$ et $R = -X + 5$",
+              "$Q = 2X^2 - X + 3$ et $R = X + 1$",
+              "$Q = 2X^2 - X$ et $R = -X^2 + X + 4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On élimine successivement les termes de plus haut degré :\n\n- $A - 2X^2 B = 2X^4 - X^3 + X^2 + 4 - (2X^4 + 2X^2) = -X^3 - X^2 + 4$ ;\n- on retranche $-X \\cdot B = -X^3 - X$ : il reste $-X^2 + X + 4$ ;\n- on retranche $-1 \\cdot B = -X^2 - 1$ : il reste $X + 5$.\n\nDonc $A = (2X^2 - X - 1)B + (X + 5)$ avec $\\deg(X + 5) = 1 < 2$ : $Q = 2X^2 - X - 1$ et $R = X + 5$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-division-ex2",
+      "carte": "arith-l1-polynomes-division",
+      "difficulte": 2,
+      "titre": "Reste d'une puissance par un produit de deux facteurs de degré 1",
+      "enonce": "Déterminer le reste de la division euclidienne de $X^{10}$ par $(X - 1)(X - 2)$ dans $\\mathbb{R}[X]$, sans poser la division.",
+      "duree_min": 8,
+      "indices": [
+        "Le reste est de degré au plus $1$ : l'écrire $aX + b$, puis évaluer l'égalité de division en les racines du diviseur."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste ?",
+        "propositions": [
+          "$1023X - 1022$",
+          "$1024X - 1023$",
+          "$1023X + 1$",
+          "$-1023X + 1024$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le diviseur $B = (X - 1)(X - 2)$ est de degré $2$, donc le reste s'écrit $R = aX + b$ et $X^{10} = BQ + aX + b$. En évaluant en $1$ et en $2$, racines de $B$ :\n\n$$a + b = 1, \\qquad 2a + b = 2^{10} = 1024.$$\n\nPar différence, $a = 1023$, puis $b = 1 - 1023 = -1022$. Le reste est $R = 1023X - 1022$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $X^{9}$ par $(X + 1)(X - 3)$ dans $\\mathbb{R}[X]$, sans poser la division.",
+          "indices": [
+            "Le reste est de degré au plus $1$ : l'écrire $aX + b$, puis évaluer l'égalité de division en $-1$ et en $3$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste ?",
+            "propositions": [
+              "$4921X + 4920$",
+              "$4920X + 4921$",
+              "$4921X - 4920$",
+              "$-4921X - 4922$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le diviseur $B = (X + 1)(X - 3)$ est de degré $2$, donc le reste s'écrit $R = aX + b$ et $X^{9} = BQ + aX + b$. En évaluant en $-1$ et en $3$ :\n\n$$-a + b = (-1)^9 = -1, \\qquad 3a + b = 3^9 = 19683.$$\n\nPar différence, $4a = 19684$, soit $a = 4921$, puis $b = a - 1 = 4920$. Le reste est $R = 4921X + 4920$."
+        },
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $X^{7}$ par $(X - 2)(X + 1)$ dans $\\mathbb{R}[X]$, sans poser la division.",
+          "indices": [
+            "Le reste est de degré au plus $1$ : l'écrire $aX + b$, puis évaluer l'égalité de division en $2$ et en $-1$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste ?",
+            "propositions": [
+              "$43X + 42$",
+              "$42X + 43$",
+              "$43X - 42$",
+              "$-43X + 214$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le diviseur $B = (X - 2)(X + 1)$ est de degré $2$, donc le reste s'écrit $R = aX + b$ et $X^{7} = BQ + aX + b$. En évaluant en $2$ et en $-1$ :\n\n$$2a + b = 2^7 = 128, \\qquad -a + b = (-1)^7 = -1.$$\n\nPar différence, $3a = 129$, soit $a = 43$, puis $b = a - 1 = 42$. Le reste est $R = 43X + 42$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-division-ex3",
+      "carte": "arith-l1-polynomes-division",
+      "difficulte": 3,
+      "titre": "Calculer modulo X² + X + 1",
+      "enonce": "Déterminer le reste de la division euclidienne de $A = X^{2027} + X^{1000}$ par $B = X^2 + X + 1$ dans $\\mathbb{R}[X]$.",
+      "duree_min": 12,
+      "indices": [
+        "$X^3 - 1 = (X - 1)(X^2 + X + 1)$ : en déduire que $X^{3q} - 1$ est divisible par $B$ pour tout $q \\in \\mathbb{N}$.",
+        "Écrire $2027 = 3 \\times 675 + 2$ et $1000 = 3 \\times 333 + 1$, puis réduire $X^2$ modulo $B$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste ?",
+        "propositions": [
+          "$-1$",
+          "$X^2 + X$",
+          "$1$",
+          "$-2X - 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $q \\geq 1$, $X^{3q} - 1 = (X^3 - 1)(X^{3(q-1)} + \\dots + X^3 + 1)$, et $X^3 - 1 = (X - 1)B$ ; donc $B$ divise $X^{3q} - 1$ (aussi pour $q = 0$). Ainsi, pour $r \\in \\mathbb{N}$, $X^{3q + r} = X^r + X^r(X^{3q} - 1)$ : $X^{3q + r}$ et $X^r$ diffèrent d'un multiple de $B$.\n\nComme $2027 = 3 \\times 675 + 2$ et $1000 = 3 \\times 333 + 1$, on obtient $A = X^2 + X + BC$ pour un certain $C \\in \\mathbb{R}[X]$. Enfin $X^2 + X = B - 1$, donc $A = B(C + 1) + (-1)$.\n\nLe polynôme $-1$ est de degré $0 < 2$ : par unicité de la division euclidienne, le reste est $-1$. (Le polynôme $X^2 + X$ n'est pas le reste : son degré n'est pas inférieur à celui de $B$.)",
+      "variantes": [
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $A = X^{500} + 2X^{300}$ par $B = X^2 + X + 1$ dans $\\mathbb{R}[X]$.",
+          "indices": [
+            "$X^3 - 1 = (X - 1)(X^2 + X + 1)$ : en déduire que $X^{3q} - 1$ est divisible par $B$ pour tout $q \\in \\mathbb{N}$.",
+            "Écrire $500 = 3 \\times 166 + 2$ et $300 = 3 \\times 100$, puis réduire $X^2$ modulo $B$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste ?",
+            "propositions": [
+              "$-X + 1$",
+              "$X^2 + 2$",
+              "$-X - 1$",
+              "$X + 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $q \\geq 1$, $X^{3q} - 1 = (X^3 - 1)(X^{3(q-1)} + \\dots + 1)$ et $X^3 - 1 = (X - 1)B$ ; donc $B$ divise $X^{3q} - 1$, et $X^{3q + r}$ diffère de $X^r$ d'un multiple de $B$.\n\nComme $500 = 3 \\times 166 + 2$ et $300 = 3 \\times 100 + 0$, on obtient $A = X^2 + 2 + BC$ pour un certain $C$. Or $X^2 = B - X - 1$, donc $A = B(C + 1) + (-X + 1)$.\n\nComme $\\deg(-X + 1) = 1 < 2$, le reste est $-X + 1$."
+        },
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $A = X^{1001} - X^{100}$ par $B = X^2 + X + 1$ dans $\\mathbb{R}[X]$.",
+          "indices": [
+            "$X^3 - 1 = (X - 1)(X^2 + X + 1)$ : en déduire que $X^{3q} - 1$ est divisible par $B$ pour tout $q \\in \\mathbb{N}$.",
+            "Écrire $1001 = 3 \\times 333 + 2$ et $100 = 3 \\times 33 + 1$, puis réduire $X^2$ modulo $B$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste ?",
+            "propositions": [
+              "$-2X - 1$",
+              "$X^2 - X$",
+              "$-1$",
+              "$2X + 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $q \\geq 1$, $X^{3q} - 1 = (X^3 - 1)(X^{3(q-1)} + \\dots + 1)$ et $X^3 - 1 = (X - 1)B$ ; donc $B$ divise $X^{3q} - 1$, et $X^{3q + r}$ diffère de $X^r$ d'un multiple de $B$.\n\nComme $1001 = 3 \\times 333 + 2$ et $100 = 3 \\times 33 + 1$, on obtient $A = X^2 - X + BC$ pour un certain $C$. Or $X^2 = B - X - 1$, donc $A = B(C + 1) + (-2X - 1)$.\n\nComme $\\deg(-2X - 1) = 1 < 2$, le reste est $-2X - 1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-division-ex4",
+      "carte": "arith-l1-polynomes-division",
+      "difficulte": 4,
+      "titre": "Division de X^a − 1 par X^b − 1",
+      "enonce": "Soit $\\mathbb{K}$ un corps commutatif. Soient $a, b \\in \\mathbb{N}$ avec $b \\geq 1$, et $a = bq + r$ la division euclidienne de l'entier $a$ par $b$ ($0 \\leq r < b$).\n\n1. Montrer que $X^b - 1$ divise $X^{bq} - 1$.\n\n2. En déduire que le reste de la division euclidienne de $X^a - 1$ par $X^b - 1$ est $X^r - 1$.\n\n3. En déduire que $X^b - 1$ divise $X^a - 1$ si et seulement si $b$ divise $a$.\n\n4. Application : déterminer le reste de la division euclidienne de $X^{100} - 1$ par $X^{12} - 1$.",
+      "duree_min": 20,
+      "indices": [
+        "Poser $Y = X^b$ et factoriser $Y^q - 1$ par $Y - 1$.",
+        "Écrire $X^a - 1 = X^r(X^{bq} - 1) + (X^r - 1)$ et vérifier la condition sur le degré du reste."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de $X^{100} - 1$ par $X^{12} - 1$ ?",
+        "propositions": [
+          "$X^4 - 1$",
+          "$X^8 - 1$",
+          "$X^4$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $q = 0$, $X^0 - 1 = 0$ est divisible par tout polynôme. Si $q \\geq 1$, avec $Y = X^b$ : $Y^q - 1 = (Y - 1)(Y^{q-1} + \\dots + Y + 1)$, donc $X^{bq} - 1 = (X^b - 1)C$ avec $C = \\sum_{k=0}^{q-1} X^{bk}$.\n\n**2.** On a $X^a - 1 = X^r X^{bq} - 1 = X^r(X^{bq} - 1) + (X^r - 1) = (X^b - 1)\\, X^r C + (X^r - 1)$. Le polynôme $X^r - 1$ est nul si $r = 0$, et de degré $r < b$ sinon : dans les deux cas $\\deg(X^r - 1) < b = \\deg(X^b - 1)$. Par unicité de la division euclidienne, le reste est $X^r - 1$.\n\n**3.** $X^b - 1$ divise $X^a - 1$ si et seulement si le reste $X^r - 1$ est nul, c'est-à-dire $r = 0$ (pour $r \\geq 1$, $X^r - 1$ est de degré $r$, donc non nul), c'est-à-dire $b \\mid a$.\n\n**4.** $100 = 12 \\times 8 + 4$, donc le reste est $X^4 - 1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $\\mathbb{K}$ un corps commutatif. Soient $a, b \\in \\mathbb{N}$ avec $b \\geq 1$, et $a = bq + r$ la division euclidienne de l'entier $a$ par $b$ ($0 \\leq r < b$).\n\n1. Montrer que $X^b - 1$ divise $X^{bq} - 1$.\n\n2. En déduire que le reste de la division euclidienne de $X^a - 1$ par $X^b - 1$ est $X^r - 1$.\n\n3. En déduire que $X^b - 1$ divise $X^a - 1$ si et seulement si $b$ divise $a$.\n\n4. Application : déterminer le reste de la division euclidienne de $X^{75} - 1$ par $X^{9} - 1$.",
+          "indices": [
+            "Poser $Y = X^b$ et factoriser $Y^q - 1$ par $Y - 1$.",
+            "Écrire $X^a - 1 = X^r(X^{bq} - 1) + (X^r - 1)$ et vérifier la condition sur le degré du reste."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $X^{75} - 1$ par $X^{9} - 1$ ?",
+            "propositions": [
+              "$X^3 - 1$",
+              "$X^8 - 1$",
+              "$X^3$",
+              "$X^6 - 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $q = 0$, $X^0 - 1 = 0$. Si $q \\geq 1$, avec $Y = X^b$ : $Y^q - 1 = (Y - 1)(Y^{q-1} + \\dots + 1)$, donc $X^{bq} - 1 = (X^b - 1)C$ avec $C = \\sum_{k=0}^{q-1} X^{bk}$.\n\n**2.** $X^a - 1 = X^r(X^{bq} - 1) + (X^r - 1) = (X^b - 1)\\, X^r C + (X^r - 1)$, et $\\deg(X^r - 1) < b$ (ce polynôme est nul si $r = 0$, de degré $r < b$ sinon). Par unicité, le reste est $X^r - 1$.\n\n**3.** $X^b - 1 \\mid X^a - 1$ si et seulement si $X^r - 1 = 0$, soit $r = 0$, soit $b \\mid a$.\n\n**4.** $75 = 9 \\times 8 + 3$, donc le reste est $X^3 - 1$."
+        },
+        {
+          "enonce": "Soit $\\mathbb{K}$ un corps commutatif. Soient $a, b \\in \\mathbb{N}$ avec $b \\geq 1$, et $a = bq + r$ la division euclidienne de l'entier $a$ par $b$ ($0 \\leq r < b$).\n\n1. Montrer que $X^b - 1$ divise $X^{bq} - 1$.\n\n2. En déduire que le reste de la division euclidienne de $X^a - 1$ par $X^b - 1$ est $X^r - 1$.\n\n3. En déduire que $X^b - 1$ divise $X^a - 1$ si et seulement si $b$ divise $a$.\n\n4. Application : déterminer le reste de la division euclidienne de $X^{58} - 1$ par $X^{7} - 1$.",
+          "indices": [
+            "Poser $Y = X^b$ et factoriser $Y^q - 1$ par $Y - 1$.",
+            "Écrire $X^a - 1 = X^r(X^{bq} - 1) + (X^r - 1)$ et vérifier la condition sur le degré du reste."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $X^{58} - 1$ par $X^{7} - 1$ ?",
+            "propositions": [
+              "$X^2 - 1$",
+              "$X^8 - 1$",
+              "$X^2$",
+              "$X^3 - 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $q = 0$, $X^0 - 1 = 0$. Si $q \\geq 1$, avec $Y = X^b$ : $Y^q - 1 = (Y - 1)(Y^{q-1} + \\dots + 1)$, donc $X^{bq} - 1 = (X^b - 1)C$ avec $C = \\sum_{k=0}^{q-1} X^{bk}$.\n\n**2.** $X^a - 1 = X^r(X^{bq} - 1) + (X^r - 1) = (X^b - 1)\\, X^r C + (X^r - 1)$, et $\\deg(X^r - 1) < b$ (ce polynôme est nul si $r = 0$, de degré $r < b$ sinon). Par unicité, le reste est $X^r - 1$.\n\n**3.** $X^b - 1 \\mid X^a - 1$ si et seulement si $X^r - 1 = 0$, soit $r = 0$, soit $b \\mid a$.\n\n**4.** $58 = 7 \\times 8 + 2$, donc le reste est $X^2 - 1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-multiplicite-ex1",
+      "carte": "arith-l1-polynomes-multiplicite",
+      "difficulte": 1,
+      "titre": "Multiplicité d'une racine par les dérivées",
+      "enonce": "Soit $P = X^5 - 3X^4 + 4X^3 - 4X^2 + 3X - 1 \\in \\mathbb{R}[X]$. Déterminer la multiplicité de la racine $1$ de $P$.",
+      "duree_min": 6,
+      "indices": [
+        "Calculer $P(1)$, $P'(1)$, $P''(1)$… jusqu'à la première valeur non nulle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la multiplicité de $1$ ?",
+        "propositions": [
+          "$3$",
+          "$1$",
+          "$2$",
+          "$4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On calcule les dérivées successives en $1$ :\n\n- $P(1) = 1 - 3 + 4 - 4 + 3 - 1 = 0$ ;\n- $P' = 5X^4 - 12X^3 + 12X^2 - 8X + 3$, $P'(1) = 5 - 12 + 12 - 8 + 3 = 0$ ;\n- $P'' = 20X^3 - 36X^2 + 24X - 8$, $P''(1) = 20 - 36 + 24 - 8 = 0$ ;\n- $P''' = 60X^2 - 72X + 24$, $P'''(1) = 12 \\neq 0$.\n\nSur $\\mathbb{R}$ (caractéristique nulle), $1$ est donc racine de multiplicité exactement $3$. On peut le vérifier : $P = (X - 1)^3(X^2 + 1)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $P = X^5 - 5X + 4 \\in \\mathbb{R}[X]$. Déterminer la multiplicité de la racine $1$ de $P$.",
+          "indices": [
+            "Calculer $P(1)$, $P'(1)$, $P''(1)$… jusqu'à la première valeur non nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la multiplicité de $1$ ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$3$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $P(1) = 1 - 5 + 4 = 0$ ;\n- $P' = 5X^4 - 5$, $P'(1) = 0$ ;\n- $P'' = 20X^3$, $P''(1) = 20 \\neq 0$.\n\nSur $\\mathbb{R}$, $1$ est donc racine de multiplicité exactement $2$ ; en effet $P = (X - 1)^2(X^3 + 2X^2 + 3X + 4)$."
+        },
+        {
+          "enonce": "Soit $P = X^5 + 7X^4 + 16X^3 + 8X^2 - 16X - 16 \\in \\mathbb{R}[X]$. Déterminer la multiplicité de la racine $-2$ de $P$.",
+          "indices": [
+            "Calculer $P(-2)$, $P'(-2)$, $P''(-2)$… jusqu'à la première valeur non nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la multiplicité de $-2$ ?",
+            "propositions": [
+              "$4$",
+              "$2$",
+              "$3$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $P(-2) = -32 + 112 - 128 + 32 + 32 - 16 = 0$ ;\n- $P' = 5X^4 + 28X^3 + 48X^2 + 16X - 16$, $P'(-2) = 80 - 224 + 192 - 32 - 16 = 0$ ;\n- $P'' = 20X^3 + 84X^2 + 96X + 16$, $P''(-2) = -160 + 336 - 192 + 16 = 0$ ;\n- $P''' = 60X^2 + 168X + 96$, $P'''(-2) = 240 - 336 + 96 = 0$ ;\n- $P^{(4)} = 120X + 168$, $P^{(4)}(-2) = -72 \\neq 0$.\n\nSur $\\mathbb{R}$, $-2$ est donc racine de multiplicité exactement $4$ ; en effet $P = (X + 2)^4 (X - 1)$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-multiplicite-ex2",
+      "carte": "arith-l1-polynomes-multiplicite",
+      "difficulte": 2,
+      "titre": "Imposer une racine double",
+      "enonce": "Déterminer les réels $a$ et $b$ tels que $(X - 1)^2$ divise $P = aX^5 + bX^4 + 1$.",
+      "duree_min": 8,
+      "indices": [
+        "$(X - 1)^2 \\mid P$ équivaut à $P(1) = P'(1) = 0$ : écrire ces deux équations linéaires en $a$ et $b$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le couple $(a, b)$ ?",
+        "propositions": [
+          "$(4, -5)$",
+          "$(-5, 4)$",
+          "$(5, -6)$",
+          "$(-4, 3)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Sur $\\mathbb{R}$, $(X - 1)^2$ divise $P$ si et seulement si $P(1) = 0$ et $P'(1) = 0$. Avec $P' = 5aX^4 + 4bX^3$ :\n\n$$a + b + 1 = 0, \\qquad 5a + 4b = 0.$$\n\nLa première donne $b = -1 - a$, et la seconde $5a - 4 - 4a = 0$, soit $a = 4$, puis $b = -5$. Ainsi $P = 4X^5 - 5X^4 + 1 = (X - 1)^2(4X^3 + 3X^2 + 2X + 1)$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les réels $a$ et $b$ tels que $(X + 1)^2$ divise $P = X^4 + aX + b$.",
+          "indices": [
+            "$(X + 1)^2 \\mid P$ équivaut à $P(-1) = P'(-1) = 0$ : écrire ces deux équations en $a$ et $b$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le couple $(a, b)$ ?",
+            "propositions": [
+              "$(4, 3)$",
+              "$(-4, -5)$",
+              "$(4, -3)$",
+              "$(-4, 3)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $\\mathbb{R}$, $(X + 1)^2$ divise $P$ si et seulement si $P(-1) = P'(-1) = 0$. Avec $P' = 4X^3 + a$ :\n\n$$1 - a + b = 0, \\qquad -4 + a = 0.$$\n\nDonc $a = 4$ et $b = a - 1 = 3$ : $P = X^4 + 4X + 3 = (X + 1)^2(X^2 - 2X + 3)$."
+        },
+        {
+          "enonce": "Déterminer les réels $a$ et $b$ tels que $(X - 2)^2$ divise $P = X^3 + aX + b$.",
+          "indices": [
+            "$(X - 2)^2 \\mid P$ équivaut à $P(2) = P'(2) = 0$ : écrire ces deux équations en $a$ et $b$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le couple $(a, b)$ ?",
+            "propositions": [
+              "$(-12, 16)$",
+              "$(12, -32)$",
+              "$(-12, -16)$",
+              "$(-4, 0)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $\\mathbb{R}$, $(X - 2)^2$ divise $P$ si et seulement si $P(2) = P'(2) = 0$. Avec $P' = 3X^2 + a$ :\n\n$$8 + 2a + b = 0, \\qquad 12 + a = 0.$$\n\nDonc $a = -12$ et $b = -8 + 24 = 16$ : $P = X^3 - 12X + 16 = (X - 2)^2(X + 4)$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-multiplicite-ex3",
+      "carte": "arith-l1-polynomes-multiplicite",
+      "difficulte": 3,
+      "titre": "Les racines des sommes partielles de l'exponentielle sont simples",
+      "enonce": "Soit $n \\in \\mathbb{N}^*$ et $P_n = \\sum_{k=0}^{n} \\frac{X^k}{k!} \\in \\mathbb{C}[X]$. Montrer que $P_n$ a $n$ racines complexes deux à deux distinctes.",
+      "duree_min": 12,
+      "indices": [
+        "Comparer $P_n$ et sa dérivée $P_n'$ : que vaut $P_n - P_n'$ ?",
+        "Une racine multiple de $P_n$ est racine commune de $P_n$ et de $P_n'$, donc de $P_n - P_n'$."
+      ],
+      "correction": "On a $P_n' = \\sum_{k=1}^{n} \\frac{X^{k-1}}{(k-1)!} = P_{n-1}$, donc $P_n - P_n' = \\frac{X^n}{n!}$.\n\nSupposons que $\\alpha \\in \\mathbb{C}$ soit une racine multiple de $P_n$. Alors $(X - \\alpha)^2$ divise $P_n$, donc, d'après le critère par les dérivées (avec $m = 2$, sur $\\mathbb{C}$), $P_n(\\alpha) = P_n'(\\alpha) = 0$. Il vient $\\frac{\\alpha^n}{n!} = P_n(\\alpha) - P_n'(\\alpha) = 0$, donc $\\alpha = 0$. Mais $P_n(0) = 1 \\neq 0$ : contradiction.\n\nToutes les racines complexes de $P_n$ sont donc simples. Comme $P_n$ est de degré $n$ et scindé sur $\\mathbb{C}$ (théorème de d'Alembert-Gauss), la somme des multiplicités de ses racines vaut $n$ : $P_n$ a exactement $n$ racines complexes, deux à deux distinctes."
+    },
+    {
+      "id": "arith-l1-polynomes-multiplicite-ex4",
+      "carte": "arith-l1-polynomes-multiplicite",
+      "difficulte": 4,
+      "titre": "Une famille de polynômes ayant une racine triple",
+      "enonce": "Pour un entier $n \\geq 2$, on pose $P_n = X^{2n} - nX^{n+1} + nX^{n-1} - 1 \\in \\mathbb{R}[X]$.\n\n1. Montrer que $1$ est racine de $P_n$ de multiplicité exactement $3$.\n\n2. On écrit $P_n = (X - 1)^3 Q_n$ avec $Q_n \\in \\mathbb{R}[X]$. À l'aide de la formule de Taylor en $1$, exprimer $Q_n(1)$ en fonction de $n$.",
+      "duree_min": 20,
+      "indices": [
+        "Calculer $P_n(1)$, $P_n'(1)$, $P_n''(1)$, $P_n'''(1)$ ; factoriser le résultat par $n(n - 1)$.",
+        "La formule de Taylor $P_n = \\sum_k \\frac{P_n^{(k)}(1)}{k!}(X - 1)^k$ donne $Q_n = \\frac{P_n'''(1)}{3!} + (X - 1)(\\dots)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $Q_n(1)$ ?",
+        "propositions": [
+          "$\\frac{n(n^2 - 1)}{3}$",
+          "$2n(n^2 - 1)$",
+          "$\\frac{n(n^2 - 1)}{6}$",
+          "$\\frac{n(n + 1)(n + 2)}{3}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** On dérive (pour les petites valeurs de $n$, les termes à coefficient nul disparaissent, les formules restent valables) :\n\n- $P_n(1) = 1 - n + n - 1 = 0$ ;\n- $P_n' = 2nX^{2n-1} - n(n+1)X^n + n(n-1)X^{n-2}$, donc $P_n'(1) = 2n - n^2 - n + n^2 - n = 0$ ;\n- $P_n'' = 2n(2n-1)X^{2n-2} - n^2(n+1)X^{n-1} + n(n-1)(n-2)X^{n-3}$, donc $P_n''(1) = 4n^2 - 2n - n^3 - n^2 + n^3 - 3n^2 + 2n = 0$ ;\n- $P_n'''(1) = 2n(2n-1)(2n-2) - n^2(n+1)(n-1) + n(n-1)(n-2)(n-3)$.\n\nEn factorisant par $n(n - 1)$ : $P_n'''(1) = n(n-1)\\big[4(2n - 1) - n(n + 1) + (n - 2)(n - 3)\\big] = n(n-1)(2n + 2) = 2n(n-1)(n+1)$, non nul pour $n \\geq 2$. Sur $\\mathbb{R}$, $1$ est donc racine de multiplicité exactement $3$.\n\n**2.** La formule de Taylor en $1$ et la nullité de $P_n(1)$, $P_n'(1)$, $P_n''(1)$ donnent\n\n$$P_n = (X - 1)^3 \\Big( \\frac{P_n'''(1)}{3!} + \\sum_{k \\geq 4} \\frac{P_n^{(k)}(1)}{k!}(X - 1)^{k-3} \\Big).$$\n\nPar intégrité de $\\mathbb{R}[X]$, le quotient $Q_n$ est le polynôme entre parenthèses, et $Q_n(1) = \\frac{P_n'''(1)}{6} = \\frac{n(n-1)(n+1)}{3} = \\frac{n(n^2 - 1)}{3}$. Par exemple, pour $n = 2$, $P_2 = (X - 1)^3(X + 1)$ et $Q_2(1) = 2$.",
+      "variantes": [
+        {
+          "enonce": "Pour un entier $n \\geq 1$, on pose $A_n = nX^{n+1} - (n + 1)X^n + 1 \\in \\mathbb{R}[X]$.\n\n1. Montrer que $1$ est racine de $A_n$ de multiplicité exactement $2$.\n\n2. On écrit $A_n = (X - 1)^2 B_n$ avec $B_n \\in \\mathbb{R}[X]$. À l'aide de la formule de Taylor en $1$, exprimer $B_n(1)$ en fonction de $n$.",
+          "indices": [
+            "Calculer $A_n(1)$, $A_n'(1)$, $A_n''(1)$ ; factoriser le résultat par $n(n + 1)$.",
+            "La formule de Taylor $A_n = \\sum_k \\frac{A_n^{(k)}(1)}{k!}(X - 1)^k$ donne $B_n = \\frac{A_n''(1)}{2!} + (X - 1)(\\dots)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $B_n(1)$ ?",
+            "propositions": [
+              "$\\frac{n(n + 1)}{2}$",
+              "$n(n + 1)$",
+              "$\\frac{n(n - 1)}{2}$",
+              "$\\frac{(n + 1)(n + 2)}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.**\n\n- $A_n(1) = n - (n + 1) + 1 = 0$ ;\n- $A_n' = n(n+1)X^n - n(n+1)X^{n-1}$, donc $A_n'(1) = 0$ ;\n- $A_n'' = n^2(n+1)X^{n-1} - n(n+1)(n-1)X^{n-2}$, donc $A_n''(1) = n(n+1)\\big[n - (n - 1)\\big] = n(n + 1) \\neq 0$.\n\nSur $\\mathbb{R}$, $1$ est donc racine de multiplicité exactement $2$.\n\n**2.** La formule de Taylor en $1$ et $A_n(1) = A_n'(1) = 0$ donnent $A_n = (X - 1)^2 \\Big( \\frac{A_n''(1)}{2!} + \\sum_{k \\geq 3} \\frac{A_n^{(k)}(1)}{k!}(X - 1)^{k-2} \\Big)$, donc $B_n(1) = \\frac{A_n''(1)}{2} = \\frac{n(n + 1)}{2}$. Par exemple $A_1 = X^2 - 2X + 1 = (X - 1)^2$ et $B_1(1) = 1$."
+        },
+        {
+          "enonce": "Pour un entier $n \\geq 1$, on pose $R_n = X^{2n+1} - (2n + 1)X^{n+1} + (2n + 1)X^n - 1 \\in \\mathbb{R}[X]$.\n\n1. Montrer que $1$ est racine de $R_n$ de multiplicité exactement $3$.\n\n2. On écrit $R_n = (X - 1)^3 S_n$ avec $S_n \\in \\mathbb{R}[X]$. À l'aide de la formule de Taylor en $1$, exprimer $S_n(1)$ en fonction de $n$.",
+          "indices": [
+            "Calculer $R_n(1)$, $R_n'(1)$, $R_n''(1)$, $R_n'''(1)$ ; factoriser le résultat par $(2n + 1)n$.",
+            "La formule de Taylor $R_n = \\sum_k \\frac{R_n^{(k)}(1)}{k!}(X - 1)^k$ donne $S_n = \\frac{R_n'''(1)}{3!} + (X - 1)(\\dots)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $S_n(1)$ ?",
+            "propositions": [
+              "$\\frac{n(n + 1)(2n + 1)}{6}$",
+              "$n(n + 1)(2n + 1)$",
+              "$\\frac{n(n + 1)(2n + 1)}{3}$",
+              "$\\frac{n(n + 1)(2n - 1)}{6}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Posons $c = 2n + 1$.\n\n- $R_n(1) = 1 - c + c - 1 = 0$ ;\n- $R_n' = cX^{2n} - c(n+1)X^n + cnX^{n-1}$, donc $R_n'(1) = c\\,(1 - (n + 1) + n) = 0$ ;\n- $R_n'' = 2ncX^{2n-1} - c(n+1)nX^{n-1} + cn(n-1)X^{n-2}$, donc $R_n''(1) = cn\\,(2 - (n + 1) + (n - 1)) = 0$ ;\n- $R_n'''(1) = 2n(2n-1)c - c(n+1)n(n-1) + cn(n-1)(n-2) = cn\\big[2(2n - 1) - (n + 1)(n - 1) + (n - 1)(n - 2)\\big] = cn(n + 1)$, non nul.\n\nSur $\\mathbb{R}$, $1$ est donc racine de multiplicité exactement $3$.\n\n**2.** Par la formule de Taylor en $1$, $S_n(1) = \\frac{R_n'''(1)}{3!} = \\frac{n(n + 1)(2n + 1)}{6}$. Par exemple $R_1 = X^3 - 3X^2 + 3X - 1 = (X - 1)^3$ et $S_1(1) = 1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-irreductibles-ex1",
+      "carte": "arith-l1-polynomes-irreductibles",
+      "difficulte": 1,
+      "titre": "Factoriser en irréductibles réels",
+      "enonce": "Décomposer $X^4 - 1$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+      "duree_min": 5,
+      "indices": [
+        "Factoriser d'abord $X^4 - 1 = (X^2 - 1)(X^2 + 1)$, puis examiner chaque facteur."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+        "propositions": [
+          "$(X - 1)(X + 1)(X^2 + 1)$",
+          "$(X - 1)(X + 1)(X - i)(X + i)$",
+          "$(X^2 - 1)(X^2 + 1)$",
+          "$(X - 1)^2(X^2 + 1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$X^4 - 1 = (X^2 - 1)(X^2 + 1) = (X - 1)(X + 1)(X^2 + 1)$. Les facteurs $X - 1$ et $X + 1$ sont de degré $1$, donc irréductibles ; $X^2 + 1$ est de degré $2$ et de discriminant $-4 < 0$, donc irréductible dans $\\mathbb{R}[X]$.\n\nL'écriture $(X - 1)(X + 1)(X - i)(X + i)$ est la décomposition dans $\\mathbb{C}[X]$, pas dans $\\mathbb{R}[X]$ ; et $(X^2 - 1)(X^2 + 1)$ n'est pas une décomposition en irréductibles, $X^2 - 1$ étant réductible.",
+      "variantes": [
+        {
+          "enonce": "Décomposer $X^3 - 8$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+          "indices": [
+            "$2$ est racine évidente : diviser par $X - 2$, puis examiner le discriminant du quotient."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$(X - 2)(X^2 + 2X + 4)$",
+              "$(X - 2)(X^2 - 2X + 4)$",
+              "$(X - 2)^3$",
+              "$(X - 2)(X + 1 - i\\sqrt{3})(X + 1 + i\\sqrt{3})$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$2$ est racine, et $X^3 - 8 = (X - 2)(X^2 + 2X + 4)$. Le facteur $X^2 + 2X + 4$ a pour discriminant $4 - 16 = -12 < 0$ : il est irréductible dans $\\mathbb{R}[X]$. La décomposition est $(X - 2)(X^2 + 2X + 4)$.\n\nL'écriture avec $X + 1 \\mp i\\sqrt{3}$ est la décomposition dans $\\mathbb{C}[X]$ ; ses facteurs ne sont pas à coefficients réels."
+        },
+        {
+          "enonce": "Décomposer $X^4 + 3X^2 - 4$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+          "indices": [
+            "Poser $Y = X^2$ et factoriser le trinôme $Y^2 + 3Y - 4$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$(X - 1)(X + 1)(X^2 + 4)$",
+              "$(X^2 - 1)(X^2 + 4)$",
+              "$(X - 1)(X + 1)(X - 2i)(X + 2i)$",
+              "$(X - 2)(X + 2)(X^2 + 1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $Y = X^2$ : $Y^2 + 3Y - 4 = (Y - 1)(Y + 4)$, donc $X^4 + 3X^2 - 4 = (X^2 - 1)(X^2 + 4) = (X - 1)(X + 1)(X^2 + 4)$. Le facteur $X^2 + 4$ a pour discriminant $-16 < 0$ : il est irréductible dans $\\mathbb{R}[X]$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-irreductibles-ex2",
+      "carte": "arith-l1-polynomes-irreductibles",
+      "difficulte": 2,
+      "titre": "Un polynôme bicarré sans racine réelle",
+      "enonce": "Décomposer $X^4 + 4$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+      "duree_min": 8,
+      "indices": [
+        "Faire apparaître une différence de deux carrés : $X^4 + 4 = (X^2 + 2)^2 - (\\dots)^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+        "propositions": [
+          "$(X^2 - 2X + 2)(X^2 + 2X + 2)$",
+          "$X^4 + 4$ est irréductible, car il n'a pas de racine réelle",
+          "$(X^2 + 2)^2$",
+          "$(X^2 - 2X - 2)(X^2 + 2X - 2)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$X^4 + 4 = (X^2 + 2)^2 - 4X^2 = (X^2 + 2)^2 - (2X)^2 = (X^2 - 2X + 2)(X^2 + 2X + 2)$.\n\nLes deux facteurs ont pour discriminant $4 - 8 = -4 < 0$ : ils sont irréductibles dans $\\mathbb{R}[X]$. Bien que $X^4 + 4$ n'ait aucune racine réelle, il n'est pas irréductible : « sans racine » n'entraîne « irréductible » qu'en degré $2$ ou $3$.",
+      "variantes": [
+        {
+          "enonce": "Décomposer $X^4 + 64$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+          "indices": [
+            "Faire apparaître une différence de deux carrés : $X^4 + 64 = (X^2 + 8)^2 - (\\dots)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$(X^2 - 4X + 8)(X^2 + 4X + 8)$",
+              "$X^4 + 64$ est irréductible, car il n'a pas de racine réelle",
+              "$(X^2 + 8)^2$",
+              "$(X^2 - 4X - 8)(X^2 + 4X - 8)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^4 + 64 = (X^2 + 8)^2 - 16X^2 = (X^2 + 8)^2 - (4X)^2 = (X^2 - 4X + 8)(X^2 + 4X + 8)$.\n\nLes deux facteurs ont pour discriminant $16 - 32 = -16 < 0$ : ils sont irréductibles dans $\\mathbb{R}[X]$. Sans racine réelle, $X^4 + 64$ est pourtant réductible."
+        },
+        {
+          "enonce": "Décomposer $X^4 + X^2 + 1$ en produit de polynômes irréductibles de $\\mathbb{R}[X]$.",
+          "indices": [
+            "Faire apparaître une différence de deux carrés : $X^4 + X^2 + 1 = (X^2 + 1)^2 - (\\dots)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en irréductibles dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$(X^2 - X + 1)(X^2 + X + 1)$",
+              "$X^4 + X^2 + 1$ est irréductible, car il n'a pas de racine réelle",
+              "$(X^2 + 1)^2$",
+              "$(X^2 - X - 1)(X^2 + X - 1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^4 + X^2 + 1 = (X^2 + 1)^2 - X^2 = (X^2 - X + 1)(X^2 + X + 1)$.\n\nLes deux facteurs ont pour discriminant $1 - 4 = -3 < 0$ : ils sont irréductibles dans $\\mathbb{R}[X]$. Sans racine réelle, $X^4 + X^2 + 1$ est pourtant réductible."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-irreductibles-ex3",
+      "carte": "arith-l1-polynomes-irreductibles",
+      "difficulte": 3,
+      "titre": "Factorisation réelle de X^n − 1",
+      "enonce": "Décomposer $X^6 - 1$ en produit de polynômes irréductibles unitaires de $\\mathbb{C}[X]$, puis de $\\mathbb{R}[X]$.",
+      "duree_min": 15,
+      "indices": [
+        "Les racines complexes de $X^n - 1$ sont les $e^{2ik\\pi/n}$, $0 \\leq k \\leq n - 1$, toutes simples.",
+        "Regrouper chaque racine non réelle avec sa conjuguée : $(X - e^{i\\theta})(X - e^{-i\\theta}) = X^2 - 2\\cos(\\theta)X + 1$."
+      ],
+      "reponse_finale": {
+        "question": "Combien de facteurs irréductibles unitaires compte la décomposition de $X^6 - 1$ dans $\\mathbb{R}[X]$ ?",
+        "propositions": [
+          "$4$",
+          "$2$",
+          "$6$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Dans $\\mathbb{C}[X]$.** Les racines de $X^6 - 1$ sont les $\\omega_k = e^{ik\\pi/3}$, $0 \\leq k \\leq 5$, deux à deux distinctes ; comme $X^6 - 1$ est unitaire de degré $6$, $X^6 - 1 = \\prod_{k=0}^{5}(X - e^{ik\\pi/3})$.\n\n**Dans $\\mathbb{R}[X]$.** Les racines réelles sont $1$ ($k = 0$) et $-1$ ($k = 3$). Les autres se groupent en paires conjuguées : $e^{\\pm i\\pi/3}$ donnent $X^2 - 2\\cos\\frac{\\pi}{3}X + 1 = X^2 - X + 1$, et $e^{\\pm 2i\\pi/3}$ donnent $X^2 - 2\\cos\\frac{2\\pi}{3}X + 1 = X^2 + X + 1$. Ces trinômes ont pour discriminant $-3 < 0$. Donc\n\n$$X^6 - 1 = (X - 1)(X + 1)(X^2 - X + 1)(X^2 + X + 1),$$\n\nsoit $4$ facteurs irréductibles unitaires. (La factorisation $(X^3 - 1)(X^3 + 1)$ n'est pas une décomposition en irréductibles.)",
+      "variantes": [
+        {
+          "enonce": "Décomposer $X^5 - 1$ en produit de polynômes irréductibles unitaires de $\\mathbb{C}[X]$, puis de $\\mathbb{R}[X]$. On admet que $2\\cos\\frac{2\\pi}{5} = \\frac{\\sqrt{5} - 1}{2}$ et $2\\cos\\frac{4\\pi}{5} = -\\frac{1 + \\sqrt{5}}{2}$.",
+          "indices": [
+            "Les racines complexes de $X^5 - 1$ sont les $e^{2ik\\pi/5}$, $0 \\leq k \\leq 4$, toutes simples.",
+            "Regrouper chaque racine non réelle avec sa conjuguée : $(X - e^{i\\theta})(X - e^{-i\\theta}) = X^2 - 2\\cos(\\theta)X + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de facteurs irréductibles unitaires compte la décomposition de $X^5 - 1$ dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$3$",
+              "$5$",
+              "$2$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Dans $\\mathbb{C}[X]$.** $X^5 - 1 = \\prod_{k=0}^{4}(X - e^{2ik\\pi/5})$, les cinq racines étant distinctes.\n\n**Dans $\\mathbb{R}[X]$.** La seule racine réelle est $1$. Les paires conjuguées $e^{\\pm 2i\\pi/5}$ et $e^{\\pm 4i\\pi/5}$ donnent\n\n$$X^5 - 1 = (X - 1)\\Big(X^2 - \\frac{\\sqrt{5} - 1}{2}X + 1\\Big)\\Big(X^2 + \\frac{1 + \\sqrt{5}}{2}X + 1\\Big),$$\n\nles deux trinômes ayant un discriminant $4\\cos^2\\theta - 4 < 0$ (car $\\theta \\notin \\pi\\mathbb{Z}$). Il y a $3$ facteurs irréductibles unitaires."
+        },
+        {
+          "enonce": "Décomposer $X^8 - 1$ en produit de polynômes irréductibles unitaires de $\\mathbb{C}[X]$, puis de $\\mathbb{R}[X]$.",
+          "indices": [
+            "Les racines complexes de $X^8 - 1$ sont les $e^{ik\\pi/4}$, $0 \\leq k \\leq 7$, toutes simples.",
+            "Regrouper chaque racine non réelle avec sa conjuguée : $(X - e^{i\\theta})(X - e^{-i\\theta}) = X^2 - 2\\cos(\\theta)X + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de facteurs irréductibles unitaires compte la décomposition de $X^8 - 1$ dans $\\mathbb{R}[X]$ ?",
+            "propositions": [
+              "$5$",
+              "$8$",
+              "$4$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Dans $\\mathbb{C}[X]$.** $X^8 - 1 = \\prod_{k=0}^{7}(X - e^{ik\\pi/4})$, les huit racines étant distinctes.\n\n**Dans $\\mathbb{R}[X]$.** Les racines réelles sont $1$ et $-1$. Les paires conjuguées $e^{\\pm i\\pi/2}$, $e^{\\pm i\\pi/4}$ et $e^{\\pm 3i\\pi/4}$ donnent respectivement $X^2 + 1$, $X^2 - \\sqrt{2}X + 1$ et $X^2 + \\sqrt{2}X + 1$, de discriminants $-4$, $-2$, $-2$. Donc\n\n$$X^8 - 1 = (X - 1)(X + 1)(X^2 + 1)(X^2 - \\sqrt{2}X + 1)(X^2 + \\sqrt{2}X + 1),$$\n\nsoit $5$ facteurs irréductibles unitaires."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-irreductibles-ex4",
+      "carte": "arith-l1-polynomes-irreductibles",
+      "difficulte": 4,
+      "titre": "Polynômes positifs sur R et sommes de deux carrés",
+      "enonce": "Soit $P \\in \\mathbb{R}[X]$ non nul tel que $P(x) \\geq 0$ pour tout $x \\in \\mathbb{R}$. Pour $Q \\in \\mathbb{C}[X]$, on note $\\overline{Q}$ le polynôme dont les coefficients sont les conjugués de ceux de $Q$.\n\n1. Soit $a$ une racine réelle de $P$, de multiplicité $m$. Montrer que $m$ est pair.\n\n2. Montrer que le coefficient dominant de $P$ est strictement positif.\n\n3. En déduire qu'il existe $\\lambda > 0$ et $Q \\in \\mathbb{C}[X]$ tels que $P = \\lambda Q\\overline{Q}$, puis qu'il existe $A, B \\in \\mathbb{R}[X]$ tels que $P = A^2 + B^2$.\n\n4. Application : en suivant la méthode de la question 3, écrire $X^4 + 1$ sous la forme $A^2 + B^2$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, écrire $P = (X - a)^m S$ avec $S(a) \\neq 0$ et étudier le signe de $P$ au voisinage de $a$.",
+        "Pour la question 3, partir de la factorisation de $P$ dans $\\mathbb{R}[X]$ et prendre pour $Q$ le produit des $(X - a_i)^{m_i/2}$ et des $(X - w_j)^{n_j}$, où $\\mathrm{Im}(w_j) > 0$ ; puis écrire $Q = A_1 + iB_1$ avec $A_1, B_1 \\in \\mathbb{R}[X]$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle écriture de $X^4 + 1$ la méthode fournit-elle ?",
+        "propositions": [
+          "$(X^2 - 1)^2 + (\\sqrt{2}X)^2$",
+          "$(X^2 + 1)^2 + (\\sqrt{2}X)^2$",
+          "$(X^2 - 1)^2 + (2X)^2$",
+          "$(X^2 - 1)^2 + (\\sqrt{2})^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Écrivons $P = (X - a)^m S$ avec $S \\in \\mathbb{R}[X]$ et $S(a) \\neq 0$. La fonction $S$ est continue, donc il existe $\\eta > 0$ tel que $S(x)$ ait le signe de $S(a)$ pour $x \\in \\left]a - \\eta, a + \\eta\\right[$. Si $m$ était impair, $(x - a)^m$ changerait de signe en $a$, donc $P(x)$ prendrait des valeurs strictement négatives d'un côté de $a$ : contradiction. Donc $m$ est pair.\n\n**2.** Soit $n = \\deg P$ et $c \\neq 0$ le coefficient dominant. Pour $x > 0$, $P(x) / x^n \\geq 0$, et $P(x)/x^n \\to c$ quand $x \\to +\\infty$ ; donc $c \\geq 0$, et $c > 0$ puisque $c \\neq 0$.\n\n**3.** D'après la factorisation dans $\\mathbb{R}[X]$ et la question 1,\n\n$$P = c \\prod_i (X - a_i)^{2k_i} \\prod_j \\big((X - w_j)(X - \\overline{w_j})\\big)^{n_j},$$\n\noù les $a_i$ sont les racines réelles (multiplicités $2k_i$) et où chaque facteur de degré $2$ est écrit à l'aide de sa racine $w_j$ de partie imaginaire strictement positive. Posons $\\lambda = c > 0$ et $Q = \\prod_i (X - a_i)^{k_i} \\prod_j (X - w_j)^{n_j}$. Alors $\\overline{Q} = \\prod_i (X - a_i)^{k_i} \\prod_j (X - \\overline{w_j})^{n_j}$, et $P = \\lambda Q\\overline{Q}$.\n\nÉcrivons $Q = A_1 + iB_1$ avec $A_1, B_1 \\in \\mathbb{R}[X]$ (parties réelle et imaginaire des coefficients). Alors $\\overline{Q} = A_1 - iB_1$ et $Q\\overline{Q} = A_1^2 + B_1^2$. Avec $A = \\sqrt{\\lambda}A_1$ et $B = \\sqrt{\\lambda}B_1$, on obtient $P = A^2 + B^2$.\n\n**4.** $X^4 + 1$ est unitaire, sans racine réelle ; ses racines de partie imaginaire strictement positive sont $e^{i\\pi/4}$ et $e^{3i\\pi/4}$, de somme $i\\sqrt{2}$ et de produit $e^{i\\pi} = -1$. Donc $Q = X^2 - i\\sqrt{2}X - 1$, soit $A_1 = X^2 - 1$ et $B_1 = -\\sqrt{2}X$, et\n\n$$X^4 + 1 = (X^2 - 1)^2 + (\\sqrt{2}X)^2.$$\n\nVérification : $(X^2 - 1)^2 + 2X^2 = X^4 - 2X^2 + 1 + 2X^2 = X^4 + 1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $P \\in \\mathbb{R}[X]$ non nul tel que $P(x) \\geq 0$ pour tout $x \\in \\mathbb{R}$. Pour $Q \\in \\mathbb{C}[X]$, on note $\\overline{Q}$ le polynôme dont les coefficients sont les conjugués de ceux de $Q$.\n\n1. Soit $a$ une racine réelle de $P$, de multiplicité $m$. Montrer que $m$ est pair.\n\n2. Montrer que le coefficient dominant de $P$ est strictement positif.\n\n3. En déduire qu'il existe $\\lambda > 0$ et $Q \\in \\mathbb{C}[X]$ tels que $P = \\lambda Q\\overline{Q}$, puis qu'il existe $A, B \\in \\mathbb{R}[X]$ tels que $P = A^2 + B^2$.\n\n4. Application : en suivant la méthode de la question 3, écrire $X^4 + 5X^2 + 4$ sous la forme $A^2 + B^2$.",
+          "indices": [
+            "Pour la question 1, écrire $P = (X - a)^m S$ avec $S(a) \\neq 0$ et étudier le signe de $P$ au voisinage de $a$.",
+            "Pour la question 4, factoriser $X^4 + 5X^2 + 4 = (X^2 + 1)(X^2 + 4)$ et prendre $Q = (X - i)(X - 2i)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle écriture de $X^4 + 5X^2 + 4$ la méthode fournit-elle ?",
+            "propositions": [
+              "$(X^2 - 2)^2 + (3X)^2$",
+              "$(X^2 + 2)^2 + (3X)^2$",
+              "$(X^2 - 2)^2 + (2X)^2$",
+              "$(X^2 - 3)^2 + (2X)^2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Écrivons $P = (X - a)^m S$ avec $S(a) \\neq 0$. Par continuité, $S$ garde le signe de $S(a)$ sur un intervalle $\\left]a - \\eta, a + \\eta\\right[$ ; si $m$ était impair, $(x - a)^m$ changerait de signe en $a$ et $P$ prendrait des valeurs strictement négatives. Donc $m$ est pair.\n\n**2.** Si $c$ est le coefficient dominant et $n = \\deg P$, $P(x)/x^n \\geq 0$ pour $x > 0$ et tend vers $c$ en $+\\infty$ : $c \\geq 0$, donc $c > 0$.\n\n**3.** Avec la factorisation réelle et la question 1, $P = c \\prod_i (X - a_i)^{2k_i} \\prod_j \\big((X - w_j)(X - \\overline{w_j})\\big)^{n_j}$ avec $\\mathrm{Im}(w_j) > 0$. Pour $Q = \\prod_i (X - a_i)^{k_i}\\prod_j (X - w_j)^{n_j}$, on a $P = cQ\\overline{Q}$ ; en écrivant $Q = A_1 + iB_1$ ($A_1, B_1$ réels), $Q\\overline{Q} = A_1^2 + B_1^2$, et $A = \\sqrt{c}A_1$, $B = \\sqrt{c}B_1$ conviennent.\n\n**4.** $X^4 + 5X^2 + 4 = (X^2 + 1)(X^2 + 4)$, unitaire, de racines de partie imaginaire positive $i$ et $2i$. Donc $Q = (X - i)(X - 2i) = X^2 - 3iX - 2$, soit $A_1 = X^2 - 2$, $B_1 = -3X$, et\n\n$$X^4 + 5X^2 + 4 = (X^2 - 2)^2 + (3X)^2.$$\n\nVérification : $X^4 - 4X^2 + 4 + 9X^2 = X^4 + 5X^2 + 4$."
+        },
+        {
+          "enonce": "Soit $P \\in \\mathbb{R}[X]$ non nul tel que $P(x) \\geq 0$ pour tout $x \\in \\mathbb{R}$. Pour $Q \\in \\mathbb{C}[X]$, on note $\\overline{Q}$ le polynôme dont les coefficients sont les conjugués de ceux de $Q$.\n\n1. Soit $a$ une racine réelle de $P$, de multiplicité $m$. Montrer que $m$ est pair.\n\n2. Montrer que le coefficient dominant de $P$ est strictement positif.\n\n3. En déduire qu'il existe $\\lambda > 0$ et $Q \\in \\mathbb{C}[X]$ tels que $P = \\lambda Q\\overline{Q}$, puis qu'il existe $A, B \\in \\mathbb{R}[X]$ tels que $P = A^2 + B^2$.\n\n4. Application : en suivant la méthode de la question 3, écrire $X^4 + 4$ sous la forme $A^2 + B^2$.",
+          "indices": [
+            "Pour la question 1, écrire $P = (X - a)^m S$ avec $S(a) \\neq 0$ et étudier le signe de $P$ au voisinage de $a$.",
+            "Pour la question 4, les racines de $X^4 + 4$ sont $\\pm 1 \\pm i$ ; prendre $Q = (X - 1 - i)(X + 1 - i)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle écriture de $X^4 + 4$ la méthode fournit-elle ?",
+            "propositions": [
+              "$(X^2 - 2)^2 + (2X)^2$",
+              "$(X^2 + 2)^2 + (2X)^2$",
+              "$(X^2 - 2)^2 + (\\sqrt{2}X)^2$",
+              "$(X^2 - 1)^2 + (2X)^2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Écrivons $P = (X - a)^m S$ avec $S(a) \\neq 0$. Par continuité, $S$ garde le signe de $S(a)$ sur un intervalle $\\left]a - \\eta, a + \\eta\\right[$ ; si $m$ était impair, $(x - a)^m$ changerait de signe en $a$ et $P$ prendrait des valeurs strictement négatives. Donc $m$ est pair.\n\n**2.** Si $c$ est le coefficient dominant et $n = \\deg P$, $P(x)/x^n \\geq 0$ pour $x > 0$ et tend vers $c$ en $+\\infty$ : $c \\geq 0$, donc $c > 0$.\n\n**3.** Avec la factorisation réelle et la question 1, $P = c \\prod_i (X - a_i)^{2k_i} \\prod_j \\big((X - w_j)(X - \\overline{w_j})\\big)^{n_j}$ avec $\\mathrm{Im}(w_j) > 0$. Pour $Q = \\prod_i (X - a_i)^{k_i}\\prod_j (X - w_j)^{n_j}$, on a $P = cQ\\overline{Q}$ ; en écrivant $Q = A_1 + iB_1$ ($A_1, B_1$ réels), $Q\\overline{Q} = A_1^2 + B_1^2$, et $A = \\sqrt{c}A_1$, $B = \\sqrt{c}B_1$ conviennent.\n\n**4.** Les racines de $X^4 + 4$ sont les $z$ tels que $z^2 = \\pm 2i$, soit $\\pm(1 + i)$ et $\\pm(1 - i)$ ; celles de partie imaginaire positive sont $1 + i$ et $-1 + i$. Donc $Q = (X - 1 - i)(X + 1 - i) = (X - i)^2 - 1 = X^2 - 2iX - 2$, soit $A_1 = X^2 - 2$, $B_1 = -2X$, et\n\n$$X^4 + 4 = (X^2 - 2)^2 + (2X)^2.$$\n\nVérification : $X^4 - 4X^2 + 4 + 4X^2 = X^4 + 4$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-viete-ex1",
+      "carte": "arith-l1-polynomes-viete",
+      "difficulte": 1,
+      "titre": "Somme des carrés des racines",
+      "enonce": "Soient $x_1, x_2, x_3$ les racines complexes, comptées avec multiplicité, de $P = X^3 - 2X^2 + 3X - 5$. Calculer $x_1^2 + x_2^2 + x_3^2$.",
+      "duree_min": 5,
+      "indices": [
+        "$x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $x_1^2 + x_2^2 + x_3^2$ ?",
+        "propositions": [
+          "$-2$",
+          "$4$",
+          "$10$",
+          "$-8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$P$ est scindé sur $\\mathbb{C}$. Les relations entre coefficients et racines donnent $\\sigma_1 = x_1 + x_2 + x_3 = 2$ et $\\sigma_2 = x_1x_2 + x_1x_3 + x_2x_3 = 3$. Comme $(x_1 + x_2 + x_3)^2 = \\sum_i x_i^2 + 2\\sigma_2$,\n\n$$x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2 = 4 - 6 = -2.$$\n\nUne somme de carrés de nombres complexes peut être négative : si les trois racines étaient réelles, la somme serait positive ; deux d'entre elles sont donc non réelles (et conjuguées).",
+      "variantes": [
+        {
+          "enonce": "Soient $x_1, x_2, x_3$ les racines complexes, comptées avec multiplicité, de $P = X^3 + X^2 - 4X + 1$. Calculer $x_1^2 + x_2^2 + x_3^2$.",
+          "indices": [
+            "$x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $x_1^2 + x_2^2 + x_3^2$ ?",
+            "propositions": [
+              "$9$",
+              "$1$",
+              "$-7$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\sigma_1 = -1$ et $\\sigma_2 = -4$, donc $x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2 = 1 + 8 = 9$."
+        },
+        {
+          "enonce": "Soient $x_1, x_2, x_3$ les racines complexes, comptées avec multiplicité, de $P = 2X^3 - 6X^2 + X + 7$. Calculer $x_1^2 + x_2^2 + x_3^2$.",
+          "indices": [
+            "$x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2$ ; attention au coefficient dominant."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $x_1^2 + x_2^2 + x_3^2$ ?",
+            "propositions": [
+              "$8$",
+              "$9$",
+              "$10$",
+              "$34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Ici $a_3 = 2$ : $\\sigma_1 = -\\frac{-6}{2} = 3$ et $\\sigma_2 = \\frac{1}{2}$. Donc $x_1^2 + x_2^2 + x_3^2 = \\sigma_1^2 - 2\\sigma_2 = 9 - 1 = 8$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-viete-ex2",
+      "carte": "arith-l1-polynomes-viete",
+      "difficulte": 2,
+      "titre": "Somme des inverses des racines",
+      "enonce": "Soient $x_1, x_2, x_3$ les racines complexes, comptées avec multiplicité, de $P = X^3 - 3X^2 + 5X + 2$. Justifier qu'elles sont non nulles et calculer $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3}$.",
+      "duree_min": 7,
+      "indices": [
+        "Réduire au même dénominateur : $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} = \\frac{\\sigma_2}{\\sigma_3}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3}$ ?",
+        "propositions": [
+          "$-\\frac{5}{2}$",
+          "$\\frac{5}{2}$",
+          "$-\\frac{2}{5}$",
+          "$-\\frac{3}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$P(0) = 2 \\neq 0$, donc $0$ n'est pas racine. Les relations donnent $\\sigma_2 = 5$ et $\\sigma_3 = x_1x_2x_3 = (-1)^3 \\cdot 2 = -2$. Alors\n\n$$\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} = \\frac{x_2x_3 + x_1x_3 + x_1x_2}{x_1x_2x_3} = \\frac{\\sigma_2}{\\sigma_3} = -\\frac{5}{2}.$$",
+      "variantes": [
+        {
+          "enonce": "Soient $x_1, x_2, x_3$ les racines complexes, comptées avec multiplicité, de $P = X^3 + 2X^2 - X - 4$. Justifier qu'elles sont non nulles et calculer $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3}$.",
+          "indices": [
+            "Réduire au même dénominateur : $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} = \\frac{\\sigma_2}{\\sigma_3}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3}$ ?",
+            "propositions": [
+              "$-\\frac{1}{4}$",
+              "$\\frac{1}{4}$",
+              "$-4$",
+              "$-\\frac{1}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$P(0) = -4 \\neq 0$. On a $\\sigma_2 = -1$ et $\\sigma_3 = (-1)^3 \\cdot (-4) = 4$, donc $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} = \\frac{\\sigma_2}{\\sigma_3} = -\\frac{1}{4}$."
+        },
+        {
+          "enonce": "Soient $x_1, x_2, x_3, x_4$ les racines complexes, comptées avec multiplicité, de $P = X^4 - X^3 + 2X - 3$. Justifier qu'elles sont non nulles et calculer $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} + \\frac{1}{x_4}$.",
+          "indices": [
+            "Réduire au même dénominateur : en degré $4$, la somme des inverses vaut $\\frac{\\sigma_3}{\\sigma_4}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} + \\frac{1}{x_4}$ ?",
+            "propositions": [
+              "$\\frac{2}{3}$",
+              "$-\\frac{2}{3}$",
+              "$\\frac{3}{2}$",
+              "$-\\frac{1}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$P(0) = -3 \\neq 0$. Au même dénominateur, la somme des inverses vaut $\\frac{\\sigma_3}{\\sigma_4}$ (le numérateur est la somme des produits de trois racines). Avec $a_4 = 1$, $a_1 = 2$, $a_0 = -3$ : $\\sigma_3 = (-1)^3 a_1 = -2$ et $\\sigma_4 = a_0 = -3$. La somme vaut $\\frac{-2}{-3} = \\frac{2}{3}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-viete-ex3",
+      "carte": "arith-l1-polynomes-viete",
+      "difficulte": 3,
+      "titre": "Une racine double d'une autre",
+      "enonce": "Déterminer les réels $\\lambda$ tels que l'une des racines complexes de $P = X^3 - 7X + \\lambda$ soit le double d'une autre.",
+      "duree_min": 15,
+      "indices": [
+        "Noter les racines $a$, $2a$ et $b$ (comptées avec multiplicité) et écrire les trois relations entre coefficients et racines.",
+        "La relation sur $\\sigma_1$ donne $b$ en fonction de $a$ ; celle sur $\\sigma_2$ donne alors $a^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des valeurs de $\\lambda$ ?",
+        "propositions": [
+          "$\\{-6, 6\\}$",
+          "$\\{6\\}$",
+          "$\\{-2, 2\\}$",
+          "$\\{-\\frac{7}{3}, \\frac{7}{3}\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Condition nécessaire.** Supposons que les racines de $P$, comptées avec multiplicité, soient $a$, $2a$ et $b$. Les relations entre coefficients et racines donnent\n\n$$a + 2a + b = 0, \\qquad 2a^2 + ab + 2ab = -7, \\qquad 2a^2 b = -\\lambda.$$\n\nLa première donne $b = -3a$, la deuxième $2a^2 - 9a^2 = -7a^2 = -7$, soit $a^2 = 1$, donc $a = \\pm 1$. Enfin $\\lambda = -2a^2 b = 6a^3 = \\pm 6$.\n\n**Réciproque.** Pour $\\lambda = 6$ : $X^3 - 7X + 6 = (X - 1)(X - 2)(X + 3)$, et $2 = 2 \\times 1$. Pour $\\lambda = -6$ : $X^3 - 7X - 6 = (X + 1)(X + 2)(X - 3)$, et $-2 = 2 \\times (-1)$.\n\nL'ensemble cherché est $\\{-6, 6\\}$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les réels $\\lambda$ tels que l'une des racines complexes de $P = X^3 - 28X + \\lambda$ soit le double d'une autre.",
+          "indices": [
+            "Noter les racines $a$, $2a$ et $b$ (comptées avec multiplicité) et écrire les trois relations entre coefficients et racines.",
+            "La relation sur $\\sigma_1$ donne $b$ en fonction de $a$ ; celle sur $\\sigma_2$ donne alors $a^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des valeurs de $\\lambda$ ?",
+            "propositions": [
+              "$\\{-48, 48\\}$",
+              "$\\{48\\}$",
+              "$\\{-24, 24\\}$",
+              "$\\{-12, 12\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Si les racines sont $a$, $2a$, $b$ : $3a + b = 0$, $2a^2 + 3ab = -28$, $2a^2 b = -\\lambda$. Donc $b = -3a$, $-7a^2 = -28$, $a = \\pm 2$, et $\\lambda = 6a^3 = \\pm 48$.\n\nRéciproquement, $X^3 - 28X + 48 = (X - 2)(X - 4)(X + 6)$ et $X^3 - 28X - 48 = (X + 2)(X + 4)(X - 6)$ conviennent. L'ensemble est $\\{-48, 48\\}$."
+        },
+        {
+          "enonce": "Déterminer les réels $\\lambda$ tels que l'une des racines complexes de $P = X^3 - 63X + \\lambda$ soit le double d'une autre.",
+          "indices": [
+            "Noter les racines $a$, $2a$ et $b$ (comptées avec multiplicité) et écrire les trois relations entre coefficients et racines.",
+            "La relation sur $\\sigma_1$ donne $b$ en fonction de $a$ ; celle sur $\\sigma_2$ donne alors $a^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des valeurs de $\\lambda$ ?",
+            "propositions": [
+              "$\\{-162, 162\\}$",
+              "$\\{162\\}$",
+              "$\\{-54, 54\\}$",
+              "$\\{-81, 81\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Si les racines sont $a$, $2a$, $b$ : $3a + b = 0$, $2a^2 + 3ab = -63$, $2a^2 b = -\\lambda$. Donc $b = -3a$, $-7a^2 = -63$, $a = \\pm 3$, et $\\lambda = 6a^3 = \\pm 162$.\n\nRéciproquement, $X^3 - 63X + 162 = (X - 3)(X - 6)(X + 9)$ et $X^3 - 63X - 162 = (X + 3)(X + 6)(X - 9)$ conviennent. L'ensemble est $\\{-162, 162\\}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-viete-ex4",
+      "carte": "arith-l1-polynomes-viete",
+      "difficulte": 4,
+      "titre": "Un système symétrique par les sommes de Newton",
+      "enonce": "On cherche les triplets $(x, y, z) \\in \\mathbb{C}^3$ tels que\n\n$$x + y + z = 2, \\qquad x^2 + y^2 + z^2 = 6, \\qquad x^3 + y^3 + z^3 = 8.$$\n\n1. Soient $x, y, z \\in \\mathbb{C}$, $\\sigma_1, \\sigma_2, \\sigma_3$ leurs fonctions symétriques élémentaires et $p_k = x^k + y^k + z^k$. Montrer que $p_2 = \\sigma_1 p_1 - 2\\sigma_2$ et $p_3 = \\sigma_1 p_2 - \\sigma_2 p_1 + 3\\sigma_3$.\n\n2. En déduire $\\sigma_1, \\sigma_2, \\sigma_3$ pour une solution, puis un polynôme dont $x, y, z$ sont les racines.\n\n3. Résoudre le système.",
+      "duree_min": 20,
+      "indices": [
+        "$x$, $y$ et $z$ sont racines de $T = X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$ : écrire $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$ et sommer.",
+        "Un triplet est solution si et seulement si $(X - x)(X - y)(X - z)$ est un polynôme bien déterminé : chercher ses racines évidentes."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les solutions du système ?",
+        "propositions": [
+          "Les $6$ permutations de $(-1, 1, 2)$",
+          "Le seul triplet $(-1, 1, 2)$",
+          "Les permutations de $(0, 1, 1)$",
+          "Il n'y en a aucune"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $p_1^2 = (x + y + z)^2 = p_2 + 2\\sigma_2$, d'où $p_2 = \\sigma_1 p_1 - 2\\sigma_2$ (car $p_1 = \\sigma_1$). Ensuite, $x, y, z$ sont les racines de $T = (X - x)(X - y)(X - z) = X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$ ; donc $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$, et de même pour $y$ et $z$. En sommant : $p_3 = \\sigma_1p_2 - \\sigma_2p_1 + 3\\sigma_3$.\n\n**2.** Pour une solution, $\\sigma_1 = 2$ ; $6 = 2 \\times 2 - 2\\sigma_2$ donne $\\sigma_2 = -1$ ; $8 = 2 \\times 6 - (-1) \\times 2 + 3\\sigma_3 = 14 + 3\\sigma_3$ donne $\\sigma_3 = -2$. Donc $(X - x)(X - y)(X - z) = X^3 - 2X^2 - X + 2$.\n\n**3.** $X^3 - 2X^2 - X + 2 = X^2(X - 2) - (X - 2) = (X - 1)(X + 1)(X - 2)$. Si $(x, y, z)$ est solution, $(X - x)(X - y)(X - z) = (X - 1)(X + 1)(X - 2)$, donc, par unicité de la factorisation en facteurs de degré $1$, $(x, y, z)$ est une permutation de $(-1, 1, 2)$. Réciproquement, ces triplets vérifient $-1 + 1 + 2 = 2$, $1 + 1 + 4 = 6$, $-1 + 1 + 8 = 8$.\n\nLes solutions sont les $6$ permutations de $(-1, 1, 2)$.",
+      "variantes": [
+        {
+          "enonce": "On cherche les triplets $(x, y, z) \\in \\mathbb{C}^3$ tels que\n\n$$x + y + z = 0, \\qquad x^2 + y^2 + z^2 = 26, \\qquad x^3 + y^3 + z^3 = -36.$$\n\n1. Soient $x, y, z \\in \\mathbb{C}$, $\\sigma_1, \\sigma_2, \\sigma_3$ leurs fonctions symétriques élémentaires et $p_k = x^k + y^k + z^k$. Montrer que $p_2 = \\sigma_1 p_1 - 2\\sigma_2$ et $p_3 = \\sigma_1 p_2 - \\sigma_2 p_1 + 3\\sigma_3$.\n\n2. En déduire $\\sigma_1, \\sigma_2, \\sigma_3$ pour une solution, puis un polynôme dont $x, y, z$ sont les racines.\n\n3. Résoudre le système.",
+          "indices": [
+            "$x$, $y$ et $z$ sont racines de $T = X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$ : écrire $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$ et sommer.",
+            "Un triplet est solution si et seulement si $(X - x)(X - y)(X - z)$ est un polynôme bien déterminé : chercher ses racines évidentes."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les solutions du système ?",
+            "propositions": [
+              "Les $6$ permutations de $(1, 3, -4)$",
+              "Le seul triplet $(-4, 1, 3)$",
+              "Les permutations de $(-1, -3, 4)$",
+              "Il n'y en a aucune"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $p_1^2 = p_2 + 2\\sigma_2$ donne $p_2 = \\sigma_1p_1 - 2\\sigma_2$. Comme $x, y, z$ sont racines de $X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$, $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$ (de même pour $y$, $z$), et en sommant $p_3 = \\sigma_1p_2 - \\sigma_2p_1 + 3\\sigma_3$.\n\n**2.** $\\sigma_1 = 0$ ; $26 = 0 - 2\\sigma_2$ donne $\\sigma_2 = -13$ ; $-36 = 0 - 0 + 3\\sigma_3$ donne $\\sigma_3 = -12$. Donc $(X - x)(X - y)(X - z) = X^3 - 13X + 12$.\n\n**3.** $1$ est racine évidente : $X^3 - 13X + 12 = (X - 1)(X^2 + X - 12) = (X - 1)(X - 3)(X + 4)$. Les solutions sont les $6$ permutations de $(1, 3, -4)$ ; réciproquement $1 + 3 - 4 = 0$, $1 + 9 + 16 = 26$, $1 + 27 - 64 = -36$."
+        },
+        {
+          "enonce": "On cherche les triplets $(x, y, z) \\in \\mathbb{C}^3$ tels que\n\n$$x + y + z = 4, \\qquad x^2 + y^2 + z^2 = 14, \\qquad x^3 + y^3 + z^3 = 34.$$\n\n1. Soient $x, y, z \\in \\mathbb{C}$, $\\sigma_1, \\sigma_2, \\sigma_3$ leurs fonctions symétriques élémentaires et $p_k = x^k + y^k + z^k$. Montrer que $p_2 = \\sigma_1 p_1 - 2\\sigma_2$ et $p_3 = \\sigma_1 p_2 - \\sigma_2 p_1 + 3\\sigma_3$.\n\n2. En déduire $\\sigma_1, \\sigma_2, \\sigma_3$ pour une solution, puis un polynôme dont $x, y, z$ sont les racines.\n\n3. Résoudre le système.",
+          "indices": [
+            "$x$, $y$ et $z$ sont racines de $T = X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$ : écrire $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$ et sommer.",
+            "Un triplet est solution si et seulement si $(X - x)(X - y)(X - z)$ est un polynôme bien déterminé : chercher ses racines évidentes."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les solutions du système ?",
+            "propositions": [
+              "Les $6$ permutations de $(-1, 2, 3)$",
+              "Le seul triplet $(-1, 2, 3)$",
+              "Les permutations de $(1, -2, 5)$",
+              "Il n'y en a aucune"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $p_1^2 = p_2 + 2\\sigma_2$ donne $p_2 = \\sigma_1p_1 - 2\\sigma_2$. Comme $x, y, z$ sont racines de $X^3 - \\sigma_1X^2 + \\sigma_2X - \\sigma_3$, $x^3 = \\sigma_1x^2 - \\sigma_2x + \\sigma_3$ (de même pour $y$, $z$), et en sommant $p_3 = \\sigma_1p_2 - \\sigma_2p_1 + 3\\sigma_3$.\n\n**2.** $\\sigma_1 = 4$ ; $14 = 16 - 2\\sigma_2$ donne $\\sigma_2 = 1$ ; $34 = 4 \\times 14 - 1 \\times 4 + 3\\sigma_3 = 52 + 3\\sigma_3$ donne $\\sigma_3 = -6$. Donc $(X - x)(X - y)(X - z) = X^3 - 4X^2 + X + 6$.\n\n**3.** $-1$ est racine évidente : $X^3 - 4X^2 + X + 6 = (X + 1)(X^2 - 5X + 6) = (X + 1)(X - 2)(X - 3)$. Les solutions sont les $6$ permutations de $(-1, 2, 3)$ ; réciproquement $-1 + 2 + 3 = 4$, $1 + 4 + 9 = 14$, $-1 + 8 + 27 = 34$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-bezout-ex1",
+      "carte": "arith-l1-polynomes-bezout",
+      "difficulte": 1,
+      "titre": "PGCD par l'algorithme d'Euclide",
+      "enonce": "Calculer le PGCD de $A = X^4 - 1$ et $B = X^3 - 1$ dans $\\mathbb{R}[X]$ par l'algorithme d'Euclide.",
+      "duree_min": 6,
+      "indices": [
+        "Première division : $X^4 - 1 = X \\cdot (X^3 - 1) + \\dots$"
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A \\wedge B$ ?",
+        "propositions": [
+          "$X - 1$",
+          "$1$",
+          "$X + 1$",
+          "$X^2 + X + 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- $X^4 - 1 = X(X^3 - 1) + (X - 1)$ ;\n- $X^3 - 1 = (X - 1)(X^2 + X + 1) + 0$.\n\nLe dernier reste non nul est $X - 1$, déjà unitaire : $A \\wedge B = X - 1$.",
+      "variantes": [
+        {
+          "enonce": "Calculer le PGCD de $A = X^3 - X^2 - X + 1$ et $B = X^3 + X^2 - X - 1$ dans $\\mathbb{R}[X]$ par l'algorithme d'Euclide.",
+          "indices": [
+            "Première division : $A = 1 \\cdot B + \\dots$ ; penser à normaliser le résultat final."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A \\wedge B$ ?",
+            "propositions": [
+              "$X^2 - 1$",
+              "$X - 1$",
+              "$-2X^2 + 2$",
+              "$(X - 1)^2(X + 1)^2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $A = 1 \\cdot B + (-2X^2 + 2)$ ;\n- $B = (-2X^2 + 2)\\left(-\\frac{X}{2} - \\frac{1}{2}\\right) + 0$, car $B = (X + 1)(X^2 - 1)$.\n\nLe dernier reste non nul est $-2X^2 + 2$ ; rendu unitaire, il donne $A \\wedge B = X^2 - 1$. On le vérifie sur les factorisations $A = (X - 1)^2(X + 1)$ et $B = (X + 1)^2(X - 1)$."
+        },
+        {
+          "enonce": "Calculer le PGCD de $A = X^3 + 2X^2 + 2X + 1$ et $B = X^3 - 1$ dans $\\mathbb{R}[X]$ par l'algorithme d'Euclide.",
+          "indices": [
+            "Première division : $A = 1 \\cdot B + \\dots$ ; penser à normaliser le résultat final."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A \\wedge B$ ?",
+            "propositions": [
+              "$X^2 + X + 1$",
+              "$2X^2 + 2X + 2$",
+              "$X + 1$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $A = 1 \\cdot B + (2X^2 + 2X + 2)$ ;\n- $B = (2X^2 + 2X + 2)\\cdot\\frac{X - 1}{2} + 0$, car $X^3 - 1 = (X - 1)(X^2 + X + 1)$.\n\nLe dernier reste non nul est $2X^2 + 2X + 2$ ; rendu unitaire, $A \\wedge B = X^2 + X + 1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-bezout-ex2",
+      "carte": "arith-l1-polynomes-bezout",
+      "difficulte": 2,
+      "titre": "Une relation de Bézout explicite",
+      "enonce": "Soient $A = X^2 + 1$ et $B = X - 1$ dans $\\mathbb{R}[X]$. Montrer que $A$ et $B$ sont premiers entre eux et déterminer $U, V \\in \\mathbb{R}[X]$ tels que $AU + BV = 1$, avec $\\deg U < \\deg B$ et $\\deg V < \\deg A$.",
+      "duree_min": 8,
+      "indices": [
+        "Effectuer la division euclidienne de $A$ par $B$ : le reste est une constante non nulle."
+      ],
+      "reponse_finale": {
+        "question": "Quel couple $(U, V)$ convient ?",
+        "propositions": [
+          "$U = \\frac{1}{2}$, $V = -\\frac{X + 1}{2}$",
+          "$U = \\frac{1}{2}$, $V = \\frac{X + 1}{2}$",
+          "$U = 1$, $V = -(X + 1)$",
+          "$U = 2$, $V = -2(X + 1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La division euclidienne donne $X^2 + 1 = (X - 1)(X + 1) + 2$. Le reste $2$ est une constante non nulle, donc $A \\wedge B = B \\wedge 2 = 1$ : $A$ et $B$ sont premiers entre eux. De $2 = A - (X + 1)B$, on tire\n\n$$A \\cdot \\frac{1}{2} + B \\cdot \\left(-\\frac{X + 1}{2}\\right) = 1,$$\n\navec $\\deg U = 0 < 1$ et $\\deg V = 1 < 2$. Ce couple est le seul vérifiant ces conditions de degré : si $AU + BV = AU' + BV'$, alors $B$ divise $A(U - U')$, donc $U - U'$ (lemme de Gauss), et $\\deg(U - U') < \\deg B$ impose $U = U'$, puis $V = V'$.",
+      "variantes": [
+        {
+          "enonce": "Soient $A = X^2 + X + 1$ et $B = X + 2$ dans $\\mathbb{R}[X]$. Montrer que $A$ et $B$ sont premiers entre eux et déterminer $U, V \\in \\mathbb{R}[X]$ tels que $AU + BV = 1$, avec $\\deg U < \\deg B$ et $\\deg V < \\deg A$.",
+          "indices": [
+            "Effectuer la division euclidienne de $A$ par $B$ : le reste est une constante non nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quel couple $(U, V)$ convient ?",
+            "propositions": [
+              "$U = \\frac{1}{3}$, $V = -\\frac{X - 1}{3}$",
+              "$U = \\frac{1}{3}$, $V = \\frac{X - 1}{3}$",
+              "$U = 1$, $V = -(X - 1)$",
+              "$U = \\frac{1}{3}$, $V = -\\frac{X + 1}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^2 + X + 1 = (X + 2)(X - 1) + 3$ : le reste $3$ est une constante non nulle, donc $A \\wedge B = 1$. De $3 = A - (X - 1)B$ :\n\n$$A \\cdot \\frac{1}{3} + B \\cdot \\left(-\\frac{X - 1}{3}\\right) = 1,$$\n\navec $\\deg U = 0 < 1$ et $\\deg V = 1 < 2$ ; ce couple est unique sous ces conditions de degré (lemme de Gauss)."
+        },
+        {
+          "enonce": "Soient $A = X^3 + 1$ et $B = X^2 + 1$ dans $\\mathbb{R}[X]$. Montrer que $A$ et $B$ sont premiers entre eux et déterminer $U, V \\in \\mathbb{R}[X]$ tels que $AU + BV = 1$, avec $\\deg U < \\deg B$ et $\\deg V < \\deg A$.",
+          "indices": [
+            "Algorithme d'Euclide : $A = X \\cdot B + (1 - X)$, puis diviser $B$ par $1 - X$ ; remonter les calculs."
+          ],
+          "reponse_finale": {
+            "question": "Quel couple $(U, V)$ convient ?",
+            "propositions": [
+              "$U = \\frac{X + 1}{2}$, $V = -\\frac{X^2 + X - 1}{2}$",
+              "$U = \\frac{X + 1}{2}$, $V = \\frac{X^2 + X - 1}{2}$",
+              "$U = X + 1$, $V = -(X^2 + X - 1)$",
+              "$U = \\frac{X - 1}{2}$, $V = -\\frac{X^2 - X - 1}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $A = X \\cdot B + (1 - X)$ ;\n- $B = (1 - X)(-X - 1) + 2$, car $(1 - X)(-X - 1) = X^2 - 1$.\n\nLe dernier reste non nul est la constante $2$ : $A \\wedge B = 1$. En remontant : $2 = B + (1 - X)(X + 1) = B + (A - XB)(X + 1) = (X + 1)A + (1 - X^2 - X)B$. D'où\n\n$$A \\cdot \\frac{X + 1}{2} + B \\cdot \\left(-\\frac{X^2 + X - 1}{2}\\right) = 1,$$\n\navec $\\deg U = 1 < 2$ et $\\deg V = 2 < 3$. Vérification : $(X^3 + 1)(X + 1) - (X^2 + 1)(X^2 + X - 1) = (X^4 + X^3 + X + 1) - (X^4 + X^3 + X - 1) = 2$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-bezout-ex3",
+      "carte": "arith-l1-polynomes-bezout",
+      "difficulte": 3,
+      "titre": "PGCD de deux polynômes de la forme X^a − 1",
+      "enonce": "Soient $a, b \\in \\mathbb{N}^*$. Montrer que $(X^a - 1) \\wedge (X^b - 1) = X^{a \\wedge b} - 1$ dans $\\mathbb{R}[X]$, puis calculer $(X^{12} - 1) \\wedge (X^{18} - 1)$.",
+      "duree_min": 15,
+      "indices": [
+        "Le reste de la division de $X^a - 1$ par $X^b - 1$ ($b \\geq 1$) est $X^r - 1$, où $r$ est le reste de la division de $a$ par $b$.",
+        "L'algorithme d'Euclide sur les polynômes suit donc pas à pas celui sur les exposants : raisonner par récurrence forte sur $\\min(a, b)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $(X^{12} - 1) \\wedge (X^{18} - 1)$ ?",
+        "propositions": [
+          "$X^6 - 1$",
+          "$X^{36} - 1$",
+          "$X - 1$",
+          "$X^3 - 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $b \\geq 1$ et $a = bq + r$ ($0 \\leq r < b$), on a $X^a - 1 = (X^b - 1)X^rC + (X^r - 1)$ où $C = \\sum_{k=0}^{q-1}X^{bk}$, et $\\deg(X^r - 1) < b$ : le reste de $X^a - 1$ par $X^b - 1$ est $X^r - 1$. Donc $(X^a - 1) \\wedge (X^b - 1) = (X^b - 1) \\wedge (X^r - 1)$.\n\nMontrons la formule par récurrence forte sur $b = \\min(a, b)$, quitte à échanger $a$ et $b$. Si $r = 0$, alors $b \\mid a$, $X^b - 1$ divise $X^a - 1$ et le PGCD est $X^b - 1 = X^{a \\wedge b} - 1$. Si $r \\geq 1$, le PGCD vaut $(X^b - 1) \\wedge (X^r - 1)$ avec $1 \\leq r < b$, donc $X^{b \\wedge r} - 1$ par hypothèse de récurrence, et $b \\wedge r = a \\wedge b$ (algorithme d'Euclide dans $\\mathbb{Z}$).\n\nApplication : $12 \\wedge 18 = 6$, donc $(X^{12} - 1) \\wedge (X^{18} - 1) = X^6 - 1$.",
+      "variantes": [
+        {
+          "enonce": "Soient $a, b \\in \\mathbb{N}^*$. Montrer que $(X^a - 1) \\wedge (X^b - 1) = X^{a \\wedge b} - 1$ dans $\\mathbb{R}[X]$, puis calculer $(X^{15} - 1) \\wedge (X^{25} - 1)$.",
+          "indices": [
+            "Le reste de la division de $X^a - 1$ par $X^b - 1$ ($b \\geq 1$) est $X^r - 1$, où $r$ est le reste de la division de $a$ par $b$.",
+            "L'algorithme d'Euclide sur les polynômes suit donc pas à pas celui sur les exposants : raisonner par récurrence forte sur $\\min(a, b)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $(X^{15} - 1) \\wedge (X^{25} - 1)$ ?",
+            "propositions": [
+              "$X^5 - 1$",
+              "$X^{75} - 1$",
+              "$X^{10} - 1$",
+              "$X - 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $b \\geq 1$ et $a = bq + r$ ($0 \\leq r < b$), le reste de $X^a - 1$ par $X^b - 1$ est $X^r - 1$, donc $(X^a - 1) \\wedge (X^b - 1) = (X^b - 1) \\wedge (X^r - 1)$. Par récurrence forte sur $\\min(a, b)$ : si $r = 0$, le PGCD est $X^b - 1 = X^{a \\wedge b} - 1$ ; sinon il vaut $X^{b \\wedge r} - 1 = X^{a \\wedge b} - 1$.\n\nApplication : $15 \\wedge 25 = 5$, donc le PGCD est $X^5 - 1$."
+        },
+        {
+          "enonce": "Soient $a, b \\in \\mathbb{N}^*$. Montrer que $(X^a - 1) \\wedge (X^b - 1) = X^{a \\wedge b} - 1$ dans $\\mathbb{R}[X]$, puis calculer $(X^{14} - 1) \\wedge (X^{9} - 1)$.",
+          "indices": [
+            "Le reste de la division de $X^a - 1$ par $X^b - 1$ ($b \\geq 1$) est $X^r - 1$, où $r$ est le reste de la division de $a$ par $b$.",
+            "L'algorithme d'Euclide sur les polynômes suit donc pas à pas celui sur les exposants : raisonner par récurrence forte sur $\\min(a, b)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $(X^{14} - 1) \\wedge (X^{9} - 1)$ ?",
+            "propositions": [
+              "$X - 1$",
+              "$X^{126} - 1$",
+              "$X^5 - 1$",
+              "$X^2 - 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $b \\geq 1$ et $a = bq + r$ ($0 \\leq r < b$), le reste de $X^a - 1$ par $X^b - 1$ est $X^r - 1$, donc $(X^a - 1) \\wedge (X^b - 1) = (X^b - 1) \\wedge (X^r - 1)$. Par récurrence forte sur $\\min(a, b)$ : si $r = 0$, le PGCD est $X^b - 1 = X^{a \\wedge b} - 1$ ; sinon il vaut $X^{b \\wedge r} - 1 = X^{a \\wedge b} - 1$.\n\nApplication : $14 \\wedge 9 = 1$, donc le PGCD est $X - 1$. (Les restes successifs sont $X^5 - 1$, $X^4 - 1$, $X - 1$, puis $0$.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-bezout-ex4",
+      "carte": "arith-l1-polynomes-bezout",
+      "difficulte": 4,
+      "titre": "Racines communes et PGCD sur différents corps",
+      "enonce": "1. Soient $A, B \\in \\mathbb{C}[X]$ non tous deux nuls. Montrer que $A \\wedge B = 1$ si et seulement si $A$ et $B$ n'ont aucune racine complexe commune.\n\n2. Soient $A, B \\in \\mathbb{Q}[X]$ non tous deux nuls. Montrer que leur PGCD dans $\\mathbb{Q}[X]$ est égal à leur PGCD dans $\\mathbb{C}[X]$.\n\n3. Déterminer les entiers $n \\geq 1$ tels que $X^2 + X + 1$ et $X^n + 1$ ne soient pas premiers entre eux dans $\\mathbb{Q}[X]$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : un diviseur commun non constant a une racine (d'Alembert-Gauss) ; une racine commune $z$ donne le diviseur commun $X - z$.",
+        "Question 2 : si $D = A \\wedge B$ dans $\\mathbb{Q}[X]$, écrire $D = AU + BV$ et comparer avec le PGCD $D'$ dans $\\mathbb{C}[X]$ (chacun divise l'autre)."
+      ],
+      "reponse_finale": {
+        "question": "Pour quels $n \\geq 1$ ces polynômes ne sont-ils pas premiers entre eux ?",
+        "propositions": [
+          "Aucun : ils sont toujours premiers entre eux",
+          "Les $n$ impairs",
+          "Les $n$ multiples de $3$",
+          "Les $n \\equiv 1 \\pmod 3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $z$ est racine commune, $X - z$ divise $A$ et $B$, donc divise $A \\wedge B$, qui n'est pas constant : $A \\wedge B \\neq 1$. Réciproquement, si $D = A \\wedge B \\neq 1$, $D$ est unitaire non constant, donc a une racine $z$ (d'Alembert-Gauss) ; comme $D$ divise $A$ et $B$, $z$ est racine commune.\n\n**2.** Soit $D$ le PGCD dans $\\mathbb{Q}[X]$ et $D'$ celui dans $\\mathbb{C}[X]$. $D$ divise $A$ et $B$ dans $\\mathbb{Q}[X]$, donc dans $\\mathbb{C}[X]$, donc $D \\mid D'$. Par Bézout dans $\\mathbb{Q}[X]$, $D = AU + BV$ avec $U, V \\in \\mathbb{Q}[X]$, et $D'$, qui divise $A$ et $B$, divise $D$. Ainsi $D$ et $D'$ sont unitaires et se divisent mutuellement : $D = D'$.\n\n**3.** Par 2 et 1, les deux polynômes ne sont pas premiers entre eux dans $\\mathbb{Q}[X]$ si et seulement s'ils ont une racine complexe commune. Les racines de $X^2 + X + 1$ sont $j = e^{2i\\pi/3}$ et $j^2 = \\overline{j}$. Or $j^n \\in \\{1, j, j^2\\}$ selon le reste de $n$ modulo $3$, et aucun de ces nombres ne vaut $-1$ ; de même pour $(j^2)^n$. Donc $X^n + 1$ ne s'annule jamais en $j$ ni en $j^2$ : pour tout $n \\geq 1$, les deux polynômes sont premiers entre eux. Aucun $n$ ne convient.",
+      "variantes": [
+        {
+          "enonce": "1. Soient $A, B \\in \\mathbb{C}[X]$ non tous deux nuls. Montrer que $A \\wedge B = 1$ si et seulement si $A$ et $B$ n'ont aucune racine complexe commune.\n\n2. Soient $A, B \\in \\mathbb{Q}[X]$ non tous deux nuls. Montrer que leur PGCD dans $\\mathbb{Q}[X]$ est égal à leur PGCD dans $\\mathbb{C}[X]$.\n\n3. Déterminer les entiers $n \\geq 1$ tels que $X^2 + 1$ et $X^n + 1$ ne soient pas premiers entre eux dans $\\mathbb{Q}[X]$.",
+          "indices": [
+            "Question 1 : un diviseur commun non constant a une racine (d'Alembert-Gauss) ; une racine commune $z$ donne le diviseur commun $X - z$.",
+            "Question 3 : les racines de $X^2 + 1$ sont $\\pm i$ ; chercher quand $i^n = -1$."
+          ],
+          "reponse_finale": {
+            "question": "Pour quels $n \\geq 1$ ces polynômes ne sont-ils pas premiers entre eux ?",
+            "propositions": [
+              "Les $n \\equiv 2 \\pmod 4$",
+              "Les $n$ pairs",
+              "Les $n \\equiv 0 \\pmod 4$",
+              "Aucun : ils sont toujours premiers entre eux"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $z$ est racine commune, $X - z$ divise $A \\wedge B$, qui n'est donc pas $1$. Réciproquement, si $D = A \\wedge B \\neq 1$, $D$ est non constant, a une racine $z$ (d'Alembert-Gauss), qui est racine commune de $A$ et $B$.\n\n**2.** Le PGCD $D$ dans $\\mathbb{Q}[X]$ divise $A$ et $B$ dans $\\mathbb{C}[X]$, donc divise le PGCD $D'$ dans $\\mathbb{C}[X]$ ; et $D = AU + BV$ avec $U, V \\in \\mathbb{Q}[X]$, donc $D' \\mid D$. Unitaires et associés, ils sont égaux.\n\n**3.** Il faut et il suffit d'une racine complexe commune. Les racines de $X^2 + 1$ sont $i$ et $-i$. Or $i^n = -1$ si et seulement si $n \\equiv 2 \\pmod 4$, et $(-i)^n = \\overline{i^n}$ vaut $-1$ exactement dans le même cas. Les entiers cherchés sont les $n \\equiv 2 \\pmod 4$ ; par exemple $X^2 + 1$ divise $X^2 + 1$ et $X^6 + 1 = (X^2 + 1)(X^4 - X^2 + 1)$."
+        },
+        {
+          "enonce": "1. Soient $A, B \\in \\mathbb{C}[X]$ non tous deux nuls. Montrer que $A \\wedge B = 1$ si et seulement si $A$ et $B$ n'ont aucune racine complexe commune.\n\n2. Soient $A, B \\in \\mathbb{Q}[X]$ non tous deux nuls. Montrer que leur PGCD dans $\\mathbb{Q}[X]$ est égal à leur PGCD dans $\\mathbb{C}[X]$.\n\n3. Déterminer les entiers $n \\geq 1$ tels que $X^2 - X + 1$ et $X^n + 1$ ne soient pas premiers entre eux dans $\\mathbb{Q}[X]$.",
+          "indices": [
+            "Question 1 : un diviseur commun non constant a une racine (d'Alembert-Gauss) ; une racine commune $z$ donne le diviseur commun $X - z$.",
+            "Question 3 : les racines de $X^2 - X + 1$ sont $e^{\\pm i\\pi/3}$ ; chercher quand $e^{in\\pi/3} = -1$."
+          ],
+          "reponse_finale": {
+            "question": "Pour quels $n \\geq 1$ ces polynômes ne sont-ils pas premiers entre eux ?",
+            "propositions": [
+              "Les $n \\equiv 3 \\pmod 6$",
+              "Les $n$ impairs",
+              "Les $n$ multiples de $3$",
+              "Aucun : ils sont toujours premiers entre eux"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $z$ est racine commune, $X - z$ divise $A \\wedge B$, qui n'est donc pas $1$. Réciproquement, si $D = A \\wedge B \\neq 1$, $D$ est non constant, a une racine $z$ (d'Alembert-Gauss), qui est racine commune de $A$ et $B$.\n\n**2.** Le PGCD $D$ dans $\\mathbb{Q}[X]$ divise $A$ et $B$ dans $\\mathbb{C}[X]$, donc divise le PGCD $D'$ dans $\\mathbb{C}[X]$ ; et $D = AU + BV$ avec $U, V \\in \\mathbb{Q}[X]$, donc $D' \\mid D$. Unitaires et associés, ils sont égaux.\n\n**3.** Il faut et il suffit d'une racine complexe commune. Les racines de $X^2 - X + 1$ sont $e^{i\\pi/3}$ et $e^{-i\\pi/3}$ (somme $1$, produit $1$). Or $e^{in\\pi/3} = -1 = e^{i\\pi}$ si et seulement si $\\frac{n\\pi}{3} \\equiv \\pi \\pmod{2\\pi}$, c'est-à-dire $n \\equiv 3 \\pmod 6$, et la racine conjuguée donne la même condition. Les entiers cherchés sont les $n \\equiv 3 \\pmod 6$ ; par exemple $X^3 + 1 = (X + 1)(X^2 - X + 1)$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-lagrange-ex1",
+      "carte": "arith-l1-polynomes-lagrange",
+      "difficulte": 1,
+      "titre": "Polynôme d'interpolation en trois points",
+      "enonce": "Déterminer le polynôme $P \\in \\mathbb{R}[X]$ de degré au plus $2$ tel que $P(0) = 1$, $P(1) = 3$ et $P(2) = 7$.",
+      "duree_min": 5,
+      "indices": [
+        "Écrire $P = aX^2 + bX + c$ et résoudre le système, ou utiliser les polynômes de Lagrange."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P$ ?",
+        "propositions": [
+          "$X^2 + X + 1$",
+          "$2X + 1$",
+          "$X^2 + 2X + 1$",
+          "$2X^2 + 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les abscisses $0, 1, 2$ sont distinctes : il existe un unique tel $P$. Avec $P = aX^2 + bX + c$ : $c = 1$, $a + b + 1 = 3$, $4a + 2b + 1 = 7$. Donc $a + b = 2$ et $2a + b = 3$, soit $a = 1$, $b = 1$ : $P = X^2 + X + 1$.\n\nAvec les polynômes de Lagrange : $P = 1 \\cdot \\frac{(X - 1)(X - 2)}{2} + 3 \\cdot \\frac{X(X - 2)}{-1} + 7 \\cdot \\frac{X(X - 1)}{2}$, qui se développe en $X^2 + X + 1$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer le polynôme $P \\in \\mathbb{R}[X]$ de degré au plus $2$ tel que $P(-1) = 2$, $P(0) = 1$ et $P(1) = 4$.",
+          "indices": [
+            "Écrire $P = aX^2 + bX + c$ et résoudre le système, ou utiliser les polynômes de Lagrange."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P$ ?",
+            "propositions": [
+              "$2X^2 + X + 1$",
+              "$2X^2 - X + 1$",
+              "$X^2 + X + 2$",
+              "$3X^2 + 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les abscisses sont distinctes : $P$ existe et est unique. Avec $P = aX^2 + bX + c$ : $c = 1$, $a - b + 1 = 2$, $a + b + 1 = 4$. Donc $a - b = 1$ et $a + b = 3$, soit $a = 2$, $b = 1$ : $P = 2X^2 + X + 1$."
+        },
+        {
+          "enonce": "Déterminer le polynôme $P \\in \\mathbb{R}[X]$ de degré au plus $2$ tel que $P(1) = 0$, $P(2) = 1$ et $P(3) = 4$.",
+          "indices": [
+            "Écrire $P = aX^2 + bX + c$ et résoudre le système, ou utiliser les polynômes de Lagrange."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P$ ?",
+            "propositions": [
+              "$X^2 - 2X + 1$",
+              "$X^2 - 1$",
+              "$X^2 - 3X + 2$",
+              "$2X^2 - 5X + 3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les abscisses sont distinctes : $P$ existe et est unique. Avec $P = aX^2 + bX + c$ : $a + b + c = 0$, $4a + 2b + c = 1$, $9a + 3b + c = 4$. Par différences, $3a + b = 1$ et $5a + b = 3$, d'où $a = 1$, $b = -2$, $c = 1$ : $P = X^2 - 2X + 1 = (X - 1)^2$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-lagrange-ex2",
+      "carte": "arith-l1-polynomes-lagrange",
+      "difficulte": 2,
+      "titre": "Une valeur du polynôme d'interpolation",
+      "enonce": "Soit $P \\in \\mathbb{R}[X]$ de degré au plus $3$ tel que $P(0) = 1$, $P(1) = 0$, $P(2) = -1$ et $P(3) = 4$. Calculer $P(4)$ à l'aide des polynômes de Lagrange associés aux abscisses $0, 1, 2, 3$.",
+      "duree_min": 10,
+      "indices": [
+        "$P(4) = \\sum_i P(i) L_i(4)$ : calculer les quatre nombres $L_i(4) = \\prod_{j \\neq i} \\frac{4 - j}{i - j}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(4)$ ?",
+        "propositions": [
+          "$21$",
+          "$13$",
+          "$-11$",
+          "$9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par l'interpolation de Lagrange, $P = \\sum_{i=0}^{3} P(i) L_i$ avec $L_i = \\prod_{j \\neq i} \\frac{X - j}{i - j}$. En $4$ :\n\n- $L_0(4) = \\frac{(4 - 1)(4 - 2)(4 - 3)}{(0 - 1)(0 - 2)(0 - 3)} = \\frac{6}{-6} = -1$ ;\n- $L_1(4) = \\frac{4 \\cdot 2 \\cdot 1}{1 \\cdot (-1)(-2)} = 4$ ;\n- $L_2(4) = \\frac{4 \\cdot 3 \\cdot 1}{2 \\cdot 1 \\cdot (-1)} = -6$ ;\n- $L_3(4) = \\frac{4 \\cdot 3 \\cdot 2}{3 \\cdot 2 \\cdot 1} = 4$.\n\nDonc $P(4) = -P(0) + 4P(1) - 6P(2) + 4P(3) = -1 + 0 + 6 + 16 = 21$.",
+      "variantes": [
+        {
+          "enonce": "Soit $P \\in \\mathbb{R}[X]$ de degré au plus $3$ tel que $P(0) = 2$, $P(1) = 1$, $P(2) = 3$ et $P(3) = 0$. Calculer $P(4)$ à l'aide des polynômes de Lagrange associés aux abscisses $0, 1, 2, 3$.",
+          "indices": [
+            "$P(4) = \\sum_i P(i) L_i(4)$ : calculer les quatre nombres $L_i(4) = \\prod_{j \\neq i} \\frac{4 - j}{i - j}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(4)$ ?",
+            "propositions": [
+              "$-16$",
+              "$16$",
+              "$-4$",
+              "$8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les nombres $L_i(4)$ ne dépendent que des abscisses : $L_0(4) = -1$, $L_1(4) = 4$, $L_2(4) = -6$, $L_3(4) = 4$ (par exemple $L_2(4) = \\frac{4 \\cdot 3 \\cdot 1}{2 \\cdot 1 \\cdot (-1)} = -6$). Donc $P(4) = -2 + 4 \\times 1 - 6 \\times 3 + 4 \\times 0 = -16$."
+        },
+        {
+          "enonce": "Soit $P \\in \\mathbb{R}[X]$ de degré au plus $3$ tel que $P(0) = 1$, $P(1) = 1$, $P(2) = 2$ et $P(3) = 5$. Calculer $P(4)$ à l'aide des polynômes de Lagrange associés aux abscisses $0, 1, 2, 3$.",
+          "indices": [
+            "$P(4) = \\sum_i P(i) L_i(4)$ : calculer les quatre nombres $L_i(4) = \\prod_{j \\neq i} \\frac{4 - j}{i - j}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(4)$ ?",
+            "propositions": [
+              "$11$",
+              "$10$",
+              "$8$",
+              "$13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les nombres $L_i(4)$ ne dépendent que des abscisses : $L_0(4) = -1$, $L_1(4) = 4$, $L_2(4) = -6$, $L_3(4) = 4$ (par exemple $L_0(4) = \\frac{3 \\cdot 2 \\cdot 1}{(-1)(-2)(-3)} = -1$). Donc $P(4) = -1 + 4 \\times 1 - 6 \\times 2 + 4 \\times 5 = 11$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-lagrange-ex3",
+      "carte": "arith-l1-polynomes-lagrange",
+      "difficulte": 3,
+      "titre": "Interpoler une puissance trop grande",
+      "enonce": "Soient $x_0, x_1, x_2$ des réels deux à deux distincts et $L_0, L_1, L_2$ les polynômes de Lagrange associés.\n\n1. Montrer que $\\sum_{i=0}^{2} x_i^k L_i = X^k$ pour $k \\in \\{0, 1, 2\\}$.\n\n2. Montrer que $\\sum_{i=0}^{2} x_i^3 L_i = X^3 - (X - x_0)(X - x_1)(X - x_2)$.\n\n3. Calculer $\\sum_{i=0}^{2} x_i^3 L_i$ pour $(x_0, x_1, x_2) = (1, 2, 3)$.",
+      "duree_min": 15,
+      "indices": [
+        "$\\sum_i x_i^k L_i$ est l'unique polynôme de degré au plus $2$ qui prend en chaque $x_i$ la valeur $x_i^k$.",
+        "Pour $k = 3$, le polynôme cherché est le reste de la division de $X^3$ par $N = (X - x_0)(X - x_1)(X - x_2)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_i x_i^3 L_i$ pour les abscisses $1, 2, 3$ ?",
+        "propositions": [
+          "$6X^2 - 11X + 6$",
+          "$X^3$",
+          "$-6X^2 + 11X - 6$",
+          "$6X^2 + 11X + 6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $k \\leq 2$, $\\sum_i x_i^k L_i$ et $X^k$ sont de degré au plus $2$ et prennent la même valeur $x_j^k$ en chacun des trois points distincts $x_j$ (car $L_i(x_j)$ vaut $1$ si $i = j$ et $0$ sinon). Par unicité de l'interpolation, ils sont égaux.\n\n**2.** Soit $N = (X - x_0)(X - x_1)(X - x_2)$, unitaire de degré $3$. Alors $X^3 = 1 \\cdot N + (X^3 - N)$ et $\\deg(X^3 - N) \\leq 2$. Le polynôme $X^3 - N$ est de degré au plus $2$ et vaut $x_j^3$ en chaque $x_j$ (car $N(x_j) = 0$) ; par unicité, $\\sum_i x_i^3 L_i = X^3 - N$.\n\n**3.** $(X - 1)(X - 2)(X - 3) = X^3 - 6X^2 + 11X - 6$, donc $\\sum_i x_i^3 L_i = 6X^2 - 11X + 6$. Contrôle : en $X = 1$, on trouve $6 - 11 + 6 = 1 = 1^3$.",
+      "variantes": [
+        {
+          "enonce": "Soient $x_0, x_1, x_2$ des réels deux à deux distincts et $L_0, L_1, L_2$ les polynômes de Lagrange associés.\n\n1. Montrer que $\\sum_{i=0}^{2} x_i^k L_i = X^k$ pour $k \\in \\{0, 1, 2\\}$.\n\n2. Montrer que $\\sum_{i=0}^{2} x_i^3 L_i = X^3 - (X - x_0)(X - x_1)(X - x_2)$.\n\n3. Calculer $\\sum_{i=0}^{2} x_i^3 L_i$ pour $(x_0, x_1, x_2) = (0, 1, -1)$.",
+          "indices": [
+            "$\\sum_i x_i^k L_i$ est l'unique polynôme de degré au plus $2$ qui prend en chaque $x_i$ la valeur $x_i^k$.",
+            "Pour $k = 3$, le polynôme cherché est le reste de la division de $X^3$ par $N = (X - x_0)(X - x_1)(X - x_2)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_i x_i^3 L_i$ pour les abscisses $0, 1, -1$ ?",
+            "propositions": [
+              "$X$",
+              "$X^3$",
+              "$-X$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $k \\leq 2$, $\\sum_i x_i^k L_i$ et $X^k$ sont de degré au plus $2$ et coïncident en les trois points distincts $x_j$ : ils sont égaux.\n\n**2.** Avec $N = (X - x_0)(X - x_1)(X - x_2)$, $X^3 - N$ est de degré au plus $2$ et vaut $x_j^3$ en chaque $x_j$ ; par unicité, $\\sum_i x_i^3 L_i = X^3 - N$.\n\n**3.** $N = X(X - 1)(X + 1) = X^3 - X$, donc $\\sum_i x_i^3 L_i = X$. Ce n'est pas surprenant : $x^3 = x$ pour $x \\in \\{0, 1, -1\\}$."
+        },
+        {
+          "enonce": "Soient $x_0, x_1, x_2$ des réels deux à deux distincts et $L_0, L_1, L_2$ les polynômes de Lagrange associés.\n\n1. Montrer que $\\sum_{i=0}^{2} x_i^k L_i = X^k$ pour $k \\in \\{0, 1, 2\\}$.\n\n2. Montrer que $\\sum_{i=0}^{2} x_i^3 L_i = X^3 - (X - x_0)(X - x_1)(X - x_2)$.\n\n3. Calculer $\\sum_{i=0}^{2} x_i^3 L_i$ pour $(x_0, x_1, x_2) = (1, 2, 4)$.",
+          "indices": [
+            "$\\sum_i x_i^k L_i$ est l'unique polynôme de degré au plus $2$ qui prend en chaque $x_i$ la valeur $x_i^k$.",
+            "Pour $k = 3$, le polynôme cherché est le reste de la division de $X^3$ par $N = (X - x_0)(X - x_1)(X - x_2)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_i x_i^3 L_i$ pour les abscisses $1, 2, 4$ ?",
+            "propositions": [
+              "$7X^2 - 14X + 8$",
+              "$X^3$",
+              "$-7X^2 + 14X - 8$",
+              "$7X^2 - 14X - 8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $k \\leq 2$, $\\sum_i x_i^k L_i$ et $X^k$ sont de degré au plus $2$ et coïncident en les trois points distincts $x_j$ : ils sont égaux.\n\n**2.** Avec $N = (X - x_0)(X - x_1)(X - x_2)$, $X^3 - N$ est de degré au plus $2$ et vaut $x_j^3$ en chaque $x_j$ ; par unicité, $\\sum_i x_i^3 L_i = X^3 - N$.\n\n**3.** $(X - 1)(X - 2)(X - 4) = X^3 - 7X^2 + 14X - 8$, donc $\\sum_i x_i^3 L_i = 7X^2 - 14X + 8$. Contrôle : en $X = 2$, $28 - 28 + 8 = 8 = 2^3$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-polynomes-lagrange-ex4",
+      "carte": "arith-l1-polynomes-lagrange",
+      "difficulte": 4,
+      "titre": "Sommes alternées de coefficients binomiaux par l'interpolation",
+      "enonce": "Soient $n \\geq 1$, des réels $x_0, \\dots, x_n$ deux à deux distincts, $L_0, \\dots, L_n$ les polynômes de Lagrange associés et $w_i = \\prod_{j \\neq i} (x_i - x_j)$. On convient que $0^0 = 1$.\n\n1. En comparant les coefficients de $X^n$ dans l'égalité $\\sum_{i=0}^{n} x_i^k L_i = X^k$ ($0 \\leq k \\leq n$), montrer que $\\sum_{i=0}^{n} \\frac{x_i^k}{w_i}$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $1$ si $k = n$.\n\n2. On prend $x_i = i$ pour $0 \\leq i \\leq n$. Calculer $w_i$, puis montrer que $\\sum_{i=0}^{n} (-1)^{n-i} \\binom{n}{i} i^k$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $n!$ si $k = n$.\n\n3. Calculer $\\sum_{i=0}^{5} (-1)^i \\binom{5}{i} i^5$.",
+      "duree_min": 25,
+      "indices": [
+        "Le coefficient de $X^n$ dans $L_i = \\prod_{j \\neq i} \\frac{X - x_j}{x_i - x_j}$ est $\\frac{1}{w_i}$.",
+        "Pour $x_i = i$, $w_i = \\prod_{j < i}(i - j) \\cdot \\prod_{j > i}(i - j) = i! \\cdot (-1)^{n-i}(n - i)!$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{i=0}^{5} (-1)^i \\binom{5}{i} i^5$ ?",
+        "propositions": [
+          "$-120$",
+          "$120$",
+          "$0$",
+          "$-1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $0 \\leq k \\leq n$, $\\sum_i x_i^k L_i$ et $X^k$ sont de degré au plus $n$ et coïncident en les $n + 1$ points distincts $x_j$ : ils sont égaux. Le coefficient de $X^n$ dans $L_i$, produit de $n$ facteurs $\\frac{X - x_j}{x_i - x_j}$, vaut $\\frac{1}{w_i}$. En identifiant les coefficients de $X^n$ : $\\sum_i \\frac{x_i^k}{w_i}$ vaut $0$ si $k \\leq n - 1$ et $1$ si $k = n$.\n\n**2.** Pour $x_i = i$ : $\\prod_{j < i}(i - j) = i!$ et $\\prod_{j > i}(i - j) = (-1)(-2)\\cdots(-(n - i)) = (-1)^{n-i}(n - i)!$, donc $w_i = (-1)^{n-i}\\, i!\\,(n - i)!$ et $\\frac{1}{w_i} = \\frac{(-1)^{n-i}}{n!}\\binom{n}{i}$. La question 1 donne $\\frac{1}{n!}\\sum_i (-1)^{n-i}\\binom{n}{i} i^k = 0$ pour $k \\leq n - 1$ et $1$ pour $k = n$, d'où le résultat.\n\n**3.** Avec $n = k = 5$ : $\\sum_{i=0}^{5} (-1)^{5-i}\\binom{5}{i} i^5 = 5! = 120$. Comme $(-1)^i = (-1)^5 (-1)^{5-i}$, la somme demandée vaut $-120$.",
+      "variantes": [
+        {
+          "enonce": "Soient $n \\geq 1$, des réels $x_0, \\dots, x_n$ deux à deux distincts, $L_0, \\dots, L_n$ les polynômes de Lagrange associés et $w_i = \\prod_{j \\neq i} (x_i - x_j)$. On convient que $0^0 = 1$.\n\n1. En comparant les coefficients de $X^n$ dans l'égalité $\\sum_{i=0}^{n} x_i^k L_i = X^k$ ($0 \\leq k \\leq n$), montrer que $\\sum_{i=0}^{n} \\frac{x_i^k}{w_i}$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $1$ si $k = n$.\n\n2. On prend $x_i = i$ pour $0 \\leq i \\leq n$. Calculer $w_i$, puis montrer que $\\sum_{i=0}^{n} (-1)^{n-i} \\binom{n}{i} i^k$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $n!$ si $k = n$.\n\n3. Calculer $\\sum_{i=0}^{4} (-1)^i \\binom{4}{i} i^4$.",
+          "indices": [
+            "Le coefficient de $X^n$ dans $L_i = \\prod_{j \\neq i} \\frac{X - x_j}{x_i - x_j}$ est $\\frac{1}{w_i}$.",
+            "Pour $x_i = i$, $w_i = \\prod_{j < i}(i - j) \\cdot \\prod_{j > i}(i - j) = i! \\cdot (-1)^{n-i}(n - i)!$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{i=0}^{4} (-1)^i \\binom{4}{i} i^4$ ?",
+            "propositions": [
+              "$24$",
+              "$-24$",
+              "$0$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $k \\leq n$, $\\sum_i x_i^k L_i = X^k$ par unicité de l'interpolation ; le coefficient de $X^n$ dans $L_i$ est $\\frac{1}{w_i}$, d'où $\\sum_i \\frac{x_i^k}{w_i} = 0$ pour $k \\leq n - 1$ et $1$ pour $k = n$.\n\n**2.** Pour $x_i = i$, $w_i = i! \\cdot (-1)^{n-i}(n - i)!$, donc $\\frac{1}{w_i} = \\frac{(-1)^{n-i}}{n!}\\binom{n}{i}$, et la question 1 donne le résultat.\n\n**3.** Avec $n = k = 4$ : $\\sum_i (-1)^{4-i}\\binom{4}{i} i^4 = 4! = 24$, et $(-1)^i = (-1)^{4-i}$, donc la somme vaut $24$. Contrôle direct : $0 - 4 + 6 \\times 16 - 4 \\times 81 + 256 = 24$."
+        },
+        {
+          "enonce": "Soient $n \\geq 1$, des réels $x_0, \\dots, x_n$ deux à deux distincts, $L_0, \\dots, L_n$ les polynômes de Lagrange associés et $w_i = \\prod_{j \\neq i} (x_i - x_j)$. On convient que $0^0 = 1$.\n\n1. En comparant les coefficients de $X^n$ dans l'égalité $\\sum_{i=0}^{n} x_i^k L_i = X^k$ ($0 \\leq k \\leq n$), montrer que $\\sum_{i=0}^{n} \\frac{x_i^k}{w_i}$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $1$ si $k = n$.\n\n2. On prend $x_i = i$ pour $0 \\leq i \\leq n$. Calculer $w_i$, puis montrer que $\\sum_{i=0}^{n} (-1)^{n-i} \\binom{n}{i} i^k$ vaut $0$ si $0 \\leq k \\leq n - 1$ et $n!$ si $k = n$.\n\n3. Calculer $\\sum_{i=0}^{6} (-1)^i \\binom{6}{i} i^4$.",
+          "indices": [
+            "Le coefficient de $X^n$ dans $L_i = \\prod_{j \\neq i} \\frac{X - x_j}{x_i - x_j}$ est $\\frac{1}{w_i}$.",
+            "Pour $x_i = i$, $w_i = \\prod_{j < i}(i - j) \\cdot \\prod_{j > i}(i - j) = i! \\cdot (-1)^{n-i}(n - i)!$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{i=0}^{6} (-1)^i \\binom{6}{i} i^4$ ?",
+            "propositions": [
+              "$0$",
+              "$24$",
+              "$720$",
+              "$-24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $k \\leq n$, $\\sum_i x_i^k L_i = X^k$ par unicité de l'interpolation ; le coefficient de $X^n$ dans $L_i$ est $\\frac{1}{w_i}$, d'où $\\sum_i \\frac{x_i^k}{w_i} = 0$ pour $k \\leq n - 1$ et $1$ pour $k = n$.\n\n**2.** Pour $x_i = i$, $w_i = i! \\cdot (-1)^{n-i}(n - i)!$, donc $\\frac{1}{w_i} = \\frac{(-1)^{n-i}}{n!}\\binom{n}{i}$, et la question 1 donne le résultat.\n\n**3.** Ici $n = 6$ et $k = 4 \\leq n - 1$ : $\\sum_i (-1)^{6-i}\\binom{6}{i} i^4 = 0$, et $(-1)^i = (-1)^{6-i}$, donc la somme vaut $0$."
+        }
+      ]
+    }
+  ]
+}

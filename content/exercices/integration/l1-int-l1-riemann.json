@@ -1,0 +1,1489 @@
+{
+  "exercices": [
+    {
+      "id": "int-l1-riemann-cpm-ex1",
+      "carte": "int-l1-riemann-cpm",
+      "difficulte": 1,
+      "titre": "Intégrale de la partie entière",
+      "enonce": "Calculer $\\int_0^{7/2}\\lfloor x\\rfloor\\,\\mathrm{d}x$, où $\\lfloor x\\rfloor$ désigne la partie entière de $x$.",
+      "duree_min": 5,
+      "indices": [
+        "Découper l'intervalle aux entiers : que vaut $\\lfloor x\\rfloor$ sur $\\left]k,k+1\\right[$ ?"
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac92$",
+          "$6$",
+          "$3$",
+          "$\\frac{49}8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La partie entière est continue par morceaux sur $\\left[0,\\frac72\\right]$ (subdivision $0<1<2<3<\\frac72$) : elle vaut $k$ sur $\\left]k,k+1\\right[$. Par la relation de Chasles, les valeurs aux points entiers ne comptant pas,\n$$\\int_0^{7/2}\\lfloor x\\rfloor\\,\\mathrm{d}x=0\\times1+1\\times1+2\\times1+3\\times\\frac12=\\frac92.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^{5/2}\\lfloor x\\rfloor\\,\\mathrm{d}x$, où $\\lfloor x\\rfloor$ désigne la partie entière de $x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$2$",
+              "$3$",
+              "$1$",
+              "$\\frac{25}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La partie entière vaut $0$ sur $\\left]0,1\\right[$, $1$ sur $\\left]1,2\\right[$ et $2$ sur $\\left]2,\\frac52\\right[$ ; elle est continue par morceaux. Par Chasles :\n$$\\int_0^{5/2}\\lfloor x\\rfloor\\,\\mathrm{d}x=0\\times1+1\\times1+2\\times\\frac12=2.$$",
+          "indices": [
+            "Découper $\\left[0,\\frac52\\right]$ aux entiers $1$ et $2$ : que vaut $\\lfloor x\\rfloor$ sur chaque morceau ?"
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_0^{9/2}\\lfloor x\\rfloor\\,\\mathrm{d}x$, où $\\lfloor x\\rfloor$ désigne la partie entière de $x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$8$",
+              "$10$",
+              "$6$",
+              "$\\frac{81}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La partie entière vaut $k$ sur $\\left]k,k+1\\right[$ pour $k=0,1,2,3$, et $4$ sur $\\left]4,\\frac92\\right[$ ; elle est continue par morceaux. Par Chasles :\n$$\\int_0^{9/2}\\lfloor x\\rfloor\\,\\mathrm{d}x=0+1+2+3+4\\times\\frac12=8.$$",
+          "indices": [
+            "Découper $\\left[0,\\frac92\\right]$ aux entiers $1,2,3,4$ ; le dernier morceau est de longueur $\\frac12$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cpm-ex2",
+      "carte": "int-l1-riemann-cpm",
+      "difficulte": 2,
+      "titre": "Intégrale d'une fonction définie par morceaux",
+      "enonce": "Soit $f$ définie sur $[-1,2]$ par $f(x)=x^2$ si $x<1$ et $f(x)=3-x$ si $x\\ge1$. Justifier que $f$ est continue par morceaux et calculer $\\int_{-1}^2f(x)\\,\\mathrm{d}x$.",
+      "duree_min": 8,
+      "indices": [
+        "Repérer le point de discontinuité et utiliser la relation de Chasles en ce point."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac{13}6$",
+          "$\\frac{11}6$",
+          "$\\frac76$",
+          "$\\frac{13}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Sur $[-1,1[$, $f(x)=x^2$ : $f$ y est continue, avec une limite finie $1$ à gauche en $1$. Sur $[1,2]$, $f(x)=3-x$ est continue. Comme $f(1)=2\\ne1$, $f$ est discontinue en $1$ ; la subdivision $-1<1<2$ montre que $f$ est continue par morceaux. Par Chasles, la valeur en $1$ ne comptant pas :\n$$\\int_{-1}^2f=\\int_{-1}^1x^2\\,\\mathrm{d}x+\\int_1^2(3-x)\\,\\mathrm{d}x=\\frac23+\\left[3x-\\frac{x^2}2\\right]_1^2=\\frac23+\\frac32=\\frac{13}6.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ définie sur $[0,3]$ par $f(x)=e^x$ si $x<1$ et $f(x)=2x$ si $x\\ge1$. Justifier que $f$ est continue par morceaux et calculer $\\int_0^3f(x)\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$e+7$",
+              "$e+8$",
+              "$e+3$",
+              "$e+9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est continue sur $[0,1[$ avec une limite $e$ à gauche en $1$, et continue sur $[1,3]$ ; comme $f(1)=2\\ne e$, elle est discontinue en $1$ seulement : continue par morceaux (subdivision $0<1<3$). Par Chasles :\n$$\\int_0^3f=\\int_0^1e^x\\,\\mathrm{d}x+\\int_1^32x\\,\\mathrm{d}x=(e-1)+\\left[x^2\\right]_1^3=e-1+8=e+7.$$",
+          "indices": [
+            "Repérer le point de discontinuité, puis découper l'intégrale en ce point."
+          ]
+        },
+        {
+          "enonce": "Soit $f$ définie sur $[1,4]$ par $f(x)=\\frac1x$ si $x<2$ et $f(x)=x-1$ si $x\\ge2$. Justifier que $f$ est continue par morceaux et calculer $\\int_1^4f(x)\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\ln2+4$",
+              "$\\ln2+2$",
+              "$\\ln2+6$",
+              "$4-\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est continue sur $[1,2[$ avec une limite $\\frac12$ à gauche en $2$, et continue sur $[2,4]$ ; comme $f(2)=1\\ne\\frac12$, elle est discontinue en $2$ seulement : continue par morceaux (subdivision $1<2<4$). Par Chasles :\n$$\\int_1^4f=\\int_1^2\\frac{\\mathrm{d}x}x+\\int_2^4(x-1)\\,\\mathrm{d}x=\\ln2+\\left[\\frac{(x-1)^2}2\\right]_2^4=\\ln2+\\frac92-\\frac12=\\ln2+4.$$",
+          "indices": [
+            "Repérer le point de discontinuité, puis découper l'intégrale en ce point."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cpm-ex3",
+      "carte": "int-l1-riemann-cpm",
+      "difficulte": 3,
+      "titre": "Encadrement par des fonctions en escalier",
+      "enonce": "Soient $n\\ge1$ et $x_k=\\frac kn$ pour $0\\le k\\le n$. On note $\\varphi_n$ et $\\psi_n$ les fonctions en escalier sur $[0,1]$ égales, sur chaque intervalle $[x_{k-1},x_k[$, respectivement au minimum et au maximum de $f:x\\mapsto x^2$ sur $[x_{k-1},x_k]$, et égales à $f(1)$ en $1$. Calculer $\\int_0^1\\psi_n-\\int_0^1\\varphi_n$, puis en déduire la valeur de $\\int_0^1x^2\\,\\mathrm{d}x$ sans utiliser de primitive.",
+      "duree_min": 12,
+      "indices": [
+        "$f$ est croissante sur $[0,1]$ : où atteint-elle son minimum et son maximum sur $[x_{k-1},x_k]$ ?",
+        "Écrire $\\int_0^1\\psi_n$ et $\\int_0^1\\varphi_n$ comme des sommes de $n$ termes, et comparer ces deux sommes terme à terme."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\int_0^1\\psi_n-\\int_0^1\\varphi_n$ ?",
+        "propositions": [
+          "$\\frac1n$",
+          "$\\frac1{n^2}$",
+          "$\\frac2n$",
+          "$\\frac1{2n}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est croissante sur $[0,1]$ : sur $[x_{k-1},x_k]$, son minimum est $f(x_{k-1})$ et son maximum $f(x_k)$. Donc\n$$\\int_0^1\\psi_n=\\frac1n\\sum_{k=1}^n\\frac{k^2}{n^2}=\\frac{(n+1)(2n+1)}{6n^2},\\qquad\\int_0^1\\varphi_n=\\frac1n\\sum_{k=0}^{n-1}\\frac{k^2}{n^2}=\\frac{(n-1)(2n-1)}{6n^2}.$$\nLeur différence est télescopique : $\\frac1n\\sum_{k=1}^n\\big(f(x_k)-f(x_{k-1})\\big)=\\frac{f(1)-f(0)}n=\\frac1n$.\n\nComme $\\varphi_n\\le f\\le\\psi_n$, on a $\\int_0^1\\varphi_n\\le\\int_0^1x^2\\,\\mathrm{d}x\\le\\int_0^1\\psi_n$ pour tout $n$ ; les deux bornes tendent vers $\\frac26=\\frac13$, donc $\\int_0^1x^2\\,\\mathrm{d}x=\\frac13$.",
+      "variantes": [
+        {
+          "enonce": "Soient $n\\ge1$ et $x_k=\\frac{2k}n$ pour $0\\le k\\le n$. On note $\\varphi_n$ et $\\psi_n$ les fonctions en escalier sur $[0,2]$ égales, sur chaque intervalle $[x_{k-1},x_k[$, respectivement au minimum et au maximum de $f:x\\mapsto x^3$ sur $[x_{k-1},x_k]$, et égales à $f(2)$ en $2$. Calculer $\\int_0^2\\psi_n-\\int_0^2\\varphi_n$, puis en déduire la valeur de $\\int_0^2x^3\\,\\mathrm{d}x$ sans utiliser de primitive.",
+          "reponse_finale": {
+            "question": "Que vaut $\\int_0^2\\psi_n-\\int_0^2\\varphi_n$ ?",
+            "propositions": [
+              "$\\frac{16}n$",
+              "$\\frac8n$",
+              "$\\frac{16}{n^2}$",
+              "$\\frac2n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est croissante sur $[0,2]$ : sur $[x_{k-1},x_k]$, son minimum est $f(x_{k-1})$ et son maximum $f(x_k)$. Avec $h=\\frac2n$,\n$$\\int_0^2\\psi_n=h\\sum_{k=1}^n\\frac{8k^3}{n^3}=\\frac{16}{n^4}\\cdot\\frac{n^2(n+1)^2}4=\\frac{4(n+1)^2}{n^2},\\qquad\\int_0^2\\varphi_n=h\\sum_{k=0}^{n-1}\\frac{8k^3}{n^3}=\\frac{4(n-1)^2}{n^2}.$$\nLa différence est télescopique : $h\\big(f(2)-f(0)\\big)=\\frac2n\\times8=\\frac{16}n$ (on vérifie : $\\frac{4\\left((n+1)^2-(n-1)^2\\right)}{n^2}=\\frac{16}n$).\n\nComme $\\varphi_n\\le f\\le\\psi_n$, $\\int_0^2\\varphi_n\\le\\int_0^2x^3\\,\\mathrm{d}x\\le\\int_0^2\\psi_n$, et les deux bornes tendent vers $4$ : $\\int_0^2x^3\\,\\mathrm{d}x=4$.",
+          "indices": [
+            "$f$ est croissante sur $[0,2]$ : où atteint-elle son minimum et son maximum sur $[x_{k-1},x_k]$ ?",
+            "Les intervalles sont de longueur $\\frac2n$ ; écrire les deux intégrales comme des sommes et les comparer terme à terme."
+          ]
+        },
+        {
+          "enonce": "Soient $n\\ge1$ et $x_k=\\frac kn$ pour $0\\le k\\le n$. On note $\\varphi_n$ et $\\psi_n$ les fonctions en escalier sur $[0,1]$ égales, sur chaque intervalle $[x_{k-1},x_k[$, respectivement au minimum et au maximum de $f:x\\mapsto e^{-x}$ sur $[x_{k-1},x_k]$, et égales à $f(1)$ en $1$. Calculer $\\int_0^1\\psi_n-\\int_0^1\\varphi_n$, puis en déduire la valeur de $\\int_0^1e^{-x}\\,\\mathrm{d}x$ sans utiliser de primitive.",
+          "reponse_finale": {
+            "question": "Que vaut $\\int_0^1\\psi_n-\\int_0^1\\varphi_n$ ?",
+            "propositions": [
+              "$\\frac{1-e^{-1}}n$",
+              "$\\frac{e-1}n$",
+              "$\\frac1n$",
+              "$\\frac{1-e^{-1}}{n^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est **décroissante** : sur $[x_{k-1},x_k]$, son maximum est $f(x_{k-1})$ et son minimum $f(x_k)$. Donc\n$$\\int_0^1\\psi_n=\\frac1n\\sum_{k=0}^{n-1}e^{-k/n},\\qquad\\int_0^1\\varphi_n=\\frac1n\\sum_{k=1}^ne^{-k/n},$$\net la différence télescopique vaut $\\frac{f(0)-f(1)}n=\\frac{1-e^{-1}}n$.\n\nPar la somme géométrique, $\\int_0^1\\psi_n=\\frac1n\\cdot\\frac{1-e^{-1}}{1-e^{-1/n}}$, qui tend vers $1-e^{-1}$ car $n\\left(1-e^{-1/n}\\right)\\to1$. Comme $\\varphi_n\\le f\\le\\psi_n$ et que l'écart tend vers $0$, $\\int_0^1e^{-x}\\,\\mathrm{d}x=1-e^{-1}$.",
+          "indices": [
+            "Attention au sens de variation de $f$ : où atteint-elle son minimum et son maximum sur $[x_{k-1},x_k]$ ?",
+            "Écrire les deux intégrales comme des sommes de $n$ termes et les comparer terme à terme."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cpm-ex4",
+      "carte": "int-l1-riemann-cpm",
+      "difficulte": 4,
+      "titre": "Une fonction intégrable qui n'est pas continue par morceaux",
+      "enonce": "On pose $f(x)=\\sin\\frac1x$ pour $x\\in\\left]0,1\\right]$ et $f(0)=0$.\n\n1. Montrer que $f$ n'est pas continue par morceaux sur $[0,1]$.\n2. Soit $\\varepsilon\\in\\left]0,1\\right[$. Construire des fonctions en escalier $\\varphi$ et $\\psi$ sur $[0,1]$ telles que $\\varphi\\le f\\le\\psi$ et $\\int_0^1(\\psi-\\varphi)\\le3\\varepsilon$.\n3. En déduire que $f$ est intégrable au sens de Riemann sur $[0,1]$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : regarder $f$ aux points $\\frac1{\\pi/2+2k\\pi}$ et $\\frac1{3\\pi/2+2k\\pi}$.",
+        "Question 2 : sur $[\\varepsilon,1]$, $f$ est continue ; sur $[0,\\varepsilon[$, on encadre simplement $f$ par $-1$ et $1$."
+      ],
+      "correction": "**1.** Avec $u_k=\\frac1{\\pi/2+2k\\pi}$ et $v_k=\\frac1{3\\pi/2+2k\\pi}$, qui tendent vers $0^+$, on a $f(u_k)=1$ et $f(v_k)=-1$ : $f$ n'a pas de limite à droite en $0$. Or, pour une fonction continue par morceaux, $0$ serait le premier point d'une subdivision et $f$ aurait une limite finie à droite en $0$. Donc $f$ n'est pas continue par morceaux.\n\n**2.** La restriction de $f$ à $[\\varepsilon,1]$ est continue, donc continue par morceaux : par le théorème du cours, il existe $\\varphi_1,\\psi_1$ en escalier sur $[\\varepsilon,1]$ telles que $\\varphi_1\\le f\\le\\psi_1$ et $\\psi_1-\\varphi_1\\le\\varepsilon$. On pose $\\varphi=-1$ et $\\psi=1$ sur $[0,\\varepsilon[$, $\\varphi=\\varphi_1$ et $\\psi=\\psi_1$ sur $[\\varepsilon,1]$. Ces fonctions sont en escalier sur $[0,1]$ (on réunit les subdivisions) et $\\varphi\\le f\\le\\psi$, car $|f|\\le1$. Par Chasles,\n$$\\int_0^1(\\psi-\\varphi)=\\int_0^\\varepsilon2+\\int_\\varepsilon^1(\\psi_1-\\varphi_1)\\le2\\varepsilon+\\varepsilon(1-\\varepsilon)\\le3\\varepsilon.$$\n\n**3.** $f$ est bornée par $1$. Soient $I^-$ la borne supérieure des $\\int\\varphi$ ($\\varphi$ en escalier, $\\varphi\\le f$) et $I^+$ la borne inférieure des $\\int\\psi$ ($\\psi$ en escalier, $\\psi\\ge f$) ; on a $I^-\\le I^+$. Par la question 2, $0\\le I^+-I^-\\le3\\varepsilon$ pour tout $\\varepsilon\\in\\left]0,1\\right[$, donc $I^-=I^+$ : $f$ est intégrable. Une fonction intégrable n'est donc pas forcément continue par morceaux."
+    },
+    {
+      "id": "int-l1-riemann-sommes-ex1",
+      "carte": "int-l1-riemann-sommes",
+      "difficulte": 1,
+      "titre": "Reconnaître une somme de Riemann",
+      "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^n\\frac1{n+k}$.",
+      "duree_min": 5,
+      "indices": [
+        "Mettre $\\frac1n$ en facteur et écrire le terme général comme une fonction de $\\frac kn$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est cette limite ?",
+        "propositions": [
+          "$\\ln2$",
+          "$0$",
+          "$\\frac12$",
+          "$\\ln3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$u_n=\\frac1n\\sum_{k=1}^n\\frac1{1+k/n}$ est la somme de Riemann $\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)$ de $f(x)=\\frac1{1+x}$, continue sur $[0,1]$. Donc\n$$u_n\\to\\int_0^1\\frac{\\mathrm{d}x}{1+x}=\\ln2.$$",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^n\\frac1{2n+k}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\ln\\frac32$",
+              "$\\ln3$",
+              "$\\ln2$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_n=\\frac1n\\sum_{k=1}^n\\frac1{2+k/n}$ est une somme de Riemann de $f(x)=\\frac1{2+x}$, continue sur $[0,1]$. Donc $u_n\\to\\int_0^1\\frac{\\mathrm{d}x}{2+x}=\\ln3-\\ln2=\\ln\\frac32$.",
+          "indices": [
+            "Mettre $\\frac1n$ en facteur : $\\frac1{2n+k}=\\frac1n\\cdot\\frac1{2+k/n}$."
+          ]
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^n\\frac1{n+2k}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\frac12\\ln3$",
+              "$\\ln3$",
+              "$\\ln2$",
+              "$\\frac12\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_n=\\frac1n\\sum_{k=1}^n\\frac1{1+2k/n}$ est une somme de Riemann de $f(x)=\\frac1{1+2x}$, continue sur $[0,1]$. Donc $u_n\\to\\int_0^1\\frac{\\mathrm{d}x}{1+2x}=\\left[\\frac12\\ln(1+2x)\\right]_0^1=\\frac12\\ln3$.",
+          "indices": [
+            "Mettre $\\frac1n$ en facteur : $\\frac1{n+2k}=\\frac1n\\cdot\\frac1{1+2k/n}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-sommes-ex2",
+      "carte": "int-l1-riemann-sommes",
+      "difficulte": 2,
+      "titre": "Somme de Riemann sur un segment de longueur différente de 1",
+      "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^{2n}\\frac1{n+k}$.",
+      "duree_min": 6,
+      "indices": [
+        "Mettre $\\frac1n$ en facteur : les points $\\frac kn$, pour $1\\le k\\le2n$, découpent quel segment ?"
+      ],
+      "reponse_finale": {
+        "question": "Quelle est cette limite ?",
+        "propositions": [
+          "$\\ln3$",
+          "$\\ln2$",
+          "$2\\ln2$",
+          "$\\ln\\frac32$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$u_n=\\frac1n\\sum_{k=1}^{2n}\\frac1{1+k/n}$. Avec $a=0$, $b=2$ et $2n$ intervalles de longueur $h=\\frac1n=\\frac{b-a}{2n}$, c'est la somme de Riemann $h\\sum_{k=1}^{2n}f(a+kh)$ de $f(x)=\\frac1{1+x}$, continue sur $[0,2]$ ; la suite $(u_n)$ est extraite de la suite des sommes de Riemann (indices pairs), donc\n$$u_n\\to\\int_0^2\\frac{\\mathrm{d}x}{1+x}=\\ln3.$$",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^{3n}\\frac n{n^2+k^2}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\arctan3$",
+              "$\\frac\\pi4$",
+              "$\\frac{3\\pi}4$",
+              "$\\arctan\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_n=\\frac1n\\sum_{k=1}^{3n}\\frac1{1+(k/n)^2}$ : c'est la somme de Riemann, à $3n$ intervalles de longueur $\\frac1n$, de $f(x)=\\frac1{1+x^2}$, continue sur $[0,3]$. Donc $u_n\\to\\int_0^3\\frac{\\mathrm{d}x}{1+x^2}=\\arctan3$.",
+          "indices": [
+            "Mettre $\\frac1n$ en facteur : les points $\\frac kn$, pour $1\\le k\\le3n$, découpent quel segment ?"
+          ]
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sum_{k=1}^{2n}\\frac k{n^2}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$2$",
+              "$\\frac12$",
+              "$1$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_n=\\frac1n\\sum_{k=1}^{2n}\\frac kn$ : c'est la somme de Riemann, à $2n$ intervalles de longueur $\\frac1n$, de $f(x)=x$ sur $[0,2]$. Donc $u_n\\to\\int_0^2x\\,\\mathrm{d}x=2$. Vérification directe : $u_n=\\frac{2n(2n+1)}{2n^2}=\\frac{2n+1}n\\to2$.",
+          "indices": [
+            "Écrire $\\frac k{n^2}=\\frac1n\\cdot\\frac kn$ : les points $\\frac kn$, pour $1\\le k\\le2n$, découpent quel segment ?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-sommes-ex3",
+      "carte": "int-l1-riemann-sommes",
+      "difficulte": 3,
+      "titre": "Limite d'un produit",
+      "enonce": "Déterminer la limite de $P_n=\\left(\\prod_{k=1}^n\\left(1+\\frac kn\\right)\\right)^{1/n}$.",
+      "duree_min": 10,
+      "indices": [
+        "Passer au logarithme : $\\ln P_n$ est une somme de Riemann.",
+        "Calculer $\\int_0^1\\ln(1+x)\\,\\mathrm{d}x$ par intégration par parties, puis revenir à $P_n$ par continuité de l'exponentielle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est cette limite ?",
+        "propositions": [
+          "$\\frac4e$",
+          "$2\\ln2-1$",
+          "$2$",
+          "$\\frac e4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$P_n>0$ et $\\ln P_n=\\frac1n\\sum_{k=1}^n\\ln\\left(1+\\frac kn\\right)$ est une somme de Riemann de $x\\mapsto\\ln(1+x)$, continue sur $[0,1]$. Donc\n$$\\ln P_n\\to\\int_0^1\\ln(1+x)\\,\\mathrm{d}x=\\Big[(1+x)\\ln(1+x)-x\\Big]_0^1=2\\ln2-1.$$\nPar continuité de l'exponentielle, $P_n\\to e^{2\\ln2-1}=\\frac4e$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $P_n=\\left(\\prod_{k=1}^n\\left(1+\\frac{k^2}{n^2}\\right)\\right)^{1/n}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$2e^{\\frac\\pi2-2}$",
+              "$\\ln2-2+\\frac\\pi2$",
+              "$2e^{\\frac\\pi4-2}$",
+              "$2e^{\\frac\\pi2-1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\ln P_n=\\frac1n\\sum_{k=1}^n\\ln\\left(1+\\frac{k^2}{n^2}\\right)$ est une somme de Riemann de $x\\mapsto\\ln(1+x^2)$, continue sur $[0,1]$. Par parties,\n$$\\int_0^1\\ln(1+x^2)\\,\\mathrm{d}x=\\Big[x\\ln(1+x^2)\\Big]_0^1-\\int_0^1\\frac{2x^2}{1+x^2}\\,\\mathrm{d}x=\\ln2-2\\int_0^1\\left(1-\\frac1{1+x^2}\\right)\\mathrm{d}x=\\ln2-2+\\frac\\pi2.$$\nDonc $P_n\\to e^{\\ln2-2+\\pi/2}=2e^{\\frac\\pi2-2}$.",
+          "indices": [
+            "Passer au logarithme : $\\ln P_n$ est une somme de Riemann.",
+            "Calculer $\\int_0^1\\ln(1+x^2)\\,\\mathrm{d}x$ par parties ; écrire $\\frac{x^2}{1+x^2}=1-\\frac1{1+x^2}$."
+          ]
+        },
+        {
+          "enonce": "Déterminer la limite de $P_n=\\left(\\prod_{k=1}^n\\left(2+\\frac kn\\right)\\right)^{1/n}$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\frac{27}{4e}$",
+              "$3\\ln3-2\\ln2-1$",
+              "$\\frac{27}4$",
+              "$\\frac9{4e}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\ln P_n=\\frac1n\\sum_{k=1}^n\\ln\\left(2+\\frac kn\\right)$ est une somme de Riemann de $x\\mapsto\\ln(2+x)$, continue sur $[0,1]$ :\n$$\\ln P_n\\to\\int_0^1\\ln(2+x)\\,\\mathrm{d}x=\\Big[(2+x)\\ln(2+x)-x\\Big]_0^1=3\\ln3-1-2\\ln2.$$\nDonc $P_n\\to e^{3\\ln3-2\\ln2-1}=\\frac{27}{4e}$.",
+          "indices": [
+            "Passer au logarithme : $\\ln P_n$ est une somme de Riemann.",
+            "Une primitive de $\\ln(2+x)$ est $(2+x)\\ln(2+x)-x$ ; revenir ensuite à $P_n$ par l'exponentielle."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-sommes-ex4",
+      "carte": "int-l1-riemann-sommes",
+      "difficulte": 5,
+      "titre": "Vitesse de convergence des sommes de Riemann",
+      "enonce": "Soit $f$ de classe $\\mathcal{C}^1$ sur $[0,1]$. Pour $n\\ge1$, on pose $x_k=\\frac kn$ et $R_n=\\frac1n\\sum_{k=1}^nf(x_k)$.\n\n1. Montrer que $\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,f'(t)\\,\\mathrm{d}t$.\n2. En utilisant la continuité uniforme de $f'$ sur $[0,1]$, en déduire que $n\\left(R_n-\\int_0^1f\\right)\\to\\frac{f(1)-f(0)}2$.\n3. Application : déterminer $\\lim_{n\\to+\\infty}n\\left(\\sum_{k=1}^n\\frac1{n+k}-\\ln2\\right)$.",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : intégrer par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$.",
+        "Question 2 : comparer $f'(t)$ à $f'(x_k)$ sur $[x_{k-1},x_k]$, puis reconnaître une somme de Riemann de $f'$.",
+        "Question 3 : écrire la somme comme $R_n$ pour une fonction $f$ bien choisie."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est cette limite ?",
+        "propositions": [
+          "$-\\frac14$",
+          "$\\frac14$",
+          "$-\\frac12$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Intégrons par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$, de classe $\\mathcal{C}^1$ : le crochet $\\big[(f(x_k)-f(t))(t-x_{k-1})\\big]_{x_{k-1}}^{x_k}$ est nul aux deux bornes, et $u'=-f'$, d'où l'égalité.\n\n**2.** Par Chasles, $R_n-\\int_0^1f=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}(t-x_{k-1})f'(t)\\,\\mathrm{d}t$. Soit $\\varepsilon>0$ ; par le théorème de Heine, il existe $\\delta>0$ tel que $|f'(s)-f'(t)|\\le\\varepsilon$ dès que $|s-t|\\le\\delta$. Pour $\\frac1n\\le\\delta$ et $t\\in[x_{k-1},x_k]$, $|f'(t)-f'(x_k)|\\le\\varepsilon$, et $\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,\\mathrm{d}t=\\frac1{2n^2}$. Donc\n$$\\left|n\\Big(R_n-\\int_0^1f\\Big)-\\frac1{2n}\\sum_{k=1}^nf'(x_k)\\right|\\le n\\sum_{k=1}^n\\frac{\\varepsilon}{2n^2}=\\frac\\varepsilon2.$$\nOr $\\frac1n\\sum_{k=1}^nf'(x_k)$ est une somme de Riemann de la fonction continue $f'$ : elle tend vers $\\int_0^1f'=f(1)-f(0)$. Ainsi, pour $n$ assez grand, $\\left|n\\left(R_n-\\int_0^1f\\right)-\\frac{f(1)-f(0)}2\\right|\\le\\varepsilon$, d'où la limite annoncée.\n\n**3.** Avec $f(x)=\\frac1{1+x}$, de classe $\\mathcal{C}^1$ sur $[0,1]$ : $R_n=\\sum_{k=1}^n\\frac1{n+k}$ et $\\int_0^1f=\\ln2$. La limite vaut $\\frac{f(1)-f(0)}2=\\frac{1/2-1}2=-\\frac14$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ de classe $\\mathcal{C}^1$ sur $[0,1]$. Pour $n\\ge1$, on pose $x_k=\\frac kn$ et $R_n=\\frac1n\\sum_{k=1}^nf(x_k)$.\n\n1. Montrer que $\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,f'(t)\\,\\mathrm{d}t$.\n2. En utilisant la continuité uniforme de $f'$ sur $[0,1]$, en déduire que $n\\left(R_n-\\int_0^1f\\right)\\to\\frac{f(1)-f(0)}2$.\n3. Application : déterminer $\\lim_{n\\to+\\infty}n\\left(\\sum_{k=1}^n\\frac{k^2}{n^3}-\\frac13\\right)$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\frac12$",
+              "$-\\frac12$",
+              "$\\frac16$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Intégrons par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$, de classe $\\mathcal{C}^1$ : le crochet $\\big[(f(x_k)-f(t))(t-x_{k-1})\\big]_{x_{k-1}}^{x_k}$ est nul aux deux bornes, et $u'=-f'$, d'où l'égalité.\n\n**2.** Par Chasles, $R_n-\\int_0^1f=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}(t-x_{k-1})f'(t)\\,\\mathrm{d}t$. Soit $\\varepsilon>0$ ; par le théorème de Heine, il existe $\\delta>0$ tel que $|f'(s)-f'(t)|\\le\\varepsilon$ dès que $|s-t|\\le\\delta$. Pour $\\frac1n\\le\\delta$ et $t\\in[x_{k-1},x_k]$, $|f'(t)-f'(x_k)|\\le\\varepsilon$, et $\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,\\mathrm{d}t=\\frac1{2n^2}$. Donc\n$$\\left|n\\Big(R_n-\\int_0^1f\\Big)-\\frac1{2n}\\sum_{k=1}^nf'(x_k)\\right|\\le n\\sum_{k=1}^n\\frac{\\varepsilon}{2n^2}=\\frac\\varepsilon2.$$\nOr $\\frac1n\\sum_{k=1}^nf'(x_k)$ est une somme de Riemann de la fonction continue $f'$ : elle tend vers $\\int_0^1f'=f(1)-f(0)$. Ainsi, pour $n$ assez grand, $\\left|n\\left(R_n-\\int_0^1f\\right)-\\frac{f(1)-f(0)}2\\right|\\le\\varepsilon$, d'où la limite annoncée.\n\n**3.** Avec $f(x)=x^2$ : $R_n=\\frac1n\\sum_{k=1}^n\\frac{k^2}{n^2}=\\sum_{k=1}^n\\frac{k^2}{n^3}$ et $\\int_0^1f=\\frac13$. La limite vaut $\\frac{f(1)-f(0)}2=\\frac12$. Vérification : $R_n=\\frac{(n+1)(2n+1)}{6n^2}=\\frac13+\\frac1{2n}+\\frac1{6n^2}$.",
+          "indices": [
+            "Question 1 : intégrer par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$.",
+            "Question 2 : comparer $f'(t)$ à $f'(x_k)$ sur $[x_{k-1},x_k]$, puis reconnaître une somme de Riemann de $f'$.",
+            "Question 3 : la somme est $R_n$ pour $f(x)=x^2$."
+          ]
+        },
+        {
+          "enonce": "Soit $f$ de classe $\\mathcal{C}^1$ sur $[0,1]$. Pour $n\\ge1$, on pose $x_k=\\frac kn$ et $R_n=\\frac1n\\sum_{k=1}^nf(x_k)$.\n\n1. Montrer que $\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,f'(t)\\,\\mathrm{d}t$.\n2. En utilisant la continuité uniforme de $f'$ sur $[0,1]$, en déduire que $n\\left(R_n-\\int_0^1f\\right)\\to\\frac{f(1)-f(0)}2$.\n3. Application : déterminer $\\lim_{n\\to+\\infty}n\\left(\\frac1n\\sum_{k=1}^ne^{k/n}-(e-1)\\right)$.",
+          "reponse_finale": {
+            "question": "Quelle est cette limite ?",
+            "propositions": [
+              "$\\frac{e-1}2$",
+              "$-\\frac{e-1}2$",
+              "$\\frac e2$",
+              "$\\frac{e+1}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Intégrons par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$, de classe $\\mathcal{C}^1$ : le crochet $\\big[(f(x_k)-f(t))(t-x_{k-1})\\big]_{x_{k-1}}^{x_k}$ est nul aux deux bornes, et $u'=-f'$, d'où l'égalité.\n\n**2.** Par Chasles, $R_n-\\int_0^1f=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}\\big(f(x_k)-f(t)\\big)\\,\\mathrm{d}t=\\sum_{k=1}^n\\int_{x_{k-1}}^{x_k}(t-x_{k-1})f'(t)\\,\\mathrm{d}t$. Soit $\\varepsilon>0$ ; par le théorème de Heine, il existe $\\delta>0$ tel que $|f'(s)-f'(t)|\\le\\varepsilon$ dès que $|s-t|\\le\\delta$. Pour $\\frac1n\\le\\delta$ et $t\\in[x_{k-1},x_k]$, $|f'(t)-f'(x_k)|\\le\\varepsilon$, et $\\int_{x_{k-1}}^{x_k}(t-x_{k-1})\\,\\mathrm{d}t=\\frac1{2n^2}$. Donc\n$$\\left|n\\Big(R_n-\\int_0^1f\\Big)-\\frac1{2n}\\sum_{k=1}^nf'(x_k)\\right|\\le n\\sum_{k=1}^n\\frac{\\varepsilon}{2n^2}=\\frac\\varepsilon2.$$\nOr $\\frac1n\\sum_{k=1}^nf'(x_k)$ est une somme de Riemann de la fonction continue $f'$ : elle tend vers $\\int_0^1f'=f(1)-f(0)$. Ainsi, pour $n$ assez grand, $\\left|n\\left(R_n-\\int_0^1f\\right)-\\frac{f(1)-f(0)}2\\right|\\le\\varepsilon$, d'où la limite annoncée.\n\n**3.** Avec $f(x)=e^x$ : $R_n=\\frac1n\\sum_{k=1}^ne^{k/n}$ et $\\int_0^1f=e-1$. La limite vaut $\\frac{f(1)-f(0)}2=\\frac{e-1}2$.",
+          "indices": [
+            "Question 1 : intégrer par parties avec $u(t)=f(x_k)-f(t)$ et $v(t)=t-x_{k-1}$.",
+            "Question 2 : comparer $f'(t)$ à $f'(x_k)$ sur $[x_{k-1},x_k]$, puis reconnaître une somme de Riemann de $f'$.",
+            "Question 3 : la somme est $R_n$ pour $f(x)=e^x$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable-ex1",
+      "carte": "int-l1-riemann-changement-variable",
+      "difficulte": 1,
+      "titre": "Reconnaître une forme u' f(u)",
+      "enonce": "Calculer $\\int_1^e\\frac{(\\ln x)^2}x\\,\\mathrm{d}x$.",
+      "duree_min": 5,
+      "indices": [
+        "Poser $u=\\ln x$ : que devient $\\frac{\\mathrm{d}x}x$, et que deviennent les bornes ?"
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac13$",
+          "$\\frac12$",
+          "$1$",
+          "$\\frac{e^3}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\varphi=\\ln$ est de classe $\\mathcal{C}^1$ sur $[1,e]$, avec $\\varphi'(x)=\\frac1x$, et $u\\mapsto u^2$ est continue sur $\\mathbb{R}$. Par changement de variable $u=\\ln x$ :\n$$\\int_1^e\\frac{(\\ln x)^2}x\\,\\mathrm{d}x=\\int_{\\ln1}^{\\ln e}u^2\\,\\mathrm{d}u=\\int_0^1u^2\\,\\mathrm{d}u=\\frac13.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_1^e\\frac{(\\ln x)^3}x\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac13$",
+              "$1$",
+              "$\\frac{e^4}4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=\\ln x$ ($\\ln$ de classe $\\mathcal{C}^1$ sur $[1,e]$, $\\mathrm{d}u=\\frac{\\mathrm{d}x}x$) : $\\int_1^e\\frac{(\\ln x)^3}x\\,\\mathrm{d}x=\\int_0^1u^3\\,\\mathrm{d}u=\\frac14$.",
+          "indices": [
+            "Poser $u=\\ln x$ : que devient $\\frac{\\mathrm{d}x}x$, et que deviennent les bornes ?"
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_1^{e^2}\\frac{\\ln x}x\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$4$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=\\ln x$ ($\\ln$ de classe $\\mathcal{C}^1$ sur $[1,e^2]$, $\\mathrm{d}u=\\frac{\\mathrm{d}x}x$) : $\\int_1^{e^2}\\frac{\\ln x}x\\,\\mathrm{d}x=\\int_0^2u\\,\\mathrm{d}u=\\frac{2^2}2=2$.",
+          "indices": [
+            "Poser $u=\\ln x$ ; attention à la borne : $\\ln\\left(e^2\\right)=2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable-ex2",
+      "carte": "int-l1-riemann-changement-variable",
+      "difficulte": 2,
+      "titre": "Changement de variable trigonométrique",
+      "enonce": "Calculer $\\int_0^1\\sqrt{1-x^2}\\,\\mathrm{d}x$ à l'aide du changement de variable $x=\\sin t$.",
+      "duree_min": 8,
+      "indices": [
+        "Choisir l'intervalle des $t$ pour que $\\sin$ aille de $0$ à $1$, et vérifier le signe de $\\cos t$ ; puis $\\cos^2t=\\frac{1+\\cos2t}2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac\\pi4$",
+          "$\\frac\\pi2$",
+          "$1$",
+          "$\\frac\\pi8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\varphi=\\sin$ est de classe $\\mathcal{C}^1$ sur $\\left[0,\\frac\\pi2\\right]$, avec $\\varphi(0)=0$ et $\\varphi\\left(\\frac\\pi2\\right)=1$, et $x\\mapsto\\sqrt{1-x^2}$ est continue sur $[-1,1]\\supset\\varphi\\left(\\left[0,\\frac\\pi2\\right]\\right)$. Comme $\\cos t\\ge0$ sur $\\left[0,\\frac\\pi2\\right]$, $\\sqrt{1-\\sin^2t}=\\cos t$, et\n$$\\int_0^1\\sqrt{1-x^2}\\,\\mathrm{d}x=\\int_0^{\\pi/2}\\cos^2t\\,\\mathrm{d}t=\\left[\\frac t2+\\frac{\\sin2t}4\\right]_0^{\\pi/2}=\\frac\\pi4.$$\nC'est l'aire d'un quart de disque de rayon $1$.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^{1/2}\\sqrt{1-x^2}\\,\\mathrm{d}x$ à l'aide du changement de variable $x=\\sin t$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac\\pi{12}+\\frac{\\sqrt3}8$",
+              "$\\frac\\pi{12}$",
+              "$\\frac\\pi{12}+\\frac{\\sqrt3}4$",
+              "$\\frac\\pi6+\\frac{\\sqrt3}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sin$ est de classe $\\mathcal{C}^1$ sur $\\left[0,\\frac\\pi6\\right]$, avec $\\sin0=0$ et $\\sin\\frac\\pi6=\\frac12$, et $\\cos t\\ge0$ sur cet intervalle. Donc\n$$\\int_0^{1/2}\\sqrt{1-x^2}\\,\\mathrm{d}x=\\int_0^{\\pi/6}\\cos^2t\\,\\mathrm{d}t=\\left[\\frac t2+\\frac{\\sin2t}4\\right]_0^{\\pi/6}=\\frac\\pi{12}+\\frac{\\sqrt3/2}4=\\frac\\pi{12}+\\frac{\\sqrt3}8.$$",
+          "indices": [
+            "Ici $t$ va de $0$ à $\\frac\\pi6$ ; vérifier le signe de $\\cos t$, puis linéariser $\\cos^2t$."
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_0^2\\sqrt{4-x^2}\\,\\mathrm{d}x$ à l'aide du changement de variable $x=2\\sin t$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\pi$",
+              "$\\frac\\pi2$",
+              "$2\\pi$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$t\\mapsto2\\sin t$ est de classe $\\mathcal{C}^1$ sur $\\left[0,\\frac\\pi2\\right]$, de $0$ à $2$, de dérivée $2\\cos t$, et $\\sqrt{4-4\\sin^2t}=2\\cos t$ sur cet intervalle. Donc\n$$\\int_0^2\\sqrt{4-x^2}\\,\\mathrm{d}x=\\int_0^{\\pi/2}4\\cos^2t\\,\\mathrm{d}t=4\\cdot\\frac\\pi4=\\pi,$$\nl'aire d'un quart de disque de rayon $2$.",
+          "indices": [
+            "Avec $x=2\\sin t$, $\\mathrm{d}x=2\\cos t\\,\\mathrm{d}t$ et $t$ va de $0$ à $\\frac\\pi2$ ; linéariser $\\cos^2t$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable-ex3",
+      "carte": "int-l1-riemann-changement-variable",
+      "difficulte": 3,
+      "titre": "Une fraction en exponentielle",
+      "enonce": "Calculer $\\int_0^1\\frac{\\mathrm{d}x}{e^x+1}$.",
+      "duree_min": 10,
+      "indices": [
+        "Poser $u=e^x$ : $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$.",
+        "Décomposer $\\frac1{u(u+1)}$ en $\\frac au+\\frac b{u+1}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$1-\\ln\\frac{1+e}2$",
+          "$\\ln\\frac{1+e}2$",
+          "$1+\\ln\\frac{1+e}2$",
+          "$\\ln\\frac e{1+e}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On pose $u=e^x$, c'est-à-dire $x=\\ln u$ avec $u\\in[1,e]$ : $\\ln$ est de classe $\\mathcal{C}^1$ sur $[1,e]$, de $\\ln1=0$ à $\\ln e=1$, et $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$. Donc\n$$\\int_0^1\\frac{\\mathrm{d}x}{e^x+1}=\\int_1^e\\frac{\\mathrm{d}u}{u(u+1)}=\\int_1^e\\left(\\frac1u-\\frac1{u+1}\\right)\\mathrm{d}u=\\Big[\\ln u-\\ln(u+1)\\Big]_1^e=1-\\ln(e+1)+\\ln2.$$\nDonc l'intégrale vaut $1-\\ln\\frac{1+e}2$.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{\\mathrm{d}x}{e^x+2}$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac12\\left(1-\\ln\\frac{e+2}3\\right)$",
+              "$1-\\ln\\frac{e+2}3$",
+              "$\\frac12\\ln\\frac{e+2}3$",
+              "$\\frac12\\left(1+\\ln\\frac{e+2}3\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $x=\\ln u$, $u$ allant de $1$ à $e$ et $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$ :\n$$\\int_0^1\\frac{\\mathrm{d}x}{e^x+2}=\\int_1^e\\frac{\\mathrm{d}u}{u(u+2)}=\\frac12\\int_1^e\\left(\\frac1u-\\frac1{u+2}\\right)\\mathrm{d}u=\\frac12\\Big[\\ln u-\\ln(u+2)\\Big]_1^e=\\frac12\\big(1-\\ln(e+2)+\\ln3\\big).$$\nDonc l'intégrale vaut $\\frac12\\left(1-\\ln\\frac{e+2}3\\right)$.",
+          "indices": [
+            "Poser $u=e^x$ : $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$.",
+            "Décomposer $\\frac1{u(u+2)}$ en $\\frac au+\\frac b{u+2}$."
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{e^{2x}}{e^x+1}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$e-1-\\ln\\frac{e+1}2$",
+              "$e-1+\\ln\\frac{e+1}2$",
+              "$e-\\ln\\frac{e+1}2$",
+              "$\\ln\\frac{e+1}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $x=\\ln u$, $u$ allant de $1$ à $e$ et $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$ :\n$$\\int_0^1\\frac{e^{2x}}{e^x+1}\\,\\mathrm{d}x=\\int_1^e\\frac{u^2}{u+1}\\cdot\\frac{\\mathrm{d}u}u=\\int_1^e\\left(1-\\frac1{u+1}\\right)\\mathrm{d}u=\\Big[u-\\ln(u+1)\\Big]_1^e=e-1-\\ln\\frac{e+1}2.$$",
+          "indices": [
+            "Poser $u=e^x$ : $\\mathrm{d}x=\\frac{\\mathrm{d}u}u$.",
+            "Écrire $\\frac u{u+1}=1-\\frac1{u+1}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable-ex4",
+      "carte": "int-l1-riemann-changement-variable",
+      "difficulte": 4,
+      "titre": "Symétrie et changement de variable",
+      "enonce": "1. Soit $g$ continue sur $[0,1]$. Montrer, à l'aide du changement de variable $x=\\pi-t$, que $\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n2. En déduire la valeur de $I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2x}\\,\\mathrm{d}x$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : après le changement de variable, faire réapparaître l'intégrale de départ.",
+        "Question 2 : écrire $\\frac{\\sin x}{1+\\cos^2x}$ sous la forme $g(\\sin x)$, puis poser $u=\\cos x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I$ ?",
+        "propositions": [
+          "$\\frac{\\pi^2}4$",
+          "$\\frac{\\pi^2}2$",
+          "$\\frac{\\pi^2}8$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $t\\mapsto\\pi-t$ est de classe $\\mathcal{C}^1$ sur $[0,\\pi]$, de dérivée $-1$, et $x\\mapsto x\\,g(\\sin x)$ est continue sur $[0,\\pi]$. Avec $x=\\pi-t$ et $\\sin(\\pi-t)=\\sin t$ :\n$$J=\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\int_\\pi^0(\\pi-t)\\,g(\\sin t)\\,(-\\mathrm{d}t)=\\pi\\int_0^\\pi g(\\sin t)\\,\\mathrm{d}t-J,$$\nd'où $J=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n\n**2.** Comme $\\cos^2x=1-\\sin^2x$, l'intégrande s'écrit $x\\,g(\\sin x)$ avec $g(s)=\\frac s{2-s^2}$, continue sur $[0,1]$. Donc $I=\\frac\\pi2\\int_0^\\pi\\frac{\\sin x}{1+\\cos^2x}\\,\\mathrm{d}x$. Avec $u=\\cos x$ ($\\mathcal{C}^1$, $\\mathrm{d}u=-\\sin x\\,\\mathrm{d}x$) :\n$$\\int_0^\\pi\\frac{\\sin x}{1+\\cos^2x}\\,\\mathrm{d}x=\\int_{-1}^1\\frac{\\mathrm{d}u}{1+u^2}=\\frac\\pi2,\\qquad\\text{donc}\\qquad I=\\frac{\\pi^2}4.$$",
+      "variantes": [
+        {
+          "enonce": "1. Soit $g$ continue sur $[0,1]$. Montrer, à l'aide du changement de variable $x=\\pi-t$, que $\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n2. En déduire la valeur de $I=\\int_0^\\pi\\frac{x\\sin x}{3+\\cos^2x}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac{\\pi^2}{6\\sqrt3}$",
+              "$\\frac{\\pi^2}{3\\sqrt3}$",
+              "$\\frac{\\pi^2}{12}$",
+              "$\\frac\\pi{6\\sqrt3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $t\\mapsto\\pi-t$ est de classe $\\mathcal{C}^1$ sur $[0,\\pi]$, de dérivée $-1$, et $x\\mapsto x\\,g(\\sin x)$ est continue sur $[0,\\pi]$. Avec $x=\\pi-t$ et $\\sin(\\pi-t)=\\sin t$ :\n$$J=\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\int_\\pi^0(\\pi-t)\\,g(\\sin t)\\,(-\\mathrm{d}t)=\\pi\\int_0^\\pi g(\\sin t)\\,\\mathrm{d}t-J,$$\nd'où $J=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n\n**2.** Avec $g(s)=\\frac s{4-s^2}$, continue sur $[0,1]$, l'intégrande vaut $x\\,g(\\sin x)$, donc $I=\\frac\\pi2\\int_0^\\pi\\frac{\\sin x}{3+\\cos^2x}\\,\\mathrm{d}x$. Avec $u=\\cos x$ :\n$$\\int_0^\\pi\\frac{\\sin x}{3+\\cos^2x}\\,\\mathrm{d}x=\\int_{-1}^1\\frac{\\mathrm{d}u}{3+u^2}=\\frac2{\\sqrt3}\\arctan\\frac1{\\sqrt3}=\\frac\\pi{3\\sqrt3},\\qquad\\text{donc}\\qquad I=\\frac{\\pi^2}{6\\sqrt3}.$$",
+          "indices": [
+            "Question 1 : après le changement de variable, faire réapparaître l'intégrale de départ.",
+            "Question 2 : écrire l'intégrande sous la forme $x\\,g(\\sin x)$, puis poser $u=\\cos x$ ; une primitive de $\\frac1{3+u^2}$ est $\\frac1{\\sqrt3}\\arctan\\frac u{\\sqrt3}$."
+          ]
+        },
+        {
+          "enonce": "1. Soit $g$ continue sur $[0,1]$. Montrer, à l'aide du changement de variable $x=\\pi-t$, que $\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n2. En déduire la valeur de $I=\\int_0^\\pi\\frac{x\\sin x}{1+\\sin^2x}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac\\pi{\\sqrt2}\\ln\\left(1+\\sqrt2\\right)$",
+              "$\\frac\\pi{2\\sqrt2}\\ln\\left(1+\\sqrt2\\right)$",
+              "$\\pi\\ln\\left(1+\\sqrt2\\right)$",
+              "$\\frac\\pi{\\sqrt2}\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $t\\mapsto\\pi-t$ est de classe $\\mathcal{C}^1$ sur $[0,\\pi]$, de dérivée $-1$, et $x\\mapsto x\\,g(\\sin x)$ est continue sur $[0,\\pi]$. Avec $x=\\pi-t$ et $\\sin(\\pi-t)=\\sin t$ :\n$$J=\\int_0^\\pi x\\,g(\\sin x)\\,\\mathrm{d}x=\\int_\\pi^0(\\pi-t)\\,g(\\sin t)\\,(-\\mathrm{d}t)=\\pi\\int_0^\\pi g(\\sin t)\\,\\mathrm{d}t-J,$$\nd'où $J=\\frac\\pi2\\int_0^\\pi g(\\sin x)\\,\\mathrm{d}x$.\n\n**2.** Avec $g(s)=\\frac s{1+s^2}$, l'intégrande vaut $x\\,g(\\sin x)$, donc $I=\\frac\\pi2\\int_0^\\pi\\frac{\\sin x}{1+\\sin^2x}\\,\\mathrm{d}x=\\frac\\pi2\\int_0^\\pi\\frac{\\sin x}{2-\\cos^2x}\\,\\mathrm{d}x$. Avec $u=\\cos x$, puis $\\frac1{2-u^2}=\\frac1{2\\sqrt2}\\left(\\frac1{\\sqrt2-u}+\\frac1{\\sqrt2+u}\\right)$ :\n$$\\int_{-1}^1\\frac{\\mathrm{d}u}{2-u^2}=\\frac1{2\\sqrt2}\\left[\\ln\\frac{\\sqrt2+u}{\\sqrt2-u}\\right]_{-1}^1=\\frac1{2\\sqrt2}\\cdot2\\ln\\frac{\\sqrt2+1}{\\sqrt2-1}=\\frac1{\\sqrt2}\\ln\\left(\\left(1+\\sqrt2\\right)^2\\right)=\\sqrt2\\ln\\left(1+\\sqrt2\\right).$$\nDonc $I=\\frac\\pi2\\sqrt2\\ln\\left(1+\\sqrt2\\right)=\\frac\\pi{\\sqrt2}\\ln\\left(1+\\sqrt2\\right)$.",
+          "indices": [
+            "Question 1 : après le changement de variable, faire réapparaître l'intégrale de départ.",
+            "Question 2 : écrire $1+\\sin^2x=2-\\cos^2x$, poser $u=\\cos x$, puis décomposer $\\frac1{2-u^2}$ en éléments simples."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable-ex5",
+      "carte": "int-l1-riemann-changement-variable",
+      "difficulte": 5,
+      "titre": "Un changement de variable homographique",
+      "enonce": "Soit $a=1$ et $I=\\int_0^a\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x$. On pose $\\varphi(u)=\\frac{a-u}{1+au}$ pour $u\\in[0,a]$.\n\n1. Montrer que $\\varphi$ est de classe $\\mathcal{C}^1$ sur $[0,a]$, que $\\varphi(0)=a$, $\\varphi(a)=0$, $\\varphi([0,a])\\subset[0,a]$, et que, pour $u\\in[0,a]$,\n$$1+a\\,\\varphi(u)=\\frac{1+a^2}{1+au}\\qquad\\text{et}\\qquad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n2. En effectuant le changement de variable $x=\\varphi(u)$ dans $I$, montrer que $I=\\ln(1+a^2)\\arctan a-I$.\n3. En déduire la valeur de $I$.",
+      "duree_min": 35,
+      "indices": [
+        "Question 1 : calculer $\\varphi'(u)$, puis réduire $1+a\\varphi(u)$ et $1+\\varphi(u)^2$ au même dénominateur.",
+        "Question 2 : appliquer la formule avec $\\varphi(0)=a$ et $\\varphi(a)=0$, et utiliser $\\ln\\frac{1+a^2}{1+au}=\\ln(1+a^2)-\\ln(1+au)$.",
+        "On peut remarquer que $\\varphi(u)=\\tan(\\theta_0-\\theta)$ si $a=\\tan\\theta_0$ et $u=\\tan\\theta$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I$ ?",
+        "propositions": [
+          "$\\frac{\\pi\\ln2}8$",
+          "$\\frac{\\pi\\ln2}4$",
+          "$\\frac{\\pi\\ln2}{16}$",
+          "$\\frac{\\ln2}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $u\\in[0,a]$, $1+au\\ge1>0$, donc $\\varphi$ est une fraction rationnelle sans pôle sur $[0,a]$, de classe $\\mathcal{C}^1$, avec $\\varphi'(u)=\\frac{-(1+au)-a(a-u)}{(1+au)^2}=-\\frac{1+a^2}{(1+au)^2}<0$. Ainsi $\\varphi$ décroît de $\\varphi(0)=a$ à $\\varphi(a)=0$ et $\\varphi([0,a])=[0,a]$. Ensuite $1+a\\varphi(u)=\\frac{1+au+a^2-au}{1+au}=\\frac{1+a^2}{1+au}$, et\n$$1+\\varphi(u)^2=\\frac{(1+au)^2+(a-u)^2}{(1+au)^2}=\\frac{(1+a^2)(1+u^2)}{(1+au)^2},\\quad\\text{donc}\\quad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n\n**2.** La fonction $x\\mapsto\\frac{\\ln(1+ax)}{1+x^2}$ est continue sur $[0,a]$, qui contient $\\varphi([0,a])$. Par changement de variable,\n$$\\int_0^a\\frac{\\ln(1+a\\varphi(u))}{1+\\varphi(u)^2}\\varphi'(u)\\,\\mathrm{d}u=\\int_{\\varphi(0)}^{\\varphi(a)}\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x=-I.$$\nAvec la question 1, le membre de gauche vaut $-\\int_0^a\\frac{\\ln(1+a^2)-\\ln(1+au)}{1+u^2}\\,\\mathrm{d}u=-\\ln(1+a^2)\\arctan a+I$. Donc $I=\\ln(1+a^2)\\arctan a-I$.\n\n**3.** $I=\\frac12\\arctan(a)\\ln(1+a^2)$. Pour $a=1$ : $I=\\frac12\\cdot\\frac\\pi4\\cdot\\ln2=\\frac{\\pi\\ln2}8$.",
+      "variantes": [
+        {
+          "enonce": "Soit $a=\\sqrt3$ et $I=\\int_0^a\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x$. On pose $\\varphi(u)=\\frac{a-u}{1+au}$ pour $u\\in[0,a]$.\n\n1. Montrer que $\\varphi$ est de classe $\\mathcal{C}^1$ sur $[0,a]$, que $\\varphi(0)=a$, $\\varphi(a)=0$, $\\varphi([0,a])\\subset[0,a]$, et que, pour $u\\in[0,a]$,\n$$1+a\\,\\varphi(u)=\\frac{1+a^2}{1+au}\\qquad\\text{et}\\qquad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n2. En effectuant le changement de variable $x=\\varphi(u)$ dans $I$, montrer que $I=\\ln(1+a^2)\\arctan a-I$.\n3. En déduire la valeur de $I$.",
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac\\pi3\\ln2$",
+              "$\\frac\\pi6\\ln2$",
+              "$\\frac{2\\pi}3\\ln2$",
+              "$\\frac\\pi3\\ln4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $u\\in[0,a]$, $1+au\\ge1>0$, donc $\\varphi$ est une fraction rationnelle sans pôle sur $[0,a]$, de classe $\\mathcal{C}^1$, avec $\\varphi'(u)=\\frac{-(1+au)-a(a-u)}{(1+au)^2}=-\\frac{1+a^2}{(1+au)^2}<0$. Ainsi $\\varphi$ décroît de $\\varphi(0)=a$ à $\\varphi(a)=0$ et $\\varphi([0,a])=[0,a]$. Ensuite $1+a\\varphi(u)=\\frac{1+au+a^2-au}{1+au}=\\frac{1+a^2}{1+au}$, et\n$$1+\\varphi(u)^2=\\frac{(1+au)^2+(a-u)^2}{(1+au)^2}=\\frac{(1+a^2)(1+u^2)}{(1+au)^2},\\quad\\text{donc}\\quad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n\n**2.** La fonction $x\\mapsto\\frac{\\ln(1+ax)}{1+x^2}$ est continue sur $[0,a]$, qui contient $\\varphi([0,a])$. Par changement de variable,\n$$\\int_0^a\\frac{\\ln(1+a\\varphi(u))}{1+\\varphi(u)^2}\\varphi'(u)\\,\\mathrm{d}u=\\int_{\\varphi(0)}^{\\varphi(a)}\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x=-I.$$\nAvec la question 1, le membre de gauche vaut $-\\int_0^a\\frac{\\ln(1+a^2)-\\ln(1+au)}{1+u^2}\\,\\mathrm{d}u=-\\ln(1+a^2)\\arctan a+I$. Donc $I=\\ln(1+a^2)\\arctan a-I$.\n\n**3.** $I=\\frac12\\arctan(a)\\ln(1+a^2)$. Pour $a=\\sqrt3$ : $\\arctan\\sqrt3=\\frac\\pi3$ et $\\ln(1+a^2)=\\ln4=2\\ln2$, donc $I=\\frac12\\cdot\\frac\\pi3\\cdot2\\ln2=\\frac\\pi3\\ln2$.",
+          "indices": [
+            "Question 1 : calculer $\\varphi'(u)$, puis réduire $1+a\\varphi(u)$ et $1+\\varphi(u)^2$ au même dénominateur.",
+            "Question 2 : appliquer la formule avec $\\varphi(0)=a$ et $\\varphi(a)=0$, et utiliser $\\ln\\frac{1+a^2}{1+au}=\\ln(1+a^2)-\\ln(1+au)$.",
+            "Pour conclure, $\\arctan\\sqrt3=\\frac\\pi3$."
+          ]
+        },
+        {
+          "enonce": "Soit $a=\\frac1{\\sqrt3}$ et $I=\\int_0^a\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x$. On pose $\\varphi(u)=\\frac{a-u}{1+au}$ pour $u\\in[0,a]$.\n\n1. Montrer que $\\varphi$ est de classe $\\mathcal{C}^1$ sur $[0,a]$, que $\\varphi(0)=a$, $\\varphi(a)=0$, $\\varphi([0,a])\\subset[0,a]$, et que, pour $u\\in[0,a]$,\n$$1+a\\,\\varphi(u)=\\frac{1+a^2}{1+au}\\qquad\\text{et}\\qquad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n2. En effectuant le changement de variable $x=\\varphi(u)$ dans $I$, montrer que $I=\\ln(1+a^2)\\arctan a-I$.\n3. En déduire la valeur de $I$.",
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac\\pi{12}\\ln\\frac43$",
+              "$\\frac\\pi6\\ln\\frac43$",
+              "$\\frac\\pi{24}\\ln\\frac43$",
+              "$\\frac\\pi{12}\\ln\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $u\\in[0,a]$, $1+au\\ge1>0$, donc $\\varphi$ est une fraction rationnelle sans pôle sur $[0,a]$, de classe $\\mathcal{C}^1$, avec $\\varphi'(u)=\\frac{-(1+au)-a(a-u)}{(1+au)^2}=-\\frac{1+a^2}{(1+au)^2}<0$. Ainsi $\\varphi$ décroît de $\\varphi(0)=a$ à $\\varphi(a)=0$ et $\\varphi([0,a])=[0,a]$. Ensuite $1+a\\varphi(u)=\\frac{1+au+a^2-au}{1+au}=\\frac{1+a^2}{1+au}$, et\n$$1+\\varphi(u)^2=\\frac{(1+au)^2+(a-u)^2}{(1+au)^2}=\\frac{(1+a^2)(1+u^2)}{(1+au)^2},\\quad\\text{donc}\\quad\\frac{\\varphi'(u)}{1+\\varphi(u)^2}=-\\frac1{1+u^2}.$$\n\n**2.** La fonction $x\\mapsto\\frac{\\ln(1+ax)}{1+x^2}$ est continue sur $[0,a]$, qui contient $\\varphi([0,a])$. Par changement de variable,\n$$\\int_0^a\\frac{\\ln(1+a\\varphi(u))}{1+\\varphi(u)^2}\\varphi'(u)\\,\\mathrm{d}u=\\int_{\\varphi(0)}^{\\varphi(a)}\\frac{\\ln(1+ax)}{1+x^2}\\,\\mathrm{d}x=-I.$$\nAvec la question 1, le membre de gauche vaut $-\\int_0^a\\frac{\\ln(1+a^2)-\\ln(1+au)}{1+u^2}\\,\\mathrm{d}u=-\\ln(1+a^2)\\arctan a+I$. Donc $I=\\ln(1+a^2)\\arctan a-I$.\n\n**3.** $I=\\frac12\\arctan(a)\\ln(1+a^2)$. Pour $a=\\frac1{\\sqrt3}$ : $\\arctan\\frac1{\\sqrt3}=\\frac\\pi6$ et $1+a^2=\\frac43$, donc $I=\\frac12\\cdot\\frac\\pi6\\cdot\\ln\\frac43=\\frac\\pi{12}\\ln\\frac43$.",
+          "indices": [
+            "Question 1 : calculer $\\varphi'(u)$, puis réduire $1+a\\varphi(u)$ et $1+\\varphi(u)^2$ au même dénominateur.",
+            "Question 2 : appliquer la formule avec $\\varphi(0)=a$ et $\\varphi(a)=0$, et utiliser $\\ln\\frac{1+a^2}{1+au}=\\ln(1+a^2)-\\ln(1+au)$.",
+            "Pour conclure, $\\arctan\\frac1{\\sqrt3}=\\frac\\pi6$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-nulle-ex1",
+      "carte": "int-l1-riemann-nulle",
+      "difficulte": 1,
+      "titre": "Quelle condition force une fonction à être nulle ?",
+      "enonce": "Soit $f$ continue sur $[0,1]$. On considère les conditions :\n- (a) $\\int_0^1f(x)\\,\\mathrm{d}x=0$ ;\n- (b) $\\int_0^1f(x)^3\\,\\mathrm{d}x=0$ ;\n- (c) $\\int_0^1x\\,f(x)\\,\\mathrm{d}x=0$ ;\n- (d) $\\int_0^1f(x)^2\\,\\mathrm{d}x=0$.\n\nLaquelle de ces conditions entraîne, à elle seule, que $f$ est la fonction nulle ?",
+      "duree_min": 4,
+      "indices": [
+        "Une seule de ces intégrales porte sur une fonction positive."
+      ],
+      "reponse_finale": {
+        "question": "Quelle condition convient ?",
+        "propositions": [
+          "La condition (d)",
+          "La condition (a)",
+          "La condition (b)",
+          "La condition (c)"
+        ],
+        "bonne": 0
+      },
+      "correction": "**(d)** convient : $f^2$ est continue et positive sur $[0,1]$, d'intégrale nulle, et $0<1$ ; donc $f^2=0$, puis $f=0$.\n\nLes autres ne suffisent pas :\n- (a) et (b) : $f(x)=2x-1$ n'est pas nulle, et $\\int_0^1(2x-1)\\,\\mathrm{d}x=0$, $\\int_0^1(2x-1)^3\\,\\mathrm{d}x=\\left[\\frac{(2x-1)^4}8\\right]_0^1=0$ ;\n- (c) : $f(x)=3x-2$ n'est pas nulle, et $\\int_0^1x(3x-2)\\,\\mathrm{d}x=1-1=0$."
+    },
+    {
+      "id": "int-l1-riemann-nulle-ex2",
+      "carte": "int-l1-riemann-nulle",
+      "difficulte": 2,
+      "titre": "Identifier une fonction par un carré",
+      "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=2\\int_0^1x\\,f(x)\\,\\mathrm{d}x-\\frac13$.",
+      "duree_min": 8,
+      "indices": [
+        "Remarquer que $\\frac13=\\int_0^1x^2\\,\\mathrm{d}x$ et faire apparaître le carré d'une différence."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont ces fonctions ?",
+        "propositions": [
+          "La seule fonction $x\\mapsto x$",
+          "La seule fonction $x\\mapsto2x$",
+          "Toutes les fonctions affines",
+          "Aucune fonction"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $\\int_0^1x^2\\,\\mathrm{d}x=\\frac13$, la condition s'écrit $\\int_0^1\\big(f(x)^2-2x\\,f(x)+x^2\\big)\\,\\mathrm{d}x=0$, soit $\\int_0^1\\big(f(x)-x\\big)^2\\,\\mathrm{d}x=0$. La fonction $(f-\\mathrm{id})^2$ est continue et positive sur $[0,1]$, d'intégrale nulle : elle est nulle, donc $f(x)=x$ pour tout $x$. Réciproquement, $f(x)=x$ convient ($\\frac13=\\frac23-\\frac13$). La seule solution est $x\\mapsto x$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=2\\int_0^1x^2f(x)\\,\\mathrm{d}x-\\frac15$.",
+          "reponse_finale": {
+            "question": "Quelles sont ces fonctions ?",
+            "propositions": [
+              "La seule fonction $x\\mapsto x^2$",
+              "La seule fonction $x\\mapsto x$",
+              "La seule fonction $x\\mapsto2x^2$",
+              "Aucune fonction"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\int_0^1x^4\\,\\mathrm{d}x=\\frac15$, la condition s'écrit $\\int_0^1\\big(f(x)-x^2\\big)^2\\,\\mathrm{d}x=0$. La fonction $\\left(f(x)-x^2\\right)^2$ est continue, positive, d'intégrale nulle sur $[0,1]$ : elle est nulle, donc $f(x)=x^2$. Réciproquement, cette fonction convient. La seule solution est $x\\mapsto x^2$.",
+          "indices": [
+            "Remarquer que $\\frac15=\\int_0^1x^4\\,\\mathrm{d}x$ et faire apparaître le carré d'une différence."
+          ]
+        },
+        {
+          "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=2\\int_0^1e^xf(x)\\,\\mathrm{d}x-\\frac{e^2-1}2$.",
+          "reponse_finale": {
+            "question": "Quelles sont ces fonctions ?",
+            "propositions": [
+              "La seule fonction $x\\mapsto e^x$",
+              "La seule fonction $x\\mapsto e^{2x}$",
+              "La seule fonction $x\\mapsto2e^x$",
+              "Aucune fonction"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\int_0^1e^{2x}\\,\\mathrm{d}x=\\frac{e^2-1}2$, la condition s'écrit $\\int_0^1\\big(f(x)-e^x\\big)^2\\,\\mathrm{d}x=0$. La fonction $\\left(f(x)-e^x\\right)^2$ est continue, positive, d'intégrale nulle sur $[0,1]$ : elle est nulle, donc $f(x)=e^x$. Réciproquement, cette fonction convient. La seule solution est $x\\mapsto e^x$.",
+          "indices": [
+            "Calculer $\\int_0^1e^{2x}\\,\\mathrm{d}x$ et faire apparaître le carré d'une différence."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-nulle-ex3",
+      "carte": "int-l1-riemann-nulle",
+      "difficulte": 3,
+      "titre": "Une fonction qui ne prend que deux valeurs",
+      "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^4\\,\\mathrm{d}x+\\int_0^1f(x)^2\\,\\mathrm{d}x=2\\int_0^1f(x)^3\\,\\mathrm{d}x$.",
+      "duree_min": 12,
+      "indices": [
+        "Regrouper les trois intégrales en une seule, et factoriser l'intégrande : c'est une fonction positive.",
+        "Une fonction continue sur l'intervalle $[0,1]$ qui ne prend que deux valeurs est constante (valeurs intermédiaires)."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont ces fonctions ?",
+        "propositions": [
+          "Les fonctions constantes $0$ et $1$",
+          "La seule fonction constante $1$",
+          "Toutes les fonctions constantes",
+          "Toutes les fonctions continues à valeurs dans $[0,1]$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La condition s'écrit $\\int_0^1\\left(f^4-2f^3+f^2\\right)=0$, soit $\\int_0^1f^2(f-1)^2=0$. La fonction $f^2(f-1)^2$ est continue, positive, d'intégrale nulle sur $[0,1]$ : elle est nulle, donc $f(x)\\in\\{0,1\\}$ pour tout $x$.\n\nSi $f$ prenait les deux valeurs $0$ et $1$, par le théorème des valeurs intermédiaires elle prendrait aussi la valeur $\\frac12$, ce qui est exclu. Donc $f$ est constante, égale à $0$ ou à $1$ ; réciproquement, ces deux constantes conviennent ($c^4+c^2=2c^3$ pour $c\\in\\{0,1\\}$).",
+      "variantes": [
+        {
+          "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^4\\,\\mathrm{d}x+4\\int_0^1f(x)^2\\,\\mathrm{d}x=4\\int_0^1f(x)^3\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quelles sont ces fonctions ?",
+            "propositions": [
+              "Les fonctions constantes $0$ et $2$",
+              "La seule fonction constante $2$",
+              "Toutes les fonctions constantes",
+              "Toutes les fonctions continues à valeurs dans $[0,2]$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La condition s'écrit $\\int_0^1\\left(f^4-4f^3+4f^2\\right)=0$, soit $\\int_0^1f^2(f-2)^2=0$. La fonction $f^2(f-2)^2$ est continue, positive, d'intégrale nulle : elle est nulle, donc $f$ ne prend que les valeurs $0$ et $2$. Par le théorème des valeurs intermédiaires, elle ne peut prendre les deux (elle prendrait $1$) : $f$ est constante, égale à $0$ ou à $2$, et ces deux constantes conviennent.",
+          "indices": [
+            "Regrouper les trois intégrales en une seule et factoriser $f^4-4f^3+4f^2$.",
+            "Une fonction continue sur l'intervalle $[0,1]$ qui ne prend que deux valeurs est constante."
+          ]
+        },
+        {
+          "enonce": "Déterminer les fonctions $f$ continues sur $[0,1]$ telles que $\\int_0^1f(x)^4\\,\\mathrm{d}x+9\\int_0^1f(x)^2\\,\\mathrm{d}x=6\\int_0^1f(x)^3\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quelles sont ces fonctions ?",
+            "propositions": [
+              "Les fonctions constantes $0$ et $3$",
+              "La seule fonction constante $3$",
+              "Toutes les fonctions constantes",
+              "Toutes les fonctions continues à valeurs dans $[0,3]$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La condition s'écrit $\\int_0^1\\left(f^4-6f^3+9f^2\\right)=0$, soit $\\int_0^1f^2(f-3)^2=0$. La fonction $f^2(f-3)^2$ est continue, positive, d'intégrale nulle : elle est nulle, donc $f$ ne prend que les valeurs $0$ et $3$. Par le théorème des valeurs intermédiaires, elle ne peut prendre les deux : $f$ est constante, égale à $0$ ou à $3$, et ces deux constantes conviennent.",
+          "indices": [
+            "Regrouper les trois intégrales en une seule et factoriser $f^4-6f^3+9f^2$.",
+            "Une fonction continue sur l'intervalle $[0,1]$ qui ne prend que deux valeurs est constante."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-nulle-ex4",
+      "carte": "int-l1-riemann-nulle",
+      "difficulte": 5,
+      "titre": "Moments nuls et changements de signe",
+      "enonce": "Soient $n\\in\\mathbb{N}$ et $f$ continue sur $[0,1]$ telle que $\\int_0^1x^kf(x)\\,\\mathrm{d}x=0$ pour tout $k\\in\\{0,1,\\dots,n\\}$.\n\n1. Montrer que $\\int_0^1P(x)f(x)\\,\\mathrm{d}x=0$ pour tout polynôme $P$ de degré au plus $n$.\n2. On suppose, par l'absurde, que $f$ s'annule en au plus $n$ points de $\\left]0,1\\right[$, notés $a_1<\\dots<a_m$ ($m\\le n$). Montrer que $f$ garde un signe strict constant sur chacun des intervalles $\\left]0,a_1\\right[,\\left]a_1,a_2\\right[,\\dots,\\left]a_m,1\\right[$ (sur $\\left]0,1\\right[$ si $m=0$).\n3. Construire un polynôme $P$ de degré au plus $n$ tel que $Pf$ soit de signe constant sur $[0,1]$, et conclure que $f$ s'annule au moins $n+1$ fois sur $\\left]0,1\\right[$.",
+      "duree_min": 30,
+      "indices": [
+        "Question 2 : appliquer le théorème des valeurs intermédiaires sur chaque intervalle.",
+        "Question 3 : prendre pour racines de $P$ les seuls points $a_i$ où $f$ change effectivement de signe."
+      ],
+      "correction": "**1.** Si $P=\\sum_{k=0}^nc_kX^k$, par linéarité $\\int_0^1Pf=\\sum_{k=0}^nc_k\\int_0^1x^kf(x)\\,\\mathrm{d}x=0$.\n\n**2.** Sur chacun de ces intervalles ouverts, $f$ est continue et ne s'annule pas. Si elle y prenait une valeur strictement positive et une valeur strictement négative, le théorème des valeurs intermédiaires fournirait un zéro entre les deux : c'est exclu. Elle y garde donc un signe strict constant.\n\n**3.** Notons $b_1<\\dots<b_r$ ceux des $a_i$ de part et d'autre desquels $f$ change de signe, et $P=\\prod_{j=1}^r(X-b_j)$ (avec $P=1$ si $r=0$), de degré $r\\le m\\le n$. Sur chacun des intervalles de la question 2, $P$ et $f$ ont un signe strict constant ; en franchissant un point $a_i$, $P$ et $f$ changent tous deux de signe si $a_i$ est un $b_j$ (racine simple de $P$), et aucun des deux sinon. Donc $Pf$ a le même signe strict sur tous ces intervalles ; quitte à remplacer $P$ par $-P$, $Pf>0$ sur $[0,1]$ privé d'un nombre fini de points, donc $Pf\\ge0$ sur $[0,1]$ par continuité.\n\nPar la question 1, $\\int_0^1Pf=0$. La fonction $Pf$ est continue, positive, d'intégrale nulle sur $[0,1]$ : elle est nulle, ce qui contredit $Pf>0$ sur $\\left]0,a_1\\right[$ (ou sur $\\left]0,1\\right[$ si $m=0$). L'hypothèse de la question 2 est donc fausse : $f$ s'annule en au moins $n+1$ points de $\\left]0,1\\right[$."
+    },
+    {
+      "id": "int-l1-riemann-fractions-ex1",
+      "carte": "int-l1-riemann-fractions",
+      "difficulte": 1,
+      "titre": "Deux pôles réels simples",
+      "enonce": "Calculer $\\int_2^3\\frac{\\mathrm{d}x}{x^2-1}$.",
+      "duree_min": 5,
+      "indices": [
+        "Décomposer $\\frac1{x^2-1}$ en $\\frac a{x-1}+\\frac b{x+1}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac12\\ln\\frac32$",
+          "$\\ln\\frac32$",
+          "$\\frac12\\ln\\frac23$",
+          "$\\frac12\\ln3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$x^2-1$ ne s'annule pas sur $[2,3]$, et $\\frac1{x^2-1}=\\frac12\\left(\\frac1{x-1}-\\frac1{x+1}\\right)$. Donc\n$$\\int_2^3\\frac{\\mathrm{d}x}{x^2-1}=\\frac12\\Big[\\ln(x-1)-\\ln(x+1)\\Big]_2^3=\\frac12\\left(\\ln\\frac24-\\ln\\frac13\\right)=\\frac12\\ln\\frac32.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{\\mathrm{d}x}{x^2-4}$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$-\\frac14\\ln3$",
+              "$\\frac14\\ln3$",
+              "$-\\frac12\\ln3$",
+              "$-\\frac14\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$x^2-4$ ne s'annule pas sur $[0,1]$, et $\\frac1{x^2-4}=\\frac14\\left(\\frac1{x-2}-\\frac1{x+2}\\right)$. Sur $[0,1]$, $|x-2|=2-x$, donc\n$$\\int_0^1\\frac{\\mathrm{d}x}{x^2-4}=\\frac14\\Big[\\ln(2-x)-\\ln(x+2)\\Big]_0^1=\\frac14\\left(\\ln\\frac13-\\ln1\\right)=-\\frac14\\ln3.$$",
+          "indices": [
+            "Décomposer $\\frac1{x^2-4}$ en éléments simples ; attention à $\\ln|x-2|$ sur $[0,1]$."
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_1^2\\frac{\\mathrm{d}x}{x(x+1)}$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\ln\\frac43$",
+              "$\\ln\\frac32$",
+              "$\\ln2$",
+              "$\\ln\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac1{x(x+1)}=\\frac1x-\\frac1{x+1}$, sans pôle sur $[1,2]$. Donc\n$$\\int_1^2\\frac{\\mathrm{d}x}{x(x+1)}=\\Big[\\ln x-\\ln(x+1)\\Big]_1^2=\\ln\\frac23-\\ln\\frac12=\\ln\\frac43.$$",
+          "indices": [
+            "Décomposer $\\frac1{x(x+1)}$ en $\\frac ax+\\frac b{x+1}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-fractions-ex2",
+      "carte": "int-l1-riemann-fractions",
+      "difficulte": 2,
+      "titre": "Un trinôme sans racine réelle",
+      "enonce": "Calculer $\\int_0^1\\frac{\\mathrm{d}x}{x^2+x+1}$.",
+      "duree_min": 8,
+      "indices": [
+        "Mettre le trinôme sous forme canonique, puis se ramener à $\\int\\frac{\\mathrm{d}u}{1+u^2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac\\pi{3\\sqrt3}$",
+          "$\\frac\\pi6$",
+          "$\\frac\\pi{6\\sqrt3}$",
+          "$\\frac\\pi3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le discriminant de $x^2+x+1$ vaut $-3<0$, et $x^2+x+1=\\left(x+\\frac12\\right)^2+\\frac34=\\frac34\\left(1+u^2\\right)$ avec $u=\\frac{2x+1}{\\sqrt3}$. Une primitive est $\\frac2{\\sqrt3}\\arctan\\frac{2x+1}{\\sqrt3}$, donc\n$$\\int_0^1\\frac{\\mathrm{d}x}{x^2+x+1}=\\frac2{\\sqrt3}\\left(\\arctan\\sqrt3-\\arctan\\frac1{\\sqrt3}\\right)=\\frac2{\\sqrt3}\\left(\\frac\\pi3-\\frac\\pi6\\right)=\\frac\\pi{3\\sqrt3}.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{\\mathrm{d}x}{x^2+2x+2}$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\arctan2-\\frac\\pi4$",
+              "$\\arctan2$",
+              "$\\frac12\\ln\\frac52$",
+              "$\\arctan3-\\frac\\pi4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$x^2+2x+2=(x+1)^2+1$ (discriminant $-4<0$), de primitive inverse $\\arctan(x+1)$. Donc\n$$\\int_0^1\\frac{\\mathrm{d}x}{x^2+2x+2}=\\arctan2-\\arctan1=\\arctan2-\\frac\\pi4.$$",
+          "indices": [
+            "Mettre $x^2+2x+2$ sous forme canonique."
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_{-1}^1\\frac{\\mathrm{d}x}{x^2+2x+5}$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac\\pi8$",
+              "$\\frac\\pi4$",
+              "$\\frac\\pi{16}$",
+              "$\\frac12\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$x^2+2x+5=(x+1)^2+4=4\\left(1+\\left(\\frac{x+1}2\\right)^2\\right)$, de primitive inverse $\\frac12\\arctan\\frac{x+1}2$. Donc\n$$\\int_{-1}^1\\frac{\\mathrm{d}x}{x^2+2x+5}=\\frac12\\left(\\arctan1-\\arctan0\\right)=\\frac\\pi8.$$",
+          "indices": [
+            "Mettre $x^2+2x+5$ sous forme canonique et factoriser par $4$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-fractions-ex3",
+      "carte": "int-l1-riemann-fractions",
+      "difficulte": 3,
+      "titre": "Décomposition avec un facteur irréductible",
+      "enonce": "Calculer $\\int_0^1\\frac{x+3}{(x+1)(x^2+1)}\\,\\mathrm{d}x$.",
+      "duree_min": 12,
+      "indices": [
+        "Chercher $\\frac{x+3}{(x+1)(x^2+1)}=\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$ ; $A$ s'obtient en multipliant par $x+1$ puis en évaluant en $-1$.",
+        "Pour $\\frac{Bx+C}{x^2+1}$, séparer $\\frac{Bx}{x^2+1}$ (logarithme) et $\\frac C{x^2+1}$ (arctangente)."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$\\frac12\\ln2+\\frac\\pi2$",
+          "$\\ln2+\\frac\\pi2$",
+          "$\\frac12\\ln2+\\frac\\pi4$",
+          "$\\frac32\\ln2+\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le dénominateur ne s'annule pas sur $[0,1]$, le degré du numérateur est inférieur à celui du dénominateur (pas de partie entière), et $x^2+1$ est irréductible. On cherche $\\frac{x+3}{(x+1)(x^2+1)}=\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$. En multipliant par $x+1$ et en faisant $x=-1$ : $A=\\frac22=1$. Puis $x+3-(x^2+1)=-x^2+x+2=-(x-2)(x+1)$, d'où $Bx+C=-x+2$. Donc\n$$\\int_0^1\\frac{x+3}{(x+1)(x^2+1)}\\,\\mathrm{d}x=\\Big[\\ln(x+1)-\\frac12\\ln(x^2+1)+2\\arctan x\\Big]_0^1=\\ln2-\\frac12\\ln2+\\frac\\pi2=\\frac12\\ln2+\\frac\\pi2.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{2x^2}{(x+1)(x^2+1)}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac32\\ln2-\\frac\\pi4$",
+              "$\\frac32\\ln2+\\frac\\pi4$",
+              "$\\frac12\\ln2-\\frac\\pi4$",
+              "$\\ln2-\\frac\\pi4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On cherche $\\frac{2x^2}{(x+1)(x^2+1)}=\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$. En $x=-1$ : $A=\\frac22=1$. Puis $2x^2-(x^2+1)=x^2-1=(x-1)(x+1)$, d'où $Bx+C=x-1$. Donc\n$$\\int_0^1\\frac{2x^2}{(x+1)(x^2+1)}\\,\\mathrm{d}x=\\Big[\\ln(x+1)+\\frac12\\ln(x^2+1)-\\arctan x\\Big]_0^1=\\ln2+\\frac12\\ln2-\\frac\\pi4=\\frac32\\ln2-\\frac\\pi4.$$",
+          "indices": [
+            "Chercher $\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$ ; $A$ s'obtient en multipliant par $x+1$ puis en évaluant en $-1$.",
+            "Pour $\\frac{Bx+C}{x^2+1}$, séparer le terme en logarithme et le terme en arctangente."
+          ]
+        },
+        {
+          "enonce": "Calculer $\\int_0^1\\frac{3x+1}{(x+1)(x^2+1)}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$\\frac\\pi2-\\frac12\\ln2$",
+              "$\\frac\\pi2+\\frac12\\ln2$",
+              "$\\frac\\pi4-\\frac12\\ln2$",
+              "$\\frac\\pi2-\\frac32\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On cherche $\\frac{3x+1}{(x+1)(x^2+1)}=\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$. En $x=-1$ : $A=\\frac{-2}2=-1$. Puis $3x+1+(x^2+1)=x^2+3x+2=(x+1)(x+2)$, d'où $Bx+C=x+2$. Donc\n$$\\int_0^1\\frac{3x+1}{(x+1)(x^2+1)}\\,\\mathrm{d}x=\\Big[-\\ln(x+1)+\\frac12\\ln(x^2+1)+2\\arctan x\\Big]_0^1=-\\ln2+\\frac12\\ln2+\\frac\\pi2=\\frac\\pi2-\\frac12\\ln2.$$",
+          "indices": [
+            "Chercher $\\frac A{x+1}+\\frac{Bx+C}{x^2+1}$ ; $A$ s'obtient en multipliant par $x+1$ puis en évaluant en $-1$.",
+            "Pour $\\frac{Bx+C}{x^2+1}$, séparer le terme en logarithme et le terme en arctangente."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-fractions-ex4",
+      "carte": "int-l1-riemann-fractions",
+      "difficulte": 4,
+      "titre": "Primitive de l'inverse d'un polynôme de degré 4",
+      "enonce": "1. Factoriser $x^4+1$ en produit de deux trinômes réels irréductibles (on pourra écrire $x^4+1=(x^2+1)^2-2x^2$).\n2. En déduire la valeur de $\\int_0^1\\frac{\\mathrm{d}x}{1+x^4}\\,\\mathrm{d}x$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : $(x^2+1)^2-2x^2$ est une différence de deux carrés.",
+        "Question 2 : par parité, chercher $\\frac1{1+x^4}=\\frac{ax+b}{x^2+\\sqrt2x+1}+\\frac{-ax+b}{x^2-\\sqrt2x+1}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale de la question 2 ?",
+        "propositions": [
+          "$\\frac{\\pi+2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}$",
+          "$\\frac\\pi4$",
+          "$\\frac{\\pi-2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}$",
+          "$\\frac{\\pi+2\\ln\\left(1+\\sqrt2\\right)}{2\\sqrt2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $x^4+1=(x^2+1)^2-\\left(\\sqrt2x\\right)^2=\\left(x^2+\\sqrt2x+1\\right)\\left(x^2-\\sqrt2x+1\\right)$ ; les deux trinômes ont pour discriminant $2-4=-2<0$.\n\n**2.** Par parité, on cherche $\\frac1{1+x^4}=\\frac{ax+b}{x^2+\\sqrt2x+1}+\\frac{-ax+b}{x^2-\\sqrt2x+1}$ ; en réduisant au même dénominateur, le numérateur vaut $2b\\left(x^2+1\\right)-2\\sqrt2a\\,x^2$, d'où $b=\\frac12$ et $2b-2\\sqrt2a=0$, soit $a=\\frac1{2\\sqrt2}$. On écrit $\\frac{ax+\\frac12}{x^2+\\sqrt2x+1}=\\frac a2\\cdot\\frac{2x+\\sqrt2}{x^2+\\sqrt2x+1}+\\frac14\\cdot\\frac1{x^2+\\sqrt2x+1}$, et de même pour l'autre terme. Une primitive de $\\frac1{1+x^4}$ est donc\n$$\\frac1{4\\sqrt2}\\ln\\frac{x^2+\\sqrt2x+1}{x^2-\\sqrt2x+1}+\\frac1{2\\sqrt2}\\Big(\\arctan\\left(\\sqrt2x+1\\right)+\\arctan\\left(\\sqrt2x-1\\right)\\Big).$$\n\nOn utilise : $\\frac{2x\\pm\\sqrt2}{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\ln\\left(x^2\\pm\\sqrt2x+1\\right)$ ; et, comme $x^2\\pm\\sqrt2x+1=\\left(x\\pm\\frac{\\sqrt2}2\\right)^2+\\frac12$, $\\frac1{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\sqrt2\\arctan\\left(\\sqrt2x\\pm1\\right)$. Aux bornes : $\\ln\\frac{2+\\sqrt2}{2-\\sqrt2}=\\ln\\left(3+2\\sqrt2\\right)=2\\ln\\left(1+\\sqrt2\\right)$, et $\\arctan\\left(\\sqrt2+1\\right)+\\arctan\\left(\\sqrt2-1\\right)=\\frac\\pi2$ (deux réels positifs de produit $1$), tandis qu'en $0$ les termes s'annulent ($\\arctan1+\\arctan(-1)=0$). Finalement\n$$\\int_0^1\\frac{\\mathrm{d}x}{1+x^4}=\\frac{2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}+\\frac1{2\\sqrt2}\\cdot\\frac\\pi2=\\frac{\\pi+2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}.$$",
+      "variantes": [
+        {
+          "enonce": "1. Factoriser $x^4+1$ en produit de deux trinômes réels irréductibles (on pourra écrire $x^4+1=(x^2+1)^2-2x^2$).\n2. En déduire la valeur de $\\int_0^1\\frac{x^2}{1+x^4}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale de la question 2 ?",
+            "propositions": [
+              "$\\frac{\\pi-2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}$",
+              "$\\frac{\\pi+2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}$",
+              "$\\frac\\pi{4\\sqrt2}$",
+              "$\\frac{\\pi-2\\ln\\left(1+\\sqrt2\\right)}{2\\sqrt2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $x^4+1=(x^2+1)^2-\\left(\\sqrt2x\\right)^2=\\left(x^2+\\sqrt2x+1\\right)\\left(x^2-\\sqrt2x+1\\right)$ ; les deux trinômes ont pour discriminant $2-4=-2<0$.\n\n**2.** Par parité, on cherche $\\frac{x^2}{1+x^4}=\\frac{ax}{x^2-\\sqrt2x+1}-\\frac{ax}{x^2+\\sqrt2x+1}$ ; le numérateur réduit vaut $2\\sqrt2a\\,x^2$, d'où $a=\\frac1{2\\sqrt2}$. On écrit $\\frac{x}{x^2\\mp\\sqrt2x+1}=\\frac12\\cdot\\frac{2x\\mp\\sqrt2}{x^2\\mp\\sqrt2x+1}\\pm\\frac{\\sqrt2}2\\cdot\\frac1{x^2\\mp\\sqrt2x+1}$. Une primitive de $\\frac{x^2}{1+x^4}$ est donc\n$$\\frac1{4\\sqrt2}\\ln\\frac{x^2-\\sqrt2x+1}{x^2+\\sqrt2x+1}+\\frac1{2\\sqrt2}\\Big(\\arctan\\left(\\sqrt2x-1\\right)+\\arctan\\left(\\sqrt2x+1\\right)\\Big).$$\n\nOn utilise : $\\frac{2x\\pm\\sqrt2}{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\ln\\left(x^2\\pm\\sqrt2x+1\\right)$ ; et, comme $x^2\\pm\\sqrt2x+1=\\left(x\\pm\\frac{\\sqrt2}2\\right)^2+\\frac12$, $\\frac1{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\sqrt2\\arctan\\left(\\sqrt2x\\pm1\\right)$. Aux bornes : $\\ln\\frac{2+\\sqrt2}{2-\\sqrt2}=\\ln\\left(3+2\\sqrt2\\right)=2\\ln\\left(1+\\sqrt2\\right)$, et $\\arctan\\left(\\sqrt2+1\\right)+\\arctan\\left(\\sqrt2-1\\right)=\\frac\\pi2$ (deux réels positifs de produit $1$), tandis qu'en $0$ les termes s'annulent ($\\arctan1+\\arctan(-1)=0$). Finalement\n$$\\int_0^1\\frac{x^2\\,\\mathrm{d}x}{1+x^4}=-\\frac{2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}+\\frac1{2\\sqrt2}\\cdot\\frac\\pi2=\\frac{\\pi-2\\ln\\left(1+\\sqrt2\\right)}{4\\sqrt2}.$$",
+          "indices": [
+            "Question 1 : $(x^2+1)^2-2x^2$ est une différence de deux carrés.",
+            "Question 2 : par parité, chercher $\\frac{x^2}{1+x^4}=\\frac{ax}{x^2-\\sqrt2x+1}-\\frac{ax}{x^2+\\sqrt2x+1}$."
+          ]
+        },
+        {
+          "enonce": "1. Factoriser $x^4+1$ en produit de deux trinômes réels irréductibles (on pourra écrire $x^4+1=(x^2+1)^2-2x^2$).\n2. En déduire la valeur de $\\int_0^1\\frac{1+x^2}{1+x^4}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale de la question 2 ?",
+            "propositions": [
+              "$\\frac\\pi{2\\sqrt2}$",
+              "$\\frac\\pi{4\\sqrt2}$",
+              "$\\frac\\pi2$",
+              "$\\frac\\pi{\\sqrt2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $x^4+1=(x^2+1)^2-\\left(\\sqrt2x\\right)^2=\\left(x^2+\\sqrt2x+1\\right)\\left(x^2-\\sqrt2x+1\\right)$ ; les deux trinômes ont pour discriminant $2-4=-2<0$.\n\n**2.** Par parité, on cherche $\\frac{1+x^2}{1+x^4}=\\frac b{x^2+\\sqrt2x+1}+\\frac b{x^2-\\sqrt2x+1}$ : le numérateur réduit vaut $2b\\left(x^2+1\\right)$, d'où $b=\\frac12$, sans terme logarithmique. Une primitive de $\\frac{1+x^2}{1+x^4}$ est donc\n$$\\frac1{\\sqrt2}\\Big(\\arctan\\left(\\sqrt2x+1\\right)+\\arctan\\left(\\sqrt2x-1\\right)\\Big).$$\n\nOn utilise : $\\frac{2x\\pm\\sqrt2}{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\ln\\left(x^2\\pm\\sqrt2x+1\\right)$ ; et, comme $x^2\\pm\\sqrt2x+1=\\left(x\\pm\\frac{\\sqrt2}2\\right)^2+\\frac12$, $\\frac1{x^2\\pm\\sqrt2x+1}$ a pour primitive $\\sqrt2\\arctan\\left(\\sqrt2x\\pm1\\right)$. Aux bornes : $\\ln\\frac{2+\\sqrt2}{2-\\sqrt2}=\\ln\\left(3+2\\sqrt2\\right)=2\\ln\\left(1+\\sqrt2\\right)$, et $\\arctan\\left(\\sqrt2+1\\right)+\\arctan\\left(\\sqrt2-1\\right)=\\frac\\pi2$ (deux réels positifs de produit $1$), tandis qu'en $0$ les termes s'annulent ($\\arctan1+\\arctan(-1)=0$). Ici seul le terme en arctangente intervient :\n$$\\int_0^1\\frac{1+x^2}{1+x^4}\\,\\mathrm{d}x=\\frac1{\\sqrt2}\\cdot\\frac\\pi2=\\frac\\pi{2\\sqrt2}.$$",
+          "indices": [
+            "Question 1 : $(x^2+1)^2-2x^2$ est une différence de deux carrés.",
+            "Question 2 : par parité, chercher $\\frac{1+x^2}{1+x^4}=\\frac b{x^2+\\sqrt2x+1}+\\frac b{x^2-\\sqrt2x+1}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-fractions-ex5",
+      "carte": "int-l1-riemann-fractions",
+      "difficulte": 4,
+      "titre": "Une relation de récurrence par parties",
+      "enonce": "Pour $n\\ge1$, on pose $I_n=\\int_0^{1}\\frac{\\mathrm{d}x}{(1+x^2)^n}$.\n\n1. En intégrant $I_n$ par parties, montrer que $I_n=\\frac{1}{2^n}+2n\\left(I_n-I_{n+1}\\right)$.\n2. En déduire $I_2$ puis $I_3$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : dériver $\\frac1{(1+x^2)^n}$ et intégrer la constante $1$.",
+        "Écrire $x^2=(1+x^2)-1$ pour faire réapparaître $I_n$ et $I_{n+1}$ ; puis partir de $I_1=\\arctan1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I_3$ ?",
+        "propositions": [
+          "$\\frac14+\\frac{3\\pi}{32}$",
+          "$\\frac14+\\frac\\pi8$",
+          "$\\frac18+\\frac{3\\pi}{32}$",
+          "$\\frac{3\\pi}{32}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par parties, en dérivant $\\frac1{(1+x^2)^n}$ (de dérivée $-\\frac{2nx}{(1+x^2)^{n+1}}$) et en intégrant $1$ en $x$ :\n$$I_n=\\left[\\frac x{(1+x^2)^n}\\right]_0^{1}+2n\\int_0^{1}\\frac{x^2\\,\\mathrm{d}x}{(1+x^2)^{n+1}}.$$\nLe crochet vaut $\\frac{1}{2^n}$. Comme $\\frac{x^2}{(1+x^2)^{n+1}}=\\frac1{(1+x^2)^n}-\\frac1{(1+x^2)^{n+1}}$, la dernière intégrale vaut $I_n-I_{n+1}$, d'où la relation. Elle donne $I_{n+1}=\\frac{1}{2n\\cdot2^n}+\\frac{2n-1}{2n}I_n$.\n\n**2.** $I_1=\\arctan1=\\frac\\pi4$. Avec $n=1$ : $I_2=\\frac1{2\\cdot2}+\\frac12I_1=\\frac14+\\frac\\pi8$. Avec $n=2$ : $I_3=\\frac1{4\\cdot4}+\\frac34I_2=\\frac1{16}+\\frac3{16}+\\frac{3\\pi}{32}=\\frac14+\\frac{3\\pi}{32}$.",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\ge1$, on pose $I_n=\\int_0^{\\sqrt3}\\frac{\\mathrm{d}x}{(1+x^2)^n}$.\n\n1. En intégrant $I_n$ par parties, montrer que $I_n=\\frac{\\sqrt3}{4^n}+2n\\left(I_n-I_{n+1}\\right)$.\n2. En déduire $I_2$ puis $I_3$.",
+          "reponse_finale": {
+            "question": "Que vaut $I_3$ ?",
+            "propositions": [
+              "$\\frac{7\\sqrt3}{64}+\\frac\\pi8$",
+              "$\\frac{\\sqrt3}8+\\frac\\pi6$",
+              "$\\frac{7\\sqrt3}{64}+\\frac\\pi6$",
+              "$\\frac{\\sqrt3}{64}+\\frac\\pi8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par parties, en dérivant $\\frac1{(1+x^2)^n}$ (de dérivée $-\\frac{2nx}{(1+x^2)^{n+1}}$) et en intégrant $1$ en $x$ :\n$$I_n=\\left[\\frac x{(1+x^2)^n}\\right]_0^{\\sqrt3}+2n\\int_0^{\\sqrt3}\\frac{x^2\\,\\mathrm{d}x}{(1+x^2)^{n+1}}.$$\nLe crochet vaut $\\frac{\\sqrt3}{4^n}$. Comme $\\frac{x^2}{(1+x^2)^{n+1}}=\\frac1{(1+x^2)^n}-\\frac1{(1+x^2)^{n+1}}$, la dernière intégrale vaut $I_n-I_{n+1}$, d'où la relation. Elle donne $I_{n+1}=\\frac{\\sqrt3}{2n\\cdot4^n}+\\frac{2n-1}{2n}I_n$.\n\n**2.** $I_1=\\arctan\\sqrt3=\\frac\\pi3$. Avec $n=1$ : $I_2=\\frac{\\sqrt3}{2\\cdot4}+\\frac12I_1=\\frac{\\sqrt3}8+\\frac\\pi6$. Avec $n=2$ : $I_3=\\frac{\\sqrt3}{4\\cdot16}+\\frac34I_2=\\frac{\\sqrt3}{64}+\\frac{3\\sqrt3}{32}+\\frac\\pi8=\\frac{7\\sqrt3}{64}+\\frac\\pi8$.",
+          "indices": [
+            "Question 1 : dériver $\\frac1{(1+x^2)^n}$ et intégrer la constante $1$ ; en $\\sqrt3$, $1+x^2=4$.",
+            "Écrire $x^2=(1+x^2)-1$ pour faire réapparaître $I_n$ et $I_{n+1}$ ; puis partir de $I_1=\\arctan\\sqrt3$."
+          ]
+        },
+        {
+          "enonce": "Pour $n\\ge1$, on pose $I_n=\\int_0^{\\frac1{\\sqrt3}}\\frac{\\mathrm{d}x}{(1+x^2)^n}$.\n\n1. En intégrant $I_n$ par parties, montrer que $I_n=\\frac{\\frac1{\\sqrt3}}{\\left(\\frac43\\right)^n}+2n\\left(I_n-I_{n+1}\\right)$.\n2. En déduire $I_2$ puis $I_3$.",
+          "reponse_finale": {
+            "question": "Que vaut $I_3$ ?",
+            "propositions": [
+              "$\\frac{9\\sqrt3}{64}+\\frac\\pi{16}$",
+              "$\\frac{\\sqrt3}8+\\frac\\pi{12}$",
+              "$\\frac{9\\sqrt3}{64}+\\frac\\pi{12}$",
+              "$\\frac{3\\sqrt3}{64}+\\frac\\pi{16}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par parties, en dérivant $\\frac1{(1+x^2)^n}$ (de dérivée $-\\frac{2nx}{(1+x^2)^{n+1}}$) et en intégrant $1$ en $x$ :\n$$I_n=\\left[\\frac x{(1+x^2)^n}\\right]_0^{\\frac1{\\sqrt3}}+2n\\int_0^{\\frac1{\\sqrt3}}\\frac{x^2\\,\\mathrm{d}x}{(1+x^2)^{n+1}}.$$\nLe crochet vaut $\\frac{\\frac1{\\sqrt3}}{\\left(\\frac43\\right)^n}$. Comme $\\frac{x^2}{(1+x^2)^{n+1}}=\\frac1{(1+x^2)^n}-\\frac1{(1+x^2)^{n+1}}$, la dernière intégrale vaut $I_n-I_{n+1}$, d'où la relation. Elle donne $I_{n+1}=\\frac{\\frac1{\\sqrt3}}{2n\\cdot\\left(\\frac43\\right)^n}+\\frac{2n-1}{2n}I_n$.\n\n**2.** $I_1=\\arctan\\frac1{\\sqrt3}=\\frac\\pi6$. Avec $n=1$ : $I_2=\\frac1{\\sqrt3}\\cdot\\frac1{2\\cdot\\frac43}+\\frac12I_1=\\frac{\\sqrt3}8+\\frac\\pi{12}$. Avec $n=2$ : $I_3=\\frac1{\\sqrt3}\\cdot\\frac1{4\\cdot\\frac{16}9}+\\frac34I_2=\\frac{9}{64\\sqrt3}+\\frac{3\\sqrt3}{32}+\\frac\\pi{16}=\\frac{3\\sqrt3}{64}+\\frac{6\\sqrt3}{64}+\\frac\\pi{16}=\\frac{9\\sqrt3}{64}+\\frac\\pi{16}$.",
+          "indices": [
+            "Question 1 : dériver $\\frac1{(1+x^2)^n}$ et intégrer la constante $1$ ; en $\\frac1{\\sqrt3}$, $1+x^2=\\frac43$.",
+            "Écrire $x^2=(1+x^2)-1$ pour faire réapparaître $I_n$ et $I_{n+1}$ ; puis partir de $I_1=\\arctan\\frac1{\\sqrt3}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz-ex1",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "difficulte": 1,
+      "titre": "Majorer une intégrale sans la calculer",
+      "enonce": "À l'aide de l'inégalité de Cauchy-Schwarz appliquée aux fonctions $1$ et $x\\mapsto\\sqrt{1+x^3}$, majorer $\\int_0^1\\sqrt{1+x^3}\\,\\mathrm{d}x$.",
+      "duree_min": 5,
+      "indices": [
+        "Avec $g=1$ : $\\left(\\int_0^1f\\right)^2\\le\\int_0^11\\cdot\\int_0^1f^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quel majorant obtient-on ainsi ?",
+        "propositions": [
+          "$\\frac{\\sqrt5}2$",
+          "$\\frac54$",
+          "$\\frac{\\sqrt5}4$",
+          "$\\sqrt{\\frac52}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les deux fonctions sont continues sur $[0,1]$. Par Cauchy-Schwarz,\n$$\\left(\\int_0^1\\sqrt{1+x^3}\\,\\mathrm{d}x\\right)^2\\le\\int_0^11\\,\\mathrm{d}x\\int_0^1(1+x^3)\\,\\mathrm{d}x=\\frac54,$$\net l'intégrale étant positive, $\\int_0^1\\sqrt{1+x^3}\\,\\mathrm{d}x\\le\\frac{\\sqrt5}2$.",
+      "variantes": [
+        {
+          "enonce": "À l'aide de l'inégalité de Cauchy-Schwarz appliquée aux fonctions $1$ et $x\\mapsto\\sqrt{1+x^2}$, majorer $\\int_0^1\\sqrt{1+x^2}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quel majorant obtient-on ainsi ?",
+            "propositions": [
+              "$\\frac2{\\sqrt3}$",
+              "$\\frac43$",
+              "$\\frac1{\\sqrt3}$",
+              "$\\sqrt{\\frac83}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par Cauchy-Schwarz, $\\left(\\int_0^1\\sqrt{1+x^2}\\,\\mathrm{d}x\\right)^2\\le\\int_0^11\\cdot\\int_0^1(1+x^2)\\,\\mathrm{d}x=\\frac43$, donc $\\int_0^1\\sqrt{1+x^2}\\,\\mathrm{d}x\\le\\frac2{\\sqrt3}$.",
+          "indices": [
+            "Avec $g=1$ : $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$ ; calculer $\\int_0^1(1+x^2)\\,\\mathrm{d}x$."
+          ]
+        },
+        {
+          "enonce": "À l'aide de l'inégalité de Cauchy-Schwarz appliquée aux fonctions $1$ et $x\\mapsto\\sqrt{1+x^5}$, majorer $\\int_0^1\\sqrt{1+x^5}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quel majorant obtient-on ainsi ?",
+            "propositions": [
+              "$\\sqrt{\\frac76}$",
+              "$\\frac76$",
+              "$\\sqrt{\\frac7{12}}$",
+              "$\\sqrt{\\frac65}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par Cauchy-Schwarz, $\\left(\\int_0^1\\sqrt{1+x^5}\\,\\mathrm{d}x\\right)^2\\le\\int_0^11\\cdot\\int_0^1(1+x^5)\\,\\mathrm{d}x=\\frac76$, donc $\\int_0^1\\sqrt{1+x^5}\\,\\mathrm{d}x\\le\\sqrt{\\frac76}$.",
+          "indices": [
+            "Avec $g=1$ : $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$ ; calculer $\\int_0^1(1+x^5)\\,\\mathrm{d}x$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz-ex2",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "difficulte": 2,
+      "titre": "Une intégrale et l'intégrale de l'inverse",
+      "enonce": "Déterminer la plus petite valeur possible de $\\int_{1}^{3}f(x)\\,\\mathrm{d}x\\int_{1}^{3}\\frac{\\mathrm{d}x}{f(x)}$ lorsque $f$ parcourt l'ensemble des fonctions continues et strictement positives sur $[1,3]$.",
+      "duree_min": 8,
+      "indices": [
+        "Appliquer Cauchy-Schwarz à $\\sqrt f$ et $\\frac1{\\sqrt f}$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce minimum ?",
+        "propositions": [
+          "$4$",
+          "$2$",
+          "$9$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les fonctions $\\sqrt f$ et $\\frac1{\\sqrt f}$ sont continues sur $[1,3]$. Par Cauchy-Schwarz,\n$$\\left(\\int_{1}^{3}\\sqrt f\\cdot\\frac1{\\sqrt f}\\right)^2=2^2\\le\\int_{1}^{3}f\\int_{1}^{3}\\frac1f.$$\nLe produit est donc toujours au moins $4$, et cette valeur est atteinte pour $f=1$ (cas d'égalité : $\\sqrt f$ et $\\frac1{\\sqrt f}$ colinéaires, c'est-à-dire $f$ constante). Le minimum vaut $4$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la plus petite valeur possible de $\\int_{0}^{5}f(x)\\,\\mathrm{d}x\\int_{0}^{5}\\frac{\\mathrm{d}x}{f(x)}$ lorsque $f$ parcourt l'ensemble des fonctions continues et strictement positives sur $[0,5]$.",
+          "reponse_finale": {
+            "question": "Quel est ce minimum ?",
+            "propositions": [
+              "$25$",
+              "$5$",
+              "$10$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les fonctions $\\sqrt f$ et $\\frac1{\\sqrt f}$ sont continues sur $[0,5]$. Par Cauchy-Schwarz,\n$$\\left(\\int_{0}^{5}\\sqrt f\\cdot\\frac1{\\sqrt f}\\right)^2=5^2\\le\\int_{0}^{5}f\\int_{0}^{5}\\frac1f.$$\nLe produit est donc toujours au moins $25$, et cette valeur est atteinte pour $f=1$ (cas d'égalité : $\\sqrt f$ et $\\frac1{\\sqrt f}$ colinéaires, c'est-à-dire $f$ constante). Le minimum vaut $25$.",
+          "indices": [
+            "Appliquer Cauchy-Schwarz à $\\sqrt f$ et $\\frac1{\\sqrt f}$ ; le segment est de longueur $5$."
+          ]
+        },
+        {
+          "enonce": "Déterminer la plus petite valeur possible de $\\int_{-1}^{2}f(x)\\,\\mathrm{d}x\\int_{-1}^{2}\\frac{\\mathrm{d}x}{f(x)}$ lorsque $f$ parcourt l'ensemble des fonctions continues et strictement positives sur $[-1,2]$.",
+          "reponse_finale": {
+            "question": "Quel est ce minimum ?",
+            "propositions": [
+              "$9$",
+              "$3$",
+              "$4$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les fonctions $\\sqrt f$ et $\\frac1{\\sqrt f}$ sont continues sur $[-1,2]$. Par Cauchy-Schwarz,\n$$\\left(\\int_{-1}^{2}\\sqrt f\\cdot\\frac1{\\sqrt f}\\right)^2=3^2\\le\\int_{-1}^{2}f\\int_{-1}^{2}\\frac1f.$$\nLe produit est donc toujours au moins $9$, et cette valeur est atteinte pour $f=1$ (cas d'égalité : $\\sqrt f$ et $\\frac1{\\sqrt f}$ colinéaires, c'est-à-dire $f$ constante). Le minimum vaut $9$.",
+          "indices": [
+            "Appliquer Cauchy-Schwarz à $\\sqrt f$ et $\\frac1{\\sqrt f}$ ; quelle est la longueur du segment ?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz-ex3",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "difficulte": 3,
+      "titre": "Un maximum sous contrainte",
+      "enonce": "Déterminer la plus grande valeur de $\\int_0^1x\\,f(x)\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=1$, et une fonction qui la réalise.",
+      "duree_min": 12,
+      "indices": [
+        "Majorer par Cauchy-Schwarz appliquée à $f$ et à $x\\mapsto x$.",
+        "Pour montrer que la borne est atteinte, utiliser le cas d'égalité : chercher $f$ proportionnelle à $x\\mapsto x$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce maximum ?",
+        "propositions": [
+          "$\\frac1{\\sqrt3}$",
+          "$\\frac13$",
+          "$\\frac12$",
+          "$\\sqrt3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par Cauchy-Schwarz, pour toute $f$ admissible, $\\int_0^1x\\,f(x)\\,\\mathrm{d}x\\le\\sqrt{\\int_0^1x^2\\,\\mathrm{d}x}\\sqrt{\\int_0^1f^2}=\\sqrt{\\frac13}=\\frac1{\\sqrt3}$.\n\nCette valeur est atteinte : d'après le cas d'égalité, on cherche $f$ proportionnelle à $x\\mapsto x$. Avec $f(x)=c\\,x$ et $c>0$, la contrainte donne $c^2\\cdot\\frac13=1$, donc $c=\\sqrt3$ ; alors $\\int_0^1x\\,f(x)\\,\\mathrm{d}x=c\\cdot\\frac13=\\frac{\\sqrt3}3$. Le maximum vaut $\\frac1{\\sqrt3}$, atteint pour $f(x)=\\sqrt3\\,x$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la plus grande valeur de $\\int_0^1x^2\\,f(x)\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=1$, et une fonction qui la réalise.",
+          "reponse_finale": {
+            "question": "Quel est ce maximum ?",
+            "propositions": [
+              "$\\frac1{\\sqrt5}$",
+              "$\\frac15$",
+              "$\\frac13$",
+              "$\\sqrt5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par Cauchy-Schwarz, pour toute $f$ admissible, $\\int_0^1x^2\\,f(x)\\,\\mathrm{d}x\\le\\sqrt{\\int_0^1x^4\\,\\mathrm{d}x}\\sqrt{\\int_0^1f^2}=\\sqrt{\\frac15}=\\frac1{\\sqrt5}$.\n\nCette valeur est atteinte : d'après le cas d'égalité, on cherche $f$ proportionnelle à $x\\mapsto x^2$. Avec $f(x)=c\\,x^2$ et $c>0$, la contrainte donne $c^2\\cdot\\frac15=1$, donc $c=\\sqrt5$ ; alors $\\int_0^1x^2\\,f(x)\\,\\mathrm{d}x=c\\cdot\\frac15=\\frac{\\sqrt5}5$. Le maximum vaut $\\frac1{\\sqrt5}$, atteint pour $f(x)=\\sqrt5\\,x^2$.",
+          "indices": [
+            "Majorer par Cauchy-Schwarz appliquée à $f$ et à $x\\mapsto x^2$.",
+            "Pour montrer que la borne est atteinte, chercher $f$ proportionnelle à $x\\mapsto x^2$."
+          ]
+        },
+        {
+          "enonce": "Déterminer la plus grande valeur de $\\int_0^1e^x\\,f(x)\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions continues sur $[0,1]$ telles que $\\int_0^1f(x)^2\\,\\mathrm{d}x=1$, et une fonction qui la réalise.",
+          "reponse_finale": {
+            "question": "Quel est ce maximum ?",
+            "propositions": [
+              "$\\sqrt{\\frac{e^2-1}2}$",
+              "$\\frac{e^2-1}2$",
+              "$e-1$",
+              "$\\sqrt{e^2-1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par Cauchy-Schwarz, pour toute $f$ admissible, $\\int_0^1e^x\\,f(x)\\,\\mathrm{d}x\\le\\sqrt{\\int_0^1e^{2x}\\,\\mathrm{d}x}\\sqrt{\\int_0^1f^2}=\\sqrt{\\frac{e^2-1}2}=\\sqrt{\\frac{e^2-1}2}$.\n\nCette valeur est atteinte : d'après le cas d'égalité, on cherche $f$ proportionnelle à $x\\mapsto e^x$. Avec $f(x)=c\\,e^x$ et $c>0$, la contrainte donne $c^2\\cdot\\frac{e^2-1}2=1$, donc $c=\\sqrt{\\frac2{e^2-1}}$ ; alors $\\int_0^1e^x\\,f(x)\\,\\mathrm{d}x=c\\cdot\\frac{e^2-1}2=\\sqrt{\\frac{e^2-1}2}$. Le maximum vaut $\\sqrt{\\frac{e^2-1}2}$, atteint pour $f(x)=\\sqrt{\\frac2{e^2-1}}\\,e^x$.",
+          "indices": [
+            "Majorer par Cauchy-Schwarz appliquée à $f$ et à $x\\mapsto e^x$.",
+            "Pour montrer que la borne est atteinte, chercher $f$ proportionnelle à $x\\mapsto e^x$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz-ex4",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "difficulte": 4,
+      "titre": "Minimiser l'énergie d'une fonction",
+      "enonce": "Déterminer la plus petite valeur de $\\int_0^{1}f'(x)^2\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions de classe $\\mathcal{C}^1$ sur $[0,1]$ telles que $f(0)=0$ et $f(1)=1$, et les fonctions qui la réalisent.",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $f(1)-f(0)$ comme une intégrale de $f'$, puis appliquer Cauchy-Schwarz à $f'$ et à $1$.",
+        "Pour l'égalité, le cas d'égalité impose que $f'$ soit constante ; il faut que $f'$ soit continue."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce minimum ?",
+        "propositions": [
+          "$1$",
+          "$\\frac12$",
+          "$2$",
+          "Il n'y a pas de minimum (borne inférieure non atteinte)"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $f$ admissible, $f'$ est continue et $\\int_0^{1}f'=f(1)-f(0)=1$. Par Cauchy-Schwarz appliquée à $f'$ et à $1$ :\n$$1=\\left(\\int_0^{1}1\\cdot f'\\right)^2\\le\\int_0^{1}1\\cdot\\int_0^{1}f'^2=1\\int_0^{1}f'^2,\\qquad\\text{donc}\\qquad\\int_0^{1}f'^2\\ge1.$$\nIl y a égalité si et seulement si $f'$ et $1$ sont colinéaires (les deux sont continues), c'est-à-dire $f'$ constante, égale à $1$ vu la valeur de $\\int f'$. La seule fonction qui réalise le minimum est $f(x)=x$, et le minimum vaut $1$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la plus petite valeur de $\\int_0^{2}f'(x)^2\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions de classe $\\mathcal{C}^1$ sur $[0,2]$ telles que $f(0)=1$ et $f(2)=5$, et les fonctions qui la réalisent.",
+          "reponse_finale": {
+            "question": "Quel est ce minimum ?",
+            "propositions": [
+              "$8$",
+              "$16$",
+              "$4$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $f$ admissible, $f'$ est continue et $\\int_0^{2}f'=f(2)-f(0)=4$. Par Cauchy-Schwarz appliquée à $f'$ et à $1$ :\n$$16=\\left(\\int_0^{2}1\\cdot f'\\right)^2\\le\\int_0^{2}1\\cdot\\int_0^{2}f'^2=2\\int_0^{2}f'^2,\\qquad\\text{donc}\\qquad\\int_0^{2}f'^2\\ge8.$$\nIl y a égalité si et seulement si $f'$ et $1$ sont colinéaires (les deux sont continues), c'est-à-dire $f'$ constante, égale à $2$ vu la valeur de $\\int f'$. La seule fonction qui réalise le minimum est $f(x)=1+2x$, et le minimum vaut $8$.",
+          "indices": [
+            "Écrire $f(2)-f(0)$ comme une intégrale de $f'$, puis appliquer Cauchy-Schwarz à $f'$ et à $1$ sur $[0,2]$.",
+            "Pour l'égalité, le cas d'égalité impose que $f'$ soit constante."
+          ]
+        },
+        {
+          "enonce": "Déterminer la plus petite valeur de $\\int_0^{3}f'(x)^2\\,\\mathrm{d}x$ lorsque $f$ parcourt l'ensemble des fonctions de classe $\\mathcal{C}^1$ sur $[0,3]$ telles que $f(0)=0$ et $f(3)=2$, et les fonctions qui la réalisent.",
+          "reponse_finale": {
+            "question": "Quel est ce minimum ?",
+            "propositions": [
+              "$\\frac43$",
+              "$\\frac49$",
+              "$\\frac23$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $f$ admissible, $f'$ est continue et $\\int_0^{3}f'=f(3)-f(0)=2$. Par Cauchy-Schwarz appliquée à $f'$ et à $1$ :\n$$4=\\left(\\int_0^{3}1\\cdot f'\\right)^2\\le\\int_0^{3}1\\cdot\\int_0^{3}f'^2=3\\int_0^{3}f'^2,\\qquad\\text{donc}\\qquad\\int_0^{3}f'^2\\ge\\frac43.$$\nIl y a égalité si et seulement si $f'$ et $1$ sont colinéaires (les deux sont continues), c'est-à-dire $f'$ constante, égale à $\\frac23$ vu la valeur de $\\int f'$. La seule fonction qui réalise le minimum est $f(x)=\\frac{2x}3$, et le minimum vaut $\\frac43$.",
+          "indices": [
+            "Écrire $f(3)-f(0)$ comme une intégrale de $f'$, puis appliquer Cauchy-Schwarz à $f'$ et à $1$ sur $[0,3]$.",
+            "Pour l'égalité, le cas d'égalité impose que $f'$ soit constante."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz-ex5",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "difficulte": 5,
+      "titre": "Contrôler une fonction par sa dérivée",
+      "enonce": "Soit $L=1$ et $f$ de classe $\\mathcal{C}^1$ sur $[0,L]$ telle que $f(0)=f(L)=0$.\n\n1. Montrer que $f(x)^2\\le x\\int_0^{L/2}f'^2$ pour $x\\in\\left[0,\\frac L2\\right]$, et $f(x)^2\\le(L-x)\\int_{L/2}^Lf'^2$ pour $x\\in\\left[\\frac L2,L\\right]$.\n2. En déduire une constante $C$, dépendant de $L$, telle que $\\int_0^Lf^2\\le C\\int_0^Lf'^2$ pour toute telle fonction $f$.\n3. Calculer le rapport $\\frac{\\int_0^Lg^2}{\\int_0^Lg'^2}$ pour $g(x)=x(L-x)$ et vérifier qu'il est bien inférieur ou égal à $C$.",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : écrire $f(x)=\\int_0^xf'$ (ou $-\\int_x^Lf'$), puis appliquer Cauchy-Schwarz à $1$ et à $f'$.",
+        "Question 2 : intégrer chacune des deux inégalités sur son demi-segment."
+      ],
+      "reponse_finale": {
+        "question": "Quelle constante $C$ la méthode des questions 1 et 2 fournit-elle ?",
+        "propositions": [
+          "$\\frac18$",
+          "$\\frac12$",
+          "$\\frac14$",
+          "$\\frac1{10}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $x\\in\\left[0,\\frac L2\\right]$, $f(x)=f(0)+\\int_0^xf'=\\int_0^x1\\cdot f'$, donc par Cauchy-Schwarz $f(x)^2\\le x\\int_0^xf'^2\\le x\\int_0^{L/2}f'^2$ (intégrale d'une fonction positive sur un intervalle plus grand). Pour $x\\in\\left[\\frac L2,L\\right]$, $f(x)=-\\int_x^Lf'$, donc $f(x)^2\\le(L-x)\\int_x^Lf'^2\\le(L-x)\\int_{L/2}^Lf'^2$.\n\n**2.** On intègre : $\\int_0^{L/2}x\\,\\mathrm{d}x=\\int_{L/2}^L(L-x)\\,\\mathrm{d}x=\\frac{L^2}8$, donc\n$$\\int_0^Lf^2=\\int_0^{L/2}f^2+\\int_{L/2}^Lf^2\\le\\frac{L^2}8\\left(\\int_0^{L/2}f'^2+\\int_{L/2}^Lf'^2\\right)=\\frac{L^2}8\\int_0^Lf'^2.$$\nLa méthode donne $C=\\frac{L^2}8=\\frac18$.\n\n**3.** Pour $g(x)=x(1-x)$ : $\\int_0^1x^2(1-x)^2\\,\\mathrm{d}x=\\frac1{30}$ et $\\int_0^1(1-2x)^2\\,\\mathrm{d}x=\\frac13$, d'où le rapport $\\frac1{10}\\le\\frac18$.",
+      "variantes": [
+        {
+          "enonce": "Soit $L=2$ et $f$ de classe $\\mathcal{C}^1$ sur $[0,L]$ telle que $f(0)=f(L)=0$.\n\n1. Montrer que $f(x)^2\\le x\\int_0^{L/2}f'^2$ pour $x\\in\\left[0,\\frac L2\\right]$, et $f(x)^2\\le(L-x)\\int_{L/2}^Lf'^2$ pour $x\\in\\left[\\frac L2,L\\right]$.\n2. En déduire une constante $C$, dépendant de $L$, telle que $\\int_0^Lf^2\\le C\\int_0^Lf'^2$ pour toute telle fonction $f$.\n3. Calculer le rapport $\\frac{\\int_0^Lg^2}{\\int_0^Lg'^2}$ pour $g(x)=x(L-x)$ et vérifier qu'il est bien inférieur ou égal à $C$.",
+          "reponse_finale": {
+            "question": "Quelle constante $C$ la méthode des questions 1 et 2 fournit-elle ?",
+            "propositions": [
+              "$\\frac12$",
+              "$2$",
+              "$1$",
+              "$\\frac25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x\\in\\left[0,\\frac L2\\right]$, $f(x)=f(0)+\\int_0^xf'=\\int_0^x1\\cdot f'$, donc par Cauchy-Schwarz $f(x)^2\\le x\\int_0^xf'^2\\le x\\int_0^{L/2}f'^2$ (intégrale d'une fonction positive sur un intervalle plus grand). Pour $x\\in\\left[\\frac L2,L\\right]$, $f(x)=-\\int_x^Lf'$, donc $f(x)^2\\le(L-x)\\int_x^Lf'^2\\le(L-x)\\int_{L/2}^Lf'^2$.\n\n**2.** On intègre : $\\int_0^{L/2}x\\,\\mathrm{d}x=\\int_{L/2}^L(L-x)\\,\\mathrm{d}x=\\frac{L^2}8$, donc\n$$\\int_0^Lf^2=\\int_0^{L/2}f^2+\\int_{L/2}^Lf^2\\le\\frac{L^2}8\\left(\\int_0^{L/2}f'^2+\\int_{L/2}^Lf'^2\\right)=\\frac{L^2}8\\int_0^Lf'^2.$$\nLa méthode donne $C=\\frac{L^2}8=\\frac12$.\n\n**3.** Pour $g(x)=x(2-x)$ : $\\int_0^2x^2(2-x)^2\\,\\mathrm{d}x=\\frac{16}{15}$ et $\\int_0^2(2-2x)^2\\,\\mathrm{d}x=\\frac83$, d'où le rapport $\\frac25\\le\\frac12$.",
+          "indices": [
+            "Question 1 : écrire $f(x)=\\int_0^xf'$ (ou $-\\int_x^2f'$), puis appliquer Cauchy-Schwarz à $1$ et à $f'$.",
+            "Question 2 : intégrer chacune des deux inégalités sur son demi-segment, ici $[0,1]$ et $[1,2]$."
+          ]
+        },
+        {
+          "enonce": "Soit $L=3$ et $f$ de classe $\\mathcal{C}^1$ sur $[0,L]$ telle que $f(0)=f(L)=0$.\n\n1. Montrer que $f(x)^2\\le x\\int_0^{L/2}f'^2$ pour $x\\in\\left[0,\\frac L2\\right]$, et $f(x)^2\\le(L-x)\\int_{L/2}^Lf'^2$ pour $x\\in\\left[\\frac L2,L\\right]$.\n2. En déduire une constante $C$, dépendant de $L$, telle que $\\int_0^Lf^2\\le C\\int_0^Lf'^2$ pour toute telle fonction $f$.\n3. Calculer le rapport $\\frac{\\int_0^Lg^2}{\\int_0^Lg'^2}$ pour $g(x)=x(L-x)$ et vérifier qu'il est bien inférieur ou égal à $C$.",
+          "reponse_finale": {
+            "question": "Quelle constante $C$ la méthode des questions 1 et 2 fournit-elle ?",
+            "propositions": [
+              "$\\frac98$",
+              "$\\frac92$",
+              "$\\frac94$",
+              "$\\frac9{10}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x\\in\\left[0,\\frac L2\\right]$, $f(x)=f(0)+\\int_0^xf'=\\int_0^x1\\cdot f'$, donc par Cauchy-Schwarz $f(x)^2\\le x\\int_0^xf'^2\\le x\\int_0^{L/2}f'^2$ (intégrale d'une fonction positive sur un intervalle plus grand). Pour $x\\in\\left[\\frac L2,L\\right]$, $f(x)=-\\int_x^Lf'$, donc $f(x)^2\\le(L-x)\\int_x^Lf'^2\\le(L-x)\\int_{L/2}^Lf'^2$.\n\n**2.** On intègre : $\\int_0^{L/2}x\\,\\mathrm{d}x=\\int_{L/2}^L(L-x)\\,\\mathrm{d}x=\\frac{L^2}8$, donc\n$$\\int_0^Lf^2=\\int_0^{L/2}f^2+\\int_{L/2}^Lf^2\\le\\frac{L^2}8\\left(\\int_0^{L/2}f'^2+\\int_{L/2}^Lf'^2\\right)=\\frac{L^2}8\\int_0^Lf'^2.$$\nLa méthode donne $C=\\frac{L^2}8=\\frac98$.\n\n**3.** Pour $g(x)=x(3-x)$ : $\\int_0^3x^2(3-x)^2\\,\\mathrm{d}x=\\frac{81}{10}$ et $\\int_0^3(3-2x)^2\\,\\mathrm{d}x=9$, d'où le rapport $\\frac9{10}\\le\\frac98$.",
+          "indices": [
+            "Question 1 : écrire $f(x)=\\int_0^xf'$ (ou $-\\int_x^3f'$), puis appliquer Cauchy-Schwarz à $1$ et à $f'$.",
+            "Question 2 : intégrer chacune des deux inégalités sur son demi-segment, ici $\\left[0,\\frac32\\right]$ et $\\left[\\frac32,3\\right]$."
+          ]
+        }
+      ]
+    }
+  ]
+}
