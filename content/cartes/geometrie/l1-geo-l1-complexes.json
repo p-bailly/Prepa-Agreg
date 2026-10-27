@@ -1,0 +1,314 @@
+{
+  "cartes": [
+    {
+      "id": "geo-l1-complexes-racines-carrees",
+      "theme": "geometrie",
+      "niveau": "l1",
+      "chapitre": "geo-l1-complexes",
+      "type": "theoreme",
+      "titre": "Racines carrées d'un nombre complexe",
+      "recto": "Énoncer l'existence et le calcul des racines carrées d'un nombre complexe, et la résolution de $az^2+bz+c=0$ à coefficients complexes, avec leurs hypothèses.",
+      "cours": "Dans $\\mathbb{R}$, seuls les réels positifs ont une racine carrée. Dans $\\mathbb{C}$, tout nombre est un carré : c'est ce qui permet de résoudre **toutes** les équations du second degré, y compris à coefficients complexes, premier cas du théorème de d'Alembert-Gauss. On appelle racine carrée de $w\\in\\mathbb{C}$ tout complexe $z$ tel que $z^2=w$.\n\nSi l'on connaît une forme exponentielle $w=re^{i\\theta}$ ($r>0$), les racines carrées sont $\\pm\\sqrt{r}\\,e^{i\\theta/2}$. Si $w=u+iv$ est donné sous forme algébrique, on cherche $z=x+iy$ : l'égalité $z^2=w$ donne $x^2-y^2=u$ et $2xy=v$, et l'égalité des modules $|z|^2=|w|$ ajoute $x^2+y^2=|w|$. On obtient $x^2$ et $y^2$ par demi-somme et demi-différence, puis le signe de $xy$ est celui de $v$. Par exemple, pour $w=3+4i$ : $x^2=4$, $y^2=1$ et $xy>0$, d'où les racines $2+i$ et $-2-i$.\n\nPour $az^2+bz+c=0$ avec $a\\neq0$, on calcule $\\Delta=b^2-4ac$, puis **une** racine carrée $\\delta$ de $\\Delta$ : les solutions sont $\\frac{-b\\pm\\delta}{2a}$.\n\nPièges : la notation $\\sqrt{w}$ est réservée aux réels positifs (aucun choix d'une racine carrée « principale » ne vérifie $\\sqrt{zw}=\\sqrt{z}\\sqrt{w}$ pour tous $z$, $w$) ; avec des coefficients complexes, il n'y a plus de discussion selon le signe de $\\Delta$, qui n'a pas de signe en général, et les deux solutions ne sont plus conjuguées en général.",
+      "hypotheses": [
+        "$w\\neq0$, pour avoir exactement deux racines carrées distinctes.",
+        "$u$, $v$, $x$, $y$ réels dans le calcul algébrique ($w=u+iv$, $z=x+iy$).",
+        "$a\\neq0$ dans l'équation $az^2+bz+c=0$, avec $a$, $b$, $c$ complexes quelconques."
+      ],
+      "hypotheses_pieges": [
+        "$w$ réel positif (à la place de $w$ complexe non nul).",
+        "$a$, $b$, $c$ réels (à la place de complexes).",
+        "$\\Delta$ réel positif ou nul, pour que l'équation ait des solutions.",
+        "$w$ quelconque, $0$ compris (à la place de $w\\neq0$), pour avoir deux racines carrées distinctes."
+      ],
+      "enonce": "Soit $w\\in\\mathbb{C}$. On appelle **racine carrée** de $w$ tout complexe $z$ tel que $z^2=w$.\n- Si $w\\neq0$, $w$ a exactement deux racines carrées, opposées l'une de l'autre ; si $w=re^{i\\theta}$ avec $r>0$ et $\\theta\\in\\mathbb{R}$, ce sont $\\sqrt{r}\\,e^{i\\theta/2}$ et $-\\sqrt{r}\\,e^{i\\theta/2}$. Le nombre $0$ a pour seule racine carrée $0$.\n- **Calcul algébrique.** Si $w=u+iv$ avec $u$, $v$ réels, le complexe $z=x+iy$ ($x$, $y$ réels) est une racine carrée de $w$ si et seulement si\n$$x^2=\\frac{|w|+u}{2},\\qquad y^2=\\frac{|w|-u}{2},\\qquad 2xy=v.$$\n- **Équation du second degré.** Soient $a,b,c\\in\\mathbb{C}$ avec $a\\neq0$, $\\Delta=b^2-4ac$ et $\\delta$ une racine carrée de $\\Delta$. Les solutions dans $\\mathbb{C}$ de $az^2+bz+c=0$ sont $z_1=\\frac{-b+\\delta}{2a}$ et $z_2=\\frac{-b-\\delta}{2a}$, confondues si et seulement si $\\Delta=0$, et $az^2+bz+c=a(z-z_1)(z-z_2)$ pour tout $z\\in\\mathbb{C}$.",
+      "enonce_trous": "Tout complexe non nul admet exactement {{1}}, et elles sont {{2}}. Si $a\\neq0$ et si $\\delta$ est une racine carrée de $\\Delta=b^2-4ac$, les solutions dans $\\mathbb{C}$ de $az^2+bz+c=0$ sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "deux racines carrées",
+          "leurres": [
+            "une seule racine carrée",
+            "quatre racines carrées",
+            "une infinité de racines carrées"
+          ]
+        },
+        {
+          "reponse": "opposées l'une de l'autre",
+          "leurres": [
+            "conjuguées l'une de l'autre",
+            "inverses l'une de l'autre",
+            "de même module que ce complexe"
+          ]
+        },
+        {
+          "reponse": "$\\frac{-b+\\delta}{2a}$ et $\\frac{-b-\\delta}{2a}$",
+          "leurres": [
+            "$\\frac{-b+\\delta}{a}$ et $\\frac{-b-\\delta}{a}$",
+            "$\\frac{b+\\delta}{2a}$ et $\\frac{b-\\delta}{2a}$",
+            "$\\frac{-b+\\sqrt{|\\Delta|}}{2a}$ et $\\frac{-b-\\sqrt{|\\Delta|}}{2a}$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Si $w\\neq0$, écrivons $w=re^{i\\theta}$ avec $r=|w|>0$. Le complexe $z_0=\\sqrt{r}\\,e^{i\\theta/2}$ vérifie $z_0^2=r\\,e^{i\\theta/2}e^{i\\theta/2}=re^{i\\theta}=w$. Si $w=0$, $z_0=0$ convient.\n\n**Nombre de racines.** Si $z_0^2=w$, alors pour tout $z\\in\\mathbb{C}$ : $z^2=w\\iff z^2-z_0^2=0\\iff(z-z_0)(z+z_0)=0\\iff z=z_0$ ou $z=-z_0$, car un produit de complexes est nul si et seulement si l'un des facteurs l'est. Les racines $z_0$ et $-z_0$ sont distinctes si et seulement si $z_0\\neq0$, c'est-à-dire $w\\neq0$ ; si $w=re^{i\\theta}$, ce sont $\\pm\\sqrt{r}\\,e^{i\\theta/2}$.\n\n**Calcul algébrique.** Avec $z=x+iy$, $z^2=(x^2-y^2)+2ixy$. Si $z^2=w$, l'identification des parties réelles et imaginaires donne $x^2-y^2=u$ et $2xy=v$, et $x^2+y^2=|z|^2=|z^2|=|w|$ ; la demi-somme et la demi-différence de $x^2+y^2=|w|$ et $x^2-y^2=u$ donnent $x^2$ et $y^2$. Réciproquement, les trois égalités de l'énoncé entraînent $x^2-y^2=u$ et $2xy=v$, donc $z^2=w$.\n\n**Équation.** Comme $a\\neq0$, pour tout $z\\in\\mathbb{C}$ :\n$$az^2+bz+c=a\\left[\\left(z+\\frac{b}{2a}\\right)^2-\\frac{\\Delta}{4a^2}\\right]=a\\left[\\left(z+\\frac{b}{2a}\\right)^2-\\left(\\frac{\\delta}{2a}\\right)^2\\right]=a(z-z_1)(z-z_2).$$\nComme $a\\neq0$, $az^2+bz+c=0$ équivaut à $z=z_1$ ou $z=z_2$. Enfin $z_1-z_2=\\frac{\\delta}{a}$, donc $z_1=z_2\\iff\\delta=0\\iff\\Delta=0$.",
+      "exemple": "Racines carrées de $w=-7+24i$ : $|w|=\\sqrt{49+576}=25$, donc $x^2=\\frac{25-7}{2}=9$, $y^2=\\frac{25+7}{2}=16$, et $2xy=24>0$ : $x$ et $y$ sont de même signe. Les racines carrées sont $3+4i$ et $-3-4i$ ; vérification : $(3+4i)^2=9+24i-16=-7+24i$.\n\nÉquation $z^2-3z+3-i=0$ : $\\Delta=9-4(3-i)=-3+4i$, dont une racine carrée est $\\delta=1+2i$ (car $(1+2i)^2=-3+4i$). Les solutions sont $\\frac{3+1+2i}{2}=2+i$ et $\\frac{3-1-2i}{2}=1-i$ ; contrôle : leur somme vaut $3$ et leur produit $(2+i)(1-i)=3-i$.",
+      "contre_exemple": "- **Pas de racine carrée « principale » multiplicative.** S'il existait une application $s:\\mathbb{C}\\to\\mathbb{C}$ telle que $s(w)^2=w$ et $s(zw)=s(z)s(w)$ pour tous $z$, $w$, on aurait $s(1)=s(1\\cdot1)=s(1)^2=1$, puis $s(1)=s\\big((-1)(-1)\\big)=s(-1)^2=-1$ : contradiction. C'est pourquoi on n'écrit pas $\\sqrt{w}$ pour $w$ complexe (le calcul « $-1=i\\cdot i=\\sqrt{-1}\\sqrt{-1}=\\sqrt{1}=1$ » est faux).\n- **$w=0$** : $z^2=0$ n'a que la solution $0$ ; l'hypothèse $w\\neq0$ est nécessaire pour avoir deux racines carrées distinctes.\n- **$a=0$** : l'équation $0z^2+z-1=0$ a pour unique solution $1$, et la formule $\\frac{-b\\pm\\delta}{2a}$ n'a pas de sens.\n- **Solutions non conjuguées** : $z^2-3z+3-i=0$ a pour solutions $2+i$ et $1-i$, qui ne sont pas conjuguées ; la propriété « solutions conjuguées » vaut pour des coefficients **réels**.",
+      "affirmations": [
+        {
+          "texte": "Si $a\\neq0$ et si $\\Delta=b^2-4ac$ n'est pas réel, l'équation $az^2+bz+c=0$ n'a aucune solution réelle.",
+          "vrai": false,
+          "contre_exemple": "$z^2-(1+i)z+i=(z-1)(z-i)$ : $\\Delta=(1+i)^2-4i=-2i$ n'est pas réel, et pourtant $1$ est solution."
+        },
+        {
+          "texte": "Les deux solutions d'une équation du second degré à coefficients complexes sont toujours conjuguées l'une de l'autre.",
+          "vrai": false,
+          "contre_exemple": "$z^2-3z+3-i=0$ a pour solutions $2+i$ et $1-i$, qui ne sont pas conjuguées."
+        },
+        {
+          "texte": "Si $z_1^2=w_1$ et $z_2^2=w_2$, alors $z_1z_2$ est une racine carrée de $w_1w_2$.",
+          "vrai": true,
+          "justification": "$(z_1z_2)^2=z_1^2z_2^2=w_1w_2$."
+        },
+        {
+          "texte": "Les racines carrées de $i$ sont $\\frac{\\sqrt2}{2}(1+i)$ et $-\\frac{\\sqrt2}{2}(1+i)$.",
+          "vrai": true,
+          "justification": "$i=e^{i\\pi/2}$, donc ses racines carrées sont $\\pm e^{i\\pi/4}=\\pm\\frac{\\sqrt2}{2}(1+i)$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-exponentielle",
+        "geo-t-complexes-second-degre"
+      ]
+    },
+    {
+      "id": "geo-l1-complexes-triangulaire",
+      "theme": "geometrie",
+      "niveau": "l1",
+      "chapitre": "geo-l1-complexes",
+      "type": "theoreme",
+      "titre": "Inégalité triangulaire et cas d'égalité",
+      "recto": "Énoncer l'inégalité triangulaire dans $\\mathbb{C}$ et son cas d'égalité, avec leurs hypothèses.",
+      "cours": "Le module mesure les longueurs : $|z-w|$ est la distance entre les points d'affixes $z$ et $w$. L'inégalité triangulaire $|z+w|\\le|z|+|w|$ dit que, dans le triangle de sommets $0$, $z$ et $z+w$, un côté est plus court que la somme des deux autres : le chemin direct est le plus court. Elle se démontre en développant $|z+w|^2=|z|^2+|w|^2+2\\,\\mathrm{Re}(z\\overline{w})$ et en utilisant $\\mathrm{Re}(\\xi)\\le|\\xi|$.\n\nElle sert à **majorer** un module (borne d'un polynôme sur un disque, convergence de séries de complexes) et, sous la forme renversée $\\big||z|-|w|\\big|\\le|z-w|$, à le **minorer** (par exemple pour montrer qu'un polynôme ne s'annule pas sur un disque).\n\nLe cas d'égalité est aussi important que l'inégalité : $|z+w|=|z|+|w|$ exactement quand $z$ et $w$ « pointent dans la même direction », c'est-à-dire quand l'un est un multiple réel **positif ou nul** de l'autre. Géométriquement, les points $0$, $z$ et $z+w$ sont alors alignés, $z$ étant sur le segment $[0,z+w]$. Pour $n$ termes, $|z_1+\\cdots+z_n|=|z_1|+\\cdots+|z_n|$ a lieu si et seulement si tous les $z_k$ non nuls ont un même argument. En pratique, pour savoir si une majoration obtenue par l'inégalité triangulaire est atteinte, on écrit les cas d'égalité de chaque inégalité utilisée.\n\nPiège principal : croire qu'il suffit que $z\\overline{w}$ soit réel, ou que $z$ et $w$ soient colinéaires : pour $z=1$ et $w=-1$, $|z+w|=0<2$. Il faut un rapport réel **positif ou nul**.",
+      "hypotheses": [
+        "$z$, $w$ (et $z_1,\\dots,z_n$) complexes quelconques : l'inégalité n'a pas d'hypothèse.",
+        "Cas d'égalité : le coefficient $\\lambda$ est un réel **positif ou nul**.",
+        "Cas d'égalité à $n$ termes : un même $u$ de module $1$ pour tous les $z_k$."
+      ],
+      "hypotheses_pieges": [
+        "$\\lambda$ réel quelconque (à la place de réel positif ou nul) dans le cas d'égalité.",
+        "$z\\overline{w}$ seulement réel (à la place de réel positif ou nul) dans le cas d'égalité.",
+        "$|z|=|w|$ dans le cas d'égalité.",
+        "Cas d'égalité à $n$ termes : les $z_k$ seulement deux à deux colinéaires sur $\\mathbb{R}$ (à la place d'un même argument)."
+      ],
+      "enonce": "Pour tous $z,w\\in\\mathbb{C}$ :\n- **inégalité triangulaire** : $|z+w|\\le|z|+|w|$ ;\n- **cas d'égalité** : $|z+w|=|z|+|w|$ si et seulement si $w=0$ ou il existe un réel $\\lambda\\ge0$ tel que $z=\\lambda w$ ; de façon équivalente, si et seulement si $z\\overline{w}\\in\\mathbb{R}_+$ ;\n- **inégalité renversée** : $\\big||z|-|w|\\big|\\le|z-w|$.\n\nPlus généralement, pour $n\\ge1$ et $z_1,\\dots,z_n\\in\\mathbb{C}$, $|z_1+\\cdots+z_n|\\le|z_1|+\\cdots+|z_n|$, avec égalité si et seulement s'il existe $u\\in\\mathbb{C}$ de module $1$ tel que $z_k=|z_k|\\,u$ pour tout $k$ (tous les $z_k$ non nuls ont un même argument).",
+      "enonce_trous": "Pour tous complexes $z$ et $w$, on a {{1}}, avec égalité si et seulement si {{2}}. On en déduit l'inégalité renversée {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|z+w|\\le|z|+|w|$",
+          "leurres": [
+            "$|z+w|\\ge|z|+|w|$",
+            "$|z+w|\\le\\big||z|-|w|\\big|$",
+            "$|z+w|^2\\le|z|^2+|w|^2$"
+          ]
+        },
+        {
+          "reponse": "$w=0$ ou $z=\\lambda w$ avec $\\lambda$ réel positif ou nul",
+          "leurres": [
+            "$z=\\lambda w$ avec $\\lambda$ réel quelconque",
+            "$z\\overline{w}$ est réel",
+            "$|z|=|w|$"
+          ]
+        },
+        {
+          "reponse": "$\\big||z|-|w|\\big|\\le|z-w|$",
+          "leurres": [
+            "$|z-w|\\le\\big||z|-|w|\\big|$",
+            "$|z-w|\\le|z|-|w|$",
+            "$|z-w|\\ge|z|+|w|$"
+          ]
+        }
+      ],
+      "demo": "**Inégalité.** Pour $\\xi=p+iq$ ($p$, $q$ réels), $\\mathrm{Re}(\\xi)=p\\le|p|\\le\\sqrt{p^2+q^2}=|\\xi|$, avec $\\mathrm{Re}(\\xi)=|\\xi|$ si et seulement si $q=0$ et $p\\ge0$, c'est-à-dire $\\xi\\in\\mathbb{R}_+$. Or\n$$|z+w|^2=(z+w)(\\overline{z}+\\overline{w})=|z|^2+|w|^2+z\\overline{w}+\\overline{z\\overline{w}}=|z|^2+|w|^2+2\\,\\mathrm{Re}(z\\overline{w}),$$\net $(|z|+|w|)^2=|z|^2+|w|^2+2|z\\overline{w}|$. Donc $|z+w|^2\\le(|z|+|w|)^2$ et, les deux nombres $|z+w|$ et $|z|+|w|$ étant positifs, $|z+w|\\le|z|+|w|$.\n\n**Égalité.** D'après ce calcul, l'égalité équivaut à $\\mathrm{Re}(z\\overline{w})=|z\\overline{w}|$, c'est-à-dire à $z\\overline{w}\\in\\mathbb{R}_+$. Si $w=0$, c'est vrai. Si $w\\neq0$ et $z\\overline{w}=t\\ge0$, alors $z=\\frac{z\\overline{w}}{\\overline{w}}=\\frac{t}{|w|^2}w$, avec $\\lambda=\\frac{t}{|w|^2}\\ge0$ ; réciproquement, $z=\\lambda w$ avec $\\lambda\\ge0$ donne $z\\overline{w}=\\lambda|w|^2\\ge0$.\n\n**Inégalité renversée.** $|z|=|(z-w)+w|\\le|z-w|+|w|$, donc $|z|-|w|\\le|z-w|$ ; en échangeant $z$ et $w$, $|w|-|z|\\le|w-z|=|z-w|$.\n\n**$n$ termes.** L'inégalité s'obtient par récurrence sur $n$. Notons $S=z_1+\\cdots+z_n$. Si $z_k=|z_k|u$ pour tout $k$, alors $S=\\left(\\sum_k|z_k|\\right)u$ et $|S|=\\sum_k|z_k|$. Réciproquement, supposons $|S|=\\sum_k|z_k|$. Si $S=0$, tous les $z_k$ sont nuls et tout $u$ de module $1$ convient. Sinon, posons $u=\\frac{S}{|S|}$ ; alors $\\overline{u}S=|S|$, donc\n$$\\sum_k\\mathrm{Re}(\\overline{u}z_k)=\\mathrm{Re}(\\overline{u}S)=|S|=\\sum_k|z_k|=\\sum_k|\\overline{u}z_k|.$$\nComme $\\mathrm{Re}(\\overline{u}z_k)\\le|\\overline{u}z_k|$ pour chaque $k$, il y a égalité terme à terme : $\\overline{u}z_k\\in\\mathbb{R}_+$, donc $\\overline{u}z_k=|z_k|$ et, en multipliant par $u$ ($u\\overline{u}=1$), $z_k=|z_k|u$.",
+      "exemple": "Pour $|z|\\le1$ : $|z^2+3z+1|\\le|z|^2+3|z|+1\\le5$. Si $|z^2+3z+1|=5$, il faut $|z|=1$ et l'égalité dans l'inégalité triangulaire à trois termes : $z^2$, $3z$ et $1$ s'écrivent $|z^2|u$, $|3z|u$ et $|1|u$ avec $|u|=1$ ; la dernière égalité donne $u=1$, puis $3z=3$, soit $z=1$. Réciproquement, $z=1$ donne $5$. Le maximum de $|z^2+3z+1|$ sur le disque fermé de centre $0$ et de rayon $1$ vaut donc $5$, et il n'est atteint qu'en $z=1$.",
+      "contre_exemple": "- **Coefficient négatif** : $z=1$, $w=-1$ : $z=-w$ et $z\\overline{w}=-1$ est réel, et pourtant $|z+w|=0<2=|z|+|w|$.\n- **Même module** : $z=1$, $w=i$ : $|z|=|w|$, mais $|1+i|=\\sqrt2<2$.\n- **$n$ termes, colinéarité deux à deux** : $1$, $1$ et $-1$ sont deux à deux colinéaires sur $\\mathbb{R}$, mais $|1+1-1|=1<3$.",
+      "affirmations": [
+        {
+          "texte": "Si $z\\overline{w}$ est réel, alors $|z+w|=|z|+|w|$.",
+          "vrai": false,
+          "contre_exemple": "$z=1$, $w=-1$ : $z\\overline{w}=-1$ est réel, mais $|z+w|=0$ et $|z|+|w|=2$."
+        },
+        {
+          "texte": "Si $w\\neq0$ et $|z+w|=|z|+|w|$, alors $\\frac{z}{w}$ est un réel positif ou nul.",
+          "vrai": true,
+          "justification": "Par le cas d'égalité, $z=\\lambda w$ avec $\\lambda\\ge0$, donc $\\frac{z}{w}=\\lambda$."
+        },
+        {
+          "texte": "Pour tout $z\\in\\mathbb{C}$, $|\\mathrm{Re}\\,z|+|\\mathrm{Im}\\,z|\\le|z|$.",
+          "vrai": false,
+          "contre_exemple": "$z=1+i$ : $|\\mathrm{Re}\\,z|+|\\mathrm{Im}\\,z|=2>\\sqrt2=|z|$. C'est l'inégalité inverse qui est vraie : $|z|\\le|\\mathrm{Re}\\,z|+|\\mathrm{Im}\\,z|$ (inégalité triangulaire appliquée à $z=\\mathrm{Re}\\,z+i\\,\\mathrm{Im}\\,z$)."
+        },
+        {
+          "texte": "Pour tous complexes $z$ et $w$, $|z+w|\\ge|z|-|w|$.",
+          "vrai": true,
+          "justification": "$|z|=|(z+w)-w|\\le|z+w|+|w|$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-module",
+        "ar-l1-reels-triangulaire"
+      ]
+    },
+    {
+      "id": "geo-l1-complexes-similitudes",
+      "theme": "geometrie",
+      "niveau": "l1",
+      "chapitre": "geo-l1-complexes",
+      "type": "theoreme",
+      "titre": "Similitudes directes",
+      "recto": "Énoncer la définition et la classification des similitudes directes du plan complexe, avec leurs hypothèses.",
+      "cours": "Les translations, rotations et homothéties s'écrivent simplement en complexes : $z\\mapsto z+b$, $z\\mapsto\\omega+e^{i\\theta}(z-\\omega)$, $z\\mapsto\\omega+k(z-\\omega)$ avec $k$ réel non nul. Les **similitudes directes** sont toutes les applications $z\\mapsto az+b$ avec $a\\neq0$ : elles multiplient les longueurs par $|a|$, font tourner les directions de l'angle $\\arg a$, et conservent la forme des figures et l'orientation des angles (un triangle est envoyé sur un triangle semblable, de même sens de parcours).\n\nMéthode pour reconnaître $f(z)=az+b$ : si $a=1$, c'est la translation de vecteur d'affixe $b$ ; sinon, on cherche le point fixe en résolvant $\\omega=a\\omega+b$, soit $\\omega=\\frac{b}{1-a}$, puis on écrit $f(z)-\\omega=a(z-\\omega)$ : $f$ est la composée de la rotation de centre $\\Omega$ d'angle $\\arg a$ et de l'homothétie de centre $\\Omega$ de rapport $|a|$, dans un ordre ou dans l'autre. Pour trouver la similitude qui envoie $A$ sur $A'$ et $B$ sur $B'$, on résout le système $a\\alpha+b=\\alpha'$, $a\\beta+b=\\beta'$ (où $\\alpha$, $\\beta$, $\\alpha'$, $\\beta'$ sont les affixes) : $a=\\frac{\\beta'-\\alpha'}{\\beta-\\alpha}$.\n\nLes similitudes directes servent à résoudre des problèmes de géométrie plane (triangles semblables, carrés ou triangles équilatéraux construits sur des côtés) et à étudier les suites $z_{n+1}=az_n+b$, dont les points décrivent des spirales autour du centre.\n\nPièges : une similitude directe de rapport $1$ n'est pas forcément une rotation (ce peut être une translation) ; le rapport est $|a|$ et non $a$ ; et $z\\mapsto\\overline{z}$, qui conserve les distances, n'est pas une similitude **directe** (elle renverse les angles orientés).",
+      "hypotheses": [
+        "$a\\neq0$ (sinon $f$ est constante).",
+        "$a\\neq1$ pour l'existence et l'unicité du point fixe.",
+        "$A\\neq B$ et $A'\\neq B'$ pour la similitude directe envoyant $A$ sur $A'$ et $B$ sur $B'$."
+      ],
+      "hypotheses_pieges": [
+        "$a$ réel (à la place de complexe non nul).",
+        "$|a|=1$, pour que $f$ conserve les angles orientés.",
+        "$a\\neq0$ seulement (à la place de $a\\neq1$) pour l'existence d'un point fixe.",
+        "$A\\neq B$ seulement (à la place de $A\\neq B$ et $A'\\neq B'$)."
+      ],
+      "enonce": "On identifie le plan à $\\mathbb{C}$. Une **similitude directe** est une application $f:\\mathbb{C}\\to\\mathbb{C}$ de la forme $f(z)=az+b$, avec $a\\in\\mathbb{C}^*$ et $b\\in\\mathbb{C}$ ; $|a|$ est son **rapport** et tout argument de $a$ est une mesure de son **angle**.\n- Pour tous $z,z'\\in\\mathbb{C}$, $|f(z)-f(z')|=|a|\\,|z-z'|$ ; pour $z_0,z_1,z_2$ avec $z_1\\neq z_0$ et $z_2\\neq z_0$, $\\frac{f(z_2)-f(z_0)}{f(z_1)-f(z_0)}=\\frac{z_2-z_0}{z_1-z_0}$ : $f$ conserve les rapports de distances et les angles orientés.\n- $f$ est bijective, de réciproque $z\\mapsto\\frac{1}{a}z-\\frac{b}{a}$ ; la composée de deux similitudes directes de rapports $k$, $k'$ et d'angles $\\theta$, $\\theta'$ est une similitude directe de rapport $kk'$ et d'angle $\\theta+\\theta'$.\n- Si $a=1$, $f$ est la translation de vecteur d'affixe $b$. Si $a\\neq1$, $f$ a un unique point fixe $\\Omega$, d'affixe $\\omega=\\frac{b}{1-a}$, et $f(z)-\\omega=a(z-\\omega)$ : $f$ est la composée, dans un ordre quelconque, de la rotation de centre $\\Omega$ d'angle $\\arg a$ et de l'homothétie de centre $\\Omega$ de rapport $|a|$.\n- Si $A\\neq B$ et $A'\\neq B'$, il existe une unique similitude directe qui envoie $A$ sur $A'$ et $B$ sur $B'$.",
+      "enonce_trous": "Soit $f(z)=az+b$ avec $a\\in\\mathbb{C}\\setminus\\{0,1\\}$ et $b\\in\\mathbb{C}$. Alors $f$ a un unique point fixe $\\Omega$, d'affixe {{1}}, et $f$ est la composée de la rotation de centre $\\Omega$ d'angle {{2}} et de l'homothétie de centre $\\Omega$ de rapport {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{b}{1-a}$",
+          "leurres": [
+            "$\\frac{b}{a-1}$",
+            "$-\\frac{b}{a}$",
+            "$\\frac{b}{1+a}$"
+          ]
+        },
+        {
+          "reponse": "$\\arg a$",
+          "leurres": [
+            "$\\arg b$",
+            "$-\\arg a$",
+            "$\\arg(1-a)$"
+          ]
+        },
+        {
+          "reponse": "$|a|$",
+          "leurres": [
+            "$a$",
+            "$\\frac{1}{|a|}$",
+            "$|b|$"
+          ]
+        }
+      ],
+      "demo": "**Distances et angles.** $f(z)-f(z')=a(z-z')$, d'où $|f(z)-f(z')|=|a|\\,|z-z'|$. De même $f(z_2)-f(z_0)=a(z_2-z_0)$ et $f(z_1)-f(z_0)=a(z_1-z_0)\\neq0$ ; le quotient se simplifie par $a$. Or le module de $\\frac{z_2-z_0}{z_1-z_0}$ est le rapport $\\frac{M_0M_2}{M_0M_1}$ et un argument de ce quotient mesure l'angle orienté $(\\overrightarrow{M_0M_1},\\overrightarrow{M_0M_2})$ (carte sur les complexes et la géométrie) : ce rapport et cet angle sont conservés.\n\n**Bijection, composée.** Pour $z'\\in\\mathbb{C}$, $az+b=z'\\iff z=\\frac{z'-b}{a}$, car $a\\neq0$. Si $g(z)=a'z+b'$ avec $a'\\neq0$, alors $g(f(z))=a'az+(a'b+b')$, avec $a'a\\neq0$, $|a'a|=|a'|\\,|a|$ et $\\arg(a'a)\\equiv\\arg a'+\\arg a\\;[2\\pi]$.\n\n**Classification.** Si $a=1$, $f(z)=z+b$. Si $a\\neq1$, $\\omega=a\\omega+b\\iff(1-a)\\omega=b\\iff\\omega=\\frac{b}{1-a}$ : il y a un unique point fixe. Alors $f(z)-\\omega=(az+b)-(a\\omega+b)=a(z-\\omega)$. Écrivons $a=ke^{i\\theta}$ avec $k=|a|>0$. La rotation $r(z)=\\omega+e^{i\\theta}(z-\\omega)$ et l'homothétie $h(z)=\\omega+k(z-\\omega)$ vérifient $h(r(z))=\\omega+ke^{i\\theta}(z-\\omega)=f(z)$ et $r(h(z))=\\omega+e^{i\\theta}k(z-\\omega)=f(z)$.\n\n**Deux points.** Notons $\\alpha$, $\\beta$, $\\alpha'$, $\\beta'$ les affixes de $A$, $B$, $A'$, $B'$. L'application $z\\mapsto az+b$ envoie $A$ sur $A'$ et $B$ sur $B'$ si et seulement si $a\\alpha+b=\\alpha'$ et $a\\beta+b=\\beta'$, c'est-à-dire (par soustraction, et comme $\\alpha\\neq\\beta$) $a=\\frac{\\beta'-\\alpha'}{\\beta-\\alpha}$ et $b=\\alpha'-a\\alpha$. Ce couple est unique, et $a\\neq0$ car $\\alpha'\\neq\\beta'$ : c'est bien une similitude directe.",
+      "exemple": "$f(z)=(1+i)z+2-i$ : $a=1+i=\\sqrt2\\,e^{i\\pi/4}\\neq1$, donc $f$ a pour unique point fixe $\\omega=\\frac{2-i}{1-(1+i)}=\\frac{2-i}{-i}=1+2i$, et $f(z)-(1+2i)=(1+i)\\big(z-(1+2i)\\big)$. C'est la similitude directe de centre $\\Omega(1+2i)$, de rapport $\\sqrt2$ et d'angle $\\frac{\\pi}{4}$ : elle transforme tout carré en un carré de côté $\\sqrt2$ fois plus grand, tourné de $\\frac{\\pi}{4}$.",
+      "contre_exemple": "- **Rapport $1$ sans centre** : $f(z)=z+1$ a pour rapport $1$ et n'a aucun point fixe : ce n'est pas une rotation. L'hypothèse $a\\neq1$ est nécessaire pour le point fixe.\n- **Isométrie non directe** : $s(z)=\\overline{z}$ conserve les distances mais pas les angles orientés : avec $z_0=0$, $z_1=1$, $z_2=i$, $\\frac{z_2-z_0}{z_1-z_0}=i$ alors que $\\frac{s(z_2)-s(z_0)}{s(z_1)-s(z_0)}=-i$. Elle n'est pas de la forme $az+b$ : sinon $b=s(0)=0$ et $a=s(1)-s(0)=1$, d'où $s(i)=i\\neq-i$.\n- **$A'=B'$** : aucune similitude directe n'envoie $0$ et $1$ sur un même point, car $f(1)-f(0)=a\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Une similitude directe de rapport $1$ est une rotation.",
+          "vrai": false,
+          "contre_exemple": "$z\\mapsto z+1$ est une similitude directe de rapport $1$ sans point fixe : c'est une translation, pas une rotation."
+        },
+        {
+          "texte": "Une similitude directe qui a deux points fixes distincts est l'identité.",
+          "vrai": true,
+          "justification": "Si $f(A)=A$ et $f(B)=B$ avec $A\\neq B$, l'identité est aussi une similitude directe qui envoie $A$ sur $A$ et $B$ sur $B$ ; par unicité, $f=\\mathrm{id}$."
+        },
+        {
+          "texte": "Toute application du plan dans lui-même qui conserve les distances est une similitude directe.",
+          "vrai": false,
+          "contre_exemple": "$z\\mapsto\\overline{z}$ conserve les distances, mais elle n'est pas de la forme $z\\mapsto az+b$ : elle envoie $0$, $1$, $i$ sur $0$, $1$, $-i$."
+        },
+        {
+          "texte": "La réciproque de la similitude directe de centre $\\Omega$, de rapport $k$ et d'angle $\\theta$ est la similitude directe de centre $\\Omega$, de rapport $\\frac{1}{k}$ et d'angle $-\\theta$.",
+          "vrai": true,
+          "justification": "$f(z)-\\omega=ke^{i\\theta}(z-\\omega)$ équivaut à $z-\\omega=\\frac{1}{k}e^{-i\\theta}\\big(f(z)-\\omega\\big)$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-geometrie",
+        "geo-t-complexes-exponentielle"
+      ]
+    },
+    {
+      "id": "geo-l1-complexes-euler",
+      "theme": "geometrie",
+      "niveau": "l1",
+      "chapitre": "geo-l1-complexes",
+      "type": "theoreme",
+      "titre": "Formules d'Euler et linéarisation",
+      "recto": "Énoncer les formules d'Euler, la factorisation par l'angle moitié et le principe de la linéarisation, avec leurs hypothèses.",
+      "cours": "En additionnant et en soustrayant $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$ et $e^{-i\\theta}=\\cos\\theta-i\\sin\\theta$, on exprime $\\cos\\theta$ et $\\sin\\theta$ à l'aide d'exponentielles : ce sont les formules d'Euler. Elles transforment la trigonométrie en calcul algébrique sur des exponentielles, où les produits deviennent des sommes d'exposants.\n\nPremière application, la **linéarisation** : écrire un produit $\\cos^p\\theta\\sin^q\\theta$ comme combinaison de $\\cos(k\\theta)$ et de $\\sin(k\\theta)$. Méthode : remplacer $\\cos\\theta$ et $\\sin\\theta$ par les formules d'Euler, développer par la formule du binôme, puis regrouper les termes $e^{ik\\theta}$ et $e^{-ik\\theta}$ grâce aux formules d'Euler lues à l'envers. Par exemple $\\cos^2\\theta=\\frac{e^{2i\\theta}+2+e^{-2i\\theta}}{4}=\\frac{1+\\cos2\\theta}{2}$. C'est l'outil pour intégrer une puissance de $\\cos$ ou de $\\sin$ : on sait primitiver $\\cos(k\\theta)$, pas directement $\\cos^4\\theta$.\n\nSeconde application, la **factorisation par l'angle moitié** : $e^{ia}+e^{ib}=e^{i\\frac{a+b}{2}}\\left(e^{i\\frac{a-b}{2}}+e^{-i\\frac{a-b}{2}}\\right)=2\\cos\\left(\\frac{a-b}{2}\\right)e^{i\\frac{a+b}{2}}$. Elle donne le module et un argument de $1+e^{i\\theta}$, les formules du type $\\cos p+\\cos q=2\\cos\\frac{p+q}{2}\\cos\\frac{p-q}{2}$ (parties réelles) et les sommes $\\sum\\cos(k\\theta)$.\n\nÀ ne pas confondre : la formule de Moivre fait le chemin inverse (elle exprime $\\cos(n\\theta)$ en fonction des puissances de $\\cos\\theta$ et $\\sin\\theta$). Piège : dans $2\\cos\\left(\\frac{a-b}{2}\\right)e^{i\\frac{a+b}{2}}$, le facteur réel peut être négatif ; ce n'est alors pas le module, et $\\frac{a+b}{2}$ n'est pas un argument.",
+      "hypotheses": [
+        "$\\theta$, $a$, $b$ réels (cadre de la carte ; les formules d'Euler serviront plus tard à définir $\\cos$ et $\\sin$ sur $\\mathbb{C}$).",
+        "$p$ et $q$ entiers naturels pour la linéarisation."
+      ],
+      "hypotheses_pieges": [
+        "$p$ et $q$ entiers relatifs (à la place d'entiers naturels).",
+        "$a-b\\in\\left]-\\pi,\\pi\\right[$, pour pouvoir factoriser $e^{ia}+e^{ib}$ par l'angle moitié.",
+        "$q$ pair, pour que $\\cos^p\\theta\\sin^q\\theta$ soit linéarisable."
+      ],
+      "enonce": "Pour tout réel $\\theta$ (**formules d'Euler**) :\n$$\\cos\\theta=\\frac{e^{i\\theta}+e^{-i\\theta}}{2},\\qquad\\sin\\theta=\\frac{e^{i\\theta}-e^{-i\\theta}}{2i}.$$\n**Angle moitié** : pour tous réels $a$ et $b$, $e^{ia}+e^{ib}=2\\cos\\left(\\frac{a-b}{2}\\right)e^{i\\frac{a+b}{2}}$ et $e^{ia}-e^{ib}=2i\\sin\\left(\\frac{a-b}{2}\\right)e^{i\\frac{a+b}{2}}$.\n\n**Linéarisation** : pour tous entiers naturels $p$ et $q$, en posant $n=p+q$, il existe des réels $\\alpha_0,\\dots,\\alpha_n$ et $\\beta_1,\\dots,\\beta_n$ tels que\n$$\\forall\\theta\\in\\mathbb{R},\\quad\\cos^p\\theta\\,\\sin^q\\theta=\\sum_{k=0}^{n}\\alpha_k\\cos(k\\theta)+\\sum_{k=1}^{n}\\beta_k\\sin(k\\theta) ;$$\non peut prendre tous les $\\beta_k$ nuls si $q$ est pair, et tous les $\\alpha_k$ nuls si $q$ est impair. On les obtient en développant $\\left(\\frac{e^{i\\theta}+e^{-i\\theta}}{2}\\right)^p\\left(\\frac{e^{i\\theta}-e^{-i\\theta}}{2i}\\right)^q$ par la formule du binôme, puis en regroupant $e^{ik\\theta}$ et $e^{-ik\\theta}$.",
+      "enonce_trous": "Pour tout réel $\\theta$, $\\cos\\theta$ est égal à {{1}} et $\\sin\\theta$ à {{2}}. Pour $p,q\\in\\mathbb{N}$, $\\cos^p\\theta\\sin^q\\theta$ est une combinaison linéaire des $\\cos(k\\theta)$ et $\\sin(k\\theta)$ pour {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{e^{i\\theta}+e^{-i\\theta}}{2}$",
+          "leurres": [
+            "$\\frac{e^{i\\theta}-e^{-i\\theta}}{2}$",
+            "$e^{i\\theta}+e^{-i\\theta}$",
+            "$\\frac{e^{i\\theta}+e^{-i\\theta}}{2i}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{e^{i\\theta}-e^{-i\\theta}}{2i}$",
+          "leurres": [
+            "$\\frac{e^{i\\theta}-e^{-i\\theta}}{2}$",
+            "$\\frac{e^{-i\\theta}-e^{i\\theta}}{2i}$",
+            "$\\frac{e^{i\\theta}+e^{-i\\theta}}{2i}$"
+          ]
+        },
+        {
+          "reponse": "$0\\le k\\le p+q$",
+          "leurres": [
+            "$0\\le k\\le\\max(p,q)$",
+            "$0\\le k\\le pq$",
+            "$0\\le k\\le p$"
+          ]
+        }
+      ],
+      "demo": "**Euler.** Comme $\\cos(-\\theta)=\\cos\\theta$ et $\\sin(-\\theta)=-\\sin\\theta$, on a $e^{-i\\theta}=\\cos\\theta-i\\sin\\theta$, donc $e^{i\\theta}+e^{-i\\theta}=2\\cos\\theta$ et $e^{i\\theta}-e^{-i\\theta}=2i\\sin\\theta$.\n\n**Angle moitié.** Avec $m=\\frac{a+b}{2}$ et $d=\\frac{a-b}{2}$, on a $a=m+d$ et $b=m-d$, donc $e^{ia}\\pm e^{ib}=e^{im}\\left(e^{id}\\pm e^{-id}\\right)$, et l'on conclut par les formules d'Euler : $e^{id}+e^{-id}=2\\cos d$ et $e^{id}-e^{-id}=2i\\sin d$.\n\n**Linéarisation.** Par la formule du binôme,\n$$\\cos^p\\theta\\sin^q\\theta=\\frac{1}{2^p(2i)^q}\\sum_{j=0}^{p}\\sum_{l=0}^{q}\\binom{p}{j}\\binom{q}{l}(-1)^{q-l}e^{i(2j-p+2l-q)\\theta},$$\nc'est-à-dire une somme $\\sum_{m=-n}^{n}c_me^{im\\theta}$ avec des constantes complexes $c_m$, car $-n\\le2j-p+2l-q\\le n$. Le membre de gauche est réel, donc égal à sa partie réelle : $\\cos^p\\theta\\sin^q\\theta=\\sum_{m=-n}^{n}\\left(\\mathrm{Re}(c_m)\\cos(m\\theta)-\\mathrm{Im}(c_m)\\sin(m\\theta)\\right)$. En regroupant les indices $m$ et $-m$ grâce à $\\cos(-m\\theta)=\\cos(m\\theta)$ et $\\sin(-m\\theta)=-\\sin(m\\theta)$ (et $\\sin0=0$), on obtient la forme annoncée avec $0\\le k\\le n$.\n\n**Parité.** Notons $g(\\theta)=\\cos^p\\theta\\sin^q\\theta$ ; alors $g(-\\theta)=(-1)^qg(\\theta)$. Si $q$ est pair, $g(\\theta)=\\frac{g(\\theta)+g(-\\theta)}{2}=\\sum_k\\alpha_k\\cos(k\\theta)$, car les termes en sinus se compensent. Si $q$ est impair, $g(\\theta)=\\frac{g(\\theta)-g(-\\theta)}{2}=\\sum_k\\beta_k\\sin(k\\theta)$.",
+      "exemple": "$\\cos^3\\theta=\\frac{(e^{i\\theta}+e^{-i\\theta})^3}{8}=\\frac{e^{3i\\theta}+3e^{i\\theta}+3e^{-i\\theta}+e^{-3i\\theta}}{8}=\\frac{\\cos3\\theta+3\\cos\\theta}{4}$. On en déduit $\\int_0^{\\pi/2}\\cos^3\\theta\\,\\mathrm{d}\\theta=\\frac14\\left[\\frac{\\sin3\\theta}{3}+3\\sin\\theta\\right]_0^{\\pi/2}=\\frac14\\left(-\\frac13+3\\right)=\\frac23$.\n\nAngle moitié : pour $\\theta\\in\\left]-\\pi,\\pi\\right[$, $1+e^{i\\theta}=2\\cos\\left(\\frac{\\theta}{2}\\right)e^{i\\theta/2}$ avec $2\\cos\\frac{\\theta}{2}>0$ : c'est la forme exponentielle, de module $2\\cos\\frac\\theta2$ et d'argument $\\frac\\theta2$.",
+      "contre_exemple": "- **Exposant négatif** : pour $p=-1$ et $q=0$, $\\frac{1}{\\cos\\theta}$ n'est pas définie en $\\frac{\\pi}{2}$ et n'est pas bornée sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, alors qu'une combinaison de $\\cos(k\\theta)$ et $\\sin(k\\theta)$ est définie et bornée sur $\\mathbb{R}$ : il n'y a pas de linéarisation.\n- **Le facteur $2\\cos\\frac{a-b}{2}$ n'est pas toujours le module** : pour $a=\\frac{4\\pi}{3}$ et $b=0$, $e^{4i\\pi/3}+1=2\\cos\\left(\\frac{2\\pi}{3}\\right)e^{2i\\pi/3}=-e^{2i\\pi/3}=e^{-i\\pi/3}$ : le module est $1$ et non $-1$, et $\\frac{2\\pi}{3}$ n'est pas un argument.\n- **Indices jusqu'à $p+q$** : $\\cos\\theta\\sin\\theta=\\frac12\\sin(2\\theta)$ fait intervenir $k=2=p+q$, et $\\sin(2\\theta)$ n'est pas une combinaison de $1$, $\\cos\\theta$ et $\\sin\\theta$ (si $\\sin2\\theta=\\alpha+\\beta\\cos\\theta+\\gamma\\sin\\theta$ pour tout $\\theta$, les valeurs en $0$, $\\pi$ et $\\frac\\pi2$ donnent $\\alpha=\\beta=\\gamma=0$, et celle en $\\frac\\pi4$ donne $1=0$) : on ne peut pas s'arrêter à $k\\le\\max(p,q)$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $a$ et $b$, $\\left|e^{ia}+e^{ib}\\right|=2\\cos\\left(\\frac{a-b}{2}\\right)$.",
+          "vrai": false,
+          "contre_exemple": "$a=2\\pi$, $b=0$ : $\\left|e^{2i\\pi}+1\\right|=2$, alors que $2\\cos\\pi=-2$. En général $\\left|e^{ia}+e^{ib}\\right|=2\\left|\\cos\\frac{a-b}{2}\\right|$."
+        },
+        {
+          "texte": "Pour tout réel $\\theta$, $\\cos^4\\theta=\\frac{\\cos4\\theta+4\\cos2\\theta+3}{8}$.",
+          "vrai": true,
+          "justification": "$\\left(e^{i\\theta}+e^{-i\\theta}\\right)^4=e^{4i\\theta}+4e^{2i\\theta}+6+4e^{-2i\\theta}+e^{-4i\\theta}=2\\cos4\\theta+8\\cos2\\theta+6$, et l'on divise par $2^4=16$."
+        },
+        {
+          "texte": "Pour tout réel $\\theta$, $\\sin^2\\theta=\\frac{1+\\cos2\\theta}{2}$.",
+          "vrai": false,
+          "contre_exemple": "En $\\theta=0$ : $\\sin^20=0$ alors que $\\frac{1+\\cos0}{2}=1$. La bonne formule est $\\sin^2\\theta=\\frac{1-\\cos2\\theta}{2}$."
+        },
+        {
+          "texte": "Pour tout réel $\\theta$, $\\sin^3\\theta=\\frac{3\\sin\\theta+\\sin3\\theta}{4}$.",
+          "vrai": false,
+          "contre_exemple": "En $\\theta=\\frac\\pi2$ : $\\sin^3\\frac\\pi2=1$ alors que $\\frac{3-1}{4}=\\frac12$. La bonne formule est $\\sin^3\\theta=\\frac{3\\sin\\theta-\\sin3\\theta}{4}$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-exponentielle",
+        "ar-t-fonctions-usuelles-trigo"
+      ]
+    }
+  ]
+}
