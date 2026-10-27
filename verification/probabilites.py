@@ -843,4 +843,18 @@ for (A_, B_, C_, rep, leurres, ou) in [
 assert {w for w in Om36 if w[0] <= 3 and w[1] <= 3} <= {w for w in Om36 if (w[0] <= 3) == (w[1] <= 3)}, \
     "proba-l1-independance-mutuelle-ex3 variante 1 : A inter B contenu dans C"
 
+
+# proba-t-binomiale (cours, piège principal) : tirages sans remise dans une urne de N boules dont K gagnantes,
+# 0 < K < N, n >= 2 tirages : même probabilité K/N à chaque tirage, tirages 1 et 2 non indépendants, loi différente de B(n, K/N).
+for N in range(2, 7):
+    for K in range(1, N):
+        for n in range(2, N + 1):
+            tir = list(permutations(range(N), n))
+            pK = F(K, N)
+            for i in range(n):
+                assert F(sum(1 for x in tir if x[i] < K), len(tir)) == pK, "proba-t-binomiale (cours) : même probabilité"
+            assert F(sum(1 for x in tir if x[0] < K and x[1] < K), len(tir)) != pK ** 2, "proba-t-binomiale (cours) : non indépendants"
+            d = loi([(sum(1 for y in x if y < K), F(1, len(tir))) for x in tir])
+            assert any(d.get(k, 0) != binom_pmf(n, pK, k) for k in range(n + 1)), "proba-t-binomiale (cours) : pas B(n,p)"
+
 print("probabilites.py : toutes les vérifications passent.")

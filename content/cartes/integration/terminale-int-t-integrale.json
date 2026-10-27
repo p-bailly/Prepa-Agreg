@@ -8,6 +8,7 @@
       "type": "theoreme",
       "titre": "Théorème fondamental : primitive d'une fonction continue",
       "recto": "Énoncer le théorème fondamental reliant intégrale et primitive d'une fonction continue, avec ses hypothèses.",
+      "cours": "Pour une fonction continue et positive, $\\int_a^x f(t)\\,\\mathrm{d}t$ est l'aire sous la courbe entre $a$ et $x$ ; quand $x$ augmente d'une petite quantité $h$, cette aire augmente d'environ $h\\,f(x)$ (une bande presque rectangulaire de largeur $h$ et de hauteur $f(x)$). C'est l'intuition du théorème fondamental : la dérivée de l'aire est la hauteur, donc $x\\mapsto\\int_a^x f(t)\\,\\mathrm{d}t$ est une primitive de $f$. Ce résultat relie deux problèmes qui semblaient sans rapport, le calcul des aires et la recherche de tangentes, et il garantit que toute fonction continue sur un intervalle admet des primitives, même quand on ne sait pas les écrire (par exemple pour $e^{-t^2}$).\n\nEn pratique, il sert dans deux sens. Pour calculer une intégrale, on cherche une primitive $G$ et l'on écrit $\\int_a^b f=G(b)-G(a)$. Pour étudier une fonction définie par une intégrale, on ne la calcule pas : on la dérive, $F'(x)=f(x)$, et si une borne dépend de $x$, on dérive une composée, $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_a^{u(x)}f=u'(x)\\,f(u(x))$.\n\nLe piège principal concerne les hypothèses : il faut $f$ **continue** sur un **intervalle**. Une fonction en escalier donne une intégrale non dérivable au saut, et sur une réunion d'intervalles comme $\\mathbb{R}^*$ deux primitives ne diffèrent pas forcément d'une seule constante.",
       "hypotheses": [
         "$I$ est un intervalle de $\\mathbb{R}$ et $a\\in I$.",
         "$f$ est continue sur $I$."
@@ -83,6 +84,7 @@
       "type": "theoreme",
       "titre": "Linéarité, positivité, croissance, relation de Chasles",
       "recto": "Énoncer la linéarité, la positivité et la croissance de l'intégrale ainsi que la relation de Chasles, avec leurs hypothèses.",
+      "cours": "Une fois l'intégrale définie, on la manipule avec quatre règles qui traduisent des propriétés évidentes de l'aire. La linéarité permet de couper une intégrale en morceaux simples ; la relation de Chasles permet de découper l'intervalle, par exemple aux points où une valeur absolue change d'expression ; la positivité et la croissance permettent d'**encadrer** une intégrale qu'on ne sait pas calculer.\n\nCes deux dernières règles sont l'outil principal des exercices sur les suites d'intégrales : on encadre l'intégrande, par exemple $0\\le\\frac{x^n}{1+x}\\le x^n$ sur $[0,1]$, on intègre, puis on conclut par le théorème des gendarmes. Elles servent aussi à établir des inégalités entre fonctions : en intégrant $\\cos t\\le1$ entre $0$ et $x\\ge0$, on obtient $\\sin x\\le x$.\n\nLe piège principal est l'ordre des bornes : on n'intègre une inégalité que si $a\\le b$ ; si $a>b$, elle change de sens, puisque $\\int_b^a=-\\int_a^b$. Autre piège : l'intégrale d'un produit n'est pas le produit des intégrales, et une intégrale positive ne dit rien sur le signe de la fonction en chaque point.",
       "hypotheses": [
         "$f$ et $g$ sont continues sur un intervalle $I$ ; $a$, $b$, $c$ sont des points de $I$ et $\\lambda$, $\\mu$ des réels.",
         "Pour la positivité et la croissance : $a\\le b$.",
@@ -160,6 +162,7 @@
       "type": "theoreme",
       "titre": "Intégration par parties",
       "recto": "Énoncer la formule d'intégration par parties avec ses hypothèses.",
+      "cours": "L'intégration par parties est la formule de dérivation d'un produit, $(uv)'=u'v+uv'$, lue à l'envers et intégrée. Elle transforme l'intégrale de $u'v$ en celle de $uv'$, et elle est utile quand ce second calcul est plus simple que le premier.\n\nMéthode : dans un produit, on choisit de **dériver** le facteur qui se simplifie en le dérivant (un polynôme, dont le degré baisse ; un logarithme, qui devient une fraction) et d'**intégrer** celui qui se primitive sans difficulté (exponentielle, sinus, cosinus). Pour $\\int\\ln x\\,\\mathrm{d}x$, on écrit $\\ln x=1\\times\\ln x$. Il faut parfois intégrer deux fois par parties, soit pour faire baisser le degré deux fois, soit pour retrouver l'intégrale de départ (cas de $e^x\\sin x$), qu'on isole alors comme l'inconnue d'une équation. Appliquée à une suite $I_n=\\int x^n\\cdots$, l'intégration par parties donne une relation de récurrence entre $I_{n+1}$ et $I_n$.\n\nLes pièges : le signe « $-$ » devant la nouvelle intégrale, le crochet $\\big[uv\\big]_a^b$ qu'on oublie d'évaluer, et les hypothèses : $u$ et $v$ doivent être dérivables sur tout l'intervalle, à dérivées continues.",
       "hypotheses": [
         "$I$ est un intervalle et $a,b\\in I$.",
         "$u$ et $v$ sont dérivables sur $I$.",
@@ -224,6 +227,7 @@
       "type": "theoreme",
       "titre": "Valeur moyenne et inégalité de la moyenne",
       "recto": "Définir la valeur moyenne d'une fonction continue sur un segment et énoncer l'inégalité de la moyenne, avec leurs hypothèses.",
+      "cours": "La valeur moyenne d'une fonction sur $[a,b]$ est la hauteur du rectangle de base $[a,b]$ qui a la même aire que le domaine sous la courbe : $\\mu=\\frac{1}{b-a}\\int_a^b f$. C'est la version continue de la moyenne de $n$ nombres, qui sert pour une température, une vitesse ou une concentration moyennes sur une durée.\n\nL'inégalité de la moyenne dit que cette moyenne est comprise entre les bornes de $f$ : si $m\\le f\\le M$ sur $[a,b]$, alors $m(b-a)\\le\\int_a^b f\\le M(b-a)$. C'est l'outil le plus simple pour encadrer une intégrale. Si $f$ est monotone sur $[a,b]$, on prend pour $m$ et $M$ ses valeurs aux bornes, ce qui permet de comparer une somme $\\sum f(k)$ à une intégrale, en encadrant $\\int_k^{k+1}f$ par $f(k)$ et $f(k+1)$. Pour une fonction continue, la valeur moyenne est de plus atteinte en au moins un point.\n\nLe piège principal : la valeur moyenne n'est pas $\\frac{f(a)+f(b)}{2}$, sauf pour une fonction affine. Il faut aussi que l'encadrement $m\\le f\\le M$ vaille sur tout l'intervalle, pas seulement aux bornes.",
       "hypotheses": [
         "$a<b$.",
         "$f$ est continue sur $[a,b]$.",
@@ -301,6 +305,7 @@
       "type": "theoreme",
       "titre": "Intégrale et aire entre deux courbes",
       "recto": "Énoncer la formule de l'aire du domaine compris entre deux courbes, avec ses hypothèses.",
+      "cours": "L'intégrale d'une fonction de signe quelconque est une aire **algébrique** : les parties situées sous l'axe des abscisses comptent négativement. Pour calculer une vraie aire, il faut donc savoir quelle courbe est au-dessus de l'autre. Si $f\\le g$ sur $[a,b]$, l'aire comprise entre les deux courbes est $\\int_a^b(g-f)$, et cela reste vrai quand les courbes passent sous l'axe : une translation verticale ne change ni l'aire ni la différence $g-f$.\n\nMéthode : (1) chercher les abscisses où les courbes se coupent, en résolvant $f(x)=g(x)$ ; (2) étudier le signe de $g-f$ sur chaque intervalle obtenu ; (3) intégrer $g-f$ ou $f-g$ selon le cas, puis additionner les morceaux grâce à Chasles. Pour un domaine borné limité par deux courbes, les bornes d'intégration sont justement les abscisses des points d'intersection.\n\nLe piège principal est de calculer directement $\\int_a^b(g-f)$, ou sa valeur absolue, alors que les courbes se croisent : les morceaux de signes opposés se compensent et le résultat n'est pas l'aire. Une aire est toujours positive ; un résultat négatif signale une erreur d'ordre.",
       "hypotheses": [
         "$a<b$.",
         "$f$ et $g$ sont continues sur $[a,b]$.",
