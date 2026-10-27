@@ -8,6 +8,7 @@
       "type": "theoreme",
       "titre": "Théorème de la limite monotone (suites)",
       "recto": "Énoncer le théorème de la limite monotone pour les suites réelles avec ses hypothèses.",
+      "cours": "Pour montrer qu'une suite converge, on aimerait souvent le faire **sans connaître sa limite** : c'est exactement ce que permet ce théorème. L'intuition est simple : une suite croissante ne peut que monter ; si un plafond l'empêche de dépasser une certaine valeur, ses termes finissent par s'accumuler sous ce plafond, et ils s'approchent du plus petit plafond possible, la borne supérieure de ses termes.\n\nEn pratique, on procède en deux temps : on établit la monotonie (signe de $u_{n+1}-u_n$, ou comparaison de $\\frac{u_{n+1}}{u_n}$ à $1$ pour une suite strictement positive, ou récurrence), puis une majoration (comparaison à une somme géométrique, télescopage, récurrence). On obtient alors l'existence de la limite $\\ell$, puis, par passage à la limite dans une inégalité large $u_n\\le M$, l'information $\\ell\\le M$.\n\nLe piège principal : le majorant trouvé n'est en général **pas** la limite. Une suite croissante majorée par $2$ peut très bien converger vers $1$ : le théorème donne la limite comme la borne supérieure des termes, pas comme le majorant qu'on a su exhiber. Si la suite n'est pas majorée, elle tend vers $+\\infty$ : une suite croissante a toujours une limite, finie ou infinie.",
       "hypotheses": [
         "$(u_n)$ est une suite de nombres réels.",
         "$(u_n)$ est croissante.",
@@ -82,6 +83,7 @@
       "type": "theoreme",
       "titre": "Théorème d'encadrement (« des gendarmes »)",
       "recto": "Énoncer le théorème d'encadrement (« des gendarmes ») pour les suites réelles avec ses hypothèses.",
+      "cours": "Le théorème des gendarmes sert à calculer la limite d'une suite trop compliquée pour les opérations usuelles, en la **coinçant** entre deux suites plus simples qui ont la même limite. L'image est celle d'un suspect escorté par deux gendarmes qui vont au même endroit : il n'a pas d'autre choix que d'y aller aussi. Contrairement au passage à la limite dans les inégalités, il donne à la fois l'**existence** de la limite de $(u_n)$ et sa valeur.\n\nMéthode : isoler le terme gênant (un $\\cos n$, un $(-1)^n$, une partie entière, une somme de puissances) et l'encadrer grossièrement, par exemple $-1\\le\\cos n\\le1$, puis vérifier que les deux bornes obtenues ont **la même** limite. Pour une racine $n$-ième d'une somme, on encadre la somme entre son plus grand terme et un multiple de celui-ci.\n\nLe piège principal : un encadrement dont les deux bornes ont des limites différentes ne prouve rien (il dit seulement que les éventuelles valeurs limites sont entre les deux). Il suffit en revanche que l'encadrement ait lieu à partir d'un certain rang.",
       "hypotheses": [
         "Il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ pour tout $n\\ge N$.",
         "$(v_n)$ converge vers un réel $\\ell$.",
@@ -143,6 +145,7 @@
       "type": "theoreme",
       "titre": "Théorème des valeurs intermédiaires",
       "recto": "Énoncer le théorème des valeurs intermédiaires avec ses hypothèses.",
+      "cours": "Le théorème des valeurs intermédiaires formalise l'idée qu'on trace le graphe d'une fonction continue « sans lever le crayon » : pour passer d'une valeur à une autre, elle doit prendre toutes les valeurs intermédiaires. C'est l'outil de base pour démontrer l'**existence** d'une solution d'une équation $f(x)=k$ qu'on ne sait pas résoudre explicitement.\n\nMéthode : se ramener à $g(x)=0$ (par exemple $g(x)=f(x)-x$ pour un point fixe), vérifier que $g$ est continue sur un **segment** $[a,b]$, puis exhiber un changement de signe, $g(a)\\le0\\le g(b)$ ou l'inverse. Pour l'**unicité**, il faut un argument supplémentaire : la stricte monotonie de $g$ sur l'intervalle (c'est le théorème de la bijection). Pour compter des solutions, on découpe en intervalles disjoints sur lesquels on applique les deux arguments.\n\nLe piège principal : le théorème ne donne qu'**au moins une** solution, jamais l'unicité, et il exige la continuité sur tout le segment (la fonction qui vaut $-1$ sur $\\left[-1,0\\right[$ et $1$ sur $[0,1]$ change de signe sans jamais s'annuler). La réciproque est fausse : une fonction peut vérifier la propriété des valeurs intermédiaires sans être continue.",
       "hypotheses": [
         "$f$ est définie et continue sur le segment $[a,b]$.",
         "$f$ est à valeurs réelles.",
@@ -204,6 +207,7 @@
       "type": "theoreme",
       "titre": "Limite d'une suite récurrente : théorème du point fixe",
       "recto": "Énoncer le théorème donnant la limite éventuelle d'une suite définie par $u_{n+1}=f(u_n)$, avec ses hypothèses.",
+      "cours": "Une suite récurrente $u_{n+1}=f(u_n)$ est l'exemple type d'un processus itératif : on applique sans cesse la même transformation. Si ce processus se stabilise vers une valeur $\\ell$, il est naturel que $\\ell$ soit « stable » par la transformation, c'est-à-dire $f(\\ell)=\\ell$ : c'est ce que dit ce théorème, en passant à la limite dans la relation de récurrence grâce à la continuité de $f$ en $\\ell$.\n\nLe théorème ne donne que des **candidats** : il sert à identifier la limite une fois la convergence acquise par un autre moyen, le plus souvent la limite monotone. Le plan type est : trouver un intervalle $I$ stable par $f$ contenant $u_0$ ; étudier la monotonie de $(u_n)$ (signe de $f(x)-x$ sur $I$, ou sens de variation de $f$) ; conclure à la convergence ; résoudre $f(\\ell)=\\ell$ et ne garder que les solutions compatibles avec la position de la suite (souvent un intervalle fermé qui contient tous les termes).\n\nLes pièges principaux : conclure à la convergence parce que $f$ a un point fixe (la suite peut tendre vers $\\pm\\infty$), oublier de vérifier que $\\ell$ est dans l'ensemble où $f$ est continue, et garder une solution de $f(\\ell)=\\ell$ incompatible avec les bornes des termes. Quand $f$ est décroissante, la suite n'est pas monotone : on étudie les sous-suites des rangs pairs et impairs, récurrentes pour $f\\circ f$.",
       "hypotheses": [
         "$f$ est définie sur un intervalle $I$ et $f(I)\\subset I$ ; $u_0\\in I$ (la suite est bien définie et à valeurs dans $I$).",
         "$(u_n)$ converge vers un réel $\\ell$.",
@@ -267,6 +271,7 @@
       "type": "theoreme",
       "titre": "Signe de la dérivée et monotonie",
       "recto": "Énoncer le lien entre le signe de la dérivée et le sens de variation d'une fonction, avec ses hypothèses.",
+      "cours": "Ce théorème est le pont entre une information **locale**, la pente de la tangente en chaque point, et une information **globale**, le sens de variation sur tout un intervalle. C'est lui qui justifie le tableau de variations, outil central pour étudier une fonction, prouver une inégalité ou compter les solutions d'une équation.\n\nMéthode : calculer $f'$, la factoriser pour étudier son signe, puis découper le domaine en **intervalles** sur lesquels ce signe est constant. Pour prouver une inégalité $u(x)\\le v(x)$, on étudie $g=v-u$ : on cherche son minimum à l'aide du signe de $g'$, puis on vérifie qu'il est positif. Si $f'\\ge0$ ne s'annule qu'en des points isolés (en un nombre fini de points), la croissance est stricte.\n\nLe piège principal : le théorème n'est valable que sur un **intervalle**. La fonction $x\\mapsto-\\frac1x$ a une dérivée strictement positive sur $\\mathbb{R}^*$ sans être croissante sur $\\mathbb{R}^*$ ; il faut conclure séparément sur $\\left]-\\infty,0\\right[$ et sur $\\left]0,+\\infty\\right[$. Autre piège : une dérivée strictement positive **en un seul point** ne donne aucune monotonie au voisinage de ce point.",
       "hypotheses": [
         "$I$ est un intervalle de $\\mathbb{R}$.",
         "$f$ est dérivable sur $I$.",

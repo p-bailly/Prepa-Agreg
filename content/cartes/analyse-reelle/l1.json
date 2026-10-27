@@ -8,6 +8,7 @@
       "type": "theoreme",
       "titre": "Propriété de la borne supérieure et caractérisation",
       "recto": "Énoncer la propriété de la borne supérieure dans $\\mathbb{R}$, avec ses hypothèses, et la caractérisation de la borne supérieure par $\\varepsilon$.",
+      "cours": "La propriété de la borne supérieure est ce qui distingue $\\mathbb{R}$ de $\\mathbb{Q}$ : dans $\\mathbb{Q}$, l'ensemble des rationnels positifs de carré inférieur à $2$ est majoré mais n'a pas de plus petit majorant rationnel, car il « manquerait » $\\sqrt2$. On la prend comme axiome (ou on la démontre à partir d'une construction de $\\mathbb{R}$), et presque tous les grands théorèmes d'analyse réelle en découlent : limite monotone, valeurs intermédiaires, Bolzano–Weierstrass, bornes atteintes.\n\nLa borne supérieure n'est pas forcément un élément de l'ensemble : $\\sup\\left[0,1\\right[=1$ sans être atteint. Quand elle appartient à $A$, c'est le plus grand élément, $\\max A$.\n\nMéthode pour montrer que $M=\\sup A$ : vérifier que $M$ majore $A$, puis, pour tout $\\varepsilon>0$, trouver un élément de $A$ strictement au-dessus de $M-\\varepsilon$ (de façon équivalente, une suite d'éléments de $A$ qui tend vers $M$). Pour montrer qu'un réel $M$ est inférieur ou égal à $\\sup A$, il suffit d'un élément de $A$ supérieur ou égal à $M$ ; pour montrer que $\\sup A\\le M$, il suffit que $M$ majore $A$.\n\nLe piège principal : oublier les hypothèses « non vide » et « majorée », ou croire que l'inégalité stricte $a<M$ pour tout $a\\in A$ donne $\\sup A<M$ (elle ne donne que $\\sup A\\le M$).",
       "hypotheses": [
         "$A$ est une partie de $\\mathbb{R}$ (la borne supérieure est cherchée dans $\\mathbb{R}$).",
         "$A$ est non vide.",
@@ -74,6 +75,7 @@
       "type": "theoreme",
       "titre": "Théorème de Bolzano–Weierstrass",
       "recto": "Énoncer le théorème de Bolzano–Weierstrass dans $\\mathbb{R}$ avec ses hypothèses.",
+      "cours": "Une suite bornée peut ne pas converger, par exemple $(-1)^n$ ; le théorème de Bolzano–Weierstrass affirme qu'on peut toujours en **extraire** une sous-suite convergente. C'est un résultat d'existence fondamental, qui traduit la compacité des segments de $\\mathbb{R}$ et repose sur la propriété de la borne supérieure. Une preuve classique procède par dichotomie : on coupe l'intervalle en deux et on garde une moitié qui contient une infinité de termes.\n\nÀ quoi sert-il ? À fabriquer un candidat limite quand on n'en a pas. C'est l'argument clé des théorèmes des bornes atteintes et de Heine, et de la convergence des suites de Cauchy. Le schéma typique d'utilisation est : on raisonne par l'absurde, on construit une suite « mauvaise » bornée, on en extrait une sous-suite convergente, puis on obtient une contradiction en passant à la limite.\n\nLe piège principal : le théorème ne dit ni quelle sous-suite converge, ni vers quoi, ni que la suite elle-même converge. L'hypothèse « bornée » est indispensable ($u_n=n$ n'a aucune sous-suite convergente), et le résultat est faux dans $\\mathbb{Q}$, la limite de la sous-suite pouvant être irrationnelle.",
       "hypotheses": [
         "$(u_n)$ est une suite à valeurs réelles.",
         "$(u_n)$ est bornée."
@@ -137,6 +139,7 @@
       "type": "theoreme",
       "titre": "Théorème des bornes atteintes",
       "recto": "Énoncer le théorème des bornes atteintes pour une fonction continue, avec ses hypothèses.",
+      "cours": "Une fonction continue sur un **segment** (intervalle fermé et borné) est bornée et atteint son minimum et son maximum. C'est le théorème d'existence des problèmes d'optimisation : il garantit qu'un meilleur choix existe avant même qu'on le cherche. Sa preuve combine la borne supérieure et Bolzano–Weierstrass : on prend une suite de points dont les images tendent vers la borne supérieure, on en extrait une sous-suite convergente, et la continuité fait le reste.\n\nMéthode : pour justifier l'existence d'un extremum, on vérifie la continuité sur un segment ; pour le calculer, on compare les valeurs aux bornes et aux points critiques intérieurs, là où la dérivée s'annule si $f$ est dérivable. Sur un intervalle non compact comme $\\mathbb{R}$, on se ramène à un segment, par exemple quand $f$ tend vers $+\\infty$ aux deux bouts.\n\nLe piège principal : chaque hypothèse compte. Sur $\\left]0,1\\right]$, $x\\mapsto\\frac1x$ n'est pas bornée ; sur $\\left[0,+\\infty\\right[$, $x\\mapsto\\frac{x}{1+x}$ est bornée sans atteindre sa borne supérieure $1$ ; sans continuité, une fonction peut ne pas atteindre sa borne inférieure, même sur un segment.",
       "hypotheses": [
         "L'ensemble de départ est un segment $[a,b]$ (intervalle fermé et borné).",
         "$f$ est continue sur $[a,b]$.",
@@ -206,6 +209,7 @@
       "type": "theoreme",
       "titre": "Théorème de Rolle",
       "recto": "Énoncer le théorème de Rolle avec ses hypothèses.",
+      "cours": "Si l'on part d'une altitude et qu'on y revient, en suivant une route « lisse », on est passé par un sommet ou un creux, où la pente est nulle : c'est le théorème de Rolle. Il découle des bornes atteintes : $f$ continue sur $[a,b]$ atteint un extremum, et si $f$ n'est pas constante, l'un des extremums est atteint en un point intérieur, où la dérivée s'annule.\n\nC'est la brique de base des accroissements finis et des formules de Taylor avec reste de Lagrange. En pratique, il sert surtout à **localiser** et à **compter** des zéros : entre deux zéros de $f$ se trouve un zéro de $f'$, donc si $f'$ a au plus $k$ zéros, $f$ en a au plus $k+1$. Appliqué plusieurs fois (« Rolle itéré »), il transmet des zéros de $f$ vers $f'$, puis $f''$, et ainsi de suite.\n\nLe piège principal : vérifier les trois hypothèses à chaque application, en particulier la dérivabilité sur l'ouvert $\\left]a,b\\right[$ ($|x|$ sur $[-1,1]$ est un contre-exemple). Le théorème est faux pour une fonction à valeurs complexes : $t\\mapsto e^{it}$ sur $[0,2\\pi]$ revient à sa valeur de départ sans que sa dérivée s'annule.",
       "hypotheses": [
         "$a<b$ sont deux réels.",
         "$f$ est à valeurs réelles.",
@@ -284,6 +288,7 @@
       "type": "theoreme",
       "titre": "Égalité et inégalité des accroissements finis",
       "recto": "Énoncer l'égalité des accroissements finis et l'inégalité des accroissements finis avec leurs hypothèses.",
+      "cours": "L'égalité des accroissements finis dit qu'entre $a$ et $b$, il existe un point où la vitesse instantanée $f'(c)$ égale la vitesse moyenne $\\frac{f(b)-f(a)}{b-a}$ : un automobiliste qui a roulé en moyenne à $90$ km/h a, à un instant au moins, roulé exactement à $90$ km/h. On la déduit de Rolle en retranchant à $f$ la fonction affine qui joint $(a,f(a))$ et $(b,f(b))$.\n\nOn l'utilise rarement pour trouver $c$, qui est inconnu : on l'utilise pour **majorer** ou **encadrer**. Si $|f'|\\le M$, on obtient $|f(y)-f(x)|\\le M|y-x|$ (inégalité des accroissements finis) ; si $m\\le f'\\le M$, on encadre $f(b)-f(a)$. C'est l'outil standard pour démontrer des inégalités comme $\\frac{y-x}{y}<\\ln y-\\ln x<\\frac{y-x}{x}$, pour étudier la convergence de suites récurrentes (fonction contractante), et pour obtenir le théorème de la limite de la dérivée.\n\nLe piège principal : le point $c$ dépend de $a$ et $b$, on sait seulement qu'il est strictement entre les deux. L'égalité est fausse pour des fonctions à valeurs complexes (seule l'inégalité subsiste), et une dérivée qui tend vers $0$ en $+\\infty$ ne garantit pas que la fonction ait une limite.",
       "hypotheses": [
         "$a<b$ sont deux réels.",
         "$f$ est à valeurs réelles (pour l'égalité).",

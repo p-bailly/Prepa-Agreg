@@ -54,11 +54,16 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   × facilité, Facile = (I + retard) × facilité × 1,3, strictement croissants, plafond 365 j ; facilité 1,3 à 3. Échéances en
   **jours civils** (un changement de fuseau ne décale rien de plus d'un jour). Volet **acquis** à 21 j ; carte acquise quand
   tous ses volets le sont.
-- Carte neuve proposée seulement si ses prérequis sont au moins « en cours » (ou sous le niveau de départ) ; une carte
-  introduite dans la même séance compte. Ordre : niveau le plus bas, puis thèmes alternés, puis ordre du fichier.
-- Un volet jamais noté d'une carte introduite (démonstration non ouverte) devient dû le lendemain de l'introduction.
-- Séance : révisions d'abord (les plus en retard en premier), complétées par des neuves réparties entre elles ; au plus
-  `seanceCartes` cartes et `seanceMinutes` minutes (la carte en cours est finie). Plafond de neuves par jour civil.
+- **On apprend avant de réviser.** Une notion nouvelle se découvre dans une **leçon** (`EcranLecon` : introduction du
+  chapitre `content/lecons/<chapitre>.json`, puis par notion le texte `cours`, l'énoncé, l'exemple, la démonstration, les
+  contre-exemples, les pièges, les exercices) ; passer à la suite la marque apprise (`progression.apprises`, carte → jour).
+  Une carte n'entre en révision qu'apprise, et jamais le jour même : tous ses volets deviennent dus le lendemain.
+- Leçon du jour : les prochaines notions à apprendre (prérequis au moins appris, ou sous le niveau de départ ; ordre :
+  niveau le plus bas, thèmes alternés, chapitres de `themes.json`, ordre du fichier), dans la limite du plafond quotidien
+  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Accueil : « Apprendre » est le bouton principal quand
+  rien n'est à revoir. Parcours → chapitre → « Apprendre / Relire la leçon » à tout moment.
+- Séance de révision : cartes apprises dues, les plus en retard en premier ; au plus `seanceCartes` cartes et
+  `seanceMinutes` minutes (la carte en cours est finie).
 - Modes : une carte neuve se découvre toujours en « énoncer de tête » ; sinon on prend le mode possible et actif qui suit le
   dernier utilisé (`progression.dernierMode`). Volet principal = premier volet dû (énoncé, démonstration, contre-exemple), noté
   par le pied ; les autres volets dus ont leurs boutons dans le volet ouvert.
