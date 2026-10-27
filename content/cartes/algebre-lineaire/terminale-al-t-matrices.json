@@ -1,0 +1,359 @@
+{
+  "cartes": [
+    {
+      "id": "al-t-produit-matriciel",
+      "theme": "algebre-lineaire",
+      "niveau": "terminale",
+      "chapitre": "al-t-matrices",
+      "type": "theoreme",
+      "titre": "Produit matriciel et non-commutativité",
+      "recto": "Énoncer la définition du produit de deux matrices et ses règles de calcul, en précisant ce qui le distingue du produit des réels.",
+      "hypotheses": [
+        "Pour que $AB$ soit défini : le nombre de colonnes de $A$ est égal au nombre de lignes de $B$.",
+        "Pour l'existence de matrices carrées d'ordre $n$ qui ne commutent pas : $n \\geq 2$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ et $B$ ont la même taille.",
+        "Le nombre de lignes de $A$ est égal au nombre de colonnes de $B$.",
+        "$A$ et $B$ sont des matrices carrées."
+      ],
+      "enonce": "Soient $A = (a_{ij})$ une matrice à $n$ lignes et $p$ colonnes et $B = (b_{ij})$ une matrice à $p$ lignes et $q$ colonnes (le nombre de colonnes de $A$ est égal au nombre de lignes de $B$). Le produit $AB$ est la matrice à $n$ lignes et $q$ colonnes de coefficients\n\n$$(AB)_{ij} = \\sum_{k=1}^{p} a_{ik} b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \\dots + a_{ip}b_{pj}.$$\n\nLorsque les produits écrits sont définis : $(AB)C = A(BC)$, $A(B + B') = AB + AB'$, $(A + A')B = AB + A'B$, $(\\lambda A)B = \\lambda(AB) = A(\\lambda B)$ pour tout réel $\\lambda$, et $I_nA = AI_p = A$.\n\nLe produit n'est pas commutatif : pour tout $n \\geq 2$, il existe des matrices carrées $A$ et $B$ d'ordre $n$ telles que $AB \\neq BA$. En particulier, pour $A$ et $B$ carrées de même ordre, $(A + B)^2 = A^2 + AB + BA + B^2$, et cette matrice est égale à $A^2 + 2AB + B^2$ si et seulement si $AB = BA$.",
+      "enonce_trous": "Soient $A = (a_{ij})$ une matrice à $n$ lignes et $p$ colonnes et $B = (b_{ij})$ une matrice à $p$ lignes et $q$ colonnes. Le coefficient d'indice $(i,j)$ de $AB$ est {{1}}. Pour $A$ et $B$ carrées de même ordre, $(A+B)^2 = A^2 + 2AB + B^2$ si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{k=1}^{p} a_{ik} b_{kj}$",
+          "leurres": [
+            "$a_{ij} b_{ij}$",
+            "$\\sum_{k=1}^{p} a_{ik} b_{jk}$",
+            "$\\sum_{k=1}^{p} a_{ki} b_{kj}$"
+          ]
+        },
+        {
+          "reponse": "$AB = BA$",
+          "leurres": [
+            "$AB = 0$",
+            "$A$ ou $B$ est inversible",
+            "$A = B$"
+          ]
+        }
+      ],
+      "demo": "**Associativité.** Soient $A$ à $n$ lignes et $p$ colonnes, $B$ à $p$ lignes et $q$ colonnes, $C$ à $q$ lignes et $r$ colonnes. D'après la définition,\n\n$$((AB)C)_{ij} = \\sum_{l=1}^{q} (AB)_{il}\\, c_{lj} = \\sum_{l=1}^{q} \\sum_{k=1}^{p} a_{ik} b_{kl} c_{lj}, \\qquad (A(BC))_{ij} = \\sum_{k=1}^{p} a_{ik} (BC)_{kj} = \\sum_{k=1}^{p} \\sum_{l=1}^{q} a_{ik} b_{kl} c_{lj}.$$\n\nCe sont les mêmes $pq$ termes, sommés dans un autre ordre : $(AB)C = A(BC)$.\n\n**Distributivité et matrice identité.** $(A(B+B'))_{ij} = \\sum_{k} a_{ik}(b_{kj} + b'_{kj}) = (AB)_{ij} + (AB')_{ij}$ ; on procède de même à droite et avec un réel $\\lambda$. Le coefficient d'indice $(i,k)$ de $I_n$ vaut $1$ si $k = i$ et $0$ sinon, donc $(I_nA)_{ij} = a_{ij}$ ; de même $AI_p = A$.\n\n**Non-commutativité.** Soit $n \\geq 2$. Notons $E$ (resp. $F$) la matrice carrée d'ordre $n$ dont tous les coefficients sont nuls sauf celui d'indice $(1,1)$ (resp. $(1,2)$), égal à $1$. Dans $(EF)_{ij} = \\sum_k e_{ik} f_{kj}$, seul le terme $e_{11}f_{12}$ peut être non nul : $EF = F$. Dans $(FE)_{ij} = \\sum_k f_{ik} e_{kj}$, seul le terme $k = 2$ pourrait être non nul, et il vaut $f_{12}e_{2j} = 0$ : $FE = 0$. Donc $EF \\neq FE$.\n\n**Carré d'une somme.** Par distributivité, $(A+B)^2 = (A+B)(A+B) = A^2 + AB + BA + B^2$. Cette matrice est égale à $A^2 + 2AB + B^2$ si et seulement si $AB + BA = 2AB$, c'est-à-dire $BA = AB$.",
+      "exemple": "Avec $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ :\n\n$$AB = \\begin{pmatrix} 2 & 1 \\\\ 1 & 0 \\end{pmatrix}, \\qquad BA = \\begin{pmatrix} 0 & 1 \\\\ 1 & 2 \\end{pmatrix}.$$\n\nMultiplier $A$ à droite par $B$ échange les colonnes de $A$ ; multiplier à gauche par $B$ échange ses lignes.\n\nUne matrice ligne à $3$ colonnes fois une matrice colonne à $3$ lignes donne une matrice à une ligne et une colonne : $\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}\\begin{pmatrix} 4 \\\\ 5 \\\\ 6 \\end{pmatrix} = \\begin{pmatrix} 32 \\end{pmatrix}$, alors que le produit de la colonne par la ligne est une matrice carrée d'ordre $3$.",
+      "contre_exemple": "- **Produit nul de matrices non nulles** : $N = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ vérifie $N \\neq 0$ et $N^2 = 0$. On ne peut donc pas simplifier : $NN = N \\cdot 0$ alors que $N \\neq 0$.\n- **Tailles** : si $A$ a $2$ lignes et $3$ colonnes et $B$ a $3$ lignes et $2$ colonnes, $AB$ est carrée d'ordre $2$ et $BA$ carrée d'ordre $3$ : on ne peut pas les comparer. Si $A$ et $B$ ont toutes deux $2$ lignes et $3$ colonnes (même taille), $AB$ n'est pas défini.\n- **Ordre 1** : une matrice carrée d'ordre $1$ est un réel entre parenthèses, et deux telles matrices commutent ; c'est pourquoi il faut $n \\geq 2$.\n- **Le carré d'une somme** : avec $A = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 0 \\\\ 1 & 0 \\end{pmatrix}$, on a $AB = 0$ mais $BA = B$, et $(A+B)^2 - (A^2 + 2AB + B^2) = BA - AB = B \\neq 0$.",
+      "affirmations": [
+        {
+          "texte": "Pour toutes matrices carrées $A$ et $B$ de même ordre, $(AB)^2 = A^2B^2$.",
+          "vrai": false,
+          "contre_exemple": "$A = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 0 \\\\ 1 & 0 \\end{pmatrix}$ : $AB = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$, donc $(AB)^2 = AB \\neq 0$, alors que $A^2 = 0$ et $A^2B^2 = 0$. En général $(AB)^2 = ABAB$, qu'on ne peut réordonner que si $A$ et $B$ commutent."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont carrées de même ordre et $AB = 0$, alors $A = 0$ ou $B = 0$.",
+          "vrai": false,
+          "contre_exemple": "$A = B = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ : $AB = 0$ alors que $A \\neq 0$ et $B \\neq 0$."
+        },
+        {
+          "texte": "Si les produits $AB$ et $BA$ sont tous deux définis, ce sont des matrices carrées.",
+          "vrai": true,
+          "justification": "Si $A$ a $n$ lignes et $p$ colonnes, $AB$ défini impose que $B$ ait $p$ lignes, et $BA$ défini impose que $B$ ait $n$ colonnes. Alors $AB$ est carrée d'ordre $n$ et $BA$ carrée d'ordre $p$ (éventuellement différents)."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "al-t-inverse-matrice",
+      "theme": "algebre-lineaire",
+      "niveau": "terminale",
+      "chapitre": "al-t-matrices",
+      "type": "theoreme",
+      "titre": "Inverse d'une matrice carrée",
+      "recto": "Énoncer la définition de l'inverse d'une matrice carrée, le critère d'inversibilité et la formule de l'inverse à l'ordre 2, l'inverse d'un produit et la résolution d'un système $AX = Y$, avec leurs hypothèses.",
+      "hypotheses": [
+        "$A$ est une matrice carrée (autant de lignes que de colonnes).",
+        "Pour la formule de l'inverse à l'ordre $2$ : $ad - bc \\neq 0$.",
+        "Pour l'inverse du produit : $A$ et $B$ sont inversibles et de même ordre."
+      ],
+      "hypotheses_pieges": [
+        "Tous les coefficients de $A$ sont non nuls.",
+        "À l'ordre $2$ : $a \\neq 0$ et $d \\neq 0$.",
+        "À l'ordre $2$ : $ad + bc \\neq 0$.",
+        "Pour l'inverse du produit : $A$ et $B$ commutent."
+      ],
+      "enonce": "Une matrice carrée $A$ d'ordre $n$ est inversible s'il existe une matrice carrée $B$ d'ordre $n$ telle que $AB = BA = I_n$. Une telle matrice $B$ est alors unique : c'est l'inverse de $A$, notée $A^{-1}$.\n\n**Ordre 2.** La matrice $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ est inversible si et seulement si $ad - bc \\neq 0$, et alors\n\n$$A^{-1} = \\frac{1}{ad - bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}.$$\n\n**Produit.** Si $A$ et $B$ sont inversibles et de même ordre, $AB$ est inversible et $(AB)^{-1} = B^{-1}A^{-1}$.\n\n**Systèmes.** Si $A$ est inversible d'ordre $n$, pour toute matrice colonne $Y$ à $n$ lignes, l'équation $AX = Y$ d'inconnue $X$ (colonne à $n$ lignes) a une unique solution : $X = A^{-1}Y$.",
+      "enonce_trous": "La matrice $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ est inversible si et seulement si {{1}}, et alors $A^{-1}$ est égale à {{2}}. Si $A$ et $B$ sont inversibles et de même ordre, $(AB)^{-1}$ est égale à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$ad - bc \\neq 0$",
+          "leurres": [
+            "$ad + bc \\neq 0$",
+            "$ab - cd \\neq 0$",
+            "$a \\neq 0$ et $d \\neq 0$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{1}{ad-bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$",
+          "leurres": [
+            "$\\frac{1}{ad-bc}\\begin{pmatrix} a & -b \\\\ -c & d \\end{pmatrix}$",
+            "$\\frac{1}{ad-bc}\\begin{pmatrix} d & b \\\\ c & a \\end{pmatrix}$",
+            "$(ad-bc)\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$"
+          ]
+        },
+        {
+          "reponse": "$B^{-1}A^{-1}$",
+          "leurres": [
+            "$A^{-1}B^{-1}$",
+            "$A^{-1} + B^{-1}$",
+            "$BA$"
+          ]
+        }
+      ],
+      "demo": "**Unicité.** Si $AB = BA = I_n$ et $AB' = B'A = I_n$, alors, par associativité, $B = BI_n = B(AB') = (BA)B' = I_nB' = B'$.\n\n**Ordre 2.** Posons $\\delta = ad - bc$ et $\\tilde{A} = \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. Un calcul direct donne\n\n$$A\\tilde{A} = \\begin{pmatrix} ad - bc & -ab + ba \\\\ cd - dc & -cb + da \\end{pmatrix} = \\delta I_2, \\qquad \\tilde{A}A = \\delta I_2 \\text{ de même}.$$\n\n- Si $\\delta \\neq 0$, la matrice $B = \\frac{1}{\\delta}\\tilde{A}$ vérifie $AB = BA = I_2$ : $A$ est inversible et $A^{-1} = \\frac{1}{\\delta}\\tilde{A}$.\n- Si $\\delta = 0$, alors $A\\tilde{A} = 0$. Si $A$ était inversible, on aurait $\\tilde{A} = A^{-1}(A\\tilde{A}) = A^{-1} \\cdot 0 = 0$, donc $a = b = c = d = 0$, c'est-à-dire $A = 0$ ; or la matrice nulle n'est pas inversible ($0 \\cdot B = 0 \\neq I_2$ pour toute $B$). Contradiction : $A$ n'est pas inversible.\n\n**Produit.** $(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AI_nA^{-1} = AA^{-1} = I_n$, et de même $(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = I_n$. Par unicité, $(AB)^{-1} = B^{-1}A^{-1}$.\n\n**Systèmes.** Si $AX = Y$, alors $X = I_nX = A^{-1}(AX) = A^{-1}Y$ : il y a au plus une solution. Réciproquement, $A(A^{-1}Y) = (AA^{-1})Y = Y$ : la colonne $A^{-1}Y$ est solution.\n\n**Remarque (admise en Terminale).** Pour des matrices carrées de même ordre, l'égalité $AB = I_n$ suffit à entraîner $BA = I_n$ ; la preuve repose sur la notion de dimension, vue en algèbre linéaire après le baccalauréat. Elle est fausse pour des matrices non carrées (voir les contre-exemples).",
+      "exemple": "$A = \\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$ : $ad - bc = 6 - 5 = 1 \\neq 0$, donc $A^{-1} = \\begin{pmatrix} 3 & -5 \\\\ -1 & 2 \\end{pmatrix}$, et l'on vérifie $AA^{-1} = A^{-1}A = I_2$.\n\nLe système $2x + 5y = 1$, $x + 3y = 2$ s'écrit $AX = Y$ avec $X = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ et $Y = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$, d'où $X = A^{-1}Y = \\begin{pmatrix} 3 - 10 \\\\ -1 + 4 \\end{pmatrix} = \\begin{pmatrix} -7 \\\\ 3 \\end{pmatrix}$.",
+      "contre_exemple": "- **Des coefficients non nuls ne suffisent pas** : $\\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix}$ a tous ses coefficients (en particulier ses coefficients diagonaux) non nuls, mais $1 \\times 4 - 2 \\times 2 = 0$ : elle n'est pas inversible. De même $\\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$ vérifie $ad + bc = 2 \\neq 0$ sans être inversible.\n- **L'ordre des facteurs compte** : avec $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$ et $B = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}$, on a $(AB)^{-1} = B^{-1}A^{-1} = \\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$, alors que $A^{-1}B^{-1} = \\begin{pmatrix} 2 & -1 \\\\ -1 & 1 \\end{pmatrix}$.\n- **Matrices non carrées** : la ligne $L = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$ et la colonne $C = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$ vérifient $LC = \\begin{pmatrix} 1 \\end{pmatrix} = I_1$, mais $CL = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix} \\neq I_2$. On ne définit l'inverse que pour une matrice carrée.",
+      "affirmations": [
+        {
+          "texte": "Si $A$ et $B$ sont inversibles et de même ordre, alors $A + B$ est inversible.",
+          "vrai": false,
+          "contre_exemple": "$A = I_2$ et $B = -I_2$ sont inversibles, mais $A + B = 0$ ne l'est pas."
+        },
+        {
+          "texte": "Si $A$ est carrée et $A^2 = 0$, alors $A$ n'est pas inversible.",
+          "vrai": true,
+          "justification": "Si $A$ était inversible, on aurait $A = A^{-1}A^2 = A^{-1} \\cdot 0 = 0$, et la matrice nulle n'est pas inversible."
+        },
+        {
+          "texte": "Une matrice carrée d'ordre $2$ dont les deux coefficients diagonaux sont non nuls est inversible.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix}$ : ses coefficients diagonaux $1$ et $4$ sont non nuls, mais $ad - bc = 4 - 4 = 0$."
+        },
+        {
+          "texte": "Si $A$ est inversible, $A^2$ est inversible et $(A^2)^{-1} = (A^{-1})^2$.",
+          "vrai": true,
+          "justification": "C'est la formule $(AB)^{-1} = B^{-1}A^{-1}$ avec $B = A$."
+        }
+      ],
+      "prerequis": [
+        "al-t-produit-matriciel"
+      ]
+    },
+    {
+      "id": "al-t-suites-matricielles",
+      "theme": "algebre-lineaire",
+      "niveau": "terminale",
+      "chapitre": "al-t-matrices",
+      "type": "theoreme",
+      "titre": "Suites récurrentes matricielles $U_{n+1} = AU_n + C$",
+      "recto": "Énoncer l'expression du terme général d'une suite de matrices colonnes vérifiant $U_{n+1} = AU_n + C$, avec ses hypothèses.",
+      "hypotheses": [
+        "$A$ est carrée d'ordre $p$, $C$ et les $U_n$ sont des colonnes à $p$ lignes, et $U_{n+1} = AU_n + C$ pour tout $n \\in \\mathbb{N}$.",
+        "Il existe une colonne $L$ telle que $L = AL + C$ (c'est le cas si $I_p - A$ est inversible).",
+        "Pour la convergence vers $L$ : chaque coefficient de $A^n$ tend vers $0$ quand $n \\to +\\infty$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est inversible.",
+        "La suite $(U_n)$ converge.",
+        "Les coefficients de $A$ sont compris entre $0$ et $1$."
+      ],
+      "enonce": "Soient $A$ une matrice carrée d'ordre $p$, $C$ une matrice colonne à $p$ lignes et $(U_n)_{n \\in \\mathbb{N}}$ une suite de matrices colonnes à $p$ lignes telle que $U_{n+1} = AU_n + C$ pour tout $n \\in \\mathbb{N}$.\n\n- Si $C = 0$, alors $U_n = A^nU_0$ pour tout $n \\in \\mathbb{N}$ (avec $A^0 = I_p$).\n- S'il existe une colonne $L$ telle que $L = AL + C$, alors $U_n = A^n(U_0 - L) + L$ pour tout $n \\in \\mathbb{N}$. C'est le cas si $I_p - A$ est inversible : $L = (I_p - A)^{-1}C$ est alors l'unique telle colonne.\n- Si de plus chaque coefficient de $A^n$ tend vers $0$ quand $n \\to +\\infty$, la suite $(U_n)$ converge vers $L$ (chaque coefficient de $U_n$ tend vers le coefficient correspondant de $L$).",
+      "enonce_trous": "Si $U_{n+1} = AU_n + C$ pour tout $n \\in \\mathbb{N}$ et si la colonne $L$ vérifie {{1}}, alors pour tout $n \\in \\mathbb{N}$, $U_n$ est égale à {{2}}. Une telle colonne $L$ existe et est unique lorsque {{3}}.",
+      "trous": [
+        {
+          "reponse": "$L = AL + C$",
+          "leurres": [
+            "$L = AL$",
+            "$AL = C$",
+            "$L = A^{-1}C$"
+          ]
+        },
+        {
+          "reponse": "$A^n(U_0 - L) + L$",
+          "leurres": [
+            "$A^nU_0 + nC$",
+            "$A^n(U_0 + L) - L$",
+            "$A^nU_0 + L$"
+          ]
+        },
+        {
+          "reponse": "$I_p - A$ est inversible",
+          "leurres": [
+            "$A$ est inversible",
+            "$C$ est non nulle",
+            "les coefficients de $A$ sont positifs"
+          ]
+        }
+      ],
+      "demo": "**Cas $C = 0$.** Par récurrence : $U_0 = I_pU_0 = A^0U_0$ ; si $U_n = A^nU_0$, alors $U_{n+1} = AU_n = A(A^nU_0) = A^{n+1}U_0$ par associativité.\n\n**Cas général.** Posons $V_n = U_n - L$. Alors $V_{n+1} = (AU_n + C) - (AL + C) = A(U_n - L) = AV_n$. D'après le cas précédent, $V_n = A^nV_0$, c'est-à-dire $U_n = A^n(U_0 - L) + L$.\n\n**Existence de $L$.** L'égalité $L = AL + C$ équivaut à $L - AL = C$, soit $(I_p - A)L = C$. Si $I_p - A$ est inversible, cette équation a une unique solution, $L = (I_p - A)^{-1}C$.\n\n**Limite.** Notons $W = U_0 - L$, de coefficients $w_1, \\dots, w_p$. Le coefficient de ligne $i$ de $A^nW$ est $\\sum_{k=1}^{p} (A^n)_{ik}\\, w_k$ : c'est une somme d'un nombre fixe $p$ de termes qui tendent tous vers $0$, donc il tend vers $0$. Ainsi $U_n = A^nW + L$ converge vers $L$.",
+      "exemple": "$A = \\begin{pmatrix} \\frac{1}{2} & 0 \\\\ 0 & \\frac{1}{3} \\end{pmatrix}$, $C = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$ : $I_2 - A = \\begin{pmatrix} \\frac{1}{2} & 0 \\\\ 0 & \\frac{2}{3} \\end{pmatrix}$ est inversible et $L = \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$ (on vérifie $AL + C = \\begin{pmatrix} 1 + 1 \\\\ 1 + 2 \\end{pmatrix} = L$). Comme $A^n = \\begin{pmatrix} \\frac{1}{2^n} & 0 \\\\ 0 & \\frac{1}{3^n} \\end{pmatrix}$, on obtient, pour $U_0 = \\begin{pmatrix} a \\\\ b \\end{pmatrix}$,\n\n$$U_n = \\begin{pmatrix} 2 + \\frac{a - 2}{2^n} \\\\ 3 + \\frac{b - 3}{3^n} \\end{pmatrix},$$\n\nqui converge vers $L$ quelle que soit $U_0$.",
+      "contre_exemple": "- **Pas de colonne fixe** : avec $A = I_2$ et $C = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$, l'équation $L = L + C$ n'a pas de solution ($I_2 - A = 0$ n'est pas inversible), bien que $A$ soit inversible. Ici $U_n = U_0 + nC$.\n- **Pas de convergence sans $A^n \\to 0$** : en taille $1$, $A = \\begin{pmatrix} 2 \\end{pmatrix}$ et $C = \\begin{pmatrix} 1 \\end{pmatrix}$ ; $I_1 - A = \\begin{pmatrix} -1 \\end{pmatrix}$ est inversible, $L = \\begin{pmatrix} -1 \\end{pmatrix}$, et $U_n = 2^n(U_0 + 1) - 1$ diverge dès que $U_0 \\neq -1$.\n- **Des coefficients entre $0$ et $1$ ne suffisent pas** : $A = I_2$ a ses coefficients dans $[0,1]$, mais $A^n = I_2$ ne tend pas vers $0$ ; avec $C = 0$, la colonne $L = 0$ vérifie $L = AL + C$, mais $U_n = U_0$ ne tend pas vers $L$ si $U_0 \\neq 0$.",
+      "affirmations": [
+        {
+          "texte": "Si $U_{n+1} = AU_n + C$ pour tout $n$, alors $U_n = A^nU_0 + nC$.",
+          "vrai": false,
+          "contre_exemple": "En taille $1$ avec $A = \\begin{pmatrix} 2 \\end{pmatrix}$, $C = \\begin{pmatrix} 1 \\end{pmatrix}$, $U_0 = \\begin{pmatrix} 0 \\end{pmatrix}$ : $U_1 = \\begin{pmatrix} 1 \\end{pmatrix}$, $U_2 = \\begin{pmatrix} 3 \\end{pmatrix}$, alors que $A^2U_0 + 2C = \\begin{pmatrix} 2 \\end{pmatrix}$."
+        },
+        {
+          "texte": "Si $(U_n)$ converge vers une colonne $L$, alors $L = AL + C$.",
+          "vrai": true,
+          "justification": "Chaque coefficient de $AU_n + C$ est une combinaison linéaire fixe des coefficients de $U_n$, plus une constante : on passe à la limite dans $U_{n+1} = AU_n + C$."
+        },
+        {
+          "texte": "Si $I_p - A$ est inversible, la suite $(U_n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "$A = \\begin{pmatrix} 2 \\end{pmatrix}$, $C = \\begin{pmatrix} 1 \\end{pmatrix}$, $U_0 = \\begin{pmatrix} 0 \\end{pmatrix}$ : $I_1 - A = \\begin{pmatrix} -1 \\end{pmatrix}$ est inversible, mais $U_n = \\begin{pmatrix} 2^n - 1 \\end{pmatrix}$ tend vers $+\\infty$."
+        },
+        {
+          "texte": "Si $A$ est inversible, il existe une colonne $L$ telle que $L = AL + C$.",
+          "vrai": false,
+          "contre_exemple": "$A = I_2$ (inversible) et $C = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$ : $L = L + C$ est impossible."
+        }
+      ],
+      "prerequis": [
+        "al-t-produit-matriciel",
+        "al-t-inverse-matrice"
+      ]
+    },
+    {
+      "id": "al-t-matrice-adjacence",
+      "theme": "algebre-lineaire",
+      "niveau": "terminale",
+      "chapitre": "al-t-matrices",
+      "type": "theoreme",
+      "titre": "Matrice d'adjacence et nombre de chemins",
+      "recto": "Énoncer le résultat qui relie les puissances de la matrice d'adjacence d'un graphe au nombre de chemins, avec ses hypothèses.",
+      "hypotheses": [
+        "$M$ est la matrice d'adjacence de $G$ pour une numérotation $1, \\dots, p$ des sommets : $m_{ij} = 1$ s'il y a une arête (un arc si $G$ est orienté) de $i$ vers $j$, et $m_{ij} = 0$ sinon.",
+        "$n$ est un entier naturel non nul."
+      ],
+      "hypotheses_pieges": [
+        "Le graphe $G$ est connexe.",
+        "Le graphe $G$ n'est pas orienté (la matrice $M$ est symétrique).",
+        "On ne compte que les chemins dont les sommets sont deux à deux distincts.",
+        "$n$ est inférieur ou égal au nombre $p$ de sommets."
+      ],
+      "enonce": "Soient $G$ un graphe, orienté ou non, sans arêtes multiples, d'ordre $p$, de sommets numérotés $1, \\dots, p$, et $M$ sa matrice d'adjacence : $m_{ij} = 1$ s'il y a une arête (un arc si $G$ est orienté) de $i$ vers $j$, et $m_{ij} = 0$ sinon. Pour tout entier $n \\geq 1$ et tous sommets $i$ et $j$, le coefficient d'indice $(i,j)$ de $M^n$ est égal au nombre de chemins (de chaînes si $G$ n'est pas orienté) de longueur $n$ allant de $i$ à $j$.\n\nUn chemin de longueur $n$ de $i$ à $j$ est une suite de sommets $(s_0, s_1, \\dots, s_n)$ avec $s_0 = i$, $s_n = j$ et une arête de $s_{k-1}$ vers $s_k$ pour chaque $k$ de $1$ à $n$ ; les sommets et les arêtes peuvent se répéter.",
+      "enonce_trous": "Soient $M$ la matrice d'adjacence d'un graphe orienté de sommets $1, \\dots, p$ et $n \\geq 1$. Le coefficient d'indice $(i,j)$ de {{1}} est égal au nombre de {{2}} allant de $i$ à $j$.",
+      "trous": [
+        {
+          "reponse": "$M^n$",
+          "leurres": [
+            "$nM$",
+            "$M^{n+1}$",
+            "$M^{n-1}$"
+          ]
+        },
+        {
+          "reponse": "chemins de longueur $n$",
+          "leurres": [
+            "chemins de longueur au plus $n$",
+            "chemins de longueur $n$ à sommets deux à deux distincts",
+            "chemins de longueur $n+1$"
+          ]
+        }
+      ],
+      "demo": "Récurrence sur $n \\geq 1$. Pour $n = 1$ : un chemin de longueur $1$ de $i$ à $j$ est une arête de $i$ vers $j$ ; il y en a $m_{ij}$ (un ou zéro).\n\nSupposons le résultat vrai au rang $n$. Un chemin $(s_0, \\dots, s_{n+1})$ de longueur $n+1$ de $i$ à $j$ s'obtient de façon unique en prolongeant le chemin $(s_0, \\dots, s_n)$, de longueur $n$, de $i$ à $k = s_n$, par une arête de $k$ vers $j$. Classons ces chemins selon leur avant-dernier sommet $k$ : pour chaque $k$, il y a $(M^n)_{ik}$ chemins de longueur $n$ de $i$ à $k$ (hypothèse de récurrence), et chacun se prolonge en $m_{kj}$ chemin (un si l'arête de $k$ vers $j$ existe, aucun sinon). Le nombre de chemins de longueur $n+1$ de $i$ à $j$ est donc\n\n$$\\sum_{k=1}^{p} (M^n)_{ik}\\, m_{kj} = (M^nM)_{ij} = (M^{n+1})_{ij}.$$",
+      "exemple": "Graphe non orienté de sommets $1, 2, 3$ et d'arêtes $\\{1,2\\}$ et $\\{2,3\\}$ :\n\n$$M = \\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 2 & 0 \\\\ 1 & 0 & 1 \\end{pmatrix}.$$\n\nLe coefficient $(2,2)$ de $M^2$ vaut $2$ : les chaînes $(2,1,2)$ et $(2,3,2)$. Le coefficient $(1,3)$ vaut $1$ : la chaîne $(1,2,3)$. Le coefficient $(1,2)$ vaut $0$ : aucune chaîne de longueur $2$ ne relie $1$ à $2$.",
+      "contre_exemple": "- **Les répétitions comptent** : dans l'exemple, $(M^2)_{22} = 2$ compte $(2,1,2)$ et $(2,3,2)$, qui repassent par le sommet $2$ ; aucune chaîne de longueur $2$ de $2$ à $2$ n'a ses sommets deux à deux distincts.\n- **Orientation** : pour le graphe orienté de sommets $1, 2$ avec le seul arc $1 \\to 2$, $M = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ n'est pas symétrique : $m_{12} = 1$ (un chemin de $1$ vers $2$) et $m_{21} = 0$. Le coefficient $(i,j)$ compte les chemins de $i$ vers $j$, pas de $j$ vers $i$ ; le résultat vaut pour les graphes orientés.\n- **Connexité et positivité** : le graphe non orienté à deux sommets reliés par une arête est connexe, mais $M = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ a des puissances égales alternativement à $M$ et à $I_2$ : aucune n'a tous ses coefficients strictement positifs.",
+      "affirmations": [
+        {
+          "texte": "Dans un graphe non orienté sans boucle, le coefficient $(i,i)$ de $M^2$ est le degré du sommet $i$.",
+          "vrai": true,
+          "justification": "Une chaîne de longueur $2$ de $i$ à $i$ s'écrit $(i, k, i)$ avec $k$ voisin de $i$ ; il y en a une par voisin."
+        },
+        {
+          "texte": "Si un graphe non orienté à $p \\geq 2$ sommets est connexe, $M^{p-1}$ a tous ses coefficients strictement positifs.",
+          "vrai": false,
+          "contre_exemple": "Deux sommets reliés par une arête ($p = 2$) : $M^{1} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ a des zéros sur la diagonale. Ce qui est vrai, c'est que $I_p + M + \\dots + M^{p-1}$ a tous ses coefficients strictement positifs."
+        },
+        {
+          "texte": "Le coefficient $(i,j)$ de $M + M^2 + \\dots + M^n$ est le nombre de chemins de $i$ à $j$ de longueur comprise entre $1$ et $n$.",
+          "vrai": true,
+          "justification": "On additionne, pour $k$ de $1$ à $n$, le nombre de chemins de longueur exactement $k$."
+        },
+        {
+          "texte": "Le coefficient $(i,j)$ de $M^n$ est le nombre de chemins de longueur $n$ de $i$ à $j$ qui ne passent pas deux fois par le même sommet.",
+          "vrai": false,
+          "contre_exemple": "Pour les arêtes $\\{1,2\\}$ et $\\{2,3\\}$, $(M^2)_{22} = 2$, alors qu'une chaîne $(2, k, 2)$ passe deux fois par le sommet $2$."
+        }
+      ],
+      "prerequis": [
+        "al-t-produit-matriciel"
+      ]
+    },
+    {
+      "id": "al-t-markov",
+      "theme": "algebre-lineaire",
+      "niveau": "terminale",
+      "chapitre": "al-t-matrices",
+      "type": "theoreme",
+      "titre": "Chaîne de Markov : loi après n transitions et distribution invariante",
+      "recto": "Énoncer l'expression de la loi d'une chaîne de Markov après $n$ transitions et le résultat sur la distribution invariante d'une chaîne à deux états, avec leurs hypothèses.",
+      "hypotheses": [
+        "$(X_n)$ est une chaîne de Markov homogène sur les états $1, \\dots, p$ : la probabilité de passer de $i$ à $j$ en une transition ne dépend ni de $n$ ni des états antérieurs.",
+        "$P = (p_{ij})$ est la matrice de transition, où $p_{ij}$ (ligne $i$, colonne $j$) est la probabilité de passer de $i$ à $j$, et $\\pi_n$ est une matrice ligne.",
+        "Deux états : $a, b \\in [0,1]$ et $(a,b) \\neq (0,0)$, pour l'unicité de la distribution invariante.",
+        "Deux états : de plus $(a,b) \\neq (1,1)$, pour la convergence de $\\pi_n$."
+      ],
+      "hypotheses_pieges": [
+        "Tous les coefficients de $P$ sont strictement positifs.",
+        "$p_{ij}$ est la probabilité de passer de $j$ à $i$ (chaque colonne de $P$ est de somme $1$).",
+        "La loi initiale $\\pi_0$ est la distribution invariante."
+      ],
+      "enonce": "Soit $(X_n)_{n \\in \\mathbb{N}}$ une chaîne de Markov homogène sur les états $1, \\dots, p$, de matrice de transition $P = (p_{ij})$, où $p_{ij} = P(X_{n+1} = j \\mid X_n = i)$ ne dépend pas de $n$ (ni des états antérieurs à $X_n$). On note $\\pi_n = \\begin{pmatrix} P(X_n = 1) & \\cdots & P(X_n = p) \\end{pmatrix}$ la matrice ligne de la loi de $X_n$.\n\n- Pour tout $n \\in \\mathbb{N}$, $\\pi_{n+1} = \\pi_nP$, donc $\\pi_n = \\pi_0P^n$.\n- Si $P(X_0 = i) > 0$, la probabilité de passer de $i$ à $j$ en $n$ transitions, $P(X_n = j \\mid X_0 = i)$, est le coefficient d'indice $(i,j)$ de $P^n$.\n- Une distribution invariante est une matrice ligne $\\pi$ à coefficients positifs, de somme $1$, telle que $\\pi P = \\pi$. Si $\\pi_0 = \\pi$, alors $\\pi_n = \\pi$ pour tout $n$.\n\n**Deux états.** Si $P = \\begin{pmatrix} 1-a & a \\\\ b & 1-b \\end{pmatrix}$ avec $a, b \\in [0,1]$ et $(a,b) \\neq (0,0)$, l'unique distribution invariante est $\\pi = \\begin{pmatrix} \\frac{b}{a+b} & \\frac{a}{a+b} \\end{pmatrix}$. Si de plus $(a,b) \\neq (1,1)$, alors $\\pi_n$ converge vers $\\pi$ quelle que soit la loi initiale $\\pi_0$.",
+      "enonce_trous": "Pour une chaîne de Markov homogène de matrice de transition $P$ et de loi initiale $\\pi_0$ (matrice ligne), la loi de $X_n$ est {{1}}. Une distribution invariante est une matrice ligne $\\pi$ à coefficients positifs de somme $1$ telle que {{2}}. Pour $P = \\begin{pmatrix} 1-a & a \\\\ b & 1-b \\end{pmatrix}$ avec $a, b \\in [0,1]$ et $(a,b) \\neq (0,0)$, elle est unique et vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\pi_0P^n$",
+          "leurres": [
+            "$P^n\\pi_0$",
+            "$\\pi_0P^{n+1}$",
+            "$n\\,\\pi_0P$"
+          ]
+        },
+        {
+          "reponse": "$\\pi P = \\pi$",
+          "leurres": [
+            "$P\\pi = \\pi$",
+            "$\\pi P = 0$",
+            "$\\pi_0P = \\pi$"
+          ]
+        },
+        {
+          "reponse": "$\\begin{pmatrix} \\frac{b}{a+b} & \\frac{a}{a+b} \\end{pmatrix}$",
+          "leurres": [
+            "$\\begin{pmatrix} \\frac{a}{a+b} & \\frac{b}{a+b} \\end{pmatrix}$",
+            "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1-a & a \\end{pmatrix}$"
+          ]
+        }
+      ],
+      "demo": "**Évolution de la loi.** Notons $\\pi_n(i) = P(X_n = i)$. Les événements $\\{X_n = 1\\}, \\dots, \\{X_n = p\\}$ forment un système complet. Par la formule des probabilités totales (un terme où $P(X_n = i) = 0$ est nul),\n\n$$P(X_{n+1} = j) = \\sum_{i=1}^{p} P(X_n = i)\\, P(X_{n+1} = j \\mid X_n = i) = \\sum_{i=1}^{p} \\pi_n(i)\\, p_{ij},$$\n\nqui est le coefficient $j$ de la matrice ligne $\\pi_nP$. Donc $\\pi_{n+1} = \\pi_nP$, et par récurrence (avec l'associativité) $\\pi_n = \\pi_0P^n$.\n\n**Transitions en $n$ étapes.** Supposons $P(X_0 = i) > 0$ et notons $\\mu_n$ la ligne de coefficients $P(X_n = j \\mid X_0 = i)$, $j = 1, \\dots, p$. Le même calcul, fait sachant $X_0 = i$, utilise $P(X_{n+1} = j \\mid X_n = k \\text{ et } X_0 = i) = p_{kj}$ (l'état initial n'influe pas sur la transition suivante ; un terme de probabilité nulle est nul) et donne $\\mu_{n+1} = \\mu_nP$. Comme $\\mu_0$ est la ligne qui a $1$ en position $i$ et $0$ ailleurs, $\\mu_n = \\mu_0P^n$ est la ligne $i$ de $P^n$.\n\n**Invariance.** Si $\\pi_0 = \\pi$ et $\\pi P = \\pi$, alors par récurrence $\\pi_{n+1} = \\pi_nP = \\pi P = \\pi$.\n\n**Deux états.** Les lignes de $P$ sont de somme $1$, donc pour toute ligne $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$, la ligne $\\pi P$ est aussi de somme $1$ ; ainsi $\\pi P = \\pi$ équivaut à l'égalité des premiers coefficients : $x(1-a) + (1-x)b = x$, soit $(a+b)x = b$. Comme $a + b > 0$, l'unique solution est $x = \\frac{b}{a+b}$, et $1 - x = \\frac{a}{a+b}$ ; ces deux nombres sont positifs.\n\nPour la convergence, posons $x_n = P(X_n = 1)$ et $x = \\frac{b}{a+b}$. Alors $x_{n+1} = x_n(1-a) + (1-x_n)b = (1-a-b)x_n + b$ et $x = (1-a-b)x + b$, donc $x_{n+1} - x = (1-a-b)(x_n - x)$, puis $x_n - x = (1-a-b)^n(x_0 - x)$. Comme $(a,b) \\neq (0,0)$ et $(a,b) \\neq (1,1)$, on a $0 < a + b < 2$, donc $|1 - a - b| < 1$ et $x_n \\to x$ ; enfin $P(X_n = 2) = 1 - x_n \\to 1 - x$.",
+      "exemple": "Chaque jour, un serveur est en service (état $1$) ou en panne (état $2$). En service, il tombe en panne le lendemain avec probabilité $0{,}1$ ; en panne, il est réparé le lendemain avec probabilité $0{,}6$. Ainsi $a = 0{,}1$, $b = 0{,}6$ et\n\n$$P = \\begin{pmatrix} 0{,}9 & 0{,}1 \\\\ 0{,}6 & 0{,}4 \\end{pmatrix}, \\qquad \\pi = \\begin{pmatrix} \\frac{6}{7} & \\frac{1}{7} \\end{pmatrix}.$$\n\nOn vérifie $\\frac{6}{7} \\times 0{,}9 + \\frac{1}{7} \\times 0{,}6 = \\frac{6}{7}$. Ici $1 - a - b = 0{,}3$ : $P(X_n = 1) = \\frac{6}{7} + 0{,}3^n\\left(P(X_0 = 1) - \\frac{6}{7}\\right) \\to \\frac{6}{7}$.",
+      "contre_exemple": "- **$(a,b) = (0,0)$** : $P = I_2$, chaque état est absorbant et toute ligne $\\begin{pmatrix} x & 1-x \\end{pmatrix}$ avec $x \\in [0,1]$ est invariante : pas d'unicité.\n- **$(a,b) = (1,1)$** : $P = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ ; la distribution invariante $\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}$ est unique, mais pour $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$, $\\pi_n$ vaut alternativement $\\begin{pmatrix} 1 & 0 \\end{pmatrix}$ et $\\begin{pmatrix} 0 & 1 \\end{pmatrix}$ : pas de convergence.\n- **Ligne et non colonne** : avec $P = \\begin{pmatrix} 0{,}9 & 0{,}1 \\\\ 0{,}6 & 0{,}4 \\end{pmatrix}$, le produit $P\\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0{,}9 \\\\ 0{,}6 \\end{pmatrix}$ n'est pas une loi (somme $1{,}5$), alors que $\\begin{pmatrix} 1 & 0 \\end{pmatrix}P = \\begin{pmatrix} 0{,}9 & 0{,}1 \\end{pmatrix}$ est la loi de $X_1$ sachant $X_0 = 1$.",
+      "affirmations": [
+        {
+          "texte": "Pour toute chaîne de Markov à deux états, la loi $\\pi_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$P = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ et $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$ : $\\pi_n$ alterne entre $\\begin{pmatrix} 1 & 0 \\end{pmatrix}$ et $\\begin{pmatrix} 0 & 1 \\end{pmatrix}$."
+        },
+        {
+          "texte": "La probabilité de passer de $i$ à $j$ en $n$ transitions est $(p_{ij})^n$.",
+          "vrai": false,
+          "contre_exemple": "Pour $P = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$, $p_{11} = 0$ mais $P^2 = I_2$ : on revient en $1$ en deux transitions avec probabilité $1 \\neq 0^2$. C'est le coefficient $(i,j)$ de $P^n$, pas la puissance du coefficient."
+        },
+        {
+          "texte": "Si la loi initiale est une distribution invariante, la loi de $X_n$ ne dépend pas de $n$.",
+          "vrai": true,
+          "justification": "Par récurrence, $\\pi_{n+1} = \\pi_nP = \\pi P = \\pi$."
+        },
+        {
+          "texte": "Toute chaîne de Markov à deux états a une unique distribution invariante.",
+          "vrai": false,
+          "contre_exemple": "$P = I_2$ : toute ligne $\\begin{pmatrix} x & 1-x \\end{pmatrix}$ avec $x \\in [0,1]$ est invariante."
+        }
+      ],
+      "prerequis": [
+        "al-t-produit-matriciel",
+        "al-t-suites-matricielles"
+      ]
+    }
+  ]
+}
