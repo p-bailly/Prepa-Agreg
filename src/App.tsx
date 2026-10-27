@@ -8,6 +8,7 @@ import { natif } from './lib/notifications'
 import { choisirMode } from './repetition/modes'
 import { etatCarte } from './repetition/etat'
 import { construireSeance } from './repetition/seance'
+import { IconeOnglet } from './composants/Icones'
 import { Accueil } from './pages/Accueil'
 import { Chapitre } from './pages/Chapitre'
 import { EcranCarte } from './pages/EcranCarte'
@@ -146,7 +147,7 @@ function Navigation() {
   else contenu = <Reglages />
 
   return (
-    <div className="appli avec-onglets" style={onglet === 'accueil' && !haut ? { ['--pied' as string]: '100px' } : undefined}>
+    <div className="appli avec-onglets">
       {contenu}
       <nav className="onglets" aria-label="Onglets">
         {ONGLETS.map((o) => (
@@ -160,6 +161,9 @@ function Navigation() {
               window.scrollTo(0, 0)
             }}
           >
+            <span className="indicateur">
+              <IconeOnglet onglet={o.id} />
+            </span>
             {o.nom}
           </button>
         ))}

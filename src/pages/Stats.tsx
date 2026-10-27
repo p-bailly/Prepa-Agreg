@@ -104,7 +104,7 @@ export function Stats() {
                 {pourcent(t.part)} de {t.revisions}
               </span>
             </div>
-            <div className="barre rouge">
+            <div className="barre seconde">
               <span style={{ width: largeur(t.part) }} />
             </div>
           </div>

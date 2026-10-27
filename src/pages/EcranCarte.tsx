@@ -2,7 +2,7 @@
 // contre-exemple, exercices). Le volet principal est noté par le pied fixé ; chaque autre volet à revoir, une fois
 // ouvert, affiche ses propres boutons de notation.
 import { useMemo, useState, type CSSProperties } from 'react'
-import { BandeauDoute, Encadre, Etiquette, Volet } from '../composants/Blocs'
+import { BandeauDoute, Encadre, Volet } from '../composants/Blocs'
 import { BoutonsNotation } from '../composants/Notation'
 import { CaseNiveau } from '../composants/Icones'
 import { Signaler } from '../composants/Signalement'
@@ -64,17 +64,28 @@ export function EcranCarte(props: Props) {
   return (
     <div className="appli" style={style}>
       <main className="ecran">
-        <button className="retour" onClick={surQuitter}>
-          ← {libelleQuitter}
-        </button>
-        <div className="entete-carte">
-          <span>{position ? `${position.n} / ${position.total}` : 'Révision libre'}</span>
-          <span>
+        <div className="barre-haut">
+          <button className="retour" onClick={surQuitter}>
+            ← {libelleQuitter}
+          </button>
+          {position ? (
+            <span className="avancement">
+              <span className="piste" aria-hidden="true">
+                <span style={{ width: `${(100 * position.n) / Math.max(1, position.total)}%` }} />
+              </span>
+              {position.n} / {position.total}
+            </span>
+          ) : (
+            <span className="avancement">Révision libre</span>
+          )}
+        </div>
+        <header className="tete-carte">
+          <span className="sur-titre">
+            {neuve ? 'Nouvelle carte · ' : ''}
             {theme?.titre ?? carte.theme} · {NOMS_NIVEAUX[carte.niveau]}
           </span>
-        </div>
-        <Etiquette>{neuve ? 'Nouvelle carte' : position ? `Carte ${position.n}` : 'Carte'}</Etiquette>
-        <h1 className="titre-carte">{carte.titre}</h1>
+          <h1 className="titre-carte">{carte.titre}</h1>
+        </header>
         <BandeauDoute doute={carte.doute} />
 
         {!verso && <Recto carte={carte} principal={principal} mode={mode} neuve={neuve} />}

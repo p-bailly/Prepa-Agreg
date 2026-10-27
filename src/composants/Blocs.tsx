@@ -1,6 +1,7 @@
-// Petits blocs communs du thème « Cours LaTeX » : encadrés typés, volets repliables, bandeau « Non garanti ».
+// Petits blocs communs du thème « Tonal ardoise » : encadrés typés, volets repliables, bandeau « Non garanti ».
 import { useState, type ReactNode } from 'react'
 import type { TypeCarte } from '../contenu/types'
+import { Chevron } from './Icones'
 import { Texte } from './Texte'
 
 export type GenreEncadre = TypeCarte | 'exemple' | 'remarque'
@@ -14,8 +15,8 @@ const NOMS: Record<GenreEncadre, string> = {
 }
 
 /**
- * Encadré d'un résultat, comme dans les cours : cadre et fond de la couleur du type, titre en onglet sur le bord.
- * L'onglet porte le nom du type, suivi de `titre` ; `nom` le remplace entièrement.
+ * Encadré d'un résultat : aplat de la couleur du type, nom du type en petit au-dessus du texte.
+ * Ce nom porte le nom du type, suivi de `titre` ; `nom` le remplace entièrement.
  */
 export function Encadre({ genre, titre, nom, children }: { genre: GenreEncadre; titre?: string; nom?: string; children: ReactNode }) {
   return (
@@ -35,7 +36,7 @@ interface VoletProps {
   children: ReactNode
 }
 
-/** Volet repliable : cadre noir, ▸ fermé, ▾ ouvert. Contrôlé si `ouvert` est fourni. */
+/** Volet repliable : carte arrondie, chevron à droite (retourné quand il est ouvert). Contrôlé si `ouvert` est fourni. */
 export function Volet({ titre, marque, ouvert, surBascule, children }: VoletProps) {
   const [interne, setInterne] = useState(false)
   const estOuvert = ouvert ?? interne
@@ -46,11 +47,11 @@ export function Volet({ titre, marque, ouvert, surBascule, children }: VoletProp
   return (
     <div className="volet">
       <button className="tete-volet" aria-expanded={estOuvert} onClick={basculer}>
-        <span className="fleche" aria-hidden="true">
-          {estOuvert ? '▾' : '▸'}
-        </span>
-        <span>{titre}</span>
+        <span className="titre-volet">{titre}</span>
         {marque && <span className="marque">{marque}</span>}
+        <span className="fleche">
+          <Chevron />
+        </span>
       </button>
       {estOuvert && <div className="corps-volet">{children}</div>}
     </div>

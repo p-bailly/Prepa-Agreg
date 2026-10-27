@@ -1,8 +1,14 @@
-// Accueil : ce qu'il y a à faire aujourd'hui, le gros bouton « Réviser », la série de jours et le niveau atteint.
+// Accueil : ce qu'il y a à faire aujourd'hui avec le bouton « Réviser » dans le même bloc, puis la série de jours, le
+// niveau atteint, le compte à rebours de l'écrit et l'objectif quotidien.
+import { Lecture } from '../composants/Icones'
 import { NOMS_NIVEAUX } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 import { resumeDuJour } from '../repetition/seance'
 import { joursAvantEcrit, niveauAtteint, progresNiveaux, serieJours } from '../stats/tableau'
+
+/** « mar. 27 oct. » pour un jour civil `AAAA-MM-JJ` (midi UTC : le jour ne bascule dans aucun fuseau). */
+const dateCourte = (jour: string) =>
+  new Date(`${jour}T12:00:00Z`).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
 
 export function Accueil({ surReviser }: { surReviser: () => void }) {
   const { contenu, progression, reglages, horloge, aujourdhui } = useDonnees()
@@ -10,75 +16,81 @@ export function Accueil({ surReviser }: { surReviser: () => void }) {
   const r = resumeDuJour(contenu, progression, reglages, horloge(), jour)
   const serie = serieJours(progression, jour)
   const niveau = niveauAtteint(progresNiveaux(contenu, progression, reglages))
+  const nomNiveau = niveau ? NOMS_NIVEAUX[niveau] : '—'
   const faites = progression.jours[jour]?.cartes ?? 0
   const rebours = joursAvantEcrit(reglages.dateEcrit, jour)
   const f = reglages.filtres
   const filtre = f.themes.length + f.niveaux.length + f.etats.length > 0
   const rien = r.aRevoir === 0 && r.nouvelles === 0
+  const objectif = Math.max(1, reglages.objectifQuotidien)
   return (
-    <>
-      <main className="ecran">
+    <main className="ecran">
+      <div className="entete-accueil">
         <h1 className="titre-ecran">Prépa Agreg</h1>
-        <span className="etiquette">Aujourd’hui</span>
-        <div className="bloc">
-          <p style={{ fontSize: 22, margin: 0 }}>
-            <strong className="grand-nombre" style={{ fontSize: 40 }}>
-              {r.aRevoir}
-            </strong>{' '}
+        <span className="petit doux">{dateCourte(jour)}</span>
+      </div>
+
+      <section className="hero" aria-label="Aujourd’hui">
+        <span className="hero-etiquette">Aujourd’hui</span>
+        <div className="hero-compte">
+          <strong>{r.aRevoir}</strong>
+          <span>
             {r.aRevoir > 1 ? 'cartes à revoir' : 'carte à revoir'}
-          </p>
-          <p style={{ fontSize: 20 }}>
-            et {r.nouvelles} {r.nouvelles > 1 ? 'nouvelles' : 'nouvelle'}
-          </p>
-          <p className="petit doux">
-            {faites} / {reglages.objectifQuotidien} cartes revues aujourd’hui (objectif quotidien)
-            {filtre && ' · séance filtrée (voir Parcours)'}
-          </p>
+            <br />
+            <span className="hero-doux">
+              + {r.nouvelles} {r.nouvelles > 1 ? 'nouvelles' : 'nouvelle'}
+            </span>
+          </span>
+        </div>
+        <button className="bouton-hero" onClick={surReviser} disabled={rien}>
+          Réviser
+          <span className="duree">
+            {rien ? 'rien à revoir pour l’instant' : `environ ${r.minutes} min`}
+            <span className="rond">
+              <Lecture />
+            </span>
+          </span>
+        </button>
+      </section>
+
+      <div className="tuiles">
+        <div className="tuile sable">
+          <span className="nom">Série</span>
+          <span className="valeur">{serie} j</span>
+        </div>
+        <div className="tuile menthe">
+          <span className="nom">Niveau atteint</span>
+          <span className={nomNiveau.length > 3 ? 'valeur longue' : 'valeur'}>{nomNiveau}</span>
         </div>
         {rebours !== null && (
-          <div className="bloc">
-            <span className="etiquette">Écrit</span>
-            <p style={{ margin: 0 }}>
-              {rebours > 0 ? (
-                <>
-                  <strong className="grand-nombre" style={{ fontSize: 32 }}>
-                    {rebours}
-                  </strong>{' '}
-                  {rebours > 1 ? 'jours' : 'jour'} avant l’écrit
-                </>
-              ) : rebours === 0 ? (
-                'C’est aujourd’hui. Bon courage.'
-              ) : (
-                'La date de l’écrit est passée (Réglages pour la changer).'
-              )}
-            </p>
+          <div className="tuile rose">
+            <span className="nom">Écrit</span>
+            <span className={rebours > 0 ? 'valeur' : 'valeur longue'}>
+              {rebours > 0 ? `${rebours} j` : rebours === 0 ? 'aujourd’hui' : 'passé'}
+            </span>
           </div>
         )}
-        <div className="deux-colonnes">
-          <div className="bloc">
-            <span className="etiquette">Série</span>
-            <div className="grand-nombre">{serie}</div>
-            <div className="petit">{serie > 1 ? 'jours de suite' : 'jour'}</div>
-          </div>
-          <div className="bloc">
-            <span className="etiquette">Niveau atteint</span>
-            <div className="grand-nombre" style={{ fontSize: niveau && niveau.length > 3 ? 26 : 44 }}>
-              {niveau ? NOMS_NIVEAUX[niveau] : '—'}
-            </div>
-            <div className="petit">80 % des cartes acquises</div>
-          </div>
-        </div>
-      </main>
-      <div className="pied">
-        <div className="pied-interieur">
-          <button className="bouton-principal" onClick={surReviser} disabled={rien}>
-            Réviser
-            <span style={{ fontSize: 15, letterSpacing: '0.02em', textTransform: 'none', fontWeight: 400 }}>
-              {rien ? 'rien à revoir pour l’instant' : `environ ${r.minutes} minute${r.minutes > 1 ? 's' : ''}`}
-            </span>
-          </button>
-        </div>
       </div>
-    </>
+
+      <div className="bloc">
+        <div className="ligne" style={{ marginBottom: 8 }}>
+          <span className="petit" style={{ fontWeight: 700 }}>
+            Objectif du jour
+          </span>
+          <span className="petit" style={{ fontWeight: 700 }}>
+            {faites} / {reglages.objectifQuotidien}
+          </span>
+        </div>
+        <div className="barre" role="img" aria-label={`${faites} cartes revues sur ${reglages.objectifQuotidien}`}>
+          <span style={{ width: `${Math.min(100, (100 * faites) / objectif)}%` }} />
+        </div>
+        {filtre && <p className="petit doux" style={{ marginTop: 10 }}>Séance filtrée (voir Parcours).</p>}
+        {rebours !== null && rebours < 0 && (
+          <p className="petit doux" style={{ marginTop: 10 }}>
+            La date de l’écrit est passée (Réglages pour la changer).
+          </p>
+        )}
+      </div>
+    </main>
   )
 }
