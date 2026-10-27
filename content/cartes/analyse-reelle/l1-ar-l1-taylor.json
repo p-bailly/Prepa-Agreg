@@ -1,0 +1,397 @@
+{
+ "cartes": [
+  {
+   "id": "ar-l1-taylor-young",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Formule de Taylor-Young",
+   "recto": "Énoncer la formule de Taylor-Young avec ses hypothèses.",
+   "cours": "Une fonction dérivable en $a$ s'approche, près de $a$, par sa tangente : $f(x)=f(a)+f'(a)(x-a)+o(x-a)$. La formule de Taylor-Young généralise cette idée : si $f$ est dérivable $n$ fois en $a$, on l'approche par un polynôme de degré $n$, le **polynôme de Taylor** $T_n(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k$, avec une erreur négligeable devant $(x-a)^n$. Les coefficients sont choisis pour que $T_n$ ait en $a$ les mêmes dérivées que $f$ jusqu'à l'ordre $n$.\n\nLa formule est **qualitative et locale** : le reste $o\\big((x-a)^n\\big)$ dit seulement que l'erreur, divisée par $(x-a)^n$, tend vers $0$ quand $x\\to a$ ; elle ne donne aucune majoration chiffrée et ne dit rien loin de $a$ (pour cela, on utilise Taylor-Lagrange ou le reste intégral). En contrepartie, elle demande peu : il suffit que $f^{(n)}(a)$ existe, ce qui est le cas si $f$ est de classe $C^n$.\n\nMéthode : calculer $f(a),f'(a),\\dots,f^{(n)}(a)$, écrire $T_n$, puis utiliser le développement pour calculer des limites, trouver des équivalents ou étudier $f$ au voisinage de $a$ (par exemple, si $f'(a)=0$ et $f''(a)>0$, $f$ a un minimum local strict en $a$). La démonstration se fait par récurrence sur $n$, grâce aux accroissements finis.\n\nLe piège principal : la réciproque est fausse. Une fonction peut avoir un développement limité à l'ordre $2$ en $a$ sans être deux fois dérivable en $a$ (exemple : $x^3\\sin\\frac1x$ en $0$). Et la formule seule ne dit pas que $T_n(x)$ converge vers $f(x)$ quand $n\\to+\\infty$.",
+   "hypotheses": [
+    "$I$ est un intervalle, $a\\in I$ et $n\\ge1$ est un entier.",
+    "$f:I\\to\\mathbb{R}$ est $n-1$ fois dérivable sur $I$ (simplement définie sur $I$ si $n=1$).",
+    "$f^{(n-1)}$ est dérivable en $a$, c'est-à-dire que $f^{(n)}(a)$ existe."
+   ],
+   "hypotheses_pieges": [
+    "$f^{(n-1)}$ est seulement continue en $a$ (à la place de dérivable en $a$).",
+    "$f$ est $n$ fois dérivable sur $I\\setminus\\{a\\}$ seulement (à la place de : $n-1$ fois dérivable sur $I$ avec $f^{(n-1)}$ dérivable en $a$).",
+    "$f$ est continue sur $I$, $n$ fois dérivable sur $I\\setminus\\{a\\}$ et $f^{(n)}$ est bornée au voisinage de $a$ (à la place de : $f^{(n)}(a)$ existe)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $a\\in I$, $n\\ge1$ un entier et $f:I\\to\\mathbb{R}$ une fonction $n-1$ fois dérivable sur $I$ dont la dérivée $(n-1)$-ième est dérivable en $a$ (c'est le cas si $f$ est de classe $C^n$ sur $I$). Alors, quand $x$ tend vers $a$,\n$$f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k+o\\big((x-a)^n\\big).$$\n\nAutrement dit, $f$ admet en $a$ un développement limité à l'ordre $n$ dont la partie régulière est le polynôme de Taylor $T_n(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k$ (avec $f^{(0)}=f$).",
+   "enonce_trous": "Soient $f$ une fonction $n-1$ fois dérivable sur un intervalle $I$ et $a\\in I$. Si {{1}}, alors $f(x)-\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k$ est {{2}} quand $x\\to a$.",
+   "trous": [
+    {
+     "reponse": "$f^{(n-1)}$ est dérivable en $a$",
+     "leurres": [
+      "$f^{(n-1)}$ est continue en $a$",
+      "$f$ est continue en $a$",
+      "$f^{(n-1)}$ est dérivable sur $I\\setminus\\{a\\}$"
+     ]
+    },
+    {
+     "reponse": "négligeable devant $(x-a)^n$",
+     "leurres": [
+      "négligeable devant $(x-a)^{n+1}$",
+      "équivalent à $\\frac{f^{(n+1)}(a)}{(n+1)!}(x-a)^{n+1}$",
+      "majoré en valeur absolue par $\\frac{|x-a|^{n+1}}{(n+1)!}$"
+     ]
+    }
+   ],
+   "demo": "Pour une fonction $g$ vérifiant les hypothèses à l'ordre $m$, on note $T_{m,g}(x)=\\sum_{k=0}^{m}\\frac{g^{(k)}(a)}{k!}(x-a)^k$. On démontre par récurrence sur $n\\ge1$ la propriété $\\mathcal{P}(n)$ : pour toute fonction $f$ $n-1$ fois dérivable sur $I$ avec $f^{(n-1)}$ dérivable en $a$, $f(x)-T_{n,f}(x)=o\\big((x-a)^n\\big)$.\n\n**Initialisation.** Pour $n=1$, $f$ est dérivable en $a$ : $\\frac{f(x)-f(a)}{x-a}-f'(a)\\to0$, soit $f(x)-f(a)-f'(a)(x-a)=o(x-a)$.\n\n**Hérédité.** Soit $n\\ge2$ ; on suppose $\\mathcal{P}(n-1)$ et on prend $f$ comme dans $\\mathcal{P}(n)$. Posons $R=f-T_{n,f}$. Comme $n-1\\ge1$, $f$ est dérivable sur $I$, donc $R$ aussi, et en dérivant terme à terme,\n$$T_{n,f}'(x)=\\sum_{k=1}^{n}\\frac{f^{(k)}(a)}{(k-1)!}(x-a)^{k-1}=\\sum_{j=0}^{n-1}\\frac{(f')^{(j)}(a)}{j!}(x-a)^{j}=T_{n-1,f'}(x).$$\nOr $f'$ est $n-2$ fois dérivable sur $I$ et $(f')^{(n-2)}=f^{(n-1)}$ est dérivable en $a$ : par $\\mathcal{P}(n-1)$, $R'(t)=f'(t)-T_{n-1,f'}(t)=o\\big((t-a)^{n-1}\\big)$.\n\nSoit $\\varepsilon>0$ et $\\eta>0$ tel que $|R'(t)|\\le\\varepsilon|t-a|^{n-1}$ pour $t\\in I$, $|t-a|<\\eta$. Pour $x\\in I$ avec $0<|x-a|<\\eta$, l'égalité des accroissements finis appliquée à $R$ entre $a$ et $x$ donne $c$ strictement entre $a$ et $x$ tel que $R(x)-R(a)=R'(c)(x-a)$. Comme $R(a)=f(a)-T_{n,f}(a)=0$ et $|c-a|<|x-a|$,\n$$|R(x)|\\le\\varepsilon|c-a|^{n-1}|x-a|\\le\\varepsilon|x-a|^n.$$\nDonc $R(x)=o\\big((x-a)^n\\big)$, ce qui prouve $\\mathcal{P}(n)$.",
+   "exemple": "Pour $f(x)=\\sqrt{1+x}$ en $a=0$ : $f(0)=1$, $f'(x)=\\frac12(1+x)^{-1/2}$, $f''(x)=-\\frac14(1+x)^{-3/2}$, donc $f'(0)=\\frac12$ et $f''(0)=-\\frac14$. Taylor-Young à l'ordre $2$ donne\n$$\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2),$$\nd'où, par exemple, $\\lim_{x\\to0}\\frac{\\sqrt{1+x}-1-\\frac x2}{x^2}=-\\frac18$.",
+   "contre_exemple": "- **Dérivabilité de $f^{(n-1)}$ en $a$ indispensable** : $f(x)=x|x|$ est dérivable sur $\\mathbb{R}$, avec $f'(x)=2|x|$ continue mais non dérivable en $0$. Un DL à l'ordre $2$ en $0$ aurait $c_0=f(0)=0$ et $c_1=f'(0)=0$ ; or il n'existe aucun réel $c$ tel que $x|x|=cx^2+o(x^2)$, car $\\frac{x|x|}{x^2}$ vaut $1$ pour $x>0$ et $-1$ pour $x<0$ : $f$ n'a pas de développement limité à l'ordre $2$ en $0$.\n- **La réciproque est fausse** : $f(x)=x^3\\sin\\frac1x$, $f(0)=0$. Comme $|f(x)|\\le|x|^3$, $f(x)=o(x^2)$ : $f$ a un développement limité à l'ordre $2$ en $0$ (de partie régulière nulle). Pourtant $f'(0)=0$, $f'(x)=3x^2\\sin\\frac1x-x\\cos\\frac1x$ pour $x\\neq0$, et $\\frac{f'(x)-f'(0)}{x}=3x\\sin\\frac1x-\\cos\\frac1x$ n'a pas de limite en $0$ : $f$ n'est pas deux fois dérivable en $0$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ admet un développement limité à l'ordre $2$ en $a$, alors $f$ est deux fois dérivable en $a$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^3\\sin\\frac1x$, $f(0)=0$ : $f(x)=o(x^2)$ en $0$, mais $\\frac{f'(x)-f'(0)}{x}=3x\\sin\\frac1x-\\cos\\frac1x$ n'a pas de limite, donc $f''(0)$ n'existe pas."
+    },
+    {
+     "texte": "Si $f$, définie sur un intervalle contenant $a$, vérifie $f(x)=c_0+c_1(x-a)+o(x-a)$ quand $x\\to a$, alors $f$ est dérivable en $a$ et $f'(a)=c_1$.",
+     "vrai": true,
+     "justification": "En $x=a$, l'égalité donne $f(a)=c_0$ ; puis $\\frac{f(x)-f(a)}{x-a}=c_1+o(1)\\to c_1$. Pour l'ordre $1$, avoir un développement limité équivaut à être dérivable."
+    },
+    {
+     "texte": "Si $f$ est de classe $C^\\infty$ sur $\\mathbb{R}$, alors pour tout réel $x$, $T_n(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(0)}{k!}x^k$ tend vers $f(x)$ quand $n\\to+\\infty$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=e^{-1/x^2}$ pour $x\\neq0$, $f(0)=0$ : on montre par récurrence que $f$ est $C^\\infty$, avec $f^{(k)}(x)=P_k\\!\\left(\\frac1x\\right)e^{-1/x^2}$ ($P_k$ polynôme) pour $x\\neq0$ et $f^{(k)}(0)=0$. Donc $T_n=0$ pour tout $n$, alors que $f(x)>0$ pour $x\\neq0$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taf"
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-lagrange",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Inégalité de Taylor-Lagrange",
+   "recto": "Énoncer l'inégalité de Taylor-Lagrange avec ses hypothèses.",
+   "cours": "La formule de Taylor-Young dit que l'erreur $f(x)-T_n(x)$ est petite près de $a$, sans dire à quel point. Pour **chiffrer** l'erreur, par exemple pour calculer $e$ ou $\\cos(0{,}1)$ avec une précision garantie, on utilise l'inégalité de Taylor-Lagrange : si $|f^{(n+1)}|\\le M$ entre $a$ et $x$, alors $|f(x)-T_n(x)|\\le\\frac{M|x-a|^{n+1}}{(n+1)!}$. C'est la généralisation de l'inégalité des accroissements finis, qui en est le cas $n=0$.\n\nContrairement à Taylor-Young, c'est un résultat **global** : il vaut pour tout $x$ de l'intervalle, pas seulement à la limite. Il sert à majorer une erreur d'approximation, à démontrer des inégalités ($|\\sin x-x|\\le\\frac{|x|^3}{6}$ pour tout réel $x$) et à prouver qu'une fonction est limite de ses polynômes de Taylor : si toutes les dérivées sont bornées par une même constante, le majorant $\\frac{M|x-a|^{n+1}}{(n+1)!}$ tend vers $0$ quand $n\\to+\\infty$.\n\nMéthode : choisir l'ordre $n$, calculer $T_n$, majorer $|f^{(n+1)}|$ sur le segment d'extrémités $a$ et $x$ (et pas seulement en $a$), puis conclure. Pour les fonctions dont un coefficient de Taylor est nul (comme $\\cos$, $\\sin$), on gagne un ordre gratuitement : $T_2=T_3$ pour $\\cos$ en $0$, et la majoration à l'ordre $3$, $\\frac{x^4}{24}$, est meilleure que $\\frac{|x|^3}{6}$ près de $0$ (pour $|x|<4$).\n\nLe piège principal : la constante $M$ dépend de l'intervalle. Pour $e^x$, $|f''|\\le1$ sur $\\left]-\\infty,0\\right]$ seulement ; l'inégalité $|e^x-1-x|\\le\\frac{x^2}{2}$ est fausse pour $x=1$.",
+   "hypotheses": [
+    "$I$ est un intervalle, $a\\in I$ et $n\\in\\mathbb{N}$.",
+    "$f:I\\to\\mathbb{R}$ est $n+1$ fois dérivable sur $I$.",
+    "Il existe un réel $M$ tel que $|f^{(n+1)}(t)|\\le M$ pour tout $t\\in I$ (ou au moins pour tout $t$ entre $a$ et $x$)."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est $n$ fois dérivable sur $I$ avec $|f^{(n)}|\\le M$ (à la place de $n+1$ fois dérivable avec $|f^{(n+1)}|\\le M$).",
+    "$|f^{(n+1)}(a)|\\le M$ seulement (à la place de $|f^{(n+1)}(t)|\\le M$ pour tout $t$ entre $a$ et $x$).",
+    "$|f^{(n+1)}|\\le M$ sur un voisinage de $a$ seulement, la majoration étant affirmée pour tout $x\\in I$ (à la place de $|f^{(n+1)}|\\le M$ sur $I$)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $a\\in I$, $n\\in\\mathbb{N}$ et $f:I\\to\\mathbb{R}$ une fonction $n+1$ fois dérivable sur $I$. S'il existe un réel $M$ tel que $|f^{(n+1)}(t)|\\le M$ pour tout $t\\in I$, alors pour tout $x\\in I$,\n$$\\left|f(x)-\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k\\right|\\le\\frac{M\\,|x-a|^{n+1}}{(n+1)!}.$$\n\nPour un $x$ donné, il suffit que la majoration $|f^{(n+1)}(t)|\\le M$ ait lieu pour tout $t$ du segment d'extrémités $a$ et $x$.",
+   "enonce_trous": "Si $f$ est $n+1$ fois dérivable sur un intervalle $I$ et si {{1}}, alors pour tous $a,x\\in I$, $\\left|f(x)-\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k\\right|\\le$ {{2}}.",
+   "trous": [
+    {
+     "reponse": "$|f^{(n+1)}(t)|\\le M$ pour tout $t\\in I$",
+     "leurres": [
+      "$|f^{(n)}(t)|\\le M$ pour tout $t\\in I$",
+      "$|f^{(n+1)}(a)|\\le M$",
+      "$|f^{(n+1)}(t)|\\le M$ pour tout $t$ d'un voisinage de $a$"
+     ]
+    },
+    {
+     "reponse": "$\\frac{M|x-a|^{n+1}}{(n+1)!}$",
+     "leurres": [
+      "$\\frac{M|x-a|^{n}}{n!}$",
+      "$\\frac{M|x-a|^{n+2}}{(n+2)!}$",
+      "$\\frac{M|x-a|^{n+1}}{(n+2)!}$"
+     ]
+    }
+   ],
+   "demo": "Pour une fonction $g$ assez dérivable, notons $T_{m,g}(x)=\\sum_{k=0}^{m}\\frac{g^{(k)}(a)}{k!}(x-a)^k$. On montre par récurrence sur $n$ la propriété $\\mathcal{P}(n)$ : pour toute $f$ $n+1$ fois dérivable sur $I$ telle que $|f^{(n+1)}|\\le M$ sur $I$, on a $|f(x)-T_{n,f}(x)|\\le\\frac{M|x-a|^{n+1}}{(n+1)!}$ pour tout $x\\in I$.\n\n**Initialisation.** Pour $n=0$, $T_{0,f}=f(a)$ et $|f'|\\le M$ : c'est l'inégalité des accroissements finis, $|f(x)-f(a)|\\le M|x-a|$.\n\n**Hérédité.** Soit $n\\ge1$ ; on suppose $\\mathcal{P}(n-1)$ et on prend $f$ comme dans $\\mathcal{P}(n)$. La fonction $R=f-T_{n,f}$ est dérivable sur $I$, $R(a)=0$, et en dérivant terme à terme $T_{n,f}'=T_{n-1,f'}$, donc $R'=f'-T_{n-1,f'}$. Comme $f'$ est $n$ fois dérivable sur $I$ avec $|(f')^{(n)}|=|f^{(n+1)}|\\le M$, $\\mathcal{P}(n-1)$ donne\n$$|R'(t)|\\le\\frac{M|t-a|^n}{n!}\\quad\\text{pour tout }t\\in I.$$\n\nSoit $x\\in I$ avec $x>a$. Sur $[a,x]$, posons $u(t)=R(t)-\\frac{M(t-a)^{n+1}}{(n+1)!}$ et $v(t)=R(t)+\\frac{M(t-a)^{n+1}}{(n+1)!}$. Elles sont dérivables, avec $u'(t)=R'(t)-\\frac{M(t-a)^n}{n!}\\le0$ et $v'(t)=R'(t)+\\frac{M(t-a)^n}{n!}\\ge0$ : $u$ est décroissante et $v$ croissante sur $[a,x]$. Comme $u(a)=v(a)=0$, on obtient $u(x)\\le0\\le v(x)$, c'est-à-dire $|R(x)|\\le\\frac{M(x-a)^{n+1}}{(n+1)!}$.\n\nSi $x<a$, on raisonne de même sur $[x,a]$ avec $w(t)=\\frac{M(a-t)^{n+1}}{(n+1)!}$, de dérivée $-\\frac{M(a-t)^n}{n!}$ : $R+w$ est décroissante et $R-w$ croissante sur $[x,a]$, nulles en $a$, d'où $-w(x)\\le R(x)\\le w(x)$. Le cas $x=a$ est immédiat. Cela prouve $\\mathcal{P}(n)$.",
+   "exemple": "Pour $f=\\sin$, $a=0$ et $n=2$ : $T_2(x)=x$ (car $\\sin0=0$, $\\sin'0=1$, $\\sin''0=0$) et $|\\sin'''|=|\\cos|\\le1$ sur $\\mathbb{R}$. Donc, pour tout réel $x$,\n$$|\\sin x-x|\\le\\frac{|x|^3}{6}.$$\nPar exemple, $\\sin(0{,}1)$ diffère de $0{,}1$ de moins de $\\frac{10^{-3}}{6}<2\\cdot10^{-4}$.",
+   "contre_exemple": "- **La borne doit valoir entre $a$ et $x$** : pour $f=\\exp$, $a=0$, $n=1$, on a $|f''|\\le e$ sur $[-1,1]$, mais pour $x=3$, $|e^3-1-3|\\approx16{,}09$ dépasse $\\frac{e\\cdot3^2}{2}\\approx12{,}23$. Il faut prendre $M=e^3$, borne de $f''$ sur $[0,3]$.\n- **C'est $f^{(n+1)}$ qu'il faut majorer** : pour $f(x)=\\sin(10x)$, $a=0$, $n=1$, on a $|f'|\\le10$, mais $|f(0{,}1)-10\\cdot0{,}1|=1-\\sin1\\approx0{,}159$ dépasse $\\frac{10\\cdot(0{,}1)^2}{2}=0{,}05$. Avec $|f''|\\le100$, la vraie inégalité donne le majorant $0{,}5$.",
+   "affirmations": [
+    {
+     "texte": "Pour tout réel $x$, $|e^x-1-x|\\le\\frac{x^2}{2}$.",
+     "vrai": false,
+     "contre_exemple": "Pour $x=1$ : $e-2\\approx0{,}718>\\frac12$. L'inégalité est vraie pour $x\\le0$ (où $|\\exp''|\\le1$ entre $x$ et $0$), mais pour $x>0$ il faut prendre $M=e^x$."
+    },
+    {
+     "texte": "Pour tout réel $x$, $|\\sin x-x|\\le\\frac{|x|^3}{6}$.",
+     "vrai": true,
+     "justification": "Taylor-Lagrange à l'ordre $2$ en $0$ : $T_2(x)=x$ et $|\\sin'''|=|\\cos|\\le1$ sur $\\mathbb{R}$."
+    },
+    {
+     "texte": "Si $f$ est $n+1$ fois dérivable sur $I$ et si $f^{(n+1)}$ est bornée sur $I$, alors l'inégalité de Taylor-Lagrange redonne la formule de Taylor-Young à l'ordre $n$ en $a$.",
+     "vrai": true,
+     "justification": "Le reste est majoré par $\\frac{M|x-a|^{n+1}}{(n+1)!}$, qui est négligeable devant $(x-a)^n$ quand $x\\to a$."
+    },
+    {
+     "texte": "Si $f$ est de classe $C^\\infty$ sur $\\mathbb{R}$ et s'il existe $M$ tel que $|f^{(n)}(t)|\\le M$ pour tout $n$ et tout réel $t$, alors $T_n(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(0)}{k!}x^k\\to f(x)$ pour tout réel $x$.",
+     "vrai": true,
+     "justification": "$|f(x)-T_n(x)|\\le\\frac{M|x|^{n+1}}{(n+1)!}$, et $\\frac{|x|^{n+1}}{(n+1)!}\\to0$ (le rapport de deux termes consécutifs, $\\frac{|x|}{n+2}$, tend vers $0$). C'est le cas de $\\sin$ et $\\cos$ avec $M=1$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taf"
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-reste-integral",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Formule de Taylor avec reste intégral",
+   "recto": "Énoncer la formule de Taylor avec reste intégral avec ses hypothèses.",
+   "cours": "Le point de départ est le théorème fondamental de l'analyse : si $f$ est de classe $C^1$, $f(x)=f(a)+\\int_a^x f'(t)\\,\\mathrm{d}t$. En intégrant par parties de façon répétée, on fait apparaître les termes successifs du polynôme de Taylor et un reste qui est une **égalité exacte** :\n$$f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k+\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t,$$\npour $f$ de classe $C^{n+1}$. C'est la plus précise des trois formules de Taylor : on en déduit, pour $f$ de classe $C^{n+1}$, l'inégalité de Taylor-Lagrange en majorant l'intégrale, et Taylor-Young sous l'hypothèse $C^{n+1}$.\n\nSon intérêt propre : le reste est connu exactement, donc on peut étudier son **signe** (si $f^{(n+1)}\\ge0$ et $x\\ge a$, il est positif, d'où des inégalités comme $e^x\\ge1+x+\\frac{x^2}{2}$ pour $x\\ge0$), le calculer, ou l'encadrer finement (c'est une façon de prouver que $e$ est irrationnel). Elle reste vraie pour des fonctions à valeurs complexes, en l'appliquant aux parties réelle et imaginaire.\n\nMéthode : vérifier que $f$ est $C^{n+1}$ sur un intervalle contenant $a$ et $x$, écrire le polynôme de Taylor, puis travailler sur l'intégrale (signe, majoration, calcul). La démonstration se fait par récurrence sur $n$ avec une intégration par parties.\n\nLe piège principal : le sens de l'intégrale. Si $x<a$, $\\int_a^x$ est l'opposé de $\\int_x^a$ et $(x-t)^n$ a le signe de $(-1)^n$ : le signe du reste n'est plus celui de $f^{(n+1)}$ en général. Pour $\\exp$ et $n=0$, le reste $e^x-1$ est négatif pour $x<0$.",
+   "hypotheses": [
+    "$I$ est un intervalle, $a\\in I$ et $n\\in\\mathbb{N}$.",
+    "$f:I\\to\\mathbb{R}$ est de classe $C^{n+1}$ sur $I$."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est de classe $C^n$ sur $I$ seulement (à la place de $C^{n+1}$).",
+    "$f$ est de classe $C^{n+1}$ sur un voisinage de $a$ seulement, la formule étant affirmée pour tout $x\\in I$ (à la place de $C^{n+1}$ sur $I$).",
+    "$f$ est $n+1$ fois dérivable sur $I$, sans que $f^{(n+1)}$ soit supposée continue (à la place de $C^{n+1}$)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $a\\in I$, $n\\in\\mathbb{N}$ et $f:I\\to\\mathbb{R}$ de classe $C^{n+1}$ sur $I$. Alors pour tout $x\\in I$,\n$$f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k+\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t.$$",
+   "enonce_trous": "Si $f$ est {{1}} sur l'intervalle $I$ et si $a,x\\in I$, alors $f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k+$ {{2}}.",
+   "trous": [
+    {
+     "reponse": "de classe $C^{n+1}$",
+     "leurres": [
+      "de classe $C^{n}$",
+      "continue",
+      "$n$ fois dérivable"
+     ]
+    },
+    {
+     "reponse": "$\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t$",
+     "leurres": [
+      "$\\int_a^x\\frac{(x-t)^{n+1}}{(n+1)!}f^{(n+1)}(t)\\,\\mathrm{d}t$",
+      "$\\int_a^x\\frac{(x-t)^n}{n!}f^{(n)}(t)\\,\\mathrm{d}t$",
+      "$\\frac{(x-a)^{n+1}}{(n+1)!}f^{(n+1)}(a)$"
+     ]
+    }
+   ],
+   "demo": "Par récurrence sur $n$ : $\\mathcal{P}(n)$ : « pour toute $f$ de classe $C^{n+1}$ sur $I$ et tout $x\\in I$, la formule a lieu ».\n\n**Initialisation.** Si $f$ est de classe $C^1$, $f$ est une primitive de la fonction continue $f'$, donc $f(x)-f(a)=\\int_a^x f'(t)\\,\\mathrm{d}t$ : c'est la formule pour $n=0$.\n\n**Hérédité.** Supposons $\\mathcal{P}(n)$ et soit $f$ de classe $C^{n+2}$ sur $I$. Elle est en particulier $C^{n+1}$, donc\n$$f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k+\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t.$$\nOn intègre par parties (fonctions de classe $C^1$ en $t$) avec $u(t)=-\\frac{(x-t)^{n+1}}{(n+1)!}$, $u'(t)=\\frac{(x-t)^n}{n!}$, et $v=f^{(n+1)}$, $v'=f^{(n+2)}$ :\n$$\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t=\\Big[u(t)f^{(n+1)}(t)\\Big]_a^x+\\int_a^x\\frac{(x-t)^{n+1}}{(n+1)!}f^{(n+2)}(t)\\,\\mathrm{d}t.$$\nComme $u(x)=0$ et $u(a)=-\\frac{(x-a)^{n+1}}{(n+1)!}$, le crochet vaut $\\frac{f^{(n+1)}(a)}{(n+1)!}(x-a)^{n+1}$ : c'est le terme d'ordre $n+1$ du polynôme de Taylor, et l'on obtient $\\mathcal{P}(n+1)$.",
+   "exemple": "Pour $f=\\exp$ et $a=0$ : pour tout réel $x$ et tout $n\\in\\mathbb{N}$,\n$$e^x=\\sum_{k=0}^{n}\\frac{x^k}{k!}+\\int_0^x\\frac{(x-t)^n}{n!}e^t\\,\\mathrm{d}t.$$\nPour $x\\ge0$, l'intégrande est positif sur $[0,x]$, donc $e^x\\ge\\sum_{k=0}^{n}\\frac{x^k}{k!}$ : par exemple $e^x\\ge1+x+\\frac{x^2}{2}$ pour tout $x\\ge0$.",
+   "contre_exemple": "- **Continuité de $f^{(n+1)}$** : $f(x)=x^2\\sin\\frac{1}{x^2}$, $f(0)=0$, est dérivable sur $\\mathbb{R}$ ($f'(0)=0$ car $|f(x)/x|\\le|x|$), mais $f'(x)=2x\\sin\\frac{1}{x^2}-\\frac{2}{x}\\cos\\frac{1}{x^2}$ n'est pas bornée près de $0$ : en $x_k=\\frac{1}{\\sqrt{2k\\pi}}$, $f'(x_k)=-2\\sqrt{2k\\pi}$. Une fonction non bornée sur $[0,1]$ n'est pas intégrable sur ce segment (au sens de l'intégrale des fonctions continues par morceaux) : la formule avec $n=0$, $f(1)=f(0)+\\int_0^1f'(t)\\,\\mathrm{d}t$, n'a pas de sens.\n- **Hypothèse sur tout l'intervalle** : $f$ nulle sur $\\left]-\\infty,2\\right[$ et égale à $1$ sur $\\left[2,+\\infty\\right[$ est $C^\\infty$ sur $\\left]-\\infty,2\\right[$, voisinage de $0$, avec $f^{(k)}(0)=0$ pour tout $k$, et ses dérivées sont nulles partout où elles existent. Pourtant $f(3)=1$, alors que le polynôme de Taylor en $0$ est nul : la formule ne s'applique pas entre $0$ et $3$, car $f$ n'est pas $C^{n+1}$ (ni même continue) sur $[0,3]$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est de classe $C^{n+1}$ sur $I$ et $f^{(n+1)}\\ge0$ sur $I$, alors $f(x)\\ge\\sum_{k=0}^{n}\\frac{f^{(k)}(a)}{k!}(x-a)^k$ pour tout $x\\in I$.",
+     "vrai": false,
+     "contre_exemple": "$f=\\exp$, $a=0$, $n=0$, $x=-1$ : $f'>0$ mais $e^{-1}<1$. Le reste est positif pour $x\\ge a$ ; pour $x<a$, il a le signe de $(-1)^{n+1}$."
+    },
+    {
+     "texte": "Pour tout $x\\ge0$ et tout $n\\in\\mathbb{N}$, $e^x\\ge\\sum_{k=0}^{n}\\frac{x^k}{k!}$.",
+     "vrai": true,
+     "justification": "Le reste $\\int_0^x\\frac{(x-t)^n}{n!}e^t\\,\\mathrm{d}t$ est l'intégrale, avec des bornes dans le bon sens, d'une fonction positive."
+    },
+    {
+     "texte": "Si $f$ est de classe $C^{n+1}$ sur $I$ et $|f^{(n+1)}|\\le M$ sur $I$, la formule avec reste intégral redonne l'inégalité de Taylor-Lagrange.",
+     "vrai": true,
+     "justification": "$\\left|\\int_a^x\\frac{(x-t)^n}{n!}f^{(n+1)}(t)\\,\\mathrm{d}t\\right|\\le M\\left|\\int_a^x\\frac{|x-t|^n}{n!}\\,\\mathrm{d}t\\right|=\\frac{M|x-a|^{n+1}}{(n+1)!}$."
+    }
+   ],
+   "prerequis": [
+    "int-t-integrale-ipp",
+    "int-t-integrale-fondamental"
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-dl-usuels",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Développements limités usuels en $0$",
+   "recto": "Énoncer les développements limités en $0$ à l'ordre $n$ de $e^x$, $\\cos x$, $\\sin x$, $\\operatorname{ch}x$, $\\operatorname{sh}x$, $\\frac{1}{1-x}$, $\\ln(1+x)$, $(1+x)^\\alpha$ et $\\arctan x$.",
+   "cours": "On dit que $f$ admet un **développement limité** (DL) à l'ordre $n$ en $0$ s'il existe un polynôme $P$ de degré au plus $n$ tel que $f(x)=P(x)+o(x^n)$ quand $x\\to0$ ; $P$ est alors unique (c'est la **partie régulière**). Presque tous les calculs de DL partent d'une courte liste de développements usuels, à connaître par cœur, qu'on combine ensuite (somme, produit, composée, quotient, primitive).\n\nIls viennent presque tous de la formule de Taylor-Young appliquée en $0$ : pour $e^x$, toutes les dérivées valent $1$ en $0$ ; pour $\\cos$ et $\\sin$, les dérivées en $0$ valent $0,\\pm1$ de façon périodique, d'où des DL qui ne contiennent que des puissances paires (pour $\\cos$, fonction paire) ou impaires (pour $\\sin$, fonction impaire). Pour $\\frac{1}{1-x}$, c'est la somme géométrique ; $\\arctan$ s'obtient en intégrant celui de $\\frac{1}{1+t^2}$.\n\nMéthode : identifier la fonction usuelle, remplacer $x$ par l'expression voulue (qui doit tendre vers $0$), et garder exactement les termes jusqu'à l'ordre demandé. Les coefficients du binôme généralisé $\\binom{\\alpha}{k}=\\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-k+1)}{k!}$ donnent, par exemple, $\\sqrt{1+x}=1+\\frac x2-\\frac{x^2}{8}+o(x^2)$ et $\\frac{1}{1+x}=1-x+x^2+o(x^2)$.\n\nLe piège principal : l'ordre du reste. Pour $\\cos$, le coefficient de $x^{2n+1}$ est nul, donc on peut écrire $o(x^{2n+1})$ ; mais écrire $\\ln(1+x)=x-\\frac{x^2}{2}+o(x^3)$ est faux. Et un DL est **local** : il ne dit rien du signe de l'erreur, ni de la fonction loin de $0$.",
+   "enonce": "Pour tout entier $n\\ge0$ et tout réel $\\alpha$, on a, quand $x\\to0$ :\n\n- $e^x=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n)=1+x+\\frac{x^2}{2}+\\cdots+\\frac{x^n}{n!}+o(x^n)$ ;\n- $\\cos x=\\sum_{k=0}^{n}(-1)^k\\frac{x^{2k}}{(2k)!}+o(x^{2n+1})$ et $\\sin x=\\sum_{k=0}^{n}(-1)^k\\frac{x^{2k+1}}{(2k+1)!}+o(x^{2n+2})$ ;\n- $\\operatorname{ch}x=\\sum_{k=0}^{n}\\frac{x^{2k}}{(2k)!}+o(x^{2n+1})$ et $\\operatorname{sh}x=\\sum_{k=0}^{n}\\frac{x^{2k+1}}{(2k+1)!}+o(x^{2n+2})$ ;\n- $\\frac{1}{1-x}=\\sum_{k=0}^{n}x^k+o(x^n)$ et, pour $n\\ge1$, $\\ln(1+x)=\\sum_{k=1}^{n}(-1)^{k-1}\\frac{x^k}{k}+o(x^n)$ ;\n- $(1+x)^\\alpha=\\sum_{k=0}^{n}\\binom{\\alpha}{k}x^k+o(x^n)$, où $\\binom{\\alpha}{0}=1$ et $\\binom{\\alpha}{k}=\\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-k+1)}{k!}$ pour $k\\ge1$ ;\n- $\\arctan x=\\sum_{k=0}^{n}(-1)^k\\frac{x^{2k+1}}{2k+1}+o(x^{2n+2})$.",
+   "enonce_trous": "Quand $x\\to0$ : $\\ln(1+x)=$ {{1}} $+\\,o(x^3)$, $(1+x)^\\alpha=$ {{2}} $+\\,o(x^2)$ pour tout réel $\\alpha$, et $\\sin x=$ {{3}} $+\\,o(x^4)$.",
+   "trous": [
+    {
+     "reponse": "$x-\\frac{x^2}{2}+\\frac{x^3}{3}$",
+     "leurres": [
+      "$x+\\frac{x^2}{2}+\\frac{x^3}{3}$",
+      "$x-\\frac{x^2}{2}+\\frac{x^3}{6}$",
+      "$1+x-\\frac{x^2}{2}+\\frac{x^3}{3}$"
+     ]
+    },
+    {
+     "reponse": "$1+\\alpha x+\\frac{\\alpha(\\alpha-1)}{2}x^2$",
+     "leurres": [
+      "$1+\\alpha x+\\frac{\\alpha(\\alpha+1)}{2}x^2$",
+      "$1+\\alpha x+\\frac{\\alpha^2}{2}x^2$",
+      "$1+\\alpha x+\\alpha(\\alpha-1)x^2$"
+     ]
+    },
+    {
+     "reponse": "$x-\\frac{x^3}{6}$",
+     "leurres": [
+      "$x-\\frac{x^3}{3}$",
+      "$x+\\frac{x^3}{6}$",
+      "$x-\\frac{x^3}{6}+\\frac{x^4}{24}$"
+     ]
+    }
+   ],
+   "demo": "**Par Taylor-Young.** Les fonctions $\\exp$, $\\cos$, $\\sin$, $\\operatorname{ch}$, $\\operatorname{sh}$ sont de classe $C^\\infty$ sur $\\mathbb{R}$, et $x\\mapsto\\ln(1+x)$, $x\\mapsto(1+x)^\\alpha$ sur $\\left]-1,+\\infty\\right[$ : Taylor-Young s'applique à tout ordre en $0$, et il suffit de calculer les dérivées en $0$.\n- $\\exp^{(k)}(0)=1$.\n- $\\cos^{(k)}(x)=\\cos\\left(x+k\\frac\\pi2\\right)$ et $\\sin^{(k)}(x)=\\sin\\left(x+k\\frac\\pi2\\right)$ (récurrence) : $\\cos^{(2k)}(0)=(-1)^k$, $\\cos^{(2k+1)}(0)=0$, $\\sin^{(2k)}(0)=0$, $\\sin^{(2k+1)}(0)=(-1)^k$. Taylor-Young à l'ordre $2n+1$ pour $\\cos$ (le terme en $x^{2n+1}$ est nul) et à l'ordre $2n+2$ pour $\\sin$ (le terme en $x^{2n+2}$ est nul) donne les formules.\n- $\\operatorname{ch}'=\\operatorname{sh}$ et $\\operatorname{sh}'=\\operatorname{ch}$, avec $\\operatorname{ch}0=1$ et $\\operatorname{sh}0=0$ : même raisonnement, sans les signes.\n- Pour $f(x)=\\ln(1+x)$ : par récurrence, $f^{(k)}(x)=\\frac{(-1)^{k-1}(k-1)!}{(1+x)^k}$ pour $k\\ge1$, donc $\\frac{f^{(k)}(0)}{k!}=\\frac{(-1)^{k-1}}{k}$, et $f(0)=0$.\n- Pour $f(x)=(1+x)^\\alpha$ : par récurrence, $f^{(k)}(x)=\\alpha(\\alpha-1)\\cdots(\\alpha-k+1)(1+x)^{\\alpha-k}$, donc $\\frac{f^{(k)}(0)}{k!}=\\binom{\\alpha}{k}$.\n\n**Somme géométrique.** Pour $x\\neq1$, $\\sum_{k=0}^{n}x^k=\\frac{1-x^{n+1}}{1-x}$, donc $\\frac{1}{1-x}-\\sum_{k=0}^{n}x^k=\\frac{x^{n+1}}{1-x}=x^n\\cdot\\frac{x}{1-x}$, et $\\frac{x}{1-x}\\to0$ : c'est un $o(x^n)$.\n\n**Arctangente.** Pour tout réel $t$, la somme géométrique de raison $-t^2$ donne $\\frac{1}{1+t^2}=\\sum_{k=0}^{n}(-1)^kt^{2k}+\\frac{(-1)^{n+1}t^{2n+2}}{1+t^2}$. En intégrant de $0$ à $x$ ($\\arctan$ est la primitive de $\\frac{1}{1+t^2}$ nulle en $0$) :\n$$\\arctan x=\\sum_{k=0}^{n}(-1)^k\\frac{x^{2k+1}}{2k+1}+(-1)^{n+1}\\int_0^x\\frac{t^{2n+2}}{1+t^2}\\,\\mathrm{d}t,$$\net $\\left|\\int_0^x\\frac{t^{2n+2}}{1+t^2}\\,\\mathrm{d}t\\right|\\le\\left|\\int_0^xt^{2n+2}\\,\\mathrm{d}t\\right|=\\frac{|x|^{2n+3}}{2n+3}$, qui est un $o(x^{2n+2})$.",
+   "exemple": "- En remplaçant $x$ par $-x$ dans le DL de $\\frac{1}{1-x}$ : $\\frac{1}{1+x}=1-x+x^2-x^3+o(x^3)$.\n- Avec $\\alpha=-\\frac12$ : $\\binom{-1/2}{1}=-\\frac12$ et $\\binom{-1/2}{2}=\\frac{(-\\frac12)(-\\frac32)}{2}=\\frac38$, donc $\\frac{1}{\\sqrt{1+x}}=1-\\frac x2+\\frac{3x^2}{8}+o(x^2)$.\n- Limite : $\\cos x-1+\\frac{x^2}{2}=\\frac{x^4}{24}+o(x^4)$, donc $\\lim_{x\\to0}\\frac{\\cos x-1+\\frac{x^2}{2}}{x^4}=\\frac1{24}$.",
+   "contre_exemple": "- **Un reste trop petit rend l'égalité fausse** : $\\ln(1+x)=x-\\frac{x^2}{2}+o(x^3)$ est faux, car $\\ln(1+x)-x+\\frac{x^2}{2}=\\frac{x^3}{3}+o(x^3)$ n'est pas négligeable devant $x^3$. En revanche $\\sin x=x-\\frac{x^3}{6}+o(x^4)$ est juste, car le coefficient de $x^4$ est nul.\n- **Les DL usuels sont en $0$** : $\\ln x$ n'a pas de DL en $0$ (elle tend vers $-\\infty$), et $\\sqrt x$ n'a pas de DL à l'ordre $1$ en $0$ sur $\\left[0,+\\infty\\right[$ : il entraînerait la dérivabilité à droite en $0$, alors que $\\frac{\\sqrt x}{x}\\to+\\infty$.",
+   "affirmations": [
+    {
+     "texte": "Quand $x\\to0$, $\\cos x=1-\\frac{x^2}{2}+o(x^3)$.",
+     "vrai": true,
+     "justification": "C'est le DL de $\\cos$ avec $n=1$ : le reste est un $o(x^{2n+1})=o(x^3)$, car le coefficient de $x^3$ est nul."
+    },
+    {
+     "texte": "Comme $\\ln(1+x)=x-\\frac{x^2}{2}+o(x^2)$, on a $\\ln(1+x)\\le x-\\frac{x^2}{2}$ pour tout $x$ assez proche de $0$.",
+     "vrai": false,
+     "contre_exemple": "$\\ln(1+x)-x+\\frac{x^2}{2}=\\frac{x^3}{3}+o(x^3)$ est strictement positif pour $x>0$ petit (par exemple $\\ln(1{,}1)\\approx0{,}09531>0{,}095$). Un $o(x^2)$ n'a pas de signe connu."
+    },
+    {
+     "texte": "Pour tout réel $\\alpha$ et tout $n$, $(1+x)^\\alpha=\\sum_{k=0}^{n}\\frac{\\alpha^k}{k!}x^k+o(x^n)$.",
+     "vrai": false,
+     "contre_exemple": "$\\alpha=2$, $n=2$ : $(1+x)^2=1+2x+x^2$, alors que la formule proposée donne $1+2x+2x^2$. La bonne formule a les coefficients $\\binom{\\alpha}{k}$ ; celle proposée est le DL de $e^{\\alpha x}$."
+    },
+    {
+     "texte": "Quand $x\\to0$, $\\arctan x=x-\\frac{x^3}{3}+o(x^4)$.",
+     "vrai": true,
+     "justification": "C'est le DL de $\\arctan$ avec $n=1$, de reste $o(x^{2n+2})=o(x^4)$ ($\\arctan$ est impaire, le coefficient de $x^4$ est nul)."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taylor-young"
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-dl-operations",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Opérations sur les développements limités",
+   "recto": "Énoncer les règles de calcul des développements limités en $0$ (combinaison linéaire, produit, composée, inverse, primitive) avec leurs hypothèses.",
+   "cours": "Calculer un DL par Taylor-Young demande de dériver $n$ fois, ce qui devient vite impraticable (essayer avec $e^{\\sin x}$). En pratique, on part des DL usuels et on les **combine** : on somme, on multiplie, on compose, on inverse, on intègre, en manipulant des polynômes tronqués. La règle d'or : on travaille à un ordre fixé $n$ et on jette, à chaque étape, tous les termes de degré $>n$, qui sont des $o(x^n)$.\n\nPour le **produit**, on multiplie les parties régulières et on tronque. Pour la **composée** $f(g(x))$, il faut que $g(x)\\to0$ (sinon le DL de $f$ en $0$ ne s'applique pas) : on remplace la variable de $f$ par la partie régulière de $g$, puis on tronque. Pour l'**inverse** $\\frac1g$, il faut $g(0)\\neq0$ : on écrit $\\frac{1}{g}=\\frac{1}{g(0)}\\cdot\\frac{1}{1+u}$ avec $u\\to0$ et on compose avec $\\frac{1}{1+u}=1-u+u^2-\\cdots$. Pour une **primitive**, on intègre terme à terme et on gagne un ordre.\n\nMéthode : prévoir l'ordre nécessaire de chaque morceau. Si $g(x)$ commence par un terme en $x$, $g(x)^k$ commence en $x^k$ : dans une composée à l'ordre $n$, on n'a besoin que des puissances $u^k$ avec $k\\le n$. Dans un quotient $\\frac{\\sin x}{x}$, diviser par $x$ fait perdre un ordre : il faut le DL de $\\sin x$ à l'ordre $n+1$.\n\nLe piège principal : on **ne dérive pas** un DL sans justification. Si $f(x)=P(x)+o(x^n)$, rien ne dit que $f'(x)=P'(x)+o(x^{n-1})$ ; le sens sûr est l'intégration (si $f'$ a un DL, celui de $f$ s'en déduit). Autre erreur fréquente : soustraire deux DL et conclure à un ordre supérieur à celui des données.",
+   "hypotheses": [
+    "$f$ et $g$ sont définies au voisinage de $0$ et admettent des développements limités à l'ordre $n$ en $0$, de parties régulières $P$ et $Q$.",
+    "Pour la composée $f\\circ g$ : $Q(0)=0$, c'est-à-dire $g(x)\\to0$ quand $x\\to0$.",
+    "Pour l'inverse $\\frac1g$ : $Q(0)\\neq0$.",
+    "Pour la primitive : $f$ est continue sur un intervalle $I$ contenant $0$ et $F$ est une primitive de $f$ sur $I$."
+   ],
+   "hypotheses_pieges": [
+    "Pour la composée $f\\circ g$ : $g(x)$ a une limite finie quelconque quand $x\\to0$ (à la place de $g(x)\\to0$), $f$ ayant un DL en $0$.",
+    "Pour l'inverse $\\frac1g$ : aucune condition sur $Q(0)$ (à la place de $Q(0)\\neq0$).",
+    "Pour le produit : $f$ et $g$ ont des DL à des ordres $n$ et $m$ différents, le produit étant affirmé à l'ordre $\\max(n,m)$ (à la place du même ordre $n$ pour les deux)."
+   ],
+   "enonce": "Soient $n\\in\\mathbb{N}$ et $f,g$ deux fonctions définies au voisinage de $0$ telles que, quand $x\\to0$, $f(x)=P(x)+o(x^n)$ et $g(x)=Q(x)+o(x^n)$, avec $P,Q$ polynômes de degré au plus $n$. Pour un polynôme $R$, on note $[R]_n$ le polynôme obtenu en ne gardant que ses termes de degré au plus $n$.\n\n- **Combinaison linéaire** : pour tous réels $\\lambda,\\mu$, $\\lambda f(x)+\\mu g(x)=\\lambda P(x)+\\mu Q(x)+o(x^n)$.\n- **Produit** : $f(x)g(x)=[PQ]_n(x)+o(x^n)$.\n- **Composée** : si $Q(0)=0$, alors $f\\circ g$ est définie au voisinage de $0$ et $f(g(x))=[P\\circ Q]_n(x)+o(x^n)$.\n- **Inverse** : si $Q(0)\\neq0$, alors $\\frac1g$ est définie au voisinage de $0$ et admet un DL à l'ordre $n$, obtenu en écrivant $\\frac{1}{g}=\\frac{1}{Q(0)}\\cdot\\frac{1}{1+u}$ avec $u=\\frac{g}{Q(0)}-1$, puis en composant avec $\\frac{1}{1+u}=\\sum_{k=0}^{n}(-1)^ku^k+o(u^n)$.\n- **Primitive** : si $f$ est continue sur un intervalle $I$ contenant $0$, si $F$ est une primitive de $f$ sur $I$ et si $P(x)=\\sum_{k=0}^{n}a_kx^k$, alors $F(x)=F(0)+\\sum_{k=0}^{n}\\frac{a_k}{k+1}x^{k+1}+o(x^{n+1})$.",
+   "enonce_trous": "Si $f(x)=P(x)+o(x^n)$ et $g(x)=Q(x)+o(x^n)$ quand $x\\to0$, alors $f(x)g(x)=$ {{1}} $+\\,o(x^n)$ ; si de plus {{2}}, alors $f(g(x))=[P\\circ Q]_n(x)+o(x^n)$.",
+   "trous": [
+    {
+     "reponse": "$[PQ]_n(x)$",
+     "leurres": [
+      "$[PQ]_{n-1}(x)$",
+      "$P(x)+Q(x)$",
+      "$P(x)Q(0)+P(0)Q(x)$"
+     ]
+    },
+    {
+     "reponse": "$Q(0)=0$",
+     "leurres": [
+      "$Q(0)\\neq0$",
+      "$P(0)=0$",
+      "$Q(0)=1$"
+     ]
+    }
+   ],
+   "demo": "Écrivons $f(x)=P(x)+x^n\\varepsilon_1(x)$ et $g(x)=Q(x)+x^n\\varepsilon_2(x)$ avec $\\varepsilon_1,\\varepsilon_2\\to0$ en $0$.\n\n**Combinaison linéaire.** $\\lambda f+\\mu g=\\lambda P+\\mu Q+x^n(\\lambda\\varepsilon_1+\\mu\\varepsilon_2)$.\n\n**Produit.** $fg=PQ+x^n\\big(P\\varepsilon_2+Q\\varepsilon_1+x^n\\varepsilon_1\\varepsilon_2\\big)$ ; $P$ et $Q$ sont bornés au voisinage de $0$, donc la parenthèse tend vers $0$ : $fg=PQ+o(x^n)$. Enfin $PQ-[PQ]_n$ ne contient que des termes de degré $>n$, c'est un $o(x^n)$.\n\n**Composée.** Comme $g(x)\\to Q(0)=0$ et $f$ est définie au voisinage de $0$, $f\\circ g$ est définie au voisinage de $0$. On écrit $f(y)=P(y)+y^n\\varepsilon_1(y)$ avec $\\varepsilon_1(y)\\to0$ quand $y\\to0$ (et $\\varepsilon_1(0)=0$). Alors $\\varepsilon_1(g(x))\\to0$. Si $n\\ge1$, $Q$ est sans terme constant, donc $g(x)=Q(x)+o(x^n)$ est un $O(x)$ : $|g(x)|\\le C|x|$ près de $0$, et $g(x)^n\\varepsilon_1(g(x))=o(x^n)$ (si $n=0$, c'est $\\varepsilon_1(g(x))=o(1)$). D'autre part, par la règle du produit appliquée $k$ fois, $g(x)^k=Q(x)^k+o(x^n)$, donc $P(g(x))=P(Q(x))+o(x^n)=[P\\circ Q]_n(x)+o(x^n)$.\n\n**Inverse.** Soit $b=Q(0)\\neq0$. Comme $g(x)\\to b$, $g$ ne s'annule pas au voisinage de $0$. La fonction $u=\\frac gb-1$ a un DL à l'ordre $n$ de partie régulière $\\frac Qb-1$, nulle en $0$ ; $y\\mapsto\\frac{1}{1+y}$ a pour DL $\\sum_{k=0}^n(-1)^ky^k+o(y^n)$ (DL de $\\frac{1}{1-x}$ en $x=-y$). La règle de la composée donne le DL de $\\frac{1}{1+u}$, et $\\frac1g=\\frac1b\\cdot\\frac{1}{1+u}$.\n\n**Primitive.** $f$ étant continue sur $I$, elle a des primitives. Posons $G(x)=F(x)-F(0)-\\sum_{k=0}^{n}\\frac{a_k}{k+1}x^{k+1}$ : $G$ est dérivable sur $I$, $G(0)=0$ et $G'(x)=f(x)-P(x)=o(x^n)$. Soit $\\varepsilon>0$ et $\\eta>0$ tel que $|G'(t)|\\le\\varepsilon|t|^n$ pour $t\\in I$, $|t|<\\eta$. Pour $0<|x|<\\eta$, l'égalité des accroissements finis donne $c$ entre $0$ et $x$ avec $G(x)=xG'(c)$, d'où $|G(x)|\\le\\varepsilon|c|^n|x|\\le\\varepsilon|x|^{n+1}$ : $G(x)=o(x^{n+1})$.",
+   "exemple": "- **Quotient** : $\\frac{1}{\\cos x}=\\frac{1}{1-u}$ avec $u=1-\\cos x=\\frac{x^2}{2}+o(x^3)\\to0$ ; comme $\\frac{1}{1-u}=1+u+\\frac{u^2}{1-u}$ et $u^2=O(x^4)$, on obtient $\\frac1{\\cos x}=1+\\frac{x^2}{2}+o(x^3)$. Puis $\\tan x=\\sin x\\cdot\\frac{1}{\\cos x}=\\left(x-\\frac{x^3}{6}\\right)\\left(1+\\frac{x^2}{2}\\right)+o(x^3)=x+\\frac{x^3}{3}+o(x^3)$.\n- **Primitive** : $\\frac{1}{1+x^2}=1-x^2+x^4-\\frac{x^6}{1+x^2}=1-x^2+x^4+o(x^5)$, donc $\\arctan x=x-\\frac{x^3}{3}+\\frac{x^5}{5}+o(x^6)$.",
+   "contre_exemple": "- **On ne dérive pas un DL** : $f(x)=x^3\\sin\\frac1x$, $f(0)=0$, vérifie $f(x)=o(x^2)$ (DL à l'ordre $2$ nul). Mais $f'(x)=3x^2\\sin\\frac1x-x\\cos\\frac1x$ ($f'(0)=0$) n'a pas de DL à l'ordre $1$ : sinon $f'(x)=b_0+b_1x+o(x)$ avec $b_0=\\lim f'=0$, et $\\frac{f'(x)}{x}=3x\\sin\\frac1x-\\cos\\frac1x$ tendrait vers $b_1$, ce qui est faux.\n- **Composée sans $g\\to0$** : $f(y)=|y-1|$ vaut $1-y$ pour $y$ proche de $0$, donc a pour DL en $0$ la partie régulière $P(y)=1-y$ à tout ordre. Avec $g(x)=1+x$ ($g\\to1$), le calcul formel $P(1+x)=-x$ est faux : $f(g(x))=|x|$ n'a même pas de DL à l'ordre $1$ en $0$, n'étant pas dérivable en $0$.",
+   "affirmations": [
+    {
+     "texte": "Si $f(x)=1+x+o(x)$ et $g(x)=1+x+o(x)$ quand $x\\to0$, alors $f(x)-g(x)=o(x^2)$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=e^x$ et $g(x)=1+x$ : $f(x)-g(x)=\\frac{x^2}{2}+o(x^2)$, qui n'est pas un $o(x^2)$. La différence de deux $o(x)$ est seulement un $o(x)$."
+    },
+    {
+     "texte": "Si $f$ est dérivable sur un intervalle contenant $0$ et si $f'(x)=1+2x+o(x)$ quand $x\\to0$, alors $f(x)=f(0)+x+x^2+o(x^2)$.",
+     "vrai": true,
+     "justification": "$G(x)=f(x)-f(0)-x-x^2$ vérifie $G(0)=0$ et $G'(x)=o(x)$ ; les accroissements finis donnent $|G(x)|\\le|x|\\sup_{|c|\\le|x|}|G'(c)|=o(x^2)$, comme dans la démonstration de la règle de primitive."
+    },
+    {
+     "texte": "Si $f(x)=P(x)+o(x^n)$ quand $x\\to0$ et si $f$ est dérivable au voisinage de $0$, alors $f'(x)=P'(x)+o(x^{n-1})$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^3\\sin\\frac1x$, $f(0)=0$, $n=2$, $P=0$ : $f'(x)=3x^2\\sin\\frac1x-x\\cos\\frac1x$ n'est pas un $o(x)$, puisque $\\frac{f'(x)}{x}$ n'a pas de limite en $0$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taylor-dl-usuels"
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-dl-position",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-taylor",
+   "type": "theoreme",
+   "titre": "Développement limité et position par rapport à la tangente",
+   "recto": "Énoncer comment un développement limité en $a$ donne la tangente et la position de la courbe par rapport à elle, avec les hypothèses.",
+   "cours": "Un DL à l'ordre $1$ en $a$, $f(x)=c_0+c_1(x-a)+o(x-a)$, c'est exactement la dérivabilité en $a$ : $f(a)=c_0$, $f'(a)=c_1$, et la tangente a pour équation $y=c_0+c_1(x-a)$. Pour savoir de quel côté de sa tangente se trouve la courbe, il faut aller plus loin dans le DL, jusqu'au **premier terme non nul** après le terme affine, $c_p(x-a)^p$ : près de $a$, l'écart $f(x)-T(x)$ est équivalent à $c_p(x-a)^p$, donc du même signe.\n\nSi $p$ est **pair**, ce signe est celui de $c_p$ des deux côtés : la courbe est au-dessus de sa tangente si $c_p>0$, en dessous si $c_p<0$. Si $p$ est **impair**, il change en $a$ : la courbe traverse sa tangente, c'est un point d'inflexion. Lorsque la tangente est horizontale ($c_1=0$), on obtient un test d'extremum plus fort que le test de la dérivée seconde : $\\operatorname{ch}x+\\cos x=2+\\frac{x^4}{12}+o(x^4)$ a un minimum local strict en $0$ alors que sa dérivée seconde y est nulle.\n\nMéthode : calculer le DL de $f$ en $a$ (en posant $x=a+h$) jusqu'au premier terme non nul de degré $\\ge2$, lire la tangente sur les termes de degré $0$ et $1$, puis conclure avec la parité de $p$ et le signe de $c_p$. La même méthode, avec un développement en $\\frac1x$, donne la position d'une courbe par rapport à une asymptote.\n\nLe piège principal : un DL arrêté trop tôt ne permet pas de conclure. Les fonctions $x^3$, $x^4$ et $-x^4$ ont toutes le même DL à l'ordre $2$ en $0$, $0+o(x^2)$, et trois comportements différents ; de même, $f''(a)=0$ ne suffit pas pour avoir un point d'inflexion.",
+   "hypotheses": [
+    "$f$ est définie sur un intervalle $I$ et $a$ est un point intérieur à $I$.",
+    "Quand $x\\to a$, $f(x)=c_0+c_1(x-a)+c_p(x-a)^p+o\\big((x-a)^p\\big)$, avec $p\\ge2$ un entier.",
+    "$c_p\\neq0$."
+   ],
+   "hypotheses_pieges": [
+    "$c_p$ est quelconque, éventuellement nul (à la place de $c_p\\neq0$).",
+    "$f$ admet seulement un DL à l'ordre $1$ en $a$ (à la place d'un DL jusqu'au premier terme non nul de degré $p\\ge2$).",
+    "$f$ est deux fois dérivable en $a$ avec $f''(a)=0$, pour conclure que la courbe traverse sa tangente (à la place d'un DL dont le premier terme non affine est de degré $p$ impair)."
+   ],
+   "enonce": "Soient $f$ une fonction définie sur un intervalle $I$ et $a$ un point intérieur à $I$. On suppose que, quand $x\\to a$,\n$$f(x)=c_0+c_1(x-a)+c_p(x-a)^p+o\\big((x-a)^p\\big),$$\navec $p\\ge2$ un entier et $c_p\\neq0$. Alors $f$ est dérivable en $a$, $f(a)=c_0$, $f'(a)=c_1$, la tangente à la courbe en $a$ a pour équation $y=T(x)=c_0+c_1(x-a)$, et il existe $h>0$ tel que, pour $0<|x-a|<h$, $f(x)-T(x)$ soit non nul et du signe de $c_p(x-a)^p$. Ainsi :\n\n- si $p$ est **pair**, la courbe est strictement au-dessus de sa tangente au voisinage de $a$ (sauf au point de contact) si $c_p>0$, strictement en dessous si $c_p<0$ ; si de plus $c_1=0$, $f$ admet en $a$ un minimum local strict si $c_p>0$, un maximum local strict si $c_p<0$ ;\n- si $p$ est **impair**, la courbe traverse sa tangente en $a$ : le point $(a,f(a))$ est un point d'inflexion (au sens « la courbe traverse sa tangente ») ; si de plus $c_1=0$, $f$ n'a pas d'extremum local en $a$.",
+   "enonce_trous": "Si, quand $x\\to a$, $f(x)=c_0+c_1(x-a)+c_p(x-a)^p+o\\big((x-a)^p\\big)$ avec $p\\ge2$ et $c_p\\neq0$, alors au voisinage de $a$ (et pour $x\\neq a$), $f(x)-c_0-c_1(x-a)$ est du signe de {{1}} ; si $p$ est {{2}}, la courbe traverse sa tangente en $a$.",
+   "trous": [
+    {
+     "reponse": "$c_p(x-a)^p$",
+     "leurres": [
+      "$c_p$",
+      "$c_1$",
+      "$(x-a)^p$"
+     ]
+    },
+    {
+     "reponse": "impair",
+     "leurres": [
+      "pair",
+      "supérieur ou égal à $3$",
+      "premier"
+     ]
+    }
+   ],
+   "demo": "Écrivons le reste $(x-a)^p\\varepsilon(x)$ avec $\\varepsilon(x)\\to0$ quand $x\\to a$ (et $\\varepsilon(a)=0$).\n\n**Valeur, dérivée, tangente.** En $x=a$, l'égalité donne $f(a)=c_0$. Pour $x\\neq a$,\n$$\\frac{f(x)-f(a)}{x-a}=c_1+(x-a)^{p-1}\\big(c_p+\\varepsilon(x)\\big)\\xrightarrow[x\\to a]{}c_1,$$\ncar $p-1\\ge1$. Donc $f$ est dérivable en $a$, $f'(a)=c_1$, et la tangente est $y=T(x)=c_0+c_1(x-a)$.\n\n**Signe de l'écart.** On a $f(x)-T(x)=(x-a)^p\\big(c_p+\\varepsilon(x)\\big)$. Comme $c_p\\neq0$ et $\\varepsilon(x)\\to0$, et comme $a$ est intérieur à $I$, il existe $h>0$ tel que $\\left]a-h,a+h\\right[\\subset I$ et $|\\varepsilon(x)|<|c_p|$ pour $|x-a|<h$ ; alors $c_p+\\varepsilon(x)$ est non nul et du signe de $c_p$. Pour $0<|x-a|<h$, $f(x)-T(x)$ est donc non nul et du signe de $c_p(x-a)^p$.\n\n**Conclusions.** Si $p$ est pair, $(x-a)^p>0$ pour $x\\neq a$ : l'écart a le signe de $c_p$ des deux côtés. Si $p$ est impair, $(x-a)^p$ change de signe en $a$ : l'écart est d'un signe sur $\\left]a-h,a\\right[$ et du signe opposé sur $\\left]a,a+h\\right[$, la courbe traverse sa tangente. Si $c_1=0$, $T$ est la constante $f(a)$ et $f(x)-f(a)$ a le signe de $c_p(x-a)^p$ : minimum (ou maximum) local strict si $p$ est pair selon le signe de $c_p$ ; si $p$ est impair, $f(x)-f(a)$ prend les deux signes sur tout voisinage de $a$, donc pas d'extremum local.",
+   "exemple": "- $\\ln(1+x)=x-\\frac{x^2}{2}+o(x^2)$ : la tangente en $0$ est $y=x$, et $p=2$, $c_2=-\\frac12<0$ : la courbe est en dessous de sa tangente au voisinage de $0$.\n- $\\sin x=x-\\frac{x^3}{6}+o(x^3)$ : tangente $y=x$, $p=3$ impair : l'origine est un point d'inflexion ; la courbe est au-dessus de $y=x$ pour $x<0$ et en dessous pour $x>0$ (signe de $-\\frac{x^3}{6}$).",
+   "contre_exemple": "- **Il faut le premier terme non nul** : $x^3$, $x^4$ et $-x^4$ ont le même DL à l'ordre $2$ en $0$, à savoir $0+0\\cdot x+0\\cdot x^2+o(x^2)$ ; la première traverse sa tangente $y=0$, la deuxième reste au-dessus, la troisième en dessous. Avec $c_2=0$, on ne peut rien conclure.\n- **Point intérieur** : $f(x)=x^3$ sur $I=[0,1]$, avec $a=0$ : le DL a $p=3$ impair, mais la courbe, définie d'un seul côté de $0$, reste au-dessus de sa tangente $y=0$ sur $I$ et ne la traverse pas.\n- **$f''(a)=0$ ne suffit pas** : $f(x)=x^4$ vérifie $f''(0)=0$, mais $x^4>0$ pour $x\\neq0$ : la courbe ne traverse pas sa tangente $y=0$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est deux fois dérivable sur un intervalle ouvert contenant $a$ et si $f''(a)=0$, la courbe de $f$ traverse sa tangente en $a$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^4$ en $0$ : $f''(0)=0$, mais $f(x)-0=x^4>0$ pour $x\\neq0$ ; la courbe reste au-dessus de sa tangente $y=0$."
+    },
+    {
+     "texte": "Si $f(x)=2+x^3+o(x^3)$ quand $x\\to0$, alors $f$ admet un extremum local en $0$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=2+x^3$ : $f(x)-f(0)=x^3$ prend les deux signes sur tout voisinage de $0$. Ici $c_1=0$ et $p=3$ est impair : pas d'extremum."
+    },
+    {
+     "texte": "Si $f(x)=1+2x+3x^2+o(x^2)$ quand $x\\to0$, la courbe de $f$ est au-dessus de sa tangente $y=1+2x$ au voisinage de $0$.",
+     "vrai": true,
+     "justification": "Ici $p=2$ est pair et $c_2=3>0$ : $f(x)-(1+2x)$ est du signe de $3x^2$, positif pour $x\\neq0$ proche de $0$."
+    },
+    {
+     "texte": "Si $f(x)=x+o(x^2)$ quand $x\\to0$, on ne peut pas savoir, sans autre information, de quel côté de la droite $y=x$ se trouve la courbe au voisinage de $0$.",
+     "vrai": true,
+     "justification": "$x+x^3$ et $x+x^4$ vérifient tous deux $f(x)=x+o(x^2)$ ; la première traverse la droite $y=x$, la seconde reste au-dessus."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taylor-dl-operations",
+    "ar-t-derivation-inflexion"
+   ]
+  }
+ ]
+}
