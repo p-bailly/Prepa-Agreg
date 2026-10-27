@@ -15,9 +15,9 @@
       ],
       "hypotheses_pieges": [
         "$P(n)$ est vraie pour $n=n_0,n_0+1,\\dots,n_0+10$ (vérification sur des exemples, à la place de l'hérédité).",
-        "Il existe un entier $n\\ge n_0$ tel que $P(n)$ implique $P(n+1)$.",
+        "Il existe un entier $n\\ge n_0$ tel que $P(n)$ implique $P(n+1)$ (à la place de l'hérédité pour tout $n\\ge n_0$).",
         "Pour tout entier $n\\ge n_0+1$, $P(n)$ implique $P(n+1)$ (hérédité à partir du rang $n_0+1$ seulement).",
-        "Pour tout entier $n\\ge n_0$, $P(n+1)$ implique $P(n)$."
+        "Pour tout entier $n\\ge n_0$, $P(n+1)$ implique $P(n)$ (à la place de l'hérédité)."
       ],
       "enonce": "Soient $n_0$ un entier naturel et $P(n)$ une propriété qui dépend d'un entier $n\\ge n_0$. On suppose :\n\n- **initialisation** : $P(n_0)$ est vraie ;\n- **hérédité** : pour tout entier $n\\ge n_0$, si $P(n)$ est vraie, alors $P(n+1)$ est vraie.\n\nAlors $P(n)$ est vraie pour tout entier $n\\ge n_0$.",
       "enonce_trous": "Soient $n_0\\in\\mathbb{N}$ et $P(n)$ une propriété définie pour tout entier $n\\ge n_0$. Si {{1}} est vraie et si, {{2}}, $P(n)$ implique $P(n+1)$, alors $P(n)$ est vraie pour tout entier $n\\ge n_0$.",
@@ -69,7 +69,7 @@
       "type": "theoreme",
       "titre": "Limite de $(q^n)$ (suites géométriques)",
       "recto": "Énoncer le théorème donnant le comportement de la suite $(q^n)$ selon le réel $q$, avec ses hypothèses.",
-      "cours": "Une suite géométrique $u_n=u_0q^n$ multiplie chaque terme par le même facteur $q$ ; son comportement à l'infini ne dépend que de la position de $q$ par rapport à $-1$ et à $1$. Intuitivement, multiplier sans cesse par un nombre de valeur absolue $<1$ écrase les termes vers $0$, multiplier par un nombre $>1$ les fait exploser, et un facteur négatif fait alterner les signes. La preuve du cas $q>1$ repose sur l'inégalité de Bernoulli $(1+a)^n\\ge1+na$, démontrée par récurrence ; le cas $|q|<1$ s'y ramène en passant à $\\frac{1}{|q|}$.\n\nCe résultat est une brique de base. Il donne la limite des suites arithmético-géométriques $u_{n+1}=au_n+b$ (avec $a\\neq1$, on se ramène à $v_n=u_n-c$, géométrique de raison $a$, où $c=ac+b$), celle des sommes $1+q+\\dots+q^n=\\frac{1-q^{n+1}}{1-q}$, et il sert de terme de comparaison pour beaucoup d'autres suites. Pour un seuil (« à partir de quel $n$ a-t-on $q^n<\\varepsilon$ ? »), on utilise la décroissance de $(q^n)$ quand $0<q<1$, et le logarithme.\n\nLe piège principal : la raison doit être **fixe**. Si $0<q_n<1$ dépend de $n$, rien ne dit que $q_n^{\\,n}\\to0$ (avec $q_n=2^{-1/n}$, on a $q_n^{\\,n}=\\frac12$). Autre piège : $q<1$ ne suffit pas, il faut $-1<q<1$ ; pour $q=-1$, la suite $\\left((-1)^n\\right)$, pourtant bornée, n'a pas de limite.",
+      "cours": "Une suite géométrique $u_n=u_0q^n$ multiplie chaque terme par le même facteur $q$ ; si $u_0\\neq0$, son comportement à l'infini ne dépend que de la position de $q$ par rapport à $-1$ et à $1$ (et, pour $q>1$, du signe de $u_0$, qui fixe le signe de la limite infinie). Intuitivement, multiplier sans cesse par un nombre de valeur absolue $<1$ écrase les termes vers $0$, multiplier par un nombre $>1$ les fait exploser, et un facteur négatif fait alterner les signes. La preuve du cas $q>1$ repose sur l'inégalité de Bernoulli $(1+a)^n\\ge1+na$, démontrée par récurrence ; le cas $|q|<1$ s'y ramène en passant à $\\frac{1}{|q|}$.\n\nCe résultat est une brique de base. Il donne la limite des suites arithmético-géométriques $u_{n+1}=au_n+b$ (avec $a\\neq1$, on se ramène à $v_n=u_n-c$, géométrique de raison $a$, où $c=ac+b$), celle des sommes $1+q+\\dots+q^n=\\frac{1-q^{n+1}}{1-q}$ (pour $q\\neq1$), et il sert de terme de comparaison pour beaucoup d'autres suites. Pour un seuil (« à partir de quel $n$ a-t-on $q^n<\\varepsilon$ ? »), on utilise la décroissance de $(q^n)$ quand $0<q<1$, et le logarithme.\n\nLe piège principal : la raison doit être **fixe**. Si $0<q_n<1$ dépend de $n$, rien ne dit que $q_n^{\\,n}\\to0$ (avec $q_n=2^{-1/n}$, on a $q_n^{\\,n}=\\frac12$). Autre piège : $q<1$ ne suffit pas, il faut $-1<q<1$ ; pour $q=-1$, la suite $\\left((-1)^n\\right)$, pourtant bornée, n'a pas de limite.",
       "hypotheses": [
         "$q$ est un réel fixé : il ne dépend pas de $n$.",
         "Pour $\\lim q^n=0$ : $-1<q<1$.",
@@ -131,6 +131,7 @@
       ],
       "prerequis": [
         "ar-t-suites-recurrence",
+        "ar-t-suites-operations",
         "ar-t-gendarmes",
         "ar-t-suites-comparaison"
       ]

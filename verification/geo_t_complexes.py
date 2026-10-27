@@ -192,7 +192,6 @@ assert egal(w, -3 * sqrt(2) / 2 - 3 * sqrt(2) / 2 * I)  # affirmation 2 (forme a
 assert sp.Abs(I) == 1 and not egal(I, 1) and not egal(I, -1)  # affirmation 4
 assert egal(1 / ((3 + 4 * I) / 5), conj((3 + 4 * I) / 5))  # affirmation 3 (cas |z| = 1)
 # Trous : leurres faux.
-assert sp.Abs(1 + 1) != sp.Abs(1) + sp.Abs(1) or True
 assert sp.Abs(1 * 1) != sp.Abs(1) + sp.Abs(1)  # trou 1, leurre |zw| = |z| + |w| (z = w = 1)
 assert not egal(sp.Abs(1 - I), sp.Abs(1) - sp.Abs(I))  # trou 1, leurre |z - w| = |z| - |w| (z = 1, w = i)
 assert not egal(sp.Abs(1 + (-1)), 2)  # trou 1, leurre |z + w| = |z| + |w|

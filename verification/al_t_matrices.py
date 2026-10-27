@@ -610,7 +610,7 @@ assert ((eye(3) + ones(3, 3)) / 4)[0, 0] == R(1, 2)
 Az = M([[R(1, 2), 1], [0, R(1, 3)]])
 assert all(suite(Az, zeros(2, 1), M([3, 5]), k) == puiss(Az, k) * M([3, 5]) for k in range(6)), "al-t-matrices-suites : C = 0 permis"
 # al-t-matrices-markov (piège « pi_0 invariante ») : pi_0 = (1, 0) non invariante, et pi_n converge quand même vers (6/7, 1/7).
-assert M([[1, 0]]) * Pex != M([[1, 0]]) and sp.limit((M([[1, 0]]) * puiss(Pex, 0))[0] * 0 + R(6, 7) + R(3, 10) ** n_ * (1 - R(6, 7)), n_, sp.oo) == R(6, 7)
+assert M([[1, 0]]) * Pex != M([[1, 0]]) and sp.limit(R(6, 7) + R(3, 10) ** n_ * R(1, 7), n_, sp.oo) == R(6, 7)
 assert all((M([[1, 0]]) * puiss(Pex, k))[0] == R(6, 7) + R(3, 10) ** k * R(1, 7) for k in range(8)), "al-t-matrices-markov : convergence sans pi_0 invariante"
 # al-t-matrices-produit (cours) : pour n = 3 la formule du binôme peut valoir sans commutation (E12, E23 d'ordre 3).
 E12_3 = zeros(3, 3); E12_3[0, 1] = 1
