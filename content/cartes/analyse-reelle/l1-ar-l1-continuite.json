@@ -1,0 +1,297 @@
+{
+ "cartes": [
+  {
+   "id": "ar-l1-continuite-sequentielle",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-continuite",
+   "type": "theoreme",
+   "titre": "Caractérisation séquentielle de la limite et de la continuité",
+   "recto": "Énoncer la caractérisation séquentielle de la limite d'une fonction en un point, puis celle de la continuité, avec leurs hypothèses.",
+   "cours": "La définition de la limite avec des $\\varepsilon$ est précise mais lourde à manier ; la caractérisation séquentielle la traduit en langage de suites, où l'on dispose déjà de tous les outils (opérations, encadrement, suites extraites). Elle dit que $f$ tend vers $\\ell$ en $a$ exactement quand $f$ transforme **toute** suite qui tend vers $a$ en une suite qui tend vers $\\ell$. Elle permet ainsi de transférer aux fonctions les théorèmes démontrés pour les suites.\n\nElle est surtout imbattable pour **réfuter** : deux suites $u_n\\to a$ et $v_n\\to a$ telles que $(f(u_n))$ et $(f(v_n))$ aient des limites différentes montrent que $f$ n'a pas de limite en $a$ ; c'est ainsi qu'on voit que $\\sin\\frac1x$ n'a pas de limite en $0$. Elle sert aussi à **passer à la limite** : si $f$ et $g$ sont continues sur $\\mathbb{R}$ et coïncident sur $\\mathbb{Q}$, alors $f=g$, car tout réel est limite d'une suite de rationnels.\n\nConvention : si $a\\in I$, la limite de $f$ en $a$, quand elle existe, vaut $f(a)$ (on teste aussi la suite constante égale à $a$) ; tendre vers $f(a)$ en $a$, c'est être continue en $a$.\n\nLe piège principal : il faut **toutes** les suites. Une seule suite, ou une famille particulière de suites (les $a+\\frac1n$, les suites de rationnels, les suites d'un seul côté de $a$), ne suffit pas.",
+   "hypotheses": [
+    "$a$ est un point de $I$ ou une extrémité de $I$, éventuellement $\\pm\\infty$.",
+    "$\\ell$ est un réel, ou $+\\infty$, ou $-\\infty$.",
+    "La condition porte sur toutes les suites $(u_n)$ d'éléments de $I$ qui tendent vers $a$."
+   ],
+   "hypotheses_pieges": [
+    "La condition porte sur une seule suite $(u_n)$ d'éléments de $I$ tendant vers $a$ (à la place de toutes).",
+    "La condition porte sur les seules suites de rationnels tendant vers $a$ (à la place de toutes les suites d'éléments de $I$).",
+    "La condition porte sur les seules suites tendant vers $a$ par valeurs strictement supérieures, $a$ étant intérieur à $I$ (à la place de toutes)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$, $f:I\\to\\mathbb{R}$, $a$ un point de $I$ ou une extrémité de $I$ (éventuellement $\\pm\\infty$) et $\\ell\\in\\mathbb{R}\\cup\\{-\\infty,+\\infty\\}$. Alors $f(x)\\to\\ell$ quand $x\\to a$ si et seulement si, pour toute suite $(u_n)$ d'éléments de $I$ qui tend vers $a$, la suite $(f(u_n))$ tend vers $\\ell$.\n\nEn particulier, pour $a\\in I$ : $f$ est continue en $a$ si et seulement si $f(u_n)\\to f(a)$ pour toute suite $(u_n)$ d'éléments de $I$ de limite $a$.",
+   "enonce_trous": "Soient $f:I\\to\\mathbb{R}$ et $a$ un point ou une extrémité de l'intervalle $I$. Alors $f$ tend vers $\\ell$ en $a$ si et seulement si, pour {{1}} d'éléments de $I$ de limite $a$, la suite $(f(u_n))$ tend vers $\\ell$. En particulier, si $a\\in I$, $f$ est continue en $a$ si et seulement si $(f(u_n))$ tend vers {{2}} pour toute suite $(u_n)$ d'éléments de $I$ de limite $a$.",
+   "trous": [
+    {
+     "reponse": "toute suite $(u_n)$",
+     "leurres": [
+      "au moins une suite $(u_n)$",
+      "toute suite $(u_n)$ de rationnels",
+      "toute suite $(u_n)$ constante"
+     ]
+    },
+    {
+     "reponse": "$f(a)$",
+     "leurres": [
+      "$a$",
+      "$0$",
+      "$f(u_0)$"
+     ]
+    }
+   ],
+   "demo": "**Sens direct** (cas $a$ et $\\ell$ réels). Supposons que $f(x)\\to\\ell$ quand $x\\to a$, et soit $(u_n)$ une suite d'éléments de $I$ de limite $a$. Soit $\\varepsilon>0$ : il existe $\\eta>0$ tel que, pour tout $x\\in I$, $|x-a|\\le\\eta\\Rightarrow|f(x)-\\ell|\\le\\varepsilon$. Comme $u_n\\to a$, il existe $N$ tel que $|u_n-a|\\le\\eta$ pour $n\\ge N$, donc $|f(u_n)-\\ell|\\le\\varepsilon$ pour $n\\ge N$ : $f(u_n)\\to\\ell$.\n\n**Réciproque, par contraposée** (même cas). Supposons que $f$ ne tende pas vers $\\ell$ en $a$ : il existe $\\varepsilon>0$ tel que, pour tout $\\eta>0$, il existe $x\\in I$ avec $|x-a|\\le\\eta$ et $|f(x)-\\ell|>\\varepsilon$. En prenant $\\eta=\\frac{1}{n+1}$, on obtient pour chaque $n$ un $u_n\\in I$ tel que $|u_n-a|\\le\\frac{1}{n+1}$ et $|f(u_n)-\\ell|>\\varepsilon$. Alors $u_n\\to a$, mais $(f(u_n))$ ne tend pas vers $\\ell$.\n\n**Cas infinis.** La preuve est la même en remplaçant « $|x-a|\\le\\eta$ » par « $x\\ge B$ » si $a=+\\infty$ (et $\\eta=\\frac{1}{n+1}$ par $B=n$, ce qui donne $u_n\\ge n$), par « $x\\le-B$ » si $a=-\\infty$, et « $|f(x)-\\ell|\\le\\varepsilon$ » par « $f(x)\\ge A$ » si $\\ell=+\\infty$, par « $f(x)\\le-A$ » si $\\ell=-\\infty$.\n\n**Continuité.** Si $a\\in I$, la suite constante égale à $a$ montre que la seule limite possible est $f(a)$ ; $f$ est continue en $a$ exactement quand $f(x)\\to f(a)$, d'où le second énoncé.",
+   "exemple": "La fonction $x\\mapsto\\sin\\frac1x$ n'a pas de limite en $0$ : avec $u_n=\\frac{1}{2n\\pi}$ et $v_n=\\frac{1}{2n\\pi+\\pi/2}$ ($n\\ge1$), on a $u_n\\to0$ et $v_n\\to0$, mais $\\sin\\frac{1}{u_n}=0$ et $\\sin\\frac{1}{v_n}=1$ pour tout $n$.\n\nAutre usage : si $f,g:\\mathbb{R}\\to\\mathbb{R}$ sont continues et coïncident sur $\\mathbb{Q}$, alors $f=g$. En effet, pour $x$ réel, $r_n=\\frac{\\lfloor10^nx\\rfloor}{10^n}$ est rationnel et $x-10^{-n}<r_n\\le x$, donc $r_n\\to x$ et $f(x)=\\lim f(r_n)=\\lim g(r_n)=g(x)$.",
+   "contre_exemple": "- **Une seule suite ne suffit pas** : $f(x)=\\sin\\frac{\\pi}{x}$ vérifie $f\\left(\\frac1n\\right)=\\sin(n\\pi)=0$ pour tout $n\\ge1$, mais $f\\left(\\frac{2}{4n+1}\\right)=\\sin\\left(2n\\pi+\\frac\\pi2\\right)=1$ : $f$ n'a pas de limite en $0$.\n- **Les suites de rationnels ne suffisent pas** : l'indicatrice $\\mathbf{1}_{\\mathbb{Q}}$ (qui vaut $1$ sur $\\mathbb{Q}$ et $0$ ailleurs) vérifie, en un rationnel $a$, $\\mathbf{1}_{\\mathbb{Q}}(r_n)=1\\to\\mathbf{1}_{\\mathbb{Q}}(a)$ pour toute suite de rationnels $r_n\\to a$ ; pourtant $\\mathbf{1}_{\\mathbb{Q}}\\left(a+\\frac{\\sqrt2}{n}\\right)=0$ : elle n'est pas continue en $a$.\n- **Les suites d'un seul côté ne suffisent pas** : $f=\\mathbf{1}_{\\left[0,+\\infty\\right[}$ vérifie $f(u_n)=1\\to f(0)$ pour toute suite $u_n\\to0$ à termes strictement positifs, mais $f\\left(-\\frac1n\\right)=0$ : $f$ n'est pas continue en $0$.",
+   "affirmations": [
+    {
+     "texte": "Soit $f:\\left]0,1\\right]\\to\\mathbb{R}$. Si $f\\left(\\frac1n\\right)\\to0$ quand $n\\to+\\infty$, alors $f(x)\\to0$ quand $x\\to0$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=\\sin\\frac\\pi x$ : $f\\left(\\frac1n\\right)=\\sin(n\\pi)=0$, mais $f\\left(\\frac{2}{4n+1}\\right)=1$ pour tout $n\\ge1$ ; $f$ n'a pas de limite en $0$."
+    },
+    {
+     "texte": "Soit $f:\\left]0,1\\right]\\to\\mathbb{R}$. Si, pour toute suite $(u_n)$ d'éléments de $\\left]0,1\\right]$ de limite $0$, la suite $(f(u_n))$ converge, alors $f$ admet une limite finie en $0$.",
+     "vrai": true,
+     "justification": "Si $u_n\\to0$ et $v_n\\to0$, la suite $w=(u_0,v_0,u_1,v_1,\\dots)$ tend vers $0$, donc $(f(w_n))$ converge ; ses suites extraites $(f(u_n))$ et $(f(v_n))$ ont donc la même limite $\\ell$. Toutes les suites donnent la même limite réelle $\\ell$, et la caractérisation séquentielle conclut."
+    },
+    {
+     "texte": "Si $f,g:\\mathbb{R}\\to\\mathbb{R}$ sont continues et $f(r)=g(r)$ pour tout $r\\in\\mathbb{Q}$, alors $f=g$.",
+     "vrai": true,
+     "justification": "Tout réel $x$ est limite d'une suite de rationnels $(r_n)$ ; par continuité, $f(x)=\\lim f(r_n)=\\lim g(r_n)=g(x)$."
+    },
+    {
+     "texte": "Soient $f:\\mathbb{R}\\to\\mathbb{R}$ continue en $a$ et $(u_n)$ une suite réelle. Si $f(u_n)\\to f(a)$, alors $u_n\\to a$.",
+     "vrai": false,
+     "contre_exemple": "$f$ constante égale à $0$, $a=0$ et $u_n=n$ : $f(u_n)=0\\to f(0)$, alors que $u_n\\to+\\infty$."
+    }
+   ],
+   "prerequis": [
+    "ar-t-continuite-image-suite"
+   ]
+  },
+  {
+   "id": "ar-l1-continuite-image-intervalle",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-continuite",
+   "type": "theoreme",
+   "titre": "Image d'un intervalle par une fonction continue",
+   "recto": "Énoncer le théorème sur l'image d'un intervalle par une fonction continue, avec ses hypothèses, et préciser le cas d'un segment.",
+   "cours": "Le théorème des valeurs intermédiaires dit qu'une fonction continue sur un intervalle ne « saute » aucune valeur ; reformulé en termes d'ensembles, il dit que l'image d'un intervalle par une fonction continue est un intervalle. C'est la forme la plus maniable du théorème : elle évite de choisir deux points et s'applique à tout intervalle, ouvert ou non, borné ou non.\n\nLes intervalles de $\\mathbb{R}$ sont exactement les parties $J$ « sans trou » : pour tous $u\\le v$ dans $J$, $[u,v]\\subset J$ (un singleton $\\{c\\}=[c,c]$ est un intervalle). Pour montrer que $f(I)$ est un intervalle, on prend donc deux valeurs $f(x_1)\\le f(x_2)$ et on applique le théorème des valeurs intermédiaires entre $x_1$ et $x_2$.\n\nEn pratique, on s'en sert pour prouver qu'une fonction continue qui ne s'annule pas sur un intervalle garde un signe strict constant, pour montrer qu'une fonction continue à valeurs dans un ensemble « troué » ($\\mathbb{Z}$, $\\mathbb{Q}$, $\\{-1,1\\}$) est constante, et pour déterminer $f(I)$ à l'aide du tableau de variations. Sur un segment, le théorème des bornes atteintes précise le résultat : $f([a,b])=[m,M]$.\n\nLe piège principal : seule la propriété « être un intervalle » est conservée, pas la nature de l'intervalle. Ainsi $\\sin\\left(\\left]0,2\\pi\\right[\\right)=[-1,1]$ (un ouvert peut donner un fermé), et $x\\mapsto\\frac1x$ envoie l'intervalle borné $\\left]0,1\\right]$ sur $\\left[1,+\\infty\\right[$, qui ne l'est pas.",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$.",
+    "$f$ est continue en tout point de $I$.",
+    "$f$ est à valeurs réelles."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est continue sur $I$ privé d'un point (à la place de continue sur $I$).",
+    "$I$ est une réunion de deux intervalles disjoints (à la place d'un intervalle).",
+    "$f$ est injective sur $I$ (à la place de continue).",
+    "$f$ est monotone sur $I$ (à la place de continue)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ continue sur $I$. Alors $f(I)$ est un intervalle.\n\nSi de plus $I=[a,b]$ est un segment, alors $f(I)=[m,M]$ avec $m=\\min_{[a,b]}f$ et $M=\\max_{[a,b]}f$ : l'image d'un segment par une fonction continue est un segment.",
+   "enonce_trous": "L'image d'{{1}} par une fonction continue à valeurs réelles est {{2}} ; en particulier, l'image d'un segment est {{3}}.",
+   "trous": [
+    {
+     "reponse": "un intervalle",
+     "leurres": [
+      "une partie quelconque de $\\mathbb{R}$",
+      "une réunion de deux intervalles disjoints",
+      "un ensemble fini"
+     ]
+    },
+    {
+     "reponse": "un intervalle",
+     "leurres": [
+      "un intervalle de même nature (ouvert, fermé ou semi-ouvert)",
+      "un intervalle ouvert",
+      "un intervalle borné"
+     ]
+    },
+    {
+     "reponse": "un segment",
+     "leurres": [
+      "un intervalle ouvert",
+      "un intervalle non borné",
+      "un segment de même longueur"
+     ]
+    }
+   ],
+   "demo": "**$f(I)$ est un intervalle.** On utilise la caractérisation des intervalles : une partie $J$ de $\\mathbb{R}$ est un intervalle si et seulement si, pour tous $u\\le v$ dans $J$, $[u,v]\\subset J$ (elle se démontre avec la borne supérieure). Soient $u\\le v$ dans $f(I)$ et $y\\in[u,v]$ ; écrivons $u=f(x_1)$ et $v=f(x_2)$ avec $x_1,x_2\\in I$. Si $x_1=x_2$, alors $u=v=y$ et $y\\in f(I)$. Sinon, notons $\\alpha=\\min(x_1,x_2)$ et $\\beta=\\max(x_1,x_2)$ : comme $I$ est un intervalle, $[\\alpha,\\beta]\\subset I$, donc $f$ est continue sur le segment $[\\alpha,\\beta]$, et $y$ est compris entre $f(\\alpha)$ et $f(\\beta)$, qui sont $u$ et $v$ dans un certain ordre. Le théorème des valeurs intermédiaires fournit $c\\in[\\alpha,\\beta]\\subset I$ tel que $f(c)=y$. Ainsi $[u,v]\\subset f(I)$, et $f(I)$ est un intervalle.\n\n**Cas d'un segment.** Par le théorème des bornes atteintes, $m=\\min f$ et $M=\\max f$ existent et sont atteints : $f([a,b])\\subset[m,M]$ et $m,M\\in f([a,b])$. Comme $f([a,b])$ est un intervalle contenant $m$ et $M$, il contient $[m,M]$ ; donc $f([a,b])=[m,M]$.",
+   "exemple": "Soit $f(x)=\\frac{x}{1+|x|}$ sur $\\mathbb{R}$ : $f$ est continue, $|f(x)|<1$ pour tout $x$, et $f(x)\\to1$ en $+\\infty$, $f(x)\\to-1$ en $-\\infty$. Donc $f(\\mathbb{R})$ est un intervalle contenu dans $\\left]-1,1\\right[$ qui contient des points aussi proches de $-1$ et de $1$ que l'on veut : $f(\\mathbb{R})=\\left]-1,1\\right[$.\n\nAutre usage : si $f$ est continue sur un intervalle $I$ et ne s'annule pas, $f(I)$ est un intervalle qui ne contient pas $0$, donc $f(I)\\subset\\left]0,+\\infty\\right[$ ou $f(I)\\subset\\left]-\\infty,0\\right[$ : $f$ garde un signe strict constant sur $I$.",
+   "contre_exemple": "- **Continuité en tout point de $I$** : $f$ définie sur $[-1,1]$ par $f(x)=0$ si $x<0$ et $f(x)=1$ si $x\\ge0$ est continue sur $[-1,1]$ privé de $0$, et $f([-1,1])=\\{0,1\\}$ n'est pas un intervalle.\n- **$I$ doit être un intervalle** : la fonction $x\\mapsto x$ sur $[0,1]\\cup[2,3]$ est continue, d'image $[0,1]\\cup[2,3]$.\n- **Injective ou monotone ne remplace pas continue** : $f(x)=x$ sur $\\left[0,1\\right[$ et $f(x)=x+1$ sur $[1,2]$ est strictement croissante (donc injective et monotone) sur $[0,2]$, d'image $\\left[0,1\\right[\\cup[2,3]$ ; la partie entière, croissante sur $\\mathbb{R}$, a pour image $\\mathbb{Z}$.",
+   "affirmations": [
+    {
+     "texte": "L'image d'un intervalle ouvert par une fonction continue est un intervalle ouvert.",
+     "vrai": false,
+     "contre_exemple": "$\\sin\\left(\\left]0,2\\pi\\right[\\right)=[-1,1]$, car $\\sin\\frac\\pi2=1$ et $\\sin\\frac{3\\pi}{2}=-1$ ; ou une fonction constante, dont l'image est un singleton."
+    },
+    {
+     "texte": "L'image d'un intervalle borné par une fonction continue est un intervalle borné.",
+     "vrai": false,
+     "contre_exemple": "$x\\mapsto\\frac1x$ est continue sur $\\left]0,1\\right]$, d'image $\\left[1,+\\infty\\right[$."
+    },
+    {
+     "texte": "Si $f$ est continue sur un intervalle $I$ et ne s'annule pas sur $I$, alors $f$ garde un signe strict constant sur $I$.",
+     "vrai": true,
+     "justification": "$f(I)$ est un intervalle qui ne contient pas $0$ : s'il contenait un réel strictement négatif et un réel strictement positif, il contiendrait $0$."
+    },
+    {
+     "texte": "Une fonction continue $f:[0,1]\\to\\mathbb{R}$ à valeurs dans $\\mathbb{Q}$ est constante.",
+     "vrai": true,
+     "justification": "Si $f$ prenait deux valeurs $u<v$, l'intervalle $f([0,1])$ contiendrait $[u,v]$, donc l'irrationnel $u+\\frac{v-u}{\\sqrt2}$."
+    }
+   ],
+   "prerequis": [
+    "ar-t-tvi",
+    "ar-l1-bornes-atteintes"
+   ]
+  },
+  {
+   "id": "ar-l1-continuite-reciproque",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-continuite",
+   "type": "theoreme",
+   "titre": "Réciproque d'une fonction continue strictement monotone",
+   "recto": "Énoncer le théorème de la bijection continue sur un intervalle (propriétés de la réciproque) avec ses hypothèses.",
+   "cours": "Une fonction continue et strictement monotone sur un intervalle $I$ est injective, et son image $J=f(I)$ est un intervalle : $f$ réalise donc une bijection de $I$ sur $J$. Le point fort du théorème est que la réciproque $f^{-1}:J\\to I$ hérite des bonnes propriétés : elle est strictement monotone, de même sens que $f$, et **continue**, sans aucun calcul. C'est ainsi qu'on obtient la continuité de $\\ln$ (réciproque de $\\exp$), des racines $n$-ièmes, de $\\arcsin$, $\\arccos$, $\\arctan$, et de réciproques qu'on ne sait pas expliciter.\n\nMéthode : on établit la continuité et la stricte monotonie (souvent par le signe de la dérivée), on lit $J$ sur le tableau de variations — ses extrémités sont les limites de $f$ aux bornes de $I$ —, puis on conclut. Pour calculer $f^{-1}(y)$, on résout l'équation $f(x)=y$ d'inconnue $x\\in I$ quand c'est possible.\n\nLe piège principal : sans continuité, $J$ n'est en général pas un intervalle, et l'hypothèse « $I$ est un intervalle » est essentielle pour la continuité de $f^{-1}$. L'application qui vaut $x$ sur $[0,1]$ et $x-1$ sur $\\left]2,3\\right]$ est continue et strictement croissante, mais sa réciproque saute en $1$. Enfin, sur un intervalle, « continue et injective » équivaut à « continue et strictement monotone ».",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$.",
+    "$f$ est continue sur $I$.",
+    "$f$ est strictement monotone sur $I$."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est monotone au sens large sur $I$ (à la place de strictement monotone).",
+    "$f$ est strictement monotone sur $I$ sans être continue (à la place de continue et strictement monotone).",
+    "$f$ est définie sur une réunion de deux intervalles disjoints (à la place d'un intervalle).",
+    "$f$ est continue et surjective de $I$ sur $f(I)$ (à la place de strictement monotone)."
+   ],
+   "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ continue et strictement monotone sur $I$. Alors :\n\n- $J=f(I)$ est un intervalle et $f$ réalise une bijection de $I$ sur $J$ ;\n- la bijection réciproque $f^{-1}:J\\to I$ est strictement monotone, de même sens de variation que $f$ ;\n- $f^{-1}$ est continue sur $J$.",
+   "enonce_trous": "Si $f$ est {{1}} et {{2}} sur un intervalle $I$, alors $f$ est une bijection de $I$ sur l'intervalle $f(I)$, et sa réciproque est {{3}}.",
+   "trous": [
+    {
+     "reponse": "continue",
+     "leurres": [
+      "bornée",
+      "injective",
+      "continue par morceaux"
+     ]
+    },
+    {
+     "reponse": "strictement monotone",
+     "leurres": [
+      "monotone",
+      "dérivable",
+      "positive"
+     ]
+    },
+    {
+     "reponse": "continue et strictement monotone, de même sens que $f$",
+     "leurres": [
+      "continue et strictement monotone, de sens contraire à $f$",
+      "dérivable sur $f(I)$",
+      "égale à $\\frac1f$"
+     ]
+    }
+   ],
+   "demo": "Quitte à remplacer $f$ par $-f$, on suppose $f$ strictement croissante ; si $I$ est réduit à un point, il n'y a rien à démontrer.\n\n**Bijection.** $J=f(I)$ est un intervalle, comme image d'un intervalle par une fonction continue. Si $x<x'$ dans $I$, alors $f(x)<f(x')$ : $f$ est injective, donc bijective de $I$ sur $f(I)=J$.\n\n**Monotonie de $g=f^{-1}$.** Soient $y<y'$ dans $J$. Si l'on avait $g(y)\\ge g(y')$, la croissance de $f$ donnerait $y=f(g(y))\\ge f(g(y'))=y'$, ce qui est absurde. Donc $g(y)<g(y')$ : $g$ est strictement croissante.\n\n**Continuité de $g$.** Soient $y_0\\in J$, $x_0=g(y_0)$ et $\\varepsilon>0$.\n\n- Si $x_0$ n'est pas le plus grand élément de $I$, on choisit $x_1\\in I$ tel que $x_0<x_1\\le x_0+\\varepsilon$ (possible car $I$ est un intervalle) et on pose $\\eta_1=f(x_1)-y_0>0$. Pour $y\\in J$ avec $y<y_0+\\eta_1=f(x_1)$, on a $g(y)<x_1\\le x_0+\\varepsilon$ (sinon $y=f(g(y))\\ge f(x_1)$). Si $x_0=\\max I$, on pose $\\eta_1=1$ : pour tout $y\\in J$, $g(y)\\le x_0$.\n- De même, si $x_0$ n'est pas le plus petit élément de $I$, on choisit $x_{-1}\\in I$ avec $x_0-\\varepsilon\\le x_{-1}<x_0$ et $\\eta_2=y_0-f(x_{-1})>0$ : pour $y\\in J$ avec $y>y_0-\\eta_2$, $g(y)>x_{-1}\\ge x_0-\\varepsilon$. Si $x_0=\\min I$, on pose $\\eta_2=1$ : $g(y)\\ge x_0$ pour tout $y\\in J$.\n\nAvec $\\eta=\\min(\\eta_1,\\eta_2)>0$, tout $y\\in J$ tel que $|y-y_0|<\\eta$ vérifie $|g(y)-x_0|\\le\\varepsilon$ : $g$ est continue en $y_0$.",
+   "exemple": "Soit $f(x)=x+\\frac{\\sin x}{2}$ sur $\\mathbb{R}$. Elle est continue, et $f'(x)=1+\\frac{\\cos x}{2}\\ge\\frac12>0$, donc $f$ est strictement croissante ; $f(x)\\ge x-\\frac12\\to+\\infty$ en $+\\infty$ et $f(x)\\le x+\\frac12\\to-\\infty$ en $-\\infty$. Ainsi $f$ est une bijection de $\\mathbb{R}$ sur $\\mathbb{R}$, et sa réciproque, qu'on ne sait pas exprimer avec les fonctions usuelles, est continue et strictement croissante.\n\nDe même, $\\tan$ est continue et strictement croissante de $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ sur $\\mathbb{R}$ : $\\arctan$ est continue et strictement croissante de $\\mathbb{R}$ sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$.",
+   "contre_exemple": "- **Stricte monotonie** : une fonction constante est continue et monotone, mais pas injective.\n- **Continuité de $f$** : $f(x)=x$ sur $\\left[0,1\\right[$ et $f(x)=x+1$ sur $[1,2]$ est strictement croissante sur $[0,2]$, mais $f([0,2])=\\left[0,1\\right[\\cup[2,3]$ n'est pas un intervalle.\n- **$I$ doit être un intervalle** : $f(x)=x$ sur $[0,1]$ et $f(x)=x-1$ sur $\\left]2,3\\right]$ est continue et strictement croissante sur $D=[0,1]\\cup\\left]2,3\\right]$, bijective de $D$ sur $[0,2]$ ; sa réciproque vaut $y$ sur $[0,1]$ et $y+1$ sur $\\left]1,2\\right]$ : elle n'est pas continue en $1$.",
+   "affirmations": [
+    {
+     "texte": "Une fonction continue et injective sur un intervalle y est strictement monotone.",
+     "vrai": true,
+     "justification": "Soient $x<y$ et $x'<y'$ dans $I$. Pour $t\\in[0,1]$, posons $x_t=(1-t)x+tx'$ et $y_t=(1-t)y+ty'$ : $x_t<y_t$ et ces points sont dans $I$. La fonction $\\varphi(t)=f(y_t)-f(x_t)$ est continue sur $[0,1]$ et ne s'annule pas ($f$ est injective), donc garde un signe constant : $f(y)-f(x)$ et $f(y')-f(x')$ ont le même signe."
+    },
+    {
+     "texte": "Si $D$ est une partie de $\\mathbb{R}$ et $f:D\\to f(D)$ est continue et bijective, alors $f^{-1}$ est continue.",
+     "vrai": false,
+     "contre_exemple": "$D=[0,1]\\cup\\left]2,3\\right]$, $f(x)=x$ sur $[0,1]$ et $f(x)=x-1$ sur $\\left]2,3\\right]$ : $f$ est continue et bijective de $D$ sur $[0,2]$, mais $f^{-1}$, qui vaut $y+1$ sur $\\left]1,2\\right]$ et $f^{-1}(1)=1$, n'est pas continue en $1$."
+    },
+    {
+     "texte": "Si $f$ est continue, strictement croissante et dérivable sur un intervalle $I$, alors $f^{-1}$ est dérivable sur $f(I)$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^3$ sur $\\mathbb{R}$ : sa réciproque $y\\mapsto\\sqrt[3]{y}$ n'est pas dérivable en $0$, son taux d'accroissement $\\frac{\\sqrt[3]{y}}{y}=\\frac{1}{\\sqrt[3]{y}^{\\,2}}$ tendant vers $+\\infty$."
+    },
+    {
+     "texte": "La réciproque d'une fonction continue et strictement décroissante sur un intervalle est continue et strictement décroissante.",
+     "vrai": true,
+     "justification": "C'est le théorème appliqué à $f$ ; on peut aussi l'appliquer à $-f$, strictement croissante, dont la réciproque est $y\\mapsto f^{-1}(-y)$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-continuite-image-intervalle",
+    "ar-t-continuite-bijection"
+   ]
+  },
+  {
+   "id": "ar-l1-continuite-heine",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-continuite",
+   "type": "theoreme",
+   "titre": "Théorème de Heine (continuité uniforme sur un segment)",
+   "recto": "Définir la continuité uniforme, puis énoncer le théorème de Heine avec ses hypothèses.",
+   "cours": "La continuité de $f$ en chaque point $x$ fournit, pour chaque $\\varepsilon>0$, un $\\eta$ qui **dépend de $x$** : près d'un point où $f$ varie vite, il faut un $\\eta$ plus petit. On dit que $f$ est **uniformément continue** sur $I$ quand un même $\\eta$ convient partout : pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que, pour tous $x,y\\in I$, $|x-y|\\le\\eta\\Rightarrow|f(x)-f(y)|\\le\\varepsilon$. Une fonction $k$-lipschitzienne avec $k>0$ ($|f(x)-f(y)|\\le k|x-y|$) est uniformément continue, avec $\\eta=\\frac\\varepsilon k$.\n\nLe théorème de Heine affirme que sur un **segment**, continuité et continuité uniforme coïncident. Sa preuve est un argument de compacité typique : si l'uniformité échouait, on construirait des couples de points de plus en plus proches dont les images restent écartées, et Bolzano–Weierstrass les ferait converger vers un même point où $f$ ne pourrait pas être continue. C'est l'outil qui permet d'approcher une fonction continue sur un segment par des fonctions en escalier ou affines par morceaux, donc de construire l'intégrale, et il sert dans de nombreux problèmes d'écrit.\n\nMéthode : pour montrer qu'une fonction n'est **pas** uniformément continue, on exhibe deux suites $(x_n)$ et $(y_n)$ telles que $x_n-y_n\\to0$ alors que $|f(x_n)-f(y_n)|$ reste minoré par un réel strictement positif. Le piège principal : sur un intervalle non fermé ou non borné, le théorème tombe : $x\\mapsto\\frac1x$ sur $\\left]0,1\\right]$, $x\\mapsto x^2$ sur $\\mathbb{R}$ ou la fonction bornée $x\\mapsto\\sin\\frac1x$ sur $\\left]0,1\\right]$ ne sont pas uniformément continues.",
+   "hypotheses": [
+    "L'ensemble de départ est un segment $[a,b]$ : un intervalle fermé et borné.",
+    "$f$ est continue en tout point de $[a,b]$."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est continue sur l'intervalle ouvert $\\left]a,b\\right[$ seulement (à la place de $[a,b]$).",
+    "L'ensemble de départ est un intervalle fermé, éventuellement non borné comme $\\left[0,+\\infty\\right[$ (à la place d'un segment).",
+    "$f$ est continue et bornée sur un intervalle borné quelconque (à la place d'un segment).",
+    "$f$ est dérivable sur $\\left]a,b\\right[$ (à la place de continue sur $[a,b]$)."
+   ],
+   "enonce": "Soient $a\\le b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ continue. Alors $f$ est uniformément continue sur $[a,b]$ : pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que, pour tous $x,y\\in[a,b]$,\n$$|x-y|\\le\\eta\\Longrightarrow|f(x)-f(y)|\\le\\varepsilon.$$",
+   "enonce_trous": "Toute fonction continue sur {{1}} y est {{2}}.",
+   "trous": [
+    {
+     "reponse": "un segment $[a,b]$",
+     "leurres": [
+      "un intervalle borné",
+      "un intervalle fermé",
+      "un intervalle ouvert borné $\\left]a,b\\right[$"
+     ]
+    },
+    {
+     "reponse": "uniformément continue",
+     "leurres": [
+      "lipschitzienne",
+      "dérivable",
+      "monotone"
+     ]
+    }
+   ],
+   "demo": "Par l'absurde, supposons que $f$ ne soit pas uniformément continue : il existe $\\varepsilon>0$ tel que, pour tout $\\eta>0$, il existe $x,y\\in[a,b]$ avec $|x-y|\\le\\eta$ et $|f(x)-f(y)|>\\varepsilon$. Avec $\\eta=\\frac{1}{n+1}$, on obtient deux suites $(x_n)$ et $(y_n)$ de $[a,b]$ telles que, pour tout $n$, $|x_n-y_n|\\le\\frac{1}{n+1}$ et $|f(x_n)-f(y_n)|>\\varepsilon$.\n\nLa suite $(x_n)$ est bornée : par Bolzano–Weierstrass, elle a une suite extraite $\\left(x_{\\varphi(n)}\\right)$ qui converge vers un réel $c$, et $c\\in[a,b]$ par passage à la limite dans $a\\le x_{\\varphi(n)}\\le b$ (c'est là que servent le caractère fermé et borné du segment). Comme $\\varphi(n)\\ge n$, $\\left|y_{\\varphi(n)}-x_{\\varphi(n)}\\right|\\le\\frac{1}{n+1}$, donc $y_{\\varphi(n)}\\to c$ aussi.\n\nComme $f$ est continue en $c$, la caractérisation séquentielle donne $f\\left(x_{\\varphi(n)}\\right)\\to f(c)$ et $f\\left(y_{\\varphi(n)}\\right)\\to f(c)$, donc $f\\left(x_{\\varphi(n)}\\right)-f\\left(y_{\\varphi(n)}\\right)\\to0$. Cela contredit $\\left|f\\left(x_{\\varphi(n)}\\right)-f\\left(y_{\\varphi(n)}\\right)\\right|>\\varepsilon$ pour tout $n$.",
+   "exemple": "La racine carrée est continue sur $[0,1]$, donc uniformément continue par le théorème ; explicitement, pour $0\\le x\\le y$, $\\sqrt y\\le\\sqrt x+\\sqrt{y-x}$ (élever au carré), d'où $|\\sqrt x-\\sqrt y|\\le\\sqrt{|x-y|}$ et $\\eta=\\varepsilon^2$ convient. Pourtant elle n'est pas lipschitzienne sur $[0,1]$ : $\\frac{\\sqrt x-\\sqrt0}{x-0}=\\frac{1}{\\sqrt x}$ n'est pas borné sur $\\left]0,1\\right]$. La continuité uniforme est donc strictement plus faible que le caractère lipschitzien.",
+   "contre_exemple": "- **Intervalle non fermé** : $f(x)=\\frac1x$ sur $\\left]0,1\\right]$ est continue ; avec $x_n=\\frac1n$ et $y_n=\\frac{1}{n+1}$, $|x_n-y_n|=\\frac{1}{n(n+1)}\\to0$ mais $|f(x_n)-f(y_n)|=1$.\n- **Intervalle non borné** : $f(x)=x^2$ sur $\\left[0,+\\infty\\right[$ ; avec $x_n=n+\\frac1n$ et $y_n=n$, $x_n-y_n\\to0$ mais $f(x_n)-f(y_n)=2+\\frac{1}{n^2}\\ge2$.\n- **Continue et bornée ne suffit pas** : $f(x)=\\sin\\frac1x$ sur $\\left]0,1\\right]$, avec $x_n=\\frac{1}{2n\\pi+\\pi/2}$ et $y_n=\\frac{1}{2n\\pi}$ ($n\\ge1$) : $x_n-y_n\\to0$ et $f(x_n)-f(y_n)=1$.",
+   "affirmations": [
+    {
+     "texte": "Toute fonction uniformément continue sur $\\mathbb{R}$ est bornée.",
+     "vrai": false,
+     "contre_exemple": "$x\\mapsto x$ est $1$-lipschitzienne, donc uniformément continue ($\\eta=\\varepsilon$), et n'est pas bornée."
+    },
+    {
+     "texte": "Toute fonction lipschitzienne sur un intervalle y est uniformément continue.",
+     "vrai": true,
+     "justification": "Si $|f(x)-f(y)|\\le k|x-y|$ avec $k>0$, alors $\\eta=\\frac\\varepsilon k$ convient ; si $k=0$, $f$ est constante."
+    },
+    {
+     "texte": "Toute fonction uniformément continue sur $[0,1]$ y est lipschitzienne.",
+     "vrai": false,
+     "contre_exemple": "$x\\mapsto\\sqrt x$ est uniformément continue sur $[0,1]$ (Heine), mais $\\frac{\\sqrt x-0}{x-0}=\\frac{1}{\\sqrt x}$ n'est pas borné."
+    },
+    {
+     "texte": "Si $f$ est continue sur $\\left[0,+\\infty\\right[$ et admet une limite finie en $+\\infty$, alors $f$ est uniformément continue sur $\\left[0,+\\infty\\right[$.",
+     "vrai": true,
+     "justification": "Soient $\\ell$ la limite et $\\varepsilon>0$ ; il existe $A>0$ tel que $|f(x)-\\ell|\\le\\frac\\varepsilon2$ pour $x\\ge A$. Heine sur $[0,A+1]$ donne $\\eta_1$ ; posons $\\eta=\\min(\\eta_1,1)$. Si $x\\le y$ et $y-x\\le\\eta$ : soit $x\\ge A$, et $|f(x)-f(y)|\\le|f(x)-\\ell|+|\\ell-f(y)|\\le\\varepsilon$ ; soit $x<A$, alors $x,y\\in[0,A+1]$ et $|f(x)-f(y)|\\le\\varepsilon$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-bolzano-weierstrass",
+    "ar-l1-continuite-sequentielle"
+   ]
+  }
+ ]
+}
