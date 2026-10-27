@@ -122,6 +122,19 @@ assert all(not egal(v, 3 * sqrt(3) / 2) for v in (3, Rational(3, 2), 3 * sqrt(3)
 assert all(not egal(v, 3 * sqrt(3) / 8) for v in (1, 3 * sqrt(3) / 2, Rational(1, 8)))
 assert all(not egal(v, Rational(1, 8)) for v in (3 * sqrt(3) / 8, Rational(1, 2), Rational(1, 27)))
 
+# ar-l1-convexite-jensen-ex4 et variantes, unicité : formules de transformation produit-somme utilisées.
+A1, B1 = symbols("A1 B1", real=True)
+assert egal(sin(A1) + sin(B1), 2 * sin((A1 + B1) / 2) * cos((A1 - B1) / 2))                         # ex4
+assert egal(sin(A1) * sin(B1), (cos(A1 - B1) - cos(A1 + B1)) / 2)                                  # ex4 v1
+assert egal((1 - cos(A1 + B1)) / 2, sin((A1 + B1) / 2)**2)                                         # ex4 v1
+assert egal(sin(A1 / 2) * sin(B1 / 2), (cos((A1 - B1) / 2) - cos((A1 + B1) / 2)) / 2)              # ex4 v2
+assert egal((1 - cos((A1 + B1) / 2)) / 2, sin((A1 + B1) / 4)**2)                                   # ex4 v2
+# ar-l1-convexite-jensen-ex3 et variantes (n ≥ 2) : les leurres diffèrent de la réponse pour tout n ≥ 2.
+for n in range(2, 50):
+    assert Rational(1, n) not in (1, Rational(1, n**2), 0)          # ex3
+    assert n not in (1, n**3, n**2)                                 # ex3 v1
+    assert n**2 not in (n, Rational(1, n), 1)                       # ex3 v2
+
 # ar-l1-convexite-jensen-ex5 : t_k = floor(2^k t)/2^k est dyadique dans [0, 1] et 0 ≤ t - t_k < 2^-k.
 for tt in (Rational(1, 3), Rational(5, 7), Rational(1)):
     for k in range(0, 12):
