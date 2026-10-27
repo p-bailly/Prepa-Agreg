@@ -1,0 +1,460 @@
+{
+  "cartes": [
+    {
+      "id": "geo-t-complexes-conjugue",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Forme algébrique et conjugué",
+      "recto": "Énoncer l'unicité de la forme algébrique d'un nombre complexe et les propriétés du conjugué, avec leurs hypothèses.",
+      "cours": "Les nombres complexes sont nés au XVIe siècle des formules de résolution des équations de degré 3, où apparaissaient des racines carrées de nombres négatifs. On construit un ensemble $\\mathbb{C}$ qui contient $\\mathbb{R}$ et un nombre $i$ tel que $i^2=-1$, muni d'une addition et d'une multiplication qui suivent les mêmes règles de calcul que dans $\\mathbb{R}$ (commutativité, distributivité, inverse de tout élément non nul).\n\nTout nombre complexe s'écrit de façon unique $z=a+ib$ avec $a$ et $b$ réels : c'est la forme algébrique, avec $a=\\mathrm{Re}(z)$ et $b=\\mathrm{Im}(z)$. L'unicité permet d'**identifier** : deux complexes sont égaux si et seulement s'ils ont même partie réelle et même partie imaginaire, ce qui transforme une équation complexe en deux équations réelles.\n\nLe conjugué $\\overline{z}=a-ib$ (image de $z$ par la symétrie d'axe réel) est compatible avec toutes les opérations, et $z\\overline{z}=a^2+b^2$ est un réel positif. D'où la méthode pour mettre un quotient sous forme algébrique : multiplier numérateur et dénominateur par le conjugué du dénominateur. Le conjugué caractérise aussi les réels ($\\overline{z}=z$) et les imaginaires purs ($\\overline{z}=-z$) sans calculer de forme algébrique.\n\nPiège principal : l'unicité de l'écriture $a+ib$ exige que $a$ et $b$ soient **réels** ; par exemple $0=1+i\\cdot i$, et la « partie réelle » de $1+i\\cdot i$ n'est pas $1$. De même, $z^2$ n'est pas $z\\overline{z}$ : $i^2=-1$ alors que $i\\,\\overline{i}=1$.",
+      "hypotheses": [
+        "Dans l'écriture $z=a+ib$, les nombres $a$ et $b$ sont réels.",
+        "$z\\neq0$ pour la formule de l'inverse $\\frac{1}{z}$.",
+        "$w\\neq0$ pour le conjugué du quotient $\\frac{z}{w}$."
+      ],
+      "hypotheses_pieges": [
+        "Dans l'écriture $z=a+ib$, les nombres $a$ et $b$ sont des complexes quelconques.",
+        "$z\\overline{z}=1$, pour la formule de l'inverse $\\frac{1}{z}$.",
+        "$w$ est réel, pour le conjugué du quotient $\\frac{z}{w}$.",
+        "$z$ et $w$ ne sont pas réels."
+      ],
+      "enonce": "Tout nombre complexe $z$ s'écrit de façon unique $z=a+ib$ avec $a$ et $b$ réels ; $a=\\mathrm{Re}(z)$ est sa partie réelle et $b=\\mathrm{Im}(z)$ sa partie imaginaire. Son conjugué est $\\overline{z}=a-ib$, et $z\\overline{z}=a^2+b^2$ est un réel positif ou nul, nul seulement si $z=0$.\n\nPour tous $z,w\\in\\mathbb{C}$ et tout $n\\in\\mathbb{N}$ :\n- $\\overline{z+w}=\\overline{z}+\\overline{w}$, $\\overline{zw}=\\overline{z}\\,\\overline{w}$, $\\overline{z^n}=\\overline{z}^{\\,n}$ et $\\overline{\\overline{z}}=z$ ;\n- si $w\\neq0$, $\\overline{\\left(\\frac{z}{w}\\right)}=\\frac{\\overline{z}}{\\overline{w}}$ ; si $z\\neq0$, $\\frac{1}{z}=\\frac{\\overline{z}}{a^2+b^2}$ ;\n- $z+\\overline{z}=2\\,\\mathrm{Re}(z)$ et $z-\\overline{z}=2i\\,\\mathrm{Im}(z)$ ; donc $z$ est réel si et seulement si $\\overline{z}=z$, et imaginaire pur si et seulement si $\\overline{z}=-z$.",
+      "enonce_trous": "Tout nombre complexe $z$ s'écrit de façon unique $z=a+ib$ avec {{1}}. Son conjugué est $\\overline{z}=a-ib$, et l'on a {{2}}. Enfin, $z$ est réel si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$a$ et $b$ réels",
+          "leurres": [
+            "$a$ et $b$ complexes",
+            "$a$ réel et $b$ complexe",
+            "$a$ et $b$ entiers relatifs"
+          ]
+        },
+        {
+          "reponse": "$z\\overline{z}=a^2+b^2$",
+          "leurres": [
+            "$z\\overline{z}=a^2-b^2$",
+            "$z\\overline{z}=(a+b)^2$",
+            "$z^2=a^2+b^2$"
+          ]
+        },
+        {
+          "reponse": "$\\overline{z}=z$",
+          "leurres": [
+            "$\\overline{z}=-z$",
+            "$z^2$ est réel",
+            "$z\\overline{z}=1$"
+          ]
+        }
+      ],
+      "demo": "**Unicité de la forme algébrique.** Si $a+ib=a'+ib'$ avec $a,b,a',b'$ réels, alors $a-a'=i(b'-b)$. Si $b'\\neq b$, on aurait $i=\\frac{a-a'}{b'-b}\\in\\mathbb{R}$, donc $i^2\\geq0$, ce qui contredit $i^2=-1$. Donc $b=b'$, puis $a=a'$.\n\n**Produit $z\\overline{z}$.** $(a+ib)(a-ib)=a^2-(ib)^2=a^2+b^2\\geq0$, avec égalité si et seulement si $a=b=0$.\n\n**Somme et produit.** Avec $z=a+ib$ et $w=c+id$ ($a,b,c,d$ réels) : $z+w=(a+c)+i(b+d)$ a pour conjugué $(a+c)-i(b+d)=\\overline{z}+\\overline{w}$. Puis $zw=(ac-bd)+i(ad+bc)$, et $\\overline{z}\\,\\overline{w}=(a-ib)(c-id)=(ac-bd)-i(ad+bc)=\\overline{zw}$. Enfin $\\overline{\\overline{z}}=\\overline{a-ib}=a+ib=z$.\n\n**Puissance.** Par récurrence sur $n$ : $\\overline{z^0}=1=\\overline{z}^{\\,0}$, et si $\\overline{z^n}=\\overline{z}^{\\,n}$, alors $\\overline{z^{n+1}}=\\overline{z^n\\,z}=\\overline{z}^{\\,n}\\,\\overline{z}=\\overline{z}^{\\,n+1}$.\n\n**Inverse et quotient.** Si $z\\neq0$, alors $a^2+b^2>0$ et $z\\cdot\\frac{\\overline{z}}{a^2+b^2}=\\frac{z\\overline{z}}{a^2+b^2}=1$, donc $\\frac{1}{z}=\\frac{\\overline{z}}{a^2+b^2}$. Si $w\\neq0$, alors $\\overline{w}\\neq0$ (sinon $w=\\overline{\\overline{w}}=0$) et, en conjuguant l'égalité $w\\cdot\\frac{z}{w}=z$, on obtient $\\overline{w}\\;\\overline{\\left(\\frac{z}{w}\\right)}=\\overline{z}$, d'où le résultat en divisant par $\\overline{w}$.\n\n**Réels et imaginaires purs.** $z+\\overline{z}=2a$ et $z-\\overline{z}=2ib$. Donc $\\overline{z}=z\\iff b=0\\iff z\\in\\mathbb{R}$, et $\\overline{z}=-z\\iff a=0\\iff z$ est imaginaire pur.",
+      "exemple": "Forme algébrique de $z=\\frac{2+i}{1-3i}$ : on multiplie par le conjugué du dénominateur,\n$$z=\\frac{(2+i)(1+3i)}{(1-3i)(1+3i)}=\\frac{2+6i+i+3i^2}{1+9}=\\frac{-1+7i}{10}.$$\nDonc $\\mathrm{Re}(z)=-\\frac{1}{10}$ et $\\mathrm{Im}(z)=\\frac{7}{10}$.\n\nAutre usage : pour tout $z\\in\\mathbb{C}$, $u=z^2+\\overline{z}^{\\,2}$ est réel, car $\\overline{u}=\\overline{z}^{\\,2}+z^2=u$ (aucun calcul de forme algébrique n'est nécessaire).",
+      "contre_exemple": "- **$a$ et $b$ non réels** : $0=0+i\\cdot0=1+i\\cdot i$, l'écriture n'est plus unique ; et la formule $a-ib$ appliquée à $a=1$, $b=i$ donnerait $1-i\\cdot i=2$, alors que $\\overline{0}=0$.\n- **Quotient par $w=0$** : $\\frac{z}{0}$ n'a pas de sens ; la formule du conjugué d'un quotient exige $w\\neq0$.\n- **Confondre $z^2$ et $z\\overline{z}$** : pour $z=i$, $z^2=-1$ mais $z\\overline{z}=1$.\n- **$z^2$ réel n'entraîne pas $z$ réel** : $i^2=-1$ est réel alors que $i$ ne l'est pas.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $z\\in\\mathbb{C}$, $z^2=z\\overline{z}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $z=i$ : $z^2=-1$ alors que $z\\overline{z}=i\\times(-i)=1$."
+        },
+        {
+          "texte": "Si $z^2$ est réel, alors $z$ est réel.",
+          "vrai": false,
+          "contre_exemple": "$z=i$ : $z^2=-1$ est réel, mais $i$ n'est pas réel."
+        },
+        {
+          "texte": "Pour tout $z\\in\\mathbb{C}$, $z\\overline{z}$ est un réel positif ou nul.",
+          "vrai": true,
+          "justification": "Si $z=a+ib$ avec $a,b$ réels, $z\\overline{z}=a^2+b^2\\geq0$."
+        },
+        {
+          "texte": "Si $z+\\overline{z}=0$, alors $z=0$.",
+          "vrai": false,
+          "contre_exemple": "$z=i$ : $i+\\overline{i}=i-i=0$ et pourtant $i\\neq0$ ; la condition dit seulement que $z$ est imaginaire pur."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "geo-t-complexes-module",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Module et argument",
+      "recto": "Énoncer les propriétés du module et la définition des arguments d'un nombre complexe, avec leurs hypothèses.",
+      "cours": "Dans un repère orthonormé direct $(O;\\vec u,\\vec v)$, le complexe $z=a+ib$ est représenté par le point $M(a,b)$ : c'est son image, et $z$ est l'affixe de $M$ (et du vecteur $\\overrightarrow{OM}$). Deux données « polaires » décrivent ce point : la distance $OM$, qui est le module $|z|=\\sqrt{a^2+b^2}$, et l'angle orienté $(\\vec u,\\overrightarrow{OM})$, dont les mesures sont les arguments de $z$.\n\nLe module prolonge la valeur absolue des réels. Sa propriété clé est $|z|^2=z\\overline{z}$, qui donne sans calcul $|zw|=|z|\\,|w|$ et $\\left|\\frac{z}{w}\\right|=\\frac{|z|}{|w|}$ : pour le module d'un produit ou d'un quotient, on ne développe jamais, on multiplie ou on divise les modules.\n\nPour trouver un argument de $z\\neq0$, on calcule $|z|$, puis on cherche $\\theta$ tel que $\\cos\\theta=\\frac{a}{|z|}$ et $\\sin\\theta=\\frac{b}{|z|}$ : on obtient la forme trigonométrique $z=|z|(\\cos\\theta+i\\sin\\theta)$. Un argument n'est défini qu'à un multiple de $2\\pi$ près, et $0$ n'a pas d'argument.\n\nPiège principal : une écriture $r(\\cos\\theta+i\\sin\\theta)$ n'est une forme trigonométrique que si $r>0$. Par exemple $-2\\left(\\cos\\frac{\\pi}{6}+i\\sin\\frac{\\pi}{6}\\right)$ a pour module $2$ et pour argument $\\frac{7\\pi}{6}$, pas $\\frac{\\pi}{6}$. Autre piège : le module n'est pas additif, $|z+w|\\neq|z|+|w|$ en général.",
+      "hypotheses": [
+        "$w\\neq0$ pour le module d'un quotient $\\frac{z}{w}$.",
+        "$z\\neq0$ pour parler d'un argument de $z$.",
+        "Dans l'écriture $z=r(\\cos\\theta+i\\sin\\theta)$ : $r>0$ (et $\\theta$ réel)."
+      ],
+      "hypotheses_pieges": [
+        "Dans l'écriture $z=r(\\cos\\theta+i\\sin\\theta)$ : $r$ est un réel non nul de signe quelconque.",
+        "Dans l'écriture $z=r(\\cos\\theta+i\\sin\\theta)$ : $\\theta\\in\\left[0,2\\pi\\right[$.",
+        "$z$ et $w$ ont un même argument, pour que $|zw|=|z|\\,|w|$.",
+        "$|w|=1$, pour le module d'un quotient $\\frac{z}{w}$."
+      ],
+      "enonce": "Soit $z=a+ib$ avec $a,b$ réels, d'image $M$. Son module est $|z|=\\sqrt{a^2+b^2}=OM$, et $|z|^2=z\\overline{z}$. Pour tous $z,w\\in\\mathbb{C}$ et tout $n\\in\\mathbb{N}$ :\n$$|zw|=|z|\\,|w|,\\qquad |z^n|=|z|^n,\\qquad |\\overline{z}|=|z|,$$\net si $w\\neq0$, $\\left|\\frac{z}{w}\\right|=\\frac{|z|}{|w|}$.\n\nSi $z\\neq0$, il existe un réel $\\theta$ tel que $z=|z|(\\cos\\theta+i\\sin\\theta)$ ; un tel $\\theta$ est un **argument** de $z$ (une mesure de l'angle orienté $(\\vec u,\\overrightarrow{OM})$), et les arguments de $z$ sont exactement les réels $\\theta+2k\\pi$, $k\\in\\mathbb{Z}$. Réciproquement, si $z=r(\\cos\\theta+i\\sin\\theta)$ avec $r>0$ et $\\theta\\in\\mathbb{R}$, alors $r=|z|$ et $\\theta$ est un argument de $z$.",
+      "enonce_trous": "Pour tous $z,w\\in\\mathbb{C}$, {{1}}. Si $z=r(\\cos\\theta+i\\sin\\theta)$ avec {{2}}, alors $|z|=r$ et $\\theta$ est un argument de $z$ ; les arguments d'un complexe non nul sont définis {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|zw|=|z|\\,|w|$",
+          "leurres": [
+            "$|z+w|=|z|+|w|$",
+            "$|zw|=|z|+|w|$",
+            "$|z-w|=|z|-|w|$"
+          ]
+        },
+        {
+          "reponse": "$r>0$ et $\\theta\\in\\mathbb{R}$",
+          "leurres": [
+            "$r\\neq0$ et $\\theta\\in\\mathbb{R}$",
+            "$r\\in\\mathbb{R}$ et $\\theta\\in\\mathbb{R}$",
+            "$r<0$ et $\\theta\\in\\mathbb{R}$"
+          ]
+        },
+        {
+          "reponse": "à un multiple de $2\\pi$ près",
+          "leurres": [
+            "à un multiple de $\\pi$ près",
+            "de façon unique dans $\\mathbb{R}$",
+            "à un multiple de $\\frac{\\pi}{2}$ près"
+          ]
+        }
+      ],
+      "demo": "**Module et conjugué.** Avec $z=a+ib$, $z\\overline{z}=a^2+b^2=|z|^2$ (carte sur le conjugué), et $OM=\\sqrt{a^2+b^2}$ par la formule de la distance en repère orthonormé.\n\n**Produit, puissance, conjugué.** $|zw|^2=zw\\,\\overline{zw}=z\\overline{z}\\,w\\overline{w}=|z|^2|w|^2$ ; comme $|zw|$ et $|z|\\,|w|$ sont des réels positifs, $|zw|=|z|\\,|w|$. Par récurrence sur $n$, $|z^n|=|z|^n$. Enfin $|\\overline{z}|=\\sqrt{a^2+(-b)^2}=|z|$.\n\n**Quotient.** Si $w\\neq0$, alors $|w|>0$ et $|w|\\left|\\frac{z}{w}\\right|=\\left|w\\cdot\\frac{z}{w}\\right|=|z|$, d'où $\\left|\\frac{z}{w}\\right|=\\frac{|z|}{|w|}$.\n\n**Existence d'un argument.** Si $z\\neq0$, alors $|z|>0$ et $\\frac{z}{|z|}=x+iy$ avec $x=\\frac{a}{|z|}$ et $y=\\frac{b}{|z|}$, donc $x^2+y^2=1$ : le point $(x,y)$ est sur le cercle trigonométrique. Tout point de ce cercle s'écrit $(\\cos\\theta,\\sin\\theta)$ pour un réel $\\theta$, unique à un multiple de $2\\pi$ près (propriété du cercle trigonométrique, admise ici). Donc $z=|z|(\\cos\\theta+i\\sin\\theta)$, et les arguments de $z$ sont les $\\theta+2k\\pi$, $k\\in\\mathbb{Z}$. Comme $\\frac{z}{|z|}$ est l'affixe du point $M'$ de la demi-droite $[OM)$ situé sur le cercle unité, $\\theta$ mesure l'angle $(\\vec u,\\overrightarrow{OM})$.\n\n**Réciproque.** Si $z=r(\\cos\\theta+i\\sin\\theta)$ avec $r>0$, alors $|z|=|r|\\sqrt{\\cos^2\\theta+\\sin^2\\theta}=|r|=r$, puis $\\cos\\theta+i\\sin\\theta=\\frac{z}{|z|}$ : $\\theta$ est un argument de $z$. L'hypothèse $r>0$ sert exactement à écrire $|r|=r$.",
+      "exemple": "$z=-1+i\\sqrt3$ : $|z|=\\sqrt{1+3}=2$ et $z=2\\left(-\\frac{1}{2}+i\\frac{\\sqrt3}{2}\\right)$. Comme $\\cos\\frac{2\\pi}{3}=-\\frac{1}{2}$ et $\\sin\\frac{2\\pi}{3}=\\frac{\\sqrt3}{2}$, on a $z=2\\left(\\cos\\frac{2\\pi}{3}+i\\sin\\frac{2\\pi}{3}\\right)$ : un argument de $z$ est $\\frac{2\\pi}{3}$.\n\nModule d'un quotient sans forme algébrique : $\\left|\\frac{(1+i)^4}{3-4i}\\right|=\\frac{(\\sqrt2)^4}{5}=\\frac{4}{5}$.",
+      "contre_exemple": "- **$r<0$** : $z=-2\\left(\\cos\\frac{\\pi}{6}+i\\sin\\frac{\\pi}{6}\\right)=-\\sqrt3-i$ a pour module $2$ (et non $-2$), et $\\frac{\\pi}{6}$ n'est pas un argument de $z$ : un argument est $\\frac{7\\pi}{6}$, car $-\\cos\\frac{\\pi}{6}=\\cos\\frac{7\\pi}{6}$ et $-\\sin\\frac{\\pi}{6}=\\sin\\frac{7\\pi}{6}$.\n- **$z=0$** : l'égalité $0=r(\\cos\\theta+i\\sin\\theta)$ impose $r=0$, et alors tout $\\theta$ conviendrait : on ne définit pas d'argument de $0$.\n- **Le module n'est pas additif** : $|1+(-1)|=0$ alors que $|1|+|-1|=2$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous $z,w\\in\\mathbb{C}$, $|z+w|=|z|+|w|$.",
+          "vrai": false,
+          "contre_exemple": "$z=1$, $w=-1$ : $|z+w|=0$ alors que $|z|+|w|=2$."
+        },
+        {
+          "texte": "$\\frac{\\pi}{4}$ est un argument de $-3\\left(\\cos\\frac{\\pi}{4}+i\\sin\\frac{\\pi}{4}\\right)$.",
+          "vrai": false,
+          "contre_exemple": "Ce nombre vaut $-\\frac{3\\sqrt2}{2}-\\frac{3\\sqrt2}{2}i$, de partie réelle négative, alors que $\\cos\\frac{\\pi}{4}>0$. Comme $-3<0$, ce n'est pas une forme trigonométrique : on a $3\\left(\\cos\\frac{5\\pi}{4}+i\\sin\\frac{5\\pi}{4}\\right)$, et un argument est $\\frac{5\\pi}{4}$."
+        },
+        {
+          "texte": "Si $|z|=1$, alors $\\frac{1}{z}=\\overline{z}$.",
+          "vrai": true,
+          "justification": "$z\\overline{z}=|z|^2=1$, donc $z\\neq0$ et $\\overline{z}=\\frac{1}{z}$."
+        },
+        {
+          "texte": "Deux nombres complexes de même module sont égaux ou opposés.",
+          "vrai": false,
+          "contre_exemple": "$1$ et $i$ ont pour module $1$, mais $i\\neq1$ et $i\\neq-1$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-conjugue"
+      ]
+    },
+    {
+      "id": "geo-t-complexes-exponentielle",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Forme exponentielle et formule de Moivre",
+      "recto": "Énoncer les propriétés de la notation $e^{i\\theta}$, la formule de Moivre et les règles de calcul des arguments, avec leurs hypothèses.",
+      "cours": "La formule $(\\cos a+i\\sin a)(\\cos b+i\\sin b)=\\cos(a+b)+i\\sin(a+b)$, conséquence des formules d'addition, montre que $\\theta\\mapsto\\cos\\theta+i\\sin\\theta$ transforme les sommes en produits, comme une exponentielle. D'où la notation $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$ : avec elle, tout complexe non nul s'écrit $z=re^{i\\theta}$ avec $r=|z|>0$ et $\\theta$ un argument de $z$ (forme exponentielle).\n\nCette forme est adaptée aux produits, quotients et puissances : on multiplie les modules et on additionne les arguments. En particulier, la formule de Moivre $\\left(e^{i\\theta}\\right)^n=e^{in\\theta}$, valable pour tout entier relatif $n$, calcule une puissance sans développer : pour $(1+i)^{10}$, on écrit $1+i=\\sqrt2\\,e^{i\\pi/4}$ et on obtient $32\\,e^{5i\\pi/2}=32i$.\n\nLue dans l'autre sens, la formule de Moivre sert en trigonométrie : $\\cos(n\\theta)$ est la partie réelle de $(\\cos\\theta+i\\sin\\theta)^n$, que l'on développe par la formule du binôme pour exprimer $\\cos(n\\theta)$ en fonction de $\\cos\\theta$ et $\\sin\\theta$. De même, les sommes $\\sum\\cos(k\\theta)$ se calculent comme parties réelles de sommes géométriques de raison $e^{i\\theta}$.\n\nPièges : les arguments ne s'additionnent qu'à $2\\pi$ près (deux arguments pris dans $\\left]-\\pi,\\pi\\right]$ peuvent avoir une somme hors de cet intervalle) ; l'argument d'une somme n'est pas la somme des arguments ; et la formule de Moivre ne vaut que pour des exposants **entiers**.",
+      "hypotheses": [
+        "$\\theta$ et $\\theta'$ sont des réels.",
+        "$n\\in\\mathbb{Z}$ dans la formule de Moivre.",
+        "$z$ et $w$ sont non nuls, pour les règles sur les arguments."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un réel quelconque dans la formule de Moivre.",
+        "$\\theta\\in\\left[0,2\\pi\\right[$ et $\\theta'\\in\\left[0,2\\pi\\right[$.",
+        "$|z|=|w|=1$, pour que $\\arg(zw)\\equiv\\arg z+\\arg w\\;[2\\pi]$.",
+        "Les arguments de $z$ et $w$ choisis dans $\\left]-\\pi,\\pi\\right]$ ont une somme dans $\\left]-\\pi,\\pi\\right]$."
+      ],
+      "enonce": "Pour $\\theta\\in\\mathbb{R}$, on note $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$. Pour tous réels $\\theta$ et $\\theta'$ :\n- $e^{i\\theta}e^{i\\theta'}=e^{i(\\theta+\\theta')}$, $|e^{i\\theta}|=1$ et $\\overline{e^{i\\theta}}=e^{-i\\theta}=\\frac{1}{e^{i\\theta}}$ ;\n- $e^{i\\theta}=e^{i\\theta'}$ si et seulement si $\\theta-\\theta'\\in2\\pi\\mathbb{Z}$ ;\n- **formule de Moivre** : pour tout $n\\in\\mathbb{Z}$, $\\left(e^{i\\theta}\\right)^n=e^{in\\theta}$, c'est-à-dire $(\\cos\\theta+i\\sin\\theta)^n=\\cos(n\\theta)+i\\sin(n\\theta)$.\n\nTout complexe non nul $z$ s'écrit $z=re^{i\\theta}$ avec $r=|z|$ et $\\theta$ un argument de $z$ (forme exponentielle). Si $z$ et $w$ sont non nuls et $n\\in\\mathbb{Z}$, alors\n$$\\arg(zw)\\equiv\\arg z+\\arg w,\\quad \\arg\\frac{z}{w}\\equiv\\arg z-\\arg w,\\quad \\arg(z^n)\\equiv n\\arg z,\\quad \\arg\\overline{z}\\equiv-\\arg z\\quad[2\\pi].$$",
+      "enonce_trous": "Pour tout réel $\\theta$ et tout {{1}}, $(\\cos\\theta+i\\sin\\theta)^n=\\cos(n\\theta)+i\\sin(n\\theta)$. Pour $z$ et $w$ complexes non nuls, on a {{2}} à $2\\pi$ près. Enfin, pour $\\theta,\\theta'$ réels, $e^{i\\theta}=e^{i\\theta'}$ si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n\\in\\mathbb{Z}$",
+          "leurres": [
+            "$n\\in\\mathbb{R}$",
+            "$n\\in\\mathbb{Q}$",
+            "$n\\in\\mathbb{C}$"
+          ]
+        },
+        {
+          "reponse": "$\\arg(zw)=\\arg z+\\arg w$",
+          "leurres": [
+            "$\\arg(zw)=\\arg z\\times\\arg w$",
+            "$\\arg(z+w)=\\arg z+\\arg w$",
+            "$\\arg(zw)=\\arg z-\\arg w$"
+          ]
+        },
+        {
+          "reponse": "$\\theta-\\theta'\\in2\\pi\\mathbb{Z}$",
+          "leurres": [
+            "$\\theta=\\theta'$",
+            "$\\theta-\\theta'\\in\\pi\\mathbb{Z}$",
+            "$\\theta+\\theta'\\in2\\pi\\mathbb{Z}$"
+          ]
+        }
+      ],
+      "demo": "**Produit.** Par les formules d'addition, $(\\cos\\theta+i\\sin\\theta)(\\cos\\theta'+i\\sin\\theta')=(\\cos\\theta\\cos\\theta'-\\sin\\theta\\sin\\theta')+i(\\sin\\theta\\cos\\theta'+\\cos\\theta\\sin\\theta')=\\cos(\\theta+\\theta')+i\\sin(\\theta+\\theta')$.\n\n**Module, conjugué, inverse.** $|e^{i\\theta}|^2=\\cos^2\\theta+\\sin^2\\theta=1$ ; $\\overline{e^{i\\theta}}=\\cos\\theta-i\\sin\\theta=\\cos(-\\theta)+i\\sin(-\\theta)=e^{-i\\theta}$, et $e^{i\\theta}e^{-i\\theta}=e^{i0}=1$.\n\n**Égalité.** $e^{i\\theta}=e^{i\\theta'}$ équivaut à $\\cos\\theta=\\cos\\theta'$ et $\\sin\\theta=\\sin\\theta'$, c'est-à-dire à l'égalité des points associés du cercle trigonométrique, donc à $\\theta-\\theta'\\in2\\pi\\mathbb{Z}$ (propriété du cercle trigonométrique).\n\n**Moivre.** Pour $n\\in\\mathbb{N}$, par récurrence : $\\left(e^{i\\theta}\\right)^0=1=e^{i0}$, et si $\\left(e^{i\\theta}\\right)^n=e^{in\\theta}$, alors $\\left(e^{i\\theta}\\right)^{n+1}=e^{in\\theta}e^{i\\theta}=e^{i(n+1)\\theta}$. Pour $n=-m$ avec $m\\in\\mathbb{N}$ : $\\left(e^{i\\theta}\\right)^{-m}=\\left(\\left(e^{i\\theta}\\right)^{-1}\\right)^m=\\left(e^{-i\\theta}\\right)^m=e^{-im\\theta}$.\n\n**Arguments.** L'écriture $z=|z|e^{i\\theta}$ n'est autre que la forme trigonométrique. Si $z=|z|e^{i\\alpha}$ et $w=|w|e^{i\\beta}$, alors $zw=|z|\\,|w|\\,e^{i(\\alpha+\\beta)}$ avec $|z|\\,|w|>0$ : d'après la carte sur le module et l'argument (écriture avec $r>0$), $\\alpha+\\beta$ est un argument de $zw$. De même $\\frac{z}{w}=\\frac{|z|}{|w|}e^{i(\\alpha-\\beta)}$, $z^n=|z|^ne^{in\\alpha}$ (Moivre) et $\\overline{z}=|z|e^{-i\\alpha}$.",
+      "exemple": "$(1+i)^{10}$ : $|1+i|=\\sqrt2$ et $\\frac{1+i}{\\sqrt2}=\\cos\\frac{\\pi}{4}+i\\sin\\frac{\\pi}{4}$, donc $1+i=\\sqrt2\\,e^{i\\pi/4}$. Par la formule de Moivre, $(1+i)^{10}=(\\sqrt2)^{10}e^{10i\\pi/4}=32\\,e^{5i\\pi/2}=32\\,e^{i\\pi/2}=32i$.\n\nEn trigonométrie : $\\cos(2\\theta)+i\\sin(2\\theta)=(\\cos\\theta+i\\sin\\theta)^2=\\cos^2\\theta-\\sin^2\\theta+2i\\sin\\theta\\cos\\theta$ ; en identifiant parties réelles et imaginaires, $\\cos(2\\theta)=\\cos^2\\theta-\\sin^2\\theta$ et $\\sin(2\\theta)=2\\sin\\theta\\cos\\theta$.",
+      "contre_exemple": "- **Exposant non entier** : avec $n=\\frac{1}{2}$ et $\\theta=2\\pi$, on a $e^{2i\\pi}=1$, et la « formule » donnerait $1^{1/2}=e^{i\\pi}=-1$ : absurde. La formule de Moivre est réservée aux $n\\in\\mathbb{Z}$.\n- **Arguments pris dans $\\left]-\\pi,\\pi\\right]$** : pour $z=w=-1$, l'argument de chacun dans $\\left]-\\pi,\\pi\\right]$ est $\\pi$, mais $zw=1$ a pour argument $0$ dans cet intervalle, et non $2\\pi$ : l'égalité n'a lieu qu'à $2\\pi$ près.\n- **Argument d'une somme** : $0$ est un argument de $1$ et $\\frac{\\pi}{2}$ un argument de $i$, mais $\\frac{\\pi}{2}$ n'est pas un argument de $1+i$ (qui a pour argument $\\frac{\\pi}{4}$).\n- **$e^{i\\theta}=e^{i\\theta'}$ n'entraîne pas $\\theta=\\theta'$** : $e^{i0}=e^{2i\\pi}=1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $\\theta$ et tout entier $n$, $\\cos(n\\theta)=(\\cos\\theta)^n$.",
+          "vrai": false,
+          "contre_exemple": "$\\theta=\\frac{\\pi}{2}$, $n=2$ : $\\cos\\pi=-1$ alors que $\\left(\\cos\\frac{\\pi}{2}\\right)^2=0$. La formule de Moivre porte sur $(\\cos\\theta+i\\sin\\theta)^n$, pas sur $(\\cos\\theta)^n$."
+        },
+        {
+          "texte": "Si $z$ et $w$ sont non nuls, l'argument de $zw$ appartenant à $\\left]-\\pi,\\pi\\right]$ est la somme des arguments de $z$ et de $w$ appartenant à $\\left]-\\pi,\\pi\\right]$.",
+          "vrai": false,
+          "contre_exemple": "$z=w=-1$ : les arguments dans $\\left]-\\pi,\\pi\\right]$ valent $\\pi$ et $\\pi$, de somme $2\\pi$, alors que $zw=1$ a pour argument $0$ dans cet intervalle."
+        },
+        {
+          "texte": "Pour tout réel $\\theta$, $\\overline{e^{i\\theta}}=\\frac{1}{e^{i\\theta}}$.",
+          "vrai": true,
+          "justification": "$\\overline{e^{i\\theta}}=e^{-i\\theta}$ et $e^{i\\theta}e^{-i\\theta}=e^{i0}=1$."
+        },
+        {
+          "texte": "$(1+i)^8=16$.",
+          "vrai": true,
+          "justification": "$1+i=\\sqrt2\\,e^{i\\pi/4}$, donc $(1+i)^8=(\\sqrt2)^8e^{2i\\pi}=16$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-module"
+      ]
+    },
+    {
+      "id": "geo-t-complexes-racines-unite",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Racines n-ièmes de l'unité",
+      "recto": "Énoncer la description de l'ensemble $\\mathbb{U}_n$ des racines $n$-ièmes de l'unité et ses propriétés, avec leurs hypothèses.",
+      "cours": "Résoudre $z^n=1$ dans $\\mathbb{C}$ est un exemple frappant d'équation algébrique qui a « autant de solutions que son degré » : dans $\\mathbb{R}$, on ne trouve que $1$ (et $-1$ si $n$ est pair), alors que $\\mathbb{C}$ en contient exactement $n$. La méthode est celle de toute équation $z^n=a$ avec $a\\neq0$ : écrire l'inconnue sous forme exponentielle $z=re^{i\\theta}$, puis identifier les modules ($r^n=1$, donc $r=1$) et les arguments ($n\\theta\\equiv0\\;[2\\pi]$).\n\nOn obtient les nombres $\\omega_k=e^{2ik\\pi/n}$, $k\\in\\{0,\\dots,n-1\\}$ : ce sont les puissances de $\\omega=e^{2i\\pi/n}$ et, pour $n\\geq3$, leurs images sont les sommets du polygone régulier à $n$ côtés inscrit dans le cercle unité dont un sommet est le point d'affixe $1$. Cas à connaître : $\\mathbb{U}_2=\\{1,-1\\}$, $\\mathbb{U}_3=\\{1,j,j^2\\}$ avec $j=e^{2i\\pi/3}=-\\frac{1}{2}+i\\frac{\\sqrt3}{2}$, et $\\mathbb{U}_4=\\{1,i,-1,-i\\}$.\n\nPour $n\\geq2$, la somme des racines $n$-ièmes est nulle (somme géométrique de raison $\\omega\\neq1$) : par exemple $1+j+j^2=0$. Cette relation est l'outil de base des calculs avec $j$ et permet d'obtenir des valeurs exactes comme $\\cos\\frac{2\\pi}{5}$.\n\nPièges : il faut prendre $k$ dans un ensemble de $n$ entiers consécutifs pour obtenir chaque racine une seule fois ; la somme n'est nulle que pour $n\\geq2$ ; et le produit des racines n'est pas toujours $1$ (il vaut $-1$ pour $n=2$).",
+      "hypotheses": [
+        "$n$ est un entier naturel non nul.",
+        "$n\\geq2$, pour que la somme des racines $n$-ièmes soit nulle.",
+        "$n\\geq3$, pour parler de polygone régulier."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un nombre premier.",
+        "$n$ est pair, pour que la somme des racines $n$-ièmes soit nulle.",
+        "$n$ est un entier relatif non nul, éventuellement négatif."
+      ],
+      "enonce": "Soit $n\\in\\mathbb{N}^*$. L'équation $z^n=1$ admet exactement $n$ solutions dans $\\mathbb{C}$, les **racines $n$-ièmes de l'unité** :\n$$\\omega_k=e^{2ik\\pi/n},\\qquad k\\in\\{0,1,\\dots,n-1\\}.$$\nEn notant $\\omega=e^{2i\\pi/n}$, on a $\\omega_k=\\omega^k$, et l'ensemble $\\mathbb{U}_n=\\{1,\\omega,\\dots,\\omega^{n-1}\\}$ est stable par produit et par passage à l'inverse. Pour $n\\geq3$, les images des $\\omega_k$ sont les sommets d'un polygone régulier à $n$ côtés inscrit dans le cercle de centre $O$ et de rayon $1$. Si $n\\geq2$, $\\sum_{k=0}^{n-1}\\omega^k=0$.\n\nCas particuliers : $\\mathbb{U}_2=\\{1,-1\\}$ ; $\\mathbb{U}_3=\\{1,j,j^2\\}$ avec $j=e^{2i\\pi/3}=-\\frac{1}{2}+i\\frac{\\sqrt3}{2}$ et $1+j+j^2=0$ ; $\\mathbb{U}_4=\\{1,i,-1,-i\\}$.",
+      "enonce_trous": "Soit {{1}}. L'équation $z^n=1$ admet exactement {{2}} dans $\\mathbb{C}$, à savoir les nombres $e^{2ik\\pi/n}$ pour $k\\in\\{0,\\dots,n-1\\}$ ; si $n\\geq2$, leur somme vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n\\in\\mathbb{N}^*$",
+          "leurres": [
+            "$n\\in\\mathbb{Z}^*$",
+            "$n\\in\\mathbb{N}$",
+            "$n\\in\\mathbb{R}_+^*$"
+          ]
+        },
+        {
+          "reponse": "$n$ solutions",
+          "leurres": [
+            "$2n$ solutions",
+            "$n-1$ solutions",
+            "deux solutions"
+          ]
+        },
+        {
+          "reponse": "$0$",
+          "leurres": [
+            "$1$",
+            "$n$",
+            "$-1$"
+          ]
+        }
+      ],
+      "demo": "**Les $\\omega_k$ sont solutions.** Par la formule de Moivre, $\\omega_k^n=e^{2ik\\pi}=1$.\n\n**Ce sont les seules.** Si $z^n=1$, alors $|z|^n=1$, donc $|z|=1$ (car $|z|$ est un réel positif), et $z=e^{i\\theta}$ avec $\\theta\\in\\mathbb{R}$. Alors $e^{in\\theta}=1=e^{i0}$, donc $n\\theta=2k\\pi$ avec $k\\in\\mathbb{Z}$, soit $z=e^{2ik\\pi/n}$. Par division euclidienne, $k=nq+r$ avec $0\\leq r\\leq n-1$, et $e^{2ik\\pi/n}=e^{2iq\\pi}e^{2ir\\pi/n}=\\omega_r$.\n\n**Elles sont distinctes.** Si $\\omega_k=\\omega_l$ avec $0\\leq l<k\\leq n-1$, alors $\\frac{2(k-l)\\pi}{n}\\in2\\pi\\mathbb{Z}$, donc $n$ divise $k-l$, ce qui est impossible car $0<k-l<n$. Il y a donc exactement $n$ solutions.\n\n**Structure.** $\\omega_k=\\left(e^{2i\\pi/n}\\right)^k=\\omega^k$ (Moivre). Si $u^n=v^n=1$, alors $(uv)^n=u^nv^n=1$ et $\\left(u^{-1}\\right)^n=\\left(u^n\\right)^{-1}=1$ ($u\\neq0$ car $u^n=1$).\n\n**Polygone ($n\\geq3$).** Les points sont sur le cercle unité, rangés par arguments croissants $0,\\frac{2\\pi}{n},\\dots,\\frac{2(n-1)\\pi}{n}$. Les côtés ont tous la même longueur $\\left|\\omega^{k+1}-\\omega^k\\right|=|\\omega^k|\\,|\\omega-1|=|\\omega-1|$ (avec $\\omega^n=\\omega^0$). Un polygone convexe inscrit dans un cercle dont les côtés sont égaux a aussi ses angles égaux (cordes égales, arcs égaux) : il est régulier.\n\n**Somme ($n\\geq2$).** On a $\\omega\\neq1$ car $0<\\frac{2\\pi}{n}<2\\pi$, et la somme géométrique vaut $\\sum_{k=0}^{n-1}\\omega^k=\\frac{1-\\omega^n}{1-\\omega}=0$.",
+      "exemple": "Racines sixièmes de l'unité : $e^{ik\\pi/3}$ pour $k=0,\\dots,5$, soit $1$, $\\frac{1}{2}+i\\frac{\\sqrt3}{2}$, $-\\frac{1}{2}+i\\frac{\\sqrt3}{2}$, $-1$, $-\\frac{1}{2}-i\\frac{\\sqrt3}{2}$ et $\\frac{1}{2}-i\\frac{\\sqrt3}{2}$ : les sommets d'un hexagone régulier. Leur somme est nulle (elles s'annulent deux à deux, car $\\omega_{k+3}=-\\omega_k$).\n\nCalcul avec $j$ : $j^3=1$ donc $j^{100}=j^{99}\\,j=j$, et $1+j=-j^2$.",
+      "contre_exemple": "- **$n=1$** : $\\mathbb{U}_1=\\{1\\}$ et la somme vaut $1\\neq0$ : l'hypothèse $n\\geq2$ est nécessaire pour la somme nulle.\n- **$n=0$** : $z^0=1$ pour tout $z\\neq0$ : l'équation a une infinité de solutions, d'où l'hypothèse $n\\in\\mathbb{N}^*$.\n- **Exposant négatif** : $z^{-2}=1$ a $2$ solutions ($1$ et $-1$), et non « $-2$ » ; l'énoncé n'a de sens que pour $n\\geq1$.\n- **Indices mal choisis** : avec $k\\in\\{0,\\dots,n\\}$, on compte $\\omega_0=\\omega_n=1$ deux fois.",
+      "affirmations": [
+        {
+          "texte": "La somme des racines cinquièmes de l'unité est nulle.",
+          "vrai": true,
+          "justification": "C'est le cas $n=5\\geq2$ : $\\sum_{k=0}^{4}\\omega^k=\\frac{1-\\omega^5}{1-\\omega}=0$ avec $\\omega=e^{2i\\pi/5}\\neq1$."
+        },
+        {
+          "texte": "Pour tout $n\\geq1$, le produit des racines $n$-ièmes de l'unité vaut $1$.",
+          "vrai": false,
+          "contre_exemple": "$n=2$ : $1\\times(-1)=-1$."
+        },
+        {
+          "texte": "Si $z^n=1$ pour un entier $n\\geq1$, alors $z=1$ ou $z=-1$.",
+          "vrai": false,
+          "contre_exemple": "$i^4=1$ alors que $i\\neq\\pm1$."
+        },
+        {
+          "texte": "Avec $j=e^{2i\\pi/3}$, on a $j^2=\\overline{j}$.",
+          "vrai": true,
+          "justification": "$j^2=e^{4i\\pi/3}=e^{-2i\\pi/3}=\\overline{j}$ (car $\\frac{4\\pi}{3}-\\left(-\\frac{2\\pi}{3}\\right)=2\\pi$)."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-exponentielle"
+      ]
+    },
+    {
+      "id": "geo-t-complexes-second-degre",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Équation du second degré à coefficients réels",
+      "recto": "Énoncer la résolution dans $\\mathbb{C}$ de l'équation $az^2+bz+c=0$ à coefficients réels, avec ses hypothèses.",
+      "cours": "Dans $\\mathbb{R}$, l'équation $az^2+bz+c=0$ n'a pas de solution quand le discriminant est négatif. C'est pour lever cet obstacle (et, historiquement, pour le degré 3) qu'on a introduit les nombres complexes : dans $\\mathbb{C}$, un réel négatif $\\Delta$ a deux racines carrées, $\\pm i\\sqrt{-\\Delta}$, et l'équation a toujours des solutions.\n\nLa méthode reste la forme canonique $az^2+bz+c=a\\left[\\left(z+\\frac{b}{2a}\\right)^2-\\frac{\\Delta}{4a^2}\\right]$, suivie de la factorisation d'une différence de deux carrés. Si $\\Delta<0$, on obtient deux solutions **conjuguées** $\\frac{-b\\pm i\\sqrt{-\\Delta}}{2a}$ ; ce n'est pas un hasard : si $P$ est à coefficients réels, $P(\\overline{z})=\\overline{P(z)}$, donc le conjugué d'une racine est encore une racine.\n\nDans tous les cas, la somme et le produit des solutions (comptées avec multiplicité) valent $-\\frac{b}{a}$ et $\\frac{c}{a}$, ce qui permet de retrouver une équation à partir de ses solutions ou de contrôler un calcul. Pour une équation de degré 3 à coefficients réels dont une solution $z_0$ est connue, on factorise par $z-z_0$ puis on résout l'équation du second degré restante.\n\nPièges : dès que $\\Delta\\neq0$, il y a deux solutions, et le signe de $\\Delta$ ne décide plus de leur existence mais de leur nature (réelles, ou complexes conjuguées non réelles) ; on n'écrit jamais $\\sqrt{\\Delta}$ pour $\\Delta<0$ (le symbole $\\sqrt{\\cdot}$ est réservé aux réels positifs) ; et pour des coefficients complexes, les solutions ne sont plus conjuguées en général.",
+      "hypotheses": [
+        "$a$, $b$, $c$ sont des réels.",
+        "$a\\neq0$."
+      ],
+      "hypotheses_pieges": [
+        "$a$, $b$, $c$ sont des complexes quelconques.",
+        "$\\Delta\\geq0$.",
+        "$c\\neq0$.",
+        "$a>0$."
+      ],
+      "enonce": "Soient $a$, $b$, $c$ des réels avec $a\\neq0$, et $\\Delta=b^2-4ac$. L'équation $az^2+bz+c=0$, d'inconnue $z\\in\\mathbb{C}$, admet :\n- si $\\Delta>0$, deux solutions réelles distinctes $z_1=\\frac{-b+\\sqrt{\\Delta}}{2a}$ et $z_2=\\frac{-b-\\sqrt{\\Delta}}{2a}$ ;\n- si $\\Delta=0$, une solution réelle double $z_1=z_2=-\\frac{b}{2a}$ ;\n- si $\\Delta<0$, deux solutions complexes non réelles et conjuguées $z_1=\\frac{-b+i\\sqrt{-\\Delta}}{2a}$ et $z_2=\\overline{z_1}=\\frac{-b-i\\sqrt{-\\Delta}}{2a}$.\n\nDans tous les cas, $az^2+bz+c=a(z-z_1)(z-z_2)$ pour tout $z\\in\\mathbb{C}$, et $z_1+z_2=-\\frac{b}{a}$, $z_1z_2=\\frac{c}{a}$.",
+      "enonce_trous": "Soient $a$, $b$, $c$ réels avec $a\\neq0$, et $\\Delta=b^2-4ac$. Si {{1}}, l'équation $az^2+bz+c=0$ a deux solutions complexes non réelles $\\frac{-b\\pm i\\sqrt{-\\Delta}}{2a}$, qui sont {{2}}. Dans tous les cas, le produit des solutions (comptées avec multiplicité) vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\Delta<0$",
+          "leurres": [
+            "$\\Delta>0$",
+            "$\\Delta\\leq0$",
+            "$\\Delta\\neq0$"
+          ]
+        },
+        {
+          "reponse": "conjuguées l'une de l'autre",
+          "leurres": [
+            "opposées l'une de l'autre",
+            "inverses l'une de l'autre",
+            "imaginaires pures"
+          ]
+        },
+        {
+          "reponse": "$\\frac{c}{a}$",
+          "leurres": [
+            "$-\\frac{c}{a}$",
+            "$-\\frac{b}{a}$",
+            "$\\frac{a}{c}$"
+          ]
+        }
+      ],
+      "demo": "**Forme canonique.** Comme $a\\neq0$, pour tout $z\\in\\mathbb{C}$ : $az^2+bz+c=a\\left[\\left(z+\\frac{b}{2a}\\right)^2-\\frac{\\Delta}{4a^2}\\right]$ (il suffit de développer le membre de droite).\n\n**Factorisation.** Soit $\\delta$ un complexe tel que $\\delta^2=\\Delta$ : $\\delta=\\sqrt\\Delta$ si $\\Delta\\geq0$, et $\\delta=i\\sqrt{-\\Delta}$ si $\\Delta<0$ (en effet $(i\\sqrt{-\\Delta})^2=-(-\\Delta)=\\Delta$). Alors $\\frac{\\Delta}{4a^2}=\\left(\\frac{\\delta}{2a}\\right)^2$ et, avec $z_1=\\frac{-b+\\delta}{2a}$ et $z_2=\\frac{-b-\\delta}{2a}$ :\n$$az^2+bz+c=a\\left(z+\\frac{b}{2a}-\\frac{\\delta}{2a}\\right)\\left(z+\\frac{b}{2a}+\\frac{\\delta}{2a}\\right)=a(z-z_1)(z-z_2).$$\n\n**Résolution.** Un produit de complexes est nul si et seulement si l'un des facteurs est nul (si $uv=0$ et $u\\neq0$, alors $v=u^{-1}uv=0$) ; comme $a\\neq0$, les solutions sont $z_1$ et $z_2$. Si $\\Delta>0$, $\\delta=\\sqrt\\Delta$ est un réel non nul, donc $z_1$ et $z_2$ sont réels (car $a$, $b$ sont réels) et $z_1-z_2=\\frac{\\delta}{a}\\neq0$. Si $\\Delta=0$, $\\delta=0$ et $z_1=z_2=-\\frac{b}{2a}$. Si $\\Delta<0$, la partie imaginaire de $z_1$ est $\\frac{\\sqrt{-\\Delta}}{2a}\\neq0$ (c'est ici qu'on utilise que $a$ et $b$ sont réels), et $z_2=\\overline{z_1}$.\n\n**Somme et produit.** $z_1+z_2=\\frac{-2b}{2a}=-\\frac{b}{a}$ et $z_1z_2=\\frac{b^2-\\delta^2}{4a^2}=\\frac{4ac}{4a^2}=\\frac{c}{a}$.",
+      "exemple": "$z^2-2z+5=0$ : $\\Delta=4-20=-16<0$ et $\\sqrt{-\\Delta}=4$, d'où $z=\\frac{2\\pm4i}{2}$, soit $1+2i$ et $1-2i$. Contrôle : la somme vaut $2=-\\frac{b}{a}$ et le produit $1+4=5=\\frac{c}{a}$.\n\nDegré 3 : $z^3+1=(z+1)(z^2-z+1)$, et $z^2-z+1=0$ a pour discriminant $-3$ ; les solutions de $z^3+1=0$ sont donc $-1$, $\\frac{1}{2}+i\\frac{\\sqrt3}{2}$ et $\\frac{1}{2}-i\\frac{\\sqrt3}{2}$.",
+      "contre_exemple": "- **Coefficients non réels** : $z^2-(1+i)z+i=(z-1)(z-i)$ a pour solutions $1$ et $i$, qui ne sont pas conjuguées ; ici $\\Delta=(1+i)^2-4i=-2i$ n'est même pas réel, et la discussion selon son signe n'a plus de sens.\n- **$a=0$** : $0\\cdot z^2+z+1=0$ n'a qu'une solution, $-1$, et les formules (division par $2a$) n'ont pas de sens.\n- **« $\\Delta<0$, donc pas de solution »** : faux dans $\\mathbb{C}$ ; $z^2+1=0$ a pour solutions $i$ et $-i$.",
+      "affirmations": [
+        {
+          "texte": "Si $a$, $b$, $c$ sont réels avec $a\\neq0$ et si $z_0$ est solution de $az^2+bz+c=0$, alors $\\overline{z_0}$ en est aussi une solution.",
+          "vrai": true,
+          "justification": "En conjuguant $az_0^2+bz_0+c=0$ et en utilisant $\\overline{a}=a$, $\\overline{b}=b$, $\\overline{c}=c$, on obtient $a\\overline{z_0}^{\\,2}+b\\overline{z_0}+c=0$."
+        },
+        {
+          "texte": "L'équation $z^2+iz+2=0$ a deux solutions conjuguées l'une de l'autre.",
+          "vrai": false,
+          "contre_exemple": "$z^2+iz+2=(z-i)(z+2i)$ : les solutions sont $i$ et $-2i$, qui ne sont pas conjuguées (le coefficient $i$ n'est pas réel)."
+        },
+        {
+          "texte": "Si $\\Delta<0$, l'équation $az^2+bz+c=0$ n'a pas de solution dans $\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "$z^2+1=0$ ($\\Delta=-4$) a les deux solutions $i$ et $-i$."
+        },
+        {
+          "texte": "Les solutions de $z^2+z+1=0$ sont $j$ et $j^2$, où $j=e^{2i\\pi/3}$.",
+          "vrai": true,
+          "justification": "$\\Delta=-3$, d'où $z=\\frac{-1\\pm i\\sqrt3}{2}$, c'est-à-dire $j$ et $\\overline{j}=j^2$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-conjugue"
+      ]
+    },
+    {
+      "id": "geo-t-complexes-geometrie",
+      "theme": "geometrie",
+      "niveau": "terminale",
+      "chapitre": "geo-t-complexes",
+      "type": "theoreme",
+      "titre": "Nombres complexes et géométrie : alignement, orthogonalité",
+      "recto": "Énoncer l'interprétation géométrique du quotient $\\frac{c-a}{b-a}$ et les critères d'alignement et d'orthogonalité qui en découlent, avec leurs hypothèses.",
+      "cours": "Le plan muni d'un repère orthonormé direct s'identifie à $\\mathbb{C}$ : le vecteur $\\overrightarrow{AB}$ a pour affixe $b-a$, sa longueur est $|b-a|$, et un argument de $b-a$ mesure l'angle $(\\vec u,\\overrightarrow{AB})$. Toute la géométrie des angles et des longueurs se lit alors sur un seul nombre, le quotient $q=\\frac{c-a}{b-a}$ : son module est le rapport $\\frac{AC}{AB}$ et son argument l'angle orienté $(\\overrightarrow{AB},\\overrightarrow{AC})$.\n\nMéthode : pour montrer un **alignement**, on montre que $q$ est réel ; pour une **orthogonalité**, que $q$ est imaginaire pur ; pour un triangle **rectangle isocèle** en $A$, que $q=\\pm i$ ; pour un triangle **équilatéral**, que $q=e^{\\pm i\\pi/3}$. Ces critères s'étendent à deux droites quelconques : si $A\\neq B$ et $C\\neq D$, $(AB)$ et $(CD)$ sont parallèles si et seulement si $\\frac{d-c}{b-a}$ est réel, et perpendiculaires si et seulement s'il est imaginaire pur. Pour tester « réel » ou « imaginaire pur », on met le quotient sous forme algébrique (conjugué du dénominateur) ou on le compare à son conjugué.\n\nLe lien avec le produit scalaire explique tout : si $b-a=x+iy$ et $c-a=x'+iy'$, alors $(c-a)\\overline{(b-a)}=(xx'+yy')+i(xy'-yx')$ ; sa partie réelle est le produit scalaire $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$ et sa partie imaginaire le déterminant des deux vecteurs.\n\nPiège principal : vérifier que les points sont distincts. Le quotient n'a pas de sens si $A=B$, et si $C=A$, $q=0$ est à la fois réel et imaginaire pur sans qu'il existe de droite $(AC)$.",
+      "hypotheses": [
+        "$A\\neq B$.",
+        "$C\\neq A$, pour l'angle $(\\overrightarrow{AB},\\overrightarrow{AC})$ et le critère d'orthogonalité."
+      ],
+      "hypotheses_pieges": [
+        "$C\\neq B$.",
+        "$AB=AC$.",
+        "$a$, $b$, $c$ sont non nuls (les points sont distincts de l'origine)."
+      ],
+      "enonce": "Le plan est muni d'un repère orthonormé direct $(O;\\vec u,\\vec v)$. Soient $A$, $B$, $C$ des points d'affixes $a$, $b$, $c$, avec $A\\neq B$, et $q=\\frac{c-a}{b-a}$. Alors $AB=|b-a|$, et :\n- $A$, $B$, $C$ sont alignés si et seulement si $q$ est réel ;\n- si de plus $C\\neq A$ : $|q|=\\frac{AC}{AB}$, tout argument de $q$ est une mesure de l'angle orienté $(\\overrightarrow{AB},\\overrightarrow{AC})$, et les droites $(AB)$ et $(AC)$ sont perpendiculaires si et seulement si $q$ est imaginaire pur.",
+      "enonce_trous": "Soient $A$, $B$, $C$ des points d'affixes $a$, $b$, $c$, avec $A\\neq B$ et $A\\neq C$, et $q=\\frac{c-a}{b-a}$. Les points $A$, $B$, $C$ sont alignés si et seulement si {{1}} ; les droites $(AB)$ et $(AC)$ sont perpendiculaires si et seulement si {{2}} ; enfin, {{3}} est une mesure de l'angle orienté $(\\overrightarrow{AB},\\overrightarrow{AC})$.",
+      "trous": [
+        {
+          "reponse": "$q$ est réel",
+          "leurres": [
+            "$q$ est imaginaire pur",
+            "$|q|=1$",
+            "$q=1$"
+          ]
+        },
+        {
+          "reponse": "$q$ est imaginaire pur",
+          "leurres": [
+            "$q$ est réel",
+            "$|q|=1$",
+            "$q=i$"
+          ]
+        },
+        {
+          "reponse": "tout argument de $q$",
+          "leurres": [
+            "le module de $q$",
+            "tout argument de $\\frac{b-a}{c-a}$",
+            "tout argument de $(c-a)(b-a)$"
+          ]
+        }
+      ],
+      "demo": "Posons $b-a=x+iy$ et $c-a=x'+iy'$ ($x,y,x',y'$ réels) : ce sont les affixes des vecteurs $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$, de coordonnées $(x,y)$ et $(x',y')$. Alors $AB=\\sqrt{x^2+y^2}=|b-a|$. Comme $A\\neq B$, $b-a\\neq0$ et\n$$q=\\frac{(c-a)\\overline{(b-a)}}{|b-a|^2}=\\frac{(xx'+yy')+i(xy'-yx')}{|b-a|^2}.$$\n\n**Alignement.** $q$ est réel $\\iff xy'-yx'=0\\iff$ les vecteurs $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ sont colinéaires (déterminant nul) $\\iff A$, $B$, $C$ sont alignés.\n\n**Module et argument.** Si $C\\neq A$, alors $c-a\\neq0$ et $|q|=\\frac{|c-a|}{|b-a|}=\\frac{AC}{AB}$. Le point d'affixe $b-a$ est le point $M$ tel que $\\overrightarrow{OM}=\\overrightarrow{AB}$, donc un argument de $b-a$ mesure $(\\vec u,\\overrightarrow{AB})$ ; de même un argument de $c-a$ mesure $(\\vec u,\\overrightarrow{AC})$. Ainsi $\\arg q\\equiv\\arg(c-a)-\\arg(b-a)\\equiv(\\vec u,\\overrightarrow{AC})-(\\vec u,\\overrightarrow{AB})\\equiv(\\overrightarrow{AB},\\overrightarrow{AC})\\;[2\\pi]$ par la relation de Chasles.\n\n**Orthogonalité.** $q$ est imaginaire pur $\\iff xx'+yy'=0\\iff\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=0$ ; comme les deux vecteurs sont non nuls ($A\\neq B$ et $A\\neq C$), cela équivaut à $(AB)\\perp(AC)$.",
+      "exemple": "$A(1+i)$, $B(3+2i)$, $C(3i)$ : $b-a=2+i$ et $c-a=-1+2i$, donc\n$$q=\\frac{-1+2i}{2+i}=\\frac{(-1+2i)(2-i)}{(2+i)(2-i)}=\\frac{-2+i+4i+2}{5}=i.$$\nAinsi $|q|=1$, soit $AC=AB$, et $q$ est imaginaire pur d'argument $\\frac{\\pi}{2}$ : $(\\overrightarrow{AB},\\overrightarrow{AC})\\equiv\\frac{\\pi}{2}\\;[2\\pi]$. Le triangle $ABC$ est rectangle isocèle en $A$.",
+      "contre_exemple": "- **$A=B$** : le quotient $q$ n'est pas défini, on ne peut rien conclure.\n- **$C=A$** : $q=0$ est à la fois réel et imaginaire pur ; les points sont bien alignés, mais il n'y a ni droite $(AC)$ ni angle $(\\overrightarrow{AB},\\overrightarrow{AC})$ : la seconde partie exige $C\\neq A$.\n- **$|q|=1$ ne donne pas l'alignement** : pour $a=0$, $b=1$, $c=i$, $|q|=|i|=1$ mais $A$, $B$, $C$ ne sont pas alignés (le triangle est rectangle isocèle en $A$).",
+      "affirmations": [
+        {
+          "texte": "Si $\\frac{c-a}{b-a}=i$, alors le triangle $ABC$ est rectangle isocèle en $A$.",
+          "vrai": true,
+          "justification": "$|q|=1$ donne $AC=AB$, et $q$ imaginaire pur (avec $C\\neq A$ puisque $q\\neq0$) donne $(AB)\\perp(AC)$."
+        },
+        {
+          "texte": "Si $\\left|\\frac{c-a}{b-a}\\right|=1$, alors $A$, $B$, $C$ sont alignés.",
+          "vrai": false,
+          "contre_exemple": "$a=0$, $b=1$, $c=i$ : le quotient vaut $i$, de module $1$, mais $i$ n'est pas réel et les points ne sont pas alignés ; $|q|=1$ signifie seulement $AB=AC$."
+        },
+        {
+          "texte": "Les points d'affixes $1$, $i$ et $-1$ sont alignés.",
+          "vrai": false,
+          "contre_exemple": "Avec $a=1$, $b=i$, $c=-1$ : $\\frac{c-a}{b-a}=\\frac{-2}{-1+i}=\\frac{-2(-1-i)}{2}=1+i$, qui n'est pas réel."
+        },
+        {
+          "texte": "Si $\\frac{c-a}{b-a}=-2$, alors $A$ appartient au segment $[BC]$.",
+          "vrai": true,
+          "justification": "$c-a=-2(b-a)$ signifie $\\overrightarrow{AC}=-2\\overrightarrow{AB}$ : les vecteurs $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ sont de sens contraires, donc $A$ est entre $B$ et $C$."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-module"
+      ]
+    }
+  ]
+}
