@@ -1,0 +1,136 @@
+{
+  "cartes": [
+    {
+      "id": "ar-t-continuite-bijection",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-continuite",
+      "type": "theoreme",
+      "titre": "Théorème de la bijection (corollaire du TVI)",
+      "recto": "Énoncer le théorème donnant l'existence et l'unicité d'une solution de $f(x)=k$ pour une fonction strictement monotone, avec ses hypothèses.",
+      "cours": "Le théorème des valeurs intermédiaires garantit qu'une équation $f(x)=k$ a **au moins** une solution ; le théorème de la bijection ajoute l'**unicité** lorsque $f$ est, de plus, strictement monotone. L'intuition : une fonction continue qui ne fait que monter (ou que descendre) atteint chaque valeur intermédiaire une fois et une seule. On dit que $f$ réalise une bijection de l'intervalle de départ sur l'intervalle image.\n\nMéthode pour étudier une équation $f(x)=k$ : dresser le tableau de variations de $f$, limites aux bornes comprises ; découper l'ensemble d'étude en intervalles sur lesquels $f$ est continue et strictement monotone ; sur chacun, regarder si $k$ appartient à l'intervalle image. Chaque intervalle qui convient fournit exactement une solution. On encadre ensuite cette solution en calculant $f$ en quelques points (balayage ou dichotomie). Sur un intervalle ouvert, on remplace les valeurs aux bornes par les limites, et l'intervalle image est ouvert.\n\nLe piège principal : oublier une hypothèse. Sans continuité, une fonction strictement croissante peut « sauter » une valeur ; sans stricte monotonie, l'unicité tombe (une fonction constante sur un morceau y a une infinité d'antécédents d'une même valeur). Attention aussi aux bornes : une solution peut être une extrémité de l'intervalle, et deux intervalles voisins partagent une borne qu'il ne faut pas compter deux fois.",
+      "hypotheses": [
+        "$f$ est continue sur $[a,b]$.",
+        "$f$ est strictement monotone sur $[a,b]$.",
+        "$k$ est compris entre $f(a)$ et $f(b)$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est seulement monotone au sens large sur $[a,b]$ (à la place de strictement monotone).",
+        "$f$ est continue sur $[a,b]$ sauf en un point (à la place de la continuité sur tout $[a,b]$).",
+        "$f(a)$ et $f(b)$ sont de signes contraires (à la place de « $k$ compris entre $f(a)$ et $f(b)$ »)."
+      ],
+      "enonce": "Soient $a<b$ deux réels et $f$ une fonction **continue** et **strictement monotone** sur $[a,b]$. Alors, pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet **une unique** solution dans $[a,b]$ : $f$ réalise une bijection de $[a,b]$ sur l'intervalle fermé d'extrémités $f(a)$ et $f(b)$.\n\nVersion sur un intervalle ouvert : si $f$ est continue et strictement croissante sur $\\left]a,b\\right[$ ($a$ et $b$ réels ou infinis), avec $\\lim_{x\\to a}f(x)=\\alpha$ et $\\lim_{x\\to b}f(x)=\\beta$ ($\\alpha$ et $\\beta$ réels ou infinis), alors pour tout $k\\in\\left]\\alpha,\\beta\\right[$, l'équation $f(x)=k$ admet une unique solution dans $\\left]a,b\\right[$. De même pour une fonction strictement décroissante, avec $k\\in\\left]\\beta,\\alpha\\right[$.",
+      "enonce_trous": "Si $f$ est {{1}} et {{2}} sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet {{3}} dans $[a,b]$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "bornée",
+            "définie",
+            "positive"
+          ]
+        },
+        {
+          "reponse": "strictement monotone",
+          "leurres": [
+            "monotone",
+            "positive",
+            "non constante"
+          ]
+        },
+        {
+          "reponse": "une unique solution",
+          "leurres": [
+            "une unique solution, toujours située dans $\\left]a,b\\right[$",
+            "au moins deux solutions",
+            "une infinité de solutions"
+          ]
+        }
+      ],
+      "demo": "**Existence.** $f$ est continue sur $[a,b]$ et $k$ est compris entre $f(a)$ et $f(b)$ : le théorème des valeurs intermédiaires fournit $c\\in[a,b]$ tel que $f(c)=k$.\n\n**Unicité.** Si $c_1<c_2$ étaient deux solutions, la stricte monotonie donnerait $f(c_1)<f(c_2)$ ou $f(c_1)>f(c_2)$, donc $f(c_1)\\neq f(c_2)$, alors que $f(c_1)=f(c_2)=k$.\n\nPar monotonie, $f(x)$ est compris entre $f(a)$ et $f(b)$ pour tout $x\\in[a,b]$ : $f$ envoie $[a,b]$ dans l'intervalle d'extrémités $f(a)$ et $f(b)$, et chaque valeur de cet intervalle a exactement un antécédent : c'est une bijection.\n\n**Version sur $\\left]a,b\\right[$** ($f$ strictement croissante). Soit $k\\in\\left]\\alpha,\\beta\\right[$. Comme $\\lim_{x\\to a}f(x)=\\alpha<k$, il existe $x_1\\in\\left]a,b\\right[$ tel que $f(x_1)<k$ ; comme $\\lim_{x\\to b}f(x)=\\beta>k$, il existe $x_2\\in\\left]a,b\\right[$ tel que $f(x_2)>k$, et $x_1<x_2$ puisque $f$ est croissante. Le cas du segment $[x_1,x_2]$ fournit une solution, et l'unicité vient encore de la stricte monotonie.",
+      "exemple": "$f(x)=x^3+x-1$ est continue et strictement croissante sur $\\mathbb{R}$ ($f'(x)=3x^2+1>0$), avec $\\lim_{x\\to-\\infty}f(x)=-\\infty$ et $\\lim_{x\\to+\\infty}f(x)=+\\infty$ : l'équation $f(x)=0$ a une unique solution $\\alpha$ dans $\\mathbb{R}$. Comme $f(0{,}6)=-0{,}184<0$ et $f(0{,}7)=0{,}043>0$, le théorème sur $[0{,}6\\,;0{,}7]$ fournit une solution dans $\\left]0{,}6\\,;0{,}7\\right[$, qui est $\\alpha$ par unicité.",
+      "contre_exemple": "- **Stricte monotonie (unicité)** : $f(x)=x^3-x$ est continue sur $[-2,2]$, $f(-2)=-6$ et $f(2)=6$, mais l'équation $f(x)=0$ a trois solutions : $-1$, $0$ et $1$.\n- **Monotonie au sens large** : $f(x)=\\min(x,1)$ est continue et croissante sur $[0,2]$, et les solutions de $f(x)=1$ forment tout l'intervalle $[1,2]$.\n- **Continuité (existence)** : sur $[0,2]$, soit $f(x)=x$ si $x<1$ et $f(x)=x+1$ si $x\\ge1$. $f$ est strictement croissante, $f(0)=0$ et $f(2)=3$, mais $f(x)=\\frac32$ n'a pas de solution : $f$ prend les valeurs de $\\left[0,1\\right[$ puis celles de $[2,3]$.\n- **Bornes de l'intervalle d'arrivée** : $\\exp$ est continue et strictement croissante sur $\\mathbb{R}$, de limites $0$ en $-\\infty$ et $+\\infty$ en $+\\infty$ ; le réel $k=0$ n'a pas d'antécédent : il faut $k\\in\\left]0,+\\infty\\right[$, intervalle ouvert.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est strictement croissante sur $[a,b]$ et si $f(a)<0<f(b)$, alors $f$ s'annule sur $[a,b]$.",
+          "vrai": false,
+          "contre_exemple": "Sur $[0,2]$, $f(x)=x-1$ si $x<1$ et $f(x)=x$ si $x\\ge1$ : $f$ est strictement croissante, $f(0)=-1<0<2=f(2)$, mais $f<0$ sur $\\left[0,1\\right[$ et $f\\ge1$ sur $[1,2]$ : $f$ ne s'annule pas. Il manque la continuité."
+        },
+        {
+          "texte": "Si $f$ est continue et strictement décroissante sur $[a,b]$, alors pour tout $k\\in[f(b),f(a)]$, l'équation $f(x)=k$ a une unique solution dans $[a,b]$.",
+          "vrai": true,
+          "justification": "C'est le théorème dans le cas décroissant : $f(b)\\le f(a)$, et $k$ est compris entre $f(a)$ et $f(b)$."
+        },
+        {
+          "texte": "Si $f$ est continue et strictement croissante sur $\\left]0,1\\right[$, alors $f$ est bornée sur $\\left]0,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\frac{1}{1-x}$ est continue et strictement croissante sur $\\left]0,1\\right[$, et tend vers $+\\infty$ en $1$ : elle réalise une bijection de $\\left]0,1\\right[$ sur $\\left]1,+\\infty\\right[$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "ar-t-continuite-image-suite",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-continuite",
+      "type": "theoreme",
+      "titre": "Image d'une suite convergente par une fonction continue",
+      "recto": "Énoncer le théorème sur l'image d'une suite convergente par une fonction continue, avec ses hypothèses.",
+      "cours": "Une fonction $f$ est continue en $\\ell$ si $f(x)$ tend vers $f(\\ell)$ quand $x$ tend vers $\\ell$. Le théorème traduit cette propriété en termes de suites : si $u_n\\to\\ell$ et si $f$ est continue en $\\ell$, alors $f(u_n)\\to f(\\ell)$. Autrement dit, pour une fonction continue, on peut « faire entrer la limite dans la fonction » : $\\lim f(u_n)=f\\left(\\lim u_n\\right)$.\n\nEn pratique, on calcule d'abord la limite $\\ell$ de la suite intérieure (après avoir levé une éventuelle indétermination), puis on applique une fonction continue en $\\ell$ : polynôme, quotient à dénominateur non nul en $\\ell$, racine carrée, exponentielle, logarithme si $\\ell>0$, sinus, cosinus. C'est aussi l'argument clé des suites récurrentes $u_{n+1}=f(u_n)$ : si la suite converge vers $\\ell$ et si $f$ est continue en $\\ell$, le passage à la limite donne $\\ell=f(\\ell)$. Il permet enfin d'exploiter une relation comme $f(2x)=f(x)$, en faisant tendre une suite bien choisie vers un point.\n\nLe piège principal : la continuité doit avoir lieu **en la limite** $\\ell$, qui doit appartenir à l'ensemble de définition ; la continuité aux points $u_n$ ne suffit pas. Avec la partie entière $E$ et $u_n=1-\\frac{1}{n+2}\\to1$, on a $E(u_n)=0$ pour tout $n$, alors que $E(1)=1$.",
+      "hypotheses": [
+        "$(u_n)$ est une suite d'éléments de $I$ (les $f(u_n)$ sont définis).",
+        "$(u_n)$ converge vers un réel $\\ell$ appartenant à $I$.",
+        "$f$ est continue en $\\ell$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est croissante sur $I$ (à la place de la continuité en $\\ell$).",
+        "$f$ est continue en tout point de $I$ autre que $\\ell$.",
+        "$f$ est continue en chacun des points $u_n$."
+      ],
+      "enonce": "Soient $f$ une fonction définie sur un intervalle $I$, $\\ell$ un réel **appartenant à $I$** et $(u_n)$ une suite d'éléments de $I$ qui converge vers $\\ell$. Si $f$ est **continue en $\\ell$**, alors la suite $(f(u_n))$ converge vers $f(\\ell)$ : $\\lim f(u_n)=f\\left(\\lim u_n\\right)$.",
+      "enonce_trous": "Si $(u_n)$ est une suite d'éléments de $I$ qui converge vers $\\ell\\in I$ et si $f$ est {{1}}, alors {{2}}.",
+      "trous": [
+        {
+          "reponse": "continue en $\\ell$",
+          "leurres": [
+            "croissante sur $I$",
+            "définie en $\\ell$",
+            "continue en chacun des points $u_n$"
+          ]
+        },
+        {
+          "reponse": "$(f(u_n))$ converge vers $f(\\ell)$",
+          "leurres": [
+            "$(f(u_n))$ converge vers $\\ell$",
+            "$f(\\ell)=\\ell$",
+            "$(u_n)$ converge vers $f(\\ell)$"
+          ]
+        }
+      ],
+      "demo": "En Terminale, « $f$ est continue en $\\ell$ » signifie $\\lim_{x\\to\\ell}f(x)=f(\\ell)$ ; le résultat est alors un cas de composition de limites. Preuve : soit $J$ un intervalle ouvert contenant $f(\\ell)$. Par continuité de $f$ en $\\ell$, il existe un intervalle ouvert $K$ contenant $\\ell$ tel que $f(x)\\in J$ pour tout $x\\in K\\cap I$. Comme $u_n\\to\\ell$, l'intervalle ouvert $K$ contient tous les $u_n$ à partir d'un certain rang $N$ ; pour $n\\ge N$, $u_n\\in K\\cap I$, donc $f(u_n)\\in J$. Ainsi tout intervalle ouvert contenant $f(\\ell)$ contient tous les $f(u_n)$ à partir d'un certain rang : $f(u_n)\\to f(\\ell)$.\n\nAvec des $\\varepsilon$ : pour $\\varepsilon>0$, il existe $\\delta>0$ tel que, pour $x\\in I$, $|x-\\ell|<\\delta$ entraîne $|f(x)-f(\\ell)|<\\varepsilon$ ; puis il existe un rang $N$ tel que $|u_n-\\ell|<\\delta$ pour $n\\ge N$, et alors $|f(u_n)-f(\\ell)|<\\varepsilon$.",
+      "exemple": "$u_n=\\frac{4n+1}{n}\\to4$ ($n\\ge1$) et la fonction racine carrée est continue en $4$ : $\\sqrt{u_n}\\to2$. C'est aussi l'argument clé de l'étude des suites $u_{n+1}=f(u_n)$ : si $u_n\\to\\ell$ et si $f$ est continue en $\\ell$, on passe à la limite dans $u_{n+1}=f(u_n)$ et l'on obtient $\\ell=f(\\ell)$.",
+      "contre_exemple": "- **Continuité en $\\ell$ nécessaire** : soit $E$ la partie entière ($E(x)$ est le plus grand entier inférieur ou égal à $x$) et $u_n=1-\\frac{1}{n+2}$. On a $u_n\\in\\left]0,1\\right[$, donc $E(u_n)=0$ pour tout $n$, alors que $u_n\\to1$ et $E(1)=1$. La fonction $E$ est croissante, et continue en chaque $u_n$ (qui n'est pas entier), mais pas en $1$.\n- **$\\ell\\in I$ nécessaire** : sur $I=\\left]0,+\\infty\\right[$, $f(x)=\\frac1x$ est continue, $u_n=\\frac1{n+1}\\to0\\notin I$, et $f(u_n)=n+1\\to+\\infty$ : « $f(0)$ » n'a pas de sens.",
+      "affirmations": [
+        {
+          "texte": "Si $u_n\\to\\ell$ et si $f(u_n)\\to f(\\ell)$, alors $f$ est continue en $\\ell$.",
+          "vrai": false,
+          "contre_exemple": "$E$ (partie entière) et $u_n=1+\\frac1{n+2}\\in\\left]1,2\\right[$ : $E(u_n)=1=E(1)$ pour tout $n$, mais $E$ n'est pas continue en $1$ (avec $v_n=1-\\frac1{n+2}$, $E(v_n)=0$). Une seule suite ne suffit pas."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\mathbb{R}$ et si $(u_n)$ n'a pas de limite, alors $(f(u_n))$ n'a pas de limite.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2$ et $u_n=(-1)^n$ : $(u_n)$ n'a pas de limite, mais $f(u_n)=1$ pour tout $n$."
+        },
+        {
+          "texte": "Si $u_n\\to2$, alors $\\frac{u_n}{1+u_n^2}\\to\\frac25$.",
+          "vrai": true,
+          "justification": "La fonction $x\\mapsto\\frac{x}{1+x^2}$ est continue sur $\\mathbb{R}$ (quotient de fonctions continues, dénominateur non nul), en particulier en $2$, où elle vaut $\\frac25$."
+        }
+      ],
+      "prerequis": []
+    }
+  ]
+}

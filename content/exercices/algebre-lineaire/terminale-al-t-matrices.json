@@ -1,0 +1,1330 @@
+{
+  "exercices": [
+    {
+      "id": "al-t-matrices-produit-ex1",
+      "carte": "al-t-matrices-produit",
+      "difficulte": 1,
+      "titre": "Taille d'un produit de trois matrices",
+      "enonce": "Soient $A$ une matrice à $2$ lignes et $3$ colonnes, $B$ une matrice à $3$ lignes et $4$ colonnes et $C$ une matrice à $4$ lignes et $2$ colonnes. Le produit $BCA$ est-il défini ? Si oui, quelle est sa taille ?",
+      "duree_min": 3,
+      "indices": [
+        "Déterminer d'abord si $BC$ est défini et sa taille, puis multiplier par $A$."
+      ],
+      "reponse_finale": {
+        "question": "Le produit $BCA$ est-il défini, et quelle est sa taille ?",
+        "propositions": [
+          "Défini, à $3$ lignes et $3$ colonnes",
+          "Défini, à $2$ lignes et $2$ colonnes",
+          "Défini, à $4$ lignes et $4$ colonnes",
+          "Non défini"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le produit $BC$ est défini, car $B$ a $4$ colonnes et $C$ a $4$ lignes ; c'est une matrice à $3$ lignes (celles de $B$) et $2$ colonnes (celles de $C$).\n\nLe produit $(BC)A$ est défini, car $BC$ a $2$ colonnes et $A$ a $2$ lignes ; c'est une matrice à $3$ lignes et $3$ colonnes. Par associativité, $BCA = (BC)A = B(CA)$ ne dépend pas du parenthésage.\n\n**Réponse** : $BCA$ est défini, c'est une matrice carrée d'ordre $3$.",
+      "variantes": [
+        {
+          "enonce": "Soient $A$ une matrice à $3$ lignes et $2$ colonnes, $B$ une matrice à $2$ lignes et $5$ colonnes et $C$ une matrice à $5$ lignes et $3$ colonnes. Le produit $BCA$ est-il défini ? Si oui, quelle est sa taille ?",
+          "indices": [
+            "Déterminer d'abord si $BC$ est défini et sa taille, puis multiplier par $A$."
+          ],
+          "reponse_finale": {
+            "question": "Le produit $BCA$ est-il défini, et quelle est sa taille ?",
+            "propositions": [
+              "Défini, à $3$ lignes et $3$ colonnes",
+              "Défini, à $2$ lignes et $2$ colonnes",
+              "Défini, à $5$ lignes et $5$ colonnes",
+              "Non défini"
+            ],
+            "bonne": 1
+          },
+          "correction": "$B$ a $5$ colonnes et $C$ a $5$ lignes : $BC$ est défini, à $2$ lignes et $3$ colonnes. Puis $BC$ a $3$ colonnes et $A$ a $3$ lignes : $(BC)A$ est défini, à $2$ lignes et $2$ colonnes.\n\n**Réponse** : $BCA$ est défini, c'est une matrice carrée d'ordre $2$."
+        },
+        {
+          "enonce": "Soient $A$ une matrice à $2$ lignes et $3$ colonnes, $B$ une matrice à $3$ lignes et $2$ colonnes et $C$ une matrice à $3$ lignes et $4$ colonnes. Le produit $BCA$ est-il défini ? Si oui, quelle est sa taille ?",
+          "indices": [
+            "Déterminer d'abord si $BC$ est défini et sa taille, puis multiplier par $A$."
+          ],
+          "reponse_finale": {
+            "question": "Le produit $BCA$ est-il défini, et quelle est sa taille ?",
+            "propositions": [
+              "Défini, à $3$ lignes et $3$ colonnes",
+              "Défini, à $2$ lignes et $2$ colonnes",
+              "Non défini",
+              "Défini, à $3$ lignes et $4$ colonnes"
+            ],
+            "bonne": 2
+          },
+          "correction": "$B$ a $2$ colonnes et $C$ a $3$ lignes : $BC$ n'est pas défini. L'autre parenthésage ne marche pas davantage : $C$ a $4$ colonnes et $A$ a $2$ lignes, donc $CA$ n'est pas défini.\n\n**Réponse** : le produit $BCA$ n'est pas défini."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-produit-ex2",
+      "carte": "al-t-matrices-produit",
+      "difficulte": 2,
+      "titre": "Deux produits qui diffèrent",
+      "enonce": "Soient $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & -1 \\end{pmatrix}$ et $B = \\begin{pmatrix} 3 & 0 \\\\ 1 & 2 \\end{pmatrix}$. Calculer $AB$ et $BA$. Les matrices $A$ et $B$ commutent-elles ?",
+      "duree_min": 5,
+      "indices": [
+        "Le coefficient $(i,j)$ de $AB$ s'obtient en multipliant la ligne $i$ de $A$ par la colonne $j$ de $B$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $AB$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 3 & 6 \\\\ 1 & 0 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 5 & 4 \\\\ -1 & -2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 3 & 0 \\\\ 0 & -2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 3 & 5 \\\\ 0 & -2 \\end{pmatrix}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "Le coefficient $(i,j)$ de $AB$ est le produit de la ligne $i$ de $A$ par la colonne $j$ de $B$ :\n\n$$AB = \\begin{pmatrix} 1 \\times 3 + 2 \\times 1 & 1 \\times 0 + 2 \\times 2 \\\\ 0 \\times 3 + (-1) \\times 1 & 0 \\times 0 + (-1) \\times 2 \\end{pmatrix} = \\begin{pmatrix} 5 & 4 \\\\ -1 & -2 \\end{pmatrix}.$$\n\nDe même,\n\n$$BA = \\begin{pmatrix} 3 \\times 1 + 0 \\times 0 & 3 \\times 2 + 0 \\times (-1) \\\\ 1 \\times 1 + 2 \\times 0 & 1 \\times 2 + 2 \\times (-1) \\end{pmatrix} = \\begin{pmatrix} 3 & 6 \\\\ 1 & 0 \\end{pmatrix}.$$\n\nComme $AB \\neq BA$, les matrices $A$ et $B$ ne commutent pas. Attention : le produit matriciel n'est pas le produit coefficient par coefficient.",
+      "variantes": [
+        {
+          "enonce": "Soient $A = \\begin{pmatrix} 2 & -1 \\\\ 1 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 1 & 1 \\\\ 0 & 3 \\end{pmatrix}$. Calculer $AB$ et $BA$. Les matrices $A$ et $B$ commutent-elles ?",
+          "indices": [
+            "Le coefficient $(i,j)$ de $AB$ s'obtient en multipliant la ligne $i$ de $A$ par la colonne $j$ de $B$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $AB$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 3 & -1 \\\\ 3 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & -1 \\\\ 0 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & -3 \\\\ 1 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "Le coefficient $(i,j)$ de $AB$ est le produit de la ligne $i$ de $A$ par la colonne $j$ de $B$ :\n\n$$AB = \\begin{pmatrix} 2 \\times 1 + (-1) \\times 0 & 2 \\times 1 + (-1) \\times 3 \\\\ 1 \\times 1 + 0 \\times 0 & 1 \\times 1 + 0 \\times 3 \\end{pmatrix} = \\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\end{pmatrix}.$$\n\nDe même,\n\n$$BA = \\begin{pmatrix} 1 \\times 2 + 1 \\times 1 & 1 \\times (-1) + 1 \\times 0 \\\\ 0 \\times 2 + 3 \\times 1 & 0 \\times (-1) + 3 \\times 0 \\end{pmatrix} = \\begin{pmatrix} 3 & -1 \\\\ 3 & 0 \\end{pmatrix}.$$\n\nComme $AB \\neq BA$, les matrices $A$ et $B$ ne commutent pas. Attention : le produit matriciel n'est pas le produit coefficient par coefficient."
+        },
+        {
+          "enonce": "Soient $A = \\begin{pmatrix} 0 & 1 \\\\ 2 & 3 \\end{pmatrix}$ et $B = \\begin{pmatrix} 1 & -1 \\\\ 1 & 0 \\end{pmatrix}$. Calculer $AB$ et $BA$. Les matrices $A$ et $B$ commutent-elles ?",
+          "indices": [
+            "Le coefficient $(i,j)$ de $AB$ s'obtient en multipliant la ligne $i$ de $A$ par la colonne $j$ de $B$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $AB$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 1 & 0 \\\\ 5 & -2 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -2 & -2 \\\\ 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0 & -1 \\\\ 2 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -1 & 0 \\\\ -1 & 2 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le coefficient $(i,j)$ de $AB$ est le produit de la ligne $i$ de $A$ par la colonne $j$ de $B$ :\n\n$$AB = \\begin{pmatrix} 0 \\times 1 + 1 \\times 1 & 0 \\times (-1) + 1 \\times 0 \\\\ 2 \\times 1 + 3 \\times 1 & 2 \\times (-1) + 3 \\times 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 5 & -2 \\end{pmatrix}.$$\n\nDe même,\n\n$$BA = \\begin{pmatrix} 1 \\times 0 + (-1) \\times 2 & 1 \\times 1 + (-1) \\times 3 \\\\ 1 \\times 0 + 0 \\times 2 & 1 \\times 1 + 0 \\times 3 \\end{pmatrix} = \\begin{pmatrix} -2 & -2 \\\\ 0 & 1 \\end{pmatrix}.$$\n\nComme $AB \\neq BA$, les matrices $A$ et $B$ ne commutent pas. Attention : le produit matriciel n'est pas le produit coefficient par coefficient."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-produit-ex3",
+      "carte": "al-t-matrices-produit",
+      "difficulte": 2,
+      "titre": "Matrices qui commutent avec une matrice donnée",
+      "enonce": "Soit $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$. Déterminer toutes les matrices $M = \\begin{pmatrix} x & y \\\\ z & t \\end{pmatrix}$, à coefficients réels, qui commutent avec $A$, c'est-à-dire telles que $AM = MA$.",
+      "duree_min": 10,
+      "indices": [
+        "Calculer $AM$ et $MA$, puis identifier les coefficients.",
+        "On obtient quatre équations en $x, y, z, t$ ; certaines sont toujours vraies ou se répètent."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les matrices $M$ qui commutent avec $A$ ?",
+        "propositions": [
+          "Les matrices $\\begin{pmatrix} x & 0 \\\\ 0 & t \\end{pmatrix}$ avec $x, t \\in \\mathbb{R}$",
+          "Les matrices $\\begin{pmatrix} x & y \\\\ 0 & t \\end{pmatrix}$ avec $x, y, t \\in \\mathbb{R}$",
+          "Les matrices $\\begin{pmatrix} x & y \\\\ 0 & x \\end{pmatrix}$ avec $x, y \\in \\mathbb{R}$",
+          "Seulement les matrices $xI_2$ avec $x \\in \\mathbb{R}$"
+        ],
+        "bonne": 2
+      },
+      "correction": "On calcule\n\n$$AM = \\begin{pmatrix} x + z & y + t \\\\ z & t \\end{pmatrix}, \\qquad MA = \\begin{pmatrix} x & x + y \\\\ z & z + t \\end{pmatrix}.$$\n\nL'égalité $AM = MA$ équivaut, coefficient par coefficient, à $x + z = x$, $y + t = x + y$, $z = z$ et $t = z + t$, c'est-à-dire à $z = 0$ et $t = x$.\n\n**Réponse** : les matrices qui commutent avec $A$ sont les $\\begin{pmatrix} x & y \\\\ 0 & x \\end{pmatrix} = xI_2 + y\\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ avec $x, y \\in \\mathbb{R}$. Elles forment une famille à deux paramètres, plus grande que celle des matrices $xI_2$, qui commutent avec toute matrice.",
+      "variantes": [
+        {
+          "enonce": "Soit $A = \\begin{pmatrix} 2 & 0 \\\\ 0 & 3 \\end{pmatrix}$. Déterminer toutes les matrices $M = \\begin{pmatrix} x & y \\\\ z & t \\end{pmatrix}$, à coefficients réels, qui commutent avec $A$, c'est-à-dire telles que $AM = MA$.",
+          "indices": [
+            "Calculer $AM$ et $MA$, puis identifier les coefficients.",
+            "On obtient quatre équations en $x, y, z, t$ ; certaines sont toujours vraies ou se répètent."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les matrices $M$ qui commutent avec $A$ ?",
+            "propositions": [
+              "Les matrices $\\begin{pmatrix} x & 0 \\\\ 0 & t \\end{pmatrix}$ avec $x, t \\in \\mathbb{R}$",
+              "Les matrices $\\begin{pmatrix} x & y \\\\ 0 & x \\end{pmatrix}$ avec $x, y \\in \\mathbb{R}$",
+              "Les matrices $\\begin{pmatrix} x & y \\\\ 0 & t \\end{pmatrix}$ avec $x, y, t \\in \\mathbb{R}$",
+              "Seulement les matrices $xI_2$ avec $x \\in \\mathbb{R}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On calcule\n\n$$AM = \\begin{pmatrix} 2x & 2y \\\\ 3z & 3t \\end{pmatrix}, \\qquad MA = \\begin{pmatrix} 2x & 3y \\\\ 2z & 3t \\end{pmatrix}.$$\n\nL'égalité $AM = MA$ équivaut à $2y = 3y$ et $3z = 2z$, soit $y = 0$ et $z = 0$ (les deux autres équations sont toujours vraies).\n\n**Réponse** : les matrices qui commutent avec $A$ sont les matrices diagonales $\\begin{pmatrix} x & 0 \\\\ 0 & t \\end{pmatrix}$ avec $x, t \\in \\mathbb{R}$."
+        },
+        {
+          "enonce": "Soit $A = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}$. Déterminer toutes les matrices $M = \\begin{pmatrix} x & y \\\\ z & t \\end{pmatrix}$, à coefficients réels, qui commutent avec $A$, c'est-à-dire telles que $AM = MA$.",
+          "indices": [
+            "Calculer $AM$ et $MA$, puis identifier les coefficients.",
+            "On obtient quatre équations en $x, y, z, t$ ; certaines sont toujours vraies ou se répètent."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les matrices $M$ qui commutent avec $A$ ?",
+            "propositions": [
+              "Les matrices $\\begin{pmatrix} x & y \\\\ 0 & x \\end{pmatrix}$ avec $x, y \\in \\mathbb{R}$",
+              "Les matrices $\\begin{pmatrix} x & 0 \\\\ z & t \\end{pmatrix}$ avec $x, z, t \\in \\mathbb{R}$",
+              "Les matrices $\\begin{pmatrix} x & 0 \\\\ 0 & t \\end{pmatrix}$ avec $x, t \\in \\mathbb{R}$",
+              "Les matrices $\\begin{pmatrix} x & 0 \\\\ z & x \\end{pmatrix}$ avec $x, z \\in \\mathbb{R}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "On calcule\n\n$$AM = \\begin{pmatrix} x & y \\\\ x + z & y + t \\end{pmatrix}, \\qquad MA = \\begin{pmatrix} x + y & y \\\\ z + t & t \\end{pmatrix}.$$\n\nL'égalité $AM = MA$ équivaut à $x = x + y$, $y = y$, $x + z = z + t$ et $y + t = t$, c'est-à-dire à $y = 0$ et $t = x$.\n\n**Réponse** : les matrices qui commutent avec $A$ sont les $\\begin{pmatrix} x & 0 \\\\ z & x \\end{pmatrix}$ avec $x, z \\in \\mathbb{R}$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-produit-ex4",
+      "carte": "al-t-matrices-produit",
+      "difficulte": 3,
+      "titre": "Puissances d'une matrice par la formule du binôme",
+      "enonce": "Soit $A = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$.\n\n1. Écrire $A = 2I_2 + N$ et vérifier que $N^2 = 0$.\n\n2. Justifier que $2I_2$ et $N$ commutent, puis en déduire $A^n$ pour tout entier $n \\geq 1$.\n\n3. Pourquoi la commutation est-elle indispensable dans ce calcul ?",
+      "duree_min": 15,
+      "indices": [
+        "La matrice $N$ n'a qu'un coefficient non nul ; calculer $N^2$.",
+        "Un multiple de $I_2$ commute avec toute matrice : la formule du binôme s'applique ; les termes contenant $N^k$ avec $k \\geq 2$ sont nuls."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A^n$ pour $n \\geq 1$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 2^n & n2^{n-1} \\\\ 0 & 2^n \\end{pmatrix}$",
+          "$\\begin{pmatrix} 2^n & n2^n \\\\ 0 & 2^n \\end{pmatrix}$",
+          "$\\begin{pmatrix} 2^n & 1 \\\\ 0 & 2^n \\end{pmatrix}$",
+          "$\\begin{pmatrix} 2^n & 2^{n-1} \\\\ 0 & 2^n \\end{pmatrix}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $N = A - 2I_2 = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$, et un calcul direct donne $N^2 = 0$.\n\n2. Pour toute matrice carrée $M$ d'ordre $2$, $(2I_2)M = M(2I_2) = 2M$ : donc $2I_2$ et $N$ commutent. La formule du binôme, valable pour deux matrices qui commutent, donne pour $n \\geq 1$\n\n$$A^n = \\sum_{k=0}^{n} \\binom{n}{k} (2I_2)^{n-k} N^k = 2^nI_2 + n\\,2^{n-1}N,$$\n\ncar $N^k = N^{k-2}N^2 = 0$ pour $k \\geq 2$. (On peut aussi le démontrer par récurrence, en calculant $A^{n+1} = A^nA$ et en utilisant $N^2 = 0$.) Ainsi\n\n$$A^n = \\begin{pmatrix} 2^n & n2^{n-1} \\\\ 0 & 2^n \\end{pmatrix}.$$\n\n3. Le développement de $(X + Y)^n$ par la formule du binôme suppose $XY = YX$ : par exemple $(X + Y)^2 = X^2 + XY + YX + Y^2$ n'est égal à $X^2 + 2XY + Y^2$ que si $XY = YX$.",
+      "variantes": [
+        {
+          "enonce": "Soit $A = \\begin{pmatrix} 3 & 2 \\\\ 0 & 3 \\end{pmatrix}$.\n\n1. Écrire $A = 3I_2 + N$ et vérifier que $N^2 = 0$.\n\n2. Justifier que $3I_2$ et $N$ commutent, puis en déduire $A^n$ pour tout entier $n \\geq 1$.\n\n3. Pourquoi la commutation est-elle indispensable dans ce calcul ?",
+          "indices": [
+            "La matrice $N$ n'a qu'un coefficient non nul ; calculer $N^2$.",
+            "Un multiple de $I_2$ commute avec toute matrice : la formule du binôme s'applique ; les termes contenant $N^k$ avec $k \\geq 2$ sont nuls."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^n$ pour $n \\geq 1$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 3^n & 2n3^n \\\\ 0 & 3^n \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3^n & 2n3^{n-1} \\\\ 0 & 3^n \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3^n & 2^n \\\\ 0 & 3^n \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3^n & n3^{n-1} \\\\ 0 & 3^n \\end{pmatrix}$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $N = A - 3I_2 = \\begin{pmatrix} 0 & 2 \\\\ 0 & 0 \\end{pmatrix}$, et un calcul direct donne $N^2 = 0$.\n\n2. Pour toute matrice carrée $M$ d'ordre $2$, $(3I_2)M = M(3I_2) = 3M$ : donc $3I_2$ et $N$ commutent. La formule du binôme, valable pour deux matrices qui commutent, donne pour $n \\geq 1$\n\n$$A^n = \\sum_{k=0}^{n} \\binom{n}{k} (3I_2)^{n-k} N^k = 3^nI_2 + n\\,3^{n-1}N,$$\n\ncar $N^k = N^{k-2}N^2 = 0$ pour $k \\geq 2$. (On peut aussi le démontrer par récurrence, en calculant $A^{n+1} = A^nA$ et en utilisant $N^2 = 0$.) Ainsi\n\n$$A^n = \\begin{pmatrix} 3^n & 2n3^{n-1} \\\\ 0 & 3^n \\end{pmatrix}.$$\n\n3. Le développement de $(X + Y)^n$ par la formule du binôme suppose $XY = YX$ : par exemple $(X + Y)^2 = X^2 + XY + YX + Y^2$ n'est égal à $X^2 + 2XY + Y^2$ que si $XY = YX$."
+        },
+        {
+          "enonce": "Soit $A = \\begin{pmatrix} 1 & 0 \\\\ 4 & 1 \\end{pmatrix}$.\n\n1. Écrire $A = I_2 + N$ et vérifier que $N^2 = 0$.\n\n2. Justifier que $I_2$ et $N$ commutent, puis en déduire $A^n$ pour tout entier $n \\geq 1$.\n\n3. Pourquoi la commutation est-elle indispensable dans ce calcul ?",
+          "indices": [
+            "La matrice $N$ n'a qu'un coefficient non nul ; calculer $N^2$.",
+            "Un multiple de $I_2$ commute avec toute matrice : la formule du binôme s'applique ; les termes contenant $N^k$ avec $k \\geq 2$ sont nuls."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^n$ pour $n \\geq 1$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 1 & 0 \\\\ 4^n & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 0 \\\\ n4^{n-1} & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} n & 0 \\\\ 4n & n \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 0 \\\\ 4n & 1 \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. $N = A - I_2 = \\begin{pmatrix} 0 & 0 \\\\ 4 & 0 \\end{pmatrix}$, et un calcul direct donne $N^2 = 0$.\n\n2. Pour toute matrice carrée $M$ d'ordre $2$, $(I_2)M = M(I_2) = M$ : donc $I_2$ et $N$ commutent. La formule du binôme, valable pour deux matrices qui commutent, donne pour $n \\geq 1$\n\n$$A^n = \\sum_{k=0}^{n} \\binom{n}{k} (I_2)^{n-k} N^k = I_2 + nN,$$\n\ncar $N^k = N^{k-2}N^2 = 0$ pour $k \\geq 2$. (On peut aussi le démontrer par récurrence, en calculant $A^{n+1} = A^nA$ et en utilisant $N^2 = 0$.) Ainsi\n\n$$A^n = \\begin{pmatrix} 1 & 0 \\\\ 4n & 1 \\end{pmatrix}.$$\n\n3. Le développement de $(X + Y)^n$ par la formule du binôme suppose $XY = YX$ : par exemple $(X + Y)^2 = X^2 + XY + YX + Y^2$ n'est égal à $X^2 + 2XY + Y^2$ que si $XY = YX$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-produit-ex5",
+      "carte": "al-t-matrices-produit",
+      "difficulte": 4,
+      "titre": "Aucun couple de matrices ne vérifie $AB - BA = I_2$",
+      "enonce": "Pour une matrice carrée $M = (m_{ij})$ d'ordre $2$, on note $s(M) = m_{11} + m_{22}$ la somme de ses coefficients diagonaux.\n\n1. Montrer que $s(M + M') = s(M) + s(M')$ et $s(\\lambda M) = \\lambda s(M)$ pour toutes matrices $M, M'$ carrées d'ordre $2$ et tout réel $\\lambda$.\n\n2. Montrer que $s(AB) = s(BA)$ pour toutes matrices $A$ et $B$ carrées d'ordre $2$, bien que $AB$ et $BA$ soient en général différentes.\n\n3. En déduire qu'il n'existe aucun couple $(A, B)$ de matrices carrées d'ordre $2$ tel que $AB - BA = I_2$.\n\n4. Trouver deux matrices $A$ et $B$ carrées d'ordre $2$ telles que $AB - BA = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+      "duree_min": 20,
+      "indices": [
+        "Écrire $(AB)_{11} + (AB)_{22}$ à l'aide de la formule du produit : quatre termes apparaissent.",
+        "Calculer $s(I_2)$ et $s(AB - BA)$.",
+        "Pour la question 4, chercher des matrices n'ayant qu'un seul coefficient non nul."
+      ],
+      "correction": "1. $s(M + M') = (m_{11} + m'_{11}) + (m_{22} + m'_{22}) = s(M) + s(M')$ et $s(\\lambda M) = \\lambda m_{11} + \\lambda m_{22} = \\lambda s(M)$.\n\n2. Avec $A = (a_{ij})$ et $B = (b_{ij})$, la formule du produit donne\n\n$$s(AB) = (a_{11}b_{11} + a_{12}b_{21}) + (a_{21}b_{12} + a_{22}b_{22}), \\qquad s(BA) = (b_{11}a_{11} + b_{12}a_{21}) + (b_{21}a_{12} + b_{22}a_{22}).$$\n\nCe sont les mêmes quatre produits de réels (le produit des réels est commutatif) : $s(AB) = s(BA)$.\n\n3. D'après 1 et 2, $s(AB - BA) = s(AB) - s(BA) = 0$ pour toutes $A$ et $B$. Or $s(I_2) = 1 + 1 = 2 \\neq 0$. Donc $AB - BA$ n'est jamais égale à $I_2$.\n\n4. Prenons $A = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 0 \\\\ 1 & 0 \\end{pmatrix}$. Alors $AB = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$ et $BA = \\begin{pmatrix} 0 & 0 \\\\ 0 & 1 \\end{pmatrix}$, donc $AB - BA = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$. Ce n'est pas contradictoire avec 3 : cette matrice vérifie bien $s = 1 - 1 = 0$."
+    },
+    {
+      "id": "al-t-matrices-inverse-ex1",
+      "carte": "al-t-matrices-inverse",
+      "difficulte": 1,
+      "titre": "Inverse d'une matrice d'ordre 2",
+      "enonce": "Justifier que la matrice $A = \\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$ est inversible et calculer $A^{-1}$.",
+      "duree_min": 4,
+      "indices": [
+        "Calculer $ad - bc$, puis appliquer la formule de l'inverse d'une matrice d'ordre $2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A^{-1}$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{5} \\\\ 1 & \\frac{1}{2} \\end{pmatrix}$",
+          "$\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 3 & -5 \\\\ -1 & 2 \\end{pmatrix}$"
+        ],
+        "bonne": 2
+      },
+      "correction": "Pour $A = \\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$, on a $ad - bc = 3 \\times 2 - 5 \\times 1 = 1 \\neq 0$ : la matrice $A$ est inversible et\n\n$$A^{-1} = \\frac{1}{1}\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix} = \\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}.$$\n\nVérification : le produit $AA^{-1}$ est bien égal à $I_2$.",
+      "variantes": [
+        {
+          "enonce": "Justifier que la matrice $A = \\begin{pmatrix} 4 & 7 \\\\ 1 & 2 \\end{pmatrix}$ est inversible et calculer $A^{-1}$.",
+          "indices": [
+            "Calculer $ad - bc$, puis appliquer la formule de l'inverse d'une matrice d'ordre $2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 2 & -7 \\\\ -1 & 4 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 7 \\\\ 1 & 4 \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{4} & \\frac{1}{7} \\\\ 1 & \\frac{1}{2} \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 & -7 \\\\ -1 & 2 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $A = \\begin{pmatrix} 4 & 7 \\\\ 1 & 2 \\end{pmatrix}$, on a $ad - bc = 4 \\times 2 - 7 \\times 1 = 1 \\neq 0$ : la matrice $A$ est inversible et\n\n$$A^{-1} = \\frac{1}{1}\\begin{pmatrix} 2 & -7 \\\\ -1 & 4 \\end{pmatrix} = \\begin{pmatrix} 2 & -7 \\\\ -1 & 4 \\end{pmatrix}.$$\n\nVérification : le produit $AA^{-1}$ est bien égal à $I_2$."
+        },
+        {
+          "enonce": "Justifier que la matrice $A = \\begin{pmatrix} 2 & 3 \\\\ 4 & 5 \\end{pmatrix}$ est inversible et calculer $A^{-1}$.",
+          "indices": [
+            "Calculer $ad - bc$, puis appliquer la formule de l'inverse d'une matrice d'ordre $2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{5}{2} & -\\frac{3}{2} \\\\ -2 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{3} \\\\ \\frac{1}{4} & \\frac{1}{5} \\end{pmatrix}$",
+              "$\\begin{pmatrix} -5 & 3 \\\\ 4 & -2 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -\\frac{5}{2} & \\frac{3}{2} \\\\ 2 & -1 \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "Pour $A = \\begin{pmatrix} 2 & 3 \\\\ 4 & 5 \\end{pmatrix}$, on a $ad - bc = 2 \\times 5 - 3 \\times 4 = -2 \\neq 0$ : la matrice $A$ est inversible et\n\n$$A^{-1} = -\\frac{1}{2}\\begin{pmatrix} 5 & -3 \\\\ -4 & 2 \\end{pmatrix} = \\begin{pmatrix} -\\frac{5}{2} & \\frac{3}{2} \\\\ 2 & -1 \\end{pmatrix}.$$\n\nVérification : le produit $AA^{-1}$ est bien égal à $I_2$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-inverse-ex2",
+      "carte": "al-t-matrices-inverse",
+      "difficulte": 2,
+      "titre": "Résoudre un système grâce à l'inverse",
+      "enonce": "Écrire le système $\\begin{cases} 2x + 3y = 7 \\\\ x + 2y = 4 \\end{cases}$ sous la forme $AX = Y$ avec $X = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, puis le résoudre à l'aide de $A^{-1}$.",
+      "duree_min": 6,
+      "indices": [
+        "Repérer $A$ (les coefficients des inconnues) et $Y$ (les seconds membres), puis calculer $A^{-1}$ par la formule de l'ordre $2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la solution $(x, y)$ du système ?",
+        "propositions": [
+          "$(2, 1)$",
+          "$(1, 2)$",
+          "$(5, -1)$",
+          "$(-1, 3)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le système s'écrit $AX = Y$ avec $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 2 \\end{pmatrix}$ et $Y = \\begin{pmatrix} 7 \\\\ 4 \\end{pmatrix}$. Comme $ad - bc = 4 - 3 = 1 \\neq 0$, la matrice $A$ est inversible, avec $A^{-1} = \\begin{pmatrix} 2 & -3 \\\\ -1 & 2 \\end{pmatrix}$. Le système a donc une unique solution :\n\n$$X = A^{-1}Y = \\begin{pmatrix} 2 \\times 7 - 3 \\times 4 \\\\ -7 + 2 \\times 4 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}.$$\n\nVérification dans les deux équations : elles sont satisfaites. **Solution** : $(x, y) = (2, 1)$.",
+      "variantes": [
+        {
+          "enonce": "Écrire le système $\\begin{cases} 3x + y = 5 \\\\ 5x + 2y = 9 \\end{cases}$ sous la forme $AX = Y$ avec $X = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, puis le résoudre à l'aide de $A^{-1}$.",
+          "indices": [
+            "Repérer $A$ (les coefficients des inconnues) et $Y$ (les seconds membres), puis calculer $A^{-1}$ par la formule de l'ordre $2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la solution $(x, y)$ du système ?",
+            "propositions": [
+              "$(2, 1)$",
+              "$(1, 2)$",
+              "$(0, 5)$",
+              "$(2, -1)$"
+            ],
+            "bonne": 1
+          },
+          "correction": "Le système s'écrit $AX = Y$ avec $A = \\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$ et $Y = \\begin{pmatrix} 5 \\\\ 9 \\end{pmatrix}$. Comme $ad - bc = 6 - 5 = 1 \\neq 0$, la matrice $A$ est inversible, avec $A^{-1} = \\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$. Le système a donc une unique solution :\n\n$$X = A^{-1}Y = \\begin{pmatrix} 2 \\times 5 - 9 \\\\ -5 \\times 5 + 3 \\times 9 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}.$$\n\nVérification dans les deux équations : elles sont satisfaites. **Solution** : $(x, y) = (1, 2)$."
+        },
+        {
+          "enonce": "Écrire le système $\\begin{cases} x - 2y = 1 \\\\ 3x + y = 10 \\end{cases}$ sous la forme $AX = Y$ avec $X = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, puis le résoudre à l'aide de $A^{-1}$.",
+          "indices": [
+            "Repérer $A$ (les coefficients des inconnues) et $Y$ (les seconds membres), puis calculer $A^{-1}$ par la formule de l'ordre $2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la solution $(x, y)$ du système ?",
+            "propositions": [
+              "$(1, 3)$",
+              "$(5, 2)$",
+              "$(3, 1)$",
+              "$(1, 0)$"
+            ],
+            "bonne": 2
+          },
+          "correction": "Le système s'écrit $AX = Y$ avec $A = \\begin{pmatrix} 1 & -2 \\\\ 3 & 1 \\end{pmatrix}$ et $Y = \\begin{pmatrix} 1 \\\\ 10 \\end{pmatrix}$. Comme $ad - bc = 1 + 6 = 7 \\neq 0$, la matrice $A$ est inversible, avec $A^{-1} = \\frac{1}{7}\\begin{pmatrix} 1 & 2 \\\\ -3 & 1 \\end{pmatrix}$. Le système a donc une unique solution :\n\n$$X = A^{-1}Y = \\frac{1}{7}\\begin{pmatrix} 1 + 2 \\times 10 \\\\ -3 + 10 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}.$$\n\nVérification dans les deux équations : elles sont satisfaites. **Solution** : $(x, y) = (3, 1)$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-inverse-ex3",
+      "carte": "al-t-matrices-inverse",
+      "difficulte": 3,
+      "titre": "Inverse grâce à une relation polynomiale",
+      "enonce": "Soit $$A = \\begin{pmatrix} 2 & 1 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}.$$\n\n1. Calculer $A^2$ et vérifier que $A^2 - 3A + 2I_3 = 0$.\n\n2. En déduire que $A$ est inversible et exprimer $A^{-1}$ à l'aide de $A$ et $I_3$.\n\n3. Écrire $A^{-1}$.",
+      "duree_min": 12,
+      "indices": [
+        "Isoler $I_3$ dans la relation, puis factoriser par $A$.",
+        "Vérifier que la matrice obtenue convient dans les deux ordres : $AB = BA = I_3$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A^{-1}$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 1 & -1 & -1 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{2} & -\\frac{1}{2} & -\\frac{1}{2} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} -\\frac{1}{2} & \\frac{1}{2} & \\frac{1}{2} \\\\ 0 & -1 & 0 \\\\ 0 & 0 & -1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{2} & 1 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "1. Le calcul donne $$A^2 = \\begin{pmatrix} 4 & 3 & 3 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix},$$ et l'on vérifie coefficient par coefficient que $A^2 - 3A + 2I_3 = 0$.\n\n2. La relation s'écrit $2I_3 = 3A - A^2 = A(3I_3 - A) = (3I_3 - A)A$. Posons $B = \\frac{1}{2}(3I_3 - A)$ ; c'est une combinaison de $A$ et $I_3$, donc $B$ commute avec $A$, et $AB = BA = I_3$. Ainsi $A$ est inversible et $A^{-1} = \\frac{1}{2}(3I_3 - A)$.\n\n3. $$A^{-1} = \\begin{pmatrix} \\frac{1}{2} & -\\frac{1}{2} & -\\frac{1}{2} \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $$A = \\begin{pmatrix} 3 & 2 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}.$$\n\n1. Calculer $A^2$ et vérifier que $A^2 - 4A + 3I_3 = 0$.\n\n2. En déduire que $A$ est inversible et exprimer $A^{-1}$ à l'aide de $A$ et $I_3$.\n\n3. Écrire $A^{-1}$.",
+          "indices": [
+            "Isoler $I_3$ dans la relation, puis factoriser par $A$.",
+            "Vérifier que la matrice obtenue convient dans les deux ordres : $AB = BA = I_3$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{1}{3} & -\\frac{2}{3} & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & \\frac{1}{3} \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & -2 & 0 \\\\ 0 & 3 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -\\frac{1}{3} & \\frac{2}{3} & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & -\\frac{1}{3} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{2} & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & \\frac{1}{3} \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Le calcul donne $$A^2 = \\begin{pmatrix} 9 & 8 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 9 \\end{pmatrix},$$ et l'on vérifie coefficient par coefficient que $A^2 - 4A + 3I_3 = 0$.\n\n2. La relation s'écrit $3I_3 = 4A - A^2 = A(4I_3 - A) = (4I_3 - A)A$. Posons $B = \\frac{1}{3}(4I_3 - A)$ ; c'est une combinaison de $A$ et $I_3$, donc $B$ commute avec $A$, et $AB = BA = I_3$. Ainsi $A$ est inversible et $A^{-1} = \\frac{1}{3}(4I_3 - A)$.\n\n3. $$A^{-1} = \\begin{pmatrix} \\frac{1}{3} & -\\frac{2}{3} & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & \\frac{1}{3} \\end{pmatrix}.$$"
+        },
+        {
+          "enonce": "Soit $$A = \\begin{pmatrix} -1 & 3 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 2 \\end{pmatrix}.$$\n\n1. Calculer $A^2$ et vérifier que $A^2 - A - 2I_3 = 0$.\n\n2. En déduire que $A$ est inversible et exprimer $A^{-1}$ à l'aide de $A$ et $I_3$.\n\n3. Écrire $A^{-1}$.",
+          "indices": [
+            "Isoler $I_3$ dans la relation, puis factoriser par $A$.",
+            "Vérifier que la matrice obtenue convient dans les deux ordres : $AB = BA = I_3$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} -2 & 3 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0 & \\frac{3}{2} & 0 \\\\ 0 & \\frac{3}{2} & 0 \\\\ 0 & 0 & \\frac{3}{2} \\end{pmatrix}$",
+              "$\\begin{pmatrix} -1 & \\frac{1}{3} & 0 \\\\ 0 & \\frac{1}{2} & 0 \\\\ 0 & 0 & \\frac{1}{2} \\end{pmatrix}$",
+              "$\\begin{pmatrix} -1 & \\frac{3}{2} & 0 \\\\ 0 & \\frac{1}{2} & 0 \\\\ 0 & 0 & \\frac{1}{2} \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. Le calcul donne $$A^2 = \\begin{pmatrix} 1 & 3 & 0 \\\\ 0 & 4 & 0 \\\\ 0 & 0 & 4 \\end{pmatrix},$$ et l'on vérifie coefficient par coefficient que $A^2 - A - 2I_3 = 0$.\n\n2. La relation s'écrit $2I_3 = A^2 - A = A(A - I_3) = (A - I_3)A$. Posons $B = \\frac{1}{2}(A - I_3)$ ; c'est une combinaison de $A$ et $I_3$, donc $B$ commute avec $A$, et $AB = BA = I_3$. Ainsi $A$ est inversible et $A^{-1} = \\frac{1}{2}(A - I_3)$.\n\n3. $$A^{-1} = \\begin{pmatrix} -1 & \\frac{3}{2} & 0 \\\\ 0 & \\frac{1}{2} & 0 \\\\ 0 & 0 & \\frac{1}{2} \\end{pmatrix}.$$"
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-inverse-ex4",
+      "carte": "al-t-matrices-inverse",
+      "difficulte": 4,
+      "titre": "Inverse de $I_3 - N$ lorsque $N^3 = 0$",
+      "enonce": "Soient $$N = \\begin{pmatrix} 0 & 2 & -1 \\\\ 0 & 0 & 3 \\\\ 0 & 0 & 0 \\end{pmatrix} \\quad \\text{et} \\quad A = I_3 - N.$$\n\n1. Calculer $N^2$ et $N^3$.\n\n2. Développer $(I_3 - N)(I_3 + N + N^2)$ et $(I_3 + N + N^2)(I_3 - N)$.\n\n3. En déduire que $A$ est inversible et calculer $A^{-1}$.\n\n4. Résoudre l'équation $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$ d'inconnue $X$ (colonne à $3$ lignes).",
+      "duree_min": 18,
+      "indices": [
+        "Dans le développement de $(I_3 - N)(I_3 + N + N^2)$, les termes se compensent deux à deux, sauf deux d'entre eux.",
+        "Utiliser $N^3 = 0$ ; puis $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A^{-1}$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 1 & 2 & -1 \\\\ 0 & 1 & 3 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 1 & -2 & 1 \\\\ 0 & 1 & -3 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 1 & 2 & 5 \\\\ 0 & 1 & 3 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 1 & -2 & -5 \\\\ 0 & 1 & -3 \\\\ 0 & 0 & 1 \\end{pmatrix}$"
+        ],
+        "bonne": 2
+      },
+      "correction": "1. $$N^2 = \\begin{pmatrix} 0 & 0 & 6 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}, \\qquad N^3 = N^2N = 0$$ (le seul coefficient non nul de $N^2$ est en position $(1,3)$, et la troisième ligne de $N$ est nulle).\n\n2. Par distributivité (et parce que $I_3$ commute avec $N$) : $(I_3 - N)(I_3 + N + N^2) = I_3 + N + N^2 - N - N^2 - N^3 = I_3 - N^3$, et de même $(I_3 + N + N^2)(I_3 - N) = I_3 - N^3$.\n\n3. Comme $N^3 = 0$, ces deux produits valent $I_3$ : $A = I_3 - N$ est inversible et $A^{-1} = I_3 + N + N^2$, soit\n\n$$A = \\begin{pmatrix} 1 & -2 & 1 \\\\ 0 & 1 & -3 \\\\ 0 & 0 & 1 \\end{pmatrix}, \\qquad A^{-1} = \\begin{pmatrix} 1 & 2 & 5 \\\\ 0 & 1 & 3 \\\\ 0 & 0 & 1 \\end{pmatrix}.$$\n\n4. $A$ étant inversible, l'unique solution est $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 4 \\\\ 1 \\end{pmatrix}$ (somme des coefficients de chaque ligne de $A^{-1}$) ; on vérifie que $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$.",
+      "variantes": [
+        {
+          "enonce": "Soient $$N = \\begin{pmatrix} 0 & 1 & 2 \\\\ 0 & 0 & -1 \\\\ 0 & 0 & 0 \\end{pmatrix} \\quad \\text{et} \\quad A = I_3 - N.$$\n\n1. Calculer $N^2$ et $N^3$.\n\n2. Développer $(I_3 - N)(I_3 + N + N^2)$ et $(I_3 + N + N^2)(I_3 - N)$.\n\n3. En déduire que $A$ est inversible et calculer $A^{-1}$.\n\n4. Résoudre l'équation $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$ d'inconnue $X$ (colonne à $3$ lignes).",
+          "indices": [
+            "Dans le développement de $(I_3 - N)(I_3 + N + N^2)$, les termes se compensent deux à deux, sauf deux d'entre eux.",
+            "Utiliser $N^3 = 0$ ; puis $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 1 & 2 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & -1 & -1 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 1 & 3 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 1 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $$N^2 = \\begin{pmatrix} 0 & 0 & -1 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}, \\qquad N^3 = N^2N = 0$$ (le seul coefficient non nul de $N^2$ est en position $(1,3)$, et la troisième ligne de $N$ est nulle).\n\n2. Par distributivité (et parce que $I_3$ commute avec $N$) : $(I_3 - N)(I_3 + N + N^2) = I_3 + N + N^2 - N - N^2 - N^3 = I_3 - N^3$, et de même $(I_3 + N + N^2)(I_3 - N) = I_3 - N^3$.\n\n3. Comme $N^3 = 0$, ces deux produits valent $I_3$ : $A = I_3 - N$ est inversible et $A^{-1} = I_3 + N + N^2$, soit\n\n$$A = \\begin{pmatrix} 1 & -1 & -2 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{pmatrix}, \\qquad A^{-1} = \\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 1 \\end{pmatrix}.$$\n\n4. $A$ étant inversible, l'unique solution est $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 0 \\\\ 1 \\end{pmatrix}$ (somme des coefficients de chaque ligne de $A^{-1}$) ; on vérifie que $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$."
+        },
+        {
+          "enonce": "Soient $$N = \\begin{pmatrix} 0 & -3 & 1 \\\\ 0 & 0 & 2 \\\\ 0 & 0 & 0 \\end{pmatrix} \\quad \\text{et} \\quad A = I_3 - N.$$\n\n1. Calculer $N^2$ et $N^3$.\n\n2. Développer $(I_3 - N)(I_3 + N + N^2)$ et $(I_3 + N + N^2)(I_3 - N)$.\n\n3. En déduire que $A$ est inversible et calculer $A^{-1}$.\n\n4. Résoudre l'équation $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$ d'inconnue $X$ (colonne à $3$ lignes).",
+          "indices": [
+            "Dans le développement de $(I_3 - N)(I_3 + N + N^2)$, les termes se compensent deux à deux, sauf deux d'entre eux.",
+            "Utiliser $N^3 = 0$ ; puis $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 1 & -3 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & -3 & -5 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & -3 & 7 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 3 & 5 \\\\ 0 & 1 & -2 \\\\ 0 & 0 & 1 \\end{pmatrix}$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $$N^2 = \\begin{pmatrix} 0 & 0 & -6 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}, \\qquad N^3 = N^2N = 0$$ (le seul coefficient non nul de $N^2$ est en position $(1,3)$, et la troisième ligne de $N$ est nulle).\n\n2. Par distributivité (et parce que $I_3$ commute avec $N$) : $(I_3 - N)(I_3 + N + N^2) = I_3 + N + N^2 - N - N^2 - N^3 = I_3 - N^3$, et de même $(I_3 + N + N^2)(I_3 - N) = I_3 - N^3$.\n\n3. Comme $N^3 = 0$, ces deux produits valent $I_3$ : $A = I_3 - N$ est inversible et $A^{-1} = I_3 + N + N^2$, soit\n\n$$A = \\begin{pmatrix} 1 & 3 & -1 \\\\ 0 & 1 & -2 \\\\ 0 & 0 & 1 \\end{pmatrix}, \\qquad A^{-1} = \\begin{pmatrix} 1 & -3 & -5 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 1 \\end{pmatrix}.$$\n\n4. $A$ étant inversible, l'unique solution est $X = A^{-1}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} -7 \\\\ 3 \\\\ 1 \\end{pmatrix}$ (somme des coefficients de chaque ligne de $A^{-1}$) ; on vérifie que $AX = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix}$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-suites-ex1",
+      "carte": "al-t-matrices-suites",
+      "difficulte": 1,
+      "titre": "Premiers termes d'une suite de matrices colonnes",
+      "enonce": "La suite de matrices colonnes $(U_n)$ vérifie $U_0 = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$ et $U_{n+1} = AU_n$ pour tout $n \\in \\mathbb{N}$, avec $A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$. Calculer $U_1$, $U_2$ et $U_3$.",
+      "duree_min": 4,
+      "indices": [
+        "$U_1 = AU_0$, puis $U_2 = AU_1$ et $U_3 = AU_2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $U_3$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 9 \\\\ 2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 7 \\\\ 8 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 7 \\\\ 2 \\end{pmatrix}$"
+        ],
+        "bonne": 3
+      },
+      "correction": "On applique la relation de proche en proche :\n\n$$U_1 = AU_0 = \\begin{pmatrix} 3 \\\\ 2 \\end{pmatrix}, \\qquad U_2 = AU_1 = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}, \\qquad U_3 = AU_2 = \\begin{pmatrix} 7 \\\\ 2 \\end{pmatrix}.$$\n\nOn peut aussi utiliser $U_3 = A^3U_0$ avec $A^3 = \\begin{pmatrix} 1 & 3 \\\\ 0 & 1 \\end{pmatrix}$.",
+      "variantes": [
+        {
+          "enonce": "La suite de matrices colonnes $(U_n)$ vérifie $U_0 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$ et $U_{n+1} = AU_n$ pour tout $n \\in \\mathbb{N}$, avec $A = \\begin{pmatrix} 2 & 0 \\\\ 1 & 1 \\end{pmatrix}$. Calculer $U_1$, $U_2$ et $U_3$.",
+          "indices": [
+            "$U_1 = AU_0$, puis $U_2 = AU_1$ et $U_3 = AU_2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $U_3$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 8 \\\\ 7 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 \\\\ 3 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 8 \\\\ 3 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 6 \\\\ 7 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On applique la relation de proche en proche :\n\n$$U_1 = AU_0 = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}, \\qquad U_2 = AU_1 = \\begin{pmatrix} 4 \\\\ 3 \\end{pmatrix}, \\qquad U_3 = AU_2 = \\begin{pmatrix} 8 \\\\ 7 \\end{pmatrix}.$$\n\nOn peut aussi utiliser $U_3 = A^3U_0$ avec $A^3 = \\begin{pmatrix} 8 & 0 \\\\ 7 & 1 \\end{pmatrix}$."
+        },
+        {
+          "enonce": "La suite de matrices colonnes $(U_n)$ vérifie $U_0 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ et $U_{n+1} = AU_n$ pour tout $n \\in \\mathbb{N}$, avec $A = \\begin{pmatrix} 0 & 1 \\\\ 1 & 1 \\end{pmatrix}$. Calculer $U_1$, $U_2$ et $U_3$.",
+          "indices": [
+            "$U_1 = AU_0$, puis $U_2 = AU_1$ et $U_3 = AU_2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $U_3$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 5 \\\\ 8 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3 \\\\ 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$"
+            ],
+            "bonne": 2
+          },
+          "correction": "On applique la relation de proche en proche :\n\n$$U_1 = AU_0 = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}, \\qquad U_2 = AU_1 = \\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}, \\qquad U_3 = AU_2 = \\begin{pmatrix} 3 \\\\ 5 \\end{pmatrix}.$$\n\nOn peut aussi utiliser $U_3 = A^3U_0$ avec $A^3 = \\begin{pmatrix} 1 & 2 \\\\ 2 & 3 \\end{pmatrix}$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-suites-ex2",
+      "carte": "al-t-matrices-suites",
+      "difficulte": 2,
+      "titre": "Colonne fixe de la relation $U_{n+1} = AU_n + C$",
+      "enonce": "Soient $A = \\begin{pmatrix} 0 & \\frac{1}{2} \\\\ \\frac{1}{2} & 0 \\end{pmatrix}$ et $C = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$. Déterminer la colonne $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ telle que $L = AL + C$, et justifier qu'elle est unique.",
+      "duree_min": 7,
+      "indices": [
+        "Écrire $L = AL + C$ comme un système de deux équations d'inconnues $x$ et $y$, ou comme $(I_2 - A)L = C$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $L$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{8}{3} \\\\ \\frac{10}{3} \\end{pmatrix}$",
+          "$\\begin{pmatrix} 2 \\\\ \\frac{5}{2} \\end{pmatrix}$",
+          "$\\begin{pmatrix} 0 \\\\ 2 \\end{pmatrix}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "L'égalité $L = AL + C$ s'écrit $(I_2 - A)L = C$, avec $I_2 - A = \\begin{pmatrix} 1 & -\\frac{1}{2} \\\\ -\\frac{1}{2} & 1 \\end{pmatrix}$, dont le déterminant vaut $1 - \\frac{1}{4} = \\frac{3}{4} \\neq 0$ : $I_2 - A$ est inversible, et $L = (I_2 - A)^{-1}C$ est l'unique solution.\n\nPour la calculer, on résout le système $x = \\frac{y}{2} + 1$, $y = \\frac{x}{2} + 2$ : en reportant, $x = \\frac{x}{4} + 1 + 1$, soit $\\frac{3}{4}x = 2$, donc $x = \\frac{8}{3}$, puis $y = \\frac{4}{3} + 2 = \\frac{10}{3}$.\n\n**Réponse** : $L = \\begin{pmatrix} \\frac{8}{3} \\\\ \\frac{10}{3} \\end{pmatrix}$, et l'on vérifie que $AL + C = L$.",
+      "variantes": [
+        {
+          "enonce": "Soient $A = \\begin{pmatrix} \\frac{1}{2} & 0 \\\\ \\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}$ et $C = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$. Déterminer la colonne $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ telle que $L = AL + C$, et justifier qu'elle est unique.",
+          "indices": [
+            "Écrire $L = AL + C$ comme un système de deux équations d'inconnues $x$ et $y$, ou comme $(I_2 - A)L = C$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $L$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 \\\\ 2 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 4 \\\\ 4 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$"
+            ],
+            "bonne": 2
+          },
+          "correction": "L'égalité $L = AL + C$ s'écrit $(I_2 - A)L = C$, avec $I_2 - A = \\begin{pmatrix} \\frac{1}{2} & 0 \\\\ -\\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}$, dont le déterminant vaut $\\frac{1}{2} \\times \\frac{1}{2} - 0 = \\frac{1}{4} \\neq 0$ : $I_2 - A$ est inversible, et $L = (I_2 - A)^{-1}C$ est l'unique solution.\n\nPour la calculer, on résout le système $x = \\frac{x}{2} + 2$, $y = \\frac{x}{4} + \\frac{y}{2} + 1$ : la première équation donne $x = 4$, puis la seconde $\\frac{y}{2} = 1 + 1$, donc $y = 4$.\n\n**Réponse** : $L = \\begin{pmatrix} 4 \\\\ 4 \\end{pmatrix}$, et l'on vérifie que $AL + C = L$."
+        },
+        {
+          "enonce": "Soient $A = \\begin{pmatrix} 0 & \\frac{1}{3} \\\\ \\frac{2}{3} & 0 \\end{pmatrix}$ et $C = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$. Déterminer la colonne $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ telle que $L = AL + C$, et justifier qu'elle est unique.",
+          "indices": [
+            "Écrire $L = AL + C$ comme un système de deux équations d'inconnues $x$ et $y$, ou comme $(I_2 - A)L = C$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $L$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{12}{7} \\\\ \\frac{15}{7} \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{15}{7} \\\\ \\frac{12}{7} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{3}{2} \\\\ 2 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'égalité $L = AL + C$ s'écrit $(I_2 - A)L = C$, avec $I_2 - A = \\begin{pmatrix} 1 & -\\frac{1}{3} \\\\ -\\frac{2}{3} & 1 \\end{pmatrix}$, dont le déterminant vaut $1 - \\frac{2}{9} = \\frac{7}{9} \\neq 0$ : $I_2 - A$ est inversible, et $L = (I_2 - A)^{-1}C$ est l'unique solution.\n\nPour la calculer, on résout le système $x = \\frac{y}{3} + 1$, $y = \\frac{2x}{3} + 1$ : en reportant, $x = \\frac{2x}{9} + \\frac{1}{3} + 1$, soit $\\frac{7}{9}x = \\frac{4}{3}$, donc $x = \\frac{12}{7}$, puis $y = \\frac{8}{7} + 1 = \\frac{15}{7}$.\n\n**Réponse** : $L = \\begin{pmatrix} \\frac{12}{7} \\\\ \\frac{15}{7} \\end{pmatrix}$, et l'on vérifie que $AL + C = L$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-suites-ex3",
+      "carte": "al-t-matrices-suites",
+      "difficulte": 3,
+      "titre": "Suite matricielle à matrice triangulaire",
+      "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = v_0 = 0$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où $U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}$, $A = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\\\ 0 & \\frac{1}{2} \\end{pmatrix}$ et $C = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$.\n\n1. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n2. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $A^n = \\begin{pmatrix} \\frac{1}{2^n} & \\frac{n}{2^n} \\\\ 0 & \\frac{1}{2^n} \\end{pmatrix}$.\n\n3. En déduire $u_n$ et $v_n$ en fonction de $n$, puis leurs limites.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $L$, la seconde équation ne fait intervenir que $y$.",
+        "Pour l'hérédité, calculer $A^{n+1} = A^nA$ ; ensuite, $U_n = A^n(U_0 - L) + L$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+        "propositions": [
+          "$4 - \\frac{2n+4}{2^n}$",
+          "$4 - \\frac{4}{2^n}$",
+          "$4 - \\frac{n+4}{2^n}$",
+          "$4 + \\frac{2n+4}{2^n}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ vérifie $x = \\frac{x}{2} + \\frac{y}{2} + 1$ et $y = \\frac{y}{2} + 1$. La seconde équation donne $y = 2$, puis la première $\\frac{x}{2} = 1 + 1$, soit $x = 4$. Donc $L = \\begin{pmatrix} 4 \\\\ 2 \\end{pmatrix}$.\n\n2. Pour $n = 0$, la formule donne $I_2 = A^0$. Si elle est vraie au rang $n$, alors\n\n$$A^{n+1} = A^nA = \\begin{pmatrix} \\frac{1}{2^n} & \\frac{n}{2^n} \\\\ 0 & \\frac{1}{2^n} \\end{pmatrix}\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\\\ 0 & \\frac{1}{2} \\end{pmatrix} = \\begin{pmatrix} \\frac{1}{2^{n+1}} & \\frac{n + 1}{2^{n+1}} \\\\ 0 & \\frac{1}{2^{n+1}} \\end{pmatrix},$$\n\nce qui est la formule au rang $n+1$.\n\n3. D'après le cours, $U_n = A^n(U_0 - L) + L = -A^nL + L$ (car $U_0 = 0$). Ainsi\n\n$$U_n = \\begin{pmatrix} 4 - \\frac{4}{2^n} - \\frac{2n}{2^n} \\\\ 2 - \\frac{2}{2^n} \\end{pmatrix} = \\begin{pmatrix} 4 - \\frac{2n + 4}{2^n} \\\\ 2 - \\frac{2}{2^n} \\end{pmatrix}.$$\n\nComme $\\frac{n}{q^n} \\to 0$ et $\\frac{1}{q^n} \\to 0$ pour $q > 1$ (croissances comparées), $u_n \\to 4$ et $v_n \\to 2$ : $U_n$ tend vers $L$.",
+      "variantes": [
+        {
+          "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = v_0 = 0$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où $U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}$, $A = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\\\ 0 & \\frac{1}{2} \\end{pmatrix}$ et $C = \\begin{pmatrix} 0 \\\\ 2 \\end{pmatrix}$.\n\n1. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n2. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $A^n = \\begin{pmatrix} \\frac{1}{2^n} & \\frac{n}{2^n} \\\\ 0 & \\frac{1}{2^n} \\end{pmatrix}$.\n\n3. En déduire $u_n$ et $v_n$ en fonction de $n$, puis leurs limites.",
+          "indices": [
+            "Pour $L$, la seconde équation ne fait intervenir que $y$.",
+            "Pour l'hérédité, calculer $A^{n+1} = A^nA$ ; ensuite, $U_n = A^n(U_0 - L) + L$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$4 - \\frac{4}{2^n}$",
+              "$4 - \\frac{4n+4}{2^n}$",
+              "$4 - \\frac{2n+4}{2^n}$",
+              "$4 + \\frac{4n+4}{2^n}$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ vérifie $x = \\frac{x}{2} + \\frac{y}{2}$ et $y = \\frac{y}{2} + 2$. La seconde équation donne $y = 4$, puis la première $\\frac{x}{2} = 2$, soit $x = 4$. Donc $L = \\begin{pmatrix} 4 \\\\ 4 \\end{pmatrix}$.\n\n2. Pour $n = 0$, la formule donne $I_2 = A^0$. Si elle est vraie au rang $n$, alors\n\n$$A^{n+1} = A^nA = \\begin{pmatrix} \\frac{1}{2^n} & \\frac{n}{2^n} \\\\ 0 & \\frac{1}{2^n} \\end{pmatrix}\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\\\ 0 & \\frac{1}{2} \\end{pmatrix} = \\begin{pmatrix} \\frac{1}{2^{n+1}} & \\frac{n + 1}{2^{n+1}} \\\\ 0 & \\frac{1}{2^{n+1}} \\end{pmatrix},$$\n\nce qui est la formule au rang $n+1$.\n\n3. D'après le cours, $U_n = A^n(U_0 - L) + L = -A^nL + L$ (car $U_0 = 0$). Ainsi\n\n$$U_n = \\begin{pmatrix} 4 - \\frac{4}{2^n} - \\frac{4n}{2^n} \\\\ 4 - \\frac{4}{2^n} \\end{pmatrix} = \\begin{pmatrix} 4 - \\frac{4n + 4}{2^n} \\\\ 4 - \\frac{4}{2^n} \\end{pmatrix}.$$\n\nComme $\\frac{n}{q^n} \\to 0$ et $\\frac{1}{q^n} \\to 0$ pour $q > 1$ (croissances comparées), $u_n \\to 4$ et $v_n \\to 4$ : $U_n$ tend vers $L$."
+        },
+        {
+          "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = v_0 = 0$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où $U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}$, $A = \\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} \\\\ 0 & \\frac{1}{3} \\end{pmatrix}$ et $C = \\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$.\n\n1. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n2. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $A^n = \\begin{pmatrix} \\frac{1}{3^n} & \\frac{n}{3^n} \\\\ 0 & \\frac{1}{3^n} \\end{pmatrix}$.\n\n3. En déduire $u_n$ et $v_n$ en fonction de $n$, puis leurs limites.",
+          "indices": [
+            "Pour $L$, la seconde équation ne fait intervenir que $y$.",
+            "Pour l'hérédité, calculer $A^{n+1} = A^nA$ ; ensuite, $U_n = A^n(U_0 - L) + L$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$\\frac{9}{2} - \\frac{9}{2 \\times 3^n}$",
+              "$\\frac{9}{2} - \\frac{3n+9}{2 \\times 3^n}$",
+              "$3 - \\frac{3}{3^n}$",
+              "$\\frac{9}{2} - \\frac{6n+9}{2 \\times 3^n}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. $L = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$ vérifie $x = \\frac{x}{3} + \\frac{y}{3} + 2$ et $y = \\frac{y}{3} + 2$. La seconde équation donne $y = 3$, puis la première $\\frac{2x}{3} = 1 + 2$, soit $x = \\frac{9}{2}$. Donc $L = \\begin{pmatrix} \\frac{9}{2} \\\\ 3 \\end{pmatrix}$.\n\n2. Pour $n = 0$, la formule donne $I_2 = A^0$. Si elle est vraie au rang $n$, alors\n\n$$A^{n+1} = A^nA = \\begin{pmatrix} \\frac{1}{3^n} & \\frac{n}{3^n} \\\\ 0 & \\frac{1}{3^n} \\end{pmatrix}\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} \\\\ 0 & \\frac{1}{3} \\end{pmatrix} = \\begin{pmatrix} \\frac{1}{3^{n+1}} & \\frac{n + 1}{3^{n+1}} \\\\ 0 & \\frac{1}{3^{n+1}} \\end{pmatrix},$$\n\nce qui est la formule au rang $n+1$.\n\n3. D'après le cours, $U_n = A^n(U_0 - L) + L = -A^nL + L$ (car $U_0 = 0$). Ainsi\n\n$$U_n = \\begin{pmatrix} \\frac{9}{2} - \\frac{9}{2 \\times 3^n} - \\frac{3n}{3^n} \\\\ 3 - \\frac{3}{3^n} \\end{pmatrix} = \\begin{pmatrix} \\frac{9}{2} - \\frac{6n + 9}{2 \\times 3^n} \\\\ 3 - \\frac{3}{3^n} \\end{pmatrix}.$$\n\nComme $\\frac{n}{q^n} \\to 0$ et $\\frac{1}{q^n} \\to 0$ pour $q > 1$ (croissances comparées), $u_n \\to \\frac{9}{2}$ et $v_n \\to 3$ : $U_n$ tend vers $L$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-suites-ex4",
+      "carte": "al-t-matrices-suites",
+      "difficulte": 4,
+      "titre": "Suite matricielle et diagonalisation donnée",
+      "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = 0$, $v_0 = 2$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où\n\n$$U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}, \\quad A = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{4} \\\\ \\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}, \\quad C = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}.$$\n\n1. Soient $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$ et $D = \\begin{pmatrix} \\frac{3}{4} & 0 \\\\ 0 & \\frac{1}{4} \\end{pmatrix}$. Montrer que $P$ est inversible, calculer $P^{-1}$ et vérifier que $A = PDP^{-1}$.\n\n2. Montrer que $A^n = PD^nP^{-1}$ pour tout $n \\in \\mathbb{N}$, puis expliciter $A^n$.\n\n3. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n4. En déduire $u_n$ et $v_n$ en fonction de $n$, et leurs limites.",
+      "duree_min": 25,
+      "indices": [
+        "Pour l'hérédité, $A^{n+1} = (PD^nP^{-1})(PDP^{-1})$ et $P^{-1}P = I_2$ ; $D^n$ s'obtient en élevant les coefficients diagonaux à la puissance $n$.",
+        "Résoudre $(I_2 - A)L = C$, puis utiliser $U_n = A^n(U_0 - L) + L$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+        "propositions": [
+          "$4 - 3\\left(\\frac{3}{4}\\right)^n + \\left(\\frac{1}{4}\\right)^n$",
+          "$4 - 4\\left(\\frac{3}{4}\\right)^n$",
+          "$4 - 3\\left(\\frac{3}{4}\\right)^n - \\left(\\frac{1}{4}\\right)^n$",
+          "$-3\\left(\\frac{3}{4}\\right)^n - \\left(\\frac{1}{4}\\right)^n$"
+        ],
+        "bonne": 2
+      },
+      "correction": "1. $\\det P = 1 \\times (-1) - 1 \\times 1 = -2 \\neq 0$, donc $P$ est inversible et $P^{-1} = -\\frac{1}{2}\\begin{pmatrix} -1 & -1 \\\\ -1 & 1 \\end{pmatrix} = \\frac{1}{2}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$. On calcule\n\n$$PD = \\begin{pmatrix} \\frac{3}{4} & \\frac{1}{4} \\\\ \\frac{3}{4} & -\\frac{1}{4} \\end{pmatrix}, \\qquad PDP^{-1} = \\frac{1}{2}\\begin{pmatrix} 1 & \\frac{1}{2} \\\\ \\frac{1}{2} & 1 \\end{pmatrix} = A.$$\n\n2. Pour $n = 0$ : $PD^0P^{-1} = PP^{-1} = I_2 = A^0$. Si $A^n = PD^nP^{-1}$, alors $A^{n+1} = A^nA = PD^nP^{-1}PDP^{-1} = PD^{n+1}P^{-1}$. Avec $D^n = \\begin{pmatrix} \\left(\\frac{3}{4}\\right)^n & 0 \\\\ 0 & \\left(\\frac{1}{4}\\right)^n \\end{pmatrix}$ et en notant $\\alpha_n = \\left(\\frac{3}{4}\\right)^n$, $\\beta_n = \\left(\\frac{1}{4}\\right)^n$ :\n\n$$A^n = \\frac{1}{2}\\begin{pmatrix} \\alpha_n + \\beta_n & \\alpha_n - \\beta_n \\\\ \\alpha_n - \\beta_n & \\alpha_n + \\beta_n \\end{pmatrix}.$$\n\n3. L'égalité $(I_2 - A)L = C$ s'écrit $\\frac{1}{2}x - \\frac{1}{4}y = 1$ et $-\\frac{1}{4}x + \\frac{1}{2}y = 1$ ; en soustrayant, $\\frac{3}{4}(x - y) = 0$, donc $x = y$, puis $\\frac{1}{4}x = 1$ : donc $L = \\begin{pmatrix} 4 \\\\ 4 \\end{pmatrix}$ (et $I_2 - A$ est inversible, son déterminant valant $\\frac{1}{4} - \\frac{1}{16} = \\frac{3}{16}$, donc $L$ est unique).\n\n4. $U_n = A^n(U_0 - L) + L$ avec $U_0 - L = \\begin{pmatrix} -4 \\\\ -2 \\end{pmatrix}$ :\n\n$$u_n = \\frac{1}{2}\\left[-4(\\alpha_n + \\beta_n) - 2(\\alpha_n - \\beta_n)\\right] + 4 = -3\\alpha_n - \\beta_n + 4, \\qquad v_n = \\frac{1}{2}\\left[-4(\\alpha_n - \\beta_n) - 2(\\alpha_n + \\beta_n)\\right] + 4 = -3\\alpha_n + \\beta_n + 4.$$\n\nAinsi $u_n = 4 - 3\\left(\\frac{3}{4}\\right)^n - \\left(\\frac{1}{4}\\right)^n$ et $v_n = 4 - 3\\left(\\frac{3}{4}\\right)^n + \\left(\\frac{1}{4}\\right)^n$. Comme $0 < \\frac{1}{4} < \\frac{3}{4} < 1$, $u_n$ et $v_n$ tendent vers $4$.",
+      "variantes": [
+        {
+          "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = 2$, $v_0 = 0$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où\n\n$$U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}, \\quad A = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{4} \\\\ \\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}, \\quad C = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}.$$\n\n1. Soient $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$ et $D = \\begin{pmatrix} \\frac{3}{4} & 0 \\\\ 0 & \\frac{1}{4} \\end{pmatrix}$. Montrer que $P$ est inversible, calculer $P^{-1}$ et vérifier que $A = PDP^{-1}$.\n\n2. Montrer que $A^n = PD^nP^{-1}$ pour tout $n \\in \\mathbb{N}$, puis expliciter $A^n$.\n\n3. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n4. En déduire $u_n$ et $v_n$ en fonction de $n$, et leurs limites.",
+          "indices": [
+            "Pour l'hérédité, $A^{n+1} = (PD^nP^{-1})(PDP^{-1})$ et $P^{-1}P = I_2$ ; $D^n$ s'obtient en élevant les coefficients diagonaux à la puissance $n$.",
+            "Résoudre $(I_2 - A)L = C$, puis utiliser $U_n = A^n(U_0 - L) + L$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$4 - 3\\left(\\frac{3}{4}\\right)^n + \\left(\\frac{1}{4}\\right)^n$",
+              "$4 - 3\\left(\\frac{3}{4}\\right)^n - \\left(\\frac{1}{4}\\right)^n$",
+              "$4 - 2\\left(\\frac{3}{4}\\right)^n$",
+              "$-3\\left(\\frac{3}{4}\\right)^n + \\left(\\frac{1}{4}\\right)^n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\det P = 1 \\times (-1) - 1 \\times 1 = -2 \\neq 0$, donc $P$ est inversible et $P^{-1} = -\\frac{1}{2}\\begin{pmatrix} -1 & -1 \\\\ -1 & 1 \\end{pmatrix} = \\frac{1}{2}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$. On calcule\n\n$$PD = \\begin{pmatrix} \\frac{3}{4} & \\frac{1}{4} \\\\ \\frac{3}{4} & -\\frac{1}{4} \\end{pmatrix}, \\qquad PDP^{-1} = \\frac{1}{2}\\begin{pmatrix} 1 & \\frac{1}{2} \\\\ \\frac{1}{2} & 1 \\end{pmatrix} = A.$$\n\n2. Pour $n = 0$ : $PD^0P^{-1} = PP^{-1} = I_2 = A^0$. Si $A^n = PD^nP^{-1}$, alors $A^{n+1} = A^nA = PD^nP^{-1}PDP^{-1} = PD^{n+1}P^{-1}$. Avec $D^n = \\begin{pmatrix} \\left(\\frac{3}{4}\\right)^n & 0 \\\\ 0 & \\left(\\frac{1}{4}\\right)^n \\end{pmatrix}$ et en notant $\\alpha_n = \\left(\\frac{3}{4}\\right)^n$, $\\beta_n = \\left(\\frac{1}{4}\\right)^n$ :\n\n$$A^n = \\frac{1}{2}\\begin{pmatrix} \\alpha_n + \\beta_n & \\alpha_n - \\beta_n \\\\ \\alpha_n - \\beta_n & \\alpha_n + \\beta_n \\end{pmatrix}.$$\n\n3. L'égalité $(I_2 - A)L = C$ s'écrit $\\frac{1}{2}x - \\frac{1}{4}y = 1$ et $-\\frac{1}{4}x + \\frac{1}{2}y = 1$ ; en soustrayant, $\\frac{3}{4}(x - y) = 0$, donc $x = y$, puis $\\frac{1}{4}x = 1$ : donc $L = \\begin{pmatrix} 4 \\\\ 4 \\end{pmatrix}$ (et $I_2 - A$ est inversible, son déterminant valant $\\frac{1}{4} - \\frac{1}{16} = \\frac{3}{16}$, donc $L$ est unique).\n\n4. $U_n = A^n(U_0 - L) + L$ avec $U_0 - L = \\begin{pmatrix} -2 \\\\ -4 \\end{pmatrix}$ :\n\n$$u_n = \\frac{1}{2}\\left[-2(\\alpha_n + \\beta_n) - 4(\\alpha_n - \\beta_n)\\right] + 4 = -3\\alpha_n + \\beta_n + 4, \\qquad v_n = \\frac{1}{2}\\left[-2(\\alpha_n - \\beta_n) - 4(\\alpha_n + \\beta_n)\\right] + 4 = -3\\alpha_n - \\beta_n + 4.$$\n\nAinsi $u_n = 4 - 3\\left(\\frac{3}{4}\\right)^n + \\left(\\frac{1}{4}\\right)^n$ et $v_n = 4 - 3\\left(\\frac{3}{4}\\right)^n - \\left(\\frac{1}{4}\\right)^n$. Comme $0 < \\frac{1}{4} < \\frac{3}{4} < 1$, $u_n$ et $v_n$ tendent vers $4$."
+        },
+        {
+          "enonce": "On considère les suites $(u_n)$ et $(v_n)$ définies par $u_0 = 4$, $v_0 = 0$ et, pour tout $n \\in \\mathbb{N}$, $U_{n+1} = AU_n + C$, où\n\n$$U_n = \\begin{pmatrix} u_n \\\\ v_n \\end{pmatrix}, \\quad A = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{4} \\\\ \\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}, \\quad C = \\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}.$$\n\n1. Soient $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$ et $D = \\begin{pmatrix} \\frac{3}{4} & 0 \\\\ 0 & \\frac{1}{4} \\end{pmatrix}$. Montrer que $P$ est inversible, calculer $P^{-1}$ et vérifier que $A = PDP^{-1}$.\n\n2. Montrer que $A^n = PD^nP^{-1}$ pour tout $n \\in \\mathbb{N}$, puis expliciter $A^n$.\n\n3. Déterminer la colonne $L$ telle que $L = AL + C$.\n\n4. En déduire $u_n$ et $v_n$ en fonction de $n$, et leurs limites.",
+          "indices": [
+            "Pour l'hérédité, $A^{n+1} = (PD^nP^{-1})(PDP^{-1})$ et $P^{-1}P = I_2$ ; $D^n$ s'obtient en élevant les coefficients diagonaux à la puissance $n$.",
+            "Résoudre $(I_2 - A)L = C$, puis utiliser $U_n = A^n(U_0 - L) + L$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$8 - 6\\left(\\frac{3}{4}\\right)^n - 2\\left(\\frac{1}{4}\\right)^n$",
+              "$8 - 4\\left(\\frac{3}{4}\\right)^n$",
+              "$4 - 6\\left(\\frac{3}{4}\\right)^n + 2\\left(\\frac{1}{4}\\right)^n$",
+              "$8 - 6\\left(\\frac{3}{4}\\right)^n + 2\\left(\\frac{1}{4}\\right)^n$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. $\\det P = 1 \\times (-1) - 1 \\times 1 = -2 \\neq 0$, donc $P$ est inversible et $P^{-1} = -\\frac{1}{2}\\begin{pmatrix} -1 & -1 \\\\ -1 & 1 \\end{pmatrix} = \\frac{1}{2}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$. On calcule\n\n$$PD = \\begin{pmatrix} \\frac{3}{4} & \\frac{1}{4} \\\\ \\frac{3}{4} & -\\frac{1}{4} \\end{pmatrix}, \\qquad PDP^{-1} = \\frac{1}{2}\\begin{pmatrix} 1 & \\frac{1}{2} \\\\ \\frac{1}{2} & 1 \\end{pmatrix} = A.$$\n\n2. Pour $n = 0$ : $PD^0P^{-1} = PP^{-1} = I_2 = A^0$. Si $A^n = PD^nP^{-1}$, alors $A^{n+1} = A^nA = PD^nP^{-1}PDP^{-1} = PD^{n+1}P^{-1}$. Avec $D^n = \\begin{pmatrix} \\left(\\frac{3}{4}\\right)^n & 0 \\\\ 0 & \\left(\\frac{1}{4}\\right)^n \\end{pmatrix}$ et en notant $\\alpha_n = \\left(\\frac{3}{4}\\right)^n$, $\\beta_n = \\left(\\frac{1}{4}\\right)^n$ :\n\n$$A^n = \\frac{1}{2}\\begin{pmatrix} \\alpha_n + \\beta_n & \\alpha_n - \\beta_n \\\\ \\alpha_n - \\beta_n & \\alpha_n + \\beta_n \\end{pmatrix}.$$\n\n3. L'égalité $(I_2 - A)L = C$ s'écrit $\\frac{1}{2}x - \\frac{1}{4}y = 2$ et $-\\frac{1}{4}x + \\frac{1}{2}y = 2$ ; en soustrayant, $\\frac{3}{4}(x - y) = 0$, donc $x = y$, puis $\\frac{1}{4}x = 2$ : donc $L = \\begin{pmatrix} 8 \\\\ 8 \\end{pmatrix}$ (et $I_2 - A$ est inversible, son déterminant valant $\\frac{1}{4} - \\frac{1}{16} = \\frac{3}{16}$, donc $L$ est unique).\n\n4. $U_n = A^n(U_0 - L) + L$ avec $U_0 - L = \\begin{pmatrix} -4 \\\\ -8 \\end{pmatrix}$ :\n\n$$u_n = \\frac{1}{2}\\left[-4(\\alpha_n + \\beta_n) - 8(\\alpha_n - \\beta_n)\\right] + 8 = -6\\alpha_n + 2\\beta_n + 8, \\qquad v_n = \\frac{1}{2}\\left[-4(\\alpha_n - \\beta_n) - 8(\\alpha_n + \\beta_n)\\right] + 8 = -6\\alpha_n - 2\\beta_n + 8.$$\n\nAinsi $u_n = 8 - 6\\left(\\frac{3}{4}\\right)^n + 2\\left(\\frac{1}{4}\\right)^n$ et $v_n = 8 - 6\\left(\\frac{3}{4}\\right)^n - 2\\left(\\frac{1}{4}\\right)^n$. Comme $0 < \\frac{1}{4} < \\frac{3}{4} < 1$, $u_n$ et $v_n$ tendent vers $8$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex1",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 1,
+      "titre": "Chaînes de longueur 2 dans un graphe",
+      "enonce": "On considère le graphe non orienté de sommets $1, \\dots, 4$ dont les arêtes sont $\\{1,2\\}$, $\\{1,3\\}$, $\\{2,3\\}$ et $\\{3,4\\}$. Écrire sa matrice d'adjacence $M$, calculer $M^2$ et en déduire le nombre de chaînes de longueur $2$ reliant le sommet $1$ au sommet $4$.",
+      "duree_min": 5,
+      "indices": [
+        "Le coefficient $m_{ij}$ vaut $1$ si $\\{i,j\\}$ est une arête, $0$ sinon ; la matrice est symétrique."
+      ],
+      "reponse_finale": {
+        "question": "Combien de chaînes de longueur $2$ relient $1$ à $4$ ?",
+        "propositions": [
+          "$1$",
+          "$0$",
+          "$2$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$$M = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 0 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 2 & 1 & 1 & 1 \\\\ 1 & 2 & 1 & 1 \\\\ 1 & 1 & 3 & 0 \\\\ 1 & 1 & 0 & 1 \\end{pmatrix}.$$\n\nLe nombre de chaînes de longueur $2$ de $1$ à $4$ est le coefficient $(1,4)$ de $M^2$, soit $1$ : la chaîne $(1,3,4)$. (Il s'obtient en multipliant la ligne $1$ de $M$ par la colonne $4$ : chaque sommet $k$ voisin à la fois de $1$ et de $4$ donne une chaîne.)",
+      "variantes": [
+        {
+          "enonce": "On considère le graphe non orienté de sommets $1, \\dots, 5$ dont les arêtes sont $\\{1,2\\}$, $\\{2,3\\}$, $\\{3,4\\}$, $\\{4,5\\}$, $\\{5,1\\}$ et $\\{1,3\\}$. Écrire sa matrice d'adjacence $M$, calculer $M^2$ et en déduire le nombre de chaînes de longueur $2$ reliant le sommet $1$ au sommet $4$.",
+          "indices": [
+            "Le coefficient $m_{ij}$ vaut $1$ si $\\{i,j\\}$ est une arête, $0$ sinon ; la matrice est symétrique."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $2$ relient $1$ à $4$ ?",
+            "propositions": [
+              "$1$",
+              "$2$",
+              "$0$",
+              "$3$"
+            ],
+            "bonne": 1
+          },
+          "correction": "$$M = \\begin{pmatrix} 0 & 1 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 & 0 \\\\ 1 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 0 & 1 \\\\ 1 & 0 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 3 & 1 & 1 & 2 & 0 \\\\ 1 & 2 & 1 & 1 & 1 \\\\ 1 & 1 & 3 & 0 & 2 \\\\ 2 & 1 & 0 & 2 & 0 \\\\ 0 & 1 & 2 & 0 & 2 \\end{pmatrix}.$$\n\nLe nombre de chaînes de longueur $2$ de $1$ à $4$ est le coefficient $(1,4)$ de $M^2$, soit $2$ : les chaînes $(1,3,4)$ et $(1,5,4)$. (Il s'obtient en multipliant la ligne $1$ de $M$ par la colonne $4$ : chaque sommet $k$ voisin à la fois de $1$ et de $4$ donne une chaîne.)"
+        },
+        {
+          "enonce": "On considère le graphe non orienté de sommets $1, \\dots, 4$ dont les arêtes sont $\\{1,2\\}$, $\\{1,3\\}$, $\\{1,4\\}$, $\\{2,3\\}$ et $\\{2,4\\}$. Écrire sa matrice d'adjacence $M$, calculer $M^2$ et en déduire le nombre de chaînes de longueur $2$ reliant le sommet $3$ au sommet $4$.",
+          "indices": [
+            "Le coefficient $m_{ij}$ vaut $1$ si $\\{i,j\\}$ est une arête, $0$ sinon ; la matrice est symétrique."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $2$ relient $3$ à $4$ ?",
+            "propositions": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "$4$"
+            ],
+            "bonne": 2
+          },
+          "correction": "$$M = \\begin{pmatrix} 0 & 1 & 1 & 1 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 0 \\\\ 1 & 1 & 0 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 3 & 2 & 1 & 1 \\\\ 2 & 3 & 1 & 1 \\\\ 1 & 1 & 2 & 2 \\\\ 1 & 1 & 2 & 2 \\end{pmatrix}.$$\n\nLe nombre de chaînes de longueur $2$ de $3$ à $4$ est le coefficient $(3,4)$ de $M^2$, soit $2$ : les chaînes $(3,1,4)$ et $(3,2,4)$. (Il s'obtient en multipliant la ligne $3$ de $M$ par la colonne $4$ : chaque sommet $k$ voisin à la fois de $3$ et de $4$ donne une chaîne.)"
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex2",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 2,
+      "titre": "Chemins dans un graphe orienté",
+      "enonce": "On considère le graphe orienté de sommets $1, \\dots, 3$ dont les arcs sont $1 \\to 2$, $1 \\to 3$, $2 \\to 1$, $2 \\to 3$ et $3 \\to 1$. Écrire sa matrice d'adjacence $M$, puis déterminer le nombre de chemins de longueur $3$ allant du sommet $1$ au sommet $3$.",
+      "duree_min": 8,
+      "indices": [
+        "Calculer $M^2$, puis $M^3 = M^2M$, et lire le bon coefficient (ligne = départ, colonne = arrivée)."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de chemins de longueur $3$ de $1$ à $3$ ?",
+        "propositions": [
+          "$1$",
+          "$3$",
+          "$0$",
+          "$2$"
+        ],
+        "bonne": 3
+      },
+      "correction": "Le coefficient $m_{ij}$ vaut $1$ s'il y a un arc de $i$ vers $j$ (la matrice n'est pas symétrique) :\n\n$$M = \\begin{pmatrix} 0 & 1 & 1 \\\\ 1 & 0 & 1 \\\\ 1 & 0 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 2 & 0 & 1 \\\\ 1 & 1 & 1 \\\\ 0 & 1 & 1 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 0 & 1 \\end{pmatrix}.$$\n\nLe nombre cherché est le coefficient $(1,3)$ de $M^3$, soit $2$ : les chemins $(1,2,1,3)$ et $(1,3,1,3)$.",
+      "variantes": [
+        {
+          "enonce": "On considère le graphe orienté de sommets $1, \\dots, 3$ dont les arcs sont $1 \\to 2$, $1 \\to 3$, $2 \\to 3$ et $3 \\to 1$. Écrire sa matrice d'adjacence $M$, puis déterminer le nombre de chemins de longueur $3$ allant du sommet $1$ au sommet $3$.",
+          "indices": [
+            "Calculer $M^2$, puis $M^3 = M^2M$, et lire le bon coefficient (ligne = départ, colonne = arrivée)."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de chemins de longueur $3$ de $1$ à $3$ ?",
+            "propositions": [
+              "$1$",
+              "$2$",
+              "$3$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le coefficient $m_{ij}$ vaut $1$ s'il y a un arc de $i$ vers $j$ (la matrice n'est pas symétrique) :\n\n$$M = \\begin{pmatrix} 0 & 1 & 1 \\\\ 0 & 0 & 1 \\\\ 1 & 0 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 1 & 0 & 1 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 1 \\\\ 1 & 0 & 1 \\end{pmatrix}.$$\n\nLe nombre cherché est le coefficient $(1,3)$ de $M^3$, soit $1$ : le chemin $(1,3,1,3)$."
+        },
+        {
+          "enonce": "On considère le graphe orienté de sommets $1, \\dots, 4$ dont les arcs sont $1 \\to 2$, $1 \\to 4$, $2 \\to 3$, $2 \\to 4$, $3 \\to 4$, $4 \\to 1$ et $4 \\to 3$. Écrire sa matrice d'adjacence $M$, puis déterminer le nombre de chemins de longueur $3$ allant du sommet $1$ au sommet $4$.",
+          "indices": [
+            "Calculer $M^2$, puis $M^3 = M^2M$, et lire le bon coefficient (ligne = départ, colonne = arrivée)."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de chemins de longueur $3$ de $1$ à $4$ ?",
+            "propositions": [
+              "$2$",
+              "$3$",
+              "$1$",
+              "$4$"
+            ],
+            "bonne": 1
+          },
+          "correction": "Le coefficient $m_{ij}$ vaut $1$ s'il y a un arc de $i$ vers $j$ (la matrice n'est pas symétrique) :\n\n$$M = \\begin{pmatrix} 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 1 & 0 & 2 & 1 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 2 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 1 & 1 & 1 & 3 \\\\ 1 & 1 & 1 & 2 \\\\ 0 & 1 & 0 & 2 \\\\ 2 & 0 & 3 & 1 \\end{pmatrix}.$$\n\nLe nombre cherché est le coefficient $(1,4)$ de $M^3$, soit $3$ : les chemins $(1,2,3,4)$, $(1,4,1,4)$ et $(1,4,3,4)$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex3",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 3,
+      "titre": "Chaînes dans un graphe complet",
+      "enonce": "Soit $K_4$ le graphe complet à $4$ sommets (deux sommets distincts quelconques sont reliés par une arête, sans boucle). On note $M$ sa matrice d'adjacence et $J$ la matrice carrée d'ordre $4$ dont tous les coefficients valent $1$.\n\n1. Exprimer $M$ à l'aide de $J$ et $I_4$, puis calculer $J^2$.\n\n2. En déduire $M^2$ et $M^3$ sous la forme $\\alpha J + \\beta I_4$.\n\n3. Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_4$ ? Combien relient un sommet donné à lui-même ?",
+      "duree_min": 12,
+      "indices": [
+        "$J$ commute avec $I_p$, et chaque coefficient de $J^2$ est une somme de $p$ termes égaux à $1$.",
+        "Développer $M^2 = (J - I_p)^2$ et $M^3 = M^2M$ en remplaçant $J^2$ par son expression en $J$."
+      ],
+      "reponse_finale": {
+        "question": "Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_4$ ?",
+        "propositions": [
+          "$7$",
+          "$6$",
+          "$9$",
+          "$27$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $M = J - I_4$ (des $1$ partout sauf sur la diagonale). Chaque coefficient de $J^2$ vaut $1 \\times 1 + \\dots + 1 \\times 1 = 4$ : $J^2 = 4J$.\n\n2. $J$ et $I_4$ commutent, donc $M^2 = J^2 - 2J + I_4 = 4J - 2J + I_4 = 2J + I_4$, puis $M^3 = M^2M = (2J + I_4)(J - I_4) = 2J^2 - 2J + J - I_4 = 7J - I_4$.\n\n3. Le coefficient $(i,j)$ de $M^3$ vaut $7$ si $i \\neq j$ et $6$ si $i = j$ : il y a $7$ chaînes de longueur $3$ entre deux sommets distincts et $6$ d'un sommet à lui-même. Contrôle : depuis un sommet, il y a $3^3 = 27$ chaînes de longueur $3$ au total, et $3 \\times 7 + 6 = 27$.",
+      "variantes": [
+        {
+          "enonce": "Soit $K_5$ le graphe complet à $5$ sommets (deux sommets distincts quelconques sont reliés par une arête, sans boucle). On note $M$ sa matrice d'adjacence et $J$ la matrice carrée d'ordre $5$ dont tous les coefficients valent $1$.\n\n1. Exprimer $M$ à l'aide de $J$ et $I_5$, puis calculer $J^2$.\n\n2. En déduire $M^2$ et $M^3$ sous la forme $\\alpha J + \\beta I_5$.\n\n3. Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_5$ ? Combien relient un sommet donné à lui-même ?",
+          "indices": [
+            "$J$ commute avec $I_p$, et chaque coefficient de $J^2$ est une somme de $p$ termes égaux à $1$.",
+            "Développer $M^2 = (J - I_p)^2$ et $M^3 = M^2M$ en remplaçant $J^2$ par son expression en $J$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_5$ ?",
+            "propositions": [
+              "$12$",
+              "$16$",
+              "$13$",
+              "$64$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. $M = J - I_5$ (des $1$ partout sauf sur la diagonale). Chaque coefficient de $J^2$ vaut $1 \\times 1 + \\dots + 1 \\times 1 = 5$ : $J^2 = 5J$.\n\n2. $J$ et $I_5$ commutent, donc $M^2 = J^2 - 2J + I_5 = 5J - 2J + I_5 = 3J + I_5$, puis $M^3 = M^2M = (3J + I_5)(J - I_5) = 3J^2 - 3J + J - I_5 = 13J - I_5$.\n\n3. Le coefficient $(i,j)$ de $M^3$ vaut $13$ si $i \\neq j$ et $12$ si $i = j$ : il y a $13$ chaînes de longueur $3$ entre deux sommets distincts et $12$ d'un sommet à lui-même. Contrôle : depuis un sommet, il y a $4^3 = 64$ chaînes de longueur $3$ au total, et $4 \\times 13 + 12 = 64$."
+        },
+        {
+          "enonce": "Soit $K_3$ le graphe complet à $3$ sommets (deux sommets distincts quelconques sont reliés par une arête, sans boucle). On note $M$ sa matrice d'adjacence et $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$.\n\n1. Exprimer $M$ à l'aide de $J$ et $I_3$, puis calculer $J^2$.\n\n2. En déduire $M^2$ et $M^3$ sous la forme $\\alpha J + \\beta I_3$.\n\n3. Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_3$ ? Combien relient un sommet donné à lui-même ?",
+          "indices": [
+            "$J$ commute avec $I_p$, et chaque coefficient de $J^2$ est une somme de $p$ termes égaux à $1$.",
+            "Développer $M^2 = (J - I_p)^2$ et $M^3 = M^2M$ en remplaçant $J^2$ par son expression en $J$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $3$ relient deux sommets distincts donnés de $K_3$ ?",
+            "propositions": [
+              "$2$",
+              "$3$",
+              "$4$",
+              "$8$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $M = J - I_3$ (des $1$ partout sauf sur la diagonale). Chaque coefficient de $J^2$ vaut $1 \\times 1 + \\dots + 1 \\times 1 = 3$ : $J^2 = 3J$.\n\n2. $J$ et $I_3$ commutent, donc $M^2 = J^2 - 2J + I_3 = 3J - 2J + I_3 = J + I_3$, puis $M^3 = M^2M = (J + I_3)(J - I_3) = J^2 - J + J - I_3 = 3J - I_3$.\n\n3. Le coefficient $(i,j)$ de $M^3$ vaut $3$ si $i \\neq j$ et $2$ si $i = j$ : il y a $3$ chaînes de longueur $3$ entre deux sommets distincts et $2$ d'un sommet à lui-même. Contrôle : depuis un sommet, il y a $2^3 = 8$ chaînes de longueur $3$ au total, et $2 \\times 3 + 2 = 8$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex4",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 4,
+      "titre": "Compter les triangles d'un graphe",
+      "enonce": "Soit $G$ un graphe non orienté sans boucle, de sommets $1, \\dots, p$, de matrice d'adjacence $M$. Un triangle est un ensemble de trois sommets deux à deux reliés.\n\n1. Montrer que le coefficient $(i,i)$ de $M^3$ est égal au double du nombre de triangles contenant le sommet $i$.\n\n2. En déduire que la somme des coefficients diagonaux de $M^3$ est égale à six fois le nombre de triangles de $G$.\n\n3. Application : $G$ a pour sommets $1, \\dots, 5$ et pour arêtes $\\{1,2\\}$, $\\{1,3\\}$, $\\{2,3\\}$, $\\{2,4\\}$, $\\{3,4\\}$, $\\{3,5\\}$ et $\\{4,5\\}$. Calculer les coefficients diagonaux de $M^3$ et en déduire le nombre de triangles.",
+      "duree_min": 20,
+      "indices": [
+        "Une chaîne de longueur $3$ de $i$ à $i$ s'écrit $(i, j, k, i)$ : sans boucle, que peut-on dire de $i$, $j$, $k$ ?",
+        "Un triangle $\\{i, j, k\\}$ donne exactement deux chaînes fermées partant de $i$ ; pour la question 2, chaque triangle a trois sommets."
+      ],
+      "reponse_finale": {
+        "question": "Combien le graphe de la question 3 a-t-il de triangles ?",
+        "propositions": [
+          "$6$",
+          "$3$",
+          "$18$",
+          "$9$"
+        ],
+        "bonne": 1
+      },
+      "correction": "1. D'après le cours, $(M^3)_{ii}$ est le nombre de chaînes $(i, j, k, i)$ de longueur $3$. Sans boucle, deux sommets consécutifs sont distincts : $j \\neq i$, $k \\neq j$ et $i \\neq k$. Donc $i, j, k$ sont deux à deux distincts et deux à deux reliés : $\\{i, j, k\\}$ est un triangle contenant $i$. Réciproquement, un triangle $\\{i, j, k\\}$ contenant $i$ donne exactement deux telles chaînes, $(i, j, k, i)$ et $(i, k, j, i)$ (les deux sens de parcours). Donc $(M^3)_{ii}$ est le double du nombre de triangles contenant $i$.\n\n2. En sommant sur $i$, chaque triangle est compté deux fois pour chacun de ses trois sommets, soit six fois : la somme des coefficients diagonaux de $M^3$ vaut six fois le nombre de triangles.\n\n3. Le calcul donne pour coefficients diagonaux de $M^3$ : $2, 4, 6, 4, 2$, de somme $18$. Le graphe a donc $\\frac{18}{6} = 3$ triangles : $\\{1,2,3\\}$, $\\{2,3,4\\}$ et $\\{3,4,5\\}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $G$ un graphe non orienté sans boucle, de sommets $1, \\dots, p$, de matrice d'adjacence $M$. Un triangle est un ensemble de trois sommets deux à deux reliés.\n\n1. Montrer que le coefficient $(i,i)$ de $M^3$ est égal au double du nombre de triangles contenant le sommet $i$.\n\n2. En déduire que la somme des coefficients diagonaux de $M^3$ est égale à six fois le nombre de triangles de $G$.\n\n3. Application : $G$ a pour sommets $1, \\dots, 5$ et pour arêtes $\\{1,2\\}$, $\\{1,3\\}$, $\\{1,4\\}$, $\\{2,3\\}$, $\\{3,4\\}$ et $\\{4,5\\}$. Calculer les coefficients diagonaux de $M^3$ et en déduire le nombre de triangles.",
+          "indices": [
+            "Une chaîne de longueur $3$ de $i$ à $i$ s'écrit $(i, j, k, i)$ : sans boucle, que peut-on dire de $i$, $j$, $k$ ?",
+            "Un triangle $\\{i, j, k\\}$ donne exactement deux chaînes fermées partant de $i$ ; pour la question 2, chaque triangle a trois sommets."
+          ],
+          "reponse_finale": {
+            "question": "Combien le graphe de la question 3 a-t-il de triangles ?",
+            "propositions": [
+              "$2$",
+              "$4$",
+              "$12$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. D'après le cours, $(M^3)_{ii}$ est le nombre de chaînes $(i, j, k, i)$ de longueur $3$. Sans boucle, deux sommets consécutifs sont distincts : $j \\neq i$, $k \\neq j$ et $i \\neq k$. Donc $i, j, k$ sont deux à deux distincts et deux à deux reliés : $\\{i, j, k\\}$ est un triangle contenant $i$. Réciproquement, un triangle $\\{i, j, k\\}$ contenant $i$ donne exactement deux telles chaînes, $(i, j, k, i)$ et $(i, k, j, i)$ (les deux sens de parcours). Donc $(M^3)_{ii}$ est le double du nombre de triangles contenant $i$.\n\n2. En sommant sur $i$, chaque triangle est compté deux fois pour chacun de ses trois sommets, soit six fois : la somme des coefficients diagonaux de $M^3$ vaut six fois le nombre de triangles.\n\n3. Le calcul donne pour coefficients diagonaux de $M^3$ : $4, 2, 4, 2, 0$, de somme $12$. Le graphe a donc $\\frac{12}{6} = 2$ triangles : $\\{1,2,3\\}$ et $\\{1,3,4\\}$."
+        },
+        {
+          "enonce": "Soit $G$ un graphe non orienté sans boucle, de sommets $1, \\dots, p$, de matrice d'adjacence $M$. Un triangle est un ensemble de trois sommets deux à deux reliés.\n\n1. Montrer que le coefficient $(i,i)$ de $M^3$ est égal au double du nombre de triangles contenant le sommet $i$.\n\n2. En déduire que la somme des coefficients diagonaux de $M^3$ est égale à six fois le nombre de triangles de $G$.\n\n3. Application : $G$ est le graphe complet à $4$ sommets ($p = 4$, toutes les arêtes possibles). Calculer les coefficients diagonaux de $M^3$ et en déduire le nombre de triangles.",
+          "indices": [
+            "Une chaîne de longueur $3$ de $i$ à $i$ s'écrit $(i, j, k, i)$ : sans boucle, que peut-on dire de $i$, $j$, $k$ ?",
+            "Un triangle $\\{i, j, k\\}$ donne exactement deux chaînes fermées partant de $i$ ; pour la question 2, chaque triangle a trois sommets."
+          ],
+          "reponse_finale": {
+            "question": "Combien le graphe de la question 3 a-t-il de triangles ?",
+            "propositions": [
+              "$6$",
+              "$24$",
+              "$8$",
+              "$4$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. D'après le cours, $(M^3)_{ii}$ est le nombre de chaînes $(i, j, k, i)$ de longueur $3$. Sans boucle, deux sommets consécutifs sont distincts : $j \\neq i$, $k \\neq j$ et $i \\neq k$. Donc $i, j, k$ sont deux à deux distincts et deux à deux reliés : $\\{i, j, k\\}$ est un triangle contenant $i$. Réciproquement, un triangle $\\{i, j, k\\}$ contenant $i$ donne exactement deux telles chaînes, $(i, j, k, i)$ et $(i, k, j, i)$ (les deux sens de parcours). Donc $(M^3)_{ii}$ est le double du nombre de triangles contenant $i$.\n\n2. En sommant sur $i$, chaque triangle est compté deux fois pour chacun de ses trois sommets, soit six fois : la somme des coefficients diagonaux de $M^3$ vaut six fois le nombre de triangles.\n\n3. Le calcul donne pour coefficients diagonaux de $M^3$ : $6, 6, 6, 6$, de somme $24$. Le graphe a donc $\\frac{24}{6} = 4$ triangles : chacun des quatre ensembles de trois sommets."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex5",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 4,
+      "titre": "Chaînes dans un carré",
+      "enonce": "On considère le graphe non orienté de sommets $1, 2, 3, 4$ dont les arêtes sont $\\{1,2\\}$, $\\{2,3\\}$, $\\{3,4\\}$ et $\\{4,1\\}$ (un carré), de matrice d'adjacence $M$.\n\n1. Écrire $M$, calculer $M^2$ et $M^3$, et vérifier que $M^3 = 4M$.\n\n2. En déduire que, pour tout entier $k \\geq 1$, $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$.\n\n3. Combien y a-t-il de chaînes de longueur $10$ reliant le sommet $1$ au sommet $3$ ?",
+      "duree_min": 25,
+      "indices": [
+        "De $M^3 = 4M$, déduire $M^{m+2} = 4M^m$ pour tout $m \\geq 1$.",
+        "Raisonner par récurrence sur $k$, puis lire le coefficient voulu de $M^2$ ou de $M$."
+      ],
+      "reponse_finale": {
+        "question": "Combien de chaînes de longueur $10$ relient $1$ à $3$ ?",
+        "propositions": [
+          "$512$",
+          "$256$",
+          "$1024$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $$M = \\begin{pmatrix} 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\\\ 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\\\ 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\end{pmatrix} = 4M.$$\n\n2. Pour $m \\geq 1$, $M^{m+2} = M^{m-1}M^3 = 4M^{m-1}M = 4M^m$. Récurrence sur $k \\geq 1$ : pour $k = 1$, $M^2 = 4^0M^2$ et $M^3 = 4M$. Si $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$, alors $M^{2k+2} = 4M^{2k} = 4^kM^2$ et $M^{2k+3} = 4M^{2k+1} = 4^{k+1}M$.\n\n3. $10 = 2 \\times 5$, donc $M^{10} = 4^4M^2$, dont le coefficient $(1,3)$ vaut $4^4 \\times 2 = 512$. Il y a $512$ chaînes de longueur $10$ de $1$ à $3$.",
+      "variantes": [
+        {
+          "enonce": "On considère le graphe non orienté de sommets $1, 2, 3, 4$ dont les arêtes sont $\\{1,2\\}$, $\\{2,3\\}$, $\\{3,4\\}$ et $\\{4,1\\}$ (un carré), de matrice d'adjacence $M$.\n\n1. Écrire $M$, calculer $M^2$ et $M^3$, et vérifier que $M^3 = 4M$.\n\n2. En déduire que, pour tout entier $k \\geq 1$, $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$.\n\n3. Combien y a-t-il de chaînes de longueur $11$ reliant le sommet $1$ au sommet $4$ ?",
+          "indices": [
+            "De $M^3 = 4M$, déduire $M^{m+2} = 4M^m$ pour tout $m \\geq 1$.",
+            "Raisonner par récurrence sur $k$, puis lire le coefficient voulu de $M^2$ ou de $M$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $11$ relient $1$ à $4$ ?",
+            "propositions": [
+              "$512$",
+              "$2048$",
+              "$1024$",
+              "$0$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. $$M = \\begin{pmatrix} 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\\\ 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\\\ 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\end{pmatrix} = 4M.$$\n\n2. Pour $m \\geq 1$, $M^{m+2} = M^{m-1}M^3 = 4M^{m-1}M = 4M^m$. Récurrence sur $k \\geq 1$ : pour $k = 1$, $M^2 = 4^0M^2$ et $M^3 = 4M$. Si $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$, alors $M^{2k+2} = 4M^{2k} = 4^kM^2$ et $M^{2k+3} = 4M^{2k+1} = 4^{k+1}M$.\n\n3. $11 = 2 \\times 5 + 1$, donc $M^{11} = 4^5M$, dont le coefficient $(1,4)$ vaut $4^5 \\times 1 = 1024$. Il y a $1024$ chaînes de longueur $11$ de $1$ à $4$."
+        },
+        {
+          "enonce": "On considère le graphe non orienté de sommets $1, 2, 3, 4$ dont les arêtes sont $\\{1,2\\}$, $\\{2,3\\}$, $\\{3,4\\}$ et $\\{4,1\\}$ (un carré), de matrice d'adjacence $M$.\n\n1. Écrire $M$, calculer $M^2$ et $M^3$, et vérifier que $M^3 = 4M$.\n\n2. En déduire que, pour tout entier $k \\geq 1$, $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$.\n\n3. Combien y a-t-il de chaînes de longueur $8$ reliant le sommet $2$ au sommet $2$ ?",
+          "indices": [
+            "De $M^3 = 4M$, déduire $M^{m+2} = 4M^m$ pour tout $m \\geq 1$.",
+            "Raisonner par récurrence sur $k$, puis lire le coefficient voulu de $M^2$ ou de $M$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de chaînes de longueur $8$ relient $2$ à $2$ ?",
+            "propositions": [
+              "$64$",
+              "$128$",
+              "$256$",
+              "$0$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $$M = \\begin{pmatrix} 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 0 \\end{pmatrix}, \\qquad M^2 = \\begin{pmatrix} 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\\\ 2 & 0 & 2 & 0 \\\\ 0 & 2 & 0 & 2 \\end{pmatrix}, \\qquad M^3 = M^2M = \\begin{pmatrix} 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\\\ 0 & 4 & 0 & 4 \\\\ 4 & 0 & 4 & 0 \\end{pmatrix} = 4M.$$\n\n2. Pour $m \\geq 1$, $M^{m+2} = M^{m-1}M^3 = 4M^{m-1}M = 4M^m$. Récurrence sur $k \\geq 1$ : pour $k = 1$, $M^2 = 4^0M^2$ et $M^3 = 4M$. Si $M^{2k} = 4^{k-1}M^2$ et $M^{2k+1} = 4^kM$, alors $M^{2k+2} = 4M^{2k} = 4^kM^2$ et $M^{2k+3} = 4M^{2k+1} = 4^{k+1}M$.\n\n3. $8 = 2 \\times 4$, donc $M^8 = 4^3M^2$, dont le coefficient $(2,2)$ vaut $4^3 \\times 2 = 128$. Il y a $128$ chaînes de longueur $8$ de $2$ à $2$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex1",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 1,
+      "titre": "Loi après deux transitions",
+      "enonce": "Chaque soir, une étudiante révise soit l'algèbre (état $1$), soit l'analyse (état $2$). On modélise son choix par une chaîne de Markov de matrice de transition\n\n$$P = \\begin{pmatrix} 0{,}8 & 0{,}2 \\\\ 0{,}3 & 0{,}7 \\end{pmatrix}.$$\n\nLe soir $0$, elle révise l'algèbre : $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$. Calculer les lois $\\pi_1$ et $\\pi_2$ des soirs $1$ et $2$.",
+      "duree_min": 5,
+      "indices": [
+        "Utiliser $\\pi_{n+1} = \\pi_nP$ : une matrice ligne multipliée à droite par $P$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\pi_2$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} 0{,}8 & 0{,}2 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 0{,}7 & 0{,}3 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 0{,}64 & 0{,}04 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 0{,}6 & 0{,}4 \\end{pmatrix}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "La loi évolue par $\\pi_{n+1} = \\pi_nP$, avec $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$ :\n\n$$\\pi_1 = \\pi_0P = \\begin{pmatrix} 1 & 0 \\end{pmatrix}\\begin{pmatrix} 0{,}8 & 0{,}2 \\\\ 0{,}3 & 0{,}7 \\end{pmatrix} = \\begin{pmatrix} 0{,}8 & 0{,}2 \\end{pmatrix},$$\n\n$$\\pi_2 = \\pi_1P = \\begin{pmatrix} 0{,}8 \\times 0{,}8 + 0{,}2 \\times 0{,}3 & 0{,}8 \\times 0{,}2 + 0{,}2 \\times 0{,}7 \\end{pmatrix} = \\begin{pmatrix} 0{,}7 & 0{,}3 \\end{pmatrix}.$$\n\nOn vérifie que la somme des coefficients de chaque loi vaut $1$.",
+      "variantes": [
+        {
+          "enonce": "Chaque soir, une étudiante révise soit l'algèbre (état $1$), soit l'analyse (état $2$). On modélise son choix par une chaîne de Markov de matrice de transition\n\n$$P = \\begin{pmatrix} 0{,}9 & 0{,}1 \\\\ 0{,}4 & 0{,}6 \\end{pmatrix}.$$\n\nLe soir $0$, elle révise l'analyse : $\\pi_0 = \\begin{pmatrix} 0 & 1 \\end{pmatrix}$. Calculer les lois $\\pi_1$ et $\\pi_2$ des soirs $1$ et $2$.",
+          "indices": [
+            "Utiliser $\\pi_{n+1} = \\pi_nP$ : une matrice ligne multipliée à droite par $P$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\pi_2$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 0{,}6 & 0{,}4 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}4 & 0{,}6 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}16 & 0{,}36 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}8 & 0{,}2 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La loi évolue par $\\pi_{n+1} = \\pi_nP$, avec $\\pi_0 = \\begin{pmatrix} 0 & 1 \\end{pmatrix}$ :\n\n$$\\pi_1 = \\pi_0P = \\begin{pmatrix} 0 & 1 \\end{pmatrix}\\begin{pmatrix} 0{,}9 & 0{,}1 \\\\ 0{,}4 & 0{,}6 \\end{pmatrix} = \\begin{pmatrix} 0{,}4 & 0{,}6 \\end{pmatrix},$$\n\n$$\\pi_2 = \\pi_1P = \\begin{pmatrix} 0{,}4 \\times 0{,}9 + 0{,}6 \\times 0{,}4 & 0{,}4 \\times 0{,}1 + 0{,}6 \\times 0{,}6 \\end{pmatrix} = \\begin{pmatrix} 0{,}6 & 0{,}4 \\end{pmatrix}.$$\n\nOn vérifie que la somme des coefficients de chaque loi vaut $1$."
+        },
+        {
+          "enonce": "Chaque soir, une étudiante révise soit l'algèbre (état $1$), soit l'analyse (état $2$). On modélise son choix par une chaîne de Markov de matrice de transition\n\n$$P = \\begin{pmatrix} 0{,}5 & 0{,}5 \\\\ 0{,}2 & 0{,}8 \\end{pmatrix}.$$\n\nLe soir $0$, elle choisit à pile ou face : $\\pi_0 = \\begin{pmatrix} 0{,}5 & 0{,}5 \\end{pmatrix}$. Calculer les lois $\\pi_1$ et $\\pi_2$ des soirs $1$ et $2$.",
+          "indices": [
+            "Utiliser $\\pi_{n+1} = \\pi_nP$ : une matrice ligne multipliée à droite par $P$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\pi_2$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 0{,}35 & 0{,}65 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}3 & 0{,}7 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}695 & 0{,}305 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}305 & 0{,}695 \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "La loi évolue par $\\pi_{n+1} = \\pi_nP$, avec $\\pi_0 = \\begin{pmatrix} 0{,}5 & 0{,}5 \\end{pmatrix}$ :\n\n$$\\pi_1 = \\pi_0P = \\begin{pmatrix} 0{,}5 & 0{,}5 \\end{pmatrix}\\begin{pmatrix} 0{,}5 & 0{,}5 \\\\ 0{,}2 & 0{,}8 \\end{pmatrix} = \\begin{pmatrix} 0{,}35 & 0{,}65 \\end{pmatrix},$$\n\n$$\\pi_2 = \\pi_1P = \\begin{pmatrix} 0{,}35 \\times 0{,}5 + 0{,}65 \\times 0{,}2 & 0{,}35 \\times 0{,}5 + 0{,}65 \\times 0{,}8 \\end{pmatrix} = \\begin{pmatrix} 0{,}305 & 0{,}695 \\end{pmatrix}.$$\n\nOn vérifie que la somme des coefficients de chaque loi vaut $1$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex2",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 2,
+      "titre": "Distribution invariante d'une chaîne à deux états",
+      "enonce": "Chaque jour, un serveur est en service (état $1$) ou en maintenance (état $2$). S'il est en service un jour, il l'est encore le lendemain avec probabilité $0{,}7$ ; s'il est en maintenance, il est remis en service le lendemain avec probabilité $0{,}6$. Écrire la matrice de transition $P$ de cette chaîne de Markov, puis déterminer sa distribution invariante.",
+      "duree_min": 7,
+      "indices": [
+        "Chercher $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ telle que $\\pi P = \\pi$ : une seule équation suffit."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la distribution invariante ?",
+        "propositions": [
+          "$\\begin{pmatrix} \\frac{2}{3} & \\frac{1}{3} \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{3} & \\frac{2}{3} \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}$",
+          "$\\begin{pmatrix} 0{,}7 & 0{,}3 \\end{pmatrix}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$$P = \\begin{pmatrix} 0{,}7 & 0{,}3 \\\\ 0{,}6 & 0{,}4 \\end{pmatrix}.$$\n\nUne distribution invariante s'écrit $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ avec $x \\in [0,1]$, et $\\pi P = \\pi$ équivaut à l'égalité des premiers coefficients (les seconds s'en déduisent, car $\\pi$ et $\\pi P$ ont tous deux une somme égale à $1$) : $0{,}7x + 0{,}6(1-x) = x$, soit $0{,}6 = 0{,}9x$, d'où $x = \\frac{2}{3}$.\n\n**Réponse** : l'unique distribution invariante est $\\pi = \\begin{pmatrix} \\frac{2}{3} & \\frac{1}{3} \\end{pmatrix}$.",
+      "variantes": [
+        {
+          "enonce": "Chaque jour, un serveur est en service (état $1$) ou en maintenance (état $2$). S'il est en service un jour, il l'est encore le lendemain avec probabilité $0{,}9$ ; s'il est en maintenance, il est remis en service le lendemain avec probabilité $0{,}4$. Écrire la matrice de transition $P$ de cette chaîne de Markov, puis déterminer sa distribution invariante.",
+          "indices": [
+            "Chercher $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ telle que $\\pi P = \\pi$ : une seule équation suffit."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distribution invariante ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{1}{5} & \\frac{4}{5} \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0{,}9 & 0{,}1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{4}{5} & \\frac{1}{5} \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "$$P = \\begin{pmatrix} 0{,}9 & 0{,}1 \\\\ 0{,}4 & 0{,}6 \\end{pmatrix}.$$\n\nUne distribution invariante s'écrit $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ avec $x \\in [0,1]$, et $\\pi P = \\pi$ équivaut à l'égalité des premiers coefficients (les seconds s'en déduisent, car $\\pi$ et $\\pi P$ ont tous deux une somme égale à $1$) : $0{,}9x + 0{,}4(1-x) = x$, soit $0{,}4 = 0{,}5x$, d'où $x = \\frac{4}{5}$.\n\n**Réponse** : l'unique distribution invariante est $\\pi = \\begin{pmatrix} \\frac{4}{5} & \\frac{1}{5} \\end{pmatrix}$."
+        },
+        {
+          "enonce": "Chaque jour, un serveur est en service (état $1$) ou en maintenance (état $2$). S'il est en service un jour, il l'est encore le lendemain avec probabilité $0{,}5$ ; s'il est en maintenance, il est remis en service le lendemain avec probabilité $0{,}2$. Écrire la matrice de transition $P$ de cette chaîne de Markov, puis déterminer sa distribution invariante.",
+          "indices": [
+            "Chercher $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ telle que $\\pi P = \\pi$ : une seule équation suffit."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distribution invariante ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{5}{7} & \\frac{2}{7} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{2}{7} & \\frac{5}{7} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{5} & \\frac{4}{5} \\end{pmatrix}$"
+            ],
+            "bonne": 1
+          },
+          "correction": "$$P = \\begin{pmatrix} 0{,}5 & 0{,}5 \\\\ 0{,}2 & 0{,}8 \\end{pmatrix}.$$\n\nUne distribution invariante s'écrit $\\pi = \\begin{pmatrix} x & 1-x \\end{pmatrix}$ avec $x \\in [0,1]$, et $\\pi P = \\pi$ équivaut à l'égalité des premiers coefficients (les seconds s'en déduisent, car $\\pi$ et $\\pi P$ ont tous deux une somme égale à $1$) : $0{,}5x + 0{,}2(1-x) = x$, soit $0{,}2 = 0{,}7x$, d'où $x = \\frac{2}{7}$.\n\n**Réponse** : l'unique distribution invariante est $\\pi = \\begin{pmatrix} \\frac{2}{7} & \\frac{5}{7} \\end{pmatrix}$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex3",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 3,
+      "titre": "Distribution invariante d'une chaîne à trois états",
+      "enonce": "Une chaîne de Markov à trois états $1, 2, 3$ a pour matrice de transition\n\n$$P = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} & 0 \\\\ \\frac{1}{4} & \\frac{1}{2} & \\frac{1}{4} \\\\ 0 & \\frac{1}{2} & \\frac{1}{2} \\end{pmatrix}.$$\n\nDécrire le graphe orienté pondéré associé, puis déterminer toutes les distributions invariantes de la chaîne.",
+      "duree_min": 12,
+      "indices": [
+        "Écrire $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$ et traduire $\\pi P = \\pi$ par trois équations (une par colonne de $P$), sans oublier $x + y + z = 1$.",
+        "Exprimer deux des inconnues en fonction de la troisième, puis utiliser $x + y + z = 1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la distribution invariante ?",
+        "propositions": [
+          "$\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{3} \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{4} & \\frac{1}{4} & \\frac{1}{2} \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{4} & \\frac{1}{2} & \\frac{1}{4} \\end{pmatrix}$",
+          "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} & 0 \\end{pmatrix}$"
+        ],
+        "bonne": 2
+      },
+      "correction": "**Graphe.** Une boucle de poids $\\frac{1}{2}$ sur chaque sommet ; des arcs $1 \\to 2$ et $3 \\to 2$ de poids $\\frac{1}{2}$, et $2 \\to 1$, $2 \\to 3$ de poids $\\frac{1}{4}$ ; ni arc $1 \\to 3$, ni arc $3 \\to 1$. Les poids des arcs issus d'un même sommet ont pour somme $1$.\n\n**Distributions invariantes.** Pour $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$, l'égalité $\\pi P = \\pi$ s'écrit, colonne par colonne,\n\n$$x = \\frac{x}{2} + \\frac{y}{4}, \\qquad y = \\frac{x}{2} + \\frac{y}{2} + \\frac{z}{2}, \\qquad z = \\frac{y}{4} + \\frac{z}{2}.$$\n\nLa première équation donne $y = 2x$, la troisième $y = 2z$, donc $z = x$ (la deuxième est alors vérifiée : $\\frac{x}{2} + x + \\frac{x}{2} = 2x$). Avec $x + y + z = 4x = 1$ : $x = \\frac{1}{4}$, $y = \\frac{1}{2}$, $z = \\frac{1}{4}$. Les coefficients obtenus sont positifs.\n\n**Réponse** : la chaîne a une unique distribution invariante, $\\pi = \\begin{pmatrix} \\frac{1}{4} & \\frac{1}{2} & \\frac{1}{4} \\end{pmatrix}$.",
+      "variantes": [
+        {
+          "enonce": "Une chaîne de Markov à trois états $1, 2, 3$ a pour matrice de transition\n\n$$P = \\begin{pmatrix} \\frac{1}{2} & \\frac{1}{2} & 0 \\\\ 0 & \\frac{1}{2} & \\frac{1}{2} \\\\ \\frac{1}{2} & 0 & \\frac{1}{2} \\end{pmatrix}.$$\n\nDécrire le graphe orienté pondéré associé, puis déterminer toutes les distributions invariantes de la chaîne.",
+          "indices": [
+            "Écrire $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$ et traduire $\\pi P = \\pi$ par trois équations (une par colonne de $P$), sans oublier $x + y + z = 1$.",
+            "Exprimer deux des inconnues en fonction de la troisième, puis utiliser $x + y + z = 1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distribution invariante ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{3} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{4} & \\frac{1}{2} & \\frac{1}{4} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{2} & \\frac{1}{4} & \\frac{1}{4} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{2} & 0 & \\frac{1}{2} \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Graphe.** Une boucle de poids $\\frac{1}{2}$ sur chaque sommet et les arcs $1 \\to 2$, $2 \\to 3$, $3 \\to 1$ de poids $\\frac{1}{2}$ (un cycle).\n\n**Distributions invariantes.** Pour $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$, l'égalité $\\pi P = \\pi$ s'écrit, colonne par colonne,\n\n$$x = \\frac{x}{2} + \\frac{z}{2}, \\qquad y = \\frac{x}{2} + \\frac{y}{2}, \\qquad z = \\frac{y}{2} + \\frac{z}{2}.$$\n\nLa première équation donne $z = x$, la deuxième $y = x$ (la troisième est alors vérifiée). Avec $x + y + z = 3x = 1$ : $x = y = z = \\frac{1}{3}$. Les coefficients obtenus sont positifs.\n\n**Réponse** : la chaîne a une unique distribution invariante, $\\pi = \\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{3} \\end{pmatrix}$."
+        },
+        {
+          "enonce": "Une chaîne de Markov à trois états $1, 2, 3$ a pour matrice de transition\n\n$$P = \\begin{pmatrix} 0{,}2 & 0{,}8 & 0 \\\\ 0 & 0{,}5 & 0{,}5 \\\\ 0{,}5 & 0 & 0{,}5 \\end{pmatrix}.$$\n\nDécrire le graphe orienté pondéré associé, puis déterminer toutes les distributions invariantes de la chaîne.",
+          "indices": [
+            "Écrire $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$ et traduire $\\pi P = \\pi$ par trois équations (une par colonne de $P$), sans oublier $x + y + z = 1$.",
+            "Exprimer deux des inconnues en fonction de la troisième, puis utiliser $x + y + z = 1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distribution invariante ?",
+            "propositions": [
+              "$\\begin{pmatrix} \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{3} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{8}{21} & \\frac{5}{21} & \\frac{8}{21} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{1}{5} & \\frac{2}{5} & \\frac{2}{5} \\end{pmatrix}$",
+              "$\\begin{pmatrix} \\frac{5}{21} & \\frac{8}{21} & \\frac{8}{21} \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "**Graphe.** Une boucle de poids $0{,}2$ sur $1$, de poids $0{,}5$ sur $2$ et sur $3$ ; les arcs $1 \\to 2$ de poids $0{,}8$, $2 \\to 3$ de poids $0{,}5$ et $3 \\to 1$ de poids $0{,}5$.\n\n**Distributions invariantes.** Pour $\\pi = \\begin{pmatrix} x & y & z \\end{pmatrix}$, l'égalité $\\pi P = \\pi$ s'écrit, colonne par colonne,\n\n$$x = 0{,}2x + 0{,}5z, \\qquad y = 0{,}8x + 0{,}5y, \\qquad z = 0{,}5y + 0{,}5z.$$\n\nLa première équation donne $z = 1{,}6x$, la deuxième $y = 1{,}6x$ (la troisième, $z = y$, est alors vérifiée). Avec $x + y + z = 4{,}2x = 1$ : $x = \\frac{5}{21}$, $y = z = \\frac{8}{21}$. Les coefficients obtenus sont positifs.\n\n**Réponse** : la chaîne a une unique distribution invariante, $\\pi = \\begin{pmatrix} \\frac{5}{21} & \\frac{8}{21} & \\frac{8}{21} \\end{pmatrix}$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex4",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 4,
+      "titre": "Convergence d'une chaîne à deux états",
+      "enonce": "Une chaîne de Markov $(X_n)$ à deux états $1$ et $2$ a pour matrice de transition $P = \\begin{pmatrix} 0{,}8 & 0{,}2 \\\\ 0{,}3 & 0{,}7 \\end{pmatrix}$ et pour loi initiale $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$. On note $x_n = P(X_n = 1)$.\n\n1. Montrer que $x_{n+1} = 0{,}5x_n + 0{,}3$ pour tout $n \\in \\mathbb{N}$.\n\n2. Déterminer la distribution invariante de la chaîne.\n\n3. Exprimer $x_n$ en fonction de $n$ et déterminer sa limite.",
+      "duree_min": 18,
+      "indices": [
+        "Formule des probabilités totales avec le système complet $\\{X_n = 1\\}$, $\\{X_n = 2\\}$, et $P(X_n = 2) = 1 - x_n$.",
+        "Poser $y_n = x_n - \\ell$, où $\\ell$ est le point fixe de la relation de récurrence, et montrer que $(y_n)$ est géométrique."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $x_n$ pour tout $n \\in \\mathbb{N}$ ?",
+        "propositions": [
+          "$0{,}6 + 0{,}4 \\times 0{,}5^n$",
+          "$0{,}6 - 0{,}4 \\times 0{,}5^n$",
+          "$0{,}6 + 0{,}4 \\times 0{,}8^n$",
+          "$0{,}8^n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Par la formule des probabilités totales, $x_{n+1} = P(X_n = 1)\\,p_{11} + P(X_n = 2)\\,p_{21} = 0{,}8x_n + 0{,}3(1 - x_n) = 0{,}5x_n + 0{,}3$.\n\n2. Une distribution invariante $\\begin{pmatrix} x & 1-x \\end{pmatrix}$ vérifie la même relation avec $x_{n+1} = x_n = x$ : $x = 0{,}5x + 0{,}3$, d'où $x = \\frac{3}{5}$. La distribution invariante est $\\begin{pmatrix} \\frac{3}{5} & \\frac{2}{5} \\end{pmatrix}$.\n\n3. Posons $\\ell = \\frac{3}{5}$ et $y_n = x_n - \\ell$. En soustrayant l'égalité $\\ell = 0{,}5\\ell + 0{,}3$ (question 2) à la relation de la question 1, $y_{n+1} = 0{,}5\\,y_n$ : la suite $(y_n)$ est géométrique de raison $0{,}5$, et $y_0 = x_0 - \\ell = 1 - \\frac{3}{5} = \\frac{2}{5}$. Donc\n\n$$x_n = \\frac{3}{5} + \\frac{2}{5} \\times 0{,}5^n.$$\n\nComme $|0{,}5| < 1$, $x_n$ tend vers $\\frac{3}{5} = 0{,}6$ : la loi de $X_n$ tend vers la distribution invariante.",
+      "variantes": [
+        {
+          "enonce": "Une chaîne de Markov $(X_n)$ à deux états $1$ et $2$ a pour matrice de transition $P = \\begin{pmatrix} 0{,}6 & 0{,}4 \\\\ 0{,}2 & 0{,}8 \\end{pmatrix}$ et pour loi initiale $\\pi_0 = \\begin{pmatrix} 0 & 1 \\end{pmatrix}$. On note $x_n = P(X_n = 1)$.\n\n1. Montrer que $x_{n+1} = 0{,}4x_n + 0{,}2$ pour tout $n \\in \\mathbb{N}$.\n\n2. Déterminer la distribution invariante de la chaîne.\n\n3. Exprimer $x_n$ en fonction de $n$ et déterminer sa limite.",
+          "indices": [
+            "Formule des probabilités totales avec le système complet $\\{X_n = 1\\}$, $\\{X_n = 2\\}$, et $P(X_n = 2) = 1 - x_n$.",
+            "Poser $y_n = x_n - \\ell$, où $\\ell$ est le point fixe de la relation de récurrence, et montrer que $(y_n)$ est géométrique."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $x_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$\\frac{1}{3} + \\frac{1}{3} \\times 0{,}4^n$",
+              "$\\frac{1}{3} - \\frac{1}{3} \\times 0{,}6^n$",
+              "$\\frac{1}{3} - \\frac{1}{3} \\times 0{,}4^n$",
+              "$\\frac{2}{3} - \\frac{2}{3} \\times 0{,}4^n$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. Par la formule des probabilités totales, $x_{n+1} = P(X_n = 1)\\,p_{11} + P(X_n = 2)\\,p_{21} = 0{,}6x_n + 0{,}2(1 - x_n) = 0{,}4x_n + 0{,}2$.\n\n2. Une distribution invariante $\\begin{pmatrix} x & 1-x \\end{pmatrix}$ vérifie la même relation avec $x_{n+1} = x_n = x$ : $x = 0{,}4x + 0{,}2$, d'où $x = \\frac{1}{3}$. La distribution invariante est $\\begin{pmatrix} \\frac{1}{3} & \\frac{2}{3} \\end{pmatrix}$.\n\n3. Posons $\\ell = \\frac{1}{3}$ et $y_n = x_n - \\ell$. En soustrayant l'égalité $\\ell = 0{,}4\\ell + 0{,}2$ (question 2) à la relation de la question 1, $y_{n+1} = 0{,}4\\,y_n$ : la suite $(y_n)$ est géométrique de raison $0{,}4$, et $y_0 = x_0 - \\ell = 0 - \\frac{1}{3} = -\\frac{1}{3}$. Donc\n\n$$x_n = \\frac{1}{3} - \\frac{1}{3} \\times 0{,}4^n.$$\n\nComme $|0{,}4| < 1$, $x_n$ tend vers $\\frac{1}{3}$ : la loi de $X_n$ tend vers la distribution invariante."
+        },
+        {
+          "enonce": "Une chaîne de Markov $(X_n)$ à deux états $1$ et $2$ a pour matrice de transition $P = \\begin{pmatrix} 0{,}1 & 0{,}9 \\\\ 0{,}3 & 0{,}7 \\end{pmatrix}$ et pour loi initiale $\\pi_0 = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$. On note $x_n = P(X_n = 1)$.\n\n1. Montrer que $x_{n+1} = -0{,}2x_n + 0{,}3$ pour tout $n \\in \\mathbb{N}$.\n\n2. Déterminer la distribution invariante de la chaîne.\n\n3. Exprimer $x_n$ en fonction de $n$ et déterminer sa limite.",
+          "indices": [
+            "Formule des probabilités totales avec le système complet $\\{X_n = 1\\}$, $\\{X_n = 2\\}$, et $P(X_n = 2) = 1 - x_n$.",
+            "Poser $y_n = x_n - \\ell$, où $\\ell$ est le point fixe de la relation de récurrence, et montrer que $(y_n)$ est géométrique."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $x_n$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$\\frac{1}{4} + \\frac{3}{4} \\times 0{,}2^n$",
+              "$\\frac{1}{4} + \\frac{3}{4} \\times (-0{,}2)^n$",
+              "$\\frac{3}{4} + \\frac{1}{4} \\times (-0{,}2)^n$",
+              "$\\frac{1}{4} - \\frac{3}{4} \\times (-0{,}2)^n$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. Par la formule des probabilités totales, $x_{n+1} = P(X_n = 1)\\,p_{11} + P(X_n = 2)\\,p_{21} = 0{,}1x_n + 0{,}3(1 - x_n) = -0{,}2x_n + 0{,}3$.\n\n2. Une distribution invariante $\\begin{pmatrix} x & 1-x \\end{pmatrix}$ vérifie la même relation avec $x_{n+1} = x_n = x$ : $x = -0{,}2x + 0{,}3$, d'où $x = \\frac{1}{4}$. La distribution invariante est $\\begin{pmatrix} \\frac{1}{4} & \\frac{3}{4} \\end{pmatrix}$.\n\n3. Posons $\\ell = \\frac{1}{4}$ et $y_n = x_n - \\ell$. En soustrayant l'égalité $\\ell = -0{,}2\\ell + 0{,}3$ (question 2) à la relation de la question 1, $y_{n+1} = -0{,}2\\,y_n$ : la suite $(y_n)$ est géométrique de raison $-0{,}2$, et $y_0 = x_0 - \\ell = 1 - \\frac{1}{4} = \\frac{3}{4}$. Donc\n\n$$x_n = \\frac{1}{4} + \\frac{3}{4} \\times (-0{,}2)^n.$$\n\nComme $|-0{,}2| < 1$, $x_n$ tend vers $\\frac{1}{4}$ (en oscillant autour) : la loi de $X_n$ tend vers la distribution invariante."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex5",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 5,
+      "titre": "Marche aléatoire sur un graphe complet",
+      "enonce": "Un pion se déplace sur les sommets $1, 2, 3$ du graphe complet à $3$ sommets. À chaque étape, il quitte son sommet pour l'un des deux autres, choisi avec probabilité $\\frac{1}{2}$. On note $X_n$ le sommet occupé après $n$ étapes, avec $X_0 = 1$, et $P$ la matrice de transition de la chaîne de Markov $(X_n)$. Soient $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$, et $Q = \\frac{1}{3}J$.\n\n1. Écrire $P$ à l'aide de $J$ et $I_3$. Calculer $J^2$, puis montrer que $Q^2 = Q$.\n\n2. Vérifier que $P = Q - \\frac{1}{2}(I_3 - Q)$. Montrer que $Q(I_3 - Q) = (I_3 - Q)Q = 0$ et $(I_3 - Q)^2 = I_3 - Q$.\n\n3. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $P^n = Q + \\left(-\\frac{1}{2}\\right)^n(I_3 - Q)$.\n\n4. En déduire $P(X_n = 1)$, sa limite quand $n \\to +\\infty$, et montrer que la chaîne a une unique distribution invariante, que l'on donnera.",
+      "duree_min": 30,
+      "indices": [
+        "Chaque coefficient de $J^2$ vaut $3$ ; développer $Q(I_3 - Q)$ et $(I_3 - Q)^2$ avec $Q^2 = Q$.",
+        "Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Pour l'unicité, utiliser $\\pi = \\pi P^n$ et faire tendre $n$ vers $+\\infty$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X_n = 1)$ pour tout $n \\in \\mathbb{N}$ ?",
+        "propositions": [
+          "$\\frac{1}{3} + \\frac{2}{3}\\left(-\\frac{1}{2}\\right)^n$",
+          "$\\frac{1}{3} - \\frac{1}{3}\\left(-\\frac{1}{2}\\right)^n$",
+          "$\\left(\\frac{1}{2}\\right)^n$",
+          "$\\frac{1}{3} + \\frac{2}{3}\\left(\\frac{1}{2}\\right)^n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $P = \\frac{1}{2}(J - I_3)$ : coefficients $\\frac{1}{2}$ hors de la diagonale, $0$ sur la diagonale. Chaque coefficient de $J^2$ est une somme de $3$ termes égaux à $1$ : $J^2 = 3J$, donc $Q^2 = \\frac{1}{9}J^2 = \\frac{3}{9}J = Q$.\n\n2. $Q - \\frac{1}{2}(I_3 - Q) = \\frac{3}{2}Q - \\frac{1}{2}I_3 = \\frac{1}{2}J - \\frac{1}{2}I_3 = P$. Puis $Q(I_3 - Q) = Q - Q^2 = 0$, de même $(I_3 - Q)Q = 0$, et $(I_3 - Q)^2 = I_3 - 2Q + Q^2 = I_3 - Q$.\n\n3. Notons $c = -\\frac{1}{2}$. Pour $n = 0$ : $Q + (I_3 - Q) = I_3 = P^0$. Si $P^n = Q + c^n(I_3 - Q)$, alors, avec $P = Q + c(I_3 - Q)$ et les relations de la question 2,\n\n$$P^{n+1} = P^nP = Q^2 + c\\,Q(I_3 - Q) + c^n(I_3 - Q)Q + c^{n+1}(I_3 - Q)^2 = Q + c^{n+1}(I_3 - Q).$$\n\n4. Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Celui de $Q$ vaut $\\frac{1}{3}$ et celui de $I_3 - Q$ vaut $1 - \\frac{1}{3}$, donc\n\n$$P(X_n = 1) = \\frac{1}{3} + \\frac{2}{3}\\left(-\\frac{1}{2}\\right)^n.$$\n\nComme $\\left|-\\frac{1}{2}\\right| < 1$, $\\left(-\\frac{1}{2}\\right)^n \\to 0$. Ainsi $P(X_n = 1) \\to \\frac{1}{3}$, et $P^n \\to Q$ coefficient par coefficient.\n\n**Distribution invariante.** La ligne $\\pi^* = \\frac{1}{3}\\begin{pmatrix} 1 & 1 & 1 \\end{pmatrix}$ convient : chaque colonne de $P$ a pour somme $1$ ($P$ est symétrique), donc $\\pi^*P = \\pi^*$. Réciproquement, si $\\pi P = \\pi$, alors $\\pi = \\pi P^n$ pour tout $n$ ; en faisant tendre $n$ vers $+\\infty$, $\\pi = \\pi Q$, et comme les coefficients de $\\pi$ ont pour somme $1$, chaque coefficient de $\\pi Q$ vaut $\\frac{1}{3}$. Donc $\\pi = \\pi^*$ : elle est unique.",
+      "variantes": [
+        {
+          "enonce": "Un pion se déplace sur les sommets $1, 2, 3, 4$ du graphe complet à $4$ sommets. À chaque étape, il quitte son sommet pour l'un des trois autres, choisi avec probabilité $\\frac{1}{3}$. On note $X_n$ le sommet occupé après $n$ étapes, avec $X_0 = 1$, et $P$ la matrice de transition de la chaîne de Markov $(X_n)$. Soient $J$ la matrice carrée d'ordre $4$ dont tous les coefficients valent $1$, et $Q = \\frac{1}{4}J$.\n\n1. Écrire $P$ à l'aide de $J$ et $I_4$. Calculer $J^2$, puis montrer que $Q^2 = Q$.\n\n2. Vérifier que $P = Q - \\frac{1}{3}(I_4 - Q)$. Montrer que $Q(I_4 - Q) = (I_4 - Q)Q = 0$ et $(I_4 - Q)^2 = I_4 - Q$.\n\n3. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $P^n = Q + \\left(-\\frac{1}{3}\\right)^n(I_4 - Q)$.\n\n4. En déduire $P(X_n = 1)$, sa limite quand $n \\to +\\infty$, et montrer que la chaîne a une unique distribution invariante, que l'on donnera.",
+          "indices": [
+            "Chaque coefficient de $J^2$ vaut $4$ ; développer $Q(I_4 - Q)$ et $(I_4 - Q)^2$ avec $Q^2 = Q$.",
+            "Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Pour l'unicité, utiliser $\\pi = \\pi P^n$ et faire tendre $n$ vers $+\\infty$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X_n = 1)$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$\\frac{1}{4} - \\frac{1}{4}\\left(-\\frac{1}{3}\\right)^n$",
+              "$\\left(\\frac{1}{3}\\right)^n$",
+              "$\\frac{1}{4} + \\frac{3}{4}\\left(-\\frac{1}{3}\\right)^n$",
+              "$\\frac{1}{4} + \\frac{3}{4}\\left(\\frac{1}{3}\\right)^n$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. $P = \\frac{1}{3}(J - I_4)$ : coefficients $\\frac{1}{3}$ hors de la diagonale, $0$ sur la diagonale. Chaque coefficient de $J^2$ est une somme de $4$ termes égaux à $1$ : $J^2 = 4J$, donc $Q^2 = \\frac{1}{16}J^2 = \\frac{4}{16}J = Q$.\n\n2. $Q - \\frac{1}{3}(I_4 - Q) = \\frac{4}{3}Q - \\frac{1}{3}I_4 = \\frac{1}{3}J - \\frac{1}{3}I_4 = P$. Puis $Q(I_4 - Q) = Q - Q^2 = 0$, de même $(I_4 - Q)Q = 0$, et $(I_4 - Q)^2 = I_4 - 2Q + Q^2 = I_4 - Q$.\n\n3. Notons $c = -\\frac{1}{3}$. Pour $n = 0$ : $Q + (I_4 - Q) = I_4 = P^0$. Si $P^n = Q + c^n(I_4 - Q)$, alors, avec $P = Q + c(I_4 - Q)$ et les relations de la question 2,\n\n$$P^{n+1} = P^nP = Q^2 + c\\,Q(I_4 - Q) + c^n(I_4 - Q)Q + c^{n+1}(I_4 - Q)^2 = Q + c^{n+1}(I_4 - Q).$$\n\n4. Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Celui de $Q$ vaut $\\frac{1}{4}$ et celui de $I_4 - Q$ vaut $1 - \\frac{1}{4}$, donc\n\n$$P(X_n = 1) = \\frac{1}{4} + \\frac{3}{4}\\left(-\\frac{1}{3}\\right)^n.$$\n\nComme $\\left|-\\frac{1}{3}\\right| < 1$, $\\left(-\\frac{1}{3}\\right)^n \\to 0$. Ainsi $P(X_n = 1) \\to \\frac{1}{4}$, et $P^n \\to Q$ coefficient par coefficient.\n\n**Distribution invariante.** La ligne $\\pi^* = \\frac{1}{4}\\begin{pmatrix} 1 & 1 & 1 & 1 \\end{pmatrix}$ convient : chaque colonne de $P$ a pour somme $1$ ($P$ est symétrique), donc $\\pi^*P = \\pi^*$. Réciproquement, si $\\pi P = \\pi$, alors $\\pi = \\pi P^n$ pour tout $n$ ; en faisant tendre $n$ vers $+\\infty$, $\\pi = \\pi Q$, et comme les coefficients de $\\pi$ ont pour somme $1$, chaque coefficient de $\\pi Q$ vaut $\\frac{1}{4}$. Donc $\\pi = \\pi^*$ : elle est unique."
+        },
+        {
+          "enonce": "Un pion se déplace sur les sommets $1, 2, 3$ du graphe complet à $3$ sommets. À chaque étape, il reste sur place avec probabilité $\\frac{1}{2}$, ou va sur l'un des deux autres sommets, chacun avec probabilité $\\frac{1}{4}$. On note $X_n$ le sommet occupé après $n$ étapes, avec $X_0 = 1$, et $P$ la matrice de transition de la chaîne de Markov $(X_n)$. Soient $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$, et $Q = \\frac{1}{3}J$.\n\n1. Écrire $P$ à l'aide de $J$ et $I_3$. Calculer $J^2$, puis montrer que $Q^2 = Q$.\n\n2. Vérifier que $P = Q + \\frac{1}{4}(I_3 - Q)$. Montrer que $Q(I_3 - Q) = (I_3 - Q)Q = 0$ et $(I_3 - Q)^2 = I_3 - Q$.\n\n3. Montrer par récurrence que, pour tout $n \\in \\mathbb{N}$, $P^n = Q + \\left(\\frac{1}{4}\\right)^n(I_3 - Q)$.\n\n4. En déduire $P(X_n = 1)$, sa limite quand $n \\to +\\infty$, et montrer que la chaîne a une unique distribution invariante, que l'on donnera.",
+          "indices": [
+            "Chaque coefficient de $J^2$ vaut $3$ ; développer $Q(I_3 - Q)$ et $(I_3 - Q)^2$ avec $Q^2 = Q$.",
+            "Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Pour l'unicité, utiliser $\\pi = \\pi P^n$ et faire tendre $n$ vers $+\\infty$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X_n = 1)$ pour tout $n \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$\\frac{1}{3} - \\frac{1}{3}\\left(\\frac{1}{4}\\right)^n$",
+              "$\\left(\\frac{1}{2}\\right)^n$",
+              "$\\frac{1}{3} + \\frac{2}{3}\\left(\\frac{1}{2}\\right)^n$",
+              "$\\frac{1}{3} + \\frac{2}{3}\\left(\\frac{1}{4}\\right)^n$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. $P = \\frac{1}{4}(I_3 + J)$ : coefficients $\\frac{1}{2}$ sur la diagonale, $\\frac{1}{4}$ ailleurs. Chaque coefficient de $J^2$ est une somme de $3$ termes égaux à $1$ : $J^2 = 3J$, donc $Q^2 = \\frac{1}{9}J^2 = \\frac{3}{9}J = Q$.\n\n2. $Q + \\frac{1}{4}(I_3 - Q) = \\frac{3}{4}Q + \\frac{1}{4}I_3 = \\frac{1}{4}J + \\frac{1}{4}I_3 = P$. Puis $Q(I_3 - Q) = Q - Q^2 = 0$, de même $(I_3 - Q)Q = 0$, et $(I_3 - Q)^2 = I_3 - 2Q + Q^2 = I_3 - Q$.\n\n3. Notons $c = \\frac{1}{4}$. Pour $n = 0$ : $Q + (I_3 - Q) = I_3 = P^0$. Si $P^n = Q + c^n(I_3 - Q)$, alors, avec $P = Q + c(I_3 - Q)$ et les relations de la question 2,\n\n$$P^{n+1} = P^nP = Q^2 + c\\,Q(I_3 - Q) + c^n(I_3 - Q)Q + c^{n+1}(I_3 - Q)^2 = Q + c^{n+1}(I_3 - Q).$$\n\n4. Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Celui de $Q$ vaut $\\frac{1}{3}$ et celui de $I_3 - Q$ vaut $1 - \\frac{1}{3}$, donc\n\n$$P(X_n = 1) = \\frac{1}{3} + \\frac{2}{3}\\left(\\frac{1}{4}\\right)^n.$$\n\nComme $0 < \\frac{1}{4} < 1$, $\\left(\\frac{1}{4}\\right)^n \\to 0$. Ainsi $P(X_n = 1) \\to \\frac{1}{3}$, et $P^n \\to Q$ coefficient par coefficient.\n\n**Distribution invariante.** La ligne $\\pi^* = \\frac{1}{3}\\begin{pmatrix} 1 & 1 & 1 \\end{pmatrix}$ convient : chaque colonne de $P$ a pour somme $1$ ($P$ est symétrique), donc $\\pi^*P = \\pi^*$. Réciproquement, si $\\pi P = \\pi$, alors $\\pi = \\pi P^n$ pour tout $n$ ; en faisant tendre $n$ vers $+\\infty$, $\\pi = \\pi Q$, et comme les coefficients de $\\pi$ ont pour somme $1$, chaque coefficient de $\\pi Q$ vaut $\\frac{1}{3}$. Donc $\\pi = \\pi^*$ : elle est unique."
+        }
+      ]
+    }
+  ]
+}
