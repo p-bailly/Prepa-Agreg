@@ -22,10 +22,10 @@ export function etatChapitre(
   if (rangNiveau(ch.niveau) < rangNiveau(r.niveauDepart) && r.niveauxInferieurs === 'masques')
     return { etat: 'masque', manquants: [], cartes }
   if (!cartes.length) return { etat: 'vide', manquants: [], cartes }
-  const etats = cartes.map((k) => etatAffiche(k, p.volets, r))
+  const etats = cartes.map((k) => etatAffiche(k, p, r))
   if (etats.every((e) => e === 'acquise')) return { etat: 'acquis', manquants: [], cartes }
   if (etats.some((e) => e !== 'neuve')) return { etat: 'en-cours', manquants: [], cartes }
-  const manquants = cartes.map((k) => (sousLeDepart(k, r) ? [] : prerequisManquants(k, parId, p.volets, r)))
+  const manquants = cartes.map((k) => (sousLeDepart(k, r) ? [] : prerequisManquants(k, parId, p, r)))
   if (manquants.every((m) => m.length > 0)) return { etat: 'bloque', manquants: [...new Set(manquants.flat())], cartes }
   return { etat: 'a-venir', manquants: [], cartes }
 }
@@ -75,7 +75,7 @@ export function Parcours({ surChapitre }: { surChapitre: (id: string) => void })
         {NIVEAUX.map((n) => {
           const visees = theme.chapitres.filter((ch) => ch.niveau === n).reduce((s, ch) => s + ch.prevues, 0)
           const cartes = contenu.cartes.filter((k) => k.theme === themeId && k.niveau === n)
-          const acquises = cartes.filter((k) => etatAffiche(k, progression.volets, reglages) === 'acquise').length
+          const acquises = cartes.filter((k) => etatAffiche(k, progression, reglages) === 'acquise').length
           const total = Math.max(visees, cartes.length)
           return (
             <div key={n} className="jauge">

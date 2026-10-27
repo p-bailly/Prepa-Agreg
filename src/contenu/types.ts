@@ -36,6 +36,8 @@ export interface Carte {
   type: TypeCarte
   titre: string
   recto: string
+  /** Texte de la leçon qui précède l'énoncé quand on découvre la notion (intuition, usage, méthode, piège). */
+  cours?: string
   hypotheses?: string[]
   hypotheses_pieges?: string[]
   enonce: string
@@ -120,8 +122,17 @@ export function voletsDe(c: Carte): Volet[] {
 /** Identifiant de l'état de répétition d'un volet : `idCarte#enonce`, `#demo`, `#contre`. */
 export const cleVolet = (carte: string, volet: Volet): string => `${carte}#${volet}`
 
+/** Introduction d'un chapitre, lue en tête de sa leçon (content/lecons/<chapitre>.json). */
+export interface IntroLecon {
+  chapitre: string
+  introduction: string
+  doute?: string
+}
+
 export interface Contenu {
   themes: Theme[]
   cartes: Carte[]
   exercices: Exercice[]
+  /** Introductions de leçon, par identifiant de chapitre (facultatives). */
+  lecons?: IntroLecon[]
 }

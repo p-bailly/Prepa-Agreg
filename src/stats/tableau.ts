@@ -27,7 +27,7 @@ export function serieJours(p: Progression, jour: string): number {
 }
 
 export function cartesAcquises(c: Contenu, p: Progression, r: R): number {
-  return c.cartes.filter((k) => !(sousLeDepart(k, r) && r.niveauxInferieurs === 'masques') && etatAffiche(k, p.volets, r) === 'acquise')
+  return c.cartes.filter((k) => !(sousLeDepart(k, r) && r.niveauxInferieurs === 'masques') && etatAffiche(k, p, r) === 'acquise')
     .length
 }
 
@@ -54,7 +54,7 @@ export function progresNiveaux(c: Contenu, p: Progression, r: R): ProgresNiveau[
       const statut = r.niveauxInferieurs === 'acquis' ? 'acquis' : 'masque'
       return { niveau, acquises: cartes.length, existantes: cartes.length, visees, part: statut === 'acquis' ? 1 : 0, statut }
     }
-    const acquises = cartes.filter((k) => etatAffiche(k, p.volets, r) === 'acquise').length
+    const acquises = cartes.filter((k) => etatAffiche(k, p, r) === 'acquise').length
     return { niveau, acquises, existantes: cartes.length, visees, part: visees ? acquises / visees : 0, statut: 'normal' }
   })
 }

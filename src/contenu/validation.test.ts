@@ -9,7 +9,7 @@ import { formulesDe } from './texte'
 import type { Carte, Contenu, Exercice, Theme } from './types'
 import { textesDe, validerContenu } from './validation'
 import { carte, contenu, exercice } from '../repetition/outils-test'
-import type { Exercice as Ex } from './types'
+import type { Exercice as Ex, IntroLecon } from './types'
 
 /** Exercice de test avec assez d'indices pour sa difficulté. */
 const exo = (id: string, c: string, d: number): Ex => ({ ...exercice(id, c, d), indices: d >= 3 ? ['i1', 'i2'] : [] })
@@ -47,12 +47,19 @@ function lireTout(): { contenu: Contenu; erreurs: string[] } {
   }
   const cartes = lireDossier<Carte>('cartes')
   const exercices = lireDossier<Exercice>('exercices')
+  const lecons = readdirSync(join(RACINE, 'lecons'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => {
+      const l = JSON.parse(readFileSync(join(RACINE, 'lecons', f), 'utf8')) as IntroLecon
+      if (`${l.chapitre}.json` !== f) erreurs.push(`lecons/${f} : le nom du fichier doit être <chapitre>.json`)
+      return l
+    })
   const parId = new Map(cartes.map((c) => [c.id, c]))
   for (const e of exercices) {
     const k = parId.get(e.carte)
     if (k && !e.id.startsWith(k.id)) erreurs.push(`exercice ${e.id} : identifiant attendu « ${k.id}-exN »`)
   }
-  return { contenu: { themes, cartes, exercices }, erreurs }
+  return { contenu: { themes, cartes, exercices, lecons }, erreurs }
 }
 
 describe('contenu de content/', () => {
@@ -65,6 +72,7 @@ describe('contenu de content/', () => {
   it('est celui que l’appli embarque', () => {
     expect(CONTENU.cartes.map((c) => c.id).sort()).toEqual(tout.cartes.map((c) => c.id).sort())
     expect(CONTENU.exercices.length).toBe(tout.exercices.length)
+    expect(CONTENU.lecons?.length).toBe(tout.lecons?.length)
   })
 
   it('a chaque formule rendue par KaTeX sans erreur', () => {

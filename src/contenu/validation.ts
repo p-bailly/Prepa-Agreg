@@ -47,7 +47,7 @@ export function validerContenu(c: Contenu): string[] {
     if (!TYPES.includes(k.type)) err.push(`${ou} : type inconnu ${k.type}`)
     for (const champ of ['titre', 'recto', 'enonce'] as const) if (!texteNonVide(k[champ])) err.push(`${ou} : « ${champ} » manquant`)
     if (!Array.isArray(k.prerequis)) err.push(`${ou} : « prerequis » doit être une liste`)
-    for (const champ of ['demo', 'exemple', 'contre_exemple', 'doute'] as const)
+    for (const champ of ['cours', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
       if (k[champ] !== undefined && !texteNonVide(k[champ])) err.push(`${ou} : « ${champ} » vide`)
     for (const champ of ['hypotheses', 'hypotheses_pieges'] as const)
       if (k[champ] !== undefined && !listeDeTextes(k[champ])) err.push(`${ou} : « ${champ} » doit être une liste de textes`)
@@ -67,6 +67,15 @@ export function validerContenu(c: Contenu): string[] {
       }
     }
   }
+  // Introductions de leçon : un chapitre existant, une seule par chapitre, un texte.
+  const vues = new Set<string>()
+  for (const l of c.lecons ?? []) {
+    if (!chapitres.has(l.chapitre)) err.push(`leçon ${l.chapitre} : chapitre inconnu`)
+    if (vues.has(l.chapitre)) err.push(`leçon ${l.chapitre} : en double`)
+    vues.add(l.chapitre)
+    if (!texteNonVide(l.introduction)) err.push(`leçon ${l.chapitre} : « introduction » manquante`)
+  }
+
   // Prérequis : existants, jamais d'un niveau supérieur, sans cycle.
   for (const k of c.cartes) {
     for (const p of k.prerequis ?? []) {
@@ -187,7 +196,7 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
     if (typeof x === 'string') t.push({ ou, texte: x })
   }
   for (const k of c.cartes) {
-    for (const champ of ['titre', 'recto', 'enonce', 'enonce_trous', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
+    for (const champ of ['titre', 'recto', 'cours', 'enonce', 'enonce_trous', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
       ajouter(`${k.id}.${champ}`, k[champ])
     k.hypotheses?.forEach((h, i) => ajouter(`${k.id}.hypotheses[${i}]`, h))
     k.hypotheses_pieges?.forEach((h, i) => ajouter(`${k.id}.hypotheses_pieges[${i}]`, h))
@@ -197,6 +206,10 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
       ajouter(`${k.id}.affirmations[${i}].contre_exemple`, a.contre_exemple)
       ajouter(`${k.id}.affirmations[${i}].justification`, a.justification)
     })
+  }
+  for (const l of c.lecons ?? []) {
+    ajouter(`leçon ${l.chapitre}.introduction`, l.introduction)
+    ajouter(`leçon ${l.chapitre}.doute`, l.doute)
   }
   for (const e of c.exercices) {
     for (const champ of ['titre', 'enonce', 'correction', 'doute'] as const) ajouter(`${e.id}.${champ}`, e[champ])

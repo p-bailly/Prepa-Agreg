@@ -12,6 +12,7 @@ import { Accueil } from './pages/Accueil'
 import { Chapitre } from './pages/Chapitre'
 import { EcranCarte } from './pages/EcranCarte'
 import { EcranExercice } from './pages/EcranExercice'
+import { EcranLecon } from './pages/EcranLecon'
 import { Parcours } from './pages/Parcours'
 import { Reglages } from './pages/Reglages'
 import { Seance } from './pages/Seance'
@@ -26,6 +27,7 @@ type Ecran =
   | { k: 'chapitre'; id: string }
   | { k: 'carte'; id: string; mode: Mode; neuve: boolean }
   | { k: 'exercice'; id: string }
+  | { k: 'lecon'; chapitre: string; cartes: string[] }
 
 const ONGLETS: { id: Onglet; nom: string }[] = [
   { id: 'accueil', nom: 'Accueil' },
@@ -83,10 +85,12 @@ function Navigation() {
     empiler({ k: 'seance' })
   }
 
+  const lireLecon = (chapitre: string, cartes: string[]) => empiler({ k: 'lecon', chapitre, cartes })
+
   const ouvrirCarte = (id: string) => {
     const carte = d.cartesParId.get(id)
     if (!carte) return
-    const neuve = etatCarte(carte, d.progression.volets) === 'neuve'
+    const neuve = etatCarte(carte, d.progression) === 'neuve'
     const mode = choisirMode(carte, d.reglages.modesActifs, d.progression.dernierMode, neuve)
     d.changerProgression((p) => retenirMode(p, mode))
     empiler({ k: 'carte', id, mode, neuve })
@@ -109,7 +113,20 @@ function Navigation() {
         }}
       />
     )
-  else if (dessous?.k === 'carte') {
+  else if (dessous?.k === 'lecon') {
+    const chapitre = d.contenu.themes.flatMap((t) => t.chapitres).find((c) => c.id === dessous.chapitre)
+    const cartes = dessous.cartes.map((id) => d.cartesParId.get(id)).filter((c) => c !== undefined)
+    if (chapitre)
+      ecran = (
+        <EcranLecon
+          key={`${chapitre.id}-${pile.length}`}
+          chapitre={chapitre}
+          cartes={cartes}
+          surExercice={(id) => empiler({ k: 'exercice', id })}
+          surFin={depiler}
+        />
+      )
+  } else if (dessous?.k === 'carte') {
     const carte = d.cartesParId.get(dessous.id)
     if (carte)
       ecran = (
@@ -139,8 +156,10 @@ function Navigation() {
     )
 
   let contenu
-  if (haut?.k === 'chapitre') contenu = <Chapitre id={haut.id} surCarte={ouvrirCarte} surRetour={depiler} />
-  else if (onglet === 'accueil') contenu = <Accueil surReviser={reviser} />
+  if (haut?.k === 'chapitre')
+    contenu = <Chapitre id={haut.id} surCarte={ouvrirCarte} surLecon={lireLecon} surRetour={depiler} />
+  else if (onglet === 'accueil')
+    contenu = <Accueil surReviser={reviser} surApprendre={(l) => lireLecon(l.chapitre.id, l.cartes.map((c) => c.id))} />
   else if (onglet === 'parcours') contenu = <Parcours surChapitre={(id) => empiler({ k: 'chapitre', id })} />
   else if (onglet === 'stats') contenu = <Stats />
   else contenu = <Reglages />

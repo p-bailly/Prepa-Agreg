@@ -367,4 +367,332 @@ assert simplify(diff(x**2 * sin(1 / x), x) - (2 * x * sin(1 / x) - cos(1 / x))) 
 assert diff(sin(x**2), x) == 2 * x * cos(x**2)
 assert simplify(diff(sin(x**2), x).subs(x, sqrt(2 * 3 * pi)) - 2 * sqrt(6 * pi)) == 0
 
+# ===========================================================================
+# Variantes (enrichissement) et exercice ar-t-derivee-monotonie-ex5
+# ===========================================================================
+
+
+def faux_partout(valeur, leurres, tol=1e-6):
+    """Chaque leurre numérique diffère de la bonne valeur."""
+    return all(abs(float(valeur) - float(c)) > tol for c in leurres)
+
+
+# ar-t-limite-monotone-ex1 variante 1 : somme 1/(3^k+2) croissante, < 3/2 (géométrique), et même <= 5/6 ; limite ≈ 0,68.
+assert sum(Rational(1, 3**k) for k in range(0, 40)) < Rational(3, 2)
+assert simplify((1 - Rational(1, 3) ** (np_ + 1)) / (1 - Rational(1, 3)) - Rational(3, 2) * (1 - Rational(1, 3) ** (np_ + 1))) == 0
+u = Rational(0)
+for k in range(0, 60):
+    u += Rational(1, 3**k + 2)
+    assert u < Rational(3, 2) and u <= Rational(5, 6)
+assert Rational(1, 3) + Rational(1, 2) == Rational(5, 6) and Rational(3, 2) - Rational(2, 3) == Rational(5, 6)
+assert 0.67 < float(u) < 0.69  # donc ≠ 3/2 (leurre) et pas >= 3/2 (leurre)
+# ar-t-limite-monotone-ex1 variante 2 : somme 1/(4^k+1) < 4/3, <= 4/3 - 1/2 = 5/6 ; limite ≈ 0,78.
+u = Rational(0)
+for k in range(0, 60):
+    u += Rational(1, 4**k + 1)
+    assert u < Rational(4, 3) and u <= Rational(5, 6)
+assert Rational(4, 3) - Rational(1, 2) == Rational(5, 6)
+assert 0.77 < float(u) < 0.79
+
+# ar-t-limite-monotone-ex2 variante 1 : a_n = somme 1/sqrt(k+1) - 2 sqrt n, décroissante, > -2 sqrt 2, limite zeta(1/2) - 1 ≈ -2,46.
+S, a_prec = 0.0, None
+for k in range(1, 200001):
+    S += 1 / math.sqrt(k + 1)
+    a = S - 2 * math.sqrt(k)
+    assert a > -2 * math.sqrt(2)
+    if a_prec is not None:
+        assert a < a_prec
+    a_prec = a
+assert abs(a_prec - (zeta_demi - 1)) < 0.01 and abs(a_prec - (-2 * math.sqrt(2))) > 0.3  # leurre « limite -2 sqrt 2 » faux
+for k in range(1, 1001):
+    assert 1 / math.sqrt(k + 1) - 2 * (math.sqrt(k + 2) - math.sqrt(k + 1)) > 0
+    assert math.sqrt(k + 1) + math.sqrt(k) < 2 * math.sqrt(k + 2)
+# Télescopage : somme_{k=1}^n (sqrt(k+2) - sqrt(k+1)) = sqrt(n+2) - sqrt 2.
+for m in (1, 2, 7, 30):
+    assert simplify(sum(sqrt(k + 2) - sqrt(k + 1) for k in range(1, m + 1)) - (sqrt(m + 2) - sqrt(2))) == 0
+# ar-t-limite-monotone-ex2 variante 2 : a_n = somme 1/sqrt k - 2 sqrt(n+1), croissante, < 0, limite zeta(1/2) ≈ -1,46.
+S, a_prec = 0.0, None
+for k in range(1, 200001):
+    S += 1 / math.sqrt(k)
+    a = S - 2 * math.sqrt(k + 1)
+    assert a < 0
+    if a_prec is not None:
+        assert a > a_prec
+    a_prec = a
+assert abs(a_prec - zeta_demi) < 0.01 and abs(a_prec) > 1  # leurre « limite 0 » faux
+for k in range(1, 1001):
+    assert 1 / math.sqrt(k) < 2 * (math.sqrt(k) - math.sqrt(k - 1))
+for m in (1, 2, 7, 30):
+    assert simplify(sum(sqrt(k) - sqrt(k - 1) for k in range(1, m + 1)) - sqrt(m)) == 0
+
+# ar-t-gendarmes-ex1 variante 1 : (5n ± 1)/(2n+3) -> 5/2 (leurres 5/3, 5 faux).
+assert limit((5 * np_ - 1) / (2 * np_ + 3), np_, oo) == Rational(5, 2) == limit((5 * np_ + 1) / (2 * np_ + 3), np_, oo)
+assert faux_partout(Rational(5, 2), (Rational(5, 3), 5))
+# ar-t-gendarmes-ex1 variante 2 : (4n^2 ± n)/(n^2+1) -> 4 (leurres 5, 3 faux).
+assert limit((4 * np_**2 - np_) / (np_**2 + 1), np_, oo) == 4 == limit((4 * np_**2 + np_) / (np_**2 + 1), np_, oo)
+assert proche((4 * 10**16 + 10**8 * math.cos(10**8)) / (10**16 + 1), 4, 1e-6)
+
+# ar-t-gendarmes-ex2 variante 1 : (4^n + 5^n)^(1/n) -> 5 ; leurres 9, 2 sqrt 5 = sqrt 20, 1.
+assert limit(5 * 2 ** (1 / np_), np_, oo) == 5
+for k in (1, 5, 50, 300):
+    v = (4**k + 5**k) ** (1 / k)
+    assert 5 <= v <= 5 * 2 ** (1 / k) + 1e-9
+assert simplify(2 * sqrt(5) - sqrt(20)) == 0 and faux_partout(5, (9, 2 * math.sqrt(5), 1), 0.4)
+# ar-t-gendarmes-ex2 variante 2 : (3^n + 4^n + 6^n)^(1/n) -> 6 ; leurres 13, 2·9^(1/3) = 72^(1/3), 1.
+assert limit(6 * 3 ** (1 / np_), np_, oo) == 6
+for k in (1, 5, 50, 300):
+    v = (3**k + 4**k + 6**k) ** (1 / k)
+    assert 6 <= v <= 6 * 3 ** (1 / k) + 1e-9
+assert simplify(2 * sympy.cbrt(9) - sympy.cbrt(72)) == 0 and faux_partout(6, (13, 2 * 9 ** (1 / 3), 1), 0.4)
+
+# ar-t-tvi-ex1 variante 1 : x^3 + 2x - 2 : f(1/2) = -7/8, f(1) = 1, une seule racine (≈ 0,77) dans ]1/2, 1[.
+f = x**3 + 2 * x - 2
+assert f.subs(x, Rational(1, 2)) == -Rational(7, 8) and f.subs(x, 1) == 1 and diff(f, x) == 3 * x**2 + 2
+rr = real_roots(f)
+assert len(rr) == 1 and 0.5 < float(rr[0]) < 1  # pas dans [0,1/2], [1,2], [-1,0]
+# ar-t-tvi-ex1 variante 2 : x^5 + x + 1 : f(-1) = -1, f(-1/2) = 15/32, une seule racine (≈ -0,75) dans ]-1, -1/2[.
+f = x**5 + x + 1
+assert f.subs(x, -1) == -1 and f.subs(x, -Rational(1, 2)) == Rational(15, 32) and diff(f, x) == 5 * x**4 + 1
+rr = real_roots(f)
+assert len(rr) == 1 and -1 < float(rr[0]) < -0.5  # pas dans [-1/2,0], [0,1], [-2,-1]
+
+# ar-t-tvi-ex3 variante 1 : x^3 - 4x + 2 : valeurs -13, 2, 2, -1, 2 en -3, -2, 0, 1, 2 ; 3 racines.
+P = x**3 - 4 * x + 2
+assert [P.subs(x, v) for v in (-3, -2, 0, 1, 2)] == [-13, 2, 2, -1, 2]
+rr = [float(z) for z in real_roots(P)]
+assert len(rr) == 3 and -3 < rr[0] < -2 and 0 < rr[1] < 1 and 1 < rr[2] < 2
+# ar-t-tvi-ex3 variante 2 : x^3 - 3x + 3 : P(-1) = 5, P(1) = 1 > 0, P(-3) = -15, P(-2) = 1 ; une seule racine, dans ]-3,-2[.
+P = x**3 - 3 * x + 3
+assert sympy.expand(diff(P, x) - 3 * (x - 1) * (x + 1)) == 0
+assert [P.subs(x, v) for v in (-3, -2, -1, 1)] == [-15, 1, 5, 1]
+rr = [float(z) for z in real_roots(P)]
+assert len(rr) == 1 and -3 < rr[0] < -2
+assert sympy.minimum(P, x, sympy.Interval(-1, oo)) == 1
+
+# ar-t-point-fixe-ex1 variante 1 : l/2 + 3 = l donne 6 (leurres 3, 2, 1 faux).
+assert solve(x / 2 + 3 - x, x) == [6]
+u = 1.0
+for _ in range(80):
+    u = u / 2 + 3
+assert proche(u, 6)
+# ar-t-point-fixe-ex1 variante 2 : (3l - 2)/4 = l donne -2 (leurres 2, -1/2, -2/7 faux).
+assert solve((3 * x - 2) / 4 - x, x) == [-2]
+u = 2.0
+for _ in range(200):
+    u = (3 * u - 2) / 4
+assert proche(u, -2, 1e-9) and faux_partout(-2, (2, -0.5, -2 / 7))
+
+# ar-t-point-fixe-ex2 variante 1 : sqrt(u+2), u_0 = 0 : [0,2] stable, (2-u)(u+1), limite 2 (pas -1, sqrt 2).
+assert sorted(solve(x**2 - x - 2, x)) == [-1, 2]
+assert sympy.expand((2 - x) * (x + 1) - (x + 2 - x**2)) == 0
+u = 0.0
+for _ in range(80):
+    u_suiv = math.sqrt(u + 2)
+    assert 0 <= u <= u_suiv <= 2
+    u = u_suiv
+assert proche(u, 2) and proche(math.sqrt(0 + 2), math.sqrt(2))
+# ar-t-point-fixe-ex2 variante 2 : sqrt(3u+4), u_0 = 1 : [1,4] stable (7 <= 3u+4 <= 16), (4-u)(u+1), limite 4.
+assert sorted(solve(x**2 - 3 * x - 4, x)) == [-1, 4]
+assert sympy.expand((4 - x) * (x + 1) - (3 * x + 4 - x**2)) == 0
+assert 3 * 1 + 4 == 7 and 3 * 4 + 4 == 16
+u = 1.0
+for _ in range(80):
+    u_suiv = math.sqrt(3 * u + 4)
+    assert 1 <= u <= u_suiv <= 4
+    u = u_suiv
+assert proche(u, 4)
+
+# ar-t-point-fixe-ex3 variante 1 : f = x + x^2 : seul point fixe 0 ; f(]-1,0[) ⊂ [-1/4, 0[ ; v_0 = 1 : v_1 = 2, v_n >= 2 + 4(n-1).
+assert solve(x + x**2 - x, x) == [0]
+assert sympy.minimum(x + x**2, x, sympy.Interval(-1, 0)) == -Rational(1, 4)
+assert sympy.maximum(x + x**2, x, sympy.Interval(-1, 0)) == 0
+v = 1
+for k in range(1, 7):
+    v = v + v**2
+    assert v >= 2 + 4 * (k - 1)
+    if k == 1:
+        assert v == 2
+u = -0.5
+for _ in range(10**5):
+    u = u + u * u
+assert -1e-4 < u < 0
+# ar-t-point-fixe-ex3 variante 2 : f = x - 2x^2 : seul point fixe 0 ; f([0,1/2]) = [0,1/8] ; v_0 = 1 : v_1 = -1, v_n <= -1 - 2(n-1).
+assert solve(x - 2 * x**2 - x, x) == [0]
+assert sympy.maximum(x - 2 * x**2, x, sympy.Interval(0, Rational(1, 2))) == Rational(1, 8)
+assert sympy.minimum(x - 2 * x**2, x, sympy.Interval(0, Rational(1, 2))) == 0
+assert sympy.expand(Rational(1, 8) - 2 * (x - Rational(1, 4)) ** 2 - (x - 2 * x**2)) == 0
+v = 1
+for k in range(1, 7):
+    v = v - 2 * v**2
+    assert v <= -1 - 2 * (k - 1)
+    if k == 1:
+        assert v == -1
+u = 0.25
+for _ in range(10**5):
+    u = u - 2 * u * u
+assert 0 < u < 1e-4
+
+# ar-t-point-fixe-ex4 variante 1 : f = 2/(1+x) sur [0,2] : f o f = 2(1+x)/(3+x), points fixes 1 et -2 ; u_1..u_3 = 2, 2/3, 6/5.
+F = 2 / (1 + x)
+G = simplify(F.subs(x, F))
+assert simplify(G - 2 * (1 + x) / (3 + x)) == 0
+assert set(solve(G - x, x)) == {1, -2}
+assert F.subs(x, 0) == 2 and F.subs(x, 2) == Rational(2, 3)
+assert sympy.diff(G, x).subs(x, 1) > 0 and simplify(sympy.diff(G, x) - 4 / (3 + x) ** 2) == 0
+u = [Rational(0)]
+for _ in range(3):
+    u.append(2 / (1 + u[-1]))
+assert u[1:] == [2, Rational(2, 3), Rational(6, 5)]
+u = [0.0]
+for _ in range(80):
+    u.append(2 / (1 + u[-1]))
+assert all(u[2 * k] <= u[2 * k + 2] for k in range(35)) and all(u[2 * k + 1] >= u[2 * k + 3] for k in range(35))
+assert proche(u[-1], 1, 1e-9) and faux_partout(1, (-2, 2, 2 / 3))
+# ar-t-point-fixe-ex4 variante 2 : f = 1/(2+x) sur [0,1/2] : f o f = (2+x)/(5+2x), point fixe sqrt 2 - 1 ; u_1..u_3 = 1/2, 2/5, 5/12.
+F = 1 / (2 + x)
+G = simplify(F.subs(x, F))
+assert simplify(G - (2 + x) / (5 + 2 * x)) == 0
+assert set(solve(G - x, x)) == {-1 + sqrt(2), -1 - sqrt(2)}
+assert F.subs(x, 0) == Rational(1, 2) and F.subs(x, Rational(1, 2)) == Rational(2, 5)
+assert simplify(sympy.diff(G, x) - 1 / (5 + 2 * x) ** 2) == 0
+u = [Rational(0)]
+for _ in range(3):
+    u.append(1 / (2 + u[-1]))
+assert u[1:] == [Rational(1, 2), Rational(2, 5), Rational(5, 12)]
+u = [0.0]
+for _ in range(80):
+    u.append(1 / (2 + u[-1]))
+assert all(u[2 * k] <= u[2 * k + 2] for k in range(35)) and all(u[2 * k + 1] >= u[2 * k + 3] for k in range(35))
+assert proche(u[-1], math.sqrt(2) - 1, 1e-12) and faux_partout(math.sqrt(2) - 1, (math.sqrt(2) + 1, -1 - math.sqrt(2), 0.5), 1e-3)
+
+# ar-t-derivee-monotonie-ex1 variante 1 : x^3 - 12x : f' = 3(x-2)(x+2), décroissante sur [-2,2] ; zéros de f : 0, ±2 sqrt 3.
+f = x**3 - 12 * x
+assert sympy.expand(diff(f, x) - 3 * (x - 2) * (x + 2)) == 0
+assert set(solve(f, x)) == {0, 2 * sqrt(3), -2 * sqrt(3)}
+assert sympy.solveset(diff(f, x) <= 0, x, sympy.S.Reals) == sympy.Interval(-2, 2)
+# ar-t-derivee-monotonie-ex1 variante 2 : 2x^3 - 3x^2 - 12x : f' = 6(x-2)(x+1), décroissante sur [-1,2] (pas [-2,1]).
+f = 2 * x**3 - 3 * x**2 - 12 * x
+assert sympy.expand(diff(f, x) - 6 * (x - 2) * (x + 1)) == 0
+assert sympy.solveset(diff(f, x) <= 0, x, sympy.S.Reals) == sympy.Interval(-1, 2)
+
+# ar-t-derivee-monotonie-ex3 variante 1 : x - 4/x : f(-2) = 0 > f(1) = -3 ; f(x) = 1 : (1 ± sqrt 17)/2, de signes opposés.
+f = x - 4 / x
+assert simplify(diff(f, x) - (1 + 4 / x**2)) == 0
+assert f.subs(x, -2) == 0 and f.subs(x, 1) == -3
+sol = solve(x**2 - x - 4, x)
+assert set(sol) == {(1 + sqrt(17)) / 2, (1 - sqrt(17)) / 2} and sorted(sympy.sign(s_) for s_ in sol) == [-1, 1]
+assert all(simplify(f.subs(x, s_) - 1) == 0 for s_ in sol)
+# ar-t-derivee-monotonie-ex3 variante 2 : 2x - 1/x : f(-1) = -1 > f(1/4) = -7/2 ; f(x) = -1 : x = -1 ou 1/2.
+f = 2 * x - 1 / x
+assert simplify(diff(f, x) - (2 + 1 / x**2)) == 0
+assert f.subs(x, -1) == -1 and f.subs(x, Rational(1, 4)) == -Rational(7, 2)
+assert set(solve(f + 1, x)) == {-1, Rational(1, 2)}
+
+# ar-t-derivee-monotonie-ex4 variante 1 : x + 3x^2 sin(1/x) : f'(0) = 1, f'(1/(2k pi)) = -2 (leurres 1, 4, 0 faux).
+f = x + 3 * x**2 * sin(1 / x)
+fp = diff(f, x)
+assert simplify(fp - (1 + 6 * x * sin(1 / x) - 3 * cos(1 / x))) == 0
+assert limit(f / x, x, 0) == 1
+for k in range(1, 6):
+    assert simplify(fp.subs(x, 1 / (2 * k * pi))) == -2
+# ar-t-derivee-monotonie-ex4 variante 2 : 2x + 3x^2 cos(1/x) : f'(0) = 2, f'(1/(2k pi - pi/2)) = -1 (leurres 2, 5, 0 faux).
+f = 2 * x + 3 * x**2 * cos(1 / x)
+fp = diff(f, x)
+assert simplify(fp - (2 + 6 * x * cos(1 / x) + 3 * sin(1 / x))) == 0
+assert limit(f / x, x, 0) == 2
+for k in range(1, 6):
+    xk = 1 / (2 * k * pi - pi / 2)
+    assert xk.is_positive and simplify(fp.subs(x, xk)) == -1
+
+# ar-t-derivee-monotonie-ex5 : e^x - 3x : minimum 3 - 3 ln 3 < 0 en ln 3, limites +oo ; exactement 2 solutions (≈ 0,62 et 1,51).
+f = sympy.exp(x) - 3 * x
+assert solve(diff(f, x), x) == [log(3)]
+assert simplify(f.subs(x, log(3)) - (3 - 3 * log(3))) == 0 and float(3 - 3 * log(3)) < 0 and log(3) > 1
+assert limit(f, x, oo) == oo and limit(f, x, -oo) == oo
+r1, r2 = sympy.nsolve(f, x, 0.6), sympy.nsolve(f, x, 1.5)
+assert 0.61 < r1 < 0.63 and 1.50 < r2 < 1.52
+# Comptage numérique des changements de signe sur une grille fine (f a au plus 2 zéros car strictement monotone de part et d'autre de ln 3).
+grille = [i / 1000 for i in range(-5000, 5001)]
+changements = sum(1 for a, b in zip(grille, grille[1:]) if (math.exp(a) - 3 * a) * (math.exp(b) - 3 * b) < 0)
+assert changements == 2
+# ar-t-derivee-monotonie-ex5 variante 1 : e^x - 2x : minimum 2 - 2 ln 2 > 0 : aucune solution.
+f = sympy.exp(x) - 2 * x
+assert solve(diff(f, x), x) == [log(2)]
+assert simplify(f.subs(x, log(2)) - (2 - 2 * log(2))) == 0 and float(2 - 2 * log(2)) > 0 and log(2) < 1
+assert all(math.exp(a) - 2 * a > 0 for a in grille)
+# ar-t-derivee-monotonie-ex5 variante 2 : e^x - e x : minimum f(1) = 0 : une seule solution, x = 1.
+f = sympy.exp(x) - sympy.E * x
+assert solve(diff(f, x), x) == [1] and f.subs(x, 1) == 0
+assert all(math.exp(a) - math.e * a > 0 for a in grille if abs(a - 1) > 1e-9)
+
+# ar-l1-borne-sup-ex1 variante 1 : (3n+2)/(n+1) = 3 - 1/(n+1), croissante, min 2, sup 3 non atteint.
+assert simplify((3 * n + 2) / (n + 1) - (3 - 1 / (n + 1))) == 0
+termes = [Rational(3 * k + 2, k + 1) for k in range(0, 200)]
+assert termes[0] == 2 and all(a < b for a, b in zip(termes, termes[1:])) and all(a < 3 for a in termes)
+assert limit((3 * np_ + 2) / (np_ + 1), np_, oo) == 3
+# ar-l1-borne-sup-ex1 variante 2 : (n+4)/(2n+1) = 1/2 + 7/(2(2n+1)), décroissante, max 4, inf 1/2 non atteint.
+assert simplify((n + 4) / (2 * n + 1) - (Rational(1, 2) + 7 / (2 * (2 * n + 1)))) == 0
+termes = [Rational(k + 4, 2 * k + 1) for k in range(0, 200)]
+assert termes[0] == 4 and all(a > b for a, b in zip(termes, termes[1:])) and all(a > Rational(1, 2) for a in termes)
+assert limit((np_ + 4) / (2 * np_ + 1), np_, oo) == Rational(1, 2)
+
+# ar-l1-bolzano-weierstrass-ex1 variante 1 : sin(n pi/2) selon n mod 4 : 0, 1, 0, -1 ; ensemble {-1, 0, 1}.
+valeurs = [sin(k * pi / 2) for k in range(4)]
+assert valeurs == [0, 1, 0, -1] and set(valeurs) == {-1, 0, 1}
+assert all(sin(k * pi / 2) == valeurs[k % 4] for k in range(4, 60))
+# ar-l1-bolzano-weierstrass-ex1 variante 2 : cos(2n pi/3) selon n mod 3 : 1, -1/2, -1/2 ; ensemble {-1/2, 1}.
+valeurs = [cos(2 * k * pi / 3) for k in range(3)]
+assert valeurs == [1, -Rational(1, 2), -Rational(1, 2)] and set(valeurs) == {-Rational(1, 2), 1}
+assert all(cos(2 * k * pi / 3) == valeurs[k % 3] for k in range(3, 60))
+
+# ar-l1-bornes-atteintes-ex1 variante 1 : x^3 - 12x sur [-1,3] : f(-1) = 11, f(2) = -16, f(3) = -9 ; max 11, min -16.
+f = x**3 - 12 * x
+assert [f.subs(x, v) for v in (-1, 2, 3, -2)] == [11, -16, -9, 16]
+assert sympy.maximum(f, x, sympy.Interval(-1, 3)) == 11 and sympy.minimum(f, x, sympy.Interval(-1, 3)) == -16
+# ar-l1-bornes-atteintes-ex1 variante 2 : x^4 - 2x^2 sur [-1/2, 2] : valeurs -7/16, 0, -1, 8 ; max 8, min -1.
+f = x**4 - 2 * x**2
+assert [f.subs(x, v) for v in (-Rational(1, 2), 0, 1, 2)] == [-Rational(7, 16), 0, -1, 8]
+assert sympy.maximum(f, x, sympy.Interval(-Rational(1, 2), 2)) == 8
+assert sympy.minimum(f, x, sympy.Interval(-Rational(1, 2), 2)) == -1
+
+# ar-l1-rolle-ex1 variante 1 : x^3 - 3x sur [0, sqrt 3] : f(0) = f(sqrt 3) = 0, f' nul en ±1, seul 1 dans ]0, sqrt 3[.
+f = x**3 - 3 * x
+assert f.subs(x, 0) == 0 and simplify(f.subs(x, sqrt(3))) == 0
+assert set(solve(diff(f, x), x)) == {-1, 1} and 0 < 1 < math.sqrt(3)
+# ar-l1-rolle-ex1 variante 2 : x^3 - 6x^2 + 9x + 1 sur [0,3] : f(0) = f(3) = 1, f' = 3(x-1)(x-3), seul 1 dans ]0,3[.
+f = x**3 - 6 * x**2 + 9 * x + 1
+assert f.subs(x, 0) == 1 and f.subs(x, 3) == 1
+assert sympy.expand(diff(f, x) - 3 * (x - 1) * (x - 3)) == 0 and set(solve(diff(f, x), x)) == {1, 3}
+
+# ar-l1-rolle-ex2 variante 1 : x^4 - 4x + 1 : P' a une seule racine réelle (1) ; P(0) = 1, P(1) = -2, P(2) = 9 ; 2 racines.
+P = x**4 - 4 * x + 1
+assert real_roots(diff(P, x)) == [1] and sympy.expand(diff(P, x) - 4 * (x - 1) * (x**2 + x + 1)) == 0
+assert [P.subs(x, v) for v in (0, 1, 2)] == [1, -2, 9]
+rr = [float(z) for z in real_roots(P)]
+assert len(rr) == 2 and 0 < rr[0] < 1 < rr[1] < 2
+# ar-l1-rolle-ex2 variante 2 : x^5 - 10x + 3 : P' a 2 racines réelles (±2^(1/4)) ; P(-2) = -9, P(-1) = 12, P(1) = -6, P(2) = 15 ; 3 racines.
+P = x**5 - 10 * x + 3
+assert len(real_roots(diff(P, x))) == 2
+assert sympy.expand(diff(P, x) - 5 * (x**2 - sqrt(2)) * (x**2 + sqrt(2))) == 0
+assert set(solve(x**4 - 2, x)) & {r_ for r_ in solve(x**4 - 2, x) if r_.is_real} == {2 ** Rational(1, 4), -(2 ** Rational(1, 4))}
+assert [P.subs(x, v) for v in (-2, -1, 1, 2)] == [-9, 12, -6, 15]
+assert len(real_roots(P)) == 3
+
+# ar-l1-taf-ex1 variante 1 : x^3 sur [0,2] : 8 = 6c^2, c = 2 sqrt 3/3 (≈ 1,15) ; leurres 1, 4/3 faux.
+assert set(solve(6 * x**2 - 8, x)) == {2 * sqrt(3) / 3, -2 * sqrt(3) / 3}
+assert 0 < float(2 * sqrt(3) / 3) < 2 and 6 * 1**2 != 8 and 6 * Rational(4, 3) ** 2 != 8
+# ar-l1-taf-ex1 variante 2 : 1/x sur [1,4] : -3/4 = -3/c^2, c = 2 ; leurres 5/2, 4 faux.
+assert set(solve(-3 / x**2 - (Rational(1, 4) - 1), x)) == {2, -2}
+assert -3 / Rational(5, 2) ** 2 != -Rational(3, 4) and -3 / Rational(4) ** 2 != -Rational(3, 4)
+
+# ar-l1-taf-ex2 variante 1 : arctan 2 : 1/5 < arctan 2 - pi/4 < 1/2, seule la première proposition est vraie.
+val = math.atan(2) - p4
+assert 1 / 5 < val < 1 / 2
+assert not (1 / 2 < val < 1) and not (1 / 10 < val < 1 / 5) and not (2 / 5 < val < 1)
+# ar-l1-taf-ex2 variante 2 : arctan(3/2) : (1/2)(4/13) = 2/13 < arctan(3/2) - pi/4 < 1/4.
+assert Rational(1, 2) * Rational(4, 13) == Rational(2, 13) and 1 + Rational(3, 2) ** 2 == Rational(13, 4)
+val = math.atan(1.5) - p4
+assert 2 / 13 < val < 1 / 4
+assert not (1 / 4 < val < 1 / 2) and not (1 / 13 < val < 2 / 13) and not (3 / 13 < val < 1 / 2)
+
 print("analyse_reelle.py : toutes les vérifications passent.")

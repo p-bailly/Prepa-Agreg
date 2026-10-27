@@ -1,10 +1,11 @@
-// Accueil : ce qu'il y a à faire aujourd'hui, le gros bouton « Réviser », la série de jours et le niveau atteint.
+// Accueil : ce qu'il y a à faire aujourd'hui (cartes à revoir, leçon du jour), le gros bouton (« Réviser », ou
+// « Apprendre » quand rien n'est à revoir), la série de jours et le niveau atteint.
 import { NOMS_NIVEAUX } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
-import { resumeDuJour } from '../repetition/seance'
+import { resumeDuJour, type Lecon } from '../repetition/seance'
 import { joursAvantEcrit, niveauAtteint, progresNiveaux, serieJours } from '../stats/tableau'
 
-export function Accueil({ surReviser }: { surReviser: () => void }) {
+export function Accueil({ surReviser, surApprendre }: { surReviser: () => void; surApprendre: (l: Lecon) => void }) {
   const { contenu, progression, reglages, horloge, aujourdhui } = useDonnees()
   const jour = aujourdhui()
   const r = resumeDuJour(contenu, progression, reglages, horloge(), jour)
@@ -14,7 +15,9 @@ export function Accueil({ surReviser }: { surReviser: () => void }) {
   const rebours = joursAvantEcrit(reglages.dateEcrit, jour)
   const f = reglages.filtres
   const filtre = f.themes.length + f.niveaux.length + f.etats.length > 0
-  const rien = r.aRevoir === 0 && r.nouvelles === 0
+  const theme = r.lecon && contenu.themes.find((t) => t.chapitres.some((c) => c.id === r.lecon!.chapitre.id))
+  // On apprend d'abord : sans révision due, le gros bouton lance la leçon.
+  const principal: 'reviser' | 'apprendre' | null = r.aRevoir > 0 ? 'reviser' : r.lecon ? 'apprendre' : null
   return (
     <>
       <main className="ecran">
@@ -28,13 +31,30 @@ export function Accueil({ surReviser }: { surReviser: () => void }) {
             {r.aRevoir > 1 ? 'cartes à revoir' : 'carte à revoir'}
           </p>
           <p style={{ fontSize: 20 }}>
-            et {r.nouvelles} {r.nouvelles > 1 ? 'nouvelles' : 'nouvelle'}
+            et {r.aApprendre} {r.aApprendre > 1 ? 'notions nouvelles à apprendre' : 'notion nouvelle à apprendre'}
           </p>
           <p className="petit doux">
             {faites} / {reglages.objectifQuotidien} cartes revues aujourd’hui (objectif quotidien)
-            {filtre && ' · séance filtrée (voir Parcours)'}
+            {filtre && ' · filtres actifs (voir Parcours)'}
           </p>
         </div>
+        {r.lecon && (
+          <div className="bloc">
+            <span className="etiquette">Leçon du jour</span>
+            <p style={{ margin: '0 0 4px', fontSize: 20 }}>
+              <strong>{r.lecon.chapitre.titre}</strong>
+            </p>
+            <p className="petit doux">
+              {theme?.titre} · {NOMS_NIVEAUX[r.lecon.chapitre.niveau]} · {r.lecon.cartes.length} notion
+              {r.lecon.cartes.length > 1 ? 's' : ''} · environ {r.minutesLecon} minutes
+            </p>
+            {principal !== 'apprendre' && (
+              <button className="bouton" onClick={() => surApprendre(r.lecon!)}>
+                Apprendre
+              </button>
+            )}
+          </div>
+        )}
         {rebours !== null && (
           <div className="bloc">
             <span className="etiquette">Écrit</span>
@@ -71,12 +91,23 @@ export function Accueil({ surReviser }: { surReviser: () => void }) {
       </main>
       <div className="pied">
         <div className="pied-interieur">
-          <button className="bouton-principal" onClick={surReviser} disabled={rien}>
-            Réviser
-            <span style={{ fontSize: 15, letterSpacing: '0.02em', textTransform: 'none', fontWeight: 400 }}>
-              {rien ? 'rien à revoir pour l’instant' : `environ ${r.minutes} minute${r.minutes > 1 ? 's' : ''}`}
-            </span>
-          </button>
+          {principal === 'apprendre' ? (
+            <button className="bouton-principal" onClick={() => surApprendre(r.lecon!)}>
+              Apprendre
+              <span style={{ fontSize: 15, letterSpacing: '0.02em', textTransform: 'none', fontWeight: 400 }}>
+                leçon du jour, environ {r.minutesLecon} minutes
+              </span>
+            </button>
+          ) : (
+            <button className="bouton-principal" onClick={surReviser} disabled={principal === null}>
+              Réviser
+              <span style={{ fontSize: 15, letterSpacing: '0.02em', textTransform: 'none', fontWeight: 400 }}>
+                {principal === null
+                  ? 'rien à revoir ni à apprendre pour l’instant'
+                  : `environ ${r.minutesRevision} minute${r.minutesRevision > 1 ? 's' : ''}`}
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </>
