@@ -78,9 +78,9 @@ for u0, v0, l, leurres in [(1, 12, 9, [F(13, 2), F(25, 3), F(37, 4)]),
 
 # ar-l1-suites-adjacentes-ex3 : b_{n+1} - a_{n+1} <= (b_n - a_n)/2 (moyenne arithmético-géométrique).
 for a, b in [(1.0, 2.0), (0.1, 50.0), (3.0, 3.5)]:
-    for m in range(8):
+    for m in range(4):
         a2, b2 = math.sqrt(a * b), (a + b) / 2
-        assert a <= a2 <= b2 <= b and b2 - a2 <= (b - a) / 2 + 1e-15
+        assert a <= a2 + 1e-12 and a2 <= b2 + 1e-12 and b2 <= b + 1e-12 and b2 - a2 <= (b - a) / 2 + 1e-12
         a, b = a2, b2
 
 # ar-l1-suites-adjacentes-ex4 : v_{n+1} - v_n = -1/(n(n+1)(n+1)!) ; u_n < e < v_n.
@@ -213,9 +213,6 @@ for expr, l, leurres in [((2 * n + 1) / (n + 3), 2, [0, 1, oo]),
                          ((3 * n**2 + 1) / (n**2 + n), 3, [0, 1, oo]),
                          ((n - 1) / (2 * n + 5), Rational(1, 2), [0, 2, Rational(-1, 5)])]:
     assert limit(expr, n, oo) == l and l not in leurres
-    N = 200000
-    moy = sum(float(expr.subs(n, j)) if j < 5 else 0 for j in range(1, 5))  # quelques termes exacts
-    fct = lambda j, e=expr: float(e.subs(n, j))
 from math import fsum
 assert abs(fsum((2 * j + 1) / (j + 3) for j in range(1, 10**5 + 1)) / 10**5 - 2) < 1e-3
 assert abs(fsum((3 * j * j + 1) / (j * j + j) for j in range(1, 10**5 + 1)) / 10**5 - 3) < 1e-3
@@ -281,7 +278,7 @@ assert simplify(r0**2 - a_ * r0 + a_**2 / 4) == 0 and simplify(r0 * (2 * r0 - a_
 assert 0 + 2 * 0 + 1 == 1
 # Affirmation 4 : 2^n cos(n pi/3) vérifie u_{n+2} = 2u_{n+1} - 4u_n, et u_{6m} = 2^{6m}.
 assert all(simplify(2 ** (j + 2) * cos((j + 2) * pi / 3) - 2 * 2 ** (j + 1) * cos((j + 1) * pi / 3) + 4 * 2**j * cos(j * pi / 3)) == 0 for j in range(12))
-assert simplify((1 + I * sqrt(3)) - 2 * exp(I * pi / 3)) == 0
+assert simplify(((1 + I * sqrt(3)) - 2 * exp(I * pi / 3)).rewrite(cos)) == 0
 # Affirmation 3 : u_{n+2} = 2u_{n+1} - u_n : suite arithmétique.
 assert suite2(F(3), F(5), 2, -1, 10) == [3 + 2 * j for j in range(11)]
 

@@ -1,0 +1,439 @@
+{
+  "cartes": [
+    {
+      "id": "al-l1-espaces-sev",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Caractérisation des sous-espaces vectoriels",
+      "recto": "Énoncer la caractérisation des sous-espaces vectoriels avec ses hypothèses.",
+      "cours": "Un espace vectoriel sur $\\mathbb{K}$ ($\\mathbb{K} = \\mathbb{R}$ ou $\\mathbb{C}$) est un ensemble où l'on sait additionner deux vecteurs et multiplier un vecteur par un scalaire, avec les règles de calcul habituelles : $\\mathbb{K}^n$, les polynômes $\\mathbb{K}[X]$, les matrices, les suites, les fonctions de $\\mathbb{R}$ dans $\\mathbb{R}$. Un **sous-espace vectoriel** de $E$ est une partie $F$ de $E$ qui est elle-même un espace vectoriel pour les mêmes opérations : on y reste quand on additionne deux de ses éléments ou qu'on en multiplie un par un scalaire.\n\nVérifier les huit axiomes d'espace vectoriel serait long ; la caractérisation dit qu'il suffit de deux vérifications : $0_E \\in F$, et $\\lambda x + y \\in F$ pour tous $x, y \\in F$ et $\\lambda \\in \\mathbb{K}$. Les règles de calcul (associativité, distributivité…) sont automatiquement héritées de $E$.\n\nC'est la méthode standard pour montrer qu'un ensemble est un espace vectoriel : on le voit comme une partie d'un espace connu ($\\mathbb{K}^n$, $\\mathbb{R}^{\\mathbb{N}}$, $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$…) et on applique la caractérisation. Typiquement, l'ensemble des solutions d'équations linéaires **homogènes** (système $AX = 0$, équation différentielle $y'' + y = 0$, récurrence $u_{n+2} = u_{n+1} + u_n$) est un sous-espace vectoriel.\n\nPour montrer au contraire qu'une partie n'en est pas un, un seul contre-exemple suffit : souvent $0_E \\notin F$ (une équation avec un second membre non nul, comme $x + y = 1$), ou bien deux éléments dont la somme sort de $F$, ou un élément dont un multiple en sort.\n\nLe piège principal : la stabilité par addition seule ne suffit pas ($\\mathbb{R}_+$ dans $\\mathbb{R}$), ni la stabilité par multiplication par les scalaires seule (la réunion de deux droites du plan). Enfin, une intersection de sous-espaces vectoriels en est un, mais une réunion en général non.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel et $F$ une partie de $E$.",
+        "$0_E \\in F$.",
+        "Pour tous $x, y \\in F$ et tout $\\lambda \\in \\mathbb{K}$, $\\lambda x + y \\in F$."
+      ],
+      "hypotheses_pieges": [
+        "$F$ est un sous-groupe de $(E, +)$ (à la place de la stabilité par $\\lambda x + y$ pour tout scalaire $\\lambda$).",
+        "$\\lambda x \\in F$ pour tous $x \\in F$ et $\\lambda \\in \\mathbb{K}$ (à la place de la stabilité par $\\lambda x + y$).",
+        "$x + y \\in F$ pour tous $x, y \\in F$ (à la place de la stabilité par $\\lambda x + y$)."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel ($\\mathbb{K} = \\mathbb{R}$ ou $\\mathbb{C}$) et $F$ une partie de $E$. On dit que $F$ est un sous-espace vectoriel de $E$ si $F$ est stable par addition et par multiplication par les scalaires et si, muni des lois induites, $F$ est un $\\mathbb{K}$-espace vectoriel.\n\n$F$ est un sous-espace vectoriel de $E$ si et seulement si :\n- $0_E \\in F$ ;\n- pour tous $x, y \\in F$ et tout $\\lambda \\in \\mathbb{K}$, $\\lambda x + y \\in F$.\n\nUn sous-espace vectoriel contient alors toute combinaison linéaire (finie) de ses éléments, et l'intersection d'une famille non vide de sous-espaces vectoriels de $E$ est un sous-espace vectoriel de $E$.",
+      "enonce_trous": "Soit $F$ une partie d'un $\\mathbb{K}$-espace vectoriel $E$. $F$ est un sous-espace vectoriel de $E$ si et seulement si {{1}} et, pour tous $x, y \\in F$ et tout $\\lambda \\in \\mathbb{K}$, {{2}}. Une {{3}} de sous-espaces vectoriels de $E$ est toujours un sous-espace vectoriel de $E$.",
+      "trous": [
+        {
+          "reponse": "$0_E \\in F$",
+          "leurres": [
+            "$F$ contient un vecteur non nul",
+            "$F$ est un ensemble fini",
+            "$F$ contient au moins deux éléments"
+          ]
+        },
+        {
+          "reponse": "$\\lambda x + y \\in F$",
+          "leurres": [
+            "$x + y \\in F$",
+            "$\\lambda x \\in F$",
+            "$\\lambda x + y \\in E$"
+          ]
+        },
+        {
+          "reponse": "intersection",
+          "leurres": [
+            "réunion",
+            "différence ensembliste",
+            "différence symétrique"
+          ]
+        }
+      ],
+      "demo": "**Condition nécessaire.** Si $F$ est un sous-espace vectoriel, $F$ a un élément neutre $0_F$ pour l'addition induite : $0_F + 0_F = 0_F$ dans $E$, d'où $0_F = 0_E$ en ajoutant l'opposé de $0_F$ dans $E$ ; donc $0_E \\in F$. Pour $x, y \\in F$ et $\\lambda \\in \\mathbb{K}$, la stabilité par multiplication donne $\\lambda x \\in F$, puis la stabilité par addition donne $\\lambda x + y \\in F$.\n\n**Condition suffisante.** Supposons $0_E \\in F$ et $F$ stable par $\\lambda x + y$. Avec $\\lambda = 1$ : $x + y \\in F$, donc $F$ est stable par addition. Avec $y = 0_E \\in F$ : $\\lambda x \\in F$, donc $F$ est stable par multiplication par les scalaires. Les lois induites sont donc bien définies. L'addition reste associative et commutative, et les quatre axiomes de la multiplication externe restent vrais, puisqu'ils sont vrais dans $E$ ; $0_E \\in F$ est neutre ; pour $x \\in F$, l'opposé $-x = (-1)x$ est dans $F$. Donc $F$ est un $\\mathbb{K}$-espace vectoriel.\n\n**Compléments.** Par récurrence sur le nombre de termes, $\\lambda_1 x_1 + \\dots + \\lambda_n x_n \\in F$ pour $x_i \\in F$ et $\\lambda_i \\in \\mathbb{K}$ : on écrit $\\lambda_1 x_1 + \\dots + \\lambda_n x_n = \\lambda_n x_n + (\\lambda_1 x_1 + \\dots + \\lambda_{n-1} x_{n-1})$. Si $(F_i)_{i \\in I}$ est une famille non vide de sous-espaces vectoriels, $0_E$ est dans chaque $F_i$, et si $x, y$ sont dans tous les $F_i$, $\\lambda x + y$ aussi : l'intersection vérifie la caractérisation.",
+      "exemple": "$F = \\{(x, y, z) \\in \\mathbb{R}^3 : x + 2y - z = 0\\}$ est un sous-espace vectoriel de $\\mathbb{R}^3$ : $(0, 0, 0)$ vérifie l'équation, et si $(x, y, z)$ et $(x', y', z')$ la vérifient, $\\lambda(x, y, z) + (x', y', z')$ aussi, car $(\\lambda x + x') + 2(\\lambda y + y') - (\\lambda z + z') = \\lambda(x + 2y - z) + (x' + 2y' - z') = 0$. En revanche, $\\{(x, y, z) : x + 2y - z = 1\\}$ n'en est pas un, car il ne contient pas $(0, 0, 0)$. De même, l'ensemble des fonctions $f : \\mathbb{R} \\to \\mathbb{R}$ deux fois dérivables telles que $f'' + f = 0$ est un sous-espace vectoriel de $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$.",
+      "contre_exemple": "- **Sous-groupe sans stabilité par les scalaires** : $\\mathbb{Z}$ est un sous-groupe de $(\\mathbb{R}, +)$, mais pas un sous-espace vectoriel du $\\mathbb{R}$-espace vectoriel $\\mathbb{R}$, car $\\frac{1}{2} \\cdot 1 \\notin \\mathbb{Z}$.\n- **Stabilité par addition seule** : $\\mathbb{R}_+$ contient $0$ et est stable par addition, mais $(-1) \\cdot 1 = -1 \\notin \\mathbb{R}_+$.\n- **Stabilité par les scalaires seule** : $F = \\{(x, y) \\in \\mathbb{R}^2 : xy = 0\\}$ (réunion des deux axes) contient $(0, 0)$ et vérifie $\\lambda u \\in F$ pour tout $u \\in F$, mais $(1, 0) + (0, 1) = (1, 1) \\notin F$.\n- **Sans la condition $0_E \\in F$** : la partie vide vérifie trivialement la condition de stabilité, mais ce n'est pas un sous-espace vectoriel (un espace vectoriel contient au moins $0$).",
+      "affirmations": [
+        {
+          "texte": "La réunion de deux sous-espaces vectoriels de $E$ est un sous-espace vectoriel de $E$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, avec $F = \\mathbb{R} \\times \\{0\\}$ et $G = \\{0\\} \\times \\mathbb{R}$, les vecteurs $(1, 0)$ et $(0, 1)$ sont dans $F \\cup G$, mais pas leur somme $(1, 1)$."
+        },
+        {
+          "texte": "Si $F$ et $G$ sont des sous-espaces vectoriels de $E$ et si $F \\cup G$ est un sous-espace vectoriel, alors $F \\subset G$ ou $G \\subset F$.",
+          "vrai": true,
+          "justification": "Sinon, soient $x \\in F \\setminus G$ et $y \\in G \\setminus F$. Si $x + y \\in F$, alors $y = (x + y) - x \\in F$, ce qui est exclu ; si $x + y \\in G$, alors $x = (x + y) - y \\in G$, exclu aussi. Donc $x + y \\notin F \\cup G$, qui n'est pas stable par addition."
+        },
+        {
+          "texte": "L'ensemble des fonctions $f : \\mathbb{R} \\to \\mathbb{R}$ telles que $f(0) = 1$ est un sous-espace vectoriel de $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$.",
+          "vrai": false,
+          "contre_exemple": "La fonction nulle n'en fait pas partie, puisqu'elle vaut $0 \\neq 1$ en $0$ ; de plus, la somme de deux telles fonctions vaut $2$ en $0$."
+        },
+        {
+          "texte": "L'ensemble des suites réelles convergentes est un sous-espace vectoriel de $\\mathbb{R}^{\\mathbb{N}}$.",
+          "vrai": true,
+          "justification": "La suite nulle converge, et si $(u_n)$ et $(v_n)$ convergent, $(\\lambda u_n + v_n)$ converge (vers $\\lambda \\lim u_n + \\lim v_n$) par les opérations sur les limites."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "al-l1-espaces-familles",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Familles libres, génératrices, bases",
+      "recto": "Définir famille libre, famille génératrice et base, puis énoncer la caractérisation des bases par l'unicité de la décomposition et le résultat d'ajout d'un vecteur à une famille libre, avec ses hypothèses.",
+      "cours": "Une **combinaison linéaire** des vecteurs $e_1, \\dots, e_n$ est un vecteur $\\lambda_1 e_1 + \\dots + \\lambda_n e_n$ ; l'ensemble de ces combinaisons, $\\mathrm{Vect}(e_1, \\dots, e_n)$, est le plus petit sous-espace vectoriel contenant les $e_i$. Deux questions se posent : ces combinaisons atteignent-elles tout $E$ (famille **génératrice**) ? Un même vecteur peut-il s'écrire de deux façons (ce qu'interdit une famille **libre**) ?\n\nUne **base** répond oui à la première question et non à la seconde : chaque vecteur s'écrit d'une et une seule façon, ce qui définit ses coordonnées. C'est ce qui permet de remplacer un vecteur abstrait (un polynôme, une matrice) par une liste de nombres, et donc de calculer.\n\nEn pratique, pour tester si $(e_1, \\dots, e_n)$ est libre, on part d'une relation $\\lambda_1 e_1 + \\dots + \\lambda_n e_n = 0$ et on cherche à montrer que tous les $\\lambda_i$ sont nuls : dans $\\mathbb{K}^p$, cela revient à résoudre un système linéaire homogène. Une famille est liée exactement quand l'un de ses vecteurs est combinaison linéaire des autres ; une famille qui contient le vecteur nul, ou deux fois le même vecteur, est donc liée.\n\nLe résultat d'ajout dit qu'on peut agrandir une famille libre sans la rendre liée en lui ajoutant un vecteur **hors de** $\\mathrm{Vect}(e_1, \\dots, e_n)$ : c'est le moteur des constructions de bases.\n\nLe piège principal : « libre » ne veut pas dire « deux à deux non colinéaires ». Les vecteurs $(1, 0)$, $(0, 1)$ et $(1, 1)$ de $\\mathbb{R}^2$ ne sont pas colinéaires deux à deux, mais $(1, 1) = (1, 0) + (0, 1)$ : la famille est liée. La liberté est une condition sur toutes les combinaisons à la fois.",
+      "hypotheses": [
+        "$(e_1, \\dots, e_n)$ est une famille libre de $E$.",
+        "$x \\notin \\mathrm{Vect}(e_1, \\dots, e_n)$."
+      ],
+      "hypotheses_pieges": [
+        "$x$ n'est colinéaire à aucun des $e_i$ (à la place de $x \\notin \\mathrm{Vect}(e_1, \\dots, e_n)$).",
+        "$x \\neq 0$ (à la place de $x \\notin \\mathrm{Vect}(e_1, \\dots, e_n)$).",
+        "Les $e_i$ sont non nuls et deux à deux non colinéaires (à la place de : la famille $(e_1, \\dots, e_n)$ est libre)."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel et $(e_1, \\dots, e_n)$ une famille finie de vecteurs de $E$ ($n \\geq 1$).\n- La famille est **libre** si $\\lambda_1 e_1 + \\dots + \\lambda_n e_n = 0$ (avec $\\lambda_i \\in \\mathbb{K}$) entraîne $\\lambda_1 = \\dots = \\lambda_n = 0$ ; sinon elle est **liée**. Elle est **génératrice** si $\\mathrm{Vect}(e_1, \\dots, e_n) = E$. C'est une **base** de $E$ si elle est libre et génératrice.\n- La famille est une base de $E$ si et seulement si tout $x \\in E$ s'écrit de façon unique $x = \\lambda_1 e_1 + \\dots + \\lambda_n e_n$ avec $\\lambda_1, \\dots, \\lambda_n \\in \\mathbb{K}$ (les coordonnées de $x$).\n- Pour $n \\geq 2$, la famille est liée si et seulement si l'un des $e_i$ est combinaison linéaire des autres ; pour $n = 1$, $(e_1)$ est liée si et seulement si $e_1 = 0$.\n- Si $(e_1, \\dots, e_n)$ est libre et si $x \\notin \\mathrm{Vect}(e_1, \\dots, e_n)$, alors $(e_1, \\dots, e_n, x)$ est libre.",
+      "enonce_trous": "Une famille finie $(e_1, \\dots, e_n)$ de $E$ est une base de $E$ si et seulement si tout vecteur de $E$ s'écrit {{1}} comme combinaison linéaire des $e_i$. Si $(e_1, \\dots, e_n)$ est libre et si {{2}}, alors la famille $(e_1, \\dots, e_n, x)$ est libre.",
+      "trous": [
+        {
+          "reponse": "de façon unique",
+          "leurres": [
+            "d'au moins une façon",
+            "d'au plus une façon",
+            "avec des coefficients tous non nuls"
+          ]
+        },
+        {
+          "reponse": "$x \\notin \\mathrm{Vect}(e_1, \\dots, e_n)$",
+          "leurres": [
+            "$x \\neq 0$",
+            "$x$ n'est colinéaire à aucun des $e_i$",
+            "$x \\in \\mathrm{Vect}(e_1, \\dots, e_n)$"
+          ]
+        }
+      ],
+      "demo": "**Caractérisation des bases.** Si la famille est une base et $x \\in E$, l'existence d'une décomposition vient de ce qu'elle est génératrice. Si $x = \\sum \\lambda_i e_i = \\sum \\mu_i e_i$, alors $\\sum (\\lambda_i - \\mu_i) e_i = 0$, et la liberté donne $\\lambda_i = \\mu_i$ pour tout $i$. Réciproquement, si tout vecteur a une unique décomposition, la famille est génératrice (existence) ; et si $\\sum \\lambda_i e_i = 0$, comme $0 = \\sum 0 \\cdot e_i$ est aussi une décomposition de $0$, l'unicité donne $\\lambda_i = 0$ pour tout $i$ : la famille est libre.\n\n**Familles liées.** Si $\\sum \\lambda_i e_i = 0$ avec un $\\lambda_k \\neq 0$, alors $e_k = -\\sum_{i \\neq k} \\frac{\\lambda_i}{\\lambda_k} e_i$ est combinaison linéaire des autres. Réciproquement, si $e_k = \\sum_{i \\neq k} \\mu_i e_i$, la relation $\\sum_{i \\neq k} \\mu_i e_i - e_k = 0$ a un coefficient $-1 \\neq 0$ : la famille est liée. Pour $n = 1$ : si $e_1 = 0$, $1 \\cdot e_1 = 0$ est une relation non triviale ; si $e_1 \\neq 0$ et $\\lambda e_1 = 0$, alors $\\lambda = 0$, sinon $e_1 = \\lambda^{-1}(\\lambda e_1) = 0$.\n\n**Ajout d'un vecteur.** Supposons $\\lambda_1 e_1 + \\dots + \\lambda_n e_n + \\mu x = 0$. Si $\\mu \\neq 0$, alors $x = -\\sum \\frac{\\lambda_i}{\\mu} e_i \\in \\mathrm{Vect}(e_1, \\dots, e_n)$, ce qui est exclu ; donc $\\mu = 0$, puis $\\lambda_1 e_1 + \\dots + \\lambda_n e_n = 0$, et la liberté de $(e_1, \\dots, e_n)$ donne $\\lambda_1 = \\dots = \\lambda_n = 0$.",
+      "exemple": "Dans $\\mathbb{R}^3$, la famille $((1, 1, 0), (1, 0, 1), (0, 1, 1))$ est une base. En effet, pour $(x, y, z) \\in \\mathbb{R}^3$, l'équation $a(1, 1, 0) + b(1, 0, 1) + c(0, 1, 1) = (x, y, z)$ s'écrit $a + b = x$, $a + c = y$, $b + c = z$ ; en sommant, $a + b + c = \\frac{x + y + z}{2}$, d'où l'unique solution $a = \\frac{x + y - z}{2}$, $b = \\frac{x - y + z}{2}$, $c = \\frac{-x + y + z}{2}$. Par exemple, $(2, 3, 5)$ a pour coordonnées $(0, 2, 3)$ dans cette base.",
+      "contre_exemple": "- **Non colinéaire à chaque $e_i$ ne suffit pas** : dans $\\mathbb{R}^2$, $x = (1, 1)$ n'est colinéaire ni à $e_1 = (1, 0)$ ni à $e_2 = (0, 1)$, mais $(e_1, e_2, x)$ est liée, car $e_1 + e_2 - x = 0$.\n- **$x \\neq 0$ ne suffit pas** : avec $(e_1) = ((1, 0))$, libre, et $x = (2, 0) \\neq 0$, la famille $(e_1, x)$ est liée.\n- **Il faut partir d'une famille libre** : $e_1 = (1, 0, 0)$, $e_2 = (0, 1, 0)$, $e_3 = (1, 1, 0)$ sont non nuls et deux à deux non colinéaires, $x = (0, 0, 1) \\notin \\mathrm{Vect}(e_1, e_2, e_3)$, mais $(e_1, e_2, e_3, x)$ est liée puisque $e_1 + e_2 - e_3 = 0$.\n- **Génératrice sans être une base** : $((1, 0), (0, 1), (1, 1))$ engendre $\\mathbb{R}^2$, mais $(1, 1) = 1 \\cdot (1, 1) = 1 \\cdot (1, 0) + 1 \\cdot (0, 1)$ a deux décompositions.",
+      "affirmations": [
+        {
+          "texte": "Une famille de vecteurs non nuls deux à deux non colinéaires est libre.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, $(1, 0)$, $(0, 1)$ et $(1, 1)$ sont non nuls et deux à deux non colinéaires, mais $(1, 0) + (0, 1) - (1, 1) = 0$."
+        },
+        {
+          "texte": "Toute sous-famille d'une famille libre est libre.",
+          "vrai": true,
+          "justification": "Une relation entre les vecteurs de la sous-famille est une relation entre ceux de la famille, en mettant des coefficients nuls devant les autres vecteurs ; ses coefficients sont donc nuls."
+        },
+        {
+          "texte": "Si $(u, v)$ est une famille libre de $E$, alors $(u + v, u - v)$ est libre.",
+          "vrai": true,
+          "justification": "Si $a(u + v) + b(u - v) = 0$, alors $(a + b)u + (a - b)v = 0$, donc $a + b = 0$ et $a - b = 0$, d'où $a = b = 0$."
+        },
+        {
+          "texte": "Si une famille génératrice de $E$ est liée, on peut lui retirer n'importe lequel de ses vecteurs sans qu'elle cesse d'être génératrice.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, $((1, 0), (2, 0), (0, 1))$ est génératrice et liée ; en retirant $(0, 1)$, on obtient $((1, 0), (2, 0))$, qui n'engendre que l'axe des abscisses. On peut seulement retirer un vecteur qui est combinaison linéaire des autres."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-sev"
+      ]
+    },
+    {
+      "id": "al-l1-espaces-dimension",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Dimension et théorème de la base incomplète",
+      "recto": "Énoncer le théorème de la base incomplète et ses conséquences sur la dimension, avec leurs hypothèses.",
+      "cours": "Un espace vectoriel est **de dimension finie** s'il admet une famille génératrice finie. Tout repose alors sur un résultat de comparaison : dans un espace engendré par $n$ vecteurs, une famille libre a au plus $n$ vecteurs. Intuitivement, $n$ « directions » suffisent à tout atteindre, et l'on ne peut pas trouver plus de $n$ directions indépendantes.\n\nLe **théorème de la base incomplète** affirme qu'on peut compléter toute famille libre en une base en piochant dans n'importe quelle famille génératrice finie. En particulier, toute famille génératrice finie contient une base, donc une base existe ; et toutes les bases ont le même nombre de vecteurs, la **dimension** de $E$. Ainsi $\\dim \\mathbb{K}^n = n$, $\\dim \\mathbb{K}_n[X] = n + 1$ et $\\dim \\mathcal{M}_{n,p}(\\mathbb{K}) = np$.\n\nLa conséquence la plus utilisée : si $\\dim E = n$, une famille d'**exactement** $n$ vecteurs est une base dès qu'elle est libre, ou dès qu'elle est génératrice. On ne vérifie donc qu'une des deux propriétés, en général la liberté, qui se ramène à un système homogène.\n\nPour compléter concrètement une famille libre, on lui ajoute un à un des vecteurs d'une base connue (par exemple la base canonique) qui ne sont pas dans le sous-espace engendré par les vecteurs déjà choisis.\n\nLe piège principal : ce décompte ne vaut que pour exactement $n = \\dim E$ vecteurs, et seulement en dimension finie. Dans $\\mathbb{R}[X]$, qui n'est pas de dimension finie, $(1, X)$ est libre sans être une base ; et dans $\\mathbb{R}^2$, deux vecteurs colinéaires ne forment pas une base.",
+      "hypotheses": [
+        "$E$ est de dimension finie (il admet une famille génératrice finie).",
+        "$\\mathcal{L}$ est une famille libre de $E$.",
+        "$\\mathcal{G}$ est une famille génératrice finie de $E$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathcal{L}$ est formée de vecteurs non nuls deux à deux non colinéaires (à la place de : $\\mathcal{L}$ est libre).",
+        "$\\mathcal{L}$ a au plus $\\dim E$ vecteurs (à la place de : $\\mathcal{L}$ est libre).",
+        "$\\mathcal{G}$ est une famille libre finie de $E$ (à la place de : $\\mathcal{G}$ est génératrice)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie, c'est-à-dire admettant une famille génératrice finie.\n- **Lemme de comparaison** : si $E$ est engendré par $n$ vecteurs, toute famille libre de $E$ a au plus $n$ vecteurs.\n- **Théorème de la base incomplète** : si $\\mathcal{L}$ est une famille libre de $E$ et $\\mathcal{G}$ une famille génératrice finie de $E$, on peut compléter $\\mathcal{L}$ en une base de $E$ en lui ajoutant des vecteurs de $\\mathcal{G}$.\n- **Dimension** : $E$ admet des bases, et toutes ont le même nombre de vecteurs, noté $\\dim E$ (avec $\\dim \\{0\\} = 0$, la famille vide étant une base de $\\{0\\}$).\n- Si $\\dim E = n$ : toute famille libre de $E$ a au plus $n$ vecteurs, toute famille génératrice en a au moins $n$, et pour une famille d'exactement $n$ vecteurs, être libre, être génératrice et être une base sont équivalents.",
+      "enonce_trous": "Dans un espace vectoriel de dimension finie, toute famille {{1}} peut être complétée en une base à l'aide de vecteurs d'une famille {{2}} finie. Si $\\dim E = n$, une famille de $n$ vecteurs de $E$ est une base si et seulement si elle est {{3}}.",
+      "trous": [
+        {
+          "reponse": "libre",
+          "leurres": [
+            "génératrice",
+            "de vecteurs deux à deux non colinéaires",
+            "de vecteurs non nuls"
+          ]
+        },
+        {
+          "reponse": "génératrice",
+          "leurres": [
+            "libre",
+            "quelconque",
+            "de vecteurs non nuls"
+          ]
+        },
+        {
+          "reponse": "libre",
+          "leurres": [
+            "formée de vecteurs non nuls",
+            "formée de vecteurs deux à deux non colinéaires",
+            "formée de vecteurs deux à deux distincts"
+          ]
+        }
+      ],
+      "demo": "**Lemme de comparaison**, par récurrence sur $n$ : montrons que si $E = \\mathrm{Vect}(g_1, \\dots, g_n)$, toute famille $(x_1, \\dots, x_{n+1})$ de $n + 1$ vecteurs de $E$ est liée ; une famille plus longue est alors liée aussi, puisqu'elle contient une sous-famille liée. Pour $n = 0$, $E = \\{0\\}$ et $x_1 = 0$ : $(x_1)$ est liée. Pour $n \\geq 1$, notons $F = \\mathrm{Vect}(g_1, \\dots, g_{n-1})$ et écrivons $x_j = y_j + a_j g_n$ avec $y_j \\in F$ et $a_j \\in \\mathbb{K}$. Si tous les $a_j$ sont nuls, $x_1, \\dots, x_n$ sont $n$ vecteurs de $F$, engendré par $n - 1$ vecteurs : ils sont liés par l'hypothèse de récurrence, donc $(x_1, \\dots, x_{n+1})$ aussi. Sinon, quitte à renuméroter, $a_{n+1} \\neq 0$ ; les $n$ vecteurs $z_j = x_j - \\frac{a_j}{a_{n+1}} x_{n+1}$ ($1 \\leq j \\leq n$) sont dans $F$, donc liés : $\\sum_{j \\leq n} \\lambda_j z_j = 0$ avec des $\\lambda_j$ non tous nuls, ce qui donne la relation non triviale $\\sum_{j \\leq n} \\lambda_j x_j - \\Big(\\sum_{j \\leq n} \\lambda_j \\frac{a_j}{a_{n+1}}\\Big) x_{n+1} = 0$.\n\n**Base incomplète.** Parmi les familles libres formées de $\\mathcal{L}$ et de vecteurs de $\\mathcal{G}$ (il y en a : $\\mathcal{L}$ elle-même), choisissons-en une, $\\mathcal{B}$, ayant le plus de vecteurs possible ; ce nombre est borné par le lemme, puisque $E$ est engendré par la famille finie $\\mathcal{G}$. Si un vecteur $g$ de $\\mathcal{G}$ n'était pas dans $\\mathrm{Vect}(\\mathcal{B})$, la famille $\\mathcal{B}$ complétée par $g$ serait libre (résultat d'ajout) et plus longue : c'est exclu. Donc tous les vecteurs de $\\mathcal{G}$ sont dans $\\mathrm{Vect}(\\mathcal{B})$, d'où $E = \\mathrm{Vect}(\\mathcal{G}) \\subset \\mathrm{Vect}(\\mathcal{B})$ : $\\mathcal{B}$ est une base.\n\n**Dimension.** Avec $\\mathcal{L}$ vide (libre par convention), on obtient une base. Si $\\mathcal{B}$ et $\\mathcal{B}'$ sont deux bases, à $p$ et $q$ vecteurs, $\\mathcal{B}$ est libre et $\\mathcal{B}'$ génératrice, donc $p \\leq q$ par le lemme ; par symétrie $q \\leq p$.\n\n**Familles de $n$ vecteurs.** Une famille libre se complète en une base, qui a $n$ vecteurs : elle en a donc au plus $n$, et si elle en a exactement $n$, on ne lui a rien ajouté : c'est une base. Une famille génératrice finie contient une base (base incomplète avec $\\mathcal{L}$ vide) : elle a donc au moins $n$ vecteurs (une famille infinie aussi, évidemment), et si elle en a exactement $n$, cette base est la famille tout entière.",
+      "exemple": "Dans $\\mathbb{R}^3$, complétons la famille libre $(u)$, où $u = (1, 1, 0)$, à l'aide de la base canonique $(e_1, e_2, e_3)$. Comme $e_1 \\notin \\mathrm{Vect}(u)$, la famille $(u, e_1)$ est libre ; $\\mathrm{Vect}(u, e_1) = \\{(a + b, a, 0) : a, b \\in \\mathbb{R}\\}$ est le plan d'équation $z = 0$, qui contient $e_2$ mais pas $e_3$ ; donc $(u, e_1, e_3)$ est libre, et c'est une base puisqu'elle a $3 = \\dim \\mathbb{R}^3$ vecteurs. De même, $(1, X - 1, (X - 1)^2)$ est une famille libre de $\\mathbb{R}_2[X]$ (polynômes non nuls de degrés distincts) à $3 = \\dim \\mathbb{R}_2[X]$ éléments : c'est une base, sans qu'il soit besoin de vérifier qu'elle est génératrice.",
+      "contre_exemple": "- **Hors de la dimension finie** : dans $\\mathbb{R}[X]$, les familles $(1, X, \\dots, X^n)$ sont libres pour tout $n$ ; par le lemme de comparaison, aucune famille finie n'engendre $\\mathbb{R}[X]$, qui n'est donc pas de dimension finie. La famille libre $(1, X)$ n'y est pas une base.\n- **$n$ vecteurs sans liberté** : dans $\\mathbb{R}^2$, $((1, 0), (2, 0))$ a $2 = \\dim \\mathbb{R}^2$ vecteurs mais n'est ni libre ni génératrice ; elle ne peut pas être complétée en une base, puisque toute famille qui la contient est liée.\n- **Compléter avec une famille non génératrice** : dans $\\mathbb{R}^2$, avec $\\mathcal{L} = ((1, 0))$ et $\\mathcal{G} = ((1, 0))$, famille libre mais non génératrice, aucun vecteur de $\\mathcal{G}$ ne permet de compléter $\\mathcal{L}$ en une base.\n- **Deux à deux non colinéaires ne suffit pas** : les vecteurs de $((1, 0), (0, 1), (1, 1))$ sont deux à deux non colinéaires, mais la famille est liée et ne peut pas être complétée en une base de $\\mathbb{R}^2$.",
+      "affirmations": [
+        {
+          "texte": "Dans un espace vectoriel de dimension $n$, toute famille de $n$ vecteurs est une base.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, la famille $((1, 0), (2, 0))$ a deux vecteurs mais est liée."
+        },
+        {
+          "texte": "Dans $\\mathbb{R}^3$, toute famille libre de trois vecteurs est une base de $\\mathbb{R}^3$.",
+          "vrai": true,
+          "justification": "$\\dim \\mathbb{R}^3 = 3$, et une famille libre d'exactement $\\dim E$ vecteurs est une base."
+        },
+        {
+          "texte": "Toute famille génératrice finie d'un espace vectoriel contient une base de cet espace.",
+          "vrai": true,
+          "justification": "L'espace est alors de dimension finie, et le théorème de la base incomplète appliqué à la famille vide et à cette famille génératrice fournit une base formée de vecteurs de la famille."
+        },
+        {
+          "texte": "Dans $\\mathbb{R}^3$, une famille de quatre vecteurs deux à deux non colinéaires est génératrice.",
+          "vrai": false,
+          "contre_exemple": "$(1, 0, 0)$, $(0, 1, 0)$, $(1, 1, 0)$ et $(1, -1, 0)$ sont deux à deux non colinéaires, mais ils sont tous dans le plan $z = 0$, qui ne contient pas $(0, 0, 1)$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-familles"
+      ]
+    },
+    {
+      "id": "al-l1-espaces-somme-directe",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Somme directe de sous-espaces vectoriels",
+      "recto": "Définir la somme directe de sous-espaces vectoriels et énoncer ses caractérisations, avec leurs hypothèses.",
+      "cours": "Additionner des sous-espaces, c'est former tous les vecteurs $x_1 + \\dots + x_p$ avec $x_i \\in F_i$ : la somme $F_1 + \\dots + F_p$ est le plus petit sous-espace qui contient tous les $F_i$. La somme est **directe** quand chaque vecteur de la somme ne s'écrit que d'une seule façon ; on la note alors $F_1 \\oplus \\dots \\oplus F_p$, et l'on peut parler de la composante d'un vecteur sur chaque $F_i$. C'est l'analogue, pour des sous-espaces, de la notion de famille libre.\n\nGrâce à la linéarité, il suffit de tester l'unicité pour le vecteur nul : la somme est directe si et seulement si $x_1 + \\dots + x_p = 0$ (avec $x_i \\in F_i$) force tous les $x_i$ à être nuls. Pour deux sous-espaces, c'est encore plus simple : $F + G$ est directe si et seulement si $F \\cap G = \\{0\\}$.\n\nEn dimension finie, on peut tout ramener aux bases : la somme est directe exactement quand les bases des $F_i$ mises bout à bout forment une famille libre, et alors les dimensions s'additionnent. Exemple fondamental : toute fonction de $\\mathbb{R}$ dans $\\mathbb{R}$ s'écrit de façon unique comme somme d'une fonction paire et d'une fonction impaire.\n\nLe piège principal concerne trois sous-espaces ou plus : il ne suffit **pas** que les intersections deux à deux soient réduites à $\\{0\\}$. Trois droites distinctes d'un plan se coupent deux à deux en $\\{0\\}$, mais leur somme, qui est le plan, de dimension $2$, n'est pas directe, puisque $1 + 1 + 1 \\neq 2$.",
+      "hypotheses": [
+        "$F_1, \\dots, F_p$ sont des sous-espaces vectoriels de $E$.",
+        "Si $x_1 + \\dots + x_p = 0$ avec $x_i \\in F_i$ pour tout $i$, alors $x_1 = \\dots = x_p = 0$."
+      ],
+      "hypotheses_pieges": [
+        "$F_i \\cap F_j = \\{0\\}$ pour tous $i \\neq j$ (à la place de la condition sur les décompositions de $0$).",
+        "$F_1 \\cap F_2 \\cap \\dots \\cap F_p = \\{0\\}$ (à la place de la condition sur les décompositions de $0$).",
+        "$0$ admet la décomposition $0 = 0 + \\dots + 0$ (à la place de : c'est la seule décomposition de $0$)."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel et $F_1, \\dots, F_p$ ($p \\geq 2$) des sous-espaces vectoriels de $E$. Leur somme $F_1 + \\dots + F_p = \\{x_1 + \\dots + x_p : x_1 \\in F_1, \\dots, x_p \\in F_p\\}$ est un sous-espace vectoriel de $E$. Elle est dite **directe**, et notée $F_1 \\oplus \\dots \\oplus F_p$, si tout vecteur de la somme s'écrit de façon unique $x_1 + \\dots + x_p$ avec $x_i \\in F_i$ pour tout $i$.\n- La somme est directe si et seulement si : $x_1 + \\dots + x_p = 0$ avec $x_i \\in F_i$ pour tout $i$ entraîne $x_1 = \\dots = x_p = 0$.\n- Pour $p = 2$ : la somme $F_1 + F_2$ est directe si et seulement si $F_1 \\cap F_2 = \\{0\\}$.\n- Si les $F_i$ sont de dimension finie, de bases respectives $\\mathcal{B}_1, \\dots, \\mathcal{B}_p$, la somme est directe si et seulement si la famille obtenue en mettant bout à bout $\\mathcal{B}_1, \\dots, \\mathcal{B}_p$ est libre ; cette famille est alors une base de $F_1 \\oplus \\dots \\oplus F_p$, et $\\dim(F_1 \\oplus \\dots \\oplus F_p) = \\dim F_1 + \\dots + \\dim F_p$.",
+      "enonce_trous": "La somme $F + G$ de deux sous-espaces vectoriels est directe si et seulement si {{1}}. Pour $p \\geq 3$ sous-espaces $F_1, \\dots, F_p$, la somme est directe si et seulement si {{2}}. En dimension finie, la dimension d'une somme directe est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$F \\cap G = \\{0\\}$",
+          "leurres": [
+            "$F \\cap G = \\emptyset$",
+            "$F + G = E$",
+            "$F \\neq G$"
+          ]
+        },
+        {
+          "reponse": "la seule décomposition $0 = x_1 + \\dots + x_p$ avec $x_i \\in F_i$ est celle où tous les $x_i$ sont nuls",
+          "leurres": [
+            "les intersections $F_i \\cap F_j$, pour $i \\neq j$, sont réduites à $\\{0\\}$",
+            "l'intersection $F_1 \\cap \\dots \\cap F_p$ est réduite à $\\{0\\}$",
+            "$F_1 + \\dots + F_p = E$"
+          ]
+        },
+        {
+          "reponse": "la somme des dimensions des $F_i$",
+          "leurres": [
+            "le produit des dimensions des $F_i$",
+            "le maximum des dimensions des $F_i$",
+            "la somme des dimensions des $F_i$, diminuée de $p - 1$"
+          ]
+        }
+      ],
+      "demo": "**La somme est un sous-espace.** $0 = 0 + \\dots + 0$ est dans la somme, et $\\lambda(x_1 + \\dots + x_p) + (y_1 + \\dots + y_p) = (\\lambda x_1 + y_1) + \\dots + (\\lambda x_p + y_p)$ avec $\\lambda x_i + y_i \\in F_i$.\n\n**Décompositions de $0$.** Si la somme est directe, $0 = 0 + \\dots + 0$ est l'unique décomposition de $0$. Réciproquement, supposons que $0$ n'ait que la décomposition nulle. Si $x_1 + \\dots + x_p = y_1 + \\dots + y_p$ avec $x_i, y_i \\in F_i$, alors $(x_1 - y_1) + \\dots + (x_p - y_p) = 0$ avec $x_i - y_i \\in F_i$, donc $x_i = y_i$ pour tout $i$.\n\n**Cas $p = 2$.** Si la somme est directe et $x \\in F_1 \\cap F_2$, alors $x + (-x) = 0$ avec $x \\in F_1$ et $-x \\in F_2$, donc $x = 0$. Réciproquement, si $F_1 \\cap F_2 = \\{0\\}$ et $x_1 + x_2 = 0$, alors $x_1 = -x_2 \\in F_1 \\cap F_2$, donc $x_1 = x_2 = 0$.\n\n**Bases.** Notons $\\mathcal{B}$ la famille obtenue en mettant bout à bout les $\\mathcal{B}_i$ ; elle engendre $F_1 + \\dots + F_p$, puisque chaque $x_i \\in F_i$ est combinaison linéaire de $\\mathcal{B}_i$. Une relation linéaire entre les vecteurs de $\\mathcal{B}$ s'écrit, en regroupant les termes venant de chaque $\\mathcal{B}_i$, $x_1 + \\dots + x_p = 0$ avec $x_i \\in F_i$. Si la somme est directe, chaque $x_i$ est nul, puis la liberté de $\\mathcal{B}_i$ annule ses coefficients : $\\mathcal{B}$ est libre. Réciproquement, si $\\mathcal{B}$ est libre et si $x_1 + \\dots + x_p = 0$ avec $x_i \\in F_i$, on décompose chaque $x_i$ sur $\\mathcal{B}_i$ : on obtient une relation entre les vecteurs de $\\mathcal{B}$, dont tous les coefficients sont donc nuls, et tous les $x_i$ sont nuls. Dans ce cas, $\\mathcal{B}$ est une base de la somme, et elle a $\\dim F_1 + \\dots + \\dim F_p$ vecteurs.",
+      "exemple": "Dans $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$, notons $\\mathcal{P}$ le sous-espace des fonctions paires et $\\mathcal{I}$ celui des fonctions impaires. Si $f \\in \\mathcal{P} \\cap \\mathcal{I}$, alors $f(x) = f(-x) = -f(x)$, donc $f = 0$ : la somme est directe. Elle vaut $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$, car $f(x) = \\frac{f(x) + f(-x)}{2} + \\frac{f(x) - f(-x)}{2}$ ; par exemple $e^x = \\operatorname{ch} x + \\operatorname{sh} x$. Dans $\\mathbb{R}^3$, la droite $D = \\mathrm{Vect}((1, 1, 1))$ et le plan $P$ d'équation $x + y - z = 0$ sont en somme directe : $t(1, 1, 1) \\in P$ équivaut à $t + t - t = 0$, soit $t = 0$.",
+      "contre_exemple": "- **Intersections deux à deux nulles, somme non directe** : dans $\\mathbb{R}^2$, $D_1 = \\mathrm{Vect}((1, 0))$, $D_2 = \\mathrm{Vect}((0, 1))$ et $D_3 = \\mathrm{Vect}((1, 1))$ se coupent deux à deux en $\\{0\\}$ (et a fortiori $D_1 \\cap D_2 \\cap D_3 = \\{0\\}$), mais $(1, 0) + (0, 1) + (-1, -1) = 0$ est une décomposition non nulle de $0$ ; d'ailleurs $\\dim(D_1 + D_2 + D_3) = 2 \\neq 1 + 1 + 1$.\n- **L'existence de la décomposition nulle ne suffit pas** : avec $F_1 = F_2 = D_1$, on a $0 = 0 + 0$, mais aussi $0 = (1, 0) + (-1, 0)$ : la somme n'est pas directe.\n- **Bases mises bout à bout liées** : pour les plans $P_1 : z = 0$ et $P_2 : x = 0$ de $\\mathbb{R}^3$, de bases $((1, 0, 0), (0, 1, 0))$ et $((0, 1, 0), (0, 0, 1))$, la famille obtenue contient deux fois $(0, 1, 0)$ : elle est liée, et en effet $P_1 \\cap P_2 = \\mathrm{Vect}((0, 1, 0)) \\neq \\{0\\}$.",
+      "affirmations": [
+        {
+          "texte": "Si $F_1 \\cap F_2 = F_1 \\cap F_3 = F_2 \\cap F_3 = \\{0\\}$, alors la somme $F_1 + F_2 + F_3$ est directe.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, les droites $\\mathrm{Vect}((1, 0))$, $\\mathrm{Vect}((0, 1))$ et $\\mathrm{Vect}((1, 1))$ se coupent deux à deux en $\\{0\\}$, mais $(1, 0) + (0, 1) + (-1, -1) = 0$."
+        },
+        {
+          "texte": "Si la somme $F_1 + F_2 + F_3$ est directe, alors $F_1 \\cap F_2 = \\{0\\}$.",
+          "vrai": true,
+          "justification": "Si $x \\in F_1 \\cap F_2$, alors $x + (-x) + 0 = 0$ est une décomposition de $0$ avec $x \\in F_1$, $-x \\in F_2$, $0 \\in F_3$ ; elle est donc nulle, et $x = 0$."
+        },
+        {
+          "texte": "La somme $F + G$ est directe si et seulement si $F \\cup G$ est un sous-espace vectoriel.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, avec $F = G = \\mathrm{Vect}((1, 0))$, $F \\cup G = F$ est un sous-espace vectoriel, mais $F \\cap G = F \\neq \\{0\\}$ : la somme n'est pas directe. Inversement, les deux axes sont en somme directe sans que leur réunion soit un sous-espace."
+        },
+        {
+          "texte": "Dans $\\mathbb{R}^3$, deux plans vectoriels ne sont jamais en somme directe.",
+          "vrai": true,
+          "justification": "En mettant bout à bout des bases des deux plans, on obtient $4$ vecteurs de $\\mathbb{R}^3$, qui sont liés puisque $\\dim \\mathbb{R}^3 = 3$ : la somme n'est pas directe."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-dimension"
+      ]
+    },
+    {
+      "id": "al-l1-espaces-grassmann",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Supplémentaires et formule de Grassmann",
+      "recto": "Énoncer l'existence d'un supplémentaire, la formule de Grassmann et la caractérisation des supplémentaires par les dimensions, avec leurs hypothèses.",
+      "cours": "Deux sous-espaces $F$ et $G$ de $E$ sont **supplémentaires** si $E = F \\oplus G$ : tout vecteur de $E$ se décompose de façon unique en une composante dans $F$ et une composante dans $G$. C'est la situation idéale pour « couper » un problème en deux (projections, symétries, fonctions paires et impaires).\n\nEn dimension finie, tout sous-espace a un supplémentaire : on complète une base de $F$ en une base de $E$ (théorème de la base incomplète), et les vecteurs ajoutés engendrent un supplémentaire. Ce supplémentaire n'est **pas unique** : dans le plan, toute droite distincte de la droite $F$ en est un supplémentaire.\n\nLa **formule de Grassmann**, $\\dim(F + G) = \\dim F + \\dim G - \\dim(F \\cap G)$, ressemble à la formule $|A \\cup B| = |A| + |B| - |A \\cap B|$ sur les cardinaux : on retire ce qui est compté deux fois. Elle permet de calculer la dimension d'une intersection sans calculer l'intersection, ou de la minorer : deux plans de $\\mathbb{R}^3$ se coupent au moins selon une droite, car $\\dim(P \\cap Q) \\geq 2 + 2 - 3$.\n\nEn pratique, pour montrer $E = F \\oplus G$ en dimension finie, on vérifie **deux** choses : $F \\cap G = \\{0\\}$ et $\\dim F + \\dim G = \\dim E$ (ou, à la place de l'intersection, $F + G = E$). L'égalité des dimensions seule ne suffit pas, l'intersection nulle seule non plus.\n\nLe piège principal : la ressemblance avec les cardinaux s'arrête là. Pour trois sous-espaces, il n'y a pas de formule d'inclusion-exclusion : trois droites distinctes du plan donnent $\\dim(D_1 + D_2 + D_3) = 2$, alors que la « formule » donnerait $3$.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie.",
+        "$F$ et $G$ sont des sous-espaces vectoriels de $E$."
+      ],
+      "hypotheses_pieges": [
+        "$F \\cap G = \\{0\\}$.",
+        "$F + G = E$.",
+        "$\\dim F + \\dim G = \\dim E$."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie et $F$, $G$ des sous-espaces vectoriels de $E$.\n- **Existence d'un supplémentaire** : il existe un sous-espace vectoriel $S$ de $E$ tel que $E = F \\oplus S$ ; si une base $(f_1, \\dots, f_p)$ de $F$ est complétée en une base $(f_1, \\dots, f_p, s_1, \\dots, s_q)$ de $E$, on peut prendre $S = \\mathrm{Vect}(s_1, \\dots, s_q)$. Si $F \\neq \\{0\\}$ et $F \\neq E$, $F$ a une infinité de supplémentaires.\n- **Formule de Grassmann** : $\\dim(F + G) = \\dim F + \\dim G - \\dim(F \\cap G)$.\n- **Caractérisation des supplémentaires** : les trois assertions suivantes sont équivalentes : (a) $E = F \\oplus G$ ; (b) $F \\cap G = \\{0\\}$ et $\\dim F + \\dim G = \\dim E$ ; (c) $F + G = E$ et $\\dim F + \\dim G = \\dim E$.",
+      "enonce_trous": "Si $F$ et $G$ sont deux sous-espaces d'un espace $E$ de dimension finie, la dimension de $F + G$ vaut {{1}}. Ils sont supplémentaires dans $E$ si et seulement si {{2}} et $\\dim F + \\dim G = \\dim E$. Un sous-espace $F$ distinct de $\\{0\\}$ et de $E$ admet {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\dim F + \\dim G - \\dim(F \\cap G)$",
+          "leurres": [
+            "$\\dim F + \\dim G$",
+            "$\\dim F + \\dim G + \\dim(F \\cap G)$",
+            "$\\max(\\dim F, \\dim G)$"
+          ]
+        },
+        {
+          "reponse": "$F \\cap G = \\{0\\}$",
+          "leurres": [
+            "$F \\neq G$",
+            "$F \\not\\subset G$",
+            "$F \\cup G = E$"
+          ]
+        },
+        {
+          "reponse": "une infinité de supplémentaires",
+          "leurres": [
+            "un unique supplémentaire",
+            "exactement deux supplémentaires",
+            "aucun supplémentaire"
+          ]
+        }
+      ],
+      "demo": "**Dimensions finies.** Les sous-espaces de $E$ sont de dimension finie : une famille libre d'un sous-espace $H$ est libre dans $E$, donc a au plus $\\dim E$ vecteurs ; une famille libre de $H$ de longueur maximale engendre $H$ (sinon on l'allongerait par le résultat d'ajout) : c'est une base de $H$.\n\n**Existence.** La famille $(f_1, \\dots, f_p, s_1, \\dots, s_q)$ est obtenue en mettant bout à bout une base de $F$ et une base de $S$ ; elle est libre, donc la somme $F + S$ est directe (caractérisation par les bases), et elle engendre $E$, donc $F \\oplus S = E$. Si $F \\neq \\{0\\}$ et $F \\neq E$, alors $p \\geq 1$ et $q \\geq 1$ ; pour $t \\in \\mathbb{K}$, la famille $(f_1, \\dots, f_p, s_1 + t f_1, s_2, \\dots, s_q)$ engendre $E$ (car $s_1 = (s_1 + t f_1) - t f_1$) et a $\\dim E$ vecteurs : c'est une base, donc $S_t = \\mathrm{Vect}(s_1 + t f_1, s_2, \\dots, s_q)$ est un supplémentaire de $F$. Si $S_t = S_{t'}$, alors $(t - t') f_1 = (s_1 + t f_1) - (s_1 + t' f_1) \\in S_t \\cap F = \\{0\\}$, donc $t = t'$ : les $S_t$ sont deux à deux distincts, et $\\mathbb{K}$ est infini.\n\n**Grassmann.** Soit $(e_1, \\dots, e_r)$ une base de $F \\cap G$ ; complétons-la en une base $(e_1, \\dots, e_r, f_1, \\dots, f_s)$ de $F$ et en une base $(e_1, \\dots, e_r, g_1, \\dots, g_t)$ de $G$. La famille $\\mathcal{C} = (e_1, \\dots, e_r, f_1, \\dots, f_s, g_1, \\dots, g_t)$ engendre $F + G$. Elle est libre : si $\\sum a_i e_i + \\sum b_j f_j + \\sum c_k g_k = 0$, le vecteur $v = \\sum c_k g_k$, qui est dans $G$, vaut $-\\sum a_i e_i - \\sum b_j f_j \\in F$ ; donc $v \\in F \\cap G$ s'écrit $v = \\sum d_i e_i$, et la liberté de la base de $G$ appliquée à $\\sum c_k g_k - \\sum d_i e_i = 0$ donne tous les $c_k$ nuls ; la liberté de la base de $F$ donne ensuite tous les $a_i$ et $b_j$ nuls. Donc $\\dim(F + G) = r + s + t = (r + s) + (r + t) - r$.\n\n**Caractérisation.** (a) entraîne (b) et (c) : $F \\cap G = \\{0\\}$, $F + G = E$, et la formule de Grassmann donne $\\dim E = \\dim F + \\dim G - 0$. (b) entraîne (a) : la formule donne $\\dim(F + G) = \\dim E$ ; une base de $F + G$ est donc une famille libre de $E$ à $\\dim E$ vecteurs, c'est-à-dire une base de $E$, d'où $F + G = E$, et la somme est directe car $F \\cap G = \\{0\\}$. (c) entraîne (a) : la formule donne $\\dim(F \\cap G) = \\dim F + \\dim G - \\dim E = 0$, donc $F \\cap G = \\{0\\}$.",
+      "exemple": "Dans $\\mathbb{R}^3$, le plan $P$ d'équation $x + y + z = 0$ et la droite $D = \\mathrm{Vect}((1, 0, 0))$ sont supplémentaires : $t(1, 0, 0) \\in P$ impose $t = 0$, donc $P \\cap D = \\{0\\}$, et $\\dim P + \\dim D = 2 + 1 = 3$. La droite $\\mathrm{Vect}((0, 1, 0))$ est un autre supplémentaire de $P$. Pour deux plans $P$ et $Q$ de $\\mathbb{R}^3$, la formule de Grassmann donne $\\dim(P \\cap Q) = 4 - \\dim(P + Q) \\geq 4 - 3 = 1$ : deux plans vectoriels de $\\mathbb{R}^3$ se coupent au moins selon une droite.",
+      "contre_exemple": "- **Égalité des dimensions seule** : dans $\\mathbb{R}^2$, $F = G = \\mathrm{Vect}((1, 0))$ vérifient $\\dim F + \\dim G = 2 = \\dim \\mathbb{R}^2$, mais $F \\cap G = F \\neq \\{0\\}$ et $F + G = F \\neq \\mathbb{R}^2$.\n- **Intersection nulle seule** : dans $\\mathbb{R}^3$, $F = \\mathrm{Vect}((1, 0, 0))$ et $G = \\mathrm{Vect}((0, 1, 0))$ vérifient $F \\cap G = \\{0\\}$, mais $F + G$ est le plan $z = 0$ : $\\dim F + \\dim G = 2 \\neq 3$.\n- **Pas d'inclusion-exclusion pour trois sous-espaces** : dans $\\mathbb{R}^2$, avec $D_1 = \\mathrm{Vect}((1, 0))$, $D_2 = \\mathrm{Vect}((0, 1))$, $D_3 = \\mathrm{Vect}((1, 1))$, toutes les intersections sont nulles, et pourtant $\\dim(D_1 + D_2 + D_3) = 2 \\neq 1 + 1 + 1$.\n- **Non-unicité du supplémentaire** : dans $\\mathbb{R}^2$, $\\mathrm{Vect}((0, 1))$ et $\\mathrm{Vect}((1, 1))$ sont deux supplémentaires distincts de $\\mathrm{Vect}((1, 0))$.",
+      "affirmations": [
+        {
+          "texte": "Dans un espace de dimension finie, un sous-espace $F$ distinct de $\\{0\\}$ et de $E$ a un unique supplémentaire.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, $\\mathrm{Vect}((0, 1))$ et $\\mathrm{Vect}((1, 1))$ sont deux supplémentaires distincts de $F = \\mathrm{Vect}((1, 0))$."
+        },
+        {
+          "texte": "Si $F$ et $G$ sont deux sous-espaces de $E$, de dimension finie, avec $\\dim F + \\dim G > \\dim E$, alors $F \\cap G \\neq \\{0\\}$.",
+          "vrai": true,
+          "justification": "Par la formule de Grassmann, $\\dim(F \\cap G) = \\dim F + \\dim G - \\dim(F + G) \\geq \\dim F + \\dim G - \\dim E > 0$."
+        },
+        {
+          "texte": "Pour trois sous-espaces $F$, $G$, $H$ d'un espace de dimension finie, $\\dim(F + G + H) = \\dim F + \\dim G + \\dim H - \\dim(F \\cap G) - \\dim(F \\cap H) - \\dim(G \\cap H) + \\dim(F \\cap G \\cap H)$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, avec les droites $\\mathrm{Vect}((1, 0))$, $\\mathrm{Vect}((0, 1))$, $\\mathrm{Vect}((1, 1))$, le membre de gauche vaut $2$ et celui de droite $1 + 1 + 1 - 0 - 0 - 0 + 0 = 3$."
+        },
+        {
+          "texte": "Si $E$ est de dimension finie, $F \\cap G = \\{0\\}$ et $\\dim F + \\dim G = \\dim E$, alors $E = F \\oplus G$.",
+          "vrai": true,
+          "justification": "La formule de Grassmann donne $\\dim(F + G) = \\dim E$, donc une base de $F + G$ est une base de $E$ et $F + G = E$ ; la somme est directe puisque $F \\cap G = \\{0\\}$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-somme-directe"
+      ]
+    },
+    {
+      "id": "al-l1-espaces-inclusion",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-espaces",
+      "type": "theoreme",
+      "titre": "Inclusion et égalité des dimensions",
+      "recto": "Énoncer le résultat qui compare les dimensions de deux sous-espaces emboîtés, avec ses hypothèses.",
+      "cours": "En dimension finie, la dimension mesure la « taille » d'un sous-espace, et elle est croissante pour l'inclusion : si $F \\subset G$, alors $\\dim F \\leq \\dim G$. Le point remarquable est le cas d'égalité : un sous-espace ne peut pas être strictement contenu dans un autre de même dimension finie. Ainsi, une droite contenue dans une droite lui est égale, et un plan contenu dans un plan aussi.\n\nC'est la méthode la plus économique pour prouver l'égalité de deux sous-espaces : au lieu de deux inclusions, on en démontre **une seule**, $F \\subset G$, et l'on vérifie $\\dim F = \\dim G$. Par exemple, pour montrer que $\\mathrm{Vect}(u, v) = P$, il suffit de vérifier que $u$ et $v$ sont dans $P$, qu'ils ne sont pas colinéaires, et que $\\dim P = 2$.\n\nLe résultat contient aussi un fait de base : un sous-espace d'un espace de dimension finie est de dimension finie. Sa forme stricte est souvent utile : si $F \\subsetneq G$ avec $G$ de dimension finie, alors $\\dim F \\leq \\dim G - 1$.\n\nDeux pièges : l'égalité des dimensions sans inclusion ne dit rien (deux droites distinctes du plan ont la même dimension), et la dimension finie est indispensable. Dans $\\mathbb{R}[X]$, le sous-espace des polynômes nuls en $0$ est strictement contenu dans $\\mathbb{R}[X]$, alors que tous deux sont de dimension infinie.",
+      "hypotheses": [
+        "$F$ et $G$ sont des sous-espaces vectoriels de $E$.",
+        "$F \\subset G$.",
+        "$G$ est de dimension finie."
+      ],
+      "hypotheses_pieges": [
+        "$\\dim F = \\dim G$, sans inclusion supposée (à la place de $F \\subset G$).",
+        "$F \\cap G \\neq \\{0\\}$ (à la place de $F \\subset G$).",
+        "$F$ et $G$ sont de dimension infinie (à la place de : $G$ est de dimension finie)."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel et $F$, $G$ deux sous-espaces vectoriels de $E$ tels que $F \\subset G$, avec $G$ de dimension finie. Alors $F$ est de dimension finie et $\\dim F \\leq \\dim G$ ; de plus, $\\dim F = \\dim G$ si et seulement si $F = G$.\n\nEn particulier, si $E$ est de dimension finie, tout sous-espace vectoriel $F$ de $E$ est de dimension finie, $\\dim F \\leq \\dim E$, et $\\dim F = \\dim E$ si et seulement si $F = E$.",
+      "enonce_trous": "Soient $F \\subset G$ deux sous-espaces vectoriels, avec {{1}}. Alors $F$ est de dimension finie, $\\dim F \\leq \\dim G$, et $\\dim F = \\dim G$ si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "$G$ de dimension finie",
+          "leurres": [
+            "$F \\neq \\{0\\}$",
+            "$F$ et $G$ de même dimension",
+            "$G$ de dimension infinie"
+          ]
+        },
+        {
+          "reponse": "$F = G$",
+          "leurres": [
+            "$F \\cap G = \\{0\\}$",
+            "$F \\neq G$",
+            "$G$ est un supplémentaire de $F$"
+          ]
+        }
+      ],
+      "demo": "**$F$ est de dimension finie.** Toute famille libre de $F$ est une famille libre de $G$, donc a au plus $n = \\dim G$ vecteurs (lemme de comparaison). Choisissons une famille libre $\\mathcal{B}$ de $F$ ayant le plus grand nombre $p$ de vecteurs possible ($p \\leq n$ ; la famille vide est libre). Si un $x \\in F$ n'était pas dans $\\mathrm{Vect}(\\mathcal{B})$, la famille $\\mathcal{B}$ complétée par $x$ serait une famille libre de $F$ à $p + 1$ vecteurs (résultat d'ajout), ce qui est exclu. Donc $\\mathcal{B}$ engendre $F$ : c'est une base de $F$, et $\\dim F = p \\leq n$.\n\n**Cas d'égalité.** Si $F = G$, les dimensions sont égales. Réciproquement, si $\\dim F = \\dim G = n$, une base de $F$ est une famille libre de $G$ à $n$ vecteurs, donc une base de $G$ ; ainsi $G$ est engendré par des vecteurs de $F$, d'où $G \\subset F$, et $F = G$.\n\nLe cas particulier s'obtient avec $G = E$.",
+      "exemple": "Soit $P = \\{(x, y, z) \\in \\mathbb{R}^3 : x + y + z = 0\\}$, de dimension $2$ (base $((1, -1, 0), (1, 0, -1))$). Les vecteurs $u = (1, 1, -2)$ et $v = (2, -1, -1)$ vérifient l'équation de $P$ et ne sont pas colinéaires, donc $\\mathrm{Vect}(u, v)$ est un sous-espace de dimension $2$ contenu dans $P$ : par le cas d'égalité, $\\mathrm{Vect}(u, v) = P$, sans avoir à exprimer chaque vecteur de $P$ à l'aide de $u$ et $v$.",
+      "contre_exemple": "- **Égalité des dimensions sans inclusion** : dans $\\mathbb{R}^2$, $\\mathrm{Vect}((1, 0))$ et $\\mathrm{Vect}((0, 1))$ sont de dimension $1$ et distinctes.\n- **Intersection non nulle au lieu de l'inclusion** : dans $\\mathbb{R}^3$, les plans $z = 0$ et $x = 0$ ont la même dimension et se coupent selon la droite $\\mathrm{Vect}((0, 1, 0))$, mais ils sont distincts.\n- **Dimension infinie** : dans $\\mathbb{R}[X]$, $F = \\{P : P(0) = 0\\}$ est strictement contenu dans $G = \\mathbb{R}[X]$ ($1 \\notin F$), et pourtant $F$ et $G$ sont tous deux de dimension infinie : ils contiennent les familles libres $(X, X^2, \\dots, X^n)$ pour tout $n$.",
+      "affirmations": [
+        {
+          "texte": "Deux sous-espaces vectoriels de même dimension finie sont égaux.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, $\\mathrm{Vect}((1, 0))$ et $\\mathrm{Vect}((0, 1))$ sont de dimension $1$ et distincts : il faut en plus une inclusion."
+        },
+        {
+          "texte": "Si $F \\subsetneq G$, avec $G$ de dimension finie, alors $\\dim F \\leq \\dim G - 1$.",
+          "vrai": true,
+          "justification": "On a $\\dim F \\leq \\dim G$, et l'égalité entraînerait $F = G$ ; donc $\\dim F < \\dim G$, et ce sont des entiers."
+        },
+        {
+          "texte": "Un sous-espace vectoriel d'un espace de dimension infinie est de dimension infinie.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}[X]$, de dimension infinie, le sous-espace $\\{0\\}$ et la droite $\\mathbb{R}_0[X]$ des polynômes constants sont de dimension finie."
+        },
+        {
+          "texte": "Si $F \\subset G$, avec $G$ de dimension finie et $\\dim G \\leq \\dim F$, alors $F = G$.",
+          "vrai": true,
+          "justification": "L'inclusion donne $\\dim F \\leq \\dim G$, donc $\\dim F = \\dim G$, et le cas d'égalité donne $F = G$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-dimension"
+      ]
+    }
+  ]
+}
