@@ -1,0 +1,219 @@
+{
+  "cartes": [
+    {
+      "id": "proba-t-binomiale",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-binomiale",
+      "type": "theoreme",
+      "titre": "Schéma de Bernoulli et loi binomiale",
+      "recto": "Énoncer le résultat donnant la loi, l'espérance et la variance du nombre de succès dans un schéma de Bernoulli, avec ses hypothèses.",
+      "hypotheses": [
+        "Le cadre est un univers fini muni d'une probabilité $P$.",
+        "$n\\in\\mathbb{N}^*$ et $p\\in\\left[0,1\\right]$.",
+        "On répète $n$ épreuves de Bernoulli indépendantes.",
+        "Chaque épreuve a la même probabilité de succès $p$.",
+        "$X$ est le nombre de succès obtenus au cours des $n$ épreuves."
+      ],
+      "hypotheses_pieges": [
+        "Les épreuves peuvent avoir des probabilités de succès différentes.",
+        "Il suffit que chaque épreuve donne un succès avec probabilité $p$, sans condition d'indépendance (par exemple des tirages sans remise).",
+        "Les épreuves sont deux à deux incompatibles.",
+        "Le paramètre vérifie $p=\\frac{1}{2}$."
+      ],
+      "enonce": "On se place sur un univers fini muni d'une probabilité $P$. Soit $n\\in\\mathbb{N}^*$ et $p\\in\\left[0,1\\right]$. On répète $n$ épreuves de Bernoulli **indépendantes**, ayant toutes la même probabilité de succès $p$ (schéma de Bernoulli de paramètres $n$ et $p$), et on note $X$ le nombre de succès.\n\nAlors $X$ suit la loi binomiale $\\mathcal{B}(n,p)$ : pour tout $k\\in\\{0,\\dots,n\\}$,\n$$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}.$$\n\nDe plus $E(X)=np$ et $V(X)=np(1-p)$.",
+      "enonce_trous": "On répète $n$ épreuves de Bernoulli {{1}}, ayant toutes la même probabilité de succès $p$. Le nombre $X$ de succès vérifie, pour tout $k\\in\\{0,\\dots,n\\}$, $P(X=k)=$ {{2}}, et sa variance vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "indépendantes",
+          "leurres": [
+            "deux à deux incompatibles",
+            "réalisées par tirages successifs sans remise",
+            "quelconques (pas forcément indépendantes)"
+          ]
+        },
+        {
+          "reponse": "$\\binom{n}{k}p^k(1-p)^{n-k}$",
+          "leurres": [
+            "$p^k(1-p)^{n-k}$",
+            "$\\binom{n}{k}p^{n-k}(1-p)^{k}$",
+            "$\\binom{n}{k}p^k(1-p)^{k}$"
+          ]
+        },
+        {
+          "reponse": "$np(1-p)$",
+          "leurres": [
+            "$np$",
+            "$\\sqrt{np(1-p)}$",
+            "$n^2p(1-p)$"
+          ]
+        }
+      ],
+      "demo": "**Loi.** On code chaque issue de l'expérience par la liste $(r_1,\\dots,r_n)$ des résultats, avec $r_i\\in\\{S,E\\}$ (succès ou échec). Par indépendance des épreuves, la probabilité d'une liste comportant exactement $k$ succès est le produit des probabilités de ses résultats, soit $p^k(1-p)^{n-k}$. L'événement $\\{X=k\\}$ est la réunion disjointe des listes ayant exactement $k$ succès ; une telle liste est déterminée par le choix des $k$ positions des succès parmi $n$, d'où $\\binom{n}{k}$ listes et\n$$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}.$$\n\n**Espérance.** Avec $q=1-p$ et l'identité $k\\binom{n}{k}=n\\binom{n-1}{k-1}$ pour $1\\leq k\\leq n$ :\n$$E(X)=\\sum_{k=1}^{n}k\\binom{n}{k}p^kq^{n-k}=np\\sum_{k=1}^{n}\\binom{n-1}{k-1}p^{k-1}q^{n-k}=np(p+q)^{n-1}=np.$$\n\n**Variance.** De même, $k(k-1)\\binom{n}{k}=n(n-1)\\binom{n-2}{k-2}$ pour $2\\leq k\\leq n$ donne $E\\left(X(X-1)\\right)=n(n-1)p^2(p+q)^{n-2}=n(n-1)p^2$ (la somme est vide et vaut $0$ si $n=1$). Par la formule de König-Huygens :\n$$V(X)=E(X^2)-E(X)^2=E\\left(X(X-1)\\right)+E(X)-E(X)^2=n(n-1)p^2+np-n^2p^2=np(1-p).$$\n\nAutre voie : $X=X_1+\\dots+X_n$ où $X_i$ vaut $1$ en cas de succès à la $i$-ème épreuve et $0$ sinon ; la linéarité donne $E(X)=np$, et l'additivité de la variance pour des variables indépendantes (admise en Terminale) donne $V(X)=n\\,p(1-p)$.",
+      "exemple": "Un QCM comporte $10$ questions ayant chacune $4$ réponses dont une seule juste. Un candidat répond au hasard, indépendamment d'une question à l'autre. Le nombre $X$ de bonnes réponses suit $\\mathcal{B}\\left(10,\\frac{1}{4}\\right)$ : $E(X)=\\frac{5}{2}$, $V(X)=\\frac{15}{8}$ et $P(X=0)=\\left(\\frac{3}{4}\\right)^{10}=\\frac{59049}{1048576}$.",
+      "contre_exemple": "- **Tirages sans remise.** Une urne contient $3$ boules rouges et $2$ blanches ; on tire successivement $2$ boules sans remise et $X$ est le nombre de rouges. Chaque tirage donne rouge avec probabilité $\\frac{3}{5}$ (pour le second : $\\frac{3}{5}\\cdot\\frac{2}{4}+\\frac{2}{5}\\cdot\\frac{3}{4}=\\frac{3}{5}$), mais $P(X=2)=\\frac{3}{5}\\cdot\\frac{2}{4}=\\frac{3}{10}$ alors que $\\mathcal{B}\\left(2,\\frac{3}{5}\\right)$ donnerait $\\frac{9}{25}$. Les tirages ne sont pas indépendants.\n- **Paramètres différents.** Deux épreuves indépendantes de probabilités de succès $\\frac{1}{2}$ et $\\frac{1}{3}$ : $P(X=0)=\\frac{1}{3}$, $P(X=1)=\\frac{1}{2}$, $P(X=2)=\\frac{1}{6}$. Si $X$ suivait $\\mathcal{B}(2,q)$, on aurait $q^2=\\frac{1}{6}$, donc $q=\\frac{1}{\\sqrt{6}}$, et alors $(1-q)^2=\\frac{7}{6}-\\frac{2}{\\sqrt{6}}\\neq\\frac{1}{3}$ : $X$ ne suit aucune loi binomiale.\n- **Épreuves non indépendantes.** Si l'on compte deux fois la même épreuve de paramètre $p\\in\\left]0,1\\right[$, on obtient $X=2X_1$ : $P(X=1)=0$ alors que $\\mathcal{B}(2,p)$ donne $2p(1-p)\\neq 0$.",
+      "affirmations": [
+        {
+          "texte": "On tire successivement $2$ boules sans remise dans une urne contenant $3$ boules rouges et $2$ blanches. Comme chaque tirage donne une boule rouge avec probabilité $\\frac{3}{5}$, le nombre de boules rouges suit la loi $\\mathcal{B}\\left(2,\\frac{3}{5}\\right)$.",
+          "vrai": false,
+          "contre_exemple": "$P(X=2)=\\frac{3}{5}\\cdot\\frac{2}{4}=\\frac{3}{10}$, alors que $\\mathcal{B}\\left(2,\\frac{3}{5}\\right)$ donne $P(X=2)=\\frac{9}{25}$. Les deux tirages ont bien la même loi, mais ils ne sont pas indépendants : $P(R_1\\cap R_2)=\\frac{3}{10}\\neq\\frac{9}{25}=P(R_1)P(R_2)$."
+        },
+        {
+          "texte": "Si $X\\sim\\mathcal{B}(n,p)$ et $Y\\sim\\mathcal{B}(m,p)$ sont définies sur le même univers fini, alors $X+Y\\sim\\mathcal{B}(n+m,p)$.",
+          "vrai": false,
+          "contre_exemple": "Avec $n=m=1$, $p=\\frac{1}{2}$ et $Y=X$ : $X+Y=2X$ ne prend que les valeurs $0$ et $2$, donc $P(X+Y=1)=0$, alors que $\\mathcal{B}\\left(2,\\frac{1}{2}\\right)$ donne $\\frac{1}{2}$. Le résultat devient vrai si $X$ et $Y$ sont indépendantes."
+        },
+        {
+          "texte": "Si $X\\sim\\mathcal{B}(n,p)$, alors $n-X\\sim\\mathcal{B}(n,1-p)$.",
+          "vrai": true,
+          "justification": "$n-X$ compte les échecs, qui forment un schéma de Bernoulli de paramètre $1-p$. Par le calcul : $P(n-X=k)=P(X=n-k)=\\binom{n}{n-k}p^{n-k}(1-p)^{k}=\\binom{n}{k}(1-p)^kp^{n-k}$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "proba-t-bienayme",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-concentration",
+      "type": "theoreme",
+      "titre": "Inégalité de Bienaymé-Tchebychev",
+      "recto": "Énoncer l'inégalité de Bienaymé-Tchebychev avec ses hypothèses.",
+      "hypotheses": [
+        "Le cadre est un univers fini muni d'une probabilité $P$.",
+        "$X$ est une variable aléatoire réelle sur cet univers.",
+        "$a$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "Le réel $a$ est positif ou nul.",
+        "La variable $X$ est à valeurs positives (hypothèse de l'inégalité de Markov).",
+        "La variable $X$ suit une loi binomiale.",
+        "La variance de $X$ est strictement positive."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire réelle définie sur un univers fini muni d'une probabilité $P$. Pour tout réel $a>0$,\n$$P\\left(|X-E(X)|\\geq a\\right)\\leq\\frac{V(X)}{a^2}.$$",
+      "enonce_trous": "Soit $X$ une variable aléatoire réelle sur un univers fini et $a$ {{1}}. Alors $P\\left(|X-E(X)|\\geq a\\right)\\leq$ {{2}}.",
+      "trous": [
+        {
+          "reponse": "un réel strictement positif",
+          "leurres": [
+            "un réel positif ou nul",
+            "un réel non nul",
+            "un entier relatif"
+          ]
+        },
+        {
+          "reponse": "$\\frac{V(X)}{a^2}$",
+          "leurres": [
+            "$\\frac{V(X)}{a}$",
+            "$\\frac{\\sigma(X)}{a^2}$",
+            "$\\frac{E(X)}{a}$"
+          ]
+        }
+      ],
+      "demo": "Notons $m=E(X)$ et $x_1,\\dots,x_r$ les valeurs prises par $X$, avec $p_j=P(X=x_j)$. Soit $J$ l'ensemble des indices $j$ tels que $|x_j-m|\\geq a$. Tous les termes de la somme définissant la variance sont positifs, donc\n$$V(X)=\\sum_{j=1}^{r}(x_j-m)^2p_j\\geq\\sum_{j\\in J}(x_j-m)^2p_j\\geq\\sum_{j\\in J}a^2p_j=a^2\\,P\\left(|X-m|\\geq a\\right).$$\nComme $a>0$, on peut diviser par $a^2$, d'où l'inégalité.",
+      "exemple": "Si $E(X)=20$ et $V(X)=4$, alors $P\\left(|X-20|\\geq 5\\right)\\leq\\frac{4}{25}$, donc $P\\left(15<X<25\\right)\\geq\\frac{21}{25}$.",
+      "contre_exemple": "- **$a=0$ est exclu** : $\\frac{V(X)}{a^2}$ n'a pas de sens, et l'événement $\\left\\{|X-E(X)|\\geq 0\\right\\}$ est certain. Pour $0<a\\leq\\sigma(X)$, l'inégalité est vraie mais sans intérêt car $\\frac{V(X)}{a^2}\\geq 1$.\n- **Ce n'est pas l'inégalité de Markov** : $P(X\\geq a)\\leq\\frac{E(X)}{a}$ exige $X$ à valeurs positives. Pour $X$ valant $-1$ ou $1$ avec probabilité $\\frac{1}{2}$, $E(X)=0$ mais $P(X\\geq 1)=\\frac{1}{2}$.\n- **L'inégalité peut être une égalité** : si $X$ vaut $-1$, $0$, $1$ avec probabilités $\\frac{1}{8}$, $\\frac{3}{4}$, $\\frac{1}{8}$, alors $E(X)=0$, $V(X)=\\frac{1}{4}$ et $P\\left(|X|\\geq 1\\right)=\\frac{1}{4}=\\frac{V(X)}{1^2}$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $a>0$, l'inégalité de Bienaymé-Tchebychev est stricte : $P\\left(|X-E(X)|\\geq a\\right)<\\frac{V(X)}{a^2}$.",
+          "vrai": false,
+          "contre_exemple": "$X$ valant $-1$, $0$, $1$ avec probabilités $\\frac{1}{8}$, $\\frac{3}{4}$, $\\frac{1}{8}$ : $E(X)=0$, $V(X)=\\frac{1}{4}$ et, pour $a=1$, $P\\left(|X|\\geq 1\\right)=\\frac{1}{4}=\\frac{V(X)}{a^2}$."
+        },
+        {
+          "texte": "Pour tout $a>0$, $P\\left(|X-E(X)|>a\\right)\\leq\\frac{V(X)}{a^2}$.",
+          "vrai": true,
+          "justification": "L'événement $\\left\\{|X-E(X)|>a\\right\\}$ est inclus dans $\\left\\{|X-E(X)|\\geq a\\right\\}$ ; on conclut par croissance de $P$ et par l'inégalité de Bienaymé-Tchebychev."
+        },
+        {
+          "texte": "Pour toute variable aléatoire réelle $X$ sur un univers fini et tout $a>0$, $P(X\\geq a)\\leq\\frac{E(X)}{a}$.",
+          "vrai": false,
+          "contre_exemple": "$X$ valant $-1$ ou $1$ avec probabilité $\\frac{1}{2}$ : $E(X)=0$ mais $P(X\\geq 1)=\\frac{1}{2}>0$. Cette inégalité (de Markov) suppose $X$ à valeurs positives."
+        },
+        {
+          "texte": "Pour tout $a>0$, $P\\left(|X-E(X)|<a\\right)\\geq 1-\\frac{V(X)}{a^2}$.",
+          "vrai": true,
+          "justification": "C'est l'inégalité de Bienaymé-Tchebychev appliquée à l'événement contraire : $P\\left(|X-E(X)|<a\\right)=1-P\\left(|X-E(X)|\\geq a\\right)$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "proba-t-lgn",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-concentration",
+      "type": "theoreme",
+      "titre": "Inégalité de concentration et loi faible des grands nombres",
+      "recto": "Énoncer l'inégalité de concentration pour la moyenne d'un échantillon et la loi faible des grands nombres, avec leurs hypothèses.",
+      "hypotheses": [
+        "Le cadre est celui de variables aléatoires réelles sur un univers fini.",
+        "$X$ est une variable aléatoire réelle d'espérance $\\mu$ et de variance $V(X)$.",
+        "$n\\in\\mathbb{N}^*$ et $X_1,\\dots,X_n$ ont toutes la même loi que $X$.",
+        "Les variables $X_1,\\dots,X_n$ sont indépendantes (échantillon de taille $n$ de la loi de $X$).",
+        "$\\delta$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que $X_1,\\dots,X_n$ aient la même loi, sans condition d'indépendance.",
+        "Il suffit que $X_1,\\dots,X_n$ aient la même espérance, sans autre condition.",
+        "Le réel $\\delta$ est positif ou nul.",
+        "La variable $X$ suit une loi de Bernoulli."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini, d'espérance $\\mu$. Pour $n\\in\\mathbb{N}^*$, soit $(X_1,\\dots,X_n)$ un échantillon de taille $n$ de la loi de $X$ : des variables aléatoires **indépendantes** de même loi que $X$. On pose $M_n=\\frac{X_1+\\dots+X_n}{n}$.\n\n**Inégalité de concentration.** Pour tout réel $\\delta>0$,\n$$P\\left(|M_n-\\mu|\\geq\\delta\\right)\\leq\\frac{V(X)}{n\\delta^2}.$$\n\n**Loi faible des grands nombres.** Pour tout réel $\\delta>0$,\n$$\\lim_{n\\to+\\infty}P\\left(|M_n-\\mu|\\geq\\delta\\right)=0.$$\n\nLa probabilité $P\\left(|M_n-\\mu|\\geq\\delta\\right)$ ne dépend que de $n$ et de la loi de $X$, ce qui donne un sens à la limite même si l'échantillon de taille $n$ est défini sur un univers fini qui dépend de $n$.",
+      "enonce_trous": "Si $X_1,\\dots,X_n$ sont {{1}} et de même loi que $X$, d'espérance $\\mu$, alors pour tout réel $\\delta>0$, la moyenne $M_n=\\frac{X_1+\\dots+X_n}{n}$ vérifie $P\\left(|M_n-\\mu|\\geq\\delta\\right)\\leq$ {{2}} ; en particulier cette probabilité tend vers {{3}} quand $n\\to+\\infty$.",
+      "trous": [
+        {
+          "reponse": "indépendantes",
+          "leurres": [
+            "quelconques",
+            "toutes égales à $X_1$",
+            "à valeurs positives"
+          ]
+        },
+        {
+          "reponse": "$\\frac{V(X)}{n\\delta^2}$",
+          "leurres": [
+            "$\\frac{V(X)}{n^2\\delta^2}$",
+            "$\\frac{V(X)}{n\\delta}$",
+            "$\\frac{\\sigma(X)}{n\\delta^2}$"
+          ]
+        },
+        {
+          "reponse": "$0$",
+          "leurres": [
+            "$1$",
+            "$\\mu$",
+            "$V(X)$"
+          ]
+        }
+      ],
+      "demo": "Par linéarité de l'espérance, $E(M_n)=\\frac{1}{n}\\sum_{i=1}^{n}E(X_i)=\\mu$. Les $X_i$ étant indépendantes, la variance d'une somme est la somme des variances (propriété admise en Terminale ; elle ne demande que l'indépendance deux à deux) :\n$$V(M_n)=\\frac{1}{n^2}\\sum_{i=1}^{n}V(X_i)=\\frac{V(X)}{n}.$$\nL'inégalité de Bienaymé-Tchebychev appliquée à $M_n$ et au réel $\\delta>0$ donne\n$$P\\left(|M_n-\\mu|\\geq\\delta\\right)\\leq\\frac{V(M_n)}{\\delta^2}=\\frac{V(X)}{n\\delta^2}.$$\nEnfin $0\\leq P\\left(|M_n-\\mu|\\geq\\delta\\right)\\leq\\frac{V(X)}{n\\delta^2}$ et le majorant tend vers $0$ quand $n\\to+\\infty$ : par encadrement, la probabilité tend vers $0$.\n\nRemarque : sur un univers fini fixé, on ne peut pas définir une suite infinie de variables indépendantes dont aucune n'est presque sûrement constante (si $k$ événements mutuellement indépendants ont des probabilités dans $\\left]0,1\\right[$, les $2^k$ intersections obtenues en prenant chacun d'eux ou son contraire sont disjointes et de probabilités non nulles, donc l'univers a au moins $2^k$ issues) ; c'est pourquoi on considère, pour chaque $n$, un échantillon de taille $n$.",
+      "exemple": "On lance $n$ fois une pièce équilibrée et $F_n$ est la fréquence de « pile » : $F_n$ est la moyenne d'un échantillon de la loi de Bernoulli de paramètre $\\frac{1}{2}$, de variance $\\frac{1}{4}$. Pour $\\delta=\\frac{1}{10}$ : $P\\left(\\left|F_n-\\frac{1}{2}\\right|\\geq\\frac{1}{10}\\right)\\leq\\frac{25}{n}$, quantité qui tend vers $0$.",
+      "contre_exemple": "- **Même loi sans indépendance.** Soit $X_1$ de Bernoulli de paramètre $\\frac{1}{2}$ et $X_i=X_1$ pour tout $i$ : les $X_i$ ont même loi, mais $M_n=X_1$ vaut $0$ ou $1$, donc $P\\left(\\left|M_n-\\frac{1}{2}\\right|\\geq\\frac{1}{4}\\right)=1$ pour tout $n$. Or $\\frac{V(X)}{n\\delta^2}=\\frac{4}{n}<1$ dès que $n\\geq 5$ : l'inégalité est fausse, et la probabilité ne tend pas vers $0$.\n- **$\\delta=0$ est exclu** : $P\\left(|M_n-\\mu|\\geq 0\\right)=1$ pour tout $n$.",
+      "affirmations": [
+        {
+          "texte": "Si $X_1,\\dots,X_n$ ont toutes la même loi que $X$, alors $V(M_n)=\\frac{V(X)}{n}$.",
+          "vrai": false,
+          "contre_exemple": "Si $X_i=X_1$ pour tout $i$, avec $V(X_1)>0$, alors $M_n=X_1$ et $V(M_n)=V(X)\\neq\\frac{V(X)}{n}$ pour $n\\geq 2$. Il faut l'indépendance (deux à deux suffit)."
+        },
+        {
+          "texte": "Sans aucune hypothèse d'indépendance, si $X_1,\\dots,X_n$ ont même loi que $X$, alors $E(M_n)=E(X)$.",
+          "vrai": true,
+          "justification": "La linéarité de l'espérance ne demande pas l'indépendance : $E(M_n)=\\frac{1}{n}\\sum_{i=1}^{n}E(X_i)=E(X)$."
+        },
+        {
+          "texte": "La loi faible des grands nombres affirme que $P(M_n=\\mu)$ tend vers $1$ quand $n\\to+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "Pour un échantillon de la loi de Bernoulli de paramètre $\\frac{1}{2}$ et $n$ impair, $nM_n$ est un entier, donc $M_n\\neq\\frac{1}{2}$ : $P\\left(M_n=\\frac{1}{2}\\right)=0$ pour tout $n$ impair. La loi faible dit seulement que $P\\left(|M_n-\\mu|\\geq\\delta\\right)\\to 0$ pour chaque $\\delta>0$ fixé."
+        },
+        {
+          "texte": "Sous les hypothèses de l'énoncé, pour tout $\\delta>0$, $P\\left(|M_n-\\mu|<\\delta\\right)\\geq 1-\\frac{V(X)}{n\\delta^2}$.",
+          "vrai": true,
+          "justification": "On passe à l'événement contraire dans l'inégalité de concentration."
+        }
+      ],
+      "prerequis": [
+        "proba-t-bienayme"
+      ]
+    }
+  ]
+}

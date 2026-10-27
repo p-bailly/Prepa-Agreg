@@ -1,0 +1,148 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l1-chinois",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-congruences",
+      "type": "theoreme",
+      "titre": "Lemme chinois",
+      "recto": "Énoncer le lemme chinois (version système de congruences et version anneaux) avec ses hypothèses.",
+      "hypotheses": [
+        "$m$ et $n$ sont des entiers supérieurs ou égaux à $1$.",
+        "$m$ et $n$ sont premiers entre eux.",
+        "$a$ et $b$ sont des entiers relatifs quelconques."
+      ],
+      "hypotheses_pieges": [
+        "$m$ et $n$ sont des nombres premiers.",
+        "$a$ et $b$ sont premiers entre eux.",
+        "$m$ divise $n$.",
+        "$m$ et $n$ sont impairs."
+      ],
+      "enonce": "Soient $m, n \\geq 1$ deux entiers premiers entre eux et $a, b \\in \\mathbb{Z}$.\n\n- Le système $x \\equiv a \\pmod{m}$, $x \\equiv b \\pmod{n}$ admet au moins une solution $x_0 \\in \\mathbb{Z}$, et l'ensemble de ses solutions est $x_0 + mn\\mathbb{Z}$ : les solutions forment une unique classe modulo $mn$.\n- De façon équivalente, l'application $\\varphi : \\mathbb{Z}/mn\\mathbb{Z} \\to \\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$ qui à la classe de $x$ modulo $mn$ associe le couple (classe de $x$ modulo $m$, classe de $x$ modulo $n$) est un isomorphisme d'anneaux.",
+      "enonce_trous": "Soient $m, n \\geq 1$ deux entiers {{1}} et $a, b \\in \\mathbb{Z}$. Le système $x \\equiv a \\pmod{m}$, $x \\equiv b \\pmod{n}$ admet une solution $x_0 \\in \\mathbb{Z}$, et l'ensemble de ses solutions est {{2}}. L'application $\\mathbb{Z}/mn\\mathbb{Z} \\to \\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$, classe de $x$ modulo $mn$ $\\mapsto$ (classe de $x$ modulo $m$, classe de $x$ modulo $n$), est {{3}}.",
+      "trous": [
+        {
+          "reponse": "premiers entre eux",
+          "leurres": [
+            "distincts",
+            "impairs",
+            "tels que l'un divise l'autre"
+          ]
+        },
+        {
+          "reponse": "$x_0 + mn\\mathbb{Z}$",
+          "leurres": [
+            "$x_0 + (m+n)\\mathbb{Z}$",
+            "$\\{x_0\\}$",
+            "$x_0 + m\\mathbb{Z}$"
+          ]
+        },
+        {
+          "reponse": "un isomorphisme d'anneaux",
+          "leurres": [
+            "un morphisme d'anneaux injectif mais non surjectif",
+            "un morphisme d'anneaux surjectif mais non injectif",
+            "un morphisme de groupes additifs qui n'est pas un morphisme d'anneaux"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Comme $m \\wedge n = 1$, le théorème de Bézout donne $(u,v) \\in \\mathbb{Z}^2$ tel que $mu + nv = 1$. Posons $x_0 = a\\,nv + b\\,mu$.\n\n- Modulo $m$ : $nv = 1 - mu \\equiv 1$, donc $x_0 \\equiv a \\pmod{m}$.\n- Modulo $n$ : $mu = 1 - nv \\equiv 1$, donc $x_0 \\equiv b \\pmod{n}$.\n\n**Ensemble des solutions.** Si $x$ est solution, alors $m \\mid x - x_0$ et $n \\mid x - x_0$. On écrit $x - x_0 = mk$ ; $n \\mid mk$ et $n \\wedge m = 1$, donc $n \\mid k$ (lemme de Gauss) et $mn \\mid x - x_0$. Réciproquement, tout $x_0 + mnk$ ($k \\in \\mathbb{Z}$) est solution, puisque $m$ et $n$ divisent $mnk$. L'ensemble des solutions est donc $x_0 + mn\\mathbb{Z}$.\n\n**Version anneaux.** $\\varphi$ est bien définie : si $x \\equiv x' \\pmod{mn}$, alors $x \\equiv x' \\pmod{m}$ et $\\pmod{n}$, car $m$ et $n$ divisent $mn$. C'est un morphisme d'anneaux : elle envoie la classe de $1$ sur $(\\overline{1}, \\overline{1})$ et respecte somme et produit, car les congruences sont compatibles avec $+$ et $\\times$. Elle est injective : si $\\varphi(\\overline{x}) = (\\overline{0}, \\overline{0})$, alors $m \\mid x$ et $n \\mid x$, donc $mn \\mid x$ comme ci-dessus. Les deux anneaux ont $mn$ éléments, donc $\\varphi$ injective est bijective (la surjectivité est aussi exactement l'existence d'une solution au système). Enfin, $x$ est solution du système si et seulement si $\\varphi(\\overline{x}) = (\\overline{a}, \\overline{b})$ : l'existence et l'unicité modulo $mn$ traduisent la bijectivité de $\\varphi$.",
+      "exemple": "Résoudre $x \\equiv 2 \\pmod{5}$, $x \\equiv 3 \\pmod{7}$. On a $5 \\times 3 + 7 \\times (-2) = 1$, donc $u = 3$, $v = -2$ et $x_0 = 2 \\times 7 \\times (-2) + 3 \\times 5 \\times 3 = -28 + 45 = 17$.\n\nVérification : $17 = 3 \\times 5 + 2$ et $17 = 2 \\times 7 + 3$. Les solutions sont les $x \\in 17 + 35\\mathbb{Z}$.",
+      "contre_exemple": "- **Pas d'isomorphisme sans coprimalité** : $\\mathbb{Z}/4\\mathbb{Z}$ n'est pas isomorphe à $\\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/2\\mathbb{Z}$, même comme groupes additifs : dans $\\mathbb{Z}/4\\mathbb{Z}$, la classe de $1$ est d'ordre $4$, alors que dans $\\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/2\\mathbb{Z}$ tout élément $y$ vérifie $2y = 0$.\n- **Système sans solution** : $x \\equiv 0 \\pmod{2}$ et $x \\equiv 1 \\pmod{4}$ est impossible, car $x \\equiv 1 \\pmod{4}$ entraîne $x$ impair.\n- **Pas d'unicité modulo $mn$** : pour $x \\equiv 1 \\pmod{4}$ et $x \\equiv 1 \\pmod{6}$, les entiers $1$ et $13$ sont solutions et ne sont pas congrus modulo $24$ (les solutions forment la classe de $1$ modulo $12$).",
+      "affirmations": [
+        {
+          "texte": "Pour tous entiers $m, n \\geq 1$, l'anneau $\\mathbb{Z}/mn\\mathbb{Z}$ est isomorphe à $\\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "$m = n = 2$ : $\\mathbb{Z}/4\\mathbb{Z}$ contient un élément d'ordre additif $4$ (la classe de $1$), alors que tout élément $y$ de $\\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/2\\mathbb{Z}$ vérifie $2y = 0$. Les deux ne sont donc pas isomorphes, même comme groupes."
+        },
+        {
+          "texte": "Si $m \\wedge n = 1$, le système $x \\equiv a \\pmod{m}$, $x \\equiv b \\pmod{n}$ a une unique solution dans $\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "Si $x_0$ est solution, $x_0 + mn$ en est une autre. Par exemple $17$ et $52$ sont solutions de $x \\equiv 2 \\pmod{5}$, $x \\equiv 3 \\pmod{7}$. L'unicité a lieu modulo $mn$ (une seule solution dans $\\{0, \\dots, mn - 1\\}$)."
+        },
+        {
+          "texte": "Si $m \\wedge n = 1$, le groupe additif $\\mathbb{Z}/m\\mathbb{Z} \\times \\mathbb{Z}/n\\mathbb{Z}$ est cyclique, engendré par $(\\overline{1}, \\overline{1})$.",
+          "vrai": true,
+          "justification": "$(\\overline{1}, \\overline{1})$ est l'image par l'isomorphisme $\\varphi$ de la classe de $1$, qui engendre $\\mathbb{Z}/mn\\mathbb{Z}$ ; un isomorphisme de groupes envoie un générateur sur un générateur."
+        },
+        {
+          "texte": "Le système $x \\equiv 3 \\pmod{6}$, $x \\equiv 5 \\pmod{10}$ n'a pas de solution, car $6$ et $10$ ne sont pas premiers entre eux.",
+          "vrai": false,
+          "contre_exemple": "$x = 15$ convient : $15 = 2 \\times 6 + 3$ et $15 = 10 + 5$. Sans coprimalité, le lemme chinois ne s'applique pas, mais le système peut avoir des solutions (ici, celles-ci forment la classe $15 + 30\\mathbb{Z}$)."
+        }
+      ],
+      "prerequis": [
+        "arith-t-bezout",
+        "arith-t-gauss"
+      ]
+    },
+    {
+      "id": "arith-l1-racines-polynome",
+      "theme": "arithmetique",
+      "niveau": "l1",
+      "chapitre": "arith-l1-polynomes",
+      "type": "theoreme",
+      "titre": "Nombre de racines d'un polynôme sur un corps",
+      "recto": "Énoncer le résultat qui majore le nombre de racines d'un polynôme, avec ses hypothèses.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "$P \\in \\mathbb{K}[X]$ est un polynôme non nul, de degré $n$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est un anneau commutatif (non nécessairement intègre).",
+        "$\\mathbb{K}$ est un corps, non nécessairement commutatif.",
+        "$P \\in \\mathbb{K}[X]$ est un polynôme quelconque, éventuellement nul.",
+        "$\\mathbb{K}$ est algébriquement clos."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif et $P \\in \\mathbb{K}[X]$ un polynôme non nul de degré $n$. Alors $P$ a au plus $n$ racines dans $\\mathbb{K}$ ; plus précisément, la somme des multiplicités des racines de $P$ dans $\\mathbb{K}$ est inférieure ou égale à $n$.",
+      "enonce_trous": "Soient {{1}} et $P \\in \\mathbb{K}[X]$ un polynôme non nul de degré $n$. Alors la somme des multiplicités des racines de $P$ dans $\\mathbb{K}$ est {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\mathbb{K}$ un corps commutatif",
+          "leurres": [
+            "$\\mathbb{K}$ un anneau commutatif",
+            "$\\mathbb{K}$ un anneau commutatif fini",
+            "$\\mathbb{K}$ un corps non nécessairement commutatif"
+          ]
+        },
+        {
+          "reponse": "inférieure ou égale à $n$",
+          "leurres": [
+            "égale à $n$",
+            "strictement inférieure à $n$",
+            "supérieure ou égale à $n$"
+          ]
+        }
+      ],
+      "demo": "**Rappels.** Pour $\\alpha \\in \\mathbb{K}$, la division euclidienne de $P$ par le polynôme unitaire $X - \\alpha$ donne $P = (X - \\alpha)Q + P(\\alpha)$ ; donc $\\alpha$ est racine de $P$ si et seulement si $(X - \\alpha) \\mid P$. La multiplicité de $\\alpha$ dans $P \\neq 0$ est le plus grand entier $k \\geq 0$ tel que $(X - \\alpha)^k \\mid P$ (il existe car $k \\leq \\deg P$). On utilise que $\\mathbb{K}$ et $\\mathbb{K}[X]$ sont intègres, et que $\\deg(AB) = \\deg A + \\deg B$ pour $A, B$ non nuls.\n\n**Lemme.** Si $P = (X - \\beta)^i S$ avec $S(\\beta) \\neq 0$, alors la multiplicité de $\\beta$ dans $P$ vaut exactement $i$. En effet, si $(X - \\beta)^{i+1} \\mid P$, on écrit $P = (X - \\beta)^{i+1} U$ ; alors $(X - \\beta)^i \\big(S - (X - \\beta)U\\big) = 0$, d'où $S = (X - \\beta)U$ par intégrité de $\\mathbb{K}[X]$, et $S(\\beta) = 0$ : contradiction.\n\n**Récurrence sur $n = \\deg P$.** Si $n = 0$, $P$ est une constante non nulle, sans racine. Soit $n \\geq 1$ ; si $P$ n'a pas de racine, c'est fini. Sinon, soit $\\alpha$ une racine : $P = (X - \\alpha)Q$ avec $Q \\neq 0$ et $\\deg Q = n - 1$. Soit $\\beta \\in \\mathbb{K}$ et $i$ la multiplicité de $\\beta$ dans $Q$ : $Q = (X - \\beta)^i S$ avec $S(\\beta) \\neq 0$.\n\n- Si $\\beta \\neq \\alpha$ : $P = (X - \\beta)^i \\,(X - \\alpha)S$ et $\\big((X - \\alpha)S\\big)(\\beta) = (\\beta - \\alpha)S(\\beta) \\neq 0$ car $\\mathbb{K}$ est intègre. Par le lemme, $\\beta$ a la même multiplicité $i$ dans $P$ et dans $Q$.\n- Si $\\beta = \\alpha$ : $P = (X - \\alpha)^{i+1} S$ avec $S(\\alpha) \\neq 0$, donc la multiplicité de $\\alpha$ dans $P$ est celle dans $Q$ plus $1$.\n\nLes racines de $P$ sont $\\alpha$ et les racines de $Q$ ; la somme de leurs multiplicités dans $P$ est donc la somme des multiplicités des racines de $Q$, plus $1$, soit au plus $(n - 1) + 1 = n$ par hypothèse de récurrence.\n\n**Remarque.** La preuve n'utilise que l'intégrité et la commutativité : le résultat vaut sur tout anneau commutatif intègre (par exemple $\\mathbb{Z}$).",
+      "exemple": "Sur $\\mathbb{R}$, $X^3 - 3X + 2 = (X - 1)^2(X + 2)$ : la racine $1$ est double et $-2$ simple ; la somme des multiplicités vaut $3$, le degré.\n\nConséquence très utilisée : si $P, Q \\in \\mathbb{K}[X]$ sont de degré au plus $n$ et coïncident en $n + 1$ points distincts, alors $P - Q$, de degré au plus $n$, a au moins $n + 1$ racines, donc $P = Q$.",
+      "contre_exemple": "- **Anneau non intègre** : dans $\\mathbb{Z}/8\\mathbb{Z}$, $X^2 - 1$ (de degré $2$) a $4$ racines, $\\overline{1}, \\overline{3}, \\overline{5}, \\overline{7}$, car $1, 9, 25, 49$ sont tous congrus à $1$ modulo $8$. Dans $\\mathbb{Z}/6\\mathbb{Z}$, $X^2 - X$ a $4$ racines : $\\overline{0}, \\overline{1}, \\overline{3}, \\overline{4}$.\n- **Corps non commutatif** : dans le corps des quaternions de Hamilton, $(bi + cj + dk)^2 = -(b^2 + c^2 + d^2)$ pour $b, c, d$ réels ; donc $X^2 + 1$ a une infinité de racines (tous les $bi + cj + dk$ avec $b^2 + c^2 + d^2 = 1$, dont $\\pm i$, $\\pm j$, $\\pm k$).\n- **Polynôme nul** : sur un corps infini, le polynôme nul a une infinité de racines ; d'où l'hypothèse $P \\neq 0$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout entier $N \\geq 2$, un polynôme de degré $2$ à coefficients dans $\\mathbb{Z}/N\\mathbb{Z}$ a au plus $2$ racines dans $\\mathbb{Z}/N\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $N = 8$, $X^2 - 1$ a les $4$ racines $\\overline{1}, \\overline{3}, \\overline{5}, \\overline{7}$. Le résultat demande un corps (ou un anneau intègre) : $\\mathbb{Z}/8\\mathbb{Z}$ ne l'est pas, car $\\overline{2} \\times \\overline{4} = \\overline{0}$."
+        },
+        {
+          "texte": "Sur un corps commutatif $\\mathbb{K}$, tout polynôme de degré $n \\geq 1$ a exactement $n$ racines dans $\\mathbb{K}$, comptées avec multiplicité.",
+          "vrai": false,
+          "contre_exemple": "$X^2 + 1 \\in \\mathbb{R}[X]$ est de degré $2$ et n'a aucune racine réelle. L'égalité n'a lieu que pour un polynôme scindé (toujours vrai si $\\mathbb{K}$ est algébriquement clos, comme $\\mathbb{C}$)."
+        },
+        {
+          "texte": "Soit $p$ un nombre premier. Si $P \\in (\\mathbb{Z}/p\\mathbb{Z})[X]$ vérifie $P(x) = 0$ pour tout $x \\in \\mathbb{Z}/p\\mathbb{Z}$, alors $P$ est le polynôme nul.",
+          "vrai": false,
+          "contre_exemple": "$P = X^p - X$ est non nul (de degré $p$) et, par le petit théorème de Fermat, s'annule en chacun des $p$ éléments de $\\mathbb{Z}/p\\mathbb{Z}$. Il n'y a pas de contradiction : $p$ racines pour un degré $p$. Sur un corps fini, un polynôme et la fonction polynomiale associée ne s'identifient pas."
+        },
+        {
+          "texte": "Si $P, Q \\in \\mathbb{R}[X]$ sont de degré au plus $n$ et coïncident en $n + 1$ réels distincts, alors $P = Q$.",
+          "vrai": true,
+          "justification": "$P - Q$ est de degré au plus $n$ et a au moins $n + 1$ racines ; s'il était non nul, il aurait au plus $n$ racines. Donc $P - Q = 0$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-division-euclidienne"
+      ]
+    }
+  ]
+}

@@ -10,8 +10,9 @@ on:
 permissions:
   contents: write
 
+# Un groupe par branche : un push sur une autre branche (où le job est ignoré) n'annule pas la construction en cours.
 concurrency:
-  group: android-apk
+  group: android-apk-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

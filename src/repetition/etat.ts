@@ -46,14 +46,24 @@ export function prerequisManquants(
   })
 }
 
+/** Jour où la carte a été vue pour la première fois (null si neuve). */
+export function introduction(c: Carte, volets: Volets): string | null {
+  const jours = voletsDe(c)
+    .map((v) => volets[cleVolet(c.id, v)]?.premiere)
+    .filter((x): x is string => !!x)
+    .sort()
+  return jours[0] ?? null
+}
+
 /**
  * Volets à revoir d'une carte déjà introduite, dans l'ordre énoncé, démonstration, contre-exemple. Un volet jamais noté
- * d'une carte introduite est à voir (la démonstration n'a pas forcément été ouverte le premier jour).
+ * d'une carte introduite (démonstration pas ouverte le premier jour) est à voir à partir du lendemain de l'introduction.
  */
 export function voletsDus(c: Carte, volets: Volets, maintenant: number, jour: string): Volet[] {
-  if (etatCarte(c, volets) === 'neuve') return []
+  const debut = introduction(c, volets)
+  if (debut === null) return []
   return voletsDe(c).filter((v) => {
     const e = volets[cleVolet(c.id, v)]
-    return !e || estDu(e, maintenant, jour)
+    return e ? estDu(e, maintenant, jour) : jour > debut
   })
 }

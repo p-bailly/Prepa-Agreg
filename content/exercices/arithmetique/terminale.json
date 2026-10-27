@@ -1,0 +1,269 @@
+{
+  "exercices": [
+    {
+      "id": "arith-t-division-euclidienne-ex1",
+      "carte": "arith-t-division-euclidienne",
+      "difficulte": 1,
+      "titre": "Division euclidienne d'un entier négatif",
+      "enonce": "Déterminer le quotient $q$ et le reste $r$ de la division euclidienne de $-2026$ par $7$.",
+      "duree_min": 4,
+      "indices": [
+        "Commencer par diviser $2026$ par $7$, puis ajuster pour que le reste soit positif ou nul."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le couple $(q, r)$ ?",
+        "propositions": [
+          "$q = -290$, $r = 4$",
+          "$q = -289$, $r = -3$",
+          "$q = -289$, $r = 3$",
+          "$q = -290$, $r = -4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $2026 = 7 \\times 289 + 3$, donc $-2026 = 7 \\times (-289) - 3$. Cette écriture n'est pas la division euclidienne, car $-3 < 0$. On retire $7$ au terme $7 \\times (-289)$ et on l'ajoute au reste :\n\n$$-2026 = 7 \\times (-290) + 4.$$\n\nComme $0 \\leq 4 < 7$, l'unicité de la division euclidienne donne $q = -290$ et $r = 4$."
+    },
+    {
+      "id": "arith-t-division-euclidienne-ex2",
+      "carte": "arith-t-division-euclidienne",
+      "difficulte": 2,
+      "titre": "Carrés modulo 4 et sommes de deux carrés",
+      "enonce": "1. Montrer que pour tout $n \\in \\mathbb{Z}$, le reste de la division euclidienne de $n^2$ par $4$ vaut $0$ ou $1$.\n\n2. En déduire qu'aucun entier dont le reste de la division par $4$ vaut $3$ n'est la somme de deux carrés d'entiers.\n\n3. L'entier $2027$ est-il la somme de deux carrés d'entiers ?",
+      "duree_min": 12,
+      "indices": [
+        "Distinguer selon le reste de la division euclidienne de $n$ par $2$.",
+        "Écrire $n = 2k$ ou $n = 2k + 1$ et développer $n^2$ sous la forme $4 \\times (\\dots) + r$."
+      ],
+      "correction": "**1.** La division euclidienne de $n$ par $2$ donne $n = 2k$ ou $n = 2k + 1$ avec $k \\in \\mathbb{Z}$.\n\n- Si $n = 2k$, alors $n^2 = 4k^2 = 4 \\times k^2 + 0$.\n- Si $n = 2k + 1$, alors $n^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1$.\n\nComme $0 \\leq 0 < 4$ et $0 \\leq 1 < 4$, par unicité le reste de $n^2$ par $4$ est $0$ ou $1$.\n\n**2.** Soient $x, y \\in \\mathbb{Z}$. D'après 1, $x^2 = 4k + r$ et $y^2 = 4\\ell + s$ avec $r, s \\in \\{0, 1\\}$. Alors $x^2 + y^2 = 4(k + \\ell) + (r + s)$ avec $r + s \\in \\{0, 1, 2\\}$, et $0 \\leq r + s < 4$ : le reste de $x^2 + y^2$ par $4$ est $r + s$, qui ne vaut jamais $3$.\n\n**3.** $2027 = 4 \\times 506 + 3$ : le reste vaut $3$, donc $2027$ n'est pas la somme de deux carrés d'entiers."
+    },
+    {
+      "id": "arith-t-division-euclidienne-ex3",
+      "carte": "arith-t-division-euclidienne",
+      "difficulte": 3,
+      "titre": "Ce que l'on peut déduire d'un reste",
+      "enonce": "Soit $a \\in \\mathbb{Z}$ tel que le reste de la division euclidienne de $a$ par $12$ soit $7$.\n\n1. Déterminer le reste de la division euclidienne de $-a$ par $12$.\n\n2. Déterminer le reste de la division euclidienne de $a$ par $4$.\n\n3. Le reste de la division euclidienne de $a$ par $8$ est-il déterminé par l'hypothèse ?\n\n4. Déterminer le reste de la division euclidienne de $a^2$ par $12$.",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $a = 12k + 7$ avec $k \\in \\mathbb{Z}$, puis chaque fois une égalité $\\text{(entier)} = b \\times q + r$ avec $0 \\leq r < b$ vérifié explicitement.",
+        "Pour la question 3, tester deux valeurs de $a$ compatibles avec l'hypothèse."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de la division euclidienne de $-a$ par $12$ ?",
+        "propositions": [
+          "$5$",
+          "$-7$",
+          "$7$",
+          "$-5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par hypothèse, $a = 12k + 7$ avec $k \\in \\mathbb{Z}$.\n\n**1.** $-a = -12k - 7 = 12(-k - 1) + 5$ et $0 \\leq 5 < 12$ : par unicité, le reste est $5$ (et non $-7$, qui n'est pas positif).\n\n**2.** $a = 12k + 4 + 3 = 4(3k + 1) + 3$ et $0 \\leq 3 < 4$ : le reste est $3$. (Cela marche car $4$ divise $12$.)\n\n**3.** Non. Pour $a = 7$ (reste $7$ par $12$), le reste par $8$ est $7$ ; pour $a = 19 = 12 + 7$ (reste $7$ par $12$), on a $19 = 8 \\times 2 + 3$, reste $3$. Comme $8$ ne divise pas $12$, le reste modulo $12$ ne détermine pas le reste modulo $8$.\n\n**4.** $a^2 = 144k^2 + 168k + 49 = 12(12k^2 + 14k + 4) + 1$ et $0 \\leq 1 < 12$ : le reste est $1$."
+    },
+    {
+      "id": "arith-t-bezout-ex1",
+      "carte": "arith-t-bezout",
+      "difficulte": 1,
+      "titre": "Deux expressions toujours premières entre elles",
+      "enonce": "Montrer que pour tout $n \\in \\mathbb{Z}$, les entiers $3n + 5$ et $2n + 3$ sont premiers entre eux.",
+      "duree_min": 5,
+      "indices": [
+        "Chercher des entiers $u$ et $v$, indépendants de $n$, tels que $u(3n + 5) + v(2n + 3)$ soit une constante."
+      ],
+      "correction": "Soit $n \\in \\mathbb{Z}$. L'entier $2n + 3$ est impair, donc non nul : $3n + 5$ et $2n + 3$ ne sont pas tous deux nuls. On a\n\n$$2(3n + 5) + (-3)(2n + 3) = 6n + 10 - 6n - 9 = 1.$$\n\nIl existe donc $(u, v) = (2, -3) \\in \\mathbb{Z}^2$ tel que $u(3n + 5) + v(2n + 3) = 1$ : d'après le théorème de Bézout, $(3n + 5) \\wedge (2n + 3) = 1$."
+    },
+    {
+      "id": "arith-t-bezout-ex2",
+      "carte": "arith-t-bezout",
+      "difficulte": 2,
+      "titre": "Coefficients de Bézout par l'algorithme d'Euclide",
+      "enonce": "À l'aide de l'algorithme d'Euclide, déterminer un couple $(u, v) \\in \\mathbb{Z}^2$ tel que $41u + 29v = 1$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire les divisions successives $41 = 29 \\times 1 + \\dots$, puis remonter les égalités en partant du dernier reste non nul."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces couples vérifie $41u + 29v = 1$ ?",
+        "propositions": [
+          "$(-12, 17)$",
+          "$(12, -17)$",
+          "$(17, -12)$",
+          "$(-11, 16)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Algorithme d'Euclide :\n\n- $41 = 29 \\times 1 + 12$\n- $29 = 12 \\times 2 + 5$\n- $12 = 5 \\times 2 + 2$\n- $5 = 2 \\times 2 + 1$\n\nLe dernier reste non nul est $1$, donc $41 \\wedge 29 = 1$. On remonte :\n\n$$1 = 5 - 2 \\times 2 = 5 - 2(12 - 2 \\times 5) = 5 \\times 5 - 2 \\times 12,$$\n\n$$1 = 5(29 - 2 \\times 12) - 2 \\times 12 = 5 \\times 29 - 12 \\times 12 = 5 \\times 29 - 12(41 - 29) = 17 \\times 29 - 12 \\times 41.$$\n\nAinsi $(u, v) = (-12, 17)$ convient : $41 \\times (-12) + 29 \\times 17 = -492 + 493 = 1$. (Le couple $(12, -17)$ donne $-1$ : erreur de signe classique.)"
+    },
+    {
+      "id": "arith-t-bezout-ex3",
+      "carte": "arith-t-bezout",
+      "difficulte": 3,
+      "titre": "Un pgcd qui dépend de n",
+      "enonce": "Pour $n \\in \\mathbb{Z}$, on pose $A = n + 4$ et $B = 2n + 3$, et $d = A \\wedge B$.\n\n1. Justifier que $d$ est bien défini et montrer que $d$ divise $5$.\n\n2. Un élève affirme : « comme $2A - B = 5$, on a $d = 5$ ». Que penser de cet argument ?\n\n3. Déterminer $d$ en fonction de $n$.",
+      "duree_min": 15,
+      "indices": [
+        "Calculer $2A - B$ et utiliser que $d$ divise toute combinaison entière de $A$ et $B$.",
+        "$d$ vaut $1$ ou $5$ ; chercher à quelle condition sur $n$ l'entier $5$ divise à la fois $A$ et $B$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $d$ pour $n = 2026$ ?",
+        "propositions": [
+          "$5$",
+          "$1$",
+          "$10$",
+          "$25$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $B = 2n + 3$ est impair, donc non nul : $A$ et $B$ ne sont pas tous deux nuls et $d$ est défini. On a $2A - B = 2n + 8 - 2n - 3 = 5$. Comme $d \\mid A$ et $d \\mid B$, $d$ divise $2A - B = 5$. Donc $d \\in \\{1, 5\\}$.\n\n**2.** L'argument est faux : une égalité $Au + Bv = 5$ montre seulement que $d$ divise $5$, pas que $d = 5$. Par exemple pour $n = 0$ : $A = 4$, $B = 3$ et $d = 1$.\n\n**3.** $d = 5$ si et seulement si $5 \\mid A$ et $5 \\mid B$. Si $5 \\mid A$, alors $5 \\mid 2A - 5 = B$ ; il suffit donc que $5 \\mid A = n + 4$, c'est-à-dire $n \\equiv -4 \\equiv 1 \\pmod{5}$. Réciproquement, si $5 \\nmid A$, alors $d \\neq 5$.\n\nConclusion : $d = 5$ si $n \\equiv 1 \\pmod{5}$, et $d = 1$ sinon.\n\nPour $n = 2026 = 5 \\times 405 + 1$ : $d = 5$ (en effet $A = 2030 = 5 \\times 406$ et $B = 4055 = 5 \\times 811$)."
+    },
+    {
+      "id": "arith-t-gauss-ex1",
+      "carte": "arith-t-gauss",
+      "difficulte": 1,
+      "titre": "Application directe du lemme de Gauss",
+      "enonce": "Soit $n \\in \\mathbb{Z}$ tel que $9$ divise $14n$. Montrer que $9$ divise $n$.",
+      "duree_min": 3,
+      "indices": [
+        "Vérifier que $9$ et $14$ sont premiers entre eux."
+      ],
+      "correction": "Les diviseurs positifs de $9$ sont $1$, $3$, $9$ ; seul $1$ divise $14 = 2 \\times 7$. Donc $9 \\wedge 14 = 1$. Comme $9 \\mid 14 \\times n$ et $9 \\wedge 14 = 1$, le lemme de Gauss donne $9 \\mid n$."
+    },
+    {
+      "id": "arith-t-gauss-ex2",
+      "carte": "arith-t-gauss",
+      "difficulte": 2,
+      "titre": "Divisibilité par 6",
+      "enonce": "Montrer que pour tout $n \\in \\mathbb{Z}$, l'entier $n(n + 1)(2n + 1)$ est divisible par $6$.",
+      "duree_min": 8,
+      "indices": [
+        "Montrer séparément la divisibilité par $2$ et par $3$, puis utiliser que $2 \\wedge 3 = 1$."
+      ],
+      "correction": "Soit $N = n(n + 1)(2n + 1)$.\n\n- **Par $2$** : parmi les deux entiers consécutifs $n$ et $n + 1$, l'un est pair, donc $2 \\mid N$.\n- **Par $3$** : selon le reste de $n$ modulo $3$. Si $n \\equiv 0$, $3 \\mid n$. Si $n \\equiv 2$, $3 \\mid n + 1$. Si $n \\equiv 1$, $2n + 1 \\equiv 3 \\equiv 0$, donc $3 \\mid 2n + 1$. Dans tous les cas $3 \\mid N$.\n\nOn écrit $N = 2k$ ; alors $3 \\mid 2k$ et $3 \\wedge 2 = 1$, donc $3 \\mid k$ par le lemme de Gauss : $k = 3k'$ et $N = 6k'$. Ainsi $6 \\mid N$.\n\n(L'hypothèse $2 \\wedge 3 = 1$ est indispensable : $4 \\mid 12$ et $6 \\mid 12$ n'entraînent pas $24 \\mid 12$.)"
+    },
+    {
+      "id": "arith-t-gauss-ex3",
+      "carte": "arith-t-gauss",
+      "difficulte": 3,
+      "titre": "Équation diophantienne 41x + 29y = 3",
+      "enonce": "Déterminer l'ensemble des couples $(x, y) \\in \\mathbb{Z}^2$ tels que $41x + 29y = 3$. On pourra utiliser l'égalité $41 \\times (-12) + 29 \\times 17 = 1$.",
+      "duree_min": 15,
+      "indices": [
+        "Obtenir une solution particulière en multipliant l'égalité fournie par $3$ (on peut ensuite la simplifier).",
+        "Soustraire l'égalité vérifiée par la solution particulière, puis appliquer le lemme de Gauss avec $41 \\wedge 29 = 1$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des solutions ?",
+        "propositions": [
+          "$\\{(-7 + 29k,\\ 10 - 41k) : k \\in \\mathbb{Z}\\}$",
+          "$\\{(-7 + 41k,\\ 10 - 29k) : k \\in \\mathbb{Z}\\}$",
+          "$\\{(-7 + 29k,\\ 10 + 41k) : k \\in \\mathbb{Z}\\}$",
+          "$\\{(-7 + 87k,\\ 10 - 123k) : k \\in \\mathbb{Z}\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Solution particulière.** En multipliant $41 \\times (-12) + 29 \\times 17 = 1$ par $3$ : $41 \\times (-36) + 29 \\times 51 = 3$. On peut simplifier : $(-36 + 29, 51 - 41) = (-7, 10)$, et $41 \\times (-7) + 29 \\times 10 = -287 + 290 = 3$.\n\n**Analyse.** Soit $(x, y)$ une solution. En soustrayant $41 \\times (-7) + 29 \\times 10 = 3$, on obtient $41(x + 7) = 29(10 - y)$. Donc $29 \\mid 41(x + 7)$ ; comme $29 \\wedge 41 = 1$, le lemme de Gauss donne $29 \\mid x + 7$ : $x = -7 + 29k$ avec $k \\in \\mathbb{Z}$. En reportant : $41 \\times 29k = 29(10 - y)$, d'où $y = 10 - 41k$.\n\n**Synthèse.** Pour tout $k \\in \\mathbb{Z}$, $41(-7 + 29k) + 29(10 - 41k) = 3 + 41 \\times 29k - 29 \\times 41k = 3$.\n\nL'ensemble des solutions est $\\{(-7 + 29k, 10 - 41k) : k \\in \\mathbb{Z}\\}$. (Le pas $(29, -41)$, et non $(87, -123)$ : avec ce dernier, on manquerait par exemple la solution $(22, -31)$.)"
+    },
+    {
+      "id": "arith-t-gauss-ex4",
+      "carte": "arith-t-gauss",
+      "difficulte": 4,
+      "titre": "Quand 12 divise un carré",
+      "enonce": "Déterminer l'ensemble des entiers $n \\in \\mathbb{Z}$ tels que $12$ divise $n^2$. On justifiera soigneusement chaque implication.",
+      "duree_min": 15,
+      "indices": [
+        "Décomposer $12 = 4 \\times 3$ et traiter séparément la divisibilité de $n^2$ par $4$ et par $3$.",
+        "Utiliser $12 = 4 \\times 3$, le lemme d'Euclide pour le nombre premier $3$, et le fait que $2 \\wedge 3 = 1$."
+      ],
+      "reponse_finale": {
+        "question": "L'ensemble des $n \\in \\mathbb{Z}$ tels que $12 \\mid n^2$ est :",
+        "propositions": [
+          "$6\\mathbb{Z}$",
+          "$12\\mathbb{Z}$",
+          "$3\\mathbb{Z}$",
+          "$2\\mathbb{Z} \\cup 3\\mathbb{Z}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Si $6 \\mid n$** : $n = 6k$ et $n^2 = 36k^2 = 12 \\times 3k^2$, donc $12 \\mid n^2$.\n\n**Réciproquement**, supposons $12 \\mid n^2$.\n\n- $3 \\mid n^2 = n \\times n$ et $3$ est premier : par le lemme d'Euclide (conséquence du lemme de Gauss), $3 \\mid n$.\n- $4 \\mid n^2$ donc $2 \\mid n^2$, et de même $2 \\mid n$.\n\nAinsi $2 \\mid n$ et $3 \\mid n$ avec $2 \\wedge 3 = 1$ : en écrivant $n = 2k$, $3 \\mid 2k$ donne $3 \\mid k$ (Gauss), donc $6 \\mid n$.\n\n**Conclusion** : $12 \\mid n^2 \\iff n \\in 6\\mathbb{Z}$. Ce n'est pas $12\\mathbb{Z}$ : $6^2 = 36 = 3 \\times 12$ alors que $12 \\nmid 6$. Ce n'est pas non plus $3\\mathbb{Z}$ ni $2\\mathbb{Z} \\cup 3\\mathbb{Z}$ : $3^2 = 9$ et $2^2 = 4$ ne sont pas divisibles par $12$."
+    },
+    {
+      "id": "arith-t-fermat-ex1",
+      "carte": "arith-t-fermat",
+      "difficulte": 1,
+      "titre": "Une grande puissance modulo 11",
+      "enonce": "Déterminer le reste de la division euclidienne de $5^{2026}$ par $11$.",
+      "duree_min": 5,
+      "indices": [
+        "Vérifier les hypothèses du petit théorème de Fermat, puis diviser $2026$ par $10$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de $5^{2026}$ modulo $11$ ?",
+        "propositions": [
+          "$5$",
+          "$1$",
+          "$3$",
+          "$9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$11$ est premier et ne divise pas $5$, donc d'après le petit théorème de Fermat $5^{10} \\equiv 1 \\pmod{11}$. Comme $2026 = 10 \\times 202 + 6$ :\n\n$$5^{2026} = (5^{10})^{202} \\times 5^6 \\equiv 5^6 \\pmod{11}.$$\n\nOr $5^2 = 25 \\equiv 3$, $5^4 \\equiv 9$ et $5^6 \\equiv 27 \\equiv 5 \\pmod{11}$. Le reste est $5$."
+    },
+    {
+      "id": "arith-t-fermat-ex2",
+      "carte": "arith-t-fermat",
+      "difficulte": 2,
+      "titre": "Inverse modulo p par Fermat",
+      "enonce": "1. Soit $p$ un nombre premier et $a$ un entier non divisible par $p$. Montrer que $a \\times a^{p-2} \\equiv 1 \\pmod{p}$.\n\n2. En déduire un entier $b$ tel que $6b \\equiv 1 \\pmod{13}$, puis résoudre dans $\\mathbb{Z}$ l'équation $6x \\equiv 5 \\pmod{13}$.",
+      "duree_min": 10,
+      "indices": [
+        "Pour la question 2, plutôt que de calculer $6^{11}$, on peut chercher directement un multiple de $6$ congru à $1$ modulo $13$, puis vérifier qu'il convient."
+      ],
+      "reponse_finale": {
+        "question": "Les solutions de $6x \\equiv 5 \\pmod{13}$ sont les entiers $x$ congrus modulo $13$ à :",
+        "propositions": [
+          "$3$",
+          "$11$",
+          "$5$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $p$ est premier et $p \\nmid a$ : par le petit théorème de Fermat, $a^{p-1} \\equiv 1 \\pmod{p}$, c'est-à-dire $a \\times a^{p-2} \\equiv 1 \\pmod{p}$ (on a $p - 2 \\geq 0$ car $p \\geq 2$).\n\n**2.** Avec $p = 13$ (premier) et $a = 6$ ($13 \\nmid 6$), $b = 6^{11}$ convient. On simplifie : $6 \\times 11 = 66 = 5 \\times 13 + 1$, donc $b = 11$ convient aussi (et $6^{11} \\equiv 11 \\pmod{13}$, l'inverse étant unique modulo $13$).\n\nSi $6x \\equiv 5 \\pmod{13}$, en multipliant par $11$ : $66x \\equiv 55$, soit $x \\equiv 55 \\equiv 3 \\pmod{13}$. Réciproquement, si $x \\equiv 3$, alors $6x \\equiv 18 \\equiv 5 \\pmod{13}$.\n\nLes solutions sont les $x \\in 3 + 13\\mathbb{Z}$."
+    },
+    {
+      "id": "arith-t-fermat-ex3",
+      "carte": "arith-t-fermat",
+      "difficulte": 3,
+      "titre": "n puissance 7 moins n",
+      "enonce": "Montrer que pour tout $n \\in \\mathbb{Z}$, l'entier $n^7 - n$ est divisible par $42$.",
+      "duree_min": 12,
+      "indices": [
+        "Décomposer $42 = 2 \\times 3 \\times 7$ et montrer la divisibilité par chacun de ces nombres premiers.",
+        "Le petit théorème de Fermat donne directement $n^7 \\equiv n \\pmod{7}$ ; pour $2$ et $3$, ramener $n^7$ à $n^2$ ou $n^3$."
+      ],
+      "correction": "Soit $n \\in \\mathbb{Z}$ et $N = n^7 - n$. On utilise la première forme du petit théorème de Fermat, valable pour tout entier (même divisible par $p$).\n\n- **Modulo $7$** : $7$ est premier, donc $n^7 \\equiv n \\pmod{7}$ et $7 \\mid N$.\n- **Modulo $3$** : $n^3 \\equiv n \\pmod{3}$, donc $n^7 = n^3 \\times n^3 \\times n \\equiv n \\times n \\times n = n^3 \\equiv n \\pmod{3}$ et $3 \\mid N$.\n- **Modulo $2$** : $n^2 \\equiv n \\pmod{2}$, donc par récurrence $n^k \\equiv n \\pmod{2}$ pour tout $k \\geq 1$, en particulier $n^7 \\equiv n$, et $2 \\mid N$.\n\nLes nombres $2$, $3$, $7$ sont premiers entre eux deux à deux. Comme $2 \\mid N$, $3 \\mid N$ et $2 \\wedge 3 = 1$, on a $6 \\mid N$ ; puis $6 \\mid N$, $7 \\mid N$ et $6 \\wedge 7 = 1$ donnent $42 \\mid N$ (corollaire du lemme de Gauss)."
+    },
+    {
+      "id": "arith-t-fermat-ex4",
+      "carte": "arith-t-fermat",
+      "difficulte": 4,
+      "titre": "341, un faux premier pour la base 2",
+      "enonce": "1. Vérifier que $341$ n'est pas premier.\n\n2. Calculer $2^{10}$ et en déduire que $2^{340} \\equiv 1 \\pmod{341}$.\n\n3. L'affirmation « pour tout entier $n \\geq 2$, si $2^{n-1} \\equiv 1 \\pmod{n}$, alors $n$ est premier » est-elle vraie ?\n\n4. Déterminer le reste de $3^{340}$ modulo $31$. En déduire que $3^{340} \\not\\equiv 1 \\pmod{341}$, puis expliquer pourquoi ce dernier fait suffit, à lui seul, à prouver que $341$ n'est pas premier.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, comparer $1024$ à un multiple de $341$.",
+        "Pour la question 4, appliquer le petit théorème de Fermat modulo le nombre premier $31$ et écrire $340 = 30 \\times 11 + 10$ ; pour $3^{10}$, partir de $3^5 = 243$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de la division euclidienne de $3^{340}$ par $31$ ?",
+        "propositions": [
+          "$25$",
+          "$1$",
+          "$5$",
+          "$9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $341 = 11 \\times 31$ : ce n'est pas un nombre premier.\n\n**2.** $2^{10} = 1024 = 3 \\times 341 + 1$, donc $2^{10} \\equiv 1 \\pmod{341}$. Comme $340 = 10 \\times 34$, $2^{340} = (2^{10})^{34} \\equiv 1 \\pmod{341}$.\n\n**3.** La réciproque « si $2^{n-1} \\equiv 1 \\pmod{n}$, alors $n$ est premier » est **fausse** : $n = 341$ en est un contre-exemple (questions 1 et 2).\n\n**4.** $31$ est premier et ne divise pas $3$, donc $3^{30} \\equiv 1 \\pmod{31}$. Avec $340 = 30 \\times 11 + 10$, on a $3^{340} \\equiv 3^{10} \\pmod{31}$. Or $3^5 = 243 = 7 \\times 31 + 26$, donc $3^5 \\equiv 26 \\equiv -5$, puis $3^{10} \\equiv 25 \\pmod{31}$. Le reste est $25$.\n\nSi l'on avait $3^{340} \\equiv 1 \\pmod{341}$, comme $31 \\mid 341$ on aurait $3^{340} \\equiv 1 \\pmod{31}$, ce qui est faux. Donc $3^{340} \\not\\equiv 1 \\pmod{341}$.\n\nOr, si $341$ était premier, comme $341 \\nmid 3$, le petit théorème de Fermat donnerait $3^{340} \\equiv 1 \\pmod{341}$. Par contraposée, $341$ n'est pas premier. C'est le principe du test de Fermat : en pratique, on calcule $3^{340}$ modulo $341$ par exponentiation rapide, sans connaître la factorisation, et un résultat différent de $1$ prouve que le nombre est composé. En revanche, un résultat égal à $1$ (comme en base $2$) ne prouve rien."
+    }
+  ]
+}

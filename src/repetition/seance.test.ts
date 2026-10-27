@@ -110,8 +110,9 @@ describe('volets', () => {
   it('chaque volet a son propre état ; la carte n’est acquise que si tous le sont', () => {
     let p = voir(PROGRESSION_VIDE, 't', ['enonce'])
     expect(etatCarte(c, p.volets)).toBe('en-cours')
-    // Démonstration et contre-exemple jamais ouverts : à voir dès la séance suivante.
-    expect(voletsDus(c, p.volets, T0, J0)).toEqual(['demo', 'contre'])
+    // Démonstration et contre-exemple jamais ouverts : pas redemandés le jour même, mais dès le lendemain.
+    expect(voletsDus(c, p.volets, T0, J0)).toEqual([])
+    expect(voletsDus(c, p.volets, T0, ajouterJours(J0, 1))).toEqual(['demo', 'contre'])
     p = voir(p, 't', ['demo', 'contre'])
     expect(voletsDus(c, p.volets, T0, J0)).toEqual([])
     // Trois semaines de « Bien » sur tout : acquise.

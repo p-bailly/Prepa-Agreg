@@ -1,0 +1,145 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l1-probas-totales-bayes",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-conditionnement",
+      "type": "theoreme",
+      "titre": "Formule des probabilités totales et formule de Bayes",
+      "recto": "Énoncer la formule des probabilités totales et la formule de Bayes avec leurs hypothèses.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$(A_1,\\dots,A_n)$ est un système complet d'événements : les $A_i$ sont deux à deux incompatibles et leur réunion est $\\Omega$.",
+        "Pour tout $i$, $P(A_i)>0$.",
+        "$B$ est un événement ; pour la formule de Bayes, $P(B)>0$."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que les $A_i$ soient deux à deux incompatibles, sans que leur réunion soit $\\Omega$.",
+        "Il suffit que la réunion des $A_i$ soit $\\Omega$, sans qu'ils soient deux à deux incompatibles.",
+        "Les événements $A_1,\\dots,A_n$ sont mutuellement indépendants.",
+        "L'événement $B$ est indépendant de chacun des $A_i$."
+      ],
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé et $(A_1,\\dots,A_n)$ un système complet d'événements (deux à deux incompatibles, de réunion $\\Omega$) tel que $P(A_i)>0$ pour tout $i$ (c'est ce qui donne un sens aux probabilités conditionnelles $P(B\\mid A_i)$).\n\n**Probabilités totales.** Pour tout événement $B$,\n$$P(B)=\\sum_{i=1}^{n}P(B\\mid A_i)P(A_i).$$\n\n**Formule de Bayes.** Si de plus $P(B)>0$, pour tout $j\\in\\{1,\\dots,n\\}$,\n$$P(A_j\\mid B)=\\frac{P(B\\mid A_j)P(A_j)}{\\sum_{i=1}^{n}P(B\\mid A_i)P(A_i)}.$$",
+      "enonce_trous": "Si $(A_1,\\dots,A_n)$ est un système complet d'événements {{1}}, alors pour tout événement $B$, $P(B)=$ {{2}} et, si $P(B)>0$, pour tout $j$, $P(A_j\\mid B)=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "de probabilités non nulles",
+          "leurres": [
+            "de probabilités positives ou nulles",
+            "quelconque",
+            "dont l'un au moins est de probabilité non nulle"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{i=1}^{n}P(B\\mid A_i)P(A_i)$",
+          "leurres": [
+            "$\\sum_{i=1}^{n}P(A_i\\mid B)P(A_i)$",
+            "$\\sum_{i=1}^{n}P(B\\mid A_i)$",
+            "$\\prod_{i=1}^{n}P(B\\mid A_i)P(A_i)$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{P(B\\mid A_j)P(A_j)}{\\sum_{i=1}^{n}P(B\\mid A_i)P(A_i)}$",
+          "leurres": [
+            "$P(B\\mid A_j)$",
+            "$\\frac{P(B\\mid A_j)P(B)}{P(A_j)}$",
+            "$\\frac{P(A_j)}{\\sum_{i=1}^{n}P(B\\mid A_i)P(A_i)}$"
+          ]
+        }
+      ],
+      "demo": "Comme les $A_i$ recouvrent $\\Omega$, $B=B\\cap\\Omega=\\bigcup_{i=1}^{n}(B\\cap A_i)$, et les $B\\cap A_i$ sont deux à deux incompatibles puisque les $A_i$ le sont. Par additivité de $P$ :\n$$P(B)=\\sum_{i=1}^{n}P(B\\cap A_i).$$\nComme $P(A_i)>0$, $P(B\\mid A_i)=\\frac{P(B\\cap A_i)}{P(A_i)}$ est défini et $P(B\\cap A_i)=P(B\\mid A_i)P(A_i)$, d'où la formule des probabilités totales.\n\nSi $P(B)>0$, $P(A_j\\mid B)=\\frac{P(A_j\\cap B)}{P(B)}=\\frac{P(B\\mid A_j)P(A_j)}{P(B)}$, et l'on remplace $P(B)$ par l'expression précédente.",
+      "exemple": "On choisit au hasard (probabilité $\\frac{1}{2}$ chacune) une pièce équilibrée ou une pièce truquée donnant pile avec probabilité $\\frac{3}{4}$, puis on la lance. Avec le système complet (équilibrée, truquée) : $P(\\text{pile})=\\frac{1}{2}\\cdot\\frac{1}{2}+\\frac{1}{2}\\cdot\\frac{3}{4}=\\frac{5}{8}$, et par la formule de Bayes $P(\\text{truquée}\\mid\\text{pile})=\\frac{3/8}{5/8}=\\frac{3}{5}$.",
+      "contre_exemple": "- **Ne pas confondre $P(A\\mid B)$ et $P(B\\mid A)$.** Une maladie touche $1\\,\\%$ d'une population ($P(M)=\\frac{1}{100}$) ; un test est positif chez $99\\,\\%$ des malades ($P(T\\mid M)=\\frac{99}{100}$) et chez $5\\,\\%$ des non-malades ($P(T\\mid\\overline{M})=\\frac{1}{20}$). Alors $P(T)=\\frac{99}{10000}+\\frac{495}{10000}=\\frac{297}{5000}$ et $P(M\\mid T)=\\frac{99/10000}{594/10000}=\\frac{1}{6}$, très loin de $P(T\\mid M)=\\frac{99}{100}$.\n- **La réunion doit être $\\Omega$.** Dé équilibré, $A_1=\\{1,2\\}$, $A_2=\\{3,4\\}$ (incompatibles), $B=\\{2,5\\}$ : $P(B\\mid A_1)P(A_1)+P(B\\mid A_2)P(A_2)=\\frac{1}{6}\\neq\\frac{1}{3}=P(B)$.\n- **Les $A_i$ doivent être deux à deux incompatibles.** $A_1=\\{1,2,3,4\\}$, $A_2=\\{3,4,5,6\\}$ (de réunion $\\Omega$), $B=\\{3\\}$ : la somme vaut $\\frac{1}{6}+\\frac{1}{6}=\\frac{1}{3}\\neq\\frac{1}{6}=P(B)$.\n- **Aucune indépendance n'est requise** : deux événements d'un système complet de probabilités non nulles ne sont même jamais indépendants, car $P(A_i\\cap A_j)=0<P(A_i)P(A_j)$ pour $i\\neq j$.",
+      "affirmations": [
+        {
+          "texte": "Si $P(A)>0$ et $P(B)>0$, alors $P(A\\mid B)=P(B\\mid A)$.",
+          "vrai": false,
+          "contre_exemple": "Test médical avec $P(M)=\\frac{1}{100}$, $P(T\\mid M)=\\frac{99}{100}$, $P(T\\mid\\overline{M})=\\frac{1}{20}$ : la formule de Bayes donne $P(M\\mid T)=\\frac{1}{6}$, alors que $P(T\\mid M)=\\frac{99}{100}$."
+        },
+        {
+          "texte": "Pour appliquer la formule des probabilités totales, les événements du système complet doivent être deux à deux indépendants.",
+          "vrai": false,
+          "contre_exemple": "Avec un dé équilibré, $A=\\{1,2,3\\}$ et $\\overline{A}$ forment un système complet de probabilités non nulles et la formule s'applique, alors que $P(A\\cap\\overline{A})=0\\neq\\frac{1}{4}=P(A)P(\\overline{A})$."
+        },
+        {
+          "texte": "Si $P(A)>0$ et $P(B)>0$, alors $P(A\\mid B)P(B)=P(B\\mid A)P(A)$.",
+          "vrai": true,
+          "justification": "Les deux membres sont égaux à $P(A\\cap B)$, par définition des probabilités conditionnelles."
+        },
+        {
+          "texte": "Si $(A_1,\\dots,A_n)$ est un système complet d'événements de probabilités non nulles, alors $\\sum_{i=1}^{n}P(B\\mid A_i)=1$ pour tout événement $B$.",
+          "vrai": false,
+          "contre_exemple": "Pour $B=\\Omega$, chaque $P(\\Omega\\mid A_i)$ vaut $1$, donc la somme vaut $n$ (par exemple $2$ avec le système $(A,\\overline{A})$). C'est $\\sum_{i=1}^{n}P(A_i\\mid B)$ qui vaut $1$ lorsque $P(B)>0$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "proba-l1-independance-mutuelle",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-conditionnement",
+      "type": "definition",
+      "titre": "Indépendance mutuelle d'une famille finie d'événements",
+      "recto": "Donner la définition de l'indépendance mutuelle d'une famille finie d'événements.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$A_1,\\dots,A_n$ sont des événements, avec $n\\geq 2$.",
+        "Pour toute partie $I$ de $\\{1,\\dots,n\\}$ ayant au moins deux éléments, $P\\left(\\bigcap_{i\\in I}A_i\\right)=\\prod_{i\\in I}P(A_i)$."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que $P(A_i\\cap A_j)=P(A_i)P(A_j)$ pour tous $i\\neq j$ (indépendance deux à deux).",
+        "Il suffit que $P(A_1\\cap\\dots\\cap A_n)=P(A_1)\\cdots P(A_n)$.",
+        "Les événements $A_1,\\dots,A_n$ sont deux à deux incompatibles.",
+        "Pour tout $i$, $P(A_i)\\in\\left]0,1\\right[$."
+      ],
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé et $A_1,\\dots,A_n$ des événements ($n\\geq 2$). On dit que $A_1,\\dots,A_n$ sont **mutuellement indépendants** si, pour toute partie $I$ de $\\{1,\\dots,n\\}$ ayant au moins deux éléments,\n$$P\\left(\\bigcap_{i\\in I}A_i\\right)=\\prod_{i\\in I}P(A_i).$$\n\nCela fait $2^n-n-1$ égalités ; l'indépendance deux à deux (les seules parties à deux éléments) n'en est qu'une partie, de même que l'égalité pour $I=\\{1,\\dots,n\\}$ seule.",
+      "enonce_trous": "Les événements $A_1,\\dots,A_n$ (avec $n\\geq 3$) sont mutuellement indépendants si, pour {{1}}, on a $P\\left(\\bigcap_{i\\in I}A_i\\right)=$ {{2}}.",
+      "trous": [
+        {
+          "reponse": "toute partie $I$ de $\\{1,\\dots,n\\}$ ayant au moins deux éléments",
+          "leurres": [
+            "toute partie $I$ de $\\{1,\\dots,n\\}$ ayant exactement deux éléments",
+            "la seule partie $I=\\{1,\\dots,n\\}$",
+            "au moins une partie $I$ de $\\{1,\\dots,n\\}$ ayant au moins deux éléments"
+          ]
+        },
+        {
+          "reponse": "$\\prod_{i\\in I}P(A_i)$",
+          "leurres": [
+            "$\\sum_{i\\in I}P(A_i)$",
+            "$\\min_{i\\in I}P(A_i)$",
+            "$0$"
+          ]
+        }
+      ],
+      "demo": "Deux conséquences directes de la définition.\n\n**Sous-familles.** Si $A_1,\\dots,A_n$ sont mutuellement indépendants, toute sous-famille d'au moins deux d'entre eux l'est aussi : ses parties sont des parties de $\\{1,\\dots,n\\}$. En particulier, les $A_i$ sont deux à deux indépendants.\n\n**Passage au contraire.** Si $A_1,\\dots,A_n$ sont mutuellement indépendants, alors $\\overline{A_1},A_2,\\dots,A_n$ le sont aussi. Soit $I$ une partie ayant au moins deux éléments. Si $1\\notin I$, l'égalité est inchangée. Sinon, $I=\\{1\\}\\cup J$ avec $J\\subset\\{2,\\dots,n\\}$ non vide ; posons $C=\\bigcap_{i\\in J}A_i$, de sorte que $P(C)=\\prod_{i\\in J}P(A_i)$ (par hypothèse si $J$ a au moins deux éléments, trivialement sinon). Comme $C$ est la réunion disjointe de $A_1\\cap C$ et $\\overline{A_1}\\cap C$,\n$$P\\left(\\overline{A_1}\\cap C\\right)=P(C)-P(A_1\\cap C)=\\prod_{i\\in J}P(A_i)-P(A_1)\\prod_{i\\in J}P(A_i)=P\\left(\\overline{A_1}\\right)\\prod_{i\\in J}P(A_i).$$\nEn répétant, on peut remplacer n'importe quels $A_i$ par leurs contraires.",
+      "exemple": "Trois lancers d'une pièce équilibrée ($8$ issues équiprobables), $A_i$ = « pile au $i$-ème lancer ». Pour $I$ à deux éléments, $\\bigcap_{i\\in I}A_i$ contient $2$ issues, de probabilité $\\frac{1}{4}=\\left(\\frac{1}{2}\\right)^2$ ; pour $I=\\{1,2,3\\}$, une issue, de probabilité $\\frac{1}{8}=\\left(\\frac{1}{2}\\right)^3$. Les $A_i$ sont mutuellement indépendants.",
+      "contre_exemple": "- **Deux à deux ne suffit pas.** Deux lancers d'une pièce équilibrée, $\\Omega=\\{PP,PF,FP,FF\\}$ équiprobable ; $A$ = « pile au premier lancer » $=\\{PP,PF\\}$, $B$ = « pile au second » $=\\{PP,FP\\}$, $C$ = « les deux résultats sont égaux » $=\\{PP,FF\\}$. Chacun a probabilité $\\frac{1}{2}$ et $A\\cap B=A\\cap C=B\\cap C=\\{PP\\}$ a probabilité $\\frac{1}{4}$ : les trois événements sont deux à deux indépendants. Mais $A\\cap B\\cap C=\\{PP\\}$ a probabilité $\\frac{1}{4}\\neq\\frac{1}{8}=P(A)P(B)P(C)$ : ils ne sont pas mutuellement indépendants.\n- **L'égalité pour la famille entière ne suffit pas.** $\\Omega=\\{1,\\dots,8\\}$ équiprobable, $A=\\{1,2,3,4\\}$, $B=\\{1,5,6,7\\}$, $C=\\{1,5,6,8\\}$ : $P(A)=P(B)=P(C)=\\frac{1}{2}$ et $P(A\\cap B\\cap C)=P(\\{1\\})=\\frac{1}{8}=P(A)P(B)P(C)$, mais $P(A\\cap B)=\\frac{1}{8}\\neq\\frac{1}{4}$.",
+      "affirmations": [
+        {
+          "texte": "Si $A$, $B$, $C$ sont deux à deux indépendants, alors ils sont mutuellement indépendants.",
+          "vrai": false,
+          "contre_exemple": "Deux lancers d'une pièce équilibrée, $A$ = « pile au premier », $B$ = « pile au second », $C$ = « les deux résultats sont égaux » : $P(A\\cap B)=P(A\\cap C)=P(B\\cap C)=\\frac{1}{4}$ mais $P(A\\cap B\\cap C)=\\frac{1}{4}\\neq\\frac{1}{8}$."
+        },
+        {
+          "texte": "Si $P(A\\cap B\\cap C)=P(A)P(B)P(C)$, alors $A$, $B$, $C$ sont mutuellement indépendants.",
+          "vrai": false,
+          "contre_exemple": "$\\Omega=\\{1,\\dots,8\\}$ équiprobable, $A=\\{1,2,3,4\\}$, $B=\\{1,5,6,7\\}$, $C=\\{1,5,6,8\\}$ : $P(A\\cap B\\cap C)=\\frac{1}{8}=P(A)P(B)P(C)$, mais $P(A\\cap B)=\\frac{1}{8}\\neq\\frac{1}{4}=P(A)P(B)$."
+        },
+        {
+          "texte": "Si $A$, $B$, $C$ sont mutuellement indépendants, alors $A$ et $B\\cap C$ sont indépendants.",
+          "vrai": true,
+          "justification": "$P\\left(A\\cap(B\\cap C)\\right)=P(A)P(B)P(C)=P(A)P(B\\cap C)$, en utilisant l'égalité pour $I=\\{1,2,3\\}$ puis pour $I=\\{2,3\\}$."
+        },
+        {
+          "texte": "Deux événements incompatibles sont indépendants.",
+          "vrai": false,
+          "contre_exemple": "Avec un dé équilibré, $A=\\{1\\}$ et $B=\\{2\\}$ sont incompatibles mais $P(A\\cap B)=0\\neq\\frac{1}{36}=P(A)P(B)$. Deux événements incompatibles ne sont indépendants que si l'un d'eux est de probabilité nulle."
+        }
+      ],
+      "prerequis": []
+    }
+  ]
+}

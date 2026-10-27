@@ -108,3 +108,13 @@ export function formulesDe(texte: string): { t: string; bloc: boolean }[] {
 export function trousDe(texte: string): number[] {
   return [...texte.matchAll(/\{\{(\d+)\}\}/g)].map((m) => Number(m[1]))
 }
+
+/** Numéros des trous vraiment affichés (hors formules) : un trou dans une formule ne serait pas reconnu. */
+export function trousAffiches(texte: string): number[] {
+  const n: number[] = []
+  for (const p of decouperTexte(texte)) {
+    const lignes = p.k === 'p' ? [p.morceaux] : p.k === 'liste' ? p.items : []
+    for (const l of lignes) for (const m of l) if (m.k === 'trou') n.push(m.n)
+  }
+  return n
+}

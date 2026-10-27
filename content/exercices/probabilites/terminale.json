@@ -1,0 +1,241 @@
+{
+  "exercices": [
+    {
+      "id": "proba-t-binomiale-ex1",
+      "carte": "proba-t-binomiale",
+      "difficulte": 1,
+      "titre": "Une probabilité binomiale",
+      "enonce": "On lance $4$ fois un dé équilibré à $6$ faces, les lancers étant indépendants. On appelle succès l'obtention de $1$ ou $2$. Soit $X$ le nombre de succès. Justifier la loi de $X$, puis calculer $P(X=2)$, $E(X)$ et $V(X)$.",
+      "duree_min": 5,
+      "indices": [
+        "Identifier le schéma de Bernoulli : nombre d'épreuves, indépendance, probabilité de succès commune."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X=2)$ ?",
+        "propositions": [
+          "$\\frac{8}{27}$",
+          "$\\frac{4}{81}$",
+          "$\\frac{16}{81}$",
+          "$\\frac{4}{9}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les $4$ lancers sont des épreuves de Bernoulli indépendantes, chacune de probabilité de succès $\\frac{2}{6}=\\frac{1}{3}$. Donc $X\\sim\\mathcal{B}\\left(4,\\frac{1}{3}\\right)$ et\n$$P(X=2)=\\binom{4}{2}\\left(\\frac{1}{3}\\right)^2\\left(\\frac{2}{3}\\right)^2=6\\cdot\\frac{1}{9}\\cdot\\frac{4}{9}=\\frac{8}{27}.$$\nEnfin $E(X)=4\\cdot\\frac{1}{3}=\\frac{4}{3}$ et $V(X)=4\\cdot\\frac{1}{3}\\cdot\\frac{2}{3}=\\frac{8}{9}$."
+    },
+    {
+      "id": "proba-t-binomiale-ex2",
+      "carte": "proba-t-binomiale",
+      "difficulte": 2,
+      "titre": "Nombre minimal d'essais",
+      "enonce": "Un joueur réussit un tir avec probabilité $\\frac{1}{5}$, les tirs étant indépendants. Déterminer le plus petit entier $n$ tel que, en $n$ tirs, la probabilité de réussir au moins un tir soit supérieure ou égale à $\\frac{9}{10}$.",
+      "duree_min": 8,
+      "indices": [
+        "Passer à l'événement contraire « aucun tir réussi », puis utiliser le logarithme népérien."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit $n$ convenable ?",
+        "propositions": [
+          "$11$",
+          "$10$",
+          "$12$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le nombre $X$ de tirs réussis parmi $n$ suit $\\mathcal{B}\\left(n,\\frac{1}{5}\\right)$ (épreuves de Bernoulli indépendantes de même paramètre). Donc $P(X\\geq 1)=1-P(X=0)=1-\\left(\\frac{4}{5}\\right)^n$ et\n$$P(X\\geq 1)\\geq\\frac{9}{10}\\iff\\left(\\frac{4}{5}\\right)^n\\leq\\frac{1}{10}\\iff n\\ln\\frac{4}{5}\\leq-\\ln 10\\iff n\\geq\\frac{\\ln 10}{\\ln\\frac{5}{4}},$$\nle sens de l'inégalité changeant à la dernière étape car $\\ln\\frac{4}{5}<0$. Or $\\frac{\\ln 10}{\\ln(5/4)}\\approx 10{,}32$, donc le plus petit entier convenable est $n=11$. Contrôle : $\\left(\\frac{4}{5}\\right)^{10}\\approx 0{,}107>0{,}1$ et $\\left(\\frac{4}{5}\\right)^{11}\\approx 0{,}086\\leq 0{,}1$."
+    },
+    {
+      "id": "proba-t-binomiale-ex3",
+      "carte": "proba-t-binomiale",
+      "difficulte": 4,
+      "titre": "Tirages sans remise : même espérance, autre loi",
+      "enonce": "Une urne contient $4$ boules rouges et $2$ boules blanches, toutes distinctes. On tire successivement et sans remise $3$ boules ; tous les triplets ordonnés de boules distinctes sont équiprobables. On note $R_i$ l'événement « la $i$-ème boule tirée est rouge » et $X$ le nombre de boules rouges tirées.\n\n1. Montrer que $P(R_i)=\\frac{2}{3}$ pour $i\\in\\{1,2,3\\}$.\n2. Les événements $R_1$ et $R_2$ sont-ils indépendants ? Peut-on appliquer le résultat sur la loi binomiale ?\n3. Déterminer la loi de $X$, puis $E(X)$ et $V(X)$. Comparer avec la loi $\\mathcal{B}\\left(3,\\frac{2}{3}\\right)$.",
+      "duree_min": 20,
+      "indices": [
+        "Compter les triplets ordonnés : il y en a $6\\cdot 5\\cdot 4=120$ ; pour $R_i$, choisir d'abord la boule en position $i$.",
+        "Pour la loi de $X$, choisir les positions des boules rouges, puis les boules rouges et blanches dans l'ordre."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$\\frac{2}{5}$",
+          "$\\frac{2}{3}$",
+          "$2$",
+          "$\\frac{4}{9}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** L'univers est l'ensemble des $6\\cdot 5\\cdot 4=120$ triplets ordonnés de boules distinctes, muni de l'équiprobabilité. Les triplets réalisant $R_i$ s'obtiennent en choisissant la boule rouge en position $i$ ($4$ choix) puis les deux autres boules dans l'ordre ($5\\cdot 4$ choix) : $P(R_i)=\\frac{80}{120}=\\frac{2}{3}$.\n\n**2.** $P(R_1\\cap R_2)=\\frac{4\\cdot 3\\cdot 4}{120}=\\frac{2}{5}$ et $P(R_1)P(R_2)=\\frac{4}{9}\\neq\\frac{2}{5}$ : $R_1$ et $R_2$ ne sont pas indépendants. Les trois épreuves ont la même probabilité de succès $\\frac{2}{3}$, mais elles ne sont pas indépendantes : l'hypothèse d'indépendance du schéma de Bernoulli n'est pas vérifiée, on ne peut pas conclure que $X$ est binomiale.\n\n**3.** $X$ prend ses valeurs dans $\\{1,2,3\\}$ car il n'y a que $2$ boules blanches. Pour obtenir exactement $k$ rouges, on choisit leurs positions ($\\binom{3}{k}$ façons), puis les boules rouges dans l'ordre (produit de $k$ entiers consécutifs décroissants à partir de $4$), puis les boules blanches dans l'ordre (produit de $3-k$ entiers consécutifs décroissants à partir de $2$) :\n$$P(X=1)=\\frac{3\\cdot 4\\cdot 2\\cdot 1}{120}=\\frac{1}{5},\\quad P(X=2)=\\frac{3\\cdot 4\\cdot 3\\cdot 2}{120}=\\frac{3}{5},\\quad P(X=3)=\\frac{4\\cdot 3\\cdot 2}{120}=\\frac{1}{5}.$$\nDonc $E(X)=\\frac{1}{5}+\\frac{6}{5}+\\frac{3}{5}=2$, $E(X^2)=\\frac{1}{5}+\\frac{12}{5}+\\frac{9}{5}=\\frac{22}{5}$ et $V(X)=\\frac{22}{5}-4=\\frac{2}{5}$.\n\nPour $\\mathcal{B}\\left(3,\\frac{2}{3}\\right)$ : espérance $2$ (la même, car $X=\\mathbf{1}_{R_1}+\\mathbf{1}_{R_2}+\\mathbf{1}_{R_3}$ et la linéarité de l'espérance ne demande pas l'indépendance), mais variance $3\\cdot\\frac{2}{3}\\cdot\\frac{1}{3}=\\frac{2}{3}\\neq\\frac{2}{5}$, et $P(X=0)$ vaudrait $\\frac{1}{27}\\neq 0$. La loi de $X$ n'est donc pas binomiale."
+    },
+    {
+      "id": "proba-t-bienayme-ex1",
+      "carte": "proba-t-bienayme",
+      "difficulte": 1,
+      "titre": "Application directe",
+      "enonce": "Une variable aléatoire réelle $X$, définie sur un univers fini, vérifie $E(X)=8$ et $V(X)=2$. Majorer $P\\left(|X-8|\\geq 4\\right)$ à l'aide de l'inégalité de Bienaymé-Tchebychev.",
+      "duree_min": 3,
+      "indices": [
+        "Appliquer l'inégalité avec $a=4$, en vérifiant que $a>0$."
+      ],
+      "reponse_finale": {
+        "question": "Quel majorant l'inégalité fournit-elle ?",
+        "propositions": [
+          "$\\frac{1}{8}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{7}{8}$",
+          "$\\frac{\\sqrt{2}}{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le réel $a=4$ est strictement positif, donc l'inégalité de Bienaymé-Tchebychev s'applique :\n$$P\\left(|X-8|\\geq 4\\right)\\leq\\frac{V(X)}{4^2}=\\frac{2}{16}=\\frac{1}{8}.$$"
+    },
+    {
+      "id": "proba-t-bienayme-ex2",
+      "carte": "proba-t-bienayme",
+      "difficulte": 2,
+      "titre": "Minorer la probabilité d'un intervalle",
+      "enonce": "Soit $X$ une variable aléatoire de loi $\\mathcal{B}\\left(200,\\frac{1}{4}\\right)$. Donner, à l'aide de l'inégalité de Bienaymé-Tchebychev, une minoration de $P\\left(35<X<65\\right)$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire l'événement $\\{35<X<65\\}$ sous la forme $\\left\\{|X-E(X)|<a\\right\\}$, puis passer au contraire."
+      ],
+      "reponse_finale": {
+        "question": "Quelle minoration obtient-on ?",
+        "propositions": [
+          "$\\frac{5}{6}$",
+          "$\\frac{1}{6}$",
+          "$\\frac{7}{9}$",
+          "$\\frac{23}{24}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $E(X)=200\\cdot\\frac{1}{4}=50$ et $V(X)=200\\cdot\\frac{1}{4}\\cdot\\frac{3}{4}=\\frac{75}{2}$. Comme $35<X<65\\iff|X-50|<15$, on obtient, avec $a=15>0$,\n$$P\\left(35<X<65\\right)=1-P\\left(|X-50|\\geq 15\\right)\\geq 1-\\frac{75/2}{15^2}=1-\\frac{1}{6}=\\frac{5}{6}.$$"
+    },
+    {
+      "id": "proba-t-bienayme-ex3",
+      "carte": "proba-t-bienayme",
+      "difficulte": 3,
+      "titre": "Comparer la borne et la valeur exacte",
+      "enonce": "Soit $X$ une variable aléatoire de loi uniforme sur $\\{1,2,\\dots,9\\}$.\n\n1. Calculer $E(X)$ et $V(X)$.\n2. Donner le majorant de $P\\left(|X-5|\\geq 4\\right)$ fourni par l'inégalité de Bienaymé-Tchebychev, puis la valeur exacte de cette probabilité.\n3. Que donne l'inégalité pour majorer $P\\left(|X-5|\\geq 2\\right)$ ?",
+      "duree_min": 12,
+      "indices": [
+        "Pour la variance, calculer $E(X^2)$ avec $\\sum_{k=1}^{9}k^2=285$.",
+        "L'événement $\\left\\{|X-5|\\geq 4\\right\\}$ ne contient que deux valeurs de $X$."
+      ],
+      "reponse_finale": {
+        "question": "Quel majorant l'inégalité de Bienaymé-Tchebychev fournit-elle pour $P\\left(|X-5|\\geq 4\\right)$ ?",
+        "propositions": [
+          "$\\frac{5}{12}$",
+          "$\\frac{2}{9}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{5}{48}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $E(X)=\\frac{1}{9}\\sum_{k=1}^{9}k=\\frac{45}{9}=5$ et $E(X^2)=\\frac{285}{9}=\\frac{95}{3}$, donc $V(X)=\\frac{95}{3}-25=\\frac{20}{3}$.\n\n**2.** Avec $a=4>0$ : $P\\left(|X-5|\\geq 4\\right)\\leq\\frac{20/3}{16}=\\frac{5}{12}$. La valeur exacte est $P\\left(X\\in\\{1,9\\}\\right)=\\frac{2}{9}$, nettement plus petite que $\\frac{5}{12}$ : l'inégalité est valable pour toute loi et n'est pas optimale pour celle-ci.\n\n**3.** Pour $a=2$, le majorant vaut $\\frac{20/3}{4}=\\frac{5}{3}>1$ : l'inégalité est vraie mais n'apporte rien (la probabilité exacte est $P\\left(X\\in\\{1,2,3,7,8,9\\}\\right)=\\frac{2}{3}$)."
+    },
+    {
+      "id": "proba-t-bienayme-ex4",
+      "carte": "proba-t-bienayme",
+      "difficulte": 4,
+      "titre": "Cas d'égalité dans l'inégalité de Bienaymé-Tchebychev",
+      "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini, d'espérance $m$, et $a>0$.\n\n1. Montrer que $P\\left(|X-m|\\geq a\\right)=\\frac{V(X)}{a^2}$ si et seulement si $P\\left(X\\in\\{m-a,m,m+a\\}\\right)=1$.\n2. Soit $v\\in\\left]0,a^2\\right]$. Construire une variable $X$ d'espérance $m$ et de variance $v$ pour laquelle l'égalité a lieu. En déduire que la constante $1$ dans le majorant $\\frac{V(X)}{a^2}$ ne peut pas être remplacée par une constante strictement plus petite.\n3. Montrer que si $V(X)>a^2$, l'égalité est impossible.",
+      "duree_min": 25,
+      "indices": [
+        "Reprendre la preuve de l'inégalité et regarder quand chacune des deux inégalités utilisées est une égalité.",
+        "Pour la construction, chercher $X$ prenant les valeurs $m-a$ et $m+a$ avec la même probabilité, et $m$ sinon."
+      ],
+      "correction": "**1.** Notons $x_1,\\dots,x_r$ les valeurs de $X$, $p_j=P(X=x_j)>0$ (on ne garde que les valeurs de probabilité non nulle) et $J=\\left\\{j : |x_j-m|\\geq a\\right\\}$. La preuve de l'inégalité s'écrit\n$$V(X)=\\sum_{j=1}^{r}(x_j-m)^2p_j\\overset{(i)}{\\geq}\\sum_{j\\in J}(x_j-m)^2p_j\\overset{(ii)}{\\geq}a^2\\sum_{j\\in J}p_j=a^2P\\left(|X-m|\\geq a\\right).$$\nL'égalité $P\\left(|X-m|\\geq a\\right)=\\frac{V(X)}{a^2}$ équivaut à l'égalité dans (i) et dans (ii). Dans (i), on a retiré les termes $(x_j-m)^2p_j\\geq 0$ pour $j\\notin J$ : il y a égalité si et seulement s'ils sont tous nuls, c'est-à-dire (car $p_j>0$) $x_j=m$ pour tout $j\\notin J$. Dans (ii), on a minoré $(x_j-m)^2$ par $a^2$ pour $j\\in J$ : égalité si et seulement si $|x_j-m|=a$ pour tout $j\\in J$. Ainsi l'égalité a lieu si et seulement si toute valeur de probabilité non nulle appartient à $\\{m-a,m,m+a\\}$, c'est-à-dire $P\\left(X\\in\\{m-a,m,m+a\\}\\right)=1$.\n\n**2.** Posons $P(X=m-a)=P(X=m+a)=\\frac{v}{2a^2}$ et $P(X=m)=1-\\frac{v}{a^2}$ (sur l'univers à trois issues correspondant) ; ce sont des réels positifs de somme $1$ car $0<v\\leq a^2$. Par symétrie $E(X)=m$, et $V(X)=a^2\\cdot\\frac{v}{2a^2}\\cdot 2=v$. Enfin $P\\left(|X-m|\\geq a\\right)=\\frac{v}{a^2}=\\frac{V(X)}{a^2}$. Si l'on avait $P\\left(|X-E(X)|\\geq a\\right)\\leq c\\,\\frac{V(X)}{a^2}$ pour toute $X$ avec $c<1$, cet exemple donnerait $\\frac{v}{a^2}\\leq c\\,\\frac{v}{a^2}$, absurde car $v>0$.\n\n**3.** Si l'égalité a lieu, la question 1 donne $V(X)=a^2P\\left(|X-m|=a\\right)\\leq a^2$. Donc si $V(X)>a^2$, l'égalité est impossible ; c'est cohérent avec le fait qu'alors $\\frac{V(X)}{a^2}>1\\geq P\\left(|X-m|\\geq a\\right)$."
+    },
+    {
+      "id": "proba-t-lgn-ex1",
+      "carte": "proba-t-lgn",
+      "difficulte": 1,
+      "titre": "Inégalité de concentration : application directe",
+      "enonce": "Soit $(X_1,\\dots,X_{100})$ un échantillon de taille $100$ d'une loi d'espérance $\\mu$ et de variance $4$, et $M_{100}$ sa moyenne. Majorer $P\\left(|M_{100}-\\mu|\\geq\\frac{1}{2}\\right)$.",
+      "duree_min": 3,
+      "indices": [
+        "Appliquer l'inégalité de concentration avec $n=100$ et $\\delta=\\frac{1}{2}$."
+      ],
+      "reponse_finale": {
+        "question": "Quel majorant obtient-on ?",
+        "propositions": [
+          "$\\frac{4}{25}$",
+          "$\\frac{2}{25}$",
+          "$\\frac{1}{625}$",
+          "$\\frac{21}{25}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les $X_i$ sont indépendantes et de même loi (échantillon), et $\\delta=\\frac{1}{2}>0$, donc\n$$P\\left(|M_{100}-\\mu|\\geq\\frac{1}{2}\\right)\\leq\\frac{4}{100\\cdot\\frac{1}{4}}=\\frac{4}{25}.$$"
+    },
+    {
+      "id": "proba-t-lgn-ex2",
+      "carte": "proba-t-lgn",
+      "difficulte": 2,
+      "titre": "Taille d'échantillon pour un dé",
+      "enonce": "On lance $n$ fois un dé équilibré, les lancers étant indépendants, et on note $F_n$ la fréquence d'apparition du $6$. Déterminer le plus petit entier $n$ pour lequel l'inégalité de concentration garantit $P\\left(\\left|F_n-\\frac{1}{6}\\right|\\geq\\frac{1}{10}\\right)\\leq\\frac{1}{20}$.",
+      "duree_min": 8,
+      "indices": [
+        "$F_n$ est la moyenne d'un échantillon de la loi de Bernoulli de paramètre $\\frac{1}{6}$ ; calculer sa variance."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce plus petit entier $n$ ?",
+        "propositions": [
+          "$278$",
+          "$277$",
+          "$28$",
+          "$334$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $X_i$ l'indicatrice de l'événement « le $i$-ème lancer donne $6$ » : les $X_i$ sont indépendantes, de loi de Bernoulli de paramètre $p=\\frac{1}{6}$, de variance $p(1-p)=\\frac{5}{36}$, et $F_n$ est leur moyenne. L'inégalité de concentration avec $\\delta=\\frac{1}{10}$ donne\n$$P\\left(\\left|F_n-\\frac{1}{6}\\right|\\geq\\frac{1}{10}\\right)\\leq\\frac{5/36}{n/100}=\\frac{125}{9n}.$$\nCe majorant est inférieur ou égal à $\\frac{1}{20}$ si et seulement si $n\\geq\\frac{2500}{9}\\approx 277{,}8$. Le plus petit entier convenable est $n=278$."
+    },
+    {
+      "id": "proba-t-lgn-ex3",
+      "carte": "proba-t-lgn",
+      "difficulte": 3,
+      "titre": "Sondage : une majoration valable pour tout p",
+      "enonce": "Dans une population, une proportion inconnue $p\\in\\left[0,1\\right]$ de personnes approuve un projet. On interroge $n$ personnes ; on modélise les réponses par un échantillon $(X_1,\\dots,X_n)$ de la loi de Bernoulli de paramètre $p$, et on note $F_n$ la fréquence des réponses favorables.\n\n1. Montrer que $p(1-p)\\leq\\frac{1}{4}$ pour tout $p\\in\\left[0,1\\right]$.\n2. En déduire que, pour tout $\\delta>0$, $P\\left(|F_n-p|\\geq\\delta\\right)\\leq\\frac{1}{4n\\delta^2}$, quel que soit $p$.\n3. Déterminer le plus petit $n$ pour lequel cette majoration garantit $P\\left(|F_n-p|\\geq\\frac{1}{20}\\right)\\leq\\frac{1}{10}$, quelle que soit la valeur de $p$.",
+      "duree_min": 12,
+      "indices": [
+        "Écrire $\\frac{1}{4}-p(1-p)$ comme un carré.",
+        "Appliquer l'inégalité de concentration, puis majorer la variance indépendamment de $p$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit $n$ obtenu à la question 3 ?",
+        "propositions": [
+          "$1000$",
+          "$50$",
+          "$2000$",
+          "$4000$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\frac{1}{4}-p(1-p)=p^2-p+\\frac{1}{4}=\\left(p-\\frac{1}{2}\\right)^2\\geq 0$.\n\n**2.** Les $X_i$ sont indépendantes, de même loi de Bernoulli, d'espérance $p$ et de variance $p(1-p)$. L'inégalité de concentration donne, pour $\\delta>0$,\n$$P\\left(|F_n-p|\\geq\\delta\\right)\\leq\\frac{p(1-p)}{n\\delta^2}\\leq\\frac{1}{4n\\delta^2}.$$\n\n**3.** Avec $\\delta=\\frac{1}{20}$ : $\\frac{1}{4n\\delta^2}=\\frac{100}{n}$, et $\\frac{100}{n}\\leq\\frac{1}{10}\\iff n\\geq 1000$. Le plus petit $n$ est $1000$. On ne peut pas faire mieux avec cette majoration uniforme, puisque pour $p=\\frac{1}{2}$ on a exactement $\\frac{p(1-p)}{n\\delta^2}=\\frac{100}{n}$."
+    },
+    {
+      "id": "proba-t-lgn-ex4",
+      "carte": "proba-t-lgn",
+      "difficulte": 4,
+      "titre": "Rôle de l'indépendance",
+      "enonce": "Soit $\\Omega=\\{0,1\\}$ muni de l'équiprobabilité et $X_1$ l'identité de $\\Omega$, de loi de Bernoulli de paramètre $\\frac{1}{2}$. Pour $n\\geq 1$, on note $M_n=\\frac{X_1+\\dots+X_n}{n}$.\n\n1. On pose $X_i=X_1$ pour tout $i$. Vérifier que les $X_i$ ont toutes la même loi, calculer $P\\left(\\left|M_n-\\frac{1}{2}\\right|\\geq\\frac{1}{4}\\right)$ et la comparer au majorant $\\frac{V(X_1)}{n\\delta^2}$ de l'inégalité de concentration (avec $\\delta=\\frac{1}{4}$). Conclure.\n2. On suppose $n=2k$ pair et on pose $X_{2j-1}=X_1$ et $X_{2j}=1-X_1$ pour $1\\leq j\\leq k$. Vérifier que les $X_i$ ont même loi, qu'elles ne sont pas indépendantes, et calculer $M_n$.\n3. Que retenir de ces deux exemples ?",
+      "duree_min": 15,
+      "indices": [
+        "Dans les deux cas, écrire explicitement $M_n$ en fonction de $X_1$.",
+        "Pour la non-indépendance, calculer $P(X_1=1,X_2=1)$."
+      ],
+      "reponse_finale": {
+        "question": "Dans la situation de la question 1, que vaut $P\\left(\\left|M_n-\\frac{1}{2}\\right|\\geq\\frac{1}{4}\\right)$ ?",
+        "propositions": [
+          "$1$ pour tout $n$",
+          "$0$ pour tout $n$",
+          "$\\frac{4}{n}$",
+          "$\\frac{1}{2}$ pour tout $n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Toutes les $X_i$ sont égales à $X_1$, donc ont sa loi. Alors $M_n=X_1\\in\\{0,1\\}$ et $\\left|M_n-\\frac{1}{2}\\right|=\\frac{1}{2}\\geq\\frac{1}{4}$ sur tout $\\Omega$ : la probabilité vaut $1$ pour tout $n$. Le majorant vaut $\\frac{1/4}{n/16}=\\frac{4}{n}$, strictement inférieur à $1$ dès que $n\\geq 5$ : l'inégalité de concentration est fausse ici, et la probabilité ne tend pas vers $0$. L'hypothèse « même loi » ne suffit pas.\n\n**2.** $1-X_1$ prend les valeurs $1$ et $0$ avec probabilité $\\frac{1}{2}$ : c'est aussi une loi de Bernoulli de paramètre $\\frac{1}{2}$, donc toutes les $X_i$ ont même loi. Mais $P(X_1=1,X_2=1)=P(X_1=1,1-X_1=1)=0\\neq\\frac{1}{4}=P(X_1=1)P(X_2=1)$ : elles ne sont pas indépendantes. Et $M_n=\\frac{kX_1+k(1-X_1)}{2k}=\\frac{1}{2}$ : la moyenne est constante, égale à l'espérance, et $P\\left(\\left|M_n-\\frac{1}{2}\\right|\\geq\\delta\\right)=0$ pour tout $\\delta>0$.\n\n**3.** Sans indépendance, on ne peut rien conclure dans un sens ou dans l'autre : la moyenne peut ne pas se concentrer du tout (question 1) ou se concentrer parfaitement (question 2). L'inégalité de concentration repose sur $V(M_n)=\\frac{V(X)}{n}$, qui utilise l'indépendance."
+    }
+  ]
+}

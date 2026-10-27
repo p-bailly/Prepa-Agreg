@@ -1,0 +1,291 @@
+{
+  "cartes": [
+    {
+      "id": "arith-t-division-euclidienne",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-divisibilite",
+      "type": "theoreme",
+      "titre": "Division euclidienne dans les entiers relatifs",
+      "recto": "Énoncer le théorème de la division euclidienne dans $\\mathbb{Z}$ avec ses hypothèses.",
+      "hypotheses": [
+        "$a$ est un entier relatif.",
+        "$b$ est un entier naturel non nul."
+      ],
+      "hypotheses_pieges": [
+        "$b$ est un entier relatif non nul (éventuellement négatif).",
+        "$b$ est un entier naturel, éventuellement nul.",
+        "$a$ et $b$ sont premiers entre eux.",
+        "$a \\geq b$."
+      ],
+      "enonce": "Soient $a \\in \\mathbb{Z}$ et $b \\in \\mathbb{N}^*$. Il existe un unique couple $(q,r) \\in \\mathbb{Z}^2$ tel que $a = bq + r$ et $0 \\leq r < b$.\n\nL'entier $q$ est le quotient et $r$ le reste de la division euclidienne de $a$ par $b$.",
+      "enonce_trous": "Soient $a \\in \\mathbb{Z}$ et {{1}}. Il existe {{2}} $(q,r) \\in \\mathbb{Z}^2$ vérifiant $a = bq + r$ et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$b \\in \\mathbb{N}^*$",
+          "leurres": [
+            "$b \\in \\mathbb{Z}^*$",
+            "$b \\in \\mathbb{N}$",
+            "$b \\in \\mathbb{Z}$"
+          ]
+        },
+        {
+          "reponse": "un unique couple",
+          "leurres": [
+            "exactement deux couples",
+            "une infinité de couples",
+            "au moins deux couples"
+          ]
+        },
+        {
+          "reponse": "$0 \\leq r < b$",
+          "leurres": [
+            "$0 \\leq r \\leq b$",
+            "$0 < r < b$",
+            "$|r| < b$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Soit $E = \\{k \\in \\mathbb{Z} : bk \\leq a\\}$.\n\n- $E$ est non vide : comme $b \\geq 1$, on a $b \\times (-|a|) \\leq -|a| \\leq a$, donc $-|a| \\in E$.\n- $E$ est majorée par $|a|$ : si $k > |a| \\geq 0$, alors $bk \\geq k > |a| \\geq a$, donc $k \\notin E$.\n\nToute partie non vide et majorée de $\\mathbb{Z}$ admet un plus grand élément (propriété fondamentale des entiers, admise en Terminale ; elle équivaut au fait que toute partie non vide de $\\mathbb{N}$ a un plus petit élément). Soit $q = \\max E$. Alors $bq \\leq a$ et $q + 1 \\notin E$, donc $bq \\leq a < bq + b$. En posant $r = a - bq$, on obtient $a = bq + r$ et $0 \\leq r < b$.\n\n**Unicité.** Si $a = bq + r = bq' + r'$ avec $0 \\leq r < b$ et $0 \\leq r' < b$, alors $b(q - q') = r' - r$ et $-b < r' - r < b$. Donc $b|q - q'| < b$, d'où $|q - q'| < 1$ ; comme $q - q'$ est un entier, $q = q'$, puis $r = a - bq = r'$.\n\n**Remarque.** La démonstration montre que $q = \\lfloor a/b \\rfloor$ (partie entière de $a/b$).",
+      "exemple": "Division de $-17$ par $5$ : $-17 = 5 \\times (-4) + 3$ avec $0 \\leq 3 < 5$, donc $q = -4$ et $r = 3$.\n\nL'écriture $-17 = 5 \\times (-3) - 2$ n'est **pas** la division euclidienne : le reste doit être positif ou nul. Ici, comme $5$ ne divise pas $17$, le quotient est « un cran en dessous » de l'opposé du quotient de $17$ par $5$ (qui vaut $3$) ; si $b$ divise $a$, le quotient est exactement $a/b$ (par exemple $-15 = 5\\times(-3)+0$).",
+      "contre_exemple": "- **$b = 0$** : pour $a = 1$, aucun $r$ ne vérifie $0 \\leq r < 0$, donc aucun couple n'existe.\n- **$b < 0$** : pour $b = -3$, la condition $0 \\leq r < -3$ est impossible. (Pour $b \\in \\mathbb{Z}^*$, l'énoncé correct demande $0 \\leq r < |b|$.)\n- **Inégalité large $r \\leq b$** : pour $a = b = 5$, les couples $(1, 0)$ et $(0, 5)$ conviennent tous les deux : on perd l'unicité.\n- **Condition $|r| < b$** : pour $a = 1$ et $b = 2$, on a $1 = 2 \\times 0 + 1 = 2 \\times 1 + (-1)$ : on perd l'unicité.",
+      "affirmations": [
+        {
+          "texte": "Le reste de la division euclidienne de $-17$ par $5$ est $-2$.",
+          "vrai": false,
+          "contre_exemple": "$-17 = 5 \\times (-4) + 3$ avec $0 \\leq 3 < 5$ : le reste est $3$. L'écriture $-17 = 5 \\times (-3) - 2$ ne convient pas car $-2 < 0$."
+        },
+        {
+          "texte": "Si $a = bq + r$ avec $q, r \\in \\mathbb{Z}$ et $b \\in \\mathbb{N}^*$, alors $r$ est le reste de la division euclidienne de $a$ par $b$.",
+          "vrai": false,
+          "contre_exemple": "$17 = 5 \\times 2 + 7$, mais le reste de $17$ par $5$ est $2$ (car $17 = 5 \\times 3 + 2$) : il faut aussi vérifier $0 \\leq r < b$, ce qui échoue ici car $7 \\geq 5$."
+        },
+        {
+          "texte": "Soient $a \\in \\mathbb{Z}$ et $b \\in \\mathbb{N}^*$. Si le reste $r$ de la division de $a$ par $b$ est non nul, alors le reste de la division de $-a$ par $b$ est $b - r$.",
+          "vrai": true,
+          "justification": "Si $a = bq + r$ avec $0 < r < b$, alors $-a = b(-q-1) + (b - r)$ et $0 < b - r < b$ ; on conclut par unicité."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "arith-t-bezout",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-pgcd",
+      "type": "theoreme",
+      "titre": "Théorème de Bézout",
+      "recto": "Énoncer le théorème de Bézout avec ses hypothèses.",
+      "hypotheses": [
+        "$a$ et $b$ sont des entiers relatifs.",
+        "$a$ et $b$ ne sont pas tous les deux nuls (pour que $a \\wedge b$ soit défini)."
+      ],
+      "hypotheses_pieges": [
+        "$a$ et $b$ sont deux nombres premiers distincts.",
+        "$a$ et $b$ sont des nombres réels non nuls.",
+        "$a$ et $b$ sont de parités différentes.",
+        "$a$ ne divise pas $b$ et $b$ ne divise pas $a$."
+      ],
+      "enonce": "Soient $a$ et $b$ deux entiers relatifs non tous les deux nuls. Les entiers $a$ et $b$ sont premiers entre eux (c'est-à-dire $a \\wedge b = 1$) si et seulement s'il existe $(u,v) \\in \\mathbb{Z}^2$ tel que $au + bv = 1$.",
+      "enonce_trous": "Soient $a$ et $b$ deux entiers relatifs non tous les deux nuls. On a $a \\wedge b = 1$ si et seulement s'il existe {{1}} tel que {{2}}.",
+      "trous": [
+        {
+          "reponse": "$(u,v) \\in \\mathbb{Z}^2$",
+          "leurres": [
+            "$(u,v) \\in \\mathbb{N}^2$",
+            "un unique $(u,v) \\in \\mathbb{Z}^2$",
+            "$(u,v) \\in \\mathbb{Q}^2$"
+          ]
+        },
+        {
+          "reponse": "$au + bv = 1$",
+          "leurres": [
+            "$au + bv = a \\wedge b$",
+            "$au + bv = 0$",
+            "$au + bv$ soit un nombre premier"
+          ]
+        }
+      ],
+      "demo": "**Sens réciproque.** Supposons $au + bv = 1$ avec $u, v \\in \\mathbb{Z}$. Soit $d = a \\wedge b$. Comme $d \\mid a$ et $d \\mid b$, $d$ divise $au + bv = 1$, donc $d = 1$.\n\n**Sens direct.** Soit $E = \\{au + bv : (u,v) \\in \\mathbb{Z}^2\\} \\cap \\mathbb{N}^*$. Cet ensemble est non vide, car $a \\times a + b \\times b = a^2 + b^2 \\geq 1$ ($a$ et $b$ non tous nuls). Soit $d = au_0 + bv_0$ son plus petit élément.\n\nMontrons que $d \\mid a$. La division euclidienne donne $a = dq + r$ avec $0 \\leq r < d$, et $r = a - q(au_0 + bv_0) = a(1 - qu_0) + b(-qv_0)$. Si $r \\geq 1$, alors $r \\in E$ et $r < d$, ce qui contredit la minimalité de $d$. Donc $r = 0$ et $d \\mid a$. De même $d \\mid b$.\n\nAinsi $d$ est un diviseur commun positif de $a$ et $b$, donc $d \\leq a \\wedge b$. Si $a \\wedge b = 1$, alors $d = 1$, c'est-à-dire $au_0 + bv_0 = 1$.\n\n**Remarque (identité de Bézout).** Sans supposer $a \\wedge b = 1$ : $a \\wedge b$ divise $a$ et $b$ donc divise $d = au_0 + bv_0$, d'où $a \\wedge b \\leq d$ ; avec $d \\leq a \\wedge b$, on obtient $d = a \\wedge b$. Il existe donc toujours $(u,v) \\in \\mathbb{Z}^2$ tel que $au + bv = a \\wedge b$.",
+      "exemple": "Pour $41$ et $29$, l'algorithme d'Euclide donne $41 = 29 + 12$, $29 = 2 \\times 12 + 5$, $12 = 2 \\times 5 + 2$, $5 = 2 \\times 2 + 1$. En remontant : $1 = 5 - 2 \\times 2 = 5 \\times 5 - 2 \\times 12 = 5 \\times 29 - 12 \\times 12 = 17 \\times 29 - 12 \\times 41$.\n\nDonc $41 \\times (-12) + 29 \\times 17 = 1$ et $41 \\wedge 29 = 1$.\n\nIdentité de Bézout : $12 \\wedge 18 = 6 = 12 \\times (-1) + 18 \\times 1$.",
+      "contre_exemple": "- **Coefficients naturels** : $2 \\wedge 3 = 1$, mais $2u + 3v = 1$ n'a aucune solution $(u,v) \\in \\mathbb{N}^2$ (si $u$ ou $v$ est non nul, $2u + 3v \\geq 2$). Les coefficients de Bézout sont dans $\\mathbb{Z}$.\n- **Pas d'unicité** : $2 \\times (-1) + 3 \\times 1 = 1$ et $2 \\times 2 + 3 \\times (-1) = 1$.\n- **Une combinaison n'est pas le pgcd** : $4 \\times 1 + 6 \\times 1 = 10$, alors que $4 \\wedge 6 = 2$.",
+      "affirmations": [
+        {
+          "texte": "Si $au + bv = d$ avec $(u,v) \\in \\mathbb{Z}^2$ et $d \\geq 1$, alors $d = a \\wedge b$.",
+          "vrai": false,
+          "contre_exemple": "$4 \\times 1 + 6 \\times 1 = 10$ mais $4 \\wedge 6 = 2$. On peut seulement conclure que $a \\wedge b$ divise $d$ ; l'égalité $au + bv = d$ ne donne $d = a \\wedge b$ que si, en plus, $d$ divise $a$ et $b$."
+        },
+        {
+          "texte": "Si $a \\wedge b = 1$, le couple $(u,v) \\in \\mathbb{Z}^2$ tel que $au + bv = 1$ est unique.",
+          "vrai": false,
+          "contre_exemple": "Pour $a = 2$ et $b = 3$ : $2 \\times (-1) + 3 \\times 1 = 1$ et $2 \\times 2 + 3 \\times (-1) = 1$. Plus généralement $(-1 + 3k, 1 - 2k)$ convient pour tout $k \\in \\mathbb{Z}$."
+        },
+        {
+          "texte": "Si $a \\wedge b = 1$ avec $a, b \\in \\mathbb{N}^*$, il existe $(u,v) \\in \\mathbb{N}^2$ tel que $au + bv = 1$.",
+          "vrai": false,
+          "contre_exemple": "$2 \\wedge 3 = 1$, mais pour $(u,v) \\in \\mathbb{N}^2$, $2u + 3v$ vaut $0$ ou est supérieur ou égal à $2$ : il ne vaut jamais $1$."
+        },
+        {
+          "texte": "Si $au + bv = d$ avec $(u,v) \\in \\mathbb{Z}^2$, alors $a \\wedge b$ divise $d$.",
+          "vrai": true,
+          "justification": "$a \\wedge b$ divise $a$ et $b$, donc toute combinaison $au + bv$ à coefficients entiers."
+        }
+      ],
+      "prerequis": [
+        "arith-t-division-euclidienne"
+      ]
+    },
+    {
+      "id": "arith-t-gauss",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-pgcd",
+      "type": "theoreme",
+      "titre": "Lemme de Gauss",
+      "recto": "Énoncer le lemme (théorème) de Gauss avec ses hypothèses.",
+      "hypotheses": [
+        "$a$, $b$ et $c$ sont des entiers relatifs.",
+        "$a$ divise le produit $bc$.",
+        "$a$ et $b$ sont premiers entre eux."
+      ],
+      "hypotheses_pieges": [
+        "$a$ est un nombre premier.",
+        "$b$ et $c$ sont premiers entre eux.",
+        "$a$ et $c$ sont premiers entre eux.",
+        "$a$ ne divise pas $b$."
+      ],
+      "enonce": "Soient $a$, $b$, $c$ trois entiers relatifs. Si $a$ divise $bc$ et si $a$ et $b$ sont premiers entre eux, alors $a$ divise $c$.",
+      "enonce_trous": "Soient $a, b, c \\in \\mathbb{Z}$. Si $a$ divise {{1}} et si {{2}}, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "$bc$",
+          "leurres": [
+            "$b + c$",
+            "$b^2 c^2$",
+            "$abc$"
+          ]
+        },
+        {
+          "reponse": "$a$ et $b$ sont premiers entre eux",
+          "leurres": [
+            "$b$ et $c$ sont premiers entre eux",
+            "$a$ ne divise pas $b$",
+            "$a$ et $c$ sont premiers entre eux"
+          ]
+        },
+        {
+          "reponse": "$a$ divise $c$",
+          "leurres": [
+            "$a$ divise $b$",
+            "$ab$ divise $c$",
+            "$a$ divise à la fois $b$ et $c$"
+          ]
+        }
+      ],
+      "demo": "Comme $a \\wedge b = 1$, le théorème de Bézout fournit $(u,v) \\in \\mathbb{Z}^2$ tel que $au + bv = 1$. En multipliant par $c$ : $c = acu + bcv$.\n\nOr $a$ divise $acu$, et $a$ divise $bc$ donc $bcv$. Ainsi $a$ divise la somme $acu + bcv = c$.",
+      "exemple": "Si $7$ divise $12n$ avec $n \\in \\mathbb{Z}$, comme $7 \\wedge 12 = 1$, le lemme de Gauss donne $7 \\mid n$.\n\nConséquence classique (lemme d'Euclide) : si $p$ est premier et $p \\mid bc$, alors $p \\mid b$ ou $p \\mid c$ (si $p \\nmid b$, alors $p \\wedge b = 1$ car les seuls diviseurs positifs de $p$ sont $1$ et $p$).",
+      "contre_exemple": "- **Sans $a \\wedge b = 1$** : $6$ divise $4 \\times 3 = 12$, mais $6$ ne divise ni $4$ ni $3$ (ici $6 \\wedge 4 = 2$ et $6 \\wedge 3 = 3$).\n- **« $a$ premier » ne remplace pas $a \\wedge b = 1$ pour conclure $a \\mid c$** : $2 \\mid 2 \\times 1$ mais $2 \\nmid 1$ (le lemme d'Euclide conclut seulement « $a \\mid b$ ou $a \\mid c$ »).\n- **« $b \\wedge c = 1$ » n'est pas la bonne hypothèse** : $6 \\mid 2 \\times 3$ avec $2 \\wedge 3 = 1$, mais $6 \\nmid 3$.",
+      "affirmations": [
+        {
+          "texte": "Soient $a, b, c \\in \\mathbb{Z}$. Si $a \\mid c$ et $b \\mid c$, alors $ab \\mid c$.",
+          "vrai": false,
+          "contre_exemple": "$4 \\mid 12$ et $6 \\mid 12$, mais $4 \\times 6 = 24$ ne divise pas $12$. Il manque l'hypothèse $a \\wedge b = 1$."
+        },
+        {
+          "texte": "Soient $a, b, c \\in \\mathbb{Z}$. Si $a \\mid c$, $b \\mid c$ et $a \\wedge b = 1$, alors $ab \\mid c$.",
+          "vrai": true,
+          "justification": "On écrit $c = ak$ avec $k \\in \\mathbb{Z}$. Alors $b \\mid ak$ et $b \\wedge a = 1$, donc $b \\mid k$ par le lemme de Gauss : $k = bk'$ et $c = abk'$."
+        },
+        {
+          "texte": "Soient $a, b, c \\in \\mathbb{Z}$. Si $a \\mid bc$ et $a \\nmid b$, alors $a \\mid c$.",
+          "vrai": false,
+          "contre_exemple": "$6 \\mid 4 \\times 3$ et $6 \\nmid 4$, mais $6 \\nmid 3$. Ne pas diviser $b$ n'est pas être premier avec $b$."
+        },
+        {
+          "texte": "Si $p$ est un nombre premier et $p \\mid bc$ avec $b, c \\in \\mathbb{Z}$, alors $p \\mid b$ ou $p \\mid c$.",
+          "vrai": true,
+          "justification": "Si $p \\nmid b$, alors $p \\wedge b = 1$ (le pgcd est un diviseur positif de $p$, donc $1$ ou $p$, et ce n'est pas $p$), et le lemme de Gauss donne $p \\mid c$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-bezout"
+      ]
+    },
+    {
+      "id": "arith-t-fermat",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-premiers",
+      "type": "theoreme",
+      "titre": "Petit théorème de Fermat",
+      "recto": "Énoncer le petit théorème de Fermat (sous ses deux formes) avec ses hypothèses.",
+      "hypotheses": [
+        "$p$ est un nombre premier.",
+        "$a$ est un entier relatif.",
+        "Pour la forme $a^{p-1} \\equiv 1 \\pmod{p}$ : $p$ ne divise pas $a$."
+      ],
+      "hypotheses_pieges": [
+        "$p$ est un entier impair supérieur ou égal à $3$.",
+        "$p$ est un entier supérieur ou égal à $2$, non nécessairement premier.",
+        "Pour la forme $a^{p-1} \\equiv 1 \\pmod{p}$ : $p$ divise $a$.",
+        "$a$ est un nombre premier distinct de $p$."
+      ],
+      "enonce": "Soit $p$ un nombre premier.\n\n- Pour tout entier $a \\in \\mathbb{Z}$, on a $a^p \\equiv a \\pmod{p}$.\n- Pour tout entier $a \\in \\mathbb{Z}$ non divisible par $p$, on a $a^{p-1} \\equiv 1 \\pmod{p}$.",
+      "enonce_trous": "Soit {{1}}. Pour tout entier $a$ {{2}}, on a {{3}}.",
+      "trous": [
+        {
+          "reponse": "$p$ un nombre premier",
+          "leurres": [
+            "$p$ un entier impair supérieur ou égal à $3$",
+            "$p$ un entier supérieur ou égal à $2$",
+            "$p \\geq 2$ un entier tel que $2^{p-1} \\equiv 1 \\pmod{p}$"
+          ]
+        },
+        {
+          "reponse": "non divisible par $p$",
+          "leurres": [
+            "quelconque",
+            "non nul",
+            "premier"
+          ]
+        },
+        {
+          "reponse": "$a^{p-1} \\equiv 1 \\pmod{p}$",
+          "leurres": [
+            "$a^{p} \\equiv 1 \\pmod{p}$",
+            "$a^{p-1} \\equiv a \\pmod{p}$",
+            "$a^{p-1} \\equiv -1 \\pmod{p}$"
+          ]
+        }
+      ],
+      "demo": "**Étape 1 : $p$ divise $\\binom{p}{k}$ pour $1 \\leq k \\leq p - 1$.** On a $k\\binom{p}{k} = p\\binom{p-1}{k-1}$, donc $p \\mid k\\binom{p}{k}$. Comme $1 \\leq k < p$ et $p$ est premier, $p \\nmid k$, donc $p \\wedge k = 1$ ; le lemme de Gauss donne $p \\mid \\binom{p}{k}$.\n\n**Étape 2 : $a^p \\equiv a \\pmod{p}$ pour $a \\in \\mathbb{N}$**, par récurrence. Pour $a = 0$ c'est clair. Si $a^p \\equiv a \\pmod{p}$, la formule du binôme donne $(a+1)^p = a^p + 1 + \\sum_{k=1}^{p-1} \\binom{p}{k} a^k \\equiv a^p + 1 \\equiv a + 1 \\pmod{p}$ d'après l'étape 1.\n\n**Étape 3 : $a \\in \\mathbb{Z}$ quelconque.** Soit $r \\in \\{0, \\dots, p-1\\}$ le reste de la division euclidienne de $a$ par $p$. Alors $a \\equiv r \\pmod{p}$, donc $a^p \\equiv r^p \\equiv r \\equiv a \\pmod{p}$ (compatibilité des congruences avec les puissances, et étape 2).\n\n**Étape 4 : seconde forme.** On a $p \\mid a^p - a = a(a^{p-1} - 1)$. Si $p \\nmid a$, alors $p \\wedge a = 1$ ($p$ premier), et le lemme de Gauss donne $p \\mid a^{p-1} - 1$.",
+      "exemple": "Reste de $3^{2026}$ modulo $7$ : $7$ est premier et ne divise pas $3$, donc $3^6 \\equiv 1 \\pmod{7}$. Comme $2026 = 6 \\times 337 + 4$, on obtient $3^{2026} = (3^6)^{337} \\times 3^4 \\equiv 81 \\equiv 4 \\pmod{7}$.",
+      "contre_exemple": "- **$p$ non premier** : pour $n = 4$ et $a = 3$ (premier avec $4$), $3^3 = 27 \\equiv 3 \\pmod{4}$, et non $1$. De même $2^4 = 16 \\equiv 0 \\pmod{4}$, et non $2$.\n- **Seconde forme avec $p \\mid a$** : pour $a = p$, $p^{p-1} \\equiv 0 \\pmod{p}$, et non $1$.\n- **La réciproque est fausse** : $341 = 11 \\times 31$ n'est pas premier, et pourtant $2^{340} \\equiv 1 \\pmod{341}$ (car $2^{10} = 1024 = 3 \\times 341 + 1$, donc $2^{340} = (2^{10})^{34} \\equiv 1$).",
+      "affirmations": [
+        {
+          "texte": "Si $n \\geq 2$ est un entier tel que $2^{n-1} \\equiv 1 \\pmod{n}$, alors $n$ est premier.",
+          "vrai": false,
+          "contre_exemple": "$n = 341 = 11 \\times 31$ : $2^{10} = 1024 = 3 \\times 341 + 1 \\equiv 1 \\pmod{341}$, donc $2^{340} = (2^{10})^{34} \\equiv 1 \\pmod{341}$, alors que $341$ n'est pas premier."
+        },
+        {
+          "texte": "Pour tout entier $n \\geq 2$ et tout entier $a$ premier avec $n$, on a $a^{n-1} \\equiv 1 \\pmod{n}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 4$, $a = 3$ : $3 \\wedge 4 = 1$ mais $3^3 = 27 \\equiv 3 \\pmod{4}$. (La bonne généralisation est le théorème d'Euler, avec l'exposant $\\varphi(n)$.)"
+        },
+        {
+          "texte": "Si $p$ est premier, alors $a^p \\equiv a \\pmod{p}$ pour tout $a \\in \\mathbb{Z}$, y compris lorsque $p$ divise $a$.",
+          "vrai": true,
+          "justification": "C'est la première forme. Si $p \\mid a$, les deux membres sont congrus à $0$ modulo $p$."
+        },
+        {
+          "texte": "Si $p$ est premier, $p \\nmid a$ et $a^k \\equiv 1 \\pmod{p}$ avec $k \\geq 1$, alors $p - 1$ divise $k$.",
+          "vrai": false,
+          "contre_exemple": "$p = 7$, $a = 2$ : $2^3 = 8 \\equiv 1 \\pmod{7}$, mais $6 \\nmid 3$. Fermat donne seulement que $a^{p-1} \\equiv 1$ ; l'exposant $k = p - 1$ n'est pas forcément le plus petit possible."
+        }
+      ],
+      "prerequis": [
+        "arith-t-gauss"
+      ]
+    }
+  ]
+}

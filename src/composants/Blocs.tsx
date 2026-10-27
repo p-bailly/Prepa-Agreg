@@ -1,0 +1,73 @@
+// Petits blocs communs du thème « Cours LaTeX » : encadrés typés, volets repliables, bandeau « Non garanti ».
+import { useState, type ReactNode } from 'react'
+import type { TypeCarte } from '../contenu/types'
+import { Texte } from './Texte'
+
+export type GenreEncadre = TypeCarte | 'exemple' | 'remarque'
+
+const NOMS: Record<GenreEncadre, string> = {
+  theoreme: 'Théorème',
+  definition: 'Définition',
+  methode: 'Méthode',
+  exemple: 'Exemple',
+  remarque: 'Remarque',
+}
+
+/**
+ * Encadré d'un résultat, comme dans les cours : cadre et fond de la couleur du type, titre en onglet sur le bord.
+ * L'onglet porte le nom du type, suivi de `titre` ; `nom` le remplace entièrement.
+ */
+export function Encadre({ genre, titre, nom, children }: { genre: GenreEncadre; titre?: string; nom?: string; children: ReactNode }) {
+  return (
+    <section className={`encadre ${genre}`}>
+      <span className="onglet">{nom ?? (titre ? `${NOMS[genre]} — ${titre}` : NOMS[genre])}</span>
+      {children}
+    </section>
+  )
+}
+
+interface VoletProps {
+  titre: string
+  /** Petite mention à droite (« à revoir », « noté »). */
+  marque?: string
+  ouvert?: boolean
+  surBascule?: (ouvert: boolean) => void
+  children: ReactNode
+}
+
+/** Volet repliable : cadre noir, ▸ fermé, ▾ ouvert. Contrôlé si `ouvert` est fourni. */
+export function Volet({ titre, marque, ouvert, surBascule, children }: VoletProps) {
+  const [interne, setInterne] = useState(false)
+  const estOuvert = ouvert ?? interne
+  const basculer = () => {
+    if (ouvert === undefined) setInterne(!estOuvert)
+    surBascule?.(!estOuvert)
+  }
+  return (
+    <div className="volet">
+      <button className="tete-volet" aria-expanded={estOuvert} onClick={basculer}>
+        <span className="fleche" aria-hidden="true">
+          {estOuvert ? '▾' : '▸'}
+        </span>
+        <span>{titre}</span>
+        {marque && <span className="marque">{marque}</span>}
+      </button>
+      {estOuvert && <div className="corps-volet">{children}</div>}
+    </div>
+  )
+}
+
+/** Bandeau affiché quand une partie du contenu reste incertaine (champ `doute`). */
+export function BandeauDoute({ doute }: { doute?: string }) {
+  if (!doute) return null
+  return (
+    <div className="bandeau" role="note">
+      <strong>Non garanti : </strong>
+      <Texte texte={doute} enLigne />
+    </div>
+  )
+}
+
+export function Etiquette({ children }: { children: ReactNode }) {
+  return <span className="etiquette">{children}</span>
+}
