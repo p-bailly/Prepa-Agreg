@@ -278,15 +278,13 @@ for n in range(2, 7):
     In = eye(n)
     d0 = (Jn - In).det()
     assert d0 == (-1) ** (n - 1) * (n - 1)  # famille-ex4 : x_j = s - e_j
-    assert d0 != n - 1 or n % 2 == 1
-    assert d0 != (-1) ** n * (n - 1) and d0 != (-1) ** (n - 1) * n  # famille-ex4 (leurres)
+    assert d0 != (-1) ** n * (n - 1) and d0 != (-1) ** (n - 1) * n  # famille-ex4 (leurres, pour tout n)
     d1_ = (Jn + In).det()
-    assert d1_ == n + 1 and d1_ != n and d1_ != (-1) ** (n - 1) * (n + 1) or n % 2 == 1  # famille-ex4 v1
-    assert d1_ == n + 1 and d1_ != n  # famille-ex4 v1
+    assert d1_ == n + 1 and d1_ != n  # famille-ex4 v1 (et leurre n)
     d2_ = (2 * Jn + In).det()
     assert d2_ == 2 * n + 1 and d2_ not in (2 * n, 2 * n - 1, 3 ** n)  # famille-ex4 v2
-assert (Matrix.ones(2, 2) - eye(2)).det() != 2 - 1  # leurre n - 1 faux pour n = 2
-assert (Matrix.ones(2, 2) + eye(2)).det() != (-1) ** 1 * 3 and (Matrix.ones(2, 2) + eye(2)).det() != 2 ** 2  # leurres v1 (n = 2)
+assert (Matrix.ones(2, 2) - eye(2)).det() == -1 != 2 - 1  # famille-ex4 : leurre n - 1 faux pour n = 2
+assert (Matrix.ones(2, 2) + eye(2)).det() == 3 not in ((-1) ** 1 * 3, 2 ** 2)  # famille-ex4 v1 : leurres faux pour n = 2
 
 # al-l1-determinant-produit-ex1 (et variantes)
 assert (-2) ** 3 * 3 * (-2) * 3 == 144 and 144 not in (-144, 36, -18)  # produit-ex1
