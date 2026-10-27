@@ -1,0 +1,218 @@
+{
+  "cartes": [
+    {
+      "id": "proba-t-binomiale-denombrement",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-binomiale",
+      "type": "theoreme",
+      "titre": "Dénombrement : k-uplets, permutations, combinaisons",
+      "recto": "Énoncer les formules donnant le nombre de $k$-uplets, de $k$-uplets d'éléments distincts, de permutations et de parties à $k$ éléments d'un ensemble fini, avec leurs hypothèses.",
+      "cours": "Dénombrer, c'est compter les éléments d'un ensemble fini sans les énumérer un à un. Tout repose sur deux principes : le principe additif (le cardinal d'une réunion d'ensembles deux à deux disjoints est la somme des cardinaux) et le principe multiplicatif (le cardinal d'un produit cartésien est le produit des cardinaux). Le second donne aussitôt le nombre $n^k$ de $k$-uplets d'éléments d'un ensemble à $n$ éléments : $n$ choix pour chacune des $k$ positions.\n\nSi les éléments doivent être deux à deux distincts, le nombre de choix diminue d'une unité à chaque position, d'où $n(n-1)\\cdots(n-k+1)$, et $n!$ façons de ranger tous les éléments (permutations). Une partie à $k$ éléments, elle, ne retient aucun ordre : chacune correspond à exactement $k!$ $k$-uplets d'éléments distincts, d'où $\\binom{n}{k}=\\frac{n(n-1)\\cdots(n-k+1)}{k!}$.\n\n**Méthode.** Devant un problème de comptage, on se demande d'abord si l'ordre compte et si les répétitions sont permises : ordre et répétitions, ce sont des $k$-uplets ($n^k$) ; ordre sans répétition, des $k$-uplets d'éléments distincts ; ni ordre ni répétition, des parties ($\\binom{n}{k}$). On décompose souvent l'objet à compter en choix successifs (arbre) et on multiplie les nombres de choix.\n\n**Piège principal.** Compter avec ordre ce qui n'en a pas, ou l'inverse, fausse le résultat : pour des éléments distincts, d'un facteur $k!$. De même, une décomposition en choix successifs n'est valable que si chaque objet est obtenu exactement une fois.",
+      "enonce": "Soit $E$ un ensemble fini à $n$ éléments ($n\\in\\mathbb{N}$) et $k\\in\\mathbb{N}$.\n\n- **$k$-uplets.** Le nombre de $k$-uplets $(x_1,\\dots,x_k)$ d'éléments de $E$, c'est-à-dire le cardinal de $E^k$, est $n^k$.\n- **$k$-uplets d'éléments distincts.** Si $k\\leq n$, le nombre de $k$-uplets d'éléments deux à deux distincts de $E$ est $n(n-1)\\cdots(n-k+1)=\\frac{n!}{(n-k)!}$ ; si $k>n$, il n'y en a aucun.\n- **Permutations.** Le nombre de permutations de $E$ (rangements de ses $n$ éléments, c'est-à-dire $n$-uplets d'éléments distincts) est $n!$, avec la convention $0!=1$.\n- **Combinaisons.** Si $k\\leq n$, le nombre de parties à $k$ éléments de $E$ est\n$$\\binom{n}{k}=\\frac{n(n-1)\\cdots(n-k+1)}{k!}=\\frac{n!}{k!\\,(n-k)!}.$$",
+      "hypotheses": [
+        "$E$ est un ensemble fini à $n$ éléments, avec $n\\in\\mathbb{N}$.",
+        "$k\\in\\mathbb{N}$.",
+        "Pour les $k$-uplets d'éléments distincts et les parties à $k$ éléments : $k\\leq n$."
+      ],
+      "hypotheses_pieges": [
+        "Pour les $k$-uplets quelconques (répétitions permises) : $k\\leq n$.",
+        "Les termes des $k$-uplets comptés par $n^k$ sont deux à deux distincts.",
+        "Une partie à $k$ éléments est comptée une fois pour chaque façon d'ordonner ses éléments.",
+        "L'ensemble $E$ est non vide."
+      ],
+      "enonce_trous": "Soit $E$ un ensemble à $n$ éléments et $k\\in\\mathbb{N}$. Le nombre de $k$-uplets d'éléments de $E$ est {{1}}. Si $k\\leq n$, le nombre de $k$-uplets d'éléments deux à deux distincts de $E$ est {{2}}, et le nombre de parties à $k$ éléments de $E$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n^k$",
+          "leurres": [
+            "$k^n$",
+            "$nk$",
+            "$\\frac{n!}{(n-k)!}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{n!}{(n-k)!}$",
+          "leurres": [
+            "$n^k$",
+            "$\\frac{n!}{k!}$",
+            "$\\binom{n}{k}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{n!}{k!\\,(n-k)!}$",
+          "leurres": [
+            "$\\frac{n!}{(n-k)!}$",
+            "$\\frac{n^k}{k!}$",
+            "$\\frac{n!}{k!}$"
+          ]
+        }
+      ],
+      "demo": "**Principe multiplicatif.** Si $A$ et $B$ sont finis, $A\\times B$ est la réunion des ensembles $\\{a\\}\\times B$ pour $a\\in A$, deux à deux disjoints et ayant chacun $\\mathrm{Card}(B)$ éléments ; le principe additif donne $\\mathrm{Card}(A\\times B)=\\mathrm{Card}(A)\\,\\mathrm{Card}(B)$. Par récurrence, $\\mathrm{Card}(A_1\\times\\dots\\times A_k)=\\mathrm{Card}(A_1)\\cdots\\mathrm{Card}(A_k)$.\n\n**$k$-uplets.** $E^k$ est le produit de $k$ copies de $E$ : il a $n^k$ éléments (pour $k=0$, le seul $0$-uplet est la liste vide, et $n^0=1$).\n\n**$k$-uplets d'éléments distincts.** Notons $a_k$ leur nombre. On a $a_0=1$. Pour $1\\leq k\\leq n$, un $k$-uplet d'éléments distincts s'obtient de façon unique en prolongeant un $(k-1)$-uplet d'éléments distincts $(x_1,\\dots,x_{k-1})$ par un élément $x_k$ de $E\\setminus\\{x_1,\\dots,x_{k-1}\\}$, ensemble à $n-k+1$ éléments. Par le principe additif, $a_k=(n-k+1)\\,a_{k-1}$, d'où $a_k=n(n-1)\\cdots(n-k+1)=\\frac{n!}{(n-k)!}$ ; pour $k=n$, on obtient les $n!$ permutations. Si $k>n$, un $k$-uplet a forcément deux termes égaux puisque $E$ n'a que $n$ éléments : il n'y a aucun $k$-uplet d'éléments distincts.\n\n**Parties.** Soit $c_k$ le nombre de parties à $k$ éléments ($0\\leq k\\leq n$). À chaque $k$-uplet d'éléments distincts on associe l'ensemble $\\{x_1,\\dots,x_k\\}$ de ses termes, qui est une partie à $k$ éléments ; les $k$-uplets associés à une partie donnée sont exactement les rangements de ses $k$ éléments, au nombre de $k!$. Par le principe additif, $a_k=k!\\,c_k$, donc\n$$c_k=\\frac{n(n-1)\\cdots(n-k+1)}{k!}=\\frac{n!}{k!\\,(n-k)!}.$$",
+      "exemple": "Avec $E=\\{a,b,c,d\\}$ ($n=4$) et $k=2$ : il y a $4^2=16$ couples d'éléments de $E$, $4\\times 3=12$ couples d'éléments distincts, $4!=24$ permutations de $E$, et $\\binom{4}{2}=6$ parties à deux éléments : $\\{a,b\\}$, $\\{a,c\\}$, $\\{a,d\\}$, $\\{b,c\\}$, $\\{b,d\\}$, $\\{c,d\\}$. Chaque partie donne $2!=2$ couples d'éléments distincts, et l'on retrouve $12=2\\times 6$.",
+      "contre_exemple": "- **L'ordre compte ou non.** Parmi trois élèves $a$, $b$, $c$, choisir deux délégués donne $\\binom{3}{2}=3$ possibilités, mais choisir un délégué et un suppléant en donne $3\\times 2=6$ : confondre les deux situations fausse le résultat d'un facteur $2!$.\n- **$k\\leq n$ est nécessaire pour les éléments distincts.** Il y a $2^3=8$ triplets d'éléments de $\\{0,1\\}$, mais aucun triplet d'éléments distincts ; la formule $\\frac{n!}{(n-k)!}$ n'a pas de sens pour $n=2$, $k=3$.\n- **Ni $n^k$ ni $\\binom{n}{k}$.** Choisir deux boules parmi trois boules $a$, $b$, $c$ avec remise, sans tenir compte de l'ordre, donne $6$ résultats ($\\{a,a\\}$, $\\{b,b\\}$, $\\{c,c\\}$, $\\{a,b\\}$, $\\{a,c\\}$, $\\{b,c\\}$), ni $3^2=9$ ni $\\binom{3}{2}=3$ : ce ne sont ni des couples ni des parties.",
+      "affirmations": [
+        {
+          "texte": "Le nombre de façons de désigner, parmi $10$ personnes, un président, un trésorier et un secrétaire (trois personnes distinctes) est $\\binom{10}{3}$.",
+          "vrai": false,
+          "contre_exemple": "Les fonctions sont distinctes, donc l'ordre compte : il y a $10\\times 9\\times 8=720$ bureaux possibles, soit $3!=6$ fois $\\binom{10}{3}=120$."
+        },
+        {
+          "texte": "Un ensemble à $n$ éléments possède exactement autant de parties que l'ensemble $\\{0,1\\}^n$ a d'éléments, c'est-à-dire $2^n$.",
+          "vrai": true,
+          "justification": "On numérote les éléments $e_1,\\dots,e_n$. À une partie $A$ on associe le $n$-uplet dont le $i$-ème terme vaut $1$ si $e_i\\in A$ et $0$ sinon ; cette correspondance est bijective, et $\\{0,1\\}^n$ a $2^n$ éléments."
+        },
+        {
+          "texte": "Pour tous entiers naturels $n$ et $k$, le nombre de $k$-uplets d'éléments distincts d'un ensemble à $n$ éléments est $\\frac{n!}{(n-k)!}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=2$ et $k=3$, il n'existe aucun triplet d'éléments distincts de $\\{a,b\\}$, et $(n-k)!=(-1)!$ n'a pas de sens. La formule demande $k\\leq n$."
+        },
+        {
+          "texte": "On tire successivement et avec remise $3$ boules dans une urne de $5$ boules numérotées : il y a $5^3=125$ listes ordonnées de numéros possibles.",
+          "vrai": true,
+          "justification": "Une issue est un triplet d'éléments de l'ensemble des $5$ numéros, les répétitions étant permises : il y en a $5^3=125$ par le principe multiplicatif."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "proba-t-binomiale-pascal",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-binomiale",
+      "type": "theoreme",
+      "titre": "Coefficients binomiaux et triangle de Pascal",
+      "recto": "Énoncer les propriétés des coefficients binomiaux (valeurs particulières, symétrie, relation de Pascal, somme d'une ligne) avec leurs hypothèses.",
+      "cours": "Les coefficients binomiaux $\\binom{n}{k}$ (« $k$ parmi $n$ ») comptent les parties à $k$ éléments d'un ensemble à $n$ éléments ; on les retrouve dans la loi binomiale, dans les chemins d'un arbre ou d'un quadrillage, dans les mots binaires. Plutôt que par la formule avec factorielles, on les calcule souvent de proche en proche grâce à la relation de Pascal $\\binom{n}{k}+\\binom{n}{k+1}=\\binom{n+1}{k+1}$, qui se comprend en séparant, dans un ensemble à $n+1$ éléments, les parties qui contiennent un élément fixé et celles qui ne le contiennent pas.\n\nRangés en triangle (la ligne $n$ contient $\\binom{n}{0},\\dots,\\binom{n}{n}$), les coefficients ont des bords égaux à $1$, et chaque autre coefficient est la somme des deux coefficients situés au-dessus de lui. La symétrie $\\binom{n}{k}=\\binom{n}{n-k}$ (choisir les $k$ éléments retenus revient à choisir les $n-k$ éléments exclus) rend chaque ligne symétrique, et la somme de la ligne $n$ vaut $2^n$, le nombre total de parties.\n\n**Méthode.** Pour prouver une identité entre coefficients binomiaux, deux voies : le calcul avec $\\binom{n}{k}=\\frac{n!}{k!(n-k)!}$ (mise au même dénominateur), ou le double comptage (compter le même ensemble de deux façons). La seconde est souvent plus courte et plus éclairante.\n\n**Piège principal.** La relation de Pascal additionne deux coefficients voisins d'une même ligne et donne le coefficient de la ligne suivante situé sous le second : $\\binom{n}{k}+\\binom{n}{k+1}$ vaut $\\binom{n+1}{k+1}$, et non $\\binom{n+1}{k}$.",
+      "enonce": "Soit $n\\in\\mathbb{N}$ et $k$ un entier tel que $0\\leq k\\leq n$ ; $\\binom{n}{k}$ désigne le nombre de parties à $k$ éléments d'un ensemble à $n$ éléments.\n\n- **Valeurs particulières.** $\\binom{n}{0}=\\binom{n}{n}=1$ ; $\\binom{n}{1}=n$ si $n\\geq 1$ ; $\\binom{n}{2}=\\frac{n(n-1)}{2}$ si $n\\geq 2$.\n- **Symétrie.** $\\binom{n}{k}=\\binom{n}{n-k}$.\n- **Relation de Pascal.** Si de plus $k\\leq n-1$, alors $\\binom{n}{k}+\\binom{n}{k+1}=\\binom{n+1}{k+1}$.\n- **Somme d'une ligne.** $\\sum_{j=0}^{n}\\binom{n}{j}=2^n$.\n\nDans le triangle de Pascal, la ligne $n$ contient $\\binom{n}{0},\\binom{n}{1},\\dots,\\binom{n}{n}$ ; ses bords valent $1$ et chacun de ses autres coefficients est la somme des deux coefficients voisins de la ligne précédente.",
+      "hypotheses": [
+        "$n\\in\\mathbb{N}$ et $k$ est un entier tel que $0\\leq k\\leq n$.",
+        "Pour la relation de Pascal : $k\\leq n-1$."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un nombre premier.",
+        "$k\\leq\\frac{n}{2}$.",
+        "Pour la relation de Pascal : $k\\geq 1$."
+      ],
+      "enonce_trous": "Pour $0\\leq k\\leq n$, le coefficient $\\binom{n}{k}$ est égal à {{1}}. Pour $0\\leq k\\leq n-1$, la somme $\\binom{n}{k}+\\binom{n}{k+1}$ est égale à {{2}}. La somme $\\binom{n}{0}+\\binom{n}{1}+\\dots+\\binom{n}{n}$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\binom{n}{n-k}$",
+          "leurres": [
+            "$\\binom{n}{k+1}$",
+            "$\\binom{n-1}{k}$",
+            "$\\frac{n!}{k!}$"
+          ]
+        },
+        {
+          "reponse": "$\\binom{n+1}{k+1}$",
+          "leurres": [
+            "$\\binom{n+1}{k}$",
+            "$\\binom{n}{k+2}$",
+            "$\\binom{2n}{2k+1}$"
+          ]
+        },
+        {
+          "reponse": "$2^n$",
+          "leurres": [
+            "$n!$",
+            "$2^n-1$",
+            "$2^{n+1}$"
+          ]
+        }
+      ],
+      "demo": "Soit $E$ un ensemble à $n$ éléments.\n\n**Valeurs particulières.** La seule partie à $0$ élément est $\\varnothing$, la seule à $n$ éléments est $E$ ; les parties à un élément sont les $n$ singletons ; enfin la formule $\\binom{n}{k}=\\frac{n(n-1)\\cdots(n-k+1)}{k!}$ donne $\\binom{n}{2}=\\frac{n(n-1)}{2}$.\n\n**Symétrie.** L'application $A\\mapsto E\\setminus A$ envoie les parties à $k$ éléments sur les parties à $n-k$ éléments, et elle est bijective (elle est sa propre réciproque). Donc $\\binom{n}{k}=\\binom{n}{n-k}$.\n\n**Relation de Pascal, par dénombrement.** Soit $0\\leq k\\leq n-1$, $F$ un ensemble à $n+1$ éléments et $a\\in F$ fixé ; $F'=F\\setminus\\{a\\}$ a $n$ éléments. Les parties à $k+1$ éléments de $F$ qui contiennent $a$ correspondent bijectivement ($A\\mapsto A\\setminus\\{a\\}$) aux parties à $k$ éléments de $F'$ : il y en a $\\binom{n}{k}$. Celles qui ne contiennent pas $a$ sont les parties à $k+1$ éléments de $F'$ (possible car $k+1\\leq n$) : il y en a $\\binom{n}{k+1}$. Le principe additif donne $\\binom{n+1}{k+1}=\\binom{n}{k}+\\binom{n}{k+1}$.\n\n**Relation de Pascal, par le calcul.** En réduisant au dénominateur commun $(k+1)!\\,(n-k)!$ :\n$$\\frac{n!}{k!\\,(n-k)!}+\\frac{n!}{(k+1)!\\,(n-k-1)!}=\\frac{n!\\left((k+1)+(n-k)\\right)}{(k+1)!\\,(n-k)!}=\\frac{(n+1)!}{(k+1)!\\,(n-k)!}=\\binom{n+1}{k+1}.$$\n\n**Somme d'une ligne.** Les parties de $E$ se répartissent selon leur nombre d'éléments $j\\in\\{0,\\dots,n\\}$, donc $\\sum_{j=0}^{n}\\binom{n}{j}$ est le nombre total de parties de $E$. Or une partie $A$ de $E=\\{e_1,\\dots,e_n\\}$ correspond bijectivement au $n$-uplet de $\\{0,1\\}^n$ dont le $i$-ème terme vaut $1$ si $e_i\\in A$ et $0$ sinon : il y a $2^n$ parties.",
+      "exemple": "Les lignes $0$ à $5$ du triangle de Pascal :\n$$\\begin{array}{cccccc}1&&&&&\\\\1&1&&&&\\\\1&2&1&&&\\\\1&3&3&1&&\\\\1&4&6&4&1&\\\\1&5&10&10&5&1\\end{array}$$\nPar exemple $\\binom{5}{2}=\\binom{4}{1}+\\binom{4}{2}=4+6=10=\\binom{5}{3}$, et $1+5+10+10+5+1=32=2^5$.",
+      "contre_exemple": "- **Le coefficient n'est pas $\\frac{n!}{k!}$** : $\\binom{5}{2}=10$, alors que $\\frac{5!}{2!}=60$ ; le nombre de couples d'éléments distincts est $\\frac{5!}{3!}=20=2!\\,\\binom{5}{2}$.\n- **Mauvaise colonne dans la relation de Pascal** : $\\binom{4}{1}+\\binom{4}{2}=10=\\binom{5}{2}$, et non $\\binom{5}{1}=5$.\n- **Aucune additivité en $n$** : $\\binom{4}{2}=6$, alors que $2\\binom{2}{2}=2$ ; en général $\\binom{2n}{2}=n(2n-1)\\neq 2\\binom{n}{2}$.\n- **$k\\leq n$ est nécessaire** : pour $k>n$, il n'y a aucune partie à $k$ éléments et la formule $\\frac{n!}{k!\\,(n-k)!}$ n'a pas de sens ; c'est pourquoi la relation de Pascal est énoncée pour $k\\leq n-1$, afin que $\\binom{n}{k+1}$ soit défini.",
+      "affirmations": [
+        {
+          "texte": "Pour tout entier $n\\geq 1$, le coefficient $\\binom{2n}{n}$ est pair.",
+          "vrai": true,
+          "justification": "La relation de Pascal (ligne $2n-1$, colonne $n-1\\leq 2n-2$) puis la symétrie donnent $\\binom{2n}{n}=\\binom{2n-1}{n-1}+\\binom{2n-1}{n}=2\\binom{2n-1}{n-1}$, car $\\binom{2n-1}{n}=\\binom{2n-1}{(2n-1)-n}=\\binom{2n-1}{n-1}$."
+        },
+        {
+          "texte": "Pour tout entier $n\\geq 2$ et tout entier $k$ tel que $1\\leq k\\leq n-1$, l'entier $n$ divise $\\binom{n}{k}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=4$ et $k=2$ : $\\binom{4}{2}=6$ n'est pas divisible par $4$. La propriété est vraie lorsque $n$ est premier."
+        },
+        {
+          "texte": "Pour tout entier $n\\geq 2$, $\\binom{2n}{2}=2\\binom{n}{2}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=2$ : $\\binom{4}{2}=6$ et $2\\binom{2}{2}=2$. En fait $\\binom{2n}{2}=\\frac{2n(2n-1)}{2}=n(2n-1)$."
+        }
+      ],
+      "prerequis": [
+        "proba-t-binomiale-denombrement"
+      ]
+    },
+    {
+      "id": "proba-t-binomiale-produit",
+      "theme": "probabilites",
+      "niveau": "terminale",
+      "chapitre": "proba-t-binomiale",
+      "type": "definition",
+      "titre": "Épreuves indépendantes et univers produit",
+      "recto": "Énoncer le modèle d'une succession d'épreuves indépendantes (univers produit, probabilité produit) et sa propriété fondamentale, avec ses hypothèses.",
+      "cours": "Beaucoup d'expériences sont des successions d'épreuves : lancer un dé puis une pièce, répéter un tirage avec remise, observer plusieurs machines. Quand le résultat de chaque épreuve n'influe pas sur les autres, on modélise l'expérience par l'univers produit $\\Omega_1\\times\\dots\\times\\Omega_n$, dont les issues sont les listes $(x_1,\\dots,x_n)$ des résultats, et l'on attribue à chaque liste le produit des probabilités de ses composantes. C'est la règle « on multiplie le long d'une branche » de l'arbre, valable ici parce que les probabilités portées par les branches ne dépendent pas des résultats précédents.\n\nCe modèle a deux propriétés essentielles : il définit bien une probabilité (la somme de toutes ces probabilités vaut $1$), et la probabilité que chaque épreuve donne un résultat dans un ensemble $A_i$ est le produit des $P_i(A_i)$. Il contient le schéma de Bernoulli (épreuves identiques à deux issues), mais aussi des successions d'épreuves différentes.\n\n**Méthode.** On décrit l'univers produit, on écrit l'événement cherché comme réunion disjointe d'issues ou de « pavés » $A_1\\times\\dots\\times A_n$, et on additionne les produits obtenus. Pour « au moins une fois », on passe à l'événement contraire, qui est souvent un pavé.\n\n**Piège principal.** Le produit des probabilités n'est justifié que si les épreuves sont indépendantes : pour des tirages sans remise, l'univers est encore un ensemble de listes, mais la probabilité n'est pas le produit. Autre erreur classique : croire que les issues de l'univers produit sont équiprobables alors que les $P_i$ ne sont pas uniformes.",
+      "enonce": "Soit $n\\in\\mathbb{N}^*$ et, pour $i\\in\\{1,\\dots,n\\}$, une épreuve modélisée par un univers fini $\\Omega_i$ muni d'une probabilité $P_i$. Le **modèle de la succession de ces $n$ épreuves indépendantes** est l'univers produit $\\Omega=\\Omega_1\\times\\dots\\times\\Omega_n$, muni de la probabilité $P$ définie sur les issues par\n$$P\\left(\\{(x_1,\\dots,x_n)\\}\\right)=P_1(\\{x_1\\})\\times\\cdots\\times P_n(\\{x_n\\}).$$\nCette formule définit bien une probabilité sur $\\Omega$, et pour toutes parties $A_1\\subset\\Omega_1,\\dots,A_n\\subset\\Omega_n$,\n$$P(A_1\\times\\dots\\times A_n)=P_1(A_1)\\times\\cdots\\times P_n(A_n).$$\nEn particulier, l'événement « la $i$-ème épreuve donne un résultat dans $A_i$ », qui est $\\Omega_1\\times\\dots\\times\\Omega_{i-1}\\times A_i\\times\\Omega_{i+1}\\times\\dots\\times\\Omega_n$, a pour probabilité $P_i(A_i)$, et la probabilité que ces $n$ événements soient tous réalisés est le produit de leurs probabilités.",
+      "hypotheses": [
+        "$n\\in\\mathbb{N}^*$ et, pour chaque $i$, l'épreuve $i$ est modélisée par un univers fini $\\Omega_i$ muni d'une probabilité $P_i$.",
+        "L'univers de l'expérience est le produit cartésien $\\Omega=\\Omega_1\\times\\dots\\times\\Omega_n$.",
+        "La probabilité d'une issue $(x_1,\\dots,x_n)$ est le produit $P_1(\\{x_1\\})\\times\\cdots\\times P_n(\\{x_n\\})$ (épreuves indépendantes).",
+        "Pour la propriété des pavés : $A_i\\subset\\Omega_i$ pour chaque $i$."
+      ],
+      "hypotheses_pieges": [
+        "Les univers $\\Omega_1,\\dots,\\Omega_n$ sont égaux et les probabilités $P_1,\\dots,P_n$ identiques.",
+        "Chaque $P_i$ est la probabilité uniforme sur $\\Omega_i$.",
+        "L'univers produit $\\Omega$ est muni de la probabilité uniforme, quelles que soient les $P_i$."
+      ],
+      "enonce_trous": "Pour une succession de $n$ épreuves indépendantes d'univers finis $\\Omega_1,\\dots,\\Omega_n$ munis des probabilités $P_1,\\dots,P_n$, on prend pour univers {{1}}, et la probabilité de l'issue $(x_1,\\dots,x_n)$ vaut {{2}}.",
+      "trous": [
+        {
+          "reponse": "le produit cartésien $\\Omega_1\\times\\dots\\times\\Omega_n$",
+          "leurres": [
+            "la réunion $\\Omega_1\\cup\\dots\\cup\\Omega_n$",
+            "l'intersection $\\Omega_1\\cap\\dots\\cap\\Omega_n$",
+            "l'ensemble des parties de $\\Omega_1\\cup\\dots\\cup\\Omega_n$"
+          ]
+        },
+        {
+          "reponse": "$P_1(\\{x_1\\})\\times\\cdots\\times P_n(\\{x_n\\})$",
+          "leurres": [
+            "$P_1(\\{x_1\\})+\\dots+P_n(\\{x_n\\})$",
+            "$\\frac{P_1(\\{x_1\\})+\\dots+P_n(\\{x_n\\})}{n}$",
+            "$\\frac{1}{\\mathrm{Card}(\\Omega_1)\\times\\cdots\\times\\mathrm{Card}(\\Omega_n)}$"
+          ]
+        }
+      ],
+      "demo": "**$P$ est une probabilité.** Les nombres $P\\left(\\{\\omega\\}\\right)$ sont positifs. En développant le produit de sommes,\n$$\\sum_{(x_1,\\dots,x_n)\\in\\Omega}P_1(\\{x_1\\})\\cdots P_n(\\{x_n\\})=\\left(\\sum_{x_1\\in\\Omega_1}P_1(\\{x_1\\})\\right)\\cdots\\left(\\sum_{x_n\\in\\Omega_n}P_n(\\{x_n\\})\\right)=1\\times\\cdots\\times 1=1,$$\ncar chaque terme du développement correspond au choix d'un $x_i$ dans chaque facteur, c'est-à-dire à une issue de $\\Omega$, et chaque issue apparaît une fois. On pose alors $P(A)=\\sum_{\\omega\\in A}P\\left(\\{\\omega\\}\\right)$ pour $A\\subset\\Omega$, ce qui définit une probabilité sur $\\Omega$.\n\n**Pavés.** Le même développement, restreint aux $x_i\\in A_i$, donne\n$$P(A_1\\times\\dots\\times A_n)=\\sum_{x_1\\in A_1}\\cdots\\sum_{x_n\\in A_n}P_1(\\{x_1\\})\\cdots P_n(\\{x_n\\})=P_1(A_1)\\cdots P_n(A_n).$$\nEn prenant $A_j=\\Omega_j$ pour $j\\neq i$ (et donc $P_j(A_j)=1$), l'événement « la $i$-ème épreuve donne un résultat dans $A_i$ » a pour probabilité $P_i(A_i)$ : le modèle respecte la loi de chaque épreuve. L'intersection de ces $n$ événements est le pavé $A_1\\times\\dots\\times A_n$, d'où la propriété de produit.",
+      "exemple": "Une urne contient $2$ boules rouges et $1$ noire ; on tire une boule, puis on lance une pièce qui donne pile avec probabilité $\\frac{1}{4}$. Univers produit : $\\{R,N\\}\\times\\{P,F\\}$, avec $P\\left(\\{(R,P)\\}\\right)=\\frac{2}{3}\\cdot\\frac{1}{4}=\\frac{1}{6}$, $P\\left(\\{(R,F)\\}\\right)=\\frac{2}{3}\\cdot\\frac{3}{4}=\\frac{1}{2}$, $P\\left(\\{(N,P)\\}\\right)=\\frac{1}{12}$ et $P\\left(\\{(N,F)\\}\\right)=\\frac{1}{4}$ : la somme vaut bien $1$, et les quatre issues ne sont pas équiprobables.",
+      "contre_exemple": "- **Épreuves non indépendantes (sans remise).** Une urne contient $2$ boules rouges et $2$ noires ; on en tire deux successivement sans remise. Chaque tirage donne rouge avec probabilité $\\frac{1}{2}$, mais $P\\left(\\{(R,R)\\}\\right)=\\frac{2}{4}\\cdot\\frac{1}{3}=\\frac{1}{6}\\neq\\frac{1}{2}\\cdot\\frac{1}{2}$ : la probabilité sur $\\{R,N\\}^2$ n'est pas le produit de ses marges, ce n'est pas le modèle produit.\n- **Uniformité abusive.** On lance un dé équilibré puis une pièce donnant pile avec probabilité $\\frac{1}{3}$. La probabilité uniforme sur les $12$ issues donnerait $P(\\text{pile})=\\frac{6}{12}=\\frac{1}{2}$ au lieu de $\\frac{1}{3}$ : elle ne respecte pas la loi de la seconde épreuve.\n- **Univers mal choisi.** Pour la somme de deux dés équilibrés, l'univers produit $\\{1,\\dots,6\\}^2$ est uniforme, mais l'ensemble des sommes $\\{2,\\dots,12\\}$ ne l'est pas : $P(S=2)=\\frac{1}{36}$ et $P(S=7)=\\frac{6}{36}$, et non $\\frac{1}{11}$.",
+      "affirmations": [
+        {
+          "texte": "Dans le modèle produit, si chaque $P_i$ est la probabilité uniforme sur $\\Omega_i$, alors $P$ est la probabilité uniforme sur $\\Omega$.",
+          "vrai": true,
+          "justification": "Chaque issue a pour probabilité $\\frac{1}{\\mathrm{Card}(\\Omega_1)}\\cdots\\frac{1}{\\mathrm{Card}(\\Omega_n)}=\\frac{1}{\\mathrm{Card}(\\Omega)}$, par le principe multiplicatif."
+        },
+        {
+          "texte": "Si $P$ est une probabilité sur $\\Omega_1\\times\\Omega_2$ telle que la première composante suit la loi $P_1$ et la seconde la loi $P_2$, alors $P$ est la probabilité produit.",
+          "vrai": false,
+          "contre_exemple": "Deux tirages sans remise dans une urne de $2$ boules rouges et $2$ noires : chaque composante vaut $R$ avec probabilité $\\frac{1}{2}$, mais $P\\left(\\{(R,R)\\}\\right)=\\frac{1}{6}\\neq\\frac{1}{4}$."
+        },
+        {
+          "texte": "Quand on lance deux dés équilibrés, les $11$ valeurs possibles de la somme sont équiprobables.",
+          "vrai": false,
+          "contre_exemple": "Dans l'univers produit uniforme $\\{1,\\dots,6\\}^2$, $P(S=2)=\\frac{1}{36}$ (seulement $(1,1)$) alors que $P(S=7)=\\frac{6}{36}=\\frac{1}{6}$."
+        },
+        {
+          "texte": "Dans le modèle produit, la probabilité qu'au moins une épreuve $i$ donne un résultat dans $A_i$ vaut $1-\\left(1-P_1(A_1)\\right)\\cdots\\left(1-P_n(A_n)\\right)$.",
+          "vrai": true,
+          "justification": "L'événement contraire est le pavé $(\\Omega_1\\setminus A_1)\\times\\dots\\times(\\Omega_n\\setminus A_n)$, de probabilité $\\prod_{i=1}^{n}\\left(1-P_i(A_i)\\right)$."
+        }
+      ],
+      "prerequis": [
+        "proba-t-binomiale-denombrement"
+      ]
+    }
+  ]
+}
