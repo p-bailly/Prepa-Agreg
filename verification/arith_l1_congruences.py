@@ -91,6 +91,7 @@ assert 6 - 1 == 5 and phi(6) == 2  # arith-l1-congruences-euler (contre-ex. p = 
 assert pow(3, 2, 8) == 1 and phi(8) == 4 and 2 % 4 != 0  # arith-l1-congruences-euler (contre-ex., affirmation 1)
 assert pow(2, phi(4), 4) == 0  # piège « n ne divise pas a » : a = 2, n = 4 ; et trou 3 « premier » (a = 2)
 assert pow(0, phi(5), 5) == 0  # trou 3 « quelconque » : a = 0, n = 5
+assert isprime(5) and pow(0, phi(5), 5) != 1  # arith-l1-congruences-euler, piège « n premier et a quelconque » : a = 0
 assert phi(4) == 2 != 4 - 1 and phi(4) != (2 - 1) ** 2 and phi(4) != 4 * (2 - 1)  # trou 1 : leurres faux pour p = 2, alpha = 2
 assert phi(8) != phi(2) * phi(4)  # trou 2 : « distincts », « m divise n », « quelconques » (m = 2, n = 4)
 assert phi(4) != 4 - 1  # piège « p entier >= 2 quelconque » : p = 4, alpha = 1
