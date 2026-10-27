@@ -1,0 +1,143 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l1-conditionnement-composees",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-conditionnement",
+      "type": "theoreme",
+      "titre": "Formule des probabilités composées",
+      "recto": "Énoncer la formule des probabilités composées avec ses hypothèses.",
+      "cours": "Quand une expérience se déroule en étapes successives (tirages sans remise, essais répétés, files d'attente), il est rarement possible de décrire directement la probabilité de toute la suite d'événements, mais on sait souvent dire ce qui se passe à chaque étape **sachant ce qui s'est passé avant**. La définition $P(B\\mid A)=\\frac{P(A\\cap B)}{P(A)}$ (pour $P(A)>0$), réécrite $P(A\\cap B)=P(A)P(B\\mid A)$, se prolonge à $n$ événements : la probabilité d'une intersection est le produit des probabilités conditionnelles successives. C'est exactement la règle « on multiplie le long d'une branche » des arbres pondérés.\n\n**Méthode.** Nommer les événements dans l'ordre chronologique $A_1,\\dots,A_n$ ; vérifier que $P(A_1\\cap\\dots\\cap A_{n-1})>0$ ; calculer $P(A_1)$, puis chaque $P(A_k\\mid A_1\\cap\\dots\\cap A_{k-1})$ en se plaçant dans la situation où les $k-1$ premières étapes se sont produites ; multiplier. Combinée à la formule des probabilités totales, elle permet de traiter tous les arbres.\n\n**Piège principal.** Chaque facteur est conditionné par **tout le passé** $A_1\\cap\\dots\\cap A_{k-1}$, pas seulement par l'étape précédente ; et remplacer les probabilités conditionnelles par les probabilités $P(A_k)$ revient à supposer une indépendance qui, dans un tirage sans remise par exemple, est fausse.",
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé et $A_1,\\dots,A_n$ des événements ($n\\geq 2$) tels que $P(A_1\\cap\\dots\\cap A_{n-1})>0$. Alors toutes les probabilités conditionnelles ci-dessous sont définies et\n$$P(A_1\\cap A_2\\cap\\dots\\cap A_n)=P(A_1)\\,P(A_2\\mid A_1)\\,P(A_3\\mid A_1\\cap A_2)\\cdots P(A_n\\mid A_1\\cap\\dots\\cap A_{n-1}).$$\nPour $n=2$ : si $P(A)>0$, $P(A\\cap B)=P(A)P(B\\mid A)$.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$A_1,\\dots,A_n$ sont des événements, avec $n\\geq 2$.",
+        "$P(A_1\\cap\\dots\\cap A_{n-1})>0$."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que $P(A_i)>0$ pour tout $i$ (à la place de $P(A_1\\cap\\dots\\cap A_{n-1})>0$).",
+        "$P(A_1\\cap\\dots\\cap A_n)>0$ (à la place de $P(A_1\\cap\\dots\\cap A_{n-1})>0$).",
+        "Les événements $A_1,\\dots,A_n$ sont mutuellement indépendants.",
+        "$(A_1,\\dots,A_n)$ est un système complet d'événements."
+      ],
+      "enonce_trous": "Soit $A_1,\\dots,A_n$ des événements d'un univers fini probabilisé, avec $n\\geq 3$, tels que {{1}} soit non nulle. Alors $P(A_1\\cap\\dots\\cap A_n)$ est égale à {{2}}.",
+      "trous": [
+        {
+          "reponse": "$P(A_1\\cap\\dots\\cap A_{n-1})$",
+          "leurres": [
+            "$P(A_1)$",
+            "$P(A_n)$",
+            "$P(A_1)P(A_2)\\cdots P(A_{n-1})$"
+          ]
+        },
+        {
+          "reponse": "$P(A_1)P(A_2\\mid A_1)P(A_3\\mid A_1\\cap A_2)\\cdots P(A_n\\mid A_1\\cap\\dots\\cap A_{n-1})$",
+          "leurres": [
+            "$P(A_1)P(A_2)\\cdots P(A_n)$",
+            "$P(A_1)P(A_2\\mid A_1)P(A_3\\mid A_2)\\cdots P(A_n\\mid A_{n-1})$",
+            "$P(A_n\\mid A_1\\cap\\dots\\cap A_{n-1})$"
+          ]
+        }
+      ],
+      "demo": "Posons $B_k=A_1\\cap\\dots\\cap A_k$ pour $1\\leq k\\leq n$. Pour $k\\leq n-1$, $B_{n-1}\\subset B_k$, donc $P(B_k)\\geq P(B_{n-1})>0$ : les probabilités conditionnelles $P(A_{k+1}\\mid B_k)$ sont toutes définies, et par définition\n$$P(A_{k+1}\\mid B_k)=\\frac{P(B_k\\cap A_{k+1})}{P(B_k)}=\\frac{P(B_{k+1})}{P(B_k)}.$$\nLe produit est alors télescopique :\n$$P(A_1)\\prod_{k=1}^{n-1}P(A_{k+1}\\mid B_k)=P(B_1)\\prod_{k=1}^{n-1}\\frac{P(B_{k+1})}{P(B_k)}=P(B_n)=P(A_1\\cap\\dots\\cap A_n).$$\n(On peut aussi raisonner par récurrence sur $n$, à partir du cas $n=2$, qui est la définition de $P(A_2\\mid A_1)$.)",
+      "exemple": "Une urne contient $3$ boules rouges et $2$ blanches ; on tire successivement $3$ boules sans remise et on note $R_k$ l'événement « la $k$-ième boule est rouge ». Comme $P(R_1\\cap R_2)=\\frac{3}{5}\\cdot\\frac{2}{4}>0$, la formule s'applique : $P(R_1\\cap R_2\\cap R_3)=P(R_1)P(R_2\\mid R_1)P(R_3\\mid R_1\\cap R_2)=\\frac{3}{5}\\cdot\\frac{2}{4}\\cdot\\frac{1}{3}=\\frac{1}{10}$, ce que confirme le dénombrement $\\frac{\\binom{3}{3}}{\\binom{5}{3}}=\\frac{1}{10}$.",
+      "contre_exemple": "- **Les probabilités conditionnelles ne sont pas les probabilités simples.** Dans l'urne de l'exemple, chaque $R_k$ a pour probabilité $\\frac{3}{5}$ (par symétrie des tirages), mais $P(R_1)P(R_2)P(R_3)=\\frac{27}{125}\\neq\\frac{1}{10}$.\n- **Il faut conditionner par tout le passé.** Toujours dans cette urne, $P(R_2\\cap R_3)=\\frac{3}{10}$ et $P(R_2)=\\frac{3}{5}$, donc $P(R_3\\mid R_2)=\\frac{1}{2}$, alors que $P(R_3\\mid R_1\\cap R_2)=\\frac{1}{3}$ : le produit $P(R_1)P(R_2\\mid R_1)P(R_3\\mid R_2)=\\frac{3}{5}\\cdot\\frac{1}{2}\\cdot\\frac{1}{2}=\\frac{3}{20}$ est faux.\n- **L'hypothèse $P(A_1\\cap\\dots\\cap A_{n-1})>0$ est nécessaire pour que la formule ait un sens.** Avec un dé équilibré, $A_1=\\{1\\}$, $A_2=\\{2\\}$ et $A_3=\\{1,2,3\\}$ ont des probabilités non nulles, mais $P(A_1\\cap A_2)=0$ et $P(A_3\\mid A_1\\cap A_2)$ n'est pas défini ; on conclut alors directement que $P(A_1\\cap A_2\\cap A_3)=0$.",
+      "affirmations": [
+        {
+          "texte": "Si $P(A)>0$, alors $P(A\\cap B)=P(A)P(B)$.",
+          "vrai": false,
+          "contre_exemple": "Urne de $3$ boules rouges et $2$ blanches, deux tirages sans remise, $A=R_1$, $B=R_2$ : $P(R_1\\cap R_2)=\\frac{3}{5}\\cdot\\frac{2}{4}=\\frac{3}{10}$, alors que $P(R_1)P(R_2)=\\frac{3}{5}\\cdot\\frac{3}{5}=\\frac{9}{25}$. L'égalité caractérise l'indépendance ; en général $P(A\\cap B)=P(A)P(B\\mid A)$."
+        },
+        {
+          "texte": "Si $P(A\\cap B)>0$, alors $P(A\\cap B\\cap C)=P(A)P(B\\mid A)P(C\\mid A\\cap B)$.",
+          "vrai": true,
+          "justification": "C'est la formule des probabilités composées pour $n=3$ ; l'hypothèse $P(A\\cap B)>0$ est exactement celle qui est demandée."
+        },
+        {
+          "texte": "Si $P(A)>0$ et $P(B)>0$, alors $P(A\\cap B\\cap C)=P(A)P(B\\mid A)P(C\\mid B)$.",
+          "vrai": false,
+          "contre_exemple": "Urne de $3$ boules rouges et $2$ blanches, trois tirages sans remise, $A=R_1$, $B=R_2$, $C=R_3$ : le membre de droite vaut $\\frac{3}{5}\\cdot\\frac{1}{2}\\cdot\\frac{1}{2}=\\frac{3}{20}$, alors que $P(R_1\\cap R_2\\cap R_3)=\\frac{1}{10}$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "proba-l1-conditionnement-independance",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-conditionnement",
+      "type": "definition",
+      "titre": "Indépendance de deux événements, passage aux contraires",
+      "recto": "Définir l'indépendance de deux événements et énoncer son comportement par passage aux contraires.",
+      "cours": "Intuitivement, $A$ et $B$ sont indépendants si savoir que $A$ est réalisé ne change pas la probabilité de $B$ : $P(B\\mid A)=P(B)$. Cette formulation demande $P(A)>0$ ; en multipliant par $P(A)$, on obtient la définition symétrique $P(A\\cap B)=P(A)P(B)$, qui a un sens pour tous les événements. L'indépendance n'est pas une propriété des ensembles $A$ et $B$ seuls : elle dépend de la probabilité $P$ choisie.\n\nSi $A$ et $B$ sont indépendants, $A$ ne renseigne pas non plus sur la non-réalisation de $B$ : $A$ et $\\overline{B}$, $\\overline{A}$ et $B$, $\\overline{A}$ et $\\overline{B}$ sont encore indépendants. C'est ce qui permet de calculer $P(A\\cup B)=1-P(\\overline{A})P(\\overline{B})$ ou la probabilité qu'un seul des deux événements se produise.\n\n**Méthode.** Pour prouver l'indépendance, calculer séparément $P(A)$, $P(B)$ et $P(A\\cap B)$, puis comparer $P(A\\cap B)$ au produit ; dans une modélisation, elle est souvent une **hypothèse** (épreuves physiquement séparées) qu'il faut énoncer.\n\n**Piège principal.** Ne pas confondre indépendants et incompatibles : deux événements incompatibles de probabilités non nulles ne sont jamais indépendants, puisque $P(A\\cap B)=0<P(A)P(B)$.",
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé et $A$, $B$ deux événements. On dit que $A$ et $B$ sont **indépendants** si\n$$P(A\\cap B)=P(A)P(B).$$\n- Si $P(A)>0$, $A$ et $B$ sont indépendants si et seulement si $P(B\\mid A)=P(B)$.\n- Si $A$ et $B$ sont indépendants, alors $A$ et $\\overline{B}$, $\\overline{A}$ et $B$, ainsi que $\\overline{A}$ et $\\overline{B}$, sont indépendants.\n- Un événement de probabilité $0$ ou $1$ est indépendant de tout événement.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$A$ et $B$ sont deux événements (aucune condition sur leurs probabilités pour la définition).",
+        "Pour la caractérisation par $P(B\\mid A)=P(B)$ : $P(A)>0$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la définition : $P(A)>0$ et $P(B)>0$.",
+        "Pour la caractérisation par $P(B\\mid A)=P(B)$ : il suffit que $P(B)>0$ (à la place de $P(A)>0$).",
+        "$A$ et $B$ sont incompatibles.",
+        "Pour le passage aux contraires : $0<P(A)<1$ et $0<P(B)<1$."
+      ],
+      "enonce_trous": "Deux événements $A$ et $B$ sont indépendants si {{1}}. Dans ce cas, $P(A\\cap\\overline{B})$ est égale à {{2}}. Si de plus {{3}}, l'indépendance équivaut à $P(B\\mid A)=P(B)$.",
+      "trous": [
+        {
+          "reponse": "$P(A\\cap B)=P(A)P(B)$",
+          "leurres": [
+            "$P(A\\cap B)=0$",
+            "$P(A\\cup B)=P(A)+P(B)$",
+            "$P(A\\mid B)=P(B\\mid A)$"
+          ]
+        },
+        {
+          "reponse": "$P(A)\\left(1-P(B)\\right)$",
+          "leurres": [
+            "$P(A)-P(B)$",
+            "$1-P(A)P(B)$",
+            "$\\left(1-P(A)\\right)P(B)$"
+          ]
+        },
+        {
+          "reponse": "$P(A)>0$",
+          "leurres": [
+            "$P(B)>0$",
+            "$P(A)<1$",
+            "$P(A)\\geq 0$"
+          ]
+        }
+      ],
+      "demo": "**Caractérisation.** Si $P(A)>0$, $P(B\\mid A)=\\frac{P(A\\cap B)}{P(A)}$, et cette quantité vaut $P(B)$ si et seulement si $P(A\\cap B)=P(A)P(B)$.\n\n**Passage aux contraires.** $A$ est la réunion disjointe de $A\\cap B$ et $A\\cap\\overline{B}$, donc, si $A$ et $B$ sont indépendants,\n$$P(A\\cap\\overline{B})=P(A)-P(A\\cap B)=P(A)-P(A)P(B)=P(A)\\left(1-P(B)\\right)=P(A)P(\\overline{B}).$$\nAinsi $A$ et $\\overline{B}$ sont indépendants ; en échangeant les rôles, $\\overline{A}$ et $B$ aussi ; en appliquant ce résultat au couple indépendant $(\\overline{A},B)$, $\\overline{A}$ et $\\overline{B}$ aussi.\n\n**Événements presque impossibles ou presque certains.** Si $P(A)=0$, alors $0\\leq P(A\\cap B)\\leq P(A)=0$, donc $P(A\\cap B)=0=P(A)P(B)$. Si $P(A)=1$, alors $P(\\overline{A})=0$, donc $\\overline{A}$ et $B$ sont indépendants, puis $A$ et $B$ par passage au contraire.",
+      "exemple": "Avec un dé équilibré, $A=\\{2,4,6\\}$ (« pair ») et $B=\\{1,2\\}$ : $P(A\\cap B)=P(\\{2\\})=\\frac{1}{6}=\\frac{1}{2}\\cdot\\frac{1}{3}=P(A)P(B)$, donc $A$ et $B$ sont indépendants. On vérifie le passage aux contraires : $\\overline{A}\\cap\\overline{B}=\\{3,5\\}$ a pour probabilité $\\frac{1}{3}=\\frac{1}{2}\\cdot\\frac{2}{3}=P(\\overline{A})P(\\overline{B})$.",
+      "contre_exemple": "- **Incompatibles n'est pas indépendants.** Dé équilibré, $A=\\{1\\}$, $B=\\{2\\}$ : $P(A\\cap B)=0\\neq\\frac{1}{36}=P(A)P(B)$.\n- **L'indépendance dépend de la probabilité.** Gardons $A=\\{2,4,6\\}$ et $B=\\{1,2\\}$, mais avec un dé truqué : $P(\\{6\\})=\\frac{1}{2}$ et $P(\\{k\\})=\\frac{1}{10}$ pour $k\\leq 5$. Alors $P(A)=\\frac{7}{10}$, $P(B)=\\frac{1}{5}$ et $P(A\\cap B)=\\frac{1}{10}\\neq\\frac{7}{50}$ : $A$ et $B$ ne sont plus indépendants.\n- **La caractérisation demande $P(A)>0$.** Si $P(A)=0$, $A$ est indépendant de tout événement $B$, mais $P(B\\mid A)$ n'est pas défini.\n- **L'indépendance n'est pas transitive.** Si $P(A)=\\frac{1}{2}$, $A$ est indépendant de $B=\\Omega$ et $\\Omega$ l'est de $A$, mais $A$ n'est pas indépendant de lui-même : $P(A\\cap A)=\\frac{1}{2}\\neq\\frac{1}{4}$.",
+      "affirmations": [
+        {
+          "texte": "Si $A$ et $B$ sont indépendants, alors $\\overline{A}$ et $\\overline{B}$ sont indépendants.",
+          "vrai": true,
+          "justification": "Par passage au contraire, $\\overline{A}$ et $B$ sont indépendants, puis $\\overline{A}$ et $\\overline{B}$ ; directement, $P(\\overline{A}\\cap\\overline{B})=1-P(A)-P(B)+P(A)P(B)=\\left(1-P(A)\\right)\\left(1-P(B)\\right)$."
+        },
+        {
+          "texte": "Si $A$ est indépendant de $B$ et de $C$, alors $A$ est indépendant de $B\\cup C$.",
+          "vrai": false,
+          "contre_exemple": "Deux lancers d'une pièce équilibrée, $A$ = « les deux résultats sont égaux » $=\\{PP,FF\\}$, $B$ = « pile au premier » $=\\{PP,PF\\}$, $C$ = « pile au second » $=\\{PP,FP\\}$ : $P(A\\cap B)=P(A\\cap C)=\\frac{1}{4}=\\frac{1}{2}\\cdot\\frac{1}{2}$, mais $A\\cap(B\\cup C)=\\{PP\\}$ a pour probabilité $\\frac{1}{4}\\neq\\frac{1}{2}\\cdot\\frac{3}{4}=P(A)P(B\\cup C)$."
+        },
+        {
+          "texte": "Un événement $A$ est indépendant de lui-même si et seulement si $P(A)\\in\\{0,1\\}$.",
+          "vrai": true,
+          "justification": "$P(A\\cap A)=P(A)$, et l'égalité $P(A)=P(A)^2$ équivaut à $P(A)\\in\\{0,1\\}$."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont indépendants pour une probabilité $P$ sur $\\Omega$, ils le sont pour toute probabilité sur $\\Omega$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\{2,4,6\\}$ et $B=\\{1,2\\}$ sont indépendants pour le dé équilibré, mais pas pour le dé truqué où $P(\\{6\\})=\\frac{1}{2}$ et $P(\\{k\\})=\\frac{1}{10}$ pour $k\\leq 5$ : $P(A\\cap B)=\\frac{1}{10}\\neq\\frac{7}{10}\\cdot\\frac{1}{5}$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-conditionnement-composees"
+      ]
+    }
+  ]
+}

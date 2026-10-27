@@ -1,0 +1,444 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l1-variables-finies-transfert",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "theoreme",
+      "titre": "Loi d'une variable aléatoire et formule de transfert",
+      "recto": "Définir la loi d'une variable aléatoire sur un univers fini et énoncer la formule de transfert avec ses hypothèses.",
+      "cours": "Une variable aléatoire traduit chaque issue $\\omega$ d'une expérience en une valeur $X(\\omega)$ : un nombre (un gain, un score), mais aussi un couple ou un mot. Sa **loi** oublie l'univers et ne garde que la probabilité de chaque valeur : c'est la famille des $P(X=x)$, pour $x\\in X(\\Omega)$, positifs et de somme $1$. Deux expériences très différentes peuvent donner des variables de même loi, et tout ce qui ne dépend que de la loi (probabilités d'événements $\\{X\\in A\\}$, espérances de fonctions de $X$) se calcule alors de la même façon.\n\nLa **formule de transfert** dit que, pour calculer $E\\left(f(X)\\right)$, il est inutile de déterminer la loi de $f(X)$ : il suffit de pondérer les valeurs $f(x)$ par les probabilités $P(X=x)$. On l'utilise sans cesse pour $E(X^2)$ (donc pour la variance), $E\\left(|X-a|\\right)$, $E\\left(t^X\\right)$, et, appliquée à un couple $(X,Y)$, pour $E(XY)$ ou $E\\left(\\max(X,Y)\\right)$.\n\n**Méthode.** Déterminer $X(\\Omega)$, calculer chaque $P(X=x)$, vérifier que la somme vaut $1$, puis appliquer $E\\left(f(X)\\right)=\\sum_{x}f(x)P(X=x)$.\n\n**Piège principal.** En général $E\\left(f(X)\\right)\\neq f\\left(E(X)\\right)$ : l'égalité vaut pour $f$ affine, pas pour $f(x)=x^2$. Et deux variables de même loi ne sont pas égales pour autant.",
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé et $X:\\Omega\\to E$ une variable aléatoire ; l'ensemble $X(\\Omega)$ de ses valeurs est fini.\n\n**Loi.** La loi de $X$ est la probabilité $P_X$ sur $X(\\Omega)$ définie par $P_X(\\{x\\})=P(X=x)$. Elle est déterminée par la famille $\\left(P(X=x)\\right)_{x\\in X(\\Omega)}$, de réels positifs de somme $1$, et pour toute partie $A$ de $E$,\n$$P(X\\in A)=\\sum_{x\\in A\\cap X(\\Omega)}P(X=x).$$\n\n**Formule de transfert.** Pour toute fonction $f$ définie sur $X(\\Omega)$ à valeurs réelles,\n$$E\\left(f(X)\\right)=\\sum_{x\\in X(\\Omega)}f(x)\\,P(X=x).$$\nEn particulier, $E\\left(f(X)\\right)$ ne dépend que de $f$ et de la loi de $X$.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$X$ est une variable aléatoire sur $\\Omega$, à valeurs dans un ensemble $E$ quelconque (nombres réels, couples, etc.).",
+        "$f$ est une fonction définie sur $X(\\Omega)$ (ou sur $E$), à valeurs réelles."
+      ],
+      "hypotheses_pieges": [
+        "La fonction $f$ est affine.",
+        "La fonction $f$ est injective.",
+        "La fonction $f$ est à valeurs positives.",
+        "$X(\\Omega)$ est une partie de $\\mathbb{N}$."
+      ],
+      "enonce_trous": "Pour toute variable aléatoire $X$ sur un univers fini et toute fonction $f$ à valeurs réelles définie sur $X(\\Omega)$, $E\\left(f(X)\\right)$ est égale à {{1}}. En particulier, $E\\left(f(X)\\right)$ ne dépend que de $f$ et de {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{x\\in X(\\Omega)}f(x)P(X=x)$",
+          "leurres": [
+            "$f\\left(E(X)\\right)$",
+            "$\\sum_{x\\in X(\\Omega)}f(x)P\\left(X=f(x)\\right)$",
+            "$\\frac{1}{\\mathrm{card}\\,X(\\Omega)}\\sum_{x\\in X(\\Omega)}f(x)$"
+          ]
+        },
+        {
+          "reponse": "la loi de $X$",
+          "leurres": [
+            "l'espérance de $X$",
+            "l'ensemble $X(\\Omega)$ des valeurs de $X$",
+            "l'univers $\\Omega$"
+          ]
+        }
+      ],
+      "demo": "**La loi est une probabilité.** Les événements $\\{X=x\\}$, pour $x\\in X(\\Omega)$, sont deux à deux disjoints et de réunion $\\Omega$ ; par additivité, $\\sum_{x\\in X(\\Omega)}P(X=x)=P(\\Omega)=1$. De même, $\\{X\\in A\\}$ est la réunion disjointe des $\\{X=x\\}$ pour $x\\in A\\cap X(\\Omega)$, d'où la formule donnant $P(X\\in A)$.\n\n**Transfert.** On utilise l'écriture de l'espérance comme moyenne sur les issues, $E(Z)=\\sum_{\\omega\\in\\Omega}Z(\\omega)P\\left(\\{\\omega\\}\\right)$ pour toute variable réelle $Z$ (on regroupe les issues selon la valeur de $Z$). Avec $Z=f(X)$, en regroupant cette fois les issues selon la valeur de $X$ :\n$$E\\left(f(X)\\right)=\\sum_{\\omega\\in\\Omega}f\\left(X(\\omega)\\right)P\\left(\\{\\omega\\}\\right)=\\sum_{x\\in X(\\Omega)}\\ \\sum_{\\omega\\,:\\,X(\\omega)=x}f(x)P\\left(\\{\\omega\\}\\right)=\\sum_{x\\in X(\\Omega)}f(x)P(X=x).$$\nLe membre de droite ne fait intervenir que $f$ et les $P(X=x)$, c'est-à-dire la loi de $X$.",
+      "exemple": "Soit $X$ de loi $P(X=-1)=\\frac{1}{4}$, $P(X=0)=\\frac{1}{2}$, $P(X=2)=\\frac{1}{4}$ (somme $1$). Par transfert, $E(X^2)=1\\cdot\\frac{1}{4}+0\\cdot\\frac{1}{2}+4\\cdot\\frac{1}{4}=\\frac{5}{4}$, sans calculer la loi de $X^2$, alors que $E(X)=-\\frac{1}{4}+\\frac{1}{2}=\\frac{1}{4}$ et $E(X)^2=\\frac{1}{16}$.",
+      "contre_exemple": "- **$E\\left(f(X)\\right)\\neq f\\left(E(X)\\right)$ en général.** Dans l'exemple, $E(X^2)=\\frac{5}{4}$ alors que $E(X)^2=\\frac{1}{16}$.\n- **La loi ne détermine pas la variable.** Une pièce équilibrée, $X=1$ si pile et $0$ sinon, $Y=1-X$ : $X$ et $Y$ suivent la même loi de Bernoulli de paramètre $\\frac{1}{2}$, mais $X(\\omega)\\neq Y(\\omega)$ pour toute issue $\\omega$.\n- **Les lois de $X$ et de $Y$ ne suffisent pas pour une fonction des deux.** Avec ces mêmes variables, $E(X\\cdot X)=\\frac{1}{2}$ et $E(X\\cdot Y)=0$, alors que $Y$ et $X$ ont la même loi : pour $E(XY)$, il faut la loi du couple $(X,Y)$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ et $Y$ ont la même loi, alors $E\\left(f(X)\\right)=E\\left(f(Y)\\right)$ pour toute fonction $f$ à valeurs réelles.",
+          "vrai": true,
+          "justification": "Par la formule de transfert, les deux espérances valent $\\sum_{x}f(x)P(X=x)=\\sum_{x}f(x)P(Y=x)$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ ont la même loi, alors $X=Y$.",
+          "vrai": false,
+          "contre_exemple": "Pièce équilibrée, $X=1$ si pile, $0$ sinon, et $Y=1-X$ : même loi de Bernoulli de paramètre $\\frac{1}{2}$, mais $X$ et $Y$ ne sont égales en aucune issue."
+        },
+        {
+          "texte": "Pour toute variable aléatoire réelle $X$ et toute fonction $f$, $E\\left(f(X)\\right)=f\\left(E(X)\\right)$.",
+          "vrai": false,
+          "contre_exemple": "$X$ de loi uniforme sur $\\{-1,1\\}$ et $f(x)=x^2$ : $E\\left(f(X)\\right)=1$, alors que $f\\left(E(X)\\right)=f(0)=0$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ ont la même loi, alors $X+Y$ et $2X$ ont la même loi.",
+          "vrai": false,
+          "contre_exemple": "Avec $X$ de loi de Bernoulli de paramètre $\\frac{1}{2}$ et $Y=1-X$ : $X+Y=1$ est constante, alors que $2X$ vaut $0$ ou $2$ avec probabilité $\\frac{1}{2}$ chacun."
+        }
+      ],
+      "prerequis": [
+        "proba-t-concentration-linearite"
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-variance",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "theoreme",
+      "titre": "Variance et formule de König-Huygens",
+      "recto": "Définir la variance d'une variable aléatoire réelle finie et énoncer la formule de König-Huygens et le cas de variance nulle.",
+      "cours": "L'espérance donne la position moyenne d'une variable ; la variance mesure sa dispersion autour de cette moyenne. On ne peut pas prendre la moyenne des écarts $X-E(X)$, toujours nulle ; on prend celle de leurs **carrés** : $V(X)=E\\left((X-E(X))^2\\right)$, qui est positive, et l'écart-type $\\sigma(X)=\\sqrt{V(X)}$ s'exprime dans la même unité que $X$.\n\nLa formule de König-Huygens $V(X)=E(X^2)-E(X)^2$ est la forme pratique du calcul : on obtient $E(X)$ et $E(X^2)$ par la formule de transfert, puis on soustrait. Sa forme générale, $E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$, montre que $E(X)$ est la constante qui approche le mieux $X$ en moyenne quadratique, et que l'écart quadratique moyen à $E(X)$ est le plus petit possible.\n\n**Méthode.** Calculer $E(X)$, puis $E(X^2)=\\sum_x x^2P(X=x)$, puis $V(X)=E(X^2)-E(X)^2$ ; un résultat négatif signale une erreur.\n\n**Piège principal.** On soustrait le **carré** de l'espérance, $E(X)^2$, et non $E(X)$. Et $V(X)=0$ signifie que $X$ est constante avec probabilité $1$, pas forcément sur toutes les issues : une issue de probabilité nulle peut porter une autre valeur.",
+      "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini probabilisé $(\\Omega,P)$. Sa **variance** est $V(X)=E\\left(\\left(X-E(X)\\right)^2\\right)\\geq 0$ et son écart-type est $\\sigma(X)=\\sqrt{V(X)}$.\n- **König-Huygens.** $V(X)=E(X^2)-E(X)^2$ ; en particulier $E(X)^2\\leq E(X^2)$.\n- **Forme générale.** Pour tout réel $a$, $E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$ ; ce nombre est minimal pour $a=E(X)$, et seulement pour cette valeur.\n- **Variance nulle.** $V(X)=0$ si et seulement si $P\\left(X=E(X)\\right)=1$.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$X$ est une variable aléatoire réelle sur $\\Omega$.",
+        "$a$ est un réel (pour la forme générale)."
+      ],
+      "hypotheses_pieges": [
+        "$X$ est à valeurs positives.",
+        "$E(X)=0$.",
+        "$X$ suit une loi uniforme.",
+        "$X$ ne prend que deux valeurs."
+      ],
+      "enonce_trous": "Pour toute variable aléatoire réelle $X$ sur un univers fini, $V(X)$ est égale à {{1}}. De plus, $V(X)=0$ si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "$E(X^2)-E(X)^2$",
+          "leurres": [
+            "$E(X)^2-E(X^2)$",
+            "$E(X^2)-E(X)$",
+            "$E(X^2)-2E(X)^2$"
+          ]
+        },
+        {
+          "reponse": "$P\\left(X=E(X)\\right)=1$",
+          "leurres": [
+            "$E(X)=0$",
+            "$E(X^2)=0$",
+            "$X(\\omega)=E(X)$ pour toute issue $\\omega$"
+          ]
+        }
+      ],
+      "demo": "Notons $m=E(X)$ et soit $a$ un réel. On écrit $X-a=(X-m)+(m-a)$, d'où$$(X-a)^2=(X-m)^2+2(m-a)(X-m)+(m-a)^2.$$Par linéarité de l'espérance, et comme $E(X-m)=E(X)-m=0$ :$$E\\left((X-a)^2\\right)=V(X)+(m-a)^2,$$ce qui est minimal exactement pour $a=m$. Pour $a=0$, on obtient $E(X^2)=V(X)+m^2$, c'est-à-dire la formule de König-Huygens ; comme $V(X)\\geq 0$ (espérance d'une variable positive), $m^2\\leq E(X^2)$.\n\n**Variance nulle.** Par transfert, $V(X)=\\sum_{x\\in X(\\Omega)}(x-m)^2P(X=x)$, somme de termes positifs. Elle est nulle si et seulement si chaque terme l'est, c'est-à-dire si $P(X=x)=0$ pour tout $x\\neq m$, ce qui équivaut à $P(X=m)=1$ (la somme des $P(X=x)$ vaut $1$).",
+      "exemple": "Soit $X$ de loi $P(X=0)=\\frac{1}{2}$, $P(X=1)=\\frac{1}{4}$, $P(X=4)=\\frac{1}{4}$. Alors $E(X)=\\frac{1}{4}+1=\\frac{5}{4}$, $E(X^2)=\\frac{1}{4}+4=\\frac{17}{4}$ et $V(X)=\\frac{17}{4}-\\frac{25}{16}=\\frac{43}{16}$, donc $\\sigma(X)=\\frac{\\sqrt{43}}{4}$.",
+      "contre_exemple": "- **$E(X)=0$ n'entraîne pas $V(X)=0$.** $X$ de loi uniforme sur $\\{-1,1\\}$ : $E(X)=0$ et $V(X)=1$.\n- **Variance nulle sans variable constante.** $\\Omega=\\{a,b\\}$ avec $P(\\{a\\})=1$, $P(\\{b\\})=0$, $X(a)=0$ et $X(b)=1$ : $E(X)=0$ et $V(X)=0$, mais $X$ n'est pas constante sur $\\Omega$ ; on a seulement $P(X=0)=1$.\n- **$E(X^2)-E(X)$ n'est pas la variance.** $X$ de loi uniforme sur $\\{1,2\\}$ : $E(X^2)-E(X)=\\frac{5}{2}-\\frac{3}{2}=1$, alors que $V(X)=\\frac{5}{2}-\\frac{9}{4}=\\frac{1}{4}$.",
+      "affirmations": [
+        {
+          "texte": "Pour toute variable aléatoire réelle $X$ sur un univers fini, $E(X^2)\\geq E(X)^2$.",
+          "vrai": true,
+          "justification": "Par König-Huygens, $E(X^2)-E(X)^2=V(X)$, espérance de la variable positive $\\left(X-E(X)\\right)^2$."
+        },
+        {
+          "texte": "Si $V(X)=0$, alors $X$ est constante sur $\\Omega$.",
+          "vrai": false,
+          "contre_exemple": "$\\Omega=\\{a,b\\}$ avec $P(\\{a\\})=1$, $P(\\{b\\})=0$, $X(a)=0$, $X(b)=1$ : $V(X)=0$, mais $X$ prend deux valeurs. On a seulement $P\\left(X=E(X)\\right)=1$."
+        },
+        {
+          "texte": "Pour tout réel $a$, $E\\left((X-a)^2\\right)\\geq V(X)$, avec égalité si et seulement si $a=E(X)$.",
+          "vrai": true,
+          "justification": "$E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$."
+        },
+        {
+          "texte": "Si $V(X)\\leq V(Y)$, alors $E(X^2)\\leq E(Y^2)$.",
+          "vrai": false,
+          "contre_exemple": "$X$ constante égale à $10$ et $Y$ de loi uniforme sur $\\{-1,1\\}$ : $V(X)=0\\leq 1=V(Y)$, mais $E(X^2)=100>1=E(Y^2)$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-transfert",
+        "proba-t-concentration-linearite"
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-uniforme-bernoulli",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "definition",
+      "titre": "Lois uniformes et lois de Bernoulli",
+      "recto": "Définir la loi uniforme sur un ensemble fini et la loi de Bernoulli, et donner leurs espérances et variances.",
+      "cours": "Ce sont les deux lois de base sur un ensemble fini. La loi **uniforme** traduit le « hasard sans préférence » : toutes les valeurs ont la même probabilité, de sorte que $P(X\\in A)$ se calcule en comptant, $\\frac{\\mathrm{card}\\,A}{\\mathrm{card}\\,E}$ (dé équilibré, tirage d'un numéro au hasard). La loi de **Bernoulli** de paramètre $p$ est celle d'une expérience à deux issues, succès (codé $1$) ou échec (codé $0$) ; l'indicatrice $\\mathbf{1}_A$ d'un événement suit la loi de Bernoulli de paramètre $P(A)$, ce qui en fait la brique des calculs par indicatrices et de la loi binomiale.\n\nLes formules à connaître : $E(X)=\\frac{n+1}{2}$ et $V(X)=\\frac{n^2-1}{12}$ pour la loi uniforme sur $\\{1,\\dots,n\\}$ ; $E(X)=p$ et $V(X)=p(1-p)$ pour la loi de Bernoulli, ce qui découle de $X^2=X$. Pour une loi uniforme sur $\\{a,\\dots,b\\}$, on se ramène à $\\{1,\\dots,n\\}$ par translation, qui ne change pas la variance.\n\n**Méthode.** Reconnaître la loi (toutes les valeurs équiprobables ? deux valeurs $0$ et $1$ ?), puis appliquer les formules, éventuellement après une transformation affine.\n\n**Piège principal.** La loi uniforme d'une variable $X$ n'exige pas que l'univers $\\Omega$ soit muni de l'équiprobabilité, et l'équiprobabilité de $\\Omega$ ne rend pas uniforme toute variable : la somme de deux dés équilibrés n'est pas uniforme. Les formules de $\\{1,\\dots,n\\}$ ne s'appliquent pas telles quelles à $\\{0,\\dots,n\\}$, qui a $n+1$ éléments.",
+      "enonce": "Soit $X$ une variable aléatoire sur un univers fini probabilisé.\n- **Loi uniforme.** $X$ suit la loi uniforme sur un ensemble fini non vide $E$ si $P(X=x)=\\frac{1}{\\mathrm{card}\\,E}$ pour tout $x\\in E$ ; alors $P(X\\in A)=\\frac{\\mathrm{card}\\,A}{\\mathrm{card}\\,E}$ pour toute partie $A$ de $E$. Si $E=\\{1,\\dots,n\\}$ ($n\\geq 1$) :$$E(X)=\\frac{n+1}{2},\\qquad V(X)=\\frac{n^2-1}{12}.$$Plus généralement, sur $\\{a,\\dots,b\\}$ ($a\\leq b$ entiers, $n=b-a+1$) : $E(X)=\\frac{a+b}{2}$ et $V(X)=\\frac{n^2-1}{12}$.\n- **Loi de Bernoulli.** Pour $p\\in\\left[0,1\\right]$, $X$ suit la loi de Bernoulli $\\mathcal{B}(p)$ si $P(X=1)=p$ et $P(X=0)=1-p$ ; alors $E(X)=p$ et $V(X)=p(1-p)$. Pour tout événement $A$, l'indicatrice $\\mathbf{1}_A$ suit la loi $\\mathcal{B}\\left(P(A)\\right)$.",
+      "hypotheses": [
+        "Le cadre est un univers fini muni d'une probabilité $P$.",
+        "Loi uniforme : $E$ est un ensemble fini non vide ; pour les formules, $E=\\{1,\\dots,n\\}$ avec $n\\geq 1$ (ou $E=\\{a,\\dots,b\\}$, entiers $a\\leq b$, $n=b-a+1$).",
+        "Loi de Bernoulli : $p\\in\\left[0,1\\right]$."
+      ],
+      "hypotheses_pieges": [
+        "L'univers $\\Omega$ est muni de l'équiprobabilité.",
+        "Pour la loi uniforme, $E$ est une partie de $\\mathbb{N}$.",
+        "Pour $E(X)=\\frac{n+1}{2}$ : $n$ est impair.",
+        "Pour $V(X)=\\frac{n^2-1}{12}$ : $X$ est uniforme sur $\\{0,\\dots,n\\}$ (à la place de $\\{1,\\dots,n\\}$)."
+      ],
+      "enonce_trous": "Si $X$ suit la loi uniforme sur $\\{1,\\dots,n\\}$, alors $E(X)$ vaut {{1}} et $V(X)$ vaut {{2}}. Si $X$ suit la loi de Bernoulli de paramètre $p$, alors $V(X)$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{n+1}{2}$",
+          "leurres": [
+            "$\\frac{n}{2}$",
+            "$\\frac{n-1}{2}$",
+            "$\\frac{n(n+1)}{2}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{n^2-1}{12}$",
+          "leurres": [
+            "$\\frac{n^2+1}{12}$",
+            "$\\frac{(n+1)^2-1}{12}$",
+            "$\\frac{(n+1)(2n+1)}{6}$"
+          ]
+        },
+        {
+          "reponse": "$p(1-p)$",
+          "leurres": [
+            "$p$",
+            "$p^2$",
+            "$\\sqrt{p(1-p)}$"
+          ]
+        }
+      ],
+      "demo": "**Loi uniforme.** $P(X\\in A)=\\sum_{x\\in A}\\frac{1}{\\mathrm{card}\\,E}=\\frac{\\mathrm{card}\\,A}{\\mathrm{card}\\,E}$. Sur $\\{1,\\dots,n\\}$, par transfert,$$E(X)=\\frac{1}{n}\\sum_{k=1}^{n}k=\\frac{n+1}{2},\\qquad E(X^2)=\\frac{1}{n}\\sum_{k=1}^{n}k^2=\\frac{(n+1)(2n+1)}{6},$$donc$$V(X)=\\frac{(n+1)(2n+1)}{6}-\\frac{(n+1)^2}{4}=\\frac{(n+1)\\left(2(2n+1)-3(n+1)\\right)}{12}=\\frac{(n+1)(n-1)}{12}.$$Si $X$ est uniforme sur $\\{a,\\dots,b\\}$, $Y=X-a+1$ est uniforme sur $\\{1,\\dots,n\\}$ (car $P(Y=k)=P(X=k+a-1)=\\frac{1}{n}$), donc $E(X)=E(Y)+a-1=\\frac{n+1}{2}+a-1=\\frac{a+b}{2}$ et $V(X)=V(Y)=\\frac{n^2-1}{12}$, une translation ne changeant pas la variance.\n\n**Loi de Bernoulli.** $E(X)=1\\cdot p+0\\cdot(1-p)=p$ ; comme $X^2=X$ (les seules valeurs sont $0$ et $1$), $E(X^2)=p$ et $V(X)=p-p^2=p(1-p)$. Enfin $\\mathbf{1}_A$ ne prend que les valeurs $0$ et $1$, et $P(\\mathbf{1}_A=1)=P(A)$.",
+      "exemple": "Le résultat $X$ d'un dé équilibré suit la loi uniforme sur $\\{1,\\dots,6\\}$ : $E(X)=\\frac{7}{2}$ et $V(X)=\\frac{35}{12}$. L'indicatrice de l'événement « obtenir $6$ » suit la loi $\\mathcal{B}\\left(\\frac{1}{6}\\right)$, de variance $\\frac{1}{6}\\cdot\\frac{5}{6}=\\frac{5}{36}$.",
+      "contre_exemple": "- **$X$ uniforme sans univers équiprobable.** $\\Omega=\\{a,b,c\\}$ avec $P(\\{a\\})=\\frac{1}{2}$, $P(\\{b\\})=P(\\{c\\})=\\frac{1}{4}$, $X(a)=0$, $X(b)=X(c)=1$ : $X$ suit la loi uniforme sur $\\{0,1\\}$.\n- **Univers équiprobable sans variable uniforme.** Pour deux dés équilibrés, la somme $S$ vérifie $P(S=2)=\\frac{1}{36}$ et $P(S=7)=\\frac{6}{36}$.\n- **$\\{0,\\dots,n\\}$ n'est pas $\\{1,\\dots,n\\}$.** La loi uniforme sur $\\{0,1\\}$ a pour variance $\\frac{1}{4}$, alors que $\\frac{n^2-1}{12}$ vaut $0$ pour $n=1$ ; avec $n+1$ valeurs, la formule donne $\\frac{(n+1)^2-1}{12}=\\frac{1}{4}$.\n- **$V(X)=p(1-p)$ demande les valeurs $0$ et $1$.** Si $X$ vaut $0$ ou $2$ avec probabilité $\\frac{1}{2}$ chacun, $V(X)=1\\neq\\frac{1}{4}$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\Omega$ est muni de l'équiprobabilité, toute variable aléatoire $X$ sur $\\Omega$ suit la loi uniforme sur $X(\\Omega)$.",
+          "vrai": false,
+          "contre_exemple": "Deux dés équilibrés, $\\Omega=\\{1,\\dots,6\\}^2$ équiprobable, $S$ la somme : $P(S=2)=\\frac{1}{36}$ mais $P(S=7)=\\frac{1}{6}$."
+        },
+        {
+          "texte": "Si $X$ suit la loi de Bernoulli de paramètre $p$, alors $X^2$ suit la même loi.",
+          "vrai": true,
+          "justification": "$X$ ne prend que les valeurs $0$ et $1$, donc $X^2=X$."
+        },
+        {
+          "texte": "La variance d'une variable de Bernoulli est au plus $\\frac{1}{4}$.",
+          "vrai": true,
+          "justification": "$p(1-p)=\\frac{1}{4}-\\left(p-\\frac{1}{2}\\right)^2\\leq\\frac{1}{4}$, avec égalité pour $p=\\frac{1}{2}$."
+        },
+        {
+          "texte": "Si $X$ suit la loi uniforme sur $\\{1,\\dots,n\\}$ avec $n\\geq 2$, alors $2X$ suit la loi uniforme sur $\\{2,\\dots,2n\\}$.",
+          "vrai": false,
+          "contre_exemple": "$2X$ ne prend que des valeurs paires : pour $n=2$, $P(2X=3)=0\\neq\\frac{1}{3}$. En fait, $2X$ suit la loi uniforme sur $\\{2,4,\\dots,2n\\}$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-variance",
+        "proba-t-concentration-variance-somme"
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-couples",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "theoreme",
+      "titre": "Couples de variables aléatoires et lois marginales",
+      "recto": "Définir la loi conjointe d'un couple de variables aléatoires finies et exprimer les lois marginales.",
+      "cours": "Quand on observe deux quantités $X$ et $Y$ sur la même expérience (deux tirages, le minimum et le maximum de deux dés), connaître séparément leurs lois ne suffit pas : il faut savoir comment elles se combinent. La **loi conjointe** du couple $(X,Y)$ est la loi de la variable $(X,Y)$, c'est-à-dire la famille des $P(X=x,Y=y)$ ; on la présente dans un tableau à double entrée. Les lois de $X$ et de $Y$ s'obtiennent en sommant les lignes et les colonnes, et s'écrivent dans les marges du tableau : ce sont les **lois marginales**.\n\nLa loi conjointe contient tout ce qui concerne le couple : par la formule de transfert appliquée à $(X,Y)$, elle donne $E(XY)$, $E\\left(\\max(X,Y)\\right)$, $P(X<Y)$, la loi de $X+Y$.\n\n**Méthode.** Dresser le tableau des $P(X=x,Y=y)$, vérifier que la somme des cases vaut $1$, sommer chaque ligne et chaque colonne pour les marginales, puis utiliser $E\\left(g(X,Y)\\right)=\\sum_{x,y}g(x,y)P(X=x,Y=y)$.\n\n**Piège principal.** Les lois marginales ne déterminent pas la loi conjointe : il ne faut pas remplir le tableau par les produits $P(X=x)P(Y=y)$, ce qui revient à supposer $X$ et $Y$ indépendantes.",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires sur un univers fini probabilisé $(\\Omega,P)$. La **loi conjointe** du couple $(X,Y)$ est la loi de la variable $(X,Y)$ ; elle est donnée par la famille des $P(X=x,Y=y)=P\\left(\\{X=x\\}\\cap\\{Y=y\\}\\right)$, pour $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$, réels positifs de somme $1$.\n- **Lois marginales.** Pour tout $x\\in X(\\Omega)$ et tout $y\\in Y(\\Omega)$,$$P(X=x)=\\sum_{y'\\in Y(\\Omega)}P(X=x,Y=y'),\\qquad P(Y=y)=\\sum_{x'\\in X(\\Omega)}P(X=x',Y=y).$$\n- **Transfert.** Pour toute fonction $g$ définie sur $X(\\Omega)\\times Y(\\Omega)$ à valeurs réelles, $E\\left(g(X,Y)\\right)=\\sum_{x,y}g(x,y)P(X=x,Y=y)$.\n\nLa loi conjointe détermine les lois marginales, mais les lois marginales ne déterminent pas la loi conjointe.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$X$ et $Y$ sont deux variables aléatoires définies sur le même univers $\\Omega$.",
+        "Pour le transfert : $g$ est une fonction définie sur $X(\\Omega)\\times Y(\\Omega)$, à valeurs réelles."
+      ],
+      "hypotheses_pieges": [
+        "$X$ et $Y$ sont indépendantes.",
+        "$P(X=x,Y=y)>0$ pour tout $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$.",
+        "$X$ et $Y$ ont la même loi.",
+        "$Y$ ne prend que deux valeurs."
+      ],
+      "enonce_trous": "Si $(X,Y)$ est un couple de variables aléatoires sur un univers fini, alors pour tout $x\\in X(\\Omega)$, $P(X=x)$ est égale à {{1}}. La loi conjointe détermine les lois marginales, mais {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{y\\in Y(\\Omega)}P(X=x,Y=y)$",
+          "leurres": [
+            "$\\sum_{y\\in Y(\\Omega)}P(X=x\\mid Y=y)$",
+            "$\\prod_{y\\in Y(\\Omega)}P(X=x,Y=y)$",
+            "$\\max_{y\\in Y(\\Omega)}P(X=x,Y=y)$"
+          ]
+        },
+        {
+          "reponse": "les lois marginales ne déterminent pas la loi conjointe",
+          "leurres": [
+            "les lois marginales déterminent aussi la loi conjointe",
+            "la loi conjointe est toujours le produit des lois marginales",
+            "la loi conjointe ne dépend que de la loi de $X$"
+          ]
+        }
+      ],
+      "demo": "**Loi conjointe.** Les événements $\\{X=x\\}\\cap\\{Y=y\\}$, pour $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$, sont deux à deux disjoints et de réunion $\\Omega$ (certains peuvent être vides) ; leurs probabilités sont donc positives et de somme $1$. Ce sont les événements $\\{(X,Y)=(x,y)\\}$ : la famille décrit la loi de la variable $(X,Y)$.\n\n**Marginales.** Les événements $\\{Y=y'\\}$, $y'\\in Y(\\Omega)$, forment une partition de $\\Omega$, donc $\\{X=x\\}$ est la réunion disjointe des $\\{X=x\\}\\cap\\{Y=y'\\}$ et, par additivité, $P(X=x)=\\sum_{y'}P(X=x,Y=y')$. De même pour $Y$.\n\n**Transfert.** C'est la formule de transfert appliquée à la variable $Z=(X,Y)$, à valeurs dans $X(\\Omega)\\times Y(\\Omega)$, et à la fonction $g$ (les couples de probabilité nulle ne contribuent pas).\n\n**Non-détermination.** Voir le contre-exemple : deux couples ayant les mêmes lois marginales peuvent avoir des lois conjointes différentes.",
+      "exemple": "Une urne contient trois jetons numérotés $1$, $2$, $3$ ; on en tire deux successivement sans remise, $X$ est le premier numéro et $Y$ le second. Les $6$ couples $(i,j)$ avec $i\\neq j$ sont équiprobables : $P(X=i,Y=j)=\\frac{1}{6}$ si $i\\neq j$, et $0$ si $i=j$. En sommant chaque ligne, $P(X=i)=\\frac{2}{6}=\\frac{1}{3}$ : $X$, comme $Y$, suit la loi uniforme sur $\\{1,2,3\\}$. Par transfert, $E(XY)=\\frac{1}{6}\\sum_{i\\neq j}ij=\\frac{1}{6}\\left((1+2+3)^2-(1+4+9)\\right)=\\frac{11}{3}$.",
+      "contre_exemple": "- **Mêmes marginales, lois conjointes différentes.** $X$ de loi de Bernoulli de paramètre $\\frac{1}{2}$, $Y=X$ et $Y'=1-X$ : $Y$ et $Y'$ ont la même loi que $X$, donc les couples $(X,Y)$ et $(X,Y')$ ont les mêmes marginales ; mais $P(X=1,Y=1)=\\frac{1}{2}$ alors que $P(X=1,Y'=1)=0$, et $E(XY)=\\frac{1}{2}\\neq 0=E(XY')$.\n- **La loi conjointe n'est pas le produit des marginales en général.** Dans l'exemple de l'urne, $P(X=1,Y=1)=0\\neq\\frac{1}{9}=P(X=1)P(Y=1)$.",
+      "affirmations": [
+        {
+          "texte": "Si les couples $(X,Y)$ et $(X',Y')$ ont la même loi conjointe, alors $X+Y$ et $X'+Y'$ ont la même loi.",
+          "vrai": true,
+          "justification": "Pour tout réel $s$, $P(X+Y=s)=\\sum_{x+y=s}P(X=x,Y=y)$ ne dépend que de la loi conjointe."
+        },
+        {
+          "texte": "Si $X$ et $X'$ ont la même loi, et $Y$ et $Y'$ ont la même loi, alors $X+Y$ et $X'+Y'$ ont la même loi.",
+          "vrai": false,
+          "contre_exemple": "$X=X'$ de loi de Bernoulli de paramètre $\\frac{1}{2}$, $Y=X$ et $Y'=1-X$ : $X+Y=2X$ vaut $0$ ou $2$, alors que $X'+Y'=1$ est constante."
+        },
+        {
+          "texte": "Pour tout $x\\in X(\\Omega)$, on a $\\sum_{y\\in Y(\\Omega)}P(X=x\\mid Y=y)=1$, dès que tous les $P(Y=y)$ sont non nuls.",
+          "vrai": false,
+          "contre_exemple": "Si $Y$ est constante égale à $0$ et $X$ de loi de Bernoulli de paramètre $\\frac{1}{2}$, la somme se réduit à $P(X=1\\mid Y=0)=\\frac{1}{2}$. C'est $\\sum_{x}P(X=x\\mid Y=y)$ qui vaut $1$, pour chaque $y$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-transfert",
+        "proba-l1-probas-totales-bayes"
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "definition",
+      "titre": "Indépendance de variables aléatoires finies",
+      "recto": "Définir l'indépendance de deux variables aléatoires finies, puis de $n$ variables, et donner les principales conséquences.",
+      "cours": "Deux variables $X$ et $Y$ sont indépendantes quand tout événement qui ne concerne que $X$ est indépendant de tout événement qui ne concerne que $Y$. Sur un univers fini, il suffit de le demander pour les événements élémentaires $\\{X=x\\}$ et $\\{Y=y\\}$ : la loi conjointe est alors le « tableau de multiplication » des lois marginales. L'indépendance provient en général de la modélisation (deux épreuves physiquement séparées, univers produit), mais elle peut aussi se constater sur une seule épreuve.\n\nSes conséquences sont constantes en pratique : la loi du couple se reconstruit à partir des marginales, $f(X)$ et $g(Y)$ restent indépendantes, $E(XY)=E(X)E(Y)$ et les variances s'additionnent. Pour $n$ variables, on demande la formule produit pour tous les $n$-uplets de valeurs ; contrairement au cas des événements, cela suffit, car les sous-familles s'en déduisent en sommant.\n\n**Méthode.** Pour prouver l'indépendance, vérifier $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour **toutes** les cases du tableau, ou reconnaître une construction produit. Pour la réfuter, une seule case suffit, souvent une case de probabilité nulle alors que les deux marginales sont non nulles.\n\n**Piège principal.** $E(XY)=E(X)E(Y)$ n'entraîne pas l'indépendance, et l'indépendance deux à deux de trois variables n'entraîne pas leur indépendance mutuelle.",
+      "enonce": "Soit $(\\Omega,P)$ un univers fini probabilisé.\n- Deux variables aléatoires $X$ et $Y$ sur $\\Omega$ sont **indépendantes** si, pour tout $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$,$$P(X=x,Y=y)=P(X=x)\\,P(Y=y).$$Alors $P(X\\in A,Y\\in B)=P(X\\in A)P(Y\\in B)$ pour toutes parties $A$ et $B$, et, pour toutes fonctions $f$ et $g$ définies sur $X(\\Omega)$ et $Y(\\Omega)$, les variables $f(X)$ et $g(Y)$ sont indépendantes.\n- Des variables $X_1,\\dots,X_n$ sur $\\Omega$ sont **(mutuellement) indépendantes** si, pour tout $(x_1,\\dots,x_n)\\in X_1(\\Omega)\\times\\dots\\times X_n(\\Omega)$,$$P(X_1=x_1,\\dots,X_n=x_n)=P(X_1=x_1)\\cdots P(X_n=x_n).$$Alors toute sous-famille d'au moins deux d'entre elles est indépendante, et pour toutes parties $A_1,\\dots,A_n$, les événements $\\{X_1\\in A_1\\},\\dots,\\{X_n\\in A_n\\}$ sont mutuellement indépendants.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$X$ et $Y$ (ou $X_1,\\dots,X_n$) sont des variables aléatoires définies sur le même univers $\\Omega$.",
+        "L'égalité produit est demandée pour **tout** couple $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$ (pour tout $n$-uplet de valeurs dans le cas de $n$ variables)."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour au moins un couple $(x,y)$ (à la place de tout couple).",
+        "Il suffit que $E(XY)=E(X)E(Y)$ (à la place de l'égalité des probabilités).",
+        "Pour l'indépendance mutuelle de $X_1,\\dots,X_n$ : il suffit qu'elles soient deux à deux indépendantes.",
+        "Pour tout $x\\in X(\\Omega)$, $P(X=x)>0$."
+      ],
+      "enonce_trous": "Deux variables aléatoires $X$ et $Y$ sur un univers fini sont indépendantes si, pour {{1}}, on a $P(X=x,Y=y)$ égale à {{2}}. Dans ce cas, pour toutes fonctions $f$ et $g$, les variables $f(X)$ et $g(Y)$ sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "tout couple $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$",
+          "leurres": [
+            "au moins un couple $(x,y)\\in X(\\Omega)\\times Y(\\Omega)$",
+            "tout couple $(x,y)$ tel que $x\\neq y$",
+            "le seul couple $\\left(E(X),E(Y)\\right)$"
+          ]
+        },
+        {
+          "reponse": "$P(X=x)P(Y=y)$",
+          "leurres": [
+            "$P(X=x)+P(Y=y)$",
+            "$P(X=x\\mid Y=y)$",
+            "$\\min\\left(P(X=x),P(Y=y)\\right)$"
+          ]
+        },
+        {
+          "reponse": "indépendantes",
+          "leurres": [
+            "indépendantes seulement si $f$ et $g$ sont injectives",
+            "de même loi",
+            "égales"
+          ]
+        }
+      ],
+      "demo": "**Événements.** Par additivité (les événements $\\{X=x\\}\\cap\\{Y=y\\}$ étant deux à deux disjoints),$$P(X\\in A,Y\\in B)=\\sum_{x\\in A\\cap X(\\Omega)}\\ \\sum_{y\\in B\\cap Y(\\Omega)}P(X=x)P(Y=y)=P(X\\in A)\\,P(Y\\in B).$$\n\n**Fonctions.** Pour $u$ valeur de $f(X)$ et $v$ valeur de $g(Y)$, $\\{f(X)=u\\}=\\{X\\in f^{-1}(\\{u\\})\\}$ et $\\{g(Y)=v\\}=\\{Y\\in g^{-1}(\\{v\\})\\}$, donc, par ce qui précède, $P\\left(f(X)=u,g(Y)=v\\right)=P\\left(f(X)=u\\right)P\\left(g(Y)=v\\right)$.\n\n**Sous-familles.** Montrons que $X_1,\\dots,X_{n-1}$ sont indépendantes ; on traite de même toute variable retirée, puis on itère. Les événements $\\{X_n=x_n\\}$, $x_n\\in X_n(\\Omega)$, forment une partition de $\\Omega$, donc$$P(X_1=x_1,\\dots,X_{n-1}=x_{n-1})=\\sum_{x_n}P(X_1=x_1,\\dots,X_n=x_n)=\\prod_{i=1}^{n-1}P(X_i=x_i)\\sum_{x_n}P(X_n=x_n)=\\prod_{i=1}^{n-1}P(X_i=x_i).$$\n\n**Événements $\\{X_i\\in A_i\\}$.** Pour une partie $I$ de $\\{1,\\dots,n\\}$, la sous-famille $(X_i)_{i\\in I}$ est indépendante, et en sommant comme dans le premier point, $P\\left(\\bigcap_{i\\in I}\\{X_i\\in A_i\\}\\right)=\\prod_{i\\in I}P(X_i\\in A_i)$ : c'est l'indépendance mutuelle des événements.",
+      "exemple": "Un seul lancer d'un dé équilibré, de résultat $D$. Soit $X=1$ si $D$ est pair et $0$ sinon, et $Y=0$ si $D\\in\\{1,2\\}$, $Y=1$ si $D\\in\\{3,4\\}$, $Y=2$ si $D\\in\\{5,6\\}$. Chacune des $6$ cases $(x,y)$ correspond à exactement une face, donc $P(X=x,Y=y)=\\frac{1}{6}=\\frac{1}{2}\\cdot\\frac{1}{3}=P(X=x)P(Y=y)$ : $X$ et $Y$ sont indépendantes, bien qu'issues de la même épreuve.",
+      "contre_exemple": "- **$E(XY)=E(X)E(Y)$ sans indépendance.** $X$ de loi uniforme sur $\\{-1,0,1\\}$ et $Y=X^2$ : $E(XY)=E(X^3)=0=E(X)E(Y)$, mais $P(X=0,Y=1)=0\\neq\\frac{1}{3}\\cdot\\frac{2}{3}$.\n- **Deux à deux sans indépendance mutuelle.** $X$ et $Y$ indépendantes de loi de Bernoulli de paramètre $\\frac{1}{2}$ et $Z=1$ si $X=Y$, $Z=0$ sinon. Chacun des couples $(X,Y)$, $(X,Z)$, $(Y,Z)$ est formé de variables indépendantes (chaque case vaut $\\frac{1}{4}$), mais $P(X=1,Y=1,Z=0)=0\\neq\\frac{1}{8}$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes, alors $X^2$ et $e^{Y}$ sont indépendantes.",
+          "vrai": true,
+          "justification": "Ce sont des fonctions de $X$ et de $Y$ respectivement."
+        },
+        {
+          "texte": "Si $X_1$, $X_2$, $X_3$ sont deux à deux indépendantes, alors elles sont mutuellement indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$X_1$, $X_2$ indépendantes de loi de Bernoulli de paramètre $\\frac{1}{2}$, $X_3=1$ si $X_1=X_2$ et $0$ sinon : deux à deux indépendantes, mais $P(X_1=1,X_2=1,X_3=0)=0\\neq\\frac{1}{8}$."
+        },
+        {
+          "texte": "Si $P(X_1=x_1,X_2=x_2,X_3=x_3)=P(X_1=x_1)P(X_2=x_2)P(X_3=x_3)$ pour tous $x_1$, $x_2$, $x_3$, alors $X_1$ et $X_2$ sont indépendantes.",
+          "vrai": true,
+          "justification": "On somme sur les valeurs $x_3$ de $X_3$ : $P(X_1=x_1,X_2=x_2)=P(X_1=x_1)P(X_2=x_2)\\sum_{x_3}P(X_3=x_3)=P(X_1=x_1)P(X_2=x_2)$. C'est une différence avec les événements, où l'égalité pour la famille entière ne suffit pas."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes, alors $X$ et $X+Y$ sont indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$X$, $Y$ indépendantes de loi de Bernoulli de paramètre $\\frac{1}{2}$ : $P(X=0,X+Y=2)=0$, alors que $P(X=0)P(X+Y=2)=\\frac{1}{2}\\cdot\\frac{1}{4}$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-couples",
+        "proba-l1-conditionnement-independance",
+        "proba-l1-independance-mutuelle"
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance",
+      "theme": "probabilites",
+      "niveau": "l1",
+      "chapitre": "proba-l1-variables-finies",
+      "type": "theoreme",
+      "titre": "Covariance",
+      "recto": "Définir la covariance de deux variables aléatoires réelles finies et énoncer ses propriétés, avec leurs hypothèses.",
+      "cours": "La variance d'une somme ne se réduit pas à la somme des variances : un terme croisé mesure la façon dont $X$ et $Y$ varient **ensemble**. C'est la covariance $\\mathrm{Cov}(X,Y)=E\\left((X-E(X))(Y-E(Y))\\right)$, positive quand $X$ et $Y$ ont tendance à être du même côté de leurs moyennes, négative sinon. On la calcule par la forme de König-Huygens $E(XY)-E(X)E(Y)$, avec $E(XY)$ donné par la loi conjointe.\n\nLa covariance est symétrique, bilinéaire, et $\\mathrm{Cov}(X,X)=V(X)$ : elle se manipule comme un produit scalaire, ce qui donne $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$ et l'inégalité de Cauchy-Schwarz $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$, à l'origine du coefficient de corrélation. Pour des indicatrices, $\\mathrm{Cov}(\\mathbf{1}_A,\\mathbf{1}_B)=P(A\\cap B)-P(A)P(B)$.\n\n**Méthode.** Pour la variance d'une somme de variables dépendantes (indicatrices d'un tirage sans remise, par exemple), écrire $V\\left(\\sum X_i\\right)=\\sum V(X_i)+2\\sum_{i<j}\\mathrm{Cov}(X_i,X_j)$ et calculer chaque covariance.\n\n**Piège principal.** Des variables indépendantes ont une covariance nulle, mais la réciproque est fausse. Et la constante disparaît : $\\mathrm{Cov}(aX+b,Y)=a\\,\\mathrm{Cov}(X,Y)$.",
+      "enonce": "Soit $X$, $Y$, $Z$ des variables aléatoires réelles sur un univers fini probabilisé et $a$, $b$ des réels. La **covariance** de $X$ et $Y$ est$$\\mathrm{Cov}(X,Y)=E\\left(\\left(X-E(X)\\right)\\left(Y-E(Y)\\right)\\right)=E(XY)-E(X)E(Y).$$\n- $\\mathrm{Cov}(Y,X)=\\mathrm{Cov}(X,Y)$, $\\mathrm{Cov}(X,X)=V(X)$, $\\mathrm{Cov}(aX+bZ,Y)=a\\,\\mathrm{Cov}(X,Y)+b\\,\\mathrm{Cov}(Z,Y)$, et $\\mathrm{Cov}(X+b,Y)=\\mathrm{Cov}(X,Y)$.\n- $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$ ; plus généralement $V\\left(\\sum_{i=1}^{n}X_i\\right)=\\sum_{i=1}^{n}V(X_i)+2\\sum_{1\\leq i<j\\leq n}\\mathrm{Cov}(X_i,X_j)$.\n- Si $X$ et $Y$ sont **indépendantes**, alors $E(XY)=E(X)E(Y)$, donc $\\mathrm{Cov}(X,Y)=0$ ; la réciproque est fausse.\n- **Cauchy-Schwarz.** $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\,\\sigma(Y)$.",
+      "hypotheses": [
+        "$(\\Omega,P)$ est un univers fini muni d'une probabilité.",
+        "$X$, $Y$, $Z$ sont des variables aléatoires réelles définies sur le même univers $\\Omega$ ; $a$, $b$ sont des réels.",
+        "Pour $\\mathrm{Cov}(X,Y)=0$ : $X$ et $Y$ sont indépendantes."
+      ],
+      "hypotheses_pieges": [
+        "Pour $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$ : $X$ et $Y$ sont indépendantes.",
+        "Pour $\\mathrm{Cov}(X,Y)=0$ : il suffit que $X$ et $Y$ aient la même loi (à la place d'indépendantes).",
+        "Pour $\\mathrm{Cov}(X,Y)=0$ : il suffit que $E(X)=E(Y)=0$ (à la place d'indépendantes).",
+        "Pour $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$ : $X$ et $Y$ sont indépendantes."
+      ],
+      "enonce_trous": "Pour des variables aléatoires réelles $X$ et $Y$ sur un univers fini, $\\mathrm{Cov}(X,Y)$ est égale à {{1}} et $V(X+Y)$ est égale à {{2}}. Si $X$ et $Y$ sont indépendantes, alors $\\mathrm{Cov}(X,Y)=0$ ; {{3}}.",
+      "trous": [
+        {
+          "reponse": "$E(XY)-E(X)E(Y)$",
+          "leurres": [
+            "$E(X)E(Y)-E(XY)$",
+            "$E(XY)-E(X)-E(Y)$",
+            "$E\\left(X-E(X)\\right)E\\left(Y-E(Y)\\right)$"
+          ]
+        },
+        {
+          "reponse": "$V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$",
+          "leurres": [
+            "$V(X)+V(Y)$",
+            "$V(X)+V(Y)+\\mathrm{Cov}(X,Y)$",
+            "$V(X)+V(Y)-2\\,\\mathrm{Cov}(X,Y)$"
+          ]
+        },
+        {
+          "reponse": "la réciproque est fausse",
+          "leurres": [
+            "la réciproque est vraie",
+            "la réciproque est vraie si $X$ et $Y$ ont la même loi",
+            "la réciproque est vraie si $E(X)=E(Y)=0$"
+          ]
+        }
+      ],
+      "demo": "**Forme développée.** Notons $m=E(X)$ et $m'=E(Y)$. Par linéarité,$$E\\left((X-m)(Y-m')\\right)=E(XY)-m'E(X)-mE(Y)+mm'=E(XY)-mm'.$$\n\n**Bilinéarité, symétrie.** La symétrie est claire, et $\\mathrm{Cov}(X,X)=V(X)$ par définition. Par linéarité de l'espérance, $E\\left((aX+bZ)Y\\right)=aE(XY)+bE(ZY)$ et $E(aX+bZ)E(Y)=aE(X)E(Y)+bE(Z)E(Y)$ ; on soustrait. Pour une constante $b$, $\\mathrm{Cov}(b,Y)=bE(Y)-bE(Y)=0$, d'où $\\mathrm{Cov}(X+b,Y)=\\mathrm{Cov}(X,Y)$.\n\n**Variance d'une somme.** $V\\left(\\sum_i X_i\\right)=\\mathrm{Cov}\\left(\\sum_i X_i,\\sum_j X_j\\right)=\\sum_{i,j}\\mathrm{Cov}(X_i,X_j)$ par bilinéarité ; les termes $i=j$ donnent les variances, et les termes $i\\neq j$ se regroupent par paires égales.\n\n**Indépendance.** Par transfert appliqué au couple, $E(XY)=\\sum_{x,y}xy\\,P(X=x,Y=y)$ ; si $X$ et $Y$ sont indépendantes, cette somme vaut $\\sum_{x,y}xP(X=x)\\,yP(Y=y)=E(X)E(Y)$.\n\n**Cauchy-Schwarz.** Pour tout réel $t$, $0\\leq V(tX+Y)=t^2V(X)+2t\\,\\mathrm{Cov}(X,Y)+V(Y)$. Si $V(X)>0$, ce trinôme en $t$ garde un signe constant, donc son discriminant est négatif ou nul : $\\mathrm{Cov}(X,Y)^2\\leq V(X)V(Y)$. Si $V(X)=0$, la fonction affine $t\\mapsto 2t\\,\\mathrm{Cov}(X,Y)+V(Y)$ est positive sur $\\mathbb{R}$, donc $\\mathrm{Cov}(X,Y)=0$, et l'inégalité est encore vraie.",
+      "exemple": "Deux tirages sans remise parmi trois jetons numérotés $1$, $2$, $3$ ; $X$ est le premier numéro, $Y$ le second. $X$ et $Y$ sont uniformes sur $\\{1,2,3\\}$ : $E(X)=E(Y)=2$, $V(X)=V(Y)=\\frac{2}{3}$. Par la loi conjointe, $E(XY)=\\frac{11}{3}$, donc $\\mathrm{Cov}(X,Y)=\\frac{11}{3}-4=-\\frac{1}{3}$ : un grand premier numéro laisse des numéros plus petits. Ainsi $V(X+Y)=\\frac{2}{3}+\\frac{2}{3}-\\frac{2}{3}=\\frac{2}{3}$, ce que confirme la loi de $X+Y$, uniforme sur $\\{3,4,5\\}$.",
+      "contre_exemple": "- **Covariance nulle sans indépendance.** Le couple $(X,Y)$ suit la loi uniforme sur les quatre points $(1,0)$, $(-1,0)$, $(0,1)$, $(0,-1)$. Alors $XY=0$, $E(X)=E(Y)=0$, donc $\\mathrm{Cov}(X,Y)=0$ ; $X$ et $Y$ ont même loi et sont centrées. Pourtant $P(X=0,Y=0)=0\\neq\\frac{1}{2}\\cdot\\frac{1}{2}=P(X=0)P(Y=0)$ : elles ne sont pas indépendantes.\n- **Sans covariance nulle, les variances ne s'ajoutent pas.** Si $Y=X$ avec $V(X)>0$, $V(X+Y)=4V(X)\\neq 2V(X)$ ; si $Y=-X$, $\\mathrm{Cov}(X,Y)=-V(X)<0$ et $V(X+Y)=0$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\mathrm{Cov}(X,Y)=0$, alors $X$ et $Y$ sont indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$X$ de loi uniforme sur $\\{-1,0,1\\}$ et $Y=X^2$ : $\\mathrm{Cov}(X,Y)=E(X^3)-E(X)E(X^2)=0$, mais $P(X=0,Y=1)=0\\neq P(X=0)P(Y=1)=\\frac{2}{9}$."
+        },
+        {
+          "texte": "Pour tous réels $a$ et $b$, $\\mathrm{Cov}(aX+b,Y)=a\\,\\mathrm{Cov}(X,Y)$.",
+          "vrai": true,
+          "justification": "Par bilinéarité, $\\mathrm{Cov}(aX+b,Y)=a\\,\\mathrm{Cov}(X,Y)+\\mathrm{Cov}(b,Y)$, et la covariance d'une constante avec $Y$ est nulle."
+        },
+        {
+          "texte": "$V(X-Y)=V(X)+V(Y)-2\\,\\mathrm{Cov}(X,Y)$.",
+          "vrai": true,
+          "justification": "On applique la formule de la variance d'une somme à $X$ et $-Y$ : $V(-Y)=V(Y)$ et $\\mathrm{Cov}(X,-Y)=-\\mathrm{Cov}(X,Y)$."
+        },
+        {
+          "texte": "Pour toutes variables aléatoires réelles $X$ et $Y$, $\\mathrm{Cov}(X,Y)\\leq V(X)$.",
+          "vrai": false,
+          "contre_exemple": "$X$ de loi uniforme sur $\\{-1,1\\}$ et $Y=2X$ : $\\mathrm{Cov}(X,Y)=2V(X)=2>1=V(X)$. La bonne majoration est $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-independance",
+        "proba-l1-variables-finies-variance",
+        "proba-t-concentration-variance-somme"
+      ]
+    }
+  ]
+}
