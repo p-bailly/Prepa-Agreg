@@ -1,0 +1,855 @@
+{
+  "exercices": [
+    {
+      "id": "arith-l1-congruences-inversibles-ex1",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 1,
+      "titre": "Reconnaître les classes inversibles",
+      "enonce": "Parmi les classes $\\overline{21}$, $\\overline{35}$, $\\overline{49}$ et $\\overline{77}$ de $\\mathbb{Z}/90\\mathbb{Z}$, lesquelles sont inversibles ?",
+      "duree_min": 5,
+      "indices": [
+        "Une classe $\\overline{a}$ est inversible modulo $n$ si et seulement si $a \\wedge n = 1$ ; décomposer $90 = 2 \\times 3^2 \\times 5$."
+      ],
+      "reponse_finale": {
+        "question": "Quelles classes sont inversibles ?",
+        "propositions": [
+          "$\\overline{49}$ et $\\overline{77}$ seulement",
+          "Les quatre, car aucun de ces entiers n'est multiple de $90$",
+          "$\\overline{77}$ seulement",
+          "Aucune, car $90$ n'est pas premier"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $90 = 2 \\times 3^2 \\times 5$ : un entier est premier avec $90$ si et seulement s'il n'est divisible ni par $2$, ni par $3$, ni par $5$.\n\n- $21 = 3 \\times 7$ : $21 \\wedge 90 = 3$, classe non inversible ;\n- $35 = 5 \\times 7$ : $35 \\wedge 90 = 5$, classe non inversible ;\n- $49 = 7^2$ : $49 \\wedge 90 = 1$, classe inversible ;\n- $77 = 7 \\times 11$ : $77 \\wedge 90 = 1$, classe inversible.\n\nSeules $\\overline{49}$ et $\\overline{77}$ sont inversibles. Par exemple, $\\overline{21}$ ne l'est pas : $21b - 1$ n'est jamais divisible par $3$, donc jamais par $90$. Aucune des quatre classes n'est nulle, mais cela ne suffit pas.",
+      "variantes": [
+        {
+          "enonce": "Parmi les classes $\\overline{25}$, $\\overline{35}$, $\\overline{55}$ et $\\overline{63}$ de $\\mathbb{Z}/84\\mathbb{Z}$, lesquelles sont inversibles ?",
+          "indices": [
+            "Une classe $\\overline{a}$ est inversible modulo $n$ si et seulement si $a \\wedge n = 1$ ; décomposer $84 = 2^2 \\times 3 \\times 7$."
+          ],
+          "reponse_finale": {
+            "question": "Quelles classes sont inversibles ?",
+            "propositions": [
+              "$\\overline{25}$ et $\\overline{55}$ seulement",
+              "Les quatre, car aucun de ces entiers n'est multiple de $84$",
+              "$\\overline{55}$ seulement",
+              "Aucune, car $84$ n'est pas premier"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $84 = 2^2 \\times 3 \\times 7$ : un entier est premier avec $84$ si et seulement s'il n'est divisible ni par $2$, ni par $3$, ni par $7$.\n\n- $25 = 5^2$ : $25 \\wedge 84 = 1$, classe inversible ;\n- $35 = 5 \\times 7$ : $35 \\wedge 84 = 7$, classe non inversible ;\n- $55 = 5 \\times 11$ : $55 \\wedge 84 = 1$, classe inversible ;\n- $63 = 3^2 \\times 7$ : $63 \\wedge 84 = 21$, classe non inversible.\n\nSeules $\\overline{25}$ et $\\overline{55}$ sont inversibles. Par exemple, $\\overline{35}$ ne l'est pas : $35b - 1$ n'est jamais divisible par $7$, donc jamais par $84$. Aucune des quatre classes n'est nulle, mais cela ne suffit pas."
+        },
+        {
+          "enonce": "Parmi les classes $\\overline{49}$, $\\overline{77}$, $\\overline{85}$ et $\\overline{91}$ de $\\mathbb{Z}/120\\mathbb{Z}$, lesquelles sont inversibles ?",
+          "indices": [
+            "Une classe $\\overline{a}$ est inversible modulo $n$ si et seulement si $a \\wedge n = 1$ ; décomposer $120 = 2^3 \\times 3 \\times 5$."
+          ],
+          "reponse_finale": {
+            "question": "Quelles classes sont inversibles ?",
+            "propositions": [
+              "$\\overline{49}$, $\\overline{77}$ et $\\overline{91}$ seulement",
+              "Les quatre, car aucun de ces entiers n'est multiple de $120$",
+              "$\\overline{77}$ et $\\overline{91}$ seulement",
+              "Aucune, car $120$ n'est pas premier"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $120 = 2^3 \\times 3 \\times 5$ : un entier est premier avec $120$ si et seulement s'il n'est divisible ni par $2$, ni par $3$, ni par $5$.\n\n- $49 = 7^2$ : $49 \\wedge 120 = 1$, classe inversible ;\n- $77 = 7 \\times 11$ : $77 \\wedge 120 = 1$, classe inversible ;\n- $85 = 5 \\times 17$ : $85 \\wedge 120 = 5$, classe non inversible ;\n- $91 = 7 \\times 13$ : $91 \\wedge 120 = 1$, classe inversible.\n\nLes classes inversibles sont $\\overline{49}$, $\\overline{77}$ et $\\overline{91}$. La classe $\\overline{85}$ ne l'est pas : $85b - 1$ n'est jamais divisible par $5$, donc jamais par $120$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-inversibles-ex2",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 2,
+      "titre": "Inverse par l'algorithme d'Euclide et congruence linéaire",
+      "enonce": "1. Montrer que $\\overline{37}$ est inversible dans $\\mathbb{Z}/100\\mathbb{Z}$ et déterminer son inverse, à l'aide de l'algorithme d'Euclide.\n\n2. En déduire les solutions dans $\\mathbb{Z}$ de la congruence $37x \\equiv 12 \\pmod{100}$.",
+      "duree_min": 10,
+      "indices": [
+        "Appliquer l'algorithme d'Euclide à $100$ et $37$, puis remonter les divisions pour écrire $37u + 100v = 1$.",
+        "Multiplier la congruence par l'inverse trouvé."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les solutions de $37x \\equiv 12 \\pmod{100}$ ?",
+        "propositions": [
+          "Les entiers $x \\equiv 76 \\pmod{100}$",
+          "Les entiers $x \\equiv 73 \\pmod{100}$",
+          "Les entiers $x \\equiv 44 \\pmod{100}$",
+          "Les entiers $x \\equiv 24 \\pmod{100}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Algorithme d'Euclide : $100 = 2 \\times 37 + 26$, $37 = 1 \\times 26 + 11$, $26 = 2 \\times 11 + 4$, $11 = 2 \\times 4 + 3$, $4 = 1 \\times 3 + 1$. Le dernier reste non nul est $1$ : $37 \\wedge 100 = 1$, donc $\\overline{37}$ est inversible. En remontant :\n\n$$1 = 4 - 3 = 4 - (11 - 2 \\times 4) = 3 \\times 4 - 11 = 3 \\times (26 - 2 \\times 11) - 11 = 3 \\times 26 - 7 \\times 11,$$\n\n$$1 = 3 \\times 26 - 7 \\times (37 - 26) = 10 \\times 26 - 7 \\times 37 = 10 \\times (100 - 2 \\times 37) - 7 \\times 37 = 10 \\times 100 - 27 \\times 37.$$\n\nDonc $37 \\times (-27) \\equiv 1 \\pmod{100}$ : l'inverse de $\\overline{37}$ est $\\overline{-27} = \\overline{73}$. Vérification : $37 \\times 73 = 2\\,701 = 27 \\times 100 + 1$.\n\n2. En multipliant par $73$ : $37x \\equiv 12$ entraîne $x \\equiv 73 \\times 12 = 876 \\equiv 76 \\pmod{100}$ ; réciproquement, si $x \\equiv 76$, alors $37x \\equiv 37 \\times 76 = 2\\,812 \\equiv 12 \\pmod{100}$. Les solutions sont les entiers $x \\equiv 76 \\pmod{100}$, c'est-à-dire $x \\in 76 + 100\\mathbb{Z}$.",
+      "variantes": [
+        {
+          "enonce": "1. Montrer que $\\overline{53}$ est inversible dans $\\mathbb{Z}/90\\mathbb{Z}$ et déterminer son inverse, à l'aide de l'algorithme d'Euclide.\n\n2. En déduire les solutions dans $\\mathbb{Z}$ de la congruence $53x \\equiv 11 \\pmod{90}$.",
+          "indices": [
+            "Appliquer l'algorithme d'Euclide à $90$ et $53$, puis remonter les divisions pour écrire $53u + 90v = 1$.",
+            "Multiplier la congruence par l'inverse trouvé."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les solutions de $53x \\equiv 11 \\pmod{90}$ ?",
+            "propositions": [
+              "Les entiers $x \\equiv 7 \\pmod{90}$",
+              "Les entiers $x \\equiv 17 \\pmod{90}$",
+              "Les entiers $x \\equiv 43 \\pmod{90}$",
+              "Les entiers $x \\equiv 83 \\pmod{90}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Algorithme d'Euclide : $90 = 1 \\times 53 + 37$, $53 = 1 \\times 37 + 16$, $37 = 2 \\times 16 + 5$, $16 = 3 \\times 5 + 1$. Le dernier reste non nul est $1$ : $53 \\wedge 90 = 1$, donc $\\overline{53}$ est inversible. En remontant :\n\n$$1 = 16 - 3 \\times 5 = 16 - 3 \\times (37 - 2 \\times 16) = 7 \\times 16 - 3 \\times 37 = 7 \\times (53 - 37) - 3 \\times 37 = 7 \\times 53 - 10 \\times 37,$$\n\n$$1 = 7 \\times 53 - 10 \\times (90 - 53) = 17 \\times 53 - 10 \\times 90.$$\n\nDonc $53 \\times 17 \\equiv 1 \\pmod{90}$ : l'inverse de $\\overline{53}$ est $\\overline{17}$. Vérification : $53 \\times 17 = 901 = 10 \\times 90 + 1$.\n\n2. En multipliant par $17$ : $53x \\equiv 11$ entraîne $x \\equiv 17 \\times 11 = 187 \\equiv 7 \\pmod{90}$ ; réciproquement, si $x \\equiv 7$, alors $53x \\equiv 53 \\times 7 = 371 = 4 \\times 90 + 11 \\equiv 11 \\pmod{90}$. Les solutions sont les entiers $x \\equiv 7 \\pmod{90}$, c'est-à-dire $x \\in 7 + 90\\mathbb{Z}$."
+        },
+        {
+          "enonce": "1. Montrer que $\\overline{43}$ est inversible dans $\\mathbb{Z}/80\\mathbb{Z}$ et déterminer son inverse, à l'aide de l'algorithme d'Euclide.\n\n2. En déduire les solutions dans $\\mathbb{Z}$ de la congruence $43x \\equiv 6 \\pmod{80}$.",
+          "indices": [
+            "Appliquer l'algorithme d'Euclide à $80$ et $43$, puis remonter les divisions pour écrire $43u + 80v = 1$.",
+            "Multiplier la congruence par l'inverse trouvé."
+          ],
+          "reponse_finale": {
+            "question": "Quelles sont les solutions de $43x \\equiv 6 \\pmod{80}$ ?",
+            "propositions": [
+              "Les entiers $x \\equiv 2 \\pmod{80}$",
+              "Les entiers $x \\equiv 67 \\pmod{80}$",
+              "Les entiers $x \\equiv 18 \\pmod{80}$",
+              "Les entiers $x \\equiv 78 \\pmod{80}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Algorithme d'Euclide : $80 = 1 \\times 43 + 37$, $43 = 1 \\times 37 + 6$, $37 = 6 \\times 6 + 1$. Le dernier reste non nul est $1$ : $43 \\wedge 80 = 1$, donc $\\overline{43}$ est inversible. En remontant :\n\n$$1 = 37 - 6 \\times 6 = 37 - 6 \\times (43 - 37) = 7 \\times 37 - 6 \\times 43 = 7 \\times (80 - 43) - 6 \\times 43 = 7 \\times 80 - 13 \\times 43.$$\n\nDonc $43 \\times (-13) \\equiv 1 \\pmod{80}$ : l'inverse de $\\overline{43}$ est $\\overline{-13} = \\overline{67}$. Vérification : $43 \\times 67 = 2\\,881 = 36 \\times 80 + 1$.\n\n2. En multipliant par $67$ : $43x \\equiv 6$ entraîne $x \\equiv 67 \\times 6 = 402 \\equiv 2 \\pmod{80}$ ; réciproquement, si $x \\equiv 2$, alors $43x \\equiv 86 \\equiv 6 \\pmod{80}$. Les solutions sont les entiers $x \\equiv 2 \\pmod{80}$, c'est-à-dire $x \\in 2 + 80\\mathbb{Z}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-inversibles-ex3",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 3,
+      "titre": "Un système linéaire de congruences",
+      "enonce": "On cherche les couples $(x, y) \\in \\mathbb{Z}^2$ tels que\n\n$$\\begin{cases} 3x + 5y \\equiv 1 \\pmod{26} \\\\ 7x + 2y \\equiv 4 \\pmod{26} \\end{cases}$$\n\nDéterminer l'ensemble des solutions (on pourra raisonner par conditions nécessaires, puis vérifier).",
+      "duree_min": 15,
+      "indices": [
+        "Pour éliminer $x$, calculer $7 \\times$ (première congruence) $- 3 \\times$ (seconde) : on obtient une congruence de la forme $\\alpha y \\equiv \\beta \\pmod{26}$, que l'on résout à l'aide de l'inverse de $\\overline{\\alpha}$.",
+        "Les conditions obtenues ne sont que nécessaires : vérifier que le couple trouvé est bien solution."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des solutions ?",
+        "propositions": [
+          "Les couples tels que $x \\equiv 6$ et $y \\equiv 7 \\pmod{26}$",
+          "Les couples tels que $x \\equiv 7$ et $y \\equiv 6 \\pmod{26}$",
+          "Les couples tels que $x \\equiv 20$ et $y \\equiv 19 \\pmod{26}$",
+          "Les couples tels que $x \\equiv 6$ et $y \\equiv 7 \\pmod{13}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Élimination de $x$.** Si $(x, y)$ est solution, alors $7(3x + 5y) - 3(7x + 2y) \\equiv 7 \\times 1 - 3 \\times 4 \\pmod{26}$, soit $29y \\equiv -5$, c'est-à-dire $3y \\equiv 21 \\pmod{26}$.\n\nComme $3 \\wedge 26 = 1$, la classe $\\overline{3}$ est inversible ; son inverse est $\\overline{9}$, car $3 \\times 9 = 27 = 1 \\times 26 + 1$. Donc $y \\equiv 9 \\times 21 = 189 \\equiv 7 \\pmod{26}$.\n\n**Élimination de $y$.** De même, $2(3x + 5y) - 5(7x + 2y) \\equiv 2 \\times 1 - 5 \\times 4$, soit $-29x \\equiv -18$, c'est-à-dire $23x \\equiv 8 \\pmod{26}$. L'inverse de $\\overline{23}$ est $\\overline{17}$, car $23 \\times 17 = 391 = 15 \\times 26 + 1$. Donc $x \\equiv 17 \\times 8 = 136 \\equiv 6 \\pmod{26}$.\n\n**Vérification.** $3 \\times 6 + 5 \\times 7 = 53 = 2 \\times 26 + 1$ et $7 \\times 6 + 2 \\times 7 = 56 = 2 \\times 26 + 4$ : le couple $(6, 7)$ est solution. Comme les deux congruences ne dépendent que des classes de $x$ et $y$ modulo $26$, l'ensemble des solutions est formé des couples tels que $x \\equiv 6$ et $y \\equiv 7 \\pmod{26}$, c'est-à-dire $\\{(6 + 26k, 7 + 26\\ell) : k, \\ell \\in \\mathbb{Z}\\}$.\n\n(Tout repose sur l'inversibilité modulo $26$ du déterminant $3 \\times 2 - 5 \\times 7 = -29$, premier avec $26$.)",
+      "variantes": [
+        {
+          "enonce": "On cherche les couples $(x, y) \\in \\mathbb{Z}^2$ tels que\n\n$$\\begin{cases} 5x + 2y \\equiv 5 \\pmod{21} \\\\ 2x + 3y \\equiv 4 \\pmod{21} \\end{cases}$$\n\nDéterminer l'ensemble des solutions (on pourra raisonner par conditions nécessaires, puis vérifier).",
+          "indices": [
+            "Pour éliminer $x$, calculer $2 \\times$ (première congruence) $- 5 \\times$ (seconde) : on obtient une congruence de la forme $\\alpha y \\equiv \\beta \\pmod{21}$, que l'on résout à l'aide de l'inverse de $\\overline{\\alpha}$.",
+            "Les conditions obtenues ne sont que nécessaires : vérifier que le couple trouvé est bien solution."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des solutions ?",
+            "propositions": [
+              "Les couples tels que $x \\equiv 14$ et $y \\equiv 20 \\pmod{21}$",
+              "Les couples tels que $x \\equiv 20$ et $y \\equiv 14 \\pmod{21}$",
+              "Les couples tels que $x \\equiv 7$ et $y \\equiv 1 \\pmod{21}$",
+              "Les couples tels que $x \\equiv 14$ et $y \\equiv 20 \\pmod{7}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Élimination de $x$.** Si $(x, y)$ est solution, alors $2(5x + 2y) - 5(2x + 3y) \\equiv 2 \\times 5 - 5 \\times 4 \\pmod{21}$, soit $-11y \\equiv -10$, c'est-à-dire $10y \\equiv 11 \\pmod{21}$.\n\nComme $10 \\wedge 21 = 1$, la classe $\\overline{10}$ est inversible ; son inverse est $\\overline{19}$, car $10 \\times 19 = 190 = 9 \\times 21 + 1$. Donc $y \\equiv 19 \\times 11 = 209 \\equiv 20 \\pmod{21}$.\n\n**Élimination de $y$.** De même, $3(5x + 2y) - 2(2x + 3y) \\equiv 3 \\times 5 - 2 \\times 4$, soit $11x \\equiv 7$, c'est-à-dire $11x \\equiv 7 \\pmod{21}$. L'inverse de $\\overline{11}$ est $\\overline{2}$, car $11 \\times 2 = 22 = 1 \\times 21 + 1$. Donc $x \\equiv 2 \\times 7 = 14 \\equiv 14 \\pmod{21}$.\n\n**Vérification.** $5 \\times 14 + 2 \\times 20 = 110 = 5 \\times 21 + 5$ et $2 \\times 14 + 3 \\times 20 = 88 = 4 \\times 21 + 4$ : le couple $(14, 20)$ est solution. Comme les deux congruences ne dépendent que des classes de $x$ et $y$ modulo $21$, l'ensemble des solutions est formé des couples tels que $x \\equiv 14$ et $y \\equiv 20 \\pmod{21}$, c'est-à-dire $\\{(14 + 21k, 20 + 21\\ell) : k, \\ell \\in \\mathbb{Z}\\}$.\n\n(Tout repose sur l'inversibilité modulo $21$ du déterminant $5 \\times 3 - 2 \\times 2 = 11$, premier avec $21$.)"
+        },
+        {
+          "enonce": "On cherche les couples $(x, y) \\in \\mathbb{Z}^2$ tels que\n\n$$\\begin{cases} 4x + 7y \\equiv 1 \\pmod{15} \\\\ 6x + 4y \\equiv 3 \\pmod{15} \\end{cases}$$\n\nDéterminer l'ensemble des solutions (on pourra raisonner par conditions nécessaires, puis vérifier).",
+          "indices": [
+            "Pour éliminer $x$, calculer $6 \\times$ (première congruence) $- 4 \\times$ (seconde) : on obtient une congruence de la forme $\\alpha y \\equiv \\beta \\pmod{15}$, que l'on résout à l'aide de l'inverse de $\\overline{\\alpha}$.",
+            "Les conditions obtenues ne sont que nécessaires : vérifier que le couple trouvé est bien solution."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des solutions ?",
+            "propositions": [
+              "Les couples tels que $x \\equiv 7$ et $y \\equiv 9 \\pmod{15}$",
+              "Les couples tels que $x \\equiv 9$ et $y \\equiv 7 \\pmod{15}$",
+              "Les couples tels que $x \\equiv 8$ et $y \\equiv 6 \\pmod{15}$",
+              "Les couples tels que $x \\equiv 7$ et $y \\equiv 9 \\pmod{5}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Élimination de $x$.** Si $(x, y)$ est solution, alors $6(4x + 7y) - 4(6x + 4y) \\equiv 6 \\times 1 - 4 \\times 3 \\pmod{15}$, soit $26y \\equiv -6$, c'est-à-dire $11y \\equiv 9 \\pmod{15}$.\n\nComme $11 \\wedge 15 = 1$, la classe $\\overline{11}$ est inversible ; son inverse est $\\overline{11}$, car $11 \\times 11 = 121 = 8 \\times 15 + 1$. Donc $y \\equiv 11 \\times 9 = 99 \\equiv 9 \\pmod{15}$.\n\n**Élimination de $y$.** De même, $4(4x + 7y) - 7(6x + 4y) \\equiv 4 \\times 1 - 7 \\times 3$, soit $-26x \\equiv -17$, c'est-à-dire $4x \\equiv 13 \\pmod{15}$. L'inverse de $\\overline{4}$ est $\\overline{4}$, car $4 \\times 4 = 16 = 1 \\times 15 + 1$. Donc $x \\equiv 4 \\times 13 = 52 \\equiv 7 \\pmod{15}$.\n\n**Vérification.** $4 \\times 7 + 7 \\times 9 = 91 = 6 \\times 15 + 1$ et $6 \\times 7 + 4 \\times 9 = 78 = 5 \\times 15 + 3$ : le couple $(7, 9)$ est solution. Comme les deux congruences ne dépendent que des classes de $x$ et $y$ modulo $15$, l'ensemble des solutions est formé des couples tels que $x \\equiv 7$ et $y \\equiv 9 \\pmod{15}$, c'est-à-dire $\\{(7 + 15k, 9 + 15\\ell) : k, \\ell \\in \\mathbb{Z}\\}$.\n\n(Tout repose sur l'inversibilité modulo $15$ du déterminant $4 \\times 4 - 7 \\times 6 = -26$, premier avec $15$.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-inversibles-ex4",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 3,
+      "titre": "Doubler la précision d'un inverse",
+      "enonce": "Soient $m \\geq 2$ et $a, b \\in \\mathbb{Z}$ tels que $ab \\equiv 1 \\pmod{m}$.\n\n1. Montrer que $b' = b(2 - ab)$ vérifie $ab' \\equiv 1 \\pmod{m^2}$.\n\n2. Application : à partir de l'inverse de $3$ modulo $10$, calculer l'inverse de $3$ modulo $100$, puis modulo $10\\,000$ (on donnera les représentants dans $\\{0, \\dots, 99\\}$ et dans $\\{0, \\dots, 9\\,999\\}$).",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $ab = 1 + km$ avec $k \\in \\mathbb{Z}$ et développer $ab' = ab(2 - ab)$.",
+        "Partir de $3 \\times 7 \\equiv 1 \\pmod{10}$ et appliquer deux fois la question 1, avec $m = 10$ puis $m = 100$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'inverse de $3$ modulo $10\\,000$, dans $\\{0, \\dots, 9\\,999\\}$ ?",
+        "propositions": [
+          "$6\\,667$",
+          "$3\\,333$",
+          "$667$",
+          "$6\\,767$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Écrivons $ab = 1 + km$ avec $k \\in \\mathbb{Z}$. Alors $ab' = ab(2 - ab) = (1 + km)(1 - km) = 1 - k^2m^2 \\equiv 1 \\pmod{m^2}$. Autrement dit, $1 - ab' = (1 - ab)^2$ : l'écart $1 - ab$, multiple de $m$, est élevé au carré.\n\n2. Modulo $10$ : $3 \\times 7 = 21 \\equiv 1$, donc on part de $b = 7$.\n\n- Modulo $100$ (question 1 avec $m = 10$) : $b' = 7 \\times (2 - 21) = -133 \\equiv 67 \\pmod{100}$ ; vérification : $3 \\times 67 = 201 \\equiv 1 \\pmod{100}$.\n- Modulo $10\\,000$ (question 1 avec $m = 100$ et $b = 67$, qui vérifie $3 \\times 67 \\equiv 1 \\pmod{100}$) : $b'' = 67 \\times (2 - 201) = -13\\,333 \\equiv 6\\,667 \\pmod{10\\,000}$ ; vérification : $3 \\times 6\\,667 = 20\\,001 \\equiv 1 \\pmod{10\\,000}$.\n\nL'inverse de $3$ modulo $10\\,000$ est $6\\,667$ (c'est le seul représentant dans $\\{0, \\dots, 9\\,999\\}$, puisque l'inverse est unique modulo $10\\,000$).",
+      "variantes": [
+        {
+          "enonce": "Soient $m \\geq 2$ et $a, b \\in \\mathbb{Z}$ tels que $ab \\equiv 1 \\pmod{m}$.\n\n1. Montrer que $b' = b(2 - ab)$ vérifie $ab' \\equiv 1 \\pmod{m^2}$.\n\n2. Application : à partir de l'inverse de $7$ modulo $10$, calculer l'inverse de $7$ modulo $100$, puis modulo $10\\,000$ (on donnera les représentants dans $\\{0, \\dots, 99\\}$ et dans $\\{0, \\dots, 9\\,999\\}$).",
+          "indices": [
+            "Écrire $ab = 1 + km$ avec $k \\in \\mathbb{Z}$ et développer $ab' = ab(2 - ab)$.",
+            "Partir de $7 \\times 3 \\equiv 1 \\pmod{10}$ et appliquer deux fois la question 1, avec $m = 10$ puis $m = 100$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $7$ modulo $10\\,000$, dans $\\{0, \\dots, 9\\,999\\}$ ?",
+            "propositions": [
+              "$7\\,143$",
+              "$2\\,857$",
+              "$143$",
+              "$7\\,343$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Écrivons $ab = 1 + km$ avec $k \\in \\mathbb{Z}$. Alors $ab' = ab(2 - ab) = (1 + km)(1 - km) = 1 - k^2m^2 \\equiv 1 \\pmod{m^2}$. Autrement dit, $1 - ab' = (1 - ab)^2$ : l'écart $1 - ab$, multiple de $m$, est élevé au carré.\n\n2. Modulo $10$ : $7 \\times 3 = 21 \\equiv 1$, donc on part de $b = 3$.\n\n- Modulo $100$ (question 1 avec $m = 10$) : $b' = 3 \\times (2 - 21) = -57 \\equiv 43 \\pmod{100}$ ; vérification : $7 \\times 43 = 301 \\equiv 1 \\pmod{100}$.\n- Modulo $10\\,000$ (question 1 avec $m = 100$ et $b = 43$, qui vérifie $7 \\times 43 \\equiv 1 \\pmod{100}$) : $b'' = 43 \\times (2 - 301) = -12\\,857 \\equiv 7\\,143 \\pmod{10\\,000}$ ; vérification : $7 \\times 7\\,143 = 50\\,001 \\equiv 1 \\pmod{10\\,000}$.\n\nL'inverse de $7$ modulo $10\\,000$ est $7\\,143$ (c'est le seul représentant dans $\\{0, \\dots, 9\\,999\\}$, puisque l'inverse est unique modulo $10\\,000$)."
+        },
+        {
+          "enonce": "Soient $m \\geq 2$ et $a, b \\in \\mathbb{Z}$ tels que $ab \\equiv 1 \\pmod{m}$.\n\n1. Montrer que $b' = b(2 - ab)$ vérifie $ab' \\equiv 1 \\pmod{m^2}$.\n\n2. Application : à partir de l'inverse de $9$ modulo $10$, calculer l'inverse de $9$ modulo $100$, puis modulo $10\\,000$ (on donnera les représentants dans $\\{0, \\dots, 99\\}$ et dans $\\{0, \\dots, 9\\,999\\}$).",
+          "indices": [
+            "Écrire $ab = 1 + km$ avec $k \\in \\mathbb{Z}$ et développer $ab' = ab(2 - ab)$.",
+            "Partir de $9 \\times 9 \\equiv 1 \\pmod{10}$ et appliquer deux fois la question 1, avec $m = 10$ puis $m = 100$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $9$ modulo $10\\,000$, dans $\\{0, \\dots, 9\\,999\\}$ ?",
+            "propositions": [
+              "$8\\,889$",
+              "$1\\,111$",
+              "$889$",
+              "$8\\,989$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Écrivons $ab = 1 + km$ avec $k \\in \\mathbb{Z}$. Alors $ab' = ab(2 - ab) = (1 + km)(1 - km) = 1 - k^2m^2 \\equiv 1 \\pmod{m^2}$. Autrement dit, $1 - ab' = (1 - ab)^2$ : l'écart $1 - ab$, multiple de $m$, est élevé au carré.\n\n2. Modulo $10$ : $9 \\times 9 = 81 \\equiv 1$, donc on part de $b = 9$.\n\n- Modulo $100$ (question 1 avec $m = 10$) : $b' = 9 \\times (2 - 81) = -711 \\equiv 89 \\pmod{100}$ ; vérification : $9 \\times 89 = 801 \\equiv 1 \\pmod{100}$.\n- Modulo $10\\,000$ (question 1 avec $m = 100$ et $b = 89$, qui vérifie $9 \\times 89 \\equiv 1 \\pmod{100}$) : $b'' = 89 \\times (2 - 801) = -71\\,111 \\equiv 8\\,889 \\pmod{10\\,000}$ ; vérification : $9 \\times 8\\,889 = 80\\,001 \\equiv 1 \\pmod{10\\,000}$.\n\nL'inverse de $9$ modulo $10\\,000$ est $8\\,889$ (c'est le seul représentant dans $\\{0, \\dots, 9\\,999\\}$, puisque l'inverse est unique modulo $10\\,000$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-inversibles-ex5",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 4,
+      "titre": "Inversibles et diviseurs de zéro de $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soit $n \\geq 2$ un entier. On dit qu'une classe $\\overline{a} \\neq \\overline{0}$ de $\\mathbb{Z}/n\\mathbb{Z}$ est un **diviseur de zéro** s'il existe $\\overline{b} \\neq \\overline{0}$ tel que $\\overline{a}\\,\\overline{b} = \\overline{0}$.\n\n1. Soit $a \\in \\mathbb{Z}$ tel que $n$ ne divise pas $a$ et $d = a \\wedge n > 1$. Montrer que $\\overline{a}$ est un diviseur de zéro.\n\n2. En déduire que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et qu'elle n'est jamais les deux à la fois.\n\n3. Montrer que $\\overline{a}$ est inversible si et seulement si, pour tous $b, c \\in \\mathbb{Z}$, $ab \\equiv ac \\pmod{n}$ entraîne $b \\equiv c \\pmod{n}$.\n\n4. Combien de classes non nulles de $\\mathbb{Z}/12\\mathbb{Z}$ sont des diviseurs de zéro ?",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : essayer $b = n/d$, et vérifier que $\\overline{b} \\neq \\overline{0}$.",
+        "Question 3 : pour la réciproque, raisonner par contraposée à l'aide d'un diviseur de zéro (ou de la classe nulle).",
+        "Question 4 : compter les entiers de $\\{1, \\dots, 11\\}$ qui sont premiers avec $12$."
+      ],
+      "reponse_finale": {
+        "question": "Combien de classes non nulles de $\\mathbb{Z}/12\\mathbb{Z}$ sont des diviseurs de zéro ?",
+        "propositions": [
+          "$7$",
+          "$4$",
+          "$8$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Posons $b = n/d$, entier car $d \\mid n$. Comme $d > 1$, on a $1 \\leq b < n$, donc $\\overline{b} \\neq \\overline{0}$. Et $ab = \\frac{a}{d} \\times n$ est un multiple de $n$ (car $d \\mid a$), donc $\\overline{a}\\,\\overline{b} = \\overline{0}$ ; de plus $\\overline{a} \\neq \\overline{0}$ car $n$ ne divise pas $a$. Ainsi $\\overline{a}$ est un diviseur de zéro.\n\n2. Soit $\\overline{a} \\neq \\overline{0}$. Si $a \\wedge n = 1$, $\\overline{a}$ est inversible ; sinon $a \\wedge n > 1$ et $\\overline{a}$ est un diviseur de zéro par la question 1. Si $\\overline{a}$ était à la fois inversible, d'inverse $\\overline{u}$, et diviseur de zéro, avec $\\overline{a}\\,\\overline{b} = \\overline{0}$ et $\\overline{b} \\neq \\overline{0}$, on aurait $\\overline{b} = \\overline{u}\\,\\overline{a}\\,\\overline{b} = \\overline{u} \\times \\overline{0} = \\overline{0}$ : contradiction.\n\n3. Si $\\overline{a}$ est inversible d'inverse $\\overline{u}$ et si $ab \\equiv ac$, en multipliant par $u$ on obtient $b \\equiv uab \\equiv uac \\equiv c \\pmod{n}$. Réciproquement, supposons $\\overline{a}$ non inversible. Si $\\overline{a} = \\overline{0}$, alors $a \\times 1 \\equiv a \\times 0$ alors que $1 \\not\\equiv 0 \\pmod{n}$ (car $n \\geq 2$). Sinon, $\\overline{a}$ est un diviseur de zéro (question 2) : il existe $b$ tel que $\\overline{b} \\neq \\overline{0}$ et $ab \\equiv 0 = a \\times 0$, alors que $b \\not\\equiv 0$. Dans les deux cas, la simplification par $a$ est en défaut.\n\n4. $12 = 2^2 \\times 3$. Les entiers de $\\{1, \\dots, 11\\}$ premiers avec $12$ sont $1$, $5$, $7$ et $11$ : il y a $4$ classes inversibles. D'après la question 2, les $11$ classes non nulles se répartissent entre inversibles et diviseurs de zéro ; il y a donc $11 - 4 = 7$ diviseurs de zéro : $\\overline{2}$, $\\overline{3}$, $\\overline{4}$, $\\overline{6}$, $\\overline{8}$, $\\overline{9}$ et $\\overline{10}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $n \\geq 2$ un entier. On dit qu'une classe $\\overline{a} \\neq \\overline{0}$ de $\\mathbb{Z}/n\\mathbb{Z}$ est un **diviseur de zéro** s'il existe $\\overline{b} \\neq \\overline{0}$ tel que $\\overline{a}\\,\\overline{b} = \\overline{0}$.\n\n1. Soit $a \\in \\mathbb{Z}$ tel que $n$ ne divise pas $a$ et $d = a \\wedge n > 1$. Montrer que $\\overline{a}$ est un diviseur de zéro.\n\n2. En déduire que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et qu'elle n'est jamais les deux à la fois.\n\n3. Montrer que $\\overline{a}$ est inversible si et seulement si, pour tous $b, c \\in \\mathbb{Z}$, $ab \\equiv ac \\pmod{n}$ entraîne $b \\equiv c \\pmod{n}$.\n\n4. Combien de classes non nulles de $\\mathbb{Z}/20\\mathbb{Z}$ sont des diviseurs de zéro ?",
+          "indices": [
+            "Question 1 : essayer $b = n/d$, et vérifier que $\\overline{b} \\neq \\overline{0}$.",
+            "Question 3 : pour la réciproque, raisonner par contraposée à l'aide d'un diviseur de zéro (ou de la classe nulle).",
+            "Question 4 : compter les entiers de $\\{1, \\dots, 19\\}$ qui sont premiers avec $20$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de classes non nulles de $\\mathbb{Z}/20\\mathbb{Z}$ sont des diviseurs de zéro ?",
+            "propositions": [
+              "$11$",
+              "$8$",
+              "$12$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Posons $b = n/d$, entier car $d \\mid n$. Comme $d > 1$, on a $1 \\leq b < n$, donc $\\overline{b} \\neq \\overline{0}$. Et $ab = \\frac{a}{d} \\times n$ est un multiple de $n$ (car $d \\mid a$), donc $\\overline{a}\\,\\overline{b} = \\overline{0}$ ; de plus $\\overline{a} \\neq \\overline{0}$ car $n$ ne divise pas $a$. Ainsi $\\overline{a}$ est un diviseur de zéro.\n\n2. Soit $\\overline{a} \\neq \\overline{0}$. Si $a \\wedge n = 1$, $\\overline{a}$ est inversible ; sinon $a \\wedge n > 1$ et $\\overline{a}$ est un diviseur de zéro par la question 1. Si $\\overline{a}$ était à la fois inversible, d'inverse $\\overline{u}$, et diviseur de zéro, avec $\\overline{a}\\,\\overline{b} = \\overline{0}$ et $\\overline{b} \\neq \\overline{0}$, on aurait $\\overline{b} = \\overline{u}\\,\\overline{a}\\,\\overline{b} = \\overline{u} \\times \\overline{0} = \\overline{0}$ : contradiction.\n\n3. Si $\\overline{a}$ est inversible d'inverse $\\overline{u}$ et si $ab \\equiv ac$, en multipliant par $u$ on obtient $b \\equiv uab \\equiv uac \\equiv c \\pmod{n}$. Réciproquement, supposons $\\overline{a}$ non inversible. Si $\\overline{a} = \\overline{0}$, alors $a \\times 1 \\equiv a \\times 0$ alors que $1 \\not\\equiv 0 \\pmod{n}$ (car $n \\geq 2$). Sinon, $\\overline{a}$ est un diviseur de zéro (question 2) : il existe $b$ tel que $\\overline{b} \\neq \\overline{0}$ et $ab \\equiv 0 = a \\times 0$, alors que $b \\not\\equiv 0$. Dans les deux cas, la simplification par $a$ est en défaut.\n\n4. $20 = 2^2 \\times 5$. Les entiers de $\\{1, \\dots, 19\\}$ premiers avec $20$ sont $1$, $3$, $7$, $9$, $11$, $13$, $17$ et $19$ : il y a $8$ classes inversibles. D'après la question 2, les $19$ classes non nulles se répartissent entre inversibles et diviseurs de zéro ; il y a donc $19 - 8 = 11$ diviseurs de zéro : $\\overline{2}$, $\\overline{4}$, $\\overline{5}$, $\\overline{6}$, $\\overline{8}$, $\\overline{10}$, $\\overline{12}$, $\\overline{14}$, $\\overline{15}$, $\\overline{16}$ et $\\overline{18}$."
+        },
+        {
+          "enonce": "Soit $n \\geq 2$ un entier. On dit qu'une classe $\\overline{a} \\neq \\overline{0}$ de $\\mathbb{Z}/n\\mathbb{Z}$ est un **diviseur de zéro** s'il existe $\\overline{b} \\neq \\overline{0}$ tel que $\\overline{a}\\,\\overline{b} = \\overline{0}$.\n\n1. Soit $a \\in \\mathbb{Z}$ tel que $n$ ne divise pas $a$ et $d = a \\wedge n > 1$. Montrer que $\\overline{a}$ est un diviseur de zéro.\n\n2. En déduire que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et qu'elle n'est jamais les deux à la fois.\n\n3. Montrer que $\\overline{a}$ est inversible si et seulement si, pour tous $b, c \\in \\mathbb{Z}$, $ab \\equiv ac \\pmod{n}$ entraîne $b \\equiv c \\pmod{n}$.\n\n4. Combien de classes non nulles de $\\mathbb{Z}/15\\mathbb{Z}$ sont des diviseurs de zéro ?",
+          "indices": [
+            "Question 1 : essayer $b = n/d$, et vérifier que $\\overline{b} \\neq \\overline{0}$.",
+            "Question 3 : pour la réciproque, raisonner par contraposée à l'aide d'un diviseur de zéro (ou de la classe nulle).",
+            "Question 4 : compter les entiers de $\\{1, \\dots, 14\\}$ qui sont premiers avec $15$."
+          ],
+          "reponse_finale": {
+            "question": "Combien de classes non nulles de $\\mathbb{Z}/15\\mathbb{Z}$ sont des diviseurs de zéro ?",
+            "propositions": [
+              "$6$",
+              "$8$",
+              "$7$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Posons $b = n/d$, entier car $d \\mid n$. Comme $d > 1$, on a $1 \\leq b < n$, donc $\\overline{b} \\neq \\overline{0}$. Et $ab = \\frac{a}{d} \\times n$ est un multiple de $n$ (car $d \\mid a$), donc $\\overline{a}\\,\\overline{b} = \\overline{0}$ ; de plus $\\overline{a} \\neq \\overline{0}$ car $n$ ne divise pas $a$. Ainsi $\\overline{a}$ est un diviseur de zéro.\n\n2. Soit $\\overline{a} \\neq \\overline{0}$. Si $a \\wedge n = 1$, $\\overline{a}$ est inversible ; sinon $a \\wedge n > 1$ et $\\overline{a}$ est un diviseur de zéro par la question 1. Si $\\overline{a}$ était à la fois inversible, d'inverse $\\overline{u}$, et diviseur de zéro, avec $\\overline{a}\\,\\overline{b} = \\overline{0}$ et $\\overline{b} \\neq \\overline{0}$, on aurait $\\overline{b} = \\overline{u}\\,\\overline{a}\\,\\overline{b} = \\overline{u} \\times \\overline{0} = \\overline{0}$ : contradiction.\n\n3. Si $\\overline{a}$ est inversible d'inverse $\\overline{u}$ et si $ab \\equiv ac$, en multipliant par $u$ on obtient $b \\equiv uab \\equiv uac \\equiv c \\pmod{n}$. Réciproquement, supposons $\\overline{a}$ non inversible. Si $\\overline{a} = \\overline{0}$, alors $a \\times 1 \\equiv a \\times 0$ alors que $1 \\not\\equiv 0 \\pmod{n}$ (car $n \\geq 2$). Sinon, $\\overline{a}$ est un diviseur de zéro (question 2) : il existe $b$ tel que $\\overline{b} \\neq \\overline{0}$ et $ab \\equiv 0 = a \\times 0$, alors que $b \\not\\equiv 0$. Dans les deux cas, la simplification par $a$ est en défaut.\n\n4. $15 = 3 \\times 5$. Les entiers de $\\{1, \\dots, 14\\}$ premiers avec $15$ sont $1$, $2$, $4$, $7$, $8$, $11$, $13$ et $14$ : il y a $8$ classes inversibles. D'après la question 2, les $14$ classes non nulles se répartissent entre inversibles et diviseurs de zéro ; il y a donc $14 - 8 = 6$ diviseurs de zéro : $\\overline{3}$, $\\overline{5}$, $\\overline{6}$, $\\overline{9}$, $\\overline{10}$ et $\\overline{12}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex1",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 1,
+      "titre": "Calculer une indicatrice d'Euler",
+      "enonce": "Calculer $\\varphi(756)$.",
+      "duree_min": 5,
+      "indices": [
+        "Décomposer $756$ en facteurs premiers, puis utiliser $\\varphi(p^\\alpha) = p^\\alpha - p^{\\alpha-1}$ et la multiplicativité de $\\varphi$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\varphi(756)$ ?",
+        "propositions": [
+          "$216$",
+          "$468$",
+          "$12$",
+          "$755$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$756 = 2^2 \\times 3^3 \\times 7$, et les facteurs de cette décomposition sont deux à deux premiers entre eux. Donc\n\n$$\\varphi(756) = \\varphi(2^2)\\,\\varphi(3^3)\\,\\varphi(7) = (4 - 2)(27 - 9)(7 - 1) = 2 \\times 18 \\times 6 = 216.$$\n\nContrôle par la formule produit : $756 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{6}{7} = 216$.\n\n(Erreurs fréquentes : écrire $\\varphi(p^\\alpha) = p^\\alpha - 1$ donnerait $3 \\times 26 \\times 6 = 468$ ; oublier les exposants donnerait $1 \\times 2 \\times 6 = 12$ ; la valeur $n - 1 = 755$ ne vaut que pour $n$ premier.)",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\varphi(1\\,350)$.",
+          "indices": [
+            "Décomposer $1\\,350$ en facteurs premiers, puis utiliser $\\varphi(p^\\alpha) = p^\\alpha - p^{\\alpha-1}$ et la multiplicativité de $\\varphi$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi(1\\,350)$ ?",
+            "propositions": [
+              "$360$",
+              "$624$",
+              "$8$",
+              "$1\\,349$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$1\\,350 = 2 \\times 3^3 \\times 5^2$, et les facteurs de cette décomposition sont deux à deux premiers entre eux. Donc\n\n$$\\varphi(1\\,350) = \\varphi(2)\\,\\varphi(3^3)\\,\\varphi(5^2) = (2 - 1)(27 - 9)(25 - 5) = 1 \\times 18 \\times 20 = 360.$$\n\nContrôle par la formule produit : $1\\,350 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 360$.\n\n(Erreurs fréquentes : écrire $\\varphi(p^\\alpha) = p^\\alpha - 1$ donnerait $1 \\times 26 \\times 24 = 624$ ; oublier les exposants donnerait $1 \\times 2 \\times 4 = 8$ ; la valeur $n - 1 = 1\\,349$ ne vaut que pour $n$ premier.)"
+        },
+        {
+          "enonce": "Calculer $\\varphi(1\\,200)$.",
+          "indices": [
+            "Décomposer $1\\,200$ en facteurs premiers, puis utiliser $\\varphi(p^\\alpha) = p^\\alpha - p^{\\alpha-1}$ et la multiplicativité de $\\varphi$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi(1\\,200)$ ?",
+            "propositions": [
+              "$320$",
+              "$720$",
+              "$8$",
+              "$1\\,199$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$1\\,200 = 2^4 \\times 3 \\times 5^2$, et les facteurs de cette décomposition sont deux à deux premiers entre eux. Donc\n\n$$\\varphi(1\\,200) = \\varphi(2^4)\\,\\varphi(3)\\,\\varphi(5^2) = (16 - 8)(3 - 1)(25 - 5) = 8 \\times 2 \\times 20 = 320.$$\n\nContrôle par la formule produit : $1\\,200 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 320$.\n\n(Erreurs fréquentes : écrire $\\varphi(p^\\alpha) = p^\\alpha - 1$ donnerait $15 \\times 2 \\times 24 = 720$ ; oublier les exposants donnerait $1 \\times 2 \\times 4 = 8$ ; la valeur $n - 1 = 1\\,199$ ne vaut que pour $n$ premier.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex2",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 2,
+      "titre": "Les deux derniers chiffres d'une grande puissance",
+      "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $13^{2026}$.",
+      "duree_min": 10,
+      "indices": [
+        "Les deux derniers chiffres sont donnés par le reste modulo $100$ ; vérifier que $13 \\wedge 100 = 1$ et calculer $\\varphi(100)$.",
+        "Réduire l'exposant $2026$ modulo $\\varphi(100)$, puis calculer la puissance restante de $13$ par carrés successifs modulo $100$."
+      ],
+      "reponse_finale": {
+        "question": "Par quels deux chiffres se termine l'écriture de $13^{2026}$ ?",
+        "propositions": [
+          "$09$",
+          "$01$",
+          "$69$",
+          "$17$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Il s'agit du reste de $13^{2026}$ modulo $100$. Comme $13 \\wedge 100 = 1$ et $\\varphi(100) = \\varphi(2^2)\\varphi(5^2) = 2 \\times 20 = 40$, le théorème d'Euler donne $13^{40} \\equiv 1 \\pmod{100}$. Or $2026 = 50 \\times 40 + 26$, donc $13^{2026} = (13^{40})^{50} \\times 13^{26} \\equiv 13^{26} \\pmod{100}$.\n\nCarrés successifs modulo $100$ : $13^2 = 169 \\equiv 69$, $13^{4} \\equiv 69^2 = 4\\,761 \\equiv 61$, $13^{8} \\equiv 61^2 = 3\\,721 \\equiv 21$, $13^{16} \\equiv 21^2 = 441 \\equiv 41$.\n\nComme $26 = 16 + 8 + 2$, $13^{26} = 13^{16} \\times 13^{8} \\times 13^{2} \\equiv 41 \\times 21 \\times 69 \\pmod{100}$ ; or $41 \\times 21 = 861 \\equiv 61$ et $61 \\times 69 = 4\\,209 \\equiv 9$.\n\nL'écriture décimale de $13^{2026}$ se termine donc par $09$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $17^{2027}$.",
+          "indices": [
+            "Les deux derniers chiffres sont donnés par le reste modulo $100$ ; vérifier que $17 \\wedge 100 = 1$ et calculer $\\varphi(100)$.",
+            "Réduire l'exposant $2027$ modulo $\\varphi(100)$, puis calculer la puissance restante de $17$ par carrés successifs modulo $100$."
+          ],
+          "reponse_finale": {
+            "question": "Par quels deux chiffres se termine l'écriture de $17^{2027}$ ?",
+            "propositions": [
+              "$73$",
+              "$01$",
+              "$17$",
+              "$89$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Il s'agit du reste de $17^{2027}$ modulo $100$. Comme $17 \\wedge 100 = 1$ et $\\varphi(100) = \\varphi(2^2)\\varphi(5^2) = 2 \\times 20 = 40$, le théorème d'Euler donne $17^{40} \\equiv 1 \\pmod{100}$. Or $2027 = 50 \\times 40 + 27$, donc $17^{2027} = (17^{40})^{50} \\times 17^{27} \\equiv 17^{27} \\pmod{100}$.\n\nCarrés successifs modulo $100$ : $17^2 = 289 \\equiv 89$, $17^{4} \\equiv 89^2 = 7\\,921 \\equiv 21$, $17^{8} \\equiv 21^2 = 441 \\equiv 41$, $17^{16} \\equiv 41^2 = 1\\,681 \\equiv 81$.\n\nComme $27 = 16 + 8 + 2 + 1$, $17^{27} = 17^{16} \\times 17^{8} \\times 17^{2} \\times 17 \\equiv 81 \\times 41 \\times 89 \\times 17 \\pmod{100}$ ; or $81 \\times 41 = 3\\,321 \\equiv 21$, $21 \\times 89 = 1\\,869 \\equiv 69$ et $69 \\times 17 = 1\\,173 \\equiv 73$.\n\nL'écriture décimale de $17^{2027}$ se termine donc par $73$."
+        },
+        {
+          "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $23^{2026}$.",
+          "indices": [
+            "Les deux derniers chiffres sont donnés par le reste modulo $100$ ; vérifier que $23 \\wedge 100 = 1$ et calculer $\\varphi(100)$.",
+            "Réduire l'exposant $2026$ modulo $\\varphi(100)$, puis calculer la puissance restante de $23$ par carrés successifs modulo $100$."
+          ],
+          "reponse_finale": {
+            "question": "Par quels deux chiffres se termine l'écriture de $23^{2026}$ ?",
+            "propositions": [
+              "$89$",
+              "$01$",
+              "$29$",
+              "$23$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Il s'agit du reste de $23^{2026}$ modulo $100$. Comme $23 \\wedge 100 = 1$ et $\\varphi(100) = \\varphi(2^2)\\varphi(5^2) = 2 \\times 20 = 40$, le théorème d'Euler donne $23^{40} \\equiv 1 \\pmod{100}$. Or $2026 = 50 \\times 40 + 26$, donc $23^{2026} = (23^{40})^{50} \\times 23^{26} \\equiv 23^{26} \\pmod{100}$.\n\nCarrés successifs modulo $100$ : $23^2 = 529 \\equiv 29$, $23^{4} \\equiv 29^2 = 841 \\equiv 41$, $23^{8} \\equiv 41^2 = 1\\,681 \\equiv 81$, $23^{16} \\equiv 81^2 = 6\\,561 \\equiv 61$.\n\nComme $26 = 16 + 8 + 2$, $23^{26} = 23^{16} \\times 23^{8} \\times 23^{2} \\equiv 61 \\times 81 \\times 29 \\pmod{100}$ ; or $61 \\times 81 = 4\\,941 \\equiv 41$ et $41 \\times 29 = 1\\,189 \\equiv 89$.\n\nL'écriture décimale de $23^{2026}$ se termine donc par $89$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex3",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 3,
+      "titre": "Une tour de puissances",
+      "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $13^{13^{13}}$ (on rappelle que $13^{13^{13}}$ désigne $13^{(13^{13})}$).",
+      "duree_min": 15,
+      "indices": [
+        "Avec le théorème d'Euler modulo $100$, il suffit de connaître l'exposant $13^{13}$ modulo $\\varphi(100) = 40$.",
+        "Pour calculer $13^{13}$ modulo $40$, chercher une petite puissance de $13$ congrue à $1$ modulo $40$ (le théorème d'Euler modulo $40$ en fournit une)."
+      ],
+      "reponse_finale": {
+        "question": "Par quels deux chiffres se termine l'écriture de $13^{13^{13}}$ ?",
+        "propositions": [
+          "$53$",
+          "$13$",
+          "$69$",
+          "$01$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $13 \\wedge 100 = 1$ et $\\varphi(100) = 40$, on a $13^{40} \\equiv 1 \\pmod{100}$ ; donc, si $N = 40q + r$ avec $q, r \\in \\mathbb{N}$, $13^N = (13^{40})^q \\times 13^r \\equiv 13^r \\pmod{100}$. Il suffit de connaître l'exposant $N = 13^{13}$ modulo $40$.\n\n**Exposant modulo $40$.** $13 \\wedge 40 = 1$ ; $13^2 = 169 = 4 \\times 40 + 9$, donc $13^2 \\equiv 9$ et $13^4 \\equiv 81 \\equiv 1 \\pmod{40}$. Ainsi $13^{13} = (13^4)^3 \\times 13 \\equiv 13 \\pmod{40}$ : $13^{13} = 40q + 13$ avec $q \\in \\mathbb{N}$. (Le théorème d'Euler, avec $\\varphi(40) = 16$, garantit $13^{16} \\equiv 1 \\pmod{40}$ ; ici l'exposant $4$ suffit déjà.)\n\n**Puissance modulo $100$.** Donc $13^{13^{13}} \\equiv 13^{13} \\pmod{100}$. Modulo $100$ : $13^2 = 169 \\equiv 69$, $13^4 \\equiv 69^2 = 4\\,761 \\equiv 61$, $13^8 \\equiv 61^2 = 3\\,721 \\equiv 21$, et $13^{13} = 13^8 \\times 13^4 \\times 13 \\equiv 21 \\times 61 \\times 13$ ; or $21 \\times 61 = 1\\,281 \\equiv 81$ et $81 \\times 13 = 1\\,053 \\equiv 53$.\n\nLes deux derniers chiffres de $13^{13^{13}}$ sont donc $53$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $9^{9^{9}}$ (on rappelle que $9^{9^{9}}$ désigne $9^{(9^{9})}$).",
+          "indices": [
+            "Avec le théorème d'Euler modulo $100$, il suffit de connaître l'exposant $9^{9}$ modulo $\\varphi(100) = 40$.",
+            "Pour calculer $9^{9}$ modulo $40$, chercher une petite puissance de $9$ congrue à $1$ modulo $40$ (le théorème d'Euler modulo $40$ en fournit une)."
+          ],
+          "reponse_finale": {
+            "question": "Par quels deux chiffres se termine l'écriture de $9^{9^{9}}$ ?",
+            "propositions": [
+              "$89$",
+              "$09$",
+              "$81$",
+              "$01$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $9 \\wedge 100 = 1$ et $\\varphi(100) = 40$, on a $9^{40} \\equiv 1 \\pmod{100}$ ; donc, si $N = 40q + r$ avec $q, r \\in \\mathbb{N}$, $9^N \\equiv 9^r \\pmod{100}$. Il suffit de connaître l'exposant $N = 9^{9}$ modulo $40$.\n\n**Exposant modulo $40$.** $9^2 = 81 = 2 \\times 40 + 1$, donc $9^2 \\equiv 1 \\pmod{40}$ et $9^9 = (9^2)^4 \\times 9 \\equiv 9 \\pmod{40}$ : $9^9 = 40q + 9$ avec $q \\in \\mathbb{N}$.\n\n**Puissance modulo $100$.** Donc $9^{9^{9}} \\equiv 9^{9} \\pmod{100}$. Modulo $100$ : $9^2 = 81$, $9^4 \\equiv 81^2 = 6\\,561 \\equiv 61$, $9^8 \\equiv 61^2 = 3\\,721 \\equiv 21$, et $9^9 = 9^8 \\times 9 \\equiv 21 \\times 9 = 189 \\equiv 89$.\n\nLes deux derniers chiffres de $9^{9^{9}}$ sont donc $89$."
+        },
+        {
+          "enonce": "Déterminer les deux derniers chiffres de l'écriture décimale de $3^{3^{2026}}$ (on rappelle que $3^{3^{2026}}$ désigne $3^{(3^{2026})}$).",
+          "indices": [
+            "Avec le théorème d'Euler modulo $100$, il suffit de connaître l'exposant $3^{2026}$ modulo $\\varphi(100) = 40$.",
+            "Pour calculer $3^{2026}$ modulo $40$, chercher une petite puissance de $3$ congrue à $1$ modulo $40$ (le théorème d'Euler modulo $40$ en fournit une)."
+          ],
+          "reponse_finale": {
+            "question": "Par quels deux chiffres se termine l'écriture de $3^{3^{2026}}$ ?",
+            "propositions": [
+              "$83$",
+              "$03$",
+              "$09$",
+              "$01$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $3 \\wedge 100 = 1$ et $\\varphi(100) = 40$, on a $3^{40} \\equiv 1 \\pmod{100}$ ; donc, si $N = 40q + r$ avec $q, r \\in \\mathbb{N}$, $3^N \\equiv 3^r \\pmod{100}$. Il suffit de connaître l'exposant $N = 3^{2026}$ modulo $40$.\n\n**Exposant modulo $40$.** $3^4 = 81 = 2 \\times 40 + 1$, donc $3^4 \\equiv 1 \\pmod{40}$. Comme $2026 = 4 \\times 506 + 2$, $3^{2026} = (3^4)^{506} \\times 3^2 \\equiv 9 \\pmod{40}$ : $3^{2026} = 40q + 9$ avec $q \\in \\mathbb{N}$.\n\n**Puissance modulo $100$.** Donc $3^{3^{2026}} \\equiv 3^{9} \\pmod{100}$. Or $3^9 = 19\\,683 \\equiv 83 \\pmod{100}$.\n\nLes deux derniers chiffres de $3^{3^{2026}}$ sont donc $83$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex4",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 4,
+      "titre": "Les entiers dont l'indicatrice est donnée",
+      "enonce": "On cherche tous les entiers $n \\geq 1$ tels que $\\varphi(n) = 12$.\n\n1. Soit $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$ la décomposition d'un entier $n \\geq 2$ en facteurs premiers. Montrer que $\\varphi(n) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$, et en déduire que, pour chaque $i$, $p_i - 1$ divise $\\varphi(n)$ et que, si $\\alpha_i \\geq 2$, $p_i$ divise $\\varphi(n)$.\n\n2. En déduire que, si $\\varphi(n) = 12$, les facteurs premiers de $n$ sont parmi $2, 3, 5, 7, 13$, et préciser leurs exposants possibles.\n\n3. Déterminer l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 12$.",
+      "duree_min": 25,
+      "indices": [
+        "Utiliser la multiplicativité de $\\varphi$ et la formule $\\varphi(p^\\alpha) = p^{\\alpha-1}(p - 1)$.",
+        "Question 2 : lister les diviseurs $d$ de $12$ et ne garder que ceux pour lesquels $d + 1$ est premier."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 12$ ?",
+        "propositions": [
+          "$\\{13, 21, 26, 28, 36, 42\\}$",
+          "$\\{13\\}$",
+          "$\\{13, 21, 26, 28, 36\\}$",
+          "$\\{13, 21, 26, 28, 36, 42, 52\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Par multiplicativité (les $p_i^{\\alpha_i}$ sont deux à deux premiers entre eux) et par la formule pour une puissance d'un nombre premier, $\\varphi(n) = \\prod_{i=1}^{r} \\varphi(p_i^{\\alpha_i}) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$. Chaque facteur $p_i - 1$ divise donc $\\varphi(n)$, et si $\\alpha_i \\geq 2$, $p_i$ aussi.\n\n2. Si $\\varphi(n) = 12$, alors $n \\geq 2$ (car $\\varphi(1) = 1$), et chaque facteur premier $p$ de $n$ vérifie $p - 1 \\in \\{1, 2, 3, 4, 6, 12\\}$, donc $p \\in \\{2, 3, 4, 5, 7, 13\\}$ ; comme $4$ n'est pas premier, $p \\in \\{2, 3, 5, 7, 13\\}$. Si $p^\\alpha$ divise exactement $n$ avec $\\alpha \\geq 2$, alors $p^{\\alpha - 1}$ divise $12 = 2^2 \\times 3$ : l'exposant de $2$ est au plus $3$, celui de $3$ au plus $2$, et $5$, $7$, $13$ figurent au plus à la puissance $1$.\n\n3. Les contributions possibles sont $\\varphi(2) = 1$, $\\varphi(4) = 2$, $\\varphi(8) = 4$, $\\varphi(3) = 2$, $\\varphi(9) = 6$, $\\varphi(5) = 4$, $\\varphi(7) = 6$ et $\\varphi(13) = 12$, et $\\varphi(n)$ est le produit des contributions des facteurs $p^\\alpha$ de $n$. On cherche les produits égaux à $12$ :\n\n- avec le facteur $13$ : les autres contributions valent $1$, d'où $n = 13$ ou $n = 26$ ;\n- avec $7$ (sans $13$) : le reste doit contribuer pour $2$, d'où $n = 7 \\times 3 = 21$, $n = 7 \\times 3 \\times 2 = 42$ ou $n = 7 \\times 4 = 28$ ;\n- avec $9$ (sans $7$ ni $13$) : le reste, sans facteur $3$, doit contribuer pour $2$, d'où $n = 9 \\times 4 = 36$ (et non $18$, pour lequel $\\varphi(18) = 6$) ;\n- sans $7$, $9$ ni $13$ : les contributions restantes ($1$, $2$ ou $4$ pour la puissance de $2$, $2$ pour $3$, $4$ pour $5$) sont des puissances de $2$, et leur produit n'est jamais $12$.\n\nDonc $\\varphi(n) = 12$ si et seulement si $n \\in \\{13, 21, 26, 28, 36, 42\\}$. Vérification : $\\varphi(13) = 12$, $\\varphi(26) = 1 \\times 12$, $\\varphi(21) = 2 \\times 6$, $\\varphi(42) = 1 \\times 2 \\times 6$, $\\varphi(28) = 2 \\times 6$, $\\varphi(36) = 2 \\times 6$.",
+      "variantes": [
+        {
+          "enonce": "On cherche tous les entiers $n \\geq 1$ tels que $\\varphi(n) = 8$.\n\n1. Soit $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$ la décomposition d'un entier $n \\geq 2$ en facteurs premiers. Montrer que $\\varphi(n) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$, et en déduire que, pour chaque $i$, $p_i - 1$ divise $\\varphi(n)$ et que, si $\\alpha_i \\geq 2$, $p_i$ divise $\\varphi(n)$.\n\n2. En déduire que, si $\\varphi(n) = 8$, les facteurs premiers de $n$ sont parmi $2, 3, 5$, et préciser leurs exposants possibles.\n\n3. Déterminer l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 8$.",
+          "indices": [
+            "Utiliser la multiplicativité de $\\varphi$ et la formule $\\varphi(p^\\alpha) = p^{\\alpha-1}(p - 1)$.",
+            "Question 2 : lister les diviseurs $d$ de $8$ et ne garder que ceux pour lesquels $d + 1$ est premier."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 8$ ?",
+            "propositions": [
+              "$\\{15, 16, 20, 24, 30\\}$",
+              "$\\{16\\}$",
+              "$\\{15, 16, 20, 24\\}$",
+              "$\\{15, 16, 20, 24, 30, 32\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Par multiplicativité (les $p_i^{\\alpha_i}$ sont deux à deux premiers entre eux) et par la formule pour une puissance d'un nombre premier, $\\varphi(n) = \\prod_{i=1}^{r} \\varphi(p_i^{\\alpha_i}) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$. Chaque facteur $p_i - 1$ divise donc $\\varphi(n)$, et si $\\alpha_i \\geq 2$, $p_i$ aussi.\n\n2. Si $\\varphi(n) = 8$, alors $n \\geq 2$, et chaque facteur premier $p$ de $n$ vérifie $p - 1 \\in \\{1, 2, 4, 8\\}$, donc $p \\in \\{2, 3, 5, 9\\}$ ; comme $9$ n'est pas premier, $p \\in \\{2, 3, 5\\}$. Si $p^\\alpha$ divise exactement $n$ avec $\\alpha \\geq 2$, alors $p^{\\alpha - 1}$ divise $8 = 2^3$ : l'exposant de $2$ est au plus $4$, et $3$, $5$ figurent au plus à la puissance $1$.\n\n3. Les contributions possibles sont $\\varphi(2) = 1$, $\\varphi(4) = 2$, $\\varphi(8) = 4$, $\\varphi(16) = 8$, $\\varphi(3) = 2$ et $\\varphi(5) = 4$. On cherche les produits égaux à $8$ :\n\n- sans $3$ ni $5$ : la puissance de $2$ doit contribuer pour $8$, d'où $n = 16$ ;\n- avec $3$ et sans $5$ : la puissance de $2$ doit contribuer pour $4$, d'où $n = 8 \\times 3 = 24$ ;\n- avec $5$ et sans $3$ : la puissance de $2$ doit contribuer pour $2$, d'où $n = 4 \\times 5 = 20$ ;\n- avec $3$ et $5$ : la puissance de $2$ doit contribuer pour $1$, d'où $n = 15$ ou $n = 30$.\n\nDonc $\\varphi(n) = 8$ si et seulement si $n \\in \\{15, 16, 20, 24, 30\\}$. Vérification : $\\varphi(15) = 2 \\times 4$, $\\varphi(16) = 8$, $\\varphi(20) = 2 \\times 4$, $\\varphi(24) = 4 \\times 2$, $\\varphi(30) = 1 \\times 2 \\times 4$."
+        },
+        {
+          "enonce": "On cherche tous les entiers $n \\geq 1$ tels que $\\varphi(n) = 14$.\n\n1. Soit $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$ la décomposition d'un entier $n \\geq 2$ en facteurs premiers. Montrer que $\\varphi(n) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$, et en déduire que, pour chaque $i$, $p_i - 1$ divise $\\varphi(n)$ et que, si $\\alpha_i \\geq 2$, $p_i$ divise $\\varphi(n)$.\n\n2. En déduire que, si $\\varphi(n) = 14$, les facteurs premiers de $n$ sont parmi $2$ et $3$, et préciser leurs exposants possibles.\n\n3. Déterminer l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 14$.",
+          "indices": [
+            "Utiliser la multiplicativité de $\\varphi$ et la formule $\\varphi(p^\\alpha) = p^{\\alpha-1}(p - 1)$.",
+            "Question 2 : lister les diviseurs $d$ de $14$ et ne garder que ceux pour lesquels $d + 1$ est premier."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des entiers $n \\geq 1$ tels que $\\varphi(n) = 14$ ?",
+            "propositions": [
+              "L'ensemble vide",
+              "$\\{15, 30\\}$",
+              "$\\{29, 58\\}$",
+              "$\\{49, 98\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Par multiplicativité (les $p_i^{\\alpha_i}$ sont deux à deux premiers entre eux) et par la formule pour une puissance d'un nombre premier, $\\varphi(n) = \\prod_{i=1}^{r} \\varphi(p_i^{\\alpha_i}) = \\prod_{i=1}^{r} p_i^{\\alpha_i - 1}(p_i - 1)$. Chaque facteur $p_i - 1$ divise donc $\\varphi(n)$, et si $\\alpha_i \\geq 2$, $p_i$ aussi.\n\n2. Si $\\varphi(n) = 14$, alors $n \\geq 2$, et chaque facteur premier $p$ de $n$ vérifie $p - 1 \\in \\{1, 2, 7, 14\\}$, donc $p \\in \\{2, 3, 8, 15\\}$ ; comme $8$ et $15$ ne sont pas premiers, $p \\in \\{2, 3\\}$. Si $p^\\alpha$ divise exactement $n$ avec $\\alpha \\geq 2$, alors $p^{\\alpha - 1}$ divise $14 = 2 \\times 7$ : l'exposant de $2$ est au plus $2$, et celui de $3$ vaut au plus $1$.\n\n3. Ainsi $n$ divise $2^2 \\times 3 = 12$, et les contributions possibles sont $\\varphi(2) = 1$, $\\varphi(4) = 2$ et $\\varphi(3) = 2$ : leur produit vaut au plus $4$, et n'est jamais $14$. (Le facteur $7$ de $14$ ne peut provenir ni d'un $p - 1$, puisque $8$ n'est pas premier, ni d'un exposant, puisque $7$ ne divise pas $n$.)\n\nIl n'existe donc aucun entier $n \\geq 1$ tel que $\\varphi(n) = 14$ : l'ensemble cherché est vide."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex5",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 4,
+      "titre": "Des multiples qui ne s'écrivent qu'avec des 1",
+      "enonce": "Pour $k \\geq 1$, on note $R_k = \\frac{10^k - 1}{9}$ l'entier qui s'écrit avec $k$ chiffres $1$ (par exemple $R_3 = 111$). Soit $n \\geq 1$ un entier premier avec $10$.\n\n1. Montrer que $n$ divise $10^{\\varphi(n)} - 1$.\n\n2. On suppose de plus que $3$ ne divise pas $n$. Montrer que $n$ divise $R_{\\varphi(n)}$.\n\n3. On ne suppose plus que $3$ ne divise pas $n$. Montrer que $n$ divise encore au moins un entier $R_k$ avec $k \\geq 1$, et donner un tel $k$ en fonction de $n$.\n\n4. Application : déterminer le plus petit entier $k \\geq 1$ tel que $7$ divise $R_k$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 3 : appliquer la question 1 à un multiple bien choisi de $n$, lui aussi premier avec $10$.",
+        "Question 4 : calculer les restes de $R_1, R_2, \\dots$ modulo $7$ grâce à la relation $R_{k+1} = 10R_k + 1$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit entier $k \\geq 1$ tel que $7$ divise $R_k$ ?",
+        "propositions": [
+          "$6$",
+          "$36$",
+          "$7$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Comme $n \\wedge 10 = 1$, le théorème d'Euler donne $10^{\\varphi(n)} \\equiv 1 \\pmod{n}$, c'est-à-dire $n \\mid 10^{\\varphi(n)} - 1$.\n\n2. Si de plus $3 \\nmid n$, alors $n \\wedge 9 = 1$. Or $10^{\\varphi(n)} - 1 = 9R_{\\varphi(n)}$ est divisible par $n$ ; par le lemme de Gauss, $n \\mid R_{\\varphi(n)}$.\n\n3. Les facteurs premiers de $9n$ sont $3$ et ceux de $n$ ; aucun n'est égal à $2$ ou à $5$, donc $9n \\wedge 10 = 1$. La question 1 appliquée à $9n$ donne $9n \\mid 10^{k} - 1 = 9R_k$ avec $k = \\varphi(9n)$ ; en simplifiant par $9$, $n \\mid R_k$. Ainsi $k = \\varphi(9n)$ convient.\n\n4. On calcule les restes modulo $7$ par $R_{k+1} = 10R_k + 1$ : $R_1 \\equiv 1$, $R_2 \\equiv 11 \\equiv 4$, $R_3 \\equiv 41 \\equiv 6$, $R_4 \\equiv 61 \\equiv 5$, $R_5 \\equiv 51 \\equiv 2$, $R_6 \\equiv 21 \\equiv 0 \\pmod{7}$. Le plus petit $k$ est donc $6$ : $R_6 = 111\\,111 = 7 \\times 15\\,873$. (La question 2 garantissait $7 \\mid R_{\\varphi(7)} = R_6$ ; la question 3 fournit $k = \\varphi(63) = 36$, qui convient mais n'est pas minimal.)",
+      "variantes": [
+        {
+          "enonce": "Pour $k \\geq 1$, on note $R_k = \\frac{10^k - 1}{9}$ l'entier qui s'écrit avec $k$ chiffres $1$ (par exemple $R_3 = 111$). Soit $n \\geq 1$ un entier premier avec $10$.\n\n1. Montrer que $n$ divise $10^{\\varphi(n)} - 1$.\n\n2. On suppose de plus que $3$ ne divise pas $n$. Montrer que $n$ divise $R_{\\varphi(n)}$.\n\n3. On ne suppose plus que $3$ ne divise pas $n$. Montrer que $n$ divise encore au moins un entier $R_k$ avec $k \\geq 1$, et donner un tel $k$ en fonction de $n$.\n\n4. Application : déterminer le plus petit entier $k \\geq 1$ tel que $41$ divise $R_k$.",
+          "indices": [
+            "Question 3 : appliquer la question 1 à un multiple bien choisi de $n$, lui aussi premier avec $10$.",
+            "Question 4 : calculer les restes de $R_1, R_2, \\dots$ modulo $41$ grâce à la relation $R_{k+1} = 10R_k + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $k \\geq 1$ tel que $41$ divise $R_k$ ?",
+            "propositions": [
+              "$5$",
+              "$240$",
+              "$40$",
+              "$41$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $n \\wedge 10 = 1$, le théorème d'Euler donne $10^{\\varphi(n)} \\equiv 1 \\pmod{n}$, c'est-à-dire $n \\mid 10^{\\varphi(n)} - 1$.\n\n2. Si de plus $3 \\nmid n$, alors $n \\wedge 9 = 1$. Or $10^{\\varphi(n)} - 1 = 9R_{\\varphi(n)}$ est divisible par $n$ ; par le lemme de Gauss, $n \\mid R_{\\varphi(n)}$.\n\n3. Les facteurs premiers de $9n$ sont $3$ et ceux de $n$ ; aucun n'est égal à $2$ ou à $5$, donc $9n \\wedge 10 = 1$. La question 1 appliquée à $9n$ donne $9n \\mid 10^{k} - 1 = 9R_k$ avec $k = \\varphi(9n)$ ; en simplifiant par $9$, $n \\mid R_k$. Ainsi $k = \\varphi(9n)$ convient.\n\n4. On calcule les restes modulo $41$ par $R_{k+1} = 10R_k + 1$ : $R_1 \\equiv 1$, $R_2 \\equiv 11$, $R_3 \\equiv 111 \\equiv 29$, $R_4 \\equiv 291 \\equiv 4$, $R_5 \\equiv 41 \\equiv 0 \\pmod{41}$. Le plus petit $k$ est donc $5$ : $R_5 = 11\\,111 = 41 \\times 271$. (La question 2 garantissait $41 \\mid R_{\\varphi(41)} = R_{40}$ ; la question 3 fournit $k = \\varphi(369) = 240$ ; aucun des deux n'est minimal.)"
+        },
+        {
+          "enonce": "Pour $k \\geq 1$, on note $R_k = \\frac{10^k - 1}{9}$ l'entier qui s'écrit avec $k$ chiffres $1$ (par exemple $R_3 = 111$). Soit $n \\geq 1$ un entier premier avec $10$.\n\n1. Montrer que $n$ divise $10^{\\varphi(n)} - 1$.\n\n2. On suppose de plus que $3$ ne divise pas $n$. Montrer que $n$ divise $R_{\\varphi(n)}$.\n\n3. On ne suppose plus que $3$ ne divise pas $n$. Montrer que $n$ divise encore au moins un entier $R_k$ avec $k \\geq 1$, et donner un tel $k$ en fonction de $n$.\n\n4. Application : déterminer le plus petit entier $k \\geq 1$ tel que $37$ divise $R_k$.",
+          "indices": [
+            "Question 3 : appliquer la question 1 à un multiple bien choisi de $n$, lui aussi premier avec $10$.",
+            "Question 4 : calculer les restes de $R_1, R_2, \\dots$ modulo $37$ grâce à la relation $R_{k+1} = 10R_k + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $k \\geq 1$ tel que $37$ divise $R_k$ ?",
+            "propositions": [
+              "$3$",
+              "$216$",
+              "$36$",
+              "$37$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $n \\wedge 10 = 1$, le théorème d'Euler donne $10^{\\varphi(n)} \\equiv 1 \\pmod{n}$, c'est-à-dire $n \\mid 10^{\\varphi(n)} - 1$.\n\n2. Si de plus $3 \\nmid n$, alors $n \\wedge 9 = 1$. Or $10^{\\varphi(n)} - 1 = 9R_{\\varphi(n)}$ est divisible par $n$ ; par le lemme de Gauss, $n \\mid R_{\\varphi(n)}$.\n\n3. Les facteurs premiers de $9n$ sont $3$ et ceux de $n$ ; aucun n'est égal à $2$ ou à $5$, donc $9n \\wedge 10 = 1$. La question 1 appliquée à $9n$ donne $9n \\mid 10^{k} - 1 = 9R_k$ avec $k = \\varphi(9n)$ ; en simplifiant par $9$, $n \\mid R_k$. Ainsi $k = \\varphi(9n)$ convient.\n\n4. On calcule les restes modulo $37$ par $R_{k+1} = 10R_k + 1$ : $R_1 \\equiv 1$, $R_2 \\equiv 11$, $R_3 \\equiv 111 \\equiv 0 \\pmod{37}$. Le plus petit $k$ est donc $3$ : $R_3 = 111 = 3 \\times 37$. (La question 2 garantissait $37 \\mid R_{\\varphi(37)} = R_{36}$ ; la question 3 fournit $k = \\varphi(333) = 216$ ; aucun des deux n'est minimal.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-wilson-ex1",
+      "carte": "arith-l1-congruences-wilson",
+      "difficulte": 2,
+      "titre": "Une factorielle juste en dessous d'un nombre premier",
+      "enonce": "Déterminer le reste de la division euclidienne de $20!$ par $23$.",
+      "duree_min": 10,
+      "indices": [
+        "$23$ est premier : partir du théorème de Wilson, $22! \\equiv -1 \\pmod{23}$.",
+        "Écrire $22! = 22 \\times 21 \\times 20!$ et remplacer $22$ et $21$ par $-1$ et $-2$ modulo $23$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de $20!$ modulo $23$ ?",
+        "propositions": [
+          "$11$",
+          "$22$",
+          "$1$",
+          "$12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$23$ est premier, donc $22! \\equiv -1 \\pmod{23}$ (théorème de Wilson). Or $22! = 22 \\times 21 \\times 20!$ avec $22 \\equiv -1$ et $21 \\equiv -2 \\pmod{23}$, donc $22! \\equiv (-1)(-2) \\times 20! = 2 \\times 20! \\pmod{23}$. Ainsi $2 \\times 20! \\equiv -1 \\equiv 22 \\pmod{23}$.\n\nL'inverse de $2$ modulo $23$ est $12$, car $2 \\times 12 = 24 = 23 + 1$. Donc $20! \\equiv 12 \\times 22 = 264 = 11 \\times 23 + 11 \\equiv 11 \\pmod{23}$. Vérification : $2 \\times 11 = 22 \\equiv -1 \\pmod{23}$. Le reste cherché est $11$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $16!$ par $19$.",
+          "indices": [
+            "$19$ est premier : partir du théorème de Wilson, $18! \\equiv -1 \\pmod{19}$.",
+            "Écrire $18! = 18 \\times 17 \\times 16!$ et remplacer $18$ et $17$ par $-1$ et $-2$ modulo $19$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $16!$ modulo $19$ ?",
+            "propositions": [
+              "$9$",
+              "$18$",
+              "$1$",
+              "$10$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$19$ est premier, donc $18! \\equiv -1 \\pmod{19}$ (théorème de Wilson). Or $18! = 18 \\times 17 \\times 16!$ avec $18 \\equiv -1$ et $17 \\equiv -2 \\pmod{19}$, donc $18! \\equiv (-1)(-2) \\times 16! = 2 \\times 16! \\pmod{19}$. Ainsi $2 \\times 16! \\equiv -1 \\equiv 18 \\pmod{19}$.\n\nL'inverse de $2$ modulo $19$ est $10$, car $2 \\times 10 = 20 = 19 + 1$. Donc $16! \\equiv 10 \\times 18 = 180 = 9 \\times 19 + 9 \\equiv 9 \\pmod{19}$. Vérification : $2 \\times 9 = 18 \\equiv -1 \\pmod{19}$. Le reste cherché est $9$."
+        },
+        {
+          "enonce": "Déterminer le reste de la division euclidienne de $26!$ par $29$.",
+          "indices": [
+            "$29$ est premier : partir du théorème de Wilson, $28! \\equiv -1 \\pmod{29}$.",
+            "Écrire $28! = 28 \\times 27 \\times 26!$ et remplacer $28$ et $27$ par $-1$ et $-2$ modulo $29$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $26!$ modulo $29$ ?",
+            "propositions": [
+              "$14$",
+              "$28$",
+              "$1$",
+              "$15$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$29$ est premier, donc $28! \\equiv -1 \\pmod{29}$ (théorème de Wilson). Or $28! = 28 \\times 27 \\times 26!$ avec $28 \\equiv -1$ et $27 \\equiv -2 \\pmod{29}$, donc $28! \\equiv (-1)(-2) \\times 26! = 2 \\times 26! \\pmod{29}$. Ainsi $2 \\times 26! \\equiv -1 \\equiv 28 \\pmod{29}$.\n\nL'inverse de $2$ modulo $29$ est $15$, car $2 \\times 15 = 30 = 29 + 1$. Donc $26! \\equiv 15 \\times 28 = 420 = 14 \\times 29 + 14 \\equiv 14 \\pmod{29}$. Vérification : $2 \\times 14 = 28 \\equiv -1 \\pmod{29}$. Le reste cherché est $14$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-wilson-ex2",
+      "carte": "arith-l1-congruences-wilson",
+      "difficulte": 3,
+      "titre": "Factorielles complémentaires modulo un nombre premier",
+      "enonce": "Soit $p$ un nombre premier.\n\n1. Montrer que, pour tout entier $k$ tel que $1 \\leq k \\leq p$, $(k - 1)!\\,(p - k)! \\equiv (-1)^k \\pmod{p}$.\n\n2. Vérifier que $7! = 5\\,040 \\equiv -1 \\pmod{71}$, et en déduire le reste de la division euclidienne de $63!$ par $71$ (on admet que $71$ est premier).",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $(p - 1)! = (k - 1)! \\times k(k + 1) \\cdots (p - 1)$ et remarquer que $p - i \\equiv -i \\pmod{p}$.",
+        "Pour la question 2, appliquer la question 1 avec $p = 71$ et $k = 8$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de $63!$ modulo $71$ ?",
+        "propositions": [
+          "$70$",
+          "$1$",
+          "$0$",
+          "$7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $1 \\leq k \\leq p$, on a $(p - 1)! = (k - 1)! \\times \\prod_{j=k}^{p-1} j$ (produit vide, égal à $1$, si $k = p$). En posant $j = p - i$, ce dernier produit s'écrit $\\prod_{i=1}^{p-k} (p - i) \\equiv \\prod_{i=1}^{p-k} (-i) = (-1)^{p-k}(p - k)! \\pmod{p}$. Le théorème de Wilson donne donc $(-1)^{p-k}\\,(k - 1)!\\,(p - k)! \\equiv -1 \\pmod{p}$, puis, en multipliant par $(-1)^{p-k}$, $(k - 1)!\\,(p - k)! \\equiv (-1)^{p-k+1} \\pmod{p}$. Si $p$ est impair, $p - k + 1$ a la même parité que $k$, d'où $(-1)^k$ ; si $p = 2$, on a $-1 \\equiv 1 \\pmod{2}$ et la congruence vaut quel que soit le signe.\n\n2. $5\\,040 = 71 \\times 71 - 1$, donc $7! \\equiv -1 \\pmod{71}$. Avec $k = 8$ : $7! \\times 63! \\equiv (-1)^{8} = 1 \\pmod{71}$, soit $-63! \\equiv 1$, donc $63! \\equiv -1 \\equiv 70 \\pmod{71}$. Le reste est $70$ ; autrement dit, $71$ divise $63! + 1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $p$ un nombre premier.\n\n1. Montrer que, pour tout entier $k$ tel que $1 \\leq k \\leq p$, $(k - 1)!\\,(p - k)! \\equiv (-1)^k \\pmod{p}$.\n\n2. Vérifier que $8! = 40\\,320 \\equiv -1 \\pmod{61}$, et en déduire le reste de la division euclidienne de $52!$ par $61$ (on admet que $61$ est premier).",
+          "indices": [
+            "Écrire $(p - 1)! = (k - 1)! \\times k(k + 1) \\cdots (p - 1)$ et remarquer que $p - i \\equiv -i \\pmod{p}$.",
+            "Pour la question 2, appliquer la question 1 avec $p = 61$ et $k = 9$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $52!$ modulo $61$ ?",
+            "propositions": [
+              "$1$",
+              "$60$",
+              "$0$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $1 \\leq k \\leq p$, on a $(p - 1)! = (k - 1)! \\times \\prod_{j=k}^{p-1} j$ (produit vide, égal à $1$, si $k = p$). En posant $j = p - i$, ce dernier produit s'écrit $\\prod_{i=1}^{p-k} (p - i) \\equiv \\prod_{i=1}^{p-k} (-i) = (-1)^{p-k}(p - k)! \\pmod{p}$. Le théorème de Wilson donne donc $(-1)^{p-k}\\,(k - 1)!\\,(p - k)! \\equiv -1 \\pmod{p}$, puis, en multipliant par $(-1)^{p-k}$, $(k - 1)!\\,(p - k)! \\equiv (-1)^{p-k+1} \\pmod{p}$. Si $p$ est impair, $p - k + 1$ a la même parité que $k$, d'où $(-1)^k$ ; si $p = 2$, on a $-1 \\equiv 1 \\pmod{2}$ et la congruence vaut quel que soit le signe.\n\n2. $40\\,320 = 661 \\times 61 - 1$, donc $8! \\equiv -1 \\pmod{61}$. Avec $k = 9$ : $8! \\times 52! \\equiv (-1)^{9} = -1 \\pmod{61}$, soit $-52! \\equiv -1$, donc $52! \\equiv 1 \\pmod{61}$. Le reste est $1$ ; autrement dit, $61$ divise $52! - 1$."
+        },
+        {
+          "enonce": "Soit $p$ un nombre premier.\n\n1. Montrer que, pour tout entier $k$ tel que $1 \\leq k \\leq p$, $(k - 1)!\\,(p - k)! \\equiv (-1)^k \\pmod{p}$.\n\n2. Vérifier que $6! = 720 \\equiv -1 \\pmod{103}$, et en déduire le reste de la division euclidienne de $96!$ par $103$ (on admet que $103$ est premier).",
+          "indices": [
+            "Écrire $(p - 1)! = (k - 1)! \\times k(k + 1) \\cdots (p - 1)$ et remarquer que $p - i \\equiv -i \\pmod{p}$.",
+            "Pour la question 2, appliquer la question 1 avec $p = 103$ et $k = 7$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $96!$ modulo $103$ ?",
+            "propositions": [
+              "$1$",
+              "$102$",
+              "$0$",
+              "$7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $1 \\leq k \\leq p$, on a $(p - 1)! = (k - 1)! \\times \\prod_{j=k}^{p-1} j$ (produit vide, égal à $1$, si $k = p$). En posant $j = p - i$, ce dernier produit s'écrit $\\prod_{i=1}^{p-k} (p - i) \\equiv \\prod_{i=1}^{p-k} (-i) = (-1)^{p-k}(p - k)! \\pmod{p}$. Le théorème de Wilson donne donc $(-1)^{p-k}\\,(k - 1)!\\,(p - k)! \\equiv -1 \\pmod{p}$, puis, en multipliant par $(-1)^{p-k}$, $(k - 1)!\\,(p - k)! \\equiv (-1)^{p-k+1} \\pmod{p}$. Si $p$ est impair, $p - k + 1$ a la même parité que $k$, d'où $(-1)^k$ ; si $p = 2$, on a $-1 \\equiv 1 \\pmod{2}$ et la congruence vaut quel que soit le signe.\n\n2. $720 = 7 \\times 103 - 1$, donc $6! \\equiv -1 \\pmod{103}$. Avec $k = 7$ : $6! \\times 96! \\equiv (-1)^{7} = -1 \\pmod{103}$, soit $-96! \\equiv -1$, donc $96! \\equiv 1 \\pmod{103}$. Le reste est $1$ ; autrement dit, $103$ divise $96! - 1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-wilson-ex3",
+      "carte": "arith-l1-congruences-wilson",
+      "difficulte": 4,
+      "titre": "Quand $-1$ est-il un carré modulo $p$ ?",
+      "enonce": "Soit $p$ un nombre premier impair et $m = \\frac{p - 1}{2}$.\n\n1. En regroupant les facteurs $j$ et $p - j$ de $(p - 1)!$, montrer que $(p - 1)! \\equiv (-1)^m (m!)^2 \\pmod{p}$, puis que $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. En déduire que, si $p \\equiv 1 \\pmod{4}$, l'entier $x = m!$ vérifie $x^2 \\equiv -1 \\pmod{p}$.\n\n3. Réciproquement, on suppose qu'il existe $x \\in \\mathbb{Z}$ tel que $x^2 \\equiv -1 \\pmod{p}$. Montrer que $p$ ne divise pas $x$, puis, à l'aide du petit théorème de Fermat, que $p \\equiv 1 \\pmod{4}$.\n\n4. Application : pour $p = 13$, calculer le reste de $6!$ modulo $13$ et vérifier le résultat de la question 2.",
+      "duree_min": 25,
+      "indices": [
+        "Pour $1 \\leq j \\leq m$, $p - j \\equiv -j \\pmod{p}$ : le produit des facteurs $m + 1, \\dots, p - 1$ est congru à $(-1)^m\\, m!$.",
+        "Question 3 : calculer $x^{p-1} = (x^2)^m$ de deux façons, et utiliser $-1 \\not\\equiv 1 \\pmod{p}$ pour $p$ impair."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le reste de $6!$ modulo $13$ ?",
+        "propositions": [
+          "$5$",
+          "$8$",
+          "$12$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Comme $p - 1 = 2m$, les facteurs de $(p - 1)!$ sont $1, \\dots, m$ et $p - 1, \\dots, p - m$. Comme $p - j \\equiv -j \\pmod{p}$, $\\prod_{j=1}^{m} (p - j) \\equiv (-1)^m m! \\pmod{p}$, d'où $(p - 1)! \\equiv (-1)^m (m!)^2$. Le théorème de Wilson donne $(-1)^m (m!)^2 \\equiv -1$ ; en multipliant par $(-1)^m$, on obtient $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. Si $p \\equiv 1 \\pmod{4}$, alors $m = \\frac{p-1}{2}$ est pair, donc $(m!)^2 \\equiv (-1)^{m+1} = -1 \\pmod{p}$.\n\n3. Si $p \\mid x$, alors $x^2 \\equiv 0$, et $0 \\equiv -1 \\pmod{p}$ entraînerait $p \\mid 1$ : impossible. Donc $p \\nmid x$, et le petit théorème de Fermat donne $x^{p-1} \\equiv 1 \\pmod{p}$. Or $x^{p-1} = (x^2)^m \\equiv (-1)^m$. Ainsi $(-1)^m \\equiv 1 \\pmod{p}$ ; comme $p \\geq 3$, $-1 \\not\\equiv 1 \\pmod{p}$, donc $(-1)^m = 1$ : $m$ est pair, c'est-à-dire que $4$ divise $p - 1 = 2m$, soit $p \\equiv 1 \\pmod{4}$.\n\n4. $p = 13 \\equiv 1 \\pmod{4}$ et $m = 6$ : $6! = 720 = 55 \\times 13 + 5$, donc $6! \\equiv 5 \\pmod{13}$. Vérification : $5^2 = 25 = 2 \\times 13 - 1 \\equiv -1 \\pmod{13}$. (L'autre solution de $x^2 \\equiv -1$ dans $\\{0, \\dots, 12\\}$ est $13 - 5 = 8$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $p$ un nombre premier impair et $m = \\frac{p - 1}{2}$.\n\n1. En regroupant les facteurs $j$ et $p - j$ de $(p - 1)!$, montrer que $(p - 1)! \\equiv (-1)^m (m!)^2 \\pmod{p}$, puis que $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. En déduire que, si $p \\equiv 1 \\pmod{4}$, l'entier $x = m!$ vérifie $x^2 \\equiv -1 \\pmod{p}$.\n\n3. Réciproquement, on suppose qu'il existe $x \\in \\mathbb{Z}$ tel que $x^2 \\equiv -1 \\pmod{p}$. Montrer que $p$ ne divise pas $x$, puis, à l'aide du petit théorème de Fermat, que $p \\equiv 1 \\pmod{4}$.\n\n4. Application : pour $p = 17$, calculer le reste de $8!$ modulo $17$ et vérifier le résultat de la question 2.",
+          "indices": [
+            "Pour $1 \\leq j \\leq m$, $p - j \\equiv -j \\pmod{p}$ : le produit des facteurs $m + 1, \\dots, p - 1$ est congru à $(-1)^m\\, m!$.",
+            "Question 3 : calculer $x^{p-1} = (x^2)^m$ de deux façons, et utiliser $-1 \\not\\equiv 1 \\pmod{p}$ pour $p$ impair."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $8!$ modulo $17$ ?",
+            "propositions": [
+              "$13$",
+              "$4$",
+              "$16$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $p - 1 = 2m$, les facteurs de $(p - 1)!$ sont $1, \\dots, m$ et $p - 1, \\dots, p - m$. Comme $p - j \\equiv -j \\pmod{p}$, $\\prod_{j=1}^{m} (p - j) \\equiv (-1)^m m! \\pmod{p}$, d'où $(p - 1)! \\equiv (-1)^m (m!)^2$. Le théorème de Wilson donne $(-1)^m (m!)^2 \\equiv -1$ ; en multipliant par $(-1)^m$, on obtient $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. Si $p \\equiv 1 \\pmod{4}$, alors $m = \\frac{p-1}{2}$ est pair, donc $(m!)^2 \\equiv (-1)^{m+1} = -1 \\pmod{p}$.\n\n3. Si $p \\mid x$, alors $x^2 \\equiv 0$, et $0 \\equiv -1 \\pmod{p}$ entraînerait $p \\mid 1$ : impossible. Donc $p \\nmid x$, et le petit théorème de Fermat donne $x^{p-1} \\equiv 1 \\pmod{p}$. Or $x^{p-1} = (x^2)^m \\equiv (-1)^m$. Ainsi $(-1)^m \\equiv 1 \\pmod{p}$ ; comme $p \\geq 3$, $-1 \\not\\equiv 1 \\pmod{p}$, donc $(-1)^m = 1$ : $m$ est pair, c'est-à-dire que $4$ divise $p - 1 = 2m$, soit $p \\equiv 1 \\pmod{4}$.\n\n4. $p = 17 \\equiv 1 \\pmod{4}$ et $m = 8$. Produits successifs modulo $17$ : $4! = 24 \\equiv 7$, $5! \\equiv 7 \\times 5 = 35 \\equiv 1$, $6! \\equiv 6$, $7! \\equiv 42 \\equiv 8$, $8! \\equiv 8 \\times 8 = 64 \\equiv 13$. Donc $8! \\equiv 13 \\pmod{17}$. Vérification : $13^2 = 169 = 10 \\times 17 - 1 \\equiv -1 \\pmod{17}$. (L'autre solution de $x^2 \\equiv -1$ dans $\\{0, \\dots, 16\\}$ est $17 - 13 = 4$.)"
+        },
+        {
+          "enonce": "Soit $p$ un nombre premier impair et $m = \\frac{p - 1}{2}$.\n\n1. En regroupant les facteurs $j$ et $p - j$ de $(p - 1)!$, montrer que $(p - 1)! \\equiv (-1)^m (m!)^2 \\pmod{p}$, puis que $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. En déduire que, si $p \\equiv 1 \\pmod{4}$, l'entier $x = m!$ vérifie $x^2 \\equiv -1 \\pmod{p}$.\n\n3. Réciproquement, on suppose qu'il existe $x \\in \\mathbb{Z}$ tel que $x^2 \\equiv -1 \\pmod{p}$. Montrer que $p$ ne divise pas $x$, puis, à l'aide du petit théorème de Fermat, que $p \\equiv 1 \\pmod{4}$.\n\n4. Application : pour $p = 29$, calculer le reste de $14!$ modulo $29$ et vérifier le résultat de la question 2.",
+          "indices": [
+            "Pour $1 \\leq j \\leq m$, $p - j \\equiv -j \\pmod{p}$ : le produit des facteurs $m + 1, \\dots, p - 1$ est congru à $(-1)^m\\, m!$.",
+            "Question 3 : calculer $x^{p-1} = (x^2)^m$ de deux façons, et utiliser $-1 \\not\\equiv 1 \\pmod{p}$ pour $p$ impair."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le reste de $14!$ modulo $29$ ?",
+            "propositions": [
+              "$12$",
+              "$17$",
+              "$28$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $p - 1 = 2m$, les facteurs de $(p - 1)!$ sont $1, \\dots, m$ et $p - 1, \\dots, p - m$. Comme $p - j \\equiv -j \\pmod{p}$, $\\prod_{j=1}^{m} (p - j) \\equiv (-1)^m m! \\pmod{p}$, d'où $(p - 1)! \\equiv (-1)^m (m!)^2$. Le théorème de Wilson donne $(-1)^m (m!)^2 \\equiv -1$ ; en multipliant par $(-1)^m$, on obtient $(m!)^2 \\equiv (-1)^{m+1} \\pmod{p}$.\n\n2. Si $p \\equiv 1 \\pmod{4}$, alors $m = \\frac{p-1}{2}$ est pair, donc $(m!)^2 \\equiv (-1)^{m+1} = -1 \\pmod{p}$.\n\n3. Si $p \\mid x$, alors $x^2 \\equiv 0$, et $0 \\equiv -1 \\pmod{p}$ entraînerait $p \\mid 1$ : impossible. Donc $p \\nmid x$, et le petit théorème de Fermat donne $x^{p-1} \\equiv 1 \\pmod{p}$. Or $x^{p-1} = (x^2)^m \\equiv (-1)^m$. Ainsi $(-1)^m \\equiv 1 \\pmod{p}$ ; comme $p \\geq 3$, $-1 \\not\\equiv 1 \\pmod{p}$, donc $(-1)^m = 1$ : $m$ est pair, c'est-à-dire que $4$ divise $p - 1 = 2m$, soit $p \\equiv 1 \\pmod{4}$.\n\n4. $p = 29 \\equiv 1 \\pmod{4}$ et $m = 14$. Produits successifs modulo $29$ : $4! = 24$, $5! \\equiv 120 \\equiv 4$, $6! \\equiv 24$, $7! \\equiv 168 \\equiv 23$, $8! \\equiv 184 \\equiv 10$, $9! \\equiv 90 \\equiv 3$, $10! \\equiv 30 \\equiv 1$, $11! \\equiv 11$, $12! \\equiv 132 \\equiv 16$, $13! \\equiv 208 \\equiv 5$, $14! \\equiv 70 \\equiv 12$. Donc $14! \\equiv 12 \\pmod{29}$. Vérification : $12^2 = 144 = 5 \\times 29 - 1 \\equiv -1 \\pmod{29}$. (L'autre solution de $x^2 \\equiv -1$ dans $\\{0, \\dots, 28\\}$ est $29 - 12 = 17$.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-wilson-ex4",
+      "carte": "arith-l1-congruences-wilson",
+      "difficulte": 4,
+      "titre": "Le produit des inversibles de $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soit $n \\geq 3$ un entier. On note $G = (\\mathbb{Z}/n\\mathbb{Z})^\\times$ le groupe des classes inversibles, $P$ le produit de tous les éléments de $G$ et $E = \\{x \\in G : x^2 = \\overline{1}\\}$.\n\n1. Montrer que l'application $x \\mapsto x^{-1}$ est une bijection de $G \\setminus E$ sur lui-même, sans point fixe, et en déduire que $P$ est égal au produit des éléments de $E$.\n\n2. Montrer que $\\overline{1}$ et $\\overline{-1}$ sont deux éléments distincts de $E$. En déduire que, si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{-1}$, et retrouver ainsi le théorème de Wilson.\n\n3. Pour $n = 16$, déterminer $E$, puis le représentant de $P$ dans $\\{0, \\dots, 15\\}$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : $x$ est un point fixe de $x \\mapsto x^{-1}$ si et seulement si $x^2 = \\overline{1}$ ; regrouper les autres éléments par paires $\\{x, x^{-1}\\}$.",
+        "Question 3 : les éléments de $G$ sont les classes des entiers impairs de $\\{1, \\dots, 15\\}$ ; calculer leurs carrés modulo $16$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le représentant de $P$ dans $\\{0, \\dots, 15\\}$ pour $n = 16$ ?",
+        "propositions": [
+          "$1$",
+          "$15$",
+          "$0$",
+          "$7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. L'inverse d'un élément de $G$ est dans $G$, et $(x^{-1})^{-1} = x$. Si $x \\notin E$, alors $x^{-1} \\notin E$, car $(x^{-1})^2 = (x^2)^{-1}$ ; donc $x \\mapsto x^{-1}$ envoie $G \\setminus E$ dans lui-même. C'est une involution, donc une bijection. Elle n'a pas de point fixe sur $G \\setminus E$ : $x = x^{-1}$ équivaut à $x^2 = \\overline{1}$. Les éléments de $G \\setminus E$ se regroupent donc en paires disjointes $\\{x, x^{-1}\\}$, de produit $\\overline{1}$, et, la multiplication étant commutative, $P = \\prod_{x \\in E} x \\times \\prod_{x \\in G \\setminus E} x = \\prod_{x \\in E} x$.\n\n2. $\\overline{1}$ et $\\overline{-1}$ sont inversibles et de carré $\\overline{1}$ ; ils sont distincts car $n$ ne divise pas $2$ lorsque $n \\geq 3$. Si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{1} \\times \\overline{-1} = \\overline{-1}$. Pour $n = p$ premier impair, $G = \\{\\overline{1}, \\dots, \\overline{p - 1}\\}$, et $\\overline{k}^2 = \\overline{1}$ équivaut à $p \\mid (k - 1)(k + 1)$, donc (lemme d'Euclide) à $\\overline{k} = \\pm\\overline{1}$ : $E = \\{\\overline{1}, \\overline{-1}\\}$ et $\\overline{(p - 1)!} = P = \\overline{-1}$, ce qui est le théorème de Wilson (le cas $p = 2$ se vérifie directement : $1! = 1 \\equiv -1 \\pmod{2}$).\n\n3. Les éléments de $G$ sont les classes des impairs $1, 3, \\dots, 15$. Carrés modulo $16$ : $1^2 = 1$, $3^2 = 9$, $5^2 = 25 \\equiv 9$, $7^2 = 49 \\equiv 1$, $9^2 = 81 \\equiv 1$, $11^2 = 121 \\equiv 9$, $13^2 = 169 \\equiv 9$, $15^2 = 225 \\equiv 1$. Donc $E = \\{\\overline{1}, \\overline{7}, \\overline{9}, \\overline{15}\\}$ et $P = \\overline{1 \\times 7 \\times 9 \\times 15} = \\overline{945}$ ; comme $945 = 59 \\times 16 + 1$, $P = \\overline{1}$. Le représentant est $1$, et non $15$ : ici $E$ a quatre éléments, et la conclusion de la question 2 ne s'applique pas.",
+      "variantes": [
+        {
+          "enonce": "Soit $n \\geq 3$ un entier. On note $G = (\\mathbb{Z}/n\\mathbb{Z})^\\times$ le groupe des classes inversibles, $P$ le produit de tous les éléments de $G$ et $E = \\{x \\in G : x^2 = \\overline{1}\\}$.\n\n1. Montrer que l'application $x \\mapsto x^{-1}$ est une bijection de $G \\setminus E$ sur lui-même, sans point fixe, et en déduire que $P$ est égal au produit des éléments de $E$.\n\n2. Montrer que $\\overline{1}$ et $\\overline{-1}$ sont deux éléments distincts de $E$. En déduire que, si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{-1}$, et retrouver ainsi le théorème de Wilson.\n\n3. Pour $n = 20$, déterminer $E$, puis le représentant de $P$ dans $\\{0, \\dots, 19\\}$.",
+          "indices": [
+            "Question 1 : $x$ est un point fixe de $x \\mapsto x^{-1}$ si et seulement si $x^2 = \\overline{1}$ ; regrouper les autres éléments par paires $\\{x, x^{-1}\\}$.",
+            "Question 3 : les éléments de $G$ sont les classes des entiers de $\\{1, \\dots, 19\\}$ premiers avec $20$ ; calculer leurs carrés modulo $20$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le représentant de $P$ dans $\\{0, \\dots, 19\\}$ pour $n = 20$ ?",
+            "propositions": [
+              "$1$",
+              "$19$",
+              "$0$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. L'inverse d'un élément de $G$ est dans $G$, et $(x^{-1})^{-1} = x$. Si $x \\notin E$, alors $x^{-1} \\notin E$, car $(x^{-1})^2 = (x^2)^{-1}$ ; donc $x \\mapsto x^{-1}$ envoie $G \\setminus E$ dans lui-même. C'est une involution, donc une bijection. Elle n'a pas de point fixe sur $G \\setminus E$ : $x = x^{-1}$ équivaut à $x^2 = \\overline{1}$. Les éléments de $G \\setminus E$ se regroupent donc en paires disjointes $\\{x, x^{-1}\\}$, de produit $\\overline{1}$, et, la multiplication étant commutative, $P = \\prod_{x \\in E} x \\times \\prod_{x \\in G \\setminus E} x = \\prod_{x \\in E} x$.\n\n2. $\\overline{1}$ et $\\overline{-1}$ sont inversibles et de carré $\\overline{1}$ ; ils sont distincts car $n$ ne divise pas $2$ lorsque $n \\geq 3$. Si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{1} \\times \\overline{-1} = \\overline{-1}$. Pour $n = p$ premier impair, $G = \\{\\overline{1}, \\dots, \\overline{p - 1}\\}$, et $\\overline{k}^2 = \\overline{1}$ équivaut à $p \\mid (k - 1)(k + 1)$, donc (lemme d'Euclide) à $\\overline{k} = \\pm\\overline{1}$ : $E = \\{\\overline{1}, \\overline{-1}\\}$ et $\\overline{(p - 1)!} = P = \\overline{-1}$, ce qui est le théorème de Wilson (le cas $p = 2$ se vérifie directement : $1! = 1 \\equiv -1 \\pmod{2}$).\n\n3. Les éléments de $G$ sont les classes de $1, 3, 7, 9, 11, 13, 17, 19$ (les entiers premiers avec $20 = 2^2 \\times 5$). Carrés modulo $20$ : $1^2 = 1$, $3^2 = 9$, $7^2 = 49 \\equiv 9$, $9^2 = 81 \\equiv 1$, $11^2 = 121 \\equiv 1$, $13^2 = 169 \\equiv 9$, $17^2 = 289 \\equiv 9$, $19^2 = 361 \\equiv 1$. Donc $E = \\{\\overline{1}, \\overline{9}, \\overline{11}, \\overline{19}\\}$ et $P = \\overline{1 \\times 9 \\times 11 \\times 19} = \\overline{1\\,881}$ ; comme $1\\,881 = 94 \\times 20 + 1$, $P = \\overline{1}$. Le représentant est $1$, et non $19$ : ici $E$ a quatre éléments, et la conclusion de la question 2 ne s'applique pas."
+        },
+        {
+          "enonce": "Soit $n \\geq 3$ un entier. On note $G = (\\mathbb{Z}/n\\mathbb{Z})^\\times$ le groupe des classes inversibles, $P$ le produit de tous les éléments de $G$ et $E = \\{x \\in G : x^2 = \\overline{1}\\}$.\n\n1. Montrer que l'application $x \\mapsto x^{-1}$ est une bijection de $G \\setminus E$ sur lui-même, sans point fixe, et en déduire que $P$ est égal au produit des éléments de $E$.\n\n2. Montrer que $\\overline{1}$ et $\\overline{-1}$ sont deux éléments distincts de $E$. En déduire que, si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{-1}$, et retrouver ainsi le théorème de Wilson.\n\n3. Pour $n = 9$, déterminer $E$, puis le représentant de $P$ dans $\\{0, \\dots, 8\\}$.",
+          "indices": [
+            "Question 1 : $x$ est un point fixe de $x \\mapsto x^{-1}$ si et seulement si $x^2 = \\overline{1}$ ; regrouper les autres éléments par paires $\\{x, x^{-1}\\}$.",
+            "Question 3 : les éléments de $G$ sont les classes des entiers de $\\{1, \\dots, 8\\}$ non multiples de $3$ ; calculer leurs carrés modulo $9$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le représentant de $P$ dans $\\{0, \\dots, 8\\}$ pour $n = 9$ ?",
+            "propositions": [
+              "$8$",
+              "$1$",
+              "$0$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. L'inverse d'un élément de $G$ est dans $G$, et $(x^{-1})^{-1} = x$. Si $x \\notin E$, alors $x^{-1} \\notin E$, car $(x^{-1})^2 = (x^2)^{-1}$ ; donc $x \\mapsto x^{-1}$ envoie $G \\setminus E$ dans lui-même. C'est une involution, donc une bijection. Elle n'a pas de point fixe sur $G \\setminus E$ : $x = x^{-1}$ équivaut à $x^2 = \\overline{1}$. Les éléments de $G \\setminus E$ se regroupent donc en paires disjointes $\\{x, x^{-1}\\}$, de produit $\\overline{1}$, et, la multiplication étant commutative, $P = \\prod_{x \\in E} x \\times \\prod_{x \\in G \\setminus E} x = \\prod_{x \\in E} x$.\n\n2. $\\overline{1}$ et $\\overline{-1}$ sont inversibles et de carré $\\overline{1}$ ; ils sont distincts car $n$ ne divise pas $2$ lorsque $n \\geq 3$. Si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{1} \\times \\overline{-1} = \\overline{-1}$. Pour $n = p$ premier impair, $G = \\{\\overline{1}, \\dots, \\overline{p - 1}\\}$, et $\\overline{k}^2 = \\overline{1}$ équivaut à $p \\mid (k - 1)(k + 1)$, donc (lemme d'Euclide) à $\\overline{k} = \\pm\\overline{1}$ : $E = \\{\\overline{1}, \\overline{-1}\\}$ et $\\overline{(p - 1)!} = P = \\overline{-1}$, ce qui est le théorème de Wilson (le cas $p = 2$ se vérifie directement : $1! = 1 \\equiv -1 \\pmod{2}$).\n\n3. Les éléments de $G$ sont les classes de $1, 2, 4, 5, 7, 8$ (les entiers non multiples de $3$). Carrés modulo $9$ : $1^2 = 1$, $2^2 = 4$, $4^2 = 16 \\equiv 7$, $5^2 = 25 \\equiv 7$, $7^2 = 49 \\equiv 4$, $8^2 = 64 \\equiv 1$. Donc $E = \\{\\overline{1}, \\overline{8}\\} = \\{\\overline{1}, \\overline{-1}\\}$, et la question 2 donne $P = \\overline{-1} = \\overline{8}$. Vérification directe : $1 \\times 2 \\times 4 \\times 5 \\times 7 \\times 8 = 2\\,240 = 248 \\times 9 + 8$. Le représentant est $8$."
+        }
+      ]
+    }
+  ]
+}
