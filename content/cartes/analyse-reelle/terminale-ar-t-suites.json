@@ -1,0 +1,269 @@
+{
+  "cartes": [
+    {
+      "id": "ar-t-suites-recurrence",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Principe de récurrence",
+      "recto": "Énoncer le principe de récurrence avec ses hypothèses.",
+      "hypotheses": [
+        "$P(n_0)$ est vraie (initialisation).",
+        "Pour **tout** entier $n\\ge n_0$, si $P(n)$ est vraie, alors $P(n+1)$ est vraie (hérédité)."
+      ],
+      "hypotheses_pieges": [
+        "$P(n)$ est vraie pour $n=n_0,n_0+1,\\dots,n_0+10$ (vérification sur des exemples, à la place de l'hérédité).",
+        "Il existe un entier $n\\ge n_0$ tel que $P(n)$ implique $P(n+1)$.",
+        "Pour tout entier $n\\ge n_0+1$, $P(n)$ implique $P(n+1)$ (hérédité à partir du rang $n_0+1$ seulement).",
+        "Pour tout entier $n\\ge n_0$, $P(n+1)$ implique $P(n)$."
+      ],
+      "enonce": "Soient $n_0$ un entier naturel et $P(n)$ une propriété qui dépend d'un entier $n\\ge n_0$. On suppose :\n\n- **initialisation** : $P(n_0)$ est vraie ;\n- **hérédité** : pour tout entier $n\\ge n_0$, si $P(n)$ est vraie, alors $P(n+1)$ est vraie.\n\nAlors $P(n)$ est vraie pour tout entier $n\\ge n_0$.",
+      "enonce_trous": "Soient $n_0\\in\\mathbb{N}$ et $P(n)$ une propriété définie pour tout entier $n\\ge n_0$. Si {{1}} est vraie et si, {{2}}, $P(n)$ implique $P(n+1)$, alors $P(n)$ est vraie pour tout entier $n\\ge n_0$.",
+      "trous": [
+        {
+          "reponse": "$P(n_0)$",
+          "leurres": [
+            "$P(n_0+1)$",
+            "$P(n_0)$ ou $P(n_0+1)$",
+            "$P(n_1)$ pour un certain entier $n_1>n_0$"
+          ]
+        },
+        {
+          "reponse": "pour tout entier $n\\ge n_0$",
+          "leurres": [
+            "pour un entier $n\\ge n_0$",
+            "pour tout entier $n\\ge n_0+1$",
+            "pour une infinité d'entiers $n\\ge n_0$"
+          ]
+        }
+      ],
+      "demo": "Ce principe traduit une propriété fondamentale de $\\mathbb{N}$ ; il est admis en Terminale. On peut le déduire du fait que toute partie non vide de $\\mathbb{N}$ admet un plus petit élément.\n\nSupposons $P(n_0)$ vraie et l'hérédité établie, et notons $A$ l'ensemble des entiers $n\\ge n_0$ pour lesquels $P(n)$ est fausse. Si $A$ était non vide, il aurait un plus petit élément $m$. On a $m\\neq n_0$ car $P(n_0)$ est vraie, donc $m-1\\ge n_0$ ; et $m-1\\notin A$ par minimalité de $m$, donc $P(m-1)$ est vraie. L'hérédité appliquée au rang $m-1$ donne alors $P(m)$ vraie, ce qui contredit $m\\in A$. Donc $A$ est vide : $P(n)$ est vraie pour tout $n\\ge n_0$.",
+      "exemple": "Montrons que $4^n-1$ est divisible par $3$ pour tout $n\\ge0$. Initialisation : $4^0-1=0=3\\times0$. Hérédité : si $4^n-1=3k$ avec $k$ entier, alors $4^{n+1}-1=4(4^n-1)+3=3(4k+1)$. La propriété est donc vraie pour tout $n\\ge0$.",
+      "contre_exemple": "- **L'initialisation est nécessaire** : $P(n)$ : « $3$ divise $4^n+1$ » est héréditaire, car $4^{n+1}+1=4(4^n+1)-3$ ; mais $P(0)$ est fausse ($4^0+1=2$), et en fait $P(n)$ est fausse pour tout $n$ (le reste de $4^n+1$ dans la division par $3$ vaut toujours $2$).\n- **Des vérifications ne remplacent pas l'hérédité** : $n^2-n+41$ est un nombre premier pour $n=0,1,\\dots,40$, mais pas pour $n=41$, car $41^2-41+41=41^2$.\n- **L'hérédité doit valoir dès le rang $n_0$** : avec $n_0=0$, la propriété $P(n)$ : « $n=0$ ou $n\\ge2$ » vérifie $P(0)$ et « $P(n)\\Rightarrow P(n+1)$ » pour tout $n\\ge1$, mais $P(1)$ est fausse.",
+      "affirmations": [
+        {
+          "texte": "Si, pour tout entier $n\\ge0$, $P(n)$ implique $P(n+1)$, alors $P(n)$ est vraie pour tout $n\\ge0$.",
+          "vrai": false,
+          "contre_exemple": "$P(n)$ : « $3$ divise $4^n+1$ » est héréditaire ($4^{n+1}+1=4(4^n+1)-3$), mais fausse pour tout $n$ : $4^n+1$ a pour reste $2$ dans la division par $3$. Il manque l'initialisation."
+        },
+        {
+          "texte": "Si $P(0)$ et $P(1)$ sont vraies et si, pour tout $n\\ge0$, « $P(n)$ et $P(n+1)$ » implique $P(n+2)$, alors $P(n)$ est vraie pour tout $n\\ge0$.",
+          "vrai": true,
+          "justification": "On applique le principe de récurrence à $Q(n)$ : « $P(n)$ et $P(n+1)$ sont vraies ». $Q(0)$ est vraie ; si $Q(n)$ est vraie, $P(n+1)$ l'est, et $P(n+2)$ aussi par hypothèse, donc $Q(n+1)$ est vraie."
+        },
+        {
+          "texte": "Si $P(0)$ est vraie et si, pour tout $n\\ge1$, $P(n)$ implique $P(n+1)$, alors $P(n)$ est vraie pour tout $n\\ge0$.",
+          "vrai": false,
+          "contre_exemple": "$P(n)$ : « $n=0$ ou $n\\ge2$ ». $P(0)$ est vraie ; pour $n\\ge1$, si $P(n)$ est vraie, alors $n\\ge2$, donc $n+1\\ge2$ et $P(n+1)$ est vraie. Pourtant $P(1)$ est fausse : le passage de $0$ à $1$ n'a pas été établi."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-suites-geometrique",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Limite de $(q^n)$ (suites géométriques)",
+      "recto": "Énoncer le théorème donnant le comportement de la suite $(q^n)$ selon le réel $q$, avec ses hypothèses.",
+      "hypotheses": [
+        "$q$ est un réel fixé : il ne dépend pas de $n$.",
+        "Pour $\\lim q^n=0$ : $-1<q<1$.",
+        "Pour $\\lim q^n=+\\infty$ : $q>1$."
+      ],
+      "hypotheses_pieges": [
+        "Pour $\\lim q^n=0$ : $q<1$ suffit.",
+        "Pour $\\lim q_n^{\\,n}=0$ : il suffit que $0<q_n<1$ pour tout $n$, la raison pouvant dépendre de $n$.",
+        "Pour $\\lim q^n=+\\infty$ : $q\\ge1$ suffit.",
+        "Pour $\\lim q^n=+\\infty$ : $|q|>1$ suffit."
+      ],
+      "enonce": "Soit $q$ un réel **fixé** (indépendant de $n$).\n\n- Si $q>1$, $\\lim q^n=+\\infty$.\n- Si $q=1$, $q^n=1$ pour tout $n$, donc $\\lim q^n=1$.\n- Si $-1<q<1$, $\\lim q^n=0$.\n- Si $q\\le-1$, la suite $(q^n)$ n'a pas de limite (ni finie, ni infinie).\n\nPar suite, une suite géométrique $u_n=u_0q^n$ avec $u_0\\neq0$ converge si et seulement si $-1<q\\le1$.",
+      "enonce_trous": "Soit $q$ un réel fixé. Si $q>1$, la suite $(q^n)$ {{1}} ; si $-1<q<1$, elle {{2}} ; si $q\\le-1$, elle {{3}}.",
+      "trous": [
+        {
+          "reponse": "tend vers $+\\infty$",
+          "leurres": [
+            "converge vers $q$",
+            "n'a pas de limite",
+            "converge vers $\\frac{1}{q-1}$"
+          ]
+        },
+        {
+          "reponse": "converge vers $0$",
+          "leurres": [
+            "converge vers $\\frac{1}{1-q}$",
+            "converge vers $q$",
+            "tend vers $-\\infty$ lorsque $q<0$"
+          ]
+        },
+        {
+          "reponse": "n'a pas de limite",
+          "leurres": [
+            "tend vers $-\\infty$",
+            "converge vers $0$",
+            "vérifie $\\lim\\left|q^n\\right|=+\\infty$"
+          ]
+        }
+      ],
+      "demo": "**Inégalité de Bernoulli.** Pour tout réel $a\\ge0$ et tout entier $n\\ge0$, $(1+a)^n\\ge1+na$. Par récurrence sur $n$ : pour $n=0$, $1\\ge1$. Si $(1+a)^n\\ge1+na$, on multiplie par $1+a>0$ : $(1+a)^{n+1}\\ge(1+na)(1+a)=1+(n+1)a+na^2\\ge1+(n+1)a$.\n\n**Cas $q>1$.** On écrit $q=1+a$ avec $a>0$ : $q^n\\ge1+na$, et $1+na\\to+\\infty$ ; par comparaison, $q^n\\to+\\infty$.\n\n**Cas $q=1$** : immédiat. **Cas $q=0$** : $q^n=0$ pour $n\\ge1$.\n\n**Cas $0<|q|<1$.** On a $\\frac{1}{|q|}>1$, donc $\\left(\\frac{1}{|q|}\\right)^n\\to+\\infty$, et $|q|^n=\\frac{1}{(1/|q|)^n}\\to0$ (quotient). Comme $-|q|^n\\le q^n\\le|q|^n$, le théorème des gendarmes donne $q^n\\to0$.\n\n**Cas $q\\le-1$.** Pour tout $n$, $q^{2n}=(q^2)^n\\ge1$ (car $q^2\\ge1$) et $q^{2n+1}=q\\cdot q^{2n}\\le-1$ (car $q\\le-1$ et $q^{2n}\\ge1$). Si $(q^n)$ tendait vers un réel $\\ell$, l'intervalle $\\left]\\ell-1,\\ell+1\\right[$, de longueur $2$, contiendrait tous les termes à partir d'un certain rang, donc deux termes consécutifs dont l'un est $\\ge1$ et l'autre $\\le-1$, distants d'au moins $2$ : c'est impossible. La limite n'est pas $+\\infty$ (sinon $\\left[0,+\\infty\\right[$ contiendrait tous les termes à partir d'un certain rang, or ceux d'indice impair sont $\\le-1$), ni $-\\infty$ (ceux d'indice pair sont $\\ge1$).",
+      "exemple": "Pour $q\\neq1$, $1+q+\\dots+q^n=\\frac{1-q^{n+1}}{1-q}$. Si $-1<q<1$, $q^{n+1}\\to0$, donc $1+q+\\dots+q^n\\to\\frac{1}{1-q}$ ; par exemple $1+\\frac12+\\dots+\\frac1{2^n}\\to2$.",
+      "contre_exemple": "- **La raison doit être fixe** : $q_n=2^{-1/n}=e^{-\\frac{\\ln2}{n}}$ ($n\\ge1$) vérifie $0<q_n<1$, mais $q_n^{\\,n}=2^{-1}=\\frac12$ pour tout $n$ : la suite $(q_n^{\\,n})$ ne tend pas vers $0$.\n- **$q<1$ ne suffit pas** : pour $q=-2$, les termes $(-2)^n$ d'indice pair sont $\\ge1$ et ceux d'indice impair sont $\\le-2$ : pas de limite.\n- **$q\\ge1$ ne suffit pas pour $+\\infty$** : $1^n=1$ pour tout $n$.\n- **$|q|>1$ ne suffit pas pour $+\\infty$** : $(-2)^n$ n'a pas de limite.",
+      "affirmations": [
+        {
+          "texte": "Si $0<q_n<1$ pour tout $n\\ge1$, alors $\\lim q_n^{\\,n}=0$.",
+          "vrai": false,
+          "contre_exemple": "$q_n=2^{-1/n}$ : $0<q_n<1$, mais $q_n^{\\,n}=\\frac12$ pour tout $n$. Le théorème suppose la raison fixe."
+        },
+        {
+          "texte": "Si $q<1$, alors $\\lim q^n=0$.",
+          "vrai": false,
+          "contre_exemple": "$q=-2$ : $(-2)^n$ n'a pas de limite (termes $\\ge1$ pour $n$ pair, $\\le-2$ pour $n$ impair). Il faut $-1<q<1$."
+        },
+        {
+          "texte": "Si $-1<q<1$, alors $\\lim\\left(1+q+\\dots+q^n\\right)=\\frac{1}{1-q}$.",
+          "vrai": true,
+          "justification": "$1+q+\\dots+q^n=\\frac{1-q^{n+1}}{1-q}$ et $q^{n+1}\\to0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-suites-recurrence",
+        "ar-t-gendarmes",
+        "ar-t-suites-comparaison"
+      ]
+    },
+    {
+      "id": "ar-t-suites-operations",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Opérations sur les limites et formes indéterminées",
+      "recto": "Énoncer les règles d'opérations sur les limites de suites (somme, produit, quotient) avec leurs hypothèses, et citer les formes indéterminées.",
+      "hypotheses": [
+        "Les deux suites $(u_n)$ et $(v_n)$ ont chacune une limite (finie ou infinie).",
+        "Pour $\\frac{u_n}{v_n}\\to\\frac{\\ell}{\\ell'}$ : la limite $\\ell'$ de $(v_n)$ est non nulle.",
+        "Pour une limite infinie de $\\frac{u_n}{v_n}$ lorsque $v_n\\to0$ (et $u_n\\to\\ell\\neq0$) : $v_n$ garde un signe constant à partir d'un certain rang."
+      ],
+      "hypotheses_pieges": [
+        "Pour une limite infinie de $\\frac{u_n}{v_n}$ lorsque $v_n\\to0$ (et $u_n\\to\\ell\\neq0$) : il suffit que $v_n\\neq0$ pour tout $n$.",
+        "Pour $u_nv_n\\to0$ : il suffit que $u_n\\to0$, quelle que soit la limite de $(v_n)$.",
+        "Pour $u_n+v_n\\to+\\infty$ : il suffit que $u_n\\to+\\infty$, quelle que soit la limite de $(v_n)$."
+      ],
+      "enonce": "Soient $(u_n)$ et $(v_n)$ deux suites qui ont **chacune une limite**, finie ou infinie ; $\\ell$ et $\\ell'$ désignent des réels.\n\n- **Somme.** Si $u_n\\to\\ell$ et $v_n\\to\\ell'$, alors $u_n+v_n\\to\\ell+\\ell'$. Si $u_n$ tend vers $\\ell$ ou vers $+\\infty$, et si $v_n\\to+\\infty$, alors $u_n+v_n\\to+\\infty$ (de même avec $-\\infty$).\n- **Produit.** Si $u_n\\to\\ell$ et $v_n\\to\\ell'$, alors $u_nv_n\\to\\ell\\ell'$. Si $u_n$ tend vers $\\ell\\neq0$ ou vers un infini, et si $v_n$ tend vers un infini, alors $u_nv_n$ tend vers $+\\infty$ ou $-\\infty$ selon la règle des signes.\n- **Quotient** (avec $v_n\\neq0$). Si $u_n\\to\\ell$ et $v_n\\to\\ell'$ avec $\\ell'\\neq0$, alors $\\frac{u_n}{v_n}\\to\\frac{\\ell}{\\ell'}$. Si $u_n\\to\\ell$ et si $v_n$ tend vers un infini, alors $\\frac{u_n}{v_n}\\to0$. Si $u_n$ tend vers un infini et $v_n\\to\\ell'\\neq0$, ou si $u_n$ tend vers $\\ell\\neq0$ ou vers un infini et $v_n\\to0$ **en gardant un signe constant** à partir d'un certain rang, alors $\\frac{u_n}{v_n}$ tend vers $+\\infty$ ou $-\\infty$ selon la règle des signes.\n\n**Formes indéterminées** : $+\\infty-\\infty$, $0\\times\\infty$, $\\frac{\\infty}{\\infty}$ et $\\frac{0}{0}$. Dans ces cas, les règles ne permettent pas de conclure : la limite dépend des suites (elle peut ne pas exister), et l'on transforme l'écriture (factorisation par le terme prépondérant, quantité conjuguée…).",
+      "enonce_trous": "Si $u_n\\to\\ell$ et $v_n\\to\\ell'$ avec {{1}}, alors $\\frac{u_n}{v_n}\\to\\frac{\\ell}{\\ell'}$. Si $u_n\\to\\ell>0$ et si $v_n$ tend vers $0$ {{2}}, alors $\\frac{u_n}{v_n}\\to+\\infty$. Les formes $+\\infty-\\infty$, $0\\times\\infty$, $\\frac{\\infty}{\\infty}$ et $\\frac00$ sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\ell'\\neq0$",
+          "leurres": [
+            "$\\ell\\neq0$",
+            "$\\ell'\\ge0$",
+            "$v_n\\neq0$ pour tout $n$"
+          ]
+        },
+        {
+          "reponse": "en restant strictement positive à partir d'un certain rang",
+          "leurres": [
+            "en restant non nulle",
+            "en restant strictement négative à partir d'un certain rang",
+            "de façon quelconque"
+          ]
+        },
+        {
+          "reponse": "des formes indéterminées : les règles seules ne permettent pas de conclure",
+          "leurres": [
+            "des cas où la limite vaut toujours $0$",
+            "des cas où la suite n'a jamais de limite",
+            "des cas où la limite est toujours infinie"
+          ]
+        }
+      ],
+      "demo": "Ces règles sont admises en Terminale ; elles se démontrent à partir de la définition de la limite. Deux exemples.\n\n**Somme de limites finies.** Soit $\\varepsilon>0$. Il existe $N_1$ tel que $|u_n-\\ell|<\\frac{\\varepsilon}{2}$ pour $n\\ge N_1$, et $N_2$ tel que $|v_n-\\ell'|<\\frac{\\varepsilon}{2}$ pour $n\\ge N_2$. Pour $n\\ge\\max(N_1,N_2)$, l'inégalité triangulaire donne $|(u_n+v_n)-(\\ell+\\ell')|\\le|u_n-\\ell|+|v_n-\\ell'|<\\varepsilon$.\n\n**Quotient par une suite qui tend vers $0$ en restant positive.** Supposons $u_n\\to\\ell>0$, $v_n\\to0$ et $v_n>0$ à partir d'un rang $N_0$. Il existe $N_1$ tel que $u_n\\ge\\frac{\\ell}{2}$ pour $n\\ge N_1$. Soit $A>0$ : il existe $N_2\\ge N_0$ tel que $0<v_n<\\frac{\\ell}{2A}$ pour $n\\ge N_2$. Pour $n\\ge\\max(N_1,N_2)$, $\\frac{u_n}{v_n}\\ge\\frac{\\ell}{2}\\cdot\\frac{1}{v_n}>\\frac{\\ell}{2}\\cdot\\frac{2A}{\\ell}=A$. Donc $\\frac{u_n}{v_n}\\to+\\infty$.\n\n**Le produit** se traite avec $u_nv_n-\\ell\\ell'=(u_n-\\ell)v_n+\\ell(v_n-\\ell')$, la suite $(v_n)$ étant bornée car convergente.",
+      "exemple": "$u_n=\\frac{3n^2-n}{2n^2+5}$ est une forme $\\frac{\\infty}{\\infty}$. En factorisant par $n^2$ : $u_n=\\frac{3-\\frac1n}{2+\\frac{5}{n^2}}\\to\\frac32$. De même, $\\sqrt{n+1}-\\sqrt n$ (forme $\\infty-\\infty$) s'écrit $\\frac{1}{\\sqrt{n+1}+\\sqrt n}$, qui tend vers $0$.",
+      "contre_exemple": "- **$+\\infty-\\infty$ peut donner n'importe quoi** : $n^2-n\\to+\\infty$ ; $n-n^2\\to-\\infty$ ; $(n+c)-n\\to c$ pour tout réel $c$ ; $\\left(n+(-1)^n\\right)-n=(-1)^n$ n'a pas de limite.\n- **$0\\times\\infty$ aussi** (pour $n\\ge1$) : $\\frac1n\\times n^2\\to+\\infty$, $\\frac{1}{n^2}\\times n\\to0$, $\\frac cn\\times n=c$, $\\frac{(-1)^n}{n}\\times n=(-1)^n$ sans limite.\n- **Le signe constant est nécessaire** : $u_n=1$ et $v_n=\\frac{(-1)^n}{n+1}$ : $v_n\\to0$ et $v_n\\neq0$, mais $\\frac{u_n}{v_n}=(-1)^n(n+1)$ prend des valeurs arbitrairement grandes positives et négatives : pas de limite.",
+      "affirmations": [
+        {
+          "texte": "Si $u_n\\to+\\infty$ et $v_n\\to+\\infty$, alors $\\frac{u_n}{v_n}\\to1$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=n^2$ et $v_n=n$ ($n\\ge1$) : $\\frac{u_n}{v_n}=n\\to+\\infty$. C'est une forme indéterminée."
+        },
+        {
+          "texte": "Si $(u_n+v_n)$ converge, alors $(u_n)$ et $(v_n)$ convergent.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ et $v_n=-(-1)^n$ : $u_n+v_n=0$ pour tout $n$, mais ni $(u_n)$ ni $(v_n)$ n'a de limite."
+        },
+        {
+          "texte": "Si $u_n\\to+\\infty$ et si $(v_n)$ est minorée, alors $u_n+v_n\\to+\\infty$.",
+          "vrai": true,
+          "justification": "Si $v_n\\ge m$ pour tout $n$, alors $u_n+v_n\\ge u_n+m$, et $u_n+m\\to+\\infty$ : on conclut par le théorème de comparaison."
+        },
+        {
+          "texte": "Si $u_n\\to0$ et si $(v_n)$ est bornée, alors $u_nv_n\\to0$.",
+          "vrai": true,
+          "justification": "Si $|v_n|\\le M$ pour tout $n$, alors $0\\le|u_nv_n|\\le M|u_n|$ et $M|u_n|\\to0$ : par les gendarmes, $|u_nv_n|\\to0$, donc $u_nv_n\\to0$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-suites-comparaison",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Théorème de comparaison (divergence vers l'infini)",
+      "recto": "Énoncer le théorème de comparaison pour les suites qui tendent vers l'infini, avec ses hypothèses.",
+      "hypotheses": [
+        "Il existe un rang $N$ tel que $u_n\\le v_n$ pour tout $n\\ge N$.",
+        "$\\lim u_n=+\\infty$ (pour conclure que $\\lim v_n=+\\infty$)."
+      ],
+      "hypotheses_pieges": [
+        "$v_n\\le u_n$ à partir d'un certain rang.",
+        "$u_n\\le v_n$ pour une infinité d'entiers $n$ (pas forcément pour tous à partir d'un certain rang).",
+        "$(u_n)$ n'est pas majorée (à la place de $\\lim u_n=+\\infty$)."
+      ],
+      "enonce": "Soient $(u_n)$ et $(v_n)$ deux suites réelles telles que $u_n\\le v_n$ **à partir d'un certain rang** $N$.\n\n- Si $\\lim u_n=+\\infty$, alors $\\lim v_n=+\\infty$.\n- Si $\\lim v_n=-\\infty$, alors $\\lim u_n=-\\infty$.",
+      "enonce_trous": "Si {{1}} et si $\\lim u_n=+\\infty$, alors {{2}}.",
+      "trous": [
+        {
+          "reponse": "$u_n\\le v_n$ à partir d'un certain rang",
+          "leurres": [
+            "$u_n\\ge v_n$ à partir d'un certain rang",
+            "$u_n\\le v_n$ pour une infinité d'entiers $n$",
+            "$|u_n|\\le|v_n|$ à partir d'un certain rang"
+          ]
+        },
+        {
+          "reponse": "$\\lim v_n=+\\infty$",
+          "leurres": [
+            "$(v_n)$ converge",
+            "$\\lim(v_n-u_n)=0$",
+            "$\\lim v_n=-\\infty$"
+          ]
+        }
+      ],
+      "demo": "Soit $A$ un réel. Comme $\\lim u_n=+\\infty$, il existe un rang $N_1$ tel que $u_n\\ge A$ pour tout $n\\ge N_1$. Pour $n\\ge\\max(N,N_1)$, on a alors $v_n\\ge u_n\\ge A$. Ainsi, tout intervalle $\\left[A,+\\infty\\right[$ contient tous les termes $v_n$ à partir d'un certain rang : $\\lim v_n=+\\infty$.\n\nLe second point s'en déduit en appliquant le premier aux suites $(-v_n)$ et $(-u_n)$ : $-v_n\\le-u_n$ à partir du rang $N$ et $-v_n\\to+\\infty$, donc $-u_n\\to+\\infty$, c'est-à-dire $u_n\\to-\\infty$.",
+      "exemple": "$v_n=2n+(-1)^n$ vérifie $v_n\\ge2n-1$, et $2n-1\\to+\\infty$ : donc $v_n\\to+\\infty$, sans avoir à étudier $(-1)^n$, qui n'a pas de limite. De même, pour $n\\ge1$, $\\frac{n^2}{n+1}\\ge\\frac{n^2}{2n}=\\frac n2$, donc $\\frac{n^2}{n+1}\\to+\\infty$.",
+      "contre_exemple": "- **Sens de l'inégalité** : $u_n=n$ et $v_n=0$ : $v_n\\le u_n$ et $u_n\\to+\\infty$, mais $v_n\\to0$.\n- **« Pour une infinité d'entiers » ne suffit pas** : $u_n=n$, et $v_n=n$ si $n$ est pair, $v_n=0$ si $n$ est impair. On a $u_n\\le v_n$ pour tout $n$ pair et $u_n\\to+\\infty$, mais $(v_n)$ n'a pas de limite (ses termes d'indice impair sont nuls, ceux d'indice pair ne sont pas majorés).\n- **« Non majorée » ne suffit pas** : $u_n=v_n$, égal à $n$ si $n$ est pair et à $0$ si $n$ est impair : $u_n\\le v_n$ et $(u_n)$ n'est pas majorée, mais $(v_n)$ ne tend pas vers $+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $u_n\\le v_n$ pour tout $n$ et si $\\lim v_n=+\\infty$, alors $\\lim u_n=+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=0$ et $v_n=n$ : la grande suite tend vers $+\\infty$, pas la petite. Le théorème transmet $+\\infty$ de la petite suite à la grande."
+        },
+        {
+          "texte": "Si $v_n\\ge n^2-10n$ pour tout $n$, alors $\\lim v_n=+\\infty$.",
+          "vrai": true,
+          "justification": "$n^2-10n=n(n-10)$ est le produit de deux suites qui tendent vers $+\\infty$, donc tend vers $+\\infty$ ; on applique le théorème."
+        },
+        {
+          "texte": "Une suite qui n'est pas majorée tend vers $+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=n$ si $n$ est pair, $u_n=0$ si $n$ est impair : $(u_n)$ n'est pas majorée, mais une infinité de ses termes sont nuls, donc elle ne tend pas vers $+\\infty$. (Pour une suite **croissante**, en revanche, « non majorée » entraîne $\\lim u_n=+\\infty$.)"
+        }
+      ],
+      "prerequis": []
+    }
+  ]
+}

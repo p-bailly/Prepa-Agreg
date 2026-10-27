@@ -1,0 +1,1157 @@
+{
+  "exercices": [
+    {
+      "id": "fond-l1-ensembles-composition-ex1",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 1,
+      "titre": "Injective ou surjective ?",
+      "enonce": "On considère l'application $f : \\mathbb{Z} \\to \\mathbb{Z}$, $n \\mapsto 2n + 3$. Est-elle injective ? surjective ?",
+      "duree_min": 3,
+      "indices": [
+        "Pour la surjectivité, regarder la parité de $f(n)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la nature de $f$ ?",
+        "propositions": [
+          "injective et non surjective",
+          "surjective et non injective",
+          "bijective",
+          "ni injective ni surjective"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Injectivité.** Si $2n + 3 = 2n' + 3$, alors $2n = 2n'$, donc $n = n'$ : $f$ est injective.\n\n**Surjectivité.** Pour tout $n \\in \\mathbb{Z}$, $f(n) = 2(n + 1) + 1$ est impair ; l'entier $0$ (ou tout entier pair) n'a donc pas d'antécédent : $f$ n'est pas surjective.\n\nConclusion : $f$ est injective et non surjective.",
+      "variantes": [
+        {
+          "enonce": "On considère l'application $f : \\mathbb{Z} \\to \\mathbb{Z}$, $n \\mapsto 5 - n$. Est-elle injective ? surjective ?",
+          "indices": [
+            "Calculer $f \\circ f$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la nature de $f$ ?",
+            "propositions": [
+              "injective et non surjective",
+              "surjective et non injective",
+              "bijective",
+              "ni injective ni surjective"
+            ],
+            "bonne": 2
+          },
+          "correction": "Pour tout $n \\in \\mathbb{Z}$, $f(f(n)) = 5 - (5 - n) = n$ : $f \\circ f = \\mathrm{id}_{\\mathbb{Z}}$.\n\nD'après la caractérisation des bijections (avec $h = f$), $f$ est bijective et $f^{-1} = f$. Directement : $5 - n = 5 - n'$ entraîne $n = n'$, et tout $m \\in \\mathbb{Z}$ a pour antécédent $5 - m$."
+        },
+        {
+          "enonce": "On considère l'application $f : \\mathbb{Z} \\to \\mathbb{Z}$, $n \\mapsto \\lfloor n/2 \\rfloor$, où $\\lfloor t \\rfloor$ désigne la partie entière de $t$. Est-elle injective ? surjective ?",
+          "indices": [
+            "Calculer $f(2m)$, puis comparer $f(0)$ et $f(1)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la nature de $f$ ?",
+            "propositions": [
+              "injective et non surjective",
+              "surjective et non injective",
+              "bijective",
+              "ni injective ni surjective"
+            ],
+            "bonne": 1
+          },
+          "correction": "**Surjectivité.** Pour tout $m \\in \\mathbb{Z}$, $f(2m) = \\lfloor m \\rfloor = m$ : $f$ est surjective.\n\n**Injectivité.** $f(0) = 0$ et $f(1) = \\lfloor 1/2 \\rfloor = 0$ avec $0 \\neq 1$ : $f$ n'est pas injective.\n\nConclusion : $f$ est surjective et non injective."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-composition-ex2",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 2,
+      "titre": "Réciproque d'une homographie",
+      "enonce": "Montrer que $f : x \\mapsto \\frac{2x + 1}{x - 3}$ réalise une bijection de $\\mathbb{R} \\setminus \\{3\\}$ sur $\\mathbb{R} \\setminus \\{2\\}$ et déterminer sa réciproque.",
+      "duree_min": 6,
+      "indices": [
+        "Écrire $f(x) = 2 + \\frac{7}{x - 3}$, puis résoudre $f(x) = y$ pour $y \\neq 2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $f^{-1}(y)$ pour $y \\neq 2$ ?",
+        "propositions": [
+          "$\\frac{3y + 1}{y - 2}$",
+          "$\\frac{y - 3}{2y + 1}$",
+          "$\\frac{3y - 1}{y - 2}$",
+          "$\\frac{2y + 1}{y - 3}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $x \\neq 3$, $f(x) = \\frac{2(x - 3) + 7}{x - 3} = 2 + \\frac{7}{x - 3} \\neq 2$ : $f$ envoie bien $\\mathbb{R} \\setminus \\{3\\}$ dans $\\mathbb{R} \\setminus \\{2\\}$.\n\nSoit $y \\neq 2$. Pour $x \\neq 3$ : $f(x) = y \\iff 2x + 1 = y(x - 3) \\iff x(2 - y) = -3y - 1 \\iff x = \\frac{3y + 1}{y - 2}$, et ce réel est bien différent de $3$ puisque $\\frac{3y + 1}{y - 2} = 3 + \\frac{7}{y - 2}$.\n\nTout $y \\neq 2$ a donc exactement un antécédent : $f$ est bijective et $f^{-1}(y) = \\frac{3y + 1}{y - 2}$ pour $y \\in \\mathbb{R} \\setminus \\{2\\}$.",
+      "variantes": [
+        {
+          "enonce": "Montrer que $f : x \\mapsto \\frac{x + 4}{x - 1}$ réalise une bijection de $\\mathbb{R} \\setminus \\{1\\}$ sur $\\mathbb{R} \\setminus \\{1\\}$ et déterminer sa réciproque.",
+          "indices": [
+            "Écrire $f(x) = 1 + \\frac{5}{x - 1}$, puis résoudre $f(x) = y$ pour $y \\neq 1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f^{-1}(y)$ pour $y \\neq 1$ ?",
+            "propositions": [
+              "$\\frac{y + 4}{y - 1}$",
+              "$\\frac{y - 1}{y + 4}$",
+              "$\\frac{y - 4}{y - 1}$",
+              "$\\frac{y + 4}{y + 1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $x \\neq 1$, $f(x) = \\frac{(x - 1) + 5}{x - 1} = 1 + \\frac{5}{x - 1} \\neq 1$ : $f$ envoie $\\mathbb{R} \\setminus \\{1\\}$ dans $\\mathbb{R} \\setminus \\{1\\}$.\n\nSoit $y \\neq 1$. Pour $x \\neq 1$ : $f(x) = y \\iff x + 4 = y(x - 1) \\iff x(y - 1) = y + 4 \\iff x = \\frac{y + 4}{y - 1}$, réel différent de $1$ puisque $\\frac{y + 4}{y - 1} = 1 + \\frac{5}{y - 1}$.\n\nDonc $f$ est bijective et $f^{-1}(y) = \\frac{y + 4}{y - 1}$ : $f$ est sa propre réciproque ($f \\circ f = \\mathrm{id}$)."
+        },
+        {
+          "enonce": "Montrer que $f : x \\mapsto \\frac{3x - 2}{x + 2}$ réalise une bijection de $\\mathbb{R} \\setminus \\{-2\\}$ sur $\\mathbb{R} \\setminus \\{3\\}$ et déterminer sa réciproque.",
+          "indices": [
+            "Écrire $f(x) = 3 - \\frac{8}{x + 2}$, puis résoudre $f(x) = y$ pour $y \\neq 3$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f^{-1}(y)$ pour $y \\neq 3$ ?",
+            "propositions": [
+              "$\\frac{2y + 2}{3 - y}$",
+              "$\\frac{y + 2}{3y - 2}$",
+              "$\\frac{2y - 2}{3 - y}$",
+              "$\\frac{2y + 2}{y - 3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $x \\neq -2$, $f(x) = \\frac{3(x + 2) - 8}{x + 2} = 3 - \\frac{8}{x + 2} \\neq 3$ : $f$ envoie $\\mathbb{R} \\setminus \\{-2\\}$ dans $\\mathbb{R} \\setminus \\{3\\}$.\n\nSoit $y \\neq 3$. Pour $x \\neq -2$ : $f(x) = y \\iff 3x - 2 = y(x + 2) \\iff x(3 - y) = 2y + 2 \\iff x = \\frac{2y + 2}{3 - y}$, réel différent de $-2$ puisque $\\frac{2y + 2}{3 - y} = -2 + \\frac{8}{3 - y}$.\n\nDonc $f$ est bijective et $f^{-1}(y) = \\frac{2y + 2}{3 - y}$ pour $y \\in \\mathbb{R} \\setminus \\{3\\}$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-composition-ex3",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 3,
+      "titre": "Compter des surjections",
+      "enonce": "Combien existe-t-il de surjections de $\\{1, 2, 3, 4\\}$ sur $\\{a, b, c\\}$ ?",
+      "duree_min": 8,
+      "indices": [
+        "Une application de $\\{1, \\dots, 4\\}$ dans $\\{a, b, c\\}$ est surjective si et seulement si chaque lettre a au moins un antécédent : classer les surjections selon le nombre d'antécédents de chaque lettre.",
+        "Les nombres d'antécédents des $3$ lettres sont des entiers $\\geq 1$ de somme $4$ : énumérer les répartitions possibles, puis compter pour chacune le choix des antécédents."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de surjections ?",
+        "propositions": [
+          "$36$",
+          "$81$",
+          "$72$",
+          "$33$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les nombres d'antécédents de $a$, $b$, $c$ sont des entiers $\\geq 1$ de somme $4$ : une lettre en a exactement $2$ et les deux autres en ont $1$.\n\nOn choisit la paire d'éléments qui ont la même image : $\\binom{4}{2} = 6$ choix. Il reste trois « blocs » (la paire et deux singletons) à envoyer bijectivement sur $\\{a, b, c\\}$ : $3! = 6$ choix. D'où $6 \\times 6 = 36$ surjections.\n\nVérification par complémentaire : il y a $3^4 = 81$ applications ; celles qui évitent une lettre donnée sont $2^4 = 16$, celles qui en évitent deux données sont $1$ ; par la formule du crible, le nombre d'applications non surjectives est $3 \\times 16 - 3 \\times 1 = 45$, et $81 - 45 = 36$.",
+      "variantes": [
+        {
+          "enonce": "Combien existe-t-il de surjections de $\\{1, 2, 3, 4, 5\\}$ sur $\\{a, b, c\\}$ ?",
+          "indices": [
+            "Une application de $\\{1, \\dots, 5\\}$ dans $\\{a, b, c\\}$ est surjective si et seulement si chaque lettre a au moins un antécédent : classer les surjections selon le nombre d'antécédents de chaque lettre.",
+            "Les nombres d'antécédents des $3$ lettres sont des entiers $\\geq 1$ de somme $5$ : énumérer les répartitions possibles, puis compter pour chacune le choix des antécédents."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de surjections ?",
+            "propositions": [
+              "$150$",
+              "$243$",
+              "$540$",
+              "$147$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les nombres d'antécédents de $a$, $b$, $c$ sont des entiers $\\geq 1$ de somme $5$ : à l'ordre près, $(3, 1, 1)$ ou $(2, 2, 1)$.\n\n- Type $(3, 1, 1)$ : on choisit la lettre à trois antécédents ($3$ choix), ses antécédents ($\\binom{5}{3} = 10$ choix), puis on envoie bijectivement les deux éléments restants sur les deux autres lettres ($2$ choix) : $60$.\n- Type $(2, 2, 1)$ : on choisit la lettre à un antécédent ($3$ choix) et cet antécédent ($5$ choix), puis on répartit les quatre éléments restants entre les deux autres lettres, deux chacune ($\\binom{4}{2} = 6$ choix) : $90$.\n\nTotal : $60 + 90 = 150$. Vérification par le crible : $3^5 - 3 \\times 2^5 + 3 \\times 1^5 = 243 - 96 + 3 = 150$."
+        },
+        {
+          "enonce": "Combien existe-t-il de surjections de $\\{1, 2, 3, 4, 5\\}$ sur $\\{a, b\\}$ ?",
+          "indices": [
+            "Une application de $\\{1, \\dots, 5\\}$ dans $\\{a, b\\}$ est surjective si et seulement si chaque lettre a au moins un antécédent : classer les surjections selon le nombre d'antécédents de chaque lettre.",
+            "Les nombres d'antécédents des $2$ lettres sont des entiers $\\geq 1$ de somme $5$ : énumérer les répartitions possibles, puis compter pour chacune le choix des antécédents."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de surjections ?",
+            "propositions": [
+              "$30$",
+              "$32$",
+              "$31$",
+              "$160$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Une application de $\\{1, \\dots, 5\\}$ dans $\\{a, b\\}$ est déterminée par la partie $A$ des éléments envoyés sur $a$ ; elle est surjective si et seulement si $A \\neq \\emptyset$ et $A \\neq \\{1, \\dots, 5\\}$.\n\nIl y a $2^5 = 32$ parties, donc $32 - 2 = 30$ surjections (on retire les deux applications constantes)."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-composition-ex4",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 3,
+      "titre": "Quand la composée est bijective",
+      "enonce": "Soient $f : E \\to F$ et $g : F \\to G$ deux applications.\n\n1. On suppose $g \\circ f$ injective et $f$ surjective. Montrer que $g$ est injective.\n\n2. On suppose $g \\circ f$ surjective et $g$ injective. Montrer que $f$ est surjective.\n\n3. On suppose $g \\circ f$ bijective. Montrer que $f$ est bijective si et seulement si $g$ est bijective.",
+      "duree_min": 10,
+      "indices": [
+        "Pour 1, partir de $y, y' \\in F$ tels que $g(y) = g(y')$ et les écrire comme images par $f$.",
+        "Pour 2, partir de $y \\in F$ et chercher un antécédent de $g(y)$ par $g \\circ f$."
+      ],
+      "correction": "1. Soient $y, y' \\in F$ tels que $g(y) = g(y')$. Comme $f$ est surjective, $y = f(x)$ et $y' = f(x')$ pour certains $x, x' \\in E$. Alors $(g \\circ f)(x) = (g \\circ f)(x')$, donc $x = x'$ par injectivité de $g \\circ f$, et $y = y'$.\n\n2. Soit $y \\in F$. Comme $g \\circ f$ est surjective, il existe $x \\in E$ tel que $g(f(x)) = g(y)$. Par injectivité de $g$, $f(x) = y$ : $y$ a un antécédent par $f$.\n\n3. Comme $g \\circ f$ est injective, $f$ est injective ; comme $g \\circ f$ est surjective, $g$ est surjective. Si $f$ est bijective, elle est surjective, donc $g$ est injective par 1, et $g$ est bijective. Si $g$ est bijective, elle est injective, donc $f$ est surjective par 2, et $f$ est bijective."
+    },
+    {
+      "id": "fond-l1-ensembles-composition-ex5",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 4,
+      "titre": "Trois applications en cycle",
+      "enonce": "Soient $E$, $F$, $G$ trois ensembles et $f : E \\to F$, $g : F \\to G$, $h : G \\to E$ trois applications. On suppose que $h \\circ g \\circ f$ et $g \\circ f \\circ h$ sont injectives et que $f \\circ h \\circ g$ est surjective.\n\n1. Montrer que $f$ est bijective.\n\n2. Montrer que $h \\circ g$ est bijective.\n\n3. En déduire que $g$ et $h$ sont bijectives.",
+      "duree_min": 15,
+      "indices": [
+        "Utiliser plusieurs fois : si $u \\circ v$ est injective, $v$ l'est ; si $u \\circ v$ est surjective, $u$ l'est.",
+        "Une fois $f$ bijective, composer $h \\circ g \\circ f$ à droite par $f^{-1}$ et $f \\circ h \\circ g$ à gauche par $f^{-1}$."
+      ],
+      "correction": "1. $h \\circ g \\circ f = (h \\circ g) \\circ f$ est injective, donc $f$ est injective. $f \\circ h \\circ g = f \\circ (h \\circ g)$ est surjective, donc $f$ est surjective. Ainsi $f$ est bijective.\n\n2. $h \\circ g = (h \\circ g \\circ f) \\circ f^{-1}$ est la composée de deux injections, donc est injective. $h \\circ g = f^{-1} \\circ (f \\circ h \\circ g)$ est la composée de deux surjections, donc est surjective. Ainsi $h \\circ g : F \\to E$ est bijective.\n\n3. $h \\circ g$ injective entraîne $g$ injective ; $h \\circ g$ surjective entraîne $h$ surjective. Par ailleurs $g \\circ f \\circ h = (g \\circ f) \\circ h$ est injective, donc $h$ est injective. Ainsi $h$ est bijective, et $g = h^{-1} \\circ (h \\circ g)$ est bijective comme composée de deux bijections."
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence-ex1",
+      "carte": "fond-l1-ensembles-equivalence",
+      "difficulte": 1,
+      "titre": "Relation définie par une application",
+      "enonce": "On définit sur $\\mathbb{R}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff f(x) = f(y)$, où $f : \\mathbb{R} \\to \\mathbb{R}$ est l'application $x \\mapsto x^2$.\n\nMontrer que $\\mathcal{R}$ est une relation d'équivalence et déterminer la classe de $-3$.",
+      "duree_min": 3,
+      "indices": [
+        "La classe de $-3$ est l'ensemble des $y$ tels que $f(y) = f(-3)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la classe de $-3$ ?",
+        "propositions": [
+          "$\\{-3, 3\\}$",
+          "$\\{-3\\}$",
+          "$\\{9\\}$",
+          "$[-3, 3]$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'égalité dans $\\mathbb{R}$ est réflexive, symétrique et transitive ; il en est donc de même de $\\mathcal{R}$ : $f(x) = f(x)$ ; si $f(x) = f(y)$, alors $f(y) = f(x)$ ; si $f(x) = f(y)$ et $f(y) = f(z)$, alors $f(x) = f(z)$.\n\nLa classe de $-3$ est $\\{y \\in \\mathbb{R} \\mid y^2 = 9\\} = \\{-3, 3\\}$.",
+      "variantes": [
+        {
+          "enonce": "On définit sur $\\mathbb{R}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff f(x) = f(y)$, où $f : \\mathbb{R} \\to \\mathbb{R}$ est l'application $x \\mapsto x^2 - 2x$.\n\nMontrer que $\\mathcal{R}$ est une relation d'équivalence et déterminer la classe de $3$.",
+          "indices": [
+            "La classe de $3$ est l'ensemble des $y$ tels que $f(y) = f(3)$ : factoriser."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la classe de $3$ ?",
+            "propositions": [
+              "$\\{-1, 3\\}$",
+              "$\\{3\\}$",
+              "$\\{1, 3\\}$",
+              "$\\{-3, 3\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'égalité dans $\\mathbb{R}$ est réflexive, symétrique et transitive ; il en est donc de même de $\\mathcal{R}$ : $f(x) = f(x)$ ; si $f(x) = f(y)$, alors $f(y) = f(x)$ ; si $f(x) = f(y)$ et $f(y) = f(z)$, alors $f(x) = f(z)$.\n\n$f(3) = 9 - 6 = 3$. La classe de $3$ est $\\{y \\mid y^2 - 2y = 3\\}$ ; or $y^2 - 2y - 3 = (y - 3)(y + 1)$, donc la classe est $\\{-1, 3\\}$."
+        },
+        {
+          "enonce": "On définit sur $\\mathbb{R}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff f(x) = f(y)$, où $f : \\mathbb{R} \\to \\mathbb{R}$ est l'application $x \\mapsto \\lfloor x \\rfloor$.\n\nMontrer que $\\mathcal{R}$ est une relation d'équivalence et déterminer la classe de $\\frac{5}{2}$.\n\n(On note $\\lfloor x \\rfloor$ la partie entière de $x$.)",
+          "indices": [
+            "La classe de $5/2$ est l'ensemble des $y$ tels que $\\lfloor y \\rfloor = \\lfloor 5/2 \\rfloor$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la classe de $5/2$ ?",
+            "propositions": [
+              "$\\left[2, 3\\right[$",
+              "$\\left]2, 3\\right]$",
+              "$\\{2\\}$",
+              "$[2, 3]$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'égalité dans $\\mathbb{R}$ est réflexive, symétrique et transitive ; il en est donc de même de $\\mathcal{R}$ : $f(x) = f(x)$ ; si $f(x) = f(y)$, alors $f(y) = f(x)$ ; si $f(x) = f(y)$ et $f(y) = f(z)$, alors $f(x) = f(z)$.\n\n$\\lfloor 5/2 \\rfloor = 2$. La classe de $5/2$ est $\\{y \\mid \\lfloor y \\rfloor = 2\\} = \\left[2, 3\\right[$ : elle contient $2$ (car $\\lfloor 2 \\rfloor = 2$) mais pas $3$ (car $\\lfloor 3 \\rfloor = 3$)."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence-ex2",
+      "carte": "fond-l1-ensembles-equivalence",
+      "difficulte": 2,
+      "titre": "Carrés modulo un entier",
+      "enonce": "On définit sur $\\mathbb{Z}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff x^2 \\equiv y^2 \\pmod{7}$. Justifier que c'est une relation d'équivalence et déterminer le nombre de ses classes.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer $x^2$ modulo $7$ pour $x = 0, 1, \\dots, 6$ et compter les valeurs distinctes."
+      ],
+      "reponse_finale": {
+        "question": "Combien $\\mathcal{R}$ a-t-elle de classes d'équivalence ?",
+        "propositions": [
+          "$4$",
+          "$7$",
+          "$3$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\mathcal{R}$ est la relation « même image » pour l'application qui à $x$ associe la classe de $x^2$ dans $\\mathbb{Z}/7\\mathbb{Z}$ : c'est donc une relation d'équivalence (réflexivité, symétrie et transitivité de l'égalité des classes). Ses classes correspondent aux valeurs prises par $x^2$ modulo $7$, qui ne dépendent que de $x$ modulo $7$.\n\nPour $x = 0, 1, 2, 3, 4, 5, 6$, on trouve $x^2 \\equiv 0, 1, 4, 2, 2, 4, 1 \\pmod 7$. Les valeurs prises sont $0, 1, 2, 4$ : il y a $4$ classes, à savoir les entiers $x \\equiv 0$, $x \\equiv \\pm 1$, $x \\equiv \\pm 2$ et $x \\equiv \\pm 3$ modulo $7$.",
+      "variantes": [
+        {
+          "enonce": "On définit sur $\\mathbb{Z}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff x^2 \\equiv y^2 \\pmod{8}$. Justifier que c'est une relation d'équivalence et déterminer le nombre de ses classes.",
+          "indices": [
+            "Calculer $x^2$ modulo $8$ pour $x = 0, 1, \\dots, 7$ et compter les valeurs distinctes."
+          ],
+          "reponse_finale": {
+            "question": "Combien $\\mathcal{R}$ a-t-elle de classes d'équivalence ?",
+            "propositions": [
+              "$3$",
+              "$8$",
+              "$4$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\mathcal{R}$ est la relation « même image » pour l'application qui à $x$ associe la classe de $x^2$ dans $\\mathbb{Z}/8\\mathbb{Z}$ : c'est donc une relation d'équivalence (réflexivité, symétrie et transitivité de l'égalité des classes). Ses classes correspondent aux valeurs prises par $x^2$ modulo $8$, qui ne dépendent que de $x$ modulo $8$.\n\nPour $x = 0, 1, \\dots, 7$, on trouve $x^2 \\equiv 0, 1, 4, 1, 0, 1, 4, 1 \\pmod 8$. Les valeurs prises sont $0, 1, 4$ : il y a $3$ classes, à savoir les $x \\equiv 0$ ou $4$, les $x$ impairs, et les $x \\equiv 2$ ou $6$ modulo $8$."
+        },
+        {
+          "enonce": "On définit sur $\\mathbb{Z}$ la relation $x \\mathrel{\\mathcal{R}} y \\iff x^2 \\equiv y^2 \\pmod{11}$. Justifier que c'est une relation d'équivalence et déterminer le nombre de ses classes.",
+          "indices": [
+            "Calculer $x^2$ modulo $11$ pour $x = 0, 1, \\dots, 10$ et compter les valeurs distinctes."
+          ],
+          "reponse_finale": {
+            "question": "Combien $\\mathcal{R}$ a-t-elle de classes d'équivalence ?",
+            "propositions": [
+              "$6$",
+              "$11$",
+              "$5$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\mathcal{R}$ est la relation « même image » pour l'application qui à $x$ associe la classe de $x^2$ dans $\\mathbb{Z}/11\\mathbb{Z}$ : c'est donc une relation d'équivalence (réflexivité, symétrie et transitivité de l'égalité des classes). Ses classes correspondent aux valeurs prises par $x^2$ modulo $11$, qui ne dépendent que de $x$ modulo $11$.\n\nPour $x = 0, 1, \\dots, 10$, on trouve $x^2 \\equiv 0, 1, 4, 9, 5, 3, 3, 5, 9, 4, 1 \\pmod{11}$. Les valeurs prises sont $0, 1, 3, 4, 5, 9$ : il y a $6$ classes."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence-ex3",
+      "carte": "fond-l1-ensembles-equivalence",
+      "difficulte": 3,
+      "titre": "Compter les relations d'équivalence",
+      "enonce": "Combien existe-t-il de relations d'équivalence sur l'ensemble $\\{1, 2, 3, 4\\}$ ?",
+      "duree_min": 8,
+      "indices": [
+        "Une relation d'équivalence sur un ensemble est déterminée par la partition formée par ses classes, et réciproquement : compter les partitions.",
+        "Classer les partitions de $\\{1, \\dots, 4\\}$ selon les cardinaux de leurs parties : $4$ ; $3 + 1$ ; $2 + 2$ ; $2 + 1 + 1$ ; $1 + 1 + 1 + 1$."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de relations d'équivalence ?",
+        "propositions": [
+          "$15$",
+          "$16$",
+          "$24$",
+          "$18$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les relations d'équivalence sur $E$ sont en bijection avec les partitions de $E$. On compte les partitions de $\\{1, 2, 3, 4\\}$ selon leur type :\n\n- une seule partie : $1$ ;\n- $3 + 1$ : choisir le singleton, $4$ ;\n- $2 + 2$ : choisir le partenaire de $1$, ce qui détermine l'autre paire, $3$ (et non $\\binom{4}{2} = 6$, qui compte chaque partition deux fois) ;\n- $2 + 1 + 1$ : choisir la paire, $\\binom{4}{2} = 6$ ;\n- quatre singletons : $1$.\n\nTotal : $1 + 4 + 3 + 6 + 1 = 15$ relations d'équivalence.",
+      "variantes": [
+        {
+          "enonce": "Combien existe-t-il de relations d'équivalence sur l'ensemble $\\{1, 2, 3\\}$ ?",
+          "indices": [
+            "Une relation d'équivalence sur un ensemble est déterminée par la partition formée par ses classes, et réciproquement : compter les partitions.",
+            "Classer les partitions de $\\{1, \\dots, 3\\}$ selon les cardinaux de leurs parties : $3$ ; $2 + 1$ ; $1 + 1 + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de relations d'équivalence ?",
+            "propositions": [
+              "$5$",
+              "$6$",
+              "$8$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les relations d'équivalence sur $E$ sont en bijection avec les partitions de $E$. On compte les partitions de $\\{1, 2, 3\\}$ selon leur type :\n\n- une seule partie : $1$ ;\n- $2 + 1$ : choisir le singleton, $3$ ;\n- trois singletons : $1$.\n\nTotal : $1 + 3 + 1 = 5$ relations d'équivalence."
+        },
+        {
+          "enonce": "Combien existe-t-il de relations d'équivalence sur l'ensemble $\\{1, 2, 3, 4, 5\\}$ ?",
+          "indices": [
+            "Une relation d'équivalence sur un ensemble est déterminée par la partition formée par ses classes, et réciproquement : compter les partitions.",
+            "Classer les partitions de $\\{1, \\dots, 5\\}$ selon les cardinaux de leurs parties : $5$ ; $4 + 1$ ; $3 + 2$ ; $3 + 1 + 1$ ; $2 + 2 + 1$ ; $2 + 1 + 1 + 1$ ; $1 + 1 + 1 + 1 + 1$."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de relations d'équivalence ?",
+            "propositions": [
+              "$52$",
+              "$67$",
+              "$120$",
+              "$32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les relations d'équivalence sur $E$ sont en bijection avec les partitions de $E$. On compte les partitions de $\\{1, \\dots, 5\\}$ selon leur type :\n\n- $5$ : $1$ ;\n- $4 + 1$ : choisir le singleton, $5$ ;\n- $3 + 2$ : choisir la paire, $\\binom{5}{2} = 10$ ;\n- $3 + 1 + 1$ : choisir la partie à trois éléments, $\\binom{5}{3} = 10$ ;\n- $2 + 2 + 1$ : choisir le singleton ($5$ choix), puis découper les quatre éléments restants en deux paires ($3$ choix), soit $15$ (et non $30$, qui compterait chaque partition deux fois) ;\n- $2 + 1 + 1 + 1$ : choisir la paire, $\\binom{5}{2} = 10$ ;\n- cinq singletons : $1$.\n\nTotal : $1 + 5 + 10 + 10 + 15 + 10 + 1 = 52$ relations d'équivalence."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence-ex4",
+      "carte": "fond-l1-ensembles-equivalence",
+      "difficulte": 3,
+      "titre": "Relation circulaire",
+      "enonce": "Soit $\\mathcal{R}$ une relation sur un ensemble $E$. On dit que $\\mathcal{R}$ est circulaire si, pour tous $x, y, z \\in E$, $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} z$ entraînent $z \\mathrel{\\mathcal{R}} x$.\n\n1. Montrer qu'une relation réflexive et circulaire est une relation d'équivalence.\n\n2. Montrer qu'une relation d'équivalence est circulaire.\n\n3. Montrer par un exemple que, dans la question 1, l'hypothèse de réflexivité ne peut pas être supprimée.",
+      "duree_min": 10,
+      "indices": [
+        "Pour la symétrie, appliquer la circularité au triplet $(x, y, y)$.",
+        "Pour la question 3, chercher une relation sur un ensemble à deux éléments pour laquelle la circularité est vraie faute de couples enchaînés."
+      ],
+      "correction": "1. **Symétrie.** Si $x \\mathrel{\\mathcal{R}} y$, comme $y \\mathrel{\\mathcal{R}} y$ (réflexivité), la circularité appliquée à $(x, y, y)$ donne $y \\mathrel{\\mathcal{R}} x$. **Transitivité.** Si $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} z$, la circularité donne $z \\mathrel{\\mathcal{R}} x$, puis la symétrie $x \\mathrel{\\mathcal{R}} z$. Avec la réflexivité, $\\mathcal{R}$ est une relation d'équivalence.\n\n2. Si $\\mathcal{R}$ est une relation d'équivalence et si $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} z$, la transitivité donne $x \\mathrel{\\mathcal{R}} z$ et la symétrie $z \\mathrel{\\mathcal{R}} x$.\n\n3. Sur $E = \\{1, 2\\}$, soit $\\mathcal{R} = \\{(1, 2)\\}$. Il n'existe aucun couple $x \\mathrel{\\mathcal{R}} y$, $y \\mathrel{\\mathcal{R}} z$ (il faudrait $2 \\mathrel{\\mathcal{R}} z$), donc $\\mathcal{R}$ est circulaire. Mais elle n'est pas réflexive ($1 \\mathrel{\\mathcal{R}} 1$ est faux), ni même symétrique ($2 \\mathrel{\\mathcal{R}} 1$ est faux) : ce n'est pas une relation d'équivalence."
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence-ex5",
+      "carte": "fond-l1-ensembles-equivalence",
+      "difficulte": 4,
+      "titre": "Fractions : une relation d'équivalence à vérifier avec soin",
+      "enonce": "On définit sur $\\mathbb{Z} \\times (\\mathbb{Z} \\setminus \\{0\\})$ la relation $(p, q) \\sim (p', q') \\iff pq' = p'q$.\n\n1. Montrer que $\\sim$ est une relation d'équivalence.\n\n2. Montrer que l'application qui à la classe de $(p, q)$ associe le rationnel $p/q$ est bien définie, et qu'elle est bijective de l'ensemble des classes sur $\\mathbb{Q}$.\n\n3. On définit la même relation sur $\\mathbb{Z} \\times \\mathbb{Z}$ tout entier. Laquelle des trois propriétés d'une relation d'équivalence est perdue ? Justifier par un exemple.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la transitivité, multiplier les deux égalités par des facteurs bien choisis et simplifier par $q'$ : c'est là que sert l'hypothèse $q' \\neq 0$.",
+        "Pour la question 3, faire intervenir le couple $(0, 0)$."
+      ],
+      "correction": "1. **Réflexivité** : $pq = pq$. **Symétrie** : $pq' = p'q$ s'écrit aussi $p'q = pq'$. **Transitivité** : si $pq' = p'q$ et $p'q'' = p''q'$, on multiplie la première égalité par $q''$ et la seconde par $q$ : $pq'q'' = p'qq''$ et $p'q''q = p''q'q$. Donc $pq'q'' = p''qq'$, soit $q'(pq'' - p''q) = 0$, et comme $q' \\neq 0$, $pq'' = p''q$.\n\n2. Pour $q, q' \\neq 0$, en divisant par $qq' \\neq 0$ : $pq' = p'q \\iff p/q = p'/q'$. Le sens direct montre que $p/q$ ne dépend pas du représentant choisi (l'application est bien définie) ; le sens réciproque montre qu'elle est injective. Elle est surjective, car tout rationnel s'écrit $p/q$ avec $p \\in \\mathbb{Z}$ et $q \\in \\mathbb{Z} \\setminus \\{0\\}$.\n\n3. La réflexivité et la symétrie restent vraies (mêmes calculs), mais la **transitivité** est perdue : $(1, 0) \\sim (0, 0)$ car $1 \\times 0 = 0 \\times 0$, et $(0, 0) \\sim (0, 1)$ car $0 \\times 1 = 0 \\times 0$, mais $(1, 0) \\not\\sim (0, 1)$ car $1 \\times 1 \\neq 0 \\times 0$. Le calcul de la question 1 échoue précisément parce qu'on ne peut plus simplifier par $q' = 0$."
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte-ex1",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "difficulte": 2,
+      "titre": "Une suite définie par tous ses termes précédents",
+      "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 1$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+1} = u_0 + u_1 + \\dots + u_n$. Conjecturer une expression de $u_n$ pour $n \\geq 1$, la démontrer par récurrence forte, puis calculer $u_{10}$.",
+      "duree_min": 6,
+      "indices": [
+        "Calculer $u_1, u_2, u_3, u_4$ pour conjecturer, puis utiliser $1 + 2 + \\dots + 2^{n-1} = 2^n - 1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $u_{10}$ ?",
+        "propositions": [
+          "$512$",
+          "$1024$",
+          "$256$",
+          "$1023$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Premiers termes : $u_1 = 1$, $u_2 = 2$, $u_3 = 4$, $u_4 = 8$. On conjecture $u_n = 2^{n-1}$ pour $n \\geq 1$.\n\nSoit $P(n)$ : « $u_n = 2^{n-1}$ », pour $n \\geq 1$. **Initialisation** : $u_1 = u_0 = 1 = 2^0$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies. Alors $u_{n+1} = u_0 + \\sum_{k=1}^{n} u_k = 1 + \\sum_{k=1}^{n} 2^{k-1} = 1 + (2^n - 1) = 2^n$, ce qui est $P(n+1)$. L'hérédité utilise tous les termes précédents : c'est une récurrence forte.\n\nDonc $u_{10} = 2^9 = 512$.",
+      "variantes": [
+        {
+          "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 3$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+1} = u_0 + u_1 + \\dots + u_n$. Conjecturer une expression de $u_n$ pour $n \\geq 1$, la démontrer par récurrence forte, puis calculer $u_{8}$.",
+          "indices": [
+            "Calculer $u_1, u_2, u_3, u_4$ pour conjecturer, puis utiliser $1 + 2 + \\dots + 2^{n-1} = 2^n - 1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_{8}$ ?",
+            "propositions": [
+              "$384$",
+              "$768$",
+              "$192$",
+              "$765$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Premiers termes : $u_1 = 3$, $u_2 = 6$, $u_3 = 12$, $u_4 = 24$. On conjecture $u_n = 3 \\cdot 2^{n-1}$ pour $n \\geq 1$.\n\nSoit $P(n)$ : « $u_n = 3 \\cdot 2^{n-1}$ », pour $n \\geq 1$. **Initialisation** : $u_1 = u_0 = 3$, ce qui est la formule pour $n = 1$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies. Alors $u_{n+1} = u_0 + \\sum_{k=1}^{n} u_k = 3 + 3\\sum_{k=1}^{n} 2^{k-1} = 3 + 3(2^n - 1) = 3 \\cdot 2^n$, ce qui est $P(n+1)$. L'hérédité utilise tous les termes précédents : c'est une récurrence forte.\n\nDonc $u_{8} = 3 \\cdot 2^7 = 384$."
+        },
+        {
+          "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 5$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+1} = u_0 + u_1 + \\dots + u_n$. Conjecturer une expression de $u_n$ pour $n \\geq 1$, la démontrer par récurrence forte, puis calculer $u_{7}$.",
+          "indices": [
+            "Calculer $u_1, u_2, u_3, u_4$ pour conjecturer, puis utiliser $1 + 2 + \\dots + 2^{n-1} = 2^n - 1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_{7}$ ?",
+            "propositions": [
+              "$320$",
+              "$640$",
+              "$160$",
+              "$635$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Premiers termes : $u_1 = 5$, $u_2 = 10$, $u_3 = 20$, $u_4 = 40$. On conjecture $u_n = 5 \\cdot 2^{n-1}$ pour $n \\geq 1$.\n\nSoit $P(n)$ : « $u_n = 5 \\cdot 2^{n-1}$ », pour $n \\geq 1$. **Initialisation** : $u_1 = u_0 = 5$, ce qui est la formule pour $n = 1$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies. Alors $u_{n+1} = u_0 + \\sum_{k=1}^{n} u_k = 5 + 5\\sum_{k=1}^{n} 2^{k-1} = 5 + 5(2^n - 1) = 5 \\cdot 2^n$, ce qui est $P(n+1)$. L'hérédité utilise tous les termes précédents : c'est une récurrence forte.\n\nDonc $u_{7} = 5 \\cdot 2^6 = 320$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte-ex2",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "difficulte": 3,
+      "titre": "Des timbres de 3 et de 5",
+      "enonce": "Montrer par récurrence forte que tout entier $n \\geq 8$ s'écrit $n = 3x + 5y$ avec $x, y \\in \\mathbb{N}$. Quel est le plus grand entier naturel qui ne s'écrit pas sous cette forme ?",
+      "duree_min": 10,
+      "indices": [
+        "Vérifier à la main les cas $n = 8, 9, 10$.",
+        "Pour un entier $n + 1$ au-delà de ces cas, l'entier $n + 1 - 3$ est au moins égal à $8$ : lui appliquer l'hypothèse de récurrence forte."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand entier naturel qui ne s'écrit pas $3x + 5y$ avec $x, y \\in \\mathbb{N}$ ?",
+        "propositions": [
+          "$7$",
+          "$8$",
+          "$4$",
+          "$15$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $P(n)$ : « $n = 3x + 5y$ avec $x, y \\in \\mathbb{N}$ », pour $n \\geq 8$. **Initialisation** : $8 = 3 + 5$. **Hérédité** : soit $n \\geq 8$ tel que $P(8), \\dots, P(n)$ soient vraies. Si $n + 1 = 9$ ou $10$, on écrit $9 = 3 \\times 3$ et $10 = 5 \\times 2$. Sinon $n + 1 \\geq 11$, donc $8 \\leq n + 1 - 3 = n - 2 \\leq n$ et $P(n - 2)$ donne $n - 2 = 3x + 5y$, d'où $n + 1 = 3(x + 1) + 5y$. Ainsi $P(n)$ est vraie pour tout $n \\geq 8$.\n\nL'entier $7$ ne s'écrit pas ainsi : avec $y = 0$, $7$ n'est pas multiple de $3$ ; avec $y = 1$, $2$ non plus ; et $y \\geq 2$ donne $5y > 7$. Le plus grand entier non représentable est donc $7$.",
+      "variantes": [
+        {
+          "enonce": "Montrer par récurrence forte que tout entier $n \\geq 12$ s'écrit $n = 3x + 7y$ avec $x, y \\in \\mathbb{N}$. Quel est le plus grand entier naturel qui ne s'écrit pas sous cette forme ?",
+          "indices": [
+            "Vérifier à la main les cas $n = 12, 13, 14$.",
+            "Pour un entier $n + 1$ au-delà de ces cas, l'entier $n + 1 - 3$ est au moins égal à $12$ : lui appliquer l'hypothèse de récurrence forte."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus grand entier naturel qui ne s'écrit pas $3x + 7y$ avec $x, y \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$11$",
+              "$12$",
+              "$8$",
+              "$21$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $P(n)$ : « $n = 3x + 7y$ avec $x, y \\in \\mathbb{N}$ », pour $n \\geq 12$. **Initialisation** : $12 = 3 \\times 4$. **Hérédité** : soit $n \\geq 12$ tel que $P(12), \\dots, P(n)$ soient vraies. Si $n + 1 = 13$ ou $14$, on écrit $13 = 3 \\times 2 + 7$ et $14 = 7 \\times 2$. Sinon $n + 1 \\geq 15$, donc $12 \\leq n - 2 \\leq n$ et $P(n - 2)$ donne $n - 2 = 3x + 7y$, d'où $n + 1 = 3(x + 1) + 7y$.\n\nL'entier $11$ ne s'écrit pas ainsi : avec $y = 0$, $11$ n'est pas multiple de $3$ ; avec $y = 1$, $4$ non plus ; et $y \\geq 2$ donne $7y > 11$. Le plus grand entier non représentable est donc $11$."
+        },
+        {
+          "enonce": "Montrer par récurrence forte que tout entier $n \\geq 24$ s'écrit $n = 5x + 7y$ avec $x, y \\in \\mathbb{N}$. Quel est le plus grand entier naturel qui ne s'écrit pas sous cette forme ?",
+          "indices": [
+            "Vérifier à la main les cas $n = 24, 25, 26, 27, 28$.",
+            "Pour un entier $n + 1$ au-delà de ces cas, l'entier $n + 1 - 5$ est au moins égal à $24$ : lui appliquer l'hypothèse de récurrence forte."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus grand entier naturel qui ne s'écrit pas $5x + 7y$ avec $x, y \\in \\mathbb{N}$ ?",
+            "propositions": [
+              "$23$",
+              "$24$",
+              "$18$",
+              "$35$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $P(n)$ : « $n = 5x + 7y$ avec $x, y \\in \\mathbb{N}$ », pour $n \\geq 24$. **Initialisation** : $24 = 5 \\times 2 + 7 \\times 2$. **Hérédité** : soit $n \\geq 24$ tel que $P(24), \\dots, P(n)$ soient vraies. Si $n + 1 \\in \\{25, 26, 27, 28\\}$ : $25 = 5 \\times 5$, $26 = 5 + 7 \\times 3$, $27 = 5 \\times 4 + 7$, $28 = 7 \\times 4$. Sinon $n + 1 \\geq 29$, donc $24 \\leq n + 1 - 5 = n - 4 \\leq n$ et $P(n - 4)$ donne $n - 4 = 5x + 7y$, d'où $n + 1 = 5(x + 1) + 7y$.\n\nL'entier $23$ ne s'écrit pas ainsi : pour $y = 0, 1, 2, 3$, les nombres $23 - 7y = 23, 16, 9, 2$ ne sont pas multiples de $5$, et $y \\geq 4$ donne $7y > 23$. Le plus grand entier non représentable est donc $23$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte-ex3",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "difficulte": 3,
+      "titre": "Irrationalité de $\\sqrt{2}$ par le bon ordre",
+      "enonce": "En appliquant le principe du bon ordre à l'ensemble $A = \\{q \\in \\mathbb{N}^* \\mid q\\sqrt{2} \\in \\mathbb{N}\\}$, démontrer que $\\sqrt{2}$ est irrationnel.",
+      "duree_min": 10,
+      "indices": [
+        "Raisonner par l'absurde : si $\\sqrt{2}$ est rationnel, $A$ est non vide ; soit $q$ son plus petit élément.",
+        "Considérer l'entier $q' = q\\sqrt{2} - q$ et montrer que $q' \\in A$ et $q' < q$."
+      ],
+      "correction": "Supposons $\\sqrt{2} = a/b$ avec $a \\in \\mathbb{N}$ et $b \\in \\mathbb{N}^*$. Alors $b\\sqrt{2} = a \\in \\mathbb{N}$, donc $b \\in A$ : $A$ est une partie non vide de $\\mathbb{N}$, qui a un plus petit élément $q$. Posons $p = q\\sqrt{2} \\in \\mathbb{N}$ et $q' = p - q \\in \\mathbb{Z}$.\n\nComme $1 < 2 < 4$, on a $1 < \\sqrt{2} < 2$, donc $q < p < 2q$ et $0 < q' < q$ : $q' \\in \\mathbb{N}^*$. De plus $q'\\sqrt{2} = p\\sqrt{2} - q\\sqrt{2} = 2q - p$, car $p\\sqrt{2} = q\\sqrt{2} \\cdot \\sqrt{2} = 2q$ ; et $2q - p$ est un entier strictement positif (car $p < 2q$). Donc $q' \\in A$ avec $q' < q$, ce qui contredit la minimalité de $q$.\n\nAinsi $\\sqrt{2}$ est irrationnel."
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte-ex4",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "difficulte": 4,
+      "titre": "Décomposition de Zeckendorf",
+      "enonce": "On note $(F_k)_{k \\in \\mathbb{N}}$ la suite de Fibonacci : $F_0 = 0$, $F_1 = 1$ et $F_{k+2} = F_{k+1} + F_k$, de sorte que $F_2 = 1$, $F_3 = 2$, $F_4 = 3$, $F_5 = 5$, $F_6 = 8$, etc.\n\n1. Montrer que la suite $(F_k)_{k \\geq 2}$ est strictement croissante et que $F_k \\geq k - 1$ pour $k \\geq 2$.\n\n2. Montrer par récurrence forte que tout entier $n \\geq 1$ est une somme de termes $F_k$ ($k \\geq 2$) d'indices distincts et deux à deux non consécutifs. On pourra considérer le plus grand $k$ tel que $F_k \\leq n$.\n\n3. Appliquer la méthode de la question 2 à l'entier $100$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour l'hérédité, si $F_k \\leq n + 1 < F_{k+1}$ et $F_k \\neq n + 1$, poser $r = n + 1 - F_k$ et montrer que $r < F_{k-1}$.",
+        "Les termes de la décomposition de $r$ sont alors tous strictement inférieurs à $F_{k-1}$ : leurs indices sont au plus $k - 2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle décomposition de $100$ la méthode fournit-elle ?",
+        "propositions": [
+          "$89 + 8 + 3$",
+          "$55 + 34 + 8 + 3$",
+          "$89 + 8 + 2 + 1$",
+          "$89 + 5 + 3 + 2 + 1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Par récurrence immédiate, $F_k \\geq 1$ pour $k \\geq 1$. Pour $k \\geq 2$, $F_{k+1} = F_k + F_{k-1} > F_k$ car $F_{k-1} \\geq 1$ : la suite $(F_k)_{k \\geq 2}$ est strictement croissante. Comme ce sont des entiers, $F_{k+1} \\geq F_k + 1$, d'où $F_k \\geq F_2 + (k - 2) = k - 1$ par récurrence.\n\n2. Soit $P(n)$ la propriété annoncée. **Initialisation** : $1 = F_2$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies ; montrons $P(n+1)$. L'ensemble des $k \\geq 2$ tels que $F_k \\leq n + 1$ est non vide ($F_2 = 1$) et majoré (car $F_k \\geq k - 1$), donc a un plus grand élément $k$ ; comme $F_3 = 2 \\leq n + 1$, $k \\geq 3$, et $F_k \\leq n + 1 < F_{k+1}$. Si $F_k = n + 1$, c'est fini. Sinon $r = n + 1 - F_k$ vérifie $1 \\leq r \\leq n$ et $r < F_{k+1} - F_k = F_{k-1}$. Par $P(r)$, $r$ est une somme de termes $F_j$ d'indices $j \\geq 2$ distincts et non consécutifs ; chacun vérifie $F_j \\leq r < F_{k-1}$, donc $j < k - 1$ par croissance (et $k - 1 \\geq 2$), soit $j \\leq k - 2$. En ajoutant $F_k$, on obtient une écriture de $n + 1$ d'indices distincts et deux à deux non consécutifs : $P(n+1)$ est vraie.\n\n3. On a $F_{11} = 89 \\leq 100 < 144 = F_{12}$, d'où $r = 11$ ; puis $F_6 = 8 \\leq 11 < 13 = F_7$, d'où $r = 3 = F_4$. Donc $100 = 89 + 8 + 3 = F_{11} + F_6 + F_4$, d'indices deux à deux non consécutifs.",
+      "variantes": [
+        {
+          "enonce": "On note $(F_k)_{k \\in \\mathbb{N}}$ la suite de Fibonacci : $F_0 = 0$, $F_1 = 1$ et $F_{k+2} = F_{k+1} + F_k$, de sorte que $F_2 = 1$, $F_3 = 2$, $F_4 = 3$, $F_5 = 5$, $F_6 = 8$, etc.\n\n1. Montrer que la suite $(F_k)_{k \\geq 2}$ est strictement croissante et que $F_k \\geq k - 1$ pour $k \\geq 2$.\n\n2. Montrer par récurrence forte que tout entier $n \\geq 1$ est une somme de termes $F_k$ ($k \\geq 2$) d'indices distincts et deux à deux non consécutifs. On pourra considérer le plus grand $k$ tel que $F_k \\leq n$.\n\n3. Appliquer la méthode de la question 2 à l'entier $50$.",
+          "reponse_finale": {
+            "question": "Quelle décomposition de $50$ la méthode fournit-elle ?",
+            "propositions": [
+              "$34 + 13 + 3$",
+              "$34 + 8 + 5 + 3$",
+              "$21 + 13 + 8 + 5 + 3$",
+              "$34 + 13 + 2 + 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Par récurrence immédiate, $F_k \\geq 1$ pour $k \\geq 1$. Pour $k \\geq 2$, $F_{k+1} = F_k + F_{k-1} > F_k$ car $F_{k-1} \\geq 1$ : la suite $(F_k)_{k \\geq 2}$ est strictement croissante. Comme ce sont des entiers, $F_{k+1} \\geq F_k + 1$, d'où $F_k \\geq F_2 + (k - 2) = k - 1$ par récurrence.\n\n2. Soit $P(n)$ la propriété annoncée. **Initialisation** : $1 = F_2$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies ; montrons $P(n+1)$. L'ensemble des $k \\geq 2$ tels que $F_k \\leq n + 1$ est non vide ($F_2 = 1$) et majoré (car $F_k \\geq k - 1$), donc a un plus grand élément $k$ ; comme $F_3 = 2 \\leq n + 1$, $k \\geq 3$, et $F_k \\leq n + 1 < F_{k+1}$. Si $F_k = n + 1$, c'est fini. Sinon $r = n + 1 - F_k$ vérifie $1 \\leq r \\leq n$ et $r < F_{k+1} - F_k = F_{k-1}$. Par $P(r)$, $r$ est une somme de termes $F_j$ d'indices $j \\geq 2$ distincts et non consécutifs ; chacun vérifie $F_j \\leq r < F_{k-1}$, donc $j < k - 1$ par croissance (et $k - 1 \\geq 2$), soit $j \\leq k - 2$. En ajoutant $F_k$, on obtient une écriture de $n + 1$ d'indices distincts et deux à deux non consécutifs : $P(n+1)$ est vraie.\n\n3. On a $F_9 = 34 \\leq 50 < 55 = F_{10}$, d'où $r = 16$ ; puis $F_7 = 13 \\leq 16 < 21 = F_8$, d'où $r = 3 = F_4$. Donc $50 = 34 + 13 + 3 = F_9 + F_7 + F_4$, d'indices deux à deux non consécutifs."
+        },
+        {
+          "enonce": "On note $(F_k)_{k \\in \\mathbb{N}}$ la suite de Fibonacci : $F_0 = 0$, $F_1 = 1$ et $F_{k+2} = F_{k+1} + F_k$, de sorte que $F_2 = 1$, $F_3 = 2$, $F_4 = 3$, $F_5 = 5$, $F_6 = 8$, etc.\n\n1. Montrer que la suite $(F_k)_{k \\geq 2}$ est strictement croissante et que $F_k \\geq k - 1$ pour $k \\geq 2$.\n\n2. Montrer par récurrence forte que tout entier $n \\geq 1$ est une somme de termes $F_k$ ($k \\geq 2$) d'indices distincts et deux à deux non consécutifs. On pourra considérer le plus grand $k$ tel que $F_k \\leq n$.\n\n3. Appliquer la méthode de la question 2 à l'entier $200$.",
+          "reponse_finale": {
+            "question": "Quelle décomposition de $200$ la méthode fournit-elle ?",
+            "propositions": [
+              "$144 + 55 + 1$",
+              "$144 + 34 + 21 + 1$",
+              "$89 + 55 + 34 + 21 + 1$",
+              "$144 + 34 + 13 + 8 + 1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Par récurrence immédiate, $F_k \\geq 1$ pour $k \\geq 1$. Pour $k \\geq 2$, $F_{k+1} = F_k + F_{k-1} > F_k$ car $F_{k-1} \\geq 1$ : la suite $(F_k)_{k \\geq 2}$ est strictement croissante. Comme ce sont des entiers, $F_{k+1} \\geq F_k + 1$, d'où $F_k \\geq F_2 + (k - 2) = k - 1$ par récurrence.\n\n2. Soit $P(n)$ la propriété annoncée. **Initialisation** : $1 = F_2$. **Hérédité** : soit $n \\geq 1$ tel que $P(1), \\dots, P(n)$ soient vraies ; montrons $P(n+1)$. L'ensemble des $k \\geq 2$ tels que $F_k \\leq n + 1$ est non vide ($F_2 = 1$) et majoré (car $F_k \\geq k - 1$), donc a un plus grand élément $k$ ; comme $F_3 = 2 \\leq n + 1$, $k \\geq 3$, et $F_k \\leq n + 1 < F_{k+1}$. Si $F_k = n + 1$, c'est fini. Sinon $r = n + 1 - F_k$ vérifie $1 \\leq r \\leq n$ et $r < F_{k+1} - F_k = F_{k-1}$. Par $P(r)$, $r$ est une somme de termes $F_j$ d'indices $j \\geq 2$ distincts et non consécutifs ; chacun vérifie $F_j \\leq r < F_{k-1}$, donc $j < k - 1$ par croissance (et $k - 1 \\geq 2$), soit $j \\leq k - 2$. En ajoutant $F_k$, on obtient une écriture de $n + 1$ d'indices distincts et deux à deux non consécutifs : $P(n+1)$ est vraie.\n\n3. On a $F_{12} = 144 \\leq 200 < 233 = F_{13}$, d'où $r = 56$ ; puis $F_{10} = 55 \\leq 56 < 89 = F_{11}$, d'où $r = 1 = F_2$. Donc $200 = 144 + 55 + 1 = F_{12} + F_{10} + F_2$, d'indices deux à deux non consécutifs."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex1",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 1,
+      "titre": "Jours de naissance",
+      "enonce": "Combien de personnes faut-il réunir, au minimum, pour être certain que trois d'entre elles au moins soient nées le même jour de la semaine ?",
+      "duree_min": 3,
+      "indices": [
+        "Les tiroirs sont les $7$ jours de la semaine."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le nombre minimal de personnes ?",
+        "propositions": [
+          "$15$",
+          "$21$",
+          "$14$",
+          "$22$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'application qui à chaque personne associe son jour de naissance dans la semaine va d'un ensemble à $N$ éléments dans un ensemble à $7$ éléments. Par le principe des tiroirs, une valeur est atteinte au moins $\\lceil N/7 \\rceil$ fois, et $\\lceil N/7 \\rceil \\geq 3$ équivaut à $N > 2 \\times 7 = 14$, soit $N \\geq 15$.\n\nAvec $14$ personnes, on peut en avoir exactement $2$ par valeur, ce qui ne suffit pas. Le minimum est donc $15$.",
+      "variantes": [
+        {
+          "enonce": "Combien de personnes faut-il réunir, au minimum, pour être certain que quatre d'entre elles au moins soient nées le même mois ?",
+          "indices": [
+            "Les tiroirs sont les $12$ mois de l'année."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le nombre minimal de personnes ?",
+            "propositions": [
+              "$37$",
+              "$48$",
+              "$36$",
+              "$49$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'application qui à chaque personne associe son mois de naissance va d'un ensemble à $N$ éléments dans un ensemble à $12$ éléments. Par le principe des tiroirs, une valeur est atteinte au moins $\\lceil N/12 \\rceil$ fois, et $\\lceil N/12 \\rceil \\geq 4$ équivaut à $N > 3 \\times 12 = 36$, soit $N \\geq 37$.\n\nAvec $36$ personnes, on peut en avoir exactement $3$ par valeur, ce qui ne suffit pas. Le minimum est donc $37$."
+        },
+        {
+          "enonce": "Combien de personnes faut-il réunir, au minimum, pour être certain que cinq d'entre elles au moins soient nées le même jour de la semaine ?",
+          "indices": [
+            "Les tiroirs sont les $7$ jours de la semaine."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le nombre minimal de personnes ?",
+            "propositions": [
+              "$29$",
+              "$35$",
+              "$28$",
+              "$36$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'application qui à chaque personne associe son jour de naissance dans la semaine va d'un ensemble à $N$ éléments dans un ensemble à $7$ éléments. Par le principe des tiroirs, une valeur est atteinte au moins $\\lceil N/7 \\rceil$ fois, et $\\lceil N/7 \\rceil \\geq 5$ équivaut à $N > 4 \\times 7 = 28$, soit $N \\geq 29$.\n\nAvec $28$ personnes, on peut en avoir exactement $4$ par valeur, ce qui ne suffit pas. Le minimum est donc $29$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex2",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 2,
+      "titre": "Différences divisibles",
+      "enonce": "Quel est le plus petit entier $k$ tel que, parmi $k$ entiers distincts quelconques de $\\{1, \\dots, 20\\}$, il y en ait toujours deux dont la différence est divisible par $7$ ?",
+      "duree_min": 4,
+      "indices": [
+        "Prendre pour tiroirs les restes de la division euclidienne par $7$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit $k$ ?",
+        "propositions": [
+          "$8$",
+          "$7$",
+          "$14$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Deux entiers ont une différence divisible par $7$ si et seulement s'ils ont le même reste dans la division par $7$. Il y a $7$ restes possibles : parmi $8$ entiers, deux ont le même reste (principe des tiroirs).\n\nEn revanche, les $7$ entiers $1, 2, \\dots, 7$ de $\\{1, \\dots, 20\\}$ ont des restes deux à deux distincts : leurs différences, comprises entre $1$ et $6$ en valeur absolue, ne sont pas divisibles par $7$. Donc $k = 8$.",
+      "variantes": [
+        {
+          "enonce": "Quel est le plus petit entier $k$ tel que, parmi $k$ entiers distincts quelconques de $\\{1, \\dots, 30\\}$, il y en ait toujours deux dont la différence est divisible par $5$ ?",
+          "indices": [
+            "Prendre pour tiroirs les restes de la division euclidienne par $5$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit $k$ ?",
+            "propositions": [
+              "$6$",
+              "$5$",
+              "$10$",
+              "$26$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Deux entiers ont une différence divisible par $5$ si et seulement s'ils ont le même reste dans la division par $5$. Il y a $5$ restes possibles : parmi $6$ entiers, deux ont le même reste (principe des tiroirs).\n\nEn revanche, les $5$ entiers $1, 2, \\dots, 5$ de $\\{1, \\dots, 30\\}$ ont des restes deux à deux distincts : leurs différences, comprises entre $1$ et $4$ en valeur absolue, ne sont pas divisibles par $5$. Donc $k = 6$."
+        },
+        {
+          "enonce": "Quel est le plus petit entier $k$ tel que, parmi $k$ entiers distincts quelconques de $\\{1, \\dots, 50\\}$, il y en ait toujours deux dont la différence est divisible par $9$ ?",
+          "indices": [
+            "Prendre pour tiroirs les restes de la division euclidienne par $9$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit $k$ ?",
+            "propositions": [
+              "$10$",
+              "$9$",
+              "$18$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Deux entiers ont une différence divisible par $9$ si et seulement s'ils ont le même reste dans la division par $9$. Il y a $9$ restes possibles : parmi $10$ entiers, deux ont le même reste (principe des tiroirs).\n\nEn revanche, les $9$ entiers $1, 2, \\dots, 9$ de $\\{1, \\dots, 50\\}$ ont des restes deux à deux distincts : leurs différences, comprises entre $1$ et $8$ en valeur absolue, ne sont pas divisibles par $9$. Donc $k = 10$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex3",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 3,
+      "titre": "Deux entiers consécutifs",
+      "enonce": "Quel est le plus petit entier $k$ tel que toute partie à $k$ éléments de $\\{1, \\dots, 30\\}$ contienne deux entiers consécutifs ?",
+      "duree_min": 8,
+      "indices": [
+        "Regrouper les entiers de $\\{1, \\dots, 30\\}$ en paires $\\{1, 2\\}, \\{3, 4\\}, \\dots$ : ce sont les tiroirs.",
+        "Pour montrer qu'un entier plus petit ne convient pas, chercher une grande partie sans deux entiers consécutifs."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit $k$ ?",
+        "propositions": [
+          "$16$",
+          "$15$",
+          "$17$",
+          "$30$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les $15$ paires $\\{1, 2\\}, \\{3, 4\\}, \\dots, \\{29, 30\\}$ forment une partition de $\\{1, \\dots, 30\\}$. Une partie à $16$ éléments a deux éléments dans une même paire (principe des tiroirs), qui sont consécutifs.\n\nEn revanche, les $15$ entiers impairs $1, 3, \\dots, 29$ forment une partie sans deux entiers consécutifs. Donc $k = 16$.",
+      "variantes": [
+        {
+          "enonce": "Quel est le plus petit entier $k$ tel que toute partie à $k$ éléments de $\\{1, \\dots, 40\\}$ contienne deux entiers consécutifs ?",
+          "indices": [
+            "Regrouper les entiers de $\\{1, \\dots, 40\\}$ en paires $\\{1, 2\\}, \\{3, 4\\}, \\dots$ : ce sont les tiroirs.",
+            "Pour montrer qu'un entier plus petit ne convient pas, chercher une grande partie sans deux entiers consécutifs."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit $k$ ?",
+            "propositions": [
+              "$21$",
+              "$20$",
+              "$22$",
+              "$40$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les $20$ paires $\\{1, 2\\}, \\{3, 4\\}, \\dots, \\{39, 40\\}$ forment une partition de $\\{1, \\dots, 40\\}$. Une partie à $21$ éléments a deux éléments dans une même paire, qui sont consécutifs.\n\nEn revanche, les $20$ entiers impairs $1, 3, \\dots, 39$ forment une partie sans deux entiers consécutifs. Donc $k = 21$."
+        },
+        {
+          "enonce": "Quel est le plus petit entier $k$ tel que toute partie à $k$ éléments de $\\{1, \\dots, 25\\}$ contienne deux entiers consécutifs ?",
+          "indices": [
+            "Regrouper les entiers de $\\{1, \\dots, 25\\}$ en paires $\\{1, 2\\}, \\{3, 4\\}, \\dots$, sans oublier l'entier $25$ : ce sont les tiroirs.",
+            "Pour montrer qu'un entier plus petit ne convient pas, chercher une grande partie sans deux entiers consécutifs."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit $k$ ?",
+            "propositions": [
+              "$14$",
+              "$13$",
+              "$15$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les $12$ paires $\\{1, 2\\}, \\dots, \\{23, 24\\}$ et le singleton $\\{25\\}$ forment une partition de $\\{1, \\dots, 25\\}$ en $13$ parties. Une partie à $14$ éléments a deux éléments dans une même partie, nécessairement une paire, et ces deux éléments sont consécutifs.\n\nEn revanche, les $13$ entiers impairs $1, 3, \\dots, 25$ forment une partie sans deux entiers consécutifs. Donc $k = 14$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex4",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 4,
+      "titre": "L'un divise l'autre",
+      "enonce": "Soit $n \\geq 1$ un entier.\n\n1. Montrer que tout entier $a \\geq 1$ s'écrit de façon unique $a = 2^k b$ avec $k \\in \\mathbb{N}$ et $b$ impair.\n\n2. Soit $A$ une partie de $\\{1, \\dots, 2n\\}$ à $n + 1$ éléments. Montrer que $A$ contient deux entiers distincts dont l'un divise l'autre.\n\n3. Montrer que la conclusion peut être fausse pour une partie à $n$ éléments.",
+      "duree_min": 15,
+      "indices": [
+        "Associer à chaque élément de $A$ sa partie impaire $b$ : combien de valeurs possibles ?",
+        "Si deux éléments distincts ont la même partie impaire, ils s'écrivent $2^k b$ et $2^l b$ avec $k < l$."
+      ],
+      "correction": "1. **Existence.** L'ensemble des $k \\in \\mathbb{N}$ tels que $2^k$ divise $a$ contient $0$ et est majoré (si $2^k \\mid a$, alors $2^k \\leq a$, donc $k < a$) : il a un plus grand élément $k$. Alors $b = a / 2^k$ est impair, sinon $2^{k+1}$ diviserait $a$. **Unicité.** Si $2^k b = 2^l b'$ avec $b, b'$ impairs et, par exemple, $k < l$, alors $b = 2^{l-k} b'$ serait pair : contradiction. Donc $k = l$, puis $b = b'$.\n\n2. L'application qui à $a \\in A$ associe sa partie impaire $b$ prend ses valeurs dans l'ensemble des impairs de $\\{1, \\dots, 2n - 1\\}$, qui a $n$ éléments. Comme $A$ en a $n + 1$, deux éléments distincts $a = 2^k b$ et $a' = 2^l b$ ont la même partie impaire (principe des tiroirs). On a $k \\neq l$ car $a \\neq a'$ ; si par exemple $k < l$, alors $a' = 2^{l-k} a$ et $a$ divise $a'$.\n\n3. Soit $A = \\{n + 1, \\dots, 2n\\}$, qui a $n$ éléments. Si $a, a' \\in A$ avec $a < a'$ et $a \\mid a'$, alors $a' \\geq 2a \\geq 2n + 2 > 2n$ : impossible. Aucun élément de $A$ n'en divise un autre."
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex5",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 5,
+      "titre": "Sous-suites monotones",
+      "enonce": "Soient $n \\geq 1$ et $(a_1, \\dots, a_N)$ une suite de $N = n^2 + 1$ réels deux à deux distincts. Pour $i \\in \\{1, \\dots, N\\}$, on note $\\ell_i$ la plus grande longueur d'une sous-suite strictement croissante commençant par $a_i$, c'est-à-dire de la forme $a_{i_1} < a_{i_2} < \\dots < a_{i_r}$ avec $i = i_1 < i_2 < \\dots < i_r$.\n\n1. On suppose que $\\ell_i \\leq n$ pour tout $i$. Montrer qu'il existe $n + 1$ indices $j_1 < j_2 < \\dots < j_{n+1}$ tels que $\\ell_{j_1} = \\ell_{j_2} = \\dots = \\ell_{j_{n+1}}$.\n\n2. Montrer que, pour de tels indices, $a_{j_1} > a_{j_2} > \\dots > a_{j_{n+1}}$.\n\n3. En déduire que toute suite de $n^2 + 1$ réels deux à deux distincts admet une sous-suite strictement monotone de longueur $n + 1$.\n\n4. Pour $n = 3$, donner une suite de $9$ réels deux à deux distincts sans sous-suite strictement monotone de longueur $4$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : appliquer le principe des tiroirs à $i \\mapsto \\ell_i$, de $\\{1, \\dots, n^2 + 1\\}$ dans $\\{1, \\dots, n\\}$.",
+        "Question 2 : si l'on avait $a_{j_s} < a_{j_{s+1}}$, placer $a_{j_s}$ devant une sous-suite croissante de longueur maximale commençant par $a_{j_{s+1}}$.",
+        "Question 4 : penser à trois blocs décroissants, de plus en plus hauts."
+      ],
+      "correction": "1. On a $\\ell_i \\geq 1$ (la sous-suite réduite à $a_i$). L'application $i \\mapsto \\ell_i$ va de $\\{1, \\dots, n^2 + 1\\}$ dans $\\{1, \\dots, n\\}$ ; par le principe des tiroirs, une valeur $\\ell$ est prise au moins $\\lceil (n^2 + 1)/n \\rceil = n + 1$ fois (car $n < (n^2 + 1)/n \\leq n + 1$). On range $n + 1$ de ces indices dans l'ordre croissant.\n\n2. Soit $s \\in \\{1, \\dots, n\\}$. Si l'on avait $a_{j_s} < a_{j_{s+1}}$, on placerait $a_{j_s}$ devant une sous-suite strictement croissante de longueur $\\ell$ commençant par $a_{j_{s+1}}$ (possible car $j_s < j_{s+1}$) : on obtiendrait une sous-suite strictement croissante de longueur $\\ell + 1$ commençant par $a_{j_s}$, contredisant $\\ell_{j_s} = \\ell$. Comme les termes sont distincts, $a_{j_s} > a_{j_{s+1}}$.\n\n3. Ou bien un $\\ell_i$ est au moins $n + 1$, et il existe une sous-suite strictement croissante de longueur $n + 1$ (on tronque une sous-suite plus longue) ; ou bien tous les $\\ell_i$ sont au plus $n$, et les questions 1 et 2 fournissent une sous-suite strictement décroissante de longueur $n + 1$.\n\n4. La suite $3, 2, 1, 6, 5, 4, 9, 8, 7$ convient. Elle est formée de trois blocs décroissants $(3, 2, 1)$, $(6, 5, 4)$, $(9, 8, 7)$, chaque bloc étant au-dessus du précédent. Une sous-suite strictement croissante prend au plus un terme par bloc, donc a au plus $3$ termes ; une sous-suite strictement décroissante ne peut pas passer d'un bloc à un bloc suivant (qui est plus haut), donc reste dans un bloc et a au plus $3$ termes. Le résultat de la question 3 est donc optimal pour $n = 3$."
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables-ex1",
+      "carte": "fond-l1-ensembles-denombrables",
+      "difficulte": 1,
+      "titre": "Une bijection de $\\mathbb{N}$ sur $\\mathbb{Z}$",
+      "enonce": "On considère $\\varphi : \\mathbb{N} \\to \\mathbb{Z}$ définie par $\\varphi(n) = n/2$ si $n$ est pair et $\\varphi(n) = -(n+1)/2$ si $n$ est impair. Calculer $\\varphi(0), \\dots, \\varphi(5)$, montrer que $\\varphi$ est bijective et déterminer $\\varphi^{-1}(-7)$.",
+      "duree_min": 5,
+      "indices": [
+        "Pour la bijectivité, deviner la réciproque $\\psi$ en distinguant $m \\geq 0$ et $m < 0$, puis vérifier $\\psi \\circ \\varphi = \\mathrm{id}_{\\mathbb{N}}$ et $\\varphi \\circ \\psi = \\mathrm{id}_{\\mathbb{Z}}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\varphi^{-1}(-7)$ ?",
+        "propositions": [
+          "$13$",
+          "$14$",
+          "$12$",
+          "$15$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On trouve $\\varphi(0) = 0$, $\\varphi(1) = -1$, $\\varphi(2) = 1$, $\\varphi(3) = -2$, $\\varphi(4) = 2$, $\\varphi(5) = -3$ : les entiers pairs sont envoyés sur $\\mathbb{N}$, les impairs sur les entiers strictement négatifs.\n\nSoit $\\psi : \\mathbb{Z} \\to \\mathbb{N}$ définie par $\\psi(m) = 2m$ si $m \\geq 0$ et $\\psi(m) = -2m - 1$ si $m < 0$. Pour $n$ pair, $\\varphi(n) = n/2 \\geq 0$ et $\\psi(\\varphi(n)) = n$ ; pour $n$ impair, $\\varphi(n) = -(n+1)/2 < 0$ et $\\psi(\\varphi(n)) = (n + 1) - 1 = n$. De même, $\\varphi(\\psi(m)) = m$ pour tout $m \\in \\mathbb{Z}$ (si $m \\geq 0$, $\\psi(m) = 2m$ est pair ; si $m < 0$, $\\psi(m) = -2m - 1$ est impair et $\\varphi(\\psi(m)) = -(-2m)/2 = m$). Donc $\\varphi$ est bijective, de réciproque $\\psi$.\n\nComme $-7 < 0$, $\\varphi^{-1}(-7) = \\psi(-7) = 14 - 1 = 13$ ; vérification : $13$ est impair et $-(13 + 1)/2 = -7$.",
+      "variantes": [
+        {
+          "enonce": "On considère $\\varphi : \\mathbb{N} \\to \\mathbb{Z}$ définie par $\\varphi(n) = n/2$ si $n$ est pair et $\\varphi(n) = -(n+1)/2$ si $n$ est impair. Calculer $\\varphi(0), \\dots, \\varphi(5)$, montrer que $\\varphi$ est bijective et déterminer $\\varphi^{-1}(5)$.",
+          "indices": [
+            "Pour la bijectivité, deviner la réciproque $\\psi$ en distinguant $m \\geq 0$ et $m < 0$, puis vérifier $\\psi \\circ \\varphi = \\mathrm{id}_{\\mathbb{N}}$ et $\\varphi \\circ \\psi = \\mathrm{id}_{\\mathbb{Z}}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi^{-1}(5)$ ?",
+            "propositions": [
+              "$10$",
+              "$9$",
+              "$11$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On trouve $\\varphi(0) = 0$, $\\varphi(1) = -1$, $\\varphi(2) = 1$, $\\varphi(3) = -2$, $\\varphi(4) = 2$, $\\varphi(5) = -3$ : les entiers pairs sont envoyés sur $\\mathbb{N}$, les impairs sur les entiers strictement négatifs.\n\nSoit $\\psi : \\mathbb{Z} \\to \\mathbb{N}$ définie par $\\psi(m) = 2m$ si $m \\geq 0$ et $\\psi(m) = -2m - 1$ si $m < 0$. Pour $n$ pair, $\\varphi(n) = n/2 \\geq 0$ et $\\psi(\\varphi(n)) = n$ ; pour $n$ impair, $\\varphi(n) = -(n+1)/2 < 0$ et $\\psi(\\varphi(n)) = (n + 1) - 1 = n$. De même, $\\varphi(\\psi(m)) = m$ pour tout $m \\in \\mathbb{Z}$ (si $m \\geq 0$, $\\psi(m) = 2m$ est pair ; si $m < 0$, $\\psi(m) = -2m - 1$ est impair et $\\varphi(\\psi(m)) = -(-2m)/2 = m$). Donc $\\varphi$ est bijective, de réciproque $\\psi$.\n\nComme $5 \\geq 0$, $\\varphi^{-1}(5) = \\psi(5) = 10$ ; vérification : $10$ est pair et $10/2 = 5$."
+        },
+        {
+          "enonce": "On considère $\\varphi : \\mathbb{N} \\to \\mathbb{Z}$ définie par $\\varphi(n) = n/2$ si $n$ est pair et $\\varphi(n) = -(n+1)/2$ si $n$ est impair. Calculer $\\varphi(0), \\dots, \\varphi(5)$, montrer que $\\varphi$ est bijective et déterminer $\\varphi^{-1}(-20)$.",
+          "indices": [
+            "Pour la bijectivité, deviner la réciproque $\\psi$ en distinguant $m \\geq 0$ et $m < 0$, puis vérifier $\\psi \\circ \\varphi = \\mathrm{id}_{\\mathbb{N}}$ et $\\varphi \\circ \\psi = \\mathrm{id}_{\\mathbb{Z}}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi^{-1}(-20)$ ?",
+            "propositions": [
+              "$39$",
+              "$40$",
+              "$41$",
+              "$38$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On trouve $\\varphi(0) = 0$, $\\varphi(1) = -1$, $\\varphi(2) = 1$, $\\varphi(3) = -2$, $\\varphi(4) = 2$, $\\varphi(5) = -3$ : les entiers pairs sont envoyés sur $\\mathbb{N}$, les impairs sur les entiers strictement négatifs.\n\nSoit $\\psi : \\mathbb{Z} \\to \\mathbb{N}$ définie par $\\psi(m) = 2m$ si $m \\geq 0$ et $\\psi(m) = -2m - 1$ si $m < 0$. Pour $n$ pair, $\\varphi(n) = n/2 \\geq 0$ et $\\psi(\\varphi(n)) = n$ ; pour $n$ impair, $\\varphi(n) = -(n+1)/2 < 0$ et $\\psi(\\varphi(n)) = (n + 1) - 1 = n$. De même, $\\varphi(\\psi(m)) = m$ pour tout $m \\in \\mathbb{Z}$ (si $m \\geq 0$, $\\psi(m) = 2m$ est pair ; si $m < 0$, $\\psi(m) = -2m - 1$ est impair et $\\varphi(\\psi(m)) = -(-2m)/2 = m$). Donc $\\varphi$ est bijective, de réciproque $\\psi$.\n\nComme $-20 < 0$, $\\varphi^{-1}(-20) = \\psi(-20) = 40 - 1 = 39$ ; vérification : $39$ est impair et $-(39 + 1)/2 = -20$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables-ex2",
+      "carte": "fond-l1-ensembles-denombrables",
+      "difficulte": 2,
+      "titre": "Numéroter les couples d'entiers",
+      "enonce": "On admet que $\\sigma : \\mathbb{N}^2 \\to \\mathbb{N}$, $\\sigma(p, q) = \\frac{(p + q)(p + q + 1)}{2} + q$, est une bijection : elle numérote les couples diagonale par diagonale. Calculer $\\sigma(0, 0)$, $\\sigma(1, 0)$, $\\sigma(0, 1)$, $\\sigma(2, 0)$, puis déterminer le couple $(p, q)$ tel que $\\sigma(p, q) = 25$.",
+      "duree_min": 6,
+      "indices": [
+        "Si $s = p + q$, encadrer $\\sigma(p, q)$ entre $s(s+1)/2$ et $(s+1)(s+2)/2$."
+      ],
+      "reponse_finale": {
+        "question": "Quel couple $(p, q)$ vérifie $\\sigma(p, q) = 25$ ?",
+        "propositions": [
+          "$(2, 4)$",
+          "$(4, 2)$",
+          "$(1, 4)$",
+          "$(3, 3)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On trouve $\\sigma(0, 0) = 0$, $\\sigma(1, 0) = 1$, $\\sigma(0, 1) = 2$, $\\sigma(2, 0) = 3$.\n\nNotons $T_s = s(s+1)/2$ et $s = p + q$. Comme $0 \\leq q \\leq s$, on a $T_s \\leq \\sigma(p, q) \\leq T_s + s < T_s + s + 1 = T_{s+1}$ : la somme $s$ est l'unique entier tel que $T_s \\leq \\sigma(p, q) < T_{s+1}$, puis $q = \\sigma(p, q) - T_s$ et $p = s - q$. Les premiers nombres triangulaires sont $0, 1, 3, 6, 10, 15, 21, 28, 36, 45$.\n\nPour $25$ : $T_6 = 21 \\leq 25 < 28 = T_7$, donc $s = 6$, $q = 25 - 21 = 4$ et $p = 2$. Vérification : $\\sigma(2, 4) = 21 + 4 = 25$.",
+      "variantes": [
+        {
+          "enonce": "On admet que $\\sigma : \\mathbb{N}^2 \\to \\mathbb{N}$, $\\sigma(p, q) = \\frac{(p + q)(p + q + 1)}{2} + q$, est une bijection : elle numérote les couples diagonale par diagonale. Calculer $\\sigma(0, 0)$, $\\sigma(1, 0)$, $\\sigma(0, 1)$, $\\sigma(2, 0)$, puis déterminer le couple $(p, q)$ tel que $\\sigma(p, q) = 40$.",
+          "indices": [
+            "Si $s = p + q$, encadrer $\\sigma(p, q)$ entre $s(s+1)/2$ et $(s+1)(s+2)/2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel couple $(p, q)$ vérifie $\\sigma(p, q) = 40$ ?",
+            "propositions": [
+              "$(4, 4)$",
+              "$(3, 5)$",
+              "$(5, 4)$",
+              "$(4, 3)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On trouve $\\sigma(0, 0) = 0$, $\\sigma(1, 0) = 1$, $\\sigma(0, 1) = 2$, $\\sigma(2, 0) = 3$.\n\nNotons $T_s = s(s+1)/2$ et $s = p + q$. Comme $0 \\leq q \\leq s$, on a $T_s \\leq \\sigma(p, q) \\leq T_s + s < T_s + s + 1 = T_{s+1}$ : la somme $s$ est l'unique entier tel que $T_s \\leq \\sigma(p, q) < T_{s+1}$, puis $q = \\sigma(p, q) - T_s$ et $p = s - q$. Les premiers nombres triangulaires sont $0, 1, 3, 6, 10, 15, 21, 28, 36, 45$.\n\nPour $40$ : $T_8 = 36 \\leq 40 < 45 = T_9$, donc $s = 8$, $q = 40 - 36 = 4$ et $p = 4$. Vérification : $\\sigma(4, 4) = 36 + 4 = 40$."
+        },
+        {
+          "enonce": "On admet que $\\sigma : \\mathbb{N}^2 \\to \\mathbb{N}$, $\\sigma(p, q) = \\frac{(p + q)(p + q + 1)}{2} + q$, est une bijection : elle numérote les couples diagonale par diagonale. Calculer $\\sigma(0, 0)$, $\\sigma(1, 0)$, $\\sigma(0, 1)$, $\\sigma(2, 0)$, puis déterminer le couple $(p, q)$ tel que $\\sigma(p, q) = 17$.",
+          "indices": [
+            "Si $s = p + q$, encadrer $\\sigma(p, q)$ entre $s(s+1)/2$ et $(s+1)(s+2)/2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel couple $(p, q)$ vérifie $\\sigma(p, q) = 17$ ?",
+            "propositions": [
+              "$(3, 2)$",
+              "$(2, 3)$",
+              "$(2, 2)$",
+              "$(4, 1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On trouve $\\sigma(0, 0) = 0$, $\\sigma(1, 0) = 1$, $\\sigma(0, 1) = 2$, $\\sigma(2, 0) = 3$.\n\nNotons $T_s = s(s+1)/2$ et $s = p + q$. Comme $0 \\leq q \\leq s$, on a $T_s \\leq \\sigma(p, q) \\leq T_s + s < T_s + s + 1 = T_{s+1}$ : la somme $s$ est l'unique entier tel que $T_s \\leq \\sigma(p, q) < T_{s+1}$, puis $q = \\sigma(p, q) - T_s$ et $p = s - q$. Les premiers nombres triangulaires sont $0, 1, 3, 6, 10, 15, 21, 28, 36, 45$.\n\nPour $17$ : $T_5 = 15 \\leq 17 < 21 = T_6$, donc $s = 5$, $q = 17 - 15 = 2$ et $p = 3$. Vérification : $\\sigma(3, 2) = 15 + 2 = 17$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables-ex3",
+      "carte": "fond-l1-ensembles-denombrables",
+      "difficulte": 3,
+      "titre": "Les parties finies de $\\mathbb{N}$",
+      "enonce": "Pour une partie finie $A$ de $\\mathbb{N}$, on pose $\\beta(A) = \\sum_{a \\in A} 2^a$ (avec $\\beta(\\emptyset) = 0$). On note $\\mathcal{P}_f(\\mathbb{N})$ l'ensemble des parties finies de $\\mathbb{N}$.\n\n1. Montrer que $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$.\n\n2. En déduire que $\\mathcal{P}_f(\\mathbb{N})$ est dénombrable.\n\n3. Déterminer $\\beta^{-1}(100)$.",
+      "duree_min": 15,
+      "indices": [
+        "Surjectivité : récurrence forte sur $n$, en retirant la plus grande puissance de $2$ inférieure ou égale à $n$.",
+        "Injectivité : si $A \\neq B$, regarder le plus grand élément de la différence symétrique et utiliser $1 + 2 + \\dots + 2^{c-1} = 2^c - 1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\beta^{-1}(100)$ ?",
+        "propositions": [
+          "$\\{2, 5, 6\\}$",
+          "$\\{3, 6, 7\\}$",
+          "$\\{4, 32, 64\\}$",
+          "$\\{1, 4, 5\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. **Injectivité.** Soient $A \\neq B$ deux parties finies, et $c$ le plus grand élément de la différence symétrique $(A \\setminus B) \\cup (B \\setminus A)$, par exemple $c \\in A \\setminus B$. Les éléments de $A$ et de $B$ strictement plus grands que $c$ sont les mêmes et se compensent dans $\\beta(A) - \\beta(B)$. Il reste $\\beta(A) - \\beta(B) \\geq 2^c - \\sum_{b \\in B, \\, b < c} 2^b \\geq 2^c - (1 + 2 + \\dots + 2^{c-1}) = 2^c - (2^c - 1) = 1 > 0$. Donc $\\beta(A) \\neq \\beta(B)$.\n\n**Surjectivité**, par récurrence forte sur $n$. On a $0 = \\beta(\\emptyset)$. Soit $n \\geq 1$ tel que $0, \\dots, n - 1$ soient atteints. Soit $k$ le plus grand entier tel que $2^k \\leq n$ ; alors $r = n - 2^k$ vérifie $0 \\leq r < 2^{k+1} - 2^k = 2^k$, et $r \\leq n - 1$, donc $r = \\beta(B)$ pour une partie finie $B$. Comme $\\beta(B) < 2^k$, tout élément de $B$ est $< k$ ; donc $k \\notin B$ et $\\beta(B \\cup \\{k\\}) = r + 2^k = n$.\n\n2. $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$ ; sa réciproque est une bijection de $\\mathbb{N}$ sur $\\mathcal{P}_f(\\mathbb{N})$, qui est donc dénombrable.\n\n3. $100 = 64 + 32 + 4 = 2^6 + 2^5 + 2^2$ (écriture en base $2$ : $1100100$), donc $\\beta^{-1}(100) = \\{2, 5, 6\\}$.",
+      "variantes": [
+        {
+          "enonce": "Pour une partie finie $A$ de $\\mathbb{N}$, on pose $\\beta(A) = \\sum_{a \\in A} 2^a$ (avec $\\beta(\\emptyset) = 0$). On note $\\mathcal{P}_f(\\mathbb{N})$ l'ensemble des parties finies de $\\mathbb{N}$.\n\n1. Montrer que $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$.\n\n2. En déduire que $\\mathcal{P}_f(\\mathbb{N})$ est dénombrable.\n\n3. Déterminer $\\beta^{-1}(77)$.",
+          "indices": [
+            "Surjectivité : récurrence forte sur $n$, en retirant la plus grande puissance de $2$ inférieure ou égale à $n$.",
+            "Injectivité : si $A \\neq B$, regarder le plus grand élément de la différence symétrique et utiliser $1 + 2 + \\dots + 2^{c-1} = 2^c - 1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\beta^{-1}(77)$ ?",
+            "propositions": [
+              "$\\{0, 2, 3, 6\\}$",
+              "$\\{1, 3, 4, 7\\}$",
+              "$\\{1, 4, 8, 64\\}$",
+              "$\\{2, 3, 6\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. **Injectivité.** Soient $A \\neq B$ deux parties finies, et $c$ le plus grand élément de la différence symétrique $(A \\setminus B) \\cup (B \\setminus A)$, par exemple $c \\in A \\setminus B$. Les éléments de $A$ et de $B$ strictement plus grands que $c$ sont les mêmes et se compensent dans $\\beta(A) - \\beta(B)$. Il reste $\\beta(A) - \\beta(B) \\geq 2^c - \\sum_{b \\in B, \\, b < c} 2^b \\geq 2^c - (1 + 2 + \\dots + 2^{c-1}) = 2^c - (2^c - 1) = 1 > 0$. Donc $\\beta(A) \\neq \\beta(B)$.\n\n**Surjectivité**, par récurrence forte sur $n$. On a $0 = \\beta(\\emptyset)$. Soit $n \\geq 1$ tel que $0, \\dots, n - 1$ soient atteints. Soit $k$ le plus grand entier tel que $2^k \\leq n$ ; alors $r = n - 2^k$ vérifie $0 \\leq r < 2^{k+1} - 2^k = 2^k$, et $r \\leq n - 1$, donc $r = \\beta(B)$ pour une partie finie $B$. Comme $\\beta(B) < 2^k$, tout élément de $B$ est $< k$ ; donc $k \\notin B$ et $\\beta(B \\cup \\{k\\}) = r + 2^k = n$.\n\n2. $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$ ; sa réciproque est une bijection de $\\mathbb{N}$ sur $\\mathcal{P}_f(\\mathbb{N})$, qui est donc dénombrable.\n\n3. $77 = 64 + 8 + 4 + 1 = 2^6 + 2^3 + 2^2 + 2^0$ (écriture en base $2$ : $1001101$), donc $\\beta^{-1}(77) = \\{0, 2, 3, 6\\}$."
+        },
+        {
+          "enonce": "Pour une partie finie $A$ de $\\mathbb{N}$, on pose $\\beta(A) = \\sum_{a \\in A} 2^a$ (avec $\\beta(\\emptyset) = 0$). On note $\\mathcal{P}_f(\\mathbb{N})$ l'ensemble des parties finies de $\\mathbb{N}$.\n\n1. Montrer que $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$.\n\n2. En déduire que $\\mathcal{P}_f(\\mathbb{N})$ est dénombrable.\n\n3. Déterminer $\\beta^{-1}(255)$.",
+          "indices": [
+            "Surjectivité : récurrence forte sur $n$, en retirant la plus grande puissance de $2$ inférieure ou égale à $n$.",
+            "Injectivité : si $A \\neq B$, regarder le plus grand élément de la différence symétrique et utiliser $1 + 2 + \\dots + 2^{c-1} = 2^c - 1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\beta^{-1}(255)$ ?",
+            "propositions": [
+              "$\\{0, 1, 2, 3, 4, 5, 6, 7\\}$",
+              "$\\{1, 2, 3, 4, 5, 6, 7, 8\\}$",
+              "$\\{8\\}$",
+              "$\\{0, 1, 2, 3, 4, 5, 6\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. **Injectivité.** Soient $A \\neq B$ deux parties finies, et $c$ le plus grand élément de la différence symétrique $(A \\setminus B) \\cup (B \\setminus A)$, par exemple $c \\in A \\setminus B$. Les éléments de $A$ et de $B$ strictement plus grands que $c$ sont les mêmes et se compensent dans $\\beta(A) - \\beta(B)$. Il reste $\\beta(A) - \\beta(B) \\geq 2^c - \\sum_{b \\in B, \\, b < c} 2^b \\geq 2^c - (1 + 2 + \\dots + 2^{c-1}) = 2^c - (2^c - 1) = 1 > 0$. Donc $\\beta(A) \\neq \\beta(B)$.\n\n**Surjectivité**, par récurrence forte sur $n$. On a $0 = \\beta(\\emptyset)$. Soit $n \\geq 1$ tel que $0, \\dots, n - 1$ soient atteints. Soit $k$ le plus grand entier tel que $2^k \\leq n$ ; alors $r = n - 2^k$ vérifie $0 \\leq r < 2^{k+1} - 2^k = 2^k$, et $r \\leq n - 1$, donc $r = \\beta(B)$ pour une partie finie $B$. Comme $\\beta(B) < 2^k$, tout élément de $B$ est $< k$ ; donc $k \\notin B$ et $\\beta(B \\cup \\{k\\}) = r + 2^k = n$.\n\n2. $\\beta$ est une bijection de $\\mathcal{P}_f(\\mathbb{N})$ sur $\\mathbb{N}$ ; sa réciproque est une bijection de $\\mathbb{N}$ sur $\\mathcal{P}_f(\\mathbb{N})$, qui est donc dénombrable.\n\n3. $255 = 2^8 - 1 = 2^0 + 2^1 + \\dots + 2^7$ (écriture en base $2$ : $11111111$), donc $\\beta^{-1}(255) = \\{0, 1, \\dots, 7\\}$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables-ex4",
+      "carte": "fond-l1-ensembles-denombrables",
+      "difficulte": 4,
+      "titre": "Intervalles ouverts deux à deux disjoints",
+      "enonce": "Soit $(I_j)_{j \\in J}$ une famille d'intervalles ouverts non vides de $\\mathbb{R}$, deux à deux disjoints : $I_j \\cap I_{j'} = \\emptyset$ pour $j \\neq j'$.\n\n1. Justifier que chaque $I_j$ contient un rationnel.\n\n2. En fixant une bijection $k \\mapsto q_k$ de $\\mathbb{N}$ sur $\\mathbb{Q}$, construire sans choix arbitraire une injection de $J$ dans $\\mathbb{N}$. En déduire que $J$ est au plus dénombrable.\n\n3. Montrer que la conclusion tombe en défaut si l'on remplace « ouverts non vides » par « réduits à un point ».",
+      "duree_min": 15,
+      "indices": [
+        "Un intervalle ouvert non vide contient un intervalle $\\left]a, b\\right[$ avec $a < b$ réels, qui contient un rationnel par densité de $\\mathbb{Q}$ dans $\\mathbb{R}$.",
+        "Associer à $j$ le plus petit indice $k$ tel que $q_k \\in I_j$."
+      ],
+      "correction": "1. Un intervalle ouvert non vide $I_j$ contient deux réels $a < b$, et alors $\\left]a, b\\right[ \\subset I_j$ (un intervalle contient tout réel compris entre deux de ses points). Par densité de $\\mathbb{Q}$ dans $\\mathbb{R}$, $\\left]a, b\\right[$ contient un rationnel.\n\n2. Pour $j \\in J$, l'ensemble $\\{k \\in \\mathbb{N} \\mid q_k \\in I_j\\}$ est non vide (question 1, et $k \\mapsto q_k$ est surjective) ; soit $\\kappa(j)$ son plus petit élément (bon ordre). Si $\\kappa(j) = \\kappa(j')$, le rationnel $q_{\\kappa(j)}$ appartient à $I_j \\cap I_{j'}$, donc $j = j'$ puisque les intervalles d'indices distincts sont disjoints. Ainsi $\\kappa : J \\to \\mathbb{N}$ est injective, et $J$ est au plus dénombrable.\n\n3. La famille $(\\{x\\})_{x \\in \\mathbb{R}}$ est formée d'intervalles fermés $[x, x]$ non vides, deux à deux disjoints, indexée par $\\mathbb{R}$, qui n'est pas dénombrable. L'argument échoue car $\\{x\\}$ ne contient de rationnel que si $x \\in \\mathbb{Q}$."
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables-ex5",
+      "carte": "fond-l1-ensembles-denombrables",
+      "difficulte": 5,
+      "titre": "Discontinuités d'une fonction monotone",
+      "enonce": "Soit $f : \\mathbb{R} \\to \\mathbb{R}$ croissante. On admet (théorème de la limite monotone) qu'en tout point $x$, $f$ admet une limite à gauche $f(x^-) = \\sup_{t < x} f(t)$ et une limite à droite $f(x^+) = \\inf_{t > x} f(t)$, que $f(x^-) \\leq f(x) \\leq f(x^+)$, et que $f$ est continue en $x$ si et seulement si $f(x^-) = f(x^+)$. On note $D$ l'ensemble des points de discontinuité de $f$.\n\n1. Montrer que, si $x < y$, alors $f(x^+) \\leq f(y^-)$.\n\n2. Montrer que les intervalles $\\left]f(x^-), f(x^+)\\right[$, pour $x \\in D$, sont non vides et deux à deux disjoints.\n\n3. En déduire que $D$ est au plus dénombrable.\n\n4. Donner un exemple de fonction croissante $f : \\mathbb{R} \\to \\mathbb{R}$ dont l'ensemble des points de discontinuité est infini.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : intercaler un réel $t$ strictement compris entre $x$ et $y$.",
+        "Question 3 : utiliser le résultat sur les familles d'intervalles ouverts deux à deux disjoints (ou directement une énumération de $\\mathbb{Q}$)."
+      ],
+      "correction": "1. Soit $t$ tel que $x < t < y$ (par exemple $t = (x + y)/2$). Comme $f(x^+)$ est la borne inférieure des $f(s)$ pour $s > x$, $f(x^+) \\leq f(t)$ ; comme $f(y^-)$ est la borne supérieure des $f(s)$ pour $s < y$, $f(t) \\leq f(y^-)$. Donc $f(x^+) \\leq f(y^-)$.\n\n2. Si $x \\in D$, alors $f(x^-) \\neq f(x^+)$, et comme $f(x^-) \\leq f(x^+)$, $f(x^-) < f(x^+)$ : l'intervalle $\\left]f(x^-), f(x^+)\\right[$ est un intervalle ouvert non vide. Si $x < y$ sont dans $D$, tout élément du premier intervalle est $< f(x^+)$ et tout élément du second est $> f(y^-) \\geq f(x^+)$ (question 1) : les deux intervalles sont disjoints.\n\n3. On fixe une bijection $k \\mapsto q_k$ de $\\mathbb{N}$ sur $\\mathbb{Q}$ et on associe à $x \\in D$ le plus petit $k$ tel que $q_k \\in \\left]f(x^-), f(x^+)\\right[$ (il existe par densité de $\\mathbb{Q}$). Cette application de $D$ dans $\\mathbb{N}$ est injective, car les intervalles sont deux à deux disjoints. Donc $D$ est au plus dénombrable.\n\n4. La partie entière $x \\mapsto \\lfloor x \\rfloor$ est croissante ; en tout $n \\in \\mathbb{Z}$, sa limite à gauche vaut $n - 1$ et sa limite à droite $n$ : elle est discontinue en chaque point de $\\mathbb{Z}$, et continue ailleurs (localement constante). Son ensemble de discontinuités $\\mathbb{Z}$ est infini, et dénombrable comme l'impose la question 3."
+    },
+    {
+      "id": "fond-l1-ensembles-cantor-ex1",
+      "carte": "fond-l1-ensembles-cantor",
+      "difficulte": 1,
+      "titre": "Construire le nombre diagonal",
+      "enonce": "On considère quatre réels de $\\left[0, 1\\right[$ dont on donne le début du développement décimal propre : $x_1 = 0{,}5172\\ldots$, $x_2 = 0{,}3591\\ldots$, $x_3 = 0{,}2245\\ldots$, $x_4 = 0{,}8135\\ldots$. On construit $x = 0{,}d_1 d_2 d_3 d_4 \\ldots$ par la règle de l'argument diagonal : $d_n = 5$ si le $n$-ième chiffre de $x_n$ est différent de $5$, et $d_n = 4$ sinon. Quels sont les quatre premiers chiffres après la virgule de $x$, et pourquoi $x$ est-il différent de $x_1, \\dots, x_4$ ?",
+      "duree_min": 4,
+      "indices": [
+        "Ne lire que le chiffre n° $n$ de $x_n$ : le premier chiffre de $x_1$, le deuxième de $x_2$, etc."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont les quatre premiers chiffres de $x$ ?",
+        "propositions": [
+          "$0{,}4454$",
+          "$0{,}5545$",
+          "$0{,}4455$",
+          "$0{,}5454$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- le chiffre n° $1$ de $x_1$ est $5$, donc $d_1 = 4$ ;\n- le chiffre n° $2$ de $x_2$ est $5$, donc $d_2 = 4$ ;\n- le chiffre n° $3$ de $x_3$ est $4$, donc $d_3 = 5$ ;\n- le chiffre n° $4$ de $x_4$ est $5$, donc $d_4 = 4$.\n\nAinsi $x = 0{,}4454\\ldots$. Pour chaque $n \\leq 4$, le $n$-ième chiffre de $x$ diffère de celui de $x_n$ ; comme les chiffres de $x$ valent tous $4$ ou $5$, son développement est propre, et l'unicité du développement propre donne $x \\neq x_n$.",
+      "variantes": [
+        {
+          "enonce": "On considère quatre réels de $\\left[0, 1\\right[$ dont on donne le début du développement décimal propre : $x_1 = 0{,}2718\\ldots$, $x_2 = 0{,}1415\\ldots$, $x_3 = 0{,}6457\\ldots$, $x_4 = 0{,}3335\\ldots$. On construit $x = 0{,}d_1 d_2 d_3 d_4 \\ldots$ par la règle de l'argument diagonal : $d_n = 5$ si le $n$-ième chiffre de $x_n$ est différent de $5$, et $d_n = 4$ sinon. Quels sont les quatre premiers chiffres après la virgule de $x$, et pourquoi $x$ est-il différent de $x_1, \\dots, x_4$ ?",
+          "indices": [
+            "Ne lire que le chiffre n° $n$ de $x_n$ : le premier chiffre de $x_1$, le deuxième de $x_2$, etc."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les quatre premiers chiffres de $x$ ?",
+            "propositions": [
+              "$0{,}5544$",
+              "$0{,}4455$",
+              "$0{,}5545$",
+              "$0{,}2455$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- le chiffre n° $1$ de $x_1$ est $2$, donc $d_1 = 5$ ;\n- le chiffre n° $2$ de $x_2$ est $4$, donc $d_2 = 5$ ;\n- le chiffre n° $3$ de $x_3$ est $5$, donc $d_3 = 4$ ;\n- le chiffre n° $4$ de $x_4$ est $5$, donc $d_4 = 4$.\n\nAinsi $x = 0{,}5544\\ldots$. Pour chaque $n \\leq 4$, le $n$-ième chiffre de $x$ diffère de celui de $x_n$ ; comme les chiffres de $x$ valent tous $4$ ou $5$, son développement est propre, et l'unicité du développement propre donne $x \\neq x_n$."
+        },
+        {
+          "enonce": "On considère quatre réels de $\\left[0, 1\\right[$ dont on donne le début du développement décimal propre : $x_1 = 0{,}9050\\ldots$, $x_2 = 0{,}1528\\ldots$, $x_3 = 0{,}4053\\ldots$, $x_4 = 0{,}7777\\ldots$. On construit $x = 0{,}d_1 d_2 d_3 d_4 \\ldots$ par la règle de l'argument diagonal : $d_n = 5$ si le $n$-ième chiffre de $x_n$ est différent de $5$, et $d_n = 4$ sinon. Quels sont les quatre premiers chiffres après la virgule de $x$, et pourquoi $x$ est-il différent de $x_1, \\dots, x_4$ ?",
+          "indices": [
+            "Ne lire que le chiffre n° $n$ de $x_n$ : le premier chiffre de $x_1$, le deuxième de $x_2$, etc."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les quatre premiers chiffres de $x$ ?",
+            "propositions": [
+              "$0{,}5445$",
+              "$0{,}4554$",
+              "$0{,}9557$",
+              "$0{,}5545$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- le chiffre n° $1$ de $x_1$ est $9$, donc $d_1 = 5$ ;\n- le chiffre n° $2$ de $x_2$ est $5$, donc $d_2 = 4$ ;\n- le chiffre n° $3$ de $x_3$ est $5$, donc $d_3 = 4$ ;\n- le chiffre n° $4$ de $x_4$ est $7$, donc $d_4 = 5$.\n\nAinsi $x = 0{,}5445\\ldots$. Pour chaque $n \\leq 4$, le $n$-ième chiffre de $x$ diffère de celui de $x_n$ ; comme les chiffres de $x$ valent tous $4$ ou $5$, son développement est propre, et l'unicité du développement propre donne $x \\neq x_n$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-cantor-ex2",
+      "carte": "fond-l1-ensembles-cantor",
+      "difficulte": 2,
+      "titre": "La partie diagonale sur un exemple fini",
+      "enonce": "Soient $E = \\{1, 2, 3, 4\\}$ et $f : E \\to \\mathcal{P}(E)$ définie par $f(1) = \\{2, 3\\}$, $f(2) = \\{1, 2, 4\\}$, $f(3) = \\emptyset$, $f(4) = \\{4\\}$. Déterminer la partie $D = \\{x \\in E \\mid x \\notin f(x)\\}$ et vérifier qu'elle n'a pas d'antécédent par $f$.",
+      "duree_min": 4,
+      "indices": [
+        "Pour chaque $x \\in E$, se demander seulement si $x$ appartient à $f(x)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la partie $D$ ?",
+        "propositions": [
+          "$\\{1, 3\\}$",
+          "$\\{2, 4\\}$",
+          "$\\{1, 2, 3, 4\\}$",
+          "$\\{3\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- $1 \\notin f(1)$, donc $1 \\in D$ ;\n- $2 \\in f(2)$, donc $2 \\notin D$ ;\n- $3 \\notin f(3)$, donc $3 \\in D$ ;\n- $4 \\in f(4)$, donc $4 \\notin D$.\n\nDonc $D = \\{1, 3\\}$. Les valeurs de $f$ sont $\\{2, 3\\}$, $\\{1, 2, 4\\}$, $\\emptyset$, $\\{4\\}$ : aucune n'est égale à $D$. C'est l'argument de Cantor : pour chaque $x$, $D$ et $f(x)$ diffèrent au moins par l'élément $x$.",
+      "variantes": [
+        {
+          "enonce": "Soient $E = \\{1, 2, 3\\}$ et $f : E \\to \\mathcal{P}(E)$ définie par $f(1) = \\{1, 3\\}$, $f(2) = \\{1\\}$, $f(3) = \\{1, 2, 3\\}$. Déterminer la partie $D = \\{x \\in E \\mid x \\notin f(x)\\}$ et vérifier qu'elle n'a pas d'antécédent par $f$.",
+          "indices": [
+            "Pour chaque $x \\in E$, se demander seulement si $x$ appartient à $f(x)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la partie $D$ ?",
+            "propositions": [
+              "$\\{2\\}$",
+              "$\\{1, 3\\}$",
+              "$\\emptyset$",
+              "$\\{1, 2\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $1 \\in f(1)$, donc $1 \\notin D$ ;\n- $2 \\notin f(2)$, donc $2 \\in D$ ;\n- $3 \\in f(3)$, donc $3 \\notin D$.\n\nDonc $D = \\{2\\}$. Les valeurs de $f$ sont $\\{1, 3\\}$, $\\{1\\}$, $\\{1, 2, 3\\}$ : aucune n'est égale à $D$. C'est l'argument de Cantor : pour chaque $x$, $D$ et $f(x)$ diffèrent au moins par l'élément $x$."
+        },
+        {
+          "enonce": "Soient $E = \\{1, 2, 3, 4, 5\\}$ et $f : E \\to \\mathcal{P}(E)$ définie par $f(1) = \\emptyset$, $f(2) = \\{2, 5\\}$, $f(3) = \\{1, 2\\}$, $f(4) = \\{1, 3, 4\\}$, $f(5) = \\{1, 2\\}$. Déterminer la partie $D = \\{x \\in E \\mid x \\notin f(x)\\}$ et vérifier qu'elle n'a pas d'antécédent par $f$.",
+          "indices": [
+            "Pour chaque $x \\in E$, se demander seulement si $x$ appartient à $f(x)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la partie $D$ ?",
+            "propositions": [
+              "$\\{1, 3, 5\\}$",
+              "$\\{2, 4\\}$",
+              "$\\{1, 3\\}$",
+              "$\\{1, 2, 3, 4, 5\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "- $1 \\notin f(1)$, donc $1 \\in D$ ;\n- $2 \\in f(2)$, donc $2 \\notin D$ ;\n- $3 \\notin f(3)$, donc $3 \\in D$ ;\n- $4 \\in f(4)$, donc $4 \\notin D$ ;\n- $5 \\notin f(5)$, donc $5 \\in D$.\n\nDonc $D = \\{1, 3, 5\\}$. Les valeurs de $f$ sont $\\emptyset$, $\\{2, 5\\}$, $\\{1, 2\\}$, $\\{1, 3, 4\\}$, $\\{1, 2\\}$ : aucune n'est égale à $D$. C'est l'argument de Cantor : pour chaque $x$, $D$ et $f(x)$ diffèrent au moins par l'élément $x$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-cantor-ex3",
+      "carte": "fond-l1-ensembles-cantor",
+      "difficulte": 3,
+      "titre": "Intervalles et irrationnels",
+      "enonce": "Soient $a < b$ deux réels.\n\n1. Construire une bijection de $\\left]0, 1\\right[$ sur $\\left]a, b\\right[$.\n\n2. Montrer que $\\left]0, 1\\right[$ n'est pas au plus dénombrable.\n\n3. En déduire qu'aucune partie de $\\mathbb{R}$ contenant un intervalle $\\left]a, b\\right[$ (avec $a < b$) n'est au plus dénombrable, puis que l'ensemble des irrationnels de $\\left]a, b\\right[$ n'est pas au plus dénombrable.",
+      "duree_min": 10,
+      "indices": [
+        "Une application affine convient pour la question 1.",
+        "Pour la question 2, comparer $\\left]0, 1\\right[$ et $\\left[0, 1\\right[$, qui diffèrent d'un point."
+      ],
+      "correction": "1. $t \\mapsto a + (b - a)t$ envoie $\\left]0, 1\\right[$ dans $\\left]a, b\\right[$ (car $b - a > 0$), et $x \\mapsto (x - a)/(b - a)$ envoie $\\left]a, b\\right[$ dans $\\left]0, 1\\right[$ ; ces deux applications sont réciproques l'une de l'autre, donc bijectives.\n\n2. $\\left[0, 1\\right[ = \\left]0, 1\\right[ \\cup \\{0\\}$. Si $\\left]0, 1\\right[$ était au plus dénombrable, $\\left[0, 1\\right[$ le serait aussi, comme réunion de deux ensembles au plus dénombrables ; or l'argument diagonal montre que $\\left[0, 1\\right[$ ne l'est pas.\n\n3. Si $A \\supset \\left]a, b\\right[$ était au plus dénombrable, sa partie $\\left]a, b\\right[$ le serait aussi, puis $\\left]0, 1\\right[$, qui est en bijection avec elle (question 1) : contradiction avec la question 2. Enfin $\\left]a, b\\right[ = \\left(\\left]a, b\\right[ \\cap \\mathbb{Q}\\right) \\cup \\left(\\left]a, b\\right[ \\setminus \\mathbb{Q}\\right)$ ; le premier ensemble est au plus dénombrable (partie de $\\mathbb{Q}$) ; si le second l'était aussi, $\\left]a, b\\right[$ le serait, ce qui est exclu."
+    },
+    {
+      "id": "fond-l1-ensembles-cantor-ex4",
+      "carte": "fond-l1-ensembles-cantor",
+      "difficulte": 4,
+      "titre": "Nombres algébriques et transcendants",
+      "enonce": "Un réel est dit **algébrique** s'il est racine d'un polynôme non nul à coefficients entiers, et **transcendant** sinon.\n\n1. Pour $n \\in \\mathbb{N}$, montrer que l'ensemble $\\mathbb{Z}_n[X]$ des polynômes à coefficients entiers de degré au plus $n$ est dénombrable.\n\n2. En déduire que $\\mathbb{Z}[X]$ est dénombrable.\n\n3. Montrer que l'ensemble $\\mathcal{A}$ des réels algébriques est dénombrable.\n\n4. En déduire que l'ensemble des réels transcendants n'est pas au plus dénombrable ; en particulier, il existe des réels transcendants.",
+      "duree_min": 20,
+      "indices": [
+        "Un polynôme non nul de degré au plus $n$ a au plus $n$ racines réelles.",
+        "$\\mathcal{A}$ est la réunion, indexée par les polynômes non nuls de $\\mathbb{Z}[X]$, de leurs ensembles de racines réelles."
+      ],
+      "correction": "1. L'application $(c_0, \\dots, c_n) \\mapsto c_0 + c_1 X + \\dots + c_n X^n$ est une bijection de $\\mathbb{Z}^{n+1}$ sur $\\mathbb{Z}_n[X]$. Or $\\mathbb{Z}^{n+1}$ est un produit fini d'ensembles dénombrables, donc au plus dénombrable, et il est infini. Donc $\\mathbb{Z}_n[X]$ est dénombrable.\n\n2. $\\mathbb{Z}[X] = \\bigcup_{n \\in \\mathbb{N}} \\mathbb{Z}_n[X]$ est une réunion indexée par $\\mathbb{N}$ d'ensembles dénombrables, donc au plus dénombrable ; il est infini, donc dénombrable. (Les bijections de la question 1 étant explicites, aucun choix n'intervient.)\n\n3. Pour $P \\in \\mathbb{Z}[X]$ non nul, l'ensemble $Z(P)$ de ses racines réelles est fini (au plus $\\deg P$ éléments). L'ensemble $\\mathbb{Z}[X] \\setminus \\{0\\}$ est au plus dénombrable (partie d'un dénombrable), et $\\mathcal{A} = \\bigcup_{P \\neq 0} Z(P)$ est une réunion au plus dénombrable d'ensembles finis, donc est au plus dénombrable (on peut énumérer chaque $Z(P)$ dans l'ordre croissant : là encore, aucun choix arbitraire). Enfin $\\mathcal{A}$ contient $\\mathbb{Z}$ ($n$ est racine de $X - n$), donc est infini : $\\mathcal{A}$ est dénombrable.\n\n4. Si l'ensemble $\\mathbb{R} \\setminus \\mathcal{A}$ des transcendants était au plus dénombrable, $\\mathbb{R} = \\mathcal{A} \\cup (\\mathbb{R} \\setminus \\mathcal{A})$ le serait aussi, ce qui contredit le théorème de Cantor. En particulier $\\mathbb{R} \\setminus \\mathcal{A}$ est non vide (et même infini)."
+    },
+    {
+      "id": "fond-l1-ensembles-cantor-ex5",
+      "carte": "fond-l1-ensembles-cantor",
+      "difficulte": 4,
+      "titre": "Pas d'injection de $\\mathcal{P}(E)$ dans $E$",
+      "enonce": "Soit $E$ un ensemble.\n\n1. On suppose qu'il existe une injection $g : \\mathcal{P}(E) \\to E$. Construire une surjection $h : E \\to \\mathcal{P}(E)$.\n\n2. Conclure qu'il n'existe aucune injection de $\\mathcal{P}(E)$ dans $E$.\n\n3. Soit $(s_k)_{k \\in \\mathbb{N}}$ une suite d'éléments de $\\{0, 1\\}^{\\mathbb{N}}$. Construire explicitement un élément de $\\{0, 1\\}^{\\mathbb{N}}$ qui n'est égal à aucun $s_k$. Que peut-on en conclure ?",
+      "duree_min": 15,
+      "indices": [
+        "Pour $x$ dans l'image de $g$, l'injectivité fournit un unique antécédent : c'est le candidat pour $h(x)$ ; ailleurs, choisir une valeur fixe.",
+        "Pour la question 3, définir $t(k)$ à partir de $s_k(k)$."
+      ],
+      "correction": "1. Pour $x \\in g(\\mathcal{P}(E))$, il existe une unique partie $A$ telle que $g(A) = x$ (injectivité de $g$) : on pose $h(x) = A$. Pour $x \\notin g(\\mathcal{P}(E))$, on pose $h(x) = \\emptyset$. Alors, pour toute partie $A$ de $E$, $h(g(A)) = A$ : toute partie a un antécédent par $h$, qui est surjective.\n\n2. Le théorème de Cantor interdit l'existence d'une surjection de $E$ sur $\\mathcal{P}(E)$. Donc l'hypothèse de la question 1 est absurde : il n'existe aucune injection de $\\mathcal{P}(E)$ dans $E$.\n\n3. Posons $t(k) = 1 - s_k(k)$ pour $k \\in \\mathbb{N}$ : c'est un élément de $\\{0, 1\\}^{\\mathbb{N}}$, et $t(k) \\neq s_k(k)$, donc $t \\neq s_k$ pour tout $k$. Aucune suite $(s_k)$ ne prend toutes les valeurs de $\\{0, 1\\}^{\\mathbb{N}}$ : il n'existe pas de surjection de $\\mathbb{N}$ sur $\\{0, 1\\}^{\\mathbb{N}}$, qui n'est donc pas au plus dénombrable. C'est l'argument diagonal, sous sa forme la plus nue."
+    }
+  ]
+}

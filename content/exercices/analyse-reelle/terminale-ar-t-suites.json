@@ -1,0 +1,825 @@
+{
+  "exercices": [
+    {
+      "id": "ar-t-suites-recurrence-ex1",
+      "carte": "ar-t-suites-recurrence",
+      "difficulte": 1,
+      "titre": "Une divisibilité",
+      "enonce": "Montrer par récurrence que, pour tout entier $n\\ge0$, l'entier $5^n-1$ est divisible par $4$.",
+      "duree_min": 5,
+      "indices": [
+        "Exprimer $5^{n+1}-1$ à l'aide de $5^n-1$."
+      ],
+      "correction": "Notons $P(n)$ : « $4$ divise $5^n-1$ ».\n\n**Initialisation.** $5^0-1=0=4\\times0$ : $P(0)$ est vraie.\n\n**Hérédité.** Soit $n\\ge0$ tel que $P(n)$ soit vraie : $5^n-1=4k$ avec $k$ entier. Alors $5^{n+1}-1=5(5^n-1)+4=20k+4=4(5k+1)$, et $5k+1$ est un entier : $P(n+1)$ est vraie.\n\n**Conclusion.** Par récurrence, $5^n-1$ est divisible par $4$ pour tout entier $n\\ge0$."
+    },
+    {
+      "id": "ar-t-suites-recurrence-ex2",
+      "carte": "ar-t-suites-recurrence",
+      "difficulte": 2,
+      "titre": "Conjecturer, puis démontrer",
+      "enonce": "On définit la suite $(u_n)$ par $u_0=2$ et $u_{n+1}=2u_n-1$ pour tout $n\\ge0$. Calculer $u_1$, $u_2$ et $u_3$, conjecturer une expression de $u_n$ en fonction de $n$, puis la démontrer par récurrence.",
+      "duree_min": 8,
+      "indices": [
+        "Une formule qui convient pour $u_0$ et $u_1$ ne convient pas forcément pour $u_2$ et $u_3$ : tester la conjecture sur tous les termes calculés."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'expression de $u_n$ ?",
+        "propositions": [
+          "$u_n=2^n+1$",
+          "$u_n=n+2$",
+          "$u_n=2^{n+1}$",
+          "$u_n=3^n+1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$u_1=3$, $u_2=5$, $u_3=9$ : on conjecture $u_n=2^n+1$ (on a bien $2^0+1=2$, $2^1+1=3$, $2^2+1=5$, $2^3+1=9$). Notons $P(n)$ : « $u_n=2^n+1$ ».\n\n**Initialisation.** $u_0=2=2^0+1$.\n\n**Hérédité.** Si $u_n=2^n+1$, alors $u_{n+1}=2(2^n+1)-1=2^{n+1}+1$.\n\nDonc $u_n=2^n+1$ pour tout $n\\ge0$. Les autres formules ne conviennent pas pour tous les termes calculés : $n+2$ donne $4\\neq u_2$, $2^{n+1}$ et $3^n+1$ donnent $4\\neq u_1$.",
+      "variantes": [
+        {
+          "enonce": "On définit la suite $(u_n)$ par $u_0=3$ et $u_{n+1}=3u_n-4$ pour tout $n\\ge0$. Calculer $u_1$, $u_2$ et $u_3$, conjecturer une expression de $u_n$ en fonction de $n$, puis la démontrer par récurrence.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=3^n+2$",
+              "$u_n=2n+3$",
+              "$u_n=3^{n+1}$",
+              "$u_n=2\\cdot3^n+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_1=5$, $u_2=11$, $u_3=29$ : on conjecture $u_n=3^n+2$ (on a bien $1+2=3$, $3+2=5$, $9+2=11$, $27+2=29$). Notons $P(n)$ : « $u_n=3^n+2$ ».\n\n**Initialisation.** $u_0=3=3^0+2$.\n\n**Hérédité.** Si $u_n=3^n+2$, alors $u_{n+1}=3(3^n+2)-4=3^{n+1}+2$.\n\nDonc $u_n=3^n+2$ pour tout $n\\ge0$. Les autres formules échouent : $2n+3$ donne $7\\neq u_2$, $3^{n+1}$ donne $9\\neq u_1$, $2\\cdot3^n+1$ donne $7\\neq u_1$."
+        },
+        {
+          "enonce": "On définit la suite $(u_n)$ par $u_0=0$ et $u_{n+1}=2u_n+3$ pour tout $n\\ge0$. Calculer $u_1$, $u_2$ et $u_3$, conjecturer une expression de $u_n$ en fonction de $n$, puis la démontrer par récurrence.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=3\\cdot2^n-3$",
+              "$u_n=3n$",
+              "$u_n=3\\cdot2^{n+1}-6$",
+              "$u_n=2^{n+1}+n-2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$u_1=3$, $u_2=9$, $u_3=21$ : on conjecture $u_n=3\\cdot2^n-3$ (on a bien $3-3=0$, $6-3=3$, $12-3=9$, $24-3=21$). Notons $P(n)$ : « $u_n=3\\cdot2^n-3$ ».\n\n**Initialisation.** $u_0=0=3\\cdot2^0-3$.\n\n**Hérédité.** Si $u_n=3\\cdot2^n-3$, alors $u_{n+1}=2(3\\cdot2^n-3)+3=3\\cdot2^{n+1}-3$.\n\nDonc $u_n=3\\cdot2^n-3$ pour tout $n\\ge0$. Les autres formules échouent : $3n$ donne $6\\neq u_2$, $3\\cdot2^{n+1}-6$ donne $6\\neq u_1$, $2^{n+1}+n-2$ donne $8\\neq u_2$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-recurrence-ex3",
+      "carte": "ar-t-suites-recurrence",
+      "difficulte": 3,
+      "titre": "Une récurrence qui démarre plus loin",
+      "enonce": "Déterminer le plus petit entier naturel $n_0$ tel que $2^n>n^2$ pour **tout** entier $n\\ge n_0$, et démontrer le résultat.",
+      "duree_min": 12,
+      "indices": [
+        "Tester les petites valeurs de $n$ : l'inégalité peut être vraie, puis fausse, puis de nouveau vraie.",
+        "Pour l'hérédité, comparer $2n^2$ et $(n+1)^2$ lorsque $n$ est assez grand."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de $n_0$ ?",
+        "propositions": [
+          "$5$",
+          "$4$",
+          "$0$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On teste : $n=0$ : $1>0$ ; $n=1$ : $2>1$ ; $n=2$ : $4>4$ est faux ; $n=3$ : $8>9$ est faux ; $n=4$ : $16>16$ est faux ; $n=5$ : $32>25$. L'inégalité étant fausse pour $n=4$, on a nécessairement $n_0\\ge5$. Montrons par récurrence que $P(n)$ : « $2^n>n^2$ » est vraie pour tout $n\\ge5$.\n\n**Initialisation.** $2^5=32>25=5^2$.\n\n**Hérédité.** Soit $n\\ge5$ tel que $2^n>n^2$. Alors $2^{n+1}>2n^2$, et $2n^2-(n+1)^2=n^2-2n-1=(n-1)^2-2\\ge16-2>0$. Donc $2^{n+1}>(n+1)^2$.\n\nAinsi $n_0=5$. Le leurre $0$ vient de ce que l'inégalité est vraie pour $n=0$ et $n=1$ : elle ne l'est pas pour tous les entiers à partir de $0$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer le plus petit entier naturel $n_0$ tel que $3^n>n^3$ pour **tout** entier $n\\ge n_0$, et démontrer le résultat.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $n_0$ ?",
+            "propositions": [
+              "$4$",
+              "$3$",
+              "$0$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On teste : $n=0$ : $1>0$ ; $n=1$ : $3>1$ ; $n=2$ : $9>8$ ; $n=3$ : $27>27$ est faux ; $n=4$ : $81>64$. L'inégalité étant fausse pour $n=3$, on a $n_0\\ge4$. Montrons par récurrence que $3^n>n^3$ pour tout $n\\ge4$.\n\n**Initialisation.** $3^4=81>64=4^3$.\n\n**Hérédité.** Soit $n\\ge4$ tel que $3^n>n^3$. Alors $3^{n+1}>3n^3$, et $3n^3\\ge(n+1)^3$ équivaut à $\\left(1+\\frac1n\\right)^3\\le3$ ; or pour $n\\ge4$, $\\left(1+\\frac1n\\right)^3\\le\\left(\\frac54\\right)^3=\\frac{125}{64}<3$. Donc $3^{n+1}>(n+1)^3$.\n\nAinsi $n_0=4$.",
+          "indices": [
+            "Tester les petites valeurs de $n$ : l'inégalité peut être vraie, puis fausse, puis de nouveau vraie.",
+            "Pour l'hérédité, comparer $3n^3$ et $(n+1)^3$, par exemple à l'aide de $\\left(1+\\frac1n\\right)^3$."
+          ]
+        },
+        {
+          "enonce": "Déterminer le plus petit entier naturel $n_0$ tel que $2^n>n^3$ pour **tout** entier $n\\ge n_0$, et démontrer le résultat.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $n_0$ ?",
+            "propositions": [
+              "$10$",
+              "$9$",
+              "$0$",
+              "$11$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On teste : $n=0$ : $1>0$ ; $n=1$ : $2>1$ ; $n=2$ : $4>8$ est faux, et l'inégalité reste fausse jusqu'à $n=9$ ($2^9=512<729=9^3$) ; $n=10$ : $1024>1000$. On a donc $n_0\\ge10$. Montrons par récurrence que $2^n>n^3$ pour tout $n\\ge10$.\n\n**Initialisation.** $2^{10}=1024>1000=10^3$.\n\n**Hérédité.** Soit $n\\ge10$ tel que $2^n>n^3$. Alors $2^{n+1}>2n^3$, et $2n^3\\ge(n+1)^3$ équivaut à $\\left(1+\\frac1n\\right)^3\\le2$ ; or pour $n\\ge10$, $\\left(1+\\frac1n\\right)^3\\le1{,}1^3=1{,}331<2$. Donc $2^{n+1}>(n+1)^3$.\n\nAinsi $n_0=10$.",
+          "indices": [
+            "Tester les petites valeurs de $n$ : l'inégalité peut être vraie, puis fausse, puis de nouveau vraie.",
+            "Pour l'hérédité, comparer $2n^3$ et $(n+1)^3$, par exemple à l'aide de $\\left(1+\\frac1n\\right)^3$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-recurrence-ex4",
+      "carte": "ar-t-suites-recurrence",
+      "difficulte": 4,
+      "titre": "Récurrence sur deux rangs",
+      "enonce": "On définit $u_0=1$, $u_1=3$ et $u_{n+2}=3u_{n+1}-2u_n$ pour tout $n\\ge0$.\n\n**1.** Calculer $u_2$, $u_3$ et $u_4$, puis conjecturer une expression de $u_n$ en fonction de $n$.\n\n**2.** Expliquer pourquoi une récurrence portant sur la seule propriété $P(n)$ : « $u_n$ est égal à l'expression conjecturée » bute sur l'hérédité.\n\n**3.** Démontrer la conjecture par récurrence sur une propriété $Q(n)$ bien choisie.",
+      "duree_min": 20,
+      "indices": [
+        "Calculer les termes jusqu'à $u_4$ : plusieurs formules simples conviennent pour $u_0$, $u_1$, $u_2$ sans convenir ensuite.",
+        "Pour la question 3, prendre pour $Q(n)$ : « la formule est vraie aux rangs $n$ et $n+1$ »."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'expression de $u_n$ ?",
+        "propositions": [
+          "$u_n=2^{n+1}-1$",
+          "$u_n=3^n$",
+          "$u_n=2n+1$",
+          "$u_n=n^2+n+1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $u_2=9-2=7$, $u_3=21-6=15$, $u_4=45-14=31$. Les termes $1,3,7,15,31$ sont égaux à $2^{n+1}-1$ : on conjecture $u_n=2^{n+1}-1$. Les formules $3^n$, $2n+1$ et $n^2+n+1$ valent $1$ et $3$ pour $n=0$ et $n=1$, mais donnent $9$, $5$, $7$ pour $n=2$ : seule $n^2+n+1$ convient encore, et elle donne $13\\neq u_3=15$.\n\n**2.** $u_{n+1}$ s'exprime à l'aide de $u_n$ **et** de $u_{n-1}$ : connaître $u_n$ seul ne permet pas de calculer $u_{n+1}$. L'hypothèse $P(n)$ ne suffit donc pas pour établir $P(n+1)$.\n\n**3.** Soit $Q(n)$ : « $u_n=2^{n+1}-1$ et $u_{n+1}=2^{n+2}-1$ ». $Q(0)$ est vraie : $u_0=1=2^1-1$ et $u_1=3=2^2-1$. Si $Q(n)$ est vraie, alors $u_{n+2}=3(2^{n+2}-1)-2(2^{n+1}-1)=3\\cdot2^{n+2}-2^{n+2}-3+2=2^{n+3}-1$, donc $Q(n+1)$ est vraie. Par récurrence, $Q(n)$ est vraie pour tout $n$, et en particulier $u_n=2^{n+1}-1$ pour tout $n\\ge0$.",
+      "variantes": [
+        {
+          "enonce": "On définit $u_0=2$, $u_1=5$ et $u_{n+2}=5u_{n+1}-6u_n$ pour tout $n\\ge0$.\n\n**1.** Calculer $u_2$, $u_3$ et $u_4$, puis conjecturer une expression de $u_n$ en fonction de $n$.\n\n**2.** Expliquer pourquoi une récurrence portant sur la seule propriété $P(n)$ : « $u_n$ est égal à l'expression conjecturée » bute sur l'hérédité.\n\n**3.** Démontrer la conjecture par récurrence sur une propriété $Q(n)$ bien choisie.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=2^n+3^n$",
+              "$u_n=3n+2$",
+              "$u_n=4^n+1$",
+              "$u_n=\\frac{5n^2+n+4}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $u_2=25-12=13$, $u_3=65-30=35$, $u_4=175-78=97$. Les termes $2,5,13,35,97$ sont égaux à $2^n+3^n$ : on conjecture $u_n=2^n+3^n$. Les formules $3n+2$, $4^n+1$ et $\\frac{5n^2+n+4}{2}$ valent $2$ et $5$ pour $n=0$ et $n=1$, mais donnent $8$, $17$, $13$ pour $n=2$ : seule la dernière convient encore, et elle donne $26\\neq u_3=35$.\n\n**2.** $u_{n+1}$ s'exprime à l'aide de $u_n$ **et** de $u_{n-1}$ : l'hypothèse $P(n)$ seule ne permet pas de calculer $u_{n+1}$.\n\n**3.** Soit $Q(n)$ : « $u_n=2^n+3^n$ et $u_{n+1}=2^{n+1}+3^{n+1}$ ». $Q(0)$ est vraie : $u_0=2=1+1$ et $u_1=5=2+3$. Si $Q(n)$ est vraie, alors $u_{n+2}=5(2^{n+1}+3^{n+1})-6(2^n+3^n)=(10-6)2^n+(15-6)3^n=2^{n+2}+3^{n+2}$, donc $Q(n+1)$ est vraie. Par récurrence, $u_n=2^n+3^n$ pour tout $n\\ge0$."
+        },
+        {
+          "enonce": "On définit $u_0=0$, $u_1=1$ et $u_{n+2}=4u_{n+1}-3u_n$ pour tout $n\\ge0$.\n\n**1.** Calculer $u_2$, $u_3$ et $u_4$, puis conjecturer une expression de $u_n$ en fonction de $n$.\n\n**2.** Expliquer pourquoi une récurrence portant sur la seule propriété $P(n)$ : « $u_n$ est égal à l'expression conjecturée » bute sur l'hérédité.\n\n**3.** Démontrer la conjecture par récurrence sur une propriété $Q(n)$ bien choisie.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=\\frac{3^n-1}{2}$",
+              "$u_n=n^2$",
+              "$u_n=2^n-1$",
+              "$u_n=\\frac{n(3n-1)}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $u_2=4$, $u_3=16-3=13$, $u_4=52-12=40$. Les termes $0,1,4,13,40$ sont égaux à $\\frac{3^n-1}{2}$ : on conjecture $u_n=\\frac{3^n-1}{2}$. Les formules $n^2$, $2^n-1$ et $\\frac{n(3n-1)}{2}$ valent $0$ et $1$ pour $n=0$ et $n=1$, mais donnent $4$, $3$, $5$ pour $n=2$ : seule $n^2$ convient encore, et elle donne $9\\neq u_3=13$.\n\n**2.** $u_{n+1}$ s'exprime à l'aide de $u_n$ **et** de $u_{n-1}$ : l'hypothèse $P(n)$ seule ne permet pas de calculer $u_{n+1}$.\n\n**3.** Soit $Q(n)$ : « $u_n=\\frac{3^n-1}{2}$ et $u_{n+1}=\\frac{3^{n+1}-1}{2}$ ». $Q(0)$ est vraie : $u_0=0$ et $u_1=1$. Si $Q(n)$ est vraie, alors $u_{n+2}=\\frac{4(3^{n+1}-1)-3(3^n-1)}{2}=\\frac{12\\cdot3^n-3\\cdot3^n-4+3}{2}=\\frac{3^{n+2}-1}{2}$, donc $Q(n+1)$ est vraie. Par récurrence, $u_n=\\frac{3^n-1}{2}$ pour tout $n\\ge0$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-recurrence-ex5",
+      "carte": "ar-t-suites-recurrence",
+      "difficulte": 3,
+      "titre": "Où est l'erreur ?",
+      "enonce": "On prétend démontrer, pour tout entier $n\\ge1$, la propriété $P(n)$ : « $n$ réels quelconques sont tous égaux ».\n\n- $P(1)$ est vraie : un seul réel est égal à lui-même.\n- Supposons $P(n)$ vraie et soient $x_1,\\dots,x_{n+1}$ des réels. Par $P(n)$ appliquée à $x_1,\\dots,x_n$, ces $n$ réels sont égaux ; par $P(n)$ appliquée à $x_2,\\dots,x_{n+1}$, ces $n$ réels sont égaux. Ils sont donc tous égaux à $x_2$, et $P(n+1)$ est vraie.\n\nLa conclusion est évidemment fausse. Pour quelles valeurs de $n$ l'implication $P(n)\\Rightarrow P(n+1)$ est-elle fausse, et quelle étape du raisonnement est incorrecte ?",
+      "duree_min": 10,
+      "indices": [
+        "Écrire l'argument d'hérédité pour de petites valeurs de $n$, en nommant explicitement les deux groupes de réels.",
+        "L'argument utilise un réel commun aux deux groupes : existe-t-il toujours ?"
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $n\\ge1$ l'implication $P(n)\\Rightarrow P(n+1)$ est-elle fausse ?",
+        "propositions": [
+          "Seulement pour $n=1$",
+          "Pour tout $n\\ge1$",
+          "Seulement pour $n=2$",
+          "Pour aucune : c'est l'initialisation qui est fausse"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'initialisation est correcte. Pour $n=1$, les deux groupes sont réduits à $x_1$ et à $x_2$ : ils n'ont aucun élément commun, et l'on ne peut rien en déduire. L'argument « tous égaux à $x_2$ » suppose que $x_2$ appartient aux deux groupes, ce qui demande $n\\ge2$.\n\nL'implication $P(1)\\Rightarrow P(2)$ est fausse : $P(1)$ est vraie, $P(2)$ est fausse (les réels $0$ et $1$ ne sont pas égaux). Pour $n\\ge2$, l'argument est correct (les deux groupes ont en commun $x_2,\\dots,x_n$) ; d'ailleurs $P(n)$ est alors fausse, si bien que l'implication $P(n)\\Rightarrow P(n+1)$ est vraie.\n\nL'hérédité doit être établie pour **tout** $n\\ge n_0$ : ici elle échoue exactement au rang $1$, et la chaîne de déductions est rompue dès le départ."
+    },
+    {
+      "id": "ar-t-suites-geometrique-ex1",
+      "carte": "ar-t-suites-geometrique",
+      "difficulte": 1,
+      "titre": "Lire la raison",
+      "enonce": "Déterminer la limite éventuelle de la suite définie par $u_n=2-5\\left(-\\frac34\\right)^n$.",
+      "duree_min": 3,
+      "indices": [
+        "Identifier la raison $q$ et la comparer à $-1$ et à $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que peut-on dire de $(u_n)$ ?",
+        "propositions": [
+          "Elle converge vers $2$",
+          "Elle n'a pas de limite",
+          "Elle converge vers $-3$",
+          "Elle tend vers $-\\infty$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Ici $q=-\\frac34$ vérifie $-1<q<1$, donc $\\left(-\\frac34\\right)^n\\to0$. Par opérations sur les limites, $u_n\\to2-5\\times0=2$. Le signe alterné de $q^n$ n'empêche pas la convergence : $\\left|q^n\\right|=\\left(\\frac34\\right)^n\\to0$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite éventuelle de la suite définie par $u_n=1+4\\left(-\\frac25\\right)^n$.",
+          "reponse_finale": {
+            "question": "Que peut-on dire de $(u_n)$ ?",
+            "propositions": [
+              "Elle converge vers $1$",
+              "Elle n'a pas de limite",
+              "Elle converge vers $5$",
+              "Elle tend vers $+\\infty$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Ici $q=-\\frac25$ vérifie $-1<q<1$, donc $\\left(-\\frac25\\right)^n\\to0$, et $u_n\\to1+4\\times0=1$."
+        },
+        {
+          "enonce": "Déterminer la limite éventuelle de la suite définie par $u_n=3-\\left(-\\frac65\\right)^n$.",
+          "reponse_finale": {
+            "question": "Que peut-on dire de $(u_n)$ ?",
+            "propositions": [
+              "Elle n'a pas de limite",
+              "Elle converge vers $3$",
+              "Elle tend vers $-\\infty$",
+              "Elle tend vers $+\\infty$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Ici $q=-\\frac65\\le-1$ : la suite $(q^n)$ n'a pas de limite. Si $(u_n)$ avait une limite (finie ou infinie), $q^n=3-u_n$ en aurait une aussi, par opérations sur les limites : c'est impossible. Donc $(u_n)$ n'a pas de limite (ses termes d'indice pair tendent vers $-\\infty$, ceux d'indice impair vers $+\\infty$)."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-geometrique-ex2",
+      "carte": "ar-t-suites-geometrique",
+      "difficulte": 2,
+      "titre": "Recherche d'un seuil",
+      "enonce": "Déterminer le plus petit entier naturel $n$ tel que $0{,}8^n<10^{-3}$.",
+      "duree_min": 8,
+      "indices": [
+        "La suite $(0{,}8^n)$ est décroissante : dès qu'un terme passe sous $10^{-3}$, tous les suivants aussi.",
+        "Passer au logarithme népérien, en faisant attention au signe de $\\ln0{,}8$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce plus petit entier ?",
+        "propositions": [
+          "$31$",
+          "$30$",
+          "$32$",
+          "$29$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $0<0{,}8<1$, la suite $(0{,}8^n)$ est strictement décroissante et tend vers $0$ : un tel entier existe, et les solutions sont tous les entiers à partir du premier. La fonction $\\ln$ est strictement croissante, donc $0{,}8^n<10^{-3}\\iff n\\ln0{,}8<-3\\ln10\\iff n>\\frac{-3\\ln10}{\\ln0{,}8}$, l'inégalité changeant de sens car $\\ln0{,}8<0$. Or $\\frac{-3\\ln10}{\\ln0{,}8}\\approx30{,}96$ : le plus petit entier est $31$. Contrôle : $0{,}8^{30}\\approx1{,}24\\times10^{-3}$ et $0{,}8^{31}\\approx9{,}90\\times10^{-4}$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer le plus petit entier naturel $n$ tel que $0{,}9^n<10^{-2}$.",
+          "reponse_finale": {
+            "question": "Quel est ce plus petit entier ?",
+            "propositions": [
+              "$44$",
+              "$43$",
+              "$45$",
+              "$42$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $0<0{,}9<1$, la suite $(0{,}9^n)$ est strictement décroissante et tend vers $0$. Comme $\\ln0{,}9<0$, $0{,}9^n<10^{-2}\\iff n>\\frac{-2\\ln10}{\\ln0{,}9}\\approx43{,}71$ : le plus petit entier est $44$. Contrôle : $0{,}9^{43}\\approx1{,}08\\times10^{-2}$ et $0{,}9^{44}\\approx9{,}70\\times10^{-3}$."
+        },
+        {
+          "enonce": "Déterminer le plus petit entier naturel $n$ tel que $0{,}5^n<10^{-4}$.",
+          "reponse_finale": {
+            "question": "Quel est ce plus petit entier ?",
+            "propositions": [
+              "$14$",
+              "$13$",
+              "$15$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $0<0{,}5<1$, la suite $(0{,}5^n)$ est strictement décroissante et tend vers $0$. Comme $\\ln0{,}5<0$, $0{,}5^n<10^{-4}\\iff n>\\frac{-4\\ln10}{\\ln0{,}5}=\\frac{4\\ln10}{\\ln2}\\approx13{,}29$ : le plus petit entier est $14$. Contrôle : $0{,}5^{13}\\approx1{,}22\\times10^{-4}$ et $0{,}5^{14}\\approx6{,}10\\times10^{-5}$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-geometrique-ex3",
+      "carte": "ar-t-suites-geometrique",
+      "difficulte": 3,
+      "titre": "Suite arithmético-géométrique",
+      "enonce": "On définit $u_0=1$ et $u_{n+1}=0{,}6\\,u_n+2$ pour tout $n\\ge0$.\n\n**1.** Déterminer le réel $c$ tel que la suite $(v_n)$ définie par $v_n=u_n-c$ soit géométrique ; préciser sa raison.\n\n**2.** Exprimer $u_n$ en fonction de $n$.\n\n**3.** Déterminer la limite de $(u_n)$.",
+      "duree_min": 15,
+      "indices": [
+        "Exprimer $v_{n+1}=u_{n+1}-c$ en fonction de $u_n$, puis de $v_n$, et choisir $c$ pour que le résultat soit un multiple de $v_n$.",
+        "Une fois $v_n=v_0q^n$ obtenu, appliquer le théorème selon la valeur de $q$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $(u_n)$ ?",
+        "propositions": [
+          "$5$",
+          "$\\frac54$",
+          "$2$",
+          "$+\\infty$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $v_{n+1}=0{,}6\\,u_n+2-c=0{,}6\\,(u_n-c)+0{,}6\\,c+2-c=0{,}6\\,v_n+2-0{,}4\\,c$. Pour $c=5$, $v_{n+1}=0{,}6\\,v_n$ : $(v_n)$ est géométrique de raison $0{,}6$. (Pour $c\\neq5$, $v_n=(5-c)-4\\times0{,}6^n$ n'est pas géométrique.)\n\n**2.** $v_0=u_0-5=-4$, donc $v_n=-4\\times0{,}6^n$ et $u_n=5-4\\times0{,}6^n$.\n\n**3.** Comme $-1<0{,}6<1$, $0{,}6^n\\to0$, donc $u_n\\to5$.",
+      "variantes": [
+        {
+          "enonce": "On définit $u_0=0$ et $u_{n+1}=0{,}5\\,u_n+3$ pour tout $n\\ge0$.\n\n**1.** Déterminer le réel $c$ tel que la suite $(v_n)$ définie par $v_n=u_n-c$ soit géométrique ; préciser sa raison.\n\n**2.** Exprimer $u_n$ en fonction de $n$.\n\n**3.** Déterminer la limite de $(u_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$6$",
+              "$2$",
+              "$3$",
+              "$+\\infty$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $v_{n+1}=0{,}5\\,u_n+3-c=0{,}5\\,v_n+3-0{,}5\\,c$. Pour $c=6$, $v_{n+1}=0{,}5\\,v_n$ : $(v_n)$ est géométrique de raison $0{,}5$.\n\n**2.** $v_0=-6$, donc $v_n=-6\\times0{,}5^n$ et $u_n=6-6\\times0{,}5^n$.\n\n**3.** Comme $-1<0{,}5<1$, $0{,}5^n\\to0$, donc $u_n\\to6$."
+        },
+        {
+          "enonce": "On définit $u_0=1$ et $u_{n+1}=1{,}5\\,u_n-1$ pour tout $n\\ge0$.\n\n**1.** Déterminer le réel $c$ tel que la suite $(v_n)$ définie par $v_n=u_n-c$ soit géométrique ; préciser sa raison.\n\n**2.** Exprimer $u_n$ en fonction de $n$.\n\n**3.** Déterminer la limite de $(u_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$-\\infty$",
+              "$2$",
+              "$+\\infty$",
+              "$-\\frac25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $v_{n+1}=1{,}5\\,u_n-1-c=1{,}5\\,v_n+0{,}5\\,c-1$. Pour $c=2$, $v_{n+1}=1{,}5\\,v_n$ : $(v_n)$ est géométrique de raison $1{,}5$.\n\n**2.** $v_0=1-2=-1$, donc $v_n=-1{,}5^n$ et $u_n=2-1{,}5^n$.\n\n**3.** Comme $1{,}5>1$, $1{,}5^n\\to+\\infty$, donc $u_n\\to-\\infty$. Ici $c=2$ est un point fixe de la relation, mais la suite s'en éloigne : il ne faut pas confondre ce réel avec la limite."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-geometrique-ex4",
+      "carte": "ar-t-suites-geometrique",
+      "difficulte": 4,
+      "titre": "Raison dépendant d'un paramètre",
+      "enonce": "Pour tout réel $x$, on pose $q(x)=\\frac{2x}{x^2+1}$. Déterminer l'ensemble des réels $x$ pour lesquels la suite $\\left(q(x)^n\\right)_{n\\ge0}$ converge, et préciser alors sa limite.",
+      "duree_min": 15,
+      "indices": [
+        "Comparer $2|x|$ et $x^2+1$ : penser à $(|x|-1)^2$.",
+        "Traiter à part les valeurs de $x$ pour lesquelles $|q(x)|=1$."
+      ],
+      "reponse_finale": {
+        "question": "Pour quels réels $x$ la suite converge-t-elle ?",
+        "propositions": [
+          "$\\mathbb{R}\\setminus\\{-1\\}$",
+          "$\\mathbb{R}\\setminus\\{-1,1\\}$",
+          "$\\mathbb{R}$",
+          "$\\left]-1,1\\right[$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout réel $x$, $x^2+1-2|x|=(|x|-1)^2\\ge0$, donc $|q(x)|=\\frac{2|x|}{x^2+1}\\le1$, avec égalité si et seulement si $|x|=1$.\n\n- Si $|x|\\neq1$ : $-1<q(x)<1$, donc $q(x)^n\\to0$.\n- Si $x=1$ : $q(1)=1$, la suite est constante égale à $1$ : elle converge vers $1$.\n- Si $x=-1$ : $q(-1)=-1$, et la suite $\\left((-1)^n\\right)$ n'a pas de limite.\n\nLa suite converge donc si et seulement si $x\\in\\mathbb{R}\\setminus\\{-1\\}$ : vers $0$ si $x\\neq1$, vers $1$ si $x=1$. Le cas $x=1$ est le piège : la condition $-1<q<1$ suffit pour la convergence, mais elle n'est pas nécessaire.",
+      "variantes": [
+        {
+          "enonce": "Pour tout réel $x$, on pose $q(x)=\\frac{x^2-1}{x^2+1}$. Déterminer l'ensemble des réels $x$ pour lesquels la suite $\\left(q(x)^n\\right)_{n\\ge0}$ converge, et préciser alors sa limite.",
+          "reponse_finale": {
+            "question": "Pour quels réels $x$ la suite converge-t-elle ?",
+            "propositions": [
+              "$\\mathbb{R}\\setminus\\{0\\}$",
+              "$\\mathbb{R}$",
+              "$\\left]-1,1\\right[$",
+              "$\\left]-\\infty,-1\\right[\\cup\\left]1,+\\infty\\right[$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On écrit $q(x)=1-\\frac{2}{x^2+1}$. Comme $x^2+1\\ge1$, on a $0<\\frac{2}{x^2+1}\\le2$, donc $-1\\le q(x)<1$, avec $q(x)=-1$ si et seulement si $x=0$.\n\n- Si $x\\neq0$ : $-1<q(x)<1$, donc $q(x)^n\\to0$.\n- Si $x=0$ : $q(0)=-1$, et $\\left((-1)^n\\right)$ n'a pas de limite.\n\nLa suite converge donc si et seulement si $x\\in\\mathbb{R}\\setminus\\{0\\}$, et sa limite est alors $0$.",
+          "indices": [
+            "Écrire $q(x)=1-\\frac{2}{x^2+1}$ et encadrer.",
+            "Traiter à part le cas où $q(x)=-1$."
+          ]
+        },
+        {
+          "enonce": "Pour tout réel $x\\neq-1$, on pose $q(x)=\\frac{1-x}{1+x}$. Déterminer l'ensemble des réels $x\\neq-1$ pour lesquels la suite $\\left(q(x)^n\\right)_{n\\ge0}$ converge, et préciser alors sa limite.",
+          "reponse_finale": {
+            "question": "Pour quels réels $x$ la suite converge-t-elle ?",
+            "propositions": [
+              "$\\left[0,+\\infty\\right[$",
+              "$\\left]0,+\\infty\\right[$",
+              "$\\left]-1,+\\infty\\right[$",
+              "$\\mathbb{R}\\setminus\\{-1\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $|q(x)|<1\\iff|1-x|<|1+x|\\iff(1-x)^2<(1+x)^2\\iff-2x<2x\\iff x>0$.\n\n- Si $x>0$ : $-1<q(x)<1$, donc $q(x)^n\\to0$.\n- Si $x=0$ : $q(0)=1$, la suite est constante égale à $1$.\n- Si $-1<x<0$ : $q(x)-1=\\frac{-2x}{1+x}>0$, donc $q(x)>1$ et $q(x)^n\\to+\\infty$.\n- Si $x<-1$ : $q(x)+1=\\frac{2}{1+x}<0$, donc $q(x)<-1$ et la suite n'a pas de limite.\n\nLa suite converge donc si et seulement si $x\\in\\left[0,+\\infty\\right[$ : vers $0$ si $x>0$, vers $1$ si $x=0$.",
+          "indices": [
+            "Comparer $|1-x|$ et $|1+x|$ en élevant au carré.",
+            "Étudier séparément $x>0$, $x=0$, $-1<x<0$ et $x<-1$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-geometrique-ex5",
+      "carte": "ar-t-suites-geometrique",
+      "difficulte": 4,
+      "titre": "Bernoulli renforcée et limite de $nq^n$",
+      "enonce": "**1.** Montrer par récurrence que, pour tout réel $a\\ge0$ et tout entier $n\\ge0$, $(1+a)^n\\ge1+na+\\frac{n(n-1)}{2}a^2$.\n\n**2.** Soit $q\\in\\left]0,1\\right[$. En écrivant $q=\\frac{1}{1+a}$ avec $a>0$, montrer que $0<nq^n\\le\\frac{2}{(n-1)a^2}$ pour tout $n\\ge2$, et en déduire la limite de $(nq^n)$.\n\n**3.** En déduire que $nq^n\\to0$ pour tout $q\\in\\left]-1,1\\right[$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour l'hérédité, multiplier l'inégalité par $1+a$, qui est strictement positif, puis minorer en supprimant un terme positif.",
+        "Pour la question 2, minorer $(1+a)^n$ par le seul terme $\\frac{n(n-1)}{2}a^2$."
+      ],
+      "correction": "**1.** Soit $a\\ge0$ fixé et $P(n)$ : « $(1+a)^n\\ge1+na+\\frac{n(n-1)}{2}a^2$ ». $P(0)$ s'écrit $1\\ge1$. Si $P(n)$ est vraie, on multiplie par $1+a>0$ : $(1+a)^{n+1}\\ge\\left(1+na+\\frac{n(n-1)}{2}a^2\\right)(1+a)=1+(n+1)a+\\left(\\frac{n(n-1)}{2}+n\\right)a^2+\\frac{n(n-1)}{2}a^3$. Or $\\frac{n(n-1)}{2}+n=\\frac{(n+1)n}{2}$ et $\\frac{n(n-1)}{2}a^3\\ge0$, d'où $P(n+1)$.\n\n**2.** On pose $a=\\frac1q-1>0$. Les termes $1$ et $na$ étant positifs, la question 1 donne $(1+a)^n\\ge\\frac{n(n-1)}{2}a^2$, qui est $>0$ pour $n\\ge2$. Donc $0<nq^n=\\frac{n}{(1+a)^n}\\le\\frac{2n}{n(n-1)a^2}=\\frac{2}{(n-1)a^2}$. Le majorant tend vers $0$ : par le théorème des gendarmes, $nq^n\\to0$.\n\n**3.** Si $q=0$, $nq^n=0$ pour $n\\ge1$. Si $0<|q|<1$, la question 2 appliquée à $|q|$ donne $n|q|^n\\to0$ ; comme $-n|q|^n\\le nq^n\\le n|q|^n$, les gendarmes donnent $nq^n\\to0$."
+    },
+    {
+      "id": "ar-t-suites-operations-ex1",
+      "carte": "ar-t-suites-operations",
+      "difficulte": 1,
+      "titre": "Terme prépondérant",
+      "enonce": "Déterminer la limite de $u_n=\\frac{2n^2-3n+1}{5n^2+4}$.",
+      "duree_min": 4,
+      "indices": [
+        "Factoriser numérateur et dénominateur par $n^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $(u_n)$ ?",
+        "propositions": [
+          "$\\frac25$",
+          "$\\frac14$",
+          "$+\\infty$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Forme $\\frac{\\infty}{\\infty}$. Pour $n\\ge1$, $u_n=\\frac{n^2\\left(2-\\frac3n+\\frac{1}{n^2}\\right)}{n^2\\left(5+\\frac{4}{n^2}\\right)}=\\frac{2-\\frac3n+\\frac1{n^2}}{5+\\frac4{n^2}}$. Le numérateur tend vers $2$ et le dénominateur vers $5\\neq0$ : $u_n\\to\\frac25$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=\\frac{4n^3+n}{1-2n^3}$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$-2$",
+              "$2$",
+              "$-\\infty$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Forme $\\frac{\\infty}{\\infty}$. Pour $n\\ge1$, en factorisant par $n^3$ : $u_n=\\frac{4+\\frac{1}{n^2}}{\\frac{1}{n^3}-2}$. Le numérateur tend vers $4$ et le dénominateur vers $-2\\neq0$ : $u_n\\to-2$."
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\frac{3n^2+1}{n^3-2}$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$0$",
+              "$3$",
+              "$+\\infty$",
+              "$-\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Forme $\\frac{\\infty}{\\infty}$. Pour $n\\ge1$, en factorisant par $n^3$ : $u_n=\\frac{\\frac3n+\\frac{1}{n^3}}{1-\\frac{2}{n^3}}$. Le numérateur tend vers $0$ et le dénominateur vers $1$ : $u_n\\to0$. Le degré du dénominateur l'emporte."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-operations-ex2",
+      "carte": "ar-t-suites-operations",
+      "difficulte": 2,
+      "titre": "Quantité conjuguée",
+      "enonce": "Déterminer la limite de $u_n=\\sqrt{n^2+4n}-n$.",
+      "duree_min": 6,
+      "indices": [
+        "Forme $\\infty-\\infty$ : multiplier et diviser par la quantité conjuguée $\\sqrt{n^2+4n}+n$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $(u_n)$ ?",
+        "propositions": [
+          "$2$",
+          "$0$",
+          "$4$",
+          "$+\\infty$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $n\\ge1$, $u_n=\\frac{(n^2+4n)-n^2}{\\sqrt{n^2+4n}+n}=\\frac{4n}{n\\left(\\sqrt{1+\\frac4n}+1\\right)}=\\frac{4}{\\sqrt{1+\\frac4n}+1}$. Comme $\\sqrt{1+\\frac4n}\\to1$, on obtient $u_n\\to\\frac42=2$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sqrt{n^2+6n+1}-n$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$3$",
+              "$0$",
+              "$6$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n\\ge1$, $u_n=\\frac{6n+1}{\\sqrt{n^2+6n+1}+n}=\\frac{6+\\frac1n}{\\sqrt{1+\\frac6n+\\frac1{n^2}}+1}\\to\\frac62=3$."
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sqrt{4n^2+n}-2n$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$\\frac14$",
+              "$0$",
+              "$\\frac12$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n\\ge1$, $u_n=\\frac{(4n^2+n)-4n^2}{\\sqrt{4n^2+n}+2n}=\\frac{n}{n\\left(\\sqrt{4+\\frac1n}+2\\right)}=\\frac{1}{\\sqrt{4+\\frac1n}+2}\\to\\frac14$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-operations-ex3",
+      "carte": "ar-t-suites-operations",
+      "difficulte": 3,
+      "titre": "Indétermination cachée au dénominateur",
+      "enonce": "Déterminer la limite de $u_n=\\frac{2n+1}{n-\\sqrt{n^2+1}}$.",
+      "duree_min": 10,
+      "indices": [
+        "Le dénominateur est une forme $\\infty-\\infty$ : utiliser la quantité conjuguée.",
+        "Une fois le dénominateur réécrit, le quotient devient un produit dont on connaît la limite de chaque facteur."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $(u_n)$ ?",
+        "propositions": [
+          "$-\\infty$",
+          "$+\\infty$",
+          "$0$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le dénominateur est une forme $\\infty-\\infty$. Avec la quantité conjuguée : $n-\\sqrt{n^2+1}=\\frac{n^2-(n^2+1)}{n+\\sqrt{n^2+1}}=\\frac{-1}{n+\\sqrt{n^2+1}}$ ; il est donc non nul, strictement négatif, et tend vers $0$. Ainsi $u_n=-(2n+1)\\left(n+\\sqrt{n^2+1}\\right)$, produit de $-(2n+1)\\to-\\infty$ et de $n+\\sqrt{n^2+1}\\to+\\infty$ : $u_n\\to-\\infty$. On peut aussi conclure par la règle du quotient : numérateur vers $+\\infty$, dénominateur vers $0$ en restant strictement négatif.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=\\frac{n-3}{\\sqrt{n+1}-\\sqrt n}$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$+\\infty$",
+              "$-\\infty$",
+              "$0$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sqrt{n+1}-\\sqrt n=\\frac{(n+1)-n}{\\sqrt{n+1}+\\sqrt n}=\\frac{1}{\\sqrt{n+1}+\\sqrt n}$, strictement positif et de limite $0$. Ainsi $u_n=(n-3)\\left(\\sqrt{n+1}+\\sqrt n\\right)$, produit de deux suites qui tendent vers $+\\infty$ : $u_n\\to+\\infty$."
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\frac{1-2n}{\\sqrt{n^2+3}-n}$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(u_n)$ ?",
+            "propositions": [
+              "$-\\infty$",
+              "$+\\infty$",
+              "$0$",
+              "$-2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sqrt{n^2+3}-n=\\frac{3}{\\sqrt{n^2+3}+n}$, strictement positif et de limite $0$. Ainsi $u_n=\\frac{(1-2n)\\left(\\sqrt{n^2+3}+n\\right)}{3}$, produit de $1-2n\\to-\\infty$ et de $\\frac{\\sqrt{n^2+3}+n}{3}\\to+\\infty$ : $u_n\\to-\\infty$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-operations-ex4",
+      "carte": "ar-t-suites-operations",
+      "difficulte": 4,
+      "titre": "Discussion selon un paramètre",
+      "enonce": "Soit $a$ un réel. Selon la valeur de $a$, déterminer la limite de $u_n=\\sqrt{n^2+1}-an$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $n\\ge1$, factoriser par $n$ sous la racine, puis dans toute l'expression.",
+        "Dans le cas où cette factorisation donne une forme $\\infty\\times0$, revenir à la quantité conjuguée."
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $a$ la suite converge-t-elle, et vers quelle limite ?",
+        "propositions": [
+          "Seulement pour $a=1$, vers $0$",
+          "Pour tout $a\\ge1$, vers $0$",
+          "Seulement pour $a=1$, vers $1$",
+          "Pour $a=1$ et $a=-1$, vers $0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $n\\ge1$, $\\sqrt{n^2+1}=n\\sqrt{1+\\frac1{n^2}}$, donc $u_n=n\\left(\\sqrt{1+\\frac{1}{n^2}}-a\\right)$, et $\\sqrt{1+\\frac1{n^2}}-a\\to1-a$.\n\n- Si $a<1$ : $1-a>0$ et $n\\to+\\infty$, donc $u_n\\to+\\infty$ (produit).\n- Si $a>1$ : $1-a<0$, donc $u_n\\to-\\infty$.\n- Si $a=1$ : forme $\\infty\\times0$. Avec la quantité conjuguée, $u_n=\\frac{1}{\\sqrt{n^2+1}+n}\\to0$.\n\nLa suite converge seulement pour $a=1$, et sa limite est alors $0$. Pour $a=-1$, par exemple, $u_n=\\sqrt{n^2+1}+n\\to+\\infty$.",
+      "variantes": [
+        {
+          "enonce": "Soit $a$ un réel. Selon la valeur de $a$, déterminer la limite de $u_n=\\sqrt{4n^2+n}-an$.",
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ la suite converge-t-elle, et vers quelle limite ?",
+            "propositions": [
+              "Seulement pour $a=2$, vers $\\frac14$",
+              "Seulement pour $a=2$, vers $0$",
+              "Seulement pour $a=4$, vers $\\frac14$",
+              "Pour tout $a\\ge2$, vers $\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n\\ge1$, $u_n=n\\left(\\sqrt{4+\\frac1n}-a\\right)$, et $\\sqrt{4+\\frac1n}-a\\to2-a$.\n\n- Si $a<2$ : $u_n\\to+\\infty$. Si $a>2$ : $u_n\\to-\\infty$.\n- Si $a=2$ : forme $\\infty\\times0$ ; $u_n=\\frac{n}{\\sqrt{4n^2+n}+2n}=\\frac{1}{\\sqrt{4+\\frac1n}+2}\\to\\frac14$.\n\nLa suite converge seulement pour $a=2$, vers $\\frac14$.",
+          "indices": [
+            "Pour $n\\ge1$, factoriser par $n$ sous la racine, puis dans toute l'expression.",
+            "Dans le cas où cette factorisation donne une forme $\\infty\\times0$, revenir à la quantité conjuguée."
+          ]
+        },
+        {
+          "enonce": "Soit $a$ un réel. Selon la valeur de $a$, déterminer la limite de $u_n=\\sqrt{n^2+6n}-an$.",
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ la suite converge-t-elle, et vers quelle limite ?",
+            "propositions": [
+              "Seulement pour $a=1$, vers $3$",
+              "Seulement pour $a=1$, vers $6$",
+              "Seulement pour $a=1$, vers $0$",
+              "Pour $a=1$ et $a=-1$, vers $3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n\\ge1$, $u_n=n\\left(\\sqrt{1+\\frac6n}-a\\right)$, et $\\sqrt{1+\\frac6n}-a\\to1-a$.\n\n- Si $a<1$ : $u_n\\to+\\infty$. Si $a>1$ : $u_n\\to-\\infty$.\n- Si $a=1$ : forme $\\infty\\times0$ ; $u_n=\\frac{6n}{\\sqrt{n^2+6n}+n}=\\frac{6}{\\sqrt{1+\\frac6n}+1}\\to3$.\n\nLa suite converge seulement pour $a=1$, vers $3$ (pour $a=-1$, $u_n\\to+\\infty$).",
+          "indices": [
+            "Pour $n\\ge1$, factoriser par $n$ sous la racine, puis dans toute l'expression.",
+            "Dans le cas où cette factorisation donne une forme $\\infty\\times0$, revenir à la quantité conjuguée."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-comparaison-ex1",
+      "carte": "ar-t-suites-comparaison",
+      "difficulte": 1,
+      "titre": "Un terme oscillant borné",
+      "enonce": "Déterminer la limite de $u_n=n^2-5\\sin n$.",
+      "duree_min": 3,
+      "indices": [
+        "Encadrer $\\sin n$ entre $-1$ et $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que peut-on dire de $(u_n)$ ?",
+        "propositions": [
+          "Elle tend vers $+\\infty$",
+          "Elle n'a pas de limite",
+          "Elle tend vers $-\\infty$",
+          "Elle converge vers $0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout $n$, $\\sin n\\le1$, donc $u_n\\ge n^2-5$. Comme $n^2-5\\to+\\infty$, le théorème de comparaison donne $u_n\\to+\\infty$. Le terme $\\sin n$, qui n'a pas de limite, n'empêche pas de conclure : il est borné.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la limite de $u_n=-2n+3\\cos\\left(n^2\\right)$.",
+          "reponse_finale": {
+            "question": "Que peut-on dire de $(u_n)$ ?",
+            "propositions": [
+              "Elle tend vers $-\\infty$",
+              "Elle n'a pas de limite",
+              "Elle tend vers $+\\infty$",
+              "Elle converge vers $3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $n$, $\\cos\\left(n^2\\right)\\le1$, donc $u_n\\le-2n+3$. Comme $-2n+3\\to-\\infty$, le théorème de comparaison donne $u_n\\to-\\infty$."
+        },
+        {
+          "enonce": "Déterminer la limite de $u_n=\\sqrt n+(-1)^n$.",
+          "reponse_finale": {
+            "question": "Que peut-on dire de $(u_n)$ ?",
+            "propositions": [
+              "Elle tend vers $+\\infty$",
+              "Elle n'a pas de limite",
+              "Elle converge vers $1$",
+              "Elle converge vers $0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $n$, $(-1)^n\\ge-1$, donc $u_n\\ge\\sqrt n-1$. Comme $\\sqrt n-1\\to+\\infty$, le théorème de comparaison donne $u_n\\to+\\infty$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-comparaison-ex2",
+      "carte": "ar-t-suites-comparaison",
+      "difficulte": 2,
+      "titre": "Minorer une somme",
+      "enonce": "Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^{n}\\frac{1}{\\sqrt k}=1+\\frac{1}{\\sqrt2}+\\dots+\\frac{1}{\\sqrt n}$. Montrer que $S_n\\ge\\sqrt n$, puis déterminer la limite de $(S_n)$.",
+      "duree_min": 6,
+      "indices": [
+        "Minorer chacun des $n$ termes par le plus petit d'entre eux."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $(S_n)$ ?",
+        "propositions": [
+          "$+\\infty$",
+          "$0$",
+          "Un réel strictement positif",
+          "La suite n'a pas de limite"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $1\\le k\\le n$, $\\sqrt k\\le\\sqrt n$, donc $\\frac{1}{\\sqrt k}\\ge\\frac{1}{\\sqrt n}$. En sommant ces $n$ inégalités : $S_n\\ge\\frac{n}{\\sqrt n}=\\sqrt n$. Comme $\\sqrt n\\to+\\infty$, le théorème de comparaison donne $S_n\\to+\\infty$. Le fait que le terme $\\frac{1}{\\sqrt k}$ tende vers $0$ ne suffit pas à faire converger la somme.",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^{n}\\frac{k}{k+1}=\\frac12+\\frac23+\\dots+\\frac{n}{n+1}$. Montrer que $S_n\\ge\\frac n2$, puis déterminer la limite de $(S_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(S_n)$ ?",
+            "propositions": [
+              "$+\\infty$",
+              "$1$",
+              "$\\frac12$",
+              "La suite n'a pas de limite"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $k\\ge1$, $\\frac{k}{k+1}\\ge\\frac12$ car $2k\\ge k+1$. En sommant ces $n$ inégalités : $S_n\\ge\\frac n2$. Comme $\\frac n2\\to+\\infty$, le théorème de comparaison donne $S_n\\to+\\infty$. Le terme $\\frac{k}{k+1}$ tend vers $1$, mais c'est la somme qu'on étudie."
+        },
+        {
+          "enonce": "Pour $n\\ge1$, on pose $T_n=\\sum_{k=n}^{2n}\\frac{1}{\\sqrt k}=\\frac{1}{\\sqrt n}+\\frac{1}{\\sqrt{n+1}}+\\dots+\\frac{1}{\\sqrt{2n}}$. Montrer que $T_n\\ge\\sqrt{\\frac n2}$, puis déterminer la limite de $(T_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la limite de $(T_n)$ ?",
+            "propositions": [
+              "$+\\infty$",
+              "$0$",
+              "$\\frac{1}{\\sqrt2}$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La somme compte $n+1$ termes, et pour $n\\le k\\le2n$, $\\frac{1}{\\sqrt k}\\ge\\frac{1}{\\sqrt{2n}}$. Donc $T_n\\ge\\frac{n+1}{\\sqrt{2n}}\\ge\\frac{n}{\\sqrt{2n}}=\\sqrt{\\frac n2}$. Comme $\\sqrt{\\frac n2}\\to+\\infty$, le théorème de comparaison donne $T_n\\to+\\infty$, bien que chaque terme tende vers $0$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-comparaison-ex3",
+      "carte": "ar-t-suites-comparaison",
+      "difficulte": 3,
+      "titre": "Factorielle contre puissance",
+      "enonce": "Pour $n\\ge1$, on pose $u_n=\\frac{n!}{2^n}$.\n\n**1.** Calculer $\\frac{u_{n+1}}{u_n}$ et déterminer le plus petit entier $n_0\\ge1$ tel que $u_{n+1}\\ge2u_n$ pour tout $n\\ge n_0$.\n\n**2.** Montrer par récurrence que $u_n\\ge u_{n_0}\\,2^{\\,n-n_0}$ pour tout $n\\ge n_0$.\n\n**3.** En déduire la limite de $(u_n)$.",
+      "duree_min": 15,
+      "indices": [
+        "Simplifier $\\frac{u_{n+1}}{u_n}$ : factorielles et puissances se simplifient.",
+        "Minorer $u_n$ par une suite géométrique de raison $2$, puis appliquer le théorème de comparaison."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de $n_0$ ?",
+        "propositions": [
+          "$3$",
+          "$1$",
+          "$2$",
+          "$4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\frac{u_{n+1}}{u_n}=\\frac{(n+1)!}{n!}\\cdot\\frac{2^n}{2^{n+1}}=\\frac{n+1}{2}$. Comme $u_n>0$, $u_{n+1}\\ge2u_n\\iff\\frac{n+1}{2}\\ge2\\iff n\\ge3$. Donc $n_0=3$ (pour $n=2$, le rapport vaut $\\frac32<2$).\n\n**2.** Pour $n=3$, c'est une égalité. Si $u_n\\ge u_3\\,2^{n-3}$ avec $n\\ge3$, alors $u_{n+1}\\ge2u_n\\ge u_3\\,2^{n-2}$.\n\n**3.** $u_3=\\frac68=\\frac34$, donc $u_n\\ge\\frac34\\cdot2^{n-3}$ pour $n\\ge3$. Comme $2>1$, $2^{n-3}\\to+\\infty$, donc $\\frac34\\cdot2^{n-3}\\to+\\infty$ ; par comparaison, $u_n\\to+\\infty$.",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\ge1$, on pose $u_n=\\frac{n!}{3^n}$.\n\n**1.** Calculer $\\frac{u_{n+1}}{u_n}$ et déterminer le plus petit entier $n_0\\ge1$ tel que $u_{n+1}\\ge2u_n$ pour tout $n\\ge n_0$.\n\n**2.** Montrer par récurrence que $u_n\\ge u_{n_0}\\,2^{\\,n-n_0}$ pour tout $n\\ge n_0$.\n\n**3.** En déduire la limite de $(u_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $n_0$ ?",
+            "propositions": [
+              "$5$",
+              "$2$",
+              "$6$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{u_{n+1}}{u_n}=\\frac{n+1}{3}$, et $u_{n+1}\\ge2u_n\\iff n+1\\ge6\\iff n\\ge5$. Donc $n_0=5$ (pour $n=4$, le rapport vaut $\\frac53<2$).\n\n**2.** Pour $n=5$, égalité. Si $u_n\\ge u_5\\,2^{n-5}$ avec $n\\ge5$, alors $u_{n+1}\\ge2u_n\\ge u_5\\,2^{n-4}$.\n\n**3.** $u_5=\\frac{120}{243}=\\frac{40}{81}>0$, donc $u_n\\ge\\frac{40}{81}\\cdot2^{n-5}\\to+\\infty$ ; par comparaison, $u_n\\to+\\infty$."
+        },
+        {
+          "enonce": "Pour $n\\ge1$, on pose $u_n=\\frac{n!}{4^n}$.\n\n**1.** Calculer $\\frac{u_{n+1}}{u_n}$ et déterminer le plus petit entier $n_0\\ge1$ tel que $u_{n+1}\\ge2u_n$ pour tout $n\\ge n_0$.\n\n**2.** Montrer par récurrence que $u_n\\ge u_{n_0}\\,2^{\\,n-n_0}$ pour tout $n\\ge n_0$.\n\n**3.** En déduire la limite de $(u_n)$.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $n_0$ ?",
+            "propositions": [
+              "$7$",
+              "$3$",
+              "$8$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{u_{n+1}}{u_n}=\\frac{n+1}{4}$, et $u_{n+1}\\ge2u_n\\iff n+1\\ge8\\iff n\\ge7$. Donc $n_0=7$ (pour $n=6$, le rapport vaut $\\frac74<2$).\n\n**2.** Pour $n=7$, égalité. Si $u_n\\ge u_7\\,2^{n-7}$ avec $n\\ge7$, alors $u_{n+1}\\ge2u_n\\ge u_7\\,2^{n-6}$.\n\n**3.** $u_7=\\frac{5040}{16384}=\\frac{315}{1024}>0$, donc $u_n\\ge\\frac{315}{1024}\\cdot2^{n-7}\\to+\\infty$ ; par comparaison, $u_n\\to+\\infty$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-suites-comparaison-ex4",
+      "carte": "ar-t-suites-comparaison",
+      "difficulte": 4,
+      "titre": "Une suite récurrente qui diverge",
+      "enonce": "On définit $u_0=1$ et $u_{n+1}=u_n+\\frac{1}{u_n}$ pour tout $n\\ge0$.\n\n**1.** Montrer que la suite est bien définie et que $u_n\\ge1$ pour tout $n$.\n\n**2.** Montrer que $u_{n+1}^2\\ge u_n^2+2$ pour tout $n$, puis que $u_n\\ge\\sqrt{2n+1}$.\n\n**3.** En déduire la limite de $(u_n)$.\n\n**4.** Retrouver ce résultat autrement : montrer que $(u_n)$ est croissante, puis raisonner par l'absurde en supposant qu'elle converge.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 2, développer le carré $\\left(u_n+\\frac{1}{u_n}\\right)^2$.",
+        "Pour la question 4, utiliser le théorème de la limite monotone et la continuité de $x\\mapsto x+\\frac1x$ sur $\\left]0,+\\infty\\right[$."
+      ],
+      "correction": "**1.** Par récurrence, $P(n)$ : « $u_n$ est défini et $u_n\\ge1$ ». $u_0=1$. Si $u_n\\ge1$, alors $u_n\\neq0$, donc $u_{n+1}$ est défini, et $u_{n+1}=u_n+\\frac1{u_n}\\ge u_n\\ge1$.\n\n**2.** $u_{n+1}^2=u_n^2+2+\\frac{1}{u_n^2}\\ge u_n^2+2$. Par récurrence, $u_n^2\\ge2n+1$ : c'est vrai pour $n=0$ ($1\\ge1$), et si $u_n^2\\ge2n+1$, alors $u_{n+1}^2\\ge2n+3=2(n+1)+1$. Comme $u_n>0$, on en déduit $u_n\\ge\\sqrt{2n+1}$.\n\n**3.** $\\sqrt{2n+1}\\to+\\infty$, donc par comparaison $u_n\\to+\\infty$.\n\n**4.** $u_{n+1}-u_n=\\frac1{u_n}>0$ : la suite est croissante. Si elle convergeait vers un réel $\\ell$, on aurait $\\ell\\ge u_0=1$ ; la fonction $f(x)=x+\\frac1x$ est continue en $\\ell>0$, et en passant à la limite dans $u_{n+1}=f(u_n)$, on obtiendrait $\\ell=\\ell+\\frac1\\ell$, soit $\\frac1\\ell=0$ : c'est impossible. Une suite croissante qui ne converge pas n'est pas majorée (sinon elle convergerait), donc elle tend vers $+\\infty$."
+    }
+  ]
+}
