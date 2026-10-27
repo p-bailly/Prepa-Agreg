@@ -17,6 +17,9 @@ export default defineConfig({
   build: { chunkSizeWarningLimit: 1500 },
   test: {
     include: ['src/**/*.test.ts'],
+    // Pas de cache des modules transformés : le résultat d'import.meta.glob (chargement de content/) y serait figé et un
+    // fichier de contenu ajouté resterait invisible aux tests.
+    fsModuleCache: false,
     testTimeout: 30000,
   },
 })

@@ -82,10 +82,14 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 `src/contenu/validation.test.ts`.
 
 - `content/themes.json` : la carte du parcours complet. `{ "themes": [ { "id", "titre", "chapitres": [ { "id", "niveau",
-  "titre", "prevues" } ] } ] }`. `prevues` = nombre de cartes visées pour le chapitre (le total que vise le tableau de bord).
-  L'ordre des chapitres d'un thème est l'ordre du parcours ; les niveaux y sont croissants.
-- `content/cartes/<theme>/<niveau>.json` : `{ "cartes": [ … ] }`, l'ordre du fichier est l'ordre d'introduction dans un niveau.
-- `content/exercices/<theme>/<niveau>.json` : `{ "exercices": [ … ] }`.
+  "titre", "notions", "prevues" } ] } ] }`. `notions` = les notions à couvrir, une carte chacune (plan de rédaction, établi
+  d'après les sous-sections du programme de l'agrégation 2027 et des programmes de Terminale) ; `prevues` = leur nombre (le
+  total que vise le tableau de bord ; contrôlé par le test). L'ordre des chapitres d'un thème est l'ordre du parcours, les
+  niveaux y sont croissants.
+- `content/cartes/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` (fichier réservé à un chapitre, pour rédiger des
+  chapitres en parallèle) : `{ "cartes": [ … ] }`. Ordre d'introduction : chapitres dans l'ordre de `themes.json`, puis ordre
+  du fichier.
+- `content/exercices/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` : `{ "exercices": [ … ] }`.
 - Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg`.
 
 ### Carte
@@ -109,7 +113,13 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 `{ "id", "carte", "difficulte", "titre", "enonce", "duree_min", "indices", "reponse_finale", "correction", "doute" }`
 - `difficulte` de 1 à 5, relative à la notion : 1 application directe ; 2 calcul ou application standard ; 3 classique en plusieurs
   étapes ; 4 question d'écrit (enchaînement, hypothèses à vérifier) ; 5 difficile (idée non immédiate, plusieurs notions).
-- Au moins 2 exercices de difficultés distinctes par carte, jusqu'à 6 pour les notions piégeuses ; jamais d'exercice de remplissage.
+- Par carte : 3 à 6 exercices progressifs, au moins un de difficulté 1 ou 2 et au moins un de difficulté 4 ou 5 (contrôlé par
+  le test) ; aux niveaux L3 et agrégation, un problème de difficulté 5 en questions enchaînées quand c'est pertinent. Jamais
+  d'exercice de remplissage.
+- `variantes` (facultatif) : autres jeux de valeurs, `[{ "enonce", "reponse_finale", "correction", "indices" }]` (`indices`
+  facultatif ; `reponse_finale` obligatoire si l'exercice en a une). Tout exercice à valeurs numériques en a deux. L'appli
+  propose une variante jamais faite, sinon la plus anciennement faite ; la tentative garde son numéro de variante (0 = exercice
+  tel qu'écrit). Ne jamais réordonner les variantes d'un exercice déjà publié (l'historique y renvoie par numéro).
 - `indices` : 2 ou 3 à partir de la difficulté 3 (idée clé, puis première étape) ; ils ne donnent pas la réponse.
 - `reponse_finale` (seulement pour un exercice à résultat : calcul, valeur, vrai/faux) : `{ "question", "propositions": [4 textes
   distincts], "bonne": indice 0..3 }` ; l'appli mélange les propositions.

@@ -1,0 +1,337 @@
+{
+  "cartes": [
+    {
+      "id": "ar-t-limite-monotone",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Théorème de la limite monotone (suites)",
+      "recto": "Énoncer le théorème de la limite monotone pour les suites réelles avec ses hypothèses.",
+      "hypotheses": [
+        "$(u_n)$ est une suite de nombres réels.",
+        "$(u_n)$ est croissante.",
+        "$(u_n)$ est majorée (pour la convergence)."
+      ],
+      "hypotheses_pieges": [
+        "$(u_n)$ est bornée, sans hypothèse de monotonie.",
+        "$(u_n)$ est minorée (à la place de majorée).",
+        "Les écarts $u_{n+1}-u_n$ tendent vers $0$ (à la place de majorée).",
+        "$(u_n)$ est à termes positifs."
+      ],
+      "enonce": "Soit $(u_n)$ une suite réelle croissante.\n\n- Si $(u_n)$ est majorée, elle converge, et sa limite est $\\ell=\\sup\\{u_n,\\ n\\in\\mathbb{N}\\}$ ; en particulier $u_n\\le \\ell$ pour tout $n$.\n- Si $(u_n)$ n'est pas majorée, elle tend vers $+\\infty$.\n\nDe même, une suite décroissante minorée converge (vers la borne inférieure de ses termes) et une suite décroissante non minorée tend vers $-\\infty$.",
+      "enonce_trous": "Toute suite réelle {{1}} et {{2}} converge. Une suite réelle croissante et non majorée {{3}}.",
+      "trous": [
+        {
+          "reponse": "croissante",
+          "leurres": [
+            "monotone",
+            "positive",
+            "bornée"
+          ]
+        },
+        {
+          "reponse": "majorée",
+          "leurres": [
+            "minorée",
+            "positive",
+            "dont les écarts $u_{n+1}-u_n$ tendent vers $0$"
+          ]
+        },
+        {
+          "reponse": "tend vers $+\\infty$",
+          "leurres": [
+            "n'admet pas de limite",
+            "converge",
+            "admet une sous-suite bornée"
+          ]
+        }
+      ],
+      "demo": "**Cas majoré.** L'ensemble $A=\\{u_n,\\ n\\in\\mathbb{N}\\}$ est une partie non vide et majorée de $\\mathbb{R}$ : elle admet une borne supérieure $\\ell$ (propriété de la borne supérieure de $\\mathbb{R}$, admise en Terminale ; c'est elle qui rend ce théorème vrai, il est faux dans $\\mathbb{Q}$).\n\nSoit $\\varepsilon>0$. Le réel $\\ell-\\varepsilon$ est strictement inférieur à $\\ell$, ce n'est donc pas un majorant de $A$ : il existe $N$ tel que $u_N>\\ell-\\varepsilon$. Pour tout $n\\ge N$, par croissance puis parce que $\\ell$ majore $A$ :\n\n$$\\ell-\\varepsilon<u_N\\le u_n\\le \\ell .$$\n\nDonc $|u_n-\\ell|<\\varepsilon$ pour tout $n\\ge N$ : $(u_n)$ converge vers $\\ell$, et $u_n\\le\\ell$ pour tout $n$.\n\n**Cas non majoré.** Soit $M$ un réel. Comme $M$ ne majore pas la suite, il existe $N$ tel que $u_N>M$ ; pour $n\\ge N$, $u_n\\ge u_N>M$. C'est la définition de $u_n\\to+\\infty$.\n\n**Cas décroissant.** On applique ce qui précède à la suite croissante $(-u_n)$.",
+      "exemple": "Soit $u_n=\\sum_{k=1}^{n}\\frac{1}{k^2}$ pour $n\\ge1$. Elle est croissante ($u_{n+1}-u_n=\\frac{1}{(n+1)^2}>0$). Pour $k\\ge2$, $\\frac{1}{k^2}\\le\\frac{1}{k(k-1)}=\\frac{1}{k-1}-\\frac{1}{k}$, d'où par télescopage $u_n\\le 1+1-\\frac1n<2$. Elle est croissante et majorée par $2$, donc elle converge, vers une limite $\\ell\\le 2$. Le théorème donne l'existence de la limite, pas sa valeur.",
+      "contre_exemple": "- **Sans monotonie, borné ne suffit pas** : $u_n=(-1)^n$ est bornée mais ne converge pas ($u_{2n}=1$ et $u_{2n+1}=-1$).\n- **Croissante et minorée ne suffit pas** : $u_n=n$ est croissante, minorée par $0$, et tend vers $+\\infty$.\n- **Écarts tendant vers 0 ne remplacent pas « majorée »** : $u_n=\\sqrt{n}$ est croissante, $u_{n+1}-u_n=\\frac{1}{\\sqrt{n+1}+\\sqrt n}\\to0$, et pourtant $u_n\\to+\\infty$.\n- **Un majorant n'est pas la limite** : $u_n=1-\\frac{1}{n+1}$ est croissante, majorée par $2$, mais converge vers $1$.",
+      "affirmations": [
+        {
+          "texte": "Toute suite réelle bornée converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=(-1)^n$ est bornée par $1$ mais n'a pas de limite : ses termes d'indices pairs valent $1$, ceux d'indices impairs $-1$."
+        },
+        {
+          "texte": "Une suite croissante et majorée par $M$ converge vers $M$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=1-\\frac{1}{n+1}$ est croissante et majorée par $M=2$, mais sa limite est $1\\neq2$. La limite est le plus petit majorant, pas un majorant quelconque."
+        },
+        {
+          "texte": "Si $(u_n)$ est croissante et converge vers $\\ell$, alors $u_n\\le\\ell$ pour tout $n$.",
+          "vrai": true,
+          "justification": "Pour $n$ fixé et tout $p\\ge n$, $u_n\\le u_p$ ; en faisant tendre $p$ vers $+\\infty$ (passage à la limite dans une inégalité large), $u_n\\le\\ell$."
+        },
+        {
+          "texte": "Une suite croissante qui ne converge pas tend vers $+\\infty$.",
+          "vrai": true,
+          "justification": "Si elle était majorée, elle convergerait d'après le théorème ; elle n'est donc pas majorée, et le second point du théorème donne la limite $+\\infty$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-gendarmes",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-suites",
+      "type": "theoreme",
+      "titre": "Théorème d'encadrement (« des gendarmes »)",
+      "recto": "Énoncer le théorème d'encadrement (« des gendarmes ») pour les suites réelles avec ses hypothèses.",
+      "hypotheses": [
+        "Il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ pour tout $n\\ge N$.",
+        "$(v_n)$ converge vers un réel $\\ell$.",
+        "$(w_n)$ converge vers le même réel $\\ell$."
+      ],
+      "hypotheses_pieges": [
+        "$(v_n)$ et $(w_n)$ convergent, vers des limites éventuellement différentes.",
+        "$v_n\\le u_n\\le w_n$ pour une infinité d'indices $n$.",
+        "$(u_n)$ est bornée.",
+        "La suite $(w_n-v_n)$ est bornée."
+      ],
+      "enonce": "Soient $(u_n)$, $(v_n)$ et $(w_n)$ trois suites réelles. On suppose qu'il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ pour tout $n\\ge N$, et que $(v_n)$ et $(w_n)$ convergent vers une même limite $\\ell\\in\\mathbb{R}$. Alors $(u_n)$ converge et $\\lim u_n=\\ell$.",
+      "enonce_trous": "S'il existe un rang $N$ tel que $v_n\\le u_n\\le w_n$ {{1}}, et si $(v_n)$ et $(w_n)$ {{2}}, alors $(u_n)$ converge vers $\\ell$.",
+      "trous": [
+        {
+          "reponse": "pour tout $n\\ge N$",
+          "leurres": [
+            "pour une infinité d'entiers $n\\ge N$",
+            "pour $n=N$",
+            "pour tout entier pair $n\\ge N$"
+          ]
+        },
+        {
+          "reponse": "convergent toutes deux vers un même réel $\\ell$",
+          "leurres": [
+            "sont bornées et $\\ell$ est compris entre leurs bornes",
+            "sont monotones",
+            "convergent, $(v_n)$ vers $\\ell$ et $(w_n)$ vers un réel $\\ell'\\ge\\ell$"
+          ]
+        }
+      ],
+      "demo": "Soit $\\varepsilon>0$. Comme $v_n\\to\\ell$, il existe $N_1$ tel que $v_n>\\ell-\\varepsilon$ pour $n\\ge N_1$ ; comme $w_n\\to\\ell$, il existe $N_2$ tel que $w_n<\\ell+\\varepsilon$ pour $n\\ge N_2$. Pour $n\\ge\\max(N,N_1,N_2)$ :\n\n$$\\ell-\\varepsilon<v_n\\le u_n\\le w_n<\\ell+\\varepsilon,$$\n\ndonc $|u_n-\\ell|<\\varepsilon$. C'est la définition de $u_n\\to\\ell$. On remarque que la convergence de $(u_n)$ n'est pas supposée : elle est démontrée.",
+      "exemple": "Pour $n\\ge1$, soit $u_n=\\frac{\\lfloor n\\sqrt2\\rfloor}{n}$. Comme $n\\sqrt2-1<\\lfloor n\\sqrt2\\rfloor\\le n\\sqrt2$, on a $\\sqrt2-\\frac1n<u_n\\le\\sqrt2$, et les deux bornes tendent vers $\\sqrt2$ : $u_n\\to\\sqrt2$.",
+      "contre_exemple": "- **Limites différentes** : $v_n=-1$, $w_n=1$ et $u_n=(-1)^n$ vérifient $v_n\\le u_n\\le w_n$, $(v_n)$ et $(w_n)$ convergent, mais $(u_n)$ diverge.\n- **Encadrement pour une infinité d'indices seulement** : $u_n=0$ si $n$ est pair, $u_n=1$ si $n$ est impair, et $v_n=w_n=0$. L'encadrement $v_n\\le u_n\\le w_n$ a lieu pour tous les $n$ pairs, $(v_n)$ et $(w_n)$ convergent vers $0$, mais $(u_n)$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Si $u_n<v_n$ pour tout $n$, et si $(u_n)$ et $(v_n)$ convergent vers $\\ell$ et $\\ell'$, alors $\\ell<\\ell'$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=0$ et $v_n=\\frac{1}{n+1}$ : $u_n<v_n$ pour tout $n$, mais les deux limites valent $0$. Le passage à la limite ne conserve que les inégalités larges : on peut seulement conclure $\\ell\\le\\ell'$."
+        },
+        {
+          "texte": "Si $|u_n|\\le w_n$ à partir d'un certain rang et si $w_n\\to0$, alors $u_n\\to0$.",
+          "vrai": true,
+          "justification": "C'est l'encadrement $-w_n\\le u_n\\le w_n$, et $-w_n\\to0$, $w_n\\to0$."
+        },
+        {
+          "texte": "Si $v_n\\le u_n\\le w_n$ pour tout $n$, et si $(v_n)$ et $(w_n)$ convergent, alors $(u_n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "$v_n=-1$, $w_n=1$, $u_n=(-1)^n$ : l'encadrement a lieu, les bornes convergent (vers $-1$ et $1$), mais $(u_n)$ diverge. Il faut que les deux bornes aient la même limite."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-tvi",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-continuite",
+      "type": "theoreme",
+      "titre": "Théorème des valeurs intermédiaires",
+      "recto": "Énoncer le théorème des valeurs intermédiaires avec ses hypothèses.",
+      "hypotheses": [
+        "$f$ est définie et continue sur le segment $[a,b]$.",
+        "$f$ est à valeurs réelles.",
+        "$k$ est un réel compris (au sens large) entre $f(a)$ et $f(b)$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est strictement monotone sur $[a,b]$ (à la place de la continuité).",
+        "$f$ est continue sur $\\left]a,b\\right[$ seulement.",
+        "$f$ est continue en $a$ et en $b$ seulement.",
+        "$f$ est bornée sur $[a,b]$."
+      ],
+      "enonce": "Soient $a<b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ une fonction continue sur $[a,b]$. Pour tout réel $k$ compris entre $f(a)$ et $f(b)$, il existe **au moins un** réel $c\\in[a,b]$ tel que $f(c)=k$.",
+      "enonce_trous": "Si $f$ est {{1}} sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, il existe {{2}} réel $c\\in[a,b]$ tel que $f(c)=k$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "monotone",
+            "bornée",
+            "strictement croissante"
+          ]
+        },
+        {
+          "reponse": "au moins un",
+          "leurres": [
+            "un unique",
+            "exactement deux",
+            "au plus un"
+          ]
+        }
+      ],
+      "demo": "Quitte à remplacer $f$ par $-f$ et $k$ par $-k$, on suppose $f(a)\\le k\\le f(b)$. On construit par dichotomie deux suites : $a_0=a$, $b_0=b$, et, avec $m_n=\\frac{a_n+b_n}{2}$ : si $f(m_n)\\le k$, on pose $a_{n+1}=m_n$, $b_{n+1}=b_n$ ; sinon $a_{n+1}=a_n$, $b_{n+1}=m_n$.\n\nPar récurrence, pour tout $n$ : $a\\le a_n\\le a_{n+1}\\le b_{n+1}\\le b_n\\le b$, $b_n-a_n=\\frac{b-a}{2^n}$, et $f(a_n)\\le k\\le f(b_n)$.\n\nLa suite $(a_n)$ est croissante et majorée par $b$, la suite $(b_n)$ est décroissante et minorée par $a$ : elles convergent (théorème de la limite monotone), et comme $b_n-a_n\\to0$, vers une même limite $c$. Par passage à la limite dans $a\\le a_n\\le b$, on a $c\\in[a,b]$.\n\nComme $f$ est continue en $c$, $f(a_n)\\to f(c)$ et $f(b_n)\\to f(c)$. Le passage à la limite dans les inégalités larges $f(a_n)\\le k\\le f(b_n)$ donne $f(c)\\le k\\le f(c)$, donc $f(c)=k$.",
+      "exemple": "L'équation $x^3+x-1=0$ a une solution dans $[0,1]$ : $f(x)=x^3+x-1$ est continue sur $[0,1]$, $f(0)=-1$, $f(1)=1$, et $0$ est compris entre les deux. Cette solution est unique sur $\\mathbb{R}$, mais cela vient d'un autre argument : $f'(x)=3x^2+1>0$, donc $f$ est strictement croissante.",
+      "contre_exemple": "- **Continuité nécessaire** : sur $[0,1]$, $f(x)=0$ si $x\\le\\frac12$ et $f(x)=1$ si $x>\\frac12$. On a $f(0)=0$, $f(1)=1$, mais la valeur $\\frac12$ n'est jamais prise.\n- **Pas d'unicité** : $f(x)=x^3-x$ sur $[-2,2]$ vérifie $f(-2)=-6<0<6=f(2)$, et $f$ s'annule en $-1$, $0$ et $1$.\n- **La réciproque est fausse** : $f(x)=\\sin\\frac1x$ pour $x\\in\\left]0,1\\right]$ et $f(0)=0$. Pour tout $[u,v]\\subset[0,1]$, $f$ prend sur $[u,v]$ toutes les valeurs entre $f(u)$ et $f(v)$ (si $u>0$, par le théorème, $f$ étant continue sur $[u,v]$ ; si $u=0$, parce que $\\frac1x$ parcourt $\\left[\\frac1v,+\\infty\\right[$, qui contient une période entière du sinus, donc $f$ prend sur $\\left]0,v\\right]$ toutes les valeurs de $[-1,1]$). Pourtant $f$ n'est pas continue en $0$ : $f\\left(\\frac{1}{\\pi/2+2n\\pi}\\right)=1$ ne tend pas vers $f(0)=0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ et $f(a)f(b)<0$, l'équation $f(x)=0$ a une unique solution dans $\\left]a,b\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3-x$ sur $[-2,2]$ : $f(-2)f(2)=-36<0$ et $f$ s'annule en $-1$, $0$ et $1$. L'unicité demande un argument de plus, par exemple la stricte monotonie."
+        },
+        {
+          "texte": "Si $f:[0,1]\\to\\mathbb{R}$ prend, sur tout segment $[u,v]\\subset[0,1]$, toutes les valeurs comprises entre $f(u)$ et $f(v)$, alors $f$ est continue.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\sin\\frac1x$ pour $x>0$ et $f(0)=0$ a cette propriété (voir le contre-exemple de la carte) mais n'est pas continue en $0$ : $f\\left(\\frac{1}{\\pi/2+2n\\pi}\\right)=1$ pour tout $n$."
+        },
+        {
+          "texte": "L'image d'un intervalle par une fonction continue (à valeurs réelles) est un intervalle.",
+          "vrai": true,
+          "justification": "Si $y_1=f(x_1)<y<y_2=f(x_2)$, le théorème appliqué sur le segment d'extrémités $x_1$ et $x_2$ (contenu dans l'intervalle) donne $c$ avec $f(c)=y$ : l'image contient tout réel compris entre deux de ses éléments."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-point-fixe",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-continuite",
+      "type": "theoreme",
+      "titre": "Limite d'une suite récurrente : théorème du point fixe",
+      "recto": "Énoncer le théorème donnant la limite éventuelle d'une suite définie par $u_{n+1}=f(u_n)$, avec ses hypothèses.",
+      "hypotheses": [
+        "$f$ est définie sur un intervalle $I$ et $f(I)\\subset I$ ; $u_0\\in I$ (la suite est bien définie et à valeurs dans $I$).",
+        "$(u_n)$ converge vers un réel $\\ell$.",
+        "$\\ell$ appartient à $I$.",
+        "$f$ est continue en $\\ell$ (c'est le cas si $f$ est continue sur $I$)."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est croissante sur $I$ (à la place de la continuité).",
+        "$f$ admet un unique point fixe dans $I$ (à la place de la continuité).",
+        "$(u_n)$ est bornée (à la place de convergente)."
+      ],
+      "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$, $f:I\\to\\mathbb{R}$ telle que $f(I)\\subset I$, et $(u_n)$ définie par $u_0\\in I$ et $u_{n+1}=f(u_n)$ pour tout $n$. Si $(u_n)$ converge vers un réel $\\ell$ **appartenant à $I$** et si $f$ est **continue en $\\ell$** (par exemple continue sur $I$), alors $f(\\ell)=\\ell$ : la limite est un point fixe de $f$.",
+      "enonce_trous": "Si $u_{n+1}=f(u_n)$ avec $f(I)\\subset I$ et $u_0\\in I$, si $(u_n)$ {{1}} vers un réel $\\ell\\in I$ et si $f$ est {{2}}, alors $f(\\ell)=\\ell$.",
+      "trous": [
+        {
+          "reponse": "converge",
+          "leurres": [
+            "admet une sous-suite qui converge",
+            "a sa sous-suite $(u_{2n})$ qui converge",
+            "est bornée par un réel"
+          ]
+        },
+        {
+          "reponse": "continue en $\\ell$",
+          "leurres": [
+            "croissante sur $I$",
+            "bornée sur $I$",
+            "continue en tout point de $I$ autre que $\\ell$"
+          ]
+        }
+      ],
+      "demo": "Comme $f$ est continue en $\\ell$ et que $u_n\\to\\ell$ avec $u_n\\in I$, on a $f(u_n)\\to f(\\ell)$. Justifions-le : soit $\\varepsilon>0$ ; par continuité, il existe $\\delta>0$ tel que pour $x\\in I$, $|x-\\ell|<\\delta\\Rightarrow|f(x)-f(\\ell)|<\\varepsilon$ ; puis il existe $N$ tel que $|u_n-\\ell|<\\delta$ pour $n\\ge N$ ; donc $|f(u_n)-f(\\ell)|<\\varepsilon$ pour $n\\ge N$.\n\nOr $f(u_n)=u_{n+1}$, et $(u_{n+1})$ converge aussi vers $\\ell$. Par unicité de la limite, $f(\\ell)=\\ell$.\n\nL'hypothèse $\\ell\\in I$ sert à donner un sens à $f(\\ell)$ ; elle est automatique si $I$ est un intervalle fermé (passage à la limite dans les inégalités larges qui définissent $I$).",
+      "exemple": "$u_0=1$, $u_{n+1}=\\sqrt{u_n+6}$. Avec $f(x)=\\sqrt{x+6}$, $I=[0,3]$ est stable ($f(I)=\\left[\\sqrt6,3\\right]$), $f$ est continue sur $I$, et $(u_n)$ est croissante ($u_{n+1}^2-u_n^2=(3-u_n)(u_n+2)\\ge0$), majorée par $3$ : elle converge vers $\\ell\\in[0,3]$ ($I$ fermé). Donc $\\ell=\\sqrt{\\ell+6}$, soit $\\ell^2-\\ell-6=(\\ell-3)(\\ell+2)=0$ et $\\ell\\ge0$ : $\\ell=3$.",
+      "contre_exemple": "- **Continuité en $\\ell$ nécessaire** : sur $I=[0,2]$, $f(x)=\\frac{1+x}{2}$ si $x<1$ et $f(x)=2$ si $x\\ge1$. $f$ est croissante, $f(I)\\subset I$. Avec $u_0=0$, on a $1-u_{n+1}=\\frac{1-u_n}{2}$, donc $u_n=1-2^{-n}<1$ et $u_n\\to1\\in I$, mais $f(1)=2\\neq1$ ($f$ n'est pas continue en $1$). De plus $2$ est l'unique point fixe de $f$, et ce n'est pas la limite.\n- **$\\ell\\in I$ nécessaire** : $I=\\left]0,1\\right]$, $f(x)=\\frac x2$, $u_0=1$ : $u_n=2^{-n}\\to0\\notin I$, et $f(0)$ n'a pas de sens.\n- **Un point fixe n'entraîne pas la convergence** : $f(x)=-x$ sur $\\mathbb{R}$ a le point fixe $0$, mais avec $u_0=1$, $u_n=(-1)^n$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur un intervalle $I$ stable par $f$ et admet un point fixe dans $I$, alors toute suite $u_{n+1}=f(u_n)$ avec $u_0\\in I$ converge.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=-x$ sur $\\mathbb{R}$ : $0$ est point fixe, mais pour $u_0=1$, $u_n=(-1)^n$ diverge. Autre exemple : $f(x)=2x$, $u_0=1$, $u_n=2^n\\to+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est continue sur un intervalle **fermé** $I$ stable par $f$, si $u_0\\in I$ et si $(u_n)$ converge, alors sa limite est un point fixe de $f$.",
+          "vrai": true,
+          "justification": "Tous les $u_n$ sont dans $I$ ; $I$ étant un intervalle fermé, la limite $\\ell$ y est aussi (passage à la limite dans des inégalités larges), puis on applique le théorème."
+        },
+        {
+          "texte": "Si $f$ est croissante sur $I$ stable, et si $(u_n)$ converge vers $\\ell\\in I$, alors $f(\\ell)=\\ell$.",
+          "vrai": false,
+          "contre_exemple": "Sur $I=[0,2]$, $f(x)=\\frac{1+x}2$ si $x<1$, $f(x)=2$ si $x\\ge1$ : $f$ est croissante, et pour $u_0=0$, $u_n=1-2^{-n}\\to1$, mais $f(1)=2$. Il manque la continuité en $\\ell$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-limite-monotone"
+      ]
+    },
+    {
+      "id": "ar-t-derivee-monotonie",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-derivation",
+      "type": "theoreme",
+      "titre": "Signe de la dérivée et monotonie",
+      "recto": "Énoncer le lien entre le signe de la dérivée et le sens de variation d'une fonction, avec ses hypothèses.",
+      "hypotheses": [
+        "$I$ est un intervalle de $\\mathbb{R}$.",
+        "$f$ est dérivable sur $I$.",
+        "Croissance : $f'(x)\\ge0$ pour tout $x\\in I$.",
+        "Stricte croissance : de plus, $f'$ ne s'annule qu'en un nombre fini de points de $I$."
+      ],
+      "hypotheses_pieges": [
+        "$I$ est une réunion quelconque d'intervalles, par exemple $\\mathbb{R}^*$.",
+        "Pour la stricte croissance, $f'$ ne s'annule en aucun point de $I$ (condition nécessaire).",
+        "$f'$ est croissante sur $I$."
+      ],
+      "enonce": "Soit $f$ une fonction dérivable sur un **intervalle** $I$.\n\n- $f$ est croissante sur $I$ si et seulement si $f'(x)\\ge0$ pour tout $x\\in I$.\n- Si $f'\\ge0$ sur $I$ et si $f'$ ne s'annule qu'en un nombre fini de points de $I$, alors $f$ est strictement croissante sur $I$.\n\nDe même avec « décroissante » et $f'\\le0$. En particulier, $f$ est constante sur $I$ si et seulement si $f'=0$ sur $I$.",
+      "enonce_trous": "Soit $f$ dérivable sur {{1}}. Alors $f$ est croissante sur $I$ si et seulement si {{2}}. Si $f'\\ge0$ sur $I$ et si $f'$ {{3}}, alors $f$ est strictement croissante sur $I$.",
+      "trous": [
+        {
+          "reponse": "un intervalle $I$",
+          "leurres": [
+            "une partie $I$ quelconque de $\\mathbb{R}$",
+            "une réunion $I$ de deux intervalles disjoints",
+            "une partie $I$ de $\\mathbb{R}$ symétrique par rapport à $0$"
+          ]
+        },
+        {
+          "reponse": "$f'(x)\\ge0$ pour tout $x\\in I$",
+          "leurres": [
+            "$f'(x)>0$ pour tout $x\\in I$",
+            "$f'$ est croissante sur $I$",
+            "$f(x)\\ge0$ pour tout $x\\in I$"
+          ]
+        },
+        {
+          "reponse": "ne s'annule qu'en un nombre fini de points de $I$",
+          "leurres": [
+            "s'annule en au moins un point de $I$",
+            "est bornée sur $I$",
+            "s'annule sur un intervalle non réduit à un point"
+          ]
+        }
+      ],
+      "demo": "**Croissante $\\Rightarrow f'\\ge0$.** Soit $x\\in I$. Pour $h\\neq0$ tel que $x+h\\in I$, $\\frac{f(x+h)-f(x)}{h}\\ge0$ (numérateur et dénominateur de même signe, par croissance). En faisant tendre $h$ vers $0$ (possible car $I$ est un intervalle non réduit à un point), on obtient $f'(x)\\ge0$ par passage à la limite dans une inégalité large.\n\n**$f'\\ge0\\Rightarrow$ croissante.** Soient $x<y$ dans $I$. Comme $I$ est un intervalle, $[x,y]\\subset I$ ; $f$ est continue sur $[x,y]$ et dérivable sur $\\left]x,y\\right[$. L'égalité des accroissements finis donne $c\\in\\left]x,y\\right[$ tel que $f(y)-f(x)=f'(c)(y-x)\\ge0$. Ce sens est admis en Terminale : la preuve repose sur l'égalité des accroissements finis (vue en L1), donc sur le théorème de Rolle et la propriété de la borne supérieure.\n\n**Stricte croissance.** $f$ est déjà croissante. Si $f(x)=f(y)$ avec $x<y$, alors pour $t\\in[x,y]$, $f(x)\\le f(t)\\le f(y)=f(x)$ : $f$ est constante sur $[x,y]$, donc $f'=0$ sur $\\left]x,y\\right[$, qui contient une infinité de points : contradiction. Donc $f(x)<f(y)$.",
+      "exemple": "$f(x)=x-\\sin x$ sur $\\mathbb{R}$ : $f'(x)=1-\\cos x\\ge0$, nul exactement aux points $2k\\pi$. Sur tout segment $[x,y]$, $f'$ ne s'annule qu'en un nombre fini de points, donc $f$ est strictement croissante sur $[x,y]$, et finalement sur $\\mathbb{R}$. En particulier $\\sin x<x$ pour tout $x>0$.",
+      "contre_exemple": "- **$I$ doit être un intervalle** : $f(x)=-\\frac1x$ sur $\\mathbb{R}^*$ vérifie $f'(x)=\\frac{1}{x^2}>0$, mais $f(-1)=1>f(1)=-1$ : $f$ n'est pas croissante sur $\\mathbb{R}^*$ (elle l'est sur chacun des intervalles $\\left]-\\infty,0\\right[$ et $\\left]0,+\\infty\\right[$).\n- **Strictement croissante n'entraîne pas $f'>0$** : $f(x)=x^3$ est strictement croissante sur $\\mathbb{R}$ et $f'(0)=0$.\n- **La dérivabilité compte** : $f(x)=-\\lfloor x\\rfloor$ a une dérivée nulle en tout point non entier, mais n'est ni croissante ni constante sur $\\mathbb{R}$ ; elle n'est pas dérivable (pas même continue) aux entiers.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est dérivable et strictement croissante sur un intervalle $I$, alors $f'(x)>0$ pour tout $x\\in I$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3$ est strictement croissante sur $\\mathbb{R}$, mais $f'(0)=0$. On a seulement $f'\\ge0$."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\mathbb{R}^*$ et $f'(x)>0$ pour tout $x\\neq0$, alors $f$ est croissante sur $\\mathbb{R}^*$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=-\\frac1x$ : $f'(x)=\\frac{1}{x^2}>0$, mais $f(-1)=1>f(1)=-1$. $\\mathbb{R}^*$ n'est pas un intervalle."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur un intervalle $I$ et $f'=0$ sur $I$, alors $f$ est constante sur $I$.",
+          "vrai": true,
+          "justification": "$f'\\ge0$ et $f'\\le0$ sur l'intervalle $I$ : $f$ est à la fois croissante et décroissante, donc constante."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\mathbb{R}$ et $f'(0)>0$, alors $f$ est croissante sur un intervalle $\\left]-\\delta,\\delta\\right[$ avec $\\delta>0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x+2x^2\\sin\\frac1x$, $f(0)=0$ : $f'(0)=1>0$, mais $f'\\left(\\frac{1}{2k\\pi}\\right)=-1<0$ pour tout entier $k\\ge1$, et ces points sont aussi proches de $0$ qu'on veut. Si $f$ était croissante sur $\\left]-\\delta,\\delta\\right[$, on aurait $f'\\ge0$ sur cet intervalle."
+        }
+      ],
+      "prerequis": []
+    }
+  ]
+}

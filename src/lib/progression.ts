@@ -18,6 +18,8 @@ export interface Tentative {
   indices: number
   /** Réponse choisie parmi les propositions, si l'exercice en a. */
   reponse?: 'juste' | 'fausse'
+  /** Variante faite (0 = l'exercice tel qu'écrit ; absent dans les anciennes tentatives). */
+  variante?: number
 }
 
 export interface Signalement {

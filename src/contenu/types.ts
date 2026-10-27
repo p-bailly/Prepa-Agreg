@@ -55,6 +55,14 @@ export interface ReponseFinale {
   bonne: number
 }
 
+/** Variante d'un exercice : mêmes question et difficulté, d'autres valeurs (énoncé, réponse, correction propres). */
+export interface Variante {
+  enonce: string
+  indices?: string[]
+  reponse_finale?: ReponseFinale
+  correction: string
+}
+
 export interface Exercice {
   id: string
   carte: string
@@ -65,14 +73,27 @@ export interface Exercice {
   indices: string[]
   reponse_finale?: ReponseFinale
   correction: string
+  /** Autres jeux de valeurs (la variante 0 est l'exercice lui-même). */
+  variantes?: Variante[]
   doute?: string
 }
+
+/** Variante `k` d'un exercice (0 = l'exercice tel qu'écrit), complétée par les champs communs. */
+export function variante(e: Exercice, k: number): Exercice {
+  const v = k > 0 ? e.variantes?.[k - 1] : undefined
+  if (!v) return e
+  return { ...e, enonce: v.enonce, correction: v.correction, indices: v.indices ?? e.indices, reponse_finale: v.reponse_finale }
+}
+
+export const nombreVariantes = (e: Exercice): number => 1 + (e.variantes?.length ?? 0)
 
 export interface Chapitre {
   id: string
   niveau: Niveau
   titre: string
-  /** Nombre de cartes visées pour ce chapitre (total du tableau de bord). */
+  /** Notions à couvrir, une carte chacune : le plan de rédaction et la mesure de la couverture. */
+  notions: string[]
+  /** Nombre de cartes visées pour ce chapitre (= nombre de notions ; total du tableau de bord). */
   prevues: number
 }
 

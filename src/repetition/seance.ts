@@ -24,13 +24,21 @@ export const MINUTES_NEUVE = 1.5
 
 /**
  * Ordre d'introduction des cartes neuves : niveau le plus bas d'abord ; dans un niveau, les thèmes alternent (première
- * carte de chaque thème, puis deuxième…) et chaque thème suit l'ordre de son fichier.
+ * carte de chaque thème, puis deuxième…) et chaque thème suit l'ordre de ses chapitres (themes.json), puis l'ordre du
+ * fichier dans un chapitre.
  */
 export function ordreIntroduction(contenu: Contenu): Carte[] {
   const rangTheme = new Map(contenu.themes.map((t, i) => [t.id, i]))
+  const rangChapitre = new Map(contenu.themes.flatMap((t) => t.chapitres.map((ch, i) => [ch.id, i] as const)))
+  const dansFichier = new Map(contenu.cartes.map((c, i) => [c.id, i]))
+  const parChapitre = [...contenu.cartes].sort(
+    (a, b) =>
+      (rangChapitre.get(a.chapitre) ?? 99) - (rangChapitre.get(b.chapitre) ?? 99) ||
+      dansFichier.get(a.id)! - dansFichier.get(b.id)!,
+  )
   const position = new Map<string, number>()
   const compteur = new Map<string, number>()
-  for (const c of contenu.cartes) {
+  for (const c of parChapitre) {
     const cle = `${c.theme}/${c.niveau}`
     const n = compteur.get(cle) ?? 0
     position.set(c.id, n)

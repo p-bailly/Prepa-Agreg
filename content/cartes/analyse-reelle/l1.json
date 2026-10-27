@@ -1,0 +1,359 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l1-borne-sup",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-reels",
+      "type": "theoreme",
+      "titre": "Propriété de la borne supérieure et caractérisation",
+      "recto": "Énoncer la propriété de la borne supérieure dans $\\mathbb{R}$, avec ses hypothèses, et la caractérisation de la borne supérieure par $\\varepsilon$.",
+      "hypotheses": [
+        "$A$ est une partie de $\\mathbb{R}$ (la borne supérieure est cherchée dans $\\mathbb{R}$).",
+        "$A$ est non vide.",
+        "$A$ est majorée."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est minorée (à la place de majorée).",
+        "$A$ est une partie non vide et majorée de $\\mathbb{Q}$, et sa borne supérieure est cherchée dans $\\mathbb{Q}$.",
+        "$A$ admet un plus grand élément.",
+        "$A$ est infinie (à la place de majorée)."
+      ],
+      "enonce": "**Propriété de la borne supérieure.** Toute partie $A$ de $\\mathbb{R}$ non vide et majorée admet une borne supérieure, c'est-à-dire un plus petit majorant, noté $\\sup A$.\n\n**Caractérisation.** Soit $A\\subset\\mathbb{R}$ non vide et $M\\in\\mathbb{R}$. Alors $M=\\sup A$ si et seulement si :\n\n- pour tout $a\\in A$, $a\\le M$ ($M$ est un majorant) ;\n- pour tout $\\varepsilon>0$, il existe $a\\in A$ tel que $M-\\varepsilon<a$.\n\nDe même, toute partie non vide et minorée admet une borne inférieure.",
+      "enonce_trous": "Toute partie de $\\mathbb{R}$ {{1}} admet une borne supérieure. Un majorant $M$ de $A$ en est la borne supérieure si et seulement si, pour tout $\\varepsilon>0$, il existe $a\\in A$ tel que {{2}}.",
+      "trous": [
+        {
+          "reponse": "non vide et majorée",
+          "leurres": [
+            "non vide et minorée",
+            "majorée",
+            "fermée et non vide"
+          ]
+        },
+        {
+          "reponse": "$M-\\varepsilon<a$",
+          "leurres": [
+            "$M-\\varepsilon<a<M$",
+            "$a>M+\\varepsilon$",
+            "$a<M-\\varepsilon$"
+          ]
+        }
+      ],
+      "demo": "**Statut de la propriété.** Dans la plupart des cours de L1, l'existence de la borne supérieure est un **axiome** de $\\mathbb{R}$ (avec les axiomes de corps ordonné) ; elle se démontre si l'on construit $\\mathbb{R}$ (coupures de Dedekind, ou suites de Cauchy de rationnels). C'est elle qui distingue $\\mathbb{R}$ de $\\mathbb{Q}$ ; on en déduit ensuite le théorème de la limite monotone, la convergence des suites adjacentes, etc.\n\n**Preuve de la caractérisation.** Supposons $M=\\sup A$. Alors $M$ est un majorant. Soit $\\varepsilon>0$ : $M-\\varepsilon<M$, et $M$ est le plus petit majorant, donc $M-\\varepsilon$ n'est pas un majorant ; il existe $a\\in A$ avec $a>M-\\varepsilon$.\n\nRéciproquement, supposons les deux conditions. $M$ est un majorant. Soit $M'$ un majorant de $A$ ; si l'on avait $M'<M$, avec $\\varepsilon=M-M'>0$ on trouverait $a\\in A$ tel que $a>M-\\varepsilon=M'$, ce qui contredit le fait que $M'$ majore $A$. Donc $M\\le M'$ pour tout majorant $M'$ : $M$ est le plus petit majorant, $M=\\sup A$.",
+      "exemple": "$A=\\left\\{1-\\frac1n,\\ n\\in\\mathbb{N}^*\\right\\}$ : $1$ majore $A$, et pour $\\varepsilon>0$, en prenant un entier $n>\\frac1\\varepsilon$, on a $1-\\frac1n>1-\\varepsilon$. Donc $\\sup A=1$, qui n'appartient pas à $A$ : la borne supérieure n'est pas forcément un plus grand élément.",
+      "contre_exemple": "- **Dans $\\mathbb{Q}$, la propriété est fausse** : $A=\\{x\\in\\mathbb{Q},\\ x>0,\\ x^2<2\\}$ est non vide et majorée (par $2$) dans $\\mathbb{Q}$, mais n'a pas de borne supérieure dans $\\mathbb{Q}$ : ses majorants rationnels sont les rationnels $r>\\sqrt2$, et il n'y en a pas de plus petit (entre $\\sqrt2$ et $r$ il y a toujours un rationnel).\n- **Non vide est nécessaire** : tout réel majore $\\varnothing$, il n'y a pas de plus petit majorant.\n- **Majorée est nécessaire** : $\\mathbb{N}$ est non vide, minorée, sans majorant.",
+      "affirmations": [
+        {
+          "texte": "Toute partie non vide et majorée de $\\mathbb{R}$ admet un plus grand élément.",
+          "vrai": false,
+          "contre_exemple": "$A=\\left[0,1\\right[$ : $\\sup A=1\\notin A$, et aucun $a\\in A$ n'est plus grand que tous les autres (car $\\frac{a+1}{2}\\in A$ et $\\frac{a+1}{2}>a$)."
+        },
+        {
+          "texte": "Si $A$ admet un plus grand élément $m$, alors $\\sup A=m$.",
+          "vrai": true,
+          "justification": "$m$ majore $A$, et tout majorant $M'$ de $A$ vérifie $M'\\ge m$ puisque $m\\in A$."
+        },
+        {
+          "texte": "Si $A\\subset\\mathbb{R}$ est non vide et majorée, il existe une suite d'éléments de $A$ qui converge vers $\\sup A$.",
+          "vrai": true,
+          "justification": "Pour chaque $n$, la caractérisation avec $\\varepsilon=\\frac{1}{n+1}$ donne $a_n\\in A$ tel que $\\sup A-\\frac{1}{n+1}<a_n\\le\\sup A$ ; on conclut par encadrement."
+        },
+        {
+          "texte": "Si pour tout $\\varepsilon>0$ il existe $a\\in A$ tel que $M-\\varepsilon<a$, alors $M=\\sup A$.",
+          "vrai": false,
+          "contre_exemple": "$A=[0,1]$ et $M=0$ : pour tout $\\varepsilon>0$, $a=\\frac12$ vérifie $0-\\varepsilon<a$, mais $\\sup A=1$. Il manque la condition « $M$ est un majorant »."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-l1-bolzano-weierstrass",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-suites",
+      "type": "theoreme",
+      "titre": "Théorème de Bolzano–Weierstrass",
+      "recto": "Énoncer le théorème de Bolzano–Weierstrass dans $\\mathbb{R}$ avec ses hypothèses.",
+      "hypotheses": [
+        "$(u_n)$ est une suite à valeurs réelles.",
+        "$(u_n)$ est bornée."
+      ],
+      "hypotheses_pieges": [
+        "$(u_n)$ est majorée (seulement).",
+        "$(u_n)$ est monotone.",
+        "Les écarts $u_{n+1}-u_n$ tendent vers $0$.",
+        "$(u_n)$ est à valeurs dans $\\mathbb{Q}$ et la limite de la sous-suite est cherchée dans $\\mathbb{Q}$."
+      ],
+      "enonce": "De toute suite réelle bornée, on peut extraire une sous-suite convergente : si $(u_n)$ est bornée, il existe une application strictement croissante $\\varphi:\\mathbb{N}\\to\\mathbb{N}$ telle que $\\left(u_{\\varphi(n)}\\right)$ converge.",
+      "enonce_trous": "De toute suite réelle {{1}}, on peut extraire {{2}}.",
+      "trous": [
+        {
+          "reponse": "bornée",
+          "leurres": [
+            "majorée",
+            "minorée",
+            "positive"
+          ]
+        },
+        {
+          "reponse": "une sous-suite convergente",
+          "leurres": [
+            "une sous-suite strictement monotone",
+            "une sous-suite constante",
+            "une sous-suite qui converge vers $\\sup_n u_n$"
+          ]
+        }
+      ],
+      "demo": "**Lemme : toute suite réelle admet une sous-suite monotone.** Disons qu'un indice $n$ est un « pic » si $u_n\\ge u_m$ pour tout $m>n$.\n\n- S'il y a une infinité de pics $n_0<n_1<n_2<\\cdots$, alors $u_{n_0}\\ge u_{n_1}\\ge u_{n_2}\\ge\\cdots$ : la sous-suite $(u_{n_k})$ est décroissante.\n- Sinon, soit $N$ un entier strictement supérieur à tous les pics. L'indice $n_0=N$ n'est pas un pic : il existe $n_1>n_0$ avec $u_{n_1}>u_{n_0}$ ; $n_1$ n'est pas un pic : il existe $n_2>n_1$ avec $u_{n_2}>u_{n_1}$, etc. On construit ainsi une sous-suite strictement croissante.\n\n**Théorème.** Si $(u_n)$ est bornée, la sous-suite monotone du lemme est bornée ; par le théorème de la limite monotone (qui repose sur la propriété de la borne supérieure), elle converge.",
+      "exemple": "$u_n=(-1)^n+\\frac{1}{n+1}$ est bornée et divergente ; ses sous-suites $(u_{2n})$ et $(u_{2n+1})$ convergent vers $1$ et $-1$. Pour $u_n=\\sin n$, le théorème garantit une sous-suite convergente sans qu'on sache l'expliciter.",
+      "contre_exemple": "- **Bornée est nécessaire** : pour $u_n=n$, toute sous-suite vérifie $u_{\\varphi(n)}=\\varphi(n)\\ge n$ (car $\\varphi$ est strictement croissante), donc tend vers $+\\infty$. De même $u_n=-n$, majorée mais pas minorée, n'a aucune sous-suite convergente.\n- **Dans $\\mathbb{Q}$, c'est faux** : la suite $(q_n)$ des approximations décimales par défaut de $\\sqrt2$ à $10^{-n}$ près est à valeurs dans $[1,2]\\cap\\mathbb{Q}$, mais toute sous-suite converge dans $\\mathbb{R}$ vers $\\sqrt2\\notin\\mathbb{Q}$, donc aucune ne converge dans $\\mathbb{Q}$.",
+      "affirmations": [
+        {
+          "texte": "Une suite réelle bornée qui n'a qu'une seule valeur d'adhérence converge.",
+          "vrai": true,
+          "justification": "Soit $\\ell$ la valeur d'adhérence. Sinon, il existerait $\\varepsilon>0$ et une sous-suite restant hors de $\\left]\\ell-\\varepsilon,\\ell+\\varepsilon\\right[$ ; bornée, elle aurait par Bolzano–Weierstrass une sous-suite convergente, de limite $\\ell'$ avec $|\\ell'-\\ell|\\ge\\varepsilon$ : une seconde valeur d'adhérence."
+        },
+        {
+          "texte": "Une suite réelle qui n'a qu'une seule valeur d'adhérence converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=n$ si $n$ est impair, $u_n=0$ si $n$ est pair. Une sous-suite convergente ne peut contenir qu'un nombre fini d'indices impairs (sinon elle aurait une sous-suite tendant vers $+\\infty$) ; elle converge donc vers $0$. Ainsi $0$ est l'unique valeur d'adhérence, mais $(u_n)$ n'est pas bornée et diverge."
+        },
+        {
+          "texte": "Si une suite réelle n'a aucune sous-suite convergente, alors $|u_n|\\to+\\infty$.",
+          "vrai": true,
+          "justification": "Sinon, il existe $M$ et une infinité d'indices $n$ tels que $|u_n|\\le M$ ; la sous-suite correspondante est bornée et Bolzano–Weierstrass en extrait une sous-suite convergente."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-borne-sup",
+        "ar-t-limite-monotone"
+      ]
+    },
+    {
+      "id": "ar-l1-bornes-atteintes",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-continuite",
+      "type": "theoreme",
+      "titre": "Théorème des bornes atteintes",
+      "recto": "Énoncer le théorème des bornes atteintes pour une fonction continue, avec ses hypothèses.",
+      "hypotheses": [
+        "L'ensemble de départ est un segment $[a,b]$ (intervalle fermé et borné).",
+        "$f$ est continue sur $[a,b]$.",
+        "$f$ est à valeurs réelles."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur l'intervalle ouvert $\\left]a,b\\right[$.",
+        "L'ensemble de départ est un intervalle fermé, éventuellement non borné (comme $\\left[0,+\\infty\\right[$).",
+        "$f$ est bornée sur $[a,b]$ (à la place de la continuité).",
+        "$f$ est dérivable sur $\\left]a,b\\right[$ (à la place de la continuité sur $[a,b]$)."
+      ],
+      "enonce": "Soient $a\\le b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ continue. Alors $f$ est bornée sur $[a,b]$ et atteint ses bornes : il existe $c,d\\in[a,b]$ tels que $f(c)=\\inf_{[a,b]}f$ et $f(d)=\\sup_{[a,b]}f$, c'est-à-dire $f(c)\\le f(x)\\le f(d)$ pour tout $x\\in[a,b]$.",
+      "enonce_trous": "Toute fonction réelle continue sur {{1}} est bornée et {{2}}.",
+      "trous": [
+        {
+          "reponse": "un segment $[a,b]$",
+          "leurres": [
+            "un intervalle fermé",
+            "un intervalle borné",
+            "un intervalle ouvert borné $\\left]a,b\\right[$"
+          ]
+        },
+        {
+          "reponse": "atteint ses bornes",
+          "leurres": [
+            "atteint ses bornes en $a$ et en $b$",
+            "est monotone",
+            "atteint chacune de ses bornes en un unique point"
+          ]
+        }
+      ],
+      "demo": "**$f$ est majorée.** Sinon, pour tout $n\\in\\mathbb{N}$ il existe $x_n\\in[a,b]$ tel que $f(x_n)>n$. La suite $(x_n)$ est bornée : par Bolzano–Weierstrass, elle admet une sous-suite $\\left(x_{\\varphi(n)}\\right)$ convergeant vers un réel $c$, et $c\\in[a,b]$ par passage à la limite dans $a\\le x_{\\varphi(n)}\\le b$ (c'est là que sert le fait que le segment est fermé). Par continuité de $f$ en $c$, $f\\left(x_{\\varphi(n)}\\right)\\to f(c)$ ; or $f\\left(x_{\\varphi(n)}\\right)>\\varphi(n)\\ge n$ tend vers $+\\infty$ : contradiction.\n\n**La borne supérieure est atteinte.** $f([a,b])$ est non vide et majorée : soit $M$ sa borne supérieure. Pour tout $n$, il existe $x_n\\in[a,b]$ tel que $M-\\frac{1}{n+1}<f(x_n)\\le M$. Par Bolzano–Weierstrass, une sous-suite $\\left(x_{\\varphi(n)}\\right)$ converge vers $d\\in[a,b]$. Par continuité, $f\\left(x_{\\varphi(n)}\\right)\\to f(d)$, et par encadrement $f\\left(x_{\\varphi(n)}\\right)\\to M$. Par unicité de la limite, $f(d)=M$.\n\n**Minimum.** On applique ce qui précède à $-f$, continue sur $[a,b]$.",
+      "exemple": "Si $f$ est continue sur $[a,b]$ et $f(x)>0$ pour tout $x$, il existe $m>0$ tel que $f\\ge m$ sur $[a,b]$ : on prend $m=\\min_{[a,b]}f=f(c)>0$. Avec le théorème des valeurs intermédiaires, on obtient plus précisément $f([a,b])=[m,M]$ : l'image d'un segment par une fonction continue est un segment.",
+      "contre_exemple": "- **Intervalle non fermé** : $f(x)=x$ sur $\\left[0,1\\right[$ est bornée mais n'atteint pas sa borne supérieure $1$ ; $f(x)=\\frac1x$ sur $\\left]0,1\\right]$ n'est pas majorée.\n- **Intervalle non borné** : $f(x)=\\frac{x}{1+x}$ sur $\\left[0,+\\infty\\right[$ est bornée, de borne supérieure $1$ non atteinte ; $f(x)=x$ sur $\\left[0,+\\infty\\right[$ n'est pas majorée.\n- **Continuité nécessaire** : sur $[0,1]$, $f(x)=\\frac1x$ pour $x>0$ et $f(0)=0$ n'est pas majorée ; $f(x)=x$ pour $x<1$ et $f(1)=0$ est bornée mais n'atteint pas $1=\\sup f$.",
+      "affirmations": [
+        {
+          "texte": "Une fonction continue et bornée sur $\\mathbb{R}$ atteint ses bornes.",
+          "vrai": false,
+          "contre_exemple": "$\\arctan$ est continue sur $\\mathbb{R}$, à valeurs dans $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, de bornes $\\pm\\frac\\pi2$ qui ne sont pas atteintes."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ et $f(x)>0$ pour tout $x\\in[a,b]$, il existe $m>0$ tel que $f(x)\\ge m$ pour tout $x\\in[a,b]$.",
+          "vrai": true,
+          "justification": "Le minimum est atteint en un point $c$ : $m=f(c)>0$ convient. C'est faux sur $\\left]0,1\\right]$ avec $f(x)=x$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\left]0,1\\right[$ et admet des limites finies en $0$ et en $1$, alors $f$ atteint ses bornes sur $\\left]0,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x$ : limites $0$ et $1$, $\\inf f=0$ et $\\sup f=1$ ne sont pas atteintes sur $\\left]0,1\\right[$. (En revanche $f$ est bornée, car prolongeable par continuité à $[0,1]$.)"
+        },
+        {
+          "texte": "L'image d'un segment par une fonction continue à valeurs réelles est un segment.",
+          "vrai": true,
+          "justification": "Par le théorème, $f([a,b])\\subset[m,M]$ avec $m$ et $M$ atteints ; par le théorème des valeurs intermédiaires, toute valeur entre $m$ et $M$ est atteinte : $f([a,b])=[m,M]$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-bolzano-weierstrass",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "ar-l1-rolle",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-derivabilite",
+      "type": "theoreme",
+      "titre": "Théorème de Rolle",
+      "recto": "Énoncer le théorème de Rolle avec ses hypothèses.",
+      "hypotheses": [
+        "$a<b$ sont deux réels.",
+        "$f$ est à valeurs réelles.",
+        "$f$ est continue sur le segment $[a,b]$.",
+        "$f$ est dérivable sur l'intervalle ouvert $\\left]a,b\\right[$.",
+        "$f(a)=f(b)$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur $\\left]a,b\\right[$ seulement.",
+        "$f$ est dérivable sur $\\left]a,b\\right[$ sauf éventuellement en un point.",
+        "$f$ est à valeurs complexes.",
+        "$f(a)$ et $f(b)$ sont de signes contraires (à la place de $f(a)=f(b)$)."
+      ],
+      "enonce": "Soient $a<b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ une fonction continue sur $[a,b]$, dérivable sur $\\left]a,b\\right[$, telle que $f(a)=f(b)$. Alors il existe $c\\in\\left]a,b\\right[$ tel que $f'(c)=0$.",
+      "enonce_trous": "Si $f:[a,b]\\to\\mathbb{R}$ est {{1}} sur $[a,b]$, {{2}} sur $\\left]a,b\\right[$, et si $f(a)=f(b)$, alors il existe $c$ {{3}} tel que $f'(c)=0$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "bornée",
+            "continue par morceaux",
+            "intégrable"
+          ]
+        },
+        {
+          "reponse": "dérivable",
+          "leurres": [
+            "continue",
+            "lipschitzienne",
+            "dérivable sauf en un point"
+          ]
+        },
+        {
+          "reponse": "dans $\\left]a,b\\right[$",
+          "leurres": [
+            "égal à $\\frac{a+b}{2}$",
+            "dans $\\{a,b\\}$",
+            "unique dans $\\left]a,b\\right[$"
+          ]
+        }
+      ],
+      "demo": "$f$ est continue sur le segment $[a,b]$ : par le théorème des bornes atteintes, elle admet un maximum $M$ et un minimum $m$.\n\nSi $m=M$, $f$ est constante, $f'=0$ sur $\\left]a,b\\right[$ et tout $c$ convient. Sinon, l'un des deux est différent de $f(a)=f(b)$ ; quitte à remplacer $f$ par $-f$, supposons $M>f(a)$. Soit $c$ tel que $f(c)=M$ : comme $f(c)\\neq f(a)=f(b)$, on a $c\\in\\left]a,b\\right[$, et $f$ est dérivable en $c$.\n\nPour $h>0$ assez petit, $c+h\\in[a,b]$ et $\\frac{f(c+h)-f(c)}{h}\\le0$ ; quand $h\\to0^+$, $f'(c)\\le0$. Pour $h<0$ assez petit, $\\frac{f(c+h)-f(c)}{h}\\ge0$, d'où $f'(c)\\ge0$. Donc $f'(c)=0$.",
+      "exemple": "Si un polynôme réel $P$ a $n$ racines réelles distinctes $x_1<\\cdots<x_n$, alors $P'$ a au moins $n-1$ racines réelles distinctes : le théorème appliqué sur chaque $[x_i,x_{i+1}]$ donne une racine de $P'$ dans $\\left]x_i,x_{i+1}\\right[$, et ces intervalles sont disjoints.",
+      "contre_exemple": "- **Continuité au bord** : sur $[0,1]$, $f(x)=x$ pour $x<1$ et $f(1)=0$. On a $f(0)=f(1)=0$, $f$ est dérivable sur $\\left]0,1\\right[$, mais $f'=1$ partout.\n- **Dérivabilité en tout point intérieur** : $f(x)=|x|$ sur $[-1,1]$ : $f(-1)=f(1)$, $f$ est continue, dérivable sauf en $0$, et $f'(x)=\\pm1$ ne s'annule jamais.\n- **Fonction à valeurs complexes** : $f(t)=e^{it}$ sur $[0,2\\pi]$ : $f(0)=f(2\\pi)=1$, $f$ est dérivable, mais $|f'(t)|=|ie^{it}|=1$ pour tout $t$.",
+      "affirmations": [
+        {
+          "texte": "Si $f:[a,b]\\to\\mathbb{C}$ est continue sur $[a,b]$, dérivable sur $\\left]a,b\\right[$ et vérifie $f(a)=f(b)$, alors $f'$ s'annule sur $\\left]a,b\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=e^{it}$ sur $[0,2\\pi]$ : $f(0)=f(2\\pi)$, mais $|f'(t)|=1$. On peut appliquer Rolle aux parties réelle $\\cos$ et imaginaire $\\sin$, mais en des points différents."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\mathbb{R}$ et s'annule en $n$ points distincts, alors $f'$ s'annule en au moins $n-1$ points distincts.",
+          "vrai": true,
+          "justification": "Le théorème de Rolle entre deux zéros consécutifs donne un zéro de $f'$ dans chacun des $n-1$ intervalles ouverts disjoints."
+        },
+        {
+          "texte": "Le point $c$ donné par le théorème de Rolle est unique.",
+          "vrai": false,
+          "contre_exemple": "$f=\\sin$ sur $[0,3\\pi]$ : $f(0)=f(3\\pi)=0$ et $f'=\\cos$ s'annule en $\\frac\\pi2$, $\\frac{3\\pi}2$ et $\\frac{5\\pi}2$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$, dérivable sur $\\left]a,b\\right[$ sauf en un point, et $f(a)=f(b)$, alors $f'$ s'annule en un point de $\\left]a,b\\right[$ où elle est définie.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=|x|$ sur $[-1,1]$ : $f(-1)=f(1)=1$, $f$ est dérivable sauf en $0$, et $f'(x)=-1$ pour $x<0$, $f'(x)=1$ pour $x>0$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-bornes-atteintes"
+      ]
+    },
+    {
+      "id": "ar-l1-taf",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-derivabilite",
+      "type": "theoreme",
+      "titre": "Égalité et inégalité des accroissements finis",
+      "recto": "Énoncer l'égalité des accroissements finis et l'inégalité des accroissements finis avec leurs hypothèses.",
+      "hypotheses": [
+        "$a<b$ sont deux réels.",
+        "$f$ est à valeurs réelles (pour l'égalité).",
+        "$f$ est continue sur le segment $[a,b]$.",
+        "$f$ est dérivable sur l'intervalle ouvert $\\left]a,b\\right[$.",
+        "Pour l'inégalité : il existe $M\\ge0$ tel que $|f'(x)|\\le M$ pour tout $x\\in\\left]a,b\\right[$."
+      ],
+      "hypotheses_pieges": [
+        "$f(a)=f(b)$.",
+        "$f$ est à valeurs complexes (pour l'égalité).",
+        "$f$ est dérivable sur $\\left]a,b\\right[$ sauf éventuellement en un point.",
+        "$f$ est continue sur $\\left]a,b\\right[$ seulement."
+      ],
+      "enonce": "Soient $a<b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ continue sur $[a,b]$ et dérivable sur $\\left]a,b\\right[$.\n\n- **Égalité des accroissements finis** : il existe $c\\in\\left]a,b\\right[$ tel que $f(b)-f(a)=f'(c)(b-a)$.\n- **Inégalité des accroissements finis** : s'il existe $M\\ge0$ tel que $|f'(x)|\\le M$ pour tout $x\\in\\left]a,b\\right[$, alors $|f(y)-f(x)|\\le M|y-x|$ pour tous $x,y\\in[a,b]$.",
+      "enonce_trous": "Si $f:[a,b]\\to\\mathbb{R}$ est continue sur $[a,b]$ et dérivable sur $\\left]a,b\\right[$, il existe $c$ {{1}} tel que {{2}}. Si de plus $|f'|\\le M$ sur $\\left]a,b\\right[$, alors {{3}} pour tous $x,y\\in[a,b]$.",
+      "trous": [
+        {
+          "reponse": "dans $\\left]a,b\\right[$",
+          "leurres": [
+            "égal à $\\frac{a+b}{2}$",
+            "dans $\\{a,b\\}$",
+            "unique dans $\\left]a,b\\right[$"
+          ]
+        },
+        {
+          "reponse": "$f(b)-f(a)=f'(c)(b-a)$",
+          "leurres": [
+            "$f(b)-f(a)=f'(c)$",
+            "$f'(c)=0$",
+            "$f(b)-f(a)=\\frac{f'(c)}{b-a}$"
+          ]
+        },
+        {
+          "reponse": "$|f(y)-f(x)|\\le M|y-x|$",
+          "leurres": [
+            "$|f(y)-f(x)|\\le M$",
+            "$|f(y)-f(x)|<M|y-x|$",
+            "$|f(y)-f(x)|\\ge M|y-x|$"
+          ]
+        }
+      ],
+      "demo": "**Égalité.** Posons $g(x)=f(x)-\\frac{f(b)-f(a)}{b-a}(x-a)$. La fonction $g$ est continue sur $[a,b]$, dérivable sur $\\left]a,b\\right[$, et $g(a)=f(a)=g(b)$. Le théorème de Rolle donne $c\\in\\left]a,b\\right[$ tel que $g'(c)=0$, soit $f'(c)=\\frac{f(b)-f(a)}{b-a}$.\n\n**Inégalité.** Soient $x<y$ dans $[a,b]$. $f$ est continue sur $[x,y]$ et dérivable sur $\\left]x,y\\right[\\subset\\left]a,b\\right[$ ; l'égalité donne $c\\in\\left]x,y\\right[$ tel que $|f(y)-f(x)|=|f'(c)|\\,|y-x|\\le M|y-x|$. Le cas $x=y$ est immédiat et le cas $x>y$ s'obtient par symétrie.\n\n**Remarque.** L'inégalité reste vraie pour $f$ à valeurs complexes : si $f(b)\\neq f(a)$, on écrit $f(b)-f(a)=re^{i\\theta}$ avec $r>0$ et on applique l'égalité à la fonction réelle $h=\\mathrm{Re}\\left(e^{-i\\theta}f\\right)$ : $|f(b)-f(a)|=h(b)-h(a)=h'(c)(b-a)=\\mathrm{Re}\\left(e^{-i\\theta}f'(c)\\right)(b-a)\\le M(b-a)$.",
+      "exemple": "Pour $0<x<y$, l'égalité appliquée à $\\ln$ sur $[x,y]$ donne $c\\in\\left]x,y\\right[$ tel que $\\ln y-\\ln x=\\frac{y-x}{c}$, d'où $\\frac{y-x}{y}<\\ln y-\\ln x<\\frac{y-x}{x}$. De même, $|\\sin y-\\sin x|\\le|y-x|$ pour tous réels $x,y$, car $|\\sin'|=|\\cos|\\le1$.",
+      "contre_exemple": "- **Fonction à valeurs complexes (égalité)** : $f(t)=e^{it}$ sur $[0,2\\pi]$ : $f(2\\pi)-f(0)=0$, mais $f'(c)\\cdot2\\pi\\neq0$ pour tout $c$ car $|f'(c)|=1$. L'inégalité, elle, reste vraie.\n- **Dérivabilité en tout point intérieur** : $f(x)=|x|$ sur $[-1,2]$ : $\\frac{f(2)-f(-1)}{3}=\\frac13$, alors que $f'$ ne prend que les valeurs $-1$ et $1$.\n- **$f'\\to0$ en $+\\infty$ ne donne pas de limite finie** : $f=\\ln$ vérifie $f'(x)=\\frac1x\\to0$ et $f(x)\\to+\\infty$ ; $f(x)=\\sin(\\ln x)$ vérifie $|f'(x)|=\\frac{|\\cos(\\ln x)|}{x}\\le\\frac1x\\to0$, elle est bornée et n'a pas de limite en $+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est dérivable sur $\\left]0,+\\infty\\right[$ et $f'(x)\\to0$ quand $x\\to+\\infty$, alors $f$ admet une limite finie en $+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$f=\\ln$ : $f'(x)=\\frac1x\\to0$ mais $f\\to+\\infty$. Ou $f(x)=\\sin(\\ln x)$ : $|f'(x)|\\le\\frac1x\\to0$, et $f$ vaut $0$ en $e^{2n\\pi}$ et $1$ en $e^{2n\\pi+\\pi/2}$, donc n'a pas de limite."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\left]0,+\\infty\\right[$ et $f'(x)\\to\\ell>0$ quand $x\\to+\\infty$, alors $f(x)\\to+\\infty$.",
+          "vrai": true,
+          "justification": "Il existe $A$ tel que $f'\\ge\\frac\\ell2$ sur $\\left[A,+\\infty\\right[$ ; pour $x>A$, l'égalité des accroissements finis donne $f(x)\\ge f(A)+\\frac\\ell2(x-A)\\to+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\mathbb{R}$ et $f'$ est bornée sur $\\mathbb{R}$, alors $f$ est lipschitzienne sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Avec $M=\\sup|f'|$, l'inégalité des accroissements finis sur tout segment $[x,y]$ donne $|f(y)-f(x)|\\le M|y-x|$."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\left]0,+\\infty\\right[$ et admet une limite finie en $+\\infty$, alors $f'(x)\\to0$ quand $x\\to+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\frac{\\sin(x^2)}{x}\\to0$, mais $f'(x)=2\\cos(x^2)-\\frac{\\sin(x^2)}{x^2}$ : en $x_n=\\sqrt{2n\\pi}$, $f'(x_n)=2$, et en $y_n=\\sqrt{(2n+1)\\pi}$, $f'(y_n)=-2$ ; $f'$ n'a pas de limite."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-rolle",
+        "ar-t-derivee-monotonie"
+      ]
+    }
+  ]
+}

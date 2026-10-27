@@ -29,6 +29,7 @@ export function contenu(cartes: Carte[], exercices: Exercice[] = []): Contenu {
       id: `${t}-${n}`,
       niveau: n,
       titre: `${t} ${n}`,
+      notions: cartes.filter((c) => c.theme === t && c.niveau === n).map((c) => c.titre),
       prevues: cartes.filter((c) => c.theme === t && c.niveau === n).length,
     })),
   }))

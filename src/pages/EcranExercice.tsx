@@ -5,9 +5,9 @@ import { useMemo, useState, type CSSProperties } from 'react'
 import { BandeauDoute, Etiquette, Volet } from '../composants/Blocs'
 import { Signaler } from '../composants/Signalement'
 import { Texte } from '../composants/Texte'
-import { NOMS_NIVEAUX, type Exercice } from '../contenu/types'
+import { nombreVariantes, NOMS_NIVEAUX, variante, type Exercice } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
-import { etatExercice } from '../exercices/niveaux'
+import { etatExercice, varianteSuivante } from '../exercices/niveaux'
 import { melanger } from '../lib/hasard'
 import { enregistrerTentative, type ResultatExercice } from '../lib/progression'
 
@@ -24,7 +24,27 @@ const RESULTATS: { r: ResultatExercice; nom: string }[] = [
   { r: 'rate', nom: 'Raté' },
 ]
 
-export function EcranExercice({ exercice, surRetour }: { exercice: Exercice; surRetour: () => void }) {
+export function EcranExercice({ exercice: base, surRetour }: { exercice: Exercice; surRetour: () => void }) {
+  const { progression } = useDonnees()
+  const nombre = nombreVariantes(base)
+  // Variante choisie à l'ouverture (jamais faite, sinon la plus ancienne) ; « Autres valeurs » passe à la suivante.
+  const [k, setK] = useState(() => varianteSuivante(nombre, progression.exercices[base.id]))
+  return <Deroule key={k} exercice={variante(base, k)} k={k} nombre={nombre} autre={() => setK((k + 1) % nombre)} surRetour={surRetour} />
+}
+
+function Deroule({
+  exercice,
+  k,
+  nombre,
+  autre,
+  surRetour,
+}: {
+  exercice: Exercice
+  k: number
+  nombre: number
+  autre: () => void
+  surRetour: () => void
+}) {
   const { cartesParId, contenu, progression, changerProgression, horloge, aujourdhui } = useDonnees()
   const carte = cartesParId.get(exercice.carte)
   const theme = contenu.themes.find((t) => t.id === carte?.theme)
@@ -48,6 +68,7 @@ export function EcranExercice({ exercice, surRetour }: { exercice: Exercice; sur
         jour: aujourdhui(),
         resultat,
         indices,
+        variante: k,
         ...(choix !== null ? { reponse: propositions[choix].bonne ? 'juste' : 'fausse' } : {}),
       }),
     )
@@ -80,6 +101,14 @@ export function EcranExercice({ exercice, surRetour }: { exercice: Exercice; sur
         <div className="bloc">
           <Texte texte={exercice.enonce} />
         </div>
+        {nombre > 1 && (
+          <p className="petit doux">
+            Variante {k + 1} / {nombre} (mêmes questions, autres valeurs).{' '}
+            <button className="lien" style={{ padding: 0, minHeight: 0 }} onClick={autre}>
+              Autres valeurs
+            </button>
+          </p>
+        )}
         <p className="consigne">
           Cherchez sur papier (environ {exercice.duree_min} min).
           {derniere && ` Déjà fait ${historique.length} fois ; ${etatExercice(historique) === 'reussi' ? 'réussi' : 'pas encore réussi'}.`}
