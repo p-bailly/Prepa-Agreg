@@ -19,7 +19,12 @@ def egal(a, b):
 
 
 def different(a, b):
-    return simplify(a - b) != 0 and abs(float(N(a - b, 30))) > 1e-9
+    """a et b diffèrent : contrôle exact, puis numérique (en n = 3 si l'expression dépend de n)."""
+    d = simplify(S(a) - S(b))
+    if d == 0:
+        return False
+    d = d.subs(n, 3)
+    return abs(float(N(d, 30))) > 1e-9
 
 
 def bonne_et_leurres(valeur, bonne, leurres, ou=""):
