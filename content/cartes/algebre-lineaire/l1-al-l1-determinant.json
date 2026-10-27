@@ -1,0 +1,386 @@
+{
+  "cartes": [
+    {
+      "id": "al-l1-determinant-famille",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-determinant",
+      "type": "theoreme",
+      "titre": "Déterminant d'une famille de vecteurs dans une base",
+      "recto": "Énoncer le théorème qui définit le déterminant d'une famille de $n$ vecteurs dans une base, avec ses hypothèses, puis donner la formule explicite, les règles de calcul et la formule de changement de base.",
+      "cours": "En Terminale, le nombre $ad - bc$ décide si la matrice $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ est inversible ; géométriquement, c'est l'aire orientée du parallélogramme construit sur ses colonnes $(a, c)$ et $(b, d)$. Le déterminant généralise ce nombre à $n$ vecteurs d'un espace de dimension $n$ : c'est un « volume orienté », qui s'annule quand les vecteurs sont « aplatis » dans un sous-espace plus petit.\n\nPlutôt que de partir d'une formule, on part des propriétés qu'on attend d'un volume : il est linéaire par rapport à chaque vecteur quand les autres sont fixés ($n$-linéarité), il est nul si deux des vecteurs sont égaux (alternance), et il vaut $1$ sur la base de référence. Le théorème dit qu'une seule fonction a ces trois propriétés : c'est $\\det_{\\mathcal{B}}$. Toutes les règles de calcul en découlent : échanger deux vecteurs change le signe, ajouter à un vecteur une combinaison linéaire des autres ne change rien, une famille liée a un déterminant nul.\n\nEn pratique, pour $n = 2$ ou $3$, on utilise la formule explicite (règle de Sarrus pour $n = 3$) ; au-delà, on fait des opérations sur les vecteurs pour se ramener à une matrice triangulaire, dont le déterminant est le produit des coefficients diagonaux.\n\nLe piège principal : le déterminant dépend de la base de référence $\\mathcal{B}$ (la formule de changement de base dit comment), et il n'est pas linéaire par rapport à la famille entière : $\\det_{\\mathcal{B}}(\\lambda x_1, \\dots, \\lambda x_n) = \\lambda^n \\det_{\\mathcal{B}}(x_1, \\dots, x_n)$.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie $n \\geq 1$.",
+        "$\\mathcal{B} = (e_1, \\dots, e_n)$ est une base de $E$.",
+        "La forme $f : E^n \\to \\mathbb{K}$ est $n$-linéaire : linéaire par rapport à chacune de ses $n$ variables, les autres étant fixées.",
+        "La forme $f$ est alternée : $f(x_1, \\dots, x_n) = 0$ dès que deux des $x_i$, à des places différentes, sont égaux."
+      ],
+      "hypotheses_pieges": [
+        "La forme $f$ est $n$-linéaire et symétrique (à la place d'alternée).",
+        "La forme $f$ est seulement $n$-linéaire, sans être supposée alternée.",
+        "La forme $f$ est alternée et linéaire par rapport à sa première variable seulement (à la place de $n$-linéaire).",
+        "$(e_1, \\dots, e_n)$ est une famille quelconque de $n$ vecteurs de $E$ (à la place d'une base)."
+      ],
+      "enonce": "Soient $E$ un $\\mathbb{K}$-espace vectoriel ($\\mathbb{K} = \\mathbb{R}$ ou $\\mathbb{C}$) de dimension $n \\geq 1$ et $\\mathcal{B} = (e_1, \\dots, e_n)$ une base de $E$. Une forme $n$-linéaire $f : E^n \\to \\mathbb{K}$ est dite **alternée** si $f(x_1, \\dots, x_n) = 0$ dès que deux des vecteurs $x_i$, à des places différentes, sont égaux.\n- Il existe une unique forme $n$-linéaire alternée sur $E$ qui vaut $1$ en $(e_1, \\dots, e_n)$ : c'est le **déterminant dans la base** $\\mathcal{B}$, noté $\\det_{\\mathcal{B}}$. Toute forme $n$-linéaire alternée $f$ sur $E$ vérifie $f = f(e_1, \\dots, e_n) \\det_{\\mathcal{B}}$.\n- **Formule explicite.** Si $x_j = \\sum_{i=1}^{n} a_{ij} e_i$ pour $j = 1, \\dots, n$, alors $\\det_{\\mathcal{B}}(x_1, \\dots, x_n) = \\sum_{\\sigma \\in \\mathfrak{S}_n} \\varepsilon(\\sigma) \\, a_{\\sigma(1) 1} a_{\\sigma(2) 2} \\cdots a_{\\sigma(n) n}$, où $\\varepsilon(\\sigma)$ est la signature de la permutation $\\sigma$ ; pour $n = 2$, c'est $a_{11} a_{22} - a_{21} a_{12}$. Si la matrice $(a_{ij})$ est triangulaire (supérieure ou inférieure), c'est le produit $a_{11} a_{22} \\cdots a_{nn}$.\n- **Règles de calcul.** Échanger deux des vecteurs change le signe du déterminant ; ajouter à l'un des vecteurs une combinaison linéaire des autres ne le change pas ; le déterminant d'une famille liée est nul.\n- **Changement de base.** Si $\\mathcal{B}'$ est une autre base de $E$, alors $\\det_{\\mathcal{B}'} = \\det_{\\mathcal{B}'}(\\mathcal{B}) \\det_{\\mathcal{B}}$ ; en particulier $\\det_{\\mathcal{B}'}(\\mathcal{B}) \\det_{\\mathcal{B}}(\\mathcal{B}') = 1$.\n\nLe déterminant $\\det A$ d'une matrice carrée $A$ d'ordre $n$ est celui de ses colonnes dans la base canonique de $\\mathbb{K}^n$.",
+      "enonce_trous": "Si $E$ est de dimension $n \\geq 2$ et si $\\mathcal{B}$ est une base de $E$, il existe une unique forme {{1}} sur $E$ qui vaut $1$ en $\\mathcal{B}$ : c'est $\\det_{\\mathcal{B}}$. Échanger deux des vecteurs {{2}} du déterminant, et ajouter à l'un des vecteurs une combinaison linéaire des autres {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n$-linéaire alternée",
+          "leurres": [
+            "$n$-linéaire symétrique",
+            "$n$-linéaire",
+            "linéaire"
+          ]
+        },
+        {
+          "reponse": "change le signe",
+          "leurres": [
+            "ne change pas la valeur",
+            "double la valeur",
+            "annule la valeur"
+          ]
+        },
+        {
+          "reponse": "ne le change pas",
+          "leurres": [
+            "change son signe",
+            "l'annule",
+            "le multiplie par $n$"
+          ]
+        }
+      ],
+      "demo": "On admet les propriétés de la signature $\\varepsilon : \\mathfrak{S}_n \\to \\{-1, 1\\}$ vues avec le groupe symétrique : toute permutation est un produit de transpositions et, si $\\sigma = \\tau_1 \\circ \\dots \\circ \\tau_p$ avec des transpositions $\\tau_k$, alors $\\varepsilon(\\sigma) = (-1)^p$. En particulier, $\\varepsilon(\\sigma \\circ \\tau) = -\\varepsilon(\\sigma)$ pour toute transposition $\\tau$.\n\n**Antisymétrie.** Soit $f$ une forme $n$-linéaire alternée. Fixons tous les vecteurs sauf ceux des places $k < l$, et notons $g(x, y)$ la valeur de $f$ avec $x$ en place $k$ et $y$ en place $l$. Alors $0 = g(x + y, x + y) = g(x, x) + g(x, y) + g(y, x) + g(y, y) = g(x, y) + g(y, x)$ : échanger deux vecteurs change le signe. Si $\\sigma = \\tau_1 \\circ \\dots \\circ \\tau_p$, on passe de $(e_1, \\dots, e_n)$ à $(e_{\\sigma(1)}, \\dots, e_{\\sigma(n)})$ par $p$ échanges de deux vecteurs (si $\\sigma = \\sigma' \\circ \\tau$ avec $\\tau$ la transposition de $k$ et $l$, la famille $(e_{\\sigma(i)})_i$ est la famille $(e_{\\sigma'(i)})_i$ dont on a échangé les places $k$ et $l$), donc $f(e_{\\sigma(1)}, \\dots, e_{\\sigma(n)}) = (-1)^p f(e_1, \\dots, e_n) = \\varepsilon(\\sigma) f(e_1, \\dots, e_n)$.\n\n**Familles liées, opérations.** Si $x_k = \\sum_{i \\neq k} \\lambda_i x_i$, la linéarité par rapport à la place $k$ donne $f(x_1, \\dots, x_n) = \\sum_{i \\neq k} \\lambda_i f(x_1, \\dots, x_{k-1}, x_i, x_{k+1}, \\dots, x_n)$, et chaque terme est nul car $x_i$ y figure aux places $i$ et $k$. De même, remplacer $x_k$ par $x_k + \\sum_{i \\neq k} \\lambda_i x_i$ ajoute à $f(x_1, \\dots, x_n)$ une somme de termes nuls.\n\n**Unicité et forme générale.** Écrivons $x_j = \\sum_{i} a_{ij} e_i$. En développant par $n$-linéarité, $f(x_1, \\dots, x_n) = \\sum_{\\varphi} a_{\\varphi(1) 1} \\cdots a_{\\varphi(n) n} \\, f(e_{\\varphi(1)}, \\dots, e_{\\varphi(n)})$, la somme portant sur toutes les applications $\\varphi$ de $\\{1, \\dots, n\\}$ dans lui-même. Si $\\varphi$ n'est pas injective, deux vecteurs sont égaux et le terme est nul ; les $\\varphi$ injectives sont les permutations $\\sigma$, pour lesquelles $f(e_{\\sigma(1)}, \\dots, e_{\\sigma(n)}) = \\varepsilon(\\sigma) f(e_1, \\dots, e_n)$. Donc $f(x_1, \\dots, x_n) = f(e_1, \\dots, e_n) \\, D(x_1, \\dots, x_n)$, avec $D(x_1, \\dots, x_n) = \\sum_{\\sigma \\in \\mathfrak{S}_n} \\varepsilon(\\sigma) a_{\\sigma(1) 1} \\cdots a_{\\sigma(n) n}$. Une forme $n$-linéaire alternée qui vaut $1$ en $\\mathcal{B}$ est donc forcément $D$.\n\n**Existence.** Il reste à voir que $D$ convient. Chaque terme est un produit qui contient exactement une coordonnée de chaque $x_j$, donc $D$ est $n$-linéaire. Pour $x_j = e_j$, $a_{ij}$ vaut $1$ si $i = j$ et $0$ sinon, et seul $\\sigma = \\mathrm{id}$ donne un terme non nul : $D(e_1, \\dots, e_n) = 1$. Si $x_k = x_l$ avec $k < l$, soit $\\tau$ la transposition de $k$ et $l$. Pour toute $\\sigma$, le produit associé à $\\sigma \\circ \\tau$ est égal à celui associé à $\\sigma$ : seuls les facteurs d'indices $k$ et $l$ changent, et $a_{\\sigma(l) k} = a_{\\sigma(l) l}$, $a_{\\sigma(k) l} = a_{\\sigma(k) k}$ puisque $x_k = x_l$. Comme $\\sigma \\mapsto \\sigma \\circ \\tau$ envoie bijectivement les permutations de signature $1$ sur celles de signature $-1$, les termes se compensent deux à deux : $D(x_1, \\dots, x_n) = 0$.\n\n**Matrice triangulaire.** Si $a_{ij} = 0$ pour $i > j$, un terme non nul demande $\\sigma(j) \\leq j$ pour tout $j$ : $\\sigma(1) = 1$, puis $\\sigma(2) = 2$ par injectivité, et ainsi de suite, donc $\\sigma = \\mathrm{id}$ et il reste $a_{11} \\cdots a_{nn}$. Si $a_{ij} = 0$ pour $i < j$, il faut $\\sigma(j) \\geq j$ pour tout $j$, d'où $\\sigma(n) = n$, puis $\\sigma(n - 1) = n - 1$, etc.\n\n**Changement de base.** $\\det_{\\mathcal{B}'}$ est $n$-linéaire alternée, donc $\\det_{\\mathcal{B}'} = \\det_{\\mathcal{B}'}(\\mathcal{B}) \\det_{\\mathcal{B}}$ par la forme générale ; en évaluant en $\\mathcal{B}'$, on obtient $1 = \\det_{\\mathcal{B}'}(\\mathcal{B}) \\det_{\\mathcal{B}}(\\mathcal{B}')$.",
+      "exemple": "Dans $\\mathbb{R}^3$ muni de sa base canonique $\\mathcal{B}$, soient $x_1 = (1, 0, 2)$, $x_2 = (2, 1, 0)$ et $x_3 = (0, 3, 1)$. La matrice des coordonnées est $A = \\begin{pmatrix} 1 & 2 & 0 \\\\ 0 & 1 & 3 \\\\ 2 & 0 & 1 \\end{pmatrix}$, et la formule explicite pour $n = 3$ (règle de Sarrus) donne\n\n$$\\det_{\\mathcal{B}}(x_1, x_2, x_3) = a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} - a_{13} a_{22} a_{31} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33} = 1 + 12 + 0 - 0 - 0 - 0 = 13.$$\n\nPar les règles de calcul, $\\det_{\\mathcal{B}}(x_2, x_1, x_3) = -13$ et $\\det_{\\mathcal{B}}(x_1, x_2 + 5x_1, x_3) = 13$. Si $\\mathcal{B}' = (2e_1, e_2, e_3)$, alors $\\det_{\\mathcal{B}}(\\mathcal{B}') = 2$, donc $\\det_{\\mathcal{B}'}(\\mathcal{B}) = \\frac{1}{2}$ et $\\det_{\\mathcal{B}'}(x_1, x_2, x_3) = \\frac{13}{2}$.",
+      "contre_exemple": "Dans $\\mathbb{R}^2$, avec la base canonique $(e_1, e_2)$, $x = (x_1, x_2)$ et $y = (y_1, y_2)$ :\n- **Sans l'alternance, pas d'unicité** : $f(x, y) = x_1 y_2$ est bilinéaire et vaut $1$ en $(e_1, e_2)$, mais $f(e_2, e_1) = 0 \\neq -1 = \\det(e_2, e_1)$.\n- **Symétrique ne convient pas** : $f(x, y) = x_1 y_2 + x_2 y_1$ est bilinéaire, symétrique, vaut $1$ en $(e_1, e_2)$, et pourtant $f \\neq \\det$, puisque $f(e_2, e_1) = 1$.\n- **Il faut la linéarité par rapport à chaque variable** : $f(x, y) = (x_1 y_2 - x_2 y_1)\\left(1 + (y_2 - 1)^2\\right)$ est alternée ($f(x, x) = 0$), linéaire par rapport à $x$, et vaut $1$ en $(e_1, e_2)$ ; mais $f(e_1, 2e_2) = 2 \\times 2 = 4$, alors que $\\det(e_1, 2e_2) = 2$.\n- **Il faut une base** : si $(e_1, e_2)$ est remplacée par la famille liée $((1, 0), (2, 0))$, toute forme bilinéaire alternée y vaut $0$ (famille liée) : aucune ne vaut $1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $\\lambda \\in \\mathbb{K}$, $\\det_{\\mathcal{B}}(\\lambda x_1, \\dots, \\lambda x_n) = \\lambda \\det_{\\mathcal{B}}(x_1, \\dots, x_n)$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$ avec la base canonique, $\\det(2e_1, 2e_2) = 4$, alors que $2 \\det(e_1, e_2) = 2$ : en général, $\\det_{\\mathcal{B}}(\\lambda x_1, \\dots, \\lambda x_n) = \\lambda^n \\det_{\\mathcal{B}}(x_1, \\dots, x_n)$."
+        },
+        {
+          "texte": "Le déterminant d'une famille de $n$ vecteurs ne dépend pas de la base choisie.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, avec $\\mathcal{B} = (e_1, e_2)$ canonique et $\\mathcal{B}' = (2e_1, e_2)$ : $\\det_{\\mathcal{B}}(\\mathcal{B}') = 2$, donc $\\det_{\\mathcal{B}'}(e_1, e_2) = \\frac{1}{2}$, alors que $\\det_{\\mathcal{B}}(e_1, e_2) = 1$."
+        },
+        {
+          "texte": "Si deux des vecteurs $x_1, \\dots, x_n$ ($n \\geq 2$) sont colinéaires, alors $\\det_{\\mathcal{B}}(x_1, \\dots, x_n) = 0$.",
+          "vrai": true,
+          "justification": "Si $x_l = \\lambda x_k$ avec $k \\neq l$, la relation $\\lambda x_k - x_l = 0$ est non triviale ; si $x_k = 0$, la relation $1 \\cdot x_k = 0$ l'est aussi. La famille est liée, donc son déterminant est nul."
+        },
+        {
+          "texte": "Dans un plan $E$ de base $\\mathcal{B}$, $\\det_{\\mathcal{B}}(x_1 + y_1, x_2 + y_2) = \\det_{\\mathcal{B}}(x_1, x_2) + \\det_{\\mathcal{B}}(y_1, y_2)$ pour tous $x_1, x_2, y_1, y_2 \\in E$.",
+          "vrai": false,
+          "contre_exemple": "Avec $\\mathcal{B} = (e_1, e_2)$, $x_1 = e_1$, $x_2 = 0$, $y_1 = 0$, $y_2 = e_2$ : le membre de gauche vaut $\\det_{\\mathcal{B}}(e_1, e_2) = 1$, celui de droite $0 + 0 = 0$. Le déterminant est linéaire par rapport à chaque vecteur séparément, pas par rapport à la famille."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-familles",
+        "al-l1-espaces-dimension"
+      ]
+    },
+    {
+      "id": "al-l1-determinant-produit",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-determinant",
+      "type": "theoreme",
+      "titre": "Déterminant d'un produit",
+      "recto": "Énoncer la formule du déterminant d'un produit de matrices carrées et ses conséquences (puissances, inverse, matrices semblables, déterminant d'un endomorphisme), avec ses hypothèses.",
+      "cours": "Le déterminant d'une matrice mesure le facteur par lequel elle multiplie les volumes orientés : la matrice $A$ transforme le cube unité de $\\mathbb{R}^n$ en un parallélépipède de volume orienté $\\det A$. Appliquer $B$ puis $A$ multiplie donc les volumes par $\\det B$ puis par $\\det A$ : c'est l'intuition de la formule $\\det(AB) = \\det(A) \\det(B)$, l'un des résultats les plus utiles du chapitre.\n\nElle a des conséquences immédiates : $\\det(AB) = \\det(BA)$ même quand $AB \\neq BA$, $\\det(A^k) = (\\det A)^k$, $\\det(A^{-1}) = \\frac{1}{\\det A}$, et deux matrices semblables $A$ et $P^{-1} A P$ ont le même déterminant. On peut ainsi définir le déterminant d'un endomorphisme d'un espace de dimension finie : c'est celui de sa matrice dans n'importe quelle base.\n\nEn pratique, on s'en sert pour calculer le déterminant d'une expression en $A$ et $B$ sans calculer la matrice, ou pour prouver une impossibilité : si $A$ est réelle et $A^2 = -I_3$, on aurait $(\\det A)^2 = \\det(-I_3) = -1$, ce qui est absurde.\n\nLe piège principal : le déterminant est multiplicatif, mais pas additif ($\\det(A + B) \\neq \\det A + \\det B$ en général) ni linéaire : $\\det(\\lambda A) = \\lambda^n \\det A$ pour une matrice d'ordre $n$, car chacune des $n$ colonnes est multipliée par $\\lambda$.",
+      "hypotheses": [
+        "$A$ et $B$ sont deux matrices carrées de même ordre $n$, à coefficients dans $\\mathbb{K}$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ et $B$ sont inversibles.",
+        "$A$ et $B$ commutent : $AB = BA$.",
+        "$A \\in \\mathcal{M}_{n,p}(\\mathbb{K})$ et $B \\in \\mathcal{M}_{p,n}(\\mathbb{K})$, de sorte que $AB$ et $BA$ soient carrées (à la place de : $A$ et $B$ carrées de même ordre)."
+      ],
+      "enonce": "Soient $n \\geq 1$ et $A, B \\in \\mathcal{M}_n(\\mathbb{K})$. Alors\n$$\\det(AB) = \\det(A) \\det(B).$$\nConséquences :\n- $\\det(AB) = \\det(BA)$, même si $AB \\neq BA$, et $\\det(A^k) = (\\det A)^k$ pour tout $k \\in \\mathbb{N}$ ;\n- si $A$ est inversible, $\\det(A^{-1}) = \\frac{1}{\\det A}$ ; si $P$ est inversible, $\\det(P^{-1} A P) = \\det A$ : deux matrices semblables ont le même déterminant ;\n- **déterminant d'un endomorphisme** : si $E$ est un $\\mathbb{K}$-espace vectoriel de dimension $n \\geq 1$ et $u$ un endomorphisme de $E$, le nombre $\\det_{\\mathcal{B}}(u(e_1), \\dots, u(e_n))$, déterminant de la matrice de $u$ dans la base $\\mathcal{B} = (e_1, \\dots, e_n)$, ne dépend pas de la base $\\mathcal{B}$ ; on le note $\\det u$. On a $\\det_{\\mathcal{B}}(u(x_1), \\dots, u(x_n)) = \\det u \\cdot \\det_{\\mathcal{B}}(x_1, \\dots, x_n)$ pour tous $x_1, \\dots, x_n \\in E$, et $\\det(u \\circ v) = \\det u \\cdot \\det v$.\n\nEn revanche, $\\det(\\lambda A) = \\lambda^n \\det A$ pour $\\lambda \\in \\mathbb{K}$, et en général $\\det(A + B) \\neq \\det A + \\det B$.",
+      "enonce_trous": "Pour $A, B \\in \\mathcal{M}_n(\\mathbb{K})$ avec $n \\geq 2$, le déterminant de $AB$ est égal à {{1}}. Pour $\\lambda \\in \\mathbb{K}$, le déterminant de $\\lambda A$ est égal à {{2}}. Deux matrices semblables ont {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\det(A) \\det(B)$",
+          "leurres": [
+            "$\\det(A) + \\det(B)$",
+            "$n \\det(A) \\det(B)$",
+            "$\\left(\\det(A) \\det(B)\\right)^n$"
+          ]
+        },
+        {
+          "reponse": "$\\lambda^n \\det A$",
+          "leurres": [
+            "$\\lambda \\det A$",
+            "$n \\lambda \\det A$",
+            "$|\\lambda|^n \\det A$"
+          ]
+        },
+        {
+          "reponse": "le même déterminant",
+          "leurres": [
+            "des déterminants opposés",
+            "des déterminants inverses l'un de l'autre",
+            "des déterminants qui diffèrent du facteur $\\det P$, où $P$ est la matrice de passage"
+          ]
+        }
+      ],
+      "demo": "**Formule du produit.** Fixons $A$ et posons, pour des colonnes $X_1, \\dots, X_n \\in \\mathbb{K}^n$, $\\varphi(X_1, \\dots, X_n) = \\det(AX_1, \\dots, AX_n)$ (déterminant dans la base canonique). Comme $X \\mapsto AX$ est linéaire et que le déterminant est linéaire par rapport à chaque colonne, $\\varphi$ est $n$-linéaire ; si $X_k = X_l$ avec $k \\neq l$, alors $AX_k = AX_l$ et $\\varphi(X_1, \\dots, X_n) = 0$ : $\\varphi$ est alternée. D'après la forme générale des formes $n$-linéaires alternées, $\\varphi = \\varphi(E_1, \\dots, E_n) \\det$, où $(E_1, \\dots, E_n)$ est la base canonique ; or $AE_j$ est la $j$-ième colonne de $A$, donc $\\varphi(E_1, \\dots, E_n) = \\det A$. Si $B_1, \\dots, B_n$ sont les colonnes de $B$, celles de $AB$ sont $AB_1, \\dots, AB_n$, d'où $\\det(AB) = \\varphi(B_1, \\dots, B_n) = \\det(A) \\det(B)$.\n\n**Conséquences.** $\\det(AB) = \\det(A)\\det(B) = \\det(B)\\det(A) = \\det(BA)$. Par récurrence, $\\det(A^k) = (\\det A)^k$, avec $\\det(A^0) = \\det(I_n) = 1$ ($I_n$ est triangulaire de diagonale $1$). Si $A$ est inversible, $\\det(A) \\det(A^{-1}) = \\det(I_n) = 1$. Si $P$ est inversible, $\\det(P^{-1} A P) = \\det(P^{-1}) \\det(A) \\det(P) = \\det A$. Enfin $\\lambda A = (\\lambda I_n) A$ et $\\det(\\lambda I_n) = \\lambda^n$ (matrice diagonale).\n\n**Endomorphismes.** L'application $(x_1, \\dots, x_n) \\mapsto \\det_{\\mathcal{B}}(u(x_1), \\dots, u(x_n))$ est $n$-linéaire alternée ($u$ est linéaire, et $x_k = x_l$ entraîne $u(x_k) = u(x_l)$) ; elle vaut donc $c_{\\mathcal{B}} \\det_{\\mathcal{B}}$, avec $c_{\\mathcal{B}} = \\det_{\\mathcal{B}}(u(e_1), \\dots, u(e_n))$. Si $\\mathcal{B}'$ est une autre base, la formule de changement de base donne $\\det_{\\mathcal{B}'}(u(x_1), \\dots, u(x_n)) = \\det_{\\mathcal{B}'}(\\mathcal{B}) \\, c_{\\mathcal{B}} \\det_{\\mathcal{B}}(x_1, \\dots, x_n) = c_{\\mathcal{B}} \\det_{\\mathcal{B}'}(x_1, \\dots, x_n)$ ; en prenant pour $(x_i)$ la base $\\mathcal{B}'$, on obtient $c_{\\mathcal{B}'} = c_{\\mathcal{B}}$. Enfin $\\det_{\\mathcal{B}}(u(v(e_1)), \\dots, u(v(e_n))) = \\det u \\cdot \\det_{\\mathcal{B}}(v(e_1), \\dots, v(e_n)) = \\det u \\cdot \\det v$.",
+      "exemple": "Avec $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 1 \\\\ 1 & 1 \\end{pmatrix}$ : $\\det A = -2$ et $\\det B = -1$. On trouve $AB = \\begin{pmatrix} 2 & 3 \\\\ 4 & 7 \\end{pmatrix}$, de déterminant $14 - 12 = 2 = (-2) \\times (-1)$, et $BA = \\begin{pmatrix} 3 & 4 \\\\ 4 & 6 \\end{pmatrix}$, de déterminant $18 - 16 = 2$, alors que $AB \\neq BA$. De même, $\\det(A^5) = (-2)^5 = -32$ et $\\det(3A) = 3^2 \\times (-2) = -18$.",
+      "contre_exemple": "- **Matrices non carrées** : avec $A = \\begin{pmatrix} 1 & 0 \\end{pmatrix}$ (une ligne) et $B = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$ (une colonne), $AB = (1)$ a pour déterminant $1$, mais $BA = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$ a pour déterminant $0$ : l'égalité $\\det(AB) = \\det(BA)$ tombe, et $\\det A$, $\\det B$ n'ont pas de sens.\n- **Pas d'additivité** : pour $A = B = I_2$, $\\det(A + B) = \\det(2 I_2) = 4$, alors que $\\det A + \\det B = 2$.\n- **Pas de linéarité** : $\\det(2 I_3) = 8 \\neq 2 = 2 \\det(I_3)$.",
+      "affirmations": [
+        {
+          "texte": "Si $A, B \\in \\mathcal{M}_n(\\mathbb{K})$ vérifient $AB = 0$, alors $\\det A = 0$ ou $\\det B = 0$.",
+          "vrai": true,
+          "justification": "$\\det(A) \\det(B) = \\det(AB) = \\det(0) = 0$, et un produit de deux scalaires n'est nul que si l'un d'eux l'est."
+        },
+        {
+          "texte": "Si $A, B \\in \\mathcal{M}_n(\\mathbb{K})$ vérifient $AB = 0$, alors $A = 0$ ou $B = 0$.",
+          "vrai": false,
+          "contre_exemple": "$A = B = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ vérifient $AB = 0$ sans être nulles."
+        },
+        {
+          "texte": "Deux matrices carrées de même ordre et de même déterminant sont semblables.",
+          "vrai": false,
+          "contre_exemple": "$I_2$ et $\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$ ont pour déterminant $1$, mais $P^{-1} I_2 P = I_2$ pour toute $P$ inversible : la seule matrice semblable à $I_2$ est $I_2$."
+        },
+        {
+          "texte": "Il n'existe aucune matrice $A \\in \\mathcal{M}_3(\\mathbb{R})$ telle que $A^2 = -I_3$.",
+          "vrai": true,
+          "justification": "On aurait $(\\det A)^2 = \\det(A^2) = \\det(-I_3) = (-1)^3 = -1$, impossible pour le réel $\\det A$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-determinant-famille",
+        "al-t-matrices-produit",
+        "al-t-matrices-inverse",
+        "al-l1-applications-matrice"
+      ]
+    },
+    {
+      "id": "al-l1-determinant-inversibilite",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-determinant",
+      "type": "theoreme",
+      "titre": "Déterminant et inversibilité",
+      "recto": "Énoncer la caractérisation des matrices inversibles et des bases par le déterminant, avec ses hypothèses.",
+      "cours": "En Terminale, une matrice $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ est inversible exactement quand $ad - bc \\neq 0$. Le déterminant étend ce critère à tout ordre : une matrice carrée $A$ est inversible si et seulement si $\\det A \\neq 0$, si et seulement si ses colonnes forment une base de $\\mathbb{K}^n$. Géométriquement, $A$ est inversible quand elle n'« aplatit » pas l'espace : le volume orienté $\\det A$ de l'image du cube unité est non nul.\n\nCe critère transforme une question qualitative (la famille est-elle une base ? la matrice est-elle inversible ?) en un calcul : on calcule un nombre et on regarde s'il est nul. Quand la matrice dépend d'un paramètre $m$, $\\det A_m$ est une expression en $m$ (un polynôme si les coefficients en sont) ; les valeurs exclues sont ses racines, en nombre fini si ce polynôme n'est pas nul.\n\nLa formule du produit donne aussi $\\det(A^{-1}) = \\frac{1}{\\det A}$, et montre qu'un produit $AB$ de matrices carrées de même ordre est inversible si et seulement si $A$ et $B$ le sont.\n\nLe piège principal : le critère porte sur le déterminant, pas sur les coefficients. Une matrice sans coefficient nul peut ne pas être inversible, comme $\\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix}$, et des colonnes deux à deux non colinéaires peuvent former une famille liée. Enfin, le critère ne concerne que les matrices carrées, ou $n$ vecteurs d'un espace de dimension $n$.",
+      "hypotheses": [
+        "$A$ est une matrice carrée d'ordre $n \\geq 1$ à coefficients dans $\\mathbb{K}$.",
+        "$\\det A \\neq 0$."
+      ],
+      "hypotheses_pieges": [
+        "Les colonnes de $A$ sont non nulles et deux à deux non colinéaires (à la place de $\\det A \\neq 0$).",
+        "Tous les coefficients de $A$ sont non nuls (à la place de $\\det A \\neq 0$).",
+        "Les coefficients diagonaux de $A$ sont tous non nuls (à la place de $\\det A \\neq 0$)."
+      ],
+      "enonce": "Soit $A \\in \\mathcal{M}_n(\\mathbb{K})$ une matrice carrée ($n \\geq 1$). Les propriétés suivantes sont équivalentes :\n- $A$ est inversible ;\n- $\\det A \\neq 0$ ;\n- les colonnes de $A$ forment une base de $\\mathbb{K}^n$ (de façon équivalente, une famille libre).\n\nDans ce cas, $\\det(A^{-1}) = \\frac{1}{\\det A}$. Pour $A, B \\in \\mathcal{M}_n(\\mathbb{K})$, le produit $AB$ est inversible si et seulement si $A$ et $B$ le sont.\n\nPlus généralement, si $E$ est un $\\mathbb{K}$-espace vectoriel de dimension $n \\geq 1$ et $\\mathcal{B}$ une base de $E$, une famille $(x_1, \\dots, x_n)$ de $n$ vecteurs de $E$ est une base de $E$ si et seulement si $\\det_{\\mathcal{B}}(x_1, \\dots, x_n) \\neq 0$ ; un endomorphisme $u$ de $E$ est bijectif si et seulement si $\\det u \\neq 0$.",
+      "enonce_trous": "Une matrice carrée $A$ est inversible si et seulement si {{1}}, et alors $\\det(A^{-1})$ est égal à {{2}}. Une famille de $n$ vecteurs d'un espace de dimension $n$ est une base si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\det A \\neq 0$",
+          "leurres": [
+            "$\\det A > 0$",
+            "$\\det A = 1$",
+            "ses coefficients diagonaux sont tous non nuls"
+          ]
+        },
+        {
+          "reponse": "$\\frac{1}{\\det A}$",
+          "leurres": [
+            "$\\det A$",
+            "$-\\det A$",
+            "$(\\det A)^{n-1}$"
+          ]
+        },
+        {
+          "reponse": "son déterminant dans une base de l'espace est non nul",
+          "leurres": [
+            "son déterminant dans une base de l'espace vaut $1$",
+            "ses vecteurs sont deux à deux non colinéaires",
+            "ses vecteurs sont tous non nuls"
+          ]
+        }
+      ],
+      "demo": "**Inversible ⇒ déterminant non nul.** Si $A$ est inversible, $\\det(A) \\det(A^{-1}) = \\det(A A^{-1}) = \\det(I_n) = 1$ : donc $\\det A \\neq 0$ et $\\det(A^{-1}) = \\frac{1}{\\det A}$.\n\n**Déterminant non nul ⇒ colonnes formant une base.** Si les colonnes de $A$ formaient une famille liée, $\\det A$ serait nul (règles de calcul du déterminant). Donc, si $\\det A \\neq 0$, les $n$ colonnes forment une famille libre de $\\mathbb{K}^n$, espace de dimension $n$ : c'est une base.\n\n**Colonnes formant une base ⇒ inversible.** Si les colonnes $C_1, \\dots, C_n$ de $A$ forment une base, chaque vecteur $E_i$ de la base canonique s'écrit $E_i = \\sum_{j} b_{ji} C_j$. La matrice $B = (b_{ji})$ vérifie alors $AB = I_n$, car la $i$-ième colonne de $AB$ est $\\sum_j b_{ji} C_j = E_i$. Alors $\\det(A) \\det(B) = 1$, donc $\\det B \\neq 0$ ; par l'implication précédente appliquée à $B$, les colonnes de $B$ forment une base, et il existe de même $C$ telle que $BC = I_n$. Ainsi $A = A(BC) = (AB)C = C$, d'où $BA = I_n$ : $A$ est inversible, d'inverse $B$.\n\n**Produit.** $\\det(AB) = \\det(A) \\det(B)$ est non nul si et seulement si $\\det A$ et $\\det B$ le sont.\n\n**Familles et endomorphismes.** Soit $M$ la matrice dont la colonne $j$ contient les coordonnées de $x_j$ dans $\\mathcal{B}$. Les formules explicites coïncident : $\\det_{\\mathcal{B}}(x_1, \\dots, x_n) = \\det M$. Une relation $\\sum_j \\lambda_j x_j = 0$ équivaut, par unicité des coordonnées, à $\\sum_j \\lambda_j M_j = 0$ entre les colonnes de $M$ : $(x_1, \\dots, x_n)$ est libre si et seulement si les colonnes de $M$ le sont, et une famille de $n$ vecteurs en dimension $n$ est une base si et seulement si elle est libre. Pour $u$, on utilise qu'un endomorphisme est bijectif si et seulement s'il transforme une base en une base (chapitre des applications linéaires), et $\\det u = \\det_{\\mathcal{B}}(u(e_1), \\dots, u(e_n))$.",
+      "exemple": "Pour $m \\in \\mathbb{R}$, soit $A_m = \\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & m & 1 \\\\ 1 & 1 & m \\end{pmatrix}$. En retranchant la première colonne aux deux autres (ce qui ne change pas le déterminant), on obtient $\\begin{pmatrix} 1 & 0 & 0 \\\\ 1 & m - 1 & 0 \\\\ 1 & 0 & m - 1 \\end{pmatrix}$, triangulaire, donc $\\det A_m = (m - 1)^2$. Ainsi $A_m$ est inversible si et seulement si $m \\neq 1$, et les vecteurs $(1, 1, 1)$, $(1, m, 1)$, $(1, 1, m)$ forment une base de $\\mathbb{R}^3$ si et seulement si $m \\neq 1$ ; pour $m = 2$, $\\det(A_2^{-1}) = 1$.",
+      "contre_exemple": "- **Coefficients non nuls ne suffisent pas** : $\\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix}$ n'a aucun coefficient nul, mais son déterminant est $4 - 4 = 0$ (deuxième colonne double de la première) : elle n'est pas inversible.\n- **Colonnes deux à deux non colinéaires ne suffisent pas** : les colonnes $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$ ne sont pas deux à deux colinéaires, mais la troisième est la somme des deux premières : le déterminant est nul.\n- **Diagonale non nulle ne suffit pas** : $\\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$ a une diagonale sans zéro et un déterminant nul.\n- **Le signe n'importe pas** : $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ est inversible (elle est son propre inverse) et son déterminant vaut $-1$.",
+      "affirmations": [
+        {
+          "texte": "Une matrice de $\\mathcal{M}_n(\\mathbb{R})$ dont tous les coefficients sont non nuls est inversible.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$ a un déterminant nul."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont inversibles et de même ordre, $A + B$ est inversible.",
+          "vrai": false,
+          "contre_exemple": "$A = I_2$ et $B = -I_2$ sont inversibles, mais $A + B = 0$ ne l'est pas."
+        },
+        {
+          "texte": "Si $A, B \\in \\mathcal{M}_n(\\mathbb{K})$ et si $AB$ est inversible, alors $A$ et $B$ sont inversibles.",
+          "vrai": true,
+          "justification": "$\\det(A) \\det(B) = \\det(AB) \\neq 0$, donc $\\det A \\neq 0$ et $\\det B \\neq 0$."
+        },
+        {
+          "texte": "Une matrice $A \\in \\mathcal{M}_n(\\mathbb{K})$ telle que $A^2 = A$ et $A \\neq I_n$ n'est pas inversible.",
+          "vrai": true,
+          "justification": "Si $A$ était inversible, en multipliant $A^2 = A$ par $A^{-1}$, on obtiendrait $A = I_n$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-determinant-produit",
+        "al-l1-espaces-dimension",
+        "al-t-matrices-inverse",
+        "al-l1-applications-isomorphismes"
+      ]
+    },
+    {
+      "id": "al-l1-determinant-developpement",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-determinant",
+      "type": "theoreme",
+      "titre": "Développement par rapport à une ligne ou une colonne",
+      "recto": "Énoncer les formules de développement d'un déterminant par rapport à une colonne et par rapport à une ligne, puis la formule de la comatrice, avec leurs hypothèses.",
+      "cours": "La formule explicite du déterminant a $n!$ termes : elle est inutilisable à la main dès $n = 4$. Le développement ramène un déterminant d'ordre $n$ à des déterminants d'ordre $n - 1$ : on choisit une ligne ou une colonne, et chaque coefficient $a_{ij}$ est multiplié par le déterminant $\\Delta_{ij}$ obtenu en rayant sa ligne et sa colonne, affecté du signe $(-1)^{i+j}$, qui suit un damier commençant par $+$ en haut à gauche.\n\nLa transposition ne change pas le déterminant : tout ce qui vaut pour les colonnes (multilinéarité, alternance, opérations) vaut donc aussi pour les lignes, et l'on peut développer selon une ligne aussi bien que selon une colonne.\n\nEn pratique, on fait d'abord apparaître des zéros par des opérations (ajouter à une ligne une combinaison linéaire des autres ne change pas le déterminant), puis on développe selon la rangée qui contient le plus de zéros. Le développement sert aussi pour les déterminants d'ordre $n$ quelconque : il donne des relations de récurrence (déterminants tridiagonaux) et intervient dans les preuves par récurrence (déterminant de Vandermonde).\n\nLes cofacteurs $C_{ij} = (-1)^{i+j} \\Delta_{ij}$ forment la comatrice, qui donne une formule de l'inverse : $A^{-1} = \\frac{1}{\\det A} {}^t\\mathrm{Com}(A)$. Elle est surtout théorique (pour calculer un inverse, on préfère le pivot de Gauss), mais elle montre par exemple qu'une matrice à coefficients entiers de déterminant $\\pm 1$ a un inverse à coefficients entiers.\n\nLes pièges principaux : oublier les signes $(-1)^{i+j}$, et oublier de transposer la comatrice.",
+      "hypotheses": [
+        "$A = (a_{ij})$ est une matrice carrée d'ordre $n \\geq 2$.",
+        "Le mineur $\\Delta_{ij}$ est le déterminant de la matrice obtenue en supprimant la ligne $i$ et la colonne $j$ de $A$.",
+        "Le terme d'indice $(i, j)$ porte le signe $(-1)^{i+j}$.",
+        "Pour la formule de l'inverse : $\\det A \\neq 0$."
+      ],
+      "hypotheses_pieges": [
+        "Le terme d'indice $(i, j)$ porte le signe $(-1)^{i}$ (à la place de $(-1)^{i+j}$).",
+        "Tous les termes portent le signe $+$ (à la place de $(-1)^{i+j}$).",
+        "Le mineur $\\Delta_{ij}$ s'obtient en supprimant la ligne $j$ et la colonne $i$ de $A$ (à la place de la ligne $i$ et de la colonne $j$).",
+        "Pour la formule de l'inverse : tous les cofacteurs de $A$ sont non nuls (à la place de $\\det A \\neq 0$)."
+      ],
+      "enonce": "Soient $n \\geq 2$ et $A = (a_{ij}) \\in \\mathcal{M}_n(\\mathbb{K})$. Pour $1 \\leq i, j \\leq n$, on note $\\Delta_{ij}$ le déterminant de la matrice carrée d'ordre $n - 1$ obtenue en supprimant la ligne $i$ et la colonne $j$ de $A$ (le **mineur** d'indice $(i, j)$), et $C_{ij} = (-1)^{i+j} \\Delta_{ij}$ (le **cofacteur**).\n- **Transposée** : $\\det({}^t A) = \\det A$ ; les propriétés du déterminant relatives aux colonnes valent donc aussi pour les lignes.\n- **Développement par rapport à la colonne $j$** : pour tout $j$, $\\det A = \\sum_{i=1}^{n} (-1)^{i+j} a_{ij} \\Delta_{ij}$.\n- **Développement par rapport à la ligne $i$** : pour tout $i$, $\\det A = \\sum_{j=1}^{n} (-1)^{i+j} a_{ij} \\Delta_{ij}$.\n- **Comatrice** : la matrice $\\mathrm{Com}(A) = (C_{ij})$ vérifie $A \\, {}^t\\mathrm{Com}(A) = {}^t\\mathrm{Com}(A) \\, A = \\det(A) \\, I_n$. Si $\\det A \\neq 0$, alors $A^{-1} = \\frac{1}{\\det A} \\, {}^t\\mathrm{Com}(A)$.",
+      "enonce_trous": "Le développement de $\\det A$ par rapport à la colonne $j$ s'écrit $\\det A = \\sum_{i=1}^{n} s_{ij} \\, a_{ij} \\Delta_{ij}$, où le signe $s_{ij}$ vaut {{1}} et où $\\Delta_{ij}$ est le déterminant de la matrice obtenue en supprimant {{2}}. Si $A$ est inversible, son inverse est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$(-1)^{i+j}$",
+          "leurres": [
+            "$(-1)^{i}$",
+            "$1$",
+            "$(-1)^{ij}$"
+          ]
+        },
+        {
+          "reponse": "la ligne $i$ et la colonne $j$ de $A$",
+          "leurres": [
+            "la ligne $j$ et la colonne $i$ de $A$",
+            "la première ligne et la colonne $j$ de $A$",
+            "la ligne $i$ et la dernière colonne de $A$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{1}{\\det A} \\, {}^t\\mathrm{Com}(A)$",
+          "leurres": [
+            "$\\frac{1}{\\det A} \\, \\mathrm{Com}(A)$",
+            "$\\det A \\cdot {}^t\\mathrm{Com}(A)$",
+            "${}^t\\mathrm{Com}(A)$"
+          ]
+        }
+      ],
+      "demo": "On utilise la formule explicite et les propriétés admises de la signature (toute permutation est un produit de transpositions, et $\\varepsilon(\\tau_1 \\circ \\dots \\circ \\tau_p) = (-1)^p$ pour des transpositions $\\tau_k$).\n\n**Transposée.** $\\det({}^t A) = \\sum_{\\sigma} \\varepsilon(\\sigma) \\prod_{j} a_{j \\sigma(j)}$. En réindexant le produit par $i = \\sigma(j)$, $\\prod_{j} a_{j \\sigma(j)} = \\prod_{i} a_{\\sigma^{-1}(i) i}$. Or $\\sigma \\mapsto \\sigma^{-1}$ est une bijection de $\\mathfrak{S}_n$, et $\\varepsilon(\\sigma^{-1}) = \\varepsilon(\\sigma)$ (si $\\sigma = \\tau_1 \\circ \\dots \\circ \\tau_p$, alors $\\sigma^{-1} = \\tau_p \\circ \\dots \\circ \\tau_1$). Donc $\\det({}^t A) = \\sum_{\\sigma} \\varepsilon(\\sigma^{-1}) \\prod_i a_{\\sigma^{-1}(i) i} = \\det A$. Les lignes de $A$ étant les colonnes de ${}^t A$, échanger deux lignes change le signe, ajouter à une ligne une combinaison linéaire des autres ne change rien, etc.\n\n**Colonne $j$.** La colonne $j$ s'écrit $\\sum_i a_{ij} E_i$ ; par linéarité par rapport à la colonne $j$, $\\det A = \\sum_i a_{ij} \\det A^{(i)}$, où $A^{(i)}$ est obtenue en remplaçant la colonne $j$ de $A$ par $E_i$. Ramenons cette colonne en première place par $j - 1$ échanges de colonnes voisines (l'ordre des autres colonnes est conservé), puis la ligne $i$ en première place par $i - 1$ échanges de lignes voisines : le déterminant est multiplié par $(-1)^{i + j - 2} = (-1)^{i+j}$, et l'on obtient une matrice $M$ dont la première colonne est $(1, 0, \\dots, 0)$ et dont le bloc en bas à droite est la matrice obtenue en supprimant la ligne $i$ et la colonne $j$ de $A$. Dans la formule explicite de $\\det M$, le facteur $m_{\\sigma(1) 1}$ est nul sauf si $\\sigma(1) = 1$ ; les $\\sigma$ qui fixent $1$ s'identifient aux permutations de $\\{2, \\dots, n\\}$, avec la même signature (une écriture en transpositions de $\\{2, \\dots, n\\}$ en est une de $\\sigma$), et la somme restante est la formule explicite du bloc : $\\det M = \\Delta_{ij}$. D'où $\\det A^{(i)} = (-1)^{i+j} \\Delta_{ij}$ et la formule.\n\n**Ligne $i$.** On développe $\\det({}^t A) = \\det A$ par rapport à sa colonne $i$, dont les coefficients sont les $a_{ij}$ ; le mineur correspondant est le déterminant de la transposée de la matrice obtenue en supprimant la ligne $i$ et la colonne $j$ de $A$, c'est-à-dire $\\Delta_{ij}$.\n\n**Comatrice.** Le coefficient $(i, k)$ de $A \\, {}^t\\mathrm{Com}(A)$ est $\\sum_j a_{ij} C_{kj}$. Pour $k = i$, c'est le développement de $\\det A$ selon la ligne $i$. Pour $k \\neq i$, c'est le développement selon la ligne $k$ du déterminant de la matrice $A'$ obtenue en remplaçant la ligne $k$ de $A$ par la ligne $i$ (les cofacteurs $C_{kj}$ ne dépendent pas de la ligne $k$, donc sont les mêmes pour $A$ et $A'$) ; $A'$ a deux lignes égales, donc ce coefficient est nul. Ainsi $A \\, {}^t\\mathrm{Com}(A) = \\det(A) I_n$ ; on obtient ${}^t\\mathrm{Com}(A) \\, A = \\det(A) I_n$ de même avec les développements selon les colonnes. Si $\\det A \\neq 0$, la matrice $\\frac{1}{\\det A} {}^t\\mathrm{Com}(A)$ est donc un inverse de $A$ des deux côtés.",
+      "exemple": "Soit $A = \\begin{pmatrix} 2 & 0 & 1 & 3 \\\\ 1 & 0 & 0 & 2 \\\\ 0 & 1 & 4 & 1 \\\\ 3 & 0 & 2 & 0 \\end{pmatrix}$. La deuxième colonne n'a qu'un coefficient non nul, $a_{32} = 1$, de signe $(-1)^{3+2} = -1$ : $\\det A = -\\Delta_{32}$, avec $\\Delta_{32} = \\det \\begin{pmatrix} 2 & 1 & 3 \\\\ 1 & 0 & 2 \\\\ 3 & 2 & 0 \\end{pmatrix}$. En développant ce dernier selon sa deuxième ligne : $\\Delta_{32} = -1 \\cdot \\det \\begin{pmatrix} 1 & 3 \\\\ 2 & 0 \\end{pmatrix} + 0 - 2 \\det \\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix} = -1 \\times (-6) - 2 \\times 1 = 4$. Donc $\\det A = -4$.\n\nPour $B = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ avec $ad - bc \\neq 0$ : $\\mathrm{Com}(B) = \\begin{pmatrix} d & -c \\\\ -b & a \\end{pmatrix}$, et $B^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$ : on retrouve la formule de Terminale.",
+      "contre_exemple": "Avec $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$, de déterminant $-2$ :\n- **Sans les signes**, le « développement » selon la première colonne donne $1 \\times 4 + 3 \\times 2 = 10 \\neq -2$ ; **avec le signe $(-1)^i$**, il donne $-1 \\times 4 + 3 \\times 2 = 2 \\neq -2$.\n- **Comatrice non transposée** : $\\mathrm{Com}(A) = \\begin{pmatrix} 4 & -3 \\\\ -2 & 1 \\end{pmatrix}$ ; la matrice $\\frac{1}{-2} \\mathrm{Com}(A) = \\begin{pmatrix} -2 & \\frac{3}{2} \\\\ 1 & -\\frac{1}{2} \\end{pmatrix}$ n'est pas l'inverse de $A$ (le coefficient $(1, 1)$ du produit par $A$ vaut $1 \\times (-2) + 2 \\times 1 = 0$) ; l'inverse est $\\frac{1}{-2} {}^t\\mathrm{Com}(A) = \\begin{pmatrix} -2 & 1 \\\\ \\frac{3}{2} & -\\frac{1}{2} \\end{pmatrix}$.\n- **Mineurs aux indices échangés** : pour $B = \\begin{pmatrix} 1 & 2 & 0 \\\\ 0 & 1 & 3 \\\\ 4 & 0 & 1 \\end{pmatrix}$, de déterminant $25$, la somme $\\sum_i (-1)^{i+1} b_{i1} \\Delta_{1i}$, où l'on a échangé les indices des mineurs, vaut $1 \\times \\Delta_{11} - 0 \\times \\Delta_{12} + 4 \\times \\Delta_{13} = 1 \\times 1 - 0 + 4 \\times (-4) = -15 \\neq 25$.\n- **Cofacteurs non nuls ne suffisent pas** : $\\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$ a pour cofacteurs $1, -1, -1, 1$, tous non nuls, mais son déterminant est nul.",
+      "affirmations": [
+        {
+          "texte": "Pour développer un déterminant, on peut choisir n'importe quelle ligne ou n'importe quelle colonne : le résultat est le même.",
+          "vrai": true,
+          "justification": "Chacune des formules de développement est valable pour toute ligne $i$ et toute colonne $j$, et toutes donnent $\\det A$."
+        },
+        {
+          "texte": "Si $A \\in \\mathcal{M}_n(\\mathbb{Z})$ est inversible, alors $A^{-1}$ est à coefficients entiers.",
+          "vrai": false,
+          "contre_exemple": "$A = \\begin{pmatrix} 2 & 0 \\\\ 0 & 1 \\end{pmatrix}$ est inversible, d'inverse $\\begin{pmatrix} \\frac{1}{2} & 0 \\\\ 0 & 1 \\end{pmatrix}$."
+        },
+        {
+          "texte": "Si $A \\in \\mathcal{M}_n(\\mathbb{Z})$ et $\\det A = \\pm 1$, alors $A^{-1}$ est à coefficients entiers.",
+          "vrai": true,
+          "justification": "Les cofacteurs sont, au signe près, des déterminants de matrices à coefficients entiers, donc des entiers (formule explicite) ; et $A^{-1} = \\pm {}^t\\mathrm{Com}(A)$."
+        },
+        {
+          "texte": "Toute matrice réelle antisymétrique (${}^t A = -A$) d'ordre $3$ non nulle est inversible.",
+          "vrai": false,
+          "contre_exemple": "$\\det A = \\det({}^t A) = \\det(-A) = (-1)^3 \\det A$, donc $\\det A = 0$ : aucune matrice antisymétrique réelle d'ordre $3$ n'est inversible, par exemple $\\begin{pmatrix} 0 & 1 & 0 \\\\ -1 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-determinant-famille",
+        "al-l1-determinant-inversibilite"
+      ]
+    },
+    {
+      "id": "al-l1-determinant-vandermonde",
+      "theme": "algebre-lineaire",
+      "niveau": "l1",
+      "chapitre": "al-l1-determinant",
+      "type": "theoreme",
+      "titre": "Déterminant de Vandermonde",
+      "recto": "Énoncer la formule du déterminant de Vandermonde et la condition pour qu'il soit non nul, avec ses hypothèses, et en donner une conséquence.",
+      "cours": "Chercher un polynôme $P = c_0 + c_1 X + \\dots + c_{n-1} X^{n-1}$ qui prend des valeurs données $y_1, \\dots, y_n$ en des points $x_1, \\dots, x_n$ revient à résoudre un système linéaire de $n$ équations aux $n$ inconnues $c_0, \\dots, c_{n-1}$ ; sa matrice, dont la ligne $i$ est $(1, x_i, x_i^2, \\dots, x_i^{n-1})$, est la matrice de Vandermonde. Son déterminant a une forme remarquablement simple : le produit de toutes les différences $x_j - x_i$ pour $i < j$.\n\nOn le retrouve en pensant aux polynômes : vu comme fonction de $x_n$, le déterminant est un polynôme de degré au plus $n - 1$ qui s'annule en $x_1, \\dots, x_{n-1}$ (deux lignes égales) ; si ces nombres sont deux à deux distincts, il est donc proportionnel à $(x_n - x_1) \\cdots (x_n - x_{n-1})$ (sinon, il est nul), et le coefficient s'obtient par récurrence.\n\nConséquence immédiate : le déterminant est non nul si et seulement si les $x_i$ sont deux à deux distincts. D'où l'existence et l'unicité du polynôme d'interpolation de degré au plus $n - 1$, et de nombreuses preuves de liberté : familles de fonctions $x \\mapsto e^{\\lambda_i x}$, de vecteurs $(1, x_i, \\dots, x_i^{n-1})$, et plus tard de vecteurs propres associés à des valeurs propres distinctes. La méthode « polynôme en une variable, racines évidentes, coefficient dominant » sert aussi pour bien d'autres déterminants à paramètres.\n\nLe piège principal est l'ordre des différences : c'est $x_j - x_i$ avec $i < j$ ; écrire $x_i - x_j$ multiplie le résultat par $(-1)^{n(n-1)/2}$, ce qui change le signe pour $n = 2$ ou $n = 3$. Il faut aussi les puissances $0$ à $n - 1$ : avec les puissances $1$ à $n$, on obtient $x_1 x_2 \\cdots x_n$ fois le déterminant de Vandermonde.",
+      "hypotheses": [
+        "$n \\geq 2$ et $x_1, \\dots, x_n \\in \\mathbb{K}$.",
+        "La ligne $i$ de la matrice est $(1, x_i, x_i^2, \\dots, x_i^{n-1})$ : les puissances vont de $0$ à $n - 1$.",
+        "Pour que le déterminant soit non nul : les $x_i$ sont deux à deux distincts."
+      ],
+      "hypotheses_pieges": [
+        "Pour que le déterminant soit non nul : les $x_i$ sont tous non nuls (à la place de deux à deux distincts).",
+        "Pour que le déterminant soit non nul : $x_i \\neq x_{i+1}$ pour tout $i$ (à la place de deux à deux distincts).",
+        "La ligne $i$ de la matrice est $(x_i, x_i^2, \\dots, x_i^{n})$ : les puissances vont de $1$ à $n$ (à la place de $0$ à $n - 1$)."
+      ],
+      "enonce": "Soient $n \\geq 2$ et $x_1, \\dots, x_n \\in \\mathbb{K}$. Le **déterminant de Vandermonde** est le déterminant de la matrice dont le coefficient en ligne $i$ et colonne $j$ est $x_i^{j-1}$ :\n$$V(x_1, \\dots, x_n) = \\det \\begin{pmatrix} 1 & x_1 & x_1^2 & \\cdots & x_1^{n-1} \\\\ 1 & x_2 & x_2^2 & \\cdots & x_2^{n-1} \\\\ \\vdots & \\vdots & \\vdots & & \\vdots \\\\ 1 & x_n & x_n^2 & \\cdots & x_n^{n-1} \\end{pmatrix} = \\prod_{1 \\leq i < j \\leq n} (x_j - x_i).$$\nEn particulier, $V(x_1, \\dots, x_n) \\neq 0$ si et seulement si les $x_i$ sont deux à deux distincts.\n\nConséquence (interpolation) : si $x_1, \\dots, x_n$ sont deux à deux distincts, pour tous $y_1, \\dots, y_n \\in \\mathbb{K}$, il existe un unique polynôme $P \\in \\mathbb{K}_{n-1}[X]$ (de degré au plus $n - 1$) tel que $P(x_i) = y_i$ pour tout $i$.",
+      "enonce_trous": "Le déterminant de Vandermonde $V(x_1, \\dots, x_n)$, de coefficient $x_i^{j-1}$ en ligne $i$ et colonne $j$, est égal à {{1}}. Il est non nul si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\prod_{1 \\leq i < j \\leq n} (x_j - x_i)$",
+          "leurres": [
+            "$\\prod_{1 \\leq i < j \\leq n} (x_i - x_j)$",
+            "$\\sum_{1 \\leq i < j \\leq n} (x_j - x_i)$",
+            "$x_1 x_2 \\cdots x_n \\prod_{1 \\leq i < j \\leq n} (x_j - x_i)$"
+          ]
+        },
+        {
+          "reponse": "les $x_i$ sont deux à deux distincts",
+          "leurres": [
+            "les $x_i$ sont tous non nuls",
+            "les $x_i$ sont rangés dans l'ordre strictement croissant",
+            "$x_i \\neq x_{i+1}$ pour tout $i$"
+          ]
+        }
+      ],
+      "demo": "**Formule.** Par récurrence sur $n$. Pour $n = 2$, $V(x_1, x_2) = \\det \\begin{pmatrix} 1 & x_1 \\\\ 1 & x_2 \\end{pmatrix} = x_2 - x_1$. Soit $n \\geq 3$, et supposons la formule vraie à l'ordre $n - 1$.\n\nSi deux des nombres $x_1, \\dots, x_{n-1}$ sont égaux, la matrice a deux lignes égales et $V(x_1, \\dots, x_n) = 0$ ; le produit contient alors un facteur nul, et la formule est vraie.\n\nSinon, $x_1, \\dots, x_{n-1}$ sont deux à deux distincts. Notons $P(X)$ le déterminant de la matrice dont les $n - 1$ premières lignes sont celles de $V$ et la dernière $(1, X, \\dots, X^{n-1})$. En développant selon la dernière ligne, $P(X) = \\sum_{j=1}^{n} (-1)^{n+j} X^{j-1} \\Delta_{nj}$, où les mineurs $\\Delta_{nj}$ ne dépendent pas de $X$ : $P$ est un polynôme de degré au plus $n - 1$, dont le coefficient de $X^{n-1}$ est $\\Delta_{nn} = V(x_1, \\dots, x_{n-1})$. Pour $i \\leq n - 1$, $P(x_i) = 0$, car la matrice a alors deux lignes égales. Le polynôme $Q = V(x_1, \\dots, x_{n-1}) \\prod_{i=1}^{n-1} (X - x_i)$ a le même coefficient de $X^{n-1}$ et s'annule aussi en $x_1, \\dots, x_{n-1}$ : $P - Q$ est de degré au plus $n - 2$ et a $n - 1$ racines distinctes, donc $P = Q$. En évaluant en $x_n$ :\n$$V(x_1, \\dots, x_n) = V(x_1, \\dots, x_{n-1}) \\prod_{i=1}^{n-1} (x_n - x_i),$$\net l'hypothèse de récurrence donne la formule.\n\n**Non-nullité.** Un produit d'éléments de $\\mathbb{K}$ est non nul si et seulement si chaque facteur l'est, c'est-à-dire si et seulement si $x_i \\neq x_j$ pour tous $i < j$.\n\n**Interpolation.** Pour $P = c_0 + c_1 X + \\dots + c_{n-1} X^{n-1}$, les conditions $P(x_i) = y_i$ forment le système $\\sum_{j=1}^{n} x_i^{j-1} c_{j-1} = y_i$ ($1 \\leq i \\leq n$), de matrice la matrice de Vandermonde. Son déterminant est non nul, donc elle est inversible, et le système a une unique solution $(c_0, \\dots, c_{n-1})$.",
+      "exemple": "$V(1, 2, 3) = \\det \\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 4 \\\\ 1 & 3 & 9 \\end{pmatrix} = (2 - 1)(3 - 1)(3 - 2) = 2$. Pour $n = 3$, $V(a, b, c) = (b - a)(c - a)(c - b)$ ; avec $(a, b, c) = (0, 1, -1)$, on trouve $(1 - 0)(-1 - 0)(-1 - 1) = 2$.\n\nInterpolation : il existe un unique $P \\in \\mathbb{R}_2[X]$ tel que $P(1) = 2$, $P(2) = 3$, $P(3) = 6$, car $V(1, 2, 3) \\neq 0$ ; c'est $P = X^2 - 2X + 3$.",
+      "contre_exemple": "- **Deux à deux distincts, pas seulement consécutifs** : pour $(x_1, x_2, x_3) = (1, 2, 1)$, $x_1 \\neq x_2$ et $x_2 \\neq x_3$, mais les lignes $1$ et $3$ sont égales : $V(1, 2, 1) = (2 - 1)(1 - 1)(1 - 2) = 0$.\n- **Non nuls ne suffit pas** : $V(3, 3) = 3 - 3 = 0$.\n- **Puissances de $1$ à $n$** : $\\det \\begin{pmatrix} 2 & 4 \\\\ 3 & 9 \\end{pmatrix} = 18 - 12 = 6$, alors que $V(2, 3) = 1$ (on a $6 = 2 \\times 3 \\times 1$).\n- **Ordre des différences** : pour $n = 2$, $x_1 - x_2 = -V(x_1, x_2)$.",
+      "affirmations": [
+        {
+          "texte": "$V(x_1, \\dots, x_n)$ ne change pas quand on permute les $x_i$.",
+          "vrai": false,
+          "contre_exemple": "$V(1, 2) = 1$ et $V(2, 1) = -1$ : permuter les $x_i$ permute les lignes, ce qui multiplie le déterminant par la signature de la permutation."
+        },
+        {
+          "texte": "Si $x_1 < x_2 < \\dots < x_n$ sont réels, alors $V(x_1, \\dots, x_n) > 0$.",
+          "vrai": true,
+          "justification": "Chaque facteur $x_j - x_i$ avec $i < j$ est strictement positif."
+        },
+        {
+          "texte": "Si $x_1, \\dots, x_n$ sont deux à deux distincts, il existe un unique polynôme de degré exactement $n - 1$ qui prend les valeurs $y_1, \\dots, y_n$ en $x_1, \\dots, x_n$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n = 2$, $(x_1, x_2) = (0, 1)$ et $y_1 = y_2 = 1$, l'unique polynôme de degré au plus $1$ qui convient est la constante $1$, de degré $0$ : aucun polynôme de degré exactement $1$ ne convient. L'unicité porte sur $\\mathbb{K}_{n-1}[X]$."
+        },
+        {
+          "texte": "La transposée de la matrice de Vandermonde a le même déterminant $\\prod_{i < j} (x_j - x_i)$.",
+          "vrai": true,
+          "justification": "Une matrice carrée et sa transposée ont le même déterminant."
+        }
+      ],
+      "prerequis": [
+        "al-l1-determinant-developpement",
+        "arith-l1-racines-polynome"
+      ]
+    }
+  ]
+}
