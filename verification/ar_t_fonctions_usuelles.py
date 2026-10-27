@@ -289,6 +289,8 @@ assert limit(log(x) ** 2 / x, x, oo) == 0  # K affirmation 4
 assert egal((2 * log(t) / t) ** 2, log(t**2) ** 2 / t**2)  # K affirmation 4 (X = sqrt x)
 assert limit(x**3 - exp(x), x, oo) == -oo and limit(log(x) / sqrt(x), x, oo) == 0  # K exemple
 assert limit(x * log(x), x, 0, "+") == 0  # K exemple
+# Carte ln, démo (limites de exp) : e^x >= 1 + x, donc e^x -> +oo, et e^x = 1/e^-x -> 0 en -oo.
+assert limit(exp(x), x, oo) == oo and limit(exp(x), x, -oo) == 0  # ar-t-fonctions-usuelles-ln démo
 # Démo : phi = e^x - 1 - x a pour minimum 0 en 0 ; g = e^x - x^2/2, g' = e^x - x > 0.
 assert solve(diff(exp(x) - 1 - x, x), x) == [0] and (exp(x) - 1 - x).subs(x, 0) == 0  # K démo
 assert egal(diff(exp(x) - x**2 / 2, x), exp(x) - x)  # K démo
@@ -296,6 +298,8 @@ assert egal(diff(exp(x) - x**2 / 2, x), exp(x) - x)  # K démo
 assert limit(exp(x) / x**2, x, oo) not in (0, 1, 2) and limit(x**2 * log(x), x, 0, "+") not in (-oo, oo, 1)
 
 # K-ex1 (+ v1, v2)
+# Cours : x^n e^-x en +oo et x^n ln x en 0+ sont des formes 0 x oo ; e^x ln x en +oo n'est pas indéterminée (+oo).
+assert limit(x**2 * exp(-x), x, oo) == 0 and limit(exp(x) * log(x), x, oo) == oo  # K cours
 assert limit(exp(x) - x**3, x, oo) == oo  # K-ex1
 assert limit(x**4 - 2 * exp(x), x, oo) == -oo  # K-ex1 v1
 assert limit(3 * exp(x) - x**5 + x, x, oo) == oo  # K-ex1 v2
@@ -360,7 +364,10 @@ assert egal((cos(h) - 1) / h, -(sin(h) / h) * (sin(h) / (1 + cos(h))))  # K dém
 assert all(math.sin(v) < v < math.tan(v) and math.cos(v) < math.sin(v) / v < 1
            for v in [k_ / 1000 * math.pi / 2 for k_ in range(1, 1000)])  # K démo
 assert limit(Abs(h) / h, h, 0, "+") == 1 and limit(Abs(h) / h, h, 0, "-") == -1  # K contre 1 ; affirmation 4
-assert limit(1 / h, h, 0, "+") == oo  # K contre 2 (taux 1/h)
+assert limit(Abs(x), x, 0) == 0  # K contre 2 : |x| a une limite finie (0 = f(0)) en 0 sans y être dérivable
+assert all(0 <= 1 - math.cos(v) <= math.sin(v) ** 2 <= v * v
+           for v in [s_ * k_ / 1000 * math.pi / 2 for k_ in range(1, 1000) for s_ in (1, -1)])  # K démo : cos x -> 1
+assert egal((1 - cos(x)) * (1 + cos(x)), sin(x) ** 2)  # K démo
 assert limit((1 - cos(x)) / x**2, x, 0) == Rational(1, 2)  # K contre 3 ; affirmation 2 ; cours
 assert egal(1 - cos(x), sin(x) ** 2 / (1 + cos(x)))  # K contre 3
 assert limit((exp(2 * x) - 1) / x, x, 0) == 2  # K affirmation 1
