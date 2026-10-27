@@ -99,6 +99,14 @@ for xv in [R(j, 4) for j in range(-40, 41)]:
 assert N(exp(3) - 4) > N(E * 9 / 2) and abs(N(exp(3) - 4) - 16.0855) < 1e-3 and abs(N(E * 9 / 2) - 12.2323) < 1e-3
 assert N(1 - sin(1)) > 0.05 and abs(N(1 - sin(1)) - 0.159) < 1e-3 and N(100 * R(1, 100) / 2) == 0.5
 assert N(1 - sin(1)) <= 0.5
+# Texte à trous (trou 1) : les trois leurres rendent l'énoncé faux.
+#   |f^(n)| <= M : f = sin(10x), n = 1, M = 10, x = 0,1 ; |f''(a)| <= M : exp, a = 0, n = 1, M = 1, x = 1 ;
+#   borne près de a seulement : exp, n = 1, M = e sur [-1, 1], x = 3.
+assert abs(diff(sin(10 * x), x)) .subs(x, 0) <= 10 and N(abs(sin(1) - 1)) > N(10 * R(1, 10)**2 / 2)
+assert diff(exp(x), x, 2).subs(x, 0) == 1 and N(E - 2) > N(R(1, 2))
+assert N(exp(3) - 4) > N(E * 3**2 / 2)
+# Cours : x^4/24 <= |x|^3/6 exactement pour |x| <= 4.
+assert solve(x**4 / 24 - x**3 / 6, x) == [0, 4] and R(5)**4 / 24 > R(5)**3 / 6
 # Affirmation 1 (fausse) : x = 1, e - 2 > 1/2. Affirmation 4 : |x|^{n+1}/(n+1)! -> 0.
 assert N(E - 2) > 0.5
 assert limit(5**n / factorial(n), n, oo) == 0

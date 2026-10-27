@@ -161,14 +161,14 @@
   {
    "id": "ar-l1-taylor-young-ex5",
    "carte": "ar-l1-taylor-young",
-   "difficulte": 5,
+   "difficulte": 4,
    "titre": "Position du point intermédiaire des accroissements finis",
    "enonce": "Soient $I$ un intervalle ouvert, $a\\in I$ et $f:I\\to\\mathbb{R}$ deux fois dérivable sur $I$, avec $f''(a)\\neq0$. Pour tout $h\\neq0$ tel que $a+h\\in I$, l'égalité des accroissements finis fournit un réel $\\theta_h\\in\\left]0,1\\right[$ (on en choisit un) tel que\n$$f(a+h)-f(a)=hf'(a+\\theta_hh).$$\n\n**1.** Écrire le développement de $f(a+h)$ à l'ordre $2$ et celui de $f'(a+\\theta_hh)$ à l'ordre $1$ quand $h\\to0$, en justifiant que $\\theta_hh\\to0$.\n\n**2.** En déduire la limite de $\\theta_h$ quand $h\\to0$.\n\n**3.** Vérifier ce résultat pour $f=\\exp$ et $a=0$, en exprimant $\\theta_h$ explicitement.\n\n**4.** On prend $f(x)=x^3$ et $a=0$, de sorte que $f''(0)=0$. Calculer $\\theta_h$ et conclure sur le rôle de l'hypothèse $f''(a)\\neq0$.",
    "duree_min": 35,
    "indices": [
     "Taylor-Young s'applique à $f$ à l'ordre $2$ et à $f'$ à l'ordre $1$, car $f'$ est dérivable en $a$.",
     "Comparer les deux expressions de $f(a+h)-f(a)$, diviser par $h^2$ et utiliser $f''(a)\\neq0$.",
-    "Question 3 : $\\theta_h=\\frac1h\\ln\\left(\\frac{e^h-1}{h}\\right)$."
+    "Question 3 : résoudre $e^h-1=he^{\\theta_hh}$ en $\\theta_h$."
    ],
    "reponse_finale": {
     "question": "Quelle est la limite de $\\theta_h$ quand $h\\to0$ (question 2) ?",
@@ -203,7 +203,7 @@
     ],
     "bonne": 0
    },
-   "correction": "$\\cos$ est de classe $C^\\infty$ sur $\\mathbb{R}$, de dérivées successives $-\\sin$, $-\\cos$, $\\sin$, $\\cos$. En $0$ elles valent $0$, $-1$, $0$ : le polynôme de Taylor d'ordre $3$ est bien $1-\\frac{x^2}{2}$. De plus $|\\cos^{(4)}|=|\\cos|\\le1$ sur $\\mathbb{R}$. L'inégalité de Taylor-Lagrange à l'ordre $3$ donne, pour tout réel $x$,\n$$\\left|\\cos x-1+\\frac{x^2}{2}\\right|\\le\\frac{|x|^4}{4!}=\\frac{x^4}{24}.$$\nPour $x=0{,}1$ : l'erreur est au plus $\\frac{(0{,}1)^4}{24}\\approx4{,}2\\cdot10^{-6}$.\n\nÀ l'ordre $2$ (même polynôme), on n'aurait obtenu que $\\frac{(0{,}1)^3}{6}\\approx1{,}7\\cdot10^{-4}$ : comme le coefficient de $x^3$ est nul, il vaut mieux appliquer l'inégalité à l'ordre $3$. (L'erreur réelle est d'environ $4{,}17\\cdot10^{-6}$.)",
+   "correction": "$\\cos$ est de classe $C^\\infty$ sur $\\mathbb{R}$, de dérivées successives $-\\sin$, $-\\cos$, $\\sin$, $\\cos$. En $0$ elles valent $0$, $-1$, $0$ : le polynôme de Taylor d'ordre $3$ est bien $1-\\frac{x^2}{2}$. De plus $|\\cos^{(4)}|=|\\cos|\\le1$ sur $\\mathbb{R}$. L'inégalité de Taylor-Lagrange à l'ordre $3$ donne, pour tout réel $x$,\n$$\\left|\\cos x-1+\\frac{x^2}{2}\\right|\\le\\frac{|x|^4}{4!}=\\frac{x^4}{24}.$$\nPour $x=0{,}1$ : l'erreur est au plus $\\frac{(0{,}1)^4}{24}\\approx4{,}2\\cdot10^{-6}$.\n\nÀ l'ordre $2$ (même polynôme), en majorant $|\\cos'''|=|\\sin|$ par $1$, on n'aurait obtenu que $\\frac{(0{,}1)^3}{6}\\approx1{,}7\\cdot10^{-4}$ : comme le coefficient de $x^3$ est nul, il vaut mieux appliquer l'inégalité à l'ordre $3$. (L'erreur réelle est d'environ $4{,}17\\cdot10^{-6}$.)",
    "variantes": [
     {
      "enonce": "On approche $\\sin(0{,}2)$ par $0{,}2-\\frac{(0{,}2)^3}{6}$. Le polynôme de Taylor de $\\sin$ à l'ordre $4$ en $0$ est $x-\\frac{x^3}{6}$. Quel majorant de l'erreur l'inégalité de Taylor-Lagrange à l'ordre $4$ en $0$ fournit-elle ?",
@@ -386,7 +386,7 @@
     ],
     "bonne": 0
    },
-   "correction": "**1.** $f$ est deux fois dérivable sur $\\mathbb{R}$ et $|f''|\\le M_2$ : l'inégalité de Taylor-Lagrange à l'ordre $1$, au point $x$, évaluée en $x+h$, donne\n$$|f(x+h)-f(x)-hf'(x)|\\le\\frac{M_2h^2}{2}.$$\nPar l'inégalité triangulaire, $h|f'(x)|\\le|f(x+h)|+|f(x)|+\\frac{M_2h^2}{2}\\le2M_0+\\frac{M_2h^2}{2}$, et en divisant par $h>0$ : $|f'(x)|\\le\\frac{2M_0}{h}+\\frac{M_2h}{2}$.\n\n**2.** $\\varphi$ est dérivable sur $\\left]0,+\\infty\\right[$ et $\\varphi'(h)=-\\frac{2M_0}{h^2}+\\frac{M_2}{2}$, négatif pour $h<h_0=2\\sqrt{\\frac{M_0}{M_2}}$ et positif pour $h>h_0$. Le minimum est atteint en $h_0$ :\n$$\\varphi(h_0)=\\frac{2M_0}{2\\sqrt{M_0/M_2}}+\\frac{M_2}{2}\\cdot2\\sqrt{\\frac{M_0}{M_2}}=\\sqrt{M_0M_2}+\\sqrt{M_0M_2}=2\\sqrt{M_0M_2}.$$\n\n**3.** L'inégalité de la question 1 vaut pour tout $h>0$, en particulier pour $h=h_0$ : $|f'(x)|\\le2\\sqrt{M_0M_2}$ pour tout réel $x$, et $f'$ est bornée.\n\nRemarque : en utilisant aussi le point $x-h$, on obtient $|f'(x)|\\le\\frac{M_0}{h}+\\frac{M_2h}{2}$, puis la meilleure constante $\\sqrt{2M_0M_2}$ (inégalité de Landau)."
+   "correction": "**1.** $f$ est deux fois dérivable sur $\\mathbb{R}$ et $|f''|\\le M_2$ : l'inégalité de Taylor-Lagrange à l'ordre $1$, au point $x$, évaluée en $x+h$, donne\n$$|f(x+h)-f(x)-hf'(x)|\\le\\frac{M_2h^2}{2}.$$\nPar l'inégalité triangulaire, $h|f'(x)|\\le|f(x+h)|+|f(x)|+\\frac{M_2h^2}{2}\\le2M_0+\\frac{M_2h^2}{2}$, et en divisant par $h>0$ : $|f'(x)|\\le\\frac{2M_0}{h}+\\frac{M_2h}{2}$.\n\n**2.** $\\varphi$ est dérivable sur $\\left]0,+\\infty\\right[$ et $\\varphi'(h)=-\\frac{2M_0}{h^2}+\\frac{M_2}{2}$, négatif pour $h<h_0=2\\sqrt{\\frac{M_0}{M_2}}$ et positif pour $h>h_0$. Le minimum est atteint en $h_0$ :\n$$\\varphi(h_0)=\\frac{2M_0}{2\\sqrt{M_0/M_2}}+\\frac{M_2}{2}\\cdot2\\sqrt{\\frac{M_0}{M_2}}=\\sqrt{M_0M_2}+\\sqrt{M_0M_2}=2\\sqrt{M_0M_2}.$$\n\n**3.** L'inégalité de la question 1 vaut pour tout $h>0$, en particulier pour $h=h_0$ : $|f'(x)|\\le2\\sqrt{M_0M_2}$ pour tout réel $x$, et $f'$ est bornée.\n\nRemarque : en utilisant aussi le point $x-h$, on obtient $|f'(x)|\\le\\frac{M_0}{h}+\\frac{M_2h}{2}$, puis $|f'(x)|\\le\\sqrt{2M_0M_2}$ (inégalité de Landau ; on peut montrer, ce qui est plus difficile, que la constante $\\sqrt2$ est optimale sur $\\mathbb{R}$)."
   },
   {
    "id": "ar-l1-taylor-reste-integral-ex1",
@@ -536,7 +536,7 @@
   {
    "id": "ar-l1-taylor-reste-integral-ex4",
    "carte": "ar-l1-taylor-reste-integral",
-   "difficulte": 5,
+   "difficulte": 4,
    "titre": "Irrationalité de $e$",
    "enonce": "On veut démontrer que $e$ est irrationnel. Pour $n\\in\\mathbb{N}$, on pose $S_n=\\sum_{k=0}^{n}\\frac{1}{k!}$.\n\n**1.** À l'aide de la formule de Taylor avec reste intégral, montrer que $e-S_n=\\int_0^1\\frac{(1-t)^n}{n!}e^t\\,\\mathrm{d}t$.\n\n**2.** En déduire que $0<e-S_n<\\frac{e}{(n+1)!}$, puis que $0<e-S_n<\\frac{3}{(n+1)!}$ (on admet que $e<3$).\n\n**3.** On suppose que $e=\\frac pq$ avec $p$ et $q$ entiers naturels non nuls. Soit $n$ un entier tel que $n\\ge q$ et $n\\ge2$. Montrer que $n!\\,(e-S_n)$ est un entier, puis obtenir une contradiction.\n\n**4.** Conclure.",
    "duree_min": 35,
