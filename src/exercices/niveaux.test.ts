@@ -25,3 +25,15 @@ describe('niveaux d’exercices', () => {
     expect(exerciceSuggere([], {})).toBeNull()
   })
 })
+
+describe('variantes', () => {
+  it('propose d’abord une variante jamais faite, puis la plus anciennement faite', async () => {
+    const { varianteSuivante } = await import('./niveaux')
+    expect(varianteSuivante(1, undefined)).toBe(0)
+    expect(varianteSuivante(3, [])).toBe(0)
+    expect(varianteSuivante(3, [{ ...t('rate'), variante: 0 }])).toBe(1)
+    expect(varianteSuivante(3, [t('rate'), { ...t('reussi'), variante: 1 }])).toBe(2) // sans numéro : variante 0
+    expect(varianteSuivante(3, [{ ...t('rate'), variante: 2 }, { ...t('rate'), variante: 0 }, { ...t('rate'), variante: 1 }])).toBe(2)
+    expect(varianteSuivante(2, [{ ...t('rate'), variante: 5 }])).toBe(0) // variante disparue du contenu : ignorée
+  })
+})

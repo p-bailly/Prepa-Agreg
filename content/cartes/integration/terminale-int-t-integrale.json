@@ -1,0 +1,364 @@
+{
+  "cartes": [
+    {
+      "id": "int-t-integrale-fondamental",
+      "theme": "integration",
+      "niveau": "terminale",
+      "chapitre": "int-t-integrale",
+      "type": "theoreme",
+      "titre": "Théorème fondamental : primitive d'une fonction continue",
+      "recto": "Énoncer le théorème fondamental reliant intégrale et primitive d'une fonction continue, avec ses hypothèses.",
+      "cours": "Pour une fonction continue et positive, $\\int_a^x f(t)\\,\\mathrm{d}t$ est l'aire sous la courbe entre $a$ et $x$ ; quand $x$ augmente d'une petite quantité $h$, cette aire augmente d'environ $h\\,f(x)$ (une bande presque rectangulaire de largeur $h$ et de hauteur $f(x)$). C'est l'intuition du théorème fondamental : la dérivée de l'aire est la hauteur, donc $x\\mapsto\\int_a^x f(t)\\,\\mathrm{d}t$ est une primitive de $f$. Ce résultat relie deux problèmes qui semblaient sans rapport, le calcul des aires et la recherche de tangentes, et il garantit que toute fonction continue sur un intervalle admet des primitives, même quand on ne sait pas les écrire (par exemple pour $e^{-t^2}$).\n\nEn pratique, il sert dans deux sens. Pour calculer une intégrale, on cherche une primitive $G$ et l'on écrit $\\int_a^b f=G(b)-G(a)$. Pour étudier une fonction définie par une intégrale, on ne la calcule pas : on la dérive, $F'(x)=f(x)$, et si une borne dépend de $x$, on dérive une composée, $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_a^{u(x)}f=u'(x)\\,f(u(x))$.\n\nLe piège principal concerne les hypothèses : il faut $f$ **continue** sur un **intervalle**. Une fonction en escalier donne une intégrale non dérivable au saut, et sur une réunion d'intervalles comme $\\mathbb{R}^*$ deux primitives ne diffèrent pas forcément d'une seule constante.",
+      "hypotheses": [
+        "$I$ est un intervalle de $\\mathbb{R}$ et $a\\in I$.",
+        "$f$ est continue sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est positive sur $I$.",
+        "Il suffit que $f$ soit continue par morceaux sur $I$.",
+        "$f$ est dérivable sur $I$.",
+        "$a$ est une borne de $I$."
+      ],
+      "enonce": "Soit $f$ une fonction **continue** sur un **intervalle** $I$ et $a\\in I$. La fonction $F:x\\mapsto\\int_a^x f(t)\\,\\mathrm{d}t$ est dérivable sur $I$ et $F'=f$ : c'est l'unique primitive de $f$ sur $I$ qui s'annule en $a$.\n\nConséquences :\n- toute fonction continue sur un intervalle admet des primitives ;\n- deux primitives de $f$ sur $I$ diffèrent d'une constante ;\n- pour toute primitive $G$ de $f$ sur $I$ et tous $a,b\\in I$, $\\int_a^b f(t)\\,\\mathrm{d}t=G(b)-G(a)$, noté $\\big[G(t)\\big]_a^b$.",
+      "enonce_trous": "Soit $f$ une fonction {{1}} sur {{2}} et $a\\in I$. Alors $F:x\\mapsto\\int_a^x f(t)\\,\\mathrm{d}t$ est dérivable sur $I$, de dérivée {{3}} ; c'est la primitive de $f$ sur $I$ qui s'annule en $a$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "monotone"
+          ]
+        },
+        {
+          "reponse": "un intervalle $I$",
+          "leurres": [
+            "une partie $I$ quelconque de $\\mathbb{R}$",
+            "une réunion $I$ de deux intervalles disjoints",
+            "l'ensemble $I=\\mathbb{R}^*$"
+          ]
+        },
+        {
+          "reponse": "$f$",
+          "leurres": [
+            "$f'$",
+            "$F$",
+            "$x\\mapsto f(x)-f(a)$"
+          ]
+        }
+      ],
+      "demo": "**Cadre.** En Terminale, pour $f$ continue et positive sur $[\\alpha,\\beta]$, $\\int_\\alpha^\\beta f(t)\\,\\mathrm{d}t$ est l'aire du domaine situé sous la courbe ; pour $f$ de signe quelconque, c'est l'aire algébrique (les parties sous l'axe comptent négativement), et $\\int_\\beta^\\alpha f=-\\int_\\alpha^\\beta f$. On admet que cette aire vérifie la relation de Chasles et l'encadrement : si $\\alpha\\le\\beta$ et $m\\le f\\le M$ sur $[\\alpha,\\beta]$, alors $m(\\beta-\\alpha)\\le\\int_\\alpha^\\beta f\\le M(\\beta-\\alpha)$. La construction rigoureuse de l'intégrale est faite en L1.\n\n**Dérivabilité de $F$.** Soient $x\\in I$ et $\\varepsilon>0$. Par continuité de $f$ en $x$, il existe $\\delta>0$ tel que $|f(t)-f(x)|\\le\\varepsilon$ pour tout $t\\in I$ vérifiant $|t-x|\\le\\delta$. Soit $h\\neq0$ avec $|h|\\le\\delta$ et $x+h\\in I$ ; comme $I$ est un intervalle, le segment d'extrémités $x$ et $x+h$ est inclus dans $I$. Par Chasles, $F(x+h)-F(x)=\\int_x^{x+h}f(t)\\,\\mathrm{d}t$.\n\n- Si $h>0$ : sur $[x,x+h]$, $f(x)-\\varepsilon\\le f(t)\\le f(x)+\\varepsilon$, donc $h\\big(f(x)-\\varepsilon\\big)\\le F(x+h)-F(x)\\le h\\big(f(x)+\\varepsilon\\big)$.\n- Si $h<0$ : le même encadrement sur $[x+h,x]$ donne $(-h)\\big(f(x)-\\varepsilon\\big)\\le\\int_{x+h}^x f=F(x)-F(x+h)\\le(-h)\\big(f(x)+\\varepsilon\\big)$.\n\nDans les deux cas, en divisant par $h$ (ou par $-h>0$), $\\left|\\frac{F(x+h)-F(x)}{h}-f(x)\\right|\\le\\varepsilon$. Donc $F$ est dérivable en $x$ et $F'(x)=f(x)$ ; de plus $F(a)=0$.\n\n**Unicité et calcul.** Si $G$ est une primitive de $f$ sur $I$, $(G-F)'=0$ sur l'intervalle $I$, donc $G-F$ est une constante $C$ (signe de la dérivée et monotonie). Si de plus $G(a)=0$, alors $C=0$ et $G=F$. Enfin, pour $a,b\\in I$, $G(b)-G(a)=F(b)-F(a)=\\int_a^b f(t)\\,\\mathrm{d}t$, car $F(a)=0$.\n\nLe programme de Terminale démontre ce résultat pour $f$ positive et croissante ; le cas général repose sur la même idée (encadrer $f$ au voisinage de $x$).",
+      "exemple": "$F(x)=\\int_0^x e^{-t^2}\\,\\mathrm{d}t$ est définie et dérivable sur $\\mathbb{R}$, de dérivée $F'(x)=e^{-x^2}>0$ : $F$ est strictement croissante, bien qu'elle n'ait pas d'expression à l'aide des fonctions usuelles. Autre exemple : pour $x>0$, $\\int_1^x\\frac{\\mathrm{d}t}{t}=\\ln x$, car $\\ln$ est la primitive de $t\\mapsto\\frac1t$ sur $\\left]0,+\\infty\\right[$ qui s'annule en $1$.",
+      "contre_exemple": "- **La continuité compte** : sur $I=[-1,1]$, soit $f(t)=0$ pour $t<0$ et $f(t)=1$ pour $t\\ge0$ (fonction monotone, continue par morceaux). Alors $F(x)=\\int_{-1}^x f(t)\\,\\mathrm{d}t$ vaut $0$ pour $x\\le0$ et $x$ pour $x\\ge0$ : $F$ n'est pas dérivable en $0$ (taux d'accroissement de limite $0$ à gauche et $1$ à droite).\n- **L'intervalle compte** : sur $\\mathbb{R}^*$, $G(x)=-\\frac1x$ et $H$ définie par $H(x)=-\\frac1x$ pour $x<0$, $H(x)=1-\\frac1x$ pour $x>0$ sont deux primitives de $x\\mapsto\\frac{1}{x^2}$, mais $H-G$ vaut $0$ sur $\\left]-\\infty,0\\right[$ et $1$ sur $\\left]0,+\\infty\\right[$ : ce n'est pas une constante.\n- **Toute primitive n'est pas de la forme $x\\mapsto\\int_a^x f$** : $G(x)=\\sin x+2$ définit une primitive de $\\cos$ sur $\\mathbb{R}$, mais $G\\ge1$ ne s'annule jamais.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur un intervalle $I$, toute primitive de $f$ sur $I$ s'écrit $x\\mapsto\\int_a^x f(t)\\,\\mathrm{d}t$ pour un certain $a\\in I$.",
+          "vrai": false,
+          "contre_exemple": "$x\\mapsto\\sin x+2$ est une primitive de $\\cos$ sur $\\mathbb{R}$ ; elle prend ses valeurs dans $[1,3]$ et ne s'annule jamais, alors que $x\\mapsto\\int_a^x\\cos t\\,\\mathrm{d}t$ s'annule en $a$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\mathbb{R}$, la fonction $x\\mapsto\\int_0^{x^2}f(t)\\,\\mathrm{d}t$ est dérivable sur $\\mathbb{R}$, de dérivée $x\\mapsto2xf(x^2)$.",
+          "vrai": true,
+          "justification": "Avec $F(y)=\\int_0^y f(t)\\,\\mathrm{d}t$, primitive de $f$ sur $\\mathbb{R}$, la fonction vaut $x\\mapsto F(x^2)$ ; par dérivation d'une composée, sa dérivée est $x\\mapsto2x\\,F'(x^2)=2xf(x^2)$."
+        },
+        {
+          "texte": "Deux primitives sur $\\mathbb{R}^*$ de $x\\mapsto\\frac{1}{x^2}$ diffèrent d'une constante.",
+          "vrai": false,
+          "contre_exemple": "$G(x)=-\\frac1x$ et $H(x)=-\\frac1x+1$ pour $x>0$, $H(x)=-\\frac1x$ pour $x<0$ : $H-G$ vaut $1$ sur $\\left]0,+\\infty\\right[$ et $0$ sur $\\left]-\\infty,0\\right[$. $\\mathbb{R}^*$ n'est pas un intervalle."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux sur $[-1,1]$, alors $x\\mapsto\\int_{-1}^x f(t)\\,\\mathrm{d}t$ est dérivable sur $\\left]-1,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=0$ pour $t<0$, $f(t)=1$ pour $t\\ge0$ : $\\int_{-1}^x f(t)\\,\\mathrm{d}t$ vaut $0$ pour $x\\le0$ et $x$ pour $x\\ge0$, fonction non dérivable en $0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-derivee-monotonie"
+      ]
+    },
+    {
+      "id": "int-t-integrale-proprietes",
+      "theme": "integration",
+      "niveau": "terminale",
+      "chapitre": "int-t-integrale",
+      "type": "theoreme",
+      "titre": "Linéarité, positivité, croissance, relation de Chasles",
+      "recto": "Énoncer la linéarité, la positivité et la croissance de l'intégrale ainsi que la relation de Chasles, avec leurs hypothèses.",
+      "cours": "Une fois l'intégrale définie, on la manipule avec quatre règles qui traduisent des propriétés évidentes de l'aire. La linéarité permet de couper une intégrale en morceaux simples ; la relation de Chasles permet de découper l'intervalle, par exemple aux points où une valeur absolue change d'expression ; la positivité et la croissance permettent d'**encadrer** une intégrale qu'on ne sait pas calculer.\n\nCes deux dernières règles sont l'outil principal des exercices sur les suites d'intégrales : on encadre l'intégrande, par exemple $0\\le\\frac{x^n}{1+x}\\le x^n$ sur $[0,1]$, on intègre, puis on conclut par le théorème des gendarmes. Elles servent aussi à établir des inégalités entre fonctions : en intégrant $\\cos t\\le1$ entre $0$ et $x\\ge0$, on obtient $\\sin x\\le x$.\n\nLe piège principal est l'ordre des bornes : on n'intègre une inégalité que si $a\\le b$ ; si $a>b$, elle change de sens, puisque $\\int_b^a=-\\int_a^b$. Autre piège : l'intégrale d'un produit n'est pas le produit des intégrales, et une intégrale positive ne dit rien sur le signe de la fonction en chaque point.",
+      "hypotheses": [
+        "$f$ et $g$ sont continues sur un intervalle $I$ ; $a$, $b$, $c$ sont des points de $I$ et $\\lambda$, $\\mu$ des réels.",
+        "Pour la positivité et la croissance : $a\\le b$.",
+        "Positivité : $f\\ge0$ sur $[a,b]$ ; croissance : $f\\le g$ sur $[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la relation de Chasles, $c$ est compris entre $a$ et $b$.",
+        "Pour la positivité, $f$ est positive sur $I$ tout entier.",
+        "Pour la croissance, il suffit que $f(a)\\le g(a)$ et $f(b)\\le g(b)$.",
+        "Pour la linéarité, $\\lambda$ et $\\mu$ sont positifs."
+      ],
+      "enonce": "Soient $f$ et $g$ continues sur un intervalle $I$, $a,b,c\\in I$ et $\\lambda,\\mu\\in\\mathbb{R}$ (on note $\\int_a^b f$ pour $\\int_a^b f(x)\\,\\mathrm{d}x$).\n\n- **Linéarité** : $\\int_a^b(\\lambda f+\\mu g)=\\lambda\\int_a^b f+\\mu\\int_a^b g$.\n- **Relation de Chasles** : $\\int_a^b f=\\int_a^c f+\\int_c^b f$, quel que soit l'ordre de $a$, $b$, $c$ ; en particulier $\\int_b^a f=-\\int_a^b f$.\n- **Positivité** : si $a\\le b$ et $f\\ge0$ sur $[a,b]$, alors $\\int_a^b f\\ge0$.\n- **Croissance** (intégration des inégalités) : si $a\\le b$ et $f\\le g$ sur $[a,b]$, alors $\\int_a^b f\\le\\int_a^b g$. En particulier, si $a\\le b$, $\\left|\\int_a^b f\\right|\\le\\int_a^b|f|$.",
+      "enonce_trous": "Soient $f$, $g$ continues sur un intervalle $I$ et $a,b\\in I$. L'intégrale de la somme $f+g$ est {{1}} des intégrales de $f$ et de $g$. Si $a\\le b$ et {{2}}, alors $\\int_a^b f(x)\\,\\mathrm{d}x\\ge0$. Si {{3}} et $f\\le g$ sur $[a,b]$, alors $\\int_a^b f(x)\\,\\mathrm{d}x\\le\\int_a^b g(x)\\,\\mathrm{d}x$.",
+      "trous": [
+        {
+          "reponse": "la somme",
+          "leurres": [
+            "le produit",
+            "le maximum",
+            "la moyenne"
+          ]
+        },
+        {
+          "reponse": "$f\\ge0$ sur $[a,b]$",
+          "leurres": [
+            "$f(a)\\ge0$ et $f(b)\\ge0$",
+            "$f$ est croissante sur $[a,b]$",
+            "$f$ est positive en au moins un point de $[a,b]$"
+          ]
+        },
+        {
+          "reponse": "$a\\le b$",
+          "leurres": [
+            "$a\\ge b$",
+            "$a$ et $b$ sont positifs",
+            "$a\\neq b$"
+          ]
+        }
+      ],
+      "demo": "Soient $F$ et $G$ des primitives de $f$ et $g$ sur $I$ (elles existent car $f$ et $g$ sont continues sur l'intervalle $I$) ; pour tous $\\alpha,\\beta\\in I$, $\\int_\\alpha^\\beta f=F(\\beta)-F(\\alpha)$ et $\\int_\\alpha^\\beta g=G(\\beta)-G(\\alpha)$.\n\n- **Linéarité** : $\\lambda F+\\mu G$ est dérivable sur $I$, de dérivée $\\lambda f+\\mu g$ (continue) ; c'en est une primitive, donc $\\int_a^b(\\lambda f+\\mu g)=(\\lambda F+\\mu G)(b)-(\\lambda F+\\mu G)(a)=\\lambda\\int_a^b f+\\mu\\int_a^b g$.\n- **Chasles** : $F(b)-F(a)=\\big(F(c)-F(a)\\big)+\\big(F(b)-F(c)\\big)$, sans aucune condition d'ordre ; et $\\int_b^a f=F(a)-F(b)=-\\int_a^b f$.\n- **Positivité** : si $a=b$, l'intégrale est nulle. Si $a<b$, $F'=f\\ge0$ sur l'intervalle $[a,b]$, donc $F$ est croissante sur $[a,b]$ et $F(b)\\ge F(a)$.\n- **Croissance** : $g-f$ est continue et positive sur $[a,b]$ ; par positivité puis linéarité, $\\int_a^b g-\\int_a^b f=\\int_a^b(g-f)\\ge0$.\n- **Valeur absolue** : $|f|$ est continue et $-|f|\\le f\\le|f|$ ; par croissance et linéarité, $-\\int_a^b|f|\\le\\int_a^b f\\le\\int_a^b|f|$.",
+      "exemple": "Pour $x\\ge0$, en intégrant l'inégalité $\\cos t\\le1$ sur $[0,x]$, on obtient $\\sin x\\le x$. En intégrant à nouveau l'inégalité $\\sin t\\le t$, valable pour $t\\in[0,x]$, on obtient $1-\\cos x\\le\\frac{x^2}{2}$.",
+      "contre_exemple": "- **L'ordre des bornes compte** : $1\\ge0$, mais $\\int_1^0 1\\,\\mathrm{d}x=-1<0$.\n- **L'inégalité doit valoir sur tout $[a,b]$** : $f(x)=\\sin(\\pi x)$ et $g=0$ sur $[0,1]$ vérifient $f(0)=g(0)$ et $f(1)=g(1)$, mais $\\int_0^1 f(x)\\,\\mathrm{d}x=\\frac2\\pi>0=\\int_0^1 g(x)\\,\\mathrm{d}x$.\n- **L'intégrale d'un produit n'est pas le produit des intégrales** : $\\int_0^1 x\\cdot x\\,\\mathrm{d}x=\\frac13$, alors que $\\int_0^1x\\,\\mathrm{d}x\\times\\int_0^1x\\,\\mathrm{d}x=\\frac14$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ (avec $a<b$) et $\\int_a^b f(x)\\,\\mathrm{d}x\\ge0$, alors $f\\ge0$ sur $[a,b]$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x$ sur $[-1,2]$ : $\\int_{-1}^2x\\,\\mathrm{d}x=\\frac{4-1}{2}=\\frac32\\ge0$, mais $f(-1)=-1<0$. La réciproque de la positivité est fausse."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\mathbb{R}$, alors $\\int_{-1}^1 f(x)\\,\\mathrm{d}x=\\int_{-1}^3 f(x)\\,\\mathrm{d}x+\\int_3^1 f(x)\\,\\mathrm{d}x$.",
+          "vrai": true,
+          "justification": "La relation de Chasles vaut pour trois points quelconques de l'intervalle, même si $c=3$ n'est pas entre $-1$ et $1$ : avec une primitive $F$, $F(1)-F(-1)=\\big(F(3)-F(-1)\\big)+\\big(F(1)-F(3)\\big)$."
+        },
+        {
+          "texte": "Si $a\\le b$ et $f\\le g$ sur $[a,b]$ ($f$, $g$ continues), alors $\\left|\\int_a^b f(x)\\,\\mathrm{d}x\\right|\\le\\left|\\int_a^b g(x)\\,\\mathrm{d}x\\right|$.",
+          "vrai": false,
+          "contre_exemple": "$f=-2$ et $g=1$ sur $[0,1]$ : $f\\le g$, mais $\\left|\\int_0^1 f\\right|=2>1=\\left|\\int_0^1 g\\right|$."
+        },
+        {
+          "texte": "Pour $f$ et $g$ continues sur $[0,1]$, $\\int_0^1 f(x)g(x)\\,\\mathrm{d}x=\\int_0^1f(x)\\,\\mathrm{d}x\\times\\int_0^1g(x)\\,\\mathrm{d}x$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=g(x)=x$ : $\\int_0^1x^2\\,\\mathrm{d}x=\\frac13$, alors que $\\frac12\\times\\frac12=\\frac14$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-fondamental",
+        "ar-t-derivee-monotonie"
+      ]
+    },
+    {
+      "id": "int-t-integrale-ipp",
+      "theme": "integration",
+      "niveau": "terminale",
+      "chapitre": "int-t-integrale",
+      "type": "theoreme",
+      "titre": "Intégration par parties",
+      "recto": "Énoncer la formule d'intégration par parties avec ses hypothèses.",
+      "cours": "L'intégration par parties est la formule de dérivation d'un produit, $(uv)'=u'v+uv'$, lue à l'envers et intégrée. Elle transforme l'intégrale de $u'v$ en celle de $uv'$, et elle est utile quand ce second calcul est plus simple que le premier.\n\nMéthode : dans un produit, on choisit de **dériver** le facteur qui se simplifie en le dérivant (un polynôme, dont le degré baisse ; un logarithme, qui devient une fraction) et d'**intégrer** celui qui se primitive sans difficulté (exponentielle, sinus, cosinus). Pour $\\int\\ln x\\,\\mathrm{d}x$, on écrit $\\ln x=1\\times\\ln x$. Il faut parfois intégrer deux fois par parties, soit pour faire baisser le degré deux fois, soit pour retrouver l'intégrale de départ (cas de $e^x\\sin x$), qu'on isole alors comme l'inconnue d'une équation. Appliquée à une suite $I_n=\\int x^n\\cdots$, l'intégration par parties donne une relation de récurrence entre $I_{n+1}$ et $I_n$.\n\nLes pièges : le signe « $-$ » devant la nouvelle intégrale, le crochet $\\big[uv\\big]_a^b$ qu'on oublie d'évaluer, et les hypothèses : $u$ et $v$ doivent être dérivables sur tout l'intervalle, à dérivées continues.",
+      "hypotheses": [
+        "$I$ est un intervalle et $a,b\\in I$.",
+        "$u$ et $v$ sont dérivables sur $I$.",
+        "$u'$ et $v'$ sont continues sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "Il suffit que $u$ et $v$ soient continues sur $I$.",
+        "$a\\le b$.",
+        "$u$ et $v$ sont positives sur $I$.",
+        "$u'$ et $v'$ ne s'annulent pas sur $I$."
+      ],
+      "enonce": "Soient $u$ et $v$ deux fonctions dérivables sur un intervalle $I$, à dérivées $u'$ et $v'$ **continues** sur $I$, et $a,b\\in I$. Alors\n$$\\int_a^b u'(x)v(x)\\,\\mathrm{d}x=\\big[u(x)v(x)\\big]_a^b-\\int_a^b u(x)v'(x)\\,\\mathrm{d}x,$$\noù $\\big[u(x)v(x)\\big]_a^b=u(b)v(b)-u(a)v(a)$.",
+      "enonce_trous": "Soient $u$ et $v$ deux fonctions {{1}} sur un intervalle $I$, et $a,b\\in I$. Alors $\\int_a^b u'(x)v(x)\\,\\mathrm{d}x$ est égale à {{2}} moins $\\int_a^b u(x)v'(x)\\,\\mathrm{d}x$.",
+      "trous": [
+        {
+          "reponse": "dérivables à dérivées continues",
+          "leurres": [
+            "continues",
+            "dérivables sauf en un point",
+            "monotones"
+          ]
+        },
+        {
+          "reponse": "$u(b)v(b)-u(a)v(a)$",
+          "leurres": [
+            "$u(b)v(a)-u(a)v(b)$",
+            "$u'(b)v(b)-u'(a)v(a)$",
+            "$u(a)v(a)-u(b)v(b)$"
+          ]
+        }
+      ],
+      "demo": "Le produit $uv$ est dérivable sur $I$ et $(uv)'=u'v+uv'$. Les fonctions $u$ et $v$ sont continues (car dérivables) et $u'$, $v'$ sont continues par hypothèse, donc $u'v$ et $uv'$ sont continues sur $I$ : leurs intégrales ont un sens.\n\nAinsi $uv$ est une primitive sur $I$ de la fonction continue $u'v+uv'$, d'où $\\int_a^b\\big(u'(x)v(x)+u(x)v'(x)\\big)\\,\\mathrm{d}x=\\big[u(x)v(x)\\big]_a^b$. Par linéarité, $\\int_a^b u'v+\\int_a^b uv'=\\big[uv\\big]_a^b$, ce qui est la formule annoncée.",
+      "exemple": "$\\int_0^\\pi x\\cos x\\,\\mathrm{d}x$ : avec $u(x)=\\sin x$ (donc $u'(x)=\\cos x$) et $v(x)=x$ ($v'(x)=1$), fonctions dérivables à dérivées continues sur $\\mathbb{R}$,\n$$\\int_0^\\pi x\\cos x\\,\\mathrm{d}x=\\big[x\\sin x\\big]_0^\\pi-\\int_0^\\pi\\sin x\\,\\mathrm{d}x=0-\\big[-\\cos x\\big]_0^\\pi=-2.$$",
+      "contre_exemple": "- **$u$ doit être dérivable sur tout $I$** : sur $[0,1]$, soit $u(x)=0$ pour $x<\\frac12$, $u(x)=1$ pour $x\\ge\\frac12$, et $v=1$. La fonction $u$ est dérivable, de dérivée nulle, en tout point sauf $\\frac12$. Si l'on appliquait la formule avec « $u'=0$ », le membre de gauche vaudrait $\\int_0^1 0\\,\\mathrm{d}x=0$ et celui de droite $\\big[u(x)v(x)\\big]_0^1-\\int_0^1u(x)\\times0\\,\\mathrm{d}x=1$.\n- **Le signe « moins » est indispensable** : avec $u(x)=v(x)=x$ sur $[0,1]$, $\\int_0^1u'v=\\int_0^1x\\,\\mathrm{d}x=\\frac12$, alors que $\\big[uv\\big]_0^1+\\int_0^1uv'=1+\\frac12=\\frac32$.",
+      "affirmations": [
+        {
+          "texte": "Si $u$ et $v$ sont dérivables à dérivées continues sur $[a,b]$, alors $\\int_a^b u'(x)v(x)\\,\\mathrm{d}x=\\big[u(x)v(x)\\big]_a^b+\\int_a^b u(x)v'(x)\\,\\mathrm{d}x$.",
+          "vrai": false,
+          "contre_exemple": "$u(x)=v(x)=x$ sur $[0,1]$ : le membre de gauche vaut $\\frac12$, celui de droite $1+\\frac12=\\frac32$."
+        },
+        {
+          "texte": "$\\int_0^1x^2e^x\\,\\mathrm{d}x=e-2$.",
+          "vrai": true,
+          "justification": "Deux intégrations par parties : $\\int_0^1x^2e^x\\,\\mathrm{d}x=\\big[x^2e^x\\big]_0^1-2\\int_0^1xe^x\\,\\mathrm{d}x=e-2\\left(\\big[xe^x\\big]_0^1-\\int_0^1e^x\\,\\mathrm{d}x\\right)=e-2\\big(e-(e-1)\\big)=e-2$."
+        },
+        {
+          "texte": "Si $u$ est constante sur $\\left[0,\\frac12\\right[$ et sur $\\left[\\frac12,1\\right]$, alors, comme « $u'=0$ », $\\int_0^1u(x)v'(x)\\,\\mathrm{d}x=\\big[u(x)v(x)\\big]_0^1$ pour toute fonction $v$ à dérivée continue.",
+          "vrai": false,
+          "contre_exemple": "$u(x)=0$ pour $x<\\frac12$, $u(x)=1$ pour $x\\ge\\frac12$, et $v=1$ : $\\int_0^1u\\times0\\,\\mathrm{d}x=0$, alors que $\\big[uv\\big]_0^1=1-0=1$. $u$ n'est pas dérivable en $\\frac12$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-fondamental",
+        "int-t-integrale-proprietes"
+      ]
+    },
+    {
+      "id": "int-t-integrale-moyenne",
+      "theme": "integration",
+      "niveau": "terminale",
+      "chapitre": "int-t-integrale",
+      "type": "theoreme",
+      "titre": "Valeur moyenne et inégalité de la moyenne",
+      "recto": "Définir la valeur moyenne d'une fonction continue sur un segment et énoncer l'inégalité de la moyenne, avec leurs hypothèses.",
+      "cours": "La valeur moyenne d'une fonction sur $[a,b]$ est la hauteur du rectangle de base $[a,b]$ qui a la même aire que le domaine sous la courbe : $\\mu=\\frac{1}{b-a}\\int_a^b f$. C'est la version continue de la moyenne de $n$ nombres, qui sert pour une température, une vitesse ou une concentration moyennes sur une durée.\n\nL'inégalité de la moyenne dit que cette moyenne est comprise entre les bornes de $f$ : si $m\\le f\\le M$ sur $[a,b]$, alors $m(b-a)\\le\\int_a^b f\\le M(b-a)$. C'est l'outil le plus simple pour encadrer une intégrale. Si $f$ est monotone sur $[a,b]$, on prend pour $m$ et $M$ ses valeurs aux bornes, ce qui permet de comparer une somme $\\sum f(k)$ à une intégrale, en encadrant $\\int_k^{k+1}f$ par $f(k)$ et $f(k+1)$. Pour une fonction continue, la valeur moyenne est de plus atteinte en au moins un point.\n\nLe piège principal : la valeur moyenne n'est pas en général $\\frac{f(a)+f(b)}{2}$ ; c'est vrai pour une fonction affine, mais faux par exemple pour $x\\mapsto x^2$ sur $[0,1]$ ($\\frac13$ contre $\\frac12$). Il faut aussi que l'encadrement $m\\le f\\le M$ vaille sur tout l'intervalle, pas seulement aux bornes.",
+      "hypotheses": [
+        "$a<b$.",
+        "$f$ est continue sur $[a,b]$.",
+        "Pour l'inégalité : $m$ et $M$ sont des réels tels que $m\\le f(x)\\le M$ pour tout $x\\in[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est positive sur $[a,b]$.",
+        "$f$ est dérivable sur $[a,b]$.",
+        "Pour l'inégalité, il suffit que $m\\le f(a)\\le M$ et $m\\le f(b)\\le M$.",
+        "$f$ est monotone sur $[a,b]$."
+      ],
+      "enonce": "Soit $f$ continue sur $[a,b]$, avec $a<b$. La **valeur moyenne** de $f$ sur $[a,b]$ est le réel $\\mu=\\frac{1}{b-a}\\int_a^b f(x)\\,\\mathrm{d}x$.\n\n**Inégalité de la moyenne** : si $m\\le f(x)\\le M$ pour tout $x\\in[a,b]$, alors $m(b-a)\\le\\int_a^b f(x)\\,\\mathrm{d}x\\le M(b-a)$, c'est-à-dire $m\\le\\mu\\le M$. En particulier, si $|f|\\le M$ sur $[a,b]$, alors $\\left|\\int_a^b f(x)\\,\\mathrm{d}x\\right|\\le M(b-a)$.\n\nDe plus, il existe $c\\in[a,b]$ tel que $f(c)=\\mu$ (égalité de la moyenne).",
+      "enonce_trous": "Soit $f$ {{1}} sur $[a,b]$, avec $a<b$, et $\\mu=\\frac{1}{b-a}\\int_a^b f(x)\\,\\mathrm{d}x$ sa valeur moyenne. Si {{2}}, alors $m(b-a)\\le\\int_a^b f(x)\\,\\mathrm{d}x\\le M(b-a)$. De plus, il existe $c\\in[a,b]$ tel que {{3}}.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "positive",
+            "bornée",
+            "croissante"
+          ]
+        },
+        {
+          "reponse": "$m\\le f(x)\\le M$ pour tout $x\\in[a,b]$",
+          "leurres": [
+            "$m\\le f(a)$ et $f(b)\\le M$",
+            "$m\\le M$",
+            "$m\\le f(x)\\le M$ pour au moins un $x\\in[a,b]$"
+          ]
+        },
+        {
+          "reponse": "$f(c)=\\mu$",
+          "leurres": [
+            "$f'(c)=\\mu$",
+            "$f(c)=\\int_a^b f(x)\\,\\mathrm{d}x$",
+            "$f(c)=0$"
+          ]
+        }
+      ],
+      "demo": "**Inégalité.** Les fonctions constantes $x\\mapsto m$ et $x\\mapsto M$ sont continues et $m\\le f\\le M$ sur $[a,b]$, avec $a\\le b$ : par croissance de l'intégrale, $\\int_a^b m\\,\\mathrm{d}x\\le\\int_a^b f(x)\\,\\mathrm{d}x\\le\\int_a^b M\\,\\mathrm{d}x$, soit $m(b-a)\\le\\int_a^b f(x)\\,\\mathrm{d}x\\le M(b-a)$ ; on divise par $b-a>0$. Si $|f|\\le M$, on applique ce résultat à l'encadrement $-M\\le f\\le M$.\n\n**Égalité de la moyenne.** Une fonction continue sur le segment $[a,b]$ est bornée et atteint ses bornes (théorème démontré en L1, admis ici) : il existe $x_1,x_2\\in[a,b]$ tels que $f(x_1)\\le f(x)\\le f(x_2)$ pour tout $x\\in[a,b]$. L'inégalité de la moyenne donne $f(x_1)\\le\\mu\\le f(x_2)$. Le théorème des valeurs intermédiaires, appliqué à $f$ continue sur le segment d'extrémités $x_1$ et $x_2$, fournit $c$ entre $x_1$ et $x_2$, donc dans $[a,b]$, tel que $f(c)=\\mu$.",
+      "exemple": "Valeur moyenne de $\\sin$ sur $[0,\\pi]$ : $\\mu=\\frac1\\pi\\int_0^\\pi\\sin x\\,\\mathrm{d}x=\\frac1\\pi\\big[-\\cos x\\big]_0^\\pi=\\frac2\\pi\\approx0{,}64$. Elle est comprise entre $0$ et $1$, comme l'impose l'inégalité de la moyenne, et elle est atteinte en deux points de $[0,\\pi]$ symétriques par rapport à $\\frac\\pi2$ ; ce n'est pas $\\frac{\\sin0+\\sin\\pi}{2}=0$.",
+      "contre_exemple": "- **La continuité compte pour l'égalité de la moyenne** : sur $[0,1]$, $f(x)=0$ pour $x<\\frac12$ et $f(x)=1$ pour $x\\ge\\frac12$ (fonction croissante) a pour valeur moyenne $\\frac12$ (aire d'un rectangle de côtés $\\frac12$ et $1$), valeur que $f$ ne prend jamais.\n- **L'encadrement doit valoir sur tout $[a,b]$** : $f(x)=4x(1-x)$ vérifie $f(0)=f(1)=0$, mais $\\int_0^1f(x)\\,\\mathrm{d}x=\\frac23>0\\times(1-0)$.\n- **La valeur moyenne n'est pas la moyenne des valeurs aux bornes** : pour $f(x)=x^2$ sur $[0,1]$, $\\mu=\\frac13$ alors que $\\frac{f(0)+f(1)}{2}=\\frac12$.",
+      "affirmations": [
+        {
+          "texte": "La valeur moyenne d'une fonction continue $f$ sur $[a,b]$ est $\\frac{f(a)+f(b)}{2}$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2$ sur $[0,1]$ : $\\mu=\\int_0^1x^2\\,\\mathrm{d}x=\\frac13$, alors que $\\frac{f(0)+f(1)}{2}=\\frac12$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ (avec $a<b$), il existe $c\\in[a,b]$ tel que $\\int_a^b f(x)\\,\\mathrm{d}x=(b-a)f(c)$.",
+          "vrai": true,
+          "justification": "C'est l'égalité de la moyenne : $f$ atteint son minimum et son maximum, qui encadrent $\\mu$ ; le théorème des valeurs intermédiaires donne $c$ tel que $f(c)=\\mu$."
+        },
+        {
+          "texte": "La valeur moyenne de $f^2$ sur $[a,b]$ est le carré de la valeur moyenne de $f$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x$ sur $[0,1]$ : la valeur moyenne de $f^2$ est $\\frac13$, le carré de celle de $f$ est $\\left(\\frac12\\right)^2=\\frac14$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[0,2]$ et $0\\le f\\le1$, alors $\\int_0^2f(x)\\,\\mathrm{d}x\\le1$.",
+          "vrai": false,
+          "contre_exemple": "$f=1$ : $\\int_0^2 1\\,\\mathrm{d}x=2$. L'inégalité de la moyenne donne seulement $\\int_0^2f\\le1\\times(2-0)=2$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-proprietes",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "int-t-integrale-aire",
+      "theme": "integration",
+      "niveau": "terminale",
+      "chapitre": "int-t-integrale",
+      "type": "theoreme",
+      "titre": "Intégrale et aire entre deux courbes",
+      "recto": "Énoncer la formule de l'aire du domaine compris entre deux courbes, avec ses hypothèses.",
+      "cours": "L'intégrale d'une fonction de signe quelconque est une aire **algébrique** : les parties situées sous l'axe des abscisses comptent négativement. Pour calculer une vraie aire, il faut donc savoir quelle courbe est au-dessus de l'autre. Si $f\\le g$ sur $[a,b]$, l'aire comprise entre les deux courbes est $\\int_a^b(g-f)$, et cela reste vrai quand les courbes passent sous l'axe : une translation verticale ne change ni l'aire ni la différence $g-f$.\n\nMéthode : (1) chercher les abscisses où les courbes se coupent, en résolvant $f(x)=g(x)$ ; (2) étudier le signe de $g-f$ sur chaque intervalle obtenu ; (3) intégrer $g-f$ ou $f-g$ selon le cas, puis additionner les morceaux grâce à Chasles. Pour un domaine borné limité par deux courbes, les bornes d'intégration sont justement les abscisses des points d'intersection.\n\nLe piège principal est de calculer directement $\\int_a^b(g-f)$, ou sa valeur absolue, alors que les courbes se croisent : les morceaux de signes opposés se compensent et le résultat n'est pas l'aire. Une aire est toujours positive ; un résultat négatif signale une erreur d'ordre.",
+      "hypotheses": [
+        "$a<b$.",
+        "$f$ et $g$ sont continues sur $[a,b]$.",
+        "$f\\le g$ sur $[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ et $g$ sont positives sur $[a,b]$.",
+        "Il suffit que $f(a)\\le g(a)$ et $f(b)\\le g(b)$.",
+        "$f$ et $g$ sont dérivables sur $[a,b]$."
+      ],
+      "enonce": "Soient $f$ et $g$ continues sur $[a,b]$, avec $a<b$ et $f\\le g$ sur $[a,b]$. L'aire, en unités d'aire, du domaine $\\mathcal{D}=\\{(x,y)\\,:\\,a\\le x\\le b,\\ f(x)\\le y\\le g(x)\\}$ compris entre les deux courbes et les droites d'équations $x=a$ et $x=b$ est\n$$\\mathcal{A}(\\mathcal{D})=\\int_a^b\\big(g(x)-f(x)\\big)\\,\\mathrm{d}x.$$\nSans hypothèse d'ordre, cette aire vaut $\\int_a^b|g(x)-f(x)|\\,\\mathrm{d}x$ : on découpe $[a,b]$ aux points où $g-f$ change de signe. En particulier, pour $g$ continue de signe quelconque, $\\int_a^b g(x)\\,\\mathrm{d}x$ est l'aire située au-dessus de l'axe des abscisses moins l'aire située en dessous.",
+      "enonce_trous": "Soient $f$ et $g$ continues sur $[a,b]$, avec $a<b$ et {{1}}. L'aire du domaine compris entre les deux courbes et les droites d'équations $x=a$ et $x=b$ vaut {{2}}.",
+      "trous": [
+        {
+          "reponse": "$f\\le g$ sur $[a,b]$",
+          "leurres": [
+            "$f(a)\\le g(a)$ et $f(b)\\le g(b)$",
+            "$f\\ge0$ et $g\\ge0$ sur $[a,b]$",
+            "$f\\le g$ en au moins un point de $[a,b]$"
+          ]
+        },
+        {
+          "reponse": "$\\int_a^b\\big(g(x)-f(x)\\big)\\,\\mathrm{d}x$",
+          "leurres": [
+            "$\\int_a^b\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x$",
+            "$\\left|\\int_a^b g(x)\\,\\mathrm{d}x\\right|-\\left|\\int_a^b f(x)\\,\\mathrm{d}x\\right|$",
+            "$\\int_a^b\\big(g(x)^2-f(x)^2\\big)\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "On admet, comme en Terminale, les propriétés de l'aire : additivité pour deux domaines qui ne se rencontrent que le long d'une courbe (d'aire nulle), invariance par translation, et, pour $h$ continue et positive sur $[a,b]$, aire du domaine sous la courbe égale à $\\int_a^b h(x)\\,\\mathrm{d}x$.\n\n**Cas $0\\le f\\le g$.** Le domaine sous la courbe de $g$ est la réunion de $\\mathcal{D}$ et du domaine sous la courbe de $f$, qui ne se rencontrent que le long de la courbe de $f$. Donc $\\int_a^b g=\\mathcal{A}(\\mathcal{D})+\\int_a^b f$, et $\\mathcal{A}(\\mathcal{D})=\\int_a^b(g-f)$ par linéarité.\n\n**Cas général.** $f$ est continue sur le segment $[a,b]$, donc minorée (elle est bornée, théorème démontré en L1) : il existe un réel $k$ tel que $f+k\\ge0$ sur $[a,b]$. La translation de $k$ unités vers le haut envoie $\\mathcal{D}$ sur le domaine compris entre les courbes de $f+k$ et $g+k$, de même aire ; par le premier cas, $\\mathcal{A}(\\mathcal{D})=\\int_a^b\\big((g+k)-(f+k)\\big)=\\int_a^b(g-f)$.\n\n**Sans hypothèse d'ordre.** Le domaine est compris entre les courbes de $\\min(f,g)$ et $\\max(f,g)$, fonctions continues, et $\\max(f,g)-\\min(f,g)=|g-f|$ : l'aire vaut $\\int_a^b|g-f|$.",
+      "exemple": "Entre les courbes $y=x^3$ et $y=x$ sur $[0,1]$ : pour $x\\in[0,1]$, $x^3\\le x$, donc l'aire vaut $\\int_0^1(x-x^3)\\,\\mathrm{d}x=\\frac12-\\frac14=\\frac14$.",
+      "contre_exemple": "- **Une intégrale n'est pas une aire quand le signe change** : $\\int_{-1}^1x\\,\\mathrm{d}x=0$, alors que le domaine compris entre la droite $y=x$, l'axe des abscisses et les droites $x=-1$, $x=1$ a pour aire $\\frac12+\\frac12=1$.\n- **L'ordre doit valoir sur tout $[a,b]$, pas seulement aux bornes** : $f(x)=4x(1-x)$ et $g=0$ sur $[0,1]$ vérifient $f(0)=g(0)$ et $f(1)=g(1)$, mais $\\int_0^1(g-f)=-\\frac23<0$ n'est pas une aire ; l'aire vaut $\\frac23$.\n- **Les courbes peuvent se croiser** : pour $f(x)=x^2$ et $g(x)=x$ sur $[0,2]$, $\\int_0^2(g-f)=2-\\frac83=-\\frac23$, alors que l'aire vaut $\\int_0^1(x-x^2)\\,\\mathrm{d}x+\\int_1^2(x^2-x)\\,\\mathrm{d}x=\\frac16+\\frac56=1$.",
+      "affirmations": [
+        {
+          "texte": "L'aire comprise entre les courbes de $f$ et $g$ (continues) et les droites $x=a$, $x=b$ vaut $\\left|\\int_a^b\\big(g(x)-f(x)\\big)\\,\\mathrm{d}x\\right|$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2$, $g(x)=x$ sur $[0,2]$ : $\\left|\\int_0^2(x-x^2)\\,\\mathrm{d}x\\right|=\\frac23$, alors que l'aire vaut $\\frac16+\\frac56=1$ (les courbes se croisent en $x=1$)."
+        },
+        {
+          "texte": "Si $f\\le g$ sur $[a,b]$, l'aire comprise entre les courbes vaut $\\int_a^b\\big(g(x)-f(x)\\big)\\,\\mathrm{d}x$, même si $f$ et $g$ prennent des valeurs négatives.",
+          "vrai": true,
+          "justification": "Une translation verticale ramène au cas $0\\le f\\le g$ sans changer ni l'aire ni la différence $g-f$."
+        },
+        {
+          "texte": "Pour $f$ continue sur $[a,b]$, $\\int_a^b f(x)\\,\\mathrm{d}x$ est l'aire du domaine compris entre la courbe de $f$, l'axe des abscisses et les droites $x=a$, $x=b$.",
+          "vrai": false,
+          "contre_exemple": "$\\int_{-1}^1x\\,\\mathrm{d}x=0$, alors que ce domaine a pour aire $1$. L'intégrale est une aire algébrique ; l'aire est $\\int_a^b|f(x)|\\,\\mathrm{d}x$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-proprietes"
+      ]
+    }
+  ]
+}

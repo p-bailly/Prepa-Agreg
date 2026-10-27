@@ -523,4 +523,326 @@ assert 41 * (-7) == -287 and 29 * 10 == 290
 # arith-t-bezout-ex3 : n = 0 donne A = 4, B = 3, d = 1 ; 2026 = 5 × 405 + 1.
 assert gcd(4, 3) == 1 and 2026 == 5 * 405 + 1 and 2030 == 5 * 406 and 4055 == 5 * 811
 
+
+# ===========================================================================
+# Enrichissement (lot enr-arithmetique) : variantes (variante k = variantes[k-1]) et exercices ajoutés.
+# ===========================================================================
+import json
+import pathlib
+
+from sympy import isprime, factorint, fibonacci, mod_inverse, Symbol
+
+RACINE = pathlib.Path(__file__).resolve().parent.parent
+EXOS = {}
+for niv in ("terminale", "l1"):
+    for e in json.loads((RACINE / f"content/exercices/arithmetique/{niv}.json").read_text())["exercices"]:
+        EXOS[e["id"]] = e
+
+
+def rf(ident, k=0):
+    """reponse_finale de l'exercice (k = 0) ou de sa variante k."""
+    e = EXOS[ident]
+    return e["reponse_finale"] if k == 0 else e["variantes"][k - 1]["reponse_finale"]
+
+
+def bonne(ident, k, attendu, leurres):
+    """La proposition juste est `attendu`, les leurres sont exactement `leurres` (tous distincts)."""
+    r = rf(ident, k)
+    assert r["propositions"][r["bonne"]] == attendu, (ident, k, r["propositions"][r["bonne"]])
+    autres = [x for i, x in enumerate(r["propositions"]) if i != r["bonne"]]
+    assert autres == leurres and len(set(r["propositions"])) == 4, (ident, k)
+
+
+def nb_variantes(ident):
+    return len(EXOS[ident].get("variantes", []))
+
+
+# Règle du lot : 3 à 6 exercices par carte, une difficulté 1-2 et une 4-5 ; 2 variantes pour chaque exercice
+# à valeurs numériques (seuls arith-t-gauss-ex2 et arith-t-fermat-ex3, purs exercices de démonstration, n'en ont pas).
+for carte in ["arith-t-division-euclidienne", "arith-t-bezout", "arith-t-gauss", "arith-t-fermat",
+              "arith-l1-chinois", "arith-l1-racines-polynome"]:
+    ds = [e["difficulte"] for e in EXOS.values() if e["carte"] == carte]
+    assert 3 <= len(ds) <= 6 and min(ds) <= 2 and max(ds) >= 4, carte
+for ident, e in EXOS.items():
+    attendu = 0 if ident in ("arith-t-gauss-ex2", "arith-t-fermat-ex3") else 2
+    assert nb_variantes(ident) == attendu, ident
+
+
+# --- arith-t-division-euclidienne-ex1, variantes 1 et 2 : -1789 par 9, -3005 par 11.
+assert 1789 == 9 * 198 + 7 and -1789 == 9 * (-198) - 7
+assert est_division_euclidienne(-1789, 9, -199, 2) and divmod(-1789, 9) == (-199, 2)
+for q, r in [(-198, -7), (-198, 7), (-199, -2)]:  # leurres v1
+    assert not est_division_euclidienne(-1789, 9, q, r)
+assert 3005 == 11 * 273 + 2 and -3005 == 11 * (-273) - 2
+assert est_division_euclidienne(-3005, 11, -274, 9) and divmod(-3005, 11) == (-274, 9)
+for q, r in [(-273, -2), (-273, 2), (-274, -9)]:  # leurres v2
+    assert not est_division_euclidienne(-3005, 11, q, r)
+bonne("arith-t-division-euclidienne-ex1", 1, "$q = -199$, $r = 2$", ["$q = -198$, $r = -7$", "$q = -198$, $r = 7$", "$q = -199$, $r = -2$"])
+bonne("arith-t-division-euclidienne-ex1", 2, "$q = -274$, $r = 9$", ["$q = -273$, $r = -2$", "$q = -273$, $r = 2$", "$q = -274$, $r = -9$"])
+
+# --- arith-t-division-euclidienne-ex2, v1 : 10^6 + 3 ≡ 3 [4] ; v2 : 2^10 - 1 = 1023 ≡ 3 [4] (donc pas sommes de deux carrés).
+assert 10 ** 6 == 4 * 250000 and 10 ** 6 + 3 == 4 * 250000 + 3
+assert 2 ** 10 - 1 == 1023 == 4 * 255 + 3
+for N in (10 ** 6 + 3, 1023):
+    assert not any(sympy.sqrt(N - x * x).is_integer for x in range(0, sympy.floor(sympy.sqrt(N)) + 1))
+
+# --- arith-t-division-euclidienne-ex3, v1 : a ≡ 11 [18] ; v2 : a ≡ 8 [15].
+k = symbols("k", integer=True)
+for m, r, d, e, opp, rd, a2, carre in [(18, 11, 6, 4, 7, 5, 29, 13), (15, 8, 5, 6, 7, 3, 23, 4)]:
+    for kk in range(-40, 41):
+        a = m * kk + r
+        assert (-a) % m == opp and a % d == rd and (a * a) % m == carre
+    assert {(m * kk + r) % e for kk in range(-40, 41)} != {r % e}  # reste par e non déterminé
+    assert r % e != a2 % e and a2 == m + r
+assert expand(-(18 * k + 11) - (18 * (-k - 1) + 7)) == 0 and expand((18 * k + 11) - (6 * (3 * k + 1) + 5)) == 0
+assert expand((18 * k + 11) ** 2 - (18 * (18 * k ** 2 + 22 * k + 6) + 13)) == 0
+assert 11 == 4 * 2 + 3 and 29 == 4 * 7 + 1
+assert expand(-(15 * k + 8) - (15 * (-k - 1) + 7)) == 0 and expand((15 * k + 8) - (5 * (3 * k + 1) + 3)) == 0
+assert expand((15 * k + 8) ** 2 - (15 * (15 * k ** 2 + 16 * k + 4) + 4)) == 0
+assert 8 == 6 * 1 + 2 and 23 == 6 * 3 + 5
+bonne("arith-t-division-euclidienne-ex3", 1, "$7$", ["$-11$", "$11$", "$-7$"])
+bonne("arith-t-division-euclidienne-ex3", 2, "$7$", ["$-8$", "$8$", "$-7$"])
+
+# --- arith-t-division-euclidienne-ex4 (ajouté) : reste de 2^a - 1 par 2^b - 1 = 2^r - 1.
+x, q = symbols("x q")
+for qq in range(1, 8):
+    assert expand(x ** qq - 1 - (x - 1) * sum(x ** i for i in range(qq))) == 0
+for b in range(1, 13):
+    for a in range(0, 80):
+        assert (2 ** a - 1) % (2 ** b - 1) == 2 ** (a % b) - 1, (a, b)
+        qq, r = divmod(a, b)
+        m_ = sum(2 ** (b * i) for i in range(qq))
+        assert 2 ** a - 1 == (2 ** b - 1) * 2 ** r * m_ + (2 ** r - 1)
+# Exercice : 2^100 - 1 par 127 ; v1 : 2^75 - 1 par 255 ; v2 : 2^64 - 1 par 31.
+for k_, (a, b, r, reste) in enumerate([(100, 7, 2, 3), (75, 8, 3, 7), (64, 5, 4, 15)]):
+    assert a % b == r and (2 ** a - 1) % (2 ** b - 1) == reste == 2 ** r - 1
+    assert pow(2, a, 2 ** b - 1) == reste + 1  # leurre « reste de 2^a »
+    assert reste not in (reste + 1, r, 0)  # leurres faux
+    bonne("arith-t-division-euclidienne-ex4", k_, f"${reste}$", [f"${reste + 1}$", f"${r}$", "$0$"])
+assert 100 == 7 * 14 + 2 and 75 == 8 * 9 + 3 and 64 == 5 * 12 + 4
+# Question 4 : l'affirmation sur 2^a + 1 est fausse (a, b) = (3, 2), (5, 3), (4, 3).
+for a, b, val, quo, reste in [(3, 2, 9, 1, 4), (5, 3, 33, 3, 6), (4, 3, 17, 1, 8)]:
+    r = a % b
+    assert 2 ** a + 1 == val == (2 ** b + 1) * quo + reste and 0 <= reste < 2 ** b + 1 and reste != 2 ** r + 1
+    assert 2 ** a + 1 == 2 ** r * (2 ** (b * (a // b)) - 1) + 2 ** r + 1
+    assert (2 ** (b * (a // b)) - 1) % (2 ** b + 1) != 0
+
+# --- arith-t-bezout-ex1, v1 : (-2)(5n + 7) + 5(2n + 3) = 1 ; v2 : 3(4n + 3) - 4(3n + 2) = 1.
+n = symbols("n", integer=True)
+assert expand(-2 * (5 * n + 7) + 5 * (2 * n + 3)) == 1
+assert expand(3 * (4 * n + 3) - 4 * (3 * n + 2)) == 1
+assert all(gcd(5 * t + 7, 2 * t + 3) == 1 and gcd(4 * t + 3, 3 * t + 2) == 1 for t in range(-200, 201))
+
+# --- arith-t-bezout-ex2, v1 : 53u + 37v = 1 ; v2 : 47u + 30v = 1.
+assert 53 == 37 * 1 + 16 and 37 == 16 * 2 + 5 and 16 == 5 * 3 + 1
+assert 7 * 16 - 3 * 37 == 1 and 7 * 53 - 10 * 37 == 1 and 53 * 7 == 371 and 37 * 10 == 370
+for u, v in [(-7, 10), (-10, 7), (6, -9)]:  # leurres v1
+    assert 53 * u + 37 * v != 1
+assert 47 == 30 + 17 and 30 == 17 + 13 and 17 == 13 + 4 and 13 == 4 * 3 + 1
+assert 4 * 13 - 3 * 17 == 1 and 4 * 30 - 7 * 17 == 1 and 11 * 30 - 7 * 47 == 1 and 47 * 7 == 329 and 30 * 11 == 330
+for u, v in [(7, -11), (11, -7), (-6, 10)]:  # leurres v2
+    assert 47 * u + 30 * v != 1
+bonne("arith-t-bezout-ex2", 1, "$(7, -10)$", ["$(-7, 10)$", "$(-10, 7)$", "$(6, -9)$"])
+bonne("arith-t-bezout-ex2", 2, "$(-7, 11)$", ["$(7, -11)$", "$(11, -7)$", "$(-6, 10)$"])
+
+# --- arith-t-bezout-ex3, v1 : (n + 3) ∧ (3n + 2) = 7 ssi n ≡ 4 [7] ; v2 : (n + 2) ∧ (4n + 5) = 3 ssi n ≡ 1 [3].
+assert expand(3 * (n + 3) - (3 * n + 2)) == 7 and expand(4 * (n + 2) - (4 * n + 5)) == 3
+for t in range(-300, 301):
+    assert 3 * t + 2 != 0 and 4 * t + 5 != 0
+    assert gcd(t + 3, 3 * t + 2) == (7 if t % 7 == 4 else 1)
+    assert gcd(t + 2, 4 * t + 5) == (3 if t % 3 == 1 else 1)
+assert gcd(3, 2) == 1 and gcd(2, 5) == 1  # n = 0
+assert 2026 == 7 * 289 + 3 and 2029 == 7 * 289 + 6 and gcd(2029, 3 * 2026 + 2) == 1
+assert 2026 == 3 * 675 + 1 and 2028 == 3 * 676 and 4 * 2026 + 5 == 8109 == 3 * 2703 and gcd(2028, 8109) == 3
+bonne("arith-t-bezout-ex3", 1, "$1$", ["$7$", "$14$", "$49$"])
+bonne("arith-t-bezout-ex3", 2, "$3$", ["$1$", "$9$", "$6$"])
+
+# --- arith-t-bezout-ex4 (ajouté) : Cassini F(n+1)F(n-1) - F(n)^2 = (-1)^n et coefficients de Bézout.
+F = [fibonacci(i) for i in range(40)]
+assert F[0] == 0 and F[1] == 1 and all(F[i + 2] == F[i + 1] + F[i] for i in range(38))
+for i in range(1, 39):
+    assert F[i + 1] * F[i - 1] - F[i] ** 2 == (-1) ** i
+    u, v = (-1) ** i * F[i - 1], (-1) ** (i + 1) * F[i]
+    assert u * F[i + 1] + v * F[i] == 1 and gcd(F[i], F[i + 1]) == 1
+    assert i + 2 >= 40 or (u * F[i + 2] + (v - u) * F[i] == 1 and gcd(F[i], F[i + 2]) == 1)
+assert (F[9], F[10], F[11], F[12], F[8]) == (34, 55, 89, 144, 21)
+for k_, (A, B, sol, leurres) in enumerate([
+    (89, 55, (34, -55), [(-34, 55), (21, -34), (55, -89)]),
+    (144, 89, (-55, 89), [(55, -89), (-34, 55), (89, -144)]),
+    (55, 34, (-21, 34), [(21, -34), (-13, 21), (34, -55)]),
+]):
+    assert A * sol[0] + B * sol[1] == 1
+    for u, v in leurres:
+        assert A * u + B * v != 1, (A, B, u, v)
+    bonne("arith-t-bezout-ex4", k_, f"$({sol[0]}, {sol[1]})$", [f"$({u}, {v})$" for u, v in leurres])
+assert 89 * 34 == 3026 and 55 * 55 == 3025 and 89 * 21 == 1869 and 55 * 34 == 1870
+assert 144 * 55 == 7920 and 89 * 89 == 7921 and 144 * 34 == 4896 and 89 * 55 == 4895
+assert 55 * 21 == 1155 and 34 * 34 == 1156 and 55 * 13 == 715 and 34 * 21 == 714
+
+# --- arith-t-gauss-ex1, v1 : 15 ∧ 22 = 1 ; v2 : 8 ∧ 35 = 1.
+assert gcd(15, 22) == 1 and gcd(8, 35) == 1 and 22 == 2 * 11 and 35 == 5 * 7
+assert all((22 * t) % 15 != 0 or t % 15 == 0 for t in range(-300, 301))
+assert all((35 * t) % 8 != 0 or t % 8 == 0 for t in range(-300, 301))
+
+# --- arith-t-gauss-ex3, v1 : 53x + 37y = 2 ; v2 : 47x + 30y = 4.
+for a, b, c, (u, v), (x0, y0), oubli in [(53, 37, 2, (7, -10), (14, -20), (51, -73)), (47, 30, 4, (-7, 11), (2, -3), (32, -50))]:
+    assert a * u + b * v == 1 and a * x0 + b * y0 == c
+    sols = {(xx, yy) for xx in range(-400, 401) for yy in [(c - a * xx) // b] if a * xx + b * yy == c}
+    attendu = {(x0 + b * t, y0 - a * t) for t in range(-30, 31)}
+    assert {s for s in sols if -400 <= s[0] <= 400} == {s for s in attendu if -400 <= s[0] <= 400}
+    assert a * oubli[0] + b * oubli[1] == c and (oubli[0] - x0) % (c * b) != 0  # solution manquée par le pas c(b, -a)
+    assert a * (x0 + a) + b * (y0 - b) != c and a * (x0 + b) + b * (y0 + a) != c  # leurres 2 et 3 contiennent des non-solutions
+assert 53 * 14 == 742 and 37 * 20 == 740 and (2 * 7, 2 * (-10)) == (14, -20)
+assert (4 * (-7), 4 * 11) == (-28, 44) and (-28 + 30, 44 - 47) == (2, -3) and 47 * 2 == 94 and 30 * 3 == 90
+bonne("arith-t-gauss-ex3", 1, r"$\{(14 + 37k,\ -20 - 53k) : k \in \mathbb{Z}\}$",
+      [r"$\{(14 + 53k,\ -20 - 37k) : k \in \mathbb{Z}\}$", r"$\{(14 + 37k,\ -20 + 53k) : k \in \mathbb{Z}\}$",
+       r"$\{(14 + 74k,\ -20 - 106k) : k \in \mathbb{Z}\}$"])
+bonne("arith-t-gauss-ex3", 2, r"$\{(2 + 30k,\ -3 - 47k) : k \in \mathbb{Z}\}$",
+      [r"$\{(2 + 47k,\ -3 - 30k) : k \in \mathbb{Z}\}$", r"$\{(2 + 30k,\ -3 + 47k) : k \in \mathbb{Z}\}$",
+       r"$\{(2 + 120k,\ -3 - 188k) : k \in \mathbb{Z}\}$"])
+
+# --- arith-t-gauss-ex4, v1 : 20 | n² ⇔ 10 | n ; v2 : 45 | n² ⇔ 15 | n ; leurres faux.
+for N, m in [(20, 10), (45, 15)]:
+    assert {t for t in range(-500, 501) if (t * t) % N == 0} == {t for t in range(-500, 501) if t % m == 0}
+    assert (m * m) % N == 0 and m % N != 0  # pas N Z
+assert 10 ** 2 == 100 == 5 * 20 and 25 % 20 != 0 and 4 % 20 != 0 and 15 ** 2 == 225 == 5 * 45 and 25 % 45 != 0 and 9 % 45 != 0
+bonne("arith-t-gauss-ex4", 1, r"$10\mathbb{Z}$", [r"$20\mathbb{Z}$", r"$5\mathbb{Z}$", r"$2\mathbb{Z} \cup 5\mathbb{Z}$"])
+bonne("arith-t-gauss-ex4", 2, r"$15\mathbb{Z}$", [r"$45\mathbb{Z}$", r"$5\mathbb{Z}$", r"$3\mathbb{Z} \cup 5\mathbb{Z}$"])
+
+# --- arith-t-fermat-ex1, v1 : 3^2027 ≡ 9 [13] ; v2 : 7^2026 ≡ 2 [17].
+assert isprime(13) and isprime(17) and 2027 == 12 * 168 + 11 and 2026 == 16 * 126 + 10
+assert pow(3, 2027, 13) == 9 == pow(3, 11, 13) and 27 == 2 * 13 + 1
+assert pow(7, 2026, 17) == 2 == pow(7, 10, 17) and 49 == 3 * 17 - 2 and pow(7, 4, 17) == 4 and pow(7, 8, 17) == 16
+bonne("arith-t-fermat-ex1", 1, "$9$", ["$1$", "$3$", "$12$"])
+bonne("arith-t-fermat-ex1", 2, "$2$", ["$1$", "$7$", "$15$"])
+
+# --- arith-t-fermat-ex2, v1 : 5^{-1} ≡ 7 [17], 5x ≡ 3 ⇔ x ≡ 4 ; v2 : 4^{-1} ≡ 3 [11], 4x ≡ 9 ⇔ x ≡ 5.
+assert mod_inverse(5, 17) == 7 == pow(5, 15, 17) and 35 == 2 * 17 + 1 and 21 % 17 == 4 and 20 % 17 == 3
+assert [t for t in range(17) if (5 * t) % 17 == 3] == [4] and all((5 * t) % 17 != 3 for t in (7, 3, 15))
+assert mod_inverse(4, 11) == 3 == pow(4, 9, 11) and 12 == 11 + 1 and 27 % 11 == 5 and 20 % 11 == 9
+assert [t for t in range(11) if (4 * t) % 11 == 9] == [5] and all((4 * t) % 11 != 9 for t in (3, 9, 8))
+bonne("arith-t-fermat-ex2", 1, "$4$", ["$7$", "$3$", "$15$"])
+bonne("arith-t-fermat-ex2", 2, "$5$", ["$3$", "$9$", "$8$"])
+
+# --- arith-t-fermat-ex4, v1 : 2047 = 23 × 89 ; v2 : 1387 = 19 × 73 (pseudo-premiers de Fermat en base 2).
+assert factorint(2047) == {23: 1, 89: 1} and 2 ** 11 == 2048 == 2047 + 1 and 2046 == 11 * 186 and pow(2, 2046, 2047) == 1
+assert 2046 == 88 * 23 + 22 and pow(3, 2046, 89) == 34 == pow(3, 22, 89)
+assert 81 - 89 == -8 and 64 * 64 == 4096 == 46 * 89 + 2 and (2 * (-8) * 9) == -144 and -144 + 2 * 89 == 34
+assert 2046 == 22 * 93 and pow(3, 2046, 23) == 1 and pow(3, 2046, 2047) != 1
+assert factorint(1387) == {19: 1, 73: 1} and 2 ** 9 == 512 == 7 * 73 + 1 and 1386 == 9 * 154 == 18 * 77
+assert pow(2, 1386, 73) == 1 and pow(2, 1386, 19) == 1 and pow(2, 1386, 1387) == 1
+assert 1386 == 72 * 19 + 18 and pow(3, 1386, 73) == 72 == pow(3, 18, 73)
+assert 81 % 73 == 8 and 64 - 73 == -9 and 81 % 73 == 8 and (8 * 9) % 73 == 72 and pow(3, 1386, 1387) != 1
+bonne("arith-t-fermat-ex4", 1, "$34$", ["$1$", "$9$", "$55$"])
+bonne("arith-t-fermat-ex4", 2, "$72$", ["$1$", "$9$", "$8$"])
+
+# --- arith-l1-chinois-ex1, v1 : x ≡ 1 [3], x ≡ 2 [5] → 7 + 15Z ; v2 : x ≡ 3 [4], x ≡ 4 [5] → 19 + 20Z.
+assert solutions_systeme(1, 3, 2, 5, 60) == [7, 22, 37, 52] and [t % 3 for t in (2, 7, 12)] == [2, 1, 0]
+assert solutions_systeme(3, 4, 4, 5, 80) == [19, 39, 59, 79] and [t % 4 for t in (4, 9, 14, 19)] == [0, 1, 2, 3]
+assert 7 == 3 * 2 + 1 == 5 * 1 + 2 and 19 == 4 * 4 + 3 == 5 * 3 + 4
+bonne("arith-l1-chinois-ex1", 1, "$7$", ["$2$", "$12$", "$22$"])  # 22 est solution mais pas la plus petite
+bonne("arith-l1-chinois-ex1", 2, "$19$", ["$3$", "$4$", "$39$"])
+
+# --- arith-l1-chinois-ex2, v1 : x ≡ 3 [7], x ≡ 5 [8] → 45 + 56Z ; v2 : x ≡ 2 [5], x ≡ 9 [13] → 22 + 65Z.
+assert 7 * (-1) + 8 * 1 == 1 and 3 * 8 * 1 + 5 * 7 * (-1) == -11 == 7 * (-2) + 3 == 8 * (-2) + 5 and -11 % 56 == 45
+assert solutions_systeme(3, 7, 5, 8, 56) == [45] and 60 == 7 * 8 + 4
+assert 5 * (-5) + 13 * 2 == 1 and 2 * 13 * 2 + 9 * 5 * (-5) == -173 == 5 * (-35) + 2 == 13 * (-14) + 9 and -173 % 65 == 22
+assert solutions_systeme(2, 5, 9, 13, 65) == [22] and 40 == 5 * 8
+for c, mod, (a, m, b, n) in [(45, 15, (3, 7, 5, 8)), (24, 56, (3, 7, 5, 8)), (35, 56, (3, 7, 5, 8)),
+                             (22, 18, (2, 5, 9, 13)), (52, 65, (2, 5, 9, 13)), (9, 65, (2, 5, 9, 13))]:
+    classe = {c + mod * t for t in range(-5, 6)}
+    assert any((y - a) % m or (y - b) % n for y in classe)  # chaque leurre contient une non-solution
+bonne("arith-l1-chinois-ex2", 1, r"$45 + 56\mathbb{Z}$", [r"$45 + 15\mathbb{Z}$", r"$24 + 56\mathbb{Z}$", r"$35 + 56\mathbb{Z}$"])
+bonne("arith-l1-chinois-ex2", 2, r"$22 + 65\mathbb{Z}$", [r"$22 + 18\mathbb{Z}$", r"$52 + 65\mathbb{Z}$", r"$9 + 65\mathbb{Z}$"])
+
+# --- arith-l1-chinois-ex3, v1 : φ(91) = 72 ; v2 : φ(85) = 64.
+assert totient(91) == 72 == 6 * 12 and 91 - 13 - 7 + 1 == 72 and totient(85) == 64 == 4 * 16 and 85 - 17 - 5 + 1 == 64
+assert len(range(0, 91, 7)) == 13 and len(range(0, 91, 13)) == 7 and len(range(0, 85, 5)) == 17 and len(range(0, 85, 17)) == 5
+assert all(t not in (72, 64) for t in (90, 84, 78, 80, 68))
+bonne("arith-l1-chinois-ex3", 1, "$72$", ["$90$", "$84$", "$78$"])
+bonne("arith-l1-chinois-ex3", 2, "$64$", ["$84$", "$80$", "$68$"])
+
+# --- arith-l1-chinois-ex4, v1 : x ≡ 5 [12], x ≡ 11 [18] → 29 + 36Z ; x ≡ 1 [12], x ≡ 4 [18] sans solution.
+assert gcd(12, 18) == 6 and lcm(12, 18) == 36 and 12 * (-1) + 18 * 1 == 6 and 5 - 11 == 6 * (-1)
+assert 5 - 12 * (-1) * (-1) == -7 == 12 * (-1) + 5 == 18 * (-1) + 11 and -7 % 36 == 29
+assert solutions_systeme(5, 12, 11, 18, 216) == [29, 65, 101, 137, 173, 209] and solutions_systeme(1, 12, 4, 18, 216) == []
+assert (1 - 4) % 6 != 0 and 65 % 12 == 5 and 65 % 18 == 11 and (65 - 29) % 216 != 0 and 11 % 12 != 5
+# v2 : x ≡ 7 [15], x ≡ 2 [25] → 52 + 75Z ; x ≡ 1 [15], x ≡ 3 [25] sans solution.
+assert gcd(15, 25) == 5 and lcm(15, 25) == 75 and 15 * 2 + 25 * (-1) == 5 and 7 - 2 == 5 * 1
+assert 7 - 15 * 2 * 1 == -23 == 15 * (-2) + 7 == 25 * (-1) + 2 and -23 % 75 == 52
+assert solutions_systeme(7, 15, 2, 25, 375) == [52, 127, 202, 277, 352] and solutions_systeme(1, 15, 3, 25, 375) == []
+assert (1 - 3) % 5 != 0 and (127 - 52) % 375 != 0 and 2 % 15 != 7
+bonne("arith-l1-chinois-ex4", 1, r"$29 + 36\mathbb{Z}$",
+      [r"$29 + 216\mathbb{Z}$", "L'ensemble vide, car $12$ et $18$ ne sont pas premiers entre eux", r"$11 + 36\mathbb{Z}$"])
+bonne("arith-l1-chinois-ex4", 2, r"$52 + 75\mathbb{Z}$",
+      [r"$52 + 375\mathbb{Z}$", "L'ensemble vide, car $15$ et $25$ ne sont pas premiers entre eux", r"$2 + 75\mathbb{Z}$"])
+
+# --- arith-l1-racines-polynome-ex1, v1 : P = X³ - X, P(3) = 24 ; v2 : P = X² - 2, P(0) = -2.
+assert expand(interpolate([(t, t ** 3 - t) for t in (-1, 0, 1, 2)], X) - (X ** 3 - X)) == 0 and 3 ** 3 - 3 == 24
+assert expand(interpolate([(t, t ** 2 - 2) for t in (1, 2, 3, 4)], X) - (X ** 2 - 2)) == 0
+assert 24 not in (0, 6) and -2 not in (0, 2)
+bonne("arith-l1-racines-polynome-ex1", 1, "$24$", ["$0$", "$6$", "On ne peut pas le déterminer avec ces données"])
+bonne("arith-l1-racines-polynome-ex1", 2, "$-2$", ["$0$", "$2$", "On ne peut pas le déterminer avec ces données"])
+
+# --- arith-l1-racines-polynome-ex2, v1 : 4 racines de X² - 1 dans Z/12Z ; v2 : 8 racines dans Z/24Z.
+assert [t for t in range(12) if (t * t) % 12 == 1] == [1, 5, 7, 11] and 81 == 6 * 12 + 9 and (3 * 4) % 12 == 0
+assert [t for t in range(24) if (t * t) % 24 == 1] == [1, 5, 7, 11, 13, 17, 19, 23] and (4 * 6) % 24 == 0
+assert 25 == 2 * 12 + 1 and 49 == 4 * 12 + 1 and 121 == 10 * 12 + 1 and 25 == 24 + 1 and 49 == 2 * 24 + 1 and 121 == 5 * 24 + 1
+bonne("arith-l1-racines-polynome-ex2", 1, "$4$", ["$2$", "$6$", "$3$"])
+bonne("arith-l1-racines-polynome-ex2", 2, "$8$", ["$2$", "$4$", "$12$"])
+
+# --- arith-l1-racines-polynome-ex3, v1 : Z/21Z → {1, 8, 13, 20} ; v2 : Z/35Z → {1, 6, 29, 34}.
+assert [t for t in range(21) if (t * t) % 21 == 1] == [1, 8, 13, 20] and 64 == 3 * 21 + 1 and (7 * 9) % 21 == 0
+assert (13 % 3, 13 % 7, 8 % 3, 8 % 7) == (1, 6, 2, 1) and (14 * 14) % 21 != 1
+assert [t for t in range(35) if (t * t) % 35 == 1] == [1, 6, 29, 34] and 36 == 35 + 1 and (5 * 7) % 35 == 0
+assert (6 % 5, 6 % 7, 29 % 5, 29 % 7) == (1, 6, 4, 1) and (11 * 11) % 35 != 1
+ENS = lambda *cs: "$\\{" + ", ".join(rf"\overline{{{c}}}" for c in cs) + "\\}$"
+bonne("arith-l1-racines-polynome-ex3", 1, ENS(1, 8, 13, 20), [ENS(1, 20), ENS(1, 8, 20), ENS(1, 8, 14, 20)])
+bonne("arith-l1-racines-polynome-ex3", 2, ENS(1, 6, 29, 34), [ENS(1, 34), ENS(1, 6, 34), ENS(1, 6, 11, 34)])
+
+# --- arith-l1-racines-polynome-ex4, v1 : 16! ≡ 16 [17] ; v2 : 17! ≡ 1 [19].
+assert factorial(16) % 17 == 16 and factorial(18) % 19 == 18 and factorial(17) % 19 == 1
+bonne("arith-l1-racines-polynome-ex4", 1, "$16$", ["$1$", "$0$", "$8$"])
+bonne("arith-l1-racines-polynome-ex4", 2, "$1$", ["$18$", "$0$", "$17$"])
+
+# Les exercices d'origine gardent leur bonne réponse (variante 0).
+bonne("arith-t-division-euclidienne-ex1", 0, "$q = -290$, $r = 4$", ["$q = -289$, $r = -3$", "$q = -289$, $r = 3$", "$q = -290$, $r = -4$"])
+
+# --- Phase 3 (relecture enr-arithmetique) : champs « cours » et introductions de chapitre.
+# arith-t-bezout (cours) : 2 × 2 + 1 × 1 = 5 alors que 2 ∧ 1 = 1 ; si d > 0 divise a et b et d = au + bv, alors d = a ∧ b.
+assert 2 * 2 + 1 * 1 == 5 and gcd(2, 1) == 1
+for a in range(1, 30):
+    for b in range(1, 30):
+        g = gcd(a, b)
+        assert all(not (a % d == 0 and b % d == 0 and any((d - a * u) % b == 0 for u in range(b))) or d == g for d in range(1, 30))
+# arith-t-fermat (cours) : test de Fermat seulement si n ∤ a (5 premier mais 5^4 ≡ 0 [5]) ; 2^340 ≡ 1 [341], 341 composé.
+assert isprime(5) and pow(5, 4, 5) == 0 and pow(2, 340, 341) == 1 and not isprime(341)
+for nn in range(2, 400):
+    for a in range(1, 12):
+        if a % nn and pow(a, nn - 1, nn) != 1:
+            assert not isprime(nn)
+# arith-t-gauss (cours) : 6 | 4 × 3, 6 ∤ 4, 6 ∤ 3.
+assert (4 * 3) % 6 == 0 and 4 % 6 and 3 % 6
+# arith-l1-chinois (cours) : x ≡ 0 [2] et x ≡ 1 [4] sans solution.
+assert solutions_systeme(0, 2, 1, 4, 100) == []
+# arith-l1-racines-polynome (cours) : X² - 1 a 4 racines dans Z/8Z.
+assert [t for t in range(8) if (t * t) % 8 == 1] == [1, 3, 5, 7]
+# Introduction arith-l1-congruences : Euler exige a ∧ n = 1 (2^φ(4) ≡ 0 [4]) ; seuls ±1 sont leur propre inverse modulo p.
+assert pow(2, int(totient(4)), 4) == 0
+for nn in range(2, 60):
+    for a in range(1, nn):
+        if gcd(a, nn) == 1:
+            assert pow(a, int(totient(nn)), nn) == 1
+for pp in [3, 5, 7, 11, 13, 17, 19, 23]:
+    assert [t for t in range(1, pp) if (t * t) % pp == 1] == [1, pp - 1]
+
+# Titres et indices hérités par les variantes : tout nombre cité figure dans l'énoncé de la variante.
+import re
+for ident, e in EXOS.items():
+    for v in e.get("variantes", []):
+        herite = ([] if "titre" in v else [e["titre"]]) + ([] if "indices" in v else e["indices"])
+        for t in herite:
+            for nombre in re.findall(r"\d+", t):
+                assert nombre in ("1", "2") or nombre in re.findall(r"\d+", v["enonce"]), (ident, t, nombre)
+
 print("Toutes les vérifications du thème arithmetique passent.")

@@ -18,6 +18,8 @@ export interface Tentative {
   indices: number
   /** Réponse choisie parmi les propositions, si l'exercice en a. */
   reponse?: 'juste' | 'fausse'
+  /** Variante faite (0 = l'exercice tel qu'écrit ; absent dans les anciennes tentatives). */
+  variante?: number
 }
 
 export interface Signalement {
@@ -40,6 +42,8 @@ export interface ActiviteJour {
 
 export interface Progression {
   volets: Record<string, EtatVolet>
+  /** Notions apprises en leçon : carte → jour où la leçon a été lue. Une carte n'entre en révision qu'une fois apprise. */
+  apprises: Record<string, string>
   exercices: Record<string, Tentative[]>
   jours: Record<string, ActiviteJour>
   signalements: Signalement[]
@@ -47,7 +51,7 @@ export interface Progression {
   dernierMode: Mode | null
 }
 
-export const PROGRESSION_VIDE: Progression = { volets: {}, exercices: {}, jours: {}, signalements: [], dernierMode: null }
+export const PROGRESSION_VIDE: Progression = { volets: {}, apprises: {}, exercices: {}, jours: {}, signalements: [], dernierMode: null }
 export const CLE_PROGRESSION = 'progression-v1'
 
 export function normaliserProgression(brut: unknown): Progression {
@@ -56,6 +60,7 @@ export function normaliserProgression(brut: unknown): Progression {
     x && typeof x === 'object' && !Array.isArray(x) ? (x as Record<string, T>) : {}
   return {
     volets: objet<EtatVolet>(p.volets),
+    apprises: objet<string>(p.apprises),
     exercices: objet<Tentative[]>(p.exercices),
     jours: objet<ActiviteJour>(p.jours),
     signalements: Array.isArray(p.signalements) ? p.signalements : [],
@@ -97,6 +102,13 @@ export function noterVolet(
     volets: { ...p.volets, [cle]: planifier(p.volets[cle], note, maintenant, jour) },
     jours: ajouterActivite(p, jour, { volets: 1, cartes: compterCarte ? 1 : 0 }),
   }
+}
+
+/** Marque des notions comme apprises (leçon lue) ; une notion déjà apprise garde son premier jour. */
+export function apprendre(p: Progression, cartes: string[], jour: string): Progression {
+  const nouvelles = cartes.filter((c) => !p.apprises[c])
+  if (!nouvelles.length) return p
+  return { ...p, apprises: { ...p.apprises, ...Object.fromEntries(nouvelles.map((c) => [c, jour])) } }
 }
 
 export function enregistrerTentative(p: Progression, exercice: string, t: Tentative): Progression {

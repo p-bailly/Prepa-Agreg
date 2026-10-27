@@ -24,7 +24,8 @@ export function validerContenu(c: Contenu): string[] {
     for (const ch of t.chapitres) {
       if (chapitres.has(ch.id)) err.push(`chapitre ${ch.id} en double`)
       if (!NIVEAUX.includes(ch.niveau)) err.push(`chapitre ${ch.id} : niveau inconnu ${ch.niveau}`)
-      if (!(Number.isInteger(ch.prevues) && ch.prevues > 0)) err.push(`chapitre ${ch.id} : « prevues » doit être un entier > 0`)
+      if (!listeDeTextes(ch.notions) || !ch.notions.length) err.push(`chapitre ${ch.id} : « notions » doit être une liste non vide`)
+      else if (ch.prevues !== ch.notions.length) err.push(`chapitre ${ch.id} : « prevues » doit valoir le nombre de notions`)
       if (rangNiveau(ch.niveau) < rang) err.push(`thème ${t.id} : chapitres pas rangés par niveau croissant (${ch.id})`)
       rang = rangNiveau(ch.niveau)
       chapitres.set(ch.id, { theme: t.id, niveau: ch.niveau })
@@ -46,7 +47,7 @@ export function validerContenu(c: Contenu): string[] {
     if (!TYPES.includes(k.type)) err.push(`${ou} : type inconnu ${k.type}`)
     for (const champ of ['titre', 'recto', 'enonce'] as const) if (!texteNonVide(k[champ])) err.push(`${ou} : « ${champ} » manquant`)
     if (!Array.isArray(k.prerequis)) err.push(`${ou} : « prerequis » doit être une liste`)
-    for (const champ of ['demo', 'exemple', 'contre_exemple', 'doute'] as const)
+    for (const champ of ['cours', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
       if (k[champ] !== undefined && !texteNonVide(k[champ])) err.push(`${ou} : « ${champ} » vide`)
     for (const champ of ['hypotheses', 'hypotheses_pieges'] as const)
       if (k[champ] !== undefined && !listeDeTextes(k[champ])) err.push(`${ou} : « ${champ} » doit être une liste de textes`)
@@ -66,6 +67,15 @@ export function validerContenu(c: Contenu): string[] {
       }
     }
   }
+  // Introductions de leçon : un chapitre existant, une seule par chapitre, un texte.
+  const vues = new Set<string>()
+  for (const l of c.lecons ?? []) {
+    if (!chapitres.has(l.chapitre)) err.push(`leçon ${l.chapitre} : chapitre inconnu`)
+    if (vues.has(l.chapitre)) err.push(`leçon ${l.chapitre} : en double`)
+    vues.add(l.chapitre)
+    if (!texteNonVide(l.introduction)) err.push(`leçon ${l.chapitre} : « introduction » manquante`)
+  }
+
   // Prérequis : existants, jamais d'un niveau supérieur, sans cycle.
   for (const k of c.cartes) {
     for (const p of k.prerequis ?? []) {
@@ -93,17 +103,36 @@ export function validerContenu(c: Contenu): string[] {
     if (!listeDeTextes(e.indices)) err.push(`${ou} : « indices » doit être une liste de textes`)
     else if (e.difficulte >= 3 && e.indices.length < 2) err.push(`${ou} : au moins 2 indices à partir de la difficulté 3`)
     else if (e.indices.length > 3) err.push(`${ou} : 3 indices au plus`)
-    err.push(...validerReponse(e))
+    err.push(...validerReponse(ou, e.reponse_finale))
+    if (e.variantes !== undefined) {
+      if (!Array.isArray(e.variantes) || !e.variantes.length) err.push(`${ou} : « variantes » vide`)
+      else
+        e.variantes.forEach((v, i) => {
+          const ouV = `${ou}, variante ${i + 1}`
+          for (const champ of ['enonce', 'correction'] as const) if (!texteNonVide(v[champ])) err.push(`${ouV} : « ${champ} » manquant`)
+          if (v.enonce === e.enonce) err.push(`${ouV} : même énoncé que l'exercice`)
+          if (v.titre !== undefined && !texteNonVide(v.titre)) err.push(`${ouV} : « titre » vide`)
+          if (!!v.reponse_finale !== !!e.reponse_finale) err.push(`${ouV} : « reponse_finale » présente ici et pas dans l'exercice, ou l'inverse`)
+          err.push(...validerReponse(ouV, v.reponse_finale))
+          // Les indices d'un exercice citent souvent ses valeurs : chaque variante doit avoir les siens.
+          if (e.indices?.length && v.indices === undefined) err.push(`${ouV} : « indices » propres à la variante manquants`)
+          if (v.indices !== undefined && (!listeDeTextes(v.indices) || (e.difficulte >= 3 && v.indices.length < 2)))
+            err.push(`${ouV} : « indices » invalides`)
+        })
+    }
     if (e.doute !== undefined && !texteNonVide(e.doute)) err.push(`${ou} : « doute » vide`)
     const d = difficultes.get(e.carte) ?? new Set<number>()
     d.add(e.difficulte)
     difficultes.set(e.carte, d)
   }
+  // Par carte : de l'application directe (difficulté 1 ou 2) jusqu'à la question d'écrit (4 ou 5), 3 à 6 exercices.
   for (const k of c.cartes) {
-    const n = difficultes.get(k.id)?.size ?? 0
-    if (n < 2) err.push(`carte ${k.id} : au moins 2 exercices de difficultés distinctes (${n})`)
+    const d = [...(difficultes.get(k.id) ?? [])]
     const nb = c.exercices.filter((e) => e.carte === k.id).length
-    if (nb > 6) err.push(`carte ${k.id} : 6 exercices au plus (${nb})`)
+    if (nb < 3 || nb > 6) err.push(`carte ${k.id} : 3 à 6 exercices (${nb})`)
+    if (d.length < 2) err.push(`carte ${k.id} : au moins 2 difficultés distinctes`)
+    if (d.length && Math.min(...d) > 2) err.push(`carte ${k.id} : il manque un exercice de difficulté 1 ou 2`)
+    if (d.length && Math.max(...d) < 4) err.push(`carte ${k.id} : il manque un exercice de difficulté 4 ou 5`)
   }
   return err
 }
@@ -129,10 +158,8 @@ function validerTrous(k: Carte): string[] {
   return err
 }
 
-function validerReponse(e: Exercice): string[] {
-  const r = e.reponse_finale
+function validerReponse(ou: string, r: Exercice['reponse_finale']): string[] {
   if (r === undefined) return []
-  const ou = `exercice ${e.id}`
   if (!texteNonVide(r.question) || !listeDeTextes(r.propositions)) return [`${ou} : « reponse_finale » mal formée`]
   const err: string[] = []
   if (r.propositions.length !== 4) err.push(`${ou} : 4 propositions (${r.propositions.length})`)
@@ -172,7 +199,7 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
     if (typeof x === 'string') t.push({ ou, texte: x })
   }
   for (const k of c.cartes) {
-    for (const champ of ['titre', 'recto', 'enonce', 'enonce_trous', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
+    for (const champ of ['titre', 'recto', 'cours', 'enonce', 'enonce_trous', 'demo', 'exemple', 'contre_exemple', 'doute'] as const)
       ajouter(`${k.id}.${champ}`, k[champ])
     k.hypotheses?.forEach((h, i) => ajouter(`${k.id}.hypotheses[${i}]`, h))
     k.hypotheses_pieges?.forEach((h, i) => ajouter(`${k.id}.hypotheses_pieges[${i}]`, h))
@@ -183,13 +210,27 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
       ajouter(`${k.id}.affirmations[${i}].justification`, a.justification)
     })
   }
+  for (const l of c.lecons ?? []) {
+    ajouter(`leçon ${l.chapitre}.introduction`, l.introduction)
+    ajouter(`leçon ${l.chapitre}.doute`, l.doute)
+  }
   for (const e of c.exercices) {
     for (const champ of ['titre', 'enonce', 'correction', 'doute'] as const) ajouter(`${e.id}.${champ}`, e[champ])
     e.indices?.forEach((x, i) => ajouter(`${e.id}.indices[${i}]`, x))
-    if (e.reponse_finale) {
-      ajouter(`${e.id}.question`, e.reponse_finale.question)
-      e.reponse_finale.propositions.forEach((x, i) => ajouter(`${e.id}.propositions[${i}]`, x))
+    const reponse = (ou: string, r: Exercice['reponse_finale']) => {
+      if (!r) return
+      ajouter(`${ou}.question`, r.question)
+      r.propositions?.forEach((x, i) => ajouter(`${ou}.propositions[${i}]`, x))
     }
+    reponse(e.id, e.reponse_finale)
+    e.variantes?.forEach((v, k) => {
+      const ou = `${e.id}.variantes[${k}]`
+      ajouter(`${ou}.titre`, v.titre)
+      ajouter(`${ou}.enonce`, v.enonce)
+      ajouter(`${ou}.correction`, v.correction)
+      v.indices?.forEach((x, i) => ajouter(`${ou}.indices[${i}]`, x))
+      reponse(ou, v.reponse_finale)
+    })
   }
   return t
 }

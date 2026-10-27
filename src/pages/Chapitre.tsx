@@ -7,7 +7,17 @@ import { etatAffiche, prerequisManquants, sousLeDepart } from '../repetition/eta
 const SYMBOLES = { neuve: 'vide', 'en-cours': 'moitie', acquise: 'plein' } as const
 const NOMS = { neuve: 'neuve', 'en-cours': 'en cours', acquise: 'acquise' } as const
 
-export function Chapitre({ id, surCarte, surRetour }: { id: string; surCarte: (id: string) => void; surRetour: () => void }) {
+export function Chapitre({
+  id,
+  surCarte,
+  surLecon,
+  surRetour,
+}: {
+  id: string
+  surCarte: (id: string) => void
+  surLecon: (chapitre: string, cartes: string[]) => void
+  surRetour: () => void
+}) {
   const { contenu, progression, reglages, cartesParId } = useDonnees()
   const theme = contenu.themes.find((t) => t.chapitres.some((c) => c.id === id))
   const ch = theme?.chapitres.find((c) => c.id === id)
@@ -21,10 +31,15 @@ export function Chapitre({ id, surCarte, surRetour }: { id: string; surCarte: (i
       <span className="etiquette">
         {theme?.titre} · {ch ? NOMS_NIVEAUX[ch.niveau] : ''}
       </span>
+      {cartes.length > 0 && (
+        <button className="bouton" style={{ marginBottom: 14 }} onClick={() => surLecon(id, cartes.map((k) => k.id))}>
+          {cartes.some((k) => etatAffiche(k, progression, reglages) === 'neuve') ? 'Apprendre la leçon' : 'Relire la leçon'}
+        </button>
+      )}
       <ul className="liste-cartes">
         {cartes.map((k) => {
-          const e = etatAffiche(k, progression.volets, reglages)
-          const manquants = e === 'neuve' && !sousLeDepart(k, reglages) ? prerequisManquants(k, cartesParId, progression.volets, reglages) : []
+          const e = etatAffiche(k, progression, reglages)
+          const manquants = e === 'neuve' && !sousLeDepart(k, reglages) ? prerequisManquants(k, cartesParId, progression, reglages) : []
           return (
             <li key={k.id}>
               <button className="bouton" style={{ justifyContent: 'flex-start', textAlign: 'left' }} onClick={() => surCarte(k.id)}>
@@ -41,7 +56,10 @@ export function Chapitre({ id, surCarte, surRetour }: { id: string; surCarte: (i
           )
         })}
       </ul>
-      <p className="petit doux">Une carte ouverte ici est révisée hors séance : la notation compte comme une révision.</p>
+      <p className="petit doux">
+        La leçon présente chaque notion avant qu’elle entre en révision. Une carte ouverte ici est révisée hors séance : la
+        notation compte comme une révision.
+      </p>
     </main>
   )
 }

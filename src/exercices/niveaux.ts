@@ -46,6 +46,21 @@ export function niveauxDe(exercices: Exercice[], historique: Record<string, Tent
   })
 }
 
+/**
+ * Variante à proposer : la première jamais faite ; si toutes l'ont été, celle faite il y a le plus longtemps.
+ * Une tentative sans numéro de variante compte pour la variante 0.
+ */
+export function varianteSuivante(nombre: number, historique: Tentative[] | undefined): number {
+  const derniere = new Array<number>(nombre).fill(-1)
+  ;(historique ?? []).forEach((t, i) => {
+    const k = t.variante ?? 0
+    if (k >= 0 && k < nombre) derniere[k] = i
+  })
+  let choix = 0
+  for (let k = 0; k < nombre; k++) if (derniere[k] < derniere[choix]) choix = k
+  return choix
+}
+
 /** Premier niveau non réussi, et dans ce niveau le premier exercice non réussi ; null si tout est réussi. */
 export function exerciceSuggere(exercices: Exercice[], historique: Record<string, Tentative[]>): Exercice | null {
   for (const n of niveauxDe(exercices, historique)) {

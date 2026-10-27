@@ -564,4 +564,297 @@ for n in range(1, 50):
 # proba-t-lgn (affirmation 1) : X_i = X_1 avec V(X_1) > 0 donne V(M_n) = V(X) != V(X)/n pour n >= 2.
 assert variance(dB) == F(1, 4) and all(F(1, 4) != F(1, 4) / n for n in range(2, 10))
 
+# ==========================================================================================
+# Enrichissement (lot enr-probabilites) : variantes des exercices et exercice proba-t-binomiale-ex4.
+# « variante k » = k-ième élément du champ « variantes » de l'exercice cité.
+# ==========================================================================================
+from math import log as _ln, floor as _floor
+
+
+def leurres_faux(bonne, leurres, ou):
+    """La bonne réponse est distincte de chaque leurre, et les leurres sont distincts entre eux."""
+    assert len({bonne, *leurres}) == 1 + len(leurres), ou + " : propositions distinctes, leurres faux"
+
+
+def loi_binomiale(n, p):
+    return {k: binom_pmf(n, p, k) for k in range(n + 1)}
+
+
+def n_min_au_moins_un(p, s):
+    """Plus petit n tel que 1 - (1 - p)^n >= s (calcul exact)."""
+    n = 1
+    while 1 - (1 - p) ** n < s:
+        n += 1
+    return n
+
+
+# proba-t-binomiale-ex1, variante 1 : 5 lancers, succès = 6 : B(5,1/6) ; variante 2 : 5 tirages avec remise, 3 R / 2 N : B(5,3/5).
+# Énumération des issues (épreuves indépendantes) puis comparaison à la formule.
+for (n, p, P2, E_, V_, leurres, ou) in [
+    (5, F(1, 6), F(625, 3888), F(5, 6), F(25, 36), [F(125, 7776), F(125, 3888), F(5, 18)], "proba-t-binomiale-ex1 variante 1"),
+    (5, F(3, 5), F(144, 625), F(3), F(6, 5), [F(72, 3125), F(216, 625), F(36, 625)], "proba-t-binomiale-ex1 variante 2"),
+]:
+    d = loi([(sum(w), sp.prod([p if x else 1 - p for x in w])) for w in product([0, 1], repeat=n)])
+    assert d[2] == P2 == binom_pmf(n, p, 2), ou
+    assert esperance(d) == E_ and variance(d) == V_, ou + " : E et V"
+    leurres_faux(P2, leurres, ou)
+assert F(1250, 7776) == F(625, 3888) and F(720, 3125) == F(144, 625)
+# leurres : sans coefficient binomial, P(X = 3), C(5,2) p^2 (variante 1) ; sans coefficient, P(X = 3), p^2 (1-p)^2 (variante 2)
+assert F(1, 6) ** 2 * F(5, 6) ** 3 == F(125, 7776) and binom_pmf(5, F(1, 6), 3) == F(125, 3888) and 10 * F(1, 36) == F(5, 18)
+assert F(3, 5) ** 2 * F(2, 5) ** 3 == F(72, 3125) and binom_pmf(5, F(3, 5), 3) == F(216, 625) and F(3, 5) ** 2 * F(2, 5) ** 2 == F(36, 625)
+
+# proba-t-binomiale-ex2, variante 1 : p = 1/10, seuil 4/5 : n = 16 ; variante 2 : p = 1/3, seuil 99/100 : n = 12.
+for (p, s, n_ok, leurres, approx, ou) in [
+    (F(1, 10), F(4, 5), 16, [15, 17, 8], 15.28, "proba-t-binomiale-ex2 variante 1"),
+    (F(1, 3), F(99, 100), 12, [11, 13, 3], 11.36, "proba-t-binomiale-ex2 variante 2"),
+]:
+    assert n_min_au_moins_un(p, s) == n_ok, ou
+    assert abs(_ln(1 / (1 - float(s))) / _ln(1 / (1 - float(p))) - approx) < 0.005, ou + " : quotient de logarithmes"
+    leurres_faux(n_ok, leurres, ou)
+    for m in leurres:  # chaque leurre est faux : soit trop petit (seuil non atteint), soit pas le plus petit
+        assert (1 - (1 - p) ** m < s) or m > n_ok, ou + " : leurre"
+assert round(0.9 ** 15, 3) == 0.206 and round(0.9 ** 16, 3) == 0.185, "proba-t-binomiale-ex2 variante 1 : contrôle"
+assert round((2 / 3) ** 11, 4) == 0.0116 and round((2 / 3) ** 12, 4) == 0.0077, "proba-t-binomiale-ex2 variante 2 : contrôle"
+
+# proba-t-binomiale-ex3, variantes : tirages sans remise de 3 boules, énumération des triplets ordonnés.
+for (r, b, PR, PR12, loiX, E_, EX2, V_, Vbin, P0bin, leurres, ou) in [
+    (3, 3, F(1, 2), F(1, 5), {0: F(1, 20), 1: F(9, 20), 2: F(9, 20), 3: F(1, 20)}, F(3, 2), F(27, 10), F(9, 20), F(3, 4), F(1, 8),
+     [F(3, 4), F(3, 2), F(1, 4)], "proba-t-binomiale-ex3 variante 1"),
+    (6, 2, F(3, 4), F(15, 28), {1: F(3, 28), 2: F(15, 28), 3: F(5, 14)}, F(9, 4), F(153, 28), F(45, 112), F(9, 16), F(1, 64),
+     [F(9, 16), F(9, 4), F(3, 16)], "proba-t-binomiale-ex3 variante 2"),
+]:
+    boules = [('R', i) for i in range(r)] + [('B', i) for i in range(b)]
+    tir = list(permutations(boules, 3))
+    N = len(tir)
+    assert N == (r + b) * (r + b - 1) * (r + b - 2), ou + " : nombre de triplets"
+    for i in range(3):
+        assert F(sum(1 for x in tir if x[i][0] == 'R'), N) == PR, ou + " : P(R_i)"
+    pr12 = F(sum(1 for x in tir if x[0][0] == 'R' and x[1][0] == 'R'), N)
+    assert pr12 == PR12 != PR * PR, ou + " : R_1 et R_2 non indépendants"
+    d = loi([(sum(1 for y in x if y[0] == 'R'), F(1, N)) for x in tir])
+    assert d == loiX, ou + " : loi de X"
+    assert esperance(d) == E_ == 3 * PR, ou + " : même espérance que la binomiale"
+    assert sum(F(v) ** 2 * q for v, q in d.items()) == EX2 and variance(d) == V_, ou + " : V(X)"
+    assert 3 * PR * (1 - PR) == Vbin != V_ and (1 - PR) ** 3 == P0bin != d.get(0, 0), ou + " : comparaison binomiale"
+    leurres_faux(V_, leurres, ou)
+assert 3 * F(1, 2) * F(1, 2) == F(3, 4) and F(1, 2) * F(1, 2) == F(1, 4)  # leurres variante 1 : V binomiale, p(1-p)
+assert 3 * F(3, 4) * F(1, 4) == F(9, 16) and F(3, 4) * F(1, 4) == F(3, 16)  # leurres variante 2
+assert F(60, 120) == F(1, 2) and F(24, 120) == F(1, 5) and F(252, 336) == F(3, 4) and F(180, 336) == F(15, 28)
+assert F(6, 120) == F(1, 20) and F(54, 120) == F(9, 20) and F(36, 336) == F(3, 28) and F(120, 336) == F(5, 14)
+
+# proba-t-binomiale-ex4 (nouvel exercice) et ses variantes : valeur la plus probable de B(n,p).
+for (n, p, rapport_num, rapport_den, seuil, mode, E_, leurres, ou) in [
+    (10, F(1, 3), lambda k: 10 - k, lambda k: 2 * (k + 1), F(8, 3), 3, F(10, 3), [F(10, 3), 4, 2], "proba-t-binomiale-ex4"),
+    (14, F(3, 10), lambda k: 3 * (14 - k), lambda k: 7 * (k + 1), F(7, 2), 4, F(21, 5), [F(21, 5), 5, 3], "proba-t-binomiale-ex4 variante 1"),
+    (12, F(7, 10), lambda k: 7 * (12 - k), lambda k: 3 * (k + 1), F(81, 10), 9, F(42, 5), [8, F(42, 5), 10], "proba-t-binomiale-ex4 variante 2"),
+]:
+    d = loi_binomiale(n, p)
+    assert all(q > 0 for q in d.values()), ou + " : p_k > 0"
+    for k in range(n):
+        assert d[k + 1] / d[k] == F(rapport_num(k), rapport_den(k)), ou + " : quotient p_{k+1}/p_k (question 1)"
+        assert (d[k + 1] > d[k]) == (k < seuil) and (d[k + 1] < d[k]) == (k > seuil), ou + " : sens de variation (question 2)"
+    assert seuil.denominator != 1, ou + " : jamais d'égalité p_{k+1} = p_k"
+    assert max(d, key=d.get) == mode and all(d[k] < d[mode] for k in d if k != mode), ou + " : mode unique"
+    assert mode == _floor((n + 1) * p), ou + " : mode = partie entière de (n+1)p"
+    assert n * p == E_, ou + " : E(X)"
+    leurres_faux(F(mode), [F(x) for x in leurres], ou)
+    for x in leurres:  # chaque leurre est soit non entier, soit une valeur moins probable que le mode
+        assert F(x).denominator != 1 or d[int(x)] < d[mode], ou + " : leurre"
+assert binom_pmf(10, F(1, 3), 3) == F(5120, 19683) and abs(float(F(5120, 19683)) - 0.26) < 0.005, "proba-t-binomiale-ex4 : p_3"
+assert abs(float(binom_pmf(14, F(3, 10), 4)) - 0.229) < 0.0005, "proba-t-binomiale-ex4 variante 1 : p_4"
+assert abs(float(binom_pmf(12, F(7, 10), 9)) - 0.240) < 0.0005, "proba-t-binomiale-ex4 variante 2 : p_9"
+assert round(12 * 0.7) == 8 != 9, "proba-t-binomiale-ex4 variante 2 : le mode n'est pas l'arrondi de E(X)"
+assert round(10 / 3) == 3 and round(14 * 0.3) == 4, "proba-t-binomiale-ex4 : ici le mode est l'entier le plus proche de E(X)"
+# Équivalences de la question 2 : 10-k > 2(k+1) <=> k < 8/3 ; 42-3k > 7k+7 <=> k < 7/2 ; 84-7k > 3k+3 <=> k < 81/10.
+kk = sp.symbols('k', real=True)
+assert sp.solve(sp.Eq(10 - kk, 2 * (kk + 1)), kk) == [sp.Rational(8, 3)]
+assert sp.solve(sp.Eq(42 - 3 * kk, 7 * kk + 7), kk) == [sp.Rational(7, 2)]
+assert sp.solve(sp.Eq(84 - 7 * kk, 3 * kk + 3), kk) == [sp.Rational(81, 10)]
+
+# proba-t-bienayme-ex1, variante 1 : E = -3, V = 5, a = 5 : 1/5 ; variante 2 : E = 12, V = 9, a = 6 : 1/4.
+assert F(5) / 5 ** 2 == F(1, 5), "proba-t-bienayme-ex1 variante 1"
+leurres_faux(F(1, 5), [F(1), F(4, 5), F(1, 25)], "proba-t-bienayme-ex1 variante 1")  # V/a, 1 - borne, 1/a^2
+assert F(9) / 6 ** 2 == F(1, 4), "proba-t-bienayme-ex1 variante 2"
+leurres_faux(F(1, 4), [F(3, 2), F(3, 4), F(1, 2)], "proba-t-bienayme-ex1 variante 2")  # V/a, 1 - borne, sigma/a
+assert F(9, 6) == F(3, 2) and F(3, 6) == F(1, 2)
+# Des lois ayant ces espérance et variance existent (et y atteignent la borne) : valeurs m - a, m, m + a.
+for (m, v, a, ou) in [(-3, 5, 5, "proba-t-bienayme-ex1 variante 1"), (12, 9, 6, "proba-t-bienayme-ex1 variante 2")]:
+    q = F(v, 2 * a ** 2)
+    d = {m - a: q, m: 1 - 2 * q, m + a: q}
+    assert esperance(d) == m and variance(d) == v and p_ecart(d, a) == F(v, a ** 2), ou + " : loi exemple"
+
+# proba-t-bienayme-ex2, variante 1 : B(100,1/2), P(40 < X < 60) >= 3/4 ; variante 2 : B(180,1/3), P(48 < X < 72) >= 13/18.
+for (n, p, lo, hi, a, borne, leurres, ou) in [
+    (100, F(1, 2), 40, 60, 10, F(3, 4), [F(1, 4), F(1, 2), F(15, 16)], "proba-t-bienayme-ex2 variante 1"),
+    (180, F(1, 3), 48, 72, 12, F(13, 18), [F(5, 18), F(67, 72), F(81, 121)], "proba-t-bienayme-ex2 variante 2"),
+]:
+    E_, V_ = n * p, n * p * (1 - p)
+    assert E_ == (lo + hi) // 2 and hi - E_ == a, ou + " : intervalle centré"
+    assert 1 - V_ / a ** 2 == borne, ou
+    exacte = sum(binom_pmf(n, p, k) for k in range(lo + 1, hi))
+    assert exacte >= borne, ou + " : la valeur exacte respecte la minoration"
+    leurres_faux(borne, leurres, ou)
+assert 1 - F(25, 400) == F(15, 16) and 1 - F(5, 10) == F(1, 2)  # leurres variante 1 : a = 20, sigma/a
+assert 1 - F(40, 576) == F(67, 72) and 1 - F(40, 121) == F(81, 121)  # leurres variante 2 : a = 24, a = 11
+
+# proba-t-bienayme-ex3, variante 1 : uniforme sur {1..7} ; variante 2 : uniforme sur {1..11}.
+for (N, m, V_, sk2, a, borne, exacte, a3, borne3, exacte3, leurres, ou) in [
+    (7, 4, 4, 140, 3, F(4, 9), F(2, 7), 1, F(4), F(6, 7), [F(2, 7), F(4, 3), F(1, 9)], "proba-t-bienayme-ex3 variante 1"),
+    (11, 6, 10, 506, 5, F(2, 5), F(2, 11), 3, F(10, 9), F(6, 11), [F(2, 11), F(2), F(10, 121)], "proba-t-bienayme-ex3 variante 2"),
+]:
+    d = {k: F(1, N) for k in range(1, N + 1)}
+    assert sum(k ** 2 for k in range(1, N + 1)) == sk2, ou + " : somme des carrés"
+    assert esperance(d) == m and variance(d) == V_, ou + " : E et V"
+    assert variance(d) / a ** 2 == borne and p_ecart(d, a) == exacte < borne, ou + " : borne et valeur exacte"
+    assert variance(d) / a3 ** 2 == borne3 > 1 and p_ecart(d, a3) == exacte3, ou + " : question 3"
+    leurres_faux(borne, leurres, ou)
+assert F(4, 3) == F(4) / 3 and F(2) == F(10) / 5  # leurres V/a
+
+# proba-t-lgn-ex1, variante 1 : n = 200, V = 9, delta = 1/2 : 9/50 ; variante 2 : n = 150, V = 6, delta = 1/3 : 9/25.
+for (n, V_, delta, borne, leurres, ou) in [
+    (200, 9, F(1, 2), F(9, 50), [F(9, 100), F(9, 200), F(41, 50)], "proba-t-lgn-ex1 variante 1"),
+    (150, 6, F(1, 3), F(9, 25), [F(3, 25), F(1, 25), F(16, 25)], "proba-t-lgn-ex1 variante 2"),
+]:
+    assert V_ / (n * delta ** 2) == borne, ou
+    assert V_ / (n * delta) == leurres[0] and F(V_, n) == leurres[1] and 1 - borne == leurres[2], ou + " : origine des leurres"
+    leurres_faux(borne, leurres, ou)
+
+# proba-t-lgn-ex2, variante 1 : dé, résultat >= 5 (p = 1/3), delta = 1/20, risque 1/10 : n = 889 ;
+# variante 2 : dé à 4 faces, p = 1/4, delta = 1/10, risque 1/25 : n = 469.
+for (p, delta, risque, n_ok, seuil, leurres, ou) in [
+    (F(2, 6), F(1, 20), F(1, 10), 889, F(8000, 9), [888, 1000, 45], "proba-t-lgn-ex2 variante 1"),
+    (F(1, 4), F(1, 10), F(1, 25), 469, F(1875, 4), [468, 625, 47], "proba-t-lgn-ex2 variante 2"),
+]:
+    V_ = p * (1 - p)
+    nm = next(n for n in range(1, 10 ** 5) if V_ / (n * delta ** 2) <= risque)
+    assert nm == n_ok and V_ / (risque * delta ** 2) == seuil, ou
+    leurres_faux(n_ok, leurres, ou)
+    for m in leurres:
+        assert V_ / (m * delta ** 2) > risque or m > n_ok, ou + " : leurre"
+assert F(2, 9) * 400 == F(800, 9) and F(3, 16) * 100 == F(75, 4)
+assert abs(float(F(8000, 9)) - 888.9) < 0.05 and F(1875, 4) == F(46875, 100)
+# origine des leurres : borne 1/4 au lieu de p(1-p) (1000, 625), delta non élevé au carré (45, 47)
+assert next(n for n in range(1, 10 ** 5) if F(1, 4) / (n * F(1, 20) ** 2) <= F(1, 10)) == 1000
+assert next(n for n in range(1, 10 ** 5) if F(2, 9) / (n * F(1, 20)) <= F(1, 10)) == 45
+assert next(n for n in range(1, 10 ** 5) if F(1, 4) / (n * F(1, 10) ** 2) <= F(1, 25)) == 625
+assert next(n for n in range(1, 10 ** 5) if F(3, 16) / (n * F(1, 10)) <= F(1, 25)) == 47
+
+# proba-t-lgn-ex3, variante 1 : delta = 1/10, risque 1/20 : n = 500 ; variante 2 : delta = 1/50, risque 1/20 : n = 12500.
+for (delta, risque, coef, n_ok, leurres, ou) in [
+    (F(1, 10), F(1, 20), 25, 500, [50, 2000, 250], "proba-t-lgn-ex3 variante 1"),
+    (F(1, 50), F(1, 20), 625, 12500, [250, 50000, 6250], "proba-t-lgn-ex3 variante 2"),
+]:
+    assert 1 / (4 * delta ** 2) == coef, ou + " : 1/(4 n delta^2) = coef/n"
+    nm = next(n for n in range(1, 10 ** 6) if F(coef, n) <= risque)
+    assert nm == n_ok, ou
+    assert F(1, 2) * F(1, 2) / delta ** 2 == coef, ou + " : égalité pour p = 1/2"
+    leurres_faux(n_ok, leurres, ou)
+    assert next(n for n in range(1, 10 ** 6) if 1 / (4 * n * delta) <= risque) == leurres[0], ou + " : leurre delta non au carré"
+    assert next(n for n in range(1, 10 ** 6) if 1 / (n * delta ** 2) <= risque) == leurres[1], ou + " : leurre sans le 1/4"
+
+# proba-t-lgn-ex4, variantes : delta = 1/3 (majorant 9/(4n) < 1 dès n >= 3), delta = 2/5 (25/(16n) < 1 dès n >= 2).
+for (delta, num, den, n0, ou) in [(F(1, 3), 9, 4, 3, "proba-t-lgn-ex4 variante 1"), (F(2, 5), 25, 16, 2, "proba-t-lgn-ex4 variante 2")]:
+    for n in range(1, 30):
+        Mn = {F(x): F(1, 2) for x in (0, 1)}  # M_n = X_1
+        assert sum(q for v, q in Mn.items() if abs(v - F(1, 2)) >= delta) == 1, ou + " : probabilité 1"
+        maj = F(1, 4) / (n * delta ** 2)
+        assert maj == F(num, den * n), ou + " : majorant"
+        assert (maj < 1) == (n >= n0), ou + " : seuil"
+    leurres_faux("1", ["0", f"{num}/({den}n)", "1/2"], ou)
+
+# proba-l1-probas-totales-bayes-ex1, variante 1 : (1/4, 3/4), rouges 2/3 et 1/3 : 5/12 ; variante 2 : (2/5, 3/5), 3/4 et 1/6 : 2/5.
+for (pu, pr, rep, leurres, ou) in [
+    ([F(1, 4), F(3, 4)], [F(2, 3), F(1, 3)], F(5, 12), [F(1, 2), F(1), F(1, 6)], "proba-l1-probas-totales-bayes-ex1 variante 1"),
+    ([F(2, 5), F(3, 5)], [F(3, 4), F(1, 6)], F(2, 5), [F(11, 24), F(11, 12), F(3, 10)], "proba-l1-probas-totales-bayes-ex1 variante 2"),
+]:
+    assert sum(pu) == 1 and sum(a * b for a, b in zip(pu, pr)) == rep, ou
+    assert (pr[0] + pr[1]) / 2 == leurres[0] and pr[0] + pr[1] == leurres[1] and pu[0] * pr[0] == leurres[2], ou + " : leurres"
+    leurres_faux(rep, leurres, ou)
+
+# proba-l1-probas-totales-bayes-ex2, variantes : trois machines.
+for (pm, pd, PD, rep, leurres, ou) in [
+    ([F(2, 5), F(7, 20), F(1, 4)], [F(2, 100), F(3, 100), F(4, 100)], F(57, 2000), F(20, 57), [F(1, 4), F(1, 25), F(1, 100)],
+     "proba-l1-probas-totales-bayes-ex2 variante 1"),
+    ([F(3, 5), F(3, 10), F(1, 10)], [F(1, 100), F(3, 100), F(6, 100)], F(21, 1000), F(2, 7), [F(1, 10), F(3, 50), F(3, 500)],
+     "proba-l1-probas-totales-bayes-ex2 variante 2"),
+]:
+    assert sum(pm) == 1, ou + " : système complet"
+    assert sum(a * b for a, b in zip(pm, pd)) == PD and pm[2] * pd[2] / PD == rep, ou
+    assert leurres == [pm[2], pd[2], pm[2] * pd[2]], ou + " : leurres P(M3), P(D|M3), P(M3 inter D)"
+    leurres_faux(rep, leurres, ou)
+assert F(16 + 21 + 20, 2000) == F(57, 2000) and F(2, 5) * F(1, 50) == F(16, 2000) and F(7, 20) * F(3, 100) == F(21, 2000)
+assert abs(float(F(20, 57)) - 0.35) < 0.005 and abs(float(F(2, 7)) - 0.29) < 0.005
+
+# proba-l1-probas-totales-bayes-ex3, variantes : dépistage (1 %, 95 %, 2 %) et (5 %, 80 %, 10 %).
+for (PM, sens, fp, PT, rep, PnMnT, leurres, approx, ou) in [
+    (F(1, 100), F(19, 20), F(1, 50), F(293, 10000), F(95, 293), F(9702, 9707), [F(19, 20), F(19, 2000), F(293, 10000)], (0.32, 0.9995),
+     "proba-l1-probas-totales-bayes-ex3 variante 1"),
+    (F(1, 20), F(4, 5), F(1, 10), F(27, 200), F(8, 27), F(171, 173), [F(4, 5), F(1, 25), F(27, 200)], (0.30, 0.988),
+     "proba-l1-probas-totales-bayes-ex3 variante 2"),
+]:
+    assert sens * PM + fp * (1 - PM) == PT, ou + " : P(T)"
+    assert sens * PM / PT == rep, ou + " : P(M|T)"
+    assert (1 - fp) * (1 - PM) / (1 - PT) == PnMnT, ou + " : P(non M | non T)"
+    assert abs(float(rep) - approx[0]) < 0.005 and abs(float(PnMnT) - approx[1]) < 0.0005, ou + " : valeurs approchées"
+    assert leurres == [sens, sens * PM, PT], ou + " : leurres P(T|M), P(M inter T), P(T)"
+    leurres_faux(rep, leurres, ou)
+assert F(49, 50) * F(99, 100) == F(4851, 5000) and 1 - F(293, 10000) == F(9707, 10000)
+assert F(9, 10) * F(19, 20) == F(171, 200) and 1 - F(27, 200) == F(173, 200)
+
+# proba-l1-probas-totales-bayes-ex4, variantes (question 4) : 3/100 != 5/100 = 1/20 (non) ; P(M) = P(T) = 1/25 (oui).
+assert F(3, 100) != F(1, 20) == F(5, 100), "proba-l1-probas-totales-bayes-ex4 variante 1"
+# variante 2 : si P(A) = P(B) > 0, P(A|B) = P(B|A) pour tout A, B (énumération sur 6 issues équiprobables).
+for A_ in map(set, (c for r in range(1, 7) for c in combinations(range(1, 7), r))):
+    for B_ in map(set, (c for r in range(1, 7) for c in combinations(range(1, 7), r))):
+        if len(A_) == len(B_):
+            assert F(len(A_ & B_), len(B_)) == F(len(A_ & B_), len(A_)), "proba-l1-probas-totales-bayes-ex4 variante 2"
+
+# proba-l1-independance-mutuelle-ex1, variante 1 : 5 événements : 26 ; variante 2 : 6 événements : 57.
+for (n, rep, leurres, ou) in [(5, 26, [10, 31, 32], "proba-l1-independance-mutuelle-ex1 variante 1"),
+                              (6, 57, [15, 63, 64], "proba-l1-independance-mutuelle-ex1 variante 2")]:
+    assert sum(1 for r in range(2, n + 1) for _ in combinations(range(n), r)) == rep == 2 ** n - 1 - n, ou
+    assert leurres == [comb(n, 2), 2 ** n - 1, 2 ** n], ou + " : leurres"
+    leurres_faux(rep, leurres, ou)
+assert 10 + 10 + 5 + 1 == 26 and 15 + 20 + 15 + 6 + 1 == 57
+
+# proba-l1-independance-mutuelle-ex2, variantes : énumération des 8 issues (atteint / manqué) pour chaque tireur.
+for (ps, rep, leurres, ou) in [
+    ([F(2, 3), F(1, 2), F(1, 5)], F(13, 15), [F(41, 30), F(1, 15), F(2, 15)], "proba-l1-independance-mutuelle-ex2 variante 1"),
+    ([F(3, 4), F(2, 5), F(1, 6)], F(7, 8), [F(79, 60), F(1, 20), F(1, 8)], "proba-l1-independance-mutuelle-ex2 variante 2"),
+]:
+    tot = sum(sp.prod([p if x else 1 - p for p, x in zip(ps, w)]) for w in product([0, 1], repeat=3) if any(w))
+    assert tot == rep, ou
+    assert leurres == [sum(ps), sp.prod(ps), 1 - rep], ou + " : leurres somme, produit, aucun"
+    assert sum(ps) > 1, ou + " : la somme dépasse 1"
+    leurres_faux(rep, leurres, ou)
+
+# proba-l1-independance-mutuelle-ex3, variantes : deux dés.
+for (A_, B_, C_, rep, leurres, ou) in [
+    ({w for w in Om36 if w[0] <= 3}, {w for w in Om36 if w[1] <= 3}, {w for w in Om36 if (w[0] <= 3) == (w[1] <= 3)},
+     F(1, 4), [F(1, 8), F(1, 12), F(0)], "proba-l1-independance-mutuelle-ex3 variante 1"),
+    ({w for w in Om36 if w[0] % 2 == 0}, {w for w in Om36 if w[1] % 2 == 0}, {w for w in Om36 if (w[0] + w[1]) % 2 == 1},
+     F(0), [F(1, 8), F(1, 4), F(1, 12)], "proba-l1-independance-mutuelle-ex3 variante 2"),
+]:
+    assert Pr36(A_) == Pr36(B_) == Pr36(C_) == F(1, 2), ou
+    for X_, Y_ in [(A_, B_), (A_, C_), (B_, C_)]:
+        assert Pr36(X_ & Y_) == F(1, 4), ou + " : deux à deux"
+    assert Pr36(A_ & B_ & C_) == rep != F(1, 8), ou + " : pas mutuellement indépendants"
+    leurres_faux(rep, leurres, ou)
+assert {w for w in Om36 if w[0] <= 3 and w[1] <= 3} <= {w for w in Om36 if (w[0] <= 3) == (w[1] <= 3)}, \
+    "proba-l1-independance-mutuelle-ex3 variante 1 : A inter B contenu dans C"
+
+
+# proba-t-binomiale (cours, piège principal) : tirages sans remise dans une urne de N boules dont K gagnantes,
+# 0 < K < N, n >= 2 tirages : même probabilité K/N à chaque tirage, tirages 1 et 2 non indépendants, loi différente de B(n, K/N).
+for N in range(2, 7):
+    for K in range(1, N):
+        for n in range(2, N + 1):
+            tir = list(permutations(range(N), n))
+            pK = F(K, N)
+            for i in range(n):
+                assert F(sum(1 for x in tir if x[i] < K), len(tir)) == pK, "proba-t-binomiale (cours) : même probabilité"
+            assert F(sum(1 for x in tir if x[0] < K and x[1] < K), len(tir)) != pK ** 2, "proba-t-binomiale (cours) : non indépendants"
+            d = loi([(sum(1 for y in x if y < K), F(1, len(tir))) for x in tir])
+            assert any(d.get(k, 0) != binom_pmf(n, pK, k) for k in range(n + 1)), "proba-t-binomiale (cours) : pas B(n,p)"
+
 print("probabilites.py : toutes les vérifications passent.")

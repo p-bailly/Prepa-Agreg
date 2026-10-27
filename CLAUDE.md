@@ -69,11 +69,16 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   × facilité, Facile = (I + retard) × facilité × 1,3, strictement croissants, plafond 365 j ; facilité 1,3 à 3. Échéances en
   **jours civils** (un changement de fuseau ne décale rien de plus d'un jour). Volet **acquis** à 21 j ; carte acquise quand
   tous ses volets le sont.
-- Carte neuve proposée seulement si ses prérequis sont au moins « en cours » (ou sous le niveau de départ) ; une carte
-  introduite dans la même séance compte. Ordre : niveau le plus bas, puis thèmes alternés, puis ordre du fichier.
-- Un volet jamais noté d'une carte introduite (démonstration non ouverte) devient dû le lendemain de l'introduction.
-- Séance : révisions d'abord (les plus en retard en premier), complétées par des neuves réparties entre elles ; au plus
-  `seanceCartes` cartes et `seanceMinutes` minutes (la carte en cours est finie). Plafond de neuves par jour civil.
+- **On apprend avant de réviser.** Une notion nouvelle se découvre dans une **leçon** (`EcranLecon` : introduction du
+  chapitre `content/lecons/<chapitre>.json`, puis par notion le texte `cours`, l'énoncé, l'exemple, la démonstration, les
+  contre-exemples, les pièges, les exercices) ; passer à la suite la marque apprise (`progression.apprises`, carte → jour).
+  Une carte n'entre en révision qu'apprise, et jamais le jour même : tous ses volets deviennent dus le lendemain.
+- Leçon du jour : les prochaines notions à apprendre (prérequis au moins appris, ou sous le niveau de départ ; ordre :
+  niveau le plus bas, thèmes alternés, chapitres de `themes.json`, ordre du fichier), dans la limite du plafond quotidien
+  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Accueil : « Apprendre » est le bouton principal quand
+  rien n'est à revoir. Parcours → chapitre → « Apprendre / Relire la leçon » à tout moment.
+- Séance de révision : cartes apprises dues, les plus en retard en premier ; au plus `seanceCartes` cartes et
+  `seanceMinutes` minutes (la carte en cours est finie).
 - Modes : une carte neuve se découvre toujours en « énoncer de tête » ; sinon on prend le mode possible et actif qui suit le
   dernier utilisé (`progression.dernierMode`). Volet principal = premier volet dû (énoncé, démonstration, contre-exemple), noté
   par le pied ; les autres volets dus ont leurs boutons dans le volet ouvert.
@@ -97,10 +102,14 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 `src/contenu/validation.test.ts`.
 
 - `content/themes.json` : la carte du parcours complet. `{ "themes": [ { "id", "titre", "chapitres": [ { "id", "niveau",
-  "titre", "prevues" } ] } ] }`. `prevues` = nombre de cartes visées pour le chapitre (le total que vise le tableau de bord).
-  L'ordre des chapitres d'un thème est l'ordre du parcours ; les niveaux y sont croissants.
-- `content/cartes/<theme>/<niveau>.json` : `{ "cartes": [ … ] }`, l'ordre du fichier est l'ordre d'introduction dans un niveau.
-- `content/exercices/<theme>/<niveau>.json` : `{ "exercices": [ … ] }`.
+  "titre", "notions", "prevues" } ] } ] }`. `notions` = les notions à couvrir, une carte chacune (plan de rédaction, établi
+  d'après les sous-sections du programme de l'agrégation 2027 et des programmes de Terminale) ; `prevues` = leur nombre (le
+  total que vise le tableau de bord ; contrôlé par le test). L'ordre des chapitres d'un thème est l'ordre du parcours, les
+  niveaux y sont croissants.
+- `content/cartes/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` (fichier réservé à un chapitre, pour rédiger des
+  chapitres en parallèle) : `{ "cartes": [ … ] }`. Ordre d'introduction : chapitres dans l'ordre de `themes.json`, puis ordre
+  du fichier.
+- `content/exercices/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` : `{ "exercices": [ … ] }`.
 - Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg`.
 
 ### Carte
@@ -124,7 +133,14 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 `{ "id", "carte", "difficulte", "titre", "enonce", "duree_min", "indices", "reponse_finale", "correction", "doute" }`
 - `difficulte` de 1 à 5, relative à la notion : 1 application directe ; 2 calcul ou application standard ; 3 classique en plusieurs
   étapes ; 4 question d'écrit (enchaînement, hypothèses à vérifier) ; 5 difficile (idée non immédiate, plusieurs notions).
-- Au moins 2 exercices de difficultés distinctes par carte, jusqu'à 6 pour les notions piégeuses ; jamais d'exercice de remplissage.
+- Par carte : 3 à 6 exercices progressifs, au moins un de difficulté 1 ou 2 et au moins un de difficulté 4 ou 5 (contrôlé par
+  le test) ; aux niveaux L3 et agrégation, un problème de difficulté 5 en questions enchaînées quand c'est pertinent. Jamais
+  d'exercice de remplissage.
+- `variantes` (facultatif) : autres jeux de valeurs, `[{ "titre", "enonce", "reponse_finale", "correction", "indices" }]`
+  (`reponse_finale` obligatoire si l'exercice en a une ; `indices` obligatoires si l'exercice en a, contrôlé par le test).
+  Une variante sans `titre` reprend celui de l'exercice, qui ne doit donc citer aucune valeur propre à l'exercice. Tout exercice à valeurs numériques en a deux. L'appli
+  propose une variante jamais faite, sinon la plus anciennement faite ; la tentative garde son numéro de variante (0 = exercice
+  tel qu'écrit). Ne jamais réordonner les variantes d'un exercice déjà publié (l'historique y renvoie par numéro).
 - `indices` : 2 ou 3 à partir de la difficulté 3 (idée clé, puis première étape) ; ils ne donnent pas la réponse.
 - `reponse_finale` (seulement pour un exercice à résultat : calcul, valeur, vrai/faux) : `{ "question", "propositions": [4 textes
   distincts], "bonne": indice 0..3 }` ; l'appli mélange les propositions.
@@ -164,6 +180,12 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 - 2026-10-27 · `exercices/probabilites/terminale.json`, `exercices/probabilites/l1.json` (19 exercices) : résolution à l'aveugle,
   19 réponses concordantes, leurres vérifiés faux en calcul exact. Corrigé : notation « a = 2 » non introduite (Bienaymé ex3).
   `verification/probabilites.py` (dont les deux pièces A, B, C deux à deux indépendants, cas d'égalité de Bienaymé-Tchebychev).
+
+- 2026-10-27 · `cartes/analyse-reelle/terminale.json`, `cartes/analyse-reelle/l1.json`, `exercices/analyse-reelle/terminale.json`, `exercices/analyse-reelle/l1.json`, `lecons/ar-t-{suites,continuite,derivation}.json`, `lecons/ar-l1-{reels,suites,continuite,derivabilite}.json` (10 cartes, 36 exercices, 42 variantes, 7 introductions) : relecture complète indépendante (cartes, `cours` et introductions re-dérivés ; exercices et variantes résolus à l'aveugle, 36 réponses concordantes, leurres vérifiés faux avec SymPy) ; corrigé : 4 pièges qui découlaient des vraies hypothèses (gendarmes ×2, TVI, bornes atteintes), prérequis du TVI (+ limite monotone), phrases de cours (point fixe avec f décroissante, minimum seulement pour bornes atteintes), introductions (continuité « sans lever le crayon » limitée à un intervalle, hypothèses du point fixe, définition de Cauchy), triple saut de ligne (limite-monotone-ex2), indice qui livrait le contre-exemple (bornes-atteintes-ex3) ; aucun doute.
+- 2026-10-27 · content/exercices/arithmetique/terminale.json, l1.json, content/cartes/arithmetique/terminale.json, l1.json (champ cours), content/lecons/arith-t-divisibilite, arith-t-pgcd, arith-t-premiers, arith-l1-congruences, arith-l1-polynomes.json, verification/arithmetique.py (6 cartes, 24 exercices dont 2 ajoutés, 44 variantes) : la relecture a résolu à l'aveugle les 2 exercices ajoutés et les 44 variantes (réponses toutes concordantes, leurres faux, ensembles de solutions comparés par force brute) et relu les 6 cours et les 5 introductions contre les programmes ; corrigé : 6 titres rendus génériques et indices propres aux variantes de division-ex1, phrase sur l'identité en Q4 de division-ex4, énoncé de fermat-ex4 v2 (étape modulo 19), hypothèses manquantes dans les cours (test de Fermat avec n ∤ a, points distincts, conclusion de Bézout) et les introductions (Euler avec a ∧ n = 1, b ≥ 1, points distincts, Wilson précisé) ; aucun doute.
+- 2026-10-27 · `exercices/probabilites/terminale.json`, `exercices/probabilites/l1.json` (enrichissement : 1 exercice ajouté, proba-t-binomiale-ex4, et 36 variantes ; au total 20 exercices, 36 variantes), `cartes/probabilites/terminale.json`, `cartes/probabilites/l1.json` (5 cartes : champ `cours`), `lecons/proba-t-binomiale.json`, `lecons/proba-t-concentration.json`, `lecons/proba-l1-conditionnement.json` : exercice et variantes résolus à l'aveugle (37 réponses concordantes, leurres vérifiés faux en calcul exact), cours et introductions re-dérivés et confrontés au programme 2027 ; corrigé : intuition et piège « sans remise » du cours binomial (loi non B(n,p) dès n ≥ 2 et urne mixte), piège d'indépendance et notations du cours de la loi faible, « additivité de la variance » nuancée (covariances nulles) dans l'introduction, deux retouches de style, indices propres à binomiale-ex3 variante 1, indice adouci (indépendance-mutuelle-ex3 variante 2) ; `verification/probabilites.py` complété ; aucun doute.
+
+- 2026-10-27 · `cartes/integration/terminale-int-t-integrale.json`, `exercices/integration/terminale-int-t-integrale.json`, `lecons/int-t-integrale.json`, `verification/int_t_integrale.py` (5 cartes, 23 exercices, 46 variantes) : relecture indépendante des cartes (tout re-dérivé en SymPy, 768 formules KaTeX, leurres et contre-exemples vérifiés) et des exercices (69 versions résolues à l'aveugle, 69 réponses concordantes, leurres vérifiés faux) ; corrigé : phrase du cours de la valeur moyenne (« sauf pour une fonction affine » → « en général »), indices propres à chacune des 46 variantes (dont 8 indices hérités inadaptés), titres propres pour 4 variantes, aire-ex5 en difficulté 4 au lieu de 5 ; doutes : les démonstrations admettent les propriétés de l'aire et le théorème des bornes atteintes (L1), et quelques difficultés 4 pourraient valoir 3 selon le relecteur.
 
 ## Pièges
 - Formules : `\\` en JSON ; jamais de trou `{{n}}` dans une formule (le test le refuse) ; intervalles `\left]…\right[`.
