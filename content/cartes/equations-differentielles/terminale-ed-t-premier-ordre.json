@@ -1,0 +1,233 @@
+{
+ "cartes": [
+  {
+   "id": "ed-t-premier-ordre-ay",
+   "theme": "equations-differentielles",
+   "niveau": "terminale",
+   "chapitre": "ed-t-premier-ordre",
+   "type": "theoreme",
+   "titre": "Solutions de l'équation y' = ay",
+   "recto": "Énoncer le théorème donnant les solutions de l'équation différentielle $y'=ay$ ($a$ réel), avec ses hypothèses.",
+   "cours": "Beaucoup de grandeurs varient à une vitesse **proportionnelle** à leur valeur : une population sans contrainte, une masse radioactive, un capital placé à intérêts continus. Si $y(t)$ est cette grandeur, cela s'écrit $y'=ay$ avec $a$ réel constant : c'est la plus simple des équations différentielles, une équation dont l'inconnue est une **fonction**. La fonction exponentielle a été construite précisément comme la solution de $y'=y$ valant $1$ en $0$ ; par dérivation d'une composée, $x\\mapsto e^{ax}$ est solution de $y'=ay$, et tous ses multiples $x\\mapsto Ce^{ax}$ aussi.\n\nLe théorème affirme qu'il n'y en a **pas d'autre**. L'astuce de la preuve est à retenir : si $y$ est solution, la fonction $y(x)e^{-ax}$ a une dérivée nulle, donc est constante sur l'intervalle de travail. Une condition initiale $y(x_0)=y_0$ fixe alors la constante, et la solution est unique.\n\nAllure des courbes : pour $a>0$ et $C>0$, la solution croît vers $+\\infty$ en $+\\infty$ et tend vers $0$ en $-\\infty$ ; pour $a<0$ et $C>0$, elle décroît vers $0$ en $+\\infty$ ; pour $C<0$ on prend les symétriques par rapport à l'axe des abscisses ; pour $C=0$ on a la fonction nulle. La somme de deux solutions et le produit d'une solution par une constante sont encore des solutions (l'équation est **linéaire** et sans second membre).\n\nPièges : la constante $C$ est un réel quelconque (négative ou nulle comprise), pas seulement positive ; $a$ doit être une **constante** (pour $y'=2xy$, la formule $Ce^{2x\\cdot x}$ est fausse) ; et l'on travaille sur un **intervalle**.",
+   "hypotheses": [
+    "$a$ est un nombre réel constant (il ne dépend pas de $x$).",
+    "Les solutions sont cherchées sur un intervalle $I$ (par exemple $\\mathbb{R}$).",
+    "Une solution est une fonction $y$ dérivable sur $I$ telle que $y'(x)=ay(x)$ pour tout $x\\in I$."
+   ],
+   "hypotheses_pieges": [
+    "$y$ ne s'annule pas sur $I$.",
+    "$a$ peut être une fonction continue de $x$ : les solutions restent les $x\\mapsto Ce^{ax}$.",
+    "$I$ peut être une réunion d'intervalles disjoints, par exemple $\\mathbb{R}^*$."
+   ],
+   "enonce": "Soient $a\\in\\mathbb{R}$ et $I$ un **intervalle** de $\\mathbb{R}$ (par exemple $\\mathbb{R}$).\n\n- Les solutions sur $I$ de l'équation différentielle $y'=ay$ sont exactement les fonctions $x\\mapsto Ce^{ax}$, où $C$ décrit $\\mathbb{R}$.\n- Pour tous $x_0\\in I$ et $y_0\\in\\mathbb{R}$, il existe une **unique** solution $y$ vérifiant $y(x_0)=y_0$ : c'est $x\\mapsto y_0e^{a(x-x_0)}$.",
+   "enonce_trous": "Soient $a\\in\\mathbb{R}$ et $I$ {{1}}. Les solutions sur $I$ de l'équation $y'=ay$ sont exactement les fonctions {{2}}. Pour tous $x_0\\in I$ et $y_0\\in\\mathbb{R}$, l'équation admet {{3}} vérifiant $y(x_0)=y_0$.",
+   "trous": [
+    {
+     "reponse": "un intervalle de $\\mathbb{R}$",
+     "leurres": [
+      "une partie quelconque de $\\mathbb{R}$",
+      "une réunion de deux intervalles disjoints",
+      "l'ensemble $\\mathbb{R}^*$"
+     ]
+    },
+    {
+     "reponse": "$x\\mapsto Ce^{ax}$ avec $C\\in\\mathbb{R}$",
+     "leurres": [
+      "$x\\mapsto e^{ax}+C$ avec $C\\in\\mathbb{R}$",
+      "$x\\mapsto Ce^{ax}$ avec $C>0$",
+      "$x\\mapsto Cxe^{ax}$ avec $C\\in\\mathbb{R}$"
+     ]
+    },
+    {
+     "reponse": "une unique solution",
+     "leurres": [
+      "une infinité de solutions",
+      "exactement deux solutions",
+      "au plus une solution, parfois aucune"
+     ]
+    }
+   ],
+   "demo": "**Les fonctions $Ce^{ax}$ sont solutions.** Pour $C\\in\\mathbb{R}$, $u(x)=Ce^{ax}$ est dérivable sur $\\mathbb{R}$ et $u'(x)=aCe^{ax}=au(x)$.\n\n**Il n'y en a pas d'autre.** Soit $y$ une solution sur $I$. Posons $g(x)=y(x)e^{-ax}$ ; $g$ est dérivable sur $I$ et\n$$g'(x)=y'(x)e^{-ax}-ay(x)e^{-ax}=\\big(y'(x)-ay(x)\\big)e^{-ax}=0.$$\nComme $I$ est un **intervalle**, une fonction de dérivée nulle sur $I$ y est constante : il existe $C\\in\\mathbb{R}$ tel que $g(x)=C$, c'est-à-dire $y(x)=Ce^{ax}$ pour tout $x\\in I$ (on a multiplié par $e^{ax}$, et $e^{ax}e^{-ax}=1$).\n\n**Condition initiale.** $y(x)=Ce^{ax}$ vérifie $y(x_0)=y_0$ si et seulement si $Ce^{ax_0}=y_0$, c'est-à-dire $C=y_0e^{-ax_0}$ (car $e^{ax_0}\\neq0$). Il y a donc une seule valeur de $C$, et la solution est $x\\mapsto y_0e^{-ax_0}e^{ax}=y_0e^{a(x-x_0)}$.",
+   "exemple": "La solution de $y'=-2y$ sur $\\mathbb{R}$ vérifiant $y(1)=5$ est $y(x)=5e^{-2(x-1)}$ : elle est dérivable, $y'(x)=-10e^{-2(x-1)}=-2y(x)$ et $y(1)=5e^0=5$. Elle est strictement décroissante et tend vers $0$ en $+\\infty$.\n\nDécroissance radioactive : si la masse $m(t)$ vérifie $m'=-\\lambda m$ ($\\lambda>0$), alors $m(t)=m(0)e^{-\\lambda t}$, et la masse est divisée par $2$ au bout du temps $T$ tel que $e^{-\\lambda T}=\\frac12$, soit $T=\\frac{\\ln2}{\\lambda}$ (demi-vie), quelle que soit la masse de départ.",
+   "contre_exemple": "- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, la fonction $y$ définie par $y(x)=e^x$ pour $x<0$ et $y(x)=2e^x$ pour $x>0$ est dérivable et vérifie $y'=y$, mais elle n'est pas de la forme $Ce^x$ avec une seule constante $C$ (il faudrait $C=1$ et $C=2$).\n- **$a$ doit être constant** : pour $y'=2xy$, la fonction $x\\mapsto e^{2x\\cdot x}=e^{2x^2}$ n'est pas solution, car sa dérivée est $4xe^{2x^2}$, différente de $2xe^{2x^2}$ pour $x\\neq0$. (La fonction $x\\mapsto e^{x^2}$, elle, est solution.)\n- **La linéarité est propre à ce type d'équation** : $y=-\\frac1x$ est solution de $y'=y^2$ sur $\\left]0,+\\infty\\right[$, mais $2y=-\\frac2x$ ne l'est pas : $(2y)'=\\frac{2}{x^2}$ alors que $(2y)^2=\\frac{4}{x^2}$.",
+   "affirmations": [
+    {
+     "texte": "Une solution de $y'=ay$ sur $\\mathbb{R}$ qui s'annule en un point est la fonction nulle.",
+     "vrai": true,
+     "justification": "Une solution s'écrit $Ce^{ax}$ ; si $Ce^{ax_0}=0$, alors $C=0$ car $e^{ax_0}\\neq0$."
+    },
+    {
+     "texte": "Si $a<0$, toute solution de $y'=ay$ est décroissante sur $\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "$y(x)=-e^{-x}$ est solution de $y'=-y$, et $y'(x)=e^{-x}>0$ : elle est strictement croissante. Le sens de variation dépend du signe de $C$ (et de $a$)."
+    },
+    {
+     "texte": "Les solutions de $y'=2xy$ sur $\\mathbb{R}$ sont les fonctions $x\\mapsto Ce^{2x^2}$, $C\\in\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "Pour $y(x)=e^{2x^2}$, $y'(x)=4xe^{2x^2}$, et en $x=1$ : $y'(1)=4e^2\\neq2\\cdot1\\cdot y(1)=2e^2$. Le théorème suppose $a$ constant ; ici les solutions sont les $x\\mapsto Ce^{x^2}$."
+    },
+    {
+     "texte": "Si $f$ et $g$ sont solutions de $y'=y^2$ sur un intervalle $I$, alors $f+g$ aussi.",
+     "vrai": false,
+     "contre_exemple": "$f=g:x\\mapsto-\\frac1x$ sont solutions sur $\\left]0,+\\infty\\right[$, mais $f+g=-\\frac2x$ a pour dérivée $\\frac{2}{x^2}\\neq\\frac{4}{x^2}=(f+g)^2$. L'équation $y'=y^2$ n'est pas linéaire."
+    }
+   ],
+   "prerequis": [
+    "ar-t-derivee-monotonie"
+   ]
+  },
+  {
+   "id": "ed-t-premier-ordre-ay-b",
+   "theme": "equations-differentielles",
+   "niveau": "terminale",
+   "chapitre": "ed-t-premier-ordre",
+   "type": "theoreme",
+   "titre": "Solutions de l'équation y' = ay + b",
+   "recto": "Énoncer le théorème donnant les solutions de l'équation différentielle $y'=ay+b$, avec ses hypothèses.",
+   "cours": "L'équation $y'=ay+b$ ($a\\neq0$ et $b$ réels) modélise une grandeur qui évolue vers un **équilibre** : un café qui refroidit vers la température de la pièce (loi de Newton $\\theta'=-k(\\theta-\\theta_{\\text{pièce}})$), un corps qui tombe avec frottement vers sa vitesse limite, un réservoir qui se remplit et fuit. L'idée de résolution est de se ramener à $y'=ay$.\n\nMéthode en trois temps : (1) chercher une **solution particulière constante** $k$ : $0=ak+b$ donne $k=-\\frac ba$ (c'est la valeur d'équilibre) ; (2) remarquer que $y$ est solution si et seulement si $z=y-k$ est solution de $z'=az$, donc $z=Ce^{ax}$ ; (3) conclure $y=Ce^{ax}-\\frac ba$, puis fixer $C$ par la condition initiale. Le même raisonnement vaut pour $y'=ay+f$ avec une fonction $f$ : si $y_p$ est **une** solution particulière, les solutions sont les $y_p+Ce^{ax}$ (solution particulière plus solution générale de l'équation sans second membre).\n\nLecture qualitative : si $a<0$, toutes les solutions tendent vers l'équilibre $-\\frac ba$ en $+\\infty$ (équilibre attractif) ; si $a>0$, toutes s'en éloignent, sauf la solution constante.\n\nPièges : la somme de deux solutions n'est **plus** une solution quand $b\\neq0$ ; on ne trouve pas $C$ en écrivant $C=y(0)$ (ici $C=y(0)+\\frac ba$) ; et le cas $a=0$ est à part : $y'=b$ a pour solutions les $x\\mapsto bx+C$.",
+   "hypotheses": [
+    "$a$ et $b$ sont des nombres réels constants.",
+    "$a\\neq0$.",
+    "Les solutions sont cherchées sur un intervalle $I$ (par exemple $\\mathbb{R}$)."
+   ],
+   "hypotheses_pieges": [
+    "$b\\neq0$.",
+    "$a$ est un réel quelconque, éventuellement nul.",
+    "$a$ et $b$ peuvent être des fonctions continues de $x$.",
+    "$I$ peut être une réunion d'intervalles disjoints, par exemple $\\mathbb{R}^*$."
+   ],
+   "enonce": "Soient $a$ et $b$ deux réels avec $a\\neq0$, et $I$ un **intervalle** de $\\mathbb{R}$ (par exemple $\\mathbb{R}$).\n\n- La fonction constante $x\\mapsto-\\frac ba$ est solution de $y'=ay+b$.\n- Les solutions sur $I$ de $y'=ay+b$ sont exactement les fonctions $x\\mapsto Ce^{ax}-\\frac ba$, où $C$ décrit $\\mathbb{R}$.\n- Pour tous $x_0\\in I$ et $y_0\\in\\mathbb{R}$, il existe une **unique** solution vérifiant $y(x_0)=y_0$ : c'est $x\\mapsto\\left(y_0+\\frac ba\\right)e^{a(x-x_0)}-\\frac ba$.",
+   "enonce_trous": "Soient $a$ et $b$ deux réels, $a$ {{1}}. La fonction constante {{2}} est solution de $y'=ay+b$, et les solutions sur $\\mathbb{R}$ sont les fonctions obtenues en ajoutant à cette constante une solution de $y'=ay$. Si $a<0$, toutes les solutions tendent en $+\\infty$ vers {{3}}.",
+   "trous": [
+    {
+     "reponse": "non nul",
+     "leurres": [
+      "quelconque",
+      "nul",
+      "positif ou nul"
+     ]
+    },
+    {
+     "reponse": "$x\\mapsto-\\frac ba$",
+     "leurres": [
+      "$x\\mapsto\\frac ba$",
+      "$x\\mapsto-\\frac ab$",
+      "$x\\mapsto b$"
+     ]
+    },
+    {
+     "reponse": "$-\\frac ba$",
+     "leurres": [
+      "$0$",
+      "$+\\infty$",
+      "$\\frac ba$"
+     ]
+    }
+   ],
+   "demo": "**Solution constante.** Une constante $k$ est solution si et seulement si $0=ak+b$, soit $k=-\\frac ba$ (on utilise $a\\neq0$).\n\n**Réduction à $y'=ay$.** Soit $y$ dérivable sur $I$ et $z=y+\\frac ba$. Alors $z'=y'$ et $az=ay+b$, donc\n$$y'=ay+b\\iff z'=az.$$\nD'après le théorème sur $y'=ay$ (valable sur l'intervalle $I$), cela équivaut à : il existe $C\\in\\mathbb{R}$ tel que $z(x)=Ce^{ax}$ pour tout $x\\in I$, c'est-à-dire $y(x)=Ce^{ax}-\\frac ba$.\n\n**Condition initiale.** $Ce^{ax_0}-\\frac ba=y_0\\iff C=\\left(y_0+\\frac ba\\right)e^{-ax_0}$ : une seule valeur de $C$, d'où l'unique solution $x\\mapsto\\left(y_0+\\frac ba\\right)e^{a(x-x_0)}-\\frac ba$.",
+   "exemple": "Résolvons $y'=-2y+6$ avec $y(0)=1$. La solution constante vérifie $0=-2k+6$, donc $k=3$. Les solutions sont les $x\\mapsto Ce^{-2x}+3$, et $y(0)=C+3=1$ donne $C=-2$ : $y(x)=3-2e^{-2x}$. Vérification : $y'(x)=4e^{-2x}$ et $-2y(x)+6=-6+4e^{-2x}+6=4e^{-2x}$. Comme $a=-2<0$, $y(x)\\to3$ en $+\\infty$ : la solution croît vers l'équilibre $3$.",
+   "contre_exemple": "- **$a\\neq0$ est nécessaire** : pour $a=0$, l'expression $-\\frac ba$ n'a pas de sens, et les solutions de $y'=b$ sont les $x\\mapsto bx+C$ (par exemple $x\\mapsto x$ pour $y'=1$), qui ne sont pas de la forme $Ce^{0x}+k$ si $b\\neq0$.\n- **$b$ doit être constant pour avoir une solution constante** : $y'=y+x$ n'a pas de solution constante (il faudrait $0=k+x$ pour tout $x$) ; une solution particulière est $x\\mapsto-x-1$, car $(-x-1)'=-1=(-x-1)+x$, et les solutions sont les $x\\mapsto Ce^x-x-1$.\n- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, $y(x)=e^x-1$ pour $x<0$ et $y(x)=2e^x-1$ pour $x>0$ est solution de $y'=y+1$ sans être de la forme $Ce^x-1$ avec une seule constante.",
+   "affirmations": [
+    {
+     "texte": "Si $a<0$, toute solution de $y'=ay+b$ tend vers $-\\frac ba$ en $+\\infty$.",
+     "vrai": true,
+     "justification": "$y(x)=Ce^{ax}-\\frac ba$ et $e^{ax}\\to0$ en $+\\infty$ quand $a<0$."
+    },
+    {
+     "texte": "Si $a>0$, toute solution de $y'=ay+b$ tend vers $+\\infty$ ou vers $-\\infty$ en $+\\infty$.",
+     "vrai": false,
+     "contre_exemple": "La solution constante $x\\mapsto-\\frac ba$ (cas $C=0$) : pour $y'=y-1$, la fonction constante $1$ est solution et tend vers $1$."
+    },
+    {
+     "texte": "La somme de deux solutions de $y'=ay+b$ est encore une solution de $y'=ay+b$.",
+     "vrai": false,
+     "contre_exemple": "Pour $y'=y+1$, la constante $-1$ est solution, mais $(-1)+(-1)=-2$ ne l'est pas : $(-2)'=0\\neq-2+1=-1$. La somme de deux solutions est solution de $y'=ay+2b$ ; la propriété n'est vraie que si $b=0$."
+    },
+    {
+     "texte": "Une solution de $y'=ay+b$ ($a\\neq0$) qui prend la valeur $-\\frac ba$ en un point est constante.",
+     "vrai": true,
+     "justification": "La fonction constante $-\\frac ba$ vérifie la même condition initiale ; par unicité, la solution lui est égale."
+    }
+   ],
+   "prerequis": [
+    "ed-t-premier-ordre-ay"
+   ]
+  },
+  {
+   "id": "ed-t-premier-ordre-primitives",
+   "theme": "equations-differentielles",
+   "niveau": "terminale",
+   "chapitre": "ed-t-premier-ordre",
+   "type": "theoreme",
+   "titre": "Équation y' = f et primitives",
+   "recto": "Énoncer le théorème sur les primitives d'une fonction (solutions de $y'=f$) sur un intervalle, avec ses hypothèses.",
+   "cours": "Résoudre l'équation différentielle $y'=f$, c'est chercher les fonctions dont la dérivée est $f$ donnée : c'est le **problème inverse** de la dérivation. Une solution s'appelle une **primitive** de $f$. On les trouve en lisant à l'envers le tableau des dérivées : sur un intervalle convenable, $x\\mapsto\\frac{x^{n+1}}{n+1}$ est une primitive de $x^n$ ($n\\in\\mathbb{Z}$, $n\\neq-1$), $2\\sqrt x$ de $\\frac1{\\sqrt x}$, $\\ln x$ de $\\frac1x$ sur $\\left]0,+\\infty\\right[$, $e^x$ de $e^x$, $\\sin$ de $\\cos$ et $-\\cos$ de $\\sin$.\n\nLa dérivée d'une composée donne les formes à reconnaître : $u'e^u$ a pour primitive $e^u$, $\\frac{u'}{u}$ a pour primitive $\\ln u$ si $u>0$, $u'u^n$ a pour primitive $\\frac{u^{n+1}}{n+1}$ ($n\\in\\mathbb{Z}$, $n\\neq-1$, sur un intervalle où $u$ ne s'annule pas si $n<0$), et plus généralement $u'\\times(v'\\circ u)$ a pour primitive $v\\circ u$. Quand aucune forme n'apparaît, on peut chercher une primitive d'une forme imposée (par exemple $(ax+b)e^{-x}$) et identifier les coefficients ; et il existe des fonctions continues, comme $x\\mapsto e^{-x^2}$, dont on ne connaît **aucune** primitive explicite.\n\nLe théorème dit que, sur un **intervalle**, une primitive est déterminée à une constante près : toutes les primitives s'obtiennent en ajoutant une constante à l'une d'elles, et une condition $F(x_0)=y_0$ fixe cette constante. L'existence d'une primitive pour toute fonction **continue** est admise ici et sera démontrée avec l'intégrale ($x\\mapsto\\int_{x_0}^x f(t)\\,\\mathrm dt$).\n\nPiège principal : sur une réunion d'intervalles comme $\\mathbb{R}^*$, il y a une constante **par intervalle**. Autre piège : une primitive d'une fonction positive est croissante, elle n'est pas forcément positive.",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$.",
+    "Pour l'existence : $f$ est continue sur $I$.",
+    "$F$ est une primitive de $f$ sur $I$ : $F$ est dérivable sur $I$ et $F'(x)=f(x)$ pour tout $x\\in I$."
+   ],
+   "hypotheses_pieges": [
+    "Pour l'existence, $f$ doit être dérivable sur $I$.",
+    "$I$ peut être une réunion d'intervalles disjoints, par exemple $\\mathbb{R}^*$.",
+    "Pour l'existence, il suffit que $f$ soit définie et bornée sur $I$."
+   ],
+   "enonce": "Soient $I$ un **intervalle** de $\\mathbb{R}$ et $f$ une fonction définie sur $I$. Une **primitive** de $f$ sur $I$ est une fonction $F$ dérivable sur $I$ telle que $F'=f$ : ce sont exactement les solutions sur $I$ de l'équation différentielle $y'=f$.\n\n- Si $F$ est une primitive de $f$ sur $I$, les primitives de $f$ sur $I$ sont exactement les fonctions $F+C$, $C\\in\\mathbb{R}$ : deux primitives de $f$ sur $I$ diffèrent d'une constante.\n- Dans ce cas, pour tous $x_0\\in I$ et $y_0\\in\\mathbb{R}$, il existe une **unique** primitive $G$ de $f$ sur $I$ telle que $G(x_0)=y_0$, à savoir $G=F-F(x_0)+y_0$.\n- (Admis en Terminale.) Si $f$ est **continue** sur $I$, alors $f$ admet des primitives sur $I$.",
+   "enonce_trous": "Soient {{1}} et $f$ une fonction {{2}} sur $I$. Alors $f$ admet des primitives sur $I$, et si $F$ et $G$ sont deux primitives de $f$ sur $I$, alors {{3}}.",
+   "trous": [
+    {
+     "reponse": "$I$ un intervalle de $\\mathbb{R}$",
+     "leurres": [
+      "$I$ une partie quelconque de $\\mathbb{R}$",
+      "$I$ une réunion de deux intervalles disjoints",
+      "$I=\\mathbb{R}^*$"
+     ]
+    },
+    {
+     "reponse": "continue",
+     "leurres": [
+      "définie",
+      "positive",
+      "bornée"
+     ]
+    },
+    {
+     "reponse": "$G-F$ est constante sur $I$",
+     "leurres": [
+      "$G=F$",
+      "$G=CF$ pour une constante $C$",
+      "$G-F$ est une primitive de $f$ sur $I$"
+     ]
+    }
+   ],
+   "demo": "**Les $F+C$ sont des primitives.** $(F+C)'=F'=f$ sur $I$.\n\n**Il n'y en a pas d'autre.** Soit $G$ une primitive de $f$ sur $I$. La fonction $H=G-F$ est dérivable sur $I$ et $H'=f-f=0$. Comme $I$ est un **intervalle**, $H$ est constante sur $I$ (une fonction de dérivée positive ou nulle sur un intervalle y est croissante, une fonction de dérivée négative ou nulle y est décroissante ; étant les deux, $H$ est constante). Donc $G=F+C$.\n\n**Condition initiale.** $F+C$ vaut $y_0$ en $x_0$ si et seulement si $C=y_0-F(x_0)$ : une seule constante convient.\n\n**Existence.** Elle est admise en Terminale. Elle repose sur le théorème fondamental de l'analyse, démontré dans le chapitre sur l'intégrale : si $f$ est continue sur $I$ et $x_0\\in I$, la fonction $x\\mapsto\\int_{x_0}^x f(t)\\,\\mathrm dt$ est dérivable sur $I$, de dérivée $f$.",
+   "exemple": "- Résoudre $y'=2x+\\cos x$ sur $\\mathbb{R}$ avec $y(0)=3$ : une primitive est $x^2+\\sin x$, donc $y(x)=x^2+\\sin x+C$, et $y(0)=C=3$ : $y(x)=x^2+\\sin x+3$.\n- Forme $u'e^u$ : $x\\mapsto2xe^{x^2}$ a pour primitive $x\\mapsto e^{x^2}$ sur $\\mathbb{R}$, car $\\left(e^{x^2}\\right)'=2xe^{x^2}$.\n- Forme $\\frac{u'}{u}$ : sur $\\mathbb{R}$, $x\\mapsto\\frac{2x}{x^2+1}$ a pour primitive $x\\mapsto\\ln(x^2+1)$ (ici $u=x^2+1>0$).",
+   "contre_exemple": "- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, $F(x)=-\\frac1x$ et $G$ définie par $G(x)=-\\frac1x$ pour $x<0$, $G(x)=-\\frac1x+1$ pour $x>0$ sont deux primitives de $x\\mapsto\\frac{1}{x^2}$, mais $G-F$ vaut $0$ sur $\\left]-\\infty,0\\right[$ et $1$ sur $\\left]0,+\\infty\\right[$ : elle n'est pas constante.\n- **La continuité compte pour l'existence** : la fonction $H$ égale à $0$ sur $\\left]-\\infty,0\\right[$ et à $1$ sur $\\left[0,+\\infty\\right[$ est définie, positive et bornée sur $\\mathbb{R}$, mais n'a pas de primitive sur $\\mathbb{R}$. En effet, si $F'=H$, alors $F$ est constante, égale à $c_1$, sur $\\left]-\\infty,0\\right[$, et $F(x)=x+c_2$ sur $\\left]0,+\\infty\\right[$ (théorème sur chaque intervalle) ; $F$ est continue en $0$ (car dérivable), donc $F(0)=c_1=c_2$. Pour $h<0$, $\\frac{F(h)-F(0)}{h}=0$, donc la dérivée de $F$ en $0$, si elle existe, vaut $0\\neq H(0)=1$ : contradiction.\n- **Positivité** : $x\\mapsto x$ est une primitive sur $\\mathbb{R}$ de la fonction constante $1>0$, et elle est négative en $-1$.",
+   "affirmations": [
+    {
+     "texte": "Toute fonction continue sur un intervalle $I$ admet une infinité de primitives sur $I$.",
+     "vrai": true,
+     "justification": "Elle en admet une, $F$ (théorème admis), et alors toutes les $F+C$, $C\\in\\mathbb{R}$, en sont, deux à deux distinctes."
+    },
+    {
+     "texte": "Si $F$ et $G$ sont deux primitives de $f$ sur $\\mathbb{R}^*$, alors $G-F$ est constante sur $\\mathbb{R}^*$.",
+     "vrai": false,
+     "contre_exemple": "Pour $f(x)=\\frac{1}{x^2}$, $F(x)=-\\frac1x$ et $G(x)=-\\frac1x+\\mathbf 1_{x>0}$ (on ajoute $1$ pour $x>0$ seulement) : $G-F$ vaut $0$ en $-1$ et $1$ en $1$. $\\mathbb{R}^*$ n'est pas un intervalle."
+    },
+    {
+     "texte": "Une primitive sur $\\mathbb{R}$ d'une fonction positive sur $\\mathbb{R}$ est positive sur $\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "$x\\mapsto x$ est une primitive de la fonction constante $1$, et elle vaut $-1$ en $-1$. Une telle primitive est seulement **croissante**."
+    },
+    {
+     "texte": "Si $f$ est positive sur un intervalle $I$, toute primitive de $f$ sur $I$ est croissante sur $I$.",
+     "vrai": true,
+     "justification": "Si $F'=f\\ge0$ sur l'intervalle $I$, alors $F$ est croissante sur $I$ (signe de la dérivée)."
+    }
+   ],
+   "prerequis": [
+    "ar-t-derivee-monotonie"
+   ]
+  }
+ ]
+}

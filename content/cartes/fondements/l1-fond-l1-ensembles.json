@@ -1,0 +1,447 @@
+{
+  "cartes": [
+    {
+      "id": "fond-l1-ensembles-composition",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Injections, surjections, bijections et composition",
+      "recto": "Énoncer les propriétés de la composée de deux applications vis-à-vis de l'injectivité et de la surjectivité, ainsi que la caractérisation des bijections, avec leurs hypothèses.",
+      "cours": "Une application $f : E \\to F$ associe à chaque élément de $E$ un unique élément de $F$. Elle est **injective** si deux éléments distincts ont toujours des images distinctes (pas de « collision »), **surjective** si tout élément de $F$ est atteint, **bijective** si elle est les deux : chaque $y \\in F$ a alors exactement un antécédent, ce qui définit la réciproque $f^{-1}$.\n\nEn pratique, pour montrer l'injectivité, on part de $f(x) = f(x')$ et on en déduit $x = x'$ ; pour la surjectivité, on part de $y \\in F$ et on exhibe (ou on résout l'équation pour trouver) un $x$ tel que $f(x) = y$. Pour une bijection, résoudre $f(x) = y$ et trouver une unique solution donne directement $f^{-1}(y)$.\n\nLa composition se comporte bien : composer deux injections (deux surjections) donne une injection (une surjection). Dans l'autre sens, si $g \\circ f$ est injective, c'est $f$, la première appliquée, qui doit l'être ; si $g \\circ f$ est surjective, c'est $g$, la dernière appliquée. Une bonne image mentale : $f$ ne doit rien « écraser » pour que $g \\circ f$ soit injective, et $g$ doit « tout couvrir » pour que $g \\circ f$ soit surjective.\n\nLe piège principal : croire que $g \\circ f$ bijective entraîne $f$ et $g$ bijectives, ou qu'un inverse d'un seul côté ($h \\circ f = \\mathrm{id}_E$) suffit. Sur $\\mathbb{N}$, $n \\mapsto n + 1$ a un inverse à gauche mais n'est pas surjective : il faut les deux égalités $h \\circ f = \\mathrm{id}_E$ et $f \\circ h = \\mathrm{id}_F$. Attention aussi à l'ordre : $(g \\circ f)^{-1} = f^{-1} \\circ g^{-1}$.",
+      "hypotheses": [
+        "$E$, $F$, $G$ sont des ensembles quelconques (finis ou infinis).",
+        "$f : E \\to F$ et $g : F \\to G$ sont des applications, l'ensemble d'arrivée de $f$ étant l'ensemble de départ de $g$."
+      ],
+      "hypotheses_pieges": [
+        "$E$, $F$ et $G$ sont des ensembles finis.",
+        "$g$ est injective (pour conclure que $f$ est injective lorsque $g \\circ f$ l'est).",
+        "$f$ est surjective (pour conclure que $g$ est surjective lorsque $g \\circ f$ l'est).",
+        "$E$ et $F$ ont le même cardinal."
+      ],
+      "enonce": "Soient $E$, $F$, $G$ des ensembles et $f : E \\to F$, $g : F \\to G$ des applications.\n\n- Si $f$ et $g$ sont injectives (resp. surjectives, bijectives), alors $g \\circ f$ est injective (resp. surjective, bijective) ; dans le cas bijectif, $(g \\circ f)^{-1} = f^{-1} \\circ g^{-1}$.\n- Si $g \\circ f$ est injective, alors $f$ est injective. Si $g \\circ f$ est surjective, alors $g$ est surjective.\n- $f$ est bijective si et seulement s'il existe une application $h : F \\to E$ telle que $h \\circ f = \\mathrm{id}_E$ et $f \\circ h = \\mathrm{id}_F$ ; une telle $h$ est alors unique : c'est la réciproque $f^{-1}$.",
+      "enonce_trous": "Soient $f : E \\to F$ et $g : F \\to G$ deux applications. Si $g \\circ f$ est injective, alors {{1}}. Si $g \\circ f$ est surjective, alors {{2}}. Si $f$ et $g$ sont bijectives, alors $g \\circ f$ est bijective et sa réciproque est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$f$ est injective",
+          "leurres": [
+            "$g$ est injective",
+            "$f$ et $g$ sont injectives",
+            "$f$ est bijective"
+          ]
+        },
+        {
+          "reponse": "$g$ est surjective",
+          "leurres": [
+            "$f$ est surjective",
+            "$f$ et $g$ sont surjectives",
+            "$g$ est bijective"
+          ]
+        },
+        {
+          "reponse": "$f^{-1} \\circ g^{-1}$",
+          "leurres": [
+            "$g^{-1} \\circ f^{-1}$",
+            "$f \\circ g$",
+            "$g \\circ f^{-1}$"
+          ]
+        }
+      ],
+      "demo": "**Composition.** Si $f$ et $g$ sont injectives et si $g(f(x)) = g(f(x'))$, l'injectivité de $g$ donne $f(x) = f(x')$, puis celle de $f$ donne $x = x'$. Si $f$ et $g$ sont surjectives et si $z \\in G$, il existe $y \\in F$ tel que $g(y) = z$, puis $x \\in E$ tel que $f(x) = y$, d'où $(g \\circ f)(x) = z$. Le cas bijectif réunit les deux. Enfin $(f^{-1} \\circ g^{-1}) \\circ (g \\circ f) = f^{-1} \\circ (g^{-1} \\circ g) \\circ f = f^{-1} \\circ f = \\mathrm{id}_E$ et, de même, $(g \\circ f) \\circ (f^{-1} \\circ g^{-1}) = \\mathrm{id}_G$ : par le dernier point, $f^{-1} \\circ g^{-1}$ est la réciproque de $g \\circ f$.\n\n**Réciproques partielles.** Si $g \\circ f$ est injective et si $f(x) = f(x')$, alors $g(f(x)) = g(f(x'))$, donc $x = x'$ : $f$ est injective. Si $g \\circ f$ est surjective et si $z \\in G$, on écrit $z = g(f(x))$ ; alors $z = g(y)$ avec $y = f(x) \\in F$ : $g$ est surjective.\n\n**Caractérisation des bijections.** Si $f$ est bijective, l'application $h = f^{-1}$, qui à $y \\in F$ associe son unique antécédent, vérifie $h \\circ f = \\mathrm{id}_E$ et $f \\circ h = \\mathrm{id}_F$. Réciproquement, si $h$ vérifie ces deux égalités : $h \\circ f = \\mathrm{id}_E$ est injective, donc $f$ est injective (point précédent) ; $f \\circ h = \\mathrm{id}_F$ est surjective, donc $f$ est surjective. Unicité : si $h$ et $h'$ conviennent, $h = h \\circ \\mathrm{id}_F = h \\circ (f \\circ h') = (h \\circ f) \\circ h' = \\mathrm{id}_E \\circ h' = h'$. Comme $f^{-1}$ convient, $h = f^{-1}$.",
+      "exemple": "Sur $\\mathbb{N}$, soient $f(n) = n + 1$ et $g$ définie par $g(0) = 0$ et $g(n) = n - 1$ pour $n \\geq 1$. Alors $g \\circ f = \\mathrm{id}_{\\mathbb{N}}$ : conformément au théorème, $f$ est injective et $g$ est surjective. Mais $f$ n'est pas surjective ($0$ n'a pas d'antécédent), $g$ n'est pas injective ($g(0) = g(1) = 0$), et $f \\circ g \\neq \\mathrm{id}_{\\mathbb{N}}$ puisque $f(g(0)) = 1$ : une seule des deux égalités $h \\circ f = \\mathrm{id}$, $f \\circ h = \\mathrm{id}$ ne suffit pas à rendre $f$ bijective.",
+      "contre_exemple": "- **$g \\circ f$ bijective sans que $f$ ni $g$ le soit** : $E = G = \\{0\\}$, $F = \\{0, 1\\}$, $f(0) = 0$ et $g$ constante égale à $0$. Alors $g \\circ f = \\mathrm{id}_E$ est bijective, mais $f$ n'est pas surjective ($1$ n'a pas d'antécédent) et $g$ n'est pas injective ($g(0) = g(1)$).\n- **Une seule égalité ne suffit pas** : avec $f(n) = n + 1$ et $g$ comme dans l'exemple, $g \\circ f = \\mathrm{id}_{\\mathbb{N}}$ alors que $f$ n'est pas bijective.\n- **L'ordre compte dans $(g \\circ f)^{-1}$** : sur $\\mathbb{R}$, avec $f(x) = x + 1$ et $g(x) = 2x$, on a $(g \\circ f)(x) = 2x + 2$, de réciproque $y \\mapsto y/2 - 1 = f^{-1}(g^{-1}(y))$, alors que $g^{-1}(f^{-1}(y)) = (y - 1)/2$ : pour $y = 0$, on obtient $-1$ et $-1/2$.",
+      "affirmations": [
+        {
+          "texte": "Si $g \\circ f$ est bijective, alors $f$ et $g$ sont bijectives.",
+          "vrai": false,
+          "contre_exemple": "$E = G = \\{0\\}$, $F = \\{0, 1\\}$, $f(0) = 0$, $g$ constante égale à $0$ : $g \\circ f = \\mathrm{id}_E$ est bijective, mais $f$ n'est pas surjective et $g$ n'est pas injective. On peut seulement conclure que $f$ est injective et $g$ surjective."
+        },
+        {
+          "texte": "Si $g \\circ f$ est injective et si $f$ est surjective, alors $g$ est injective.",
+          "vrai": true,
+          "justification": "Soient $y, y' \\in F$ tels que $g(y) = g(y')$. Par surjectivité de $f$, $y = f(x)$ et $y' = f(x')$ ; alors $(g \\circ f)(x) = (g \\circ f)(x')$, donc $x = x'$ et $y = y'$."
+        },
+        {
+          "texte": "S'il existe $h : F \\to E$ telle que $h \\circ f = \\mathrm{id}_E$, alors $f$ est bijective.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{N}$, $f(n) = n + 1$ et $h(0) = 0$, $h(n) = n - 1$ pour $n \\geq 1$ : $h \\circ f = \\mathrm{id}_{\\mathbb{N}}$, mais $f$ n'est pas surjective ($0$ n'a pas d'antécédent). L'égalité $h \\circ f = \\mathrm{id}_E$ donne seulement l'injectivité de $f$."
+        },
+        {
+          "texte": "Si $E$ et $F$ sont finis de même cardinal et s'il existe $h : F \\to E$ telle que $h \\circ f = \\mathrm{id}_E$, alors $f$ est bijective.",
+          "vrai": true,
+          "justification": "$h \\circ f = \\mathrm{id}_E$ rend $f$ injective ; son image $f(E)$ a alors autant d'éléments que $E$, donc que $F$, et comme $f(E) \\subset F$ avec $F$ fini, $f(E) = F$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "fond-l1-ensembles-equivalence",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Relations d'équivalence et partitions",
+      "recto": "Énoncer le lien entre relations d'équivalence et partitions d'un ensemble, avec ses hypothèses.",
+      "cours": "Une relation d'équivalence formalise l'idée de « considérer comme identiques » des objets qui partagent une propriété : même reste modulo $n$, même image par une application, même direction pour des droites. Les trois axiomes — réflexivité, symétrie, transitivité — sont exactement ce qu'il faut pour que « être équivalent » se comporte comme une égalité.\n\nLe résultat central est que les classes d'équivalence découpent l'ensemble en morceaux non vides, deux à deux disjoints, qui le recouvrent : une partition. Réciproquement, toute partition provient d'une unique relation d'équivalence. Penser « relation d'équivalence » ou « partition », c'est donc la même chose vue de deux côtés.\n\nEn pratique, la façon la plus rapide de montrer qu'une relation est d'équivalence est souvent de l'écrire $f(x) = f(y)$ pour une application $f$ bien choisie : les trois propriétés sont alors héritées de l'égalité, et les classes sont les fibres de $f$. Pour compter les classes, on compte les valeurs prises par $f$.\n\nC'est l'outil de base de toutes les constructions par quotient : $\\mathbb{Z}/n\\mathbb{Z}$, $\\mathbb{Q}$ à partir des couples d'entiers, les groupes et anneaux quotients. Le piège principal : vérifier la transitivité trop vite. Elle peut échouer sur des cas dégénérés (un dénominateur nul dans la construction de $\\mathbb{Q}$), et « symétrique et transitive » n'entraîne pas « réflexive » quand un élément n'est en relation avec rien.",
+      "hypotheses": [
+        "$\\mathcal{R}$ est réflexive : $x \\mathrel{\\mathcal{R}} x$ pour tout $x \\in E$.",
+        "$\\mathcal{R}$ est symétrique : $x \\mathrel{\\mathcal{R}} y$ entraîne $y \\mathrel{\\mathcal{R}} x$.",
+        "$\\mathcal{R}$ est transitive : $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} z$ entraînent $x \\mathrel{\\mathcal{R}} z$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathcal{R}$ est antisymétrique : $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} x$ entraînent $x = y$.",
+        "$E$ est un ensemble fini.",
+        "Deux éléments quelconques de $E$ sont comparables : $x \\mathrel{\\mathcal{R}} y$ ou $y \\mathrel{\\mathcal{R}} x$.",
+        "Les classes d'équivalence ont toutes le même nombre d'éléments."
+      ],
+      "enonce": "Soient $E$ un ensemble et $\\mathcal{R}$ une relation binaire sur $E$ réflexive, symétrique et transitive (une relation d'équivalence). Pour $x \\in E$, on note $[x] = \\{y \\in E \\mid x \\mathrel{\\mathcal{R}} y\\}$ sa classe d'équivalence.\n\n- $x \\in [x]$, et $x \\mathrel{\\mathcal{R}} y$ si et seulement si $[x] = [y]$.\n- Deux classes sont égales ou disjointes.\n- L'ensemble quotient $E/\\mathcal{R}$ des classes est donc une partition de $E$ : ses éléments sont des parties non vides de $E$, deux à deux disjointes, de réunion $E$.\n\nRéciproquement, si $\\mathcal{P}$ est une partition de $E$, la relation « $x$ et $y$ appartiennent à la même partie de $\\mathcal{P}$ » est une relation d'équivalence dont les classes sont exactement les parties de $\\mathcal{P}$. On obtient ainsi une bijection entre relations d'équivalence sur $E$ et partitions de $E$.",
+      "enonce_trous": "Soit $\\mathcal{R}$ une relation d'équivalence sur $E$. Pour $x, y \\in E$, on a $x \\mathrel{\\mathcal{R}} y$ si et seulement si {{1}}. Les classes d'équivalence sont des parties {{2}} de $E$, deux classes sont {{3}}, et la réunion des classes est $E$.",
+      "trous": [
+        {
+          "reponse": "$[x] = [y]$",
+          "leurres": [
+            "$x = y$",
+            "$[x] \\cap [y] = \\emptyset$",
+            "$[x] \\cup [y] = E$"
+          ]
+        },
+        {
+          "reponse": "non vides",
+          "leurres": [
+            "finies",
+            "de même cardinal",
+            "réduites à un élément"
+          ]
+        },
+        {
+          "reponse": "égales ou disjointes",
+          "leurres": [
+            "incluses l'une dans l'autre",
+            "d'intersection non vide",
+            "en bijection l'une avec l'autre"
+          ]
+        }
+      ],
+      "demo": "**Classes non vides, recouvrement.** Par réflexivité, $x \\in [x]$ : toute classe est non vide et tout $x \\in E$ appartient à une classe, donc la réunion des classes est $E$.\n\n**Égalité des classes.** Supposons $x \\mathrel{\\mathcal{R}} y$. Si $z \\in [y]$, alors $y \\mathrel{\\mathcal{R}} z$, donc $x \\mathrel{\\mathcal{R}} z$ par transitivité : $[y] \\subset [x]$. Par symétrie $y \\mathrel{\\mathcal{R}} x$, et le même argument donne $[x] \\subset [y]$. Ainsi $[x] = [y]$. Réciproquement, si $[x] = [y]$, alors $y \\in [y] = [x]$, c'est-à-dire $x \\mathrel{\\mathcal{R}} y$.\n\n**Égales ou disjointes.** Si $z \\in [x] \\cap [y]$, alors $x \\mathrel{\\mathcal{R}} z$ et $y \\mathrel{\\mathcal{R}} z$, donc $z \\mathrel{\\mathcal{R}} y$ par symétrie, puis $x \\mathrel{\\mathcal{R}} y$ par transitivité, et $[x] = [y]$. Les classes forment donc une partition de $E$.\n\n**Réciproque.** Soit $\\mathcal{P}$ une partition de $E$. Tout $x \\in E$ appartient à une partie de $\\mathcal{P}$ (réunion égale à $E$) et à une seule (parties deux à deux disjointes) : notons-la $P(x)$. La relation $x \\sim y \\iff P(x) = P(y)$ est réflexive, symétrique et transitive, comme l'égalité. La classe de $x$ est $\\{y \\mid P(y) = P(x)\\} = P(x)$ ; et toute partie $A \\in \\mathcal{P}$, non vide, s'écrit $A = P(a)$ pour $a \\in A$. Les classes de $\\sim$ sont donc exactement les parties de $\\mathcal{P}$.\n\n**Bijection.** Les deux constructions sont réciproques l'une de l'autre : la relation associée à la partition $E/\\mathcal{R}$ est « $[x] = [y]$ », c'est-à-dire $x \\mathrel{\\mathcal{R}} y$ ; et la partition associée à $\\sim$ est $\\mathcal{P}$.",
+      "exemple": "Sur $\\mathbb{Z}$, pour un entier $n \\geq 1$, la congruence modulo $n$ est une relation d'équivalence ; ses classes sont les ensembles $r + n\\mathbb{Z}$, $r \\in \\{0, \\dots, n - 1\\}$, qui forment une partition de $\\mathbb{Z}$ en $n$ parties (division euclidienne). Plus généralement, pour toute application $f : E \\to F$, la relation $f(x) = f(y)$ est une relation d'équivalence sur $E$ dont les classes sont les fibres $f^{-1}(\\{t\\})$, $t \\in f(E)$.",
+      "contre_exemple": "- **Sans symétrie** : sur $\\mathbb{R}$, la relation $x \\leq y$ est réflexive et transitive ; les ensembles $\\{y \\mid x \\leq y\\} = \\left[x, +\\infty\\right[$ ne sont ni égaux ni disjoints en général : $\\left[0, +\\infty\\right[$ et $\\left[1, +\\infty\\right[$ se rencontrent sans être égaux.\n- **Sans transitivité** : sur $\\mathbb{R}$, la relation $|x - y| \\leq 1$ est réflexive et symétrique ; les ensembles $\\{y \\mid |x - y| \\leq 1\\} = [x - 1, x + 1]$ se chevauchent : $[-1, 1]$ et $[0, 2]$ ne sont ni égaux ni disjoints. D'ailleurs $0$ est en relation avec $1$ et $1$ avec $2$, mais pas $0$ avec $2$.\n- **Sans réflexivité** : sur $E = \\{1, 2, 3\\}$, la relation $\\{(1, 1), (1, 2), (2, 1), (2, 2)\\}$ est symétrique et transitive, mais $3$ n'est en relation avec aucun élément : $\\{y \\mid 3 \\mathrel{\\mathcal{R}} y\\} = \\emptyset$, et les ensembles obtenus ne forment pas une partition de $E$.",
+      "affirmations": [
+        {
+          "texte": "Une relation symétrique et transitive est automatiquement réflexive : de $x \\mathrel{\\mathcal{R}} y$ et $y \\mathrel{\\mathcal{R}} x$, on tire $x \\mathrel{\\mathcal{R}} x$.",
+          "vrai": false,
+          "contre_exemple": "Sur $E = \\{1, 2, 3\\}$, la relation $\\{(1, 1), (1, 2), (2, 1), (2, 2)\\}$ est symétrique et transitive, mais $3$ n'est pas en relation avec lui-même. L'argument suppose qu'il existe $y$ en relation avec $x$, ce qui peut manquer."
+        },
+        {
+          "texte": "Si deux classes d'équivalence ont un élément commun, elles sont égales.",
+          "vrai": true,
+          "justification": "C'est le point « égales ou disjointes » : si $z \\in [x] \\cap [y]$, alors $[x] = [z] = [y]$."
+        },
+        {
+          "texte": "La réunion (comme parties de $E \\times E$) de deux relations d'équivalence sur $E$ est une relation d'équivalence.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{Z}$, réunion des congruences modulo $2$ et modulo $3$ : $0$ est en relation avec $2$ (modulo $2$), $2$ avec $5$ (modulo $3$), mais $0$ et $5$ ne sont congrus ni modulo $2$ ni modulo $3$. La transitivité est perdue."
+        },
+        {
+          "texte": "L'intersection (comme parties de $E \\times E$) de deux relations d'équivalence sur $E$ est une relation d'équivalence.",
+          "vrai": true,
+          "justification": "Réflexivité, symétrie et transitivité se vérifient séparément pour chacune des deux relations, donc pour leur intersection."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Récurrence forte et principe du bon ordre",
+      "recto": "Énoncer le principe du bon ordre et le principe de récurrence forte, avec leurs hypothèses.",
+      "cours": "La récurrence simple fait passer de $P(n)$ à $P(n+1)$. Mais il arrive que, pour prouver $P(n+1)$, on ait besoin d'un rang antérieur quelconque, pas seulement du précédent : pour décomposer $n + 1 = ab$ en facteurs premiers, on utilise $P(a)$ et $P(b)$ avec $a, b \\leq n$. La **récurrence forte** autorise exactement cela : on suppose $P(n_0), \\dots, P(n)$ toutes vraies pour démontrer $P(n+1)$.\n\nLe **principe du bon ordre** dit que toute partie non vide de $\\mathbb{N}$ a un plus petit élément. C'est la même idée sous forme de raisonnement par l'absurde : si une propriété est fausse pour certains entiers, on regarde le plus petit contre-exemple, et on en fabrique un plus petit encore. Cette « descente » sert à prouver l'irrationalité de $\\sqrt{2}$, la terminaison d'un algorithme, ou l'impossibilité d'une suite d'entiers naturels strictement décroissante.\n\nEn pratique, on rédige : « Soit $n \\geq n_0$ tel que $P(k)$ soit vraie pour tout $k \\in \\{n_0, \\dots, n\\}$ ; montrons $P(n+1)$ », en traitant à part les petits cas où le rang utilisé sortirait du domaine (par exemple $n + 1 - 3 < n_0$).\n\nLe piège principal : oublier l'initialisation, ou ne pas vérifier assez de cas initiaux quand l'hérédité utilise $P(n-2)$ ou $P(n-3)$. Et le bon ordre est propre à $\\mathbb{N}$ : $\\mathbb{Z}$, $\\mathbb{Q}_+$ ou $\\mathbb{R}_+$ ont des parties non vides sans plus petit élément.",
+      "hypotheses": [
+        "$A$ est une partie non vide de $\\mathbb{N}$ (bon ordre).",
+        "$P(n_0)$ est vraie (récurrence forte : initialisation).",
+        "Pour tout $n \\geq n_0$, si $P(k)$ est vraie pour tout entier $k$ tel que $n_0 \\leq k \\leq n$, alors $P(n+1)$ est vraie (récurrence forte : hérédité)."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est une partie majorée de $\\mathbb{N}$ (bon ordre).",
+        "$A$ est une partie finie de $\\mathbb{N}$ (bon ordre).",
+        "$P(k)$ est vraie pour tout entier $k < n_0$ (récurrence forte)."
+      ],
+      "enonce": "**Bon ordre.** Toute partie non vide $A$ de $\\mathbb{N}$ admet un plus petit élément.\n\n**Récurrence forte.** Soient $n_0 \\in \\mathbb{N}$ et, pour chaque entier $n \\geq n_0$, une propriété $P(n)$. On suppose :\n\n- $P(n_0)$ est vraie ;\n- pour tout $n \\geq n_0$, si $P(k)$ est vraie pour tout entier $k$ tel que $n_0 \\leq k \\leq n$, alors $P(n+1)$ est vraie.\n\nAlors $P(n)$ est vraie pour tout entier $n \\geq n_0$. Ces deux principes se démontrent à partir du principe de récurrence simple.",
+      "enonce_trous": "Toute partie {{1}} de $\\mathbb{N}$ admet {{2}}. Si $P(n_0)$ est vraie et si, pour tout $n \\geq n_0$, {{3}} entraîne $P(n+1)$, alors $P(n)$ est vraie pour tout $n \\geq n_0$.",
+      "trous": [
+        {
+          "reponse": "non vide",
+          "leurres": [
+            "majorée",
+            "quelconque",
+            "finie"
+          ]
+        },
+        {
+          "reponse": "un plus petit élément",
+          "leurres": [
+            "un plus grand élément",
+            "une borne supérieure dans $\\mathbb{N}$",
+            "au moins deux éléments"
+          ]
+        },
+        {
+          "reponse": "la vérité de $P(k)$ pour tous les $k$ tels que $n_0 \\leq k \\leq n$",
+          "leurres": [
+            "la vérité de $P(k)$ pour tous les $k \\geq n_0$",
+            "la vérité de $P(n+2)$",
+            "la vérité de $P(n-1)$ et de $P(n)$"
+          ]
+        }
+      ],
+      "demo": "On admet le principe de récurrence simple, propriété fondamentale de $\\mathbb{N}$.\n\n**Bon ordre.** Soit $A \\subset \\mathbb{N}$ sans plus petit élément ; montrons que $A = \\emptyset$. Pour $n \\in \\mathbb{N}$, soit $Q(n)$ : « aucun des entiers $0, 1, \\dots, n$ n'appartient à $A$ ». Si $0 \\in A$, alors $0$ serait le plus petit élément de $A$ : donc $Q(0)$ est vraie. Si $Q(n)$ est vraie et si $n + 1 \\in A$, alors tout élément de $A$ est $\\geq n + 1$, et $n + 1$ serait le plus petit élément de $A$ : exclu, donc $Q(n+1)$ est vraie. Par récurrence simple, $Q(n)$ est vraie pour tout $n$, d'où $A = \\emptyset$. Par contraposée, toute partie non vide de $\\mathbb{N}$ a un plus petit élément.\n\n**Récurrence forte.** Sous les hypothèses de l'énoncé, soit $A = \\{n \\geq n_0 \\mid P(n) \\text{ est fausse}\\}$. Si $A$ était non vide, il aurait un plus petit élément $m$. On a $m \\neq n_0$ car $P(n_0)$ est vraie, donc $m = n + 1$ avec $n \\geq n_0$. Par minimalité de $m$, les entiers $k$ tels que $n_0 \\leq k \\leq n$ ne sont pas dans $A$ : $P(k)$ est vraie pour chacun d'eux. L'hérédité donne alors $P(n+1) = P(m)$ vraie : contradiction. Donc $A = \\emptyset$.",
+      "exemple": "Tout entier $n \\geq 2$ est un produit de nombres premiers. Soit $P(n)$ : « $n$ est un produit (éventuellement réduit à un facteur) de nombres premiers ». $P(2)$ est vraie car $2$ est premier. Soit $n \\geq 2$ tel que $P(2), \\dots, P(n)$ soient vraies. Si $n + 1$ est premier, $P(n+1)$ est vraie ; sinon $n + 1 = ab$ avec $2 \\leq a, b \\leq n$, et $P(a)$, $P(b)$ écrivent $a$ et $b$, donc $n + 1$, comme produits de nombres premiers. La récurrence simple ne suffirait pas : $P(n)$ ne dit rien des diviseurs de $n + 1$.",
+      "contre_exemple": "- **Le bon ordre est propre à $\\mathbb{N}$** : la partie $\\{1/(n+1) \\mid n \\in \\mathbb{N}\\}$ de $\\mathbb{Q}_+$ est non vide mais n'a pas de plus petit élément (sa borne inférieure $0$ n'est pas atteinte) ; $\\mathbb{Z}$ n'a pas de plus petit élément.\n- **« Non vide » est indispensable** : la partie vide de $\\mathbb{N}$, qui est finie et majorée, n'a pas de plus petit élément.\n- **L'initialisation est indispensable** : la propriété $P(n)$ : « $n > n + 1$ » vérifie l'hérédité forte (sa prémisse, qui contient $P(n_0)$, est toujours fausse), mais elle n'est vraie pour aucun $n$.",
+      "affirmations": [
+        {
+          "texte": "Toute partie non vide de $\\mathbb{Z}$ admet un plus petit élément.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}$ lui-même : pour tout $n \\in \\mathbb{Z}$, $n - 1 < n$ est dans $\\mathbb{Z}$. Le résultat reste vrai pour une partie non vide et minorée de $\\mathbb{Z}$."
+        },
+        {
+          "texte": "Toute partie non vide et majorée de $\\mathbb{N}$ admet un plus grand élément.",
+          "vrai": true,
+          "justification": "L'ensemble $M$ des majorants de $A$ dans $\\mathbb{N}$ est non vide ; soit $m$ son plus petit élément. Si $m \\notin A$, tout $a \\in A$ vérifie $a < m$, donc $m \\geq 1$ (car $A \\neq \\emptyset$) et $m - 1$ majore $A$, ce qui contredit la minimalité de $m$. Donc $m \\in A$ est le plus grand élément de $A$."
+        },
+        {
+          "texte": "Dans une récurrence forte, l'initialisation est inutile, car l'hypothèse de récurrence est plus forte.",
+          "vrai": false,
+          "contre_exemple": "La propriété « $n > n + 1$ » vérifie l'hérédité forte (sa prémisse est toujours fausse) sans être jamais vraie."
+        },
+        {
+          "texte": "Il n'existe pas de suite $(u_n)_{n \\in \\mathbb{N}}$ d'entiers naturels strictement décroissante.",
+          "vrai": true,
+          "justification": "L'ensemble $\\{u_n \\mid n \\in \\mathbb{N}\\}$ est une partie non vide de $\\mathbb{N}$ ; si $u_k$ en est le plus petit élément, $u_{k+1} < u_k$ est absurde."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Principe des tiroirs",
+      "recto": "Énoncer le principe des tiroirs (forme simple et forme générale) avec ses hypothèses.",
+      "cours": "Le principe des tiroirs est presque évident : si l'on range plus d'objets que de tiroirs, un tiroir contient au moins deux objets. Sa forme générale est plus fine : $n$ objets dans $m$ tiroirs imposent un tiroir d'au moins $\\lceil n/m \\rceil$ objets, car sinon il y aurait au plus $m(\\lceil n/m \\rceil - 1) < n$ objets.\n\nSa force est de prouver une **existence sans construction** : on sait que deux objets partagent un tiroir, sans savoir lesquels. Tout l'art est de bien choisir les tiroirs : restes modulo $m$ pour des différences divisibles par $m$, paires $\\{2i - 1, 2i\\}$ pour des entiers consécutifs, partie impaire pour des divisibilités, longueur d'une sous-suite pour des sous-suites monotones.\n\nEn pratique, on définit une application de l'ensemble des objets vers l'ensemble des tiroirs, on compare les cardinaux, et on traduit « deux objets ont la même image » dans le langage du problème. Pour un résultat optimal, on exhibe aussi une configuration avec un objet de moins où la conclusion échoue.\n\nLe piège principal : le principe suppose les tiroirs en nombre **fini**. Avec une infinité de tiroirs, « avoir un élément de moins » ne garantit rien : $n \\mapsto n + 1$ est une injection de $\\mathbb{N}$ dans $\\mathbb{N} \\setminus \\{0\\}$. Il faut aussi l'inégalité stricte : avec autant d'objets que de tiroirs, on peut en mettre un par tiroir.",
+      "hypotheses": [
+        "$E$ est un ensemble fini à $n$ éléments.",
+        "$F$ est un ensemble fini non vide, à $m \\geq 1$ éléments.",
+        "$f : E \\to F$ est une application quelconque."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est surjective.",
+        "$m$ divise $n$.",
+        "Les fibres $f^{-1}(\\{y\\})$, $y \\in F$, ont toutes le même nombre d'éléments."
+      ],
+      "enonce": "Soient $E$ un ensemble fini à $n$ éléments, $F$ un ensemble fini à $m \\geq 1$ éléments et $f : E \\to F$ une application. Il existe $y \\in F$ qui possède au moins $\\lceil n/m \\rceil$ antécédents par $f$, où $\\lceil t \\rceil$ désigne le plus petit entier supérieur ou égal à $t$.\n\nEn particulier, si $n > m$, $f$ n'est pas injective : il existe $x \\neq x'$ dans $E$ tels que $f(x) = f(x')$. Autrement dit, si l'on range $n$ objets dans $m$ tiroirs, un tiroir contient au moins $\\lceil n/m \\rceil$ objets, et deux objets partagent un tiroir dès que $n > m$.",
+      "enonce_trous": "Soit $f : E \\to F$ avec $E$ fini à $n$ éléments et $F$ fini à $m \\geq 1$ éléments. Il existe $y \\in F$ ayant au moins {{1}} antécédents par $f$. En particulier, si {{2}}, $f$ n'est pas injective.",
+      "trous": [
+        {
+          "reponse": "$\\lceil n/m \\rceil$",
+          "leurres": [
+            "$\\lfloor n/m \\rfloor + 1$",
+            "$n - m$",
+            "$\\lceil m/n \\rceil$"
+          ]
+        },
+        {
+          "reponse": "$n > m$",
+          "leurres": [
+            "$n \\geq m$",
+            "$n < m$",
+            "$m$ divise $n$"
+          ]
+        }
+      ],
+      "demo": "Les fibres $f^{-1}(\\{y\\})$, $y \\in F$, sont deux à deux disjointes et de réunion $E$, donc $\\sum_{y \\in F} \\mathrm{card}\\, f^{-1}(\\{y\\}) = n$.\n\nSupposons que chaque $y \\in F$ ait au plus $\\lceil n/m \\rceil - 1$ antécédents. Par définition de $\\lceil n/m \\rceil$, l'entier $\\lceil n/m \\rceil - 1$ est strictement inférieur à $n/m$ (sinon ce serait un entier $\\geq n/m$ plus petit que $\\lceil n/m \\rceil$). En sommant sur les $m$ éléments de $F$ : $n \\leq m\\left(\\lceil n/m \\rceil - 1\\right) < m \\cdot \\frac{n}{m} = n$, contradiction. Un $y$ a donc au moins $\\lceil n/m \\rceil$ antécédents.\n\nSi $n > m$, alors $n/m > 1$, donc $\\lceil n/m \\rceil \\geq 2$ : un $y$ possède deux antécédents distincts $x \\neq x'$, et $f$ n'est pas injective.",
+      "exemple": "Parmi $13$ personnes, deux au moins sont nées le même mois : l'application « mois de naissance » va d'un ensemble à $13$ éléments dans un ensemble à $12$ éléments. Parmi $25$ personnes, au moins $\\lceil 25/12 \\rceil = 3$ sont nées le même mois.",
+      "contre_exemple": "- **L'inégalité stricte $n > m$ est nécessaire** : pour $n = m$, l'identité de $F$ est injective.\n- **La borne $\\lceil n/m \\rceil$ ne peut pas être améliorée** : $7$ objets rangés dans $3$ tiroirs selon la répartition $3, 2, 2$ ; aucun tiroir n'en contient $4$, et $\\lceil 7/3 \\rceil = 3$.\n- **Sans finitude, l'intuition « un élément de moins » est fausse** : $n \\mapsto n + 1$ est une injection de $\\mathbb{N}$ dans $\\mathbb{N} \\setminus \\{0\\}$.",
+      "affirmations": [
+        {
+          "texte": "Si l'on range $10$ objets dans $3$ tiroirs, un tiroir contient au moins $4$ objets.",
+          "vrai": true,
+          "justification": "$\\lceil 10/3 \\rceil = 4$ : trois tiroirs d'au plus $3$ objets n'en contiennent que $9$ au plus."
+        },
+        {
+          "texte": "Si l'on range $12$ objets dans $3$ tiroirs, un tiroir contient au moins $5$ objets.",
+          "vrai": false,
+          "contre_exemple": "La répartition $4, 4, 4$ : ici $\\lceil 12/3 \\rceil = 4$."
+        },
+        {
+          "texte": "Une application de $\\mathbb{N}$ dans $\\mathbb{N} \\setminus \\{0\\}$ ne peut pas être injective, puisque l'ensemble d'arrivée a un élément de moins.",
+          "vrai": false,
+          "contre_exemple": "$n \\mapsto n + 1$ est une injection (et même une bijection) de $\\mathbb{N}$ sur $\\mathbb{N} \\setminus \\{0\\}$. Le principe des tiroirs suppose un ensemble d'arrivée fini."
+        },
+        {
+          "texte": "Si $E$ et $F$ sont finis de même cardinal, toute application injective $f : E \\to F$ est surjective.",
+          "vrai": true,
+          "justification": "$f$ injective réalise une bijection de $E$ sur $f(E)$, donc $f(E) \\subset F$ a autant d'éléments que $F$, fini : $f(E) = F$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "fond-l1-ensembles-denombrables",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Ensembles dénombrables ; dénombrabilité de $\\mathbb{Q}$",
+      "recto": "Énoncer les propriétés de stabilité des ensembles dénombrables (parties, produits, réunions) avec leurs hypothèses, et en déduire que $\\mathbb{Q}$ est dénombrable.",
+      "cours": "Comparer la taille d'ensembles infinis, c'est se demander s'il existe une bijection entre eux. Les ensembles **dénombrables** sont ceux qu'on peut numéroter $e_0, e_1, e_2, \\dots$, sans oubli ni répétition : ce sont les « plus petits » infinis, en bijection avec $\\mathbb{N}$.\n\nLe résultat surprend au début : $\\mathbb{Z}$, $\\mathbb{N}^2$ et même $\\mathbb{Q}$ sont dénombrables, alors qu'ils semblent bien plus gros que $\\mathbb{N}$. On numérote $\\mathbb{Z}$ en alternant les signes ($0, -1, 1, -2, 2, \\dots$), $\\mathbb{N}^2$ diagonale par diagonale ou par $(p, q) \\mapsto 2^p(2q + 1) - 1$, et $\\mathbb{Q}$ comme image de $\\mathbb{Z} \\times \\mathbb{N}^*$ par $(p, q) \\mapsto p/q$.\n\nEn pratique, on ne construit presque jamais de bijection : on utilise les critères souples. Il suffit d'une injection dans $\\mathbb{N}$, ou d'une surjection depuis $\\mathbb{N}$, pour être au plus dénombrable ; et les produits finis, les parties et les réunions indexées par un ensemble au plus dénombrable restent au plus dénombrables. Pour conclure « dénombrable », on ajoute que l'ensemble est infini.\n\nLe piège principal : étendre ces stabilités au-delà de leur domaine. Un produit d'une **suite** d'ensembles finis peut ne pas être au plus dénombrable : c'est le cas de $\\{0, 1\\}^{\\mathbb{N}}$ ; et une réunion de singletons indexée par un ensemble non dénombrable peut ne pas l'être non plus, par exemple $\\{0, 1\\}^{\\mathbb{N}} = \\bigcup_{s \\in \\{0, 1\\}^{\\mathbb{N}}} \\{s\\}$. De même, une injection **de** $\\mathbb{N}$ dans $E$ prouve seulement que $E$ est infini.",
+      "hypotheses": [
+        "Le produit porte sur un nombre fini d'ensembles, chacun au plus dénombrable (produit).",
+        "L'ensemble d'indices $I$ est au plus dénombrable (réunion).",
+        "Chaque $A_i$, $i \\in I$, est au plus dénombrable (réunion)."
+      ],
+      "hypotheses_pieges": [
+        "Le produit porte sur une suite $(E_k)_{k \\in \\mathbb{N}}$ d'ensembles finis (produit).",
+        "Les $A_i$ sont deux à deux disjoints (réunion).",
+        "L'ensemble d'indices $I$ est fini (réunion)."
+      ],
+      "enonce": "Un ensemble $E$ est **dénombrable** s'il existe une bijection de $\\mathbb{N}$ sur $E$, et **au plus dénombrable** s'il est fini ou dénombrable.\n\n- Toute partie de $\\mathbb{N}$ est finie ou dénombrable. Un ensemble $E$ est au plus dénombrable si et seulement s'il existe une injection de $E$ dans $\\mathbb{N}$ ; lorsque $E \\neq \\emptyset$, si et seulement s'il existe une surjection de $\\mathbb{N}$ sur $E$. En particulier, toute partie d'un ensemble au plus dénombrable est au plus dénombrable.\n- L'application $(p, q) \\mapsto 2^p(2q + 1) - 1$ est une bijection de $\\mathbb{N}^2$ sur $\\mathbb{N}$ ; un produit fini d'ensembles au plus dénombrables est au plus dénombrable.\n- Si $I$ est au plus dénombrable et si chaque $A_i$ ($i \\in I$) est au plus dénombrable, alors $\\bigcup_{i \\in I} A_i$ est au plus dénombrable.\n- $\\mathbb{Z}$ et $\\mathbb{Q}$ sont dénombrables.",
+      "enonce_trous": "Un produit {{1}} d'ensembles au plus dénombrables est au plus dénombrable. Un ensemble non vide $E$ est au plus dénombrable si et seulement s'il existe {{2}}. En particulier, $\\mathbb{Q}$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "fini",
+          "leurres": [
+            "quelconque",
+            "dénombrable",
+            "indexé par $\\mathbb{R}$"
+          ]
+        },
+        {
+          "reponse": "une surjection de $\\mathbb{N}$ sur $E$",
+          "leurres": [
+            "une surjection de $E$ sur $\\mathbb{N}$",
+            "une injection de $\\mathbb{N}$ dans $E$",
+            "une bijection de $E$ sur $\\mathbb{N}$"
+          ]
+        },
+        {
+          "reponse": "dénombrable",
+          "leurres": [
+            "fini",
+            "non dénombrable",
+            "en bijection avec $\\mathbb{R}$"
+          ]
+        }
+      ],
+      "demo": "**Parties de $\\mathbb{N}$.** Soit $A \\subset \\mathbb{N}$ infinie. On pose $\\varphi(0) = \\min A$ et $\\varphi(k+1) = \\min\\left(A \\setminus \\{\\varphi(0), \\dots, \\varphi(k)\\}\\right)$, partie non vide car $A$ est infinie (bon ordre). Comme $A \\setminus \\{\\varphi(0), \\dots, \\varphi(k)\\} \\subset A \\setminus \\{\\varphi(0), \\dots, \\varphi(k-1)\\}$, on a $\\varphi(k+1) \\geq \\varphi(k)$, et $\\varphi(k+1) \\neq \\varphi(k)$ : $\\varphi$ est strictement croissante, donc injective, et $\\varphi(k) \\geq k$. Elle est surjective sur $A$ : pour $a \\in A$, soit $k$ le plus petit entier tel que $\\varphi(k) \\geq a$ (il existe car $\\varphi(a) \\geq a$) ; pour $j < k$, $\\varphi(j) < a$, donc $a \\in A \\setminus \\{\\varphi(0), \\dots, \\varphi(k-1)\\}$ et $\\varphi(k) \\leq a$, d'où $\\varphi(k) = a$. Ainsi $\\varphi$ est une bijection de $\\mathbb{N}$ sur $A$.\n\n**Injections et surjections.** Si $j : E \\to \\mathbb{N}$ est injective, $j$ est une bijection de $E$ sur la partie $j(E)$ de $\\mathbb{N}$, finie ou dénombrable, donc $E$ l'est aussi. Réciproquement, un ensemble fini à $n$ éléments est en bijection avec $\\{0, \\dots, n - 1\\} \\subset \\mathbb{N}$, et un ensemble dénombrable avec $\\mathbb{N}$. Si $s : \\mathbb{N} \\to E$ est surjective, $x \\mapsto \\min s^{-1}(\\{x\\})$ est une injection de $E$ dans $\\mathbb{N}$ (elle est injective car $s(\\min s^{-1}(\\{x\\})) = x$). Réciproquement, si $E = \\{e_0, \\dots, e_{n-1}\\}$ est fini non vide, $k \\mapsto e_{\\min(k, n-1)}$ est une surjection de $\\mathbb{N}$ sur $E$ ; si $E$ est dénombrable, une bijection convient. Enfin, une partie d'un ensemble qui s'injecte dans $\\mathbb{N}$ s'y injecte aussi, par restriction.\n\n**Produits.** Tout entier $N \\geq 1$ s'écrit de façon unique $N = 2^p m$ avec $p \\in \\mathbb{N}$ et $m$ impair ($2^p$ est la plus grande puissance de $2$ qui divise $N$), et $m = 2q + 1$ avec $q \\in \\mathbb{N}$ unique. Donc $(p, q) \\mapsto 2^p(2q + 1)$ est une bijection de $\\mathbb{N}^2$ sur $\\mathbb{N}^*$, et $(p, q) \\mapsto 2^p(2q + 1) - 1$ une bijection de $\\mathbb{N}^2$ sur $\\mathbb{N}$. Si $j_1 : E_1 \\to \\mathbb{N}$ et $j_2 : E_2 \\to \\mathbb{N}$ sont injectives, $(x, y) \\mapsto 2^{j_1(x)}(2 j_2(y) + 1)$ est une injection de $E_1 \\times E_2$ dans $\\mathbb{N}$ ; une récurrence sur le nombre de facteurs traite un produit fini quelconque.\n\n**Réunions.** On peut retirer les $A_i$ vides ; s'il n'en reste aucun, la réunion est vide. Sinon, soient $t : \\mathbb{N} \\to I$ surjective et, pour chaque $i$, $s_i : \\mathbb{N} \\to A_i$ surjective. Alors $(k, l) \\mapsto s_{t(k)}(l)$ est une surjection de $\\mathbb{N}^2$ sur la réunion, et sa composée avec une bijection de $\\mathbb{N}$ sur $\\mathbb{N}^2$ est une surjection de $\\mathbb{N}$ sur la réunion. (Choisir simultanément toutes les $s_i$ utilise l'axiome du choix dénombrable ; dans les exemples usuels, comme ci-dessous, les surjections sont explicites.)\n\n**$\\mathbb{Z}$ et $\\mathbb{Q}$.** L'application qui à $n$ associe $n/2$ si $n$ est pair et $-(n+1)/2$ si $n$ est impair est une bijection de $\\mathbb{N}$ sur $\\mathbb{Z}$. Le produit $\\mathbb{Z} \\times \\mathbb{N}^*$ est donc au plus dénombrable, et $(p, q) \\mapsto p/q$ est une surjection de $\\mathbb{Z} \\times \\mathbb{N}^*$ sur $\\mathbb{Q}$ ; en la composant avec une surjection de $\\mathbb{N}$ sur $\\mathbb{Z} \\times \\mathbb{N}^*$, on obtient une surjection de $\\mathbb{N}$ sur $\\mathbb{Q}$, qui est donc au plus dénombrable. Comme $\\mathbb{Q}$ contient $\\mathbb{N}$, il est infini, donc dénombrable.",
+      "exemple": "L'ensemble des parties finies de $\\mathbb{N}$ est dénombrable : c'est la réunion, indexée par $n \\in \\mathbb{N}$, des ensembles finis $\\mathcal{P}(\\{0, \\dots, n\\})$, et il est infini (il contient les singletons). De même, $\\mathbb{Z}[X]$ est dénombrable : c'est la réunion, indexée par $n \\in \\mathbb{N}$, des ensembles $\\mathbb{Z}_n[X]$ des polynômes de degré au plus $n$, chacun en bijection avec $\\mathbb{Z}^{n+1}$ par la liste des coefficients.",
+      "contre_exemple": "- **Produit infini** : $S = \\{0, 1\\}^{\\mathbb{N}}$, produit d'une suite d'ensembles à deux éléments, n'est pas dénombrable. En effet, pour toute suite $(s_k)_{k \\in \\mathbb{N}}$ d'éléments de $S$, la suite $t$ définie par $t(k) = 1 - s_k(k)$ appartient à $S$ et diffère de chaque $s_k$ au rang $k$ : aucune application de $\\mathbb{N}$ dans $S$ n'est surjective, alors que $S$ est non vide.\n- **Réunion indexée par un ensemble non dénombrable** : $S = \\bigcup_{s \\in S} \\{s\\}$ est une réunion de singletons, donc d'ensembles finis, mais n'est pas dénombrable (point précédent) ; l'hypothèse « $I$ au plus dénombrable » est indispensable.\n- **Injection dans le mauvais sens** : $n \\mapsto \\mathbf{1}_{\\{n\\}}$ (la suite qui vaut $1$ au rang $n$ et $0$ ailleurs) est une injection de $\\mathbb{N}$ dans $S$, et pourtant $S$ n'est pas dénombrable.",
+      "affirmations": [
+        {
+          "texte": "Toute partie infinie d'un ensemble dénombrable est dénombrable.",
+          "vrai": true,
+          "justification": "Elle s'injecte dans $\\mathbb{N}$ (par restriction d'une bijection), donc est au plus dénombrable, et elle n'est pas finie."
+        },
+        {
+          "texte": "S'il existe une injection de $\\mathbb{N}$ dans $E$, alors $E$ est dénombrable.",
+          "vrai": false,
+          "contre_exemple": "$E = \\{0, 1\\}^{\\mathbb{N}}$ : $n \\mapsto \\mathbf{1}_{\\{n\\}}$ est injective, mais $E$ n'est pas dénombrable (si $(s_k)$ est une suite d'éléments de $E$, la suite $t(k) = 1 - s_k(k)$ n'est égale à aucun $s_k$). Une injection de $\\mathbb{N}$ dans $E$ dit seulement que $E$ est infini."
+        },
+        {
+          "texte": "L'ensemble des parties finies de $\\mathbb{N}$ est dénombrable.",
+          "vrai": true,
+          "justification": "C'est la réunion dénombrable des ensembles finis $\\mathcal{P}(\\{0, \\dots, n\\})$, $n \\in \\mathbb{N}$, et il est infini."
+        },
+        {
+          "texte": "L'ensemble $\\{0, 1\\}^{\\mathbb{N}}$ des suites à valeurs dans $\\{0, 1\\}$ est dénombrable, comme produit d'ensembles finis.",
+          "vrai": false,
+          "contre_exemple": "Pour toute suite $(s_k)_{k \\in \\mathbb{N}}$ d'éléments de $\\{0, 1\\}^{\\mathbb{N}}$, la suite $t$ définie par $t(k) = 1 - s_k(k)$ diffère de chaque $s_k$ au rang $k$ : aucune suite n'énumère $\\{0, 1\\}^{\\mathbb{N}}$. La stabilité ne vaut que pour les produits finis."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-composition",
+        "fond-l1-ensembles-recurrence-forte"
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-cantor",
+      "theme": "fondements",
+      "niveau": "l1",
+      "chapitre": "fond-l1-ensembles",
+      "type": "theoreme",
+      "titre": "Non-dénombrabilité de $\\mathbb{R}$ (argument diagonal de Cantor)",
+      "recto": "Énoncer le résultat de Cantor sur la non-dénombrabilité de $\\mathbb{R}$, et sa version pour $\\mathcal{P}(E)$, avec leurs hypothèses.",
+      "cours": "Tous les infinis ne se valent pas : c'est la découverte de Cantor. Il n'existe aucune numérotation de $\\mathbb{R}$, ni même de $\\left[0, 1\\right[$ : $\\mathbb{R}$ est strictement « plus gros » que $\\mathbb{N}$ et que $\\mathbb{Q}$.\n\nL'**argument diagonal** est l'outil de la preuve. Face à une liste $x_1, x_2, \\dots$ de réels de $\\left[0, 1\\right[$, on fabrique un réel $x$ dont le $n$-ième chiffre diffère du $n$-ième chiffre de $x_n$ : $x$ diffère de chaque $x_n$, donc la liste en oublie au moins un. La même idée, sous forme abstraite, montre qu'aucune application de $E$ dans $\\mathcal{P}(E)$ n'est surjective : la partie $\\{x \\in E \\mid x \\notin f(x)\\}$ n'est jamais atteinte.\n\nEn pratique, pour montrer qu'un ensemble $X$ n'est pas dénombrable, on injecte dans $X$ l'un des ensembles $\\mathbb{R}$, un intervalle non trivial, $\\{0, 1\\}^{\\mathbb{N}}$ ou $\\mathcal{P}(\\mathbb{N})$ (ou l'on construit une surjection de $X$ sur l'un d'eux), ou l'on refait un argument diagonal. Une conséquence spectaculaire : les nombres algébriques sont dénombrables, donc « presque tous » les réels sont transcendants, sans qu'on ait à en exhiber un.\n\nLe piège principal : les développements décimaux impropres, puisque $0{,}0999\\ldots = 0{,}1$. Il suffit de choisir les chiffres du nombre diagonal différents de $0$ et de $9$ (par exemple $4$ ou $5$) : un tel nombre n'a qu'une écriture décimale. Autre piège : l'argument ne prouve rien pour $\\mathbb{Q}$, car le nombre construit à partir d'une liste des rationnels est irrationnel.",
+      "hypotheses": [
+        "$(x_n)_{n \\geq 1}$ est une suite quelconque d'éléments de $\\left[0, 1\\right[$ (argument diagonal).",
+        "$E$ est un ensemble quelconque, éventuellement vide ou fini (théorème de Cantor).",
+        "$f : E \\to \\mathcal{P}(E)$ est une application quelconque (théorème de Cantor)."
+      ],
+      "hypotheses_pieges": [
+        "Les $x_n$ sont deux à deux distincts (argument diagonal).",
+        "Les $x_n$ sont rationnels (argument diagonal).",
+        "$E$ est infini (théorème de Cantor).",
+        "$f$ est injective (théorème de Cantor)."
+      ],
+      "enonce": "**Argument diagonal.** Pour toute suite $(x_n)_{n \\geq 1}$ d'éléments de $\\left[0, 1\\right[$, il existe $x \\in \\left[0, 1\\right[$ tel que $x \\neq x_n$ pour tout $n \\geq 1$. Par conséquent, $\\left[0, 1\\right[$ et $\\mathbb{R}$ ne sont pas au plus dénombrables : ce sont des ensembles infinis non dénombrables.\n\n**Théorème de Cantor.** Pour tout ensemble $E$, aucune application $f : E \\to \\mathcal{P}(E)$ n'est surjective : la partie $\\{x \\in E \\mid x \\notin f(x)\\}$ n'a pas d'antécédent par $f$. En particulier, $\\mathcal{P}(\\mathbb{N})$ et $\\{0, 1\\}^{\\mathbb{N}}$ ne sont pas dénombrables.",
+      "enonce_trous": "Pour tout ensemble $E$ et toute application $f : E \\to \\mathcal{P}(E)$, la partie {{1}} n'a pas d'antécédent par $f$ ; ainsi aucune application de $E$ dans $\\mathcal{P}(E)$ n'est {{2}}. Par l'argument diagonal, $\\mathbb{R}$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\{x \\in E \\mid x \\notin f(x)\\}$",
+          "leurres": [
+            "$\\{x \\in E \\mid x \\in f(x)\\}$",
+            "$E$",
+            "$\\emptyset$"
+          ]
+        },
+        {
+          "reponse": "surjective",
+          "leurres": [
+            "injective",
+            "constante",
+            "bien définie"
+          ]
+        },
+        {
+          "reponse": "non dénombrable",
+          "leurres": [
+            "dénombrable",
+            "fini",
+            "en bijection avec $\\mathbb{Q}$"
+          ]
+        }
+      ],
+      "demo": "**Théorème de Cantor.** Soient $f : E \\to \\mathcal{P}(E)$ et $D = \\{x \\in E \\mid x \\notin f(x)\\}$. Supposons $D = f(a)$ pour un $a \\in E$. Si $a \\in D$, alors $a \\notin f(a) = D$ ; si $a \\notin D$, alors $a \\in f(a) = D$. Les deux cas sont contradictoires : $D$ n'a pas d'antécédent et $f$ n'est pas surjective. Pour $E = \\mathbb{N}$ : une bijection de $\\mathbb{N}$ sur $\\mathcal{P}(\\mathbb{N})$ serait une surjection, donc $\\mathcal{P}(\\mathbb{N})$, qui est infini, n'est pas dénombrable ; et $A \\mapsto \\mathbf{1}_A$ est une bijection de $\\mathcal{P}(\\mathbb{N})$ sur $\\{0, 1\\}^{\\mathbb{N}}$.\n\n**Argument diagonal.** On admet que tout réel $y \\in \\left[0, 1\\right[$ s'écrit de façon unique $y = \\sum_{k \\geq 1} c_k 10^{-k}$ avec des chiffres $c_k \\in \\{0, \\dots, 9\\}$ qui ne sont pas tous égaux à $9$ à partir d'un certain rang (développement décimal propre), et que toute suite de chiffres de cette sorte est le développement propre d'un réel de $\\left[0, 1\\right[$. Soit $(x_n)_{n \\geq 1}$ une suite de $\\left[0, 1\\right[$ et $c_{n,k}$ le $k$-ième chiffre du développement propre de $x_n$. On pose $d_n = 5$ si $c_{n,n} \\neq 5$, $d_n = 4$ si $c_{n,n} = 5$, et $x = \\sum_{n \\geq 1} d_n 10^{-n}$. Les chiffres $d_n$ valent $4$ ou $5$ : ils ne sont pas égaux à $9$ à partir d'un certain rang, donc $(d_n)$ est le développement propre de $x \\in \\left[0, 1\\right[$. Il diffère de celui de $x_n$ au rang $n$, donc $x \\neq x_n$ par unicité, et ce pour tout $n$.\n\n**Conséquences.** Aucune suite $(x_n)_{n \\geq 1}$ ne prend toutes les valeurs de $\\left[0, 1\\right[$ : il n'existe pas de surjection de $\\mathbb{N}^*$, donc de $\\mathbb{N}$, sur $\\left[0, 1\\right[$, qui n'est donc pas au plus dénombrable (carte précédente). Si $\\mathbb{R}$ était au plus dénombrable, sa partie $\\left[0, 1\\right[$ le serait aussi : contradiction. Le choix des chiffres $4$ et $5$, différents de $0$ et de $9$, évite l'ambiguïté des développements impropres.",
+      "exemple": "$\\mathbb{R} \\setminus \\mathbb{Q}$ n'est pas dénombrable : sinon $\\mathbb{R} = \\mathbb{Q} \\cup (\\mathbb{R} \\setminus \\mathbb{Q})$ serait réunion de deux ensembles au plus dénombrables, donc au plus dénombrable. Sur un exemple fini, avec $E = \\{1, 2\\}$, $f(1) = \\{1\\}$ et $f(2) = \\{1, 2\\}$ : $D = \\{x \\mid x \\notin f(x)\\} = \\emptyset$, qui n'est bien ni $f(1)$ ni $f(2)$.",
+      "contre_exemple": "- **Pourquoi éviter les chiffres $0$ et $9$** : si $x_1 = 0{,}1000\\ldots$ et si une règle moins prudente choisit $d_1 = 0$ (différent de $c_{1,1} = 1$) puis $d_n = 9$ pour $n \\geq 2$ (permis dès que $c_{n,n} \\neq 9$), le nombre obtenu est $0{,}0999\\ldots = 0{,}1 = x_1$ : il diffère de $x_1$ par l'écriture, pas par la valeur.\n- **L'argument ne prouve rien pour $\\mathbb{Q}$** : appliqué à une énumération de $\\mathbb{Q} \\cap \\left[0, 1\\right[$, il fournit un réel de $\\left[0, 1\\right[$ distinct de tous les rationnels de cet intervalle, donc irrationnel ; il n'y a aucune contradiction, et $\\mathbb{Q}$ est bien dénombrable.\n- **Cantor ne dit rien des injections** : $x \\mapsto \\{x\\}$ est une injection de $E$ dans $\\mathcal{P}(E)$.",
+      "affirmations": [
+        {
+          "texte": "L'argument diagonal, appliqué à une énumération de $\\mathbb{Q} \\cap \\left[0, 1\\right[$, montre que $\\mathbb{Q}$ n'est pas dénombrable.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Q}$ est dénombrable (image de $\\mathbb{Z} \\times \\mathbb{N}^*$ par $(p, q) \\mapsto p/q$). Le réel construit par l'argument diagonal n'est pas rationnel : il n'y a pas de contradiction."
+        },
+        {
+          "texte": "Si $A \\subset \\mathbb{R}$ est au plus dénombrable, alors $\\mathbb{R} \\setminus A$ n'est pas au plus dénombrable.",
+          "vrai": true,
+          "justification": "Sinon $\\mathbb{R} = A \\cup (\\mathbb{R} \\setminus A)$ serait au plus dénombrable."
+        },
+        {
+          "texte": "L'ensemble des réels algébriques (racines d'un polynôme non nul à coefficients entiers) n'est pas dénombrable, puisqu'il contient $\\mathbb{Q}$ et $\\sqrt{2}$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}[X]$ est dénombrable et chaque polynôme non nul n'a qu'un nombre fini de racines : les réels algébriques forment une réunion dénombrable d'ensembles finis, donc un ensemble au plus dénombrable (et infini, donc dénombrable)."
+        },
+        {
+          "texte": "Il n'existe aucune injection de $\\mathcal{P}(\\mathbb{N})$ dans $\\mathbb{N}$.",
+          "vrai": true,
+          "justification": "Sinon $\\mathcal{P}(\\mathbb{N})$ serait au plus dénombrable et non vide, donc image de $\\mathbb{N}$ par une surjection, ce qu'interdit le théorème de Cantor."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-denombrables"
+      ]
+    }
+  ]
+}
