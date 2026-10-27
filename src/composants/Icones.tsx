@@ -1,4 +1,4 @@
-// Icônes dessinées (pas d'emoji) : cadenas du parcours.
+// Icônes dessinées (pas d'emoji) : cadenas du parcours, onglets, lecture, chevron des volets.
 export function Cadenas({ taille = 20 }: { taille?: number }) {
   return (
     <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
@@ -30,6 +30,44 @@ export function CaseNiveau({ etat, taille = 22 }: { etat: 'reussi' | 'partiel' |
     <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth="2">
       <rect x="3" y="3" width="18" height="18" fill={etat === 'reussi' ? 'currentColor' : 'none'} />
       {etat === 'partiel' && <rect x="3" y="3" width="9" height="18" fill="currentColor" />}
+    </svg>
+  )
+}
+
+const TRAITS = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
+
+/** Icônes de la barre d'onglets. */
+export function IconeOnglet({ onglet, taille = 22 }: { onglet: 'accueil' | 'parcours' | 'stats' | 'reglages'; taille?: number }) {
+  return (
+    <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" {...TRAITS}>
+      {onglet === 'accueil' && <path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z" />}
+      {onglet === 'parcours' && <path d="M4 6h16M4 12h16M4 18h10" />}
+      {onglet === 'stats' && <path d="M5 20v-9M12 20V5M19 20v-6" />}
+      {onglet === 'reglages' && (
+        <>
+          <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
+          <circle cx="16" cy="7" r="2" />
+          <circle cx="10" cy="17" r="2" />
+        </>
+      )}
+    </svg>
+  )
+}
+
+/** Triangle « lecture » du bouton Réviser. */
+export function Lecture({ taille = 18 }: { taille?: number }) {
+  return (
+    <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  )
+}
+
+/** Chevron des volets (pointe vers le bas ; le CSS le retourne quand le volet est ouvert). */
+export function Chevron({ taille = 18 }: { taille?: number }) {
+  return (
+    <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" {...TRAITS} strokeWidth={2}>
+      <path d="M6 9l6 6 6-6" />
     </svg>
   )
 }

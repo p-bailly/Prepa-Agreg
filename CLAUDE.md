@@ -28,6 +28,8 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   `GITHUB_RUN_NUMBER` (0 en local) ; `versionCode` = `github.run_number`. Utilisée par l'APK, `vite.config.ts` (`__VERSION__`)
   et les Réglages ; `verification.yml` contrôle l'APK.
 - Polices Latin Modern : `.otf` CTAN non modifiés dans `src/polices/` (GUST Font License, voir `src/polices/LISEZMOI.md`).
+  Police d'interface Plus Jakarta Sans : paquet npm `@fontsource-variable/plus-jakarta-sans` (SIL OFL 1.1), importé dans
+  `src/main.tsx`, donc embarqué par Vite.
 
 ## Architecture
 - Logique pure en TypeScript, sans React, testée avec Vitest et **une horloge injectée** (`src/lib/temps.ts` : `Horloge`,
@@ -47,6 +49,19 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   indexée par identifiant de carte (`idCarte#enonce`, `#demo`, `#contre`) et d'exercice : **renommer un identifiant perd son
   historique**, ne jamais le faire sans migration.
 - Tout est embarqué dans l'APK (contenu, KaTeX et ses polices, Latin Modern) : hors ligne par construction, aucun CDN.
+
+## Allure visuelle
+Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
+`--conteneur`, `--sable`, `--menthe`, `--rose`, `--lilas`…), redéfinis pour le sombre sous `:root[data-theme='dark']`.
+- Fond gris bleuté `#F4F6FA`, surfaces blanches à grands arrondis (20 à 32 px), bleu ardoise `#3E5F8A`, aplats tonals ; ni
+  ombre ni dégradé. Sombre : fond `#111418`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
+- Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
+  aller avec les formules KaTeX.
+- Accueil : bloc « Aujourd’hui » bleu qui contient le bouton Réviser, tuiles sable / menthe / rose, objectif du jour.
+  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
+  lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
+  son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
+- Le logo (crayon rouge `#CE2029`) n'a pas suivi : il se régénère avec `npm run logo` si on veut l'accorder.
 
 ## Répétition espacée et séance (choix non évidents)
 - Notes : À revoir (reprise dans 10 min, la carte revient en fin de séance, deux fois au plus), Difficile, Bien, Facile.
@@ -153,7 +168,8 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 ## Pièges
 - Formules : `\\` en JSON ; jamais de trou `{{n}}` dans une formule (le test le refuse) ; intervalles `\left]…\right[`.
 - `content/` est importé à la construction : après un ajout de fichier, relancer `npm run dev`.
-- Les symboles ■ ◧ □ ● ◐ ○ et le cadenas sont dessinés en SVG (`src/composants/Icones.tsx`) : Latin Modern n'a pas ces glyphes.
+- Les symboles ■ ◧ □ ● ◐ ○, le cadenas, les icônes d'onglets et le chevron des volets sont dessinés en SVG
+  (`src/composants/Icones.tsx`) : Latin Modern et Plus Jakarta Sans n'ont pas ces glyphes.
 - Largeurs des barres : pourcentages CSS sans espace (`50%`), l'affichage français met une espace (`50 %`).
 - Rappel quotidien : `@capacitor/local-notifications` (`schedule.on`), permission Android 13+ demandée à l'activation ;
   dans un navigateur, il n'y a pas de rappel.
