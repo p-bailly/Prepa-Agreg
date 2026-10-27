@@ -1,0 +1,384 @@
+{
+  "cartes": [
+    {
+      "id": "ar-t-fonctions-usuelles-exp",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Exponentielle : relation fonctionnelle et propriétés algébriques",
+      "recto": "Énoncer les propriétés algébriques de la fonction exponentielle et la caractérisation des fonctions dérivables vérifiant $g(x+y)=g(x)\\,g(y)$, avec les hypothèses.",
+      "cours": "En Première, la fonction exponentielle a été définie comme l'unique fonction $f$ dérivable sur $\\mathbb{R}$ telle que $f'=f$ et $f(0)=1$ ; on la note $\\exp$, et l'on pose $e=\\exp(1)\\approx2{,}718$. Sa propriété fondamentale est la **relation fonctionnelle** $\\exp(a+b)=\\exp(a)\\exp(b)$ : l'exponentielle transforme les sommes en produits.\n\nC'est cette relation qui justifie la notation $e^{x}$ : elle donne $\\exp(n)=e^{n}$ pour tout entier $n$, et les règles de calcul des puissances restent vraies pour tous les exposants réels : $e^{a+b}=e^{a}e^{b}$, $e^{-a}=\\frac{1}{e^{a}}$, $e^{a-b}=\\frac{e^{a}}{e^{b}}$, $\\left(e^{a}\\right)^{n}=e^{na}$. On en tire aussi que $e^{x}>0$ pour tout réel $x$.\n\nMéthode : pour simplifier, on regroupe tout en une seule exponentielle ; pour résoudre une équation ou une inéquation, on se ramène à $e^{A}=e^{B}$ ou $e^{A}<e^{B}$, qui équivalent à $A=B$ et $A<B$ puisque $\\exp$ est strictement croissante ; un changement d'inconnue $X=e^{x}$ (avec $X>0$) ramène souvent à un polynôme.\n\nRéciproquement, la relation fonctionnelle caractérise les exponentielles : une fonction dérivable, non nulle, qui transforme les sommes en produits est de la forme $x\\mapsto e^{kx}$. C'est le prototype des « équations fonctionnelles » que l'on rencontre à l'écrit.\n\nPièges : $e^{a+b}$ n'est pas $e^{a}+e^{b}$, et $\\left(e^{x}\\right)^{2}=e^{2x}$ n'est pas $e^{x^{2}}$ ; dans la réciproque, la fonction nulle vérifie aussi la relation, d'où l'hypothèse de non-nullité.",
+      "hypotheses": [
+        "$g$ est dérivable sur $\\mathbb{R}$.",
+        "$g$ n'est pas la fonction nulle.",
+        "$g(x+y)=g(x)\\,g(y)$ pour tous réels $x$ et $y$."
+      ],
+      "hypotheses_pieges": [
+        "$g(x+y)=g(x)+g(y)$ pour tous réels $x$ et $y$.",
+        "$g(x+y)=g(x)\\,g(y)$ pour tous entiers $x$ et $y$ seulement.",
+        "$g'=g$ sur $\\mathbb{R}$."
+      ],
+      "enonce": "La fonction exponentielle $\\exp$ est l'unique fonction dérivable sur $\\mathbb{R}$, égale à sa dérivée et valant $1$ en $0$ ; on note $e^{x}=\\exp(x)$. Pour tous réels $a$ et $b$ et tout entier relatif $n$ :\n\n$$e^{a+b}=e^{a}\\,e^{b},\\qquad e^{a}>0,\\qquad e^{-a}=\\frac{1}{e^{a}},\\qquad e^{a-b}=\\frac{e^{a}}{e^{b}},\\qquad \\left(e^{a}\\right)^{n}=e^{na}.$$\n\nRéciproquement (équation fonctionnelle), si $g:\\mathbb{R}\\to\\mathbb{R}$ est **dérivable** sur $\\mathbb{R}$, **n'est pas la fonction nulle** et vérifie $g(x+y)=g(x)\\,g(y)$ pour **tous réels** $x$ et $y$, alors $g(0)=1$ et, pour tout réel $x$, $g(x)=e^{kx}$ avec $k=g'(0)$.",
+      "enonce_trous": "Pour tous réels $a$ et $b$, $e^{a+b}$ est égal à {{1}}. Réciproquement, si $g$ est une fonction dérivable sur $\\mathbb{R}$, {{2}}, telle que {{3}}, alors il existe un réel $k$ tel que $g(x)=e^{kx}$ pour tout réel $x$.",
+      "trous": [
+        {
+          "reponse": "$e^{a}\\times e^{b}$",
+          "leurres": [
+            "$e^{a}+e^{b}$",
+            "$e^{ab}$",
+            "$e^{a}+e^{b}-1$"
+          ]
+        },
+        {
+          "reponse": "non identiquement nulle",
+          "leurres": [
+            "telle que $g(0)=0$",
+            "telle que $g(1)=0$",
+            "qui s'annule au moins une fois"
+          ]
+        },
+        {
+          "reponse": "$g(x+y)=g(x)\\,g(y)$ pour tous réels $x$ et $y$",
+          "leurres": [
+            "$g(x+y)=g(x)+g(y)$ pour tous réels $x$ et $y$",
+            "$g(xy)=g(x)\\,g(y)$ pour tous réels $x$ et $y$",
+            "$g(x+y)=g(x)\\,g(y)$ pour tous entiers $x$ et $y$"
+          ]
+        }
+      ],
+      "demo": "**Non-annulation.** Soit $\\varphi(x)=e^{x}e^{-x}$. Par dérivation d'un produit et d'une composée, $\\varphi'(x)=e^{x}e^{-x}-e^{x}e^{-x}=0$ ; sur l'intervalle $\\mathbb{R}$, $\\varphi$ est donc constante, égale à $\\varphi(0)=1$. Ainsi $e^{x}e^{-x}=1$ : $e^{x}\\neq0$ et $e^{-x}=\\frac{1}{e^{x}}$ pour tout réel $x$.\n\n**Relation fonctionnelle.** Fixons un réel $b$ et posons $\\psi(x)=e^{x+b}e^{-x}$. Alors $\\psi'(x)=e^{x+b}e^{-x}-e^{x+b}e^{-x}=0$, donc $\\psi$ est constante, égale à $\\psi(0)=e^{b}$. Ainsi $e^{x+b}=\\frac{e^{b}}{e^{-x}}=e^{x}e^{b}$ pour tout réel $x$.\n\n**Conséquences.** $e^{a-b}e^{b}=e^{a}$ donne $e^{a-b}=\\frac{e^{a}}{e^{b}}$. Par récurrence sur $n\\in\\mathbb{N}$ : $e^{0\\cdot a}=1=\\left(e^{a}\\right)^{0}$ et $e^{(n+1)a}=e^{na}e^{a}=\\left(e^{a}\\right)^{n}e^{a}=\\left(e^{a}\\right)^{n+1}$ ; pour $n<0$, $e^{na}=\\frac{1}{e^{-na}}=\\frac{1}{\\left(e^{a}\\right)^{-n}}=\\left(e^{a}\\right)^{n}$. Enfin $e^{a}=e^{\\frac a2+\\frac a2}=\\left(e^{a/2}\\right)^{2}>0$, car $e^{a/2}\\neq0$.\n\n**Réciproque.** Avec $x=y=0$ : $g(0)=g(0)^{2}$, donc $g(0)\\in\\{0,1\\}$. Si $g(0)=0$, alors $g(x)=g(x+0)=g(x)\\,g(0)=0$ pour tout $x$, ce qui est exclu : $g(0)=1$. Fixons $x$ et dérivons par rapport à $y$ l'égalité $g(x+y)=g(x)\\,g(y)$ (à gauche, dérivée d'une composée avec $y\\mapsto x+y$) : $g'(x+y)=g(x)\\,g'(y)$, puis en $y=0$, $g'(x)=k\\,g(x)$ avec $k=g'(0)$. Posons $h(x)=g(x)e^{-kx}$ : $h'(x)=g'(x)e^{-kx}-k\\,g(x)e^{-kx}=0$, donc $h$ est constante sur l'intervalle $\\mathbb{R}$, égale à $h(0)=g(0)=1$, d'où $g(x)=e^{kx}$.\n\nRemarque : la dérivabilité en $0$ suffirait (avec la relation, elle entraîne la dérivabilité partout), et même la continuité ; mais on ne peut pas supprimer toute hypothèse de régularité : il existe des solutions non continues, dont la construction utilise l'axiome du choix.",
+      "exemple": "Pour tout réel $x$, $\\frac{e^{2x}\\times e^{1-x}}{e^{x+1}}=e^{2x+1-x-(x+1)}=e^{0}=1$.\n\nL'équation $e^{2x-1}=e^{x+3}$ équivaut, par stricte croissance de $\\exp$, à $2x-1=x+3$, soit $x=4$.\n\nSi $g$ est dérivable sur $\\mathbb{R}$, vérifie $g(x+y)=g(x)g(y)$ pour tous réels $x,y$ et $g'(0)=2$, alors $g$ n'est pas nulle (sinon $g'(0)=0$) et $g(x)=e^{2x}$.",
+      "contre_exemple": "- **La non-nullité est indispensable** : la fonction nulle est dérivable et vérifie $g(x+y)=0=g(x)\\,g(y)$, mais elle n'est pas de la forme $x\\mapsto e^{kx}$, qui ne s'annule jamais.\n- **La relation doit valoir pour tous les réels** : $g(x)=e^{x+\\sin(2\\pi x)}$ est dérivable, ne s'annule pas, et vérifie $g(x+y)=g(x)\\,g(y)$ pour tous entiers $x$ et $y$ (car alors $\\sin(2\\pi x)=\\sin(2\\pi y)=\\sin(2\\pi(x+y))=0$). Pourtant elle n'est pas de la forme $e^{kx}$ : $g(1)=e$ imposerait $k=1$, alors que $g\\left(\\frac14\\right)=e^{5/4}\\neq e^{1/4}$.\n- **Une relation additive ne donne pas une exponentielle** : $g(x)=2x$ est dérivable, non nulle, et vérifie $g(x+y)=g(x)+g(y)$, mais $g(0)=0$ alors que $e^{k\\cdot0}=1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $a$ et $b$, $e^{a+b}=e^{a}+e^{b}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $a=b=0$ : $e^{0+0}=1$, alors que $e^{0}+e^{0}=2$. La bonne formule est $e^{a+b}=e^{a}\\,e^{b}$."
+        },
+        {
+          "texte": "Pour tout réel $x$, $\\left(e^{x}\\right)^{2}=e^{x^{2}}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=1$ : $\\left(e^{1}\\right)^{2}=e^{2}$, alors que $e^{1^{2}}=e$. La bonne formule est $\\left(e^{x}\\right)^{2}=e^{2x}$."
+        },
+        {
+          "texte": "Pour tout réel $a$ et tout entier naturel $n$, $e^{na}=\\left(e^{a}\\right)^{n}$.",
+          "vrai": true,
+          "justification": "Récurrence sur $n$ à partir de la relation fonctionnelle : $e^{(n+1)a}=e^{na}\\,e^{a}$."
+        },
+        {
+          "texte": "Si $g$ est dérivable sur $\\mathbb{R}$ et vérifie $g(x+y)=g(x)\\,g(y)$ pour tous réels $x$ et $y$, alors $g(0)=1$.",
+          "vrai": false,
+          "contre_exemple": "La fonction nulle vérifie ces hypothèses, et $g(0)=0$. Il faut supposer $g$ non identiquement nulle."
+        }
+      ],
+      "prerequis": [
+        "ar-t-derivee-monotonie",
+        "ar-t-derivation-composee"
+      ]
+    },
+    {
+      "id": "ar-t-fonctions-usuelles-ln",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Fonction logarithme népérien",
+      "recto": "Définir le logarithme népérien et énoncer ses propriétés algébriques, sa dérivée et ses limites, avec les hypothèses.",
+      "cours": "La fonction exponentielle est continue et strictement croissante sur $\\mathbb{R}$, de limite $0$ en $-\\infty$ et $+\\infty$ en $+\\infty$ : tout réel $x>0$ s'écrit donc de façon unique $x=e^{y}$, et ce réel $y$ est le **logarithme népérien** de $x$, noté $\\ln x$. Le logarithme « défait » l'exponentielle : $e^{\\ln x}=x$ pour $x>0$ et $\\ln\\left(e^{y}\\right)=y$ pour tout réel $y$ ; les courbes de $\\exp$ et de $\\ln$ sont symétriques par rapport à la droite d'équation $y=x$.\n\nComme l'exponentielle transforme les sommes en produits, le logarithme transforme les produits en sommes : $\\ln(ab)=\\ln a+\\ln b$. C'est ce qui a fait le succès historique des tables de logarithmes, qui remplaçaient les multiplications par des additions.\n\nEn pratique, on s'en sert pour « faire descendre » un exposant inconnu ($q^{n}<s\\iff n\\ln q<\\ln s$ pour $q,s>0$) et pour résoudre des équations, en commençant **toujours** par déterminer l'ensemble où tous les logarithmes sont définis. Sa dérivée $x\\mapsto\\frac1x$ est strictement positive : $\\ln$ est strictement croissante, donc $\\ln a<\\ln b\\iff a<b$ pour $a,b>0$, et par composition $(\\ln u)'=\\frac{u'}{u}$ là où $u$ est dérivable et strictement positive.\n\nPièges : $\\ln(a+b)$ ne se simplifie pas ; $\\ln a$ n'existe que pour $a>0$, donc $\\ln(x^{2})=2\\ln|x|$ et non $2\\ln x$ ; et diviser une inégalité par $\\ln q$ la renverse quand $0<q<1$, car alors $\\ln q<0$.",
+      "hypotheses": [
+        "$a>0$ et $b>0$.",
+        "$n$ est un entier relatif."
+      ],
+      "hypotheses_pieges": [
+        "$ab>0$ (à la place de $a>0$ et $b>0$).",
+        "$a\\neq0$ et $b\\neq0$ (à la place de $a>0$ et $b>0$).",
+        "$a+b>0$ (à la place de $a>0$ et $b>0$)."
+      ],
+      "enonce": "La fonction exponentielle est une bijection strictement croissante de $\\mathbb{R}$ sur $\\left]0,+\\infty\\right[$ ; sa réciproque est la fonction **logarithme népérien** $\\ln:\\left]0,+\\infty\\right[\\to\\mathbb{R}$ : pour tout réel $x>0$ et tout réel $y$, $y=\\ln x\\iff e^{y}=x$. En particulier $\\ln1=0$ et $\\ln e=1$.\n\nPour tous réels $a>0$ et $b>0$ et tout entier relatif $n$ :\n\n$$\\ln(ab)=\\ln a+\\ln b,\\quad \\ln\\frac{1}{a}=-\\ln a,\\quad \\ln\\frac{a}{b}=\\ln a-\\ln b,\\quad \\ln\\left(a^{n}\\right)=n\\ln a,\\quad \\ln\\sqrt{a}=\\frac12\\ln a.$$\n\nLa fonction $\\ln$ est dérivable sur $\\left]0,+\\infty\\right[$, de dérivée $x\\mapsto\\frac{1}{x}$ ; elle est strictement croissante, et $\\lim_{x\\to0^{+}}\\ln x=-\\infty$, $\\lim_{x\\to+\\infty}\\ln x=+\\infty$.",
+      "enonce_trous": "La fonction $\\ln$ est définie sur {{1}} ; pour tout réel $x>0$ et tout réel $y$, $y=\\ln x$ si et seulement si {{2}}. Pour tous réels $a>0$ et $b>0$, $\\ln(ab)$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\left]0,+\\infty\\right[$",
+          "leurres": [
+            "$\\mathbb{R}$",
+            "$\\left[0,+\\infty\\right[$",
+            "$\\left]1,+\\infty\\right[$"
+          ]
+        },
+        {
+          "reponse": "$e^{y}=x$",
+          "leurres": [
+            "$e^{x}=y$",
+            "$e^{y}=\\frac{1}{x}$",
+            "$10^{y}=x$"
+          ]
+        },
+        {
+          "reponse": "$\\ln a+\\ln b$",
+          "leurres": [
+            "$\\ln a\\times\\ln b$",
+            "$\\ln(a+b)$",
+            "$a\\ln b$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** $\\exp$ est continue (car dérivable) et strictement croissante sur $\\mathbb{R}$ (sa dérivée $e^{x}$ est strictement positive), avec $\\lim_{-\\infty}\\exp=0$ et $\\lim_{+\\infty}\\exp=+\\infty$ (en effet, $e^{x}\\geq1+x$ pour tout réel $x$, par l'étude de $x\\mapsto e^{x}-1-x$, dont la dérivée $e^{x}-1$ change de signe en $0$ ; donc $e^{x}\\to+\\infty$ en $+\\infty$ par comparaison, puis $e^{x}=\\frac{1}{e^{-x}}\\to0$ en $-\\infty$). Par le théorème de la bijection, pour tout $x>0$, l'équation $e^{y}=x$ a une unique solution réelle $y$ : c'est $\\ln x$. Ainsi $e^{\\ln x}=x$ pour $x>0$ et $\\ln\\left(e^{y}\\right)=y$ pour tout réel $y$ ; $\\ln1=0$ car $e^{0}=1$, et $\\ln e=1$ car $e^{1}=e$.\n\n**Propriétés algébriques.** Pour $a,b>0$ : $e^{\\ln a+\\ln b}=e^{\\ln a}e^{\\ln b}=ab=e^{\\ln(ab)}$ ; comme $\\exp$ est injective (strictement croissante), $\\ln(ab)=\\ln a+\\ln b$. Avec $b=\\frac1a$ : $\\ln a+\\ln\\frac1a=\\ln1=0$. Puis $\\ln\\frac ab=\\ln a+\\ln\\frac1b=\\ln a-\\ln b$. Pour $n\\in\\mathbb{Z}$, $e^{n\\ln a}=\\left(e^{\\ln a}\\right)^{n}=a^{n}$, donc $\\ln\\left(a^{n}\\right)=n\\ln a$. Enfin $2\\ln\\sqrt a=\\ln\\left(\\sqrt a\\times\\sqrt a\\right)=\\ln a$.\n\n**Dérivée.** On admet que $\\ln$ est dérivable sur $\\left]0,+\\infty\\right[$. En dérivant l'égalité $e^{\\ln x}=x$ (dérivée d'une composée) : $\\ln'(x)\\,e^{\\ln x}=1$, soit $x\\ln'(x)=1$, et $\\ln'(x)=\\frac1x$. Cette dérivée est strictement positive sur l'intervalle $\\left]0,+\\infty\\right[$, donc $\\ln$ y est strictement croissante.\n\n**Limites.** Soit $A$ un réel : pour $x>e^{A}$, $\\ln x>\\ln\\left(e^{A}\\right)=A$ ; donc $\\ln x\\to+\\infty$ quand $x\\to+\\infty$. En $0^{+}$ : $\\ln x=-\\ln\\frac1x$ et $\\frac1x\\to+\\infty$, donc $\\ln x\\to-\\infty$.",
+      "exemple": "$\\ln12-\\ln3=\\ln4=2\\ln2$.\n\nRésolution de $\\ln(2x-1)=\\ln(x+2)$ : les deux logarithmes sont définis pour $x>\\frac12$ ; sur cet ensemble, par stricte croissance de $\\ln$, l'équation équivaut à $2x-1=x+2$, soit $x=3$, qui convient.\n\nPar composition, $x\\mapsto\\ln\\left(x^{2}+1\\right)$ est dérivable sur $\\mathbb{R}$ (car $x^{2}+1>0$), de dérivée $x\\mapsto\\frac{2x}{x^{2}+1}$.",
+      "contre_exemple": "- **Il faut $a>0$ et $b>0$, pas seulement $ab>0$** : pour $a=b=-1$, $ab=1$ et $\\ln(ab)=0$, mais $\\ln(-1)$ n'existe pas. Pour $ab>0$, la formule correcte est $\\ln(ab)=\\ln|a|+\\ln|b|$.\n- **Même piège pour les puissances** : $\\ln\\left(x^{2}\\right)$ est défini pour tout $x\\neq0$, mais $2\\ln x$ seulement pour $x>0$ ; pour $x=-e$, $\\ln\\left(x^{2}\\right)=\\ln\\left(e^{2}\\right)=2$ tandis que $2\\ln(-e)$ n'existe pas. La formule valable pour tout $x\\neq0$ est $\\ln\\left(x^{2}\\right)=2\\ln|x|$.\n- **Pas de formule pour une somme** : pour $a=b=1$, $\\ln(a+b)=\\ln2\\neq0=\\ln a+\\ln b$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $a$ et $b$ tels que $ab>0$, $\\ln(ab)=\\ln a+\\ln b$.",
+          "vrai": false,
+          "contre_exemple": "Pour $a=b=-1$, $\\ln(ab)=\\ln1=0$ existe, mais ni $\\ln a$ ni $\\ln b$ n'existe."
+        },
+        {
+          "texte": "Pour tout réel $x\\neq0$, $\\ln\\left(x^{2}\\right)=2\\ln|x|$.",
+          "vrai": true,
+          "justification": "$x^{2}=|x|^{2}$ avec $|x|>0$, et $\\ln\\left(|x|^{2}\\right)=2\\ln|x|$."
+        },
+        {
+          "texte": "Pour tous réels $a>0$ et $b>0$, $\\ln(a+b)=\\ln a+\\ln b$.",
+          "vrai": false,
+          "contre_exemple": "Pour $a=b=1$ : $\\ln2\\neq0=\\ln1+\\ln1$."
+        },
+        {
+          "texte": "La fonction $\\ln$ est majorée sur $\\left]0,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "Pour tout entier $n$, $\\ln\\left(e^{n}\\right)=n$ : aucun réel ne majore $\\ln$, qui tend vers $+\\infty$ (très lentement)."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-exp",
+        "ar-t-continuite-bijection",
+        "ar-t-derivation-composee"
+      ]
+    },
+    {
+      "id": "ar-t-fonctions-usuelles-croissances",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Croissances comparées",
+      "recto": "Énoncer les croissances comparées de l'exponentielle, des puissances et du logarithme, avec leurs hypothèses.",
+      "cours": "Quand $x$ tend vers $+\\infty$, $e^{x}$, $x^{n}$ et $\\ln x$ tendent tous vers $+\\infty$, mais pas à la même vitesse ; leurs quotients sont des formes indéterminées « $\\frac{\\infty}{\\infty}$ », de même que des produits comme $x^{n}e^{-x}$ en $+\\infty$ ou $x^{n}\\ln x$ en $0^{+}$ (forme « $0\\times\\infty$ »), que les règles opératoires ne tranchent pas.\n\nLes **croissances comparées** règlent ces cas : en $+\\infty$, l'exponentielle l'emporte sur toute puissance de $x$, et toute puissance $x^{n}$ ($n\\geq1$) l'emporte sur le logarithme ; en $0^{+}$, la puissance $x^{n}$ l'emporte sur $\\ln x$. Intuitivement, $e^{x}$ est multiplié par $e$ chaque fois que $x$ augmente de $1$, alors que $\\ln x$ n'augmente que de $1$ quand $x$ est multiplié par $e$.\n\nMéthode : dans une somme, on **factorise le terme prépondérant** ($e^{x}-x^{3}=e^{x}\\left(1-\\frac{x^{3}}{e^{x}}\\right)$) ; dans un quotient, on se ramène à une limite de référence, au besoin par un changement de variable ($X=\\ln x$, $X=-x$, $X=\\frac1x$, $X=\\sqrt x$). Ces limites décident des branches infinies dans les études de fonctions, et préparent la comparaison asymptotique (négligeabilité, équivalents) étudiée après le baccalauréat.\n\nPiège : une croissance comparée est un énoncé de **limite**, pas une inégalité vraie partout : $\\frac{e^{x}}{x^{3}}\\to+\\infty$, et pourtant $e^{2}<2^{3}$.",
+      "hypotheses": [
+        "$n$ est un entier naturel non nul."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un entier naturel, $0$ compris (à la place de non nul).",
+        "$n$ est un entier relatif non nul, éventuellement négatif.",
+        "$n$ est un réel quelconque (à la place d'un entier naturel non nul)."
+      ],
+      "enonce": "Pour tout entier naturel $n\\geq1$ :\n\n$$\\lim_{x\\to+\\infty}\\frac{e^{x}}{x^{n}}=+\\infty,\\qquad \\lim_{x\\to-\\infty}x^{n}e^{x}=0,\\qquad \\lim_{x\\to+\\infty}\\frac{\\ln x}{x^{n}}=0,\\qquad \\lim_{x\\to0^{+}}x^{n}\\ln x=0.$$\n\nEn $+\\infty$, l'exponentielle l'emporte sur toute puissance de $x$, et toute puissance $x^{n}$ ($n\\geq1$) l'emporte sur le logarithme.",
+      "enonce_trous": "Pour tout entier {{1}}, $\\frac{e^{x}}{x^{n}}$ tend vers {{2}} quand $x$ tend vers $+\\infty$, et $x^{n}\\ln x$ tend vers {{3}} quand $x$ tend vers $0$ par valeurs positives.",
+      "trous": [
+        {
+          "reponse": "$n\\geq1$",
+          "leurres": [
+            "$n\\geq0$",
+            "$n\\in\\mathbb{Z}$",
+            "$n\\leq-1$"
+          ]
+        },
+        {
+          "reponse": "$+\\infty$",
+          "leurres": [
+            "$0$",
+            "$1$",
+            "$n$"
+          ]
+        },
+        {
+          "reponse": "$0$",
+          "leurres": [
+            "$-\\infty$",
+            "$+\\infty$",
+            "$1$"
+          ]
+        }
+      ],
+      "demo": "**Étape 1.** Soit $\\varphi(x)=e^{x}-1-x$ : $\\varphi'(x)=e^{x}-1$ est négative sur $\\left]-\\infty,0\\right]$ et positive sur $\\left[0,+\\infty\\right[$, donc $\\varphi$ a pour minimum $\\varphi(0)=0$ : $e^{x}\\geq1+x>x$ pour tout réel $x$.\n\n**Étape 2.** Soit $g(x)=e^{x}-\\frac{x^{2}}{2}$ sur $\\left[0,+\\infty\\right[$ : $g'(x)=e^{x}-x>0$ (étape 1), donc $g$ est croissante et $g(x)\\geq g(0)=1>0$. Ainsi $\\frac{e^{x}}{x}>\\frac{x}{2}$ pour $x>0$, et par comparaison $\\frac{e^{x}}{x}\\to+\\infty$ en $+\\infty$.\n\n**Étape 3 (cas général).** Pour $x>0$ et $n\\geq1$ : $\\frac{e^{x}}{x^{n}}=\\frac{\\left(e^{x/n}\\right)^{n}}{x^{n}}=\\frac{1}{n^{n}}\\left(\\frac{e^{X}}{X}\\right)^{n}$ avec $X=\\frac{x}{n}$. Quand $x\\to+\\infty$, $X\\to+\\infty$ et $\\frac{e^{X}}{X}\\to+\\infty$ (étape 2), donc sa puissance $n$-ième aussi : $\\frac{e^{x}}{x^{n}}\\to+\\infty$.\n\n**Étape 4.** En $-\\infty$, posons $X=-x\\to+\\infty$ : $x^{n}e^{x}=(-1)^{n}\\frac{X^{n}}{e^{X}}$, qui tend vers $0$ car $\\frac{e^{X}}{X^{n}}\\to+\\infty$.\n\n**Étape 5.** Posons $X=\\ln x$, de sorte que $x=e^{X}$ et $X\\to+\\infty$ quand $x\\to+\\infty$ : $\\frac{\\ln x}{x^{n}}=\\frac{X}{e^{nX}}=\\frac{1}{n}\\times\\frac{nX}{e^{nX}}\\to0$, car $\\frac{e^{Y}}{Y}\\to+\\infty$ quand $Y=nX\\to+\\infty$.\n\n**Étape 6.** En $0^{+}$, posons $t=\\frac1x\\to+\\infty$ : $x^{n}\\ln x=-\\frac{\\ln t}{t^{n}}\\to0$ par l'étape 5.",
+      "exemple": "$\\lim_{x\\to+\\infty}\\left(x^{3}-e^{x}\\right)=-\\infty$ : on factorise le terme prépondérant, $x^{3}-e^{x}=e^{x}\\left(\\frac{x^{3}}{e^{x}}-1\\right)$, où $\\frac{x^{3}}{e^{x}}\\to0$ ; la parenthèse tend vers $-1$ et le produit vers $-\\infty$.\n\nDe même, $\\lim_{x\\to0^{+}}x\\ln x=0$, et $\\lim_{x\\to+\\infty}\\frac{\\ln x}{\\sqrt x}=0$ : on écrit $\\frac{\\ln x}{\\sqrt x}=\\frac{2\\ln\\sqrt x}{\\sqrt x}$ et l'on pose $X=\\sqrt x\\to+\\infty$.",
+      "contre_exemple": "- **$n=0$ est exclu** : $\\frac{\\ln x}{x^{0}}=\\ln x\\to+\\infty$ en $+\\infty$, et $x^{0}\\ln x=\\ln x\\to-\\infty$ en $0^{+}$.\n- **$n$ négatif est exclu** : pour $n=-1$, $x^{-1}\\ln x=\\frac{\\ln x}{x}\\to-\\infty$ en $0^{+}$ (produit de $\\ln x\\to-\\infty$ par $\\frac1x\\to+\\infty$ : ce n'est même pas une forme indéterminée).\n- **Une limite n'est pas une inégalité globale** : $\\frac{e^{x}}{x^{3}}\\to+\\infty$, et pourtant $e^{2}\\approx7{,}39<8=2^{3}$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $x>0$, $e^{x}>x^{3}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=2$ : $e^{2}\\approx7{,}39<8=2^{3}$. La croissance comparée ne dit que ce qui se passe pour $x$ assez grand."
+        },
+        {
+          "texte": "$\\lim_{x\\to+\\infty}\\frac{e^{x}}{x^{100}}=+\\infty$.",
+          "vrai": true,
+          "justification": "C'est la croissance comparée avec $n=100$ : l'exposant, si grand soit-il, ne change pas la limite."
+        },
+        {
+          "texte": "$\\lim_{x\\to0^{+}}\\frac{\\ln x}{x}=0$.",
+          "vrai": false,
+          "contre_exemple": "$\\frac{\\ln x}{x}=\\ln x\\times\\frac1x$ avec $\\ln x\\to-\\infty$ et $\\frac1x\\to+\\infty$ : la limite est $-\\infty$. La croissance comparée porte sur $x\\ln x$ en $0^{+}$ et sur $\\frac{\\ln x}{x}$ en $+\\infty$."
+        },
+        {
+          "texte": "$\\lim_{x\\to+\\infty}\\frac{(\\ln x)^{2}}{x}=0$.",
+          "vrai": true,
+          "justification": "Avec $X=\\sqrt x\\to+\\infty$ : $\\frac{(\\ln x)^{2}}{x}=\\left(\\frac{2\\ln X}{X}\\right)^{2}\\to0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-exp",
+        "ar-t-fonctions-usuelles-ln"
+      ]
+    },
+    {
+      "id": "ar-t-fonctions-usuelles-limites-zero",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Limites de référence en 0 (taux d'accroissement)",
+      "recto": "Énoncer le principe du taux d'accroissement et les limites de référence en $0$ qui en découlent, avec les hypothèses.",
+      "cours": "Plusieurs limites en $0$ semblent indéterminées, de la forme $\\frac00$ : $\\frac{e^{x}-1}{x}$, $\\frac{\\ln(1+x)}{x}$, $\\frac{\\sin x}{x}$. L'idée est de les reconnaître comme des **taux d'accroissement** : si $f$ est dérivable en $a$, le quotient $\\frac{f(a+h)-f(a)}{h}$ tend, par définition, vers $f'(a)$ quand $h\\to0$. Avec $f=\\exp$ en $0$, $f=\\ln$ en $1$, $f=\\sin$ et $f=\\cos$ en $0$, on obtient les quatre limites de référence $1$, $1$, $1$ et $0$.\n\nGéométriquement, elles disent que près de $0$, $e^{x}\\approx1+x$, $\\ln(1+x)\\approx x$, $\\sin x\\approx x$ : la courbe est proche de sa tangente. Ce sont les premières formes des développements limités, outil central de l'analyse après le baccalauréat.\n\nMéthode : faire apparaître exactement un taux d'accroissement, au besoin en multipliant et en divisant ($\\frac{\\sin(4x)}{x}=4\\times\\frac{\\sin(4x)}{4x}$) ou en écrivant un quotient comme produit de deux quotients de référence, puis composer les limites.\n\nPiège principal : la règle ne s'applique qu'à un vrai taux d'accroissement. $\\frac{1-\\cos x}{x^{2}}$ n'en est pas un, et sa limite vaut $\\frac12$, pas $0$.",
+      "hypotheses": [
+        "$f$ est définie sur un intervalle ouvert contenant $a$.",
+        "$f$ est dérivable en $a$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est seulement continue en $a$.",
+        "$f$ est dérivable en tout point de l'intervalle, sauf peut-être en $a$.",
+        "$f$ admet une limite finie en $a$ (à la place de la dérivabilité en $a$)."
+      ],
+      "enonce": "Soit $f$ une fonction définie sur un intervalle ouvert contenant $a$. Si $f$ est **dérivable en $a$**, alors\n\n$$\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}=f'(a).$$\n\nAppliqué à $\\exp$, $\\sin$ et $\\cos$ en $0$ et à $\\ln$ en $1$, cela donne les limites de référence :\n\n$$\\lim_{x\\to0}\\frac{e^{x}-1}{x}=1,\\qquad \\lim_{x\\to0}\\frac{\\ln(1+x)}{x}=1,\\qquad \\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad \\lim_{x\\to0}\\frac{\\cos x-1}{x}=0.$$",
+      "enonce_trous": "Si $f$ est {{1}}, alors le taux d'accroissement $\\frac{f(a+h)-f(a)}{h}$ tend vers {{2}} quand $h$ tend vers $0$. Par exemple, $\\frac{e^{x}-1}{x}$ tend vers {{3}} quand $x$ tend vers $0$.",
+      "trous": [
+        {
+          "reponse": "dérivable en $a$",
+          "leurres": [
+            "continue en $a$",
+            "définie en $a$",
+            "dérivable en tout point sauf $a$"
+          ]
+        },
+        {
+          "reponse": "$f'(a)$",
+          "leurres": [
+            "$f(a)$",
+            "$0$",
+            "$f'(0)$"
+          ]
+        },
+        {
+          "reponse": "$1$",
+          "leurres": [
+            "$0$",
+            "$e$",
+            "$+\\infty$"
+          ]
+        }
+      ],
+      "demo": "Le premier énoncé est la définition même du nombre dérivé $f'(a)$.\n\n- **Exponentielle** : $\\exp$ est dérivable en $0$, de nombre dérivé $\\exp'(0)=e^{0}=1$, donc $\\frac{e^{h}-e^{0}}{h}=\\frac{e^{h}-1}{h}\\to1$.\n- **Logarithme** : $\\ln$ est dérivable en $1$, de nombre dérivé $\\frac11=1$, et $\\ln1=0$, donc $\\frac{\\ln(1+h)-\\ln1}{h}=\\frac{\\ln(1+h)}{h}\\to1$.\n- **Sinus** : si l'on admet que $\\sin'=\\cos$, c'est $\\frac{\\sin h-\\sin0}{h}\\to\\cos0=1$. On peut aussi l'établir directement, ce qui sert justement à démontrer que $\\sin'=\\cos$. Pour $0<x<\\frac\\pi2$, sur le cercle trigonométrique de centre $O$, soient $A(1,0)$, $M(\\cos x,\\sin x)$ et $T(1,\\tan x)$ le point de la tangente en $A$ aligné avec $O$ et $M$. Le triangle $OAM$ est contenu dans le secteur angulaire $OAM$, lui-même contenu dans le triangle $OAT$ ; en comparant les aires : $\\frac{\\sin x}{2}<\\frac{x}{2}<\\frac{\\tan x}{2}$. En divisant $\\sin x<x$ par $x>0$, et en multipliant $x<\\frac{\\sin x}{\\cos x}$ par $\\frac{\\cos x}{x}>0$, on obtient $\\cos x<\\frac{\\sin x}{x}<1$. La fonction $x\\mapsto\\frac{\\sin x}{x}$ étant paire, l'encadrement vaut aussi pour $-\\frac\\pi2<x<0$. Comme $\\cos x\\to1$ quand $x\\to0$ (pour $0<|x|<\\frac\\pi2$, $0\\leq1-\\cos x\\leq(1-\\cos x)(1+\\cos x)=\\sin^{2}x\\leq x^{2}$, d'après $|\\sin x|\\leq|x|$), le théorème des gendarmes donne $\\frac{\\sin x}{x}\\to1$.\n- **Cosinus** : pour $0<|h|<\\frac\\pi2$, $1+\\cos h>0$ et $\\frac{\\cos h-1}{h}=\\frac{\\cos^{2}h-1}{h(1+\\cos h)}=-\\frac{\\sin h}{h}\\times\\frac{\\sin h}{1+\\cos h}$, qui tend vers $-1\\times\\frac{0}{2}=0$.",
+      "exemple": "$\\lim_{x\\to0}\\frac{\\sin(4x)}{x}=\\lim_{x\\to0}4\\times\\frac{\\sin(4x)}{4x}=4$, car $X=4x\\to0$ et $\\frac{\\sin X}{X}\\to1$.\n\n$\\lim_{x\\to0}\\frac{e^{x}-1}{\\sin x}=\\lim_{x\\to0}\\frac{e^{x}-1}{x}\\times\\frac{x}{\\sin x}=1\\times1=1$.\n\n$\\lim_{x\\to1}\\frac{\\ln x}{x-1}=\\ln'(1)=1$ : c'est le taux d'accroissement de $\\ln$ en $1$.",
+      "contre_exemple": "- **La continuité ne suffit pas** : $f(x)=|x|$ est continue en $0$, mais $\\frac{f(h)-f(0)}{h}=\\frac{|h|}{h}$ vaut $1$ pour $h>0$ et $-1$ pour $h<0$ : pas de limite. Cette même fonction est dérivable en tout point sauf $0$, ce qui ne suffit donc pas non plus.\n- **Une limite finie en $a$ non plus** : $|x|$ tend vers $0=f(0)$ en $0$, mais n'y est pas dérivable (même calcul).\n- **Seul un vrai taux d'accroissement tend vers $f'(a)$** : $\\frac{1-\\cos x}{x^{2}}$ n'est pas le taux d'accroissement de $\\cos$ en $0$ (celui-ci est $\\frac{\\cos x-1}{x}$, qui tend vers $0$) ; en écrivant $1-\\cos x=\\frac{\\sin^{2}x}{1+\\cos x}$, on trouve $\\frac{1-\\cos x}{x^{2}}=\\left(\\frac{\\sin x}{x}\\right)^{2}\\times\\frac{1}{1+\\cos x}\\to\\frac12$.",
+      "affirmations": [
+        {
+          "texte": "$\\lim_{x\\to0}\\frac{e^{2x}-1}{x}=1$.",
+          "vrai": false,
+          "contre_exemple": "$\\frac{e^{2x}-1}{x}=2\\times\\frac{e^{2x}-1}{2x}\\to2\\times1=2$ (c'est le taux d'accroissement en $0$ de $x\\mapsto e^{2x}$, de dérivée $2$ en $0$)."
+        },
+        {
+          "texte": "$\\lim_{x\\to0}\\frac{1-\\cos x}{x^{2}}=\\frac12$.",
+          "vrai": true,
+          "justification": "$\\frac{1-\\cos x}{x^{2}}=\\left(\\frac{\\sin x}{x}\\right)^{2}\\times\\frac{1}{1+\\cos x}\\to1\\times\\frac12$."
+        },
+        {
+          "texte": "$\\lim_{x\\to+\\infty}\\frac{\\sin x}{x}=1$.",
+          "vrai": false,
+          "contre_exemple": "La limite de référence est en $0$. En $+\\infty$, $\\left|\\frac{\\sin x}{x}\\right|\\leq\\frac{1}{x}\\to0$, donc $\\frac{\\sin x}{x}\\to0$."
+        },
+        {
+          "texte": "Si $f$ est continue en $0$ et $f(0)=0$, alors $\\frac{f(x)}{x}$ admet une limite finie en $0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=|x|$ : $\\frac{|x|}{x}$ vaut $1$ pour $x>0$ et $-1$ pour $x<0$, sans limite en $0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-ln",
+        "ar-t-gendarmes"
+      ]
+    },
+    {
+      "id": "ar-t-fonctions-usuelles-trigo",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Fonctions sinus et cosinus : dérivées, parité, périodicité",
+      "recto": "Énoncer les dérivées, la parité et la périodicité des fonctions sinus et cosinus, ainsi que la dérivée de $\\sin\\circ u$ et de $\\cos\\circ u$, avec les hypothèses.",
+      "cours": "Sur le cercle trigonométrique (centre $O$, rayon $1$), on associe à chaque réel $x$ le point $M(x)$ obtenu en parcourant, depuis $A(1,0)$, un arc de longueur $|x|$, dans le sens direct si $x>0$ et dans le sens indirect si $x<0$ ; $\\cos x$ et $\\sin x$ sont l'abscisse et l'ordonnée de $M(x)$.\n\nDe cette construction viennent les propriétés géométriques : $\\cos^{2}x+\\sin^{2}x=1$ ($M$ est sur le cercle), la **périodicité** (ajouter $2\\pi$ fait faire un tour complet) et la **parité** ($M(-x)$ est le symétrique de $M(x)$ par rapport à l'axe des abscisses, d'où $\\cos(-x)=\\cos x$ et $\\sin(-x)=-\\sin x$).\n\nLa Terminale ajoute le calcul différentiel : $\\sin'=\\cos$ et $\\cos'=-\\sin$, d'où, par composition, $\\big(\\sin(ax+b)\\big)'=a\\cos(ax+b)$ et $\\big(\\cos(ax+b)\\big)'=-a\\sin(ax+b)$.\n\nMéthode d'étude d'une fonction trigonométrique : chercher d'abord parité et période pour réduire l'intervalle d'étude (par exemple à $\\left[0,\\pi\\right]$), puis dériver et étudier le signe de la dérivée, souvent en se ramenant à une inéquation $\\cos x\\leq a$ que l'on résout sur le cercle. Ces fonctions modélisent les phénomènes périodiques (oscillations, ondes) et sont les briques des séries de Fourier.\n\nPièges : le signe moins de $\\cos'=-\\sin$, le facteur $a$ dans la dérivée de $\\cos(ax+b)$, et le fait que, pour $a\\neq0$, $x\\mapsto\\cos(ax)$ est $\\frac{2\\pi}{|a|}$-périodique, avec une période en général différente de $2\\pi$.",
+      "hypotheses": [
+        "$u$ est dérivable sur l'intervalle $I$."
+      ],
+      "hypotheses_pieges": [
+        "$u$ est seulement continue sur $I$.",
+        "$u$ est dérivable sur $I$ sauf en un point.",
+        "$u$ est à valeurs dans $\\left[-1,1\\right]$."
+      ],
+      "enonce": "Les fonctions sinus et cosinus sont définies et dérivables sur $\\mathbb{R}$, avec $\\sin'=\\cos$ et $\\cos'=-\\sin$. Pour tout réel $x$ :\n\n$$\\cos^{2}x+\\sin^{2}x=1,\\qquad \\cos(-x)=\\cos x,\\qquad \\sin(-x)=-\\sin x,\\qquad \\cos(x+2\\pi)=\\cos x,\\qquad \\sin(x+2\\pi)=\\sin x.$$\n\nAinsi $\\cos$ est paire, $\\sin$ est impaire, et toutes deux sont $2\\pi$-périodiques. Le cosinus est strictement décroissant sur $\\left[0,\\pi\\right]$ (de $1$ à $-1$), le sinus strictement croissant sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ (de $-1$ à $1$).\n\nEnfin, si $u$ est **dérivable** sur un intervalle $I$, alors $\\sin\\circ u$ et $\\cos\\circ u$ sont dérivables sur $I$, et $(\\sin u)'=u'\\cos u$, $(\\cos u)'=-u'\\sin u$.",
+      "enonce_trous": "Les fonctions sinus et cosinus sont dérivables sur $\\mathbb{R}$ ; la dérivée de $\\sin$ est {{1}} et celle de $\\cos$ est {{2}}. La fonction cosinus est {{3}}, la fonction sinus est impaire, et toutes deux sont $2\\pi$-périodiques.",
+      "trous": [
+        {
+          "reponse": "$\\cos$",
+          "leurres": [
+            "$-\\cos$",
+            "$\\sin$",
+            "$-\\sin$"
+          ]
+        },
+        {
+          "reponse": "$-\\sin$",
+          "leurres": [
+            "$\\sin$",
+            "$\\cos$",
+            "$-\\cos$"
+          ]
+        },
+        {
+          "reponse": "paire",
+          "leurres": [
+            "impaire",
+            "ni paire ni impaire",
+            "$\\pi$-périodique"
+          ]
+        }
+      ],
+      "demo": "**Propriétés géométriques.** $M(x)$ est sur le cercle de centre $O$ et de rayon $1$, donc $\\cos^{2}x+\\sin^{2}x=OM^{2}=1$. Les réels $x$ et $x+2\\pi$ repèrent le même point (un tour complet a pour longueur $2\\pi$), d'où la périodicité. Les arcs de longueur $|x|$ associés à $x$ et à $-x$ sont parcourus en sens opposés à partir de $A$, donc $M(-x)$ est le symétrique de $M(x)$ par rapport à l'axe des abscisses : $\\cos(-x)=\\cos x$ et $\\sin(-x)=-\\sin x$.\n\n**Dérivées.** On utilise les formules d'addition (démontrées par exemple avec le produit scalaire) : $\\sin(x+h)=\\sin x\\cos h+\\cos x\\sin h$ et $\\cos(x+h)=\\cos x\\cos h-\\sin x\\sin h$. Pour $h\\neq0$ :\n\n$$\\frac{\\sin(x+h)-\\sin x}{h}=\\sin x\\times\\frac{\\cos h-1}{h}+\\cos x\\times\\frac{\\sin h}{h}\\xrightarrow[h\\to0]{}\\cos x,$$\n\n$$\\frac{\\cos(x+h)-\\cos x}{h}=\\cos x\\times\\frac{\\cos h-1}{h}-\\sin x\\times\\frac{\\sin h}{h}\\xrightarrow[h\\to0]{}-\\sin x,$$\n\ngrâce aux limites de référence $\\frac{\\sin h}{h}\\to1$ et $\\frac{\\cos h-1}{h}\\to0$, établies géométriquement. (En Terminale, ces dérivées peuvent être admises.)\n\n**Variations.** Sur $\\left[0,\\pi\\right]$, $\\sin x\\geq0$ et ne s'annule qu'en $0$ et en $\\pi$ : $\\cos'=-\\sin$ y est négative et ne s'annule qu'aux bornes, donc $\\cos$ est strictement décroissante, de $\\cos0=1$ à $\\cos\\pi=-1$. De même, $\\sin'=\\cos>0$ sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, donc $\\sin$ est strictement croissante sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, de $-1$ à $1$.\n\n**Composées.** C'est le théorème de dérivation d'une fonction composée, $\\sin$ et $\\cos$ étant dérivables sur $\\mathbb{R}$ tout entier : $(\\sin\\circ u)'=u'\\times(\\sin'\\circ u)=u'\\cos u$ et $(\\cos\\circ u)'=-u'\\sin u$.",
+      "exemple": "$f(x)=\\cos(3x)$ est dérivable sur $\\mathbb{R}$, de dérivée $f'(x)=-3\\sin(3x)$. Elle est paire, et $\\frac{2\\pi}{3}$-périodique car $\\cos\\left(3\\left(x+\\frac{2\\pi}{3}\\right)\\right)=\\cos(3x+2\\pi)=\\cos(3x)$. On peut donc l'étudier sur $\\left[0,\\frac\\pi3\\right]$ (une demi-période), puis compléter la courbe par symétrie par rapport à l'axe des ordonnées et par translations.",
+      "contre_exemple": "- **$u$ doit être dérivable** : $u(x)=|x|$ est continue sur $\\mathbb{R}$ et dérivable sauf en $0$, et $\\sin(|x|)$ n'est pas dérivable en $0$ : son taux d'accroissement $\\frac{\\sin|h|}{h}$ tend vers $1$ quand $h\\to0^{+}$ et vers $-1$ quand $h\\to0^{-}$.\n- **Composer ne préserve pas la périodicité** : $f(x)=\\sin\\left(x^{2}\\right)$ n'est pas périodique. Sinon, pour une période $T>0$, sa dérivée $f'(x)=2x\\cos\\left(x^{2}\\right)$ serait continue et $T$-périodique, donc bornée (par son maximum sur $\\left[0,T\\right]$) ; or $f'\\left(\\sqrt{2k\\pi}\\right)=2\\sqrt{2k\\pi}\\to+\\infty$ quand l'entier $k\\to+\\infty$.\n- **Une somme d'une fonction paire et d'une fonction impaire n'a en général pas de parité** : $\\cos x+\\sin x$ vaut $1$ en $\\frac\\pi2$ et $-1$ en $-\\frac\\pi2$ (elle n'est pas paire), et $1$ en $0$ (elle n'est pas impaire, sinon elle s'annulerait en $0$).",
+      "affirmations": [
+        {
+          "texte": "La dérivée de la fonction cosinus est la fonction sinus.",
+          "vrai": false,
+          "contre_exemple": "$\\cos$ est strictement décroissante sur $\\left[0,\\pi\\right]$, alors que $\\sin$ est strictement positive sur $\\left]0,\\pi\\right[$. En fait $\\cos'=-\\sin$ : par exemple $\\cos'\\left(\\frac\\pi2\\right)=-1\\neq\\sin\\frac\\pi2$."
+        },
+        {
+          "texte": "La fonction $x\\mapsto\\cos(3x)$ est $\\frac{2\\pi}{3}$-périodique.",
+          "vrai": true,
+          "justification": "$\\cos\\left(3\\left(x+\\frac{2\\pi}{3}\\right)\\right)=\\cos(3x+2\\pi)=\\cos(3x)$ pour tout réel $x$."
+        },
+        {
+          "texte": "La fonction $x\\mapsto\\sin\\left(x^{2}\\right)$ est périodique.",
+          "vrai": false,
+          "contre_exemple": "Une fonction dérivable $T$-périodique a une dérivée $T$-périodique ; ici elle serait continue donc bornée, or $f'(x)=2x\\cos\\left(x^{2}\\right)$ vaut $2\\sqrt{2k\\pi}$ en $\\sqrt{2k\\pi}$, ce qui n'est pas borné."
+        },
+        {
+          "texte": "Si $f$ est impaire et dérivable sur $\\mathbb{R}$, alors $f'$ est paire.",
+          "vrai": true,
+          "justification": "En dérivant $f(-x)=-f(x)$ : $-f'(-x)=-f'(x)$. Exemple : $\\sin$ est impaire et $\\sin'=\\cos$ est paire."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-limites-zero",
+        "ar-t-derivation-composee"
+      ]
+    }
+  ]
+}
