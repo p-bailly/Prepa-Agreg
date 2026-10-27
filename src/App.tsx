@@ -1,6 +1,6 @@
 // Navigation : quatre onglets (Accueil · Parcours · Stats · Réglages) et, par-dessus, une pile d'écrans (séance, carte,
 // exercice, chapitre). Le bouton retour d'Android dépile.
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { voletsDe } from './contenu/types'
 import { FournisseurDonnees, useDonnees } from './etat/Donnees'
 import { noterVolet, retenirMode } from './lib/progression'
@@ -14,7 +14,8 @@ import { EcranCarte } from './pages/EcranCarte'
 import { EcranExercice } from './pages/EcranExercice'
 import { Parcours } from './pages/Parcours'
 import { Reglages } from './pages/Reglages'
-import { nouvelleSeance, Seance, type EtatSeance } from './pages/Seance'
+import { Seance } from './pages/Seance'
+import { nouvelleSeance, type EtatSeance } from './repetition/deroulement'
 import { Stats } from './pages/Stats'
 import type { Mode } from './lib/reglages'
 
@@ -46,13 +47,17 @@ function Navigation() {
   const [onglet, setOnglet] = useState<Onglet>('accueil')
   const [pile, setPile] = useState<Ecran[]>([])
   const [seance, setSeance] = useState<EtatSeance | null>(null)
+  // Position de défilement de chaque écran de la pile, rendue au retour.
+  const defilements = useRef<number[]>([])
   const empiler = (e: Ecran) => {
+    defilements.current.push(window.scrollY)
     setPile((p) => [...p, e])
     window.scrollTo(0, 0)
   }
   const depiler = useCallback(() => {
+    const y = defilements.current.pop() ?? 0
     setPile((p) => p.slice(0, -1))
-    window.scrollTo(0, 0)
+    requestAnimationFrame(() => window.scrollTo(0, y))
   }, [])
   const changerSeance = useCallback((f: (s: EtatSeance) => EtatSeance) => setSeance((s) => (s ? f(s) : s)), [])
 
@@ -88,8 +93,12 @@ function Navigation() {
   }
 
   const haut = pile[pile.length - 1]
-  if (haut?.k === 'seance' && seance)
-    return (
+  // Un exercice s'ouvre par-dessus la carte (ou la séance) sans la démonter : au retour, la carte est telle qu'on l'a laissée.
+  const exercice = haut?.k === 'exercice' ? d.exercicesParId.get(haut.id) : undefined
+  const dessous = exercice ? pile[pile.length - 2] : haut
+  let ecran: ReactNode = null
+  if (dessous?.k === 'seance' && seance)
+    ecran = (
       <Seance
         seance={seance}
         changer={changerSeance}
@@ -100,20 +109,16 @@ function Navigation() {
         }}
       />
     )
-  if (haut?.k === 'exercice') {
-    const e = d.exercicesParId.get(haut.id)
-    if (e) return <EcranExercice key={e.id} exercice={e} surRetour={depiler} />
-  }
-  if (haut?.k === 'carte') {
-    const carte = d.cartesParId.get(haut.id)
+  else if (dessous?.k === 'carte') {
+    const carte = d.cartesParId.get(dessous.id)
     if (carte)
-      return (
+      ecran = (
         <EcranCarte
           key={carte.id}
           carte={carte}
           volets={voletsDe(carte)}
-          neuve={haut.neuve}
-          mode={haut.mode}
+          neuve={dessous.neuve}
+          mode={dessous.mode}
           surNote={(volet, note, principal) => {
             const t = d.horloge()
             d.changerProgression((p) => noterVolet(p, carte.id, volet, note, t, d.aujourdhui(), principal))
@@ -125,6 +130,13 @@ function Navigation() {
         />
       )
   }
+  if (ecran || exercice)
+    return (
+      <>
+        {ecran && <div style={exercice ? { display: 'none' } : undefined}>{ecran}</div>}
+        {exercice && <EcranExercice key={exercice.id} exercice={exercice} surRetour={depiler} />}
+      </>
+    )
 
   let contenu
   if (haut?.k === 'chapitre') contenu = <Chapitre id={haut.id} surCarte={ouvrirCarte} surRetour={depiler} />
@@ -142,6 +154,7 @@ function Navigation() {
             key={o.id}
             aria-current={o.id === onglet && !haut ? 'page' : undefined}
             onClick={() => {
+              defilements.current = []
               setPile([])
               setOnglet(o.id)
               window.scrollTo(0, 0)

@@ -4,37 +4,10 @@ import { useEffect } from 'react'
 import type { Volet } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 import { noterVolet, retenirMode } from '../lib/progression'
-import type { Mode } from '../lib/reglages'
 import { choisirMode } from '../repetition/modes'
 import { NOMS_NOTES, NOTES, type Note } from '../repetition/planification'
-import type { ElementSeance } from '../repetition/seance'
+import { avancer, position, type EtatSeance } from '../repetition/deroulement'
 import { EcranCarte } from './EcranCarte'
-
-export interface EtatSeance {
-  elements: ElementSeance[]
-  index: number
-  debut: number
-  /** Notes des volets principaux, pour le bilan. */
-  notes: Note[]
-  /** Cartes distinctes vues. */
-  vues: string[]
-  /** Mode retenu pour la carte en cours (fixé à son arrivée). */
-  mode: Mode | null
-  fin: boolean
-}
-
-export const nouvelleSeance = (elements: ElementSeance[], debut: number): EtatSeance => ({
-  elements,
-  index: 0,
-  debut,
-  notes: [],
-  vues: [],
-  mode: null,
-  fin: elements.length === 0,
-})
-
-/** Une carte notée « À revoir » revient en fin de séance, au plus deux fois. */
-const REPRISES_MAX = 2
 
 export function Seance({
   seance,
@@ -68,26 +41,14 @@ export function Seance({
     const premiere = !seance.vues.includes(carte.id)
     changerProgression((p) => noterVolet(p, carte.id, volet, note, t, aujourdhui(), principal && premiere))
     if (!principal) return
-    changer((s) => {
-      const vues = premiere ? [...s.vues, carte.id] : s.vues
-      let elements = s.elements
-      const reprises = s.elements.slice(0, s.index + 1).filter((e) => e.carte === carte.id).length
-      if (note === 0 && reprises <= REPRISES_MAX) elements = [...elements, { carte: carte.id, volets: [volet], neuve: false }]
-      const index = s.index + 1
-      // Fin : plus de carte, ou temps écoulé (la carte en cours est toujours terminée).
-      const tempsEcoule = t - s.debut >= reglages.seanceMinutes * 60_000
-      return { ...s, elements, index, vues, notes: [...s.notes, note], mode: null, fin: index >= elements.length || tempsEcoule }
-    })
+    changer((s) => avancer(s, volet, note, t, reglages.seanceMinutes))
   }
 
-  // Compteur « n / N » sur les cartes de départ, sans compter les reprises.
-  const total = new Set(seance.elements.map((e) => e.carte)).size
-  const n = Math.min(total, seance.vues.length + (seance.vues.includes(carte.id) ? 0 : 1))
   return (
     <EcranCarte
       key={`${seance.index}-${carte.id}`}
       carte={carte}
-      position={{ n, total }}
+      position={position(seance)}
       volets={element.volets}
       neuve={element.neuve}
       mode={mode ?? 'tete'}
