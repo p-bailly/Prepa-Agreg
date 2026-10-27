@@ -1,0 +1,153 @@
+{
+  "cartes": [
+    {
+      "id": "arith-t-pgcd-euclide",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-pgcd",
+      "type": "theoreme",
+      "titre": "Algorithme d'Euclide",
+      "recto": "Énoncer le lemme qui fonde l'algorithme d'Euclide, puis décrire l'algorithme et sa conclusion, avec leurs hypothèses.",
+      "cours": "Calculer le PGCD de deux entiers en listant leurs diviseurs devient vite impraticable. L'algorithme d'Euclide, décrit dans les Éléments, ramène ce calcul à une suite de divisions euclidiennes. Tout repose sur une remarque : si $a = bq + r$, les diviseurs communs de $a$ et $b$ sont exactement ceux de $b$ et $r$, puisque $r = a - bq$ et $a = bq + r$ sont des combinaisons entières. On remplace donc le couple $(a, b)$ par le couple $(b, r)$, plus petit, et l'on recommence. Les restes forment une suite strictement décroissante d'entiers naturels, qui atteint $0$ ; le dernier reste non nul est le PGCD. L'algorithme est rapide : le nombre de divisions ne dépasse pas cinq fois le nombre de chiffres de $b$ (théorème de Lamé). En remontant ses étapes, on obtient aussi les coefficients de Bézout.\n\n**Méthode.** Écrire les divisions successives $r_{k-1} = r_k q_k + r_{k+1}$ jusqu'à un reste nul ; le PGCD est le reste de la ligne précédente. Pour un PGCD qui dépend d'un paramètre $n$, la même remarque s'applique avec un quotient quelconque : $a \\wedge b = b \\wedge (a - kb)$ pour tout $k \\in \\mathbb{Z}$, même si $a - kb$ n'est pas le reste.\n\n**Piège principal.** Le PGCD est le dernier reste **non nul**, pas le dernier reste (qui vaut $0$). Et le PGCD n'est conservé que par les opérations de la forme $(a, b) \\mapsto (b, a - kb)$ : par exemple $(3 + 1) \\wedge (3 - 1) = 2$, alors que $3 \\wedge 1 = 1$.",
+      "hypotheses": [
+        "$a$ est un entier relatif et $b$ un entier naturel non nul.",
+        "Dans le lemme, $q$ et $r$ sont des entiers relatifs tels que $a = bq + r$.",
+        "Dans l'algorithme, chaque étape est une division euclidienne : $0 \\leq r_{k+1} < r_k$."
+      ],
+      "hypotheses_pieges": [
+        "$a \\geq b$.",
+        "$a$ et $b$ sont premiers entre eux.",
+        "Dans le lemme, $r$ doit être le reste de la division euclidienne de $a$ par $b$.",
+        "Dans l'algorithme, les quotients sont des entiers quelconques, sans condition sur les restes."
+      ],
+      "enonce": "Soient $a \\in \\mathbb{Z}$ et $b \\in \\mathbb{N}^*$ (on convient que $c \\wedge 0 = c$ pour $c \\in \\mathbb{N}^*$).\n\n**Lemme.** Si $a = bq + r$ avec $q, r \\in \\mathbb{Z}$, alors $a$ et $b$ ont les mêmes diviseurs communs que $b$ et $r$ ; en particulier $a \\wedge b = b \\wedge r$.\n\n**Algorithme.** On pose $r_0 = a$, $r_1 = b$ et, tant que $r_k \\neq 0$, on note $r_{k+1}$ le reste de la division euclidienne de $r_{k-1}$ par $r_k$. La suite $(r_k)_{k \\geq 1}$ est une suite strictement décroissante d'entiers naturels ; elle atteint donc $0$ : il existe $N \\geq 1$ tel que $r_N \\neq 0$ et $r_{N+1} = 0$. Alors $a \\wedge b = r_N$, le dernier reste non nul.",
+      "enonce_trous": "Soient $a \\in \\mathbb{Z}$, $b \\in \\mathbb{N}^*$, et $a = bq + r$ la division euclidienne de $a$ par $b$. Alors {{1}}. Dans l'algorithme d'Euclide, la suite des restes à partir de $r_1 = b$ est {{2}}, donc elle atteint $0$, et $a \\wedge b$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$a \\wedge b = b \\wedge r$",
+          "leurres": [
+            "$a \\wedge b = q \\wedge r$",
+            "$a \\wedge b = r$",
+            "$a \\wedge b = a \\wedge q$"
+          ]
+        },
+        {
+          "reponse": "strictement décroissante d'entiers naturels",
+          "leurres": [
+            "strictement croissante",
+            "constante",
+            "périodique"
+          ]
+        },
+        {
+          "reponse": "le dernier reste non nul",
+          "leurres": [
+            "le dernier reste",
+            "le premier reste non nul",
+            "le dernier quotient"
+          ]
+        }
+      ],
+      "demo": "**Lemme.** Si $d$ divise $a$ et $b$, il divise la combinaison $r = a - bq$ ; si $d$ divise $b$ et $r$, il divise $a = bq + r$. Les deux couples ont donc les mêmes diviseurs communs, et, comme $b \\neq 0$, le même plus grand diviseur commun : $a \\wedge b = b \\wedge r$.\n\n**Terminaison.** Tant que $r_k \\neq 0$, on a $r_k \\geq 1$, et la division euclidienne donne $0 \\leq r_{k+1} < r_k$. Une suite strictement décroissante d'entiers naturels partant de $r_1 = b$ a au plus $b + 1$ termes ; il existe donc $N \\geq 1$ tel que $r_N \\neq 0$ et $r_{N+1} = 0$.\n\n**Résultat.** Le lemme, appliqué à chaque division $r_{k-1} = r_k q_k + r_{k+1}$ ($1 \\leq k \\leq N$), donne $r_{k-1} \\wedge r_k = r_k \\wedge r_{k+1}$. Donc\n$$a \\wedge b = r_0 \\wedge r_1 = r_1 \\wedge r_2 = \\cdots = r_N \\wedge r_{N+1} = r_N \\wedge 0 = r_N.$$",
+      "exemple": "Calcul de $2340 \\wedge 1428$ :\n$$2340 = 1428 \\times 1 + 912, \\quad 1428 = 912 \\times 1 + 516, \\quad 912 = 516 \\times 1 + 396,$$\n$$516 = 396 \\times 1 + 120, \\quad 396 = 120 \\times 3 + 36, \\quad 120 = 36 \\times 3 + 12, \\quad 36 = 12 \\times 3 + 0.$$\nLe dernier reste non nul est $12$, donc $2340 \\wedge 1428 = 12$ (en effet $2340 = 12 \\times 195$ et $1428 = 12 \\times 119$, avec $195 \\wedge 119 = 1$).",
+      "contre_exemple": "- **Quotients quelconques** : avec $10 = 4 \\times 0 + 10$, puis $4 = 10 \\times 0 + 4$, on retrouve le couple de départ : sans la condition $0 \\leq r_{k+1} < r_k$, le procédé peut tourner indéfiniment.\n- **Le dernier reste n'est pas le PGCD** : pour $(36, 12)$, on obtient $36 = 12 \\times 3 + 0$ ; le dernier reste vaut $0$, alors que $36 \\wedge 12 = 12$.\n- **On garde le diviseur et le reste, pas le quotient** : $6 = 2 \\times 3 + 0$, mais $3 \\wedge 0 = 3$, alors que $6 \\wedge 2 = 2$.\n- **Autres opérations** : $(3 + 1) \\wedge (3 - 1) = 2$, alors que $3 \\wedge 1 = 1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous $a \\in \\mathbb{Z}$, $b \\in \\mathbb{N}^*$ et $k \\in \\mathbb{Z}$, on a $a \\wedge b = b \\wedge (a - kb)$.",
+          "vrai": true,
+          "justification": "C'est le lemme appliqué avec le quotient $q = k$ et $r = a - kb$."
+        },
+        {
+          "texte": "Le lemme « si $a = bq + r$, alors $a \\wedge b = b \\wedge r$ » n'est valable que si $r$ est le reste de la division euclidienne de $a$ par $b$.",
+          "vrai": false,
+          "contre_exemple": "$30 = 12 \\times 1 + 18$ n'est pas une division euclidienne ($18 \\geq 12$), et pourtant $12 \\wedge 18 = 6 = 30 \\wedge 12$. La démonstration du lemme utilise seulement $r = a - bq$."
+        },
+        {
+          "texte": "Pour tous entiers $a > b \\geq 1$, on a $(a + b) \\wedge (a - b) = a \\wedge b$.",
+          "vrai": false,
+          "contre_exemple": "$a = 3$, $b = 1$ : $4 \\wedge 2 = 2$, alors que $3 \\wedge 1 = 1$."
+        },
+        {
+          "texte": "Si $0 \\leq a < b$, la première division de l'algorithme d'Euclide appliqué à $(a, b)$ échange les deux nombres.",
+          "vrai": true,
+          "justification": "La division euclidienne de $a$ par $b$ est $a = b \\times 0 + a$, donc $(r_1, r_2) = (b, a)$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-division-euclidienne",
+        "arith-t-divisibilite-combinaisons"
+      ]
+    },
+    {
+      "id": "arith-t-pgcd-diophantiennes",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-pgcd",
+      "type": "theoreme",
+      "titre": "Équations diophantiennes ax + by = c",
+      "recto": "Énoncer la condition d'existence et la description des solutions de l'équation $ax + by = c$ dans $\\mathbb{Z}^2$, avec leurs hypothèses.",
+      "cours": "Une équation diophantienne, du nom de Diophante d'Alexandrie, est une équation dont on cherche les solutions entières. La plus simple, $ax + by = c$, se résout complètement grâce aux théorèmes de Bézout et de Gauss ; géométriquement, on cherche les points à coordonnées entières de la droite d'équation $ax + by = c$. L'existence est une question de divisibilité : $d = a \\wedge b$ divise toujours $ax + by$, donc il n'y a aucune solution si $d \\nmid c$ ; si $d \\mid c$, une relation de Bézout $au + bv = d$, multipliée par $c/d$, fournit une solution. Les solutions forment alors une famille régulière : on passe de l'une à la suivante en ajoutant $b/d$ à $x$ et en retranchant $a/d$ à $y$.\n\n**Méthode.** 1) Calculer $d = a \\wedge b$ ; si $d \\nmid c$, il n'y a pas de solution. 2) Diviser par $d$ : $a'x + b'y = c'$, avec $a' \\wedge b' = 1$. 3) Trouver une solution particulière $(x_0, y_0)$, à vue ou en remontant l'algorithme d'Euclide. 4) Soustraire : $a'(x - x_0) = b'(y_0 - y)$, puis appliquer le lemme de Gauss. 5) Vérifier que les couples obtenus sont bien solutions.\n\n**Piège principal.** Oublier de diviser par $d$ : les couples $(x_0 + kb, y_0 - ka)$ sont des solutions, mais pas toutes les solutions lorsque $d > 1$. Autre piège : un problème concret impose souvent $x \\geq 0$ et $y \\geq 0$, ce qui ne laisse qu'un nombre fini de solutions, à déterminer par un encadrement de $k$.",
+      "hypotheses": [
+        "$a$ et $b$ sont des entiers relatifs non nuls.",
+        "$c$ est un entier relatif.",
+        "$d = a \\wedge b$, $a = da'$ et $b = db'$.",
+        "Pour la description des solutions : $(x_0, y_0)$ est une solution particulière."
+      ],
+      "hypotheses_pieges": [
+        "$a$ et $b$ sont premiers entre eux.",
+        "$a$, $b$ et $c$ sont des entiers naturels.",
+        "$c$ est un multiple de $ab$.",
+        "$c \\neq 0$."
+      ],
+      "enonce": "Soient $a, b \\in \\mathbb{Z}$ non nuls, $c \\in \\mathbb{Z}$ et $d = a \\wedge b$ ; on écrit $a = da'$ et $b = db'$ (alors $a' \\wedge b' = 1$). On considère l'équation $ax + by = c$, d'inconnue $(x, y) \\in \\mathbb{Z}^2$.\n\n- Elle admet des solutions si et seulement si $d$ divise $c$.\n- Dans ce cas, si $(x_0, y_0)$ est une solution, l'ensemble des solutions est $\\{(x_0 + kb', y_0 - ka') : k \\in \\mathbb{Z}\\}$.",
+      "enonce_trous": "Soient $a, b \\in \\mathbb{Z}$ non nuls, $c \\in \\mathbb{Z}$, $d = a \\wedge b$, $a = da'$ et $b = db'$. L'équation $ax + by = c$ admet des solutions dans $\\mathbb{Z}^2$ si et seulement si {{1}}. Dans ce cas, si $(x_0, y_0)$ est une solution, les solutions sont {{2}}, pour $k \\in \\mathbb{Z}$.",
+      "trous": [
+        {
+          "reponse": "$d$ divise $c$",
+          "leurres": [
+            "$a$ et $b$ sont premiers entre eux",
+            "$c$ divise $d$",
+            "$ab$ divise $c$"
+          ]
+        },
+        {
+          "reponse": "les couples $(x_0 + kb', y_0 - ka')$",
+          "leurres": [
+            "les couples $(x_0 + kb, y_0 - ka)$",
+            "les couples $(x_0 + ka', y_0 - kb')$",
+            "les couples $(x_0 + kb', y_0 + ka')$"
+          ]
+        }
+      ],
+      "demo": "**Condition nécessaire.** Si $ax + by = c$ avec $x, y \\in \\mathbb{Z}$, alors $d$, qui divise $a$ et $b$, divise $ax + by = c$.\n\n**Condition suffisante.** D'après l'identité de Bézout, il existe $(u, v) \\in \\mathbb{Z}^2$ tel que $au + bv = d$. Si $c = dc'$ avec $c' \\in \\mathbb{Z}$, alors $a(uc') + b(vc') = dc' = c$ : le couple $(uc', vc')$ est solution.\n\n**Coprimalité de $a'$ et $b'$.** En divisant $au + bv = d$ par $d \\neq 0$, on obtient $a'u + b'v = 1$, donc $a' \\wedge b' = 1$ (théorème de Bézout).\n\n**Toutes les solutions.** Soit $(x, y)$ une solution. En soustrayant, $a(x - x_0) + b(y - y_0) = 0$, puis, en divisant par $d$, $a'(x - x_0) = b'(y_0 - y)$. Ainsi $b'$ divise $a'(x - x_0)$ et $b' \\wedge a' = 1$, donc $b' \\mid x - x_0$ (lemme de Gauss) : $x = x_0 + kb'$ avec $k \\in \\mathbb{Z}$. En reportant, $a'kb' = b'(y_0 - y)$ et, comme $b' \\neq 0$, $y = y_0 - ka'$.\n\n**Synthèse.** Réciproquement, pour tout $k \\in \\mathbb{Z}$,\n$$a(x_0 + kb') + b(y_0 - ka') = ax_0 + by_0 + k(ab' - ba') = c + k(da'b' - db'a') = c.$$",
+      "exemple": "$12x + 18y = 30$ : $d = 6$ divise $30$ ; on se ramène à $2x + 3y = 5$, dont $(1, 1)$ est une solution. Les solutions sont les couples $(1 + 3k, 1 - 2k)$, $k \\in \\mathbb{Z}$, par exemple $(4, -1)$ et $(-2, 3)$.\n\nEn revanche, $12x + 18y = 20$ n'a pas de solution, car $6 \\nmid 20$.",
+      "contre_exemple": "- **Sans $d \\mid c$** : $6x + 10y = 7$ n'a pas de solution, car $6x + 10y$ est toujours pair : ici $6 \\wedge 10 = 2$ ne divise pas $7$.\n- **Oubli de la division par $d$** : pour $2x + 4y = 6$, le couple $(1, 1)$ est solution ; les couples $(1 + 4k, 1 - 2k)$ sont solutions mais n'atteignent pas $(3, 0)$, qui est solution. La bonne famille est $(1 + 2k, 1 - k)$, $k \\in \\mathbb{Z}$.\n- **Solutions positives** : $2 \\wedge 3 = 1$, mais $2x + 3y = 1$ n'a aucune solution avec $x \\geq 0$ et $y \\geq 0$.",
+      "affirmations": [
+        {
+          "texte": "L'équation $6x + 15y = 4$ n'a pas de solution dans $\\mathbb{Z}^2$.",
+          "vrai": true,
+          "justification": "$6 \\wedge 15 = 3$ ne divise pas $4$."
+        },
+        {
+          "texte": "Si l'équation $ax + by = c$ a une solution dans $\\mathbb{Z}^2$, alors $a \\wedge b = c$.",
+          "vrai": false,
+          "contre_exemple": "$2x + 3y = 5$ a la solution $(1, 1)$, mais $2 \\wedge 3 = 1 \\neq 5$ : on sait seulement que $a \\wedge b$ divise $c$."
+        },
+        {
+          "texte": "Si $(x_0, y_0)$ est une solution de $ax + by = c$, les solutions sont toujours les couples $(x_0 + kb, y_0 - ka)$, $k \\in \\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $2x + 4y = 6$ et $(x_0, y_0) = (1, 1)$, la solution $(3, 0)$ n'est pas de la forme $(1 + 4k, 1 - 2k)$. Il faut diviser $a$ et $b$ par $a \\wedge b = 2$."
+        },
+        {
+          "texte": "Si $a, b \\in \\mathbb{N}^*$ sont premiers entre eux, l'équation $ax + by = c$ a une solution $(x, y) \\in \\mathbb{N}^2$ pour tout $c \\in \\mathbb{N}$.",
+          "vrai": false,
+          "contre_exemple": "$2 \\wedge 3 = 1$, mais pour $(x, y) \\in \\mathbb{N}^2$, $2x + 3y$ vaut $0$ ou est au moins $2$ : il ne vaut jamais $1$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-bezout",
+        "arith-t-gauss"
+      ]
+    }
+  ]
+}

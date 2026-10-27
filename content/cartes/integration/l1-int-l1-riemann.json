@@ -1,0 +1,442 @@
+{
+  "cartes": [
+    {
+      "id": "int-l1-riemann-cpm",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "theoreme",
+      "titre": "Intégrabilité des fonctions continues par morceaux",
+      "recto": "Énoncer le théorème d'intégrabilité des fonctions continues par morceaux sur un segment, avec ses hypothèses.",
+      "cours": "En Terminale, l'intégrale d'une fonction continue a été présentée comme une aire, sans construction rigoureuse. En L1, on part des fonctions en escalier, constantes sur les intervalles ouverts d'une subdivision, dont l'intégrale est une somme finie d'aires de rectangles. Une fonction $f$ bornée sur $[a,b]$ est dite intégrable (au sens de Riemann) quand on peut l'encadrer par des fonctions en escalier $\\varphi\\le f\\le\\psi$ dont les intégrales sont aussi proches qu'on veut ; son intégrale est alors la borne supérieure des $\\int\\varphi$, égale à la borne inférieure des $\\int\\psi$.\n\nLe théorème de cette carte dit que les fonctions continues par morceaux, celles qu'on rencontre en pratique, sont intégrables : on peut même choisir $\\psi-\\varphi\\le\\varepsilon$ en tout point. L'idée est la continuité uniforme (théorème de Heine) sur chaque morceau : sur un intervalle assez court, $f$ varie de moins de $\\varepsilon$, et on l'encadre par son minimum et son maximum.\n\nEn pratique, pour intégrer une fonction continue par morceaux, on découpe $[a,b]$ aux points de discontinuité (relation de Chasles) et l'on intègre sur chaque morceau le prolongement continu ; les valeurs prises aux points de la subdivision ne comptent pas.\n\nLe piège principal : « continue par morceaux » ne veut pas dire « un nombre fini de discontinuités ». Il faut aussi des limites **finies** à droite et à gauche aux points de la subdivision : $x\\mapsto\\frac1x$, prolongée par $0$ en $0$, n'a qu'une discontinuité sur $[0,1]$ mais n'est pas bornée, donc pas intégrable.",
+      "hypotheses": [
+        "$f$ est définie sur un segment $[a,b]$, avec $a<b$.",
+        "$f$ est continue par morceaux sur $[a,b]$ : il existe une subdivision $a=x_0<x_1<\\dots<x_n=b$ telle que, pour tout $i$, $f$ soit continue sur $\\left]x_{i-1},x_i\\right[$ et y admette des limites finies en $x_{i-1}$ (à droite) et en $x_i$ (à gauche)."
+      ],
+      "hypotheses_pieges": [
+        "$f$ seulement bornée sur $[a,b]$ (à la place de continue par morceaux).",
+        "$f$ n'a qu'un nombre fini de points de discontinuité, sans condition sur ses limites (à la place de continue par morceaux).",
+        "$f$ continue sur $\\left]a,b\\right[$ seulement (à la place de continue par morceaux sur $[a,b]$)."
+      ],
+      "enonce": "Soient $a<b$ et $f:[a,b]\\to\\mathbb{R}$ **continue par morceaux** : il existe une subdivision $a=x_0<x_1<\\dots<x_n=b$ telle que, pour tout $i$, la restriction de $f$ à $\\left]x_{i-1},x_i\\right[$ soit continue et prolongeable par continuité à $[x_{i-1},x_i]$.\n\nAlors, pour tout $\\varepsilon>0$, il existe des fonctions **en escalier** $\\varphi$ et $\\psi$ sur $[a,b]$ telles que\n$$\\varphi\\le f\\le\\psi\\quad\\text{et}\\quad\\psi-\\varphi\\le\\varepsilon\\ \\text{sur }[a,b].$$\nEn conséquence, $f$ est bornée et intégrable au sens de Riemann : la borne supérieure des $\\int_a^b\\varphi$ ($\\varphi$ en escalier, $\\varphi\\le f$) est égale à la borne inférieure des $\\int_a^b\\psi$ ($\\psi$ en escalier, $\\psi\\ge f$) ; cette valeur commune est $\\int_a^b f(t)\\,\\mathrm{d}t$.",
+      "enonce_trous": "Soit $f$ une fonction {{1}} sur le segment $[a,b]$. Pour tout $\\varepsilon>0$, il existe des fonctions {{2}} $\\varphi$ et $\\psi$ telles que $\\varphi\\le f\\le\\psi$ et $\\psi-\\varphi\\le\\varepsilon$ sur $[a,b]$. En conséquence, $f$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "continue par morceaux",
+          "leurres": [
+            "bornée",
+            "continue sur $\\left]a,b\\right[$",
+            "n'ayant qu'un nombre fini de points de discontinuité"
+          ]
+        },
+        {
+          "reponse": "en escalier",
+          "leurres": [
+            "continues",
+            "constantes",
+            "polynomiales"
+          ]
+        },
+        {
+          "reponse": "intégrable au sens de Riemann",
+          "leurres": [
+            "continue",
+            "monotone",
+            "lipschitzienne"
+          ]
+        }
+      ],
+      "demo": "**Cadre.** On admet l'intégrale des fonctions en escalier et ses propriétés (linéarité, croissance, relation de Chasles), ainsi que le théorème de Heine : une fonction continue sur un segment y est uniformément continue.\n\n**Étape 1 : un morceau.** Soit $\\varepsilon>0$. Fixons $i$ et notons $g_i$ le prolongement continu à $[x_{i-1},x_i]$ de la restriction de $f$ à $\\left]x_{i-1},x_i\\right[$. Par le théorème de Heine, il existe $\\delta_i>0$ tel que $|g_i(s)-g_i(t)|\\le\\varepsilon$ dès que $s,t\\in[x_{i-1},x_i]$ et $|s-t|\\le\\delta_i$. Découpons $[x_{i-1},x_i]$ en intervalles de longueur au plus $\\delta_i$.\n\n**Étape 2 : recollement.** Soit $a=y_0<y_1<\\dots<y_r=b$ la subdivision formée des $x_i$ et de tous les points de découpage de l'étape 1. Chaque $[y_{k-1},y_k]$ est contenu dans un $[x_{i-1},x_i]$ ; la fonction continue $g_i$ y atteint un minimum $m_k$ et un maximum $M_k$ (théorème des bornes atteintes), et $M_k-m_k\\le\\varepsilon$ puisque $y_k-y_{k-1}\\le\\delta_i$. On pose $\\varphi=m_k$ et $\\psi=M_k$ sur $\\left]y_{k-1},y_k\\right[$, et $\\varphi(y_k)=\\psi(y_k)=f(y_k)$ pour tout $k$. Les fonctions $\\varphi$ et $\\psi$ sont en escalier. Sur $\\left]y_{k-1},y_k\\right[$, $f=g_i$, donc $\\varphi\\le f\\le\\psi$ et $\\psi-\\varphi\\le\\varepsilon$ ; aux points $y_k$, $\\varphi=f=\\psi$.\n\n**Étape 3 : conclusion.** Les fonctions en escalier $\\varphi$ et $\\psi$ sont bornées et encadrent $f$ : $f$ est bornée. Notons $I^-$ la borne supérieure des $\\int\\varphi$ et $I^+$ la borne inférieure des $\\int\\psi$, sur les fonctions en escalier $\\varphi\\le f$ et $\\psi\\ge f$ ; elles existent, et $I^-\\le I^+$ car $\\varphi\\le f\\le\\psi$ entraîne $\\int\\varphi\\le\\int\\psi$. Avec les fonctions de l'étape 2, $0\\le I^+-I^-\\le\\int_a^b\\psi-\\int_a^b\\varphi\\le\\varepsilon(b-a)$. Ceci valant pour tout $\\varepsilon>0$, $I^-=I^+$ : $f$ est intégrable.",
+      "exemple": "La partie entière $x\\mapsto\\lfloor x\\rfloor$ est continue par morceaux sur $[0,3]$ (subdivision $0<1<2<3$) et $\\int_0^3\\lfloor x\\rfloor\\,\\mathrm{d}x=0+1+2=3$.\n\nLa fonction $f$ définie sur $[0,2]$ par $f(x)=x^2$ si $x<1$ et $f(x)=5$ si $x\\ge1$ est continue par morceaux, discontinue en $1$ ; on intègre morceau par morceau : $\\int_0^2f=\\int_0^1x^2\\,\\mathrm{d}x+\\int_1^25\\,\\mathrm{d}x=\\frac13+5=\\frac{16}3$.",
+      "contre_exemple": "- **Bornée ne suffit pas.** L'indicatrice $\\mathbf{1}_{\\mathbb{Q}}$ de $\\mathbb{Q}$ sur $[0,1]$ est bornée mais n'est pas intégrable. Tout intervalle ouvert non vide contient des rationnels et des irrationnels ; une fonction en escalier $\\varphi\\le\\mathbf{1}_{\\mathbb{Q}}$ vaut donc au plus $0$ sur chaque intervalle ouvert de sa subdivision, d'où $\\int\\varphi\\le0$, et une fonction en escalier $\\psi\\ge\\mathbf{1}_{\\mathbb{Q}}$ y vaut au moins $1$, d'où $\\int\\psi\\ge1$. Ainsi $\\sup\\int\\varphi\\le0<1\\le\\inf\\int\\psi$.\n- **Il faut des limites finies.** $f(x)=\\frac1x$ pour $x\\in\\left]0,1\\right]$, $f(0)=0$ : $f$ est continue sur $\\left]0,1\\right[$ et n'a qu'un point de discontinuité, mais elle n'est pas bornée ; aucune fonction en escalier (donc bornée) ne la majore.\n- **Un nombre fini de discontinuités ne donne pas l'encadrement uniforme.** $f(x)=\\sin\\frac1x$ pour $x\\in\\left]0,1\\right]$, $f(0)=0$. Si $\\varphi\\le f\\le\\psi$ sont en escalier et si $\\left]0,y_1\\right[$ est le premier intervalle de leur subdivision, $f$ prend sur cet intervalle les valeurs $1$ et $-1$ ; les constantes $\\psi$ et $\\varphi$ y vérifient donc $\\psi\\ge1$ et $\\varphi\\le-1$, et $\\psi-\\varphi\\ge2$. (Cette fonction est pourtant intégrable : voir les exercices.)",
+      "affirmations": [
+        {
+          "texte": "Toute fonction bornée sur $[0,1]$ est intégrable au sens de Riemann.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbf{1}_{\\mathbb{Q}}$ est bornée sur $[0,1]$ ; toute fonction en escalier qui la minore a une intégrale $\\le0$, toute fonction en escalier qui la majore a une intégrale $\\ge1$ : elle n'est pas intégrable."
+        },
+        {
+          "texte": "Une fonction continue par morceaux sur un segment est bornée.",
+          "vrai": true,
+          "justification": "Sur chaque $[x_{i-1},x_i]$ de la subdivision, le prolongement continu est borné (théorème des bornes atteintes) ; il reste un nombre fini de valeurs $f(x_i)$. Un maximum d'un nombre fini de bornes convient."
+        },
+        {
+          "texte": "Une fonction définie sur $[0,1]$ qui n'a qu'un nombre fini de points de discontinuité est continue par morceaux.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\frac1x$ pour $x\\in\\left]0,1\\right]$ et $f(0)=0$ n'est discontinue qu'en $0$, mais n'a pas de limite finie à droite en $0$."
+        },
+        {
+          "texte": "Si l'on modifie une fonction continue par morceaux sur $[a,b]$ en un nombre fini de points, elle reste continue par morceaux et son intégrale ne change pas.",
+          "vrai": true,
+          "justification": "On ajoute les points modifiés à la subdivision : sur chaque intervalle ouvert, rien ne change. La différence des deux fonctions est en escalier, nulle sauf en un nombre fini de points, donc d'intégrale nulle."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-proprietes",
+        "ar-l1-bornes-atteintes"
+      ]
+    },
+    {
+      "id": "int-l1-riemann-sommes",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "theoreme",
+      "titre": "Sommes de Riemann",
+      "recto": "Énoncer le théorème de convergence des sommes de Riemann avec ses hypothèses.",
+      "cours": "Une somme de Riemann approche l'intégrale par une somme d'aires de rectangles : on découpe $[a,b]$ en $n$ intervalles de même longueur $h=\\frac{b-a}n$ et l'on prend pour hauteur la valeur de $f$ en un point de chaque intervalle, le plus souvent son extrémité droite ou gauche. C'est l'idée même de l'intégrale, et le théorème dit que ces approximations convergent vers $\\int_a^bf$ dès que $f$ est continue par morceaux.\n\nIl sert d'abord à calculer des limites de sommes : on met $\\frac1n$ en facteur et l'on écrit le terme général comme une fonction de $\\frac kn$. Par exemple $\\sum_{k=1}^n\\frac1{n+k}=\\frac1n\\sum_{k=1}^n\\frac1{1+k/n}\\to\\int_0^1\\frac{\\mathrm{d}x}{1+x}=\\ln2$. Pour la limite d'un produit, on passe au logarithme ; quand l'indice va jusqu'à $2n$ ou $3n$, la somme porte sur un segment de longueur $2$ ou $3$.\n\nIl sert aussi à approcher numériquement une intégrale : si $f$ est $K$-lipschitzienne, l'erreur est au plus $\\frac{K(b-a)^2}{2n}$, et la méthode des trapèzes fait mieux pour une fonction de classe $\\mathcal{C}^2$.\n\nLe piège principal : il faut que $f$ soit continue par morceaux sur le segment **fermé**. Devant $\\frac1n\\sum_{k=1}^n\\frac nk$, on serait tenté d'écrire $\\int_0^1\\frac{\\mathrm{d}x}x$ ; mais $x\\mapsto\\frac1x$ n'est pas bornée sur $\\left]0,1\\right]$, et cette somme, égale à $\\sum_{k=1}^n\\frac1k$, tend vers $+\\infty$.",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur le segment $[a,b]$ (avec $a<b$)."
+      ],
+      "hypotheses_pieges": [
+        "$f$ seulement bornée sur $[a,b]$ (à la place de continue par morceaux).",
+        "$f$ continue sur $\\left]a,b\\right]$ seulement (à la place de continue par morceaux sur $[a,b]$).",
+        "$f$ de classe $\\mathcal{C}^1$ sur $[a,b]$."
+      ],
+      "enonce": "Soient $a<b$ et $f$ une fonction **continue par morceaux** sur $[a,b]$. Pour $n\\ge1$, on pose $h=\\frac{b-a}n$ et\n$$R_n=h\\sum_{k=1}^{n}f(a+kh),\\qquad R'_n=h\\sum_{k=0}^{n-1}f(a+kh).$$\nAlors $R_n$ et $R'_n$ tendent vers $\\int_a^bf(t)\\,\\mathrm{d}t$ quand $n\\to+\\infty$.\n\nCas usuel : si $f$ est continue par morceaux sur $[0,1]$, $\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)\\to\\int_0^1f(t)\\,\\mathrm{d}t$.",
+      "enonce_trous": "Soit $f$ une fonction {{1}} sur le segment $[a,b]$. Alors $\\frac{b-a}n\\sum_{k=1}^nf\\left(a+k\\frac{b-a}n\\right)$ tend vers {{2}} quand $n\\to+\\infty$.",
+      "trous": [
+        {
+          "reponse": "continue par morceaux",
+          "leurres": [
+            "bornée",
+            "continue sur $\\left]a,b\\right]$",
+            "positive"
+          ]
+        },
+        {
+          "reponse": "$\\int_a^bf(t)\\,\\mathrm{d}t$",
+          "leurres": [
+            "$\\frac1{b-a}\\int_a^bf(t)\\,\\mathrm{d}t$",
+            "$(b-a)\\int_a^bf(t)\\,\\mathrm{d}t$",
+            "$f(b)-f(a)$"
+          ]
+        }
+      ],
+      "demo": "Notons $t_k=a+kh$ et, pour une fonction $g$, $R_n(g)=h\\sum_{k=1}^ng(t_k)$.\n\n**Cas d'une fonction en escalier.** Soit $\\varphi$ en escalier, constante sur les intervalles ouverts d'une subdivision $a=y_0<y_1<\\dots<y_m=b$, et $M=\\sup|\\varphi|$. Par Chasles, $R_n(\\varphi)-\\int_a^b\\varphi=\\sum_{k=1}^n\\left(h\\,\\varphi(t_k)-\\int_{t_{k-1}}^{t_k}\\varphi\\right)$. Si aucun $y_j$ ($1\\le j\\le m$) n'appartient à $\\left]t_{k-1},t_k\\right]$, cet intervalle est contenu dans un $\\left]y_{j-1},y_j\\right[$, où $\\varphi$ est constante, et le terme d'indice $k$ est nul. Les intervalles $\\left]t_{k-1},t_k\\right]$ sont disjoints, donc chaque $y_j$ est dans un seul d'entre eux : au plus $m$ termes sont non nuls, chacun majoré par $2Mh$ en valeur absolue. Ainsi $\\left|R_n(\\varphi)-\\int_a^b\\varphi\\right|\\le2mMh=\\frac{2mM(b-a)}n\\to0$.\n\n**Cas général.** Soit $\\varepsilon>0$. Par le théorème d'intégrabilité des fonctions continues par morceaux, il existe $\\varphi,\\psi$ en escalier avec $\\varphi\\le f\\le\\psi$ et $\\psi-\\varphi\\le\\varepsilon$ ; alors $\\int\\varphi\\le\\int f\\le\\int\\psi\\le\\int\\varphi+\\varepsilon(b-a)$. Comme $h>0$, $R_n(\\varphi)\\le R_n(f)\\le R_n(\\psi)$. Par le premier cas, pour $n$ assez grand, $R_n(\\varphi)\\ge\\int\\varphi-\\varepsilon$ et $R_n(\\psi)\\le\\int\\psi+\\varepsilon$, d'où\n$$\\int_a^bf-\\varepsilon(b-a)-\\varepsilon\\le R_n(f)\\le\\int_a^bf+\\varepsilon(b-a)+\\varepsilon.$$\nDonc $\\left|R_n(f)-\\int_a^bf\\right|\\le\\varepsilon(b-a+1)$ pour $n$ assez grand : $R_n(f)\\to\\int_a^bf$. Enfin $R'_n=R_n-h\\big(f(b)-f(a)\\big)$ et $h\\to0$, donc $R'_n$ a la même limite.",
+      "exemple": "$\\sum_{k=1}^n\\frac{n}{n^2+k^2}=\\frac1n\\sum_{k=1}^n\\frac1{1+(k/n)^2}\\to\\int_0^1\\frac{\\mathrm{d}x}{1+x^2}=\\frac\\pi4$, car $x\\mapsto\\frac1{1+x^2}$ est continue sur $[0,1]$.\n\nDe même $\\frac1n\\sum_{k=0}^{n-1}e^{k/n}\\to\\int_0^1e^x\\,\\mathrm{d}x=e-1$, ce que confirme le calcul direct : la somme géométrique vaut $\\frac1n\\cdot\\frac{e-1}{e^{1/n}-1}$, et $n\\left(e^{1/n}-1\\right)\\to1$.",
+      "contre_exemple": "- **Bornée ne suffit pas.** Pour $f=\\mathbf{1}_{\\mathbb{Q}}$ sur $[0,1]$, les points $\\frac kn$ sont rationnels, donc $\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)=1$ pour tout $n$ ; pourtant $f$ n'est pas intégrable. Avec les points irrationnels $\\frac{k-\\sqrt2/2}n\\in\\left]\\frac{k-1}n,\\frac kn\\right[$, les sommes correspondantes valent $0$.\n- **Le segment doit être fermé.** $f(x)=\\frac1x$ est continue sur $\\left]0,1\\right]$, et $\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)=\\sum_{k=1}^n\\frac1k\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue par morceaux sur $[0,1]$, alors $\\frac1n\\sum_{k=0}^{n-1}f\\left(\\frac kn\\right)\\to\\int_0^1f(t)\\,\\mathrm{d}t$.",
+          "vrai": true,
+          "justification": "C'est la somme $R'_n$ du théorème, avec $a=0$, $b=1$."
+        },
+        {
+          "texte": "Si la suite $\\left(\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)\\right)$ converge, alors $f$ est intégrable au sens de Riemann sur $[0,1]$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f=\\mathbf{1}_{\\mathbb{Q}}$, ces sommes valent toutes $1$, mais $f$ n'est pas intégrable sur $[0,1]$."
+        },
+        {
+          "texte": "Pour toute fonction $f$ continue sur $\\left]0,1\\right]$, la suite $\\left(\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)\\right)$ converge.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x)=\\frac1x$, la somme vaut $\\sum_{k=1}^n\\frac1k$, qui tend vers $+\\infty$."
+        },
+        {
+          "texte": "$\\sum_{k=1}^n\\frac1{n+k}\\to\\ln2$.",
+          "vrai": true,
+          "justification": "$\\sum_{k=1}^n\\frac1{n+k}=\\frac1n\\sum_{k=1}^n\\frac1{1+k/n}$ est une somme de Riemann de $x\\mapsto\\frac1{1+x}$, continue sur $[0,1]$ ; elle tend vers $\\int_0^1\\frac{\\mathrm{d}x}{1+x}=\\ln2$."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-cpm"
+      ]
+    },
+    {
+      "id": "int-l1-riemann-changement-variable",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "theoreme",
+      "titre": "Changement de variable",
+      "recto": "Énoncer la formule de changement de variable dans une intégrale sur un segment, avec ses hypothèses.",
+      "cours": "Le changement de variable est la dérivation des fonctions composées lue à l'envers. Si $F$ est une primitive de $f$, la fonction $F\\circ\\varphi$ a pour dérivée $(f\\circ\\varphi)\\,\\varphi'$ ; intégrer cette égalité donne $\\int_\\alpha^\\beta f(\\varphi(t))\\,\\varphi'(t)\\,\\mathrm{d}t=\\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)}f(x)\\,\\mathrm{d}x$. Formellement, on pose $x=\\varphi(t)$, on remplace $\\mathrm{d}x$ par $\\varphi'(t)\\,\\mathrm{d}t$ et l'on change les bornes.\n\nLa formule s'emploie dans les deux sens. De gauche à droite, on reconnaît une forme $u'\\times(f\\circ u)$, par exemple $\\frac{\\ln x}x$ avec $u=\\ln$. De droite à gauche, on impose une nouvelle variable : $x=\\sin t$ pour $\\sqrt{1-x^2}$, $u=e^x$ pour une fraction en $e^x$. Les changements $t\\mapsto-t$ ou $t\\mapsto a+b-t$ exploitent les symétries et permettent de calculer des intégrales dont on ne connaît pas de primitive.\n\nIl n'est pas nécessaire que $\\varphi$ soit bijective. Il faut en revanche que $\\varphi$ soit de classe $\\mathcal{C}^1$ sur tout le segment et que $f$ soit continue sur un intervalle contenant toutes les valeurs prises par $\\varphi$, pas seulement $\\varphi(\\alpha)$ et $\\varphi(\\beta)$.\n\nLe piège classique est un changement de variable qui n'est pas défini sur tout le segment : $x=\\frac1u$ sur $[-1,1]$ « démontrerait » que $\\int_{-1}^1\\frac{\\mathrm{d}x}{1+x^2}$, qui vaut $\\frac\\pi2$, est nulle.",
+      "hypotheses": [
+        "$\\varphi$ est de classe $\\mathcal{C}^1$ sur le segment $[\\alpha,\\beta]$.",
+        "$f$ est continue sur un intervalle $I$ contenant $\\varphi([\\alpha,\\beta])$."
+      ],
+      "hypotheses_pieges": [
+        "$\\varphi$ est bijective (strictement monotone) de $[\\alpha,\\beta]$ sur son image.",
+        "$\\varphi$ seulement dérivable sur $[\\alpha,\\beta]$ (à la place de $\\mathcal{C}^1$).",
+        "$f$ continue seulement sur le segment d'extrémités $\\varphi(\\alpha)$ et $\\varphi(\\beta)$ (à la place d'un intervalle contenant $\\varphi([\\alpha,\\beta])$)."
+      ],
+      "enonce": "Soient $\\varphi:[\\alpha,\\beta]\\to\\mathbb{R}$ de classe $\\mathcal{C}^1$ et $f$ une fonction continue sur un intervalle $I$ contenant $\\varphi([\\alpha,\\beta])$. Alors\n$$\\int_\\alpha^\\beta f\\big(\\varphi(t)\\big)\\,\\varphi'(t)\\,\\mathrm{d}t=\\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)}f(x)\\,\\mathrm{d}x.$$\nAucune hypothèse de monotonie ni de bijectivité sur $\\varphi$ n'est nécessaire.",
+      "enonce_trous": "Soient $\\varphi$ {{1}} sur $[\\alpha,\\beta]$ et $f$ continue sur {{2}}. Alors $\\int_\\alpha^\\beta f(\\varphi(t))\\,\\varphi'(t)\\,\\mathrm{d}t$ est égale à {{3}}.",
+      "trous": [
+        {
+          "reponse": "de classe $\\mathcal{C}^1$",
+          "leurres": [
+            "continue",
+            "dérivable",
+            "monotone"
+          ]
+        },
+        {
+          "reponse": "un intervalle contenant $\\varphi([\\alpha,\\beta])$",
+          "leurres": [
+            "le segment d'extrémités $\\varphi(\\alpha)$ et $\\varphi(\\beta)$",
+            "le segment $[\\alpha,\\beta]$",
+            "l'ensemble $\\{\\varphi(\\alpha),\\varphi(\\beta)\\}$"
+          ]
+        },
+        {
+          "reponse": "$\\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)}f(x)\\,\\mathrm{d}x$",
+          "leurres": [
+            "$\\int_\\alpha^\\beta f(x)\\,\\mathrm{d}x$",
+            "$\\int_{\\varphi(\\beta)}^{\\varphi(\\alpha)}f(x)\\,\\mathrm{d}x$",
+            "$\\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)}f(x)\\,\\varphi'(x)\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "Comme $f$ est continue sur l'intervalle $I$, elle y admet une primitive $F$ (théorème fondamental). La fonction $F\\circ\\varphi$ est définie sur $[\\alpha,\\beta]$ puisque $\\varphi([\\alpha,\\beta])\\subset I$, et dérivable comme composée de fonctions dérivables :\n$$(F\\circ\\varphi)'(t)=F'\\big(\\varphi(t)\\big)\\,\\varphi'(t)=f\\big(\\varphi(t)\\big)\\,\\varphi'(t).$$\nCette dérivée est continue sur $[\\alpha,\\beta]$ : $f\\circ\\varphi$ est continue (composée de fonctions continues) et $\\varphi'$ l'est car $\\varphi$ est de classe $\\mathcal{C}^1$. Donc $F\\circ\\varphi$ est une primitive sur $[\\alpha,\\beta]$ de la fonction continue $(f\\circ\\varphi)\\,\\varphi'$, et\n$$\\int_\\alpha^\\beta f\\big(\\varphi(t)\\big)\\,\\varphi'(t)\\,\\mathrm{d}t=F\\big(\\varphi(\\beta)\\big)-F\\big(\\varphi(\\alpha)\\big)=\\int_{\\varphi(\\alpha)}^{\\varphi(\\beta)}f(x)\\,\\mathrm{d}x,$$\nla dernière égalité parce que $F$ est une primitive de $f$ sur l'intervalle $I$, qui contient $\\varphi(\\alpha)$ et $\\varphi(\\beta)$.\n\nRôle des hypothèses : la continuité de $\\varphi'$ donne un sens à l'intégrale de gauche (intégrale d'une fonction continue) ; l'intervalle $I$ fournit une primitive de $f$ en tous les points $\\varphi(t)$, y compris ceux qui sortent du segment d'extrémités $\\varphi(\\alpha)$ et $\\varphi(\\beta)$.",
+      "exemple": "Avec $\\varphi=\\sin$ sur $\\left[0,\\frac\\pi2\\right]$ et $f(x)=\\sqrt{1-x^2}$, continue sur $[-1,1]$ : $\\int_0^1\\sqrt{1-x^2}\\,\\mathrm{d}x=\\int_0^{\\pi/2}\\sqrt{1-\\sin^2t}\\,\\cos t\\,\\mathrm{d}t=\\int_0^{\\pi/2}\\cos^2t\\,\\mathrm{d}t=\\frac\\pi4$, car $\\cos t\\ge0$ sur cet intervalle.\n\nAvec $\\varphi(t)=t^2$ sur $[-1,2]$, qui n'est pas monotone : $\\int_{-1}^22t\\,e^{t^2}\\,\\mathrm{d}t=\\int_1^4e^x\\,\\mathrm{d}x=e^4-e$.",
+      "contre_exemple": "- **$f$ doit être continue en toutes les valeurs prises par $\\varphi$.** Avec $\\varphi=\\sin$ sur $\\left[0,\\frac{3\\pi}4\\right]$ et $f(x)=\\frac1{1-x}$, continue sur le segment $\\left[0,\\frac{\\sqrt2}2\\right]$ d'extrémités $\\varphi(0)$ et $\\varphi\\left(\\frac{3\\pi}4\\right)$ : le membre de droite vaut $\\ln\\frac2{2-\\sqrt2}=\\ln\\left(2+\\sqrt2\\right)$, mais $\\varphi$ prend la valeur $1$ en $\\frac\\pi2$, et $\\frac{\\cos t}{1-\\sin t}$ n'est ni définie en $\\frac\\pi2$ ni bornée au voisinage : le membre de gauche n'a pas de sens.\n- **Un changement de variable défini sur tout le segment.** $u\\mapsto\\frac1u$ n'est pas définie en $0\\in[-1,1]$. Appliquer quand même la formule avec $x=\\frac1u$ donnerait $\\int_{-1}^1\\frac{\\mathrm{d}x}{1+x^2}=-\\int_{-1}^1\\frac{\\mathrm{d}u}{1+u^2}$, donc une intégrale nulle, alors qu'elle vaut $\\arctan1-\\arctan(-1)=\\frac\\pi2$.\n- **$\\mathcal{C}^1$, et pas seulement dérivable.** $\\varphi(t)=t^2\\sin\\frac1{t^2}$ pour $t\\ne0$, $\\varphi(0)=0$, est dérivable sur $[0,1]$, mais $\\varphi'(t)=2t\\sin\\frac1{t^2}-\\frac2t\\cos\\frac1{t^2}$ n'est pas bornée près de $0$ (elle vaut $-2\\sqrt{2k\\pi}$ en $t=\\frac1{\\sqrt{2k\\pi}}$). Avec $f=1$, l'intégrale de gauche $\\int_0^1\\varphi'(t)\\,\\mathrm{d}t$ n'existe pas au sens de Riemann, alors que celle de droite vaut $\\varphi(1)-\\varphi(0)=\\sin1$.",
+      "affirmations": [
+        {
+          "texte": "La formule de changement de variable n'est valable que si $\\varphi$ est bijective.",
+          "vrai": false,
+          "contre_exemple": "$\\varphi(t)=t^2$ n'est pas injective sur $[-1,2]$, et pourtant $\\int_{-1}^22t\\,e^{t^2}\\,\\mathrm{d}t=e^4-e=\\int_1^4e^x\\,\\mathrm{d}x$ : seules comptent $\\varphi$ de classe $\\mathcal{C}^1$ et $f$ continue sur un intervalle contenant $\\varphi([-1,2])=[0,4]$."
+        },
+        {
+          "texte": "Le changement de variable $x=\\frac1u$ montre que $\\int_{-1}^1\\frac{\\mathrm{d}x}{1+x^2}=0$.",
+          "vrai": false,
+          "contre_exemple": "L'intégrale vaut $\\arctan1-\\arctan(-1)=\\frac\\pi2$. La fonction $u\\mapsto\\frac1u$ n'est pas définie en $0$, donc n'est pas de classe $\\mathcal{C}^1$ sur $[-1,1]$ : le théorème ne s'applique pas."
+        },
+        {
+          "texte": "Si $f$ est continue et impaire sur $[-a,a]$ ($a>0$), alors $\\int_{-a}^af(t)\\,\\mathrm{d}t=0$.",
+          "vrai": true,
+          "justification": "Avec $t=-u$ : $\\int_{-a}^0f(t)\\,\\mathrm{d}t=\\int_a^0f(-u)\\,(-\\mathrm{d}u)=\\int_0^af(-u)\\,\\mathrm{d}u=-\\int_0^af(u)\\,\\mathrm{d}u$, puis on applique la relation de Chasles."
+        },
+        {
+          "texte": "Pour toute fonction $f$ continue sur $[0,1]$, $\\int_0^\\pi f(\\sin t)\\cos t\\,\\mathrm{d}t=0$.",
+          "vrai": true,
+          "justification": "$\\varphi=\\sin$ est de classe $\\mathcal{C}^1$ sur $[0,\\pi]$ et $\\varphi([0,\\pi])=[0,1]$, où $f$ est continue ; l'intégrale vaut $\\int_{\\sin0}^{\\sin\\pi}f(x)\\,\\mathrm{d}x=\\int_0^0f=0$. La formule s'applique bien que $\\sin$ ne soit pas monotone sur $[0,\\pi]$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-fondamental",
+        "ar-t-derivation-composee"
+      ]
+    },
+    {
+      "id": "int-l1-riemann-nulle",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "theoreme",
+      "titre": "Fonction continue positive d'intégrale nulle",
+      "recto": "Énoncer le théorème sur les fonctions continues positives d'intégrale nulle, avec ses hypothèses.",
+      "cours": "La positivité de l'intégrale dit qu'une fonction positive a une intégrale positive. Ce théorème en est le cas d'égalité : une fonction continue, positive, d'intégrale nulle sur un segment non réduit à un point est la fonction nulle. L'intuition est simple : si $f$ prenait une valeur $f(c)>0$, la continuité la maintiendrait au-dessus de $\\frac{f(c)}2$ sur tout un petit intervalle, ce qui donnerait une aire strictement positive.\n\nOn l'utilise surtout sous la forme « $\\int_a^bg^2=0$ entraîne $g=0$ » pour $g$ continue : c'est ce qui fait de $(f,g)\\mapsto\\int_a^bfg$ un produit scalaire sur l'espace des fonctions continues sur $[a,b]$. Il donne aussi des inégalités strictes : si $f\\le g$ sont continues et distinctes, alors $\\int_a^bf<\\int_a^bg$.\n\nMéthode type : pour montrer qu'une fonction continue est nulle, on fait apparaître l'intégrale nulle d'une fonction continue positive, souvent un carré.\n\nLes trois hypothèses comptent : sans la positivité, $\\int_0^{2\\pi}\\sin t\\,\\mathrm{d}t=0$ ; sans la continuité, une fonction nulle sauf en un point est d'intégrale nulle ; et il faut $a<b$. À l'écrit, on cite explicitement continuité, positivité et $a<b$ au moment d'appliquer le résultat.",
+      "hypotheses": [
+        "$a<b$.",
+        "$f$ est continue sur $[a,b]$.",
+        "$f$ est positive sur $[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ seulement continue par morceaux sur $[a,b]$ (à la place de continue).",
+        "$f$ positive seulement sur $\\left[a,\\frac{a+b}2\\right]$ (à la place de positive sur tout $[a,b]$).",
+        "$a\\le b$ (à la place de $a<b$)."
+      ],
+      "enonce": "Soient $a<b$ et $f$ une fonction **continue** et **positive** sur $[a,b]$. Si $\\int_a^bf(t)\\,\\mathrm{d}t=0$, alors $f$ est nulle sur $[a,b]$.\n\nDe façon équivalente : si $f$ est continue, positive et non identiquement nulle sur $[a,b]$, alors $\\int_a^bf(t)\\,\\mathrm{d}t>0$.\n\nConséquence : si $g$ est continue sur $[a,b]$ et $\\int_a^bg(t)^2\\,\\mathrm{d}t=0$, alors $g=0$.",
+      "enonce_trous": "Soient $a<b$ et $f$ une fonction {{1}} et {{2}} sur $[a,b]$. Si $\\int_a^bf(t)\\,\\mathrm{d}t=0$, alors $f$ est nulle sur $[a,b]$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "intégrable"
+          ]
+        },
+        {
+          "reponse": "positive",
+          "leurres": [
+            "non identiquement nulle",
+            "croissante",
+            "majorée par $1$"
+          ]
+        }
+      ],
+      "demo": "Par l'absurde, supposons qu'il existe $c\\in[a,b]$ tel que $f(c)>0$. Par continuité de $f$ en $c$ (avec $\\varepsilon=\\frac{f(c)}2$), il existe $\\delta>0$ tel que $f(t)\\ge\\frac{f(c)}2$ pour tout $t\\in[a,b]$ vérifiant $|t-c|\\le\\delta$.\n\nPosons $\\gamma=\\max(a,c-\\delta)$ et $\\gamma'=\\min(b,c+\\delta)$. Alors $[\\gamma,\\gamma']\\subset[a,b]$, $f\\ge\\frac{f(c)}2$ sur $[\\gamma,\\gamma']$, et $\\gamma'-\\gamma\\ge\\min(\\delta,b-a)>0$ : si les deux bornes sont tronquées, la longueur est $b-a$ ; si une seule l'est, elle est au moins $\\delta$ (car $a\\le c\\le b$) ; sinon elle vaut $2\\delta$. C'est ici que sert l'hypothèse $a<b$.\n\nPar la relation de Chasles et la positivité de $f$ sur $[a,\\gamma]$ et sur $[\\gamma',b]$,\n$$\\int_a^bf\\ge\\int_\\gamma^{\\gamma'}f\\ge(\\gamma'-\\gamma)\\,\\frac{f(c)}2>0,$$\nce qui contredit $\\int_a^bf=0$. Donc $f(c)\\le0$ pour tout $c$, et comme $f\\ge0$, $f=0$.\n\nLa forme équivalente est la contraposée. Pour la conséquence, on applique le théorème à $f=g^2$, continue et positive : $g^2=0$, donc $g=0$.",
+      "exemple": "Si $g$ est continue sur $[0,1]$ et $\\int_0^1\\big(g(t)-t\\big)^2\\,\\mathrm{d}t=0$, alors $g(t)=t$ pour tout $t\\in[0,1]$.\n\nInégalité stricte : sur $\\left[0,\\frac\\pi2\\right]$, la fonction $t\\mapsto t-\\sin t$ est continue, positive et non nulle, donc $\\int_0^{\\pi/2}\\sin t\\,\\mathrm{d}t=1<\\int_0^{\\pi/2}t\\,\\mathrm{d}t=\\frac{\\pi^2}8$.",
+      "contre_exemple": "- **Continuité.** Sur $[0,1]$, soit $f(t)=1$ si $t=\\frac12$ et $f(t)=0$ sinon : $f$ est positive, continue par morceaux, $\\int_0^1f=0$, mais $f\\ne0$.\n- **Positivité sur tout le segment.** Sur $[0,2]$, $f(t)=1-t$ est continue, positive sur $[0,1]$ seulement, et $\\int_0^2(1-t)\\,\\mathrm{d}t=0$ ; de même $\\int_0^{2\\pi}\\sin t\\,\\mathrm{d}t=0$.\n- **$a<b$.** Sur $[a,a]=\\{a\\}$, toute fonction a une intégrale nulle, par exemple la constante $1$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[0,1]$ et $\\int_0^1f(t)\\,\\mathrm{d}t=0$, alors $f=0$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=2t-1$ est continue, d'intégrale $\\left[t^2-t\\right]_0^1=0$, et n'est pas nulle : la positivité manque."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux et positive sur $[0,1]$, et si $\\int_0^1f(t)\\,\\mathrm{d}t=0$, alors $f=0$.",
+          "vrai": false,
+          "contre_exemple": "$f$ égale à $1$ en $\\frac12$ et à $0$ ailleurs est continue par morceaux, positive, d'intégrale nulle, et non nulle."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ ($a<b$) et $\\int_a^bf(t)\\,\\mathrm{d}t=0$, alors $f$ s'annule au moins une fois sur $[a,b]$.",
+          "vrai": true,
+          "justification": "Sinon, par le théorème des valeurs intermédiaires, $f$ garde un signe strict constant, par exemple $f>0$ ; $f$ est alors continue, positive et non nulle, donc $\\int_a^bf>0$. Même raisonnement avec $-f$ si $f<0$."
+        },
+        {
+          "texte": "Si $f$ et $g$ sont continues sur $[a,b]$ ($a<b$), $f\\le g$ et $f\\ne g$, alors $\\int_a^bf<\\int_a^bg$.",
+          "vrai": true,
+          "justification": "$g-f$ est continue, positive et non identiquement nulle, donc $\\int_a^b(g-f)>0$."
+        }
+      ],
+      "prerequis": [
+        "int-t-integrale-proprietes"
+      ]
+    },
+    {
+      "id": "int-l1-riemann-fractions",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "methode",
+      "titre": "Primitives des fractions rationnelles",
+      "recto": "Énoncer la méthode de calcul des primitives d'une fraction rationnelle réelle, avec ses hypothèses.",
+      "cours": "Toute fraction rationnelle à coefficients réels a des primitives explicites sur chaque intervalle où son dénominateur ne s'annule pas, et elles ne font intervenir que des fractions rationnelles, des logarithmes et des arctangentes.\n\nLa méthode a trois temps. D'abord, la division euclidienne de $P$ par $Q$ isole la partie entière $E$, polynôme qui s'intègre directement ; on oublie souvent cette étape quand $\\deg P\\ge\\deg Q$. Ensuite, on factorise $Q$ sur $\\mathbb{R}$ en facteurs $(X-a)^m$ et $(X^2+pX+q)^m$ avec $p^2-4q<0$, et l'on décompose en éléments simples ; les coefficients s'obtiennent par évaluation aux pôles, par limites ou par identification. Enfin, on intègre chaque élément : $\\frac1{x-a}$ donne $\\ln|x-a|$ ; $\\frac1{(x-a)^k}$ donne $-\\frac1{(k-1)(x-a)^{k-1}}$ pour $k\\ge2$ ; pour $\\frac{\\alpha x+\\beta}{x^2+px+q}$, on fait apparaître la dérivée $2x+p$ du dénominateur, ce qui donne un logarithme, puis on met le trinôme sous forme canonique $\\left(x+\\frac p2\\right)^2+\\frac{4q-p^2}4$, ce qui donne une arctangente.\n\nLes puissances $(x^2+px+q)^k$ avec $k\\ge2$ se ramènent, par un changement de variable affine, à $\\int\\frac{\\mathrm{d}u}{(1+u^2)^k}$, que l'on calcule par une relation de récurrence obtenue par intégration par parties.\n\nPiège principal : l'arctangente ne concerne que les trinômes de discriminant **strictement** négatif ; si $p^2-4q\\ge0$, le trinôme se factorise sur $\\mathbb{R}$ et l'on revient à des éléments de la forme $\\frac{\\lambda}{(x-a)^k}$.",
+      "hypotheses": [
+        "$P$ et $Q$ sont des polynômes à coefficients réels, $Q\\ne0$.",
+        "On travaille sur un intervalle $I$ sur lequel $Q$ ne s'annule pas.",
+        "Pour la formule en arctangente, le trinôme $x^2+px+q$ est irréductible sur $\\mathbb{R}$ : $p^2-4q<0$."
+      ],
+      "hypotheses_pieges": [
+        "Il faut $\\deg P<\\deg Q$ pour que la méthode s'applique.",
+        "$Q$ est scindé sur $\\mathbb{R}$.",
+        "$p^2-4q\\le0$ (à la place de $p^2-4q<0$) pour la formule en arctangente."
+      ],
+      "enonce": "Soient $P,Q\\in\\mathbb{R}[X]$, $Q\\ne0$, et $I$ un intervalle sur lequel $Q$ ne s'annule pas.\n\n**1. Décomposition en éléments simples.** Soit $E$ le quotient de la division euclidienne de $P$ par $Q$ (partie entière). Si $Q=c\\prod_j(X-a_j)^{m_j}\\prod_l(X^2+p_lX+q_l)^{n_l}$, avec $c\\ne0$, des réels $a_j$ distincts et des trinômes distincts tels que $p_l^2-4q_l<0$, il existe des réels uniques $\\lambda_{j,k}$, $\\alpha_{l,k}$, $\\beta_{l,k}$ tels que\n$$\\frac PQ=E+\\sum_j\\sum_{k=1}^{m_j}\\frac{\\lambda_{j,k}}{(X-a_j)^k}+\\sum_l\\sum_{k=1}^{n_l}\\frac{\\alpha_{l,k}X+\\beta_{l,k}}{(X^2+p_lX+q_l)^k}.$$\n\n**2. Primitives des éléments simples sur $I$** (on note $D=4q-p^2>0$) :\n- $\\frac1{x-a}$ : $\\ln|x-a|$ ; $\\frac1{(x-a)^k}$ avec $k\\ge2$ : $-\\frac1{(k-1)(x-a)^{k-1}}$ ;\n- $\\frac{\\alpha x+\\beta}{x^2+px+q}$ : $\\frac\\alpha2\\ln\\left(x^2+px+q\\right)+\\left(\\beta-\\frac{\\alpha p}2\\right)\\frac2{\\sqrt D}\\arctan\\frac{2x+p}{\\sqrt D}$ ;\n- $\\frac{\\alpha x+\\beta}{(x^2+px+q)^k}$ avec $k\\ge2$ : le changement de variable affine $u=\\frac{2x+p}{\\sqrt D}$ ramène à $\\int\\frac{u\\,\\mathrm{d}u}{(1+u^2)^k}$, de primitive $-\\frac1{2(k-1)(1+u^2)^{k-1}}$, et à $J_k(u)=\\int_0^u\\frac{\\mathrm{d}s}{(1+s^2)^k}$, qui vérifie $J_1=\\arctan$ et, pour $k\\ge2$,\n$$J_k(u)=\\frac{u}{2(k-1)(1+u^2)^{k-1}}+\\frac{2k-3}{2(k-1)}\\,J_{k-1}(u).$$\nAinsi, toute fraction rationnelle admet sur $I$ des primitives qui s'expriment à l'aide de fractions rationnelles, de logarithmes et d'arctangentes.",
+      "enonce_trous": "Pour primitiver une fraction rationnelle $\\frac PQ$ sur un intervalle où $Q$ ne s'annule pas, on isole d'abord {{1}} par division euclidienne, puis on décompose en éléments simples. L'élément $\\frac1{x-a}$ a pour primitive $\\ln|x-a|$ ; un élément $\\frac{\\alpha x+\\beta}{x^2+px+q}$ avec {{2}} se primitive à l'aide d'un logarithme et d'une fonction {{3}}.",
+      "trous": [
+        {
+          "reponse": "la partie entière (quotient de $P$ par $Q$)",
+          "leurres": [
+            "le reste de la division de $P$ par $Q$",
+            "le plus grand commun diviseur de $P$ et $Q$",
+            "le coefficient dominant de $Q$"
+          ]
+        },
+        {
+          "reponse": "$p^2-4q<0$",
+          "leurres": [
+            "$p^2-4q>0$",
+            "$p^2-4q=0$",
+            "$q<0$"
+          ]
+        },
+        {
+          "reponse": "arctangente",
+          "leurres": [
+            "exponentielle",
+            "racine carrée",
+            "arcsinus"
+          ]
+        }
+      ],
+      "demo": "**Décomposition.** L'écriture $\\frac PQ=E+\\frac RQ$ avec $\\deg R<\\deg Q$ vient de la division euclidienne $P=EQ+R$. L'existence et l'unicité de la décomposition de $\\frac RQ$ en éléments simples dans $\\mathbb{R}(X)$ sont admises ici : elles se démontrent en algèbre, à l'aide du théorème de Bézout pour séparer les facteurs premiers entre eux, puis de divisions euclidiennes successives pour les puissances.\n\n**Primitives.** Chaque formule se vérifie en dérivant sur $I$ ; pour un trinôme irréductible, $x^2+px+q>0$ sur $\\mathbb{R}$, donc le logarithme est bien défini.\n- $(\\ln|x-a|)'=\\frac1{x-a}$ sur tout intervalle ne contenant pas $a$, et $\\left(-\\frac1{(k-1)(x-a)^{k-1}}\\right)'=\\frac1{(x-a)^k}$.\n- On écrit $\\alpha x+\\beta=\\frac\\alpha2(2x+p)+\\beta-\\frac{\\alpha p}2$, et $\\left(\\ln(x^2+px+q)\\right)'=\\frac{2x+p}{x^2+px+q}$. Comme $(2x+p)^2+D=4(x^2+px+q)$,\n$$\\left(\\frac2{\\sqrt D}\\arctan\\frac{2x+p}{\\sqrt D}\\right)'=\\frac2{\\sqrt D}\\cdot\\frac{2/\\sqrt D}{1+\\frac{(2x+p)^2}D}=\\frac4{(2x+p)^2+D}=\\frac1{x^2+px+q}.$$\n- Pour $k\\ge2$ : $x^2+px+q=\\frac D4(1+u^2)$ avec $u=\\frac{2x+p}{\\sqrt D}$, et $\\alpha x+\\beta$ est une fonction affine de $u$. Pour la récurrence, on intègre par parties $J_{k-1}(u)=\\int_0^u1\\cdot\\frac{\\mathrm{d}s}{(1+s^2)^{k-1}}$ en dérivant le second facteur :\n$$J_{k-1}(u)=\\frac u{(1+u^2)^{k-1}}+2(k-1)\\int_0^u\\frac{s^2\\,\\mathrm{d}s}{(1+s^2)^k}.$$\nOr $\\frac{s^2}{(1+s^2)^k}=\\frac1{(1+s^2)^{k-1}}-\\frac1{(1+s^2)^k}$, d'où $J_{k-1}=\\frac u{(1+u^2)^{k-1}}+2(k-1)\\big(J_{k-1}-J_k\\big)$, ce qui donne la formule annoncée.",
+      "exemple": "Sur $\\left]1,+\\infty\\right[$ : $\\frac1{x^2-1}=\\frac12\\left(\\frac1{x-1}-\\frac1{x+1}\\right)$, de primitive $\\frac12\\ln\\frac{x-1}{x+1}$.\n\nSur $\\mathbb{R}$ : $x^2+4x+5=(x+2)^2+1$, donc $\\arctan(x+2)$ est une primitive de $\\frac1{x^2+4x+5}$, et $\\int_{-2}^{-1}\\frac{\\mathrm{d}x}{x^2+4x+5}=\\arctan1-\\arctan0=\\frac\\pi4$.\n\nAvec une partie entière : $\\frac{x^3}{x^2-1}=x+\\frac x{x^2-1}$, de primitive $\\frac{x^2}2+\\frac12\\ln\\left|x^2-1\\right|$ sur chacun des intervalles $\\left]-\\infty,-1\\right[$, $\\left]-1,1\\right[$, $\\left]1,+\\infty\\right[$.",
+      "contre_exemple": "- **Oublier la partie entière.** $\\frac{X^3}{X^2-1}$ n'est pas égale à $\\frac{1/2}{X-1}+\\frac{1/2}{X+1}$, qui vaut $\\frac X{X^2-1}$ : il faut d'abord écrire $X^3=X(X^2-1)+X$.\n- **Discriminant nul.** Pour $x^2+2x+1=(x+1)^2$, on a $4q-p^2=0$ et la formule en arctangente n'a pas de sens ; une primitive de $\\frac1{(x+1)^2}$ sur $\\left]-1,+\\infty\\right[$ est $-\\frac1{x+1}$.\n- **Un intervalle.** Sur $\\mathbb{R}\\setminus\\{1\\}$, $x\\mapsto\\ln|x-1|$ et $x\\mapsto\\ln|x-1|+\\mathbf{1}_{\\left]1,+\\infty\\right[}(x)$ sont deux primitives de $\\frac1{x-1}$ dont la différence n'est pas constante.",
+      "affirmations": [
+        {
+          "texte": "Sur $\\left]1,+\\infty\\right[$, $x\\mapsto\\frac12\\ln\\frac{x-1}{x+1}$ est une primitive de $x\\mapsto\\frac1{x^2-1}$.",
+          "vrai": true,
+          "justification": "Sa dérivée est $\\frac12\\left(\\frac1{x-1}-\\frac1{x+1}\\right)=\\frac1{x^2-1}$."
+        },
+        {
+          "texte": "$x\\mapsto\\ln\\left(x^2+2x+2\\right)$ est une primitive de $x\\mapsto\\frac1{x^2+2x+2}$ sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "Sa dérivée est $\\frac{2x+2}{x^2+2x+2}$, qui vaut $1$ en $0$, alors que $\\frac1{x^2+2x+2}$ vaut $\\frac12$ en $0$. Une primitive est $\\arctan(x+1)$."
+        },
+        {
+          "texte": "$x\\mapsto\\frac12\\left(\\arctan x+\\frac x{1+x^2}\\right)$ est une primitive de $x\\mapsto\\frac1{(1+x^2)^2}$ sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "C'est la relation de récurrence pour $k=2$ : $J_2(u)=\\frac u{2(1+u^2)}+\\frac12J_1(u)$ ; on peut aussi dériver directement."
+        },
+        {
+          "texte": "La décomposition en éléments simples de $\\frac{X^3}{X^2-1}$ est $\\frac{1/2}{X-1}+\\frac{1/2}{X+1}$.",
+          "vrai": false,
+          "contre_exemple": "Cette somme vaut $\\frac X{X^2-1}$ ; la partie entière $X$ a été oubliée : $\\frac{X^3}{X^2-1}=X+\\frac{1/2}{X-1}+\\frac{1/2}{X+1}$."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-changement-variable",
+        "int-t-integrale-ipp"
+      ]
+    },
+    {
+      "id": "int-l1-riemann-cauchy-schwarz",
+      "theme": "integration",
+      "niveau": "l1",
+      "chapitre": "int-l1-riemann",
+      "type": "theoreme",
+      "titre": "Inégalité de Cauchy-Schwarz pour les intégrales",
+      "recto": "Énoncer l'inégalité de Cauchy-Schwarz pour les intégrales sur un segment, avec ses hypothèses et son cas d'égalité.",
+      "cours": "L'application $(f,g)\\mapsto\\int_a^bfg$ se comporte comme un produit scalaire : elle est bilinéaire, symétrique et positive. L'inégalité de Cauchy-Schwarz en découle, exactement comme dans $\\mathbb{R}^n$ : $\\left|\\int_a^bfg\\right|\\le\\sqrt{\\int_a^bf^2}\\sqrt{\\int_a^bg^2}$. La démonstration est à connaître, car l'argument resservira souvent : le trinôme $\\lambda\\mapsto\\int_a^b(f+\\lambda g)^2$ est positif, donc son discriminant est négatif ou nul.\n\nEn pratique, on l'utilise pour majorer une intégrale qu'on ne sait pas calculer (avec $g=1$ : $\\left(\\int_a^bf\\right)^2\\le(b-a)\\int_a^bf^2$), pour comparer $\\int f$ et $\\int\\frac1f$, ou pour contrôler une fonction par sa dérivée : si $f(0)=0$, alors $f(x)^2=\\left(\\int_0^xf'\\right)^2\\le x\\int_0^xf'^2$.\n\nLe cas d'égalité, pour $f$ et $g$ continues, est la colinéarité ; il sert à montrer qu'un minimum ou un maximum est atteint et à identifier la fonction extrémale.\n\nLe piège principal concerne ce cas d'égalité : il repose sur le théorème « continue, positive, d'intégrale nulle, donc nulle » et devient faux pour des fonctions seulement continues par morceaux, qui peuvent différer en un point sans que les intégrales changent. Attention aussi au facteur $b-a$, qu'on oublie quand le segment n'est pas $[0,1]$.",
+      "hypotheses": [
+        "$f$ et $g$ sont continues par morceaux sur le segment $[a,b]$ ($a<b$), à valeurs réelles.",
+        "Pour le cas d'égalité : $f$ et $g$ sont continues sur $[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ et $g$ sont positives sur $[a,b]$.",
+        "$f$ et $g$ sont de classe $\\mathcal{C}^1$ sur $[a,b]$.",
+        "Pour le cas d'égalité, il suffit que $f$ et $g$ soient continues par morceaux (à la place de continues)."
+      ],
+      "enonce": "Soient $a<b$ et $f,g$ des fonctions continues par morceaux sur $[a,b]$, à valeurs réelles. Alors\n$$\\left(\\int_a^bf(t)g(t)\\,\\mathrm{d}t\\right)^2\\le\\int_a^bf(t)^2\\,\\mathrm{d}t\\int_a^bg(t)^2\\,\\mathrm{d}t.$$\nSi de plus $f$ et $g$ sont **continues** sur $[a,b]$, il y a égalité si et seulement si $f$ et $g$ sont colinéaires : $g=0$, ou il existe $\\lambda\\in\\mathbb{R}$ tel que $f=\\lambda g$.",
+      "enonce_trous": "Soient $f$ et $g$ continues par morceaux sur $[a,b]$. Alors $\\left(\\int_a^bfg\\right)^2$ est {{1}} $\\int_a^bf^2\\int_a^bg^2$. Pour $f$ et $g$ {{2}} sur $[a,b]$, il y a égalité si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "inférieur ou égal à",
+          "leurres": [
+            "supérieur ou égal à",
+            "égal à",
+            "strictement inférieur à"
+          ]
+        },
+        {
+          "reponse": "continues",
+          "leurres": [
+            "continues par morceaux",
+            "intégrables au sens de Riemann",
+            "bornées"
+          ]
+        },
+        {
+          "reponse": "$f$ et $g$ sont colinéaires",
+          "leurres": [
+            "$f=g$",
+            "$\\int_a^bfg=0$",
+            "$f$ et $g$ sont de même signe"
+          ]
+        }
+      ],
+      "demo": "**Inégalité.** Pour $\\lambda\\in\\mathbb{R}$, la fonction $(f+\\lambda g)^2$ est continue par morceaux et positive, donc, par linéarité et positivité de l'intégrale,\n$$P(\\lambda)=\\int_a^b(f+\\lambda g)^2=\\int_a^bf^2+2\\lambda\\int_a^bfg+\\lambda^2\\int_a^bg^2\\ge0.$$\n- Si $\\int_a^bg^2>0$, $P$ est un trinôme du second degré positif sur $\\mathbb{R}$ ; son discriminant réduit est donc négatif ou nul : $\\left(\\int fg\\right)^2-\\int f^2\\int g^2\\le0$.\n- Si $\\int_a^bg^2=0$, $P(\\lambda)=\\int f^2+2\\lambda\\int fg$ est une fonction affine positive sur $\\mathbb{R}$, donc de pente nulle : $\\int fg=0$, et l'inégalité s'écrit $0\\le0$.\n\n**Cas d'égalité ($f$ et $g$ continues).** Si $g=0$, ou si $f=\\lambda g$, les deux membres valent $0$, ou $\\lambda^2\\left(\\int g^2\\right)^2$. Réciproquement, supposons l'égalité et $g\\ne0$. La fonction $g^2$ est continue, positive et non identiquement nulle, donc $\\int_a^bg^2>0$ (fonction continue positive d'intégrale nulle). Le discriminant de $P$ est alors nul, donc $P$ a une racine $\\lambda_0$ : $\\int_a^b(f+\\lambda_0g)^2=0$. La fonction $(f+\\lambda_0g)^2$ est continue et positive, d'intégrale nulle, donc nulle : $f=-\\lambda_0g$.",
+      "exemple": "Avec $g=1$ : $\\left(\\int_a^bf\\right)^2\\le(b-a)\\int_a^bf^2$.\n\nAvec $\\sqrt t$ et $e^t$ : $\\left(\\int_0^1\\sqrt t\\,e^t\\,\\mathrm{d}t\\right)^2\\le\\int_0^1t\\,\\mathrm{d}t\\int_0^1e^{2t}\\,\\mathrm{d}t=\\frac12\\cdot\\frac{e^2-1}2=\\frac{e^2-1}4$, alors qu'on ne connaît pas de primitive usuelle de $\\sqrt t\\,e^t$.\n\nAutre application classique : pour $f$ continue et strictement positive, $\\int_a^bf\\int_a^b\\frac1f\\ge(b-a)^2$ (voir les exercices).",
+      "contre_exemple": "- **Cas d'égalité et continuité.** Sur $[0,1]$, soient $f=1$ et $g$ égale à $1$ sauf $g(0)=2$ : $g$ est continue par morceaux et $\\int fg=\\int f^2=\\int g^2=1$, d'où l'égalité. Pourtant $f$ et $g$ ne sont pas colinéaires : $\\lambda f+\\mu g=0$ en $0$ et en $1$ donne $\\lambda+2\\mu=0$ et $\\lambda+\\mu=0$, donc $\\lambda=\\mu=0$.\n- **Le facteur $b-a$.** Sur $[0,2]$, avec $f=1$ : $\\left(\\int_0^2f\\right)^2=4>\\int_0^2f^2=2$. L'inégalité $\\left(\\int_a^bf\\right)^2\\le\\int_a^bf^2$ n'est vraie pour toute $f$ que si $b-a\\le1$.",
+      "affirmations": [
+        {
+          "texte": "Pour $f$ et $g$ continues par morceaux sur $[a,b]$, $\\left|\\int_a^bfg\\right|\\le\\sqrt{\\int_a^bf^2}\\,\\sqrt{\\int_a^bg^2}$.",
+          "vrai": true,
+          "justification": "C'est l'inégalité de Cauchy-Schwarz, après passage à la racine carrée (les deux membres sont positifs)."
+        },
+        {
+          "texte": "Pour toute $f$ continue sur $[0,1]$, $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$.",
+          "vrai": true,
+          "justification": "Cauchy-Schwarz avec $g=1$ : $\\left(\\int_0^1f\\right)^2\\le\\int_0^11\\cdot\\int_0^1f^2=\\int_0^1f^2$."
+        },
+        {
+          "texte": "Pour toute $f$ continue sur $[0,2]$, $\\left(\\int_0^2f\\right)^2\\le\\int_0^2f^2$.",
+          "vrai": false,
+          "contre_exemple": "Avec $f=1$ : $\\left(\\int_0^2f\\right)^2=4$ et $\\int_0^2f^2=2$. L'inégalité correcte est $\\left(\\int_0^2f\\right)^2\\le2\\int_0^2f^2$."
+        },
+        {
+          "texte": "Si $f$ et $g$ sont continues par morceaux sur $[a,b]$ et $\\left(\\int_a^bfg\\right)^2=\\int_a^bf^2\\int_a^bg^2$, alors $f$ et $g$ sont colinéaires.",
+          "vrai": false,
+          "contre_exemple": "Sur $[0,1]$, $f=1$ et $g$ égale à $1$ sauf $g(0)=2$ : les trois intégrales valent $1$, mais $f$ et $g$ ne sont pas colinéaires."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-nulle"
+      ]
+    }
+  ]
+}
