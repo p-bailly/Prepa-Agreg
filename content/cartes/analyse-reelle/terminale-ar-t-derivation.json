@@ -1,0 +1,306 @@
+{
+  "cartes": [
+    {
+      "id": "ar-t-derivation-composee",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-derivation",
+      "type": "theoreme",
+      "titre": "Dérivée d'une fonction composée",
+      "recto": "Énoncer le théorème de dérivation d'une fonction composée, avec ses hypothèses.",
+      "cours": "Composer, c'est enchaîner deux transformations : on calcule d'abord $u(x)$, puis on applique $v$ au résultat. La plupart des fonctions rencontrées s'écrivent ainsi : $e^{-x^2}$, $\\sqrt{1+x^2}$, $(2x+1)^5$, $\\cos(3x)$. La formule de dérivation d'une composée dit que les taux de variation se **multiplient** : si $u$ varie localement $u'(x)$ fois plus vite que $x$, et $v$ varie $v'(u(x))$ fois plus vite que sa propre variable, alors $v\\circ u$ varie $u'(x)\\times v'(u(x))$ fois plus vite que $x$.\n\nMéthode : repérer la fonction « intérieure » $u$ et la fonction « extérieure » $v$ ; vérifier que $u$ est dérivable sur $I$ et que $u(x)$ reste dans un intervalle $J$ sur lequel $v$ est dérivable ; écrire $(v\\circ u)'=u'\\times(v'\\circ u)$. Cas particuliers à connaître : $(u^n)'=n\\,u'\\,u^{n-1}$ pour $n\\ge1$ entier, $(e^u)'=u'e^u$, $(\\sqrt u)'=\\frac{u'}{2\\sqrt u}$ là où $u>0$, et $\\big(f(ax+b)\\big)'=a\\,f'(ax+b)$.\n\nPièges : oublier le facteur $u'$ (écrire $5(2x+1)^4$ pour la dérivée de $(2x+1)^5$, au lieu de $10(2x+1)^4$) ; et oublier de vérifier que $u(x)$ est dans le domaine de dérivabilité de $v$ : $\\sqrt{x^2}=|x|$ n'est pas dérivable en $0$, car la racine carrée n'est pas dérivable en $u(0)=0$.",
+      "hypotheses": [
+        "$I$ et $J$ sont des intervalles.",
+        "$u$ est dérivable sur $I$.",
+        "$u(x)\\in J$ pour tout $x\\in I$.",
+        "$v$ est dérivable sur $J$."
+      ],
+      "hypotheses_pieges": [
+        "$u$ est seulement continue sur $I$.",
+        "$v$ est seulement continue sur $J$.",
+        "$u'$ ne s'annule pas sur $I$."
+      ],
+      "enonce": "Soient $I$ et $J$ deux intervalles, $u$ une fonction **dérivable** sur $I$ telle que $u(x)\\in J$ pour tout $x\\in I$, et $v$ une fonction **dérivable** sur $J$. Alors $v\\circ u$ est dérivable sur $I$ et, pour tout $x\\in I$,\n\n$$(v\\circ u)'(x)=u'(x)\\times v'\\big(u(x)\\big).$$",
+      "enonce_trous": "Soient $I$ et $J$ deux intervalles, $u$ une fonction {{1}} et $v$ une fonction dérivable sur $J$, telles que {{2}}. Alors $v\\circ u$ est dérivable sur $I$ et, pour tout $x\\in I$, $(v\\circ u)'(x)$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "dérivable sur $I$",
+          "leurres": [
+            "continue sur $I$",
+            "strictement monotone sur $I$",
+            "définie sur $I$"
+          ]
+        },
+        {
+          "reponse": "$u(x)\\in J$ pour tout $x\\in I$",
+          "leurres": [
+            "$v(x)\\in I$ pour tout $x\\in J$",
+            "$u(x)\\in I$ pour tout $x\\in I$",
+            "$I\\subset J$"
+          ]
+        },
+        {
+          "reponse": "$u'(x)\\times v'\\big(u(x)\\big)$",
+          "leurres": [
+            "$v'\\big(u'(x)\\big)$",
+            "$u'(x)\\times v'(x)$",
+            "$v'\\big(u(x)\\big)$"
+          ]
+        }
+      ],
+      "demo": "Fixons $a\\in I$ et posons $b=u(a)\\in J$. Définissons sur $J$ la fonction $\\varphi$ par $\\varphi(y)=\\frac{v(y)-v(b)}{y-b}$ si $y\\neq b$, et $\\varphi(b)=v'(b)$. Comme $v$ est dérivable en $b$, $\\varphi(y)\\to v'(b)=\\varphi(b)$ quand $y\\to b$ : $\\varphi$ est continue en $b$. De plus, pour tout $y\\in J$, $v(y)-v(b)=\\varphi(y)\\,(y-b)$ (pour $y=b$, les deux membres sont nuls).\n\nPour $x\\in I$, $x\\neq a$, appliquons cette égalité à $y=u(x)$, qui est dans $J$ :\n\n$$\\frac{v(u(x))-v(u(a))}{x-a}=\\varphi\\big(u(x)\\big)\\times\\frac{u(x)-u(a)}{x-a}.$$\n\nQuand $x\\to a$ : $u$ est dérivable, donc continue en $a$, donc $u(x)\\to b$, et par continuité de $\\varphi$ en $b$, $\\varphi(u(x))\\to v'(b)$ ; le second facteur tend vers $u'(a)$. Le taux d'accroissement de $v\\circ u$ en $a$ tend donc vers $u'(a)\\,v'(u(a))$ : $v\\circ u$ est dérivable en $a$, de nombre dérivé $u'(a)\\,v'(u(a))$.\n\nRemarque : la preuve « naïve » qui écrit $\\frac{v(u(x))-v(u(a))}{u(x)-u(a)}\\times\\frac{u(x)-u(a)}{x-a}$ n'a de sens que si $u(x)\\neq u(a)$ pour $x$ proche de $a$, ce qui est faux par exemple pour $u$ constante ; la fonction $\\varphi$ contourne ce problème. En Terminale, la formule est admise.",
+      "exemple": "$f(x)=\\sqrt{1+x^2}$ sur $\\mathbb{R}$ : $u(x)=1+x^2$ est dérivable sur $\\mathbb{R}$, à valeurs dans $J=\\left]0,+\\infty\\right[$, où $v(y)=\\sqrt y$ est dérivable de dérivée $\\frac{1}{2\\sqrt y}$. Donc $f$ est dérivable sur $\\mathbb{R}$ et $f'(x)=2x\\times\\frac{1}{2\\sqrt{1+x^2}}=\\frac{x}{\\sqrt{1+x^2}}$.\n\nDe même, $\\left(e^{-x^2}\\right)'=-2x\\,e^{-x^2}$ et $\\big(\\cos(3x+1)\\big)'=-3\\sin(3x+1)$.",
+      "contre_exemple": "- **$u(x)$ doit rester là où $v$ est dérivable** : $u(x)=x^2$ est dérivable sur $\\mathbb{R}$, mais $v(y)=\\sqrt y$ n'est dérivable que sur $\\left]0,+\\infty\\right[$, qui ne contient pas $u(0)=0$. Et en effet $v\\circ u(x)=\\sqrt{x^2}=|x|$ n'est pas dérivable en $0$ : son taux d'accroissement $\\frac{|h|}{h}$ vaut $1$ pour $h>0$ et $-1$ pour $h<0$.\n- **$u$ doit être dérivable** : $u(x)=|x|$ est continue mais non dérivable en $0$, $v(y)=y^3+y$ est dérivable sur $\\mathbb{R}$, et $v\\circ u(x)=|x|^3+|x|$ a en $0$ le taux d'accroissement $\\frac{|h|^3+|h|}{h}$, qui tend vers $1$ à droite et vers $-1$ à gauche : $v\\circ u$ n'est pas dérivable en $0$.\n- **Condition suffisante, pas nécessaire** : avec $u(x)=|x|$, non dérivable en $0$, et $v(y)=y^2$, la composée $v\\circ u(x)=x^2$ est dérivable sur $\\mathbb{R}$.",
+      "affirmations": [
+        {
+          "texte": "Si $v\\circ u$ est dérivable sur $\\mathbb{R}$, alors $u$ est dérivable sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$u(x)=|x|$ et $v(y)=y^2$ : $v\\circ u(x)=x^2$ est dérivable sur $\\mathbb{R}$, mais $u$ n'est pas dérivable en $0$."
+        },
+        {
+          "texte": "La dérivée de $x\\mapsto(2x+1)^5$ est $x\\mapsto5(2x+1)^4$.",
+          "vrai": false,
+          "contre_exemple": "Il manque le facteur $u'(x)=2$ : la dérivée est $x\\mapsto10(2x+1)^4$. En $x=0$, elle vaut $10$, et non $5$."
+        },
+        {
+          "texte": "Si $u$ est dérivable et strictement positive sur un intervalle $I$, alors $\\sqrt u$ est dérivable sur $I$ et $(\\sqrt u)'=\\frac{u'}{2\\sqrt u}$.",
+          "vrai": true,
+          "justification": "La racine carrée est dérivable sur $J=\\left]0,+\\infty\\right[$, de dérivée $\\frac{1}{2\\sqrt y}$, et $u(x)\\in J$ pour tout $x\\in I$ : on applique le théorème."
+        },
+        {
+          "texte": "Si $u$ est dérivable et positive sur un intervalle $I$, alors $\\sqrt u$ est dérivable sur $I$.",
+          "vrai": false,
+          "contre_exemple": "$u(x)=x^2$ sur $\\mathbb{R}$ : $\\sqrt{u(x)}=|x|$ n'est pas dérivable en $0$. La positivité stricte est indispensable là où l'on applique la formule."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-t-derivation-convexite",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-derivation",
+      "type": "theoreme",
+      "titre": "Convexité et dérivée seconde",
+      "recto": "Énoncer la caractérisation de la convexité d'une fonction deux fois dérivable, avec ses hypothèses.",
+      "cours": "Une fonction est **convexe** sur un intervalle $I$ quand sa courbe est « tournée vers le haut » : entre deux points quelconques de la courbe, l'arc est au-dessous de la corde qui les joint. Formellement : pour tous $a,b\\in I$ et tout $t\\in[0,1]$, $f\\big((1-t)a+tb\\big)\\le(1-t)f(a)+tf(b)$. Elle est **concave** quand $-f$ est convexe, c'est-à-dire quand l'arc est au-dessus des cordes.\n\nVérifier directement cette inégalité est souvent pénible. Pour une fonction deux fois dérivable, on la remplace par un critère de calcul : $f$ est convexe si et seulement si $f'$ est croissante (les pentes des tangentes augmentent), si et seulement si $f''\\ge0$. Méthode : calculer $f''$, étudier son signe, puis conclure intervalle par intervalle : $f$ est convexe sur tout intervalle où $f''\\ge0$, concave sur tout intervalle où $f''\\le0$.\n\nLa convexité sert surtout à démontrer des inégalités : une corde ou une tangente fournit une fonction affine qui majore ou minore $f$. Pièges : convexité et monotonie n'ont rien à voir ($x\\mapsto x^2$ est convexe sans être monotone sur $\\mathbb{R}$, $x\\mapsto\\sqrt x$ est croissante et concave) ; et une fonction convexe peut avoir une dérivée seconde qui s'annule, comme $x\\mapsto x^4$ en $0$ : le critère est $f''\\ge0$, pas $f''>0$.",
+      "hypotheses": [
+        "$I$ est un intervalle.",
+        "$f$ est deux fois dérivable sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "$f''(x)>0$ pour tout $x\\in I$, condition nécessaire pour que $f$ soit convexe.",
+        "$f'(x)\\ge0$ pour tout $x\\in I$.",
+        "$f(x)\\ge0$ pour tout $x\\in I$."
+      ],
+      "enonce": "Soit $f$ une fonction deux fois dérivable sur un **intervalle** $I$. Les propriétés suivantes sont équivalentes :\n- $f$ est convexe sur $I$, c'est-à-dire : pour tous $a,b\\in I$ et tout $t\\in[0,1]$, $f\\big((1-t)a+tb\\big)\\le(1-t)f(a)+tf(b)$ (la courbe est au-dessous de ses cordes) ;\n- $f'$ est croissante sur $I$ ;\n- $f''(x)\\ge0$ pour tout $x\\in I$.\n\nDe même, $f$ est concave sur $I$ si et seulement si $f'$ est décroissante sur $I$, si et seulement si $f''\\le0$ sur $I$.",
+      "enonce_trous": "Soit $f$ une fonction {{1}} sur un intervalle $I$. Alors $f$ est convexe sur $I$ si et seulement si {{2}}, si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "deux fois dérivable",
+          "leurres": [
+            "continue",
+            "positive",
+            "strictement croissante"
+          ]
+        },
+        {
+          "reponse": "$f'$ est croissante sur $I$",
+          "leurres": [
+            "$f'$ est positive sur $I$",
+            "$f$ est croissante sur $I$",
+            "$f'$ est décroissante sur $I$"
+          ]
+        },
+        {
+          "reponse": "$f''(x)\\ge0$ pour tout $x\\in I$",
+          "leurres": [
+            "$f''(x)>0$ pour tout $x\\in I$",
+            "$f''(x)\\le0$ pour tout $x\\in I$",
+            "$f'(x)\\ge0$ pour tout $x\\in I$"
+          ]
+        }
+      ],
+      "demo": "Dans les deux sens « convexe ⇔ $f'$ croissante », il suffit de traiter $a<b$ (échanger $a$ et $b$ revient à changer $t$ en $1-t$) ; on note $s=\\frac{f(b)-f(a)}{b-a}$ la pente de la corde. Pour $x=(1-t)a+tb$, on a $x-a=t(b-a)$ et $(1-t)f(a)+tf(b)=f(a)+s(x-a)$ : l'inégalité de convexité s'écrit $f(x)\\le f(a)+s(x-a)$ pour tout $x\\in[a,b]$.\n\n**$f'$ croissante ⇔ $f''\\ge0$.** C'est le théorème « signe de la dérivée et monotonie » appliqué à $f'$, dérivable sur l'intervalle $I$, de dérivée $f''$.\n\n**$f'$ croissante ⇒ convexe.** Soient $a<b$ dans $I$ et $x\\in\\left]a,b\\right[$ (en $x=a$ et $x=b$, il y a égalité). Posons $p_1=\\frac{f(x)-f(a)}{x-a}$ et $p_2=\\frac{f(b)-f(x)}{b-x}$. L'égalité des accroissements finis donne $c_1\\in\\left]a,x\\right[$ et $c_2\\in\\left]x,b\\right[$ tels que $p_1=f'(c_1)$ et $p_2=f'(c_2)$ ; comme $c_1<c_2$ et $f'$ est croissante, $p_1\\le p_2$. Or $(b-a)s=f(b)-f(a)=(x-a)p_1+(b-x)p_2$ : $s$ est une moyenne pondérée de $p_1$ et $p_2$, à coefficients positifs, donc $s\\ge p_1$. Ainsi $f(x)=f(a)+p_1(x-a)\\le f(a)+s(x-a)$.\n\n**Convexe ⇒ $f'$ croissante.** Soient $a<b$ dans $I$ et $x\\in\\left]a,b\\right[$. L'inégalité $f(x)\\le f(a)+s(x-a)$ donne d'une part $\\frac{f(x)-f(a)}{x-a}\\le s$, et d'autre part $f(b)-f(x)\\ge f(b)-f(a)-s(x-a)=s(b-x)$, soit $\\frac{f(b)-f(x)}{b-x}\\ge s$. En faisant tendre $x$ vers $a$ dans la première inégalité et vers $b$ dans la seconde, on obtient $f'(a)\\le s\\le f'(b)$ : $f'$ est croissante.\n\nEn Terminale, ces équivalences sont admises ; la preuve repose sur l'égalité des accroissements finis (vue en L1). Elle montre aussi que l'équivalence « convexe ⇔ $f'$ croissante » vaut dès que $f$ est dérivable sur $I$.",
+      "exemple": "- $\\exp$ est convexe sur $\\mathbb{R}$ : $\\exp''=\\exp>0$.\n- $f(x)=x^3$ : $f''(x)=6x$, donc $f$ est concave sur $\\left]-\\infty,0\\right]$ et convexe sur $\\left[0,+\\infty\\right[$.\n- $f(x)=\\sqrt x$ sur $\\left]0,+\\infty\\right[$ : $f''(x)=-\\frac{1}{4x\\sqrt x}<0$, donc $f$ est concave.",
+      "contre_exemple": "- **$f''>0$ n'est pas nécessaire** : $f(x)=x^4$ est convexe sur $\\mathbb{R}$, car $f''(x)=12x^2\\ge0$, bien que $f''(0)=0$.\n- **Croissance et convexité sont indépendantes** : $x\\mapsto\\sqrt x$ est croissante et concave sur $\\left]0,+\\infty\\right[$ ; $x\\mapsto x^2$ est convexe sur $\\mathbb{R}$ sans y être monotone.\n- **Le critère ne concerne que les fonctions dérivables** : $x\\mapsto|x|$ est convexe sur $\\mathbb{R}$ (inégalité triangulaire : $|(1-t)a+tb|\\le(1-t)|a|+t|b|$ pour $t\\in[0,1]$), mais elle n'est pas dérivable en $0$ : une fonction convexe n'a pas forcément de dérivée.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est deux fois dérivable et convexe sur $\\mathbb{R}$, alors $f''(x)>0$ pour tout réel $x$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^4$ est convexe sur $\\mathbb{R}$ ($f''(x)=12x^2\\ge0$), mais $f''(0)=0$."
+        },
+        {
+          "texte": "Une fonction dérivable et croissante sur un intervalle est convexe sur cet intervalle.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\sqrt x$ est croissante sur $\\left]0,+\\infty\\right[$, mais pour $a=1$, $b=9$ et $t=\\frac12$ : $f(5)=\\sqrt5\\approx2{,}24>\\frac{f(1)+f(9)}{2}=2$. L'arc passe au-dessus de la corde : $f$ n'est pas convexe (elle est concave)."
+        },
+        {
+          "texte": "La somme de deux fonctions deux fois dérivables et convexes sur un intervalle $I$ est convexe sur $I$.",
+          "vrai": true,
+          "justification": "$(f+g)''=f''+g''\\ge0$ sur $I$."
+        },
+        {
+          "texte": "Le produit de deux fonctions deux fois dérivables et convexes sur $\\mathbb{R}$ est convexe sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x$ (affine, $f''=0$) et $g(x)=x^2$ sont convexes sur $\\mathbb{R}$, mais $(fg)(x)=x^3$ a pour dérivée seconde $6x<0$ pour $x<0$ : $x^3$ n'est pas convexe sur $\\mathbb{R}$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-derivee-monotonie"
+      ]
+    },
+    {
+      "id": "ar-t-derivation-inflexion",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-derivation",
+      "type": "theoreme",
+      "titre": "Point d'inflexion",
+      "recto": "Définir un point d'inflexion et énoncer la condition suffisante et la condition nécessaire portant sur la dérivée seconde, avec leurs hypothèses.",
+      "cours": "Sur la courbe de $x\\mapsto x^3$, il se passe quelque chose à l'origine : la courbe, tournée vers le bas à gauche (concave), se retourne vers le haut à droite (convexe), et elle **traverse** sa tangente, l'axe des abscisses. Un tel point s'appelle un **point d'inflexion**. Repérer ces points permet de tracer une courbe fidèlement et d'interpréter un phénomène : pour une courbe logistique, c'est l'instant où la croissance cesse d'accélérer.\n\nOn prend ici comme définition : $A(a,f(a))$ est un point d'inflexion si la courbe traverse sa tangente en $A$, c'est-à-dire si $f(x)-T(x)$, où $y=T(x)$ est l'équation de la tangente en $a$, change de signe en $a$. Certains manuels définissent plutôt le point d'inflexion comme un point où la convexité change ; quand $f''$ change de signe en $a$, ce qui est le cas usuel, les deux propriétés ont lieu.\n\nMéthode : calculer $f''$ et chercher les points où elle s'annule **en changeant de signe** ; en chacun d'eux, la courbe a un point d'inflexion, et il n'y en a pas d'autre puisqu'en un point d'inflexion $f''$ s'annule. Le piège principal : $f''(a)=0$ ne suffit pas. Pour $f(x)=x^4$, $f''(0)=0$, mais $f''\\ge0$ partout : $f$ est convexe et sa courbe reste au-dessus de sa tangente en $0$. Autre confusion fréquente : la tangente en un point d'inflexion n'a aucune raison d'être horizontale.",
+      "hypotheses": [
+        "$f$ est deux fois dérivable sur un intervalle $I$.",
+        "$a$ est un point de $I$ qui n'en est pas une borne.",
+        "Pour la condition suffisante : il existe $h>0$ tel que $f''>0$ sur $\\left]a-h,a\\right[$ et $f''<0$ sur $\\left]a,a+h\\right[$, ou l'inverse."
+      ],
+      "hypotheses_pieges": [
+        "Pour la condition suffisante : il suffit que $f''(a)=0$.",
+        "Pour la condition suffisante : $f'$ s'annule en $a$ en changeant de signe.",
+        "La tangente en $A$ est horizontale : $f'(a)=0$."
+      ],
+      "enonce": "Soit $f$ deux fois dérivable sur un intervalle $I$, $a$ un point de $I$ qui n'en est pas une borne, et $T(x)=f(a)+f'(a)(x-a)$, de sorte que $y=T(x)$ est l'équation de la tangente en $a$. On dit que $A(a,f(a))$ est un **point d'inflexion** de la courbe de $f$ si la courbe traverse sa tangente en $A$ : il existe $h>0$ tel que $f(x)-T(x)$ soit strictement positif pour $x\\in\\left]a-h,a\\right[$ et strictement négatif pour $x\\in\\left]a,a+h\\right[$, ou l'inverse.\n- **Condition suffisante.** Si $f''$ change de signe en $a$ (il existe $h>0$ tel que $f''>0$ sur $\\left]a-h,a\\right[$ et $f''<0$ sur $\\left]a,a+h\\right[$, ou l'inverse), alors $A$ est un point d'inflexion, et $f$ change de convexité en $a$.\n- **Condition nécessaire.** Si $A$ est un point d'inflexion, alors $f''(a)=0$.",
+      "enonce_trous": "Soit $f$ deux fois dérivable sur un intervalle $I$ et $a$ un point de $I$ qui n'en est pas une borne. Si $f''$ {{1}} en $a$, alors la courbe de $f$ {{2}} au point $A(a,f(a))$ : c'est un point d'inflexion. Réciproquement, en un point d'inflexion, on a {{3}}.",
+      "trous": [
+        {
+          "reponse": "change de signe",
+          "leurres": [
+            "s'annule",
+            "atteint un maximum",
+            "est strictement positive"
+          ]
+        },
+        {
+          "reponse": "traverse sa tangente",
+          "leurres": [
+            "reste au-dessus de sa tangente",
+            "reste au-dessous de sa tangente",
+            "admet une tangente horizontale"
+          ]
+        },
+        {
+          "reponse": "$f''(a)=0$",
+          "leurres": [
+            "$f'(a)=0$",
+            "$f(a)=0$",
+            "$f''(a)>0$"
+          ]
+        }
+      ],
+      "demo": "Posons $g(x)=f(x)-T(x)$ pour $x\\in I$ : $g$ est deux fois dérivable sur $I$, $g(a)=0$, $g'(x)=f'(x)-f'(a)$ donc $g'(a)=0$, et $g''=f''$.\n\n**Condition suffisante.** Supposons $f''>0$ sur $\\left]a-h,a\\right[$ et $f''<0$ sur $\\left]a,a+h\\right[$ (l'autre cas s'en déduit en remplaçant $f$ par $-f$), avec $h$ assez petit pour que $[a-h,a+h]\\subset I$, ce qui est possible car $a$ n'est pas une borne de $I$. La fonction $g'$ est dérivable sur $[a-h,a]$, de dérivée $g''>0$ sur $\\left]a-h,a\\right[$ : par les accroissements finis, elle est strictement croissante sur $[a-h,a]$, donc $g'(x)<g'(a)=0$ pour $x\\in\\left[a-h,a\\right[$. Ainsi $g$ est strictement décroissante sur $[a-h,a]$ et $g(x)>g(a)=0$ pour $x\\in\\left[a-h,a\\right[$. De même, $g'$ est strictement décroissante sur $[a,a+h]$, donc $g'(x)<0$ pour $x\\in\\left]a,a+h\\right]$, $g$ est strictement décroissante sur $[a,a+h]$ et $g(x)<0$ pour $x\\in\\left]a,a+h\\right]$. La courbe traverse sa tangente en $A$. De plus $f'$ est croissante sur $[a-h,a]$ et décroissante sur $[a,a+h]$ : $f$ est convexe à gauche de $a$ et concave à droite.\n\n**Condition nécessaire.** Supposons $f''(a)>0$. Comme $g'(a)=0$, $\\frac{g'(x)}{x-a}=\\frac{g'(x)-g'(a)}{x-a}\\to g''(a)=f''(a)>0$ quand $x\\to a$ : il existe $h>0$ tel que $\\frac{g'(x)}{x-a}>0$ pour $0<|x-a|<h$, donc $g'<0$ sur $\\left]a-h,a\\right[$ et $g'>0$ sur $\\left]a,a+h\\right[$. Alors $g$ est strictement décroissante sur $\\left]a-h,a\\right]$ et strictement croissante sur $\\left[a,a+h\\right[$ : $g(x)>g(a)=0$ pour $0<|x-a|<h$. La courbe reste au-dessus de sa tangente près de $A$, qui n'est donc pas un point d'inflexion. Le cas $f''(a)<0$ se traite de même (la courbe reste au-dessous). Donc $f''(a)=0$.",
+      "exemple": "$f(x)=x^3-3x^2+1$ : $f''(x)=6x-6$ s'annule en $1$ en changeant de signe, donc $A(1,-1)$ est un point d'inflexion. Comme $f'(1)=-3$, la tangente en $A$ a pour équation $y=-3x+2$, et $f(x)-(-3x+2)=x^3-3x^2+3x-1=(x-1)^3$ : la courbe est au-dessous de sa tangente pour $x<1$ et au-dessus pour $x>1$. Ici, la tangente au point d'inflexion n'est pas horizontale.",
+      "contre_exemple": "- **$f''(a)=0$ ne suffit pas** : pour $f(x)=x^4$, $f''(0)=0$, mais la tangente en $0$ est $y=0$ et $f(x)=x^4\\ge0$ : la courbe reste au-dessus de sa tangente, l'origine n'est pas un point d'inflexion ; $f''(x)=12x^2$ ne change pas de signe.\n- **La condition nécessaire suppose $f$ deux fois dérivable en $a$** : $f(x)=x|x|$ a pour tangente $y=0$ en $0$, et la courbe la traverse, puisque $f(x)$ a le signe de $x$. Pourtant $f''(x)=2$ pour $x>0$ et $f''(x)=-2$ pour $x<0$, et $f''(0)$ n'existe pas, car $f'(x)=2|x|$ n'est pas dérivable en $0$.\n- **La réciproque de la condition suffisante est fausse** (exemple plus fin) : $f(x)=x^3+x^4\\sin\\frac1x$, prolongée par $f(0)=0$, est deux fois dérivable sur $\\mathbb{R}$ avec $f'(0)=f''(0)=0$. Pour $0<|x|<1$, $\\left|x^4\\sin\\frac1x\\right|\\le x^4<|x|^3$, donc $f(x)$ a le signe de $x$ : l'origine est un point d'inflexion. Mais pour $x\\neq0$, $f''(x)=6x+12x^2\\sin\\frac1x-6x\\cos\\frac1x-\\sin\\frac1x$, qui prend des valeurs strictement positives et strictement négatives sur tout intervalle $\\left]0,h\\right[$ : $f''$ ne change pas de signe en $0$ au sens de l'énoncé.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est deux fois dérivable sur $\\mathbb{R}$ et $f''(a)=0$, alors $A(a,f(a))$ est un point d'inflexion de sa courbe.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^4$ et $a=0$ : $f''(0)=0$, mais $f(x)\\ge0$, la courbe reste au-dessus de sa tangente $y=0$."
+        },
+        {
+          "texte": "En un point d'inflexion, la tangente est horizontale.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3+x$ : $f''(x)=6x$ change de signe en $0$, donc l'origine est un point d'inflexion, mais $f'(0)=1$ : la tangente $y=x$ n'est pas horizontale ($f(x)-x=x^3$ change bien de signe)."
+        },
+        {
+          "texte": "Si $f$ est deux fois dérivable sur un intervalle $I$ et si $A(a,f(a))$, avec $a$ intérieur à $I$, est un point d'inflexion, alors $f''(a)=0$.",
+          "vrai": true,
+          "justification": "C'est la condition nécessaire : si $f''(a)>0$, la courbe reste au-dessus de sa tangente au voisinage de $a$, et au-dessous si $f''(a)<0$."
+        },
+        {
+          "texte": "La courbe d'une fonction polynomiale de degré $3$ a exactement un point d'inflexion.",
+          "vrai": true,
+          "justification": "Si $f(x)=\\alpha x^3+\\beta x^2+\\gamma x+\\delta$ avec $\\alpha\\neq0$, $f''(x)=6\\alpha x+2\\beta$ est affine non constante : elle s'annule en un seul point, $-\\frac{\\beta}{3\\alpha}$, en changeant de signe. Ce point est d'inflexion, et c'est le seul par la condition nécessaire."
+        }
+      ],
+      "prerequis": [
+        "ar-t-derivation-convexite"
+      ]
+    },
+    {
+      "id": "ar-t-derivation-tangentes",
+      "theme": "analyse-reelle",
+      "niveau": "terminale",
+      "chapitre": "ar-t-derivation",
+      "type": "theoreme",
+      "titre": "Position d'une fonction convexe par rapport à ses tangentes",
+      "recto": "Énoncer la position de la courbe d'une fonction convexe par rapport à ses tangentes, avec ses hypothèses.",
+      "cours": "La courbe d'une fonction convexe est au-dessous de ses cordes ; elle est aussi **au-dessus de ses tangentes**. C'est cette seconde propriété qui sert le plus : une tangente est une fonction affine simple qui minore $f$ sur tout l'intervalle, d'où des inégalités obtenues en une ligne. Par exemple, la tangente à $\\exp$ en $0$ donne $e^x\\ge1+x$ pour tout réel $x$. Pour une fonction concave, l'inégalité est renversée : la tangente à la racine carrée en $1$ donne $\\sqrt x\\le\\frac{1+x}{2}$ pour tout $x\\ge0$.\n\nMéthode : (1) justifier la convexité sur un intervalle $I$, en général par $f''\\ge0$ ; (2) écrire la tangente $y=f(a)+f'(a)(x-a)$ en un point $a$ bien choisi ; (3) conclure que $f(x)\\ge f(a)+f'(a)(x-a)$ pour tout $x\\in I$. La démonstration, au programme de Terminale, étudie la différence $g(x)=f(x)-f(a)-f'(a)(x-a)$, dont la dérivée $f'(x)-f'(a)$ change de signe en $a$ puisque $f'$ est croissante.\n\nPiège principal : l'inégalité n'est valable que sur un **intervalle** où $f$ est convexe. Une condition locale comme $f''(a)>0$ ne donne rien loin de $a$ : $x\\mapsto x^3$ n'est convexe que sur $\\left[0,+\\infty\\right[$, et sa tangente en $1$, d'équation $y=3x-2$, passe au-dessus de la courbe pour $x<-2$.",
+      "hypotheses": [
+        "$I$ est un intervalle.",
+        "$f$ est dérivable sur $I$.",
+        "$f$ est convexe sur $I$ (par exemple $f$ deux fois dérivable avec $f''\\ge0$ sur $I$)."
+      ],
+      "hypotheses_pieges": [
+        "$f''(a)\\ge0$ au seul point de contact $a$.",
+        "$f$ est croissante sur $I$.",
+        "$f''\\ge0$ sur une réunion d'intervalles telle que $\\mathbb{R}^*$."
+      ],
+      "enonce": "Soit $f$ une fonction dérivable et **convexe** sur un **intervalle** $I$ (c'est le cas si $f$ est deux fois dérivable sur $I$ avec $f''\\ge0$). Alors la courbe de $f$ est au-dessus de chacune de ses tangentes : pour tous $a,x\\in I$,\n\n$$f(x)\\ge f(a)+f'(a)(x-a).$$\n\nRéciproquement, si $f$ est dérivable sur $I$ et si sa courbe est au-dessus de toutes ses tangentes, alors $f$ est convexe sur $I$. Pour $f$ concave, l'inégalité est renversée : la courbe est au-dessous de ses tangentes.",
+      "enonce_trous": "Soit $f$ dérivable et {{1}} sur un intervalle $I$. Alors, pour tous $a$ et $x$ dans $I$, {{2}} : la courbe de $f$ est {{3}} de chacune de ses tangentes.",
+      "trous": [
+        {
+          "reponse": "convexe",
+          "leurres": [
+            "croissante",
+            "positive",
+            "concave"
+          ]
+        },
+        {
+          "reponse": "$f(x)\\ge f(a)+f'(a)(x-a)$",
+          "leurres": [
+            "$f(x)\\le f(a)+f'(a)(x-a)$",
+            "$f(x)\\ge f'(a)(x-a)$",
+            "$f(x)\\ge f(a)+f'(x)(x-a)$"
+          ]
+        },
+        {
+          "reponse": "au-dessus",
+          "leurres": [
+            "au-dessous",
+            "strictement au-dessus",
+            "alternativement au-dessus et au-dessous"
+          ]
+        }
+      ],
+      "demo": "Soit $a\\in I$ ; posons $g(x)=f(x)-f(a)-f'(a)(x-a)$ pour $x\\in I$. La fonction $g$ est dérivable sur $I$, $g(a)=0$ et $g'(x)=f'(x)-f'(a)$.\n\nComme $f$ est convexe et dérivable sur l'intervalle $I$, $f'$ est croissante sur $I$ (carte « Convexité et dérivée seconde » ; au programme de Terminale, on suppose $f''\\ge0$, et $f'$ est croissante car sa dérivée est positive). Donc $g'(x)\\le0$ pour $x\\in I$ tel que $x\\le a$, et $g'(x)\\ge0$ pour $x\\in I$ tel que $x\\ge a$. Sur l'intervalle $I\\cap\\left]-\\infty,a\\right]$, $g$ est décroissante, donc $g(x)\\ge g(a)=0$ ; sur l'intervalle $I\\cap\\left[a,+\\infty\\right[$, $g$ est croissante, donc $g(x)\\ge g(a)=0$. Ainsi $g\\ge0$ sur $I$, ce qui est l'inégalité annoncée.\n\n**Réciproque.** Soient $a<b$ dans $I$. Les tangentes en $a$ et en $b$ donnent $f(b)\\ge f(a)+f'(a)(b-a)$ et $f(a)\\ge f(b)+f'(b)(a-b)$, d'où $f'(a)\\le\\frac{f(b)-f(a)}{b-a}\\le f'(b)$. Donc $f'$ est croissante sur $I$, et $f$ est convexe d'après la caractérisation par la croissance de $f'$, valable pour $f$ dérivable.\n\n**Cas concave.** On applique ce qui précède à $-f$.",
+      "exemple": "- $\\exp$ est convexe sur $\\mathbb{R}$ ; sa tangente en $0$ a pour équation $y=1+x$, donc $e^x\\ge1+x$ pour tout réel $x$.\n- $f(x)=\\sqrt x$ est concave sur $\\left]0,+\\infty\\right[$ ; sa tangente en $1$ a pour équation $y=\\frac{1+x}{2}$, donc $\\sqrt x\\le\\frac{1+x}{2}$ pour tout $x>0$, et aussi pour $x=0$ par vérification directe.\n- $\\sin$ est concave sur $[0,\\pi]$, car $\\sin''=-\\sin\\le0$ ; sa tangente en $0$ a pour équation $y=x$, donc $\\sin x\\le x$ pour tout $x\\in[0,\\pi]$.",
+      "contre_exemple": "- **La convexité doit valoir sur tout l'intervalle** : $f(x)=x^3$ vérifie $f''(1)=6>0$, mais sa tangente en $1$, d'équation $y=3x-2$, vérifie $f(x)-(3x-2)=(x-1)^2(x+2)<0$ pour $x<-2$ : par exemple $f(-3)=-27<-11$.\n- **Sur une réunion d'intervalles, la conclusion tombe** : $f(x)=\\frac{1}{x^2}$ vérifie $f''(x)=\\frac{6}{x^4}>0$ sur $\\mathbb{R}^*$ ; sa tangente en $1$ a pour équation $y=3-2x$, et $f(-1)=1<5$ : en $x=-1$, la courbe passe sous cette tangente.\n- **La croissance ne suffit pas** : $x\\mapsto\\sqrt x$ est croissante sur $\\left]0,+\\infty\\right[$, sa tangente en $1$ a pour équation $y=\\frac{1+x}{2}$, et $\\sqrt4=2<\\frac52$ : la courbe passe sous cette tangente.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $x$, $e^x\\ge1+x$.",
+          "vrai": true,
+          "justification": "$\\exp$ est convexe sur $\\mathbb{R}$ et $y=1+x$ est sa tangente en $0$."
+        },
+        {
+          "texte": "Si $f$ est deux fois dérivable sur $\\mathbb{R}$ et $f''(a)>0$, alors $f(x)\\ge f(a)+f'(a)(x-a)$ pour tout réel $x$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3$ et $a=1$ : $f''(1)=6>0$, mais en $x=-3$, $f(-3)=-27<f(1)+f'(1)(-3-1)=-11$."
+        },
+        {
+          "texte": "Si $f$ est dérivable et convexe sur un intervalle $I$, alors $f(x)>f(a)+f'(a)(x-a)$ pour tous $a\\neq x$ dans $I$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=2x+1$ est convexe (affine) et égale à chacune de ses tangentes : l'inégalité n'est jamais stricte."
+        },
+        {
+          "texte": "Si $f$ est dérivable sur $\\mathbb{R}$ et si sa courbe est au-dessus de sa tangente en un point $a$, alors $f$ est convexe sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^4-2x^2$ et $a=2$ : la tangente a pour équation $y=24x-40$ et $f(x)-(24x-40)=(x-2)^2(x^2+4x+10)\\ge0$. Pourtant $f''(x)=12x^2-4<0$ en $x=0$ : $f$ n'est pas convexe sur $\\mathbb{R}$. Il faut être au-dessus de **toutes** les tangentes."
+        }
+      ],
+      "prerequis": [
+        "ar-t-derivation-convexite"
+      ]
+    }
+  ]
+}

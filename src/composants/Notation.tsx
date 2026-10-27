@@ -1,4 +1,5 @@
-// Les quatre boutons de notation d'un volet, avec le délai avant la prochaine révision sous chacun.
+// Les quatre boutons de notation d'un volet, avec le délai avant la prochaine révision sous chacun ; chaque note a sa
+// couleur (classe `note-n`), toujours doublée de son nom.
 import { delaiAffiche, NOMS_NOTES, NOTES, type EtatVolet, type Note } from '../repetition/planification'
 
 interface Props {
@@ -10,9 +11,9 @@ interface Props {
 
 export function BoutonsNotation({ etat, maintenant, jour, surNote }: Props) {
   return (
-    <div className="rangee-boutons">
+    <div className="rangee-boutons notation">
       {NOTES.map((n) => (
-        <button key={n} className="bouton" onClick={() => surNote(n)}>
+        <button key={n} className={`bouton note-${n}`} onClick={() => surNote(n)}>
           <span>{NOMS_NOTES[n]}</span>
           <span className="delai">{delaiAffiche(etat, n, maintenant, jour)}</span>
         </button>

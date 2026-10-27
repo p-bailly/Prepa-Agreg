@@ -2,7 +2,7 @@
 // propositions (exercice à résultat), correction, puis auto-évaluation (Réussi, En partie, Raté). L'historique est gardé
 // par exercice ; les exercices ne sont pas replanifiés.
 import { useMemo, useState, type CSSProperties } from 'react'
-import { BandeauDoute, Etiquette, Volet } from '../composants/Blocs'
+import { BandeauDoute, Volet } from '../composants/Blocs'
 import { Signaler } from '../composants/Signalement'
 import { Texte } from '../composants/Texte'
 import { nombreVariantes, NOMS_NIVEAUX, variante, type Exercice } from '../contenu/types'
@@ -81,22 +81,21 @@ function Deroule({
   return (
     <div className="appli" style={style}>
       <main className="ecran">
-        <button className="retour" onClick={surRetour}>
-          ← Retour à la carte
-        </button>
-        <div className="entete-carte">
-          <span>Difficulté {exercice.difficulte} / 5</span>
-          <span>
-            {theme?.titre ?? carte?.theme} · {carte ? NOMS_NIVEAUX[carte.niveau] : ''}
-          </span>
+        <div className="barre-haut">
+          <button className="retour" onClick={surRetour}>
+            ← Retour à la carte
+          </button>
+          <span className="avancement">Difficulté {exercice.difficulte} / 5</span>
         </div>
-        <Etiquette>Exercice</Etiquette>
-        <p className="petit doux" style={{ marginTop: -4 }}>
-          Notion : {carte?.titre}
-        </p>
-        <h1 className="titre-carte">
-          <Texte texte={exercice.titre} enLigne />
-        </h1>
+        <header className="tete-carte">
+          <span className="sur-titre">
+            Exercice · {theme?.titre ?? carte?.theme} · {carte ? NOMS_NIVEAUX[carte.niveau] : ''}
+          </span>
+          <h1 className="titre-carte">
+            <Texte texte={exercice.titre} enLigne />
+          </h1>
+          <p className="petit">Notion : {carte?.titre}</p>
+        </header>
         <BandeauDoute doute={exercice.doute} />
         <div className="bloc">
           <Texte texte={exercice.enonce} />

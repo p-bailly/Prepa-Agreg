@@ -306,6 +306,12 @@ assert integrate(x**2, (x, 0, 1)) == Rational(1, 3) and (0 + 1) / 2 == 0.5
 # Affirmations : f = x : moyenne de f^2 = 1/3, carré de la moyenne = 1/4 ; f = 1 sur [0,2] : 2.
 assert integrate(1, (x, 0, 2)) == 2
 
+# Cours de int-t-integrale-moyenne : mu = (f(a)+f(b))/2 pour f affine, faux pour x^2 sur [0,1] (1/3 contre 1/2) ;
+# l'égalité peut aussi avoir lieu sans f affine (x^3 sur [-1,1]), d'où la formulation « en général ».
+a_, b_, p_, q_ = symbols("a_ b_ p_ q_", real=True)
+assert egal(integrate(p_ * x + q_, (x, a_, b_)) / (b_ - a_), ((p_ * a_ + q_) + (p_ * b_ + q_)) / 2)
+assert integrate(x**2, (x, 0, 1)) != Rational(1, 2) and integrate(x**3, (x, -1, 1)) / 2 == 0
+
 # int-t-integrale-moyenne-ex1 (et v1, v2).
 moy = lambda f, a, b: integrate(f, (x, a, b)) / (b - a)
 bonne_et_leurres(moy(x**2, 0, 3), 3, [9, Rational(9, 2), Rational(9, 4)])

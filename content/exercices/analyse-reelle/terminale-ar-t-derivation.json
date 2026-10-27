@@ -1,0 +1,938 @@
+{
+  "exercices": [
+    {
+      "id": "ar-t-derivation-composee-ex1",
+      "carte": "ar-t-derivation-composee",
+      "difficulte": 1,
+      "titre": "Dériver une puissance d'une fonction",
+      "enonce": "Soit $f$ la fonction définie sur $\\mathbb{R}$ par $f(x)=(3x^2-1)^4$. Justifier que $f$ est dérivable sur $\\mathbb{R}$ et calculer $f'(x)$.",
+      "duree_min": 5,
+      "indices": [
+        "Écrire $f=v\\circ u$ avec $u(x)=3x^2-1$ et $v(y)=y^4$.",
+        "Utiliser $(u^n)'=n\\,u'\\,u^{n-1}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $f'(x)$ ?",
+        "propositions": [
+          "$24x(3x^2-1)^3$",
+          "$4(3x^2-1)^3$",
+          "$6x(3x^2-1)^3$",
+          "$24x(3x^2-1)^4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f=v\\circ u$ avec $u(x)=3x^2-1$, dérivable sur $\\mathbb{R}$ de dérivée $u'(x)=6x$, et $v(y)=y^4$, dérivable sur $\\mathbb{R}$ de dérivée $v'(y)=4y^3$. D'après le théorème de dérivation d'une composée, $f$ est dérivable sur $\\mathbb{R}$ et\n\n$$f'(x)=u'(x)\\times v'\\big(u(x)\\big)=6x\\times4(3x^2-1)^3=24x(3x^2-1)^3.$$\n\nErreurs typiques : oublier le facteur $u'(x)=6x$ (on obtient $4(3x^2-1)^3$), oublier le facteur $4$, ou ne pas diminuer l'exposant.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction définie sur $\\mathbb{R}$ par $f(x)=(2x^3+5)^3$. Justifier que $f$ est dérivable sur $\\mathbb{R}$ et calculer $f'(x)$.",
+          "indices": [
+            "Écrire $f=v\\circ u$ avec $u(x)=2x^3+5$ et $v(y)=y^3$.",
+            "Utiliser $(u^n)'=n\\,u'\\,u^{n-1}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f'(x)$ ?",
+            "propositions": [
+              "$18x^2(2x^3+5)^2$",
+              "$3(2x^3+5)^2$",
+              "$6x^2(2x^3+5)^2$",
+              "$18x^2(2x^3+5)^3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f=v\\circ u$ avec $u(x)=2x^3+5$, dérivable sur $\\mathbb{R}$ de dérivée $u'(x)=6x^2$, et $v(y)=y^3$, dérivable sur $\\mathbb{R}$ de dérivée $v'(y)=3y^2$. D'après le théorème de dérivation d'une composée, $f$ est dérivable sur $\\mathbb{R}$ et\n\n$$f'(x)=u'(x)\\times v'\\big(u(x)\\big)=6x^2\\times3(2x^3+5)^2=18x^2(2x^3+5)^2.$$\n\nErreurs typiques : oublier le facteur $u'(x)=6x^2$ (on obtient $3(2x^3+5)^2$), oublier le facteur $3$, ou ne pas diminuer l'exposant."
+        },
+        {
+          "enonce": "Soit $f$ la fonction définie sur $\\mathbb{R}$ par $f(x)=(1-4x)^5$. Justifier que $f$ est dérivable sur $\\mathbb{R}$ et calculer $f'(x)$.",
+          "indices": [
+            "Écrire $f=v\\circ u$ avec $u(x)=1-4x$ et $v(y)=y^5$.",
+            "Utiliser $(u^n)'=n\\,u'\\,u^{n-1}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f'(x)$ ?",
+            "propositions": [
+              "$-20(1-4x)^4$",
+              "$5(1-4x)^4$",
+              "$20(1-4x)^4$",
+              "$-20(1-4x)^5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f=v\\circ u$ avec $u(x)=1-4x$, dérivable sur $\\mathbb{R}$ de dérivée $u'(x)=-4$, et $v(y)=y^5$, dérivable sur $\\mathbb{R}$ de dérivée $v'(y)=5y^4$. D'après le théorème de dérivation d'une composée, $f$ est dérivable sur $\\mathbb{R}$ et\n\n$$f'(x)=u'(x)\\times v'\\big(u(x)\\big)=-4\\times5(1-4x)^4=-20(1-4x)^4.$$\n\nErreurs typiques : oublier le facteur $u'(x)=-4$ (on obtient $5(1-4x)^4$), en perdre le signe (on obtient $20(1-4x)^4$), ou ne pas diminuer l'exposant."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-composee-ex2",
+      "carte": "ar-t-derivation-composee",
+      "difficulte": 2,
+      "titre": "Minimum d'une racine carrée",
+      "enonce": "Soit $f$ définie par $f(x)=\\sqrt{x^2-4x+5}$. Montrer que $f$ est définie et dérivable sur $\\mathbb{R}$, calculer $f'(x)$, puis déterminer le minimum de $f$ sur $\\mathbb{R}$.",
+      "duree_min": 10,
+      "indices": [
+        "Mettre $x^2-4x+5$ sous forme canonique : ce nombre est-il strictement positif ?",
+        "La racine carrée est dérivable sur $\\left]0,+\\infty\\right[$ ; étudier le signe de $f'(x)$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le minimum de $f$ sur $\\mathbb{R}$, et où est-il atteint ?",
+        "propositions": [
+          "$1$, atteint en $x=2$",
+          "$0$, atteint en $x=2$",
+          "$\\sqrt5$, atteint en $x=0$",
+          "$\\sqrt2$, atteint en $x=1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout réel $x$, $x^2-4x+5=(x-2)^2+1\\ge1>0$. Ainsi $u(x)=x^2-4x+5$ est dérivable sur $\\mathbb{R}$, à valeurs dans $J=\\left]0,+\\infty\\right[$, où $v(y)=\\sqrt y$ est dérivable de dérivée $\\frac{1}{2\\sqrt y}$. Donc $f=v\\circ u$ est définie et dérivable sur $\\mathbb{R}$, et\n\n$$f'(x)=\\frac{u'(x)}{2\\sqrt{u(x)}}=\\frac{2x-4}{2\\sqrt{x^2-4x+5}}=\\frac{x-2}{\\sqrt{x^2-4x+5}}.$$\n\nLe dénominateur est strictement positif : $f'(x)<0$ pour $x<2$ et $f'(x)>0$ pour $x>2$. Donc $f$ est décroissante sur $\\left]-\\infty,2\\right]$ et croissante sur $\\left[2,+\\infty\\right[$ : son minimum sur $\\mathbb{R}$ est $f(2)=\\sqrt1=1$, atteint en $x=2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ définie par $f(x)=\\sqrt{x^2+6x+13}$. Montrer que $f$ est définie et dérivable sur $\\mathbb{R}$, calculer $f'(x)$, puis déterminer le minimum de $f$ sur $\\mathbb{R}$.",
+          "indices": [
+            "Mettre $x^2+6x+13$ sous forme canonique : ce nombre est-il strictement positif ?",
+            "La racine carrée est dérivable sur $\\left]0,+\\infty\\right[$ ; étudier le signe de $f'(x)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le minimum de $f$ sur $\\mathbb{R}$, et où est-il atteint ?",
+            "propositions": [
+              "$2$, atteint en $x=-3$",
+              "$0$, atteint en $x=-3$",
+              "$\\sqrt{13}$, atteint en $x=0$",
+              "$2$, atteint en $x=3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout réel $x$, $x^2+6x+13=(x+3)^2+4\\ge4>0$. Ainsi $u(x)=x^2+6x+13$ est dérivable sur $\\mathbb{R}$, à valeurs dans $J=\\left]0,+\\infty\\right[$, où $v(y)=\\sqrt y$ est dérivable de dérivée $\\frac{1}{2\\sqrt y}$. Donc $f=v\\circ u$ est définie et dérivable sur $\\mathbb{R}$, et\n\n$$f'(x)=\\frac{u'(x)}{2\\sqrt{u(x)}}=\\frac{2x+6}{2\\sqrt{x^2+6x+13}}=\\frac{x+3}{\\sqrt{x^2+6x+13}}.$$\n\nLe dénominateur est strictement positif : $f'(x)<0$ pour $x<-3$ et $f'(x)>0$ pour $x>-3$. Donc $f$ est décroissante sur $\\left]-\\infty,-3\\right]$ et croissante sur $\\left[-3,+\\infty\\right[$ : son minimum sur $\\mathbb{R}$ est $f(-3)=\\sqrt4=2$, atteint en $x=-3$."
+        },
+        {
+          "enonce": "Soit $f$ définie par $f(x)=\\sqrt{x^2-2x+10}$. Montrer que $f$ est définie et dérivable sur $\\mathbb{R}$, calculer $f'(x)$, puis déterminer le minimum de $f$ sur $\\mathbb{R}$.",
+          "indices": [
+            "Mettre $x^2-2x+10$ sous forme canonique : ce nombre est-il strictement positif ?",
+            "La racine carrée est dérivable sur $\\left]0,+\\infty\\right[$ ; étudier le signe de $f'(x)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le minimum de $f$ sur $\\mathbb{R}$, et où est-il atteint ?",
+            "propositions": [
+              "$3$, atteint en $x=1$",
+              "$0$, atteint en $x=1$",
+              "$\\sqrt{10}$, atteint en $x=0$",
+              "$9$, atteint en $x=1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout réel $x$, $x^2-2x+10=(x-1)^2+9\\ge9>0$. Ainsi $u(x)=x^2-2x+10$ est dérivable sur $\\mathbb{R}$, à valeurs dans $J=\\left]0,+\\infty\\right[$, où $v(y)=\\sqrt y$ est dérivable de dérivée $\\frac{1}{2\\sqrt y}$. Donc $f=v\\circ u$ est définie et dérivable sur $\\mathbb{R}$, et\n\n$$f'(x)=\\frac{u'(x)}{2\\sqrt{u(x)}}=\\frac{2x-2}{2\\sqrt{x^2-2x+10}}=\\frac{x-1}{\\sqrt{x^2-2x+10}}.$$\n\nLe dénominateur est strictement positif : $f'(x)<0$ pour $x<1$ et $f'(x)>0$ pour $x>1$. Donc $f$ est décroissante sur $\\left]-\\infty,1\\right]$ et croissante sur $\\left[1,+\\infty\\right[$ : son minimum sur $\\mathbb{R}$ est $f(1)=\\sqrt9=3$, atteint en $x=1$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-composee-ex3",
+      "carte": "ar-t-derivation-composee",
+      "difficulte": 3,
+      "titre": "Maximum d'une fonction gaussienne",
+      "enonce": "Soit $f$ définie sur $\\mathbb{R}$ par $f(x)=xe^{-x^2}$. Calculer $f'(x)$, dresser le tableau de variations de $f$ (on admet que $f(x)\\to0$ quand $x\\to+\\infty$ et quand $x\\to-\\infty$), puis déterminer le maximum de $f$ sur $\\mathbb{R}$.",
+      "duree_min": 15,
+      "indices": [
+        "Dériver $x\\mapsto e^{-x^2}$ comme une composée, puis utiliser la dérivée d'un produit.",
+        "Factoriser $f'(x)$ par $e^{-x^2}>0$ et étudier le signe du facteur restant."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le maximum de $f$ sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "$\\frac{1}{\\sqrt{2e}}$",
+          "$\\frac1e$",
+          "$\\frac{1}{\\sqrt2}$",
+          "$\\frac{1}{2e}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\left(e^{-x^2}\\right)'=-2xe^{-x^2}$ (composée de $u(x)=-x^2$ et de $\\exp$). Par la formule de dérivation d'un produit,\n\n$$f'(x)=e^{-x^2}+x\\times\\left(-2xe^{-x^2}\\right)=(1-2x^2)e^{-x^2}.$$\n\nComme $e^{-x^2}>0$, $f'(x)$ a le signe de $1-2x^2$ : positif sur $\\left[-\\frac{1}{\\sqrt2},\\frac{1}{\\sqrt2}\\right]$, strictement négatif en dehors. Donc $f$ est décroissante sur $\\left]-\\infty,-\\frac{1}{\\sqrt2}\\right]$, croissante sur $\\left[-\\frac{1}{\\sqrt2},\\frac{1}{\\sqrt2}\\right]$ et décroissante sur $\\left[\\frac{1}{\\sqrt2},+\\infty\\right[$, avec une limite nulle en $+\\infty$ et en $-\\infty$.\n\nPour $x\\le0$, $f(x)\\le0$. Pour $x\\ge0$, le tableau donne $f(x)\\le f\\left(\\frac{1}{\\sqrt2}\\right)$. Le maximum de $f$ sur $\\mathbb{R}$ est donc\n\n$$f\\left(\\frac{1}{\\sqrt2}\\right)=\\frac{1}{\\sqrt2}e^{-1/2}=\\frac{1}{\\sqrt{2e}}\\approx0{,}43.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ définie sur $\\mathbb{R}$ par $f(x)=xe^{-2x^2}$. Calculer $f'(x)$, dresser le tableau de variations de $f$ (on admet que $f(x)\\to0$ quand $x\\to+\\infty$ et quand $x\\to-\\infty$), puis déterminer le maximum de $f$ sur $\\mathbb{R}$.",
+          "indices": [
+            "Dériver $x\\mapsto e^{-2x^2}$ comme une composée, puis utiliser la dérivée d'un produit.",
+            "Factoriser $f'(x)$ par $e^{-2x^2}>0$ et étudier le signe du facteur restant."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le maximum de $f$ sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$\\frac{1}{2\\sqrt e}$",
+              "$\\frac{1}{2e}$",
+              "$\\frac12$",
+              "$\\frac{1}{e^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\left(e^{-2x^2}\\right)'=-4xe^{-2x^2}$ (composée de $u(x)=-2x^2$ et de $\\exp$). Par la formule de dérivation d'un produit,\n\n$$f'(x)=e^{-2x^2}+x\\times\\left(-4xe^{-2x^2}\\right)=(1-4x^2)e^{-2x^2}.$$\n\nComme $e^{-2x^2}>0$, $f'(x)$ a le signe de $1-4x^2$ : positif sur $\\left[-\\frac12,\\frac12\\right]$, strictement négatif en dehors. Donc $f$ est décroissante sur $\\left]-\\infty,-\\frac12\\right]$, croissante sur $\\left[-\\frac12,\\frac12\\right]$ et décroissante sur $\\left[\\frac12,+\\infty\\right[$, avec une limite nulle en $+\\infty$ et en $-\\infty$.\n\nPour $x\\le0$, $f(x)\\le0$. Pour $x\\ge0$, le tableau donne $f(x)\\le f\\left(\\frac12\\right)$. Le maximum de $f$ sur $\\mathbb{R}$ est donc\n\n$$f\\left(\\frac12\\right)=\\frac12e^{-1/2}=\\frac{1}{2\\sqrt e}\\approx0{,}30.$$"
+        },
+        {
+          "enonce": "Soit $f$ définie sur $\\mathbb{R}$ par $f(x)=xe^{-x^2/8}$. Calculer $f'(x)$, dresser le tableau de variations de $f$ (on admet que $f(x)\\to0$ quand $x\\to+\\infty$ et quand $x\\to-\\infty$), puis déterminer le maximum de $f$ sur $\\mathbb{R}$.",
+          "indices": [
+            "Dériver $x\\mapsto e^{-x^2/8}$ comme une composée, puis utiliser la dérivée d'un produit.",
+            "Factoriser $f'(x)$ par $e^{-x^2/8}>0$ et étudier le signe du facteur restant."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le maximum de $f$ sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$\\frac{2}{\\sqrt e}$",
+              "$\\frac2e$",
+              "$2$",
+              "$\\frac{1}{\\sqrt e}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\left(e^{-x^2/8}\\right)'=-\\frac x4e^{-x^2/8}$ (composée de $u(x)=-\\frac{x^2}{8}$ et de $\\exp$). Par la formule de dérivation d'un produit,\n\n$$f'(x)=e^{-x^2/8}+x\\times\\left(-\\frac x4e^{-x^2/8}\\right)=\\left(1-\\frac{x^2}{4}\\right)e^{-x^2/8}.$$\n\nComme $e^{-x^2/8}>0$, $f'(x)$ a le signe de $1-\\frac{x^2}{4}$ : positif sur $[-2,2]$, strictement négatif en dehors. Donc $f$ est décroissante sur $\\left]-\\infty,-2\\right]$, croissante sur $[-2,2]$ et décroissante sur $\\left[2,+\\infty\\right[$, avec une limite nulle en $+\\infty$ et en $-\\infty$.\n\nPour $x\\le0$, $f(x)\\le0$. Pour $x\\ge0$, le tableau donne $f(x)\\le f(2)$. Le maximum de $f$ sur $\\mathbb{R}$ est donc\n\n$$f(2)=2e^{-1/2}=\\frac{2}{\\sqrt e}\\approx1{,}21.$$"
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-composee-ex4",
+      "carte": "ar-t-derivation-composee",
+      "difficulte": 4,
+      "titre": "Parité, périodicité et dérivée",
+      "enonce": "Soit $f$ une fonction dérivable sur $\\mathbb{R}$ et $T>0$.\n\n**1.** Montrer que si $f$ est paire, alors $f'$ est impaire, et que si $f$ est impaire, alors $f'$ est paire.\n\n**2.** Montrer que si $f$ est $T$-périodique, alors $f'$ est $T$-périodique.\n\n**3.** Montrer que si $f'$ est impaire, alors $f$ est paire.\n\n**4.** Si $f'$ est paire, $f$ est-elle nécessairement impaire ? Si $f'$ est $T$-périodique, $f$ est-elle nécessairement $T$-périodique ?",
+      "duree_min": 20,
+      "indices": [
+        "Dériver $x\\mapsto f(-x)$ et $x\\mapsto f(x+T)$ : ce sont des composées de $f$ avec une fonction affine.",
+        "Pour la question 3, étudier $g(x)=f(x)-f(-x)$ : calculer $g'$ et $g(0)$."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces implications est vraie pour toute fonction $f$ dérivable sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "Si $f'$ est impaire, alors $f$ est paire.",
+          "Si $f'$ est paire, alors $f$ est impaire.",
+          "Si $f'$ est $2\\pi$-périodique, alors $f$ est $2\\pi$-périodique.",
+          "Si $f'$ est $2\\pi$-périodique et $f(0)=0$, alors $f$ est $2\\pi$-périodique."
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Posons $g(x)=f(-x)$ : c'est la composée de $u(x)=-x$, de dérivée $-1$, et de $f$, donc $g'(x)=-f'(-x)$. Si $f$ est paire, $g=f$, d'où $f'(x)=-f'(-x)$ pour tout $x$ : $f'$ est impaire. Si $f$ est impaire, $g=-f$, d'où $-f'(-x)=-f'(x)$ : $f'$ est paire.\n\n**2.** Posons $h(x)=f(x+T)$ : composée de $x\\mapsto x+T$, de dérivée $1$, et de $f$, donc $h'(x)=f'(x+T)$. Si $f$ est $T$-périodique, $h=f$, donc $f'(x+T)=f'(x)$ pour tout réel $x$.\n\n**3.** Soit $g(x)=f(x)-f(-x)$. Alors $g'(x)=f'(x)+f'(-x)=0$ si $f'$ est impaire. Sur l'intervalle $\\mathbb{R}$, $g$ est donc constante, égale à $g(0)=f(0)-f(0)=0$ : $f(-x)=f(x)$ pour tout $x$, $f$ est paire.\n\n**4.** Non dans les deux cas.\n- $f(x)=x+1$ a une dérivée constante, donc paire, mais $f(0)=1\\neq0$ alors qu'une fonction impaire s'annule en $0$ : $f$ n'est pas impaire. (Comme en 3, avec $g(x)=f(x)+f(-x)$, on montre que si $f'$ est paire, $f$ est impaire si et seulement si $f(0)=0$.)\n- $f(x)=x+\\sin x$ vérifie $f(0)=0$ et $f'(x)=1+\\cos x$ est $2\\pi$-périodique, mais $f(2\\pi)=2\\pi\\neq f(0)$ : $f$ n'est pas $2\\pi$-périodique, même si $f(0)=0$.\n\nLa seule implication vraie parmi celles proposées est donc : si $f'$ est impaire, alors $f$ est paire."
+    },
+    {
+      "id": "ar-t-derivation-composee-ex5",
+      "carte": "ar-t-derivation-composee",
+      "difficulte": 4,
+      "titre": "Dérivées successives d'une gaussienne",
+      "enonce": "Soit $f(x)=e^{-x^2}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que, pour tout entier $n\\ge0$, $f$ est $n$ fois dérivable sur $\\mathbb{R}$ et qu'il existe un polynôme $P_n$ tel que $f^{(n)}(x)=P_n(x)e^{-x^2}$ pour tout réel $x$, avec $P_0=1$ et $P_{n+1}=P_n'-2xP_n$.\n\n**2.** Calculer $P_1$, $P_2$ et $P_3$.\n\n**3.** Montrer que $P_n$ est de degré $n$ et de coefficient dominant $(-2)^n$.",
+      "duree_min": 20,
+      "indices": [
+        "Raisonner par récurrence : si $f^{(n)}(x)=P_n(x)e^{-x^2}$, dériver ce produit en utilisant $\\left(e^{-x^2}\\right)'=-2xe^{-x^2}$.",
+        "Pour la question 3, comparer les degrés de $P_n'$ et de $-2xP_n$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P_3(x)$ ?",
+        "propositions": [
+          "$-8x^3+12x$",
+          "$-8x^3+8x$",
+          "$8x^3-12x$",
+          "$-8x^3+4x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Récurrence sur $n$. Pour $n=0$, $f(x)=P_0(x)e^{-x^2}$ avec $P_0=1$. Supposons $f^{(n)}(x)=P_n(x)e^{-x^2}$ avec $P_n$ polynôme. Ce produit est dérivable sur $\\mathbb{R}$ (un polynôme, et la composée de $x\\mapsto-x^2$ et de $\\exp$), donc $f$ est $n+1$ fois dérivable et\n\n$$f^{(n+1)}(x)=P_n'(x)e^{-x^2}+P_n(x)\\times\\left(-2xe^{-x^2}\\right)=\\big(P_n'(x)-2xP_n(x)\\big)e^{-x^2}.$$\n\nD'où le résultat au rang $n+1$, avec $P_{n+1}=P_n'-2xP_n$, qui est bien un polynôme.\n\n**2.** $P_1=0-2x=-2x$ ; $P_2=-2-2x(-2x)=4x^2-2$ ; $P_3=8x-2x(4x^2-2)=-8x^3+12x$.\n\n**3.** Récurrence : $P_0=1$ est de degré $0$, de coefficient dominant $1=(-2)^0$. Si $P_n$ est de degré $n$ et de coefficient dominant $(-2)^n$, alors $P_n'$ est nul ou de degré au plus $n-1$, et $-2xP_n$ est de degré $n+1$, de coefficient dominant $-2\\times(-2)^n=(-2)^{n+1}$. Leur somme $P_{n+1}$ est donc de degré $n+1$, de coefficient dominant $(-2)^{n+1}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=e^{-3x^2}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que, pour tout entier $n\\ge0$, $f$ est $n$ fois dérivable sur $\\mathbb{R}$ et qu'il existe un polynôme $P_n$ tel que $f^{(n)}(x)=P_n(x)e^{-3x^2}$ pour tout réel $x$, avec $P_0=1$ et $P_{n+1}=P_n'-6xP_n$.\n\n**2.** Calculer $P_1$, $P_2$ et $P_3$.\n\n**3.** Montrer que $P_n$ est de degré $n$ et de coefficient dominant $(-6)^n$.",
+          "indices": [
+            "Raisonner par récurrence : si $f^{(n)}(x)=P_n(x)e^{-3x^2}$, dériver ce produit en utilisant $\\left(e^{-3x^2}\\right)'=-6xe^{-3x^2}$.",
+            "Pour la question 3, comparer les degrés de $P_n'$ et de $-6xP_n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P_3(x)$ ?",
+            "propositions": [
+              "$-216x^3+108x$",
+              "$-216x^3+72x$",
+              "$216x^3-108x$",
+              "$-216x^3+36x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Récurrence sur $n$. Pour $n=0$, $f(x)=P_0(x)e^{-3x^2}$ avec $P_0=1$. Supposons $f^{(n)}(x)=P_n(x)e^{-3x^2}$ avec $P_n$ polynôme. Ce produit est dérivable sur $\\mathbb{R}$ (un polynôme, et la composée de $x\\mapsto-3x^2$ et de $\\exp$), donc $f$ est $n+1$ fois dérivable et\n\n$$f^{(n+1)}(x)=P_n'(x)e^{-3x^2}+P_n(x)\\times\\left(-6xe^{-3x^2}\\right)=\\big(P_n'(x)-6xP_n(x)\\big)e^{-3x^2}.$$\n\nD'où le résultat au rang $n+1$, avec $P_{n+1}=P_n'-6xP_n$, qui est bien un polynôme.\n\n**2.** $P_1=0-6x=-6x$ ; $P_2=-6-6x(-6x)=36x^2-6$ ; $P_3=72x-6x(36x^2-6)=-216x^3+108x$.\n\n**3.** Récurrence : $P_0=1$ est de degré $0$, de coefficient dominant $1=(-6)^0$. Si $P_n$ est de degré $n$ et de coefficient dominant $(-6)^n$, alors $P_n'$ est nul ou de degré au plus $n-1$, et $-6xP_n$ est de degré $n+1$, de coefficient dominant $-6\\times(-6)^n=(-6)^{n+1}$. Leur somme $P_{n+1}$ est donc de degré $n+1$, de coefficient dominant $(-6)^{n+1}$."
+        },
+        {
+          "enonce": "Soit $f(x)=e^{x^2}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que, pour tout entier $n\\ge0$, $f$ est $n$ fois dérivable sur $\\mathbb{R}$ et qu'il existe un polynôme $P_n$ tel que $f^{(n)}(x)=P_n(x)e^{x^2}$ pour tout réel $x$, avec $P_0=1$ et $P_{n+1}=P_n'+2xP_n$.\n\n**2.** Calculer $P_1$, $P_2$ et $P_3$.\n\n**3.** Montrer que $P_n$ est de degré $n$ et de coefficient dominant $2^n$.",
+          "indices": [
+            "Raisonner par récurrence : si $f^{(n)}(x)=P_n(x)e^{x^2}$, dériver ce produit en utilisant $\\left(e^{x^2}\\right)'=2xe^{x^2}$.",
+            "Pour la question 3, comparer les degrés de $P_n'$ et de $2xP_n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P_3(x)$ ?",
+            "propositions": [
+              "$8x^3+12x$",
+              "$8x^3+8x$",
+              "$8x^3-12x$",
+              "$8x^3+4x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Récurrence sur $n$. Pour $n=0$, $f(x)=P_0(x)e^{x^2}$ avec $P_0=1$. Supposons $f^{(n)}(x)=P_n(x)e^{x^2}$ avec $P_n$ polynôme. Ce produit est dérivable sur $\\mathbb{R}$ (un polynôme, et la composée de $x\\mapsto x^2$ et de $\\exp$), donc $f$ est $n+1$ fois dérivable et\n\n$$f^{(n+1)}(x)=P_n'(x)e^{x^2}+P_n(x)\\times2xe^{x^2}=\\big(P_n'(x)+2xP_n(x)\\big)e^{x^2}.$$\n\nD'où le résultat au rang $n+1$, avec $P_{n+1}=P_n'+2xP_n$, qui est bien un polynôme.\n\n**2.** $P_1=0+2x=2x$ ; $P_2=2+2x\\times2x=4x^2+2$ ; $P_3=8x+2x(4x^2+2)=8x^3+12x$.\n\n**3.** Récurrence : $P_0=1$ est de degré $0$, de coefficient dominant $1=2^0$. Si $P_n$ est de degré $n$ et de coefficient dominant $2^n$, alors $P_n'$ est nul ou de degré au plus $n-1$, et $2xP_n$ est de degré $n+1$, de coefficient dominant $2\\times2^n=2^{n+1}$. Leur somme $P_{n+1}$ est donc de degré $n+1$, de coefficient dominant $2^{n+1}$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-convexite-ex1",
+      "carte": "ar-t-derivation-convexite",
+      "difficulte": 1,
+      "titre": "Convexité d'un polynôme de degré 3",
+      "enonce": "Étudier la convexité de la fonction $f$ définie sur $\\mathbb{R}$ par $f(x)=x^3-6x^2+5x+1$.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer $f''(x)$ et étudier son signe."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand intervalle sur lequel $f$ est convexe ?",
+        "propositions": [
+          "$\\left[2,+\\infty\\right[$",
+          "$\\left]-\\infty,2\\right]$",
+          "$\\left[0,+\\infty\\right[$",
+          "$\\mathbb{R}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est deux fois dérivable sur $\\mathbb{R}$ : $f'(x)=3x^2-12x+5$ et $f''(x)=6x-12=6(x-2)$. Donc $f''\\le0$ sur $\\left]-\\infty,2\\right]$ et $f''\\ge0$ sur $\\left[2,+\\infty\\right[$ : $f$ est concave sur $\\left]-\\infty,2\\right]$ et convexe sur $\\left[2,+\\infty\\right[$.\n\nUn intervalle qui contient un réel $x<2$ contient un point où $f''<0$ : $f$ n'y est pas convexe. Le plus grand intervalle sur lequel $f$ est convexe est donc $\\left[2,+\\infty\\right[$.",
+      "variantes": [
+        {
+          "enonce": "Étudier la convexité de la fonction $f$ définie sur $\\mathbb{R}$ par $f(x)=x^3+3x^2-x+2$.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand intervalle sur lequel $f$ est convexe ?",
+            "propositions": [
+              "$\\left[-1,+\\infty\\right[$",
+              "$\\left]-\\infty,-1\\right]$",
+              "$\\left[-2,+\\infty\\right[$",
+              "$\\mathbb{R}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est deux fois dérivable sur $\\mathbb{R}$ : $f'(x)=3x^2+6x-1$ et $f''(x)=6x+6=6(x+1)$. Donc $f''\\le0$ sur $\\left]-\\infty,-1\\right]$ et $f''\\ge0$ sur $\\left[-1,+\\infty\\right[$ : $f$ est concave sur $\\left]-\\infty,-1\\right]$ et convexe sur $\\left[-1,+\\infty\\right[$.\n\nUn intervalle qui contient un réel $x<-1$ contient un point où $f''<0$ : $f$ n'y est pas convexe. Le plus grand intervalle sur lequel $f$ est convexe est donc $\\left[-1,+\\infty\\right[$."
+        },
+        {
+          "enonce": "Étudier la convexité de la fonction $f$ définie sur $\\mathbb{R}$ par $f(x)=-x^3+3x^2+1$.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand intervalle sur lequel $f$ est convexe ?",
+            "propositions": [
+              "$\\left]-\\infty,1\\right]$",
+              "$\\left[1,+\\infty\\right[$",
+              "$\\left]-\\infty,2\\right]$",
+              "$\\mathbb{R}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est deux fois dérivable sur $\\mathbb{R}$ : $f'(x)=-3x^2+6x$ et $f''(x)=-6x+6=-6(x-1)$. Donc $f''\\ge0$ sur $\\left]-\\infty,1\\right]$ et $f''\\le0$ sur $\\left[1,+\\infty\\right[$ : $f$ est convexe sur $\\left]-\\infty,1\\right]$ et concave sur $\\left[1,+\\infty\\right[$.\n\nUn intervalle qui contient un réel $x>1$ contient un point où $f''<0$ : $f$ n'y est pas convexe. Le plus grand intervalle sur lequel $f$ est convexe est donc $\\left]-\\infty,1\\right]$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-convexite-ex2",
+      "carte": "ar-t-derivation-convexite",
+      "difficulte": 2,
+      "titre": "Convexité d'un polynôme de degré 4",
+      "enonce": "Soit $f(x)=x^4-6x^2+3x$ sur $\\mathbb{R}$. Déterminer les intervalles sur lesquels $f$ est convexe et ceux sur lesquels elle est concave.",
+      "duree_min": 8,
+      "indices": [
+        "Calculer et factoriser $f''(x)$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand intervalle sur lequel $f$ est concave ?",
+        "propositions": [
+          "$[-1,1]$",
+          "$\\left]-\\infty,-1\\right]\\cup\\left[1,+\\infty\\right[$",
+          "$\\left[-\\sqrt3,\\sqrt3\\right]$",
+          "$\\mathbb{R}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f'(x)=4x^3-12x+3$ et $f''(x)=12x^2-12=12(x-1)(x+1)$. Donc $f''\\ge0$ sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$, et $f''\\le0$ sur $[-1,1]$. Ainsi $f$ est convexe sur $\\left]-\\infty,-1\\right]$ et sur $\\left[1,+\\infty\\right[$, et concave sur $[-1,1]$.\n\nUn intervalle qui contient un réel $x$ avec $|x|>1$ contient un point où $f''>0$ : $f$ n'y est pas concave. Le plus grand intervalle de concavité est $[-1,1]$.\n\nAttention : on ne dit pas que $f$ est convexe sur la réunion $\\left]-\\infty,-1\\right]\\cup\\left[1,+\\infty\\right[$, qui n'est pas un intervalle ; d'ailleurs, la corde joignant les points d'abscisses $-2$ et $2$ passe au-dessous de la courbe en $x=0$, puisque $f(0)=0>\\frac{f(-2)+f(2)}{2}=-8$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=x^4-24x^2+x$ sur $\\mathbb{R}$. Déterminer les intervalles sur lesquels $f$ est convexe et ceux sur lesquels elle est concave.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand intervalle sur lequel $f$ est concave ?",
+            "propositions": [
+              "$[-2,2]$",
+              "$\\left]-\\infty,-2\\right]\\cup\\left[2,+\\infty\\right[$",
+              "$\\left[-2\\sqrt3,2\\sqrt3\\right]$",
+              "$\\mathbb{R}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=4x^3-48x+1$ et $f''(x)=12x^2-48=12(x-2)(x+2)$. Donc $f''\\ge0$ sur $\\left]-\\infty,-2\\right]$ et sur $\\left[2,+\\infty\\right[$, et $f''\\le0$ sur $[-2,2]$. Ainsi $f$ est convexe sur $\\left]-\\infty,-2\\right]$ et sur $\\left[2,+\\infty\\right[$, et concave sur $[-2,2]$.\n\nUn intervalle qui contient un réel $x$ avec $|x|>2$ contient un point où $f''>0$ : $f$ n'y est pas concave. Le plus grand intervalle de concavité est $[-2,2]$. La réunion $\\left]-\\infty,-2\\right]\\cup\\left[2,+\\infty\\right[$ n'est pas un intervalle : la convexité se dit intervalle par intervalle."
+        },
+        {
+          "enonce": "Soit $f(x)=x^4+4x^3-18x^2$ sur $\\mathbb{R}$. Déterminer les intervalles sur lesquels $f$ est convexe et ceux sur lesquels elle est concave.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand intervalle sur lequel $f$ est concave ?",
+            "propositions": [
+              "$[-3,1]$",
+              "$[-1,3]$",
+              "$\\left]-\\infty,-3\\right]\\cup\\left[1,+\\infty\\right[$",
+              "$\\mathbb{R}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=4x^3+12x^2-36x$ et $f''(x)=12x^2+24x-36=12(x^2+2x-3)=12(x+3)(x-1)$. Donc $f''\\ge0$ sur $\\left]-\\infty,-3\\right]$ et sur $\\left[1,+\\infty\\right[$, et $f''\\le0$ sur $[-3,1]$. Ainsi $f$ est convexe sur $\\left]-\\infty,-3\\right]$ et sur $\\left[1,+\\infty\\right[$, et concave sur $[-3,1]$.\n\nUn intervalle qui contient un réel $x<-3$ ou $x>1$ contient un point où $f''>0$ : $f$ n'y est pas concave. Le plus grand intervalle de concavité est $[-3,1]$. La réunion $\\left]-\\infty,-3\\right]\\cup\\left[1,+\\infty\\right[$ n'est pas un intervalle : la convexité se dit intervalle par intervalle."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-convexite-ex3",
+      "carte": "ar-t-derivation-convexite",
+      "difficulte": 3,
+      "titre": "Convexité selon un paramètre",
+      "enonce": "Pour un réel $a$, on considère la fonction $f_a$ définie sur $\\mathbb{R}$ par $f_a(x)=x^4+ax^3+6x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+      "duree_min": 12,
+      "indices": [
+        "$f_a$ est convexe sur $\\mathbb{R}$ si et seulement si $f_a''(x)\\ge0$ pour tout réel $x$.",
+        "$f_a''$ est un trinôme du second degré de coefficient dominant positif : à quelle condition sur son discriminant est-il positif ou nul sur tout $\\mathbb{R}$ ?"
+      ],
+      "reponse_finale": {
+        "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "$a\\in[-4,4]$",
+          "$a\\in\\left]-4,4\\right[$",
+          "$a\\in[-2,2]$",
+          "$a\\in[-16,16]$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f_a$ est deux fois dérivable sur l'intervalle $\\mathbb{R}$, avec $f_a''(x)=12x^2+6ax+12$. Elle est convexe sur $\\mathbb{R}$ si et seulement si ce trinôme est positif ou nul pour tout réel $x$. Son coefficient dominant $12$ est strictement positif : c'est le cas si et seulement si son discriminant est négatif ou nul,\n\n$$\\Delta=36a^2-4\\times12\\times12=36(a^2-16)\\le0\\iff a^2\\le16\\iff-4\\le a\\le4.$$\n\nLes valeurs $a=\\pm4$ conviennent : $f_4''(x)=12(x^2+2x+1)=12(x+1)^2\\ge0$ s'annule en $-1$ sans changer de signe, et $f_4$ est bien convexe (le critère est $f''\\ge0$, pas $f''>0$) ; de même $f_{-4}''(x)=12(x-1)^2$. Pour $|a|>4$, le trinôme est strictement négatif entre ses deux racines et $f_a$ n'est pas convexe sur $\\mathbb{R}$. L'ensemble cherché est $[-4,4]$.",
+      "variantes": [
+        {
+          "enonce": "Pour un réel $a$, on considère la fonction $f_a$ définie sur $\\mathbb{R}$ par $f_a(x)=x^4+ax^3+24x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+          "reponse_finale": {
+            "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$a\\in[-8,8]$",
+              "$a\\in\\left]-8,8\\right[$",
+              "$a\\in[-4,4]$",
+              "$a\\in[-64,64]$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_a$ est deux fois dérivable sur l'intervalle $\\mathbb{R}$, avec $f_a''(x)=12x^2+6ax+48$. Elle est convexe sur $\\mathbb{R}$ si et seulement si ce trinôme est positif ou nul pour tout réel $x$. Son coefficient dominant $12$ est strictement positif : c'est le cas si et seulement si son discriminant est négatif ou nul,\n\n$$\\Delta=36a^2-4\\times12\\times48=36(a^2-64)\\le0\\iff a^2\\le64\\iff-8\\le a\\le8.$$\n\nLes valeurs $a=\\pm8$ conviennent : $f_8''(x)=12(x^2+4x+4)=12(x+2)^2\\ge0$ s'annule en $-2$ sans changer de signe, et $f_8$ est bien convexe ; de même $f_{-8}''(x)=12(x-2)^2$. Pour $|a|>8$, le trinôme est strictement négatif entre ses deux racines et $f_a$ n'est pas convexe sur $\\mathbb{R}$. L'ensemble cherché est $[-8,8]$."
+        },
+        {
+          "enonce": "Pour un réel $a$, on considère la fonction $f_a$ définie sur $\\mathbb{R}$ par $f_a(x)=x^4+ax^3+\\frac32x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+          "reponse_finale": {
+            "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$a\\in[-2,2]$",
+              "$a\\in\\left]-2,2\\right[$",
+              "$a\\in[-1,1]$",
+              "$a\\in[-4,4]$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_a$ est deux fois dérivable sur l'intervalle $\\mathbb{R}$, avec $f_a''(x)=12x^2+6ax+3$. Elle est convexe sur $\\mathbb{R}$ si et seulement si ce trinôme est positif ou nul pour tout réel $x$. Son coefficient dominant $12$ est strictement positif : c'est le cas si et seulement si son discriminant est négatif ou nul,\n\n$$\\Delta=36a^2-4\\times12\\times3=36(a^2-4)\\le0\\iff a^2\\le4\\iff-2\\le a\\le2.$$\n\nLes valeurs $a=\\pm2$ conviennent : $f_2''(x)=12x^2+12x+3=3(2x+1)^2\\ge0$ s'annule en $-\\frac12$ sans changer de signe, et $f_2$ est bien convexe ; de même $f_{-2}''(x)=3(2x-1)^2$. Pour $|a|>2$, le trinôme est strictement négatif entre ses deux racines et $f_a$ n'est pas convexe sur $\\mathbb{R}$. L'ensemble cherché est $[-2,2]$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-convexite-ex4",
+      "carte": "ar-t-derivation-convexite",
+      "difficulte": 4,
+      "titre": "Minorer le sinus par une corde",
+      "enonce": "**1.** Montrer que la fonction sinus est concave sur $\\left[0,\\frac\\pi2\\right]$.\n\n**2.** En utilisant la corde qui joint les points de la courbe d'abscisses $0$ et $\\frac\\pi2$, en déduire un réel $c>0$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi2\\right]$.\n\n**3.** Montrer que ce réel $c$ est le plus grand possible.",
+      "duree_min": 20,
+      "indices": [
+        "Une fonction concave a sa courbe au-dessus de ses cordes.",
+        "Écrire l'équation de la corde ; pour la question 3, regarder l'inégalité en l'extrémité droite de l'intervalle."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand réel $c$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi2\\right]$ ?",
+        "propositions": [
+          "$\\frac2\\pi$",
+          "$1$",
+          "$\\frac12$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\sin$ est deux fois dérivable et $\\sin''(x)=-\\sin x\\le0$ pour $x\\in\\left[0,\\frac\\pi2\\right]$ : $\\sin$ est concave sur cet intervalle.\n\n**2.** Pour une fonction concave, la courbe est au-dessus de ses cordes. La corde joignant $(0,0)$ et $\\left(\\frac\\pi2,1\\right)$ a pour équation $y=\\frac2\\pi x$. Précisément, pour $x\\in\\left[0,\\frac\\pi2\\right]$, on écrit $x=(1-t)\\times0+t\\times\\frac\\pi2$ avec $t=\\frac{2x}{\\pi}\\in[0,1]$, et la concavité donne $\\sin x\\ge(1-t)\\sin0+t\\sin\\frac\\pi2=t=\\frac2\\pi x$. Donc $c=\\frac2\\pi$ convient.\n\n**3.** Si un réel $c$ vérifie $\\sin x\\ge cx$ sur $\\left[0,\\frac\\pi2\\right]$, l'inégalité en $x=\\frac\\pi2$ donne $1\\ge c\\frac\\pi2$, soit $c\\le\\frac2\\pi$. Le plus grand réel cherché est donc $c=\\frac2\\pi\\approx0{,}64$.",
+      "variantes": [
+        {
+          "enonce": "**1.** Montrer que la fonction sinus est concave sur $\\left[0,\\frac\\pi3\\right]$.\n\n**2.** En utilisant la corde qui joint les points de la courbe d'abscisses $0$ et $\\frac\\pi3$, en déduire un réel $c>0$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi3\\right]$.\n\n**3.** Montrer que ce réel $c$ est le plus grand possible.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand réel $c$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi3\\right]$ ?",
+            "propositions": [
+              "$\\frac{3\\sqrt3}{2\\pi}$",
+              "$1$",
+              "$\\frac{\\sqrt3}{2}$",
+              "$\\frac{2}{\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\sin$ est deux fois dérivable et $\\sin''(x)=-\\sin x\\le0$ pour $x\\in\\left[0,\\frac\\pi3\\right]$ : $\\sin$ est concave sur cet intervalle.\n\n**2.** Pour une fonction concave, la courbe est au-dessus de ses cordes. La corde joignant $(0,0)$ et $\\left(\\frac\\pi3,\\frac{\\sqrt3}{2}\\right)$ a pour équation $y=\\frac{3\\sqrt3}{2\\pi}x$. Précisément, pour $x\\in\\left[0,\\frac\\pi3\\right]$, on écrit $x=t\\times\\frac\\pi3$ avec $t=\\frac{3x}{\\pi}\\in[0,1]$, et la concavité donne $\\sin x\\ge(1-t)\\sin0+t\\sin\\frac\\pi3=\\frac{\\sqrt3}{2}t=\\frac{3\\sqrt3}{2\\pi}x$. Donc $c=\\frac{3\\sqrt3}{2\\pi}$ convient.\n\n**3.** Si un réel $c$ vérifie $\\sin x\\ge cx$ sur $\\left[0,\\frac\\pi3\\right]$, l'inégalité en $x=\\frac\\pi3$ donne $\\frac{\\sqrt3}{2}\\ge c\\frac\\pi3$, soit $c\\le\\frac{3\\sqrt3}{2\\pi}$. Le plus grand réel cherché est donc $c=\\frac{3\\sqrt3}{2\\pi}\\approx0{,}83$."
+        },
+        {
+          "enonce": "**1.** Montrer que la fonction sinus est concave sur $\\left[0,\\frac\\pi6\\right]$.\n\n**2.** En utilisant la corde qui joint les points de la courbe d'abscisses $0$ et $\\frac\\pi6$, en déduire un réel $c>0$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi6\\right]$.\n\n**3.** Montrer que ce réel $c$ est le plus grand possible.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand réel $c$ tel que $\\sin x\\ge cx$ pour tout $x\\in\\left[0,\\frac\\pi6\\right]$ ?",
+            "propositions": [
+              "$\\frac3\\pi$",
+              "$1$",
+              "$\\frac12$",
+              "$\\frac6\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\sin$ est deux fois dérivable et $\\sin''(x)=-\\sin x\\le0$ pour $x\\in\\left[0,\\frac\\pi6\\right]$ : $\\sin$ est concave sur cet intervalle.\n\n**2.** Pour une fonction concave, la courbe est au-dessus de ses cordes. La corde joignant $(0,0)$ et $\\left(\\frac\\pi6,\\frac12\\right)$ a pour équation $y=\\frac3\\pi x$. Précisément, pour $x\\in\\left[0,\\frac\\pi6\\right]$, on écrit $x=t\\times\\frac\\pi6$ avec $t=\\frac{6x}{\\pi}\\in[0,1]$, et la concavité donne $\\sin x\\ge(1-t)\\sin0+t\\sin\\frac\\pi6=\\frac t2=\\frac3\\pi x$. Donc $c=\\frac3\\pi$ convient.\n\n**3.** Si un réel $c$ vérifie $\\sin x\\ge cx$ sur $\\left[0,\\frac\\pi6\\right]$, l'inégalité en $x=\\frac\\pi6$ donne $\\frac12\\ge c\\frac\\pi6$, soit $c\\le\\frac3\\pi$. Le plus grand réel cherché est donc $c=\\frac3\\pi\\approx0{,}95$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-inflexion-ex1",
+      "carte": "ar-t-derivation-inflexion",
+      "difficulte": 1,
+      "titre": "Point d'inflexion d'une fonction de degré 3",
+      "enonce": "Soit $f(x)=x^3-3x^2+2x+1$ sur $\\mathbb{R}$. Montrer que la courbe de $f$ admet un unique point d'inflexion et donner ses coordonnées.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer $f''(x)$ et chercher où elle s'annule en changeant de signe."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les coordonnées du point d'inflexion ?",
+        "propositions": [
+          "$(1,1)$",
+          "$(1,0)$",
+          "$(2,1)$",
+          "$(0,1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f'(x)=3x^2-6x+2$ et $f''(x)=6x-6=6(x-1)$, strictement négative sur $\\left]-\\infty,1\\right[$ et strictement positive sur $\\left]1,+\\infty\\right[$ : $f''$ change de signe en $1$, donc le point d'abscisse $1$ est un point d'inflexion. C'est le seul : en un point d'inflexion, $f''$ s'annule (condition nécessaire), et $f''$ ne s'annule qu'en $1$. Comme $f(1)=1-3+2+1=1$, le point d'inflexion est $(1,1)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=x^3+6x^2+9x+2$ sur $\\mathbb{R}$. Montrer que la courbe de $f$ admet un unique point d'inflexion et donner ses coordonnées.",
+          "reponse_finale": {
+            "question": "Quelles sont les coordonnées du point d'inflexion ?",
+            "propositions": [
+              "$(-2,0)$",
+              "$(2,52)$",
+              "$(-2,2)$",
+              "$(-1,-2)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=3x^2+12x+9$ et $f''(x)=6x+12=6(x+2)$, strictement négative sur $\\left]-\\infty,-2\\right[$ et strictement positive sur $\\left]-2,+\\infty\\right[$ : $f''$ change de signe en $-2$, donc le point d'abscisse $-2$ est un point d'inflexion. C'est le seul : en un point d'inflexion, $f''$ s'annule (condition nécessaire), et $f''$ ne s'annule qu'en $-2$. Comme $f(-2)=-8+24-18+2=0$, le point d'inflexion est $(-2,0)$. (Le point $(-1,-2)$ est sur la courbe, mais c'est un point où $f'$ s'annule, pas un point d'inflexion : $f''(-1)=6\\neq0$.)"
+        },
+        {
+          "enonce": "Soit $f(x)=x^3-9x^2+1$ sur $\\mathbb{R}$. Montrer que la courbe de $f$ admet un unique point d'inflexion et donner ses coordonnées.",
+          "reponse_finale": {
+            "question": "Quelles sont les coordonnées du point d'inflexion ?",
+            "propositions": [
+              "$(3,-53)$",
+              "$(3,0)$",
+              "$(0,1)$",
+              "$(6,-107)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=3x^2-18x$ et $f''(x)=6x-18=6(x-3)$, strictement négative sur $\\left]-\\infty,3\\right[$ et strictement positive sur $\\left]3,+\\infty\\right[$ : $f''$ change de signe en $3$, donc le point d'abscisse $3$ est un point d'inflexion. C'est le seul : en un point d'inflexion, $f''$ s'annule (condition nécessaire), et $f''$ ne s'annule qu'en $3$. Comme $f(3)=27-81+1=-53$, le point d'inflexion est $(3,-53)$. (Les points $(0,1)$ et $(6,-107)$ sont sur la courbe, mais ce sont des points où $f'$ s'annule, pas des points d'inflexion.)"
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-inflexion-ex2",
+      "carte": "ar-t-derivation-inflexion",
+      "difficulte": 2,
+      "titre": "Tangente en un point d'inflexion",
+      "enonce": "Soit $f(x)=x^3-3x^2+4$ sur $\\mathbb{R}$. Déterminer le point d'inflexion $A$ de la courbe de $f$, l'équation de la tangente en $A$, puis la position de la courbe par rapport à cette tangente.",
+      "duree_min": 10,
+      "indices": [
+        "Après avoir trouvé l'abscisse $a$ du point d'inflexion, calculer $f(a)$ et $f'(a)$.",
+        "Factoriser la différence entre $f(x)$ et l'expression de la tangente."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la tangente en $A$, et quelle est la position de la courbe par rapport à elle ?",
+        "propositions": [
+          "$y=-3x+5$ ; la courbe est au-dessous pour $x<1$ et au-dessus pour $x>1$",
+          "$y=-3x+5$ ; la courbe est au-dessus pour $x<1$ et au-dessous pour $x>1$",
+          "$y=2$ ; la courbe est au-dessus de sa tangente",
+          "$y=-3x+1$ ; la courbe est au-dessous pour $x<1$ et au-dessus pour $x>1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f'(x)=3x^2-6x$ et $f''(x)=6x-6$, qui change de signe en $1$ : $A(1,f(1))=(1,2)$ est le point d'inflexion (le seul, puisque $f''$ ne s'annule qu'en $1$). Comme $f'(1)=-3$, la tangente en $A$ a pour équation $y=-3(x-1)+2$, soit $y=-3x+5$. Puis\n\n$$f(x)-(-3x+5)=x^3-3x^2+3x-1=(x-1)^3,$$\n\nstrictement négatif pour $x<1$ et strictement positif pour $x>1$ : la courbe est au-dessous de sa tangente pour $x<1$ et au-dessus pour $x>1$. Elle traverse sa tangente en $A$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=-x^3+6x^2-5$ sur $\\mathbb{R}$. Déterminer le point d'inflexion $A$ de la courbe de $f$, l'équation de la tangente en $A$, puis la position de la courbe par rapport à cette tangente.",
+          "reponse_finale": {
+            "question": "Quelle est la tangente en $A$, et quelle est la position de la courbe par rapport à elle ?",
+            "propositions": [
+              "$y=12x-13$ ; la courbe est au-dessus pour $x<2$ et au-dessous pour $x>2$",
+              "$y=12x-13$ ; la courbe est au-dessous pour $x<2$ et au-dessus pour $x>2$",
+              "$y=11$ ; la courbe est au-dessous de sa tangente",
+              "$y=12x+11$ ; la courbe est au-dessus pour $x<2$ et au-dessous pour $x>2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=-3x^2+12x$ et $f''(x)=-6x+12$, qui change de signe en $2$ : $A(2,f(2))=(2,11)$ est le point d'inflexion (le seul, puisque $f''$ ne s'annule qu'en $2$). Comme $f'(2)=12$, la tangente en $A$ a pour équation $y=12(x-2)+11$, soit $y=12x-13$. Puis\n\n$$f(x)-(12x-13)=-x^3+6x^2-12x+8=-(x-2)^3,$$\n\nstrictement positif pour $x<2$ et strictement négatif pour $x>2$ : la courbe est au-dessus de sa tangente pour $x<2$ et au-dessous pour $x>2$. Elle traverse sa tangente en $A$."
+        },
+        {
+          "enonce": "Soit $f(x)=2x^3+6x^2+x$ sur $\\mathbb{R}$. Déterminer le point d'inflexion $A$ de la courbe de $f$, l'équation de la tangente en $A$, puis la position de la courbe par rapport à cette tangente.",
+          "reponse_finale": {
+            "question": "Quelle est la tangente en $A$, et quelle est la position de la courbe par rapport à elle ?",
+            "propositions": [
+              "$y=-5x-2$ ; la courbe est au-dessous pour $x<-1$ et au-dessus pour $x>-1$",
+              "$y=-5x-2$ ; la courbe est au-dessus pour $x<-1$ et au-dessous pour $x>-1$",
+              "$y=3$ ; la courbe est au-dessus de sa tangente",
+              "$y=-5x+3$ ; la courbe est au-dessous pour $x<-1$ et au-dessus pour $x>-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f'(x)=6x^2+12x+1$ et $f''(x)=12x+12$, qui change de signe en $-1$ : $A(-1,f(-1))=(-1,3)$ est le point d'inflexion (le seul, puisque $f''$ ne s'annule qu'en $-1$). Comme $f'(-1)=6-12+1=-5$, la tangente en $A$ a pour équation $y=-5(x+1)+3$, soit $y=-5x-2$. Puis\n\n$$f(x)-(-5x-2)=2x^3+6x^2+6x+2=2(x+1)^3,$$\n\nstrictement négatif pour $x<-1$ et strictement positif pour $x>-1$ : la courbe est au-dessous de sa tangente pour $x<-1$ et au-dessus pour $x>-1$. Elle traverse sa tangente en $A$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-inflexion-ex3",
+      "carte": "ar-t-derivation-inflexion",
+      "difficulte": 3,
+      "titre": "La courbe logistique",
+      "enonce": "Soit $f(x)=\\frac{1}{1+e^{-x}}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que $f'=f(1-f)$, puis que $f''=f'(1-2f)$.\n\n**2.** Étudier la convexité de $f$ et montrer que sa courbe admet un unique point d'inflexion $A$.\n\n**3.** Donner l'équation de la tangente en $A$.",
+      "duree_min": 15,
+      "indices": [
+        "Dériver $\\frac1u$ avec $u(x)=1+e^{-x}$ : $\\left(\\frac1u\\right)'=-\\frac{u'}{u^2}$, et $\\left(e^{-x}\\right)'=-e^{-x}$.",
+        "$f'>0$, donc $f''$ a le signe de $1-2f$ : résoudre $f(x)<\\frac12$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'équation de la tangente au point d'inflexion ?",
+        "propositions": [
+          "$y=\\frac x4+\\frac12$",
+          "$y=\\frac x2+\\frac12$",
+          "$y=\\frac12$",
+          "$y=x+\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $u(x)=1+e^{-x}$ est dérivable et strictement positive, avec $u'(x)=-e^{-x}$, donc\n\n$$f'(x)=\\frac{e^{-x}}{(1+e^{-x})^2}=\\frac{1}{1+e^{-x}}\\times\\frac{e^{-x}}{1+e^{-x}}=f(x)\\big(1-f(x)\\big),$$\n\ncar $1-f(x)=\\frac{e^{-x}}{1+e^{-x}}$. Puis $f''=(f-f^2)'=f'-2ff'=f'(1-2f)$.\n\n**2.** $f'(x)>0$ pour tout $x$, donc $f''(x)$ a le signe de $1-2f(x)$. Or $f(x)<\\frac12\\iff1+e^{-x}>2\\iff e^{-x}>1\\iff x<0$. Ainsi $f''>0$ sur $\\left]-\\infty,0\\right[$ et $f''<0$ sur $\\left]0,+\\infty\\right[$ : $f$ est convexe sur $\\left]-\\infty,0\\right]$ et concave sur $\\left[0,+\\infty\\right[$. Comme $f''$ change de signe en $0$, $A\\left(0,\\frac12\\right)$ est un point d'inflexion ; c'est le seul, car $f''$ ne s'annule qu'en $0$.\n\n**3.** $f'(0)=f(0)\\big(1-f(0)\\big)=\\frac14$ : la tangente en $A$ a pour équation $y=\\frac x4+\\frac12$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=\\frac{4}{1+e^{-2x}}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que $f'=\\frac{f(4-f)}{2}$, puis que $f''=f'(2-f)$.\n\n**2.** Étudier la convexité de $f$ et montrer que sa courbe admet un unique point d'inflexion $A$.\n\n**3.** Donner l'équation de la tangente en $A$.",
+          "indices": [
+            "Dériver $\\frac4u$ avec $u(x)=1+e^{-2x}$ : $\\left(\\frac1u\\right)'=-\\frac{u'}{u^2}$, et $\\left(e^{-2x}\\right)'=-2e^{-2x}$.",
+            "$f'>0$, donc $f''$ a le signe de $2-f$ : résoudre $f(x)<2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'équation de la tangente au point d'inflexion ?",
+            "propositions": [
+              "$y=2x+2$",
+              "$y=x+2$",
+              "$y=2$",
+              "$y=8x+2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $u(x)=1+e^{-2x}$ est dérivable et strictement positive, avec $u'(x)=-2e^{-2x}$, donc\n\n$$f'(x)=\\frac{8e^{-2x}}{(1+e^{-2x})^2}=\\frac12\\times\\frac{4}{1+e^{-2x}}\\times\\frac{4e^{-2x}}{1+e^{-2x}}=\\frac{f(x)\\big(4-f(x)\\big)}{2},$$\n\ncar $4-f(x)=\\frac{4e^{-2x}}{1+e^{-2x}}$. Puis $f''=\\frac12(4f-f^2)'=\\frac12(4f'-2ff')=f'(2-f)$.\n\n**2.** $f'(x)>0$ pour tout $x$, donc $f''(x)$ a le signe de $2-f(x)$. Or $f(x)<2\\iff1+e^{-2x}>2\\iff e^{-2x}>1\\iff x<0$. Ainsi $f''>0$ sur $\\left]-\\infty,0\\right[$ et $f''<0$ sur $\\left]0,+\\infty\\right[$ : $f$ est convexe sur $\\left]-\\infty,0\\right]$ et concave sur $\\left[0,+\\infty\\right[$. Comme $f''$ change de signe en $0$, $A(0,2)$ est un point d'inflexion ; c'est le seul, car $f''$ ne s'annule qu'en $0$.\n\n**3.** $f'(0)=\\frac{2\\times(4-2)}{2}=2$ : la tangente en $A$ a pour équation $y=2x+2$."
+        },
+        {
+          "enonce": "Soit $f(x)=\\frac{1}{1+e^{3-x}}$ sur $\\mathbb{R}$.\n\n**1.** Montrer que $f'=f(1-f)$, puis que $f''=f'(1-2f)$.\n\n**2.** Étudier la convexité de $f$ et montrer que sa courbe admet un unique point d'inflexion $A$.\n\n**3.** Donner l'équation de la tangente en $A$.",
+          "indices": [
+            "Dériver $\\frac1u$ avec $u(x)=1+e^{3-x}$ : $\\left(\\frac1u\\right)'=-\\frac{u'}{u^2}$, et $\\left(e^{3-x}\\right)'=-e^{3-x}$.",
+            "$f'>0$, donc $f''$ a le signe de $1-2f$ : résoudre $f(x)<\\frac12$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'équation de la tangente au point d'inflexion ?",
+            "propositions": [
+              "$y=\\frac x4-\\frac14$",
+              "$y=\\frac x4+\\frac12$",
+              "$y=\\frac12$",
+              "$y=\\frac x4+\\frac54$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $u(x)=1+e^{3-x}$ est dérivable et strictement positive, avec $u'(x)=-e^{3-x}$, donc\n\n$$f'(x)=\\frac{e^{3-x}}{(1+e^{3-x})^2}=\\frac{1}{1+e^{3-x}}\\times\\frac{e^{3-x}}{1+e^{3-x}}=f(x)\\big(1-f(x)\\big),$$\n\ncar $1-f(x)=\\frac{e^{3-x}}{1+e^{3-x}}$. Puis $f''=(f-f^2)'=f'-2ff'=f'(1-2f)$.\n\n**2.** $f'(x)>0$ pour tout $x$, donc $f''(x)$ a le signe de $1-2f(x)$. Or $f(x)<\\frac12\\iff1+e^{3-x}>2\\iff e^{3-x}>1\\iff x<3$. Ainsi $f''>0$ sur $\\left]-\\infty,3\\right[$ et $f''<0$ sur $\\left]3,+\\infty\\right[$ : $f$ est convexe sur $\\left]-\\infty,3\\right]$ et concave sur $\\left[3,+\\infty\\right[$. Comme $f''$ change de signe en $3$, $A\\left(3,\\frac12\\right)$ est un point d'inflexion ; c'est le seul, car $f''$ ne s'annule qu'en $3$.\n\n**3.** $f'(3)=f(3)\\big(1-f(3)\\big)=\\frac14$ : la tangente en $A$ a pour équation $y=\\frac14(x-3)+\\frac12$, soit $y=\\frac x4-\\frac14$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-inflexion-ex4",
+      "carte": "ar-t-derivation-inflexion",
+      "difficulte": 4,
+      "titre": "Points d'inflexion selon un paramètre",
+      "enonce": "Pour un réel $m$, soit $f_m$ la fonction définie sur $\\mathbb{R}$ par $f_m(x)=x^4-2mx^3+6x^2$. Déterminer, selon les valeurs de $m$, le nombre de points d'inflexion de la courbe de $f_m$.",
+      "duree_min": 15,
+      "indices": [
+        "Calculer $f_m''(x)$ et discuter selon le signe du discriminant du trinôme obtenu.",
+        "Attention au cas où le discriminant est nul : que $f_m''$ s'annule ne suffit pas."
+      ],
+      "reponse_finale": {
+        "question": "Pour quels réels $m$ la courbe de $f_m$ admet-elle exactement deux points d'inflexion ?",
+        "propositions": [
+          "$m\\in\\left]-\\infty,-2\\right[\\cup\\left]2,+\\infty\\right[$",
+          "$m\\in\\left]-\\infty,-2\\right]\\cup\\left[2,+\\infty\\right[$",
+          "$m\\in\\left]-2,2\\right[$",
+          "$m\\in\\left]2,+\\infty\\right[$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f_m$ est deux fois dérivable sur $\\mathbb{R}$, avec $f_m''(x)=12\\left(x^2-mx+1\\right)$. Le trinôme $x^2-mx+1$ a pour discriminant $\\Delta=m^2-4$.\n- Si $|m|>2$, $\\Delta>0$ : $f_m''$ a deux racines distinctes $x_1<x_2$, est strictement positive à l'extérieur de $[x_1,x_2]$ et strictement négative entre $x_1$ et $x_2$. Elle change de signe en $x_1$ et en $x_2$ : deux points d'inflexion, et il n'y en a pas d'autre, puisqu'en un point d'inflexion $f_m''$ s'annule.\n- Si $|m|<2$, $\\Delta<0$ : $f_m''>0$ sur $\\mathbb{R}$ ne s'annule jamais ; par la condition nécessaire, aucun point d'inflexion.\n- Si $m=\\pm2$, $$f_m''(x)=12(x\\mp1)^2\\ge0$$ s'annule en un seul point $r$ sans changer de signe. C'est le seul candidat ; montrons que ce n'est pas un point d'inflexion. Soit $g(x)=f_m(x)-f_m(r)-f_m'(r)(x-r)$ : $g(r)=g'(r)=0$ et $g''=f_m''>0$ sauf en $r$. Donc $g'$ est strictement croissante sur $\\mathbb{R}$, $g'<0$ sur $\\left]-\\infty,r\\right[$ et $g'>0$ sur $\\left]r,+\\infty\\right[$ : $g$ admet en $r$ un minimum strict, nul. La courbe reste au-dessus de sa tangente : aucun point d'inflexion.\n\nLa courbe de $f_m$ a donc exactement deux points d'inflexion si et seulement si $m<-2$ ou $m>2$. Le piège est le cas $|m|=2$ : $f_m''$ s'annule, mais sans changer de signe.",
+      "variantes": [
+        {
+          "enonce": "Pour un réel $m$, soit $f_m$ la fonction définie sur $\\mathbb{R}$ par $f_m(x)=x^4-mx^3+6x^2$. Déterminer, selon les valeurs de $m$, le nombre de points d'inflexion de la courbe de $f_m$.",
+          "reponse_finale": {
+            "question": "Pour quels réels $m$ la courbe de $f_m$ admet-elle exactement deux points d'inflexion ?",
+            "propositions": [
+              "$m\\in\\left]-\\infty,-4\\right[\\cup\\left]4,+\\infty\\right[$",
+              "$m\\in\\left]-\\infty,-4\\right]\\cup\\left[4,+\\infty\\right[$",
+              "$m\\in\\left]-4,4\\right[$",
+              "$m\\in\\left]-\\infty,-2\\right[\\cup\\left]2,+\\infty\\right[$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_m$ est deux fois dérivable sur $\\mathbb{R}$, avec $f_m''(x)=6\\left(2x^2-mx+2\\right)$. Le trinôme $2x^2-mx+2$ a pour discriminant $\\Delta=m^2-16$.\n- Si $|m|>4$, $\\Delta>0$ : $f_m''$ a deux racines distinctes $x_1<x_2$, est strictement positive à l'extérieur de $[x_1,x_2]$ et strictement négative entre $x_1$ et $x_2$. Elle change de signe en $x_1$ et en $x_2$ : deux points d'inflexion, et il n'y en a pas d'autre, puisqu'en un point d'inflexion $f_m''$ s'annule.\n- Si $|m|<4$, $\\Delta<0$ : $f_m''>0$ sur $\\mathbb{R}$ ne s'annule jamais ; par la condition nécessaire, aucun point d'inflexion.\n- Si $m=\\pm4$, $$f_m''(x)=12(x\\mp1)^2\\ge0$$ s'annule en un seul point $r$ sans changer de signe. C'est le seul candidat ; montrons que ce n'est pas un point d'inflexion. Soit $g(x)=f_m(x)-f_m(r)-f_m'(r)(x-r)$ : $g(r)=g'(r)=0$ et $g''=f_m''>0$ sauf en $r$. Donc $g'$ est strictement croissante sur $\\mathbb{R}$, $g'<0$ sur $\\left]-\\infty,r\\right[$ et $g'>0$ sur $\\left]r,+\\infty\\right[$ : $g$ admet en $r$ un minimum strict, nul. La courbe reste au-dessus de sa tangente : aucun point d'inflexion.\n\nLa courbe de $f_m$ a donc exactement deux points d'inflexion si et seulement si $m<-4$ ou $m>4$. Le piège est le cas $|m|=4$ : $f_m''$ s'annule, mais sans changer de signe."
+        },
+        {
+          "enonce": "Pour un réel $m$, soit $f_m$ la fonction définie sur $\\mathbb{R}$ par $f_m(x)=x^4-2mx^3+54x^2$. Déterminer, selon les valeurs de $m$, le nombre de points d'inflexion de la courbe de $f_m$.",
+          "reponse_finale": {
+            "question": "Pour quels réels $m$ la courbe de $f_m$ admet-elle exactement deux points d'inflexion ?",
+            "propositions": [
+              "$m\\in\\left]-\\infty,-6\\right[\\cup\\left]6,+\\infty\\right[$",
+              "$m\\in\\left]-\\infty,-6\\right]\\cup\\left[6,+\\infty\\right[$",
+              "$m\\in\\left]-6,6\\right[$",
+              "$m\\in\\left]6,+\\infty\\right[$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_m$ est deux fois dérivable sur $\\mathbb{R}$, avec $f_m''(x)=12\\left(x^2-mx+9\\right)$. Le trinôme $x^2-mx+9$ a pour discriminant $\\Delta=m^2-36$.\n- Si $|m|>6$, $\\Delta>0$ : $f_m''$ a deux racines distinctes $x_1<x_2$, est strictement positive à l'extérieur de $[x_1,x_2]$ et strictement négative entre $x_1$ et $x_2$. Elle change de signe en $x_1$ et en $x_2$ : deux points d'inflexion, et il n'y en a pas d'autre, puisqu'en un point d'inflexion $f_m''$ s'annule.\n- Si $|m|<6$, $\\Delta<0$ : $f_m''>0$ sur $\\mathbb{R}$ ne s'annule jamais ; par la condition nécessaire, aucun point d'inflexion.\n- Si $m=\\pm6$, $$f_m''(x)=12(x\\mp3)^2\\ge0$$ s'annule en un seul point $r$ sans changer de signe. C'est le seul candidat ; montrons que ce n'est pas un point d'inflexion. Soit $g(x)=f_m(x)-f_m(r)-f_m'(r)(x-r)$ : $g(r)=g'(r)=0$ et $g''=f_m''>0$ sauf en $r$. Donc $g'$ est strictement croissante sur $\\mathbb{R}$, $g'<0$ sur $\\left]-\\infty,r\\right[$ et $g'>0$ sur $\\left]r,+\\infty\\right[$ : $g$ admet en $r$ un minimum strict, nul. La courbe reste au-dessus de sa tangente : aucun point d'inflexion.\n\nLa courbe de $f_m$ a donc exactement deux points d'inflexion si et seulement si $m<-6$ ou $m>6$. Le piège est le cas $|m|=6$ : $f_m''$ s'annule, mais sans changer de signe."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-tangentes-ex1",
+      "carte": "ar-t-derivation-tangentes",
+      "difficulte": 1,
+      "titre": "Une tangente à l'exponentielle",
+      "enonce": "Déterminer l'équation de la tangente à la courbe de la fonction exponentielle au point d'abscisse $1$, et en déduire une inégalité valable pour tout réel $x$.",
+      "duree_min": 5,
+      "indices": [
+        "La fonction exponentielle est convexe sur $\\mathbb{R}$ : sa courbe est au-dessus de ses tangentes."
+      ],
+      "reponse_finale": {
+        "question": "Quelle tangente et quelle inégalité obtient-on ?",
+        "propositions": [
+          "$y=ex$ ; $e^x\\ge ex$ pour tout réel $x$",
+          "$y=ex$ ; $e^x\\le ex$ pour tout réel $x$",
+          "$y=e(x-1)$ ; $e^x\\le e(x-1)$ pour tout réel $x$",
+          "$y=x+e-1$ ; $e^x\\ge x+e-1$ pour tout réel $x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La tangente en $1$ a pour équation $y=e^1+e^1(x-1)$, soit $y=ex$. Comme $\\exp''=\\exp>0$, la fonction exponentielle est convexe sur l'intervalle $\\mathbb{R}$ ; sa courbe est donc au-dessus de toutes ses tangentes : $e^x\\ge ex$ pour tout réel $x$, avec égalité en $x=1$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer l'équation de la tangente à la courbe de la fonction exponentielle au point d'abscisse $2$, et en déduire une inégalité valable pour tout réel $x$.",
+          "reponse_finale": {
+            "question": "Quelle tangente et quelle inégalité obtient-on ?",
+            "propositions": [
+              "$y=e^2(x-1)$ ; $e^x\\ge e^2(x-1)$ pour tout réel $x$",
+              "$y=e^2(x-1)$ ; $e^x\\le e^2(x-1)$ pour tout réel $x$",
+              "$y=e^2x$ ; $e^x\\ge e^2x$ pour tout réel $x$",
+              "$y=e^2(x-2)$ ; $e^x\\le e^2(x-2)$ pour tout réel $x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La tangente en $2$ a pour équation $y=e^2+e^2(x-2)$, soit $y=e^2(x-1)$. Comme $\\exp''=\\exp>0$, la fonction exponentielle est convexe sur l'intervalle $\\mathbb{R}$ ; sa courbe est donc au-dessus de toutes ses tangentes : $e^x\\ge e^2(x-1)$ pour tout réel $x$, avec égalité en $x=2$."
+        },
+        {
+          "enonce": "Déterminer l'équation de la tangente à la courbe de la fonction $x\\mapsto e^{2x}$ au point d'abscisse $0$, et en déduire une inégalité valable pour tout réel $x$.",
+          "indices": [
+            "La fonction $x\\mapsto e^{2x}$ est convexe sur $\\mathbb{R}$ : sa courbe est au-dessus de ses tangentes."
+          ],
+          "reponse_finale": {
+            "question": "Quelle tangente et quelle inégalité obtient-on ?",
+            "propositions": [
+              "$y=1+2x$ ; $e^{2x}\\ge1+2x$ pour tout réel $x$",
+              "$y=1+2x$ ; $e^{2x}\\le1+2x$ pour tout réel $x$",
+              "$y=1+x$ ; $e^{2x}\\ge1+x$ pour tout réel $x$",
+              "$y=2+2x$ ; $e^{2x}\\ge2+2x$ pour tout réel $x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $g(x)=e^{2x}$ : $g'(x)=2e^{2x}$ (dérivée d'une composée), donc $g(0)=1$, $g'(0)=2$, et la tangente en $0$ a pour équation $y=1+2x$. Comme $g''(x)=4e^{2x}>0$, $g$ est convexe sur l'intervalle $\\mathbb{R}$ ; sa courbe est donc au-dessus de toutes ses tangentes : $e^{2x}\\ge1+2x$ pour tout réel $x$, avec égalité en $x=0$."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-tangentes-ex2",
+      "carte": "ar-t-derivation-tangentes",
+      "difficulte": 2,
+      "titre": "Majorer une racine carrée par une tangente",
+      "enonce": "Montrer que la fonction racine carrée est concave sur $\\left]0,+\\infty\\right[$, puis, à l'aide de sa tangente au point d'abscisse $4$, en déduire une majoration de $\\sqrt x$ valable pour tout $x\\ge0$ et un majorant rationnel de $\\sqrt{5}$.",
+      "duree_min": 8,
+      "indices": [
+        "Calculer la dérivée seconde de $x\\mapsto\\sqrt x$ sur $\\left]0,+\\infty\\right[$.",
+        "Une fonction concave a sa courbe au-dessous de ses tangentes ; traiter le cas $x=0$ à part."
+      ],
+      "reponse_finale": {
+        "question": "Quelle inégalité obtient-on pour tout $x\\ge0$ ?",
+        "propositions": [
+          "$\\sqrt x\\le\\frac x4+1$",
+          "$\\sqrt x\\ge\\frac x4+1$",
+          "$\\sqrt x\\le\\frac x4+\\frac12$",
+          "$\\sqrt x\\le\\frac x2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f(x)=\\sqrt x$ est deux fois dérivable sur $\\left]0,+\\infty\\right[$, avec $f'(x)=\\frac{1}{2\\sqrt x}$ et $f''(x)=-\\frac{1}{4x\\sqrt x}<0$. Donc $f$ est concave sur cet intervalle, et sa courbe est au-dessous de ses tangentes.\n\nEn $4$ : $f(4)=2$ et $f'(4)=\\frac14$, d'où la tangente $y=2+\\frac14(x-4)$, soit $y=\\frac x4+1$. Ainsi $\\sqrt x\\le\\frac x4+1$ pour tout $x>0$, et aussi pour $x=0$, puisque $0\\le1$.\n\nAvec $x=5$ : $\\sqrt5\\le\\frac54+1=\\frac94=2{,}25$ (en fait $\\sqrt5\\approx2{,}236$).",
+      "variantes": [
+        {
+          "enonce": "Montrer que la fonction racine carrée est concave sur $\\left]0,+\\infty\\right[$, puis, à l'aide de sa tangente au point d'abscisse $9$, en déduire une majoration de $\\sqrt x$ valable pour tout $x\\ge0$ et un majorant rationnel de $\\sqrt{10}$.",
+          "reponse_finale": {
+            "question": "Quelle inégalité obtient-on pour tout $x\\ge0$ ?",
+            "propositions": [
+              "$\\sqrt x\\le\\frac x6+\\frac32$",
+              "$\\sqrt x\\ge\\frac x6+\\frac32$",
+              "$\\sqrt x\\le\\frac x6+\\frac12$",
+              "$\\sqrt x\\le\\frac x3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f(x)=\\sqrt x$ est deux fois dérivable sur $\\left]0,+\\infty\\right[$, avec $f'(x)=\\frac{1}{2\\sqrt x}$ et $f''(x)=-\\frac{1}{4x\\sqrt x}<0$. Donc $f$ est concave sur cet intervalle, et sa courbe est au-dessous de ses tangentes.\n\nEn $9$ : $f(9)=3$ et $f'(9)=\\frac16$, d'où la tangente $y=3+\\frac16(x-9)$, soit $y=\\frac x6+\\frac32$. Ainsi $\\sqrt x\\le\\frac x6+\\frac32$ pour tout $x>0$, et aussi pour $x=0$, puisque $0\\le\\frac32$.\n\nAvec $x=10$ : $\\sqrt{10}\\le\\frac{10}{6}+\\frac32=\\frac{19}{6}\\approx3{,}167$ (en fait $\\sqrt{10}\\approx3{,}162$)."
+        },
+        {
+          "enonce": "Montrer que la fonction racine carrée est concave sur $\\left]0,+\\infty\\right[$, puis, à l'aide de sa tangente au point d'abscisse $\\frac14$, en déduire une majoration de $\\sqrt x$ valable pour tout $x\\ge0$ et un majorant rationnel de $\\sqrt{0{,}3}$.",
+          "reponse_finale": {
+            "question": "Quelle inégalité obtient-on pour tout $x\\ge0$ ?",
+            "propositions": [
+              "$\\sqrt x\\le x+\\frac14$",
+              "$\\sqrt x\\ge x+\\frac14$",
+              "$\\sqrt x\\le x+\\frac18$",
+              "$\\sqrt x\\le2x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f(x)=\\sqrt x$ est deux fois dérivable sur $\\left]0,+\\infty\\right[$, avec $f'(x)=\\frac{1}{2\\sqrt x}$ et $f''(x)=-\\frac{1}{4x\\sqrt x}<0$. Donc $f$ est concave sur cet intervalle, et sa courbe est au-dessous de ses tangentes.\n\nEn $\\frac14$ : $f\\left(\\frac14\\right)=\\frac12$ et $f'\\left(\\frac14\\right)=1$, d'où la tangente $y=\\frac12+\\left(x-\\frac14\\right)$, soit $y=x+\\frac14$. Ainsi $\\sqrt x\\le x+\\frac14$ pour tout $x>0$, et aussi pour $x=0$, puisque $0\\le\\frac14$.\n\nAvec $x=0{,}3$ : $\\sqrt{0{,}3}\\le0{,}3+0{,}25=0{,}55$ (en fait $\\sqrt{0{,}3}\\approx0{,}548$)."
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-tangentes-ex3",
+      "carte": "ar-t-derivation-tangentes",
+      "difficulte": 3,
+      "titre": "Inégalité de Bernoulli par la convexité",
+      "enonce": "Soit $n\\ge2$ un entier et $f(x)=(1+x)^n$ sur $I=\\left[-1,+\\infty\\right[$.\n\n**1.** Montrer que $f$ est convexe sur $I$.\n\n**2.** En déduire que $(1+x)^n\\ge1+nx$ pour tout $x\\ge-1$.\n\n**3.** En déduire un minorant de $1{,}01^{100}$.",
+      "duree_min": 15,
+      "indices": [
+        "Calculer $f''(x)$ et étudier son signe sur $I$.",
+        "Écrire l'équation de la tangente à la courbe de $f$ au point d'abscisse $0$."
+      ],
+      "reponse_finale": {
+        "question": "Quel minorant obtient-on ainsi ?",
+        "propositions": [
+          "$2$",
+          "$e$",
+          "$3$",
+          "$101$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f$ est deux fois dérivable sur $I$, avec $f'(x)=n(1+x)^{n-1}$ et $f''(x)=n(n-1)(1+x)^{n-2}$. Sur $I$, $1+x\\ge0$ et $n-2\\ge0$, donc $f''(x)\\ge0$ : $f$ est convexe sur l'intervalle $I$.\n\n**2.** La tangente en $0$ a pour équation $y=f(0)+f'(0)x=1+nx$. La courbe d'une fonction convexe est au-dessus de ses tangentes : $(1+x)^n\\ge1+nx$ pour tout $x\\in I$.\n\n**3.** Avec $n=100$ et $x=0{,}01$ : $1{,}01^{100}\\ge1+100\\times0{,}01=2$. (En fait $1{,}01^{100}\\approx2{,}705$, qui est inférieur à $e\\approx2{,}718$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $n\\ge2$ un entier et $f(x)=(1+x)^n$ sur $I=\\left[-1,+\\infty\\right[$.\n\n**1.** Montrer que $f$ est convexe sur $I$.\n\n**2.** En déduire que $(1+x)^n\\ge1+nx$ pour tout $x\\ge-1$.\n\n**3.** En déduire un minorant de $0{,}99^{50}$.",
+          "reponse_finale": {
+            "question": "Quel minorant obtient-on ainsi ?",
+            "propositions": [
+              "$\\frac12$",
+              "$0{,}99$",
+              "$0{,}7$",
+              "$\\frac{49}{50}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f$ est deux fois dérivable sur $I$, avec $f'(x)=n(1+x)^{n-1}$ et $f''(x)=n(n-1)(1+x)^{n-2}$. Sur $I$, $1+x\\ge0$ et $n-2\\ge0$, donc $f''(x)\\ge0$ : $f$ est convexe sur l'intervalle $I$.\n\n**2.** La tangente en $0$ a pour équation $y=f(0)+f'(0)x=1+nx$. La courbe d'une fonction convexe est au-dessus de ses tangentes : $(1+x)^n\\ge1+nx$ pour tout $x\\in I$.\n\n**3.** Avec $n=50$ et $x=-0{,}01\\ge-1$ : $0{,}99^{50}\\ge1-50\\times0{,}01=\\frac12$. (En fait $0{,}99^{50}\\approx0{,}605$.)"
+        },
+        {
+          "enonce": "Soit $n\\ge2$ un entier et $f(x)=(1+x)^n$ sur $I=\\left[-1,+\\infty\\right[$.\n\n**1.** Montrer que $f$ est convexe sur $I$.\n\n**2.** En déduire que $(1+x)^n\\ge1+nx$ pour tout $x\\ge-1$.\n\n**3.** En déduire un minorant de $1{,}03^{20}$.",
+          "reponse_finale": {
+            "question": "Quel minorant obtient-on ainsi ?",
+            "propositions": [
+              "$1{,}6$",
+              "$2$",
+              "$1{,}9$",
+              "$60$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f$ est deux fois dérivable sur $I$, avec $f'(x)=n(1+x)^{n-1}$ et $f''(x)=n(n-1)(1+x)^{n-2}$. Sur $I$, $1+x\\ge0$ et $n-2\\ge0$, donc $f''(x)\\ge0$ : $f$ est convexe sur l'intervalle $I$.\n\n**2.** La tangente en $0$ a pour équation $y=f(0)+f'(0)x=1+nx$. La courbe d'une fonction convexe est au-dessus de ses tangentes : $(1+x)^n\\ge1+nx$ pour tout $x\\in I$.\n\n**3.** Avec $n=20$ et $x=0{,}03$ : $1{,}03^{20}\\ge1+20\\times0{,}03=1{,}6$. (En fait $1{,}03^{20}\\approx1{,}806$.)"
+        }
+      ]
+    },
+    {
+      "id": "ar-t-derivation-tangentes-ex4",
+      "carte": "ar-t-derivation-tangentes",
+      "difficulte": 4,
+      "titre": "Une fonction convexe et majorée",
+      "enonce": "Soit $f$ une fonction deux fois dérivable et convexe sur $\\mathbb{R}$.\n\n**1.** On suppose qu'il existe un réel $a$ tel que $f'(a)>0$. Montrer que $f(x)\\to+\\infty$ quand $x\\to+\\infty$.\n\n**2.** Montrer de même que s'il existe un réel $a$ tel que $f'(a)<0$, alors $f(x)\\to+\\infty$ quand $x\\to-\\infty$.\n\n**3.** En déduire qu'une fonction deux fois dérivable, convexe et majorée sur $\\mathbb{R}$ est constante.\n\n**4.** Que peut-on dire d'une fonction deux fois dérivable, convexe et majorée sur $\\left[0,+\\infty\\right[$ ?",
+      "duree_min": 20,
+      "indices": [
+        "Utiliser la tangente en $a$ : la courbe est au-dessus de celle-ci sur tout $\\mathbb{R}$.",
+        "Pour la question 3, montrer que $f'$ est nulle, puis utiliser le théorème « signe de la dérivée et monotonie »."
+      ],
+      "reponse_finale": {
+        "question": "Une fonction deux fois dérivable, convexe et majorée sur $\\left[0,+\\infty\\right[$ est-elle nécessairement constante ?",
+        "propositions": [
+          "Non : elle est décroissante, mais pas nécessairement constante",
+          "Oui, comme sur $\\mathbb{R}$",
+          "Non, et elle n'est pas nécessairement monotone",
+          "Oui, si de plus elle est positive"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f$ est convexe et dérivable sur $\\mathbb{R}$, donc sa courbe est au-dessus de sa tangente en $a$ : $f(x)\\ge f(a)+f'(a)(x-a)$ pour tout réel $x$. Comme $f'(a)>0$, le membre de droite tend vers $+\\infty$ quand $x\\to+\\infty$ ; par comparaison, $f(x)\\to+\\infty$.\n\n**2.** Même inégalité : si $f'(a)<0$, alors $f(a)+f'(a)(x-a)\\to+\\infty$ quand $x\\to-\\infty$, donc $f(x)\\to+\\infty$.\n\n**3.** Si $f$ est majorée, elle ne tend vers $+\\infty$ ni en $+\\infty$ ni en $-\\infty$. D'après 1 et 2, $f'(a)\\le0$ et $f'(a)\\ge0$ pour tout réel $a$, donc $f'=0$ sur l'intervalle $\\mathbb{R}$, et $f$ est constante.\n\n**4.** Sur $\\left[0,+\\infty\\right[$, l'argument de 1 (avec $a\\ge0$ et $x\\to+\\infty$) montre encore que $f'(a)\\le0$ pour tout $a\\ge0$ : $f$ est décroissante. Mais l'argument de 2 ne s'applique plus, faute de pouvoir faire tendre $x$ vers $-\\infty$. Et $f$ n'est pas forcément constante : $f(x)=e^{-x}$ est convexe ($f''(x)=e^{-x}>0$), positive, majorée par $1$ sur $\\left[0,+\\infty\\right[$, et n'est pas constante. Une fonction convexe et majorée sur $\\left[0,+\\infty\\right[$ est donc décroissante, sans être nécessairement constante."
+    },
+    {
+      "id": "ar-t-derivation-tangentes-ex5",
+      "carte": "ar-t-derivation-tangentes",
+      "difficulte": 5,
+      "titre": "Inégalité arithmético-géométrique par une tangente",
+      "enonce": "**1.** Montrer que, pour tout réel $t$, $e^{t-1}\\ge t$, avec égalité si et seulement si $t=1$.\n\n**2.** Soient $n\\ge1$ un entier et $a_1,\\dots,a_n$ des réels strictement positifs, de moyenne $m=\\frac{a_1+\\dots+a_n}{n}$. En appliquant la question 1 à $t=\\frac{a_k}{m}$, montrer que $a_1a_2\\cdots a_n\\le m^n$, avec égalité si et seulement si tous les $a_k$ sont égaux.\n\n**3.** Application : parmi les réels $x,y,z>0$ tels que $x+y+z=6$, quelle est la plus grande valeur possible du produit $xyz$ ?",
+      "duree_min": 30,
+      "indices": [
+        "Pour 1, la courbe de la fonction convexe $t\\mapsto e^{t-1}$ est au-dessus de sa tangente en $t=1$ ; pour le cas d'égalité, étudier les variations de $t\\mapsto e^{t-1}-t$.",
+        "Pour 2, multiplier les $n$ inégalités, toutes entre réels strictement positifs, et calculer $\\sum_k\\left(\\frac{a_k}{m}-1\\right)$.",
+        "Pour 3, appliquer 2 et chercher un cas d'égalité."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la plus grande valeur possible du produit ?",
+        "propositions": [
+          "$8$",
+          "$6$",
+          "$27$",
+          "$216$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $g(t)=e^{t-1}$ vérifie $g''(t)=e^{t-1}>0$ : $g$ est convexe sur $\\mathbb{R}$. Sa tangente en $1$ a pour équation $y=g(1)+g'(1)(t-1)=1+(t-1)=t$, donc $e^{t-1}\\ge t$ pour tout réel $t$. Pour le cas d'égalité, $h(t)=e^{t-1}-t$ a pour dérivée $e^{t-1}-1$, strictement négative sur $\\left]-\\infty,1\\right[$ et strictement positive sur $\\left]1,+\\infty\\right[$ : $h$ est strictement décroissante sur $\\left]-\\infty,1\\right]$ et strictement croissante sur $\\left[1,+\\infty\\right[$, avec $h(1)=0$. Donc $h(t)>0$ pour $t\\neq1$.\n\n**2.** On a $m>0$. Pour chaque $k$, $0<\\frac{a_k}{m}\\le e^{\\frac{a_k}{m}-1}$. Ces $n$ inégalités portent sur des réels strictement positifs : on peut les multiplier membre à membre,\n\n$$\\frac{a_1\\cdots a_n}{m^n}\\le\\exp\\left(\\sum_{k=1}^n\\left(\\frac{a_k}{m}-1\\right)\\right)=\\exp\\left(\\frac{a_1+\\dots+a_n}{m}-n\\right)=e^0=1.$$\n\nDonc $a_1\\cdots a_n\\le m^n$. Si l'un des $a_k$ est différent de $m$, l'inégalité correspondante est stricte, et le produit l'est aussi, les autres facteurs étant strictement positifs. L'égalité a donc lieu si et seulement si $a_k=m$ pour tout $k$, c'est-à-dire si tous les $a_k$ sont égaux (leur valeur commune est alors $m$).\n\n**3.** Avec $n=3$ et $m=\\frac{x+y+z}{3}=2$ : $xyz\\le2^3=8$, avec égalité pour $x=y=z=2$. La plus grande valeur possible est $8$.",
+      "variantes": [
+        {
+          "enonce": "**1.** Montrer que, pour tout réel $t$, $e^{t-1}\\ge t$, avec égalité si et seulement si $t=1$.\n\n**2.** Soient $n\\ge1$ un entier et $a_1,\\dots,a_n$ des réels strictement positifs, de moyenne $m=\\frac{a_1+\\dots+a_n}{n}$. En appliquant la question 1 à $t=\\frac{a_k}{m}$, montrer que $a_1a_2\\cdots a_n\\le m^n$, avec égalité si et seulement si tous les $a_k$ sont égaux.\n\n**3.** Application : parmi les réels $x,y,z>0$ tels que $x+y+z=9$, quelle est la plus grande valeur possible du produit $xyz$ ?",
+          "reponse_finale": {
+            "question": "Quelle est la plus grande valeur possible du produit ?",
+            "propositions": [
+              "$27$",
+              "$9$",
+              "$729$",
+              "$81$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $g(t)=e^{t-1}$ vérifie $g''(t)=e^{t-1}>0$ : $g$ est convexe sur $\\mathbb{R}$. Sa tangente en $1$ a pour équation $y=g(1)+g'(1)(t-1)=1+(t-1)=t$, donc $e^{t-1}\\ge t$ pour tout réel $t$. Pour le cas d'égalité, $h(t)=e^{t-1}-t$ a pour dérivée $e^{t-1}-1$, strictement négative sur $\\left]-\\infty,1\\right[$ et strictement positive sur $\\left]1,+\\infty\\right[$ : $h$ est strictement décroissante sur $\\left]-\\infty,1\\right]$ et strictement croissante sur $\\left[1,+\\infty\\right[$, avec $h(1)=0$. Donc $h(t)>0$ pour $t\\neq1$.\n\n**2.** On a $m>0$. Pour chaque $k$, $0<\\frac{a_k}{m}\\le e^{\\frac{a_k}{m}-1}$. Ces $n$ inégalités portent sur des réels strictement positifs : on peut les multiplier membre à membre,\n\n$$\\frac{a_1\\cdots a_n}{m^n}\\le\\exp\\left(\\sum_{k=1}^n\\left(\\frac{a_k}{m}-1\\right)\\right)=\\exp\\left(\\frac{a_1+\\dots+a_n}{m}-n\\right)=e^0=1.$$\n\nDonc $a_1\\cdots a_n\\le m^n$. Si l'un des $a_k$ est différent de $m$, l'inégalité correspondante est stricte, et le produit l'est aussi, les autres facteurs étant strictement positifs. L'égalité a donc lieu si et seulement si $a_k=m$ pour tout $k$, c'est-à-dire si tous les $a_k$ sont égaux (leur valeur commune est alors $m$).\n\n**3.** Avec $n=3$ et $m=\\frac{x+y+z}{3}=3$ : $xyz\\le3^3=27$, avec égalité pour $x=y=z=3$. La plus grande valeur possible est $27$."
+        },
+        {
+          "enonce": "**1.** Montrer que, pour tout réel $t$, $e^{t-1}\\ge t$, avec égalité si et seulement si $t=1$.\n\n**2.** Soient $n\\ge1$ un entier et $a_1,\\dots,a_n$ des réels strictement positifs, de moyenne $m=\\frac{a_1+\\dots+a_n}{n}$. En appliquant la question 1 à $t=\\frac{a_k}{m}$, montrer que $a_1a_2\\cdots a_n\\le m^n$, avec égalité si et seulement si tous les $a_k$ sont égaux.\n\n**3.** Application : parmi les réels $x,y,z,w>0$ tels que $x+y+z+w=8$, quelle est la plus grande valeur possible du produit $xyzw$ ?",
+          "reponse_finale": {
+            "question": "Quelle est la plus grande valeur possible du produit ?",
+            "propositions": [
+              "$16$",
+              "$8$",
+              "$4096$",
+              "$\\frac{512}{27}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $g(t)=e^{t-1}$ vérifie $g''(t)=e^{t-1}>0$ : $g$ est convexe sur $\\mathbb{R}$. Sa tangente en $1$ a pour équation $y=g(1)+g'(1)(t-1)=1+(t-1)=t$, donc $e^{t-1}\\ge t$ pour tout réel $t$. Pour le cas d'égalité, $h(t)=e^{t-1}-t$ a pour dérivée $e^{t-1}-1$, strictement négative sur $\\left]-\\infty,1\\right[$ et strictement positive sur $\\left]1,+\\infty\\right[$ : $h$ est strictement décroissante sur $\\left]-\\infty,1\\right]$ et strictement croissante sur $\\left[1,+\\infty\\right[$, avec $h(1)=0$. Donc $h(t)>0$ pour $t\\neq1$.\n\n**2.** On a $m>0$. Pour chaque $k$, $0<\\frac{a_k}{m}\\le e^{\\frac{a_k}{m}-1}$. Ces $n$ inégalités portent sur des réels strictement positifs : on peut les multiplier membre à membre,\n\n$$\\frac{a_1\\cdots a_n}{m^n}\\le\\exp\\left(\\sum_{k=1}^n\\left(\\frac{a_k}{m}-1\\right)\\right)=\\exp\\left(\\frac{a_1+\\dots+a_n}{m}-n\\right)=e^0=1.$$\n\nDonc $a_1\\cdots a_n\\le m^n$. Si l'un des $a_k$ est différent de $m$, l'inégalité correspondante est stricte, et le produit l'est aussi, les autres facteurs étant strictement positifs. L'égalité a donc lieu si et seulement si $a_k=m$ pour tout $k$, c'est-à-dire si tous les $a_k$ sont égaux (leur valeur commune est alors $m$).\n\n**3.** Avec $n=4$ et $m=\\frac{x+y+z+w}{4}=2$ : $xyzw\\le2^4=16$, avec égalité pour $x=y=z=w=2$. La plus grande valeur possible est $16$."
+        }
+      ]
+    }
+  ]
+}

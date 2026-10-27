@@ -2,7 +2,7 @@
 // encadré, exemple, démonstration, contre-exemples, pièges (vrai/faux commentés) et exercices d'application. Passer à
 // la notion suivante la marque comme apprise : elle entre en révision espacée à partir du lendemain.
 import { useState, type CSSProperties } from 'react'
-import { BandeauDoute, Encadre, Etiquette, Volet } from '../composants/Blocs'
+import { BandeauDoute, Encadre, Volet } from '../composants/Blocs'
 import { Signaler } from '../composants/Signalement'
 import { Texte } from '../composants/Texte'
 import { NOMS_NIVEAUX, type Carte, type Chapitre } from '../contenu/types'
@@ -42,20 +42,27 @@ export function EcranLecon({ chapitre, cartes, surExercice, surFin }: Props) {
   return (
     <div className="appli" style={style}>
       <main className="ecran">
-        <button className="retour" onClick={surFin}>
-          ← {fin ? 'Accueil' : 'Quitter la leçon'}
-        </button>
-        <div className="entete-carte">
-          <span>{fin ? 'Bilan' : carte ? `${page + 1} / ${cartes.length}` : 'Introduction'}</span>
-          <span>
-            {theme?.titre} · {NOMS_NIVEAUX[chapitre.niveau]}
+        <div className="barre-haut">
+          <button className="retour" onClick={surFin}>
+            ← {fin ? 'Accueil' : 'Quitter'}
+          </button>
+          <span className="avancement">
+            <span className="piste" aria-hidden="true">
+              <span style={{ width: `${(100 * Math.min(cartes.length, Math.max(0, page + 1))) / Math.max(1, cartes.length)}%` }} />
+            </span>
+            {fin ? 'Bilan' : carte ? `${page + 1} / ${cartes.length}` : 'Introduction'}
           </span>
         </div>
-        <Etiquette>{fin ? 'Leçon terminée' : carte ? `Notion ${page + 1}` : 'Leçon'}</Etiquette>
+        <header className="tete-carte">
+          <span className="sur-titre">
+            {fin ? 'Leçon terminée' : carte ? `Leçon · notion ${page + 1}` : 'Leçon'} · {theme?.titre} ·{' '}
+            {NOMS_NIVEAUX[chapitre.niveau]}
+          </span>
+          <h1 className="titre-carte">{carte ? carte.titre : chapitre.titre}</h1>
+        </header>
 
         {!carte && !fin && (
           <>
-            <h1 className="titre-carte">{chapitre.titre}</h1>
             <BandeauDoute doute={intro?.doute} />
             {intro && <Texte texte={intro.introduction} />}
             <div className="bloc">
@@ -71,7 +78,6 @@ export function EcranLecon({ chapitre, cartes, surExercice, surFin }: Props) {
 
         {carte && (
           <>
-            <h1 className="titre-carte">{carte.titre}</h1>
             <BandeauDoute doute={carte.doute} />
             {carte.cours && <Texte texte={carte.cours} />}
             <Encadre genre={carte.type}>
@@ -125,7 +131,6 @@ export function EcranLecon({ chapitre, cartes, surExercice, surFin }: Props) {
 
         {fin && (
           <>
-            <h1 className="titre-carte">{chapitre.titre}</h1>
             <div className="bloc">
               <p>
                 <strong>{apprises.length}</strong> notion{apprises.length > 1 ? 's' : ''} apprise{apprises.length > 1 ? 's' : ''}.

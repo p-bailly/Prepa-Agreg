@@ -1,13 +1,14 @@
 {
   "cartes": [
     {
-      "id": "al-t-produit-matriciel",
+      "id": "al-t-matrices-produit",
       "theme": "algebre-lineaire",
       "niveau": "terminale",
       "chapitre": "al-t-matrices",
       "type": "theoreme",
       "titre": "Produit matriciel et non-commutativité",
       "recto": "Énoncer la définition du produit de deux matrices et ses règles de calcul, en précisant ce qui le distingue du produit des réels.",
+      "cours": "Une matrice est un tableau de nombres ; elle sert à coder d'un seul coup plusieurs données liées : les coefficients d'un système linéaire, les arêtes d'un graphe, les probabilités de transition d'une chaîne de Markov. Le produit $AB$ n'est pas le produit coefficient par coefficient : le coefficient $(i,j)$ de $AB$ s'obtient en multipliant la ligne $i$ de $A$ par la colonne $j$ de $B$, terme à terme, puis en additionnant. Cette définition est celle qui fait marcher les applications : elle traduit l'enchaînement de deux étapes (deux transformations successives, deux arêtes consécutives, deux transitions).\n\n**Méthode.** Avant tout calcul, vérifier les tailles : $AB$ n'existe que si $A$ a autant de colonnes que $B$ a de lignes, et il a alors les lignes de $A$ et les colonnes de $B$. Le produit est associatif et distributif par rapport à l'addition, et $I_n$ est neutre : on calcule avec les matrices presque comme avec les nombres.\n\n**Piège principal.** « Presque » : en général $AB \\neq BA$, et $AB = 0$ n'entraîne pas $A = 0$ ou $B = 0$. Les identités remarquables, comme $(A+B)^2 = A^2 + 2AB + B^2$, et la formule du binôme ne valent que pour des matrices qui commutent.",
       "hypotheses": [
         "Pour que $AB$ soit défini : le nombre de colonnes de $A$ est égal au nombre de lignes de $B$.",
         "Pour l'existence de matrices carrées d'ordre $n$ qui ne commutent pas : $n \\geq 2$."
@@ -60,13 +61,14 @@
       "prerequis": []
     },
     {
-      "id": "al-t-inverse-matrice",
+      "id": "al-t-matrices-inverse",
       "theme": "algebre-lineaire",
       "niveau": "terminale",
       "chapitre": "al-t-matrices",
       "type": "theoreme",
       "titre": "Inverse d'une matrice carrée",
       "recto": "Énoncer la définition de l'inverse d'une matrice carrée, le critère d'inversibilité et la formule de l'inverse à l'ordre 2, l'inverse d'un produit et la résolution d'un système $AX = Y$, avec leurs hypothèses.",
+      "cours": "Pour les réels, diviser par $a \\neq 0$, c'est multiplier par $\\frac{1}{a}$. Pour les matrices carrées, l'analogue est l'inverse : une matrice $B$ telle que $AB = BA = I_n$. Elle n'existe pas toujours, même pour une matrice sans coefficient nul ; à l'ordre $2$, le critère porte sur le nombre $ad - bc$ (le déterminant de la matrice), qui doit être non nul. L'inverse sert d'abord à résoudre les systèmes linéaires : un système de $n$ équations à $n$ inconnues s'écrit $AX = Y$, et si $A$ est inversible, son unique solution est $X = A^{-1}Y$.\n\n**Méthode.** À l'ordre $2$, calculer $ad - bc$, puis échanger les deux coefficients diagonaux, changer le signe des deux autres et diviser par $ad - bc$. Pour une matrice plus grande, on utilise la calculatrice, ou une relation donnée par l'énoncé : par exemple $A^2 - 3A + 2I_n = 0$ s'écrit $A \\times \\frac{1}{2}(3I_n - A) = I_n$. On vérifie toujours le résultat en calculant $AA^{-1}$.\n\n**Piège principal.** L'inverse d'un produit renverse l'ordre des facteurs : $(AB)^{-1} = B^{-1}A^{-1}$, et non $A^{-1}B^{-1}$. Et $A + B$ n'est pas inversible en général, même si $A$ et $B$ le sont.",
       "hypotheses": [
         "$A$ est une matrice carrée (autant de lignes que de colonnes).",
         "Pour la formule de l'inverse à l'ordre $2$ : $ad - bc \\neq 0$.",
@@ -132,17 +134,18 @@
         }
       ],
       "prerequis": [
-        "al-t-produit-matriciel"
+        "al-t-matrices-produit"
       ]
     },
     {
-      "id": "al-t-suites-matricielles",
+      "id": "al-t-matrices-suites",
       "theme": "algebre-lineaire",
       "niveau": "terminale",
       "chapitre": "al-t-matrices",
       "type": "theoreme",
       "titre": "Suites récurrentes matricielles $U_{n+1} = AU_n + C$",
       "recto": "Énoncer l'expression du terme général d'une suite de matrices colonnes vérifiant $U_{n+1} = AU_n + C$, avec ses hypothèses.",
+      "cours": "Beaucoup de phénomènes font évoluer plusieurs quantités à la fois : deux populations qui interagissent, des parts de marché, des stocks. Quand l'état suivant dépend de façon affine de l'état présent, on range les quantités dans une colonne $U_n$ et l'évolution s'écrit $U_{n+1} = AU_n + C$ : c'est l'analogue matriciel des suites arithmético-géométriques $u_{n+1} = au_n + b$. Sans terme constant, $U_n = A^nU_0$ : tout revient à calculer les puissances de $A$. Avec un terme constant, on cherche d'abord une colonne fixe $L$ vérifiant $L = AL + C$ ; alors $U_n - L$ est une suite du premier type, d'où $U_n = A^n(U_0 - L) + L$.\n\n**Méthode.** Résoudre $(I_p - A)L = C$ ; calculer $A^n$ (par récurrence, par la formule du binôme, ou grâce à une écriture $A = PDP^{-1}$ fournie par l'énoncé, qui donne $A^n = PD^nP^{-1}$) ; conclure avec $U_n = A^n(U_0 - L) + L$ et étudier les limites coefficient par coefficient.\n\n**Piège principal.** La colonne fixe n'existe pas toujours (quand $I_p - A$ n'est pas inversible), et même lorsqu'elle existe, $U_n$ ne tend vers $L$ que si $A^n$ tend vers la matrice nulle ; ce n'est pas l'inversibilité de $A$ qui compte.",
       "hypotheses": [
         "$A$ est carrée d'ordre $p$, $C$ et les $U_n$ sont des colonnes à $p$ lignes, et $U_{n+1} = AU_n + C$ pour tout $n \\in \\mathbb{N}$.",
         "Il existe une colonne $L$ telle que $L = AL + C$ (c'est le cas si $I_p - A$ est inversible).",
@@ -207,18 +210,19 @@
         }
       ],
       "prerequis": [
-        "al-t-produit-matriciel",
-        "al-t-inverse-matrice"
+        "al-t-matrices-produit",
+        "al-t-matrices-inverse"
       ]
     },
     {
-      "id": "al-t-matrice-adjacence",
+      "id": "al-t-matrices-adjacence",
       "theme": "algebre-lineaire",
       "niveau": "terminale",
       "chapitre": "al-t-matrices",
       "type": "theoreme",
       "titre": "Matrice d'adjacence et nombre de chemins",
       "recto": "Énoncer le résultat qui relie les puissances de la matrice d'adjacence d'un graphe au nombre de chemins, avec ses hypothèses.",
+      "cours": "Un graphe est formé de sommets reliés par des arêtes, ou par des arcs s'il y a un sens de parcours (graphe orienté) : réseau routier, relations entre personnes, liens entre pages web. On le code par sa matrice d'adjacence $M$, qui a un $1$ en position $(i,j)$ quand il y a une arête de $i$ vers $j$, et un $0$ sinon ; pour un graphe non orienté, $M$ est symétrique. Le résultat central : le coefficient $(i,j)$ de $M^n$ est le nombre de chemins de longueur $n$ de $i$ à $j$. L'idée est que la formule $(M^{n+1})_{ij} = \\sum_k (M^n)_{ik}\\,m_{kj}$ classe ces chemins selon leur avant-dernier sommet $k$.\n\n**Méthode.** Numéroter les sommets, écrire $M$ ligne par ligne (ligne = départ, colonne = arrivée), calculer $M^n$ (à la main pour $n = 2$ ou $3$, à la calculatrice ensuite, ou grâce à une relation comme $M^3 = 4M$) et lire le coefficient voulu.\n\n**Piège principal.** Les chemins comptés peuvent repasser par un même sommet ou une même arête : $M^n$ ne compte pas les chemins sans répétition. Dans un graphe orienté, l'ordre compte : $m_{ij}$ et $m_{ji}$ peuvent différer.",
       "hypotheses": [
         "$M$ est la matrice d'adjacence de $G$ pour une numérotation $1, \\dots, p$ des sommets : $m_{ij} = 1$ s'il y a une arête (un arc si $G$ est orienté) de $i$ vers $j$, et $m_{ij} = 0$ sinon.",
         "$n$ est un entier naturel non nul."
@@ -275,17 +279,18 @@
         }
       ],
       "prerequis": [
-        "al-t-produit-matriciel"
+        "al-t-matrices-produit"
       ]
     },
     {
-      "id": "al-t-markov",
+      "id": "al-t-matrices-markov",
       "theme": "algebre-lineaire",
       "niveau": "terminale",
       "chapitre": "al-t-matrices",
       "type": "theoreme",
       "titre": "Chaîne de Markov : loi après n transitions et distribution invariante",
       "recto": "Énoncer l'expression de la loi d'une chaîne de Markov après $n$ transitions et le résultat sur la distribution invariante d'une chaîne à deux états, avec leurs hypothèses.",
+      "cours": "Une chaîne de Markov décrit un système qui passe au hasard d'un état à un autre, étape après étape, sans mémoire : la probabilité d'aller de l'état $i$ à l'état $j$ ne dépend que de l'état présent, ni du passé ni de la date. Ces probabilités $p_{ij}$ forment la matrice de transition $P$, dont chaque ligne est de somme $1$ ; on la représente aussi par un graphe orienté pondéré. La loi de $X_n$, écrite en ligne $\\pi_n$, évolue par $\\pi_{n+1} = \\pi_nP$ (c'est la formule des probabilités totales écrite avec des matrices), donc $\\pi_n = \\pi_0P^n$. Une distribution invariante, c'est-à-dire une loi $\\pi$ telle que $\\pi P = \\pi$, est un équilibre : si la chaîne part de cette loi, elle y reste. Pour deux états, avec $P = \\begin{pmatrix} 1-a & a \\\\ b & 1-b \\end{pmatrix}$, l'équilibre est $\\begin{pmatrix} \\frac{b}{a+b} & \\frac{a}{a+b} \\end{pmatrix}$, et la loi de $X_n$ s'en approche à vitesse géométrique, sauf dans les cas extrêmes $(a,b) = (0,0)$ et $(a,b) = (1,1)$.\n\n**Méthode.** Pour trouver une distribution invariante, écrire $\\pi$ avec des inconnues, traduire $\\pi P = \\pi$ par une équation par colonne de $P$, et ajouter la condition « somme des coefficients égale à $1$ ».\n\n**Piège principal.** La loi est une ligne multipliée à droite par $P$ : $\\pi_0P^n$, et non $P^n\\pi_0$. La probabilité de passer de $i$ à $j$ en $n$ étapes est le coefficient $(i,j)$ de $P^n$, pas $(p_{ij})^n$.",
       "hypotheses": [
         "$(X_n)$ est une chaîne de Markov homogène sur les états $1, \\dots, p$ : la probabilité de passer de $i$ à $j$ en une transition ne dépend ni de $n$ ni des états antérieurs.",
         "$P = (p_{ij})$ est la matrice de transition, où $p_{ij}$ (ligne $i$, colonne $j$) est la probabilité de passer de $i$ à $j$, et $\\pi_n$ est une matrice ligne.",
@@ -351,8 +356,8 @@
         }
       ],
       "prerequis": [
-        "al-t-produit-matriciel",
-        "al-t-suites-matricielles"
+        "al-t-matrices-produit",
+        "al-t-matrices-suites"
       ]
     }
   ]
