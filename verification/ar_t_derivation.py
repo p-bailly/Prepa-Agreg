@@ -362,7 +362,7 @@ for p, q, coef, trin, s, double in [
     f2 = diff(fm, x, 2)
     assert expand(f2 - coef * trin) == 0
     D = discriminant(trin, x)
-    assert expand(D - (m**2 - s**2)) == 0 or expand(D - (m**2 - s**2) * Poly(trin, x).LC() ** 0) == 0
+    assert expand(D - (m**2 - s**2)) == 0
     for sgn in (1, -1):
         f2d = f2.subs(m, sgn * s)
         assert expand(f2d - 12 * (x - sgn * double)**2) == 0          # racine double : pas de changement de signe
@@ -370,7 +370,7 @@ for p, q, coef, trin, s, double in [
         racines = solve(f2e, x)
         assert len(racines) == 2 and all(signe_change(f2e, r) for r in racines)
     f2z = f2.subs(m, 0)                                                # |m| < s : f'' > 0
-    assert all(rr.is_real is False for rr in solve(f2z, x))
+    assert all(f2z.subs(x, xv) > 0 for xv in range(-10, 11)) and discriminant(trin.subs(m, 0), x) < 0
 # Correction ex4 : f_m' = 4x^3 - 6m x^2 + 12x.
 assert expand(diff(x**4 - 2 * m * x**3 + 6 * x**2, x) - (4 * x**3 - 6 * m * x**2 + 12 * x)) == 0
 # Discriminants exacts : ex4 m^2 - 4 ; v1 (2x^2 - m x + 2) : m^2 - 16 ; v2 m^2 - 36.
