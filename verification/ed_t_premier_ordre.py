@@ -309,4 +309,9 @@ assert (x + 1).subs(x, -1) != -(x + 1).subs(x, 1)
 # Primitive de x (impaire) : x^2/2 + C paire pour tout C.
 assert nul((x**2 / 2 + C).subs(x, -x) - (x**2 / 2 + C))
 
+# Indices des variantes de primitives-ex1 : -3/x primitive de 3/x^2, 2 sqrt(x) primitive de 1/sqrt(x).
+assert nul(diff(-3 / x, x) - 3 / x**2) and nul(diff(2 * sqrt(x), x) - 1 / sqrt(x))
+# Cours des primitives : u'u^n -> u^{n+1}/(n+1) (ex. u = x^2 + 1, n = -2, u ne s'annule pas).
+assert nul(diff((x**2 + 1) ** (-1) / (-1), x) - 2 * x * (x**2 + 1) ** (-2))
+
 print("ed_t_premier_ordre : toutes les vérifications passent.")
