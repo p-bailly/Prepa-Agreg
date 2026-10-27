@@ -1,0 +1,60 @@
+# Construit l'APK Android et le publie dans la release « apk » du dépôt.
+# Lien permanent : https://github.com/p-bailly/Prepa-Agreg/releases/latest/download/prepa-agreg.apk
+# (« Mes applis » suit ce fichier : ne jamais changer le nom de l'APK, l'applicationId ni la clé de signature.)
+name: APK Android
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    # Uniquement sur la branche par défaut du dépôt.
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm test
+      # Vérifications calculatoires du contenu (SymPy, hors APK) : voir CLAUDE.md, « Contrôle de l'exactitude ».
+      - run: pip install sympy && python3 verification/tout.py
+      - run: npm run build
+      - run: npx cap sync android
+      - name: Compilation de l'APK
+        working-directory: android
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk ../prepa-agreg.apk
+      - name: Publication dans la release « apk »
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES="APK construit automatiquement depuis ${GITHUB_SHA::7} (build n°${{ github.run_number }})."
+          if gh release view apk >/dev/null 2>&1; then
+            gh release upload apk prepa-agreg.apk --clobber
+            gh release edit apk --title "Prépa Agreg – APK Android" --notes "$NOTES"
+          else
+            gh release create apk prepa-agreg.apk --target "$GITHUB_SHA" --latest \
+              --title "Prépa Agreg – APK Android" --notes "$NOTES"
+          fi

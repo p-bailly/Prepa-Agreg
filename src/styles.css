@@ -1,0 +1,953 @@
+/* Thème « Cours LaTeX » : celui des cours et des entraînements (voir CLAUDE.md, « Allure visuelle »).
+   Blanc, texte presque noir, rouge #CE2029, coins carrés partout, cadres noirs de 1 px, Latin Modern. Ni dégradé, ni ombre,
+   ni fond « papier ». Variante sombre sous :root[data-theme='dark'], posée avant le premier rendu par index.html. */
+
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('./polices/lmroman10-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('./polices/lmroman10-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('./polices/lmroman10-italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('./polices/lmroman10-bolditalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Latin Modern Roman Caps';
+  src: url('./polices/lmromancaps10-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --fond: #ffffff;
+  --texte: #111111;
+  --doux: #444444;
+  --bord: #111111;
+  --trait: #d4d4d4;
+  --rouge: #ce2029;
+  --rouge-fonce: #a3181f;
+  /* Couleur des étiquettes en petites capitales (rouge lisible sur le fond). */
+  --capitales: #ce2029;
+  --sur-rouge: #ffffff;
+  --desactive: #9a9a9a;
+  --juste: #1b6e35;
+  --faux: #b3161e;
+  /* Encadrés de résultats, comme dans les cours. */
+  --definition: #1b7a3a;
+  --theoreme: #ce2029;
+  --exemple: #1f5aa6;
+  --methode: #b45a00;
+  --remarque: #111111;
+  --police: 'Latin Modern Roman', 'Latin Modern', 'CMU Serif', 'Times New Roman', serif;
+  --pied: 0px;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --fond: #141414;
+  --texte: #ececec;
+  --doux: #b4b4b4;
+  --bord: #ececec;
+  --trait: #3a3a3a;
+  --rouge: #ce2029;
+  --rouge-fonce: #e0464e;
+  --capitales: #f0575e;
+  --desactive: #6c6c6c;
+  --juste: #5cc27f;
+  --faux: #ff6b70;
+  --definition: #4cbb6c;
+  --theoreme: #ef4d55;
+  --exemple: #6aa2ee;
+  --methode: #e8913a;
+  --remarque: #ececec;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  font-size: 18px;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  border-radius: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--rouge);
+  outline-offset: 2px;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ---------- Charpente : écran défilant, pied fixé, onglets ---------- */
+
+.appli {
+  min-height: 100dvh;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ecran {
+  padding: calc(16px + env(safe-area-inset-top)) 16px calc(var(--pied) + 24px + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+
+.avec-onglets {
+  --barre: 60px;
+}
+
+.avec-onglets .ecran {
+  padding-bottom: calc(var(--pied) + var(--barre) + 24px + env(safe-area-inset-bottom));
+}
+
+.onglets {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--fond);
+  border-top: 1px solid var(--bord);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.onglets button {
+  min-height: 60px;
+  background: none;
+  border: none;
+  border-top: 4px solid transparent;
+  color: var(--doux);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.onglets button[aria-current='page'] {
+  color: var(--rouge-fonce);
+  border-top-color: var(--rouge);
+  font-weight: 700;
+}
+
+:root[data-theme='light'] .onglets button[aria-current='page'] {
+  color: var(--rouge);
+}
+
+.pied {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  background: var(--fond);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bord);
+}
+
+.avec-onglets .pied {
+  bottom: calc(var(--barre) + env(safe-area-inset-bottom));
+  padding-bottom: 12px;
+  border-top: none;
+}
+
+.pied-interieur {
+  max-width: 608px;
+  margin: 0 auto;
+}
+
+/* ---------- Titres et étiquettes ---------- */
+
+.titre-ecran {
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--rouge);
+}
+
+.etiquette {
+  display: block;
+  color: var(--capitales);
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-size: 19px;
+  margin: 0 0 6px;
+}
+
+.doux {
+  color: var(--doux);
+}
+
+.petit {
+  font-size: 15px;
+}
+
+h2.sous-titre {
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+/* ---------- Blocs ---------- */
+
+.bloc {
+  border: 1px solid var(--bord);
+  padding: 18px;
+  margin: 0 0 16px;
+}
+
+.bloc > :last-child {
+  margin-bottom: 0;
+}
+
+.grand-nombre {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.ligne {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.deux-colonnes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.deux-colonnes .bloc {
+  margin: 0;
+}
+
+.trois-colonnes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--bord);
+  margin-bottom: 16px;
+}
+
+.trois-colonnes > div {
+  padding: 14px 8px;
+  text-align: center;
+}
+
+.trois-colonnes > div + div {
+  border-left: 1px solid var(--bord);
+}
+
+.trois-colonnes .grand-nombre {
+  font-size: 34px;
+}
+
+/* ---------- Boutons ---------- */
+
+.bouton-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 76px;
+  border: none;
+  background: var(--rouge);
+  color: var(--sur-rouge);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.bouton-principal:active {
+  background: var(--rouge-fonce);
+}
+
+.bouton-principal:disabled {
+  background: var(--desactive);
+}
+
+.bouton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 60px;
+  padding: 8px 14px;
+  border: 1px solid var(--bord);
+  background: var(--fond);
+  font-size: 18px;
+  text-align: center;
+}
+
+.bouton:active {
+  background: var(--trait);
+}
+
+.bouton:disabled {
+  color: var(--desactive);
+  border-color: var(--desactive);
+}
+
+.bouton.compact {
+  min-height: 44px;
+  width: auto;
+  font-size: 16px;
+}
+
+.bouton + .bouton {
+  margin-top: 10px;
+}
+
+.lien {
+  background: none;
+  border: none;
+  padding: 10px 0;
+  min-height: 44px;
+  color: var(--doux);
+  text-decoration: underline;
+  font-size: 15px;
+}
+
+.rangee-boutons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.rangee-boutons.trois {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rangee-boutons .bouton {
+  min-height: 60px;
+  padding: 4px 2px;
+  flex-direction: column;
+  gap: 0;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.rangee-boutons .bouton + .bouton {
+  margin-top: 0;
+}
+
+.rangee-boutons .delai {
+  font-size: 13px;
+  color: var(--doux);
+}
+
+.question-pied {
+  text-align: center;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+/* ---------- En-tête de carte ---------- */
+
+.entete-carte {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--doux);
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--rouge);
+  margin-bottom: 16px;
+}
+
+.titre-carte {
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.consigne {
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.retour {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 8px;
+  color: var(--doux);
+  font-size: 16px;
+}
+
+/* ---------- Encadrés de résultat : titre en onglet à cheval sur le bord ---------- */
+
+.encadre {
+  --c: var(--remarque);
+  position: relative;
+  border: 1px solid var(--c);
+  background: color-mix(in srgb, var(--c) 8%, var(--fond));
+  padding: 26px 18px 16px;
+  margin: 22px 0 16px;
+}
+
+.encadre > .onglet {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  transform: translateY(-50%);
+  background: var(--c);
+  color: #ffffff;
+  padding: 2px 10px;
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  font-size: 17px;
+  max-width: calc(100% - 24px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:root[data-theme='dark'] .encadre > .onglet {
+  color: #141414;
+}
+
+.encadre.definition {
+  --c: var(--definition);
+}
+.encadre.theoreme {
+  --c: var(--theoreme);
+}
+.encadre.exemple {
+  --c: var(--exemple);
+}
+.encadre.methode {
+  --c: var(--methode);
+}
+.encadre.remarque {
+  --c: var(--remarque);
+}
+
+.encadre > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Volets repliables ---------- */
+
+.volet {
+  border: 1px solid var(--bord);
+  margin: 0 0 12px;
+}
+
+.volet > .tete-volet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 14px;
+  background: var(--fond);
+  border: none;
+  text-align: left;
+  font-size: 18px;
+}
+
+.volet > .tete-volet .fleche {
+  width: 1em;
+  color: var(--doux);
+}
+
+.volet > .tete-volet .marque {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--capitales);
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+.volet > .corps-volet {
+  padding: 4px 16px 16px;
+  border-top: 1px solid var(--trait);
+}
+
+.volet > .corps-volet > .encadre:first-child {
+  margin-top: 22px;
+}
+
+.notation-volet {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--trait);
+}
+
+/* ---------- Texte mathématique ---------- */
+
+.texte p:last-child,
+.texte ul:last-child {
+  margin-bottom: 0;
+}
+
+.texte ul {
+  margin: 0 0 10px;
+  padding-left: 1.2em;
+}
+
+/* Une formule trop large défile dans son bloc, jamais dans la page. */
+.formule-bloc {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 4px 0;
+  margin: 6px 0 10px;
+}
+
+.katex {
+  font-size: 1.08em;
+}
+
+.katex-display {
+  margin: 0;
+}
+
+.texte .katex:not(.katex-display .katex) {
+  white-space: nowrap;
+}
+
+/* ---------- Listes, cases, choix ---------- */
+
+.liste-choix {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.liste-choix li + li {
+  margin-top: 8px;
+}
+
+.case {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid var(--bord);
+  background: var(--fond);
+  text-align: left;
+}
+
+.case .coche {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--bord);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.case[aria-checked='true'] .coche,
+.case[aria-pressed='true'] .coche {
+  background: var(--texte);
+  color: var(--fond);
+}
+
+.case.choisie {
+  outline: 2px solid var(--texte);
+  outline-offset: -2px;
+}
+
+.case.juste {
+  border-color: var(--juste);
+  border-width: 2px;
+}
+
+.case.fausse {
+  border-color: var(--faux);
+  border-width: 2px;
+}
+
+.verdict {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.verdict.juste {
+  color: var(--juste);
+}
+
+.verdict.fausse {
+  color: var(--faux);
+}
+
+.case > .contenu {
+  flex: 1;
+  min-width: 0;
+}
+
+.trou {
+  display: inline-block;
+  min-width: 2.6em;
+  padding: 0 6px;
+  border: 1px dashed var(--bord);
+  text-align: center;
+  font-weight: 700;
+}
+
+.trou.rempli {
+  border-style: solid;
+}
+
+.trou.juste {
+  border-color: var(--juste);
+  color: var(--juste);
+}
+
+.trou.fausse {
+  border-color: var(--faux);
+  color: var(--faux);
+}
+
+/* ---------- Bandeaux ---------- */
+
+.bandeau {
+  border: 2px solid var(--faux);
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+
+.bandeau strong {
+  color: var(--faux);
+}
+
+.bandeau.info {
+  border-color: var(--bord);
+  border-width: 1px;
+}
+
+/* ---------- Cases des niveaux d'exercice ---------- */
+
+.niveaux-exercices {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.niveaux-exercices button {
+  min-height: 52px;
+  border: 1px solid var(--bord);
+  background: var(--fond);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1.1;
+  padding: 2px;
+}
+
+.niveaux-exercices button .symbole {
+  font-size: 22px;
+}
+
+.niveaux-exercices button:disabled {
+  color: var(--desactive);
+  border-color: var(--trait);
+  background: var(--trait);
+}
+
+:root[data-theme='dark'] .niveaux-exercices button:disabled {
+  background: #222;
+}
+
+.niveaux-exercices button.propose {
+  outline: 2px solid var(--rouge);
+  outline-offset: -3px;
+}
+
+/* ---------- Jauges et barres ---------- */
+
+.jauge {
+  margin: 0 0 12px;
+}
+
+.jauge .ligne {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.barre {
+  height: 12px;
+  border: 1px solid var(--bord);
+  position: relative;
+}
+
+.barre > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--texte);
+}
+
+.barre.rouge > span {
+  background: var(--rouge);
+}
+
+.histogramme {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 120px;
+  border-bottom: 1px solid var(--bord);
+  margin-bottom: 4px;
+}
+
+.histogramme > span {
+  flex: 1;
+  background: var(--texte);
+  min-height: 0;
+}
+
+.histogramme > span.aujourdhui {
+  background: var(--rouge);
+}
+
+/* ---------- Parcours : chemin vertical de nœuds ---------- */
+
+.chemin {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  position: relative;
+}
+
+.chemin::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 22px;
+  bottom: 22px;
+  border-left: 2px solid var(--bord);
+}
+
+.chemin li {
+  position: relative;
+  margin: 0 0 10px;
+}
+
+.noeud {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 56px;
+  padding: 6px 12px 6px 0;
+  background: none;
+  border: none;
+  text-align: left;
+}
+
+.noeud .pastille {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fond);
+  border: 1px solid var(--bord);
+  font-size: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.noeud .intitule {
+  flex: 1;
+  min-width: 0;
+}
+
+.noeud .intitule small {
+  display: block;
+  color: var(--doux);
+  font-size: 14px;
+}
+
+.separateur-niveau {
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--capitales);
+  margin: 14px 0 8px 60px;
+}
+
+/* ---------- Filtres ---------- */
+
+.puces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.puce {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--bord);
+  background: var(--fond);
+  font-size: 16px;
+}
+
+.puce[aria-pressed='true'] {
+  background: var(--texte);
+  color: var(--fond);
+}
+
+/* ---------- Formulaires des réglages ---------- */
+
+.champ {
+  display: block;
+  margin: 0 0 14px;
+}
+
+.champ > span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.champ input[type='number'],
+.champ input[type='date'],
+.champ input[type='time'],
+.champ select,
+textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--bord);
+  background: var(--fond);
+  padding: 8px 10px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.interrupteur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--trait);
+  text-align: left;
+  font-size: 18px;
+}
+
+.interrupteur .etat {
+  flex: none;
+  min-width: 64px;
+  padding: 4px 8px;
+  border: 1px solid var(--bord);
+  text-align: center;
+  font-size: 15px;
+}
+
+.interrupteur[aria-checked='true'] .etat {
+  background: var(--texte);
+  color: var(--fond);
+}
+
+/* ---------- Fenêtre (signalement) ---------- */
+
+.voile {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: color-mix(in srgb, #000 45%, transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.fenetre {
+  width: 100%;
+  max-width: 640px;
+  background: var(--fond);
+  border-top: 2px solid var(--rouge);
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+}
+
+.liste-cartes {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.liste-cartes li + li {
+  margin-top: 8px;
+}

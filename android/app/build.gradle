@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+// Numéro de version : « majeur.mineur » vient de package.json, la fin est le numéro de build de la CI (GITHUB_RUN_NUMBER,
+// qui monte à chaque construction). C'est ce nom que « Mes applis » et les réglages du téléphone affichent ; le versionCode,
+// lui, sert à Android pour savoir qu'un APK est plus récent.
+def versionDuPaquet = new groovy.json.JsonSlurper().parse(file('../../package.json')).version.tokenize('.')
+def nomDeVersion = "${versionDuPaquet[0]}.${versionDuPaquet[1]}.${System.getenv('GITHUB_RUN_NUMBER') ?: '0'}"
+
+android {
+    namespace = "fr.perso.prepaagreg"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "fr.perso.prepaagreg"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        // La CI passe un numéro croissant (github.run_number) pour que chaque APK s'installe par-dessus le précédent.
+        versionCode((System.getenv("VERSION_CODE") ?: "1") as int)
+        versionName nomDeVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    // Clé de signature fixe, versionnée exprès, la même que celle de Scrabble et des autres applis perso (copiée de
+    // p-bailly/Scrabble, nom de fichier compris) : les APK construits ici ou par la CI ont la même signature, donc une
+    // nouvelle version s'installe sans désinstaller l'ancienne. Usage perso uniquement, pas pour le Play Store.
+    // Ne jamais créer une autre clé : Android refuserait la mise à jour.
+    signingConfigs {
+        perso {
+            storeFile file('scrabble.keystore')
+            storePassword 'scrabble'
+            keyAlias 'scrabble'
+            keyPassword 'scrabble'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.perso
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+

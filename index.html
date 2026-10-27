@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <title>Prépa Agreg</title>
+    <script>
+      // Thème choisi dans les réglages, posé avant le premier affichage (pas d'éclair blanc sur un téléphone en sombre).
+      // Même calcul que estSombre() dans src/lib/reglages.ts.
+      ;(function () {
+        var theme
+        try {
+          theme = JSON.parse(localStorage.getItem('reglages-v1') || '{}').theme
+        } catch (e) {}
+        var sombre = theme === 'sombre' || (theme !== 'clair' && matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.dataset.theme = sombre ? 'dark' : 'light'
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
