@@ -1,0 +1,229 @@
+{
+  "cartes": [
+    {
+      "id": "arith-t-premiers-infinitude",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-premiers",
+      "type": "theoreme",
+      "titre": "Infinité des nombres premiers",
+      "recto": "Énoncer l'existence d'un diviseur premier pour tout entier $n \\geq 2$, la majoration du plus petit diviseur d'un entier composé, et le théorème d'Euclide sur les nombres premiers.",
+      "cours": "Un nombre premier est un entier $p \\geq 2$ dont les seuls diviseurs positifs sont $1$ et $p$. Les nombres premiers se raréfient (il y en a $25$ inférieurs à $100$, et $143$ entre $100$ et $1000$), mais ils ne s'épuisent jamais : c'est le théorème d'Euclide, l'un des plus anciens raisonnements par l'absurde. Son ingrédient est un lemme : tout entier $n \\geq 2$ a un diviseur premier, à savoir son plus petit diviseur supérieur ou égal à $2$. Si l'on disposait de la liste finie $p_1, \\dots, p_k$ de tous les nombres premiers, l'entier $N = p_1 p_2 \\cdots p_k + 1$ aurait un diviseur premier $p_i$, qui diviserait alors $N - p_1 \\cdots p_k = 1$ : c'est absurde. Le même lemme fonde le test de primalité par essais de divisions : un entier $n \\geq 2$ qui n'est divisible par aucun nombre premier $p \\leq \\sqrt{n}$ est premier ; c'est aussi le principe du crible d'Ératosthène.\n\n**Méthode.** Pour montrer qu'un ensemble de nombres premiers est infini, supposer qu'il est fini, fabriquer un entier dont les diviseurs premiers échappent à la liste, et conclure par l'absurde. Pour tester la primalité de $n$, essayer seulement les nombres premiers $p$ tels que $p^2 \\leq n$.\n\n**Piège principal.** L'entier $N = p_1 \\cdots p_k + 1$ n'est pas forcément premier : $2 \\times 3 \\times 5 \\times 7 \\times 11 \\times 13 + 1 = 30031 = 59 \\times 509$. La preuve montre seulement que ses diviseurs premiers sont en dehors de la liste.",
+      "hypotheses": [
+        "$n$ est un entier supérieur ou égal à $2$.",
+        "Pour la majoration $p \\leq \\sqrt{n}$ : $n$ n'est pas premier."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un entier naturel quelconque, éventuellement $0$ ou $1$.",
+        "$n$ est impair.",
+        "Pour la majoration $p \\leq \\sqrt{n}$ : $n$ est impair, premier ou non."
+      ],
+      "enonce": "Tout entier $n \\geq 2$ admet au moins un diviseur premier : son plus petit diviseur $p \\geq 2$ est premier. Si de plus $n$ n'est pas premier, ce plus petit diviseur vérifie $p \\leq \\sqrt{n}$.\n\nL'ensemble des nombres premiers est infini (théorème d'Euclide).",
+      "enonce_trous": "Tout entier {{1}} admet un diviseur premier. Si $n \\geq 2$ n'est pas premier, son plus petit diviseur $p \\geq 2$ vérifie {{2}}. Si $p_1, \\dots, p_k$ sont des nombres premiers, aucun d'eux ne divise {{3}}, ce qui montre que l'ensemble des nombres premiers est infini.",
+      "trous": [
+        {
+          "reponse": "$n \\geq 2$",
+          "leurres": [
+            "$n \\geq 1$",
+            "$n \\in \\mathbb{Z}$",
+            "$n \\in \\mathbb{N}$"
+          ]
+        },
+        {
+          "reponse": "$p \\leq \\sqrt{n}$",
+          "leurres": [
+            "$p \\geq \\sqrt{n}$",
+            "$p \\leq n/3$",
+            "$p \\leq \\ln n$"
+          ]
+        },
+        {
+          "reponse": "$p_1 p_2 \\cdots p_k + 1$",
+          "leurres": [
+            "$p_1 p_2 \\cdots p_k$",
+            "$p_1 + p_2 + \\cdots + p_k$",
+            "$p_1 p_2 \\cdots p_k - p_1$"
+          ]
+        }
+      ],
+      "demo": "**Existence d'un diviseur premier.** L'ensemble des diviseurs $e \\geq 2$ de $n$ est une partie non vide de $\\mathbb{N}$ (il contient $n$) ; soit $p$ son plus petit élément. Si $p$ n'était pas premier, il aurait un diviseur $e$ avec $2 \\leq e < p$ ; comme $e \\mid p$ et $p \\mid n$, on aurait $e \\mid n$, ce qui contredit la minimalité de $p$. Donc $p$ est premier.\n\n**Majoration.** Si $n$ n'est pas premier, écrivons $n = pm$ avec $m \\in \\mathbb{N}^*$. Alors $m \\neq 1$, sinon $n = p$ serait premier ; donc $m \\geq 2$ est un diviseur de $n$ et, par minimalité de $p$, $m \\geq p$. Ainsi $n = pm \\geq p^2$, soit $p \\leq \\sqrt{n}$.\n\n**Infinité.** Supposons qu'il n'existe qu'un nombre fini de nombres premiers, $p_1, \\dots, p_k$ (avec $k \\geq 1$, car $2$ est premier), et posons $N = p_1 p_2 \\cdots p_k + 1 \\geq 3$. D'après le premier point, $N$ a un diviseur premier $p$, qui est l'un des $p_i$. Alors $p$ divise $N$ et $p_1 \\cdots p_k$, donc leur différence $1$ : c'est absurde, puisque $p \\geq 2$.",
+      "exemple": "L'entier $211$ est premier. On a $14^2 = 196 \\leq 211 < 225 = 15^2$ : il suffit de tester les nombres premiers $p \\leq 14$, soit $2$, $3$, $5$, $7$, $11$, $13$. Or $211 = 2 \\times 105 + 1 = 3 \\times 70 + 1 = 5 \\times 42 + 1 = 7 \\times 30 + 1 = 11 \\times 19 + 2 = 13 \\times 16 + 3$ : aucun ne divise $211$, qui est donc premier.\n\n(On remarque que $211 = 2 \\times 3 \\times 5 \\times 7 + 1$ ; en ajoutant $11$ et $13$ au produit, on obtient au contraire $30031 = 59 \\times 509$, qui n'est pas premier.)",
+      "contre_exemple": "- **$n = 1$** : $1$ n'a aucun diviseur premier ; le lemme demande $n \\geq 2$.\n- **Majoration pour $n$ premier** : pour $n = 7$, le plus petit diviseur $p \\geq 2$ est $7 > \\sqrt{7}$ ; la majoration $p \\leq \\sqrt{n}$ demande que $n$ ne soit pas premier.\n- **$N$ n'est pas forcément premier** : $2 \\times 3 \\times 5 \\times 7 \\times 11 \\times 13 + 1 = 30031 = 59 \\times 509$.",
+      "affirmations": [
+        {
+          "texte": "Si $p_1, \\dots, p_k$ sont les $k$ plus petits nombres premiers, alors $p_1 p_2 \\cdots p_k + 1$ est premier.",
+          "vrai": false,
+          "contre_exemple": "$2 \\times 3 \\times 5 \\times 7 \\times 11 \\times 13 + 1 = 30031 = 59 \\times 509$."
+        },
+        {
+          "texte": "Un entier $n \\geq 2$ qui n'est divisible par aucun nombre premier $p \\leq \\sqrt{n}$ est premier.",
+          "vrai": true,
+          "justification": "Sinon, son plus petit diviseur $p \\geq 2$ serait un nombre premier vérifiant $p \\leq \\sqrt{n}$ et divisant $n$."
+        },
+        {
+          "texte": "Pour tout $n \\in \\mathbb{N}$, l'entier $n^2 + n + 41$ est premier.",
+          "vrai": false,
+          "contre_exemple": "Pour $n = 40$ : $40^2 + 40 + 41 = 1681 = 41^2$."
+        },
+        {
+          "texte": "Si $p$ est premier, alors $2^p - 1$ est premier.",
+          "vrai": false,
+          "contre_exemple": "$2^{11} - 1 = 2047 = 23 \\times 89$, alors que $11$ est premier."
+        }
+      ],
+      "prerequis": [
+        "arith-t-divisibilite-combinaisons"
+      ]
+    },
+    {
+      "id": "arith-t-premiers-decomposition",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-premiers",
+      "type": "theoreme",
+      "titre": "Décomposition en facteurs premiers",
+      "recto": "Énoncer le théorème de décomposition en facteurs premiers (existence et unicité) avec ses hypothèses, et en déduire la description des diviseurs.",
+      "cours": "Les nombres premiers sont les « atomes » de la multiplication : tout entier $n \\geq 2$ est un produit de nombres premiers, et ce produit est unique à l'ordre des facteurs près. L'existence est facile (on casse $n$ tant qu'il n'est pas premier) ; l'unicité est plus profonde et repose sur le lemme d'Euclide : un nombre premier qui divise un produit divise l'un des facteurs. En regroupant les facteurs égaux, on écrit $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$. Cette écriture rend lisibles les questions de divisibilité : $d$ divise $n$ si et seulement si $d$ s'écrit avec certains des mêmes nombres premiers, à des exposants inférieurs ou égaux ; le PGCD de deux entiers prend les exposants minimaux des facteurs communs, le PPCM les exposants maximaux ; $n$ est un carré si et seulement si tous ses exposants sont pairs.\n\n**Méthode.** Pour décomposer $n$, diviser successivement par $2$, $3$, $5$, $7$… tant que c'est possible, et s'arrêter quand le carré du nombre premier testé dépasse le quotient restant : ce quotient, s'il est différent de $1$, est alors premier. Le nombre de diviseurs positifs de $n$ est $(\\alpha_1 + 1) \\cdots (\\alpha_r + 1)$.\n\n**Piège principal.** L'unicité ne vaut que pour des facteurs premiers et des exposants non nuls : $12 = 4 \\times 3$ est un produit de facteurs premiers entre eux, mais ce n'est pas la décomposition, qui est $12 = 2^2 \\times 3$. Pour compter les diviseurs, on multiplie les $\\alpha_i + 1$ : on n'additionne pas, et l'on ne multiplie pas les $\\alpha_i$ eux-mêmes.",
+      "hypotheses": [
+        "$n$ est un entier supérieur ou égal à $2$.",
+        "Les $p_i$ sont des nombres premiers, rangés dans l'ordre strictement croissant.",
+        "Les exposants $\\alpha_i$ sont des entiers naturels non nuls."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un entier relatif non nul.",
+        "Les $p_i$ sont seulement des entiers supérieurs ou égaux à $2$, deux à deux premiers entre eux.",
+        "Les exposants $\\alpha_i$ sont des entiers naturels, éventuellement nuls.",
+        "$n$ n'est pas premier."
+      ],
+      "enonce": "Tout entier $n \\geq 2$ s'écrit\n$$n = p_1^{\\alpha_1} p_2^{\\alpha_2} \\cdots p_r^{\\alpha_r},$$\noù $r \\geq 1$, $p_1 < p_2 < \\cdots < p_r$ sont des nombres premiers et $\\alpha_1, \\dots, \\alpha_r$ sont des entiers naturels non nuls ; cette écriture est unique.\n\nConséquence : les diviseurs positifs de $n$ sont les entiers $p_1^{\\beta_1} \\cdots p_r^{\\beta_r}$ avec $0 \\leq \\beta_i \\leq \\alpha_i$ pour tout $i$ ; il y en a $(\\alpha_1 + 1)(\\alpha_2 + 1) \\cdots (\\alpha_r + 1)$.",
+      "enonce_trous": "Tout entier {{1}} s'écrit de façon unique $n = p_1^{\\alpha_1} \\cdots p_r^{\\alpha_r}$, où $p_1 < \\cdots < p_r$ sont {{2}} et où $\\alpha_1, \\dots, \\alpha_r$ sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n \\geq 2$",
+          "leurres": [
+            "$n \\in \\mathbb{Z}^*$",
+            "$n \\in \\mathbb{N}$",
+            "$n \\in \\mathbb{Z}$"
+          ]
+        },
+        {
+          "reponse": "des nombres premiers",
+          "leurres": [
+            "des entiers $\\geq 2$ deux à deux premiers entre eux",
+            "des nombres impairs",
+            "des entiers $\\geq 2$ quelconques"
+          ]
+        },
+        {
+          "reponse": "des entiers naturels non nuls",
+          "leurres": [
+            "des entiers naturels",
+            "des entiers relatifs",
+            "des nombres premiers"
+          ]
+        }
+      ],
+      "demo": "**Existence**, par récurrence forte sur $n \\geq 2$. Si $n$ est premier, $n = n^1$ convient. Sinon $n = ab$ avec $2 \\leq a, b < n$ ; par hypothèse de récurrence, $a$ et $b$ sont des produits de nombres premiers, donc $n$ aussi. On regroupe les facteurs égaux et on les range dans l'ordre croissant.\n\n**Lemme d'Euclide pour un produit de nombres premiers.** Si un nombre premier $p$ divise un produit $q_1 \\cdots q_\\ell$ de nombres premiers, alors $p$ est l'un des $q_j$. Par récurrence sur $\\ell$ : pour $\\ell = 1$, $p \\mid q_1$ et $p \\neq 1$, donc $p = q_1$ puisque $q_1$ est premier. Pour $\\ell \\geq 2$ : si $p \\neq q_1$, alors $p \\nmid q_1$, donc $p \\wedge q_1 = 1$ (le PGCD est un diviseur positif de $p$ autre que $p$), et le lemme de Gauss donne $p \\mid q_2 \\cdots q_\\ell$ ; on conclut par l'hypothèse de récurrence.\n\n**Unicité**, par récurrence forte sur $n$. Supposons $n = p_1 \\cdots p_k = q_1 \\cdots q_\\ell$, deux produits de nombres premiers écrits avec répétitions dans l'ordre croissant. Alors $p_1$ divise $q_1 \\cdots q_\\ell$, donc $p_1$ est l'un des $q_j$, d'où $p_1 \\geq q_1$ ; de même $q_1 \\geq p_1$, donc $p_1 = q_1$. En simplifiant, $n / p_1 = p_2 \\cdots p_k = q_2 \\cdots q_\\ell$. Si $n / p_1 = 1$, alors $k = \\ell = 1$ ; sinon l'hypothèse de récurrence, appliquée à $n / p_1 < n$, donne l'égalité des deux listes.\n\n**Diviseurs.** Si $d \\geq 1$ divise $n$, écrivons $n = dm$. Tout facteur premier de $d$ ou de $m$ divise $n$, donc est l'un des $p_i$ : $d = \\prod p_i^{\\beta_i}$ et $m = \\prod p_i^{\\gamma_i}$ avec $\\beta_i, \\gamma_i \\geq 0$. Alors $n = \\prod p_i^{\\beta_i + \\gamma_i}$, et l'unicité donne $\\beta_i + \\gamma_i = \\alpha_i$, donc $\\beta_i \\leq \\alpha_i$. Réciproquement, un tel $d$ divise $n = d \\times p_1^{\\alpha_1 - \\beta_1} \\cdots p_r^{\\alpha_r - \\beta_r}$. Chaque $\\beta_i$ se choisit parmi $\\alpha_i + 1$ valeurs, et deux choix différents donnent deux entiers différents (unicité), d'où le nombre de diviseurs.",
+      "exemple": "$360 = 2 \\times 180 = 2^2 \\times 90 = 2^3 \\times 45 = 2^3 \\times 3^2 \\times 5$. Il a $(3 + 1)(2 + 1)(1 + 1) = 24$ diviseurs positifs.\n\nAvec $84 = 2^2 \\times 3 \\times 7$, on lit $360 \\wedge 84 = 2^2 \\times 3 = 12$ (exposants minimaux des facteurs premiers communs).",
+      "contre_exemple": "- **Exposants nuls** : si l'on autorise $\\alpha_i = 0$, on perd l'unicité : $12 = 2^2 \\times 3 = 2^2 \\times 3 \\times 5^0$.\n- **Facteurs non premiers** : $12 = 12^1 = 3 \\times 4$ donne deux écritures en facteurs deux à deux premiers entre eux, rangés dans l'ordre croissant.\n- **L'unicité n'est pas gratuite** : dans l'ensemble des entiers pairs, appelons « indécomposable » un entier pair qui n'est pas le produit de deux entiers pairs : ce sont $2$, $6$, $10$, $14$, $18$…, c'est-à-dire les entiers de la forme $4k + 2$. Alors $60 = 2 \\times 30 = 6 \\times 10$ s'écrit de deux façons comme produit d'indécomposables. Dans $\\mathbb{N}$, c'est le lemme d'Euclide qui empêche ce phénomène.",
+      "affirmations": [
+        {
+          "texte": "L'entier $2^3 \\times 3^2 \\times 5$ a $3 \\times 2 \\times 1 = 6$ diviseurs positifs.",
+          "vrai": false,
+          "contre_exemple": "Il en a $(3 + 1)(2 + 1)(1 + 1) = 24$ : par exemple $1$, $2$, $3$, $4$, $5$, $6$ et $8$ en sont déjà sept."
+        },
+        {
+          "texte": "Un entier $n \\geq 2$ est le carré d'un entier si et seulement si tous les exposants de sa décomposition en facteurs premiers sont pairs.",
+          "vrai": true,
+          "justification": "Si $n = m^2$, la décomposition de $n$ s'obtient en doublant les exposants de celle de $m$ ; réciproquement, si tous les $\\alpha_i$ sont pairs, $n = \\left(\\prod p_i^{\\alpha_i / 2}\\right)^2$."
+        },
+        {
+          "texte": "Le PGCD de $2^3 \\times 3 \\times 5^2$ et de $2 \\times 3^2 \\times 7$ est $2^3 \\times 3^2 \\times 5^2 \\times 7$.",
+          "vrai": false,
+          "contre_exemple": "Le PGCD prend les exposants minimaux des facteurs communs : c'est $2 \\times 3 = 6$. L'entier proposé (exposants maximaux) est le PPCM ; il ne divise pas $2 \\times 3^2 \\times 7$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-premiers-infinitude",
+        "arith-t-gauss"
+      ]
+    },
+    {
+      "id": "arith-t-premiers-euclide",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-premiers",
+      "type": "theoreme",
+      "titre": "Lemme d'Euclide",
+      "recto": "Énoncer le lemme d'Euclide avec ses hypothèses, sa généralisation à plusieurs facteurs et sa réciproque.",
+      "cours": "Le lemme d'Euclide est la propriété qui distingue les nombres premiers : si un nombre premier $p$ divise un produit $ab$, il divise $a$ ou $b$. Il découle du lemme de Gauss : si $p$ ne divise pas $a$, alors $p \\wedge a = 1$, car ce PGCD est un diviseur positif de $p$, donc $1$ ou $p$, et ce n'est pas $p$. Par récurrence, il s'étend aux produits de plusieurs facteurs, et en particulier aux puissances : $p \\mid a^k$ entraîne $p \\mid a$. C'est l'outil de l'unicité de la décomposition en facteurs premiers, des preuves d'irrationalité comme celle de $\\sqrt{2}$, et de l'arithmétique modulo $p$ : un produit n'est divisible par $p$ que si l'un des facteurs l'est, ce qui permet de résoudre $(x - 1)(x + 1) \\equiv 0 \\pmod{p}$ comme une équation « produit nul ».\n\n**Méthode.** Avant d'appliquer le lemme, vérifier que le diviseur est **premier** ; conclure « $p \\mid a$ ou $p \\mid b$ », puis traiter les deux cas.\n\n**Piège principal.** Le lemme est faux pour un diviseur non premier : $6 \\mid 2 \\times 3$, $4 \\mid 2 \\times 2$, et $8 \\mid (3 - 1)(3 + 1)$, sans que le diviseur divise l'un des facteurs. Il caractérise d'ailleurs les nombres premiers parmi les entiers $p \\geq 2$.",
+      "hypotheses": [
+        "$p$ est un nombre premier.",
+        "$a$ et $b$ sont des entiers relatifs.",
+        "$p$ divise le produit $ab$."
+      ],
+      "hypotheses_pieges": [
+        "$p$ est un entier supérieur ou égal à $2$, non nécessairement premier.",
+        "$p$ est un entier impair supérieur ou égal à $3$.",
+        "$a$ et $b$ sont premiers entre eux.",
+        "$p$ divise la somme $a + b$."
+      ],
+      "enonce": "Soient $p$ un nombre premier et $a, b \\in \\mathbb{Z}$. Si $p$ divise $ab$, alors $p$ divise $a$ ou $p$ divise $b$.\n\nPlus généralement, si $p$ divise un produit $a_1 a_2 \\cdots a_k$ d'entiers, alors $p$ divise l'un des $a_i$ ; en particulier, si $p \\mid a^k$ avec $k \\geq 1$, alors $p \\mid a$.\n\nRéciproquement, un entier $p \\geq 2$ tel que, pour tous $a, b \\in \\mathbb{Z}$, $p \\mid ab \\Rightarrow (p \\mid a \\text{ ou } p \\mid b)$, est premier.",
+      "enonce_trous": "Soient {{1}} et $a, b \\in \\mathbb{Z}$. Si $p$ divise {{2}}, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "$p$ un nombre premier",
+          "leurres": [
+            "$p \\geq 2$ un entier",
+            "$p$ un entier impair supérieur ou égal à $3$",
+            "$p \\geq 4$ un carré parfait"
+          ]
+        },
+        {
+          "reponse": "$ab$",
+          "leurres": [
+            "$a + b$",
+            "$a^2 + b^2$",
+            "$ab + 1$"
+          ]
+        },
+        {
+          "reponse": "$p$ divise $a$ ou $p$ divise $b$",
+          "leurres": [
+            "$p$ divise $a$ et $p$ divise $b$",
+            "$p^2$ divise $ab$",
+            "$p$ divise $a$"
+          ]
+        }
+      ],
+      "demo": "**Deux facteurs.** Supposons $p \\mid ab$ et $p \\nmid a$. Le PGCD $p \\wedge a$ est un diviseur positif de $p$, donc vaut $1$ ou $p$ ; il ne vaut pas $p$, puisque $p \\nmid a$. Ainsi $p \\wedge a = 1$, et le lemme de Gauss donne $p \\mid b$.\n\n**Plusieurs facteurs**, par récurrence sur $k \\geq 1$ ; le cas $k = 1$ est clair. Si $p$ divise $a_1 \\cdots a_{k+1} = (a_1 \\cdots a_k) \\times a_{k+1}$, le cas de deux facteurs donne $p \\mid a_{k+1}$, ou $p \\mid a_1 \\cdots a_k$, et alors l'hypothèse de récurrence conclut. Avec $a_1 = \\cdots = a_k = a$, on obtient : $p \\mid a^k \\Rightarrow p \\mid a$.\n\n**Réciproque.** Soit $p \\geq 2$ non premier : $p = uv$ avec $1 < u < p$ et $1 < v < p$. Alors $p \\mid uv$, mais $p \\nmid u$ et $p \\nmid v$ puisque $0 < u, v < p$ ; $p$ ne vérifie donc pas la propriété.",
+      "exemple": "**$\\sqrt{2}$ est irrationnel.** Supposons $\\sqrt{2} = a/b$ avec $a, b \\in \\mathbb{N}^*$ et $a \\wedge b = 1$ (fraction irréductible). Alors $a^2 = 2b^2$, donc $2 \\mid a^2$, et le lemme d'Euclide ($2$ est premier) donne $2 \\mid a$. En écrivant $a = 2a'$, on obtient $4a'^2 = 2b^2$, soit $b^2 = 2a'^2$ ; donc $2 \\mid b^2$, puis $2 \\mid b$. Ainsi $2$ divise $a$ et $b$, ce qui contredit $a \\wedge b = 1$.",
+      "contre_exemple": "- **$p$ non premier** : $6 \\mid 2 \\times 3$, mais $6 \\nmid 2$ et $6 \\nmid 3$ ; de même $4 \\mid 2 \\times 2$ sans que $4 \\mid 2$.\n- **Une somme au lieu d'un produit** : $2 \\mid 1 + 1$, mais $2 \\nmid 1$.\n- **Modulo un entier composé** : $3^2 \\equiv 1 \\pmod{8}$, donc $8 \\mid (3 - 1)(3 + 1)$, alors que $3 \\not\\equiv 1$ et $3 \\not\\equiv -1 \\pmod{8}$.",
+      "affirmations": [
+        {
+          "texte": "Si $p$ est premier et $p \\mid a^2$, alors $p^2 \\mid a^2$.",
+          "vrai": true,
+          "justification": "Par le lemme d'Euclide, $p \\mid a$ ; en écrivant $a = pa'$, on a $a^2 = p^2 a'^2$."
+        },
+        {
+          "texte": "Si $n \\geq 2$ est un entier et $n \\mid a^2$, alors $n \\mid a$.",
+          "vrai": false,
+          "contre_exemple": "$4 \\mid 2^2$, mais $4 \\nmid 2$ : il faut que $n$ soit premier."
+        },
+        {
+          "texte": "Si $p$ est premier, $p \\mid ab$ et $p \\mid a$, alors $p \\nmid b$.",
+          "vrai": false,
+          "contre_exemple": "$p = 2$, $a = b = 2$ : $2 \\mid 4$ et $2 \\mid 2$, et $2 \\mid b$. Le « ou » du lemme n'est pas exclusif."
+        },
+        {
+          "texte": "Si $p$ est premier et $p \\mid a_1 a_2 a_3$, alors $p$ divise au moins l'un des entiers $a_1$, $a_2$, $a_3$.",
+          "vrai": true,
+          "justification": "C'est la généralisation à plusieurs facteurs : appliquer le lemme à $(a_1 a_2) \\times a_3$, puis à $a_1 \\times a_2$."
+        }
+      ],
+      "prerequis": [
+        "arith-t-gauss"
+      ]
+    }
+  ]
+}

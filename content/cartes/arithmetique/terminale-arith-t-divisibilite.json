@@ -1,0 +1,158 @@
+{
+  "cartes": [
+    {
+      "id": "arith-t-divisibilite-combinaisons",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-divisibilite",
+      "type": "theoreme",
+      "titre": "Divisibilité et combinaisons linéaires",
+      "recto": "Définir la divisibilité dans $\\mathbb{Z}$ et énoncer sa stabilité par combinaison linéaire, avec ses hypothèses.",
+      "cours": "La divisibilité est la relation de base de l'arithmétique : on dit que $d$ divise $a$, et l'on note $d \\mid a$, s'il existe un entier $k$ tel que $a = kd$. Tout entier divise $0$, et $0$ ne divise que $0$. Si $b \\neq 0$ et $d \\mid b$, alors $|d| \\leq |b|$ : un entier non nul n'a qu'un nombre fini de diviseurs. Si $a \\mid b$ et $b \\mid a$, alors $a = \\pm b$.\n\nLa propriété essentielle est la stabilité par combinaison linéaire : si $d$ divise $a$ et $b$, il divise $au + bv$ pour tous entiers $u$ et $v$, en particulier $a + b$, $a - b$ et tout multiple de $a$. C'est l'outil qui permet d'**éliminer une inconnue** : si $d$ divise $n + 3$ et $2n + 13$, il divise $(2n + 13) - 2(n + 3) = 7$, et le problème se ramène aux diviseurs de $7$.\n\n**Méthode.** Pour déterminer les entiers $n$ tels que $A(n)$ divise $B(n)$, écrire $B(n) = q(n) A(n) + c$ avec $q(n)$ entier et $c$ constant. Alors $A(n) \\mid B(n)$ équivaut à $A(n) \\mid c$ (dans les deux sens, par combinaison linéaire). On liste ensuite les diviseurs de $c$, positifs **et négatifs**, et l'on en déduit $n$.\n\n**Piège principal.** La réciproque est fausse : $d$ peut diviser $a + b$ sans diviser ni $a$ ni $b$ ($2 \\mid 1 + 1$). Et diviser un produit n'est pas diviser l'un des facteurs : $6 \\mid 2 \\times 3$.",
+      "hypotheses": [
+        "$a$, $b$ et $d$ sont des entiers relatifs.",
+        "$d$ divise $a$ et $d$ divise $b$.",
+        "Les coefficients $u$ et $v$ sont des entiers relatifs."
+      ],
+      "hypotheses_pieges": [
+        "$d$ divise $a$ ou $d$ divise $b$ (l'une des deux divisibilités suffit).",
+        "$d$ divise le produit $ab$.",
+        "Les coefficients $u$ et $v$ peuvent être des nombres rationnels.",
+        "$d$ est un nombre premier."
+      ],
+      "enonce": "Soient $a$, $b$, $d$ des entiers relatifs. On dit que $d$ divise $a$, et l'on note $d \\mid a$, s'il existe $k \\in \\mathbb{Z}$ tel que $a = kd$.\n\nSi $d$ divise $a$ et $d$ divise $b$, alors $d$ divise $au + bv$ pour tous $u, v \\in \\mathbb{Z}$. En particulier, $d$ divise $a + b$, $a - b$ et $ma$ pour tout $m \\in \\mathbb{Z}$.",
+      "enonce_trous": "Soient $a, b, d \\in \\mathbb{Z}$. Si $d$ divise {{1}}, alors, pour {{2}}, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$a$ et $b$",
+          "leurres": [
+            "$a$ ou $b$",
+            "le produit $ab$",
+            "la somme $a + b$"
+          ]
+        },
+        {
+          "reponse": "tous $u, v \\in \\mathbb{Z}$",
+          "leurres": [
+            "tous $u, v \\in \\mathbb{Q}$",
+            "tous $u, v \\in \\mathbb{R}$",
+            "tous $u, v \\in \\mathbb{Q}$ tels que $u + v \\in \\mathbb{Z}$"
+          ]
+        },
+        {
+          "reponse": "$d$ divise $au + bv$",
+          "leurres": [
+            "$d^2$ divise $au + bv$",
+            "$au + bv$ divise $d$",
+            "$d$ divise $u + v$"
+          ]
+        }
+      ],
+      "demo": "Par hypothèse, il existe $k, \\ell \\in \\mathbb{Z}$ tels que $a = kd$ et $b = \\ell d$. Pour $u, v \\in \\mathbb{Z}$ :\n$$au + bv = kdu + \\ell dv = d(ku + \\ell v).$$\nComme $k$, $\\ell$, $u$, $v$ sont entiers, $ku + \\ell v \\in \\mathbb{Z}$, donc $d \\mid au + bv$. Les cas particuliers s'obtiennent avec $(u, v) = (1, 1)$, $(1, -1)$ et $(m, 0)$ pour $m \\in \\mathbb{Z}$.\n\n**Remarque.** Le cas $d = 0$ est couvert : $0 \\mid a$ signifie $a = 0$, et alors $au + bv = 0$.",
+      "exemple": "Déterminons les $n \\in \\mathbb{Z}$ tels que $n - 1$ divise $n + 5$. On a $n + 5 = (n - 1) + 6$. Si $n - 1 \\mid n + 5$, alors $n - 1$ divise $(n + 5) - (n - 1) = 6$ ; réciproquement, si $n - 1 \\mid 6$, alors $n - 1$ divise $(n - 1) + 6 = n + 5$.\n\nDonc $n - 1 \\in \\{-6, -3, -2, -1, 1, 2, 3, 6\\}$, soit $n \\in \\{-5, -2, -1, 0, 2, 3, 4, 7\\}$. Le cas $n = 1$ est exclu : $0$ ne divise pas $6$.",
+      "contre_exemple": "- **Coefficients rationnels** : $2 \\mid 2$ et $2 \\mid 4$, mais avec $u = v = \\frac{1}{2}$, on obtient $2u + 4v = 3$, que $2$ ne divise pas.\n- **Une seule des deux divisibilités** : $2 \\mid 2$ mais $2 \\nmid 3$, et $2 \\nmid 2 + 3 = 5$.\n- **Diviser le produit ne suffit pas** : $6 \\mid 2 \\times 3$, mais $6 \\nmid 2 + 3 = 5$.\n- **La réciproque est fausse** : $2 \\mid 1 + 1$, alors que $2 \\nmid 1$.",
+      "affirmations": [
+        {
+          "texte": "Si $d$ divise $a + b$, alors $d$ divise $a$ et $d$ divise $b$.",
+          "vrai": false,
+          "contre_exemple": "$2 \\mid 1 + 1$, mais $2 \\nmid 1$."
+        },
+        {
+          "texte": "Si $d$ divise $a$ et $d$ divise $a + b$, alors $d$ divise $b$.",
+          "vrai": true,
+          "justification": "$b = (a + b) - a$ est une combinaison à coefficients entiers de $a + b$ et de $a$."
+        },
+        {
+          "texte": "Si $d$ divise $ab$, alors $d$ divise $a$ ou $d$ divise $b$.",
+          "vrai": false,
+          "contre_exemple": "$6 \\mid 2 \\times 3$, mais $6 \\nmid 2$ et $6 \\nmid 3$. (C'est vrai lorsque $d$ est premier : lemme d'Euclide.)"
+        },
+        {
+          "texte": "Si $a \\mid b$ et $b \\mid a$, alors $a = b$.",
+          "vrai": false,
+          "contre_exemple": "$2 \\mid -2$ et $-2 \\mid 2$, mais $2 \\neq -2$. On a seulement $a = \\pm b$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "arith-t-divisibilite-congruences",
+      "theme": "arithmetique",
+      "niveau": "terminale",
+      "chapitre": "arith-t-divisibilite",
+      "type": "theoreme",
+      "titre": "Congruences et opérations",
+      "recto": "Définir la congruence modulo $n$ et énoncer sa compatibilité avec les opérations, avec ses hypothèses.",
+      "cours": "Les congruences, introduites par Gauss, sont un calcul sur les restes : $a \\equiv b \\pmod{n}$ signifie que $n$ divise $a - b$, ce qui revient à dire que $a$ et $b$ ont le même reste dans la division euclidienne par $n$. Leur force est la compatibilité avec l'addition, la multiplication et les puissances : dans une somme, un produit ou une puissance, on peut remplacer chaque entier par n'importe quel entier qui lui est congru, en particulier par son reste. On calcule ainsi le reste de très grands nombres, on établit des critères de divisibilité ($10 \\equiv 1 \\pmod{9}$ donne le critère par $9$) et l'on raisonne sur un nombre fini de restes.\n\n**Méthode.** Pour le reste de $a^k$ modulo $n$, chercher un petit exposant $m \\geq 1$ tel que $a^m \\equiv 1$ (ou $-1$) modulo $n$, écrire $k = mq + s$, puis $a^k = (a^m)^q a^s \\equiv a^s$ (ou $(-1)^q a^s$) modulo $n$.\n\n**Piège principal.** On ne simplifie pas une congruence comme une égalité : $2 \\times 3 \\equiv 2 \\times 0 \\pmod{6}$ alors que $3 \\not\\equiv 0 \\pmod{6}$ (simplifier par $c$ n'est permis que si $c \\wedge n = 1$). Et les exposants ne se réduisent pas modulo $n$ : $3 \\equiv 8 \\pmod{5}$, mais $2^3 = 8 \\equiv 3$ et $2^8 = 256 \\equiv 1 \\pmod{5}$.",
+      "hypotheses": [
+        "$n$ est un entier naturel non nul.",
+        "$a$, $b$, $c$, $d$ sont des entiers relatifs.",
+        "$a \\equiv b \\pmod{n}$ et $c \\equiv d \\pmod{n}$, pour le même module $n$.",
+        "L'exposant $k$ est un entier naturel."
+      ],
+      "hypotheses_pieges": [
+        "$n$ est un nombre premier.",
+        "$a$, $b$, $c$, $d$ sont premiers avec $n$.",
+        "$c \\equiv d$ modulo un diviseur $m$ de $n$, et pas forcément modulo $n$.",
+        "$a \\geq b$ et $c \\geq d$."
+      ],
+      "enonce": "Soit $n \\in \\mathbb{N}^*$. Pour $a, b \\in \\mathbb{Z}$, on dit que $a$ est congru à $b$ modulo $n$, et l'on note $a \\equiv b \\pmod{n}$, si $n$ divise $a - b$. Cela équivaut à : $a$ et $b$ ont le même reste dans la division euclidienne par $n$.\n\nSi $a \\equiv b \\pmod{n}$ et $c \\equiv d \\pmod{n}$, alors :\n\n- $a + c \\equiv b + d \\pmod{n}$ ;\n- $ac \\equiv bd \\pmod{n}$ ;\n- $a^k \\equiv b^k \\pmod{n}$ pour tout $k \\in \\mathbb{N}$.",
+      "enonce_trous": "Soit $n \\in \\mathbb{N}^*$. On a $a \\equiv b \\pmod{n}$ lorsque {{1}}. Si $a \\equiv b \\pmod{n}$ et $c \\equiv d \\pmod{n}$, alors $a + c \\equiv b + d \\pmod{n}$, {{2}} et, pour tout $k \\in \\mathbb{N}$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n$ divise $a - b$",
+          "leurres": [
+            "$a - b$ divise $n$",
+            "$n$ divise $a + b$",
+            "$n$ divise $ab$"
+          ]
+        },
+        {
+          "reponse": "$ac \\equiv bd \\pmod{n}$",
+          "leurres": [
+            "$ac \\equiv bd \\pmod{n^2}$",
+            "$ac \\equiv bd \\pmod{2n}$",
+            "$a^c \\equiv b^d \\pmod{n}$"
+          ]
+        },
+        {
+          "reponse": "$a^k \\equiv b^k \\pmod{n}$",
+          "leurres": [
+            "$a^k \\equiv b^k \\pmod{n^k}$",
+            "$k^a \\equiv k^b \\pmod{n}$",
+            "$a^k \\equiv b \\pmod{n}$"
+          ]
+        }
+      ],
+      "demo": "**Lien avec les restes.** Écrivons les divisions euclidiennes $a = nq + r$ et $b = nq' + r'$, avec $0 \\leq r, r' < n$. Alors $a - b = n(q - q') + (r - r')$, donc $n \\mid a - b$ si et seulement si $n \\mid r - r'$. Or $-n < r - r' < n$, et le seul multiple de $n$ dans cet intervalle est $0$ : ainsi $n \\mid a - b$ si et seulement si $r = r'$.\n\n**Somme et produit.** Écrivons $a - b = nx$ et $c - d = ny$ avec $x, y \\in \\mathbb{Z}$. Alors $(a + c) - (b + d) = n(x + y)$ et\n$$ac - bd = a(c - d) + d(a - b) = n(ay + dx),$$\ndonc $n$ divise $(a + c) - (b + d)$ et $ac - bd$.\n\n**Puissances**, par récurrence sur $k$. Pour $k = 0$ : $a^0 = 1 = b^0$. Si $a^k \\equiv b^k \\pmod{n}$, la règle du produit appliquée à $a^k \\equiv b^k$ et $a \\equiv b$ donne $a^{k+1} \\equiv b^{k+1} \\pmod{n}$.",
+      "exemple": "Chiffre des unités de $7^{2026}$, c'est-à-dire son reste modulo $10$ : $7^2 = 49 \\equiv -1 \\pmod{10}$, donc $7^4 \\equiv 1 \\pmod{10}$. Comme $2026 = 4 \\times 506 + 2$,\n$$7^{2026} = (7^4)^{506} \\times 7^2 \\equiv 1 \\times 49 \\equiv 9 \\pmod{10}.$$\nLe chiffre des unités est $9$. (Le petit théorème de Fermat ne s'applique pas ici, car $10$ n'est pas premier.)",
+      "contre_exemple": "- **Pas de simplification** : $2 \\times 3 \\equiv 2 \\times 0 \\pmod{6}$, mais $3 \\not\\equiv 0 \\pmod{6}$.\n- **Modules différents** : $1 \\equiv 3 \\pmod{2}$ et $0 \\equiv 3 \\pmod{3}$, mais $1 + 0 = 1$ et $3 + 3 = 6$ ne sont congrus ni modulo $2$, ni modulo $3$, ni modulo $6$.\n- **Congruence modulo un diviseur seulement** : $0 \\equiv 0 \\pmod{4}$ et $0 \\equiv 2 \\pmod{2}$, mais $0 + 0 \\not\\equiv 0 + 2 \\pmod{4}$.\n- **Exposants** : $3 \\equiv 8 \\pmod{5}$, mais $2^3 = 8 \\equiv 3 \\pmod{5}$ et $2^8 = 256 \\equiv 1 \\pmod{5}$ : on ne réduit pas les exposants modulo $n$.\n- **Diviseurs de zéro** : $2 \\times 3 \\equiv 0 \\pmod{6}$, sans que $2$ ni $3$ soit congru à $0$ modulo $6$.",
+      "affirmations": [
+        {
+          "texte": "Si $ac \\equiv bc \\pmod{n}$ et $c \\not\\equiv 0 \\pmod{n}$, alors $a \\equiv b \\pmod{n}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 6$, $c = 2$, $a = 3$, $b = 0$ : $6 \\equiv 0 \\pmod{6}$, $2 \\not\\equiv 0 \\pmod{6}$, mais $3 \\not\\equiv 0 \\pmod{6}$. On peut simplifier par $c$ seulement si $c \\wedge n = 1$."
+        },
+        {
+          "texte": "Si $k$ et $m$ sont des entiers naturels tels que $k \\equiv m \\pmod{n}$, alors $a^k \\equiv a^m \\pmod{n}$ pour tout $a \\in \\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "$n = 5$, $a = 2$, $k = 3$, $m = 8$ : $3 \\equiv 8 \\pmod{5}$, mais $2^3 \\equiv 3$ et $2^8 \\equiv 1 \\pmod{5}$."
+        },
+        {
+          "texte": "Si $a \\equiv b \\pmod{n}$ et si $m \\in \\mathbb{N}^*$ divise $n$, alors $a \\equiv b \\pmod{m}$.",
+          "vrai": true,
+          "justification": "$m \\mid n$ et $n \\mid a - b$, donc $m \\mid a - b$ (transitivité de la divisibilité)."
+        },
+        {
+          "texte": "Si $ab \\equiv 0 \\pmod{n}$, alors $a \\equiv 0 \\pmod{n}$ ou $b \\equiv 0 \\pmod{n}$.",
+          "vrai": false,
+          "contre_exemple": "$2 \\times 3 \\equiv 0 \\pmod{6}$, mais $2 \\not\\equiv 0$ et $3 \\not\\equiv 0 \\pmod{6}$. (C'est vrai lorsque $n$ est premier : lemme d'Euclide.)"
+        }
+      ],
+      "prerequis": [
+        "arith-t-division-euclidienne",
+        "arith-t-divisibilite-combinaisons"
+      ]
+    }
+  ]
+}

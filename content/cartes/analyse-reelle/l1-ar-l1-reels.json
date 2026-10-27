@@ -1,0 +1,230 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l1-reels-triangulaire",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-reels",
+      "type": "theoreme",
+      "titre": "Inégalité triangulaire et valeur absolue",
+      "recto": "Énoncer l'inégalité triangulaire dans $\\mathbb{R}$ (deux formes) avec son cas d'égalité.",
+      "cours": "La valeur absolue mesure une distance : $|x|$ est la distance de $x$ à $0$, et $|x-a|$ la distance entre $x$ et $a$. L'inégalité triangulaire $|x+y|\\le|x|+|y|$ dit qu'une somme n'est jamais plus grande, en valeur absolue, que la somme des valeurs absolues : des termes de signes contraires se compensent en partie.\n\nC'est l'outil de base de toutes les majorations d'analyse : pour estimer $|u_n-\\ell|$, on intercale un terme connu, $|u_n-\\ell|\\le|u_n-v_n|+|v_n-\\ell|$, puis on majore chaque morceau. La seconde forme, $\\big||x|-|y|\\big|\\le|x-y|$, sert à minorer : deux nombres proches ont des valeurs absolues proches. On se souvient aussi que, pour $r\\ge0$, $|x-a|\\le r$ équivaut à $a-r\\le x\\le a+r$, ce qui transforme une inéquation avec valeur absolue en un encadrement.\n\nPièges : l'inégalité ne se « soustrait » pas, $|x-y|$ n'est pas majoré par $|x|-|y|$ ; et l'égalité $|x+y|=|x|+|y|$ n'exige pas $x=y$, seulement que $x$ et $y$ soient de même signe.",
+      "hypotheses": [
+        "$x$ et $y$ sont deux réels, de signes quelconques.",
+        "Pour l'égalité $|x+y|=|x|+|y|$ : $x$ et $y$ sont de même signe au sens large, c'est-à-dire $xy\\ge0$."
+      ],
+      "hypotheses_pieges": [
+        "Pour l'égalité $|x+y|=|x|+|y|$ : $x+y\\ge0$ (à la place de $xy\\ge0$).",
+        "Pour l'égalité $|x+y|=|x|+|y|$ : $|x|=|y|$ (à la place de $xy\\ge0$).",
+        "Pour l'égalité $|x+y|=|x|+|y|$ : $x$ et $y$ strictement positifs (à la place de $xy\\ge0$)."
+      ],
+      "enonce": "Pour tous réels $x$ et $y$ :\n\n- $|x+y|\\le|x|+|y|$, avec égalité si et seulement si $xy\\ge0$ ($x$ et $y$ de même signe au sens large) ;\n- $\\big||x|-|y|\\big|\\le|x-y|$.\n\nPlus généralement, pour tous réels $x_1,\\dots,x_n$, $|x_1+\\cdots+x_n|\\le|x_1|+\\cdots+|x_n|$. Rappel : pour $r\\ge0$, $|x-a|\\le r$ équivaut à $a-r\\le x\\le a+r$.",
+      "enonce_trous": "Pour tous réels $x$ et $y$, $|x+y|$ est {{1}} $|x|+|y|$, avec égalité si et seulement si {{2}}. On en déduit que $\\big||x|-|y|\\big|$ est inférieur ou égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "inférieur ou égal à",
+          "leurres": [
+            "supérieur ou égal à",
+            "égal à",
+            "strictement inférieur à"
+          ]
+        },
+        {
+          "reponse": "$x$ et $y$ sont de même signe au sens large ($xy\\ge0$)",
+          "leurres": [
+            "$x$ et $y$ sont de signes contraires",
+            "$x=y$",
+            "$x+y\\ge0$"
+          ]
+        },
+        {
+          "reponse": "$|x-y|$",
+          "leurres": [
+            "$|x|-|y|$",
+            "$\\frac{|x-y|}{2}$",
+            "$\\min(|x|,|y|)$"
+          ]
+        }
+      ],
+      "demo": "**Première forme.** Pour tout réel $t$, $-|t|\\le t\\le|t|$. En additionnant $-|x|\\le x\\le|x|$ et $-|y|\\le y\\le|y|$, on obtient $-(|x|+|y|)\\le x+y\\le|x|+|y|$, c'est-à-dire $|x+y|\\le|x|+|y|$.\n\n**Cas d'égalité.** Les deux membres étant positifs, l'égalité équivaut à l'égalité des carrés. Or $|x+y|^2=x^2+2xy+y^2$ et $(|x|+|y|)^2=x^2+2|xy|+y^2$. Il y a donc égalité si et seulement si $xy=|xy|$, c'est-à-dire $xy\\ge0$.\n\n**Seconde forme.** $|x|=|(x-y)+y|\\le|x-y|+|y|$, donc $|x|-|y|\\le|x-y|$. En échangeant $x$ et $y$ : $|y|-|x|\\le|y-x|=|x-y|$. Les deux inégalités donnent $\\big||x|-|y|\\big|\\le|x-y|$.\n\n**Forme générale.** Par récurrence sur $n$ : si $|x_1+\\cdots+x_n|\\le|x_1|+\\cdots+|x_n|$, alors $|x_1+\\cdots+x_{n+1}|\\le|x_1+\\cdots+x_n|+|x_{n+1}|\\le|x_1|+\\cdots+|x_{n+1}|$.\n\n**Rappel.** Pour $r\\ge0$, $|x-a|\\le r$ signifie $-r\\le x-a\\le r$, soit $a-r\\le x\\le a+r$.",
+      "exemple": "Si $|x-2|\\le1$ et $|y+1|\\le3$, alors $|x+y-1|=|(x-2)+(y+1)|\\le|x-2|+|y+1|\\le4$, donc $-3\\le x+y\\le5$. Cas d'égalité : $|-3+(-4)|=7=|-3|+|-4|$ (même signe), mais $|-3+4|=1<7$ (signes contraires).",
+      "contre_exemple": "- **L'inégalité est souvent stricte** : $x=2$, $y=-5$ donne $|x+y|=3<7=|x|+|y|$.\n- **L'égalité n'exige ni $x=y$ ni $|x|=|y|$** : $x=1$, $y=4$ donne $|x+y|=5=|x|+|y|$.\n- **La condition $x+y\\ge0$ ne suffit pas pour l'égalité** : $x=2$, $y=-1$ donne $x+y=1\\ge0$ mais $|x+y|=1<3$.\n- **On ne peut pas soustraire** : $|x-y|\\le|x|-|y|$ est faux pour $x=0$, $y=1$ ($1\\le-1$ est faux).",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $x$ et $y$, $|x-y|\\le|x|+|y|$.",
+          "vrai": true,
+          "justification": "On applique l'inégalité triangulaire à $x$ et $-y$ : $|x+(-y)|\\le|x|+|-y|=|x|+|y|$."
+        },
+        {
+          "texte": "Si $|x+y|=|x|+|y|$, alors $x$ et $y$ sont tous deux positifs ou nuls.",
+          "vrai": false,
+          "contre_exemple": "$x=y=-1$ : $|x+y|=2=|x|+|y|$, alors que $x$ et $y$ sont négatifs. Le cas d'égalité est $xy\\ge0$, qui inclut deux réels négatifs."
+        },
+        {
+          "texte": "Pour tous réels $x$ et $y$, $|x|-|y|\\le|x+y|$.",
+          "vrai": true,
+          "justification": "La seconde forme appliquée à $x$ et $-y$ donne $\\big||x|-|-y|\\big|\\le|x-(-y)|$, soit $\\big||x|-|y|\\big|\\le|x+y|$, et $|x|-|y|\\le\\big||x|-|y|\\big|$."
+        },
+        {
+          "texte": "Pour tous réels $x$ et $y$, $\\big||x|-|y|\\big|=|x-y|$.",
+          "vrai": false,
+          "contre_exemple": "$x=1$, $y=-1$ : $\\big||x|-|y|\\big|=0$ alors que $|x-y|=2$. On a seulement l'inégalité $\\le$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "ar-l1-reels-densite",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-reels",
+      "type": "theoreme",
+      "titre": "Partie entière et densité de $\\mathbb{Q}$ dans $\\mathbb{R}$",
+      "recto": "Énoncer la propriété d'Archimède, la définition de la partie entière et la densité de $\\mathbb{Q}$ dans $\\mathbb{R}$, avec leurs hypothèses.",
+      "cours": "Les rationnels sont « partout » dans $\\mathbb{R}$, même si $\\mathbb{R}$ contient des nombres qui n'en sont pas, comme $\\sqrt2$. Tout repose sur la propriété d'Archimède : si $a>0$, les multiples $a,2a,3a,\\dots$ finissent par dépasser n'importe quel réel $b$ ; elle découle de la propriété de la borne supérieure.\n\nElle permet de définir la partie entière $\\lfloor x\\rfloor$, le plus grand entier relatif inférieur ou égal à $x$, caractérisée par $\\lfloor x\\rfloor\\le x<\\lfloor x\\rfloor+1$. La densité en découle : pour placer un rationnel entre $a<b$, on choisit un dénominateur $q$ assez grand pour que $q(b-a)>1$, de sorte qu'un entier $p$ tombe strictement entre $qa$ et $qb$ ; on prend $p=\\lfloor qa\\rfloor+1$.\n\nEn pratique, on retient surtout la forme séquentielle : tout réel $x$ est limite de la suite de rationnels $\\frac{\\lfloor10^nx\\rfloor}{10^n}$ (ses approximations décimales par défaut), ce qui permet d'étendre aux réels une propriété démontrée sur les rationnels, par exemple par continuité ou par monotonie.\n\nPièges : la partie entière d'un négatif ($\\lfloor-2{,}5\\rfloor=-3$, et non $-2$), les formules fausses comme $\\lfloor x+y\\rfloor=\\lfloor x\\rfloor+\\lfloor y\\rfloor$, et l'inégalité stricte $a<b$, indispensable pour la densité.",
+      "hypotheses": [
+        "Propriété d'Archimède : $a>0$, et $b$ est un réel quelconque.",
+        "Partie entière : $x$ est un réel quelconque, et l'entier est cherché dans $\\mathbb{Z}$.",
+        "Densité : $a$ et $b$ sont deux réels avec $a<b$ (inégalité stricte)."
+      ],
+      "hypotheses_pieges": [
+        "Propriété d'Archimède : $a\\ge0$ (à la place de $a>0$).",
+        "Partie entière : l'entier est cherché dans $\\mathbb{N}$ (à la place de $\\mathbb{Z}$).",
+        "Densité : $a\\le b$ (à la place de $a<b$)."
+      ],
+      "enonce": "**Propriété d'Archimède.** Pour tout réel $a>0$ et tout réel $b$, il existe un entier naturel $n$ tel que $na>b$.\n\n**Partie entière.** Pour tout réel $x$, il existe un unique entier relatif $n$ tel que $n\\le x<n+1$ ; on le note $\\lfloor x\\rfloor$. C'est le plus grand entier relatif inférieur ou égal à $x$, et $x-1<\\lfloor x\\rfloor\\le x$.\n\n**Densité de $\\mathbb{Q}$ dans $\\mathbb{R}$.** Pour tous réels $a<b$, il existe un rationnel $r$ tel que $a<r<b$. De façon équivalente, tout réel est limite d'une suite de rationnels, par exemple $x=\\lim_{n\\to+\\infty}\\frac{\\lfloor10^nx\\rfloor}{10^n}$. L'ensemble $\\mathbb{R}\\setminus\\mathbb{Q}$ des irrationnels est lui aussi dense dans $\\mathbb{R}$.",
+      "enonce_trous": "Pour tout réel $x$, la partie entière $\\lfloor x\\rfloor$ est l'unique {{1}} tel que {{2}}. Entre deux réels $a<b$, il existe toujours {{3}}.",
+      "trous": [
+        {
+          "reponse": "entier relatif $n$",
+          "leurres": [
+            "entier naturel $n$",
+            "rationnel $n$",
+            "réel $n$"
+          ]
+        },
+        {
+          "reponse": "$n\\le x<n+1$",
+          "leurres": [
+            "$n<x\\le n+1$",
+            "$n\\le x\\le n+1$",
+            "$x-1\\le n<x$"
+          ]
+        },
+        {
+          "reponse": "un rationnel $r$ tel que $a<r<b$",
+          "leurres": [
+            "un entier $n$ tel que $a<n<b$",
+            "un unique rationnel $r$ tel que $a<r<b$",
+            "un plus petit rationnel $r$ tel que $a<r<b$"
+          ]
+        }
+      ],
+      "demo": "**Archimède.** Par l'absurde, supposons $na\\le b$ pour tout $n\\in\\mathbb{N}$. L'ensemble $A=\\{na,\\ n\\in\\mathbb{N}\\}$ est non vide et majoré par $b$ ; soit $M=\\sup A$. Comme $a>0$, $M-a<M$ n'est pas un majorant : il existe $n$ avec $na>M-a$, donc $(n+1)a>M$, alors que $(n+1)a\\in A$. Contradiction.\n\n**Partie entière, existence.** Par Archimède avec $a=1$, il existe des entiers $k>x$ et $k'>-x$. L'ensemble $E=\\{k\\in\\mathbb{Z},\\ k>x\\}$ est donc non vide, et tous ses éléments sont $>x>-k'$ : c'est une partie non vide de $\\mathbb{Z}$ minorée, elle a un plus petit élément $m$. Alors $m>x$, et $m-1\\notin E$, donc $m-1\\le x$ : l'entier $n=m-1$ vérifie $n\\le x<n+1$.\n\n**Unicité.** Si $n\\le x<n+1$ et $n'\\le x<n'+1$, alors $n<n'+1$ et $n'<n+1$, donc $|n-n'|<1$ ; deux entiers à distance $<1$ sont égaux. Enfin, si $k\\in\\mathbb{Z}$ et $k\\le x$, alors $k\\le x<n+1$, donc $k\\le n$ : $n$ est le plus grand entier relatif inférieur ou égal à $x$ ; et $x<n+1$ donne $x-1<n$.\n\n**Densité.** Soient $a<b$. Par Archimède, il existe un entier $q\\ge1$ tel que $q(b-a)>1$. Posons $p=\\lfloor qa\\rfloor+1$ : alors $p-1\\le qa<p$, donc $qa<p\\le qa+1<qb$, et $r=\\frac pq$ vérifie $a<r<b$.\n\n**Forme séquentielle.** $10^nx-1<\\lfloor10^nx\\rfloor\\le10^nx$ donne $x-10^{-n}<\\frac{\\lfloor10^nx\\rfloor}{10^n}\\le x$, d'où la convergence vers $x$ par encadrement.\n\n**Irrationnels.** Si $a<b$, il existe un rationnel $r$ avec $a-\\sqrt2<r<b-\\sqrt2$ ; alors $r+\\sqrt2$ est irrationnel (sinon $\\sqrt2=(r+\\sqrt2)-r$ serait rationnel) et $a<r+\\sqrt2<b$.",
+      "exemple": "$\\lfloor\\pi\\rfloor=3$, $\\lfloor-2{,}5\\rfloor=-3$, $\\lfloor-3\\rfloor=-3$. Pour $x=\\sqrt2$, les approximations décimales par défaut sont $1$, $1{,}4$, $1{,}41$, $1{,}414$, … : ce sont des rationnels qui tendent vers $\\sqrt2$. Entre $a=\\sqrt2$ et $b=1{,}42$, on trouve par exemple le rationnel $1{,}415$.",
+      "contre_exemple": "- **$a<b$ est nécessaire** : si $a=b$, aucun réel $r$ ne vérifie $a<r<b$.\n- **Entier cherché dans $\\mathbb{N}$** : pour $x=-\\frac12$, aucun entier naturel $n$ ne vérifie $n\\le x$ ; la partie entière $\\lfloor-\\frac12\\rfloor=-1$ est un entier relatif.\n- **$a>0$ est nécessaire pour Archimède** : avec $a=0$ et $b=1$, $na=0\\le1$ pour tout $n$.\n- **$\\mathbb{Z}$ n'est pas dense dans $\\mathbb{R}$** : aucun entier n'est strictement compris entre $\\frac1{10}$ et $\\frac15$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $x$ et $y$, $\\lfloor x+y\\rfloor=\\lfloor x\\rfloor+\\lfloor y\\rfloor$.",
+          "vrai": false,
+          "contre_exemple": "$x=y=\\frac12$ : $\\lfloor x+y\\rfloor=\\lfloor1\\rfloor=1$ alors que $\\lfloor x\\rfloor+\\lfloor y\\rfloor=0$. On a seulement $\\lfloor x\\rfloor+\\lfloor y\\rfloor\\le\\lfloor x+y\\rfloor\\le\\lfloor x\\rfloor+\\lfloor y\\rfloor+1$."
+        },
+        {
+          "texte": "Pour tout réel $x$, $\\lfloor-x\\rfloor=-\\lfloor x\\rfloor$.",
+          "vrai": false,
+          "contre_exemple": "$x=\\frac12$ : $\\lfloor-\\frac12\\rfloor=-1$ alors que $-\\lfloor\\frac12\\rfloor=0$. L'égalité n'a lieu que si $x$ est entier."
+        },
+        {
+          "texte": "Tout intervalle $\\left]a,b\\right[$ avec $a<b$ contient une infinité de rationnels.",
+          "vrai": true,
+          "justification": "La densité donne $r_1\\in\\left]a,b\\right[$ rationnel, puis $r_2\\in\\left]a,r_1\\right[$, puis $r_3\\in\\left]a,r_2\\right[$, etc. : on obtient des rationnels deux à deux distincts $r_1>r_2>r_3>\\cdots$ dans $\\left]a,b\\right[$."
+        },
+        {
+          "texte": "Pour tout réel $x$ et tout entier relatif $k$, $\\lfloor x+k\\rfloor=\\lfloor x\\rfloor+k$.",
+          "vrai": true,
+          "justification": "$\\lfloor x\\rfloor+k$ est un entier relatif et $\\lfloor x\\rfloor+k\\le x+k<\\lfloor x\\rfloor+k+1$ ; on conclut par unicité de la partie entière."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-borne-sup"
+      ]
+    },
+    {
+      "id": "ar-l1-reels-sup-sequentielle",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-reels",
+      "type": "theoreme",
+      "titre": "Caractérisation séquentielle de la borne supérieure",
+      "recto": "Énoncer la caractérisation séquentielle de la borne supérieure d'une partie de $\\mathbb{R}$, avec ses hypothèses.",
+      "cours": "La caractérisation séquentielle traduit la caractérisation « avec $\\varepsilon$ » de la borne supérieure en langage de suites, souvent plus maniable. Un réel $M$ est la borne supérieure de $A$ quand deux choses ont lieu : $M$ majore $A$, et des éléments de $A$ s'approchent de $M$ autant qu'on veut, c'est-à-dire qu'il existe une suite $(a_n)$ d'éléments de $A$ qui tend vers $M$.\n\nMéthode pour calculer $\\sup A$ : deviner la valeur $M$, prouver que c'est un majorant (inégalité pour tout élément de $A$), puis exhiber une suite explicite d'éléments de $A$ qui converge vers $M$. Dans l'autre sens, si l'on sait que $M=\\sup A$, on dispose d'une suite d'éléments de $A$ qui tend vers $M$, ce qui permet de passer à la limite dans une propriété vraie sur $A$ ; et la limite de toute suite convergente d'éléments de $A$ est inférieure ou égale à $\\sup A$.\n\nLe même énoncé vaut pour la borne inférieure, et une partie non vide n'est pas majorée si et seulement si elle contient une suite qui tend vers $+\\infty$.\n\nLe piège principal : oublier de vérifier que $M$ majore $A$. Être limite d'une suite d'éléments de $A$ ne suffit pas : tout élément de $A$ est limite d'une suite constante.",
+      "hypotheses": [
+        "$A$ est une partie non vide de $\\mathbb{R}$.",
+        "$M$ majore $A$.",
+        "Il existe une suite $(a_n)$ d'éléments de $A$ qui converge vers $M$."
+      ],
+      "hypotheses_pieges": [
+        "Il existe une suite de majorants de $A$ qui converge vers $M$ (à la place d'une suite d'éléments de $A$).",
+        "Il existe une suite croissante d'éléments de $A$, sans condition sur sa limite (à la place d'une suite d'éléments de $A$ qui converge vers $M$).",
+        "$M$ est limite d'une suite d'éléments de $A$, sans être supposé majorant (à la place de : $M$ majore $A$ et est limite d'une telle suite)."
+      ],
+      "enonce": "Soit $A$ une partie non vide de $\\mathbb{R}$ et $M$ un réel. Alors $M=\\sup A$ si et seulement si :\n\n- $M$ majore $A$ ;\n- il existe une suite $(a_n)$ d'éléments de $A$ qui converge vers $M$.\n\nDe même, $m=\\inf A$ si et seulement si $m$ minore $A$ et $m$ est la limite d'une suite d'éléments de $A$. Enfin, $A$ n'est pas majorée si et seulement s'il existe une suite d'éléments de $A$ qui tend vers $+\\infty$.",
+      "enonce_trous": "Soit $A$ une partie non vide de $\\mathbb{R}$ et $M$ un réel. Alors $M=\\sup A$ si et seulement si $M$ {{1}} et il existe une suite d'éléments {{2}} qui converge vers $M$. Une partie non vide $A$ n'est pas majorée si et seulement s'il existe une suite d'éléments de $A$ qui {{3}}.",
+      "trous": [
+        {
+          "reponse": "majore $A$",
+          "leurres": [
+            "appartient à $A$",
+            "minore $A$",
+            "est la limite d'une suite croissante"
+          ]
+        },
+        {
+          "reponse": "de $A$",
+          "leurres": [
+            "de majorants de $A$",
+            "de $\\mathbb{Q}$",
+            "strictement supérieurs à $M$"
+          ]
+        },
+        {
+          "reponse": "tend vers $+\\infty$",
+          "leurres": [
+            "est croissante",
+            "diverge",
+            "n'est pas bornée"
+          ]
+        }
+      ],
+      "demo": "**Sens direct.** Supposons $M=\\sup A$. Alors $M$ majore $A$. Pour $n\\in\\mathbb{N}$, $M-\\frac1{n+1}<M$ n'est pas un majorant de $A$ (car $M$ est le plus petit) : il existe $a_n\\in A$ tel que $M-\\frac1{n+1}<a_n\\le M$. Par encadrement, $a_n\\to M$.\n\n**Réciproque.** Supposons que $M$ majore $A$ et que $a_n\\to M$ avec $a_n\\in A$. Soit $M'$ un majorant de $A$ : pour tout $n$, $a_n\\le M'$, et par passage à la limite dans cette inégalité large, $M\\le M'$. Donc $M$ est le plus petit des majorants : $M=\\sup A$.\n\n**Borne inférieure.** On applique ce qui précède à $-A=\\{-a,\\ a\\in A\\}$, dont la borne supérieure est $-\\inf A$.\n\n**Parties non majorées.** Si $A$ n'est pas majorée, pour chaque $n$ le réel $n$ n'est pas un majorant : il existe $a_n\\in A$ avec $a_n>n$, et $a_n\\to+\\infty$. Réciproquement, si $a_n\\in A$ et $a_n\\to+\\infty$, aucun réel $M'$ ne majore $A$, car $a_n>M'$ pour $n$ assez grand.",
+      "exemple": "$A=\\left\\{\\frac1p+\\frac1q,\\ p,q\\in\\mathbb{N}^*\\right\\}$. Les éléments de $A$ sont $>0$, donc $0$ minore $A$, et $\\frac2n=\\frac1n+\\frac1n\\in A$ tend vers $0$ : $\\inf A=0$, non atteint. De plus $\\frac1p+\\frac1q\\le2$ et $2\\in A$ ($p=q=1$) : $\\sup A=\\max A=2$.",
+      "contre_exemple": "- **« $M$ majore $A$ » est nécessaire** : $A=[0,1]$ et $M=\\frac12$ ; la suite constante égale à $\\frac12$ est formée d'éléments de $A$ et tend vers $\\frac12$, mais $\\sup A=1$.\n- **Une suite de majorants ne suffit pas** : $A=[0,1]$ et $M=2$ ; $M$ majore $A$ et est limite de la suite constante $2$ de majorants, mais $\\sup A=1$.\n- **Une suite croissante d'éléments de $A$ ne suffit pas** : $A=[0,1]$, $M=2$ et $a_n=1-\\frac1{n+1}$ ; la suite est croissante dans $A$, $M$ majore $A$, mais $\\sup A=1\\neq2$.",
+      "affirmations": [
+        {
+          "texte": "Si $A$ est non vide et majorée et si $(a_n)$ est une suite d'éléments de $A$ qui converge vers $\\ell$, alors $\\ell\\le\\sup A$.",
+          "vrai": true,
+          "justification": "Pour tout $n$, $a_n\\le\\sup A$ ; on passe à la limite dans cette inégalité large."
+        },
+        {
+          "texte": "Si $(a_n)$ est une suite d'éléments de $A$ qui converge vers $\\ell$, alors $\\ell\\in A$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\left]0,1\\right]$ et $a_n=\\frac1{n+1}$ : $a_n\\in A$ et $a_n\\to0\\notin A$."
+        },
+        {
+          "texte": "Si $A$ est non vide et majorée et si $\\sup A\\notin A$, alors toute suite d'éléments de $A$ qui converge vers $\\sup A$ prend une infinité de valeurs distinctes.",
+          "vrai": true,
+          "justification": "Une suite convergente qui ne prend qu'un nombre fini de valeurs a pour limite l'une de ces valeurs : sinon, en notant $\\delta>0$ le plus petit des écarts entre la limite et ces valeurs, tous les termes resteraient à distance au moins $\\delta$ de la limite. Ici les valeurs sont dans $A$, et la limite $\\sup A$ n'y est pas."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont deux parties non vides et majorées de $\\mathbb{R}$ telles que $\\sup A=\\sup B$, alors $A\\cap B\\neq\\varnothing$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\mathbb{Q}\\cap[0,1]$ et $B=(\\mathbb{R}\\setminus\\mathbb{Q})\\cap[0,1]$ : par densité des rationnels et des irrationnels, $\\sup A=\\sup B=1$, et $A\\cap B=\\varnothing$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-borne-sup",
+        "ar-t-gendarmes"
+      ]
+    }
+  ]
+}

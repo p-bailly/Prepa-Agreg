@@ -1,0 +1,452 @@
+{
+  "cartes": [
+    {
+      "id": "gr-l1-groupes-sous-groupes",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Caractérisation des sous-groupes",
+      "recto": "Énoncer la caractérisation des sous-groupes d'un groupe avec ses hypothèses.",
+      "cours": "Un groupe est un ensemble muni d'une loi associative, avec un élément neutre $e$ et un inverse $x^{-1}$ pour chaque élément : $(\\mathbb{Z}, +)$, $(\\mathbb{C}^*, \\times)$, les matrices inversibles, les bijections d'un ensemble dans lui-même. Un **sous-groupe** de $G$ est une partie $H$ qui contient $e$, qui est stable par produit ($x, y \\in H \\Rightarrow xy \\in H$) et par passage à l'inverse ($x \\in H \\Rightarrow x^{-1} \\in H$) : c'est alors un groupe pour la loi restreinte, sans qu'il faille revérifier l'associativité, héritée de $G$.\n\nLa caractérisation regroupe ces trois vérifications en deux : $H$ est non vide et $xy^{-1} \\in H$ pour tous $x, y \\in H$. En pratique, on montre que $e \\in H$ (c'est la façon la plus simple de voir que $H$ n'est pas vide), puis on prend $x, y \\in H$ quelconques et on calcule $xy^{-1}$ ; en notation additive, la condition devient $x - y \\in H$. Une autre méthode, souvent plus rapide, consiste à reconnaître $H$ comme le noyau ou l'image d'un morphisme de groupes.\n\nMontrer qu'un ensemble est un groupe revient donc très souvent à le voir comme sous-groupe d'un groupe connu : $\\mathbb{U} = \\{z \\in \\mathbb{C} : |z| = 1\\}$ dans $(\\mathbb{C}^*, \\times)$, $n\\mathbb{Z}$ dans $(\\mathbb{Z}, +)$.\n\nPièges : oublier la non-vacuité (l'ensemble vide vérifie la seconde condition sans être un sous-groupe), et se contenter de la stabilité par produit : $\\mathbb{N}$ est stable par addition dans $\\mathbb{Z}$ sans être un sous-groupe. Cette stabilité ne suffit que pour une partie **finie** non vide. Enfin, une réunion de sous-groupes n'est en général pas un sous-groupe, contrairement à une intersection.",
+      "hypotheses": [
+        "$(G, \\cdot)$ est un groupe, de neutre $e$.",
+        "$H$ est une partie de $G$.",
+        "$H$ est non vide.",
+        "Pour tous $x, y \\in H$, $xy^{-1} \\in H$."
+      ],
+      "hypotheses_pieges": [
+        "$H$ est stable par produit : $xy \\in H$ pour tous $x, y \\in H$ (à la place de $xy^{-1} \\in H$).",
+        "$H$ est stable par passage à l'inverse (à la place de $xy^{-1} \\in H$).",
+        "$xy^{-1} \\in H$ seulement pour les couples d'éléments distincts $x \\neq y$ de $H$ (à la place de tous les couples).",
+        "$G$ est commutatif."
+      ],
+      "enonce": "Soient $(G, \\cdot)$ un groupe de neutre $e$ et $H$ une partie de $G$. Si $H$ est non vide et si $xy^{-1} \\in H$ pour tous $x, y \\in H$, alors $H$ est un sous-groupe de $G$ : il contient $e$, il est stable par produit et par passage à l'inverse, et c'est un groupe pour la loi induite. Réciproquement, tout sous-groupe de $G$ vérifie ces deux conditions.",
+      "enonce_trous": "Soient $G$ un groupe et $H$ une partie de $G$. Alors $H$ est un sous-groupe de $G$ si et seulement si $H$ est {{1}} et, pour tous $x, y \\in H$, l'élément {{2}} appartient à $H$.",
+      "trous": [
+        {
+          "reponse": "non vide",
+          "leurres": [
+            "fini",
+            "stable par passage à l'inverse",
+            "distinct de $G$"
+          ]
+        },
+        {
+          "reponse": "$xy^{-1}$",
+          "leurres": [
+            "$xy$",
+            "$x^{-1}y^{-1}$",
+            "$xyx^{-1}$"
+          ]
+        }
+      ],
+      "demo": "**Les conditions sont nécessaires.** Si $H$ est un sous-groupe, $e \\in H$, donc $H \\neq \\emptyset$ ; et pour $x, y \\in H$, $y^{-1} \\in H$ (stabilité par inverse), puis $xy^{-1} \\in H$ (stabilité par produit).\n\n**Elles sont suffisantes.** Supposons $H$ non vide et $xy^{-1} \\in H$ pour tous $x, y \\in H$. Soit $a \\in H$ : avec $x = y = a$, on obtient $e = aa^{-1} \\in H$. Pour $y \\in H$, avec $x = e$, on obtient $y^{-1} = ey^{-1} \\in H$. Pour $x, y \\in H$, on vient de voir que $y^{-1} \\in H$, donc $xy = x(y^{-1})^{-1} \\in H$. Ainsi $H$ contient $e$ et est stable par produit et par passage à l'inverse. La loi de $G$ induit donc une loi sur $H$, associative puisqu'elle l'est sur $G$, de neutre $e$, et tout $y \\in H$ a son inverse $y^{-1}$ dans $H$ : $H$ est un groupe pour la loi induite.",
+      "exemple": "$\\mathbb{U} = \\{z \\in \\mathbb{C} : |z| = 1\\}$ est un sous-groupe de $(\\mathbb{C}^*, \\times)$ : il contient $1$, et pour $z, w \\in \\mathbb{U}$, $|zw^{-1}| = |z|/|w| = 1$. De même, pour $n \\in \\mathbb{Z}$, $n\\mathbb{Z}$ est un sous-groupe de $(\\mathbb{Z}, +)$ : $0 = n \\times 0 \\in n\\mathbb{Z}$ et $na - nb = n(a - b) \\in n\\mathbb{Z}$.",
+      "contre_exemple": "- **Stabilité par produit seule** : $\\mathbb{N}$ est non vide et stable par addition dans $(\\mathbb{Z}, +)$, mais $1 \\in \\mathbb{N}$ et $-1 \\notin \\mathbb{N}$ : ce n'est pas un sous-groupe.\n- **Stabilité par inverse seule** : $\\{2, \\frac{1}{2}\\}$ est stable par passage à l'inverse dans $(\\mathbb{Q}^*, \\times)$ mais ne contient pas le neutre $1$.\n- **Non-vacuité** : l'ensemble vide vérifie « $xy^{-1} \\in H$ pour tous $x, y \\in H$ » (il n'y a rien à vérifier), mais ce n'est pas un sous-groupe puisqu'il ne contient pas $e$.\n- **Couples distincts seulement** : $H = \\{2\\}$ dans $(\\mathbb{Z}, +)$ vérifie la condition pour tous $x \\neq y$ dans $H$ (il n'y en a pas), mais ne contient pas $0$.\n- **Réunion** : $2\\mathbb{Z}$ et $3\\mathbb{Z}$ sont des sous-groupes de $\\mathbb{Z}$, mais pas $2\\mathbb{Z} \\cup 3\\mathbb{Z}$, qui contient $2$ et $3$ mais pas $3 - 2 = 1$.",
+      "affirmations": [
+        {
+          "texte": "La réunion de deux sous-groupes d'un groupe $G$ est un sous-groupe de $G$.",
+          "vrai": false,
+          "contre_exemple": "$2\\mathbb{Z} \\cup 3\\mathbb{Z}$ dans $(\\mathbb{Z}, +)$ contient $2$ et $3$ mais pas $3 - 2 = 1$. (Une réunion de deux sous-groupes n'est un sous-groupe que si l'un contient l'autre.)"
+        },
+        {
+          "texte": "L'intersection de deux sous-groupes de $G$ est un sous-groupe de $G$.",
+          "vrai": true,
+          "justification": "Si $H$ et $K$ sont des sous-groupes, $e \\in H \\cap K$, et pour $x, y \\in H \\cap K$, l'élément $xy^{-1}$ est dans $H$ et dans $K$."
+        },
+        {
+          "texte": "Une partie non vide de $G$ stable par produit est un sous-groupe de $G$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{N}$ dans $(\\mathbb{Z}, +)$ : non vide, stable par addition, mais $1 \\in \\mathbb{N}$ et $-1 \\notin \\mathbb{N}$."
+        },
+        {
+          "texte": "Une partie finie non vide de $G$ stable par produit est un sous-groupe de $G$.",
+          "vrai": true,
+          "justification": "Pour $x \\in H$, l'application $h \\mapsto xh$ de $H$ dans $H$ est injective ($xh = xh' \\Rightarrow h = h'$), donc bijective puisque $H$ est fini : il existe $h \\in H$ avec $xh = x$, d'où $h = e \\in H$, puis $h' \\in H$ avec $xh' = e$, d'où $x^{-1} = h' \\in H$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "gr-l1-groupes-noyau",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Noyau d'un morphisme et injectivité",
+      "recto": "Énoncer les propriétés du noyau et de l'image d'un morphisme de groupes et la caractérisation de son injectivité, avec leurs hypothèses.",
+      "cours": "Un **morphisme de groupes** $f : G \\to G'$ est une application qui transporte la loi : $f(xy) = f(x) * f(y)$. Les exemples abondent : l'exponentielle de $(\\mathbb{R}, +)$ dans $(\\mathbb{R}^*_+, \\times)$, le module ou $z \\mapsto z^n$ sur $(\\mathbb{C}^*, \\times)$, la réduction modulo $n$ de $\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$, le déterminant sur les matrices inversibles. Un morphisme envoie automatiquement le neutre sur le neutre et l'inverse sur l'inverse.\n\nLe **noyau** $\\ker f$ est l'ensemble des éléments envoyés sur le neutre $e'$. Il mesure exactement le défaut d'injectivité : deux éléments ont la même image si et seulement s'ils diffèrent d'un élément du noyau ($f(x) = f(a) \\iff a^{-1}x \\in \\ker f$). Ainsi chaque valeur atteinte a autant d'antécédents que le noyau a d'éléments, et $f$ est injective si et seulement si son noyau est réduit au neutre.\n\nEn pratique, pour montrer qu'un morphisme est injectif, on résout seulement $f(x) = e'$ au lieu de $f(x) = f(y)$ ; et pour résoudre une équation $f(x) = b$, il suffit d'en trouver une solution particulière $a$ : toutes les solutions sont les $ak$, $k \\in \\ker f$ (c'est le même principe que pour les systèmes linéaires ou les équations différentielles linéaires). Le noyau et l'image sont des sous-groupes : c'est souvent le moyen le plus rapide de prouver qu'un ensemble est un groupe.\n\nPièges : ce critère n'a de sens que pour un **morphisme** ; une application quelconque peut ne prendre la valeur $0$ qu'en $0$ sans être injective, comme $n \\mapsto n^2$ sur $\\mathbb{Z}$. Et un morphisme injectif n'est pas forcément surjectif.",
+      "hypotheses": [
+        "$(G, \\cdot)$ et $(G', *)$ sont des groupes, de neutres $e$ et $e'$.",
+        "$f : G \\to G'$ est un morphisme de groupes : $f(xy) = f(x) * f(y)$ pour tous $x, y \\in G$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est seulement une application vérifiant $f(e) = e'$ (à la place d'un morphisme).",
+        "$f$ est surjective.",
+        "$G$ et $G'$ sont finis.",
+        "$G$ est commutatif."
+      ],
+      "enonce": "Soient $(G, \\cdot)$ et $(G', *)$ deux groupes, de neutres $e$ et $e'$, et $f : G \\to G'$ un morphisme de groupes, c'est-à-dire $f(xy) = f(x) * f(y)$ pour tous $x, y \\in G$. Alors :\n\n- $f(e) = e'$ et $f(x^{-1}) = f(x)^{-1}$ pour tout $x \\in G$ ;\n- le noyau $\\ker f = \\{x \\in G : f(x) = e'\\}$ est un sous-groupe de $G$, et l'image $f(G)$ est un sous-groupe de $G'$ ;\n- pour $a \\in G$, les antécédents de $f(a)$ sont exactement les éléments de $a \\ker f = \\{ak : k \\in \\ker f\\}$ ;\n- $f$ est injective si et seulement si $\\ker f = \\{e\\}$.",
+      "enonce_trous": "Soit $f : G \\to G'$ un morphisme de groupes. Le noyau $\\ker f = \\{x \\in G : f(x) = e'\\}$ est {{1}}, et $f$ est injective si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "un sous-groupe de $G$",
+          "leurres": [
+            "un sous-groupe de $G'$",
+            "réduit à $\\{e\\}$",
+            "une partie finie de $G$"
+          ]
+        },
+        {
+          "reponse": "$\\ker f = \\{e\\}$",
+          "leurres": [
+            "$\\ker f = \\emptyset$",
+            "$f(G) = G'$",
+            "$\\ker f = G$"
+          ]
+        }
+      ],
+      "demo": "**Neutre et inverses.** $f(e) = f(ee) = f(e) * f(e)$ ; en composant à gauche par $f(e)^{-1}$, $f(e) = e'$. Puis $f(x) * f(x^{-1}) = f(xx^{-1}) = f(e) = e'$, donc $f(x^{-1}) = f(x)^{-1}$.\n\n**Noyau et image.** $e \\in \\ker f$ ; si $x, y \\in \\ker f$, $f(xy^{-1}) = f(x) * f(y)^{-1} = e' * e' = e'$, donc $xy^{-1} \\in \\ker f$ : par la caractérisation des sous-groupes, $\\ker f$ est un sous-groupe de $G$. De même $e' = f(e) \\in f(G)$, et $f(x) * f(y)^{-1} = f(xy^{-1}) \\in f(G)$.\n\n**Antécédents.** Pour $x \\in G$ : $f(x) = f(a) \\iff f(a)^{-1} * f(x) = e' \\iff f(a^{-1}x) = e' \\iff a^{-1}x \\in \\ker f \\iff x \\in a \\ker f$.\n\n**Injectivité.** Si $f$ est injective et $x \\in \\ker f$, alors $f(x) = e' = f(e)$, donc $x = e$ : $\\ker f = \\{e\\}$ (l'inclusion $\\{e\\} \\subset \\ker f$ est toujours vraie). Si $\\ker f = \\{e\\}$, le point précédent donne, pour tout $a \\in G$ : $f(x) = f(a) \\iff x \\in a\\{e\\} = \\{a\\}$, donc $f$ est injective.",
+      "exemple": "Le module $z \\mapsto |z|$ est un morphisme de $(\\mathbb{C}^*, \\times)$ dans $(\\mathbb{R}^*_+, \\times)$, de noyau $\\mathbb{U}$ : il n'est pas injectif, et les complexes de module $r > 0$ forment $r\\,\\mathbb{U}$, conformément à la description des antécédents. L'exponentielle $x \\mapsto e^x$ est un morphisme de $(\\mathbb{R}, +)$ dans $(\\mathbb{R}^*_+, \\times)$ de noyau $\\{0\\}$ : elle est injective. Pour $n \\geq 2$, $z \\mapsto z^n$ est un morphisme de $(\\mathbb{C}^*, \\times)$ dans lui-même dont le noyau, l'ensemble des racines $n$-ièmes de l'unité, a $n$ éléments : il n'est pas injectif.",
+      "contre_exemple": "- **Le caractère morphisme est indispensable** : $g : \\mathbb{Z} \\to \\mathbb{Z}$, $n \\mapsto n^2$ vérifie $g(0) = 0$ et $g^{-1}(\\{0\\}) = \\{0\\}$, mais $g(1) = g(-1)$ : $g$ n'est pas injective. Ce n'est pas un morphisme ($g(1 + 1) = 4 \\neq g(1) + g(1) = 2$), et son image, l'ensemble des carrés, n'est pas un sous-groupe de $\\mathbb{Z}$ ($1$ est un carré, pas $-1$).\n- **Injectif ne veut pas dire surjectif** : $n \\mapsto 2n$ est un morphisme de $(\\mathbb{Z}, +)$ dans lui-même, de noyau $\\{0\\}$, donc injectif, mais d'image $2\\mathbb{Z} \\neq \\mathbb{Z}$.",
+      "affirmations": [
+        {
+          "texte": "Un morphisme de groupes dont le noyau est réduit au neutre est surjectif.",
+          "vrai": false,
+          "contre_exemple": "$n \\mapsto 2n$ est un morphisme de $(\\mathbb{Z}, +)$ dans lui-même de noyau $\\{0\\}$, d'image $2\\mathbb{Z} \\neq \\mathbb{Z}$."
+        },
+        {
+          "texte": "Si $g : \\mathbb{Z} \\to \\mathbb{Z}$ est une application telle que $g^{-1}(\\{0\\}) = \\{0\\}$, alors $g$ est injective.",
+          "vrai": false,
+          "contre_exemple": "$g(n) = n^2$ ne s'annule qu'en $0$, mais $g(1) = g(-1) = 1$. Le critère du noyau ne vaut que pour un morphisme."
+        },
+        {
+          "texte": "Si $f : G \\to G'$ est un morphisme de groupes, alors pour $x, y \\in G$, $f(x) = f(y)$ si et seulement si $xy^{-1} \\in \\ker f$.",
+          "vrai": true,
+          "justification": "$f(xy^{-1}) = f(x) * f(y)^{-1}$, qui vaut $e'$ si et seulement si $f(x) = f(y)$."
+        },
+        {
+          "texte": "Un morphisme injectif entre deux groupes finis de même cardinal est un isomorphisme.",
+          "vrai": true,
+          "justification": "Une injection entre deux ensembles finis de même cardinal est bijective ; et la réciproque d'un morphisme bijectif est un morphisme : $f(f^{-1}(x')f^{-1}(y')) = x' * y'$, donc $f^{-1}(x' * y') = f^{-1}(x')f^{-1}(y')$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-sous-groupes",
+        "fond-l1-ensembles-composition"
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-lagrange",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Théorème de Lagrange",
+      "recto": "Énoncer le théorème de Lagrange avec ses hypothèses.",
+      "cours": "Le théorème de Lagrange est la première contrainte arithmétique de la théorie des groupes finis : le cardinal d'un sous-groupe divise le cardinal du groupe. Ainsi un groupe à $10$ éléments n'a aucun sous-groupe à $4$ éléments, et un groupe dont le cardinal est un nombre premier $p$ n'a que deux sous-groupes, $\\{e\\}$ et lui-même.\n\nL'idée de la preuve est de découper $G$ en « translatés » $xH$ du sous-groupe : ces classes à gauche ont toutes le même cardinal que $H$ (multiplier à gauche par $x$ est une bijection) et ne se chevauchent pas (ce sont les classes d'une relation d'équivalence). Le cardinal de $G$ est donc un multiple de $|H|$, et le quotient, appelé **indice** de $H$, compte les classes.\n\nEn pratique, le théorème de Lagrange sert à éliminer des possibilités : cardinaux possibles des sous-groupes, de l'intersection de deux sous-groupes (qui est un sous-groupe de chacun) et surtout, on le verra, ordres possibles des éléments. Combiné à une minoration, il donne souvent la valeur exacte d'un cardinal.\n\nPièges : le résultat concerne les **sous-groupes**, pas les parties quelconques ; et sa réciproque est fausse : un diviseur $d$ de $|G|$ n'est pas toujours le cardinal d'un sous-groupe. Le plus petit contre-exemple est le groupe alterné $A_4$ des permutations paires de $\\{1, 2, 3, 4\\}$, d'ordre $12$, qui n'a aucun sous-groupe d'ordre $6$ (on le retrouvera avec le groupe symétrique).",
+      "hypotheses": [
+        "$G$ est un groupe fini.",
+        "$H$ est un sous-groupe de $G$."
+      ],
+      "hypotheses_pieges": [
+        "$H$ est seulement une partie de $G$ contenant le neutre $e$ (à la place d'un sous-groupe).",
+        "$H$ est seulement une partie non vide de $G$ stable par passage à l'inverse (à la place d'un sous-groupe).",
+        "$G$ est commutatif.",
+        "$G$ est cyclique."
+      ],
+      "enonce": "Soient $G$ un groupe fini et $H$ un sous-groupe de $G$. Alors le cardinal de $H$ divise le cardinal de $G$. Plus précisément, les classes à gauche $xH = \\{xh : h \\in H\\}$, $x \\in G$, forment une partition de $G$ en parties ayant toutes $|H|$ éléments, et leur nombre, appelé indice de $H$ et noté $[G : H]$, vérifie $|G| = [G : H] \\times |H|$.",
+      "enonce_trous": "Soient $G$ un groupe {{1}} et $H$ un sous-groupe de $G$. Alors le cardinal de $H$ {{2}} le cardinal de $G$, et le quotient $|G|/|H|$ est le nombre de {{3}}.",
+      "trous": [
+        {
+          "reponse": "fini",
+          "leurres": [
+            "commutatif",
+            "infini",
+            "quelconque"
+          ]
+        },
+        {
+          "reponse": "divise",
+          "leurres": [
+            "est un multiple de",
+            "est premier avec",
+            "est au plus la moitié de"
+          ]
+        },
+        {
+          "reponse": "classes à gauche $xH$, $x \\in G$",
+          "leurres": [
+            "éléments de $H$",
+            "sous-groupes de $G$ ayant le même cardinal que $H$",
+            "générateurs de $G$"
+          ]
+        }
+      ],
+      "demo": "On définit sur $G$ la relation $x \\sim y \\iff x^{-1}y \\in H$. Elle est réflexive ($x^{-1}x = e \\in H$), symétrique (si $x^{-1}y \\in H$, son inverse $y^{-1}x$ est dans $H$) et transitive (si $x^{-1}y \\in H$ et $y^{-1}z \\in H$, leur produit $x^{-1}z$ est dans $H$) : c'est une relation d'équivalence, et ses classes forment une partition de $G$.\n\nLa classe de $x$ est $\\{y \\in G : x^{-1}y \\in H\\} = \\{xh : h \\in H\\} = xH$. L'application $H \\to xH$, $h \\mapsto xh$ est surjective par définition de $xH$, et injective (si $xh = xh'$, on multiplie à gauche par $x^{-1}$) : chaque classe a exactement $|H|$ éléments.\n\nSi $k = [G : H]$ est le nombre de classes, $G$, fini, est réunion disjointe de $k$ parties à $|H|$ éléments, donc $|G| = k|H|$ : $|H|$ divise $|G|$.",
+      "exemple": "Dans $(\\mathbb{Z}/6\\mathbb{Z}, +)$, les sous-groupes sont $\\{\\bar 0\\}$, $\\{\\bar 0, \\bar 3\\}$, $\\{\\bar 0, \\bar 2, \\bar 4\\}$ et $\\mathbb{Z}/6\\mathbb{Z}$, de cardinaux $1$, $2$, $3$ et $6$, qui divisent tous $6$. Les classes de $H = \\{\\bar 0, \\bar 3\\}$ sont $H$, $\\bar 1 + H = \\{\\bar 1, \\bar 4\\}$ et $\\bar 2 + H = \\{\\bar 2, \\bar 5\\}$ : trois classes de deux éléments, et $6 = 3 \\times 2$.",
+      "contre_exemple": "- **Pour une partie qui n'est pas un sous-groupe**, la conclusion tombe en défaut : $\\{\\bar 0, \\bar 1\\}$ contient le neutre de $\\mathbb{Z}/3\\mathbb{Z}$, et $\\{\\bar 1, \\bar 2\\}$ est stable par passage à l'opposé ($-\\bar 1 = \\bar 2$), mais $2$ ne divise pas $3$.\n- **La réciproque est fausse** : le groupe alterné $A_4$ (permutations paires de $\\{1, 2, 3, 4\\}$), d'ordre $12$, n'a aucun sous-groupe d'ordre $6$, bien que $6$ divise $12$ (vérification par énumération des parties à six éléments).",
+      "affirmations": [
+        {
+          "texte": "Si $A$ est une partie d'un groupe fini $G$ contenant le neutre, alors $|A|$ divise $|G|$.",
+          "vrai": false,
+          "contre_exemple": "$A = \\{\\bar 0, \\bar 1\\}$ dans $\\mathbb{Z}/3\\mathbb{Z}$ : $2$ ne divise pas $3$. Le théorème exige un sous-groupe."
+        },
+        {
+          "texte": "Si $d$ divise le cardinal d'un groupe fini $G$, alors $G$ possède un sous-groupe de cardinal $d$.",
+          "vrai": false,
+          "contre_exemple": "Le groupe alterné $A_4$, d'ordre $12$, n'a aucun sous-groupe d'ordre $6$. (La réciproque du théorème de Lagrange est vraie pour les groupes cycliques, pas en général.)"
+        },
+        {
+          "texte": "Un groupe dont le cardinal est un nombre premier $p$ n'a pas d'autres sous-groupes que $\\{e\\}$ et lui-même.",
+          "vrai": true,
+          "justification": "Le cardinal d'un sous-groupe divise $p$, donc vaut $1$ (sous-groupe $\\{e\\}$) ou $p$ (le groupe entier)."
+        },
+        {
+          "texte": "Si $H$ et $K$ sont deux sous-groupes d'un groupe fini dont les cardinaux sont premiers entre eux, alors $H \\cap K = \\{e\\}$.",
+          "vrai": true,
+          "justification": "$H \\cap K$ est un sous-groupe de $H$ et de $K$ : son cardinal divise $|H|$ et $|K|$, donc vaut $1$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-sous-groupes",
+        "fond-l1-ensembles-equivalence"
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-ordre",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Ordre d'un élément",
+      "recto": "Définir l'ordre d'un élément d'un groupe et énoncer ses propriétés, avec leurs hypothèses.",
+      "cours": "L'ordre d'un élément mesure au bout de combien d'étapes ses puissances reviennent au neutre. Dans $(\\mathbb{C}^*, \\times)$, $i$ est d'ordre $4$ car $i$, $i^2 = -1$ et $i^3 = -i$ diffèrent de $1$ alors que $i^4 = 1$ ; dans $(\\mathbb{Z}/12\\mathbb{Z}, +)$, où les « puissances » s'écrivent $k \\cdot \\bar x$, l'élément $\\bar 8$ est d'ordre $3$ ($\\bar 8$, $\\overline{16} = \\bar 4$, $\\overline{24} = \\bar 0$). Un élément peut aussi être d'ordre infini, comme $2$ dans $(\\mathbb{Q}^*, \\times)$.\n\nLa propriété fondamentale est que $a^k = e$ équivaut à $d \\mid k$ : les exposants qui annulent $a$ sont exactement les multiples de l'ordre, comme le montre la division euclidienne. L'ordre est aussi le cardinal du sous-groupe $\\langle a \\rangle$ engendré par $a$ ; avec le théorème de Lagrange, on en déduit que dans un groupe fini, l'ordre de tout élément divise le cardinal du groupe. Appliqué au groupe $(\\mathbb{Z}/p\\mathbb{Z})^*$, d'ordre $p - 1$, cela redonne le petit théorème de Fermat.\n\nEn pratique, pour trouver l'ordre de $a$ dans un groupe d'ordre $n$, on ne teste que les diviseurs de $n$ ; et pour montrer que $a$ est d'ordre exactement $d$, on vérifie que $a^d = e$ et que $a^{d/p} \\neq e$ pour chaque diviseur premier $p$ de $d$.\n\nPièges : $a^n = e$ ne dit pas que $a$ est d'ordre $n$, seulement que son ordre divise $n$ ($(-1)^4 = 1$ alors que $-1$ est d'ordre $2$) ; et l'ordre d'un produit $ab$ n'est pas déterminé par ceux de $a$ et de $b$, même quand ils commutent ($a$ et $a^{-1}$ ont le même ordre, mais $aa^{-1} = e$) ; quand ils ne commutent pas, $ab$ peut même être d'ordre infini.",
+      "hypotheses": [
+        "$G$ est un groupe, de neutre $e$.",
+        "$a \\in G$ est d'ordre fini $d$ : $d$ est le **plus petit** entier $n \\geq 1$ tel que $a^n = e$.",
+        "Pour le dernier point : $G$ est fini."
+      ],
+      "hypotheses_pieges": [
+        "$d$ est un entier $n \\geq 1$ quelconque tel que $a^n = e$ (à la place du plus petit).",
+        "$G$ est commutatif.",
+        "$G$ est cyclique."
+      ],
+      "enonce": "Soient $G$ un groupe de neutre $e$ et $a \\in G$. On dit que $a$ est d'ordre fini s'il existe un entier $n \\geq 1$ tel que $a^n = e$ ; son **ordre** est alors le plus petit tel entier, noté $d$. Dans ce cas :\n\n- pour tout $k \\in \\mathbb{Z}$, $a^k = e$ si et seulement si $d$ divise $k$ ;\n- le sous-groupe engendré $\\langle a \\rangle = \\{a^k : k \\in \\mathbb{Z}\\}$ est égal à $\\{e, a, a^2, \\dots, a^{d-1}\\}$, et ces $d$ éléments sont distincts : $|\\langle a \\rangle| = d$.\n\nSi $G$ est fini, tout élément $a$ de $G$ est d'ordre fini, son ordre divise $|G|$, et $a^{|G|} = e$.",
+      "enonce_trous": "Soit $a$ un élément d'ordre fini $d$ d'un groupe $G$. Pour $k \\in \\mathbb{Z}$, on a $a^k = e$ si et seulement si {{1}}. Le sous-groupe engendré par $a$ a exactement {{2}} éléments, et si $G$ est fini, $d$ {{3}} le cardinal de $G$.",
+      "trous": [
+        {
+          "reponse": "$d$ divise $k$",
+          "leurres": [
+            "$k$ divise $d$",
+            "$k \\geq d$",
+            "$k = d$"
+          ]
+        },
+        {
+          "reponse": "$d$",
+          "leurres": [
+            "$d - 1$",
+            "$d + 1$",
+            "$2d$"
+          ]
+        },
+        {
+          "reponse": "divise",
+          "leurres": [
+            "est égal à",
+            "est un multiple de",
+            "est premier avec"
+          ]
+        }
+      ],
+      "demo": "**Divisibilité.** Soit $k \\in \\mathbb{Z}$ ; par division euclidienne, $k = qd + r$ avec $0 \\leq r < d$, et $a^k = (a^d)^q a^r = a^r$. Si $d \\mid k$, alors $r = 0$ et $a^k = e$. Si $a^k = e$, alors $a^r = e$ avec $0 \\leq r < d$ ; par minimalité de $d$, $r$ ne peut pas être $\\geq 1$, donc $r = 0$ et $d \\mid k$.\n\n**Sous-groupe engendré.** $\\langle a \\rangle$ est un sous-groupe ($e = a^0$ et $a^k(a^l)^{-1} = a^{k - l}$). Pour $k \\in \\mathbb{Z}$, $a^k = a^r$ où $r$ est le reste de $k$ modulo $d$, donc $\\langle a \\rangle = \\{a^r : 0 \\leq r \\leq d - 1\\}$. Ces éléments sont distincts : si $a^i = a^j$ avec $0 \\leq i < j \\leq d - 1$, alors $a^{j - i} = e$ avec $1 \\leq j - i < d$, ce qui contredit la minimalité de $d$. Donc $|\\langle a \\rangle| = d$.\n\n**Cas d'un groupe fini.** Les puissances $a^0, a^1, \\dots, a^{|G|}$ sont $|G| + 1$ éléments de $G$ : deux d'entre elles coïncident (principe des tiroirs), $a^i = a^j$ avec $i < j$, d'où $a^{j - i} = e$ avec $j - i \\geq 1$ : $a$ est d'ordre fini. Par le théorème de Lagrange appliqué au sous-groupe $\\langle a \\rangle$, $d = |\\langle a \\rangle|$ divise $|G|$, et le premier point donne $a^{|G|} = e$.",
+      "exemple": "Dans $(\\mathbb{Z}/7\\mathbb{Z})^*$, groupe d'ordre $6$, l'élément $\\bar 2$ vérifie $\\bar 2^2 = \\bar 4$ et $\\bar 2^3 = \\bar 8 = \\bar 1$ : il est d'ordre $3$, qui divise bien $6$, et $\\langle \\bar 2 \\rangle = \\{\\bar 1, \\bar 2, \\bar 4\\}$. L'élément $\\bar 3$ vérifie $\\bar 3^2 = \\bar 2$ et $\\bar 3^3 = \\bar 6 \\neq \\bar 1$ : son ordre, diviseur de $6$ différent de $1$, $2$ et $3$, vaut $6$.",
+      "contre_exemple": "- **Le minimum compte** : $(-1)^4 = 1$ dans $\\mathbb{C}^*$ mais $-1$ est d'ordre $2$ ; avec $4$ à la place de l'ordre, l'équivalence « $(-1)^k = 1 \\iff 4 \\mid k$ » est fausse ($(-1)^2 = 1$ et $4 \\nmid 2$).\n- **Ordre infini** : dans $(\\mathbb{Q}^*, \\times)$, $2^n \\neq 1$ pour tout $n \\geq 1$ ; dans un groupe infini, un élément n'est pas toujours d'ordre fini.\n- **Produit d'éléments d'ordre fini** : dans le groupe $GL_2(\\mathbb{R})$ des matrices inversibles, $A = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ est d'ordre $4$ et $B = \\begin{pmatrix} 0 & 1 \\\\ -1 & -1 \\end{pmatrix}$ est d'ordre $3$, mais $AB = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$ vérifie $(AB)^n = \\begin{pmatrix} 1 & n \\\\ 0 & 1 \\end{pmatrix} \\neq I_2$ pour tout $n \\geq 1$ : $AB$ est d'ordre infini.",
+      "affirmations": [
+        {
+          "texte": "Si $a^n = e$ avec $n \\geq 1$, alors $a$ est d'ordre $n$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{C}^*$, $(-1)^4 = 1$ mais $-1$ est d'ordre $2$. On sait seulement que l'ordre divise $n$."
+        },
+        {
+          "texte": "Un élément d'ordre fini et son inverse ont le même ordre.",
+          "vrai": true,
+          "justification": "Pour $k \\geq 1$, $(a^{-1})^k = (a^k)^{-1}$ vaut $e$ si et seulement si $a^k = e$."
+        },
+        {
+          "texte": "Si $a$ et $b$ sont deux éléments d'ordre fini d'un groupe, alors $ab$ est d'ordre fini.",
+          "vrai": false,
+          "contre_exemple": "Dans $GL_2(\\mathbb{R})$, $A = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ (d'ordre $4$) et $B = \\begin{pmatrix} 0 & 1 \\\\ -1 & -1 \\end{pmatrix}$ (d'ordre $3$) ont pour produit $AB = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$, d'ordre infini."
+        },
+        {
+          "texte": "Dans un groupe fini d'ordre $n$, on a $a^n = e$ pour tout élément $a$.",
+          "vrai": true,
+          "justification": "L'ordre $d$ de $a$ divise $n$ (théorème de Lagrange appliqué à $\\langle a \\rangle$), donc $a^n = (a^d)^{n/d} = e$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-lagrange",
+        "arith-t-division-euclidienne",
+        "fond-l1-ensembles-tiroirs"
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-sous-groupes-z",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Sous-groupes de $\\mathbb{Z}$",
+      "recto": "Énoncer la description des sous-groupes de $(\\mathbb{Z}, +)$ avec ses hypothèses, et ses conséquences pour $a\\mathbb{Z} + b\\mathbb{Z}$ et $a\\mathbb{Z} \\cap b\\mathbb{Z}$.",
+      "cours": "Les sous-groupes de $\\mathbb{Z}$ sont les plus simples qui soient : ce sont les ensembles $n\\mathbb{Z}$ des multiples d'un entier $n \\geq 0$. La preuve est une division euclidienne : si $n$ est le plus petit élément strictement positif d'un sous-groupe $H$, le reste de la division d'un élément de $H$ par $n$ est encore dans $H$ et plus petit que $n$, donc nul.\n\nCe résultat transforme l'arithmétique en algèbre. L'ensemble $a\\mathbb{Z} + b\\mathbb{Z}$ des combinaisons $au + bv$ est un sous-groupe, donc de la forme $d\\mathbb{Z}$, et ce $d$ est le PGCD : on retrouve le théorème de Bézout. De même, $a\\mathbb{Z} \\cap b\\mathbb{Z}$ est l'ensemble des multiples du PPCM, et $m\\mathbb{Z} \\subset n\\mathbb{Z}$ signifie exactement que $n$ divise $m$ (l'inclusion va « à l'envers » de la divisibilité).\n\nEn pratique, dès qu'un ensemble d'entiers contient $0$ et est stable par différence (entiers $T$ tels que $u_{n + T} = u_n$ pour tout $n \\in \\mathbb{Z}$, exposants $k$ tels que $a^k = e$, noyau d'un morphisme défini sur $\\mathbb{Z}$), il est de la forme $n\\mathbb{Z}$, et il suffit d'identifier son plus petit élément strictement positif. C'est ainsi qu'on voit que les exposants annulant un élément d'un groupe sont les multiples de son ordre.\n\nPièges : la stabilité par addition ne suffit pas ($\\mathbb{N}$ n'est pas de la forme $n\\mathbb{Z}$) ; l'entier $n$ n'est unique que si on l'impose positif ou nul ; et le résultat est propre à $\\mathbb{Z}$ : $\\mathbb{Q}$ est un sous-groupe de $(\\mathbb{R}, +)$ qui n'est pas de la forme $a\\mathbb{Z}$.",
+      "hypotheses": [
+        "$H$ est un sous-groupe de $(\\mathbb{Z}, +)$ : $0 \\in H$ et $x - y \\in H$ pour tous $x, y \\in H$.",
+        "Pour les conséquences : $a$ et $b$ sont des entiers non nuls."
+      ],
+      "hypotheses_pieges": [
+        "$H$ est seulement une partie non vide de $\\mathbb{Z}$ stable par addition (à la place d'un sous-groupe).",
+        "$H$ est seulement une partie de $\\mathbb{Z}$ stable par passage à l'opposé (à la place d'un sous-groupe).",
+        "$H$ est différent de $\\{0\\}$.",
+        "$H$ est un sous-groupe de $(\\mathbb{R}, +)$ (à la place de $(\\mathbb{Z}, +)$)."
+      ],
+      "enonce": "Soit $H$ un sous-groupe du groupe $(\\mathbb{Z}, +)$. Il existe un unique entier naturel $n$ tel que $H = n\\mathbb{Z}$ : $n = 0$ si $H = \\{0\\}$, et sinon $n$ est le plus petit élément strictement positif de $H$. Pour $m, n \\in \\mathbb{N}$, $m\\mathbb{Z} \\subset n\\mathbb{Z}$ si et seulement si $n$ divise $m$.\n\nConséquences : pour $a, b \\in \\mathbb{Z}$ non nuls, $a\\mathbb{Z} + b\\mathbb{Z} = \\{au + bv : u, v \\in \\mathbb{Z}\\}$ est égal à $(a \\wedge b)\\mathbb{Z}$, et $a\\mathbb{Z} \\cap b\\mathbb{Z}$ est égal à $(a \\vee b)\\mathbb{Z}$, où $a \\wedge b$ et $a \\vee b$ désignent le PGCD et le PPCM (positifs) de $a$ et $b$.",
+      "enonce_trous": "Pour tout sous-groupe $H$ de $(\\mathbb{Z}, +)$, il existe un unique entier $n$ {{1}} tel que $H = n\\mathbb{Z}$ ; si $H \\neq \\{0\\}$, cet entier est {{2}}. Pour $a, b$ entiers non nuls, $a\\mathbb{Z} + b\\mathbb{Z} = d\\mathbb{Z}$, où $d$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "positif ou nul",
+          "leurres": [
+            "de signe quelconque",
+            "strictement positif",
+            "premier"
+          ]
+        },
+        {
+          "reponse": "le plus petit élément strictement positif de $H$",
+          "leurres": [
+            "le plus petit élément de $H$",
+            "le plus grand élément de $H$",
+            "le plus petit élément positif ou nul de $H$"
+          ]
+        },
+        {
+          "reponse": "le PGCD de $a$ et $b$",
+          "leurres": [
+            "le PPCM de $a$ et $b$",
+            "le produit $|ab|$",
+            "la somme $|a| + |b|$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Si $H = \\{0\\}$, $n = 0$ convient. Sinon, $H$ contient un $x \\neq 0$, donc aussi $-x$ : $H$ contient un entier strictement positif. Soit $n$ le plus petit élément strictement positif de $H$ (principe du bon ordre). Comme $H$ est un sous-groupe contenant $n$, il contient tous les multiples $kn$, $k \\in \\mathbb{Z}$ : $n\\mathbb{Z} \\subset H$. Inversement, soit $h \\in H$ ; par division euclidienne, $h = qn + r$ avec $0 \\leq r < n$, et $r = h - qn \\in H$. Par minimalité de $n$, $r$ ne peut être strictement positif : $r = 0$ et $h \\in n\\mathbb{Z}$. Donc $H = n\\mathbb{Z}$.\n\n**Inclusion et unicité.** Si $m\\mathbb{Z} \\subset n\\mathbb{Z}$, alors $m \\in n\\mathbb{Z}$, donc $n \\mid m$ ; réciproquement, si $m = kn$, tout multiple de $m$ est un multiple de $n$. Si $n\\mathbb{Z} = m\\mathbb{Z}$ avec $m, n \\in \\mathbb{N}$, alors $n \\mid m$ et $m \\mid n$, donc $m = n$ puisque $m, n \\geq 0$.\n\n**Somme.** $a\\mathbb{Z} + b\\mathbb{Z}$ est un sous-groupe de $\\mathbb{Z}$ (il contient $0$ et $(au + bv) - (au' + bv') = a(u - u') + b(v - v')$), non réduit à $\\{0\\}$, donc égal à $d\\mathbb{Z}$ avec $d \\geq 1$. Comme $a, b \\in d\\mathbb{Z}$, $d$ divise $a$ et $b$. Comme $d \\in a\\mathbb{Z} + b\\mathbb{Z}$, on a $d = au + bv$, et tout diviseur commun de $a$ et $b$ divise $d$. Donc $d$ est le PGCD de $a$ et $b$.\n\n**Intersection.** $a\\mathbb{Z} \\cap b\\mathbb{Z}$ est un sous-groupe de $\\mathbb{Z}$ (intersection de deux sous-groupes) qui contient $ab \\neq 0$, donc égal à $m\\mathbb{Z}$ avec $m \\geq 1$. Ses éléments sont exactement les multiples communs de $a$ et $b$ : $m$ en est un, et tout multiple commun, élément de $m\\mathbb{Z}$, est un multiple de $m$. Donc $m$ est le PPCM de $a$ et $b$.",
+      "exemple": "$12\\mathbb{Z} + 18\\mathbb{Z} = 6\\mathbb{Z}$ (en effet $6 = 18 - 12$) et $12\\mathbb{Z} \\cap 18\\mathbb{Z} = 36\\mathbb{Z}$. L'ensemble $\\{k \\in \\mathbb{Z} : 6 \\mid 4k\\}$ est un sous-groupe de $\\mathbb{Z}$ (c'est le noyau du morphisme $k \\mapsto \\overline{4k}$ de $\\mathbb{Z}$ dans $\\mathbb{Z}/6\\mathbb{Z}$) ; son plus petit élément strictement positif est $3$, donc c'est $3\\mathbb{Z}$.",
+      "contre_exemple": "- **Stabilité par addition seule** : $\\mathbb{N}$ est une partie non vide de $\\mathbb{Z}$ stable par addition, mais ce n'est pas un $n\\mathbb{Z}$ : ce n'est pas $\\{0\\}$, et un $n\\mathbb{Z}$ avec $n \\geq 1$ contient $-n < 0$.\n- **Stabilité par opposé seule** : $\\{-1, 1\\}$ est stable par passage à l'opposé mais n'est pas un $n\\mathbb{Z}$, puisqu'il ne contient pas $0$.\n- **Hors de $\\mathbb{Z}$** : $\\mathbb{Q}$ est un sous-groupe de $(\\mathbb{R}, +)$ qui n'est pas de la forme $a\\mathbb{Z}$ avec $a \\in \\mathbb{R}$. Sinon, comme $\\mathbb{Q} \\neq \\{0\\}$, on aurait $a \\neq 0$ et $a \\in \\mathbb{Q}$ ; mais $\\frac{a}{2} \\in \\mathbb{Q}$ n'est pas un multiple entier de $a$.",
+      "affirmations": [
+        {
+          "texte": "Toute partie non vide de $\\mathbb{Z}$ stable par addition est de la forme $n\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{N}$ est non vide et stable par addition, mais ce n'est pas un sous-groupe ($-1 \\notin \\mathbb{N}$), donc pas un $n\\mathbb{Z}$."
+        },
+        {
+          "texte": "Pour $m, n \\in \\mathbb{N}$, $m\\mathbb{Z} \\subset n\\mathbb{Z}$ si et seulement si $m$ divise $n$.",
+          "vrai": false,
+          "contre_exemple": "$4\\mathbb{Z} \\subset 2\\mathbb{Z}$ alors que $4$ ne divise pas $2$ : c'est $n$ qui doit diviser $m$."
+        },
+        {
+          "texte": "Tout sous-groupe de $(\\mathbb{R}, +)$ est de la forme $a\\mathbb{Z}$ avec $a \\in \\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Q}$ n'est pas de cette forme : si $\\mathbb{Q} = a\\mathbb{Z}$, alors $a \\in \\mathbb{Q}$, $a \\neq 0$, et $\\frac{a}{2} \\in \\mathbb{Q}$ devrait être un multiple entier de $a$."
+        },
+        {
+          "texte": "Si $a$ et $b$ sont des entiers premiers entre eux, alors $a\\mathbb{Z} + b\\mathbb{Z} = \\mathbb{Z}$.",
+          "vrai": true,
+          "justification": "$a\\mathbb{Z} + b\\mathbb{Z} = (a \\wedge b)\\mathbb{Z} = 1\\mathbb{Z} = \\mathbb{Z}$ : c'est le théorème de Bézout."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-sous-groupes",
+        "arith-t-division-euclidienne",
+        "fond-l1-ensembles-recurrence-forte"
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-cycliques",
+      "theme": "groupes",
+      "niveau": "l1",
+      "chapitre": "gr-l1-groupes",
+      "type": "theoreme",
+      "titre": "Groupes cycliques et générateurs",
+      "recto": "Énoncer la structure d'un groupe cyclique d'ordre $n$ (isomorphisme avec $\\mathbb{Z}/n\\mathbb{Z}$, générateurs, sous-groupes) avec ses hypothèses.",
+      "cours": "Un groupe cyclique est un groupe fini dont tous les éléments sont les puissances d'un seul d'entre eux, appelé générateur. Les modèles sont $(\\mathbb{Z}/n\\mathbb{Z}, +)$, engendré par $\\bar 1$, et le groupe $\\mathbb{U}_n$ des racines $n$-ièmes de l'unité, engendré par $e^{2i\\pi/n}$ ; le théorème dit qu'il n'y en a pas d'autres : tout groupe cyclique d'ordre $n$ est isomorphe à $\\mathbb{Z}/n\\mathbb{Z}$ par $\\bar k \\mapsto a^k$. (Un groupe monogène infini, lui, est isomorphe à $\\mathbb{Z}$.)\n\nToute la structure se lit alors sur les entiers : $a^k$ est d'ordre $\\frac{n}{n \\wedge k}$, donc engendre $G$ exactement quand $k$ est premier avec $n$, ce qui donne $\\varphi(n)$ générateurs ; et les sous-groupes correspondent aux diviseurs de $n$, un seul par diviseur. C'est la réciproque du théorème de Lagrange, vraie pour les groupes cycliques mais pas en général.\n\nEn pratique, pour lister les générateurs de $\\mathbb{Z}/n\\mathbb{Z}$, on prend les classes des entiers premiers avec $n$ ; pour trouver le sous-groupe d'ordre $d$, on prend $\\langle a^{n/d} \\rangle$ ; pour montrer qu'un groupe d'ordre $n$ est cyclique, on exhibe un élément d'ordre $n$.\n\nPièges : un groupe commutatif n'est pas forcément cyclique ($(\\mathbb{Z}/2\\mathbb{Z})^2$ a quatre éléments, aucun d'ordre $4$, et trois sous-groupes d'ordre $2$) ; et les générateurs ne sont pas les classes des nombres premiers : dans $\\mathbb{Z}/12\\mathbb{Z}$, ce sont $\\bar 1$, $\\bar 5$, $\\bar 7$ et $\\overline{11}$, mais pas $\\bar 2$ ni $\\bar 3$.",
+      "hypotheses": [
+        "$G$ est un groupe cyclique d'ordre $n \\geq 1$.",
+        "$a$ est un générateur de $G$ : $G = \\{a^k : k \\in \\mathbb{Z}\\}$."
+      ],
+      "hypotheses_pieges": [
+        "$G$ est seulement commutatif d'ordre $n$ (à la place de cyclique).",
+        "$a$ est un élément quelconque de $G$ (à la place d'un générateur).",
+        "$n$ est un nombre premier."
+      ],
+      "enonce": "Un groupe $G$ est **monogène** s'il existe $a \\in G$ tel que $G = \\langle a \\rangle = \\{a^k : k \\in \\mathbb{Z}\\}$ ; il est **cyclique** s'il est de plus fini. Soit $G = \\langle a \\rangle$ un groupe cyclique d'ordre $n \\geq 1$ (ainsi $a$ est d'ordre $n$). Alors :\n\n- l'application $\\mathbb{Z}/n\\mathbb{Z} \\to G$, $\\bar k \\mapsto a^k$ est bien définie, et c'est un isomorphisme du groupe $(\\mathbb{Z}/n\\mathbb{Z}, +)$ sur $G$ ;\n- pour $k \\in \\mathbb{Z}$, $a^k$ engendre $G$ si et seulement si $k \\wedge n = 1$ ; $G$ a donc exactement $\\varphi(n)$ générateurs, où $\\varphi(n)$ est le nombre d'entiers $k \\in \\{1, \\dots, n\\}$ premiers avec $n$ ;\n- pour chaque diviseur positif $d$ de $n$, $G$ possède un unique sous-groupe d'ordre $d$, à savoir $\\langle a^{n/d} \\rangle$, et ce sont les seuls sous-groupes de $G$ : tout sous-groupe d'un groupe cyclique est cyclique.",
+      "enonce_trous": "Soit $G = \\langle a \\rangle$ un groupe cyclique d'ordre $n$. Pour $k \\in \\mathbb{Z}$, $a^k$ engendre $G$ si et seulement si {{1}} ; $G$ a donc exactement {{2}} générateurs. Pour chaque diviseur positif $d$ de $n$, $G$ possède {{3}} sous-groupe d'ordre $d$.",
+      "trous": [
+        {
+          "reponse": "$k$ et $n$ sont premiers entre eux",
+          "leurres": [
+            "$k$ divise $n$",
+            "$k$ est un nombre premier",
+            "$k$ n'est pas un multiple de $n$"
+          ]
+        },
+        {
+          "reponse": "$\\varphi(n)$",
+          "leurres": [
+            "$n - 1$",
+            "$n$",
+            "$\\frac{n}{2}$"
+          ]
+        },
+        {
+          "reponse": "exactement un",
+          "leurres": [
+            "au moins deux",
+            "exactement $\\varphi(d)$",
+            "exactement $n/d$"
+          ]
+        }
+      ],
+      "demo": "**Isomorphisme.** L'application $\\psi : \\mathbb{Z} \\to G$, $k \\mapsto a^k$ est un morphisme de $(\\mathbb{Z}, +)$ dans $G$ ($a^{k + l} = a^k a^l$), surjectif par hypothèse, de noyau $\\{k : a^k = e\\} = n\\mathbb{Z}$ puisque $a$ est d'ordre $n$. Ainsi $a^k = a^l \\iff a^{k - l} = e \\iff k \\equiv l \\pmod{n}$ : l'application $\\bar k \\mapsto a^k$ est bien définie (sens $\\Leftarrow$) et injective (sens $\\Rightarrow$) ; elle est surjective et transforme $\\bar k + \\bar l = \\overline{k + l}$ en $a^k a^l$ : c'est un isomorphisme.\n\n**Générateurs.** Si $k \\wedge n = 1$, le théorème de Bézout donne $u, v \\in \\mathbb{Z}$ avec $ku + nv = 1$, d'où $a = a^{ku}(a^n)^v = (a^k)^u \\in \\langle a^k \\rangle$, puis $G = \\langle a \\rangle \\subset \\langle a^k \\rangle$. Inversement, si $a^k$ engendre $G$, il existe $u$ tel que $(a^k)^u = a$, soit $a^{ku - 1} = e$ : $n$ divise $ku - 1$, $ku - 1 = nv$, et la relation $ku - nv = 1$ donne $k \\wedge n = 1$. Comme $a^k$ ne dépend que de $\\bar k$, les générateurs sont les $a^k$ avec $k \\in \\{1, \\dots, n\\}$ premier avec $n$, deux à deux distincts : il y en a $\\varphi(n)$.\n\n**Sous-groupes.** Soit $H$ un sous-groupe de $G$ et $K = \\{k \\in \\mathbb{Z} : a^k \\in H\\}$. On a $0 \\in K$, et si $k, l \\in K$, $a^{k - l} = a^k (a^l)^{-1} \\in H$ : $K$ est un sous-groupe de $\\mathbb{Z}$, qui contient $n$ ; donc $K = m\\mathbb{Z}$ avec $m \\geq 1$ et $m \\mid n$. Par surjectivité de $\\psi$, $H = \\{a^k : k \\in K\\} = \\{(a^m)^j : j \\in \\mathbb{Z}\\} = \\langle a^m \\rangle$. Or $a^m$ est d'ordre $n/m$, car $(a^m)^j = e \\iff n \\mid mj \\iff \\frac{n}{m} \\mid j$ ; donc $|H| = n/m$. Si $H$ est d'ordre $d$, nécessairement $m = n/d$ et $H = \\langle a^{n/d} \\rangle$ : il y a au plus un sous-groupe d'ordre $d$. Inversement, pour $d \\mid n$, $\\langle a^{n/d} \\rangle$ est d'ordre $d$ par le même calcul. Enfin chacun de ces sous-groupes est engendré par un élément : il est cyclique.",
+      "exemple": "Dans $(\\mathbb{Z}/12\\mathbb{Z}, +)$, cyclique d'ordre $12$ engendré par $\\bar 1$, les générateurs sont $\\bar 1$, $\\bar 5$, $\\bar 7$ et $\\overline{11}$ : $\\varphi(12) = 4$. Les sous-groupes sont, pour chaque diviseur $d$ de $12$, les $\\langle \\overline{12/d} \\rangle$ : $\\{\\bar 0\\}$, $\\langle \\bar 6 \\rangle$, $\\langle \\bar 4 \\rangle$, $\\langle \\bar 3 \\rangle$, $\\langle \\bar 2 \\rangle$ et $\\mathbb{Z}/12\\mathbb{Z}$, d'ordres $1$, $2$, $3$, $4$, $6$ et $12$. Dans $\\mathbb{U}_6$, engendré par $\\omega = e^{i\\pi/3}$, les générateurs (racines primitives sixièmes de l'unité) sont $\\omega$ et $\\omega^5$.",
+      "contre_exemple": "- **Commutatif ne suffit pas** : $(\\mathbb{Z}/2\\mathbb{Z})^2$ est commutatif d'ordre $4$, mais chacun de ses éléments $x$ vérifie $x + x = 0$ : aucun n'est d'ordre $4$, le groupe n'est pas cyclique, et il a trois sous-groupes d'ordre $2$, engendrés par $(\\bar 1, \\bar 0)$, $(\\bar 0, \\bar 1)$ et $(\\bar 1, \\bar 1)$.\n- **De même**, $(\\mathbb{Z}/8\\mathbb{Z})^* = \\{\\bar 1, \\bar 3, \\bar 5, \\bar 7\\}$ n'est pas cyclique : $\\bar 3^2 = \\bar 5^2 = \\bar 7^2 = \\bar 1$.\n- **Le générateur compte** : avec $a = \\bar 2$ dans $\\mathbb{Z}/4\\mathbb{Z}$, qui n'est pas un générateur, $k = 1$ est premier avec $4$ mais $1 \\cdot \\bar 2 = \\bar 2$ n'engendre pas $\\mathbb{Z}/4\\mathbb{Z}$.",
+      "affirmations": [
+        {
+          "texte": "Tout groupe commutatif fini est cyclique.",
+          "vrai": false,
+          "contre_exemple": "$(\\mathbb{Z}/2\\mathbb{Z})^2$ est commutatif d'ordre $4$, mais tous ses éléments vérifient $x + x = 0$ : aucun n'est d'ordre $4$."
+        },
+        {
+          "texte": "Tout groupe dont l'ordre est un nombre premier est cyclique.",
+          "vrai": true,
+          "justification": "Si $|G| = p$ premier et $a \\neq e$, l'ordre de $a$ divise $p$ et n'est pas $1$ : il vaut $p$, et $a$ engendre $G$."
+        },
+        {
+          "texte": "Le groupe $\\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/3\\mathbb{Z}$ n'est pas cyclique.",
+          "vrai": false,
+          "contre_exemple": "$(\\bar 1, \\bar 1)$ est d'ordre $6$ : ses multiples $(\\bar 1, \\bar 1)$, $(\\bar 0, \\bar 2)$, $(\\bar 1, \\bar 0)$, $(\\bar 0, \\bar 1)$, $(\\bar 1, \\bar 2)$, $(\\bar 0, \\bar 0)$ sont les six éléments du groupe."
+        },
+        {
+          "texte": "Dans un groupe cyclique d'ordre $n$, pour chaque diviseur positif $d$ de $n$, il y a exactement $\\varphi(d)$ éléments d'ordre $d$.",
+          "vrai": true,
+          "justification": "Un élément d'ordre $d$ engendre un sous-groupe d'ordre $d$, qui est l'unique sous-groupe $H_d$ d'ordre $d$ ; les éléments d'ordre $d$ sont donc les générateurs de $H_d$, cyclique d'ordre $d$ : il y en a $\\varphi(d)$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-ordre",
+        "gr-l1-groupes-sous-groupes-z",
+        "gr-l1-groupes-noyau",
+        "arith-t-bezout"
+      ]
+    }
+  ]
+}
