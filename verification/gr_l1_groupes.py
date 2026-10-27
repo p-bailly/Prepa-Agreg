@@ -467,6 +467,20 @@ for p_ in sympy.primerange(2, 100):
     assert any(ordre_mult(a, p_) == p_ - 1 for a in range(1, p_))
 assert [pow(3, k, 7) for k in range(1, 7)] == [3, 2, 6, 4, 5, 1]
 
+# ---------- corrections de la relecture
+# gr-l1-groupes-lagrange, trou 1 : aucun leurre ne doit donner un énoncé vrai (« cyclique » = monogène fini le donnait)
+LAG = next(c for c in CARTES if c["id"] == "gr-l1-groupes-lagrange")
+assert "cyclique" not in LAG["trous"][0]["leurres"]
+# gr-l1-groupes-ordre, cours : a et a^{-1} commutent, ont le même ordre, mais a a^{-1} = e (ordre 1) : contrôle dans Z/12Z
+assert ordre_add(5, 12) == ordre_add(-5 % 12, 12) == 12 and ordre_add((5 - 5) % 12, 12) == 1
+# gr-l1-groupes-cycliques, cours : 2 et 3 sont premiers mais leurs classes n'engendrent pas Z/12Z
+assert ordre_add(2, 12) == 6 and ordre_add(3, 12) == 4
+# gr-l1-groupes-sous-groupes-z-ex4 (et v1, v2) : l'énoncé et les indices ne livrent plus la réponse du QCM
+for v, (p_, q_) in {0: (18, 30), 1: (28, 42), 2: (45, 75)}.items():
+    e = EX["gr-l1-groupes-sous-groupes-z-ex4"]
+    txt = e["enonce"] + " ".join(e["indices"]) if v == 0 else e["variantes"][v - 1]["enonce"] + " ".join(e["variantes"][v - 1]["indices"])
+    assert f"${gcd(p_, q_)}$" not in txt and f"${gcd(p_, q_) - 1}$" not in txt, v
+
 # ---------- toutes les questions à choix du fichier ont été vérifiées
 attendues = {(e["id"], 0) for e in EXOS if "reponse_finale" in e} | {
     (e["id"], i + 1) for e in EXOS for i, v in enumerate(e.get("variantes", [])) if "reponse_finale" in v}

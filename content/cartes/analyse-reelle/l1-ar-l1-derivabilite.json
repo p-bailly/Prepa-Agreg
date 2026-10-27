@@ -1,0 +1,281 @@
+{
+ "cartes": [
+  {
+   "id": "ar-l1-derivabilite-limite-derivee",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-derivabilite",
+   "type": "theoreme",
+   "titre": "Théorème de la limite de la dérivée",
+   "recto": "Énoncer le théorème de la limite de la dérivée avec ses hypothèses.",
+   "cours": "Pour savoir si une fonction définie par morceaux, ou par une formule qui n'a pas de sens en un point $a$, est dérivable en $a$, on étudie normalement la limite du taux d'accroissement $\\frac{f(x)-f(a)}{x-a}$. Le théorème de la limite de la dérivée fournit un raccourci : si $f$ est **continue en $a$**, dérivable autour de $a$, et si $f'(x)$ a une limite $\\ell$ quand $x\\to a$, alors le taux d'accroissement tend aussi vers $\\ell$. C'est une conséquence directe des accroissements finis : le taux entre $a$ et $x$ est égal à $f'(c_x)$ pour un $c_x$ strictement compris entre $a$ et $x$, et $c_x\\to a$.\n\nMéthode : vérifier la continuité en $a$ (souvent par un calcul de limite), calculer $f'$ sur $I\\setminus\\{a\\}$ par les règles usuelles, puis chercher la limite de $f'$ en $a$. Si elle est réelle, $f$ est dérivable en $a$, $f'(a)=\\ell$, et $f'$ est même continue en $a$ : c'est l'outil standard pour montrer qu'un prolongement est de classe $C^1$. Si elle vaut $\\pm\\infty$, le taux tend vers $\\pm\\infty$ : $f$ n'est pas dérivable en $a$ et sa courbe a une tangente verticale.\n\nLe piège principal : le théorème donne une condition **suffisante**. Si $f'$ n'a pas de limite en $a$, on ne peut rien conclure : $x\\mapsto x^2\\sin\\frac1x$ (prolongée par $0$) est dérivable en $0$ alors que sa dérivée n'a pas de limite en $0$. Et sans la continuité en $a$, la conclusion est fausse (penser à une fonction en escalier).",
+   "hypotheses": [
+    "$I$ est un intervalle et $a\\in I$.",
+    "$f$ est continue sur $I$, en particulier en $a$.",
+    "$f$ est dérivable sur $I\\setminus\\{a\\}$.",
+    "$f'(x)$ admet une limite $\\ell$, réelle ou infinie, quand $x$ tend vers $a$ en restant différent de $a$."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est continue sur $I\\setminus\\{a\\}$ seulement (à la place de continue sur $I$, y compris en $a$).",
+    "$f'$ est bornée au voisinage de $a$ (à la place d'admettre une limite en $a$).",
+    "$f'(x)$ admet une limite quand $x$ tend vers $a$ par valeurs supérieures seulement, $a$ étant intérieur à $I$ (à la place d'une limite des deux côtés).",
+    "$f$ est dérivable à droite en $a$ (à la place de continue en $a$)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $a\\in I$ et $f:I\\to\\mathbb{R}$ continue sur $I$ et dérivable sur $I\\setminus\\{a\\}$. Si $f'(x)$ admet une limite $\\ell\\in\\mathbb{R}\\cup\\{-\\infty,+\\infty\\}$ quand $x$ tend vers $a$ ($x\\neq a$), alors\n$$\\frac{f(x)-f(a)}{x-a}\\xrightarrow[x\\to a]{}\\ell.$$\n\n- Si $\\ell$ est réel, $f$ est dérivable en $a$, $f'(a)=\\ell$, et $f'$ est continue en $a$.\n- Si $\\ell=\\pm\\infty$, $f$ n'est pas dérivable en $a$ (sa courbe a une tangente verticale au point d'abscisse $a$).",
+   "enonce_trous": "Soient $I$ un intervalle et $a\\in I$. Si $f$ est dérivable sur $I\\setminus\\{a\\}$, {{1}}, et si $f'(x)$ tend vers un réel $\\ell$ quand $x\\to a$, alors {{2}}.",
+   "trous": [
+    {
+     "reponse": "continue en $a$",
+     "leurres": [
+      "bornée au voisinage de $a$",
+      "dérivable à droite en $a$",
+      "continue à droite en $a$"
+     ]
+    },
+    {
+     "reponse": "$f$ est dérivable en $a$ et $f'(a)=\\ell$",
+     "leurres": [
+      "$f$ est dérivable en $a$ et $f'(a)=0$",
+      "$f(a)=\\ell$",
+      "$f$ est deux fois dérivable en $a$"
+     ]
+    }
+   ],
+   "demo": "Soit $x\\in I$, $x\\neq a$. La fonction $f$ est continue sur le segment d'extrémités $a$ et $x$ (contenu dans $I$) et dérivable sur l'intervalle ouvert correspondant, qui ne contient pas $a$. L'égalité des accroissements finis donne $c_x$ strictement compris entre $a$ et $x$ tel que\n$$\\frac{f(x)-f(a)}{x-a}=f'(c_x),\\qquad\\text{avec }0<|c_x-a|<|x-a|.$$\n\n**Cas $\\ell$ réel.** Soit $\\varepsilon>0$ : il existe $\\eta>0$ tel que $|f'(t)-\\ell|\\le\\varepsilon$ pour tout $t\\in I$ vérifiant $0<|t-a|<\\eta$. Si $0<|x-a|<\\eta$, alors $0<|c_x-a|<\\eta$, donc $\\left|\\frac{f(x)-f(a)}{x-a}-\\ell\\right|=|f'(c_x)-\\ell|\\le\\varepsilon$. Le taux d'accroissement tend vers $\\ell$ : $f$ est dérivable en $a$ et $f'(a)=\\ell=\\lim_{x\\to a}f'(x)$, ce qui est exactement la continuité de $f'$ en $a$.\n\n**Cas $\\ell=+\\infty$** (de même pour $-\\infty$). Pour tout réel $A$, il existe $\\eta>0$ tel que $f'(t)\\ge A$ si $0<|t-a|<\\eta$ ; alors $\\frac{f(x)-f(a)}{x-a}=f'(c_x)\\ge A$ pour $0<|x-a|<\\eta$. Le taux tend vers $+\\infty$ : il n'a pas de limite finie, et $f$ n'est pas dérivable en $a$.",
+   "exemple": "Soit $f(x)=x|x|$ sur $\\mathbb{R}$. Elle est continue, dérivable sur $\\mathbb{R}^*$ avec $f'(x)=2x$ pour $x>0$ et $f'(x)=-2x$ pour $x<0$, soit $f'(x)=2|x|\\to0$ quand $x\\to0$. Le théorème donne : $f$ est dérivable en $0$, $f'(0)=0$, et $f$ est de classe $C^1$ sur $\\mathbb{R}$.\n\nÀ l'inverse, $\\arcsin$ est continue sur $[-1,1]$, dérivable sur $\\left]-1,1\\right[$ avec $\\arcsin'(x)=\\frac{1}{\\sqrt{1-x^2}}\\to+\\infty$ quand $x\\to1^-$ : $\\arcsin$ n'est pas dérivable en $1$, et sa courbe a une tangente verticale en ce point.",
+   "contre_exemple": "- **La réciproque est fausse** : $f(x)=x^2\\sin\\frac1x$ pour $x\\neq0$, $f(0)=0$ : le taux $\\frac{f(x)}{x}=x\\sin\\frac1x\\to0$, donc $f'(0)=0$ ; mais $f'(x)=2x\\sin\\frac1x-\\cos\\frac1x$ vaut $-1$ en $\\frac{1}{2n\\pi}$ et $1$ en $\\frac{1}{(2n+1)\\pi}$ : elle n'a pas de limite en $0$.\n- **Continuité en $a$ indispensable** : $f(x)=0$ pour $x<0$ et $f(x)=1$ pour $x\\ge0$ est dérivable sur $\\mathbb{R}^*$ de dérivée nulle, donc $f'(x)\\to0$, mais $f$ n'est pas dérivable en $0$, où elle n'est pas continue.\n- **Une limite, pas seulement une dérivée bornée** : $f(x)=|x|$ est continue, $|f'(x)|=1$ sur $\\mathbb{R}^*$, mais $f'$ n'a pas de limite en $0$ (elle vaut $-1$ à gauche et $1$ à droite), et $f$ n'est pas dérivable en $0$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est dérivable sur $\\mathbb{R}$, alors $f'$ est continue sur $\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^2\\sin\\frac1x$, $f(0)=0$, est dérivable sur $\\mathbb{R}$ avec $f'(0)=0$, mais $f'(x)=2x\\sin\\frac1x-\\cos\\frac1x$ n'a pas de limite en $0$."
+    },
+    {
+     "texte": "Si $f$ est continue sur $[0,1]$, dérivable sur $\\left]0,1\\right]$, et si $f'(x)\\to+\\infty$ quand $x\\to0^+$, alors $f$ n'est pas dérivable (à droite) en $0$.",
+     "vrai": true,
+     "justification": "Par le théorème, le taux d'accroissement en $0$ tend vers $+\\infty$ : il n'a pas de limite finie. Exemple : $x\\mapsto\\sqrt x$."
+    },
+    {
+     "texte": "Si $f$ est dérivable sur un intervalle $I$ et si $f'$ admet une limite réelle $\\ell$ en $a\\in I$, alors $\\ell=f'(a)$.",
+     "vrai": true,
+     "justification": "$f$, dérivable, est continue sur $I$ : le théorème s'applique et donne $f'(a)=\\ell$. Une dérivée ne peut donc pas avoir de discontinuité « à limite », par exemple de saut."
+    },
+    {
+     "texte": "Si $f$ est continue sur $I$, dérivable sur $I\\setminus\\{a\\}$, et si $f'$ n'a pas de limite en $a$, alors $f$ n'est pas dérivable en $a$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^2\\sin\\frac1x$, $f(0)=0$ : $f'$ n'a pas de limite en $0$, et pourtant $f$ est dérivable en $0$ avec $f'(0)=0$."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-taf"
+   ]
+  },
+  {
+   "id": "ar-l1-derivabilite-reciproque",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-derivabilite",
+   "type": "theoreme",
+   "titre": "Dérivée d'une fonction réciproque",
+   "recto": "Énoncer le théorème de dérivabilité d'une fonction réciproque avec ses hypothèses, et donner la formule.",
+   "cours": "Si $f$ est une bijection, la courbe de $f^{-1}$ est la symétrique de celle de $f$ par rapport à la droite $y=x$ : une tangente de pente $p\\neq0$ au point $(a,f(a))$ devient une tangente de pente $\\frac1p$ au point $(f(a),a)$. D'où la formule $\\left(f^{-1}\\right)'(b)=\\frac{1}{f'(a)}$ avec $a=f^{-1}(b)$, valable quand $f'(a)\\neq0$ ; une tangente horizontale ($f'(a)=0$) devient verticale, et $f^{-1}$ n'est alors pas dérivable en $b$.\n\nLa preuve écrit le taux d'accroissement de $f^{-1}$ comme l'inverse de celui de $f$ : $\\frac{f^{-1}(y)-f^{-1}(b)}{y-b}=\\frac{x-a}{f(x)-f(a)}$ avec $x=f^{-1}(y)$, et utilise la **continuité** de $f^{-1}$ pour assurer que $x\\to a$ quand $y\\to b$. C'est pourquoi on se place dans le cadre du théorème de la bijection : $f$ continue et strictement monotone sur un intervalle.\n\nMéthode : pour dériver $\\arcsin$, $\\arctan$, $\\ln$ ou une réciproque non explicite, on écrit $\\left(f^{-1}\\right)'=\\frac{1}{f'\\circ f^{-1}}$, puis on exprime $f'\\left(f^{-1}(y)\\right)$ en fonction de $y$ grâce à une relation entre $f'$ et $f$ (par exemple $\\tan'=1+\\tan^2$, d'où $\\arctan'(y)=\\frac{1}{1+y^2}$). Le piège principal : la dérivée de $f$ se calcule au point $a=f^{-1}(b)$, pas en $b$ ; et l'hypothèse $f'(a)\\neq0$ est indispensable : $x\\mapsto x^3$ est une bijection dérivable de $\\mathbb{R}$ sur $\\mathbb{R}$, mais sa réciproque $y\\mapsto\\sqrt[3]{y}$ n'est pas dérivable en $0$.",
+   "hypotheses": [
+    "$I$ est un intervalle et $f:I\\to\\mathbb{R}$ est continue et strictement monotone sur $I$ (donc bijective de $I$ sur l'intervalle $J=f(I)$).",
+    "$b\\in J$ et $a=f^{-1}(b)$.",
+    "$f$ est dérivable en $a$.",
+    "$f'(a)\\neq0$."
+   ],
+   "hypotheses_pieges": [
+    "Aucune condition sur $f'(a)$, qui peut être nul (à la place de $f'(a)\\neq0$).",
+    "$f'(b)\\neq0$ (à la place de $f'(a)\\neq0$, avec $a=f^{-1}(b)$).",
+    "$f$ est dérivable sur $I\\setminus\\{a\\}$ (à la place de dérivable en $a$).",
+    "$f$ est monotone au sens large sur $I$ (à la place de strictement monotone)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $f:I\\to\\mathbb{R}$ continue et strictement monotone, $J=f(I)$, $b\\in J$ et $a=f^{-1}(b)$. Si $f$ est dérivable en $a$ et $f'(a)\\neq0$, alors $f^{-1}$ est dérivable en $b$ et\n$$\\left(f^{-1}\\right)'(b)=\\frac{1}{f'(a)}=\\frac{1}{f'\\left(f^{-1}(b)\\right)}.$$\nSi $f$ est dérivable en $a$ avec $f'(a)=0$, $f^{-1}$ n'est pas dérivable en $b$ (tangente verticale). En particulier, si $f$ est dérivable sur $I$ et si $f'$ ne s'annule pas sur $I$, $f^{-1}$ est dérivable sur $J$ et $\\left(f^{-1}\\right)'=\\frac{1}{f'\\circ f^{-1}}$.",
+   "enonce_trous": "Soit $f$ continue et strictement monotone sur un intervalle $I$, dérivable en $a\\in I$, avec {{1}}. Alors $f^{-1}$ est dérivable en $b=f(a)$ et {{2}}.",
+   "trous": [
+    {
+     "reponse": "$f'(a)\\neq0$",
+     "leurres": [
+      "$f'(a)\\ge0$",
+      "$f'(b)\\neq0$",
+      "$f(a)\\neq0$"
+     ]
+    },
+    {
+     "reponse": "$\\left(f^{-1}\\right)'(b)=\\frac{1}{f'(a)}$",
+     "leurres": [
+      "$\\left(f^{-1}\\right)'(b)=\\frac{1}{f'(b)}$",
+      "$\\left(f^{-1}\\right)'(b)=-\\frac{1}{f'(a)}$",
+      "$\\left(f^{-1}\\right)'(b)=\\frac{1}{f'(a)^2}$"
+     ]
+    }
+   ],
+   "demo": "Notons $g=f^{-1}:J\\to I$ ; par le théorème de la bijection, $g$ est continue sur $J$. Pour $x\\in I$, $x\\neq a$, posons $\\tau(x)=\\frac{f(x)-f(a)}{x-a}$ : $\\tau(x)\\to f'(a)$ quand $x\\to a$, et $\\tau(x)\\neq0$ car $f$ est injective.\n\nSoit $y\\in J$, $y\\neq b$, et $x=g(y)$ : alors $x\\neq a$ ($g$ est injective) et\n$$\\frac{g(y)-g(b)}{y-b}=\\frac{x-a}{f(x)-f(a)}=\\frac{1}{\\tau\\big(g(y)\\big)}.$$\nQuand $y\\to b$, $g(y)\\to g(b)=a$ par continuité de $g$, avec $g(y)\\neq a$ ; par composition des limites, $\\tau\\big(g(y)\\big)\\to f'(a)$.\n\n- Si $f'(a)\\neq0$, alors $\\frac{1}{\\tau(g(y))}\\to\\frac{1}{f'(a)}$ : $g$ est dérivable en $b$ et $g'(b)=\\frac{1}{f'(a)}$.\n- Si $f'(a)=0$, $\\tau$ est de signe strict constant (positif si $f$ est croissante, négatif si elle est décroissante), donc $\\frac{1}{\\tau(g(y))}$ tend vers $+\\infty$ (ou $-\\infty$) : $g$ n'est pas dérivable en $b$.\n\nLe dernier point s'obtient en appliquant le premier en chaque $b\\in J$.",
+   "exemple": "$\\tan$ est continue et strictement croissante de $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ sur $\\mathbb{R}$, de dérivée $1+\\tan^2>0$. Donc $\\arctan$ est dérivable sur $\\mathbb{R}$ et\n$$\\arctan'(y)=\\frac{1}{1+\\tan^2(\\arctan y)}=\\frac{1}{1+y^2}.$$\nDe même, $\\exp$ est une bijection dérivable de $\\mathbb{R}$ sur $\\left]0,+\\infty\\right[$, de dérivée $\\exp$ qui ne s'annule pas, et sa réciproque $\\ln$ vérifie $\\ln'(y)=\\frac{1}{\\exp(\\ln y)}=\\frac1y$.",
+   "contre_exemple": "- **$f'(a)\\neq0$ indispensable** : $f(x)=x^3$ est continue, strictement croissante et dérivable sur $\\mathbb{R}$, avec $f'(0)=0$ ; sa réciproque $g(y)=\\sqrt[3]{y}$ (racine cubique réelle) a pour taux en $0$ : $\\frac{g(y)}{y}=\\frac{1}{g(y)^2}\\to+\\infty$ ; elle n'est pas dérivable en $0$.\n- **Dérivabilité de $f$ en $a$** : $f(x)=x$ pour $x\\le0$ et $f(x)=2x$ pour $x>0$ est continue et strictement croissante sur $\\mathbb{R}$, dérivable sauf en $0$ ; sa réciproque vaut $y$ pour $y\\le0$ et $\\frac y2$ pour $y>0$ : elle n'est pas dérivable en $0$ (taux $1$ à gauche, $\\frac12$ à droite).\n- **Le bon point** : avec $f(x)=x^3+1$, on a $b=1=f(0)$ et $f'(b)=f'(1)=3\\neq0$, mais $f'(0)=0$ et $f^{-1}(y)=\\sqrt[3]{y-1}$ n'est pas dérivable en $1$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ est dérivable et strictement croissante sur un intervalle $I$, alors $f^{-1}$ est dérivable sur $f(I)$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^3$ sur $\\mathbb{R}$ : $f^{-1}(y)=\\sqrt[3]{y}$ n'est pas dérivable en $0=f(0)$, car $f'(0)=0$."
+    },
+    {
+     "texte": "Si $f$ est une bijection dérivable de $\\mathbb{R}$ sur $\\mathbb{R}$ dont la dérivée ne s'annule pas, alors $\\left(f^{-1}\\right)'(y)=\\frac{1}{f'(y)}$ pour tout réel $y$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^3+x$ : $f(1)=2$, donc $\\left(f^{-1}\\right)'(2)=\\frac{1}{f'(1)}=\\frac14$, alors que $\\frac{1}{f'(2)}=\\frac{1}{13}$."
+    },
+    {
+     "texte": "Si $f$ est de classe $C^1$ sur un intervalle $I$ et $f'>0$ sur $I$, alors $f^{-1}$ est de classe $C^1$ sur $f(I)$.",
+     "vrai": true,
+     "justification": "$f$ est continue et strictement croissante, donc $f^{-1}$ est continue ; $\\left(f^{-1}\\right)'=\\frac{1}{f'\\circ f^{-1}}$ est continue comme inverse d'une composée de fonctions continues ne s'annulant pas."
+    }
+   ],
+   "prerequis": [
+    "ar-l1-continuite-reciproque"
+   ]
+  },
+  {
+   "id": "ar-l1-derivabilite-leibniz",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-derivabilite",
+   "type": "theoreme",
+   "titre": "Formule de Leibniz",
+   "recto": "Énoncer la formule de Leibniz pour la dérivée $n$-ième d'un produit, avec ses hypothèses.",
+   "cours": "La dérivée d'un produit est $(fg)'=f'g+fg'$ ; en dérivant à nouveau, $(fg)''=f''g+2f'g'+fg''$, puis $(fg)'''=f'''g+3f''g'+3f'g''+fg'''$ : on reconnaît les coefficients du binôme. La formule de Leibniz généralise ce constat, $(fg)^{(n)}=\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n-k)}$, exactement comme $(x+y)^n=\\sum_{k=0}^n\\binom nk x^ky^{n-k}$, et elle se démontre de la même façon, par récurrence avec la relation de Pascal.\n\nElle est efficace quand l'un des facteurs a des dérivées qui s'annulent vite (un polynôme de degré $d$ : seuls $d+1$ termes subsistent) et l'autre des dérivées connues ($e^{ax}$, $\\sin$, $\\cos$). Méthode : identifier les deux facteurs, écrire leurs dérivées successives, ne garder que les termes non nuls. Elle sert aussi à dériver $n$ fois une relation comme $(1+x^2)f'(x)=1$, ce qui donne une relation de récurrence entre les dérivées successives en un point, et à étudier des polynômes comme $\\left((x^2-1)^n\\right)^{(n)}$.\n\nLe piège principal : les coefficients binomiaux ne disparaissent pas ($(fg)''\\neq f''g+fg''$), et l'hypothèse porte sur **chacun** des facteurs : $f$ et $g$ doivent être $n$ fois dérivables. Un produit peut d'ailleurs être très régulier sans que ses facteurs le soient : $|x|\\cdot|x|=x^2$.",
+   "hypotheses": [
+    "$I$ est un intervalle et $n\\in\\mathbb{N}$.",
+    "$f$ est $n$ fois dérivable sur $I$.",
+    "$g$ est $n$ fois dérivable sur $I$."
+   ],
+   "hypotheses_pieges": [
+    "$g$ est seulement $n-1$ fois dérivable sur $I$ (à la place de $n$ fois).",
+    "Seul le produit $fg$ est supposé $n$ fois dérivable sur $I$ (à la place de $f$ et $g$).",
+    "$f$ et $g$ sont $n$ fois dérivables sur $I$ privé d'un point (à la place de sur $I$)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $n\\in\\mathbb{N}$ et $f,g:I\\to\\mathbb{R}$ deux fonctions $n$ fois dérivables sur $I$. Alors $fg$ est $n$ fois dérivable sur $I$ et\n$$(fg)^{(n)}=\\sum_{k=0}^{n}\\binom{n}{k}f^{(k)}g^{(n-k)}.$$\nSi $f$ et $g$ sont de classe $C^n$ sur $I$, $fg$ l'est aussi.",
+   "enonce_trous": "Si $f$ et $g$ sont {{1}} sur l'intervalle $I$, alors $fg$ l'est aussi et $(fg)^{(n)}$ est égale à {{2}}.",
+   "trous": [
+    {
+     "reponse": "$n$ fois dérivables",
+     "leurres": [
+      "$n-1$ fois dérivables",
+      "dérivables",
+      "continues"
+     ]
+    },
+    {
+     "reponse": "$\\sum_{k=0}^{n}\\binom{n}{k}f^{(k)}g^{(n-k)}$",
+     "leurres": [
+      "$\\sum_{k=0}^{n}f^{(k)}g^{(n-k)}$",
+      "$f^{(n)}g^{(n)}$",
+      "$f^{(n)}g+fg^{(n)}$"
+     ]
+    }
+   ],
+   "demo": "Par récurrence sur $n$. Pour $n=0$, la formule s'écrit $fg=fg$.\n\nSupposons le résultat vrai au rang $n$, et soient $f,g$ deux fonctions $n+1$ fois dérivables sur $I$. Elles sont en particulier $n$ fois dérivables, donc $(fg)^{(n)}=\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n-k)}$. Pour $0\\le k\\le n$, $f^{(k)}$ et $g^{(n-k)}$ sont dérivables (car $k\\le n$, $n-k\\le n$ et $f$, $g$ sont $n+1$ fois dérivables), donc $(fg)^{(n)}$ est dérivable et\n$$(fg)^{(n+1)}=\\sum_{k=0}^n\\binom nk f^{(k+1)}g^{(n-k)}+\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n+1-k)}.$$\nDans la première somme, on pose $j=k+1$ : elle vaut $\\sum_{j=1}^{n+1}\\binom{n}{j-1}f^{(j)}g^{(n+1-j)}$. Avec les conventions $\\binom{n}{-1}=\\binom{n}{n+1}=0$ et la relation de Pascal $\\binom{n}{j-1}+\\binom nj=\\binom{n+1}{j}$, on obtient\n$$(fg)^{(n+1)}=\\sum_{j=0}^{n+1}\\binom{n+1}{j}f^{(j)}g^{(n+1-j)},$$\nce qui est la formule au rang $n+1$.\n\nSi $f$ et $g$ sont de classe $C^n$, chaque terme $f^{(k)}g^{(n-k)}$ est continu, donc $(fg)^{(n)}$ aussi.",
+   "exemple": "Pour $f(x)=x$ et $g=\\sin$, on a $f'=1$, $f^{(k)}=0$ pour $k\\ge2$, et $\\sin^{(m)}(x)=\\sin\\left(x+\\frac{m\\pi}{2}\\right)$. Seuls les termes $k=0$ et $k=1$ subsistent :\n$$(x\\sin x)^{(n)}=x\\sin\\left(x+\\frac{n\\pi}{2}\\right)+n\\sin\\left(x+\\frac{(n-1)\\pi}{2}\\right).$$\nPour $n=1$, on retrouve $\\sin x+x\\cos x$.",
+   "contre_exemple": "- **Chaque facteur doit être $n$ fois dérivable** : $f=1$ et $g(x)=x|x|$ ; $g$ est dérivable sur $\\mathbb{R}$, avec $g'(x)=2|x|$, mais pas deux fois en $0$, et $fg=g$ n'est pas deux fois dérivable en $0$.\n- **Le produit peut être régulier sans que les facteurs le soient** : $f(x)=g(x)=|x|$ ne sont pas dérivables en $0$, alors que $(fg)(x)=x^2$ est indéfiniment dérivable ; la formule n'a alors pas de sens.\n- **Les coefficients binomiaux** : avec $f(x)=g(x)=x$, $(fg)''=2$ alors que $f''g+fg''=0$ : il manque le terme $2f'g'$.",
+   "affirmations": [
+    {
+     "texte": "Si $f$ et $g$ sont deux fois dérivables, $(fg)''=f''g+2f'g'+fg''$.",
+     "vrai": true,
+     "justification": "C'est la formule de Leibniz pour $n=2$ : $\\binom20=\\binom22=1$ et $\\binom21=2$."
+    },
+    {
+     "texte": "Si $f$ et $g$ sont $n$ fois dérivables, $(fg)^{(n)}=f^{(n)}g+fg^{(n)}$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=g(x)=x$ et $n=2$ : $(fg)''=(x^2)''=2$, alors que $f''g+fg''=0$."
+    },
+    {
+     "texte": "Si $fg$ est $n$ fois dérivable sur $I$, alors $f$ et $g$ sont $n$ fois dérivables sur $I$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=g(x)=|x|$ sur $\\mathbb{R}$ : $fg=x^2$ est indéfiniment dérivable, mais $|x|$ n'est pas dérivable en $0$."
+    },
+    {
+     "texte": "Si $P$ est un polynôme de degré $d$ et $g$ est $n$ fois dérivable avec $n>d$, la formule de Leibniz pour $(Pg)^{(n)}$ a au plus $d+1$ termes non nuls.",
+     "vrai": true,
+     "justification": "$P^{(k)}=0$ pour $k>d$ : seuls les termes $k=0,\\dots,d$ peuvent être non nuls."
+    }
+   ],
+   "prerequis": [
+    "ar-t-suites-recurrence"
+   ]
+  },
+  {
+   "id": "ar-l1-derivabilite-continuite",
+   "theme": "analyse-reelle",
+   "niveau": "l1",
+   "chapitre": "ar-l1-derivabilite",
+   "type": "theoreme",
+   "titre": "Dérivabilité implique continuité (réciproque fausse)",
+   "recto": "Énoncer le lien entre dérivabilité et continuité en un point, avec ses hypothèses, et donner un contre-exemple à la réciproque.",
+   "cours": "Être dérivable en $a$, c'est admettre une approximation affine : $f(x)=f(a)+f'(a)(x-a)+(x-a)\\varepsilon(x)$ avec $\\varepsilon(x)\\to0$ quand $x\\to a$. Le terme $f'(a)(x-a)+(x-a)\\varepsilon(x)$ tend vers $0$, donc $f(x)\\to f(a)$ : une fonction dérivable en un point y est continue. C'est souvent ainsi qu'on obtient une continuité sans calcul (polynômes, exponentielle, fonctions définies comme primitives).\n\nLa réciproque est fausse, et il faut connaître les contre-exemples types : $x\\mapsto|x|$ en $0$ (un « coin » : taux $-1$ à gauche et $1$ à droite), $x\\mapsto\\sqrt x$ en $0$ (tangente verticale : le taux tend vers $+\\infty$), $x\\mapsto x\\sin\\frac1x$ prolongée par $0$ (le taux $\\sin\\frac1x$ oscille). Il existe même des fonctions continues sur $\\mathbb{R}$ qui ne sont dérivables en aucun point.\n\nMéthode : pour étudier la dérivabilité en un point délicat, on vérifie d'abord la continuité (si elle échoue, la dérivabilité aussi), puis on étudie le taux d'accroissement, éventuellement à gauche et à droite séparément. Le piège principal : la dérivabilité est une propriété **ponctuelle** ; être dérivable en $a$ n'entraîne la continuité qu'en $a$, pas au voisinage de $a$, et une dérivabilité à droite seulement ne donne que la continuité à droite.",
+   "hypotheses": [
+    "$f$ est définie sur un intervalle $I$ et $a\\in I$.",
+    "$f$ est dérivable en $a$ : le taux d'accroissement $\\frac{f(x)-f(a)}{x-a}$ a une limite **finie** quand $x\\to a$."
+   ],
+   "hypotheses_pieges": [
+    "$f$ est dérivable à droite en $a$ seulement, $a$ étant intérieur à $I$ (à la place de dérivable en $a$).",
+    "$f$ est dérivable sur $I\\setminus\\{a\\}$ (à la place de dérivable en $a$).",
+    "Le taux d'accroissement de $f$ en $a$ tend vers $+\\infty$ (à la place d'une limite finie).",
+    "$f'(x)$ admet une limite finie quand $x\\to a$, $x\\neq a$ (à la place de dérivable en $a$)."
+   ],
+   "enonce": "Soient $I$ un intervalle, $a\\in I$ et $f:I\\to\\mathbb{R}$. Si $f$ est dérivable en $a$, alors $f$ est continue en $a$.\n\nLa réciproque est fausse : $x\\mapsto|x|$ est continue en $0$ mais n'y est pas dérivable.",
+   "enonce_trous": "Une fonction {{1}} en $a$ est {{2}} ; la réciproque est {{3}}, comme le montre $x\\mapsto|x|$ en $0$.",
+   "trous": [
+    {
+     "reponse": "dérivable",
+     "leurres": [
+      "continue",
+      "dérivable à droite",
+      "dérivable à gauche"
+     ]
+    },
+    {
+     "reponse": "continue en $a$",
+     "leurres": [
+      "monotone au voisinage de $a$",
+      "de classe $C^1$ au voisinage de $a$",
+      "dérivable au voisinage de $a$"
+     ]
+    },
+    {
+     "reponse": "fausse",
+     "leurres": [
+      "vraie",
+      "vraie sur un segment",
+      "vraie pour les fonctions monotones"
+     ]
+    }
+   ],
+   "demo": "Pour $x\\in I$, $x\\neq a$, on écrit\n$$f(x)-f(a)=(x-a)\\cdot\\frac{f(x)-f(a)}{x-a}.$$\nQuand $x\\to a$, le premier facteur tend vers $0$ et le second vers le **réel** $f'(a)$ : le produit tend vers $0\\cdot f'(a)=0$. Donc $f(x)\\to f(a)$ : $f$ est continue en $a$. (Si le taux tendait vers $+\\infty$, on aurait une forme indéterminée $0\\times\\infty$ : la finitude de $f'(a)$ est essentielle.)\n\n**Réciproque fausse.** $x\\mapsto|x|$ est continue en $0$, et son taux d'accroissement $\\frac{|x|}{x}$ vaut $1$ pour $x>0$ et $-1$ pour $x<0$ : il n'a pas de limite en $0$.",
+   "exemple": "Soit $g(x)=x^2\\sin\\frac1x$ pour $x\\neq0$ et $g(0)=0$. Son taux d'accroissement en $0$ est $x\\sin\\frac1x$, de valeur absolue au plus $|x|$, donc tend vers $0$ : $g$ est dérivable en $0$ avec $g'(0)=0$, et donc continue en $0$, sans calcul de limite supplémentaire.\n\nEn revanche, $h(x)=x\\sin\\frac1x$, $h(0)=0$, est continue en $0$ (car $|h(x)|\\le|x|$), mais son taux d'accroissement $\\sin\\frac1x$ n'a pas de limite en $0$ : $h$ est continue et non dérivable en $0$.",
+   "contre_exemple": "- **Continue mais non dérivable** : $x\\mapsto|x|$ en $0$ (taux $\\pm1$) ; $x\\mapsto\\sqrt x$ en $0$ (taux $\\frac{1}{\\sqrt x}\\to+\\infty$).\n- **Dérivable à droite seulement** : $f(x)=0$ pour $x<0$ et $f(x)=1$ pour $x\\ge0$ a un taux nul à droite de $0$, donc une dérivée à droite nulle en $0$, mais n'est pas continue en $0$.\n- **Taux infini** : $f(x)=1$ pour $x>0$, $f(0)=0$, $f(x)=-1$ pour $x<0$ : le taux en $0$ vaut $\\frac{1}{|x|}\\to+\\infty$, et $f$ n'est pas continue en $0$.",
+   "affirmations": [
+    {
+     "texte": "Une fonction continue sur $\\mathbb{R}$ n'est non dérivable qu'en un nombre fini de points.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=|\\sin(\\pi x)|$ est continue sur $\\mathbb{R}$ et non dérivable en chaque entier $k$ : son taux d'accroissement en $k$ tend vers $-\\pi$ à gauche et vers $\\pi$ à droite."
+    },
+    {
+     "texte": "Si $f$ est dérivable en $a$, alors $f$ est continue sur un voisinage de $a$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=x^2$ si $x\\in\\mathbb{Q}$ et $f(x)=0$ sinon : $\\left|\\frac{f(x)}{x}\\right|\\le|x|$, donc $f$ est dérivable en $0$, mais elle n'est continue en aucun $a\\neq0$ (limites $a^2$ le long des rationnels, $0$ le long des irrationnels)."
+    },
+    {
+     "texte": "Si $f$ est dérivable sur un intervalle $I$, alors $f$ est continue sur $I$.",
+     "vrai": true,
+     "justification": "On applique le théorème en chaque point de $I$."
+    },
+    {
+     "texte": "Si $f$ est continue en $a$ et si $f^2$ est dérivable en $a$, alors $f$ est dérivable en $a$.",
+     "vrai": false,
+     "contre_exemple": "$f(x)=|x|$ en $a=0$ : $f^2(x)=x^2$ est dérivable, mais $f$ ne l'est pas."
+    }
+   ],
+   "prerequis": []
+  }
+ ]
+}

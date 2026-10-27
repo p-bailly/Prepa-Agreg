@@ -74,7 +74,7 @@ assert 360 == 2 * 180 == 2 ** 2 * 90 == 2 ** 3 * 45 and factorint(84) == {2: 2, 
 # Contre-exemples : 12 = 2² × 3 = 2² × 3 × 5^0 ; 12 = 3 × 4 avec 3 ∧ 4 = 1.
 assert 12 == 2 ** 2 * 3 == 2 ** 2 * 3 * 5 ** 0 == 3 * 4 and gcd(3, 4) == 1
 # Contre-exemple « entiers pairs » : les pairs indécomposables (non produits de deux pairs) sont les 2 mod 4 ;
-# 2, 6, 10, 30 en sont, et 60 = 2 × 30 = 6 × 10.
+# ce sont les entiers 4k + 2 (2, 6, 10, 14, 18…), et 60 = 2 × 30 = 6 × 10.
 
 
 def indecomposable_pair(m):
@@ -152,8 +152,8 @@ assert not isprime(527) and all(x != 17 for x in (31, 13))
 # arith-t-premiers-infinitude-ex2 (et variantes) : nombres d'Euclide non premiers
 # ---------------------------------------------------------------------------
 for (liste, N, facteurs, div_leurre) in [([2, 3, 5, 7, 11, 13], 30031, {59: 1, 509: 1}, 13),   # exercice
-                                        ([3, 5, 7, 11], 1156, {2: 2, 17: 2}, 11),            # variante 1
-                                        ([2, 7, 11], 155, {5: 1, 31: 1}, 7)]:                # variante 2
+                                        ([2, 3, 5, 7, 11, 13, 17], 510511, {19: 1, 97: 1, 277: 1}, 17),        # variante 1
+                                        ([2, 3, 5, 7, 11, 13, 17, 19], 9699691, {347: 1, 27953: 1}, 19)]:     # variante 2
     prod = 1
     for p in liste:
         prod *= p
@@ -161,7 +161,8 @@ for (liste, N, facteurs, div_leurre) in [([2, 3, 5, 7, 11, 13], 30031, {59: 1, 5
     assert all(N % p != 0 for p in liste) and all(q not in liste for q in facteurs)
     assert N % div_leurre != 0  # leurre « N divisible par … » faux
     assert plus_petit_diviseur(N) not in liste  # leurre « plus petit diviseur dans la liste » faux
-assert 30030 + 1 == 30031 and 1155 + 1 == 1156 and 154 + 1 == 155 and 4 * 289 == 1156
+assert 30030 + 1 == 30031 and 510510 + 1 == 510511 and 9699690 + 1 == 9699691
+assert 19 * 26869 == 510511 and 26869 == 97 * 277 and 347 * 27953 == 9699691 and isprime(27953)
 
 # ---------------------------------------------------------------------------
 # arith-t-premiers-infinitude-ex3 (et variantes) : diviseurs premiers de n! + 1

@@ -63,6 +63,8 @@ assert div(X**3 + 2 * X + 1, X**2 + 1) == (X, X + 1)
 assert rem(X**5 + 1, X - 2) == 33
 # contre-exemple / affirmation 1 : X par 2X impossible dans Z[X] (X - c = 2X Q => 1 = 2 q0), possible dans Q[X]
 assert div(X, 2 * X) == (Rational(1, 2), 0)
+# contre-exemple B = 0 (corrigé après relecture) : deg R < deg 0 = -oo n'est vérifié par aucun R, même R = 0
+assert sympy.degree(0, X) == -sympy.oo and not (sympy.degree(0, X) < sympy.degree(0, X))
 # contre-exemple : deg R <= deg B casse l'unicité : X = X*1 + 0 = X*0 + X
 assert egal(X * 1 + 0, X) and egal(X * 0 + X, X)
 # affirmation 3 (fausse) : X^2 = (X+1)(X-2) + (X+2) mais le vrai reste est 1
@@ -311,6 +313,11 @@ assert egal(2 * cos(2 * pi / 5), (sqrt(5) - 1) / 2) and egal(2 * cos(4 * pi / 5)
 assert egal(X**5 - 1, (X - 1) * (X**2 - (sqrt(5) - 1) / 2 * X + 1) * (X**2 + (1 + sqrt(5)) / 2 * X + 1))
 assert egal(X**8 - 1, (X - 1) * (X + 1) * (X**2 + 1) * (X**2 - sqrt(2) * X + 1) * (X**2 + sqrt(2) * X + 1))
 
+# arith-l1-polynomes-irreductibles-ex4 (et v1, v2) : l'énoncé (corrigé après relecture) impose les racines de Im > 0 ;
+# d'autres choix de racines donneraient d'autres écritures justes, qui ne figurent pas parmi les propositions
+assert egal((X**2)**2 + 1, X**4 + 1) and egal((X**2 + 2)**2 + X**2, X**4 + 5 * X**2 + 4) and egal((X**2)**2 + 2**2, X**4 + 4)
+for v in range(3):
+    assert all("(X^2)^2" not in p and "(X^2 + 2)^2 + X^2" not in p for p in propositions("arith-l1-polynomes-irreductibles-ex4", v))
 # arith-l1-polynomes-irreductibles-ex4 (et v1, v2) : Q = produit des (X - w), w racines de Im > 0, puis A^2 + B^2
 for v, P, w, A, B, leurres in [
     (0, X**4 + 1, [exp(I * pi / 4), exp(3 * I * pi / 4)], X**2 - 1, sqrt(2) * X,
@@ -337,6 +344,9 @@ assert egal(X**3 - 6 * X**2 + 11 * X - 6, (X - 1) * (X - 2) * (X - 3))  # exempl
 assert egal(X**3 - 3 * X + 2, (X - 1)**2 * (X + 2)) and 1 + 1 - 2 == 0 and 1 - 2 == -1  # contre-exemple multiplicités
 assert Rational(-4, 2) == -2  # affirmation 2 (fausse) : produit des racines de 2X^3 - X + 4 = -2, pas 2
 assert sympy.real_roots(Poly(X**3 - 1, X)) == [1]  # affirmation 3 (fausse)
+# trou 1 (corrigé après relecture) : leurres « non nul », « unitaire », « coefficients tous non nuls » réfutés par
+# X^2 + 1 ∈ R[X], non nul, unitaire, à coefficients non nuls, sans aucune racine réelle (pas n = 2 racines dans R)
+assert sympy.real_roots(Poly(X**2 + 1, X)) == []
 
 
 def sigmas(P):
