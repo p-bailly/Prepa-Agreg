@@ -125,27 +125,23 @@ FAM = {
     "haut": M([[x, y], [0, x]]), "bas": M([[x, 0], [z, x]]), "diag": M([[x, 0], [0, t]]),
     "tri": M([[x, y], [0, t]]), "trib": M([[x, 0], [z, t]]), "scal": M([[x, 0], [0, x]]),
 }
-def commutant(A):
-    return sp.solve(list(A * Mg - Mg * A), [x, y, z, t], dict=True)
+def dim_commutant(A):
+    """Dimension de l'espace des M qui commutent avec A (4 - rang du système linéaire AM - MA = 0)."""
+    sysm = sp.linear_eq_to_matrix(list(A * Mg - Mg * A), [x, y, z, t])[0]
+    return 4 - sysm.rank()
 def commute_toujours(A, fam):
     return sp.expand(A * fam - fam * A) == zeros(2, 2)
+def egale_commutant(A, fam):
+    # Deux sous-espaces : la famille est contenue dans le commutant et a la même dimension (nombre de paramètres).
+    return commute_toujours(A, fam) and len(fam.free_symbols) == dim_commutant(A)
 for A, bonne, leurres, nom in [
     (M([[1, 1], [0, 1]]), "haut", ["diag", "tri", "scal"], ""),
     (M([[2, 0], [0, 3]]), "diag", ["haut", "tri", "scal"], " v1"),
     (M([[1, 0], [1, 1]]), "bas", ["haut", "trib", "diag"], " v2"),
 ]:
-    sol = commutant(A)
-    assert len(sol) == 1, "al-t-produit-matriciel-ex3" + nom
-    assert sp.simplify(Mg.subs(sol[0]) - FAM[bonne]) == zeros(2, 2) or Mg.subs(sol[0]).free_symbols == FAM[bonne].free_symbols
-    assert commute_toujours(A, FAM[bonne]), "al-t-produit-matriciel-ex3" + nom + " : la bonne famille commute"
+    assert egale_commutant(A, FAM[bonne]), "al-t-produit-matriciel-ex3" + nom + " : bonne réponse"
     for l in leurres:
-        # Leurre faux : soit il contient une matrice qui ne commute pas, soit il oublie une matrice qui commute.
-        trop = not commute_toujours(A, FAM[l])
-        manque = any(not any(sp.solve(list(FAM[l] - FAM[bonne].subs(vals)), list(FAM[l].free_symbols), dict=True) or [False])
-                     for vals in [{x: 1, y: 1, z: 1, t: 2}])
-        assert trop or manque, "al-t-produit-matriciel-ex3" + nom + " : leurre " + l
-# Contrôle direct des deux sens pour le leurre « scal » (trop petit) et « tri » (trop grand) de l'exercice.
-assert not commute_toujours(M([[1, 1], [0, 1]]), FAM["tri"]) and commute_toujours(M([[1, 1], [0, 1]]), M([[1, 1], [0, 1]]))
+        assert not egale_commutant(A, FAM[l]), "al-t-produit-matriciel-ex3" + nom + " : leurre " + l
 
 # ---------------- al-t-produit-matriciel-ex4 (+ v1, v2) : A^n = lam^n I + n lam^(n-1) N
 for A, N, lam, formule, leurres, nom in [
