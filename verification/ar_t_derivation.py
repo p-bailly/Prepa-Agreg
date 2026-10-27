@@ -42,6 +42,8 @@ assert limit(sqrt(h**2) / h, h, 0, "+") == 1 and limit(sqrt(h**2) / (-h), h, 0, 
 # Contre-exemple 2 : (|h|^3+|h|)/h -> 1 à droite, -1 à gauche.
 assert limit((h**3 + h) / h, h, 0, "+") == 1 and limit((h**3 + h) / (-h), h, 0, "+") == -1
 # Contre-exemple 3 / affirmation 1 : |x|^2 = x^2 (dérivable).
+# Cours : sqrt(x^4) = x^2 est dérivable en 0 bien que sqrt ne soit pas dérivable en u(0) = 0 (le théorème ne dit rien).
+assert egal(sqrt(x**4), x**2) and diff(x**2, x).subs(x, 0) == 0
 assert egal(Abs(x)**2, x**2)
 # Affirmation 2 : ((2x+1)^5)' = 10(2x+1)^4 ≠ 5(2x+1)^4 (valeurs 10 et 5 en 0).
 d = diff((2 * x + 1)**5, x)
