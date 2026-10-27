@@ -19,8 +19,8 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
 ## Android, versions, livraison (ne jamais changer : « Mes applis » en dépend)
 - `applicationId` **`fr.perso.prepaagreg`**, APK **`prepa-agreg.apk`**, dépôt public `p-bailly/Prepa-Agreg`, nom « Prépa Agreg ».
   Lien permanent : `https://github.com/p-bailly/Prepa-Agreg/releases/latest/download/prepa-agreg.apk`. « Mes applis »
-  (`p-bailly/Managing-Apps`) suivra `TrackedApp("Prépa Agreg", "p-bailly/Prepa-Agreg", "fr.perso.prepaagreg", "prepa-agreg.apk")`
-  (ajout à faire par le propriétaire, pas ici).
+  (`p-bailly/Managing-Apps`) la suit : `TrackedApp("Prépa Agreg", "p-bailly/Prepa-Agreg", "fr.perso.prepaagreg", "prepa-agreg.apk")`
+  dans `TrackedApps.kt` (ajouté le 2026-10-27 à la demande du propriétaire).
 - Signature : **la même clé que Scrabble et les autres applis**, copiée telle quelle de `p-bailly/Scrabble`
   (`android/app/scrabble.keystore`, alias et mots de passe dans `android/app/build.gradle`). Clé versionnée exprès, usage perso.
   Ne jamais en créer une autre : Android refuserait la mise à jour. Empreinte SHA-256 du certificat : `0B:D9:37:5B:…:85:17:8C`.
