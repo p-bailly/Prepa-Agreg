@@ -311,7 +311,7 @@ for A, C, L, IA, leurres, nom in [
     (M([[R(1, 2), 0], [R(1, 4), R(1, 2)]]), M([2, 1]), M([4, 4]), M([[R(1, 2), 0], [R(-1, 4), R(1, 2)]]), [(2, 1), (4, 2), (1, 2)], " v1"),
     (M([[0, R(1, 3)], [R(2, 3), 0]]), M([1, 1]), M([R(12, 7), R(15, 7)]), M([[1, R(-1, 3)], [R(-2, 3), 1]]), [(1, 1), (R(15, 7), R(12, 7)), (R(3, 2), 2)], " v2"),
 ]:
-    assert eye(2) - A == IA and IA.det() != 0, "al-t-matrices-suites-ex2" + nom + " : I - A inversible"
+    assert eye(2) - A == IA and IA.det() == {"": R(3, 4), " v1": R(1, 4), " v2": R(7, 9)}[nom], "al-t-matrices-suites-ex2" + nom + " : det(I - A) = 3/4, 1/4, 7/9"
     assert IA.inv() * C == L and A * L + C == L, "al-t-matrices-suites-ex2" + nom + " : L"
     for l in leurres:
         assert A * M(l) + C != M(l), "al-t-matrices-suites-ex2" + nom + " : leurre"
@@ -605,5 +605,16 @@ for p, P, cc, diag, leurres, nom in [
 assert all(puiss((ones(3, 3) - eye(3)) / 2, k)[0, 1] == R(1, 3) - R(1, 3) * R(-1, 2) ** k for k in range(8))
 # La variante v2 : P(X_1 = 1) = 1/2 (on reste sur place).
 assert ((eye(3) + ones(3, 3)) / 4)[0, 0] == R(1, 2)
+
+# al-t-matrices-suites (piège « C n'est pas la colonne nulle ») : avec C = 0 la formule vaut (L = 0, U_n = A^n U_0).
+Az = M([[R(1, 2), 1], [0, R(1, 3)]])
+assert all(suite(Az, zeros(2, 1), M([3, 5]), k) == puiss(Az, k) * M([3, 5]) for k in range(6)), "al-t-matrices-suites : C = 0 permis"
+# al-t-matrices-markov (piège « pi_0 invariante ») : pi_0 = (1, 0) non invariante, et pi_n converge quand même vers (6/7, 1/7).
+assert M([[1, 0]]) * Pex != M([[1, 0]]) and sp.limit((M([[1, 0]]) * puiss(Pex, 0))[0] * 0 + R(6, 7) + R(3, 10) ** n_ * (1 - R(6, 7)), n_, sp.oo) == R(6, 7)
+assert all((M([[1, 0]]) * puiss(Pex, k))[0] == R(6, 7) + R(3, 10) ** k * R(1, 7) for k in range(8)), "al-t-matrices-markov : convergence sans pi_0 invariante"
+# al-t-matrices-produit (cours) : pour n = 3 la formule du binôme peut valoir sans commutation (E12, E23 d'ordre 3).
+E12_3 = zeros(3, 3); E12_3[0, 1] = 1
+E23_3 = zeros(3, 3); E23_3[1, 2] = 1
+assert E12_3 * E23_3 != E23_3 * E12_3 and (E12_3 + E23_3) ** 3 == E12_3 ** 3 + 3 * E12_3 ** 2 * E23_3 + 3 * E12_3 * E23_3 ** 2 + E23_3 ** 3, "al-t-matrices-produit : « garanties » seulement"
 
 print("al_t_matrices : toutes les vérifications passent.")
