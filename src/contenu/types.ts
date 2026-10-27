@@ -59,6 +59,8 @@ export interface ReponseFinale {
 
 /** Variante d'un exercice : mêmes question et difficulté, d'autres valeurs (énoncé, réponse, correction propres). */
 export interface Variante {
+  /** Titre propre à la variante, si celui de l'exercice cite ses valeurs. */
+  titre?: string
   enonce: string
   indices?: string[]
   reponse_finale?: ReponseFinale
@@ -84,7 +86,14 @@ export interface Exercice {
 export function variante(e: Exercice, k: number): Exercice {
   const v = k > 0 ? e.variantes?.[k - 1] : undefined
   if (!v) return e
-  return { ...e, enonce: v.enonce, correction: v.correction, indices: v.indices ?? e.indices, reponse_finale: v.reponse_finale }
+  return {
+    ...e,
+    titre: v.titre ?? e.titre,
+    enonce: v.enonce,
+    correction: v.correction,
+    indices: v.indices ?? e.indices,
+    reponse_finale: v.reponse_finale,
+  }
 }
 
 export const nombreVariantes = (e: Exercice): number => 1 + (e.variantes?.length ?? 0)

@@ -111,6 +111,7 @@ export function validerContenu(c: Contenu): string[] {
           const ouV = `${ou}, variante ${i + 1}`
           for (const champ of ['enonce', 'correction'] as const) if (!texteNonVide(v[champ])) err.push(`${ouV} : « ${champ} » manquant`)
           if (v.enonce === e.enonce) err.push(`${ouV} : même énoncé que l'exercice`)
+          if (v.titre !== undefined && !texteNonVide(v.titre)) err.push(`${ouV} : « titre » vide`)
           if (!!v.reponse_finale !== !!e.reponse_finale) err.push(`${ouV} : « reponse_finale » présente ici et pas dans l'exercice, ou l'inverse`)
           err.push(...validerReponse(ouV, v.reponse_finale))
           if (v.indices !== undefined && (!listeDeTextes(v.indices) || (e.difficulte >= 3 && v.indices.length < 2)))
@@ -222,6 +223,7 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
     reponse(e.id, e.reponse_finale)
     e.variantes?.forEach((v, k) => {
       const ou = `${e.id}.variantes[${k}]`
+      ajouter(`${ou}.titre`, v.titre)
       ajouter(`${ou}.enonce`, v.enonce)
       ajouter(`${ou}.correction`, v.correction)
       v.indices?.forEach((x, i) => ajouter(`${ou}.indices[${i}]`, x))

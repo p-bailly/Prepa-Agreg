@@ -340,6 +340,9 @@ random.seed(1)
 s = [[random.randint(0, 1) for _ in range(20)] for _ in range(20)]
 t = [1 - s[k][k] for k in range(20)]
 assert all(t != s[k] for k in range(20))
+# Contre-exemples / affirmation 2 : n ↦ 1_{n} (indicatrice tronquée) est injective de N dans {0,1}^N.
+indic = lambda n: tuple(1 if k == n else 0 for k in range(40))
+assert len({indic(n) for n in range(40)}) == 40
 
 # fond-l1-ensembles-denombrables-ex1 (et v1, v2) : φ^{-1}(−7) = 13, φ^{-1}(5) = 10, φ^{-1}(−20) = 39 ; leurres faux.
 for m, attendu, leurres in [(-7, 13, [14, 12, 15]), (5, 10, [9, 11, 5]), (-20, 39, [40, 41, 38])]:

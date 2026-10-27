@@ -121,8 +121,9 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 - Par carte : 3 à 6 exercices progressifs, au moins un de difficulté 1 ou 2 et au moins un de difficulté 4 ou 5 (contrôlé par
   le test) ; aux niveaux L3 et agrégation, un problème de difficulté 5 en questions enchaînées quand c'est pertinent. Jamais
   d'exercice de remplissage.
-- `variantes` (facultatif) : autres jeux de valeurs, `[{ "enonce", "reponse_finale", "correction", "indices" }]` (`indices`
-  facultatif ; `reponse_finale` obligatoire si l'exercice en a une). Tout exercice à valeurs numériques en a deux. L'appli
+- `variantes` (facultatif) : autres jeux de valeurs, `[{ "titre", "enonce", "reponse_finale", "correction", "indices" }]`
+  (`reponse_finale` obligatoire si l'exercice en a une). Une variante sans `titre` ni `indices` reprend ceux de l'exercice :
+  ils ne doivent donc citer aucune valeur propre à l'exercice, sinon chaque variante a les siens. Tout exercice à valeurs numériques en a deux. L'appli
   propose une variante jamais faite, sinon la plus anciennement faite ; la tentative garde son numéro de variante (0 = exercice
   tel qu'écrit). Ne jamais réordonner les variantes d'un exercice déjà publié (l'historique y renvoie par numéro).
 - `indices` : 2 ou 3 à partir de la difficulté 3 (idée clé, puis première étape) ; ils ne donnent pas la réponse.
