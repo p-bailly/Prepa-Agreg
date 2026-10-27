@@ -1,0 +1,1276 @@
+{
+  "exercices": [
+    {
+      "id": "proba-l1-variables-finies-transfert-ex1",
+      "carte": "proba-l1-variables-finies-transfert",
+      "difficulte": 1,
+      "titre": "Calculer un moment d'ordre 2 à partir de la loi",
+      "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|cccc}x & -2 & 0 & 1 & 3\\\\\\hline P(X=x) & 0{,}1 & 0{,}3 & 0{,}4 & 0{,}2\\end{array}$$Vérifier que ce tableau définit bien une loi de probabilité, puis calculer $E(X)$ et $E(X^2)$.",
+      "duree_min": 5,
+      "indices": [
+        "Par la formule de transfert, $E(X^2)=\\sum_x x^2P(X=x)$ : il suffit de pondérer les carrés $4, 0, 1, 9$ par les probabilités du tableau."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(X^2)$ ?",
+        "propositions": [
+          "$2{,}6$",
+          "$0{,}64$",
+          "$0{,}8$",
+          "$3{,}5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les probabilités sont positives et leur somme vaut $0{,}1+0{,}3+0{,}4+0{,}2=1$ : c'est bien une loi. Puis$$E(X)=(-2)\\times 0{,}1+0\\times 0{,}3+1\\times 0{,}4+3\\times 0{,}2=0{,}8.$$Par la formule de transfert, sans déterminer la loi de $X^2$,$$E(X^2)=(-2)^2\\times 0{,}1+0^2\\times 0{,}3+1^2\\times 0{,}4+3^2\\times 0{,}2=2{,}6.$$On remarque que $E(X^2)\\neq E(X)^2=0{,}64$ : la fonction $x\\mapsto x^2$ n'est pas affine.",
+      "variantes": [
+        {
+          "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|cccc}x & -1 & 0 & 2 & 4\\\\\\hline P(X=x) & 0{,}2 & 0{,}4 & 0{,}3 & 0{,}1\\end{array}$$Vérifier que ce tableau définit bien une loi de probabilité, puis calculer $E(X)$ et $E(X^2)$.",
+          "indices": [
+            "Par la formule de transfert, $E(X^2)=\\sum_x x^2P(X=x)$ : il suffit de pondérer les carrés $1, 0, 4, 16$ par les probabilités du tableau."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(X^2)$ ?",
+            "propositions": [
+              "$3$",
+              "$0{,}64$",
+              "$0{,}8$",
+              "$5{,}25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les probabilités sont positives et leur somme vaut $0{,}2+0{,}4+0{,}3+0{,}1=1$ : c'est bien une loi. Puis$$E(X)=(-1)\\times 0{,}2+0\\times 0{,}4+2\\times 0{,}3+4\\times 0{,}1=0{,}8.$$Par la formule de transfert, sans déterminer la loi de $X^2$,$$E(X^2)=(-1)^2\\times 0{,}2+0^2\\times 0{,}4+2^2\\times 0{,}3+4^2\\times 0{,}1=3.$$On remarque que $E(X^2)\\neq E(X)^2=0{,}64$ : la fonction $x\\mapsto x^2$ n'est pas affine."
+        },
+        {
+          "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|cccc}x & -3 & -1 & 1 & 2\\\\\\hline P(X=x) & \\frac{1}{6} & \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{6}\\end{array}$$Vérifier que ce tableau définit bien une loi de probabilité, puis calculer $E(X)$ et $E(X^2)$.",
+          "indices": [
+            "Par la formule de transfert, $E(X^2)=\\sum_x x^2P(X=x)$ : il suffit de pondérer les carrés $9, 1, 1, 4$ par les probabilités du tableau."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(X^2)$ ?",
+            "propositions": [
+              "$\\frac{17}{6}$",
+              "$\\frac{1}{36}$",
+              "$-\\frac{1}{6}$",
+              "$\\frac{15}{4}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les probabilités sont positives et leur somme vaut $\\frac{1}{6}+\\frac{1}{3}+\\frac{1}{3}+\\frac{1}{6}=1$ : c'est bien une loi. Puis$$E(X)=(-3)\\times \\frac{1}{6}+(-1)\\times \\frac{1}{3}+1\\times \\frac{1}{3}+2\\times \\frac{1}{6}=-\\frac{1}{6}.$$Par la formule de transfert, sans déterminer la loi de $X^2$,$$E(X^2)=(-3)^2\\times \\frac{1}{6}+(-1)^2\\times \\frac{1}{3}+1^2\\times \\frac{1}{3}+2^2\\times \\frac{1}{6}=\\frac{17}{6}.$$On remarque que $E(X^2)\\neq E(X)^2=\\frac{1}{36}$ : la fonction $x\\mapsto x^2$ n'est pas affine."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-transfert-ex2",
+      "carte": "proba-l1-variables-finies-transfert",
+      "difficulte": 2,
+      "titre": "Espérance d'une fonction du résultat d'un dé",
+      "enonce": "On lance un dé équilibré à $6$ faces numérotées de $1$ à $6$ ; on note $X$ le résultat et $Y=(X-3)^2$.\n1. Déterminer la loi de $Y$.\n2. Calculer $E(Y)$ à partir de cette loi, puis directement par la formule de transfert.\n3. Comparer $E(Y)$ et $\\left(E(X)-3\\right)^2$.",
+      "duree_min": 8,
+      "indices": [
+        "Dresser la liste des valeurs de $Y$ quand $X$ parcourt $\\{1,\\dots,6\\}$ ; plusieurs valeurs de $X$ donnent la même valeur de $Y$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(Y)$ ?",
+        "propositions": [
+          "$\\frac{19}{6}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{7}{2}$",
+          "$\\frac{37}{6}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $X$ suit la loi uniforme sur $\\{1,\\dots,6\\}$. Quand $X$ prend les valeurs $1,\\dots,6$, $Y$ prend les valeurs $4, 1, 0, 1, 4, 9$, d'où la loi de $Y$ :$$\\begin{array}{c|cccc}y & 0 & 1 & 4 & 9\\\\\\hline P(Y=y) & \\frac{1}{6} & \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{6}\\end{array}$$\n\n**2.** À partir de la loi de $Y$ : $E(Y)=0\\times\\frac{1}{6}+1\\times\\frac{1}{3}+4\\times\\frac{1}{3}+9\\times\\frac{1}{6}=\\frac{19}{6}$. Par transfert, directement : $E(Y)=\\frac{1}{6}\\left((1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2+(6-3)^2\\right)=\\frac{19}{6}$, sans avoir eu besoin de la loi de $Y$.\n\n**3.** $E(X)=\\frac{7}{2}$, donc $\\left(E(X)-3\\right)^2=\\frac{1}{4}\\neq E(Y)$ : en général $E\\left(f(X)\\right)\\neq f\\left(E(X)\\right)$. (On a ici $E(Y)\\geq\\left(E(X)-3\\right)^2$, l'écart étant la variance de $X$.)",
+      "variantes": [
+        {
+          "enonce": "On lance un dé équilibré à $6$ faces numérotées de $1$ à $6$ ; on note $X$ le résultat et $Y=(X-2)^2$.\n1. Déterminer la loi de $Y$.\n2. Calculer $E(Y)$ à partir de cette loi, puis directement par la formule de transfert.\n3. Comparer $E(Y)$ et $\\left(E(X)-2\\right)^2$.",
+          "indices": [
+            "Dresser la liste des valeurs de $Y$ quand $X$ parcourt $\\{1,\\dots,6\\}$ ; plusieurs valeurs de $X$ donnent la même valeur de $Y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(Y)$ ?",
+            "propositions": [
+              "$\\frac{31}{6}$",
+              "$\\frac{9}{4}$",
+              "$6$",
+              "$\\frac{67}{6}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $X$ suit la loi uniforme sur $\\{1,\\dots,6\\}$. Quand $X$ prend les valeurs $1,\\dots,6$, $Y$ prend les valeurs $1, 0, 1, 4, 9, 16$, d'où la loi de $Y$ :$$\\begin{array}{c|ccccc}y & 0 & 1 & 4 & 9 & 16\\\\\\hline P(Y=y) & \\frac{1}{6} & \\frac{1}{3} & \\frac{1}{6} & \\frac{1}{6} & \\frac{1}{6}\\end{array}$$\n\n**2.** À partir de la loi de $Y$ : $E(Y)=0\\times\\frac{1}{6}+1\\times\\frac{1}{3}+4\\times\\frac{1}{6}+9\\times\\frac{1}{6}+16\\times\\frac{1}{6}=\\frac{31}{6}$. Par transfert, directement : $E(Y)=\\frac{1}{6}\\left((1-2)^2+(2-2)^2+(3-2)^2+(4-2)^2+(5-2)^2+(6-2)^2\\right)=\\frac{31}{6}$, sans avoir eu besoin de la loi de $Y$.\n\n**3.** $E(X)=\\frac{7}{2}$, donc $\\left(E(X)-2\\right)^2=\\frac{9}{4}\\neq E(Y)$ : en général $E\\left(f(X)\\right)\\neq f\\left(E(X)\\right)$. (On a ici $E(Y)\\geq\\left(E(X)-2\\right)^2$, l'écart étant la variance de $X$.)"
+        },
+        {
+          "enonce": "On lance un dé équilibré à $4$ faces numérotées de $1$ à $4$ ; on note $X$ le résultat et $Y=(X-2)^2$.\n1. Déterminer la loi de $Y$.\n2. Calculer $E(Y)$ à partir de cette loi, puis directement par la formule de transfert.\n3. Comparer $E(Y)$ et $\\left(E(X)-2\\right)^2$.",
+          "indices": [
+            "Dresser la liste des valeurs de $Y$ quand $X$ parcourt $\\{1,\\dots,4\\}$ ; plusieurs valeurs de $X$ donnent la même valeur de $Y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(Y)$ ?",
+            "propositions": [
+              "$\\frac{3}{2}$",
+              "$\\frac{1}{4}$",
+              "$\\frac{5}{3}$",
+              "$\\frac{7}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $X$ suit la loi uniforme sur $\\{1,\\dots,4\\}$. Quand $X$ prend les valeurs $1,\\dots,4$, $Y$ prend les valeurs $1, 0, 1, 4$, d'où la loi de $Y$ :$$\\begin{array}{c|ccc}y & 0 & 1 & 4\\\\\\hline P(Y=y) & \\frac{1}{4} & \\frac{1}{2} & \\frac{1}{4}\\end{array}$$\n\n**2.** À partir de la loi de $Y$ : $E(Y)=0\\times\\frac{1}{4}+1\\times\\frac{1}{2}+4\\times\\frac{1}{4}=\\frac{3}{2}$. Par transfert, directement : $E(Y)=\\frac{1}{4}\\left((1-2)^2+(2-2)^2+(3-2)^2+(4-2)^2\\right)=\\frac{3}{2}$, sans avoir eu besoin de la loi de $Y$.\n\n**3.** $E(X)=\\frac{5}{2}$, donc $\\left(E(X)-2\\right)^2=\\frac{1}{4}\\neq E(Y)$ : en général $E\\left(f(X)\\right)\\neq f\\left(E(X)\\right)$. (On a ici $E(Y)\\geq\\left(E(X)-2\\right)^2$, l'écart étant la variance de $X$.)"
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-transfert-ex3",
+      "carte": "proba-l1-variables-finies-transfert",
+      "difficulte": 3,
+      "titre": "Loi du plus grand résultat",
+      "enonce": "On lance deux dés équilibrés à $6$ faces numérotées de $1$ à $6$, de façon indépendante, et l'on note $M$ le plus grand des deux résultats.\n1. Pour $j\\in\\{1,\\dots,6\\}$, calculer $P(M\\leq j)$.\n2. En déduire la loi de $M$ et vérifier que la somme des probabilités vaut $1$.\n3. Calculer $E(M)$.",
+      "duree_min": 12,
+      "indices": [
+        "L'événement $\\{M\\leq j\\}$ signifie que chacun des deux dés donne au plus $j$ ; utiliser l'indépendance des lancers.",
+        "Pour $j\\geq 2$, $\\{M=j\\}$ est la différence de $\\{M\\leq j\\}$ et de $\\{M\\leq j-1\\}$, l'un contenant l'autre."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(M)$ ?",
+        "propositions": [
+          "$\\frac{161}{36}$",
+          "$\\frac{91}{36}$",
+          "$\\frac{7}{2}$",
+          "$4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\{M\\leq j\\}$ est l'intersection des événements « le $i$-ème dé donne au plus $j$ », qui sont mutuellement indépendants et de probabilité $\\frac{j}{6}$ chacun ; donc $P(M\\leq j)=\\left(\\frac{j}{6}\\right)^{2}$.\n\n**2.** Comme $\\{M\\leq j-1\\}\\subset\\{M\\leq j\\}$, pour $j\\geq 2$, $P(M=j)=P(M\\leq j)-P(M\\leq j-1)=\\frac{j^{2}-(j-1)^{2}}{36}$, formule encore valable pour $j=1$. D'où la loi de $M$ :$$\\begin{array}{c|cccccc}j & 1 & 2 & 3 & 4 & 5 & 6\\\\\\hline P(M=j) & \\frac{1}{36} & \\frac{1}{12} & \\frac{5}{36} & \\frac{7}{36} & \\frac{1}{4} & \\frac{11}{36}\\end{array}$$La somme est télescopique et vaut $\\frac{6^{2}-0^{2}}{36}=1$.\n\n**3.** $E(M)=\\sum_{j=1}^{6}j\\,P(M=j)=\\frac{161}{36}$. On peut aussi appliquer la formule de transfert au couple des résultats, de loi uniforme sur $\\{1,\\dots,6\\}^{2}$, avec la fonction « maximum » : $E(M)=\\frac{1}{36}\\sum\\max(\\dots)$, ce qui revient au même calcul regroupé selon la valeur du maximum. Le minimum a pour espérance $7-E(M)=\\frac{91}{36}$ (changer chaque résultat $x$ en $7-x$).",
+      "variantes": [
+        {
+          "enonce": "On lance deux dés équilibrés à $4$ faces numérotées de $1$ à $4$, de façon indépendante, et l'on note $M$ le plus grand des deux résultats.\n1. Pour $j\\in\\{1,\\dots,4\\}$, calculer $P(M\\leq j)$.\n2. En déduire la loi de $M$ et vérifier que la somme des probabilités vaut $1$.\n3. Calculer $E(M)$.",
+          "indices": [
+            "L'événement $\\{M\\leq j\\}$ signifie que chacun des deux dés donne au plus $j$ ; utiliser l'indépendance des lancers.",
+            "Pour $j\\geq 2$, $\\{M=j\\}$ est la différence de $\\{M\\leq j\\}$ et de $\\{M\\leq j-1\\}$, l'un contenant l'autre."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(M)$ ?",
+            "propositions": [
+              "$\\frac{25}{8}$",
+              "$\\frac{15}{8}$",
+              "$\\frac{5}{2}$",
+              "$\\frac{8}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\{M\\leq j\\}$ est l'intersection des événements « le $i$-ème dé donne au plus $j$ », qui sont mutuellement indépendants et de probabilité $\\frac{j}{4}$ chacun ; donc $P(M\\leq j)=\\left(\\frac{j}{4}\\right)^{2}$.\n\n**2.** Comme $\\{M\\leq j-1\\}\\subset\\{M\\leq j\\}$, pour $j\\geq 2$, $P(M=j)=P(M\\leq j)-P(M\\leq j-1)=\\frac{j^{2}-(j-1)^{2}}{16}$, formule encore valable pour $j=1$. D'où la loi de $M$ :$$\\begin{array}{c|cccc}j & 1 & 2 & 3 & 4\\\\\\hline P(M=j) & \\frac{1}{16} & \\frac{3}{16} & \\frac{5}{16} & \\frac{7}{16}\\end{array}$$La somme est télescopique et vaut $\\frac{4^{2}-0^{2}}{16}=1$.\n\n**3.** $E(M)=\\sum_{j=1}^{4}j\\,P(M=j)=\\frac{50}{16}=\\frac{25}{8}$. On peut aussi appliquer la formule de transfert au couple des résultats, de loi uniforme sur $\\{1,\\dots,4\\}^{2}$, avec la fonction « maximum » : $E(M)=\\frac{1}{16}\\sum\\max(\\dots)$, ce qui revient au même calcul regroupé selon la valeur du maximum. Le minimum a pour espérance $5-E(M)=\\frac{15}{8}$ (changer chaque résultat $x$ en $5-x$)."
+        },
+        {
+          "enonce": "On lance trois dés équilibrés à $6$ faces numérotées de $1$ à $6$, de façon indépendante, et l'on note $M$ le plus grand des trois résultats.\n1. Pour $j\\in\\{1,\\dots,6\\}$, calculer $P(M\\leq j)$.\n2. En déduire la loi de $M$ et vérifier que la somme des probabilités vaut $1$.\n3. Calculer $E(M)$.",
+          "indices": [
+            "L'événement $\\{M\\leq j\\}$ signifie que chacun des trois dés donne au plus $j$ ; utiliser l'indépendance des lancers.",
+            "Pour $j\\geq 2$, $\\{M=j\\}$ est la différence de $\\{M\\leq j\\}$ et de $\\{M\\leq j-1\\}$, l'un contenant l'autre."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(M)$ ?",
+            "propositions": [
+              "$\\frac{119}{24}$",
+              "$\\frac{49}{24}$",
+              "$\\frac{7}{2}$",
+              "$\\frac{9}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\{M\\leq j\\}$ est l'intersection des événements « le $i$-ème dé donne au plus $j$ », qui sont mutuellement indépendants et de probabilité $\\frac{j}{6}$ chacun ; donc $P(M\\leq j)=\\left(\\frac{j}{6}\\right)^{3}$.\n\n**2.** Comme $\\{M\\leq j-1\\}\\subset\\{M\\leq j\\}$, pour $j\\geq 2$, $P(M=j)=P(M\\leq j)-P(M\\leq j-1)=\\frac{j^{3}-(j-1)^{3}}{216}$, formule encore valable pour $j=1$. D'où la loi de $M$ :$$\\begin{array}{c|cccccc}j & 1 & 2 & 3 & 4 & 5 & 6\\\\\\hline P(M=j) & \\frac{1}{216} & \\frac{7}{216} & \\frac{19}{216} & \\frac{37}{216} & \\frac{61}{216} & \\frac{91}{216}\\end{array}$$La somme est télescopique et vaut $\\frac{6^{3}-0^{3}}{216}=1$.\n\n**3.** $E(M)=\\sum_{j=1}^{6}j\\,P(M=j)=\\frac{1071}{216}=\\frac{119}{24}$. On peut aussi appliquer la formule de transfert au triplet des résultats, de loi uniforme sur $\\{1,\\dots,6\\}^{3}$, avec la fonction « maximum » : $E(M)=\\frac{1}{216}\\sum\\max(\\dots)$, ce qui revient au même calcul regroupé selon la valeur du maximum. Le minimum a pour espérance $7-E(M)=\\frac{49}{24}$ (changer chaque résultat $x$ en $7-x$)."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-transfert-ex4",
+      "carte": "proba-l1-variables-finies-transfert",
+      "difficulte": 4,
+      "titre": "Minimiser l'écart absolu moyen",
+      "enonce": "Soit $X$ une variable aléatoire de loi$$\\begin{array}{c|cccc}x & 0 & 1 & 2 & 10\\\\\\hline P(X=x) & 0{,}3 & 0{,}3 & 0{,}2 & 0{,}2\\end{array}$$Pour tout réel $a$, on pose $g(a)=E\\left(|X-a|\\right)$.\n1. Exprimer $g(a)$ à l'aide de la formule de transfert.\n2. Montrer que $g$ est continue sur $\\mathbb{R}$, affine sur chacun des intervalles délimités par les valeurs de $X$, et calculer sa pente sur chacun d'eux.\n3. En déduire le minimum de $g$ sur $\\mathbb{R}$ et le point où il est atteint.\n4. Comparer avec $g\\left(E(X)\\right)$.",
+      "duree_min": 25,
+      "indices": [
+        "Sur un intervalle ne contenant aucune valeur de $X$, chaque $|x-a|$ vaut $x-a$ ou $a-x$ selon la position de $x$ par rapport à $a$.",
+        "La pente de $g$ entre deux valeurs consécutives de $X$ est $P(X<a)-P(X>a)$ ; chercher où elle change de signe."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur minimale de $g$ sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "$2{,}3$",
+          "$2{,}92$",
+          "$2{,}7$",
+          "$2{,}5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par la formule de transfert avec $f_a(x)=|x-a|$ :$$g(a)=|0-a|\\times0{,}3+|1-a|\\times0{,}3+|2-a|\\times0{,}2+|10-a|\\times0{,}2.$$\n\n**2.** Chaque fonction $a\\mapsto|x-a|$ est continue, donc $g$ l'est. Sur un intervalle $I$ ne contenant aucune valeur de $X$, pour $a\\in I$, $|x-a|=x-a$ si $x>a$ et $a-x$ si $x<a$, donc$$g(a)=\\sum_{x>a}(x-a)P(X=x)+\\sum_{x<a}(a-x)P(X=x),$$fonction affine de $a$ de pente $P(X<a)-P(X>a)=2P(X<a)-1$. On obtient :\n- sur $\\left]-\\infty,0\\right[$ : pente $-1$ ;\n- sur $\\left]0,1\\right[$ : pente $-0{,}4$ ;\n- sur $\\left]1,2\\right[$ : pente $0{,}2$ ;\n- sur $\\left]2,10\\right[$ : pente $0{,}6$ ;\n- sur $\\left]10,+\\infty\\right[$ : pente $1$.\n\n**3.** La pente est négative jusqu'à $1$ et positive ensuite : $g$ est décroissante sur $\\left]-\\infty,1\\right]$ et croissante sur $\\left[1,+\\infty\\right[$, donc son minimum est atteint en $a=1$ (une médiane de $X$) et vaut$$g(1)=1\\times0{,}3+0\\times0{,}3+1\\times0{,}2+9\\times0{,}2=2{,}3.$$\n\n**4.** $E(X)=2{,}7$ et $g\\left(E(X)\\right)=2{,}92>2{,}3$. L'espérance minimise l'écart quadratique moyen $E\\left((X-a)^2\\right)$, mais c'est une médiane qui minimise l'écart absolu moyen $E\\left(|X-a|\\right)$ ; les deux diffèrent quand la loi est dissymétrique.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable aléatoire de loi$$\\begin{array}{c|cccc}x & 0 & 2 & 3 & 9\\\\\\hline P(X=x) & 0{,}2 & 0{,}4 & 0{,}1 & 0{,}3\\end{array}$$Pour tout réel $a$, on pose $g(a)=E\\left(|X-a|\\right)$.\n1. Exprimer $g(a)$ à l'aide de la formule de transfert.\n2. Montrer que $g$ est continue sur $\\mathbb{R}$, affine sur chacun des intervalles délimités par les valeurs de $X$, et calculer sa pente sur chacun d'eux.\n3. En déduire le minimum de $g$ sur $\\mathbb{R}$ et le point où il est atteint.\n4. Comparer avec $g\\left(E(X)\\right)$.",
+          "indices": [
+            "Sur un intervalle ne contenant aucune valeur de $X$, chaque $|x-a|$ vaut $x-a$ ou $a-x$ selon la position de $x$ par rapport à $a$.",
+            "La pente de $g$ entre deux valeurs consécutives de $X$ est $P(X<a)-P(X>a)$ ; chercher où elle change de signe."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur minimale de $g$ sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$2{,}6$",
+              "$3{,}12$",
+              "$3{,}8$",
+              "$2{,}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par la formule de transfert avec $f_a(x)=|x-a|$ :$$g(a)=|0-a|\\times0{,}2+|2-a|\\times0{,}4+|3-a|\\times0{,}1+|9-a|\\times0{,}3.$$\n\n**2.** Chaque fonction $a\\mapsto|x-a|$ est continue, donc $g$ l'est. Sur un intervalle $I$ ne contenant aucune valeur de $X$, pour $a\\in I$, $|x-a|=x-a$ si $x>a$ et $a-x$ si $x<a$, donc$$g(a)=\\sum_{x>a}(x-a)P(X=x)+\\sum_{x<a}(a-x)P(X=x),$$fonction affine de $a$ de pente $P(X<a)-P(X>a)=2P(X<a)-1$. On obtient :\n- sur $\\left]-\\infty,0\\right[$ : pente $-1$ ;\n- sur $\\left]0,2\\right[$ : pente $-0{,}6$ ;\n- sur $\\left]2,3\\right[$ : pente $0{,}2$ ;\n- sur $\\left]3,9\\right[$ : pente $0{,}4$ ;\n- sur $\\left]9,+\\infty\\right[$ : pente $1$.\n\n**3.** La pente est négative jusqu'à $2$ et positive ensuite : $g$ est décroissante sur $\\left]-\\infty,2\\right]$ et croissante sur $\\left[2,+\\infty\\right[$, donc son minimum est atteint en $a=2$ (une médiane de $X$) et vaut$$g(2)=2\\times0{,}2+0\\times0{,}4+1\\times0{,}1+7\\times0{,}3=2{,}6.$$\n\n**4.** $E(X)=3{,}8$ et $g\\left(E(X)\\right)=3{,}12>2{,}6$. L'espérance minimise l'écart quadratique moyen $E\\left((X-a)^2\\right)$, mais c'est une médiane qui minimise l'écart absolu moyen $E\\left(|X-a|\\right)$ ; les deux diffèrent quand la loi est dissymétrique."
+        },
+        {
+          "enonce": "Soit $X$ une variable aléatoire de loi$$\\begin{array}{c|cccc}x & -4 & 0 & 1 & 2\\\\\\hline P(X=x) & 0{,}2 & 0{,}1 & 0{,}4 & 0{,}3\\end{array}$$Pour tout réel $a$, on pose $g(a)=E\\left(|X-a|\\right)$.\n1. Exprimer $g(a)$ à l'aide de la formule de transfert.\n2. Montrer que $g$ est continue sur $\\mathbb{R}$, affine sur chacun des intervalles délimités par les valeurs de $X$, et calculer sa pente sur chacun d'eux.\n3. En déduire le minimum de $g$ sur $\\mathbb{R}$ et le point où il est atteint.\n4. Comparer avec $g\\left(E(X)\\right)$.",
+          "indices": [
+            "Sur un intervalle ne contenant aucune valeur de $X$, chaque $|x-a|$ vaut $x-a$ ou $a-x$ selon la position de $x$ par rapport à $a$.",
+            "La pente de $g$ entre deux valeurs consécutives de $X$ est $P(X<a)-P(X>a)$ ; chercher où elle change de signe."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur minimale de $g$ sur $\\mathbb{R}$ ?",
+            "propositions": [
+              "$1{,}4$",
+              "$1{,}72$",
+              "$0{,}2$",
+              "$1{,}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par la formule de transfert avec $f_a(x)=|x-a|$ :$$g(a)=|-4-a|\\times0{,}2+|0-a|\\times0{,}1+|1-a|\\times0{,}4+|2-a|\\times0{,}3.$$\n\n**2.** Chaque fonction $a\\mapsto|x-a|$ est continue, donc $g$ l'est. Sur un intervalle $I$ ne contenant aucune valeur de $X$, pour $a\\in I$, $|x-a|=x-a$ si $x>a$ et $a-x$ si $x<a$, donc$$g(a)=\\sum_{x>a}(x-a)P(X=x)+\\sum_{x<a}(a-x)P(X=x),$$fonction affine de $a$ de pente $P(X<a)-P(X>a)=2P(X<a)-1$. On obtient :\n- sur $\\left]-\\infty,-4\\right[$ : pente $-1$ ;\n- sur $\\left]-4,0\\right[$ : pente $-0{,}6$ ;\n- sur $\\left]0,1\\right[$ : pente $-0{,}4$ ;\n- sur $\\left]1,2\\right[$ : pente $0{,}4$ ;\n- sur $\\left]2,+\\infty\\right[$ : pente $1$.\n\n**3.** La pente est négative jusqu'à $1$ et positive ensuite : $g$ est décroissante sur $\\left]-\\infty,1\\right]$ et croissante sur $\\left[1,+\\infty\\right[$, donc son minimum est atteint en $a=1$ (une médiane de $X$) et vaut$$g(1)=5\\times0{,}2+1\\times0{,}1+0\\times0{,}4+1\\times0{,}3=1{,}4.$$\n\n**4.** $E(X)=0{,}2$ et $g\\left(E(X)\\right)=1{,}72>1{,}4$. L'espérance minimise l'écart quadratique moyen $E\\left((X-a)^2\\right)$, mais c'est une médiane qui minimise l'écart absolu moyen $E\\left(|X-a|\\right)$ ; les deux diffèrent quand la loi est dissymétrique."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-variance-ex1",
+      "carte": "proba-l1-variables-finies-variance",
+      "difficulte": 1,
+      "titre": "Variance par la formule de König-Huygens",
+      "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|cccc}x & 0 & 1 & 2 & 3\\\\\\hline P(X=x) & 0{,}1 & 0{,}4 & 0{,}3 & 0{,}2\\end{array}$$Calculer $E(X)$, $E(X^2)$, puis $V(X)$ par la formule de König-Huygens.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer d'abord $E(X)$ et $E(X^2)=\\sum_x x^2P(X=x)$, avec les carrés $0, 1, 4, 9$, puis soustraire le carré de l'espérance."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$0{,}84$",
+          "$1{,}8$",
+          "$3{,}4$",
+          "$2{,}56$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$E(X)=0\\times 0{,}1+1\\times 0{,}4+2\\times 0{,}3+3\\times 0{,}2=1{,}6$ et, par transfert, $E(X^2)=0^2\\times 0{,}1+1^2\\times 0{,}4+2^2\\times 0{,}3+3^2\\times 0{,}2=3{,}4$. Par König-Huygens,$$V(X)=E(X^2)-E(X)^2=3{,}4-2{,}56=0{,}84.$$On vérifie que $V(X)\\geq 0$. Attention à ne pas soustraire $E(X)$ au lieu de $E(X)^2$, ce qui donnerait $1{,}8$.",
+      "variantes": [
+        {
+          "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|cccc}x & -1 & 0 & 1 & 2\\\\\\hline P(X=x) & 0{,}2 & 0{,}3 & 0{,}3 & 0{,}2\\end{array}$$Calculer $E(X)$, $E(X^2)$, puis $V(X)$ par la formule de König-Huygens.",
+          "indices": [
+            "Calculer d'abord $E(X)$ et $E(X^2)=\\sum_x x^2P(X=x)$, avec les carrés $1, 0, 1, 4$, puis soustraire le carré de l'espérance."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$1{,}05$",
+              "$0{,}8$",
+              "$1{,}3$",
+              "$0{,}25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$E(X)=(-1)\\times 0{,}2+0\\times 0{,}3+1\\times 0{,}3+2\\times 0{,}2=0{,}5$ et, par transfert, $E(X^2)=(-1)^2\\times 0{,}2+0^2\\times 0{,}3+1^2\\times 0{,}3+2^2\\times 0{,}2=1{,}3$. Par König-Huygens,$$V(X)=E(X^2)-E(X)^2=1{,}3-0{,}25=1{,}05.$$On vérifie que $V(X)\\geq 0$. Attention à ne pas soustraire $E(X)$ au lieu de $E(X)^2$, ce qui donnerait $0{,}8$."
+        },
+        {
+          "enonce": "Une variable aléatoire $X$ a la loi suivante :$$\\begin{array}{c|ccc}x & 1 & 2 & 5\\\\\\hline P(X=x) & \\frac{1}{2} & \\frac{1}{4} & \\frac{1}{4}\\end{array}$$Calculer $E(X)$, $E(X^2)$, puis $V(X)$ par la formule de König-Huygens.",
+          "indices": [
+            "Calculer d'abord $E(X)$ et $E(X^2)=\\sum_x x^2P(X=x)$, avec les carrés $1, 4, 25$, puis soustraire le carré de l'espérance."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac{43}{16}$",
+              "$\\frac{11}{2}$",
+              "$\\frac{31}{4}$",
+              "$\\frac{81}{16}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$E(X)=1\\times \\frac{1}{2}+2\\times \\frac{1}{4}+5\\times \\frac{1}{4}=\\frac{9}{4}$ et, par transfert, $E(X^2)=1^2\\times \\frac{1}{2}+2^2\\times \\frac{1}{4}+5^2\\times \\frac{1}{4}=\\frac{31}{4}$. Par König-Huygens,$$V(X)=E(X^2)-E(X)^2=\\frac{31}{4}-\\frac{81}{16}=\\frac{43}{16}.$$On vérifie que $V(X)\\geq 0$. Attention à ne pas soustraire $E(X)$ au lieu de $E(X)^2$, ce qui donnerait $\\frac{11}{2}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-variance-ex2",
+      "carte": "proba-l1-variables-finies-variance",
+      "difficulte": 2,
+      "titre": "Variance d'une variable à deux valeurs",
+      "enonce": "1. Soit $X$ une variable aléatoire qui prend la valeur $a$ avec probabilité $p$ et la valeur $b$ avec probabilité $1-p$, où $a\\neq b$ et $p\\in\\left[0,1\\right]$. Montrer que $V(X)=p(1-p)(a-b)^2$.\n2. À un jeu, on gagne $10$ euros avec probabilité $\\frac{1}{5}$ et l'on perd $2$ euros sinon ; $X$ est le gain algébrique. Calculer $E(X)$, $V(X)$ et l'écart-type $\\sigma(X)$.",
+      "duree_min": 8,
+      "indices": [
+        "Pour 1, calculer $E(X)$ et $E(X^2)$ puis factoriser $E(X^2)-E(X)^2$ ; ou écrire $X=b+(a-b)Y$ avec $Y$ de loi de Bernoulli de paramètre $p$. Pour 2, $a=10$ et $b=-2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sigma(X)$ ?",
+        "propositions": [
+          "$\\frac{24}{5}$",
+          "$\\frac{576}{25}$",
+          "$\\frac{48}{25}$",
+          "$\\frac{2\\sqrt{145}}{5}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $E(X)=pa+(1-p)b$ et $E(X^2)=pa^2+(1-p)b^2$, donc$$V(X)=pa^2+(1-p)b^2-\\left(pa+(1-p)b\\right)^2=p(1-p)a^2+p(1-p)b^2-2p(1-p)ab=p(1-p)(a-b)^2,$$en utilisant $p-p^2=(1-p)-(1-p)^2=p(1-p)$.\n\n**2.** Ici $a=10$, $b=-2$ et $p=\\frac{1}{5}$ : $E(X)=\\frac{1}{5}\\times10+\\frac{4}{5}\\times(-2)=\\frac{2}{5}$, puis$$V(X)=\\frac{1}{5}\\times\\frac{4}{5}\\times(10-(-2))^2=\\frac{576}{25},\\qquad\\sigma(X)=\\sqrt{\\frac{576}{25}}=\\frac{24}{5}.$$L'écart-type est la racine de la variance, et non $p(1-p)|a-b|$.",
+      "variantes": [
+        {
+          "enonce": "1. Soit $X$ une variable aléatoire qui prend la valeur $a$ avec probabilité $p$ et la valeur $b$ avec probabilité $1-p$, où $a\\neq b$ et $p\\in\\left[0,1\\right]$. Montrer que $V(X)=p(1-p)(a-b)^2$.\n2. À un jeu, on gagne $8$ euros avec probabilité $\\frac{1}{4}$ et l'on perd $1$ euro sinon ; $X$ est le gain algébrique. Calculer $E(X)$, $V(X)$ et l'écart-type $\\sigma(X)$.",
+          "indices": [
+            "Pour 1, calculer $E(X)$ et $E(X^2)$ puis factoriser $E(X^2)-E(X)^2$ ; ou écrire $X=b+(a-b)Y$ avec $Y$ de loi de Bernoulli de paramètre $p$. Pour 2, $a=8$ et $b=-1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma(X)$ ?",
+            "propositions": [
+              "$\\frac{9\\sqrt{3}}{4}$",
+              "$\\frac{243}{16}$",
+              "$\\frac{27}{16}$",
+              "$\\frac{\\sqrt{67}}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $E(X)=pa+(1-p)b$ et $E(X^2)=pa^2+(1-p)b^2$, donc$$V(X)=pa^2+(1-p)b^2-\\left(pa+(1-p)b\\right)^2=p(1-p)a^2+p(1-p)b^2-2p(1-p)ab=p(1-p)(a-b)^2,$$en utilisant $p-p^2=(1-p)-(1-p)^2=p(1-p)$.\n\n**2.** Ici $a=8$, $b=-1$ et $p=\\frac{1}{4}$ : $E(X)=\\frac{1}{4}\\times8+\\frac{3}{4}\\times(-1)=\\frac{5}{4}$, puis$$V(X)=\\frac{1}{4}\\times\\frac{3}{4}\\times(8-(-1))^2=\\frac{243}{16},\\qquad\\sigma(X)=\\sqrt{\\frac{243}{16}}=\\frac{9\\sqrt{3}}{4}.$$L'écart-type est la racine de la variance, et non $p(1-p)|a-b|$."
+        },
+        {
+          "enonce": "1. Soit $X$ une variable aléatoire qui prend la valeur $a$ avec probabilité $p$ et la valeur $b$ avec probabilité $1-p$, où $a\\neq b$ et $p\\in\\left[0,1\\right]$. Montrer que $V(X)=p(1-p)(a-b)^2$.\n2. À un jeu, on gagne $4$ euros avec probabilité $\\frac{1}{2}$ et l'on perd $2$ euros sinon ; $X$ est le gain algébrique. Calculer $E(X)$, $V(X)$ et l'écart-type $\\sigma(X)$.",
+          "indices": [
+            "Pour 1, calculer $E(X)$ et $E(X^2)$ puis factoriser $E(X^2)-E(X)^2$ ; ou écrire $X=b+(a-b)Y$ avec $Y$ de loi de Bernoulli de paramètre $p$. Pour 2, $a=4$ et $b=-2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma(X)$ ?",
+            "propositions": [
+              "$3$",
+              "$9$",
+              "$\\frac{3}{2}$",
+              "$\\sqrt{10}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $E(X)=pa+(1-p)b$ et $E(X^2)=pa^2+(1-p)b^2$, donc$$V(X)=pa^2+(1-p)b^2-\\left(pa+(1-p)b\\right)^2=p(1-p)a^2+p(1-p)b^2-2p(1-p)ab=p(1-p)(a-b)^2,$$en utilisant $p-p^2=(1-p)-(1-p)^2=p(1-p)$.\n\n**2.** Ici $a=4$, $b=-2$ et $p=\\frac{1}{2}$ : $E(X)=\\frac{1}{2}\\times4+\\frac{1}{2}\\times(-2)=1$, puis$$V(X)=\\frac{1}{2}\\times\\frac{1}{2}\\times(4-(-2))^2=9,\\qquad\\sigma(X)=\\sqrt{9}=3.$$L'écart-type est la racine de la variance, et non $p(1-p)|a-b|$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-variance-ex3",
+      "carte": "proba-l1-variables-finies-variance",
+      "difficulte": 3,
+      "titre": "Meilleure approximation par une constante",
+      "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini.\n1. Montrer que, pour tout réel $a$, $E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$.\n2. En déduire pour quelle valeur de $a$ la quantité $E\\left((X-a)^2\\right)$ est minimale, et la valeur de ce minimum.\n3. Application : $X$ a pour loi$$\\begin{array}{c|ccc}x & 0 & 1 & 4\\\\\\hline P(X=x) & 0{,}2 & 0{,}5 & 0{,}3\\end{array}$$Calculer $E(X)$ et $V(X)$, puis $E\\left((X-3)^2\\right)$ de deux façons.",
+      "duree_min": 12,
+      "indices": [
+        "Écrire $X-a=\\left(X-E(X)\\right)+\\left(E(X)-a\\right)$, développer le carré, et utiliser $E\\left(X-E(X)\\right)=0$.",
+        "Pour 3, utiliser la question 1 avec $a=3$, puis vérifier par la formule de transfert appliquée à $x\\mapsto(x-3)^2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E\\left((X-3)^2\\right)$ ?",
+        "propositions": [
+          "$4{,}1$",
+          "$2{,}41$",
+          "$1{,}69$",
+          "$0{,}72$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Notons $m=E(X)$. $(X-a)^2=(X-m)^2+2(m-a)(X-m)+(m-a)^2$ ; par linéarité, et comme $E(X-m)=0$, $E\\left((X-a)^2\\right)=V(X)+(m-a)^2$.\n\n**2.** Le terme $(m-a)^2$ est positif et ne s'annule que pour $a=m$ : le minimum est atteint en $a=E(X)$ et vaut $V(X)$.\n\n**3.** $E(X)=0\\times 0{,}2+1\\times 0{,}5+4\\times 0{,}3=1{,}7$, $E(X^2)=0^2\\times 0{,}2+1^2\\times 0{,}5+4^2\\times 0{,}3=5{,}3$, donc $V(X)=5{,}3-2{,}89=2{,}41$. Par la question 1 :$$E\\left((X-3)^2\\right)=2{,}41+\\left(1{,}7-3\\right)^2=2{,}41+1{,}69=4{,}1.$$Directement, par transfert : $E\\left((X-3)^2\\right)=(0-3)^2\\times 0{,}2+(1-3)^2\\times 0{,}5+(4-3)^2\\times 0{,}3=4{,}1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini.\n1. Montrer que, pour tout réel $a$, $E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$.\n2. En déduire pour quelle valeur de $a$ la quantité $E\\left((X-a)^2\\right)$ est minimale, et la valeur de ce minimum.\n3. Application : $X$ a pour loi$$\\begin{array}{c|ccc}x & -1 & 0 & 2\\\\\\hline P(X=x) & \\frac{1}{4} & \\frac{1}{4} & \\frac{1}{2}\\end{array}$$Calculer $E(X)$ et $V(X)$, puis $E\\left((X-2)^2\\right)$ de deux façons.",
+          "indices": [
+            "Écrire $X-a=\\left(X-E(X)\\right)+\\left(E(X)-a\\right)$, développer le carré, et utiliser $E\\left(X-E(X)\\right)=0$.",
+            "Pour 3, utiliser la question 1 avec $a=2$, puis vérifier par la formule de transfert appliquée à $x\\mapsto(x-2)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E\\left((X-2)^2\\right)$ ?",
+            "propositions": [
+              "$\\frac{13}{4}$",
+              "$\\frac{27}{16}$",
+              "$\\frac{25}{16}$",
+              "$\\frac{1}{8}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Notons $m=E(X)$. $(X-a)^2=(X-m)^2+2(m-a)(X-m)+(m-a)^2$ ; par linéarité, et comme $E(X-m)=0$, $E\\left((X-a)^2\\right)=V(X)+(m-a)^2$.\n\n**2.** Le terme $(m-a)^2$ est positif et ne s'annule que pour $a=m$ : le minimum est atteint en $a=E(X)$ et vaut $V(X)$.\n\n**3.** $E(X)=(-1)\\times \\frac{1}{4}+0\\times \\frac{1}{4}+2\\times \\frac{1}{2}=\\frac{3}{4}$, $E(X^2)=(-1)^2\\times \\frac{1}{4}+0^2\\times \\frac{1}{4}+2^2\\times \\frac{1}{2}=\\frac{9}{4}$, donc $V(X)=\\frac{9}{4}-\\frac{9}{16}=\\frac{27}{16}$. Par la question 1 :$$E\\left((X-2)^2\\right)=\\frac{27}{16}+\\left(\\frac{3}{4}-2\\right)^2=\\frac{27}{16}+\\frac{25}{16}=\\frac{13}{4}.$$Directement, par transfert : $E\\left((X-2)^2\\right)=(-1-2)^2\\times \\frac{1}{4}+(0-2)^2\\times \\frac{1}{4}+(2-2)^2\\times \\frac{1}{2}=\\frac{13}{4}$."
+        },
+        {
+          "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini.\n1. Montrer que, pour tout réel $a$, $E\\left((X-a)^2\\right)=V(X)+\\left(E(X)-a\\right)^2$.\n2. En déduire pour quelle valeur de $a$ la quantité $E\\left((X-a)^2\\right)$ est minimale, et la valeur de ce minimum.\n3. Application : $X$ a pour loi$$\\begin{array}{c|ccc}x & 1 & 2 & 6\\\\\\hline P(X=x) & \\frac{1}{3} & \\frac{1}{3} & \\frac{1}{3}\\end{array}$$Calculer $E(X)$ et $V(X)$, puis $E\\left((X-1)^2\\right)$ de deux façons.",
+          "indices": [
+            "Écrire $X-a=\\left(X-E(X)\\right)+\\left(E(X)-a\\right)$, développer le carré, et utiliser $E\\left(X-E(X)\\right)=0$.",
+            "Pour 3, utiliser la question 1 avec $a=1$, puis vérifier par la formule de transfert appliquée à $x\\mapsto(x-1)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E\\left((X-1)^2\\right)$ ?",
+            "propositions": [
+              "$\\frac{26}{3}$",
+              "$\\frac{14}{3}$",
+              "$4$",
+              "$\\frac{2}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Notons $m=E(X)$. $(X-a)^2=(X-m)^2+2(m-a)(X-m)+(m-a)^2$ ; par linéarité, et comme $E(X-m)=0$, $E\\left((X-a)^2\\right)=V(X)+(m-a)^2$.\n\n**2.** Le terme $(m-a)^2$ est positif et ne s'annule que pour $a=m$ : le minimum est atteint en $a=E(X)$ et vaut $V(X)$.\n\n**3.** $E(X)=1\\times \\frac{1}{3}+2\\times \\frac{1}{3}+6\\times \\frac{1}{3}=3$, $E(X^2)=1^2\\times \\frac{1}{3}+2^2\\times \\frac{1}{3}+6^2\\times \\frac{1}{3}=\\frac{41}{3}$, donc $V(X)=\\frac{41}{3}-9=\\frac{14}{3}$. Par la question 1 :$$E\\left((X-1)^2\\right)=\\frac{14}{3}+\\left(3-1\\right)^2=\\frac{14}{3}+4=\\frac{26}{3}.$$Directement, par transfert : $E\\left((X-1)^2\\right)=(1-1)^2\\times \\frac{1}{3}+(2-1)^2\\times \\frac{1}{3}+(6-1)^2\\times \\frac{1}{3}=\\frac{26}{3}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-variance-ex4",
+      "carte": "proba-l1-variables-finies-variance",
+      "difficulte": 4,
+      "titre": "Variance d'une variable bornée",
+      "enonce": "Soit $X$ une variable aléatoire réelle sur un univers fini, à valeurs dans $\\left[m,M\\right]$ avec $m<M$, et $\\mu=E(X)$.\n1. Montrer que $\\mu\\in\\left[m,M\\right]$ et que $E\\left((M-X)(X-m)\\right)\\geq 0$.\n2. En déduire que $V(X)\\leq(M-\\mu)(\\mu-m)$.\n3. En déduire que $V(X)\\leq\\frac{(M-m)^2}{4}$, et montrer que cette borne est atteinte lorsque $X$ prend les valeurs $m$ et $M$ avec probabilité $\\frac{1}{2}$ chacune.\n4. Montrer que l'égalité $V(X)=(M-\\mu)(\\mu-m)$ a lieu si et seulement si $P\\left(X\\in\\{m,M\\}\\right)=1$.\n5. Montrer que si $\\mu=m$, alors $P(X=m)=1$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour 2, développer $(M-X)(X-m)$, prendre l'espérance, puis utiliser $V(X)=E(X^2)-\\mu^2$.",
+        "Pour 3, pour des réels $u,v\\geq 0$, $uv\\leq\\left(\\frac{u+v}{2}\\right)^2$ ; pour 4, une somme de termes positifs est nulle si et seulement si chacun l'est."
+      ],
+      "correction": "**1.** $m\\leq X\\leq M$ sur $\\Omega$, donc par croissance de l'espérance $m\\leq\\mu\\leq M$. La variable $(M-X)(X-m)$ est positive (produit de deux facteurs positifs), donc son espérance l'est.\n\n**2.** $(M-X)(X-m)=-X^2+(M+m)X-Mm$, donc par linéarité $0\\leq-E(X^2)+(M+m)\\mu-Mm$. Ainsi $E(X^2)\\leq(M+m)\\mu-Mm$ et$$V(X)=E(X^2)-\\mu^2\\leq(M+m)\\mu-Mm-\\mu^2=(M-\\mu)(\\mu-m).$$\n\n**3.** Avec $u=M-\\mu\\geq 0$ et $v=\\mu-m\\geq 0$, de somme $M-m$ : $uv\\leq\\left(\\frac{u+v}{2}\\right)^2=\\frac{(M-m)^2}{4}$, car $\\left(\\frac{u+v}{2}\\right)^2-uv=\\left(\\frac{u-v}{2}\\right)^2\\geq 0$. Si $X$ vaut $m$ ou $M$ avec probabilité $\\frac{1}{2}$ chacun, $\\mu=\\frac{m+M}{2}$ et $\\left(X-\\mu\\right)^2=\\frac{(M-m)^2}{4}$ avec probabilité $1$, donc $V(X)=\\frac{(M-m)^2}{4}$.\n\n**4.** D'après le calcul de la question 2, $(M-\\mu)(\\mu-m)-V(X)=E\\left((M-X)(X-m)\\right)=\\sum_{x}(M-x)(x-m)P(X=x)$ (transfert). C'est une somme de termes positifs ; elle est nulle si et seulement si $P(X=x)=0$ pour toute valeur $x$ telle que $(M-x)(x-m)>0$, c'est-à-dire pour tout $x\\notin\\{m,M\\}$, ce qui équivaut à $P\\left(X\\in\\{m,M\\}\\right)=1$.\n\n**5.** Si $\\mu=m$, la question 2 donne $0\\leq V(X)\\leq 0$, donc $V(X)=0$ et $P(X=\\mu)=P(X=m)=1$ (cas de variance nulle)."
+    },
+    {
+      "id": "proba-l1-variables-finies-uniforme-bernoulli-ex1",
+      "carte": "proba-l1-variables-finies-uniforme-bernoulli",
+      "difficulte": 1,
+      "titre": "Espérance et variance d'une loi uniforme",
+      "enonce": "On tire un numéro $X$ au hasard, uniformément, dans $\\{1,\\dots,10\\}$. Rappeler les valeurs de $E(X)$ et de $V(X)$, puis les retrouver par le calcul.",
+      "duree_min": 5,
+      "indices": [
+        "Utiliser $\\sum_{k=1}^{10}k=\\frac{10\\times11}{2}$ et $\\sum_{k=1}^{10}k^2=\\frac{10\\times11\\times21}{6}$, puis la formule de König-Huygens."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$\\frac{33}{4}$",
+          "$\\frac{101}{12}$",
+          "$\\frac{77}{2}$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour la loi uniforme sur $\\{1,\\dots,n\\}$, $E(X)=\\frac{n+1}{2}$ et $V(X)=\\frac{n^2-1}{12}$ ; ici $E(X)=\\frac{11}{2}$ et $V(X)=\\frac{100-1}{12}=\\frac{33}{4}$. Par le calcul : $P(X=k)=\\frac{1}{10}$, donc $E(X)=\\frac{1}{10}\\cdot\\frac{10\\times11}{2}=\\frac{11}{2}$ et $E(X^2)=\\frac{1}{10}\\cdot\\frac{10\\times11\\times21}{6}=\\frac{77}{2}$, d'où$$V(X)=\\frac{77}{2}-\\left(\\frac{11}{2}\\right)^2=\\frac{33}{4}.$$",
+      "variantes": [
+        {
+          "enonce": "On tire un numéro $X$ au hasard, uniformément, dans $\\{1,\\dots,20\\}$. Rappeler les valeurs de $E(X)$ et de $V(X)$, puis les retrouver par le calcul.",
+          "indices": [
+            "Utiliser $\\sum_{k=1}^{20}k=\\frac{20\\times21}{2}$ et $\\sum_{k=1}^{20}k^2=\\frac{20\\times21\\times41}{6}$, puis la formule de König-Huygens."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac{133}{4}$",
+              "$\\frac{401}{12}$",
+              "$\\frac{287}{2}$",
+              "$\\frac{110}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour la loi uniforme sur $\\{1,\\dots,n\\}$, $E(X)=\\frac{n+1}{2}$ et $V(X)=\\frac{n^2-1}{12}$ ; ici $E(X)=\\frac{21}{2}$ et $V(X)=\\frac{400-1}{12}=\\frac{133}{4}$. Par le calcul : $P(X=k)=\\frac{1}{20}$, donc $E(X)=\\frac{1}{20}\\cdot\\frac{20\\times21}{2}=\\frac{21}{2}$ et $E(X^2)=\\frac{1}{20}\\cdot\\frac{20\\times21\\times41}{6}=\\frac{287}{2}$, d'où$$V(X)=\\frac{287}{2}-\\left(\\frac{21}{2}\\right)^2=\\frac{133}{4}.$$"
+        },
+        {
+          "enonce": "On tire un numéro $X$ au hasard, uniformément, dans $\\{1,\\dots,8\\}$. Rappeler les valeurs de $E(X)$ et de $V(X)$, puis les retrouver par le calcul.",
+          "indices": [
+            "Utiliser $\\sum_{k=1}^{8}k=\\frac{8\\times9}{2}$ et $\\sum_{k=1}^{8}k^2=\\frac{8\\times9\\times17}{6}$, puis la formule de König-Huygens."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac{21}{4}$",
+              "$\\frac{65}{12}$",
+              "$\\frac{51}{2}$",
+              "$\\frac{20}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour la loi uniforme sur $\\{1,\\dots,n\\}$, $E(X)=\\frac{n+1}{2}$ et $V(X)=\\frac{n^2-1}{12}$ ; ici $E(X)=\\frac{9}{2}$ et $V(X)=\\frac{64-1}{12}=\\frac{21}{4}$. Par le calcul : $P(X=k)=\\frac{1}{8}$, donc $E(X)=\\frac{1}{8}\\cdot\\frac{8\\times9}{2}=\\frac{9}{2}$ et $E(X^2)=\\frac{1}{8}\\cdot\\frac{8\\times9\\times17}{6}=\\frac{51}{2}$, d'où$$V(X)=\\frac{51}{2}-\\left(\\frac{9}{2}\\right)^2=\\frac{21}{4}.$$"
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-uniforme-bernoulli-ex2",
+      "carte": "proba-l1-variables-finies-uniforme-bernoulli",
+      "difficulte": 2,
+      "titre": "Loi uniforme sur un intervalle d'entiers",
+      "enonce": "Une roue de loterie est partagée en $10$ secteurs égaux numérotés de $5$ à $14$ ; on note $X$ le numéro obtenu, de loi uniforme sur $\\{5,\\dots,14\\}$.\n1. Montrer que $Y=X-4$ suit la loi uniforme sur $\\{1,\\dots,10\\}$.\n2. En déduire $E(X)$ et $V(X)$.",
+      "duree_min": 6,
+      "indices": [
+        "Pour $k\\in\\{1,\\dots,10\\}$, $P(Y=k)=P\\left(X=k+4\\right)$ ; puis utiliser $E(X)=E(Y)+4$ et le fait qu'une translation ne change pas la variance."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$\\frac{33}{4}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{65}{4}$",
+          "$\\frac{197}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $Y$ prend ses valeurs dans $\\{1,\\dots,10\\}$ et, pour chaque $k$ de cet ensemble, $P(Y=k)=P\\left(X=k+4\\right)=\\frac{1}{10}$ : $Y$ suit la loi uniforme sur $\\{1,\\dots,10\\}$.\n\n**2.** Donc $E(Y)=\\frac{10+1}{2}=\\frac{11}{2}$ et $V(Y)=\\frac{100-1}{12}=\\frac{33}{4}$. Comme $X=Y+4$, $E(X)=E(Y)+4=\\frac{19}{2}=\\frac{5+14}{2}$ et $V(X)=V(Y)=\\frac{33}{4}$ : la variance ne dépend que du nombre $10$ de valeurs, pas de leur position.",
+      "variantes": [
+        {
+          "enonce": "Une roue de loterie est partagée en $7$ secteurs égaux numérotés de $-3$ à $3$ ; on note $X$ le numéro obtenu, de loi uniforme sur $\\{-3,\\dots,3\\}$.\n1. Montrer que $Y=X+4$ suit la loi uniforme sur $\\{1,\\dots,7\\}$.\n2. En déduire $E(X)$ et $V(X)$.",
+          "indices": [
+            "Pour $k\\in\\{1,\\dots,7\\}$, $P(Y=k)=P\\left(X=k-4\\right)$ ; puis utiliser $E(X)=E(Y)-4$ et le fait qu'une translation ne change pas la variance."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$4$",
+              "$\\frac{35}{12}$",
+              "$\\frac{2}{3}$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $Y$ prend ses valeurs dans $\\{1,\\dots,7\\}$ et, pour chaque $k$ de cet ensemble, $P(Y=k)=P\\left(X=k-4\\right)=\\frac{1}{7}$ : $Y$ suit la loi uniforme sur $\\{1,\\dots,7\\}$.\n\n**2.** Donc $E(Y)=\\frac{7+1}{2}=4$ et $V(Y)=\\frac{49-1}{12}=4$. Comme $X=Y-4$, $E(X)=E(Y)-4=0=\\frac{-3+3}{2}$ et $V(X)=V(Y)=4$ : la variance ne dépend que du nombre $7$ de valeurs, pas de leur position."
+        },
+        {
+          "enonce": "Une roue de loterie est partagée en $5$ secteurs égaux numérotés de $2$ à $6$ ; on note $X$ le numéro obtenu, de loi uniforme sur $\\{2,\\dots,6\\}$.\n1. Montrer que $Y=X-1$ suit la loi uniforme sur $\\{1,\\dots,5\\}$.\n2. En déduire $E(X)$ et $V(X)$.",
+          "indices": [
+            "Pour $k\\in\\{1,\\dots,5\\}$, $P(Y=k)=P\\left(X=k+1\\right)$ ; puis utiliser $E(X)=E(Y)+1$ et le fait qu'une translation ne change pas la variance."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$2$",
+              "$\\frac{5}{4}$",
+              "$\\frac{35}{12}$",
+              "$18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $Y$ prend ses valeurs dans $\\{1,\\dots,5\\}$ et, pour chaque $k$ de cet ensemble, $P(Y=k)=P\\left(X=k+1\\right)=\\frac{1}{5}$ : $Y$ suit la loi uniforme sur $\\{1,\\dots,5\\}$.\n\n**2.** Donc $E(Y)=\\frac{5+1}{2}=3$ et $V(Y)=\\frac{25-1}{12}=2$. Comme $X=Y+1$, $E(X)=E(Y)+1=4=\\frac{2+6}{2}$ et $V(X)=V(Y)=2$ : la variance ne dépend que du nombre $5$ de valeurs, pas de leur position."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-uniforme-bernoulli-ex3",
+      "carte": "proba-l1-variables-finies-uniforme-bernoulli",
+      "difficulte": 3,
+      "titre": "Somme de deux indicatrices",
+      "enonce": "Soit $A$ et $B$ deux événements d'un univers fini probabilisé, avec $P(A)=0{,}5$, $P(B)=0{,}4$ et $P(A\\cap B)=0{,}1$. On pose $X=\\mathbf{1}_A+\\mathbf{1}_B$, nombre d'événements réalisés parmi $A$ et $B$.\n1. Déterminer la loi de $X$.\n2. Calculer $E(X)$ de deux façons.\n3. Calculer $V(X)$ et comparer avec $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)$.",
+      "duree_min": 12,
+      "indices": [
+        "$X=2$ correspond à $A\\cap B$ et $X=0$ à $\\overline{A}\\cap\\overline{B}$, complémentaire de $A\\cup B$.",
+        "$\\mathbf{1}_A$ et $\\mathbf{1}_B$ suivent des lois de Bernoulli de paramètres $0{,}5$ et $0{,}4$ ; elles ne sont pas forcément indépendantes, donc on ne peut pas additionner les variances sans précaution."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$0{,}29$",
+          "$0{,}49$",
+          "$0{,}9$",
+          "$1{,}1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $P(X=2)=P(A\\cap B)=0{,}1$, $P(X=0)=P\\left(\\overline{A}\\cap\\overline{B}\\right)=1-P(A\\cup B)=1-\\left(0{,}5+0{,}4-0{,}1\\right)=0{,}2$, et $P(X=1)=1-P(X=0)-P(X=2)=0{,}7$.\n\n**2.** À partir de la loi : $E(X)=1\\times 0{,}7+2\\times 0{,}1=0{,}9$. Par linéarité : $E(X)=E(\\mathbf{1}_A)+E(\\mathbf{1}_B)=P(A)+P(B)=0{,}5+0{,}4=0{,}9$.\n\n**3.** $E(X^2)=1\\times 0{,}7+4\\times 0{,}1=1{,}1$, donc $V(X)=1{,}1-0{,}81=0{,}29$. D'autre part $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)=0{,}5\\times0{,}5+0{,}4\\times0{,}6=0{,}49$. Les deux diffèrent : l'écart $0{,}29-0{,}49=-0{,}2$ vaut $2\\left(P(A\\cap B)-P(A)P(B)\\right)$, et il n'est nul que si $A$ et $B$ sont indépendants, ce qui n'est pas le cas ici.",
+      "variantes": [
+        {
+          "enonce": "Soit $A$ et $B$ deux événements d'un univers fini probabilisé, avec $P(A)=0{,}6$, $P(B)=0{,}5$ et $P(A\\cap B)=0{,}4$. On pose $X=\\mathbf{1}_A+\\mathbf{1}_B$, nombre d'événements réalisés parmi $A$ et $B$.\n1. Déterminer la loi de $X$.\n2. Calculer $E(X)$ de deux façons.\n3. Calculer $V(X)$ et comparer avec $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)$.",
+          "indices": [
+            "$X=2$ correspond à $A\\cap B$ et $X=0$ à $\\overline{A}\\cap\\overline{B}$, complémentaire de $A\\cup B$.",
+            "$\\mathbf{1}_A$ et $\\mathbf{1}_B$ suivent des lois de Bernoulli de paramètres $0{,}6$ et $0{,}5$ ; elles ne sont pas forcément indépendantes, donc on ne peut pas additionner les variances sans précaution."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$0{,}69$",
+              "$0{,}49$",
+              "$1{,}1$",
+              "$1{,}9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $P(X=2)=P(A\\cap B)=0{,}4$, $P(X=0)=P\\left(\\overline{A}\\cap\\overline{B}\\right)=1-P(A\\cup B)=1-\\left(0{,}6+0{,}5-0{,}4\\right)=0{,}3$, et $P(X=1)=1-P(X=0)-P(X=2)=0{,}3$.\n\n**2.** À partir de la loi : $E(X)=1\\times 0{,}3+2\\times 0{,}4=1{,}1$. Par linéarité : $E(X)=E(\\mathbf{1}_A)+E(\\mathbf{1}_B)=P(A)+P(B)=0{,}6+0{,}5=1{,}1$.\n\n**3.** $E(X^2)=1\\times 0{,}3+4\\times 0{,}4=1{,}9$, donc $V(X)=1{,}9-1{,}21=0{,}69$. D'autre part $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)=0{,}6\\times0{,}4+0{,}5\\times0{,}5=0{,}49$. Les deux diffèrent : l'écart $0{,}69-0{,}49=0{,}2$ vaut $2\\left(P(A\\cap B)-P(A)P(B)\\right)$, et il n'est nul que si $A$ et $B$ sont indépendants, ce qui n'est pas le cas ici."
+        },
+        {
+          "enonce": "Soit $A$ et $B$ deux événements d'un univers fini probabilisé, avec $P(A)=\\frac{1}{2}$, $P(B)=\\frac{1}{3}$ et $P(A\\cap B)=0$. On pose $X=\\mathbf{1}_A+\\mathbf{1}_B$, nombre d'événements réalisés parmi $A$ et $B$.\n1. Déterminer la loi de $X$.\n2. Calculer $E(X)$ de deux façons.\n3. Calculer $V(X)$ et comparer avec $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)$.",
+          "indices": [
+            "$X=2$ correspond à $A\\cap B$ et $X=0$ à $\\overline{A}\\cap\\overline{B}$, complémentaire de $A\\cup B$.",
+            "$\\mathbf{1}_A$ et $\\mathbf{1}_B$ suivent des lois de Bernoulli de paramètres $\\frac{1}{2}$ et $\\frac{1}{3}$ ; elles ne sont pas forcément indépendantes, donc on ne peut pas additionner les variances sans précaution."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac{5}{36}$",
+              "$\\frac{17}{36}$",
+              "$\\frac{5}{6}$",
+              "$\\frac{1}{6}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Comme $P(A\\cap B)=0$, $X$ ne prend que les valeurs $0$ et $1$ : $P(X=1)=P(A\\cup B)=\\frac{5}{6}$ et $P(X=0)=\\frac{1}{6}$ ; $X$ suit la loi de Bernoulli de paramètre $\\frac{5}{6}$.\n\n**2.** À partir de la loi : $E(X)=1\\times \\frac{5}{6}=\\frac{5}{6}$. Par linéarité : $E(X)=E(\\mathbf{1}_A)+E(\\mathbf{1}_B)=P(A)+P(B)=\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$.\n\n**3.** $E(X^2)=1\\times \\frac{5}{6}=\\frac{5}{6}$, donc $V(X)=\\frac{5}{6}-\\frac{25}{36}=\\frac{5}{36}$. D'autre part $V(\\mathbf{1}_A)+V(\\mathbf{1}_B)=\\frac{1}{2}\\times\\frac{1}{2}+\\frac{1}{3}\\times\\frac{2}{3}=\\frac{17}{36}$. Les deux diffèrent : l'écart $\\frac{5}{36}-\\frac{17}{36}=-\\frac{1}{3}$ vaut $2\\left(P(A\\cap B)-P(A)P(B)\\right)$, et il n'est nul que si $A$ et $B$ sont indépendants, ce qui n'est pas le cas ici."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-uniforme-bernoulli-ex4",
+      "carte": "proba-l1-variables-finies-uniforme-bernoulli",
+      "difficulte": 4,
+      "titre": "Peut-on truquer deux dés pour que la somme soit uniforme ?",
+      "enonce": "On lance deux dés à six faces, indépendamment ; le premier donne la face $i$ avec probabilité $p_i$ et le second avec probabilité $q_i$ ($1\\leq i\\leq 6$), les dés pouvant être truqués. On note $S$ la somme des deux résultats, à valeurs dans $\\{2,\\dots,12\\}$.\n1. Montrer que $S$ ne suit pas la loi uniforme sur $\\{2,\\dots,12\\}$ lorsque les deux dés sont équilibrés.\n2. On suppose désormais que $S$ suit la loi uniforme sur $\\{2,\\dots,12\\}$. Exprimer $P(S=2)$ et $P(S=12)$ à l'aide des $p_i$ et des $q_i$, et en déduire $p_1q_1=p_6q_6=\\frac{1}{11}$.\n3. Montrer que $P(S=7)\\geq p_1q_6+p_6q_1$.\n4. Montrer que $p_1q_6+p_6q_1\\geq\\frac{2}{11}$ et conclure.",
+      "duree_min": 25,
+      "indices": [
+        "Les deux lancers étant indépendants, $P(\\text{premier}=i,\\ \\text{second}=j)=p_iq_j$ ; la somme vaut $2$ seulement si les deux dés donnent $1$.",
+        "Pour 4, poser $x=p_1q_6$ et $y=p_6q_1$, calculer $xy$, et utiliser $\\left(\\sqrt{x}-\\sqrt{y}\\right)^2\\geq 0$."
+      ],
+      "correction": "**1.** Avec des dés équilibrés, $P(S=2)=P(\\text{deux }1)=\\frac{1}{36}$, alors que la loi uniforme sur les $11$ valeurs $\\{2,\\dots,12\\}$ donnerait $\\frac{1}{11}$.\n\n**2.** Par indépendance des deux lancers, la probabilité d'obtenir $i$ puis $j$ est $p_iq_j$. Or $S=2$ exige deux $1$ et $S=12$ deux $6$ : $P(S=2)=p_1q_1$ et $P(S=12)=p_6q_6$. La loi uniforme impose $P(S=2)=P(S=12)=\\frac{1}{11}$.\n\n**3.** L'événement $\\{S=7\\}$ est la réunion disjointe des six événements « $i$ puis $7-i$ », $1\\leq i\\leq 6$, donc $P(S=7)=\\sum_{i=1}^{6}p_iq_{7-i}\\geq p_1q_6+p_6q_1$, les autres termes étant positifs.\n\n**4.** Avec $x=p_1q_6\\geq 0$ et $y=p_6q_1\\geq 0$ : $xy=(p_1q_1)(p_6q_6)=\\frac{1}{121}$, et $x+y-2\\sqrt{xy}=\\left(\\sqrt{x}-\\sqrt{y}\\right)^2\\geq 0$, donc $x+y\\geq 2\\sqrt{xy}=\\frac{2}{11}$. Alors $P(S=7)\\geq\\frac{2}{11}>\\frac{1}{11}$, ce qui contredit l'uniformité. Conclusion : aucun choix de dés truqués, lancés indépendamment, ne rend la somme uniforme sur $\\{2,\\dots,12\\}$."
+    },
+    {
+      "id": "proba-l1-variables-finies-couples-ex1",
+      "carte": "proba-l1-variables-finies-couples",
+      "difficulte": 1,
+      "titre": "Lois marginales d'un tableau",
+      "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables aléatoires est donnée par le tableau suivant :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}1 & 0{,}2\\\\X=1 & 0{,}2 & 0{,}1\\\\X=2 & 0{,}3 & 0{,}1\\end{array}$$1. Vérifier que ce tableau définit bien une loi.\n2. Déterminer les lois marginales de $X$ et de $Y$.\n3. Calculer $E(X)$.",
+      "duree_min": 5,
+      "indices": [
+        "La loi de $X$ s'obtient en sommant chaque ligne du tableau, celle de $Y$ en sommant chaque colonne."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(X)$ ?",
+        "propositions": [
+          "$1{,}1$",
+          "$1$",
+          "$0{,}8$",
+          "$0{,}4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les six nombres sont positifs et de somme $0{,}1+0{,}2+0{,}2+0{,}1+0{,}3+0{,}1=1$.\n\n**2.** En sommant les lignes : $P(X=0)=0{,}3$, $P(X=1)=0{,}3$, $P(X=2)=0{,}4$. En sommant les colonnes : $P(Y=0)=0{,}6$ et $P(Y=1)=0{,}4$.\n\n**3.** $E(X)=0\\times0{,}3+1\\times0{,}3+2\\times0{,}4=1{,}1$. Il faut bien utiliser la loi marginale de $X$ (sommes des lignes) et non une seule colonne du tableau.",
+      "variantes": [
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables aléatoires est donnée par le tableau suivant :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}05 & 0{,}15\\\\X=1 & 0{,}25 & 0{,}15\\\\X=2 & 0{,}1 & 0{,}3\\end{array}$$1. Vérifier que ce tableau définit bien une loi.\n2. Déterminer les lois marginales de $X$ et de $Y$.\n3. Calculer $E(X)$.",
+          "indices": [
+            "La loi de $X$ s'obtient en sommant chaque ligne du tableau, celle de $Y$ en sommant chaque colonne."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(X)$ ?",
+            "propositions": [
+              "$1{,}2$",
+              "$1$",
+              "$0{,}45$",
+              "$0{,}6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les six nombres sont positifs et de somme $0{,}05+0{,}15+0{,}25+0{,}15+0{,}1+0{,}3=1$.\n\n**2.** En sommant les lignes : $P(X=0)=0{,}2$, $P(X=1)=0{,}4$, $P(X=2)=0{,}4$. En sommant les colonnes : $P(Y=0)=0{,}4$ et $P(Y=1)=0{,}6$.\n\n**3.** $E(X)=0\\times0{,}2+1\\times0{,}4+2\\times0{,}4=1{,}2$. Il faut bien utiliser la loi marginale de $X$ (sommes des lignes) et non une seule colonne du tableau."
+        },
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables aléatoires est donnée par le tableau suivant :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}15 & 0{,}05\\\\X=1 & 0{,}1 & 0{,}2\\\\X=2 & 0{,}3 & 0{,}2\\end{array}$$1. Vérifier que ce tableau définit bien une loi.\n2. Déterminer les lois marginales de $X$ et de $Y$.\n3. Calculer $E(X)$.",
+          "indices": [
+            "La loi de $X$ s'obtient en sommant chaque ligne du tableau, celle de $Y$ en sommant chaque colonne."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(X)$ ?",
+            "propositions": [
+              "$1{,}3$",
+              "$1$",
+              "$0{,}7$",
+              "$0{,}45$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les six nombres sont positifs et de somme $0{,}15+0{,}05+0{,}1+0{,}2+0{,}3+0{,}2=1$.\n\n**2.** En sommant les lignes : $P(X=0)=0{,}2$, $P(X=1)=0{,}3$, $P(X=2)=0{,}5$. En sommant les colonnes : $P(Y=0)=0{,}55$ et $P(Y=1)=0{,}45$.\n\n**3.** $E(X)=0\\times0{,}2+1\\times0{,}3+2\\times0{,}5=1{,}3$. Il faut bien utiliser la loi marginale de $X$ (sommes des lignes) et non une seule colonne du tableau."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-couples-ex2",
+      "carte": "proba-l1-variables-finies-couples",
+      "difficulte": 2,
+      "titre": "Minimum et maximum de deux dés",
+      "enonce": "On lance deux dés équilibrés à $4$ faces numérotées de $1$ à $4$, indépendamment ; on note $X$ le plus petit et $Y$ le plus grand des deux résultats (égaux si les deux dés donnent le même résultat).\n1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. En déduire les lois marginales de $X$ et de $Y$.\n3. Calculer $E(Y-X)$.",
+      "duree_min": 10,
+      "indices": [
+        "Les $16$ résultats ordonnés des deux dés sont équiprobables ; compter ceux qui donnent $(X,Y)=(i,j)$ selon que $i<j$, $i=j$ ou $i>j$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(Y-X)$ ?",
+        "propositions": [
+          "$\\frac{5}{4}$",
+          "$\\frac{5}{8}$",
+          "$0$",
+          "$\\frac{5}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les $16$ couples ordonnés de résultats sont équiprobables. Pour $i<j$, deux d'entre eux, $(i,j)$ et $(j,i)$, donnent $X=i$ et $Y=j$ ; pour $i=j$, un seul. Donc$$P(X=i,Y=j)=\\frac{2}{16}\\ \\text{si }i<j,\\qquad P(X=i,Y=i)=\\frac{1}{16},\\qquad P(X=i,Y=j)=0\\ \\text{si }i>j.$$\n\n**2.** En sommant sur $j$ : $P(X=i)=\\frac{1+2(4-i)}{16}=\\frac{9-2i}{16}$. En sommant sur $i$ : $P(Y=j)=\\frac{2(j-1)+1}{16}=\\frac{2j-1}{16}$. Aucune des deux n'est uniforme.\n\n**3.** Par linéarité, $E(Y-X)=E(Y)-E(X)$, avec $E(Y)=\\sum_{j=1}^{4}j\\,\\frac{2j-1}{16}=\\frac{25}{8}$ et $E(X)=\\sum_{i=1}^{4}i\\,\\frac{9-2i}{16}=\\frac{15}{8}$, d'où $E(Y-X)=\\frac{5}{4}$. Par transfert sur le couple, on retrouve $E(Y-X)=\\sum_{i<j}(j-i)\\frac{2}{16}=\\frac{2\\times10}{16}=\\frac{5}{4}$.",
+      "variantes": [
+        {
+          "enonce": "On lance deux dés équilibrés à $3$ faces numérotées de $1$ à $3$, indépendamment ; on note $X$ le plus petit et $Y$ le plus grand des deux résultats (égaux si les deux dés donnent le même résultat).\n1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. En déduire les lois marginales de $X$ et de $Y$.\n3. Calculer $E(Y-X)$.",
+          "indices": [
+            "Les $9$ résultats ordonnés des deux dés sont équiprobables ; compter ceux qui donnent $(X,Y)=(i,j)$ selon que $i<j$, $i=j$ ou $i>j$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(Y-X)$ ?",
+            "propositions": [
+              "$\\frac{8}{9}$",
+              "$\\frac{4}{9}$",
+              "$0$",
+              "$\\frac{16}{9}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les $9$ couples ordonnés de résultats sont équiprobables. Pour $i<j$, deux d'entre eux, $(i,j)$ et $(j,i)$, donnent $X=i$ et $Y=j$ ; pour $i=j$, un seul. Donc$$P(X=i,Y=j)=\\frac{2}{9}\\ \\text{si }i<j,\\qquad P(X=i,Y=i)=\\frac{1}{9},\\qquad P(X=i,Y=j)=0\\ \\text{si }i>j.$$\n\n**2.** En sommant sur $j$ : $P(X=i)=\\frac{1+2(3-i)}{9}=\\frac{7-2i}{9}$. En sommant sur $i$ : $P(Y=j)=\\frac{2(j-1)+1}{9}=\\frac{2j-1}{9}$. Aucune des deux n'est uniforme.\n\n**3.** Par linéarité, $E(Y-X)=E(Y)-E(X)$, avec $E(Y)=\\sum_{j=1}^{3}j\\,\\frac{2j-1}{9}=\\frac{22}{9}$ et $E(X)=\\sum_{i=1}^{3}i\\,\\frac{7-2i}{9}=\\frac{14}{9}$, d'où $E(Y-X)=\\frac{8}{9}$. Par transfert sur le couple, on retrouve $E(Y-X)=\\sum_{i<j}(j-i)\\frac{2}{9}=\\frac{2\\times4}{9}=\\frac{8}{9}$."
+        },
+        {
+          "enonce": "On lance deux dés équilibrés à $6$ faces numérotées de $1$ à $6$, indépendamment ; on note $X$ le plus petit et $Y$ le plus grand des deux résultats (égaux si les deux dés donnent le même résultat).\n1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. En déduire les lois marginales de $X$ et de $Y$.\n3. Calculer $E(Y-X)$.",
+          "indices": [
+            "Les $36$ résultats ordonnés des deux dés sont équiprobables ; compter ceux qui donnent $(X,Y)=(i,j)$ selon que $i<j$, $i=j$ ou $i>j$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(Y-X)$ ?",
+            "propositions": [
+              "$\\frac{35}{18}$",
+              "$\\frac{35}{36}$",
+              "$0$",
+              "$\\frac{35}{9}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les $36$ couples ordonnés de résultats sont équiprobables. Pour $i<j$, deux d'entre eux, $(i,j)$ et $(j,i)$, donnent $X=i$ et $Y=j$ ; pour $i=j$, un seul. Donc$$P(X=i,Y=j)=\\frac{2}{36}\\ \\text{si }i<j,\\qquad P(X=i,Y=i)=\\frac{1}{36},\\qquad P(X=i,Y=j)=0\\ \\text{si }i>j.$$\n\n**2.** En sommant sur $j$ : $P(X=i)=\\frac{1+2(6-i)}{36}=\\frac{13-2i}{36}$. En sommant sur $i$ : $P(Y=j)=\\frac{2(j-1)+1}{36}=\\frac{2j-1}{36}$. Aucune des deux n'est uniforme.\n\n**3.** Par linéarité, $E(Y-X)=E(Y)-E(X)$, avec $E(Y)=\\sum_{j=1}^{6}j\\,\\frac{2j-1}{36}=\\frac{161}{36}$ et $E(X)=\\sum_{i=1}^{6}i\\,\\frac{13-2i}{36}=\\frac{91}{36}$, d'où $E(Y-X)=\\frac{35}{18}$. Par transfert sur le couple, on retrouve $E(Y-X)=\\sum_{i<j}(j-i)\\frac{2}{36}=\\frac{2\\times35}{36}=\\frac{35}{18}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-couples-ex3",
+      "carte": "proba-l1-variables-finies-couples",
+      "difficulte": 3,
+      "titre": "Deux couleurs dans un tirage simultané",
+      "enonce": "Une urne contient $2$ boules rouges, $3$ noires et $1$ blanche. On tire simultanément deux boules, tous les tirages étant équiprobables ; $X$ est le nombre de boules rouges obtenues et $Y$ le nombre de boules noires.\n1. Déterminer la loi conjointe de $(X,Y)$ sous forme de tableau.\n2. En déduire les lois marginales de $X$ et de $Y$, puis $E(X)$ et $E(Y)$.\n3. Calculer $E(XY)$ et comparer avec $E(X)E(Y)$.\n4. Déterminer la loi de $X+Y$.",
+      "duree_min": 15,
+      "indices": [
+        "Il y a $\\binom{6}{2}=15$ tirages équiprobables ; pour $(X,Y)=(x,y)$, il faut choisir $x$ rouges, $y$ noires et $2-x-y$ blanches.",
+        "Par la formule de transfert sur le couple, $E(XY)=\\sum_{x,y}xy\\,P(X=x,Y=y)$ : seule la case $(1,1)$ contribue."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(XY)$ ?",
+        "propositions": [
+          "$\\frac{2}{5}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{8}{25}$",
+          "$\\frac{4}{5}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Parmi les $\\binom{6}{2}=15$ tirages équiprobables, ceux qui donnent $X=x$ et $Y=y$ sont au nombre de $\\binom{2}{x}\\binom{3}{y}\\binom{1}{2-x-y}$ (pour $x+y\\leq 2$ ; la case est nulle sinon). D'où :$$\\begin{array}{c|ccc} & Y=0 & Y=1 & Y=2\\\\\\hline X=0 & 0 & \\frac{1}{5} & \\frac{1}{5}\\\\X=1 & \\frac{2}{15} & \\frac{2}{5} & 0\\\\X=2 & \\frac{1}{15} & 0 & 0\\end{array}$$\n\n**2.** En sommant les lignes : $P(X=0)=\\frac{2}{5}$, $P(X=1)=\\frac{8}{15}$, $P(X=2)=\\frac{1}{15}$, donc $E(X)=\\frac{2}{3}$. En sommant les colonnes : $P(Y=0)=\\frac{1}{5}$, $P(Y=1)=\\frac{3}{5}$, $P(Y=2)=\\frac{1}{5}$, donc $E(Y)=1$.\n\n**3.** Par transfert sur le couple, seule la case $(1,1)$ donne un produit non nul : $E(XY)=1\\times1\\times\\frac{2}{5}=\\frac{2}{5}$, alors que $E(X)E(Y)=\\frac{2}{3}$. Les deux diffèrent : $X$ et $Y$ ne sont pas indépendantes (avoir beaucoup de rouges laisse moins de place aux noires).\n\n**4.** $X+Y$ est le nombre de boules non blanches : $P(X+Y=0)=0$, $P(X+Y=1)=\\frac{1}{3}$, $P(X+Y=2)=\\frac{2}{3}$, en sommant les cases correspondantes du tableau.",
+      "variantes": [
+        {
+          "enonce": "Une urne contient $3$ boules rouges, $3$ noires et $2$ blanches. On tire simultanément deux boules, tous les tirages étant équiprobables ; $X$ est le nombre de boules rouges obtenues et $Y$ le nombre de boules noires.\n1. Déterminer la loi conjointe de $(X,Y)$ sous forme de tableau.\n2. En déduire les lois marginales de $X$ et de $Y$, puis $E(X)$ et $E(Y)$.\n3. Calculer $E(XY)$ et comparer avec $E(X)E(Y)$.\n4. Déterminer la loi de $X+Y$.",
+          "indices": [
+            "Il y a $\\binom{8}{2}=28$ tirages équiprobables ; pour $(X,Y)=(x,y)$, il faut choisir $x$ rouges, $y$ noires et $2-x-y$ blanches.",
+            "Par la formule de transfert sur le couple, $E(XY)=\\sum_{x,y}xy\\,P(X=x,Y=y)$ : seule la case $(1,1)$ contribue."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(XY)$ ?",
+            "propositions": [
+              "$\\frac{9}{28}$",
+              "$\\frac{9}{16}$",
+              "$\\frac{225}{784}$",
+              "$\\frac{9}{14}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Parmi les $\\binom{8}{2}=28$ tirages équiprobables, ceux qui donnent $X=x$ et $Y=y$ sont au nombre de $\\binom{3}{x}\\binom{3}{y}\\binom{2}{2-x-y}$ (pour $x+y\\leq 2$ ; la case est nulle sinon). D'où :$$\\begin{array}{c|ccc} & Y=0 & Y=1 & Y=2\\\\\\hline X=0 & \\frac{1}{28} & \\frac{3}{14} & \\frac{3}{28}\\\\X=1 & \\frac{3}{14} & \\frac{9}{28} & 0\\\\X=2 & \\frac{3}{28} & 0 & 0\\end{array}$$\n\n**2.** En sommant les lignes : $P(X=0)=\\frac{5}{14}$, $P(X=1)=\\frac{15}{28}$, $P(X=2)=\\frac{3}{28}$, donc $E(X)=\\frac{3}{4}$. En sommant les colonnes : $P(Y=0)=\\frac{5}{14}$, $P(Y=1)=\\frac{15}{28}$, $P(Y=2)=\\frac{3}{28}$, donc $E(Y)=\\frac{3}{4}$.\n\n**3.** Par transfert sur le couple, seule la case $(1,1)$ donne un produit non nul : $E(XY)=1\\times1\\times\\frac{9}{28}=\\frac{9}{28}$, alors que $E(X)E(Y)=\\frac{9}{16}$. Les deux diffèrent : $X$ et $Y$ ne sont pas indépendantes (avoir beaucoup de rouges laisse moins de place aux noires).\n\n**4.** $X+Y$ est le nombre de boules non blanches : $P(X+Y=0)=\\frac{1}{28}$, $P(X+Y=1)=\\frac{3}{7}$, $P(X+Y=2)=\\frac{15}{28}$, en sommant les cases correspondantes du tableau."
+        },
+        {
+          "enonce": "Une urne contient $2$ boules rouges, $2$ noires et $2$ blanches. On tire simultanément deux boules, tous les tirages étant équiprobables ; $X$ est le nombre de boules rouges obtenues et $Y$ le nombre de boules noires.\n1. Déterminer la loi conjointe de $(X,Y)$ sous forme de tableau.\n2. En déduire les lois marginales de $X$ et de $Y$, puis $E(X)$ et $E(Y)$.\n3. Calculer $E(XY)$ et comparer avec $E(X)E(Y)$.\n4. Déterminer la loi de $X+Y$.",
+          "indices": [
+            "Il y a $\\binom{6}{2}=15$ tirages équiprobables ; pour $(X,Y)=(x,y)$, il faut choisir $x$ rouges, $y$ noires et $2-x-y$ blanches.",
+            "Par la formule de transfert sur le couple, $E(XY)=\\sum_{x,y}xy\\,P(X=x,Y=y)$ : seule la case $(1,1)$ contribue."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $E(XY)$ ?",
+            "propositions": [
+              "$\\frac{4}{15}$",
+              "$\\frac{4}{9}$",
+              "$\\frac{64}{225}$",
+              "$\\frac{8}{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Parmi les $\\binom{6}{2}=15$ tirages équiprobables, ceux qui donnent $X=x$ et $Y=y$ sont au nombre de $\\binom{2}{x}\\binom{2}{y}\\binom{2}{2-x-y}$ (pour $x+y\\leq 2$ ; la case est nulle sinon). D'où :$$\\begin{array}{c|ccc} & Y=0 & Y=1 & Y=2\\\\\\hline X=0 & \\frac{1}{15} & \\frac{4}{15} & \\frac{1}{15}\\\\X=1 & \\frac{4}{15} & \\frac{4}{15} & 0\\\\X=2 & \\frac{1}{15} & 0 & 0\\end{array}$$\n\n**2.** En sommant les lignes : $P(X=0)=\\frac{2}{5}$, $P(X=1)=\\frac{8}{15}$, $P(X=2)=\\frac{1}{15}$, donc $E(X)=\\frac{2}{3}$. En sommant les colonnes : $P(Y=0)=\\frac{2}{5}$, $P(Y=1)=\\frac{8}{15}$, $P(Y=2)=\\frac{1}{15}$, donc $E(Y)=\\frac{2}{3}$.\n\n**3.** Par transfert sur le couple, seule la case $(1,1)$ donne un produit non nul : $E(XY)=1\\times1\\times\\frac{4}{15}=\\frac{4}{15}$, alors que $E(X)E(Y)=\\frac{4}{9}$. Les deux diffèrent : $X$ et $Y$ ne sont pas indépendantes (avoir beaucoup de rouges laisse moins de place aux noires).\n\n**4.** $X+Y$ est le nombre de boules non blanches : $P(X+Y=0)=\\frac{1}{15}$, $P(X+Y=1)=\\frac{8}{15}$, $P(X+Y=2)=\\frac{2}{5}$, en sommant les cases correspondantes du tableau."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-couples-ex4",
+      "carte": "proba-l1-variables-finies-couples",
+      "difficulte": 4,
+      "titre": "Lois conjointes possibles pour deux marginales de Bernoulli",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires définies sur un même univers fini, de lois de Bernoulli de paramètres respectifs $p$ et $q$ ; elles ne sont pas supposées indépendantes. On pose $c=P(X=1,Y=1)$.\n1. Exprimer la loi conjointe de $(X,Y)$ à l'aide de $p$, $q$ et $c$.\n2. En déduire que $\\max(0,p+q-1)\\leq c\\leq\\min(p,q)$.\n3. Réciproquement, soit $c$ un réel vérifiant ces inégalités. Construire un univers fini et deux variables $X$, $Y$ de lois de Bernoulli de paramètres $p$ et $q$ telles que $P(X=1,Y=1)=c$.\n4. Application : $p=\\frac{3}{5}$ et $q=\\frac{7}{10}$. Quelles sont les valeurs possibles de $E(XY)$ ?",
+      "duree_min": 20,
+      "indices": [
+        "Les quatre cases du tableau ont pour somme $1$, chaque ligne a pour somme la loi de $X$ et chaque colonne celle de $Y$.",
+        "Pour 2, écrire que les quatre cases sont positives ; pour 3, prendre pour univers les quatre couples $(x,y)\\in\\{0,1\\}^2$, munis des probabilités trouvées en 1.",
+        "Pour 4, $XY$ vaut $1$ exactement quand $X=1$ et $Y=1$ ; avec $p=\\frac{3}{5}$ et $q=\\frac{7}{10}$, calculer $p+q-1$ et $\\min(p,q)$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des valeurs possibles de $E(XY)$ ?",
+        "propositions": [
+          "$\\left[\\frac{3}{10},\\frac{3}{5}\\right]$",
+          "$\\left[0,\\frac{3}{5}\\right]$",
+          "$\\left[\\frac{3}{10},\\frac{7}{10}\\right]$",
+          "$\\left\\{\\frac{21}{50}\\right\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Comme $P(X=1)=p$ est la somme de la ligne $X=1$ et $P(Y=1)=q$ celle de la colonne $Y=1$ :$$P(X=1,Y=1)=c,\\quad P(X=1,Y=0)=p-c,\\quad P(X=0,Y=1)=q-c,\\quad P(X=0,Y=0)=1-p-q+c,$$la dernière case s'obtenant par $P(X=0)=1-p$ (ou parce que la somme vaut $1$).\n\n**2.** Les quatre cases sont des probabilités, donc positives : $c\\geq 0$, $c\\leq p$, $c\\leq q$ et $c\\geq p+q-1$, d'où l'encadrement.\n\n**3.** Soit $\\Omega=\\{0,1\\}^2$ muni de $P(\\{(1,1)\\})=c$, $P(\\{(1,0)\\})=p-c$, $P(\\{(0,1)\\})=q-c$, $P(\\{(0,0)\\})=1-p-q+c$ : ces nombres sont positifs grâce à l'encadrement et de somme $1$, donc définissent une probabilité. Avec $X(x,y)=x$ et $Y(x,y)=y$, on a $P(X=1)=c+(p-c)=p$, $P(Y=1)=c+(q-c)=q$ et $P(X=1,Y=1)=c$.\n\n**4.** $XY$ suit la loi de Bernoulli de paramètre $c$, donc $E(XY)=c$. Ici $p+q-1=\\frac{3}{10}$ et $\\min(p,q)=\\frac{3}{5}$ : d'après 2 et 3, les valeurs possibles de $E(XY)$ forment exactement l'intervalle $\\left[\\frac{3}{10},\\frac{3}{5}\\right]$. La valeur $pq=\\frac{21}{50}$ est celle du cas indépendant, qui n'est qu'un cas particulier : les lois marginales ne déterminent pas la loi conjointe.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires définies sur un même univers fini, de lois de Bernoulli de paramètres respectifs $p$ et $q$ ; elles ne sont pas supposées indépendantes. On pose $c=P(X=1,Y=1)$.\n1. Exprimer la loi conjointe de $(X,Y)$ à l'aide de $p$, $q$ et $c$.\n2. En déduire que $\\max(0,p+q-1)\\leq c\\leq\\min(p,q)$.\n3. Réciproquement, soit $c$ un réel vérifiant ces inégalités. Construire un univers fini et deux variables $X$, $Y$ de lois de Bernoulli de paramètres $p$ et $q$ telles que $P(X=1,Y=1)=c$.\n4. Application : $p=\\frac{3}{4}$ et $q=\\frac{2}{3}$. Quelles sont les valeurs possibles de $E(XY)$ ?",
+          "indices": [
+            "Les quatre cases du tableau ont pour somme $1$, chaque ligne a pour somme la loi de $X$ et chaque colonne celle de $Y$.",
+            "Pour 2, écrire que les quatre cases sont positives ; pour 3, prendre pour univers les quatre couples $(x,y)\\in\\{0,1\\}^2$, munis des probabilités trouvées en 1.",
+            "Pour 4, $XY$ vaut $1$ exactement quand $X=1$ et $Y=1$ ; avec $p=\\frac{3}{4}$ et $q=\\frac{2}{3}$, calculer $p+q-1$ et $\\min(p,q)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des valeurs possibles de $E(XY)$ ?",
+            "propositions": [
+              "$\\left[\\frac{5}{12},\\frac{2}{3}\\right]$",
+              "$\\left[0,\\frac{2}{3}\\right]$",
+              "$\\left[\\frac{5}{12},\\frac{3}{4}\\right]$",
+              "$\\left\\{\\frac{1}{2}\\right\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Comme $P(X=1)=p$ est la somme de la ligne $X=1$ et $P(Y=1)=q$ celle de la colonne $Y=1$ :$$P(X=1,Y=1)=c,\\quad P(X=1,Y=0)=p-c,\\quad P(X=0,Y=1)=q-c,\\quad P(X=0,Y=0)=1-p-q+c,$$la dernière case s'obtenant par $P(X=0)=1-p$ (ou parce que la somme vaut $1$).\n\n**2.** Les quatre cases sont des probabilités, donc positives : $c\\geq 0$, $c\\leq p$, $c\\leq q$ et $c\\geq p+q-1$, d'où l'encadrement.\n\n**3.** Soit $\\Omega=\\{0,1\\}^2$ muni de $P(\\{(1,1)\\})=c$, $P(\\{(1,0)\\})=p-c$, $P(\\{(0,1)\\})=q-c$, $P(\\{(0,0)\\})=1-p-q+c$ : ces nombres sont positifs grâce à l'encadrement et de somme $1$, donc définissent une probabilité. Avec $X(x,y)=x$ et $Y(x,y)=y$, on a $P(X=1)=c+(p-c)=p$, $P(Y=1)=c+(q-c)=q$ et $P(X=1,Y=1)=c$.\n\n**4.** $XY$ suit la loi de Bernoulli de paramètre $c$, donc $E(XY)=c$. Ici $p+q-1=\\frac{5}{12}$ et $\\min(p,q)=\\frac{2}{3}$ : d'après 2 et 3, les valeurs possibles de $E(XY)$ forment exactement l'intervalle $\\left[\\frac{5}{12},\\frac{2}{3}\\right]$. La valeur $pq=\\frac{1}{2}$ est celle du cas indépendant, qui n'est qu'un cas particulier : les lois marginales ne déterminent pas la loi conjointe."
+        },
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires définies sur un même univers fini, de lois de Bernoulli de paramètres respectifs $p$ et $q$ ; elles ne sont pas supposées indépendantes. On pose $c=P(X=1,Y=1)$.\n1. Exprimer la loi conjointe de $(X,Y)$ à l'aide de $p$, $q$ et $c$.\n2. En déduire que $\\max(0,p+q-1)\\leq c\\leq\\min(p,q)$.\n3. Réciproquement, soit $c$ un réel vérifiant ces inégalités. Construire un univers fini et deux variables $X$, $Y$ de lois de Bernoulli de paramètres $p$ et $q$ telles que $P(X=1,Y=1)=c$.\n4. Application : $p=\\frac{9}{10}$ et $q=\\frac{1}{2}$. Quelles sont les valeurs possibles de $E(XY)$ ?",
+          "indices": [
+            "Les quatre cases du tableau ont pour somme $1$, chaque ligne a pour somme la loi de $X$ et chaque colonne celle de $Y$.",
+            "Pour 2, écrire que les quatre cases sont positives ; pour 3, prendre pour univers les quatre couples $(x,y)\\in\\{0,1\\}^2$, munis des probabilités trouvées en 1.",
+            "Pour 4, $XY$ vaut $1$ exactement quand $X=1$ et $Y=1$ ; avec $p=\\frac{9}{10}$ et $q=\\frac{1}{2}$, calculer $p+q-1$ et $\\min(p,q)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des valeurs possibles de $E(XY)$ ?",
+            "propositions": [
+              "$\\left[\\frac{2}{5},\\frac{1}{2}\\right]$",
+              "$\\left[0,\\frac{1}{2}\\right]$",
+              "$\\left[\\frac{2}{5},\\frac{9}{10}\\right]$",
+              "$\\left\\{\\frac{9}{20}\\right\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Comme $P(X=1)=p$ est la somme de la ligne $X=1$ et $P(Y=1)=q$ celle de la colonne $Y=1$ :$$P(X=1,Y=1)=c,\\quad P(X=1,Y=0)=p-c,\\quad P(X=0,Y=1)=q-c,\\quad P(X=0,Y=0)=1-p-q+c,$$la dernière case s'obtenant par $P(X=0)=1-p$ (ou parce que la somme vaut $1$).\n\n**2.** Les quatre cases sont des probabilités, donc positives : $c\\geq 0$, $c\\leq p$, $c\\leq q$ et $c\\geq p+q-1$, d'où l'encadrement.\n\n**3.** Soit $\\Omega=\\{0,1\\}^2$ muni de $P(\\{(1,1)\\})=c$, $P(\\{(1,0)\\})=p-c$, $P(\\{(0,1)\\})=q-c$, $P(\\{(0,0)\\})=1-p-q+c$ : ces nombres sont positifs grâce à l'encadrement et de somme $1$, donc définissent une probabilité. Avec $X(x,y)=x$ et $Y(x,y)=y$, on a $P(X=1)=c+(p-c)=p$, $P(Y=1)=c+(q-c)=q$ et $P(X=1,Y=1)=c$.\n\n**4.** $XY$ suit la loi de Bernoulli de paramètre $c$, donc $E(XY)=c$. Ici $p+q-1=\\frac{2}{5}$ et $\\min(p,q)=\\frac{1}{2}$ : d'après 2 et 3, les valeurs possibles de $E(XY)$ forment exactement l'intervalle $\\left[\\frac{2}{5},\\frac{1}{2}\\right]$. La valeur $pq=\\frac{9}{20}$ est celle du cas indépendant, qui n'est qu'un cas particulier : les lois marginales ne déterminent pas la loi conjointe."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance-ex1",
+      "carte": "proba-l1-variables-finies-independance",
+      "difficulte": 1,
+      "titre": "Loi conjointe de deux variables indépendantes",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires indépendantes, $X$ à valeurs dans $\\{0,1,2\\}$ et $Y$ dans $\\{0,1\\}$, de lois$$\\begin{array}{c|ccc}x & 0 & 1 & 2\\\\\\hline P(X=x) & 0{,}2 & 0{,}5 & 0{,}3\\end{array}$$et$$\\begin{array}{c|cc}y & 0 & 1\\\\\\hline P(Y=y) & 0{,}4 & 0{,}6\\end{array}$$1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. Calculer $P(X+Y=2)$.",
+      "duree_min": 5,
+      "indices": [
+        "Par indépendance, chaque case du tableau de la loi conjointe est le produit des deux probabilités marginales ; puis repérer les couples $(x,y)$ tels que $x+y=2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X+Y=2)$ ?",
+        "propositions": [
+          "$0{,}42$",
+          "$0{,}3$",
+          "$0{,}12$",
+          "$0{,}8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par indépendance, $P(X=x,Y=y)=P(X=x)P(Y=y)$ :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}08 & 0{,}12\\\\X=1 & 0{,}2 & 0{,}3\\\\X=2 & 0{,}12 & 0{,}18\\end{array}$$\n\n**2.** $\\{X+Y=2\\}$ est la réunion disjointe de $\\{X=1,Y=1\\}$ et de $\\{X=2,Y=0\\}$, donc$$P(X+Y=2)=0{,}5\\times0{,}6+0{,}3\\times0{,}4=0{,}3+0{,}12=0{,}42.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires indépendantes, $X$ à valeurs dans $\\{0,1,2\\}$ et $Y$ dans $\\{0,1\\}$, de lois$$\\begin{array}{c|ccc}x & 0 & 1 & 2\\\\\\hline P(X=x) & 0{,}1 & 0{,}6 & 0{,}3\\end{array}$$et$$\\begin{array}{c|cc}y & 0 & 1\\\\\\hline P(Y=y) & 0{,}5 & 0{,}5\\end{array}$$1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. Calculer $P(X+Y=2)$.",
+          "indices": [
+            "Par indépendance, chaque case du tableau de la loi conjointe est le produit des deux probabilités marginales ; puis repérer les couples $(x,y)$ tels que $x+y=2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y=2)$ ?",
+            "propositions": [
+              "$0{,}45$",
+              "$0{,}3$",
+              "$0{,}15$",
+              "$0{,}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par indépendance, $P(X=x,Y=y)=P(X=x)P(Y=y)$ :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}05 & 0{,}05\\\\X=1 & 0{,}3 & 0{,}3\\\\X=2 & 0{,}15 & 0{,}15\\end{array}$$\n\n**2.** $\\{X+Y=2\\}$ est la réunion disjointe de $\\{X=1,Y=1\\}$ et de $\\{X=2,Y=0\\}$, donc$$P(X+Y=2)=0{,}6\\times0{,}5+0{,}3\\times0{,}5=0{,}3+0{,}15=0{,}45.$$"
+        },
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires indépendantes, $X$ à valeurs dans $\\{0,1,2\\}$ et $Y$ dans $\\{0,1\\}$, de lois$$\\begin{array}{c|ccc}x & 0 & 1 & 2\\\\\\hline P(X=x) & 0{,}3 & 0{,}3 & 0{,}4\\end{array}$$et$$\\begin{array}{c|cc}y & 0 & 1\\\\\\hline P(Y=y) & 0{,}2 & 0{,}8\\end{array}$$1. Déterminer la loi conjointe du couple $(X,Y)$.\n2. Calculer $P(X+Y=2)$.",
+          "indices": [
+            "Par indépendance, chaque case du tableau de la loi conjointe est le produit des deux probabilités marginales ; puis repérer les couples $(x,y)$ tels que $x+y=2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y=2)$ ?",
+            "propositions": [
+              "$0{,}32$",
+              "$0{,}24$",
+              "$0{,}08$",
+              "$0{,}86$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par indépendance, $P(X=x,Y=y)=P(X=x)P(Y=y)$ :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}06 & 0{,}24\\\\X=1 & 0{,}06 & 0{,}24\\\\X=2 & 0{,}08 & 0{,}32\\end{array}$$\n\n**2.** $\\{X+Y=2\\}$ est la réunion disjointe de $\\{X=1,Y=1\\}$ et de $\\{X=2,Y=0\\}$, donc$$P(X+Y=2)=0{,}3\\times0{,}8+0{,}4\\times0{,}2=0{,}24+0{,}08=0{,}32.$$"
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance-ex2",
+      "carte": "proba-l1-variables-finies-independance",
+      "difficulte": 2,
+      "titre": "Reconnaître l'indépendance sur un tableau",
+      "enonce": "La loi conjointe d'un couple $(X,Y)$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=1 & 0{,}1 & 0{,}1\\\\X=2 & 0{,}15 & 0{,}15\\\\X=3 & 0{,}25 & 0{,}25\\end{array}$$1. Déterminer les lois marginales de $X$ et de $Y$.\n2. Les variables $X$ et $Y$ sont-elles indépendantes ?",
+      "duree_min": 6,
+      "indices": [
+        "Sommer les lignes et les colonnes, puis comparer chaque case au produit de la marge de sa ligne et de la marge de sa colonne."
+      ],
+      "reponse_finale": {
+        "question": "Les variables $X$ et $Y$ sont-elles indépendantes ?",
+        "propositions": [
+          "Oui : $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour toutes les valeurs $x$ et $y$",
+          "Non : il existe des valeurs $x$, $y$ telles que $P(X=x,Y=y)\\neq P(X=x)P(Y=y)$",
+          "Non : une variable à trois valeurs ne peut pas être indépendante d'une variable à deux valeurs",
+          "On ne peut pas conclure à partir de la seule loi conjointe"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** En sommant les lignes : $P(X=1)=0{,}2$, $P(X=2)=0{,}3$, $P(X=3)=0{,}5$ ; en sommant les colonnes : $P(Y=0)=0{,}5$, $P(Y=1)=0{,}5$.\n\n**2.** On vérifie les six cases : $0{,}2\\times0{,}5=0{,}1,\\ 0{,}2\\times0{,}5=0{,}1,\\ 0{,}3\\times0{,}5=0{,}15,\\ 0{,}3\\times0{,}5=0{,}15,\\ 0{,}5\\times0{,}5=0{,}25,\\ 0{,}5\\times0{,}5=0{,}25$. Toutes les égalités ont lieu : $X$ et $Y$ sont indépendantes.",
+      "variantes": [
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=1 & 0{,}1 & 0{,}1\\\\X=2 & 0{,}2 & 0{,}1\\\\X=3 & 0{,}2 & 0{,}3\\end{array}$$1. Déterminer les lois marginales de $X$ et de $Y$.\n2. Les variables $X$ et $Y$ sont-elles indépendantes ?",
+          "indices": [
+            "Sommer les lignes et les colonnes, puis comparer chaque case au produit de la marge de sa ligne et de la marge de sa colonne."
+          ],
+          "reponse_finale": {
+            "question": "Les variables $X$ et $Y$ sont-elles indépendantes ?",
+            "propositions": [
+              "Oui : $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour toutes les valeurs $x$ et $y$",
+              "Non : il existe des valeurs $x$, $y$ telles que $P(X=x,Y=y)\\neq P(X=x)P(Y=y)$",
+              "Non : une variable à trois valeurs ne peut pas être indépendante d'une variable à deux valeurs",
+              "On ne peut pas conclure à partir de la seule loi conjointe"
+            ],
+            "bonne": 1
+          },
+          "correction": "**1.** En sommant les lignes : $P(X=1)=0{,}2$, $P(X=2)=0{,}3$, $P(X=3)=0{,}5$ ; en sommant les colonnes : $P(Y=0)=0{,}5$, $P(Y=1)=0{,}5$.\n\n**2.** Or $P(X=2,Y=0)=0{,}2$, alors que $P(X=2)P(Y=0)=0{,}3\\times0{,}5=0{,}15$ : $X$ et $Y$ ne sont pas indépendantes (une seule case suffit pour le montrer)."
+        },
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=1 & 0{,}06 & 0{,}14\\\\X=2 & 0{,}12 & 0{,}28\\\\X=3 & 0{,}12 & 0{,}28\\end{array}$$1. Déterminer les lois marginales de $X$ et de $Y$.\n2. Les variables $X$ et $Y$ sont-elles indépendantes ?",
+          "indices": [
+            "Sommer les lignes et les colonnes, puis comparer chaque case au produit de la marge de sa ligne et de la marge de sa colonne."
+          ],
+          "reponse_finale": {
+            "question": "Les variables $X$ et $Y$ sont-elles indépendantes ?",
+            "propositions": [
+              "Oui : $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour toutes les valeurs $x$ et $y$",
+              "Non : il existe des valeurs $x$, $y$ telles que $P(X=x,Y=y)\\neq P(X=x)P(Y=y)$",
+              "Non : une variable à trois valeurs ne peut pas être indépendante d'une variable à deux valeurs",
+              "On ne peut pas conclure à partir de la seule loi conjointe"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** En sommant les lignes : $P(X=1)=0{,}2$, $P(X=2)=0{,}4$, $P(X=3)=0{,}4$ ; en sommant les colonnes : $P(Y=0)=0{,}3$, $P(Y=1)=0{,}7$.\n\n**2.** On vérifie les six cases : $0{,}2\\times0{,}3=0{,}06,\\ 0{,}2\\times0{,}7=0{,}14,\\ 0{,}4\\times0{,}3=0{,}12,\\ 0{,}4\\times0{,}7=0{,}28,\\ 0{,}4\\times0{,}3=0{,}12,\\ 0{,}4\\times0{,}7=0{,}28$. Toutes les égalités ont lieu : $X$ et $Y$ sont indépendantes."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance-ex3",
+      "carte": "proba-l1-variables-finies-independance",
+      "difficulte": 3,
+      "titre": "Trois variables issues d'un seul lancer",
+      "enonce": "On lance un dé équilibré à $6$ faces numérotées de $1$ à $6$ ; on note $D$ le résultat. Soit $X$ le reste de la division euclidienne de $D$ par $2$, $Y$ le reste de la division euclidienne de $D$ par $3$, et $Z=1$ si $D\\leq 3$, $Z=0$ sinon.\n1. Déterminer les lois de $X$, $Y$ et $Z$.\n2. Montrer que $X$ et $Y$ sont indépendantes.\n3. Les variables $X$ et $Z$ sont-elles indépendantes ? Et $Y$ et $Z$ ?\n4. Les variables $X$, $Y$, $Z$ sont-elles mutuellement indépendantes ?",
+      "duree_min": 15,
+      "indices": [
+        "Dresser la liste des $6$ faces avec, pour chacune, les valeurs de $X$, $Y$ et $Z$.",
+        "Pour 3, comme $Z$ ne prend que deux valeurs, regarder comment $X$ (puis $Y$) se répartit sur les faces $1,\\dots,3$."
+      ],
+      "reponse_finale": {
+        "question": "Parmi les couples $(X,Y)$, $(X,Z)$ et $(Y,Z)$, lesquels sont formés de variables indépendantes ?",
+        "propositions": [
+          "$(X,Y)$ seulement",
+          "$(X,Y)$ et $(X,Z)$ seulement",
+          "$(X,Y)$ et $(Y,Z)$ seulement",
+          "Les trois couples"
+        ],
+        "bonne": 2
+      },
+      "correction": "**1.** Les faces sont équiprobables. $X$ vaut $0$ sur les faces paires et $1$ sur les impaires : $X$ suit la loi uniforme sur $\\{0,1\\}$. $Y$ prend chacune des valeurs $0$, $1$, $2$ sur $2$ faces : $Y$ suit la loi uniforme sur $\\{0,1,2\\}$. Enfin $Z$ suit la loi de Bernoulli de paramètre $\\frac{1}{2}$.\n\n**2.** Les restes modulo $2$ et modulo $3$ d'un entier déterminent son reste modulo $6$, et réciproquement ; sur $\\{1,\\dots,6\\}$, chacun des $6$ couples $(x,y)$ est donc obtenu pour exactement une face (on le vérifie aussi sur la liste des faces). Ainsi $P(X=x,Y=y)=\\frac{1}{6}=\\frac{1}{2}\\cdot\\frac{1}{3}=P(X=x)P(Y=y)$ pour tout couple : $X$ et $Y$ sont indépendantes.\n\n**3.** Sur $\\{D\\leq 3\\}=\\{1, 2, 3\\}$, $X$ prend les valeurs $1, 0, 1$, donc $P(X=0,Z=1)=\\frac{1}{6}$, alors que $P(X=0)P(Z=1)=\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$ : $X$ et $Z$ ne sont pas indépendantes.\n\nSur $\\{D\\leq 3\\}=\\{1, 2, 3\\}$, $Y$ prend les valeurs $1, 2, 0$ : chaque valeur y apparaît une fois, donc $P(Y=v,Z=1)=\\frac{1}{6}=P(Y=v)P(Z=1)$ pour chaque valeur $v$ ; il en va de même sur $\\{Z=0\\}$, par complément. $Y$ et $Z$ sont indépendantes.\n\n**4.** Non : si elles l'étaient, toute sous-famille de deux d'entre elles serait indépendante, ce qui est faux d'après la question 3.",
+      "variantes": [
+        {
+          "enonce": "On lance un dé équilibré à $12$ faces numérotées de $1$ à $12$ ; on note $D$ le résultat. Soit $X$ le reste de la division euclidienne de $D$ par $2$, $Y$ le reste de la division euclidienne de $D$ par $3$, et $Z=1$ si $D\\leq 6$, $Z=0$ sinon.\n1. Déterminer les lois de $X$, $Y$ et $Z$.\n2. Montrer que $X$ et $Y$ sont indépendantes.\n3. Les variables $X$ et $Z$ sont-elles indépendantes ? Et $Y$ et $Z$ ?\n4. Les variables $X$, $Y$, $Z$ sont-elles mutuellement indépendantes ?",
+          "indices": [
+            "Dresser la liste des $12$ faces avec, pour chacune, les valeurs de $X$, $Y$ et $Z$.",
+            "Pour 3, comme $Z$ ne prend que deux valeurs, regarder comment $X$ (puis $Y$) se répartit sur les faces $1,\\dots,6$."
+          ],
+          "reponse_finale": {
+            "question": "Parmi les couples $(X,Y)$, $(X,Z)$ et $(Y,Z)$, lesquels sont formés de variables indépendantes ?",
+            "propositions": [
+              "$(X,Y)$ seulement",
+              "$(X,Y)$ et $(X,Z)$ seulement",
+              "$(X,Y)$ et $(Y,Z)$ seulement",
+              "Les trois couples"
+            ],
+            "bonne": 3
+          },
+          "correction": "**1.** Les faces sont équiprobables. $X$ vaut $0$ sur les faces paires et $1$ sur les impaires : $X$ suit la loi uniforme sur $\\{0,1\\}$. $Y$ prend chacune des valeurs $0$, $1$, $2$ sur $4$ faces : $Y$ suit la loi uniforme sur $\\{0,1,2\\}$. Enfin $Z$ suit la loi de Bernoulli de paramètre $\\frac{1}{2}$.\n\n**2.** Les restes modulo $2$ et modulo $3$ d'un entier déterminent son reste modulo $6$, et réciproquement ; sur $\\{1,\\dots,12\\}$, chacun des $6$ couples $(x,y)$ est donc obtenu pour exactement $2$ faces (on le vérifie aussi sur la liste des faces). Ainsi $P(X=x,Y=y)=\\frac{2}{12}=\\frac{1}{6}=\\frac{1}{2}\\cdot\\frac{1}{3}=P(X=x)P(Y=y)$ pour tout couple : $X$ et $Y$ sont indépendantes.\n\n**3.** Sur $\\{D\\leq 6\\}=\\{1, 2, 3, 4, 5, 6\\}$, $X$ prend les valeurs $1, 0, 1, 0, 1, 0$ : chaque valeur y apparaît $3$ fois, donc $P(X=v,Z=1)=\\frac{3}{12}=P(X=v)P(Z=1)$ pour chaque valeur $v$ ; il en va de même sur $\\{Z=0\\}$, par complément. $X$ et $Z$ sont indépendantes.\n\nSur $\\{D\\leq 6\\}=\\{1, 2, 3, 4, 5, 6\\}$, $Y$ prend les valeurs $1, 2, 0, 1, 2, 0$ : chaque valeur y apparaît $2$ fois, donc $P(Y=v,Z=1)=\\frac{2}{12}=P(Y=v)P(Z=1)$ pour chaque valeur $v$ ; il en va de même sur $\\{Z=0\\}$, par complément. $Y$ et $Z$ sont indépendantes.\n\n**4.** Oui. Chaque triplet $(x,y,1)$ correspond à exactement une face de $\\{1,\\dots,6\\}$ et chaque triplet $(x,y,0)$ à exactement une face de $\\{7,\\dots,12\\}$, donc $P(X=x,Y=y,Z=z)=\\frac{1}{12}=\\frac{1}{2}\\cdot\\frac{1}{3}\\cdot\\frac{1}{2}$ pour tout triplet : $X$, $Y$, $Z$ sont mutuellement indépendantes."
+        },
+        {
+          "enonce": "On lance un dé équilibré à $6$ faces numérotées de $1$ à $6$ ; on note $D$ le résultat. Soit $X$ le reste de la division euclidienne de $D$ par $2$, $Y$ le reste de la division euclidienne de $D$ par $3$, et $Z=1$ si $D\\leq 2$, $Z=0$ sinon.\n1. Déterminer les lois de $X$, $Y$ et $Z$.\n2. Montrer que $X$ et $Y$ sont indépendantes.\n3. Les variables $X$ et $Z$ sont-elles indépendantes ? Et $Y$ et $Z$ ?\n4. Les variables $X$, $Y$, $Z$ sont-elles mutuellement indépendantes ?",
+          "indices": [
+            "Dresser la liste des $6$ faces avec, pour chacune, les valeurs de $X$, $Y$ et $Z$.",
+            "Pour 3, comme $Z$ ne prend que deux valeurs, regarder comment $X$ (puis $Y$) se répartit sur les faces $1$ et $2$."
+          ],
+          "reponse_finale": {
+            "question": "Parmi les couples $(X,Y)$, $(X,Z)$ et $(Y,Z)$, lesquels sont formés de variables indépendantes ?",
+            "propositions": [
+              "$(X,Y)$ seulement",
+              "$(X,Y)$ et $(X,Z)$ seulement",
+              "$(X,Y)$ et $(Y,Z)$ seulement",
+              "Les trois couples"
+            ],
+            "bonne": 1
+          },
+          "correction": "**1.** Les faces sont équiprobables. $X$ vaut $0$ sur les faces paires et $1$ sur les impaires : $X$ suit la loi uniforme sur $\\{0,1\\}$. $Y$ prend chacune des valeurs $0$, $1$, $2$ sur $2$ faces : $Y$ suit la loi uniforme sur $\\{0,1,2\\}$. Enfin $Z$ suit la loi de Bernoulli de paramètre $\\frac{1}{3}$.\n\n**2.** Les restes modulo $2$ et modulo $3$ d'un entier déterminent son reste modulo $6$, et réciproquement ; sur $\\{1,\\dots,6\\}$, chacun des $6$ couples $(x,y)$ est donc obtenu pour exactement une face (on le vérifie aussi sur la liste des faces). Ainsi $P(X=x,Y=y)=\\frac{1}{6}=\\frac{1}{2}\\cdot\\frac{1}{3}=P(X=x)P(Y=y)$ pour tout couple : $X$ et $Y$ sont indépendantes.\n\n**3.** Sur $\\{D\\leq 2\\}=\\{1, 2\\}$, $X$ prend les valeurs $1, 0$ : chaque valeur y apparaît une fois, donc $P(X=v,Z=1)=\\frac{1}{6}=P(X=v)P(Z=1)$ pour chaque valeur $v$ ; il en va de même sur $\\{Z=0\\}$, par complément. $X$ et $Z$ sont indépendantes.\n\nSur $\\{D\\leq 2\\}=\\{1, 2\\}$, $Y$ prend les valeurs $1, 2$, donc $P(Y=0,Z=1)=0$, alors que $P(Y=0)P(Z=1)=\\frac{1}{3}\\times\\frac{1}{3}=\\frac{1}{9}$ : $Y$ et $Z$ ne sont pas indépendantes.\n\n**4.** Non : si elles l'étaient, toute sous-famille de deux d'entre elles serait indépendante, ce qui est faux d'après la question 3."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance-ex4",
+      "carte": "proba-l1-variables-finies-independance",
+      "difficulte": 4,
+      "titre": "Caractériser l'indépendance par les moments",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles sur un univers fini $(\\Omega,P)$.\n1. On suppose $X$ et $Y$ indépendantes. Montrer que $E\\left(f(X)g(Y)\\right)=E\\left(f(X)\\right)E\\left(g(Y)\\right)$ pour toutes fonctions $f$ et $g$ à valeurs réelles.\n2. Réciproquement, on suppose cette égalité vraie pour toutes fonctions $f$ et $g$. En choisissant des indicatrices, montrer que $X$ et $Y$ sont indépendantes.\n3. Soit $x_1,\\dots,x_r$ les valeurs distinctes de $X$ ($r\\geq 2$). Pour $i\\in\\{1,\\dots,r\\}$, on pose $L_i(t)=\\prod_{j\\neq i}\\frac{t-x_j}{x_i-x_j}$. Calculer $L_i(x_k)$ pour tout $k$, et en déduire que toute fonction $f$ définie sur $\\{x_1,\\dots,x_r\\}$ coïncide sur cet ensemble avec un polynôme. (Le cas $r=1$ est immédiat.)\n4. En déduire que $X$ et $Y$ sont indépendantes si et seulement si $E(X^kY^l)=E(X^k)E(Y^l)$ pour tous entiers $k,l\\geq 0$.\n5. Avec $X$ de loi uniforme sur $\\{-1,0,1\\}$ et $Y=X^2$, montrer que la seule condition $E(XY)=E(X)E(Y)$ ne suffit pas.",
+      "duree_min": 30,
+      "indices": [
+        "Pour 1, appliquer la formule de transfert au couple $(X,Y)$ et factoriser la somme double ; pour 2, prendre $f=\\mathbf{1}_{\\{x\\}}$ et $g=\\mathbf{1}_{\\{y\\}}$.",
+        "Pour 3, $L_i(x_k)$ vaut $1$ si $k=i$ et $0$ sinon ; considérer $\\sum_i f(x_i)L_i$. Pour 4, utiliser la bilinéarité pour passer des monômes aux polynômes."
+      ],
+      "correction": "**1.** Par transfert sur le couple puis indépendance,$$E\\left(f(X)g(Y)\\right)=\\sum_{x,y}f(x)g(y)P(X=x,Y=y)=\\sum_{x,y}f(x)P(X=x)\\,g(y)P(Y=y)=E\\left(f(X)\\right)E\\left(g(Y)\\right).$$\n\n**2.** Pour $x\\in X(\\Omega)$ et $y\\in Y(\\Omega)$, soit $f=\\mathbf{1}_{\\{x\\}}$ et $g=\\mathbf{1}_{\\{y\\}}$ (fonctions valant $1$ en $x$, resp. $y$, et $0$ ailleurs). Alors $f(X)g(Y)=\\mathbf{1}_{\\{X=x\\}\\cap\\{Y=y\\}}$, $f(X)=\\mathbf{1}_{\\{X=x\\}}$, $g(Y)=\\mathbf{1}_{\\{Y=y\\}}$, et l'hypothèse donne $P(X=x,Y=y)=P(X=x)P(Y=y)$.\n\n**3.** Pour $k\\neq i$, le facteur $j=k$ s'annule en $t=x_k$, donc $L_i(x_k)=0$ ; pour $k=i$, chaque facteur vaut $1$, donc $L_i(x_i)=1$. Le polynôme $Q=\\sum_{i=1}^{r}f(x_i)L_i$ vérifie alors $Q(x_k)=f(x_k)$ pour tout $k$.\n\n**4.** Si $X$ et $Y$ sont indépendantes, la question 1 avec $f(t)=t^k$ et $g(t)=t^l$ donne l'égalité. Réciproquement, supposons $E(X^kY^l)=E(X^k)E(Y^l)$ pour tous $k$, $l$. Pour des polynômes $A=\\sum_k a_kt^k$ et $B=\\sum_l b_lt^l$, par linéarité de l'espérance,$$E\\left(A(X)B(Y)\\right)=\\sum_{k,l}a_kb_lE(X^kY^l)=\\sum_{k,l}a_kb_lE(X^k)E(Y^l)=E\\left(A(X)\\right)E\\left(B(Y)\\right).$$Toute fonction $f$ (resp. $g$) coïncide sur $X(\\Omega)$ (resp. $Y(\\Omega)$) avec un polynôme $A$ (resp. $B$) d'après 3, donc $f(X)=A(X)$ et $g(Y)=B(Y)$ : l'égalité vaut pour toutes $f$, $g$, et la question 2 conclut.\n\n**5.** $E(X)=0$ et $XY=X^3=X$, donc $E(XY)=0=E(X)E(Y)$. Mais $P(X=0,Y=1)=0$ alors que $P(X=0)P(Y=1)=\\frac{1}{3}\\cdot\\frac{2}{3}=\\frac{2}{9}$ : $X$ et $Y$ ne sont pas indépendantes. D'ailleurs l'égalité échoue pour $k=2$, $l=1$ : $E(X^2Y)=E(X^4)=\\frac{2}{3}$, alors que $E(X^2)E(Y)=\\frac{4}{9}$."
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance-ex1",
+      "carte": "proba-l1-variables-finies-covariance",
+      "difficulte": 1,
+      "titre": "Covariance à partir d'un tableau",
+      "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables à valeurs dans $\\{0,1\\}$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}3 & 0{,}2\\\\X=1 & 0{,}1 & 0{,}4\\end{array}$$Calculer $E(X)$, $E(Y)$, $E(XY)$, puis $\\mathrm{Cov}(X,Y)$.",
+      "duree_min": 5,
+      "indices": [
+        "$XY$ vaut $1$ seulement si $X=1$ et $Y=1$ ; puis $\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+        "propositions": [
+          "$0{,}1$",
+          "$0{,}4$",
+          "$-0{,}1$",
+          "$0{,}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les lois marginales sont $P(X=1)=0{,}1+0{,}4=0{,}5$ et $P(Y=1)=0{,}2+0{,}4=0{,}6$, donc $E(X)=0{,}5$ et $E(Y)=0{,}6$ (variables de Bernoulli). Le produit $XY$ vaut $1$ sur $\\{X=1,Y=1\\}$ et $0$ ailleurs, donc $E(XY)=0{,}4$. Ainsi$$\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)=0{,}4-0{,}5\\times0{,}6=0{,}1.$$La covariance est positive : $X$ et $Y$ ont tendance à valoir $1$ en même temps.",
+      "variantes": [
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables à valeurs dans $\\{0,1\\}$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}1 & 0{,}4\\\\X=1 & 0{,}3 & 0{,}2\\end{array}$$Calculer $E(X)$, $E(Y)$, $E(XY)$, puis $\\mathrm{Cov}(X,Y)$.",
+          "indices": [
+            "$XY$ vaut $1$ seulement si $X=1$ et $Y=1$ ; puis $\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+            "propositions": [
+              "$-0{,}1$",
+              "$0{,}2$",
+              "$0{,}1$",
+              "$0{,}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les lois marginales sont $P(X=1)=0{,}3+0{,}2=0{,}5$ et $P(Y=1)=0{,}4+0{,}2=0{,}6$, donc $E(X)=0{,}5$ et $E(Y)=0{,}6$ (variables de Bernoulli). Le produit $XY$ vaut $1$ sur $\\{X=1,Y=1\\}$ et $0$ ailleurs, donc $E(XY)=0{,}2$. Ainsi$$\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)=0{,}2-0{,}5\\times0{,}6=-0{,}1.$$La covariance est négative : quand l'une vaut $1$, l'autre a tendance à valoir $0$."
+        },
+        {
+          "enonce": "La loi conjointe d'un couple $(X,Y)$ de variables à valeurs dans $\\{0,1\\}$ est donnée par le tableau :$$\\begin{array}{c|cc} & Y=0 & Y=1\\\\\\hline X=0 & 0{,}2 & 0{,}1\\\\X=1 & 0{,}3 & 0{,}4\\end{array}$$Calculer $E(X)$, $E(Y)$, $E(XY)$, puis $\\mathrm{Cov}(X,Y)$.",
+          "indices": [
+            "$XY$ vaut $1$ seulement si $X=1$ et $Y=1$ ; puis $\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+            "propositions": [
+              "$0{,}05$",
+              "$0{,}4$",
+              "$-0{,}05$",
+              "$0{,}35$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les lois marginales sont $P(X=1)=0{,}3+0{,}4=0{,}7$ et $P(Y=1)=0{,}1+0{,}4=0{,}5$, donc $E(X)=0{,}7$ et $E(Y)=0{,}5$ (variables de Bernoulli). Le produit $XY$ vaut $1$ sur $\\{X=1,Y=1\\}$ et $0$ ailleurs, donc $E(XY)=0{,}4$. Ainsi$$\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)=0{,}4-0{,}7\\times0{,}5=0{,}05.$$La covariance est positive : $X$ et $Y$ ont tendance à valoir $1$ en même temps."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance-ex2",
+      "carte": "proba-l1-variables-finies-covariance",
+      "difficulte": 2,
+      "titre": "Variance d'une combinaison linéaire",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles définies sur un même univers fini, avec $V(X)=4$, $V(Y)=9$ et $\\mathrm{Cov}(X,Y)=-2$.\n1. Calculer $V(X+Y)$ et $V(X-Y)$.\n2. Calculer $V(2X-3Y+1)$.\n3. Les variables $X$ et $Y$ peuvent-elles être indépendantes ?",
+      "duree_min": 6,
+      "indices": [
+        "Développer $V(aX+bY+c)=\\mathrm{Cov}(aX+bY,aX+bY)$ par bilinéarité ; la constante ne joue aucun rôle. Ici $\\mathrm{Cov}(X,Y)=-2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(2X-3Y+1)$ ?",
+        "propositions": [
+          "$121$",
+          "$97$",
+          "$73$",
+          "$122$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)=4+9+2\\times(-2)=9$ et $V(X-Y)=V(X)+V(Y)-2\\,\\mathrm{Cov}(X,Y)=17$.\n\n**2.** La constante $1$ ne change pas la variance, et par bilinéarité$$V(2X-3Y+1)=4V(X)+9V(Y)+2\\times2\\times(-3)\\,\\mathrm{Cov}(X,Y)=16+81-12\\times(-2)=121.$$\n\n**3.** Non : des variables indépendantes ont une covariance nulle, or $\\mathrm{Cov}(X,Y)=-2\\neq 0$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles définies sur un même univers fini, avec $V(X)=1$, $V(Y)=4$ et $\\mathrm{Cov}(X,Y)=1$.\n1. Calculer $V(X+Y)$ et $V(X-Y)$.\n2. Calculer $V(2X-3Y+1)$.\n3. Les variables $X$ et $Y$ peuvent-elles être indépendantes ?",
+          "indices": [
+            "Développer $V(aX+bY+c)=\\mathrm{Cov}(aX+bY,aX+bY)$ par bilinéarité ; la constante ne joue aucun rôle. Ici $\\mathrm{Cov}(X,Y)=1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(2X-3Y+1)$ ?",
+            "propositions": [
+              "$28$",
+              "$40$",
+              "$52$",
+              "$29$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)=1+4+2\\times(1)=7$ et $V(X-Y)=V(X)+V(Y)-2\\,\\mathrm{Cov}(X,Y)=3$.\n\n**2.** La constante $1$ ne change pas la variance, et par bilinéarité$$V(2X-3Y+1)=4V(X)+9V(Y)+2\\times2\\times(-3)\\,\\mathrm{Cov}(X,Y)=4+36-12\\times(1)=28.$$\n\n**3.** Non : des variables indépendantes ont une covariance nulle, or $\\mathrm{Cov}(X,Y)=1\\neq 0$."
+        },
+        {
+          "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles définies sur un même univers fini, avec $V(X)=9$, $V(Y)=1$ et $\\mathrm{Cov}(X,Y)=2$.\n1. Calculer $V(X+Y)$ et $V(X-Y)$.\n2. Calculer $V(2X-3Y+1)$.\n3. Les variables $X$ et $Y$ peuvent-elles être indépendantes ?",
+          "indices": [
+            "Développer $V(aX+bY+c)=\\mathrm{Cov}(aX+bY,aX+bY)$ par bilinéarité ; la constante ne joue aucun rôle. Ici $\\mathrm{Cov}(X,Y)=2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(2X-3Y+1)$ ?",
+            "propositions": [
+              "$21$",
+              "$45$",
+              "$69$",
+              "$22$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)=9+1+2\\times(2)=14$ et $V(X-Y)=V(X)+V(Y)-2\\,\\mathrm{Cov}(X,Y)=6$.\n\n**2.** La constante $1$ ne change pas la variance, et par bilinéarité$$V(2X-3Y+1)=4V(X)+9V(Y)+2\\times2\\times(-3)\\,\\mathrm{Cov}(X,Y)=36+9-12\\times(2)=21.$$\n\n**3.** Non : des variables indépendantes ont une covariance nulle, or $\\mathrm{Cov}(X,Y)=2\\neq 0$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance-ex3",
+      "carte": "proba-l1-variables-finies-covariance",
+      "difficulte": 3,
+      "titre": "Variance du nombre de rouges dans un tirage sans remise",
+      "enonce": "Une urne contient $8$ boules, dont $3$ rouges. On tire successivement $4$ boules sans remise. Pour $1\\leq i\\leq 4$, on note $X_i=1$ si la $i$-ème boule tirée est rouge et $X_i=0$ sinon, et $S=X_1+\\dots+X_4$.\n1. Montrer que chaque $X_i$ suit la loi de Bernoulli de paramètre $\\frac{3}{8}$.\n2. Pour $i\\neq j$, calculer $P(X_i=1,X_j=1)$, puis $\\mathrm{Cov}(X_i,X_j)$.\n3. En déduire $E(S)$ et $V(S)$.\n4. Comparer avec la variance du nombre de rouges pour $4$ tirages avec remise.",
+      "duree_min": 18,
+      "indices": [
+        "Numéroter les boules : la suite des $4$ boules tirées est uniforme parmi les suites de boules distinctes. Par symétrie, la $i$-ème boule est n'importe laquelle des $8$ boules avec la même probabilité, et le couple formé des $i$-ème et $j$-ième boules est n'importe lequel des $8\\times7$ couples de boules distinctes.",
+        "$V(S)=\\sum_i V(X_i)+2\\sum_{i<j}\\mathrm{Cov}(X_i,X_j)$, avec $\\binom{4}{2}=6$ paires $\\{i,j\\}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(S)$ ?",
+        "propositions": [
+          "$\\frac{15}{28}$",
+          "$\\frac{15}{16}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{75}{56}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Numérotons les boules de $1$ à $8$. Les suites ordonnées de $4$ boules distinctes sont équiprobables, et pour chaque boule $b$ il y en a autant dont la $i$-ème boule est $b$. Donc la $i$-ème boule est uniformément répartie parmi les $8$ boules, et $P(X_i=1)=\\frac{3}{8}$.\n\n**2.** De même, pour $i\\neq j$, le couple formé des $i$-ème et $j$-ième boules est uniformément réparti parmi les $8\\times7$ couples de boules distinctes, dont $3\\times2$ sont formés de deux rouges : $P(X_i=1,X_j=1)=\\frac{6}{56}=\\frac{3}{28}$. Comme $X_iX_j=\\mathbf{1}_{\\{X_i=1,X_j=1\\}}$,$$\\mathrm{Cov}(X_i,X_j)=\\frac{3}{28}-\\left(\\frac{3}{8}\\right)^2=-\\frac{15}{448}.$$La covariance est négative : une boule rouge tirée rend les suivantes moins probablement rouges.\n\n**3.** Par linéarité, $E(S)=4\\times\\frac{3}{8}=\\frac{3}{2}$. Par la formule de la variance d'une somme, avec $V(X_i)=\\frac{3}{8}\\times\\frac{5}{8}=\\frac{15}{64}$,$$V(S)=4\\times\\frac{15}{64}+2\\times6\\times\\left(-\\frac{15}{448}\\right)=\\frac{15}{28}.$$\n\n**4.** Avec remise, les $X_i$ sont indépendantes et $S$ suit la loi binomiale $\\mathcal{B}\\left(4,\\frac{3}{8}\\right)$, de variance $4\\times\\frac{15}{64}=\\frac{15}{16}$. Le tirage sans remise est moins dispersé : $V(S)=\\frac{15}{16}\\times\\frac{4}{7}$.",
+      "variantes": [
+        {
+          "enonce": "Une urne contient $10$ boules, dont $5$ rouges. On tire successivement $4$ boules sans remise. Pour $1\\leq i\\leq 4$, on note $X_i=1$ si la $i$-ème boule tirée est rouge et $X_i=0$ sinon, et $S=X_1+\\dots+X_4$.\n1. Montrer que chaque $X_i$ suit la loi de Bernoulli de paramètre $\\frac{5}{10}$.\n2. Pour $i\\neq j$, calculer $P(X_i=1,X_j=1)$, puis $\\mathrm{Cov}(X_i,X_j)$.\n3. En déduire $E(S)$ et $V(S)$.\n4. Comparer avec la variance du nombre de rouges pour $4$ tirages avec remise.",
+          "indices": [
+            "Numéroter les boules : la suite des $4$ boules tirées est uniforme parmi les suites de boules distinctes. Par symétrie, la $i$-ème boule est n'importe laquelle des $10$ boules avec la même probabilité, et le couple formé des $i$-ème et $j$-ième boules est n'importe lequel des $10\\times9$ couples de boules distinctes.",
+            "$V(S)=\\sum_i V(X_i)+2\\sum_{i<j}\\mathrm{Cov}(X_i,X_j)$, avec $\\binom{4}{2}=6$ paires $\\{i,j\\}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(S)$ ?",
+            "propositions": [
+              "$\\frac{2}{3}$",
+              "$1$",
+              "$2$",
+              "$\\frac{4}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Numérotons les boules de $1$ à $10$. Les suites ordonnées de $4$ boules distinctes sont équiprobables, et pour chaque boule $b$ il y en a autant dont la $i$-ème boule est $b$. Donc la $i$-ème boule est uniformément répartie parmi les $10$ boules, et $P(X_i=1)=\\frac{5}{10}$.\n\n**2.** De même, pour $i\\neq j$, le couple formé des $i$-ème et $j$-ième boules est uniformément réparti parmi les $10\\times9$ couples de boules distinctes, dont $5\\times4$ sont formés de deux rouges : $P(X_i=1,X_j=1)=\\frac{20}{90}=\\frac{2}{9}$. Comme $X_iX_j=\\mathbf{1}_{\\{X_i=1,X_j=1\\}}$,$$\\mathrm{Cov}(X_i,X_j)=\\frac{2}{9}-\\left(\\frac{1}{2}\\right)^2=-\\frac{1}{36}.$$La covariance est négative : une boule rouge tirée rend les suivantes moins probablement rouges.\n\n**3.** Par linéarité, $E(S)=4\\times\\frac{1}{2}=2$. Par la formule de la variance d'une somme, avec $V(X_i)=\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$,$$V(S)=4\\times\\frac{1}{4}+2\\times6\\times\\left(-\\frac{1}{36}\\right)=\\frac{2}{3}.$$\n\n**4.** Avec remise, les $X_i$ sont indépendantes et $S$ suit la loi binomiale $\\mathcal{B}\\left(4,\\frac{1}{2}\\right)$, de variance $4\\times\\frac{1}{4}=1$. Le tirage sans remise est moins dispersé : $V(S)=1\\times\\frac{6}{9}$."
+        },
+        {
+          "enonce": "Une urne contient $12$ boules, dont $4$ rouges. On tire successivement $3$ boules sans remise. Pour $1\\leq i\\leq 3$, on note $X_i=1$ si la $i$-ème boule tirée est rouge et $X_i=0$ sinon, et $S=X_1+\\dots+X_3$.\n1. Montrer que chaque $X_i$ suit la loi de Bernoulli de paramètre $\\frac{4}{12}$.\n2. Pour $i\\neq j$, calculer $P(X_i=1,X_j=1)$, puis $\\mathrm{Cov}(X_i,X_j)$.\n3. En déduire $E(S)$ et $V(S)$.\n4. Comparer avec la variance du nombre de rouges pour $3$ tirages avec remise.",
+          "indices": [
+            "Numéroter les boules : la suite des $3$ boules tirées est uniforme parmi les suites de boules distinctes. Par symétrie, la $i$-ème boule est n'importe laquelle des $12$ boules avec la même probabilité, et le couple formé des $i$-ème et $j$-ième boules est n'importe lequel des $12\\times11$ couples de boules distinctes.",
+            "$V(S)=\\sum_i V(X_i)+2\\sum_{i<j}\\mathrm{Cov}(X_i,X_j)$, avec $\\binom{3}{2}=3$ paires $\\{i,j\\}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $V(S)$ ?",
+            "propositions": [
+              "$\\frac{6}{11}$",
+              "$\\frac{2}{3}$",
+              "$1$",
+              "$\\frac{26}{33}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Numérotons les boules de $1$ à $12$. Les suites ordonnées de $3$ boules distinctes sont équiprobables, et pour chaque boule $b$ il y en a autant dont la $i$-ème boule est $b$. Donc la $i$-ème boule est uniformément répartie parmi les $12$ boules, et $P(X_i=1)=\\frac{4}{12}$.\n\n**2.** De même, pour $i\\neq j$, le couple formé des $i$-ème et $j$-ième boules est uniformément réparti parmi les $12\\times11$ couples de boules distinctes, dont $4\\times3$ sont formés de deux rouges : $P(X_i=1,X_j=1)=\\frac{12}{132}=\\frac{1}{11}$. Comme $X_iX_j=\\mathbf{1}_{\\{X_i=1,X_j=1\\}}$,$$\\mathrm{Cov}(X_i,X_j)=\\frac{1}{11}-\\left(\\frac{1}{3}\\right)^2=-\\frac{2}{99}.$$La covariance est négative : une boule rouge tirée rend les suivantes moins probablement rouges.\n\n**3.** Par linéarité, $E(S)=3\\times\\frac{1}{3}=1$. Par la formule de la variance d'une somme, avec $V(X_i)=\\frac{1}{3}\\times\\frac{2}{3}=\\frac{2}{9}$,$$V(S)=3\\times\\frac{2}{9}+2\\times3\\times\\left(-\\frac{2}{99}\\right)=\\frac{6}{11}.$$\n\n**4.** Avec remise, les $X_i$ sont indépendantes et $S$ suit la loi binomiale $\\mathcal{B}\\left(3,\\frac{1}{3}\\right)$, de variance $3\\times\\frac{2}{9}=\\frac{2}{3}$. Le tirage sans remise est moins dispersé : $V(S)=\\frac{2}{3}\\times\\frac{9}{11}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance-ex4",
+      "carte": "proba-l1-variables-finies-covariance",
+      "difficulte": 4,
+      "titre": "Coefficient de corrélation",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles sur un univers fini.\n1. Montrer que, pour tout réel $t$, $V(tX+Y)=t^2V(X)+2t\\,\\mathrm{Cov}(X,Y)+V(Y)$, et en déduire que $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$.\n2. On suppose $\\sigma(X)>0$ et $\\sigma(Y)>0$, et l'on pose $\\rho=\\frac{\\mathrm{Cov}(X,Y)}{\\sigma(X)\\sigma(Y)}$. Montrer que $-1\\leq\\rho\\leq 1$.\n3. Montrer que $|\\rho|=1$ si et seulement s'il existe des réels $a\\neq 0$ et $b$ tels que $P(Y=aX+b)=1$.\n4. On suppose $X$ et $Y$ indépendantes et de même variance $\\sigma^2>0$. Calculer le coefficient de corrélation de $X$ et $X+Y$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour 1, $V(tX+Y)=\\mathrm{Cov}(tX+Y,tX+Y)$ ; si $V(X)>0$, un trinôme du second degré positif sur $\\mathbb{R}$ a un discriminant négatif ou nul.",
+        "Pour 3, si $|\\rho|=1$, le discriminant est nul : il existe $t_0$ tel que $V(t_0X+Y)=0$ ; utiliser le cas de variance nulle."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le coefficient de corrélation de $X$ et $X+Y$ dans la question 4 ?",
+        "propositions": [
+          "$\\frac{\\sqrt{2}}{2}$",
+          "$\\frac{1}{2}$",
+          "$1$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par bilinéarité et symétrie, $V(tX+Y)=t^2V(X)+2t\\,\\mathrm{Cov}(X,Y)+V(Y)$, et c'est un nombre positif pour tout $t$. Si $V(X)>0$, ce trinôme en $t$ ne change pas de signe, donc son discriminant est négatif ou nul : $4\\,\\mathrm{Cov}(X,Y)^2-4V(X)V(Y)\\leq 0$, d'où $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$. Si $V(X)=0$, la fonction affine $t\\mapsto 2t\\,\\mathrm{Cov}(X,Y)+V(Y)$ est positive sur $\\mathbb{R}$, ce qui impose $\\mathrm{Cov}(X,Y)=0$ : l'inégalité est encore vraie.\n\n**2.** On divise l'inégalité de 1 par $\\sigma(X)\\sigma(Y)>0$ : $|\\rho|\\leq 1$.\n\n**3.** Si $|\\rho|=1$, le discriminant du trinôme est nul : il a une racine $t_0$, et $V(t_0X+Y)=0$. Par le cas de variance nulle, $P\\left(t_0X+Y=b\\right)=1$ avec $b=E(t_0X+Y)$, c'est-à-dire $P(Y=aX+b)=1$ avec $a=-t_0$ ; et $a\\neq 0$, sinon $Y$ serait presque sûrement constante et $\\sigma(Y)$ serait nul. Réciproquement, si $P(Y=aX+b)=1$, les variables $Y$ et $aX+b$ prennent la même valeur sauf sur un événement de probabilité nulle, donc ont les mêmes espérances de produits : $\\mathrm{Cov}(X,Y)=\\mathrm{Cov}(X,aX+b)=aV(X)$ et $V(Y)=a^2V(X)$, d'où $\\rho=\\frac{aV(X)}{\\sigma(X)\\cdot|a|\\sigma(X)}=\\frac{a}{|a|}=\\pm 1$.\n\n**4.** Par bilinéarité, $\\mathrm{Cov}(X,X+Y)=V(X)+\\mathrm{Cov}(X,Y)=\\sigma^2$, car $\\mathrm{Cov}(X,Y)=0$ par indépendance ; et $V(X+Y)=2\\sigma^2$. Donc$$\\rho(X,X+Y)=\\frac{\\sigma^2}{\\sigma\\cdot\\sqrt{2}\\,\\sigma}=\\frac{1}{\\sqrt{2}}=\\frac{\\sqrt{2}}{2}.$$"
+    },
+    {
+      "id": "proba-l1-variables-finies-covariance-ex5",
+      "carte": "proba-l1-variables-finies-covariance",
+      "difficulte": 4,
+      "titre": "Variance du nombre de points fixes d'une permutation",
+      "enonce": "Soit $n\\geq 2$. On choisit une permutation $s$ de $\\{1,\\dots,n\\}$ au hasard, les $n!$ permutations étant équiprobables, et l'on note $N$ son nombre de points fixes (les $i$ tels que $s(i)=i$). Pour $1\\leq i\\leq n$, soit $A_i$ l'événement $\\{s(i)=i\\}$.\n1. Calculer $P(A_i)$ et, pour $i\\neq j$, $P(A_i\\cap A_j)$.\n2. Écrire $N$ à l'aide des indicatrices $\\mathbf{1}_{A_i}$ et calculer $E(N)$.\n3. Calculer $\\mathrm{Cov}\\left(\\mathbf{1}_{A_i},\\mathbf{1}_{A_j}\\right)$ pour $i\\neq j$. Les événements $A_i$ sont-ils indépendants ?\n4. En déduire $V(N)$.",
+      "duree_min": 25,
+      "indices": [
+        "Une permutation qui fixe $i$ (resp. $i$ et $j$) correspond à une permutation des $n-1$ (resp. $n-2$) autres éléments.",
+        "$V(N)=\\sum_iV(\\mathbf{1}_{A_i})+2\\sum_{i<j}\\mathrm{Cov}\\left(\\mathbf{1}_{A_i},\\mathbf{1}_{A_j}\\right)$, avec $\\binom{n}{2}$ paires."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(N)$ ?",
+        "propositions": [
+          "$1$",
+          "$\\frac{n-1}{n}$",
+          "$\\frac{n-2}{n}$",
+          "$\\frac{1}{n}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les permutations qui fixent $i$ sont en bijection avec les permutations des $n-1$ autres éléments : il y en a $(n-1)!$, donc $P(A_i)=\\frac{(n-1)!}{n!}=\\frac{1}{n}$. De même, pour $i\\neq j$, $P(A_i\\cap A_j)=\\frac{(n-2)!}{n!}=\\frac{1}{n(n-1)}$.\n\n**2.** $N=\\sum_{i=1}^{n}\\mathbf{1}_{A_i}$, donc par linéarité $E(N)=\\sum_{i=1}^{n}P(A_i)=1$.\n\n**3.** $\\mathrm{Cov}\\left(\\mathbf{1}_{A_i},\\mathbf{1}_{A_j}\\right)=P(A_i\\cap A_j)-P(A_i)P(A_j)=\\frac{1}{n(n-1)}-\\frac{1}{n^2}=\\frac{1}{n^2(n-1)}$. Cette covariance n'est pas nulle, donc $A_i$ et $A_j$ ne sont pas indépendants.\n\n**4.** $V(\\mathbf{1}_{A_i})=\\frac{1}{n}\\left(1-\\frac{1}{n}\\right)=\\frac{n-1}{n^2}$, donc$$V(N)=n\\cdot\\frac{n-1}{n^2}+2\\binom{n}{2}\\frac{1}{n^2(n-1)}=\\frac{n-1}{n}+\\frac{n(n-1)}{n^2(n-1)}=\\frac{n-1}{n}+\\frac{1}{n}=1.$$Le nombre moyen de points fixes et sa variance valent tous deux $1$, quel que soit $n\\geq 2$ ; oublier les covariances donnerait $\\frac{n-1}{n}$."
+    }
+  ]
+}

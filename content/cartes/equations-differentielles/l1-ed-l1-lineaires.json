@@ -1,0 +1,365 @@
+{
+ "cartes": [
+  {
+   "id": "ed-l1-lineaires-ordre1",
+   "theme": "equations-differentielles",
+   "niveau": "l1",
+   "chapitre": "ed-l1-lineaires",
+   "type": "theoreme",
+   "titre": "Équation linéaire d'ordre 1 à coefficients variables",
+   "recto": "Énoncer le théorème de structure des solutions de $y'+a(x)y=b(x)$ ($a$ et $b$ fonctions de $x$), avec ses hypothèses.",
+   "cours": "En Terminale, on a résolu $y'=ay+b$ avec $a$ et $b$ constants. Dans les modèles, les coefficients dépendent souvent de la variable : un circuit dont la résistance varie, une population dont le taux de croissance suit les saisons. On étudie donc $(E):\\ y'+a(x)y=b(x)$, où $a$ et $b$ sont des fonctions **continues sur un intervalle** $I$, et l'équation homogène associée $(H):\\ y'+a(x)y=0$.\n\nL'astuce est la même qu'en Terminale, en remplaçant $ax$ par une primitive $A$ de $a$ : si $y$ est solution de $(H)$, la fonction $ye^{A}$ a pour dérivée $(y'+ay)e^{A}=0$, donc elle est constante sur l'intervalle. Les solutions de $(H)$ sont ainsi les $x\\mapsto Ce^{-A(x)}$. Pour $(E)$, la linéarité donne la structure fondamentale : **solution générale = une solution particulière + solution générale de l'équation homogène**. Une condition initiale $y(x_0)=y_0$ fixe la constante : il y a une unique solution.\n\nEn pratique : (1) mettre l'équation sous la forme normalisée $y'+a(x)y=b(x)$, en divisant par le coefficient de $y'$ sur un intervalle où il **ne s'annule pas** ; (2) calculer une primitive $A$ de $a$ ; (3) écrire les solutions de $(H)$, chercher une solution particulière (évidente, ou par variation de la constante), puis ajuster la constante.\n\nPièges : la primitive $A$ n'est pas $xa(x)$ ; le signe dans $e^{-A}$ dépend de la forme choisie ($y'+ay=b$ ou $y'=ay+b$) ; et pour une équation comme $xy'-2y=0$, le coefficient de $y'$ s'annule en $0$ : on résout sur chaque intervalle où il ne s'annule pas, puis on étudie le **recollement**, qui peut donner un ensemble de solutions très différent.",
+   "hypotheses": [
+    "$I$ est un intervalle de $\\mathbb{R}$.",
+    "$a$ et $b$ sont continues sur $I$, à valeurs réelles.",
+    "L'équation est sous forme normalisée : le coefficient de $y'$ vaut $1$ (s'il ne s'annule pas sur $I$, on s'y ramène en divisant par lui).",
+    "Une solution est une fonction $y$ dérivable sur $I$ telle que $y'(x)+a(x)y(x)=b(x)$ pour tout $x\\in I$."
+   ],
+   "hypotheses_pieges": [
+    "$I$ peut être une réunion d'intervalles disjoints, par exemple $\\mathbb{R}^*$ (à la place d'un intervalle).",
+    "$a$ et $b$ seulement bornées sur $I$ (à la place de continues).",
+    "L'équation peut s'écrire $\\alpha(x)y'+a(x)y=b(x)$ avec $\\alpha$ continue qui s'annule en un point de $I$ (à la place d'un coefficient de $y'$ qui ne s'annule pas).",
+    "$a$ est une fonction constante."
+   ],
+   "enonce": "Soient $I$ un **intervalle** de $\\mathbb{R}$, $a$ et $b$ deux fonctions **continues** sur $I$, et $A$ une primitive de $a$ sur $I$. On considère $(E):\\ y'+a(x)y=b(x)$ et l'équation homogène $(H):\\ y'+a(x)y=0$.\n\n- Les solutions de $(H)$ sur $I$ sont exactement les fonctions $x\\mapsto Ce^{-A(x)}$, où $C$ décrit $\\mathbb{R}$. En particulier, une solution de $(H)$ qui s'annule en un point de $I$ est nulle sur $I$.\n- $(E)$ admet au moins une solution sur $I$ ; si $y_p$ en est une, les solutions de $(E)$ sur $I$ sont exactement les fonctions $x\\mapsto y_p(x)+Ce^{-A(x)}$, $C\\in\\mathbb{R}$.\n- Pour tous $x_0\\in I$ et $y_0\\in\\mathbb{R}$, $(E)$ admet une **unique** solution sur $I$ vérifiant $y(x_0)=y_0$.",
+   "enonce_trous": "Soient $I$ {{1}}, $a$ et $b$ deux fonctions {{2}} sur $I$, et $A$ une primitive de $a$ sur $I$. Les solutions sur $I$ de $y'+a(x)y=0$ sont exactement les fonctions {{3}}, et les solutions de $y'+a(x)y=b(x)$ sont exactement les sommes d'une solution particulière et de l'une de ces fonctions.",
+   "trous": [
+    {
+     "reponse": "un intervalle de $\\mathbb{R}$",
+     "leurres": [
+      "une partie quelconque de $\\mathbb{R}$",
+      "une réunion de deux intervalles disjoints",
+      "l'ensemble $\\mathbb{R}^*$"
+     ]
+    },
+    {
+     "reponse": "continues",
+     "leurres": [
+      "bornées",
+      "continues par morceaux",
+      "monotones"
+     ]
+    },
+    {
+     "reponse": "$x\\mapsto Ce^{-A(x)}$, $C\\in\\mathbb{R}$",
+     "leurres": [
+      "$x\\mapsto Ce^{A(x)}$, $C\\in\\mathbb{R}$",
+      "$x\\mapsto Ce^{-xa(x)}$, $C\\in\\mathbb{R}$",
+      "$x\\mapsto e^{-A(x)}+C$, $C\\in\\mathbb{R}$"
+     ]
+    }
+   ],
+   "demo": "**Équation homogène.** $A$ existe car $a$ est continue sur l'intervalle $I$, et $A'=a$. Pour $C\\in\\mathbb{R}$, $u=Ce^{-A}$ est dérivable et $u'=-aCe^{-A}=-au$ : $u$ est solution de $(H)$. Réciproquement, soit $y$ une solution de $(H)$ et $g=ye^{A}$ ; $g$ est dérivable sur $I$ et\n$$g'=y'e^{A}+aye^{A}=(y'+ay)e^{A}=0.$$\nComme $I$ est un **intervalle**, $g$ est constante, égale à un réel $C$, et $y=Ce^{-A}$. Si une telle solution s'annule en $x_0$, alors $Ce^{-A(x_0)}=0$, donc $C=0$.\n\n**Existence d'une solution de $(E)$.** Fixons $x_0\\in I$. La fonction $t\\mapsto b(t)e^{A(t)}$ est continue sur $I$, donc $G(x)=\\int_{x_0}^xb(t)e^{A(t)}\\,dt$ définit une primitive de $be^{A}$. Posons $y_p=Ge^{-A}$ : $y_p'=be^{A}e^{-A}-aGe^{-A}=b-ay_p$, donc $y_p$ est solution (c'est la méthode de variation de la constante).\n\n**Structure.** Si $y_p$ est une solution de $(E)$ et $y$ une fonction dérivable sur $I$, alors $(y-y_p)'+a(y-y_p)=(y'+ay)-b$. Donc $y$ est solution de $(E)$ si et seulement si $y-y_p$ est solution de $(H)$, c'est-à-dire $y=y_p+Ce^{-A}$ avec $C\\in\\mathbb{R}$.\n\n**Condition initiale.** $y_p(x_0)+Ce^{-A(x_0)}=y_0$ équivaut à $C=(y_0-y_p(x_0))e^{A(x_0)}$ : une seule valeur de $C$ convient.",
+   "exemple": "Sur $\\mathbb{R}$, l'équation $y'+2xy=2x$ a pour équation homogène $y'+2xy=0$ ; une primitive de $x\\mapsto2x$ est $x\\mapsto x^2$, donc les solutions homogènes sont les $x\\mapsto Ce^{-x^2}$. La constante $1$ est une solution particulière évidente ($0+2x\\cdot1=2x$). Les solutions sont donc les $x\\mapsto1+Ce^{-x^2}$ ; celle qui vérifie $y(0)=3$ est $x\\mapsto1+2e^{-x^2}$, qui tend vers $1$ en $\\pm\\infty$.\n\nSur $\\left]0,+\\infty\\right[$, l'équation $xy'-y=0$ se normalise en $y'-\\frac1xy=0$ ; une primitive de $x\\mapsto-\\frac1x$ est $x\\mapsto-\\ln x$, et $e^{\\ln x}=x$ : les solutions sont les $x\\mapsto Cx$.",
+   "contre_exemple": "- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, la fonction égale à $\\frac1x$ sur $\\left]0,+\\infty\\right[$ et à $\\frac2x$ sur $\\left]-\\infty,0\\right[$ est solution de $y'+\\frac1xy=0$ (sur chaque demi-droite, $\\left(\\frac Cx\\right)'+\\frac C{x^2}=0$), mais elle ne s'écrit pas $Ce^{-A}$ avec une seule constante ; la condition $y(1)=1$ ne la détermine pas sur $\\left]-\\infty,0\\right[$.\n- **Le coefficient de $y'$ ne doit pas s'annuler** : sur $\\mathbb{R}$, la fonction $y$ égale à $x^2$ pour $x\\geq0$ et à $0$ pour $x<0$ est dérivable ($y'(x)=2x$ pour $x\\geq0$, $0$ pour $x<0$) et vérifie $xy'-2y=0$ en tout point. Elle est non nulle mais s'annule en $0$, et les deux solutions $y$ et $0$ ont la même valeur en $0$ : l'unicité sous condition initiale tombe. De plus, aucune solution ne vérifie $y(0)=1$ (l'équation en $0$ donne $-2y(0)=0$).\n- **La continuité de $b$ est nécessaire** : avec $a=0$ et $b$ égale à $0$ sur $\\left]-\\infty,0\\right[$ et à $1$ sur $\\left[0,+\\infty\\right[$ ($b$ bornée, monotone, continue par morceaux), l'équation $y'=b$ n'a aucune solution sur $\\mathbb{R}$ : une solution vaudrait $x+c_1$ pour $x>0$ et $c_2$ pour $x<0$, la continuité en $0$ impose $c_1=c_2=y(0)$, et les dérivées à droite et à gauche en $0$ vaudraient alors $1$ et $0$.",
+   "affirmations": [
+    {
+     "texte": "Si $a$ est continue sur l'intervalle $I$, une solution de $y'+a(x)y=0$ qui s'annule en un point de $I$ est nulle sur $I$.",
+     "vrai": true,
+     "justification": "Une solution s'écrit $Ce^{-A}$ ; si $Ce^{-A(x_0)}=0$, alors $C=0$ car une exponentielle ne s'annule pas."
+    },
+    {
+     "texte": "Les solutions sur $\\mathbb{R}$ de $xy'-2y=0$ sont les fonctions $x\\mapsto Cx^2$, $C\\in\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "La fonction égale à $x^2$ pour $x\\geq0$ et à $0$ pour $x<0$ est dérivable sur $\\mathbb{R}$ et vérifie $xy'-2y=0$ en tout point, mais elle n'est pas de la forme $Cx^2$ (il faudrait $C=1$ et $C=0$). Le coefficient $x$ de $y'$ s'annule en $0$ : le théorème ne s'applique pas sur $\\mathbb{R}$."
+    },
+    {
+     "texte": "Si $y_1$ et $y_2$ sont deux solutions de $y'+a(x)y=b(x)$ sur $I$, alors $y_1+y_2$ en est aussi une.",
+     "vrai": false,
+     "contre_exemple": "Pour $y'+y=1$, $y_1=y_2=1$ sont solutions, mais $y_1+y_2=2$ vérifie $y'+y=2\\neq1$. La somme est solution de $y'+a(x)y=2b(x)$."
+    },
+    {
+     "texte": "Si $y_1$ et $y_2$ sont deux solutions de $y'+a(x)y=b(x)$ sur $I$, alors $y_1-y_2$ est solution de $y'+a(x)y=0$.",
+     "vrai": true,
+     "justification": "$(y_1-y_2)'+a(y_1-y_2)=(y_1'+ay_1)-(y_2'+ay_2)=b-b=0$."
+    }
+   ],
+   "prerequis": [
+    "ed-t-premier-ordre-ay",
+    "ed-t-premier-ordre-primitives",
+    "int-t-integrale-fondamental"
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-variation-constante",
+   "theme": "equations-differentielles",
+   "niveau": "l1",
+   "chapitre": "ed-l1-lineaires",
+   "type": "methode",
+   "titre": "Méthode de variation de la constante",
+   "recto": "Énoncer la méthode de variation de la constante pour $y'+a(x)y=b(x)$, avec ses hypothèses.",
+   "cours": "Quand aucune solution particulière de $y'+a(x)y=b(x)$ n'est évidente, on la fabrique à partir de l'équation homogène. Les solutions de $y'+a(x)y=0$ sont les $Ce^{-A}$, avec $C$ constante ; l'idée, due à Lagrange, est de laisser **varier** la constante, c'est-à-dire de chercher $y(x)=C(x)e^{-A(x)}$ avec $C$ une fonction dérivable. Cela ne restreint rien : toute fonction dérivable $y$ s'écrit ainsi, avec $C=ye^{A}$, puisque l'exponentielle ne s'annule pas.\n\nLe calcul est toujours le même et se simplifie : $y'=C'e^{-A}-aCe^{-A}$, donc $y'+ay=C'e^{-A}$. Les termes en $C$ disparaissent (parce que $e^{-A}$ est solution homogène) et il reste $C'(x)=b(x)e^{A(x)}$ : il suffit de calculer une **primitive**. On en tire la formule générale\n$$y(x)=e^{-A(x)}\\left(y_0+\\int_{x_0}^xb(t)e^{A(t)}\\,dt\\right),\\qquad A(x)=\\int_{x_0}^xa(t)\\,dt,$$\nqui donne la solution telle que $y(x_0)=y_0$.\n\nEn pratique : normaliser l'équation, calculer $A$, poser $y=Ce^{-A}$, **vérifier** que les termes en $C$ s'éliminent (sinon il y a une erreur, souvent de signe), intégrer $C'$ sans oublier la constante d'intégration, qui redonne toutes les solutions.\n\nPièges : oublier que $C$ est une fonction (et dériver $Ce^{-A}$ comme si $C$ était constante) ; se tromper de signe entre $e^{A}$ et $e^{-A}$ ; utiliser la formule intégrale avec une primitive $A$ qui ne s'annule pas en $x_0$.",
+   "hypotheses": [
+    "$I$ est un intervalle.",
+    "$a$ et $b$ sont continues sur $I$.",
+    "$A$ est une primitive de $a$ sur $I$.",
+    "On cherche $y$ sous la forme $y=Ce^{-A}$ avec $C$ dérivable sur $I$."
+   ],
+   "hypotheses_pieges": [
+    "$I$ peut être une réunion d'intervalles disjoints (à la place d'un intervalle).",
+    "$b$ seulement continue par morceaux sur $I$ (à la place de continue).",
+    "$a$ ne s'annule pas sur $I$.",
+    "$b$ est de la forme polynôme fois exponentielle."
+   ],
+   "enonce": "Soient $I$ un **intervalle**, $a$ et $b$ continues sur $I$, et $A$ une primitive de $a$ sur $I$. Pour une fonction $C$ dérivable sur $I$, la fonction $y=Ce^{-A}$ est solution de $y'+a(x)y=b(x)$ sur $I$ si et seulement si\n$$C'(x)=b(x)e^{A(x)}\\quad\\text{pour tout }x\\in I.$$\nToute fonction $y$ dérivable sur $I$ s'écrit $Ce^{-A}$ avec $C=ye^{A}$ dérivable ; on obtient donc **toutes** les solutions en prenant pour $C$ les primitives de $be^{A}$. En particulier, pour $x_0\\in I$ et $y_0\\in\\mathbb{R}$, si $A(x)=\\int_{x_0}^xa(t)\\,dt$, l'unique solution vérifiant $y(x_0)=y_0$ est\n$$y(x)=e^{-A(x)}\\left(y_0+\\int_{x_0}^xb(t)e^{A(t)}\\,dt\\right).$$",
+   "enonce_trous": "Soient $I$ un intervalle et $a$, $b$ continues sur $I$. On cherche les solutions de $y'+a(x)y=b(x)$ sous la forme $y=Ce^{-A}$, où $A$ est {{1}} et $C$ une fonction dérivable sur $I$. Alors $y$ est solution si et seulement si {{2}}.",
+   "trous": [
+    {
+     "reponse": "une primitive de $a$ sur $I$",
+     "leurres": [
+      "la dérivée de $a$",
+      "une primitive de $b$ sur $I$",
+      "la fonction $x\\mapsto xa(x)$"
+     ]
+    },
+    {
+     "reponse": "$C'(x)=b(x)e^{A(x)}$ pour tout $x\\in I$",
+     "leurres": [
+      "$C'(x)=b(x)e^{-A(x)}$ pour tout $x\\in I$",
+      "$C(x)=b(x)e^{A(x)}$ pour tout $x\\in I$",
+      "$C'(x)+a(x)C(x)=b(x)$ pour tout $x\\in I$"
+     ]
+    }
+   ],
+   "demo": "Soit $C$ dérivable sur $I$ et $y=Ce^{-A}$. Comme $A'=a$,\n$$y'=C'e^{-A}-aCe^{-A},\\qquad\\text{donc}\\qquad y'+ay=C'e^{-A}.$$\nAinsi $y'+ay=b$ sur $I$ si et seulement si $C'e^{-A}=b$, c'est-à-dire $C'=be^{A}$ (on multiplie par $e^{A}$, qui ne s'annule pas).\n\nToute fonction $y$ dérivable sur $I$ s'écrit $y=Ce^{-A}$ avec $C=ye^{A}$, dérivable comme produit : on n'a perdu aucune solution. Fixons $x_0\\in I$. La fonction $be^{A}$ est continue sur l'**intervalle** $I$ ; ses primitives sont les $G+k$, $k\\in\\mathbb{R}$, où $G(x)=\\int_{x_0}^xb(t)e^{A(t)}\\,dt$ (deux primitives sur un intervalle diffèrent d'une constante). Les solutions sont donc les $y=(G+k)e^{-A}$.\n\nSi de plus $A(x_0)=0$, alors $y(x_0)=(0+k)e^{0}=k$ : la condition $y(x_0)=y_0$ impose $k=y_0$, d'où l'unique solution $y(x)=e^{-A(x)}\\left(y_0+\\int_{x_0}^xb(t)e^{A(t)}\\,dt\\right)$.",
+   "exemple": "Résolvons $y'+\\frac1xy=1$ sur $\\left]0,+\\infty\\right[$. Une primitive de $x\\mapsto\\frac1x$ est $A=\\ln$, et $e^{-\\ln x}=\\frac1x$. On pose $y(x)=\\frac{C(x)}x$ : $y'+\\frac yx=\\frac{C'(x)}x-\\frac{C(x)}{x^2}+\\frac{C(x)}{x^2}=\\frac{C'(x)}x$. L'équation équivaut à $C'(x)=x$, soit $C(x)=\\frac{x^2}2+k$. Les solutions sont les $x\\mapsto\\frac x2+\\frac kx$, $k\\in\\mathbb{R}$ ; celle qui vérifie $y(1)=1$ correspond à $k=\\frac12$ : $y(x)=\\frac x2+\\frac1{2x}$.",
+   "contre_exemple": "- **$C$ est une fonction, pas une constante** : avec $C$ constante, $y=Ce^{-A}$ vérifie $y'+ay=0$, et l'on ne trouve jamais de solution de $y'+ay=b$ quand $b$ n'est pas la fonction nulle. Pour $y'+y=1$, aucune fonction $Ce^{-x}$ n'est solution, alors que la constante $1$ l'est (elle correspond à la fonction $C(x)=e^x$).\n- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, les solutions de $y'+\\frac1xy=1$ sont les fonctions égales à $\\frac x2+\\frac{k_1}x$ sur $\\left]0,+\\infty\\right[$ et à $\\frac x2+\\frac{k_2}x$ sur $\\left]-\\infty,0\\right[$, avec $k_1$ et $k_2$ **indépendants** : la condition $y(1)=1$ fixe $k_1=\\frac12$ mais pas $k_2$.\n- **La formule intégrale suppose $A(x_0)=0$** : pour $y'=0$ ($a=b=0$) et $y(0)=1$, la primitive $A=1$ de $a$ donne $e^{-1}\\left(1+\\int_0^x0\\,dt\\right)=e^{-1}\\neq1$ en $x=0$.",
+   "affirmations": [
+    {
+     "texte": "La fonction $C$ obtenue par la méthode de variation de la constante est unique.",
+     "vrai": false,
+     "contre_exemple": "Pour $y'+y=1$, on obtient $C'(x)=e^x$ : $C(x)=e^x$ et $C(x)=e^x+1$ conviennent toutes deux, et donnent les solutions $1$ et $1+e^{-x}$. $C$ est définie à une constante additive près, ce qui redonne toutes les solutions."
+    },
+    {
+     "texte": "Si $a$ et $b$ sont continues sur un intervalle $I$, la méthode fournit toutes les solutions de $y'+a(x)y=b(x)$ sur $I$.",
+     "vrai": true,
+     "justification": "Toute fonction dérivable $y$ s'écrit $Ce^{-A}$ avec $C=ye^{A}$ dérivable, et $y$ est solution si et seulement si $C$ est une primitive de $be^{A}$."
+    },
+    {
+     "texte": "Pour toute primitive $A$ de $a$, la solution de $y'+a(x)y=b(x)$ telle que $y(x_0)=y_0$ est $x\\mapsto e^{-A(x)}\\left(y_0+\\int_{x_0}^xb(t)e^{A(t)}\\,dt\\right)$.",
+     "vrai": false,
+     "contre_exemple": "Pour $y'=0$, $y(0)=1$ et la primitive $A=1$ de $a=0$, la formule donne la constante $e^{-1}$, qui ne vaut pas $1$ en $0$. La formule suppose $A(x_0)=0$."
+    }
+   ],
+   "prerequis": [
+    "ed-l1-lineaires-ordre1",
+    "int-t-integrale-fondamental"
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-superposition",
+   "theme": "equations-differentielles",
+   "niveau": "l1",
+   "chapitre": "ed-l1-lineaires",
+   "type": "theoreme",
+   "titre": "Principe de superposition",
+   "recto": "Énoncer le principe de superposition pour les équations différentielles linéaires, avec ses hypothèses (y compris la version complexe).",
+   "cours": "Une équation différentielle linéaire s'écrit $L(y)=b$, où $L$ est un **opérateur linéaire** : $L(y)=y'+a(x)y$, ou $L(y)=\\alpha y''+\\beta y'+\\gamma y$. Linéaire signifie $L(\\lambda y_1+\\mu y_2)=\\lambda L(y_1)+\\mu L(y_2)$, ce qui vient simplement de la linéarité de la dérivation. Le principe de superposition en est la traduction : les réponses s'ajoutent comme les causes. Si $y_1$ répond au second membre $b_1$ et $y_2$ à $b_2$, alors $\\lambda y_1+\\mu y_2$ répond à $\\lambda b_1+\\mu b_2$.\n\nUsage principal : découper un second membre compliqué en morceaux simples. Pour $y''+y=x+e^{x}$, on cherche une solution pour $x$, une pour $e^x$, et on les ajoute. Deuxième usage : passer par les complexes. Si les coefficients de $L$ sont **réels**, on résout $L(z)=e^{i\\omega x}$ (calcul facile avec l'exponentielle), puis $\\operatorname{Re}z$ est solution de $L(y)=\\cos(\\omega x)$ et $\\operatorname{Im}z$ de $L(y)=\\sin(\\omega x)$. Le même principe donne la structure « solution particulière + solution homogène » : la différence de deux solutions de $L(y)=b$ est solution de $L(y)=0$.\n\nPièges : deux solutions de la **même** équation $L(y)=b$ ne s'ajoutent pas si $b$ n'est pas nulle (leur somme résout $L(y)=2b$) ; le principe tombe si l'équation contient un terme non linéaire ($y^2$, $\\sin y$, $yy'$…) ou une constante ajoutée dans l'opérateur ; et le passage à la partie réelle exige des coefficients réels.",
+   "hypotheses": [
+    "L'équation est linéaire : elle s'écrit $L(y)=b$ avec $L(y)=y'+a(x)y$ ou $L(y)=\\alpha y''+\\beta y'+\\gamma y$, sans terme non linéaire en $y$.",
+    "Les deux équations ont le **même** opérateur $L$ (mêmes coefficients) ; seuls les seconds membres diffèrent.",
+    "Pour la version complexe : les coefficients de $L$ ($a(x)$, ou $\\alpha$, $\\beta$, $\\gamma$) sont réels."
+   ],
+   "hypotheses_pieges": [
+    "L'équation peut contenir un terme non linéaire en $y$, comme $y^2$ (à la place d'une équation linéaire).",
+    "Les deux équations peuvent avoir des coefficients différents, par exemple $y'+y=b_1$ et $y'+2y=b_2$ (à la place d'un même opérateur).",
+    "Pour la version complexe, les coefficients de $L$ peuvent être complexes non réels (à la place de réels).",
+    "Les réels $\\lambda$ et $\\mu$ vérifient $\\lambda+\\mu=1$."
+   ],
+   "enonce": "Soient $I$ un intervalle et $L$ un opérateur différentiel linéaire : $L(y)=y'+a(x)y$ (avec $a:I\\to\\mathbb{R}$) pour $y$ dérivable, ou $L(y)=\\alpha y''+\\beta y'+\\gamma y$ (avec $\\alpha,\\beta,\\gamma$ réels) pour $y$ deux fois dérivable.\n\n- Si $y_1$ est solution de $L(y)=b_1$ et $y_2$ solution de $L(y)=b_2$ sur $I$, alors pour tous réels $\\lambda$, $\\mu$, la fonction $\\lambda y_1+\\mu y_2$ est solution de $L(y)=\\lambda b_1+\\mu b_2$.\n- **Version complexe.** Les coefficients de $L$ étant réels, si $z:I\\to\\mathbb{C}$ est solution de $L(z)=g$ avec $g:I\\to\\mathbb{C}$, alors $\\operatorname{Re}z$ est solution de $L(y)=\\operatorname{Re}g$ et $\\operatorname{Im}z$ est solution de $L(y)=\\operatorname{Im}g$.",
+   "enonce_trous": "Si $y_1$ est solution de $L(y)=b_1$ et $y_2$ solution de $L(y)=b_2$, où $L$ est {{1}}, alors pour tous réels $\\lambda$ et $\\mu$, la fonction $\\lambda y_1+\\mu y_2$ est solution de {{2}}.",
+   "trous": [
+    {
+     "reponse": "un même opérateur différentiel linéaire, par exemple $y\\mapsto y'+a(x)y$",
+     "leurres": [
+      "un opérateur de la forme $y\\mapsto y'+y^2$",
+      "un opérateur de la forme $y\\mapsto y'+a(x)y+c$ avec $c$ réel non nul",
+      "un opérateur de la forme $y\\mapsto yy'$"
+     ]
+    },
+    {
+     "reponse": "$L(y)=\\lambda b_1+\\mu b_2$",
+     "leurres": [
+      "$L(y)=b_1+b_2$",
+      "$L(y)=\\lambda\\mu b_1b_2$",
+      "$L(y)=\\mu b_1+\\lambda b_2$"
+     ]
+    }
+   ],
+   "demo": "**Linéarité de $L$.** La dérivation est linéaire : $(\\lambda y_1+\\mu y_2)'=\\lambda y_1'+\\mu y_2'$, et de même pour la dérivée seconde. Donc, pour $L(y)=y'+a(x)y$,\n$$L(\\lambda y_1+\\mu y_2)=\\lambda y_1'+\\mu y_2'+a(\\lambda y_1+\\mu y_2)=\\lambda L(y_1)+\\mu L(y_2),$$\net le calcul est identique pour $\\alpha y''+\\beta y'+\\gamma y$. Si $L(y_1)=b_1$ et $L(y_2)=b_2$, on obtient $L(\\lambda y_1+\\mu y_2)=\\lambda b_1+\\mu b_2$.\n\n**Version complexe.** Une fonction $z=u+iv$ ($u=\\operatorname{Re}z$, $v=\\operatorname{Im}z$) est dérivable si et seulement si $u$ et $v$ le sont, et $z'=u'+iv'$ (de même pour $z''$). Le calcul précédent, valable aussi avec des scalaires complexes, donne $L(z)=L(u)+iL(v)$. Comme les coefficients de $L$ sont réels et $u$, $v$ réelles, $L(u)$ et $L(v)$ sont des fonctions réelles : ce sont donc la partie réelle et la partie imaginaire de $L(z)=g$. Ainsi $L(u)=\\operatorname{Re}g$ et $L(v)=\\operatorname{Im}g$.",
+   "exemple": "- Pour $y''+y=x+e^x$ : $y_1=x$ vérifie $y_1''+y_1=x$, et $y_2=\\frac12e^x$ vérifie $y_2''+y_2=e^x$. Donc $y_p=x+\\frac12e^x$ est solution de $y''+y=x+e^x$.\n- Pour $y'+y=\\cos x$ : on cherche $z=ce^{ix}$ solution de $z'+z=e^{ix}$, soit $(i+1)c=1$, $c=\\frac{1-i}2$. Alors $\\operatorname{Re}z=\\operatorname{Re}\\left(\\frac{1-i}2(\\cos x+i\\sin x)\\right)=\\frac{\\cos x+\\sin x}2$ est solution de $y'+y=\\cos x$ (vérification : $y'+y=\\frac{-\\sin x+\\cos x+\\cos x+\\sin x}2=\\cos x$).",
+   "contre_exemple": "- **Linéarité nécessaire** : $y_1=\\frac1x$ est solution de $y'+y^2=0$ sur $\\left]0,+\\infty\\right[$, mais $2y_1=\\frac2x$ ne l'est pas : $-\\frac2{x^2}+\\frac4{x^2}=\\frac2{x^2}\\neq0$.\n- **Même opérateur nécessaire** : $e^{-x}$ est solution de $y'+y=0$ et $e^{-2x}$ de $y'+2y=0$, mais $y=e^{-x}+e^{-2x}$ n'est solution d'aucune des deux équations homogènes : $y'+y=-e^{-2x}$ et $y'+2y=e^{-x}$.\n- **Coefficients réels nécessaires** : $z=e^{ix}$ est solution de $z'-iz=0$, mais $\\operatorname{Re}z=\\cos x$ n'est pas solution de $y'-iy=0$ : $-\\sin x-i\\cos x\\neq0$.",
+   "affirmations": [
+    {
+     "texte": "Si $y_1$ et $y_2$ sont solutions de $y''+y=x$, alors $y_1+y_2$ est solution de $y''+y=x$.",
+     "vrai": false,
+     "contre_exemple": "$y_1=y_2=x$ sont solutions, mais $y_1+y_2=2x$ vérifie $y''+y=2x\\neq x$. La somme est solution de l'équation de second membre $2x$."
+    },
+    {
+     "texte": "Si $z$ est une solution, à valeurs complexes, de $y''+3y'+2y=e^{ix}$, alors $\\operatorname{Re}z$ est solution de $y''+3y'+2y=\\cos x$.",
+     "vrai": true,
+     "justification": "Les coefficients $1$, $3$, $2$ sont réels et $\\operatorname{Re}(e^{ix})=\\cos x$ : c'est la version complexe du principe."
+    },
+    {
+     "texte": "Si $y_1$ et $y_2$ sont solutions de $L(y)=b$, alors $\\frac{y_1+y_2}2$ est solution de $L(y)=b$.",
+     "vrai": true,
+     "justification": "$L\\left(\\frac{y_1+y_2}2\\right)=\\frac12b+\\frac12b=b$ ; plus généralement $\\lambda y_1+\\mu y_2$ convient dès que $\\lambda+\\mu=1$."
+    }
+   ],
+   "prerequis": [
+    "ed-l1-lineaires-ordre1",
+    "geo-t-complexes-exponentielle"
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-ordre2",
+   "theme": "equations-differentielles",
+   "niveau": "l1",
+   "chapitre": "ed-l1-lineaires",
+   "type": "theoreme",
+   "titre": "Équation linéaire d'ordre 2 à coefficients constants",
+   "recto": "Énoncer le théorème donnant les solutions réelles de $ay''+by'+cy=0$ ($a$, $b$, $c$ réels), avec ses hypothèses.",
+   "cours": "Le principe fondamental de la dynamique pour un ressort amorti donne $mx''+fx'+kx=0$ ; un circuit RLC donne une équation de la même forme. On étudie donc $ay''+by'+cy=0$ avec $a$, $b$, $c$ **réels constants**, $a\\neq0$. L'idée est de chercher des solutions exponentielles $e^{rx}$ : en reportant, on trouve $(ar^2+br+c)e^{rx}=0$, donc $e^{rx}$ est solution si et seulement si $r$ est racine de l'**équation caractéristique** $ar^2+br+c=0$.\n\nSelon le signe du discriminant $\\Delta=b^2-4ac$ : deux racines réelles $r_1\\neq r_2$ donnent les solutions $\\lambda e^{r_1x}+\\mu e^{r_2x}$ ; une racine double $r$ donne $(\\lambda x+\\mu)e^{rx}$ (la fonction $xe^{rx}$ remplace la deuxième exponentielle manquante) ; deux racines complexes conjuguées $\\alpha\\pm i\\beta$ donnent $e^{\\alpha x}(\\lambda\\cos(\\beta x)+\\mu\\sin(\\beta x))$, parties réelles des exponentielles complexes : c'est le régime oscillant. Dans tous les cas, l'ensemble des solutions dépend de **deux** constantes, et une solution est déterminée par **deux** conditions initiales $y(x_0)$ et $y'(x_0)$.\n\nMéthode : écrire l'équation caractéristique, la résoudre, écrire la forme générale, puis résoudre le système $2\\times2$ donné par les conditions. Le signe de la partie réelle des racines décide du comportement en $+\\infty$ : toutes les solutions tendent vers $0$ si toutes les racines ont une partie réelle strictement négative.\n\nPièges : une seule condition $y(x_0)=y_0$ ne suffit pas ; dans le cas d'une racine double, ne pas oublier le facteur $x$ ; ne pas confondre $\\alpha$ et $\\beta$ dans le cas complexe ; et la méthode ne vaut que pour des coefficients **constants**.",
+   "hypotheses": [
+    "$a$, $b$, $c$ sont des réels constants.",
+    "$a\\neq0$.",
+    "Les solutions sont cherchées sur un intervalle $I$ ; une solution est une fonction deux fois dérivable sur $I$ vérifiant l'équation en tout point.",
+    "Pour l'unicité : on impose les deux conditions $y(x_0)=y_0$ et $y'(x_0)=y_1$ en un point $x_0\\in I$."
+   ],
+   "hypotheses_pieges": [
+    "$a$ réel quelconque, éventuellement nul (à la place de $a\\neq0$).",
+    "$I$ peut être une réunion d'intervalles disjoints, par exemple $\\mathbb{R}^*$ (à la place d'un intervalle).",
+    "Pour l'unicité, la seule condition $y(x_0)=y_0$ suffit (à la place de $y(x_0)$ et $y'(x_0)$)."
+   ],
+   "enonce": "Soient $a$, $b$, $c$ trois réels avec $a\\neq0$, $I$ un **intervalle**, et $(H):\\ ay''+by'+cy=0$. On note $\\Delta=b^2-4ac$ le discriminant de l'équation caractéristique $ar^2+br+c=0$. Les solutions réelles de $(H)$ sur $I$ sont exactement :\n\n- si $\\Delta>0$, les fonctions $x\\mapsto\\lambda e^{r_1x}+\\mu e^{r_2x}$, où $r_1\\neq r_2$ sont les deux racines réelles ;\n- si $\\Delta=0$, les fonctions $x\\mapsto(\\lambda x+\\mu)e^{rx}$, où $r=-\\frac b{2a}$ est la racine double ;\n- si $\\Delta<0$, les fonctions $x\\mapsto e^{\\alpha x}\\left(\\lambda\\cos(\\beta x)+\\mu\\sin(\\beta x)\\right)$, où $\\alpha\\pm i\\beta$ ($\\beta\\neq0$) sont les deux racines complexes conjuguées ;\n\n$\\lambda$ et $\\mu$ décrivant $\\mathbb{R}$. De plus, pour tous $x_0\\in I$ et $y_0,y_1\\in\\mathbb{R}$, il existe une **unique** solution vérifiant $y(x_0)=y_0$ et $y'(x_0)=y_1$.",
+   "enonce_trous": "Soient $a$, $b$, $c$ réels avec $a\\neq0$. Si l'équation caractéristique $ar^2+br+c=0$ a une racine double $r$, les solutions réelles de $ay''+by'+cy=0$ sur $\\mathbb{R}$ sont les fonctions {{1}}. Si elle a deux racines complexes conjuguées $\\alpha\\pm i\\beta$ ($\\beta\\neq0$), ce sont les fonctions {{2}}. Dans tous les cas, une solution est déterminée de façon unique par {{3}}.",
+   "trous": [
+    {
+     "reponse": "$x\\mapsto(\\lambda x+\\mu)e^{rx}$, $\\lambda,\\mu\\in\\mathbb{R}$",
+     "leurres": [
+      "$x\\mapsto\\lambda e^{rx}$, $\\lambda\\in\\mathbb{R}$",
+      "$x\\mapsto\\lambda e^{rx}+\\mu e^{-rx}$, $\\lambda,\\mu\\in\\mathbb{R}$",
+      "$x\\mapsto(\\lambda x^2+\\mu)e^{rx}$, $\\lambda,\\mu\\in\\mathbb{R}$"
+     ]
+    },
+    {
+     "reponse": "$x\\mapsto e^{\\alpha x}\\left(\\lambda\\cos(\\beta x)+\\mu\\sin(\\beta x)\\right)$, $\\lambda,\\mu\\in\\mathbb{R}$",
+     "leurres": [
+      "$x\\mapsto e^{\\beta x}\\left(\\lambda\\cos(\\alpha x)+\\mu\\sin(\\alpha x)\\right)$, $\\lambda,\\mu\\in\\mathbb{R}$",
+      "$x\\mapsto\\lambda e^{\\alpha x}+\\mu e^{\\beta x}$, $\\lambda,\\mu\\in\\mathbb{R}$",
+      "$x\\mapsto e^{\\alpha x}\\left(\\lambda\\cos x+\\mu\\sin x\\right)$, $\\lambda,\\mu\\in\\mathbb{R}$"
+     ]
+    },
+    {
+     "reponse": "la donnée de $y(x_0)$ et de $y'(x_0)$ en un point $x_0$",
+     "leurres": [
+      "la donnée de $y(x_0)$ en un point $x_0$",
+      "la donnée de $y(x_0)$ et de $y(x_1)$ en deux points distincts $x_0$ et $x_1$",
+      "la donnée de $y'(x_0)$ en un point $x_0$"
+     ]
+    }
+   ],
+   "demo": "**Solutions complexes.** On utilise les règles de dérivation des fonctions à valeurs complexes (parties réelle et imaginaire) : $(e^{\\omega x})'=\\omega e^{\\omega x}$ pour $\\omega\\in\\mathbb{C}$, et une fonction à valeurs complexes de dérivée nulle sur un intervalle est constante. Soient $r_1$, $r_2$ les racines, éventuellement complexes et égales, de $ar^2+br+c$ ; on a $r_1+r_2=-\\frac ba$. Pour $y$ deux fois dérivable à valeurs complexes, posons $z=ye^{-r_1x}$, soit $y=ze^{r_1x}$. Alors $y'=(z'+r_1z)e^{r_1x}$, $y''=(z''+2r_1z'+r_1^2z)e^{r_1x}$ et\n$$ay''+by'+cy=\\left(az''+(2ar_1+b)z'+(ar_1^2+br_1+c)z\\right)e^{r_1x}=a\\left(z''+(r_1-r_2)z'\\right)e^{r_1x},$$\ncar $ar_1^2+br_1+c=0$ et $2ar_1+b=a(r_1-r_2)$. Donc $y$ est solution si et seulement si $w=z'$ vérifie $w'=(r_2-r_1)w$, c'est-à-dire (même preuve que pour $y'=ay$ : $\\left(we^{-(r_2-r_1)x}\\right)'=0$ sur l'intervalle $I$) $w=Ke^{(r_2-r_1)x}$ avec $K\\in\\mathbb{C}$.\n\n- Si $r_1\\neq r_2$ : $z=\\frac K{r_2-r_1}e^{(r_2-r_1)x}+\\mu$, d'où $y=\\lambda e^{r_2x}+\\mu e^{r_1x}$, avec $\\lambda,\\mu\\in\\mathbb{C}$ quelconques.\n- Si $r_1=r_2=r$ : $z=Kx+\\mu$, d'où $y=(Kx+\\mu)e^{rx}$.\n\n**Solutions réelles.** Une solution réelle $y$ est une solution complexe égale à sa partie réelle. Si $\\Delta\\geq0$, les racines sont réelles et $y=\\operatorname{Re}y$ s'obtient en remplaçant $\\lambda$ et $\\mu$ par leurs parties réelles : on trouve les formes annoncées avec $\\lambda,\\mu$ réels, et réciproquement ces fonctions sont solutions. Si $\\Delta<0$, $r_1=\\alpha+i\\beta$ et $r_2=\\alpha-i\\beta$ ; en écrivant $\\lambda=p+iq$ et $\\mu=s+it$, on obtient $\\operatorname{Re}(\\lambda e^{r_1x}+\\mu e^{r_2x})=e^{\\alpha x}\\left((p+s)\\cos(\\beta x)+(t-q)\\sin(\\beta x)\\right)$, de la forme annoncée ; réciproquement $e^{\\alpha x}\\cos(\\beta x)=\\operatorname{Re}(e^{r_1x})$ et $e^{\\alpha x}\\sin(\\beta x)=\\operatorname{Im}(e^{r_1x})$ sont solutions (coefficients réels : principe de superposition), donc aussi leurs combinaisons.\n\n**Conditions initiales.** Si $\\Delta>0$, le système $\\lambda e^{r_1x_0}+\\mu e^{r_2x_0}=y_0$, $\\lambda r_1e^{r_1x_0}+\\mu r_2e^{r_2x_0}=y_1$ a pour déterminant $(r_2-r_1)e^{(r_1+r_2)x_0}\\neq0$ ; si $\\Delta=0$, le système en $(\\lambda,\\mu)$ obtenu avec $xe^{rx}$ et $e^{rx}$ a pour déterminant $-e^{2rx_0}\\neq0$ ; si $\\Delta<0$, celui obtenu avec $e^{\\alpha x}\\cos(\\beta x)$ et $e^{\\alpha x}\\sin(\\beta x)$ a pour déterminant $\\beta e^{2\\alpha x_0}\\neq0$. Le système a donc une unique solution $(\\lambda,\\mu)$.",
+   "exemple": "- $y''-3y'+2y=0$ : $r^2-3r+2=(r-1)(r-2)$, solutions $\\lambda e^x+\\mu e^{2x}$ ; avec $y(0)=0$ et $y'(0)=1$ : $\\lambda+\\mu=0$ et $\\lambda+2\\mu=1$, d'où $y=e^{2x}-e^x$.\n- $y''+2y'+5y=0$ : $\\Delta=-16$, racines $-1\\pm2i$, solutions $e^{-x}(\\lambda\\cos(2x)+\\mu\\sin(2x))$ : des oscillations amorties.\n- $y''+\\omega^2y=0$ ($\\omega>0$) : racines $\\pm i\\omega$, solutions $\\lambda\\cos(\\omega x)+\\mu\\sin(\\omega x)$ : l'oscillateur harmonique.",
+   "contre_exemple": "- **$a\\neq0$** : pour $a=0$, l'équation $0\\cdot y''+y'-y=0$, c'est-à-dire $y'=y$, n'a que les solutions $Ce^x$ ; elles vérifient toutes $y'(0)=y(0)$, et aucune ne vérifie $y(0)=0$ et $y'(0)=1$.\n- **Intervalle** : sur $\\mathbb{R}^*$, la fonction $x\\mapsto|x|$ vérifie $y''=0$ (elle est affine sur chaque demi-droite), mais elle n'est pas de la forme $x\\mapsto\\lambda x+\\mu$ sur $\\mathbb{R}^*$ (racine double $0$).\n- **Deux conditions** : $\\sin x$ et $2\\sin x$ sont deux solutions distinctes de $y''+y=0$ vérifiant $y(0)=0$ ; il faut aussi fixer $y'(0)$.",
+   "affirmations": [
+    {
+     "texte": "Si l'équation caractéristique a une racine double $r$, les solutions réelles sont les $x\\mapsto\\lambda e^{rx}$, $\\lambda\\in\\mathbb{R}$.",
+     "vrai": false,
+     "contre_exemple": "Pour $y''-2y'+y=0$ (racine double $1$), $xe^x$ est solution : $(x+2)e^x-2(x+1)e^x+xe^x=0$, et elle n'est pas de la forme $\\lambda e^x$."
+    },
+    {
+     "texte": "Si $c>0$, toutes les solutions de $y''+by'+cy=0$ tendent vers $0$ en $+\\infty$.",
+     "vrai": false,
+     "contre_exemple": "Pour $b=0$ et $c=1$, $\\cos$ est solution de $y''+y=0$ et n'a pas de limite en $+\\infty$."
+    },
+    {
+     "texte": "Si $b>0$ et $c>0$, toutes les solutions réelles de $y''+by'+cy=0$ tendent vers $0$ en $+\\infty$.",
+     "vrai": true,
+     "justification": "Si les racines sont réelles, leur produit $c$ est strictement positif et leur somme $-b$ strictement négative : elles sont strictement négatives (pour une racine double $r<0$, $xe^{rx}\\to0$). Si elles sont complexes, leur partie réelle vaut $-\\frac b2<0$ et $|e^{\\alpha x}(\\lambda\\cos(\\beta x)+\\mu\\sin(\\beta x))|\\leq(|\\lambda|+|\\mu|)e^{\\alpha x}\\to0$."
+    },
+    {
+     "texte": "Toute solution réelle de $y''+y=0$ s'écrit $x\\mapsto A\\cos(x-\\varphi)$ avec $A\\geq0$ et $\\varphi\\in\\mathbb{R}$.",
+     "vrai": true,
+     "justification": "Une solution s'écrit $\\lambda\\cos x+\\mu\\sin x$ ; avec $A=\\sqrt{\\lambda^2+\\mu^2}$ et $\\varphi$ tel que $\\lambda=A\\cos\\varphi$, $\\mu=A\\sin\\varphi$, on a $\\lambda\\cos x+\\mu\\sin x=A\\cos(x-\\varphi)$."
+    }
+   ],
+   "prerequis": [
+    "ed-t-premier-ordre-ay",
+    "geo-t-complexes-second-degre",
+    "geo-t-complexes-exponentielle",
+    "ed-l1-lineaires-superposition"
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-exp-polynome",
+   "theme": "equations-differentielles",
+   "niveau": "l1",
+   "chapitre": "ed-l1-lineaires",
+   "type": "methode",
+   "titre": "Second membre exponentielle-polynôme",
+   "recto": "Énoncer la forme d'une solution particulière de $ay''+by'+cy=P(x)e^{mx}$ ($P$ polynôme, $m$ complexe), avec ses hypothèses.",
+   "cours": "Les seconds membres rencontrés en pratique sont souvent des polynômes, des exponentielles, des cosinus et sinus (une force extérieure périodique), ou des produits de ceux-ci. Tous se ramènent à la forme $P(x)e^{mx}$ avec $P$ polynôme et $m$ complexe (pour $\\cos(\\omega x)$, on prend la partie réelle de $e^{i\\omega x}$). Plutôt que de faire varier les constantes, on devine la forme de la solution : un polynôme fois la **même** exponentielle, puis on identifie les coefficients.\n\nL'idée : en posant $y=z(x)e^{mx}$, l'équation devient $az''+\\chi'(m)z'+\\chi(m)z=P$, où $\\chi(r)=ar^2+br+c$ est le polynôme caractéristique. Si $\\chi(m)\\neq0$, on trouve $z$ polynôme de même degré que $P$. Si $m$ est racine simple ($\\chi(m)=0$, $\\chi'(m)\\neq0$), le terme en $z$ disparaît et il faut un degré de plus : $z=xQ(x)$. Si $m$ est racine double, il ne reste que $az''=P$ : $z=x^2Q(x)$. C'est le phénomène de **résonance** : quand la fréquence imposée coïncide avec une fréquence propre, la réponse est multipliée par $x$ (exemple : $y''+y=2\\cos x$ a pour solution $x\\sin x$, qui n'est pas bornée).\n\nMéthode : (1) écrire le second membre sous la forme $P(x)e^{mx}$, éventuellement en passant aux complexes ou en découpant (superposition) ; (2) comparer $m$ aux racines de l'équation caractéristique pour obtenir $k\\in\\{0,1,2\\}$ ; (3) poser $y=x^kQ(x)e^{mx}$ avec $Q$ de degré $\\deg P$ à coefficients inconnus, reporter et identifier ; (4) ajouter la solution générale homogène et utiliser les conditions initiales **à la fin**, sur la solution générale.\n\nPièges : oublier le facteur $x^k$ (la forme sans $x^k$ ne donne alors aucune solution) ; chercher $\\alpha\\cos(\\omega x)+\\beta\\sin(\\omega x)$ quand $\\pm i\\omega$ sont racines ; imposer les conditions initiales à la seule solution particulière. Le même procédé vaut à l'ordre 1 pour $y'+\\alpha y=P(x)e^{mx}$ ($\\alpha$ constant), avec $k=1$ si $m=-\\alpha$ et $k=0$ sinon.",
+   "hypotheses": [
+    "$a$, $b$, $c$ sont des constantes (réelles ou complexes) et $a\\neq0$.",
+    "$P$ est un polynôme non nul (à coefficients complexes) de degré $n$, et $m\\in\\mathbb{C}$.",
+    "$k$ est la multiplicité de $m$ comme racine de l'équation caractéristique $ar^2+br+c=0$ ($k=0$ si $m$ n'est pas racine)."
+   ],
+   "hypotheses_pieges": [
+    "$k$ est le degré de $P$ (à la place de la multiplicité de $m$ comme racine de l'équation caractéristique).",
+    "$P$ peut être une fraction rationnelle (à la place d'un polynôme).",
+    "$m$ n'est pas racine de l'équation caractéristique.",
+    "$m$ est réel."
+   ],
+   "enonce": "Soient $a$, $b$, $c$ des constantes complexes avec $a\\neq0$, $\\chi(r)=ar^2+br+c$ le polynôme caractéristique, $m\\in\\mathbb{C}$ et $P$ un polynôme non nul de degré $n$. Notons $k\\in\\{0,1,2\\}$ la **multiplicité** de $m$ comme racine de $\\chi$ ($k=0$ si $\\chi(m)\\neq0$). Alors l'équation\n$$ay''+by'+cy=P(x)e^{mx}$$\nadmet une solution particulière sur $\\mathbb{R}$ de la forme $x\\mapsto x^kQ(x)e^{mx}$, où $Q$ est un polynôme de degré $n$.\n\nPour un second membre réel $P(x)e^{\\alpha x}\\cos(\\beta x)$ (ou $P(x)e^{\\alpha x}\\sin(\\beta x)$), avec $P$ réel et $a$, $b$, $c$ réels, on prend la partie réelle (ou imaginaire) d'une solution de l'équation de second membre $P(x)e^{(\\alpha+i\\beta)x}$.",
+   "enonce_trous": "Soient $a$, $b$, $c$ des constantes avec $a\\neq0$ et $P$ un polynôme non nul de degré $n$. L'équation $ay''+by'+cy=P(x)e^{mx}$ admet une solution particulière de la forme $x\\mapsto x^kQ(x)e^{mx}$, où $Q$ est un polynôme {{1}} et $k$ est {{2}}.",
+   "trous": [
+    {
+     "reponse": "de degré $n$",
+     "leurres": [
+      "de degré $n+2$",
+      "de degré $n+1$",
+      "de degré au plus $n-1$"
+     ]
+    },
+    {
+     "reponse": "la multiplicité de $m$ comme racine de l'équation caractéristique $ar^2+br+c=0$",
+     "leurres": [
+      "le degré de $P$",
+      "le nombre de racines réelles de l'équation caractéristique",
+      "égal à $0$ dans tous les cas"
+     ]
+    }
+   ],
+   "demo": "Posons $y=ze^{mx}$ avec $z$ polynôme. Alors $y'=(z'+mz)e^{mx}$, $y''=(z''+2mz'+m^2z)e^{mx}$, d'où\n$$ay''+by'+cy=\\left(az''+\\chi'(m)z'+\\chi(m)z\\right)e^{mx},\\qquad\\chi'(m)=2am+b.$$\nIl s'agit donc de trouver un polynôme $z$ tel que $az''+\\chi'(m)z'+\\chi(m)z=P$.\n\n**Lemme.** Si $\\gamma\\neq0$ et si $\\delta$, $\\varepsilon$ sont des constantes, l'application $\\psi:z\\mapsto\\varepsilon z''+\\delta z'+\\gamma z$ envoie l'espace $\\mathbb{C}_n[X]$ des polynômes de degré au plus $n$ dans lui-même et conserve le degré : si $\\deg z=d$, le terme de degré $d$ de $\\psi(z)$ est $\\gamma$ fois celui de $z$. Elle est linéaire et injective (seul le polynôme nul a une image nulle), donc bijective sur $\\mathbb{C}_n[X]$, qui est de dimension finie. Ainsi $P$, de degré $n$, a un antécédent dans $\\mathbb{C}_n[X]$, et celui-ci est de degré $n$.\n\n- **$k=0$** ($\\chi(m)\\neq0$) : le lemme avec $\\gamma=\\chi(m)$ donne $Q$ de degré $n$ tel que $aQ''+\\chi'(m)Q'+\\chi(m)Q=P$.\n- **$k=1$** ($\\chi(m)=0$, $\\chi'(m)\\neq0$) : l'équation devient $az''+\\chi'(m)z'=P$. Le lemme (avec $\\varepsilon=0$, $\\delta=a$, $\\gamma=\\chi'(m)$) donne $w$ de degré $n$ tel que $aw'+\\chi'(m)w=P$ ; la primitive $z$ de $w$ nulle en $0$ convient, et elle s'écrit $z=xQ(x)$ avec $\\deg Q=n$.\n- **$k=2$** ($\\chi(m)=\\chi'(m)=0$) : l'équation devient $az''=P$ ; on prend pour $z$ la primitive seconde de $\\frac Pa$ qui s'annule en $0$ ainsi que sa dérivée : $z=x^2Q(x)$ avec $\\deg Q=n$.\n\n**Cas réel.** Si $a$, $b$, $c$ et $P$ sont réels et si $z$ est solution de second membre $P(x)e^{(\\alpha+i\\beta)x}=P(x)e^{\\alpha x}(\\cos(\\beta x)+i\\sin(\\beta x))$, la version complexe du principe de superposition montre que $\\operatorname{Re}z$ est solution de second membre $P(x)e^{\\alpha x}\\cos(\\beta x)$ et $\\operatorname{Im}z$ de second membre $P(x)e^{\\alpha x}\\sin(\\beta x)$.",
+   "exemple": "- $y''-3y'+2y=e^x$ : $\\chi(r)=(r-1)(r-2)$, $m=1$ est racine simple, donc $k=1$ : on cherche $y=\\alpha xe^x$. Ici $z=\\alpha x$ et $\\chi'(1)=-1$ : $az''+\\chi'(1)z'=-\\alpha=1$, d'où $y_p=-xe^x$.\n- $y''+y=2\\cos x$ : on résout $y''+y=2e^{ix}$ ; $m=i$ est racine simple de $r^2+1$ et $\\chi'(i)=2i$ ; avec $z=\\alpha x$, $2i\\alpha=2$, $\\alpha=-i$. La partie réelle de $-ixe^{ix}=x\\sin x-ix\\cos x$ est $x\\sin x$ : c'est une solution de $y''+y=2\\cos x$, non bornée (résonance).\n- $y''-y=x^2$ : $m=0$ n'est pas racine de $r^2-1$, on cherche un polynôme de degré $2$ et l'on trouve $y_p=-x^2-2$.",
+   "contre_exemple": "- **Le facteur $x^k$ est nécessaire** : pour $y''-3y'+2y=e^x$, une fonction $\\alpha e^x$ donne $\\alpha(1-3+2)e^x=0\\neq e^x$ : aucune solution de cette forme.\n- **Résonance trigonométrique** : pour $y''+y=\\cos x$, toute fonction $\\alpha\\cos x+\\beta\\sin x$ vérifie $y''+y=0$ ; il faut chercher $x(\\alpha\\cos x+\\beta\\sin x)$.\n- **$P$ doit être un polynôme** : sur $\\left]0,+\\infty\\right[$, l'équation $y''=-\\frac1{x^2}$ (second membre $-\\frac1{x^2}e^{0x}$, fraction rationnelle) a pour solutions les $x\\mapsto\\ln x+\\lambda x+\\mu$, dont aucune n'est une fraction rationnelle. Sinon $\\ln$ serait égale à une fraction rationnelle $R$ ; or $R(x)\\sim\\gamma x^d$ en $+\\infty$ avec $\\gamma\\neq0$ et $d\\in\\mathbb{Z}$ ; comme $\\ln x\\to+\\infty$, il faudrait $d\\geq1$, ce qu'interdit $\\frac{\\ln x}x\\to0$.",
+   "affirmations": [
+    {
+     "texte": "Si $m$ est racine de l'équation caractéristique, l'équation $ay''+by'+cy=e^{mx}$ n'a pas de solution.",
+     "vrai": false,
+     "contre_exemple": "$1$ est racine de $r^2-3r+2$, et $y=-xe^x$ est solution de $y''-3y'+2y=e^x$ : $y'=-(x+1)e^x$, $y''=-(x+2)e^x$, et $-(x+2)e^x+3(x+1)e^x-2xe^x=e^x$."
+    },
+    {
+     "texte": "Pour $y''+4y=\\cos(2x)$, on peut trouver une solution particulière de la forme $x\\mapsto\\alpha\\cos(2x)+\\beta\\sin(2x)$.",
+     "vrai": false,
+     "contre_exemple": "Pour toute fonction $y=\\alpha\\cos(2x)+\\beta\\sin(2x)$, $y''=-4y$, donc $y''+4y=0\\neq\\cos(2x)$. Ici $2i$ est racine de $r^2+4$ : il faut le facteur $x$ (une solution est $\\frac x4\\sin(2x)$)."
+    },
+    {
+     "texte": "L'équation $y''-y=x^2$ admet une solution particulière polynomiale de degré $2$.",
+     "vrai": true,
+     "justification": "$0$ n'est pas racine de $r^2-1$ ; $y=-x^2-2$ convient : $y''-y=-2+x^2+2=x^2$."
+    },
+    {
+     "texte": "Pour l'équation d'ordre 1 $y'+y=xe^{-x}$, la fonction $x\\mapsto\\frac{x^2}2e^{-x}$ est solution.",
+     "vrai": true,
+     "justification": "$m=-1$ est racine de $r+1$ ($k=1$) ; $y'=xe^{-x}-\\frac{x^2}2e^{-x}$, donc $y'+y=xe^{-x}$."
+    }
+   ],
+   "prerequis": [
+    "ed-l1-lineaires-ordre2",
+    "ed-l1-lineaires-superposition"
+   ]
+  }
+ ]
+}
