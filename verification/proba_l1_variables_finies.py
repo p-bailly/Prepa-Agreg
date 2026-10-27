@@ -211,6 +211,15 @@ for _ in range(100):
     assert indep(univ, lambda w: w[0], lambda w: w[1]), "independance : sous-famille"
     assert indep(univ, lambda w: w[0] ** 2, lambda w: 3 - w[1]), "independance : fonctions"
 assert indep(D6, lambda w: 5, lambda w: w), "independance : variable constante"
+# trou 1, leurre « tout couple (x,y) tel que x = y » : X de Bernoulli 1/2 et Y = X + 2 ; aucune valeur commune, condition vide,
+# mais X et Y ne sont pas indépendantes. (L'ancien leurre « x ≠ y » était équivalent à la définition : voir rapport de relecture.)
+ub2 = unif([0, 1])
+assert not (set(loi_de(ub2, lambda w: w)) & set(loi_de(ub2, lambda w: w + 2))), "independance trou 1 : condition vide"
+assert not indep(ub2, lambda w: w, lambda w: w + 2), "independance trou 1 : leurre x = y faux"
+# leurre « au moins un couple » : une case vérifie l'égalité produit sans que X et Y soient indépendantes
+u32 = {(0, 0): F(1, 6), (0, 1): F(1, 6), (1, 0): F(1, 3), (1, 1): F(0), (2, 0): F(0), (2, 1): F(1, 3)}
+assert u32[(0, 0)] == F(1, 3) * F(1, 2) and loi_de(u32, lambda w: w[0]) == {0: F(1, 3), 1: F(1, 3), 2: F(1, 3)}, "independance trou 1 : une case juste"
+assert not indep(u32, lambda w: w[0], lambda w: w[1]), "independance trou 1 : au moins un couple"
 
 # covariance
 assert E(urne3, lambda w: w[0] * w[1]) - E(urne3, lambda w: w[0]) * E(urne3, lambda w: w[1]) == F(-1, 3), "covariance exemple"
@@ -310,7 +319,7 @@ for k, (vals, probs) in enumerate([([0, 1, 2, 3], [F(1, 10), F(4, 10), F(3, 10),
 
 # ------------------------------------------------------------------------------------------ variance-ex2
 for k, (gain, perte, p) in enumerate([(10, 2, F(1, 5)), (8, 1, F(1, 4)), (4, 2, F(1, 2))]):
-    contient(VA + "-ex2", k, f"gagne ${gain}$ euros", f"perd ${perte}$ euros")
+    contient(VA + "-ex2", k, f"gagne ${gain}$ euro", f"perd ${perte}$ euro")
     L = {gain: p, -perte: 1 - p}
     var = V(L)
     assert var == p * (1 - p) * (gain + perte) ** 2, f"variance-ex2 v{k} : formule"
