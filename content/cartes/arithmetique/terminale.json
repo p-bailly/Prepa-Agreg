@@ -8,6 +8,7 @@
       "type": "theoreme",
       "titre": "Division euclidienne dans les entiers relatifs",
       "recto": "Énoncer le théorème de la division euclidienne dans $\\mathbb{Z}$ avec ses hypothèses.",
+      "cours": "La division euclidienne formalise la division « avec reste » de l'école primaire : partager $a$ objets en paquets de $b$, c'est écrire $a = bq + r$ où $q$ compte les paquets complets et $r$ ce qui reste. L'intérêt du théorème est l'**unicité** : dès qu'on a trouvé une écriture $a = bq + r$ avec $0 \\leq r < b$, on tient LE quotient et LE reste, quelle que soit la méthode employée pour l'obtenir. Le quotient est la partie entière de $a/b$, ce qui explique l'existence.\n\nLe reste range les entiers en $b$ familles : tout entier s'écrit $bk$, $bk + 1$, …, ou $bk + (b - 1)$. C'est la base des raisonnements « par disjonction de cas selon le reste » (pair ou impair, reste modulo $3$, carrés modulo $4$…) et, plus tard, des congruences et de l'algorithme d'Euclide.\n\n**Méthode.** Pour prouver que $(q, r)$ est la division euclidienne de $a$ par $b$, on vérifie les deux conditions : l'égalité $a = bq + r$ et l'encadrement $0 \\leq r < b$.\n\n**Piège principal.** Pour un dividende négatif, le reste reste positif : $-17 = 5 \\times (-4) + 3$, et non $5 \\times (-3) - 2$ ; une écriture $a = bq + r$ avec $r < 0$ ou $r \\geq b$ n'est pas la division euclidienne.",
       "hypotheses": [
         "$a$ est un entier relatif.",
         "$b$ est un entier naturel non nul."
@@ -76,6 +77,7 @@
       "type": "theoreme",
       "titre": "Théorème de Bézout",
       "recto": "Énoncer le théorème de Bézout avec ses hypothèses.",
+      "cours": "Le théorème de Bézout traduit une propriété de divisibilité (n'avoir que $\\pm 1$ comme diviseurs communs) en une égalité que l'on peut écrire et manipuler : $au + bv = 1$. Un sens est immédiat : tout diviseur commun de $a$ et $b$ divise $au + bv$, donc divise $1$. L'autre sens est le cœur du théorème : il repose sur le fait que le plus petit entier strictement positif de la forme $au + bv$ divise $a$ et $b$ (division euclidienne).\n\nEn pratique, les coefficients $u$ et $v$ s'obtiennent en remontant l'algorithme d'Euclide. Ils servent à démontrer le lemme de Gauss, à résoudre les équations $ax + by = c$, à inverser un entier modulo $n$ et à résoudre les systèmes de congruences.\n\n**Méthode.** Pour montrer que deux expressions sont premières entre elles, on cherche une combinaison entière égale à $1$, par exemple $2(3n + 5) - 3(2n + 3) = 1$.\n\n**Piège principal.** Une égalité $au + bv = d$ avec $d > 1$ prouve seulement que $a \\wedge b$ divise $d$, pas que $a \\wedge b = d$ : $2 \\times 2 + 1 \\times 1 = 5$ alors que $2 \\wedge 1 = 1$. Seule la valeur $1$ permet de conclure.",
       "hypotheses": [
         "$a$ et $b$ sont des entiers relatifs.",
         "$a$ et $b$ ne sont pas tous les deux nuls (pour que $a \\wedge b$ soit défini)."
@@ -143,6 +145,7 @@
       "type": "theoreme",
       "titre": "Lemme de Gauss",
       "recto": "Énoncer le lemme (théorème) de Gauss avec ses hypothèses.",
+      "cours": "Le lemme de Gauss dit qu'un facteur premier avec $a$ ne peut pas « absorber » la divisibilité : si $a$ divise $bc$ sans rien partager avec $b$, c'est que $a$ divise $c$. La preuve tient en une ligne grâce à Bézout : de $au + bv = 1$ on tire $c = acu + bcv$, somme de deux multiples de $a$.\n\nC'est l'outil central de l'arithmétique de Terminale. Il donne le lemme d'Euclide (un nombre premier qui divise un produit divise l'un des facteurs), l'unicité de la décomposition en facteurs premiers, la divisibilité par un produit de nombres premiers entre eux, et surtout la résolution complète des équations diophantiennes $ax + by = c$.\n\n**Méthode.** Pour résoudre $ax + by = c$ avec $a \\wedge b = 1$ : trouver une solution particulière $(x_0, y_0)$, soustraire pour obtenir $a(x - x_0) = b(y_0 - y)$, appliquer Gauss pour obtenir $b \\mid x - x_0$, puis faire la synthèse.\n\n**Piège principal.** L'hypothèse $a \\wedge b = 1$ est indispensable : $6$ divise $4 \\times 3$ sans diviser ni $4$ ni $3$. Il faut donc toujours la justifier avant d'invoquer le lemme.",
       "hypotheses": [
         "$a$, $b$ et $c$ sont des entiers relatifs.",
         "$a$ divise le produit $bc$.",
@@ -219,6 +222,7 @@
       "type": "theoreme",
       "titre": "Petit théorème de Fermat",
       "recto": "Énoncer le petit théorème de Fermat (sous ses deux formes) avec ses hypothèses.",
+      "cours": "Le petit théorème de Fermat affirme que, modulo un nombre premier $p$, les puissances se répètent : $a^p \\equiv a$ pour tout entier $a$, et $a^{p-1} \\equiv 1$ dès que $p$ ne divise pas $a$. Une preuve classique développe $(a + 1)^p$ par la formule du binôme : pour $0 < k < p$, $p$ divise $\\binom{p}{k}$, donc $(a + 1)^p \\equiv a^p + 1$, et une récurrence donne $a^p \\equiv a$ pour $a \\in \\mathbb{N}$, puis pour tout $a \\in \\mathbb{Z}$ en passant au reste modulo $p$.\n\nSon premier usage est le calcul de grandes puissances modulo $p$ : comme $a^{p-1} \\equiv 1$, on ne garde que le reste de l'exposant dans la division par $p - 1$. Il donne aussi un inverse de $a$ modulo $p$, à savoir $a^{p-2}$, et fonde le test de primalité de Fermat.\n\n**Méthode.** Vérifier que $p$ est premier et ne divise pas $a$, écrire $n = (p - 1)q + r$, puis $a^n = (a^{p-1})^q a^r \\equiv a^r \\pmod{p}$.\n\n**Piège principal.** La réciproque est fausse : $2^{340} \\equiv 1 \\pmod{341}$ alors que $341 = 11 \\times 31$. Une congruence $a^{n-1} \\equiv 1 \\pmod{n}$ ne prouve donc pas que $n$ est premier ; en revanche, $a^{n-1} \\not\\equiv 1$ prouve que $n$ est composé.",
       "hypotheses": [
         "$p$ est un nombre premier.",
         "$a$ est un entier relatif.",
