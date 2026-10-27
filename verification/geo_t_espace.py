@@ -517,4 +517,19 @@ for (xa, yb, zc), n_att, d_att, delta, vol, aire, leurres in [
     for L_ in leurres:
         assert simplify(L_ - aire) != 0
 
+# --- Phase 3 (corrections après relecture) ---
+# geo-t-espace-coplanaires (cours) : avec u(1,0,0), v(2,0,1) non colinéaires, les deux premières équations ne suffisent pas
+assert not colin(V(1, 0, 0), V(2, 0, 1)) and Matrix([[1, 2], [0, 0]]).det() == 0
+# piège « u et v orthogonaux » : pas une hypothèse (exemple de la carte, u.v = -2 != 0, et la caractérisation s'applique)
+assert V(1, 0, 2).dot(V(0, 1, -1)) == -2
+# geo-t-espace-equation-plan (cours) : avec d = 0, multiplier a, b, c ne change pas le plan ; avec d != 0 et k = 2, si
+assert meme_plan((1, 1, 1, 0), (2, 2, 2, 0)) and not meme_plan((1, 1, 1, 1), (2, 2, 2, 1))
+# geo-t-espace-coplanaires-ex4 (et v1, v2) : (IM) et (KL) distinctes, K n'est pas sur (IM)
+for I, M, K in [(V(Q(1, 2), 0, 0), V(Q(1, 2), Q(1, 2), 0), V(0, 0, Q(1, 3))),
+                (V(Q(1, 3), 0, 0), V(Q(1, 3), Q(2, 3), 0), V(0, 0, Q(2, 5))),
+                (V(Q(1, 2), 0, 0), V(Q(1, 2), 0, Q(1, 2)), V(0, Q(1, 4), 0))]:
+    assert not sur_droite(I, M - I, K)
+# geo-t-espace-orthogonalite-ex4 v2, geo-t-espace-projete-ex4 v1 et v2 : non-colinéarités justifiées
+assert not colin(V(1, 1, 0), V(1, 0, 1)) and not colin(V(-1, 2, 0), V(-1, 0, 2)) and not colin(V(-4, 4, 0), V(-4, 0, 2))
+
 print("geo_t_espace : toutes les vérifications passent.")

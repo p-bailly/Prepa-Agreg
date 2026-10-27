@@ -90,6 +90,8 @@ u = suite(0, lambda a: 2 * a + 3, 30)
 verifier_formule(u, lambda k: 3 * 2**k - 3, [lambda k: 3 * k, lambda k: 3 * 2 ** (k + 1) - 6,
                                             lambda k: 2 ** (k + 1) + k - 2], {1: 3, 2: 9, 3: 21})
 assert 3 * 2 == 6 and 3 * 4 - 6 == 6 and 8 + 2 - 2 == 8
+# Arbitrage (ex2 v2) : le leurre 2^{n+1} + n - 2 vaut u_0 = 0 et u_1 = 3, et n'échoue qu'en n = 2 (8 ≠ 9).
+assert [2 ** (k + 1) + k - 2 for k in range(3)] == [0, 3, 8] and u[:3] == [0, 3, 9]
 
 # ---------------------------------------------------------------------------
 # ar-t-suites-recurrence-ex3 (+ v1, v2) : plus petit n0 tel que l'inégalité vaut pour tout n >= n0.
