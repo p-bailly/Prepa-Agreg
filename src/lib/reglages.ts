@@ -34,9 +34,10 @@ export interface Reglages {
   seanceMinutes: number
   /** Cartes à revoir par jour visées (affiché sur l'accueil). */
   objectifQuotidien: number
-  /** Date de l'écrit « AAAA-MM-JJ », facultative : sans elle, pas de compte à rebours. */
+  /** Date de l'écrit « AAAA-MM-JJ » ; plus affichée ni modifiable depuis le 2026-10-29, gardée dans le format. */
   dateEcrit: string | null
   theme: 'auto' | 'clair' | 'sombre'
+  /** Rappel quotidien retiré le 2026-10-29 : `actif` est remis à faux au démarrage (voir `App.tsx`). */
   rappel: { actif: boolean; heure: string }
   filtres: Filtres
 }

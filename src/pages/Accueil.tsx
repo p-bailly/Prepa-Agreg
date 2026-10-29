@@ -1,6 +1,6 @@
-// Accueil : compte à rebours de l'écrit (si une date est choisie), puis la liste de tous les chapitres, numérotés, un
-// volet par niveau (de la Terminale à l'agrégation interne) et groupés par thème (icône et couleur du thème), en cartes
-// sur une colonne au téléphone, sur deux ou trois sur grand écran. Toucher un chapitre rédigé l'ouvre (notions, exercices
+// Accueil : la liste de tous les chapitres, numérotés, un volet par niveau (de la Terminale à l'agrégation interne) et
+// groupés par thème (icône et couleur du thème), en cartes sur une colonne au téléphone, sur deux ou trois sur grand
+// écran. Toucher un chapitre rédigé l'ouvre (notions, exercices
 // et problèmes, QCM). En tête de chaque niveau rédigé : l'avancement du niveau, un QCM et un vrai-faux sur tout le niveau.
 import { useMemo, useState } from 'react'
 import { avancementChapitre, chapitresNumerotes, meilleurQcm, notionsDe } from '../chapitres/plan'
@@ -10,7 +10,6 @@ import { IconeTheme } from '../composants/Icones'
 import { Ligne, NOMS_AVANCEMENT } from '../composants/Lignes'
 import { NIVEAUX, NOMS_NIVEAUX, type Niveau } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
-import { joursAvantEcrit } from '../lib/temps'
 
 /** « mar. 27 oct. » pour un jour civil `AAAA-MM-JJ` (midi UTC : le jour ne bascule dans aucun fuseau). */
 const dateCourte = (jour: string) =>
@@ -23,9 +22,8 @@ export function Accueil({
   surChapitre: (id: string) => void
   surQcmNiveau: (niveau: Niveau, sorte: 'qcm' | 'vrai-faux') => void
 }) {
-  const { contenu, progression, reglages, exercicesParCarte, aujourdhui } = useDonnees()
+  const { contenu, progression, exercicesParCarte, aujourdhui } = useDonnees()
   const jour = aujourdhui()
-  const rebours = joursAvantEcrit(reglages.dateEcrit, jour)
   const chapitres = useMemo(() => chapitresNumerotes(contenu), [contenu])
   // Ouverts d'emblée : les niveaux qui ont déjà des chapitres rédigés.
   const [ouverts, setOuverts] = useState<Set<Niveau>>(() => new Set(contenu.cartes.map((k) => k.niveau)))
@@ -43,17 +41,6 @@ export function Accueil({
         <h1 className="titre-ecran">Prépa Agreg</h1>
         <span className="petit doux">{dateCourte(jour)}</span>
       </div>
-
-      {rebours !== null && (
-        <div className="tuiles">
-          <div className="tuile rose">
-            <span className="nom">Écrit</span>
-            <span className={rebours > 0 ? 'valeur' : 'valeur longue'}>
-              {rebours > 0 ? `${rebours} j` : rebours === 0 ? 'aujourd’hui' : 'passé'}
-            </span>
-          </div>
-        </div>
-      )}
 
       {NIVEAUX.map((n) => {
         const duNiveau = chapitres.filter((x) => x.chapitre.niveau === n)

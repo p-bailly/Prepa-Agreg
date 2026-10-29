@@ -1,21 +1,10 @@
-// Réglages : niveau de départ, niveaux actifs, modes de révision (carte de révision), date de l'écrit (facultative),
-// thème, rappel quotidien, export et import de la progression, signalements.
-import { useRef, useState, type ReactNode } from 'react'
+// Réglages : niveau de départ, niveaux actifs, thème, export et import de la progression.
+import { useRef, useState } from 'react'
 import { NIVEAUX, NOMS_NIVEAUX, type Niveau } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 import { partagerFichier } from '../lib/fichiers'
-import { annulerRappel, natif, programmerRappel } from '../lib/notifications'
-import { MODES, NOMS_MODES, type Mode, type Reglages as TypeReglages } from '../lib/reglages'
+import type { Reglages as TypeReglages } from '../lib/reglages'
 import { fabriquerSauvegarde, lireSauvegarde } from '../lib/sauvegarde'
-
-function Interrupteur({ actif, surChange, children }: { actif: boolean; surChange: (v: boolean) => void; children: ReactNode }) {
-  return (
-    <button className="interrupteur" role="switch" aria-checked={actif} onClick={() => surChange(!actif)}>
-      <span>{children}</span>
-      <span className="etat">{actif ? 'oui' : 'non'}</span>
-    </button>
-  )
-}
 
 export function Reglages() {
   const { reglages: r, changerReglages, progression, remplacer, horloge, aujourdhui, contenu } = useDonnees()
@@ -44,18 +33,6 @@ export function Reglages() {
     } catch (e) {
       setMessage((e as Error).message)
     }
-  }
-
-  const changerRappel = async (actif: boolean, heure = r.rappel.heure) => {
-    if (actif) {
-      const ok = await programmerRappel(heure)
-      if (!ok) {
-        setMessage(natif ? 'Notifications refusées : autorisez-les dans les paramètres Android.' : 'Le rappel ne marche que dans l’appli Android.')
-        maj({ rappel: { actif: false, heure } })
-        return
-      }
-    } else await annulerRappel()
-    maj({ rappel: { actif, heure } })
   }
 
   return (
@@ -104,39 +81,7 @@ export function Reglages() {
         </div>
       </div>
 
-      <span className="etiquette">Modes de révision</span>
-      <div className="bloc">
-        {MODES.map((m) => (
-          <Interrupteur
-            key={m}
-            actif={r.modesActifs.includes(m)}
-            surChange={() => {
-              const l = basculerListe<Mode>(r.modesActifs, m)
-              if (l.length) maj({ modesActifs: MODES.filter((x) => l.includes(x)) })
-            }}
-          >
-            {NOMS_MODES[m]}
-          </Interrupteur>
-        ))}
-        <p className="petit doux" style={{ marginTop: 8 }}>
-          Un mode n’est proposé que pour les cartes qui ont ce qu’il faut ; les modes alternent d’une carte à l’autre.
-        </p>
-      </div>
-
-      <span className="etiquette">Écrit</span>
-      <div className="bloc">
-        <label className="champ">
-          <span>Date de l’écrit (facultative ; sans date, pas de compte à rebours)</span>
-          <input type="date" value={r.dateEcrit ?? ''} onChange={(e) => maj({ dateEcrit: e.target.value || null })} />
-        </label>
-        {r.dateEcrit && (
-          <button className="bouton compact" onClick={() => maj({ dateEcrit: null })}>
-            Effacer la date
-          </button>
-        )}
-      </div>
-
-      <span className="etiquette">Affichage et rappel</span>
+      <span className="etiquette">Affichage</span>
       <div className="bloc">
         <label className="champ">
           <span>Thème</span>
@@ -146,22 +91,13 @@ export function Reglages() {
             <option value="sombre">sombre</option>
           </select>
         </label>
-        <Interrupteur actif={r.rappel.actif} surChange={(v) => void changerRappel(v)}>
-          Rappel quotidien
-        </Interrupteur>
-        {r.rappel.actif && (
-          <label className="champ" style={{ marginTop: 10 }}>
-            <span>Heure du rappel</span>
-            <input type="time" value={r.rappel.heure} onChange={(e) => e.target.value && void changerRappel(true, e.target.value)} />
-          </label>
-        )}
       </div>
 
       <span className="etiquette">Sauvegarde</span>
       <div className="bloc">
         <p className="petit">
           La progression n’existe que sur ce téléphone : l’export en JSON est la seule sauvegarde. Il contient aussi les
-          réglages et les erreurs signalées ({progression.signalements.length}).
+          réglages.
         </p>
         <button className="bouton" onClick={() => void exporter()}>
           Exporter la progression
@@ -182,28 +118,8 @@ export function Reglages() {
         />
       </div>
 
-      {progression.signalements.length > 0 && (
-        <>
-          <span className="etiquette">Erreurs signalées</span>
-          <div className="bloc petit">
-            <ul style={{ margin: 0, paddingLeft: '1.1em' }}>
-              {progression.signalements.map((s, i) => (
-                <li key={i}>
-                  <code>{s.cible}</code>
-                  {s.ou ? ` (${s.ou})` : ''} : {s.commentaire}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      )}
-
       <span className="etiquette">À propos</span>
       <div className="bloc petit">
-        <p>
-          <strong>Contenu rédigé et contrôlé par une IA, non relu par un humain.</strong> En cas de doute, une carte affiche
-          « Non garanti » ; signalez toute erreur depuis la carte ou l’exercice.
-        </p>
         <p>
           {contenu.cartes.length} cartes, {contenu.exercices.length} exercices. Version {__VERSION__} ({__BUILD__}).
         </p>

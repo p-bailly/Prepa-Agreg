@@ -1,11 +1,10 @@
 // Notion d'un chapitre : deux onglets. Cours : texte de cours, énoncé encadré, exemple, démonstration, contre-exemples,
-// pièges (vrai ou faux), et un bouton pour mémoriser l'énoncé avec la carte de révision. Exercices : rangés par niveau de
-// difficulté (1 application directe … 5 difficile). Ouvrir le cours marque la notion comme apprise.
+// pièges (vrai ou faux). Exercices : rangés par niveau de difficulté (1 application directe … 5 difficile). Ouvrir le
+// cours marque la notion comme apprise.
 import { useEffect, useMemo, useState } from 'react'
 import { chapitresNumerotes, notionsDe } from '../chapitres/plan'
 import { BandeauDoute, Encadre, Segments, Volet } from '../composants/Blocs'
 import { LigneExercice } from '../composants/Lignes'
-import { Signaler } from '../composants/Signalement'
 import { Texte } from '../composants/Texte'
 import type { Carte } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
@@ -26,12 +25,10 @@ const NIVEAUX_DIFFICULTE = [
 export function EcranNotion({
   carte,
   surExercice,
-  surMemoriser,
   surRetour,
 }: {
   carte: Carte
   surExercice: (id: string) => void
-  surMemoriser: () => void
   surRetour: () => void
 }) {
   const { contenu, progression, changerProgression, exercicesParCarte, aujourdhui } = useDonnees()
@@ -110,13 +107,9 @@ export function EcranNotion({
               </div>
             </Volet>
           )}
-          <button className="bouton" onClick={surMemoriser}>
-            Mémoriser l’énoncé (carte de révision)
-          </button>
           <button className="bouton" onClick={() => setOnglet('exercices')}>
             Passer aux exercices
           </button>
-          <Signaler cible={carte.id} genre="carte" ou="cours" />
         </>
       )}
 
