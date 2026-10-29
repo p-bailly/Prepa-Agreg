@@ -338,4 +338,26 @@ assert solve(sqrt(x**2 + 1) - x, x) == []
 # top-l2-evn-q8 : x^4 + y^4 = 1 entraîne |x| <= 1 et |y| <= 1.
 assert all(abs(c) <= 1 for c in (1, 0, 2 ** -0.25))
 
+# ---------------------------------------------------------------------------
+# Ajouts de la relecture indépendante
+# ---------------------------------------------------------------------------
+# top-l2-evn-continuite-lineaire, trou 2, leurre « N_F(u(x)) <= C + N_E(x) » : u = 2 id est continue, mais
+# 2|x| <= C + |x| échoue dès |x| > C (la condition n'équivaut donc pas à la continuité).
+assert all(2 * abs(xx) > C + abs(xx) for C in range(0, 50) for xx in (C + 1, 2 * C + 3))
+# top-l2-evn-equivalence-dim-finie-ex4 v1 : C = 3 est atteinte par P = L2 (N(L2) = 1, |L2(3)| = 3) et par P = L1.
+assert sum(abs(L2.subs(s, v)) for v in (0, 1, 2)) == 1 and L2.subs(s, 3) == 3 and abs(L1.subs(s, 3)) == 3
+# top-l2-evn-equivalence-dim-finie-ex4 : la constante 1 est atteinte par P = L1 (N(L1) = 1, L1(1) = 1).
+assert sum(abs(L1.subs(s, v)) for v in (0, 1, 2)) == 1 and L1.subs(s, 1) == 1
+# top-l2-evn-compacts-ex1 (+ v1, v2) : bornes des parties compactes (grille), points des contre-exemples.
+grille2 = [F(i, 20) for i in range(-60, 61)]
+assert all(abs(a) <= 1 and abs(b) <= 1 for a in grille2 for b in grille2 if a**2 + b**4 <= 1)
+assert all(abs(a) <= 2 and 0 <= b <= 2 for a in grille2 for b in grille2 if abs(a) + abs(b) <= 2 and b >= 0)
+assert all(abs(a) <= 1 for a in grille2 for b in grille2 if a**2 <= b <= 1)
+assert all(k * F(1, k) == 1 and k * 0 <= 1 for k in range(1, 30))  # (k, 1/k) dans {xy = 1}, (k, 0) dans {xy <= 1}
+# top-l2-evn-normes-ex2 : N_a = max(|x|, |x+y|) vérifie l'inégalité triangulaire (tests aléatoires) ; seule norme.
+Nmax = lambda a, b: max(abs(a), abs(a + b))
+for _ in range(2000):
+    a, b, c, d = (random.uniform(-5, 5) for _ in range(4))
+    assert Nmax(a + c, b + d) <= Nmax(a, b) + Nmax(c, d) + 1e-12
+
 print("top_l2_evn : toutes les vérifications passent.")
