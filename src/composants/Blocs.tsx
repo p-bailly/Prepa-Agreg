@@ -1,4 +1,4 @@
-// Petits blocs communs du thème « Tonal ardoise » : encadrés typés, volets repliables, bandeau « Non garanti ».
+// Petits blocs communs du thème « Moderne coloré » : encadrés typés, volets repliables, bandeau « Non garanti ».
 import { useState, type ReactNode } from 'react'
 import type { TypeCarte } from '../contenu/types'
 import { Chevron } from './Icones'

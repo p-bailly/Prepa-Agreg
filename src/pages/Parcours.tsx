@@ -1,9 +1,9 @@
-// Parcours : choix d'un thème, puis chemin vertical de ses chapitres, du plus bas niveau au plus haut, avec leur numéro et
+// Parcours : choix d'un thème (puces colorées), puis chemin vertical de ses chapitres, du plus bas niveau au plus haut, avec leur numéro et
 // leur avancement (● fait, ◐ en cours, ○ à faire ou pas encore rédigé). Toucher un chapitre rédigé l'ouvre.
 import { useMemo, useState } from 'react'
 import { avancementChapitre, chapitresNumerotes } from '../chapitres/plan'
 import { NOMS_AVANCEMENT } from '../composants/Lignes'
-import { Pastille } from '../composants/Icones'
+import { IconeTheme, Pastille } from '../composants/Icones'
 import { NOMS_NIVEAUX } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 
@@ -17,21 +17,23 @@ export function Parcours({ surChapitre }: { surChapitre: (id: string) => void })
   return (
     <main className="ecran">
       <h1 className="titre-ecran">Parcours</h1>
-      <label className="champ">
-        <span className="etiquette">Thème</span>
-        <select value={themeId} onChange={(e) => setThemeId(e.target.value)}>
-          {contenu.themes.map((t) => {
-            const n = contenu.cartes.filter((k) => k.theme === t.id).length
-            return (
-              <option key={t.id} value={t.id}>
-                {t.titre} {n ? `(${n} notions)` : '(à venir)'}
-              </option>
-            )
-          })}
-        </select>
-      </label>
+      <span className="etiquette">Thème</span>
+      <div className="puces" role="group" aria-label="Thème">
+        {contenu.themes.map((t) => {
+          const n = contenu.cartes.filter((k) => k.theme === t.id).length
+          return (
+            <button key={t.id} className={`puce th-choisi th-${t.id}`} aria-pressed={t.id === themeId} onClick={() => setThemeId(t.id)}>
+              <span className="rond">
+                <IconeTheme theme={t.id} />
+              </span>
+              {t.titre}
+              {n ? '' : ' (à venir)'}
+            </button>
+          )
+        })}
+      </div>
 
-      <ol className="chemin">
+      <ol className={`chemin th-${themeId}`}>
         {chapitres.map(({ numero, chapitre }, i) => {
           const a = avancementChapitre(contenu, chapitre.id, progression)
           const nouveauNiveau = i === 0 || chapitres[i - 1].chapitre.niveau !== chapitre.niveau

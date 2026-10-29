@@ -30,7 +30,7 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   `GITHUB_RUN_NUMBER` (0 en local) ; `versionCode` = `github.run_number`. Utilisée par l'APK, `vite.config.ts` (`__VERSION__`)
   et les Réglages ; `verification.yml` contrôle l'APK.
 - Polices Latin Modern : `.otf` CTAN non modifiés dans `src/polices/` (GUST Font License, voir `src/polices/LISEZMOI.md`).
-  Police d'interface Plus Jakarta Sans : paquet npm `@fontsource-variable/plus-jakarta-sans` (SIL OFL 1.1), importé dans
+  Police d'interface Nunito : paquet npm `@fontsource-variable/nunito` (SIL OFL 1.1), importé dans
   `src/main.tsx`, donc embarqué par Vite.
 
 ## Architecture
@@ -58,15 +58,24 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   l'export / import JSON permet de passer de l'un à l'autre. Pas de rappel quotidien dans un navigateur.
 
 ## Allure visuelle
-Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
-`--conteneur`, `--sable`, `--menthe`, `--rose`, `--lilas`…), redéfinis pour le sombre sous `:root[data-theme='dark']`.
-- Fond gris bleuté `#F4F6FA`, surfaces blanches à grands arrondis (20 à 32 px), bleu ardoise `#3E5F8A`, aplats tonals ; ni
-  ombre ni dégradé. Sombre : fond `#111418`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
-- Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
-  aller avec les formules KaTeX.
+Thème « Moderne coloré » (direction B, mise en page d'accueil 3, choisies par le propriétaire le 2026-10-29 sur maquettes ;
+il remplace « Tonal ardoise »), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
+`--conteneur`, `--sable`, `--menthe`, `--rose`, `--lilas`, `--th-<thème>`…), redéfinis pour le sombre sous
+`:root[data-theme='dark']`.
+- Fond lavande `#F6F4FF`, surfaces blanches très arrondies (18 à 28 px) avec un léger relief dessous (`--relief`), violet
+  `#6C4CF5` ; boutons principaux pleins avec une ombre portée de `--primaire-fonce` (enfoncés au toucher). Sombre : fond
+  `#17132A`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
+- **Une couleur par thème** du parcours (`--th-analyse-reelle`…, classe `th-<id>` qui pose `--th`) et une icône par thème
+  (`IconeTheme`, `src/composants/Icones.tsx`) : étiquettes de thème, numéros de chapitre et de notion, pastilles, puces du
+  Parcours.
+- Interface en Nunito ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour aller
+  avec les formules KaTeX.
+- Téléphone (APK) : une colonne, barre d'onglets en bas. À partir de 900 px (version web) : barre latérale à gauche (nom
+  de l'appli, onglets), contenu élargi (1120 px ; 860 px pour le cours d'une notion, 820 px pour les écrans plein écran).
 - Accueil : compte à rebours de l'écrit (tuile rose, seulement avec une date), puis **tous les chapitres numérotés de 1 à n**
-  (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau, groupés par thème, pastille d'avancement ; un chapitre pas encore
-  rédigé est grisé. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
+  (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau (barre d'avancement des
+  chapitres faits), groupés par thème, en cartes (une colonne au téléphone, thèmes sur deux colonnes sur grand écran),
+  pastille d'avancement ; un chapitre pas encore rédigé est en pointillés. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
   chaque niveau rédigé, « Tout le niveau » : un **QCM du niveau** (20 questions à choix) et un **Vrai ou faux du niveau**
   (20 affirmations), pris à tour de rôle dans chacun de ses chapitres (`tirerCible`).
 - Chapitre : trois onglets (`Segments`). **Notions** : introduction (`content/lecons/`), notions numérotées « 17.4 » ;
@@ -78,8 +87,8 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   de difficulté 1 ou 2 (avec l'énoncé et la correction). Score gardé ; chapitre « fait » quand toutes ses notions sont faites
   (tous leurs exercices réussis) et un QCM à 80 % au moins. Les scores sont gardés dans `progression.qcm`, sous l'identifiant
   du chapitre ou sous `niveau-<niveau>-qcm` / `niveau-<niveau>-vrai-faux` pour un niveau entier.
-  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
-  lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
+  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème violet, définition menthe, exemple
+  bleu clair (`--lilas`), méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, violet, menthe), chacun avec
   son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
 - Le logo (crayon rouge `#CE2029`) n'a pas suivi : il se régénère avec `npm run logo` si on veut l'accorder.
 
@@ -285,7 +294,7 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
   accolades passent KaTeX mais s'affichent mal ; le test « formule mal composée » les refuse.
 - `content/` est importé à la construction : après un ajout de fichier, relancer `npm run dev`.
 - Les symboles ■ ◧ □ ● ◐ ○, le cadenas, les icônes d'onglets et le chevron des volets sont dessinés en SVG
-  (`src/composants/Icones.tsx`) : Latin Modern et Plus Jakarta Sans n'ont pas ces glyphes.
+  (`src/composants/Icones.tsx`) : Latin Modern et Nunito n'ont pas ces glyphes.
 - Largeurs des barres : pourcentages CSS sans espace (`50%`), l'affichage français met une espace (`50 %`).
 - Rappel quotidien : `@capacitor/local-notifications` (`schedule.on`), permission Android 13+ demandée à l'activation ;
   dans un navigateur, il n'y a pas de rappel.

@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react'
 import { avancementNotion, chapitresNumerotes, meilleurQcm, notionsDe } from '../chapitres/plan'
 import { questionsChapitre } from '../chapitres/qcm'
 import { BandeauDoute, Segments, Volet } from '../composants/Blocs'
+import { IconeTheme } from '../composants/Icones'
 import { Ligne, LigneExercice, NOMS_AVANCEMENT } from '../composants/Lignes'
 import { Texte } from '../composants/Texte'
 import { NOMS_NIVEAUX, type Exercice } from '../contenu/types'
@@ -53,11 +54,14 @@ export function Chapitre({
   )
 
   return (
-    <main className="ecran">
+    <main className={`ecran th-${theme.id}`}>
       <button className="retour" onClick={surRetour}>
         ← Retour
       </button>
-      <span className="sur-titre-ecran">
+      <span className="etiquette-theme">
+        <span className="rond">
+          <IconeTheme theme={theme.id} />
+        </span>
         Chapitre {numero} · {theme.titre} · {NOMS_NIVEAUX[chapitre.niveau]}
       </span>
       <h1 className="titre-ecran">{chapitre.titre}</h1>

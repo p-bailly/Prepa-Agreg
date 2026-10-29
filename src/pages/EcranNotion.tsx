@@ -45,7 +45,7 @@ export function EcranNotion({
   }, [onglet, carte.id, changerProgression, aujourdhui])
 
   return (
-    <main className="ecran">
+    <main className={`ecran lecture th-${carte.theme}`}>
       <button className="retour" onClick={surRetour}>
         ← Chapitre {entree?.numero}
       </button>

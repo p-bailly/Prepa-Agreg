@@ -181,6 +181,7 @@ function Navigation() {
       ))}
       {onglets && (
         <nav className="onglets" aria-label="Onglets">
+          <span className="marque-appli">Prépa Agreg</span>
           {ONGLETS.map((o) => (
             <button
               key={o.id}
