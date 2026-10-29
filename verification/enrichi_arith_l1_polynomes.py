@@ -106,7 +106,6 @@ assert abs(produit(P) - 5) < 1e-25 and P.subs(X, -1) == -10
 
 def verifier_pgcd(A, B, D, q1, R1, q2, facA, facB, communes, leurres):
     assert div(A, B, X) == (q1, R1)  # première division
-    assert div(B, R1, X)[1] == 0 or div(B, R1, X) == (q2, 0)
     assert div(B, R1, X) == (q2, 0)
     assert expand(gcd(A, B) - D) == 0  # PGCD unitaire
     assert expand(A - facA) == 0 and expand(B - facB) == 0
