@@ -563,4 +563,42 @@ for L in (Matrix([[1, 1], [-1, 1]]), Matrix([[1, 0], [1, 1]]), Matrix([[1, sqrt(
 Aq = Matrix([[0, 2], [0, 0]])                                                                # q7
 assert max((Aq.T * Aq).eigenvals()) == 4
 assert Matrix([1, 2, 0]).cross(Matrix([0, 1, 3])) == Matrix([6, -3, 1])                      # q8
+# =========================================================================================================
+# Compléments de la relecture indépendante
+# =========================================================================================================
+# al-l2-euclidien-adjoint, trou 3 : leurres (Ker u)^perp et Im u faux pour u = id (Ker u* = {0}, mais (Ker u)^perp
+# = Im u = E) ; leurre Ker u faux pour u = E12 (Ker u = Vect(e1), Ker u* = Vect(e2)).
+assert eye(2).T.nullspace() == [] and eye(2).rank() == 2
+assert E12.nullspace() == [Matrix([1, 0])] and E12.T.nullspace() == [Matrix([0, 1])]
+# al-l2-euclidien-schmidt, trou 3 : leurre « Vect(f_k) = Vect(e_k) » : pour e1 = (1,0), e2 = (1,1), f1 et f2 seraient
+# colinéaires à e1 et e2, non orthogonaux : aucune famille orthonormale ne convient.
+assert ps((1, 0), (1, 1)) != 0
+# al-l2-euclidien-spectral, trou 2 : leurre « P nilpotente » : P D tP serait de rang < 2, donc différente de I2 ;
+# trou 3, leurre « D nilpotente » : I2 = P N tP avec P orthogonale donnerait N = I2, non nilpotente.
+Pn = Matrix([[0, 1], [0, 0]])
+d1_, d2_ = symbols("d1_ d2_")
+assert (Pn * diag(d1_, d2_) * Pn.T).rank() <= 1
+# al-l2-euclidien-produit-vectoriel, trou 2 : le leurre [x,z,y] définirait y ^ x = -(x ^ y) (ici (1,2,3), (4,5,6)).
+for z_ in (e[1], e[2], e[3]):
+    assert Matrix.hstack(x, z_, y).det() == ps(-w, z_)
+# al-l2-euclidien-positifs-ex2 (+ v1, v2) : rayon spectral <= norme subordonnée <= norme de Frobenius, inégalités
+# strictes ; leurres (plus grand module des valeurs propres, Frobenius, lambda_max(tAA)) tous distincts.
+for A_, nor in [(Matrix([[3, 0], [4, 5]]), 3 * sqrt(5)), (Matrix([[5, 3], [0, 4]]), 2 * sqrt(10)),
+                (Matrix([[5, 0], [12, 13]]), 5 * sqrt(13))]:
+    lmax = max((A_.T * A_).eigenvals())
+    rho = max(abs(v) for v in A_.eigenvals())
+    frob = sqrt(sum(c**2 for c in A_))
+    assert sqrt(lmax) == nor and rho < nor < frob and len({nor, rho, frob, lmax}) == 4
+# al-l2-euclidien-positifs (carte), énoncé : sans symétrie, tXSX >= 0 ne suffit pas (rotation d'angle pi/2).
+xs2 = Matrix(symbols("xa xb"))
+assert (xs2.T * Matrix([[0, -1], [1, 0]]) * xs2)[0] == 0
+# al-l2-euclidien-q1 : f(t) = t donne (1/2)^2 = 1/4 <= 1/3, inégalité stricte pour f non constante.
+assert integrate(t, (t, 0, 1)) ** 2 == R(1, 4) and integrate(t**2, (t, 0, 1)) == R(1, 3)
+# al-l2-euclidien-cauchy-schwarz-ex4, question 2 : pour A orthogonale (rotation), tr(tAA) = n mais tr A = n
+# seulement pour A = I_n ; matrice symétrique de trace 2, diag(2, 0), a tr(tAA) = 4 != 2.
+assert (J.T * J).trace() == 2 and J.trace() == 0 and (diag(2, 0).T * diag(2, 0)).trace() == 4
+# al-l2-euclidien-schmidt-ex4, question 3 : pour n = 3, la borne 3^(3/2) ~ 5,196 est atteinte par aucune matrice
+# à coefficients ±1 (le maximum de |det| vaut 4), ce qui n'est pas demandé ; on vérifie seulement la borne.
+assert max(abs(Matrix(3, 3, list(c)).det()) for c in product((-1, 1), repeat=9)) == 4 <= 3 * sqrt(3)
+
 print("al_l2_euclidien : toutes les vérifications passent.")
