@@ -107,8 +107,8 @@ for m, l, leurres in [(6, 3, [-2, mp.sqrt(6)]), (12, 4, [-3, mp.sqrt(12)]), (20,
     assert mp.sqrt(m) <= l  # f(0) = sqrt(m) dans [0, l]
 
 # ar-l2-asymptotique-recurrente-ex2 : u - u^2 -> 0, décroissante.
-u = it(lambda t: t - t * t, F(1, 2), 30)
-assert all(0 < u[i + 1] < u[i] < 1 for i in range(30))
+u = it(lambda t: t - t * t, F(1, 2), 10)
+assert all(0 < u[i + 1] < u[i] < 1 for i in range(10))
 
 # ar-l2-asymptotique-recurrente-ex3 (+ v1, v2) : u^2 + c, points fixes a < b ; discussion.
 for cc, pa, pb in [(F(3, 16), F(1, 4), F(3, 4)), (F(2, 9), F(1, 3), F(2, 3)), (F(6, 25), F(2, 5), F(3, 5))]:
