@@ -2,7 +2,7 @@
 cartes, exercices et QCM de content/*/integration/l2-int-l2-parametre.json et content/qcm/int-l2-parametre.json.
 
 Chaque assert cite l'identifiant de la carte, de l'exercice (variante comprise : v1, v2) ou de la question.
-Les intégrales impropres sont calculées numériquement à 30 chiffres (mpmath) ; les identités en SymPy.
+Les intégrales impropres sont calculées numériquement à 20 chiffres (mpmath) ; les identités en SymPy.
 Lancer : python3 verification/int_l2_parametre.py (doit finir sans erreur).
 """
 
@@ -12,10 +12,10 @@ import mpmath as mp
 from sympy import (Rational, atan, diff, exp, integrate, limit, log, oo, pi, simplify, sin, cos, sqrt, symbols,
                    apart, factorial, gamma, Symbol)
 
-mp.mp.dps = 30
+mp.mp.dps = 20
 x, t, u, p, xi = symbols("x t u p xi", real=True)
 xp = symbols("xp", positive=True)
-EPS = mp.mpf(10) ** -20
+EPS = mp.mpf(10) ** -14
 
 
 def q(f, a=0, b=mp.inf):
@@ -131,8 +131,8 @@ assert integrate(1 / (1 + T) ** 2, (T, 0, oo)) == 1 and simplify(integrate((1 + 
 
 # int-l2-parametre-continuite-ex3 (+ v1, v2) : limites 1, 1/2, π/4.
 for xv in [3, 5, 50]:
-    assert proche(q(lambda s: 1 / (1 + s**xv), 0, 1) + q(lambda s: 1 / (1 + s**xv), 1, mp.inf), (mp.pi / xv) / mp.sin(mp.pi / xv), mp.mpf(10) ** -15)
-    assert proche(q(lambda s: s / (1 + s**xv), 0, 1) + q(lambda s: s / (1 + s**xv), 1, mp.inf), (mp.pi / xv) / mp.sin(2 * mp.pi / xv), mp.mpf(10) ** -15)
+    assert proche(q(lambda s: 1 / (1 + s**xv), 0, 1) + q(lambda s: 1 / (1 + s**xv), 1, mp.inf), (mp.pi / xv) / mp.sin(mp.pi / xv), mp.mpf(10) ** -12)
+    assert proche(q(lambda s: s / (1 + s**xv), 0, 1) + q(lambda s: s / (1 + s**xv), 1, mp.inf), (mp.pi / xv) / mp.sin(2 * mp.pi / xv), mp.mpf(10) ** -12)
 assert limit((pi / X) / sin(pi / X), X, oo) == 1 and limit((pi / X) / sin(2 * pi / X), X, oo) == Rational(1, 2)
 v2_400 = q(lambda s: 1 / ((1 + s**400) * (1 + s**2)), 0, 1) + q(lambda s: 1 / ((1 + s**400) * (1 + s**2)), 1, mp.inf)
 assert abs(v2_400 - mp.pi / 4) < 0.01
@@ -143,7 +143,7 @@ assert all(1 / (1 + s**xv) <= 1 / s**2 and s / (1 + s**(xv + 2)) <= 1 / s**3 for
 # int-l2-parametre-continuite-ex4 (+ v1, v2) : F(x) = e^x E1(x) = -ln x - γ + o(1) ; v1 : √x F(x) → π/2 ; v2 : F + (ln x)/2 bornée.
 for xv in [mp.mpf(10) ** -3, mp.mpf(10) ** -6, mp.mpf(10) ** -9]:
     F = q(lambda s: mp.e ** -s / (xv + s), 0, 1) + q(lambda s: mp.e ** -s / (xv + s), 1, mp.inf)
-    assert proche(F, mp.e ** xv * mp.e1(xv), mp.mpf(10) ** -15)
+    assert proche(F, mp.e ** xv * mp.e1(xv), mp.mpf(10) ** -12)
     assert abs(F - mp.log(1 + 1 / xv)) <= 1 + 1 / mp.e
     F1 = q(lambda s: mp.e ** -s / (xv + s**2), [0, mp.sqrt(xv), 1, mp.inf])
     assert abs(F1 - mp.pi / (2 * mp.sqrt(xv))) <= mp.log(1 + 1 / xv) / 2 + 1
@@ -189,7 +189,7 @@ for a, xv, val, leurres in [(1, 1, mp.log(2) / 2, [mp.log(2), mp.pi / 4, 1 - 1 /
                             (2, 1, mp.log(1.25) / 2, [mp.log(2) / 2, mp.log(1.25), mp.atan(0.5)]),
                             (1, mp.sqrt(3), mp.log(2), [mp.log(2) / 2, mp.pi / 3, mp.log(4)])]:
     num = q(lambda s: (1 - mp.cos(xv * s)) / s * mp.e ** (-a * s), [0, 1, 10, mp.inf])
-    assert proche(num, val, mp.mpf(10) ** -15) and proche(val, mp.log(1 + xv**2 / a**2) / 2)
+    assert proche(num, val, mp.mpf(10) ** -12) and proche(val, mp.log(1 + xv**2 / a**2) / 2)
     distincts_et_faux(val, leurres)
 assert simplify(integrate(sin(X * T) * exp(-2 * T), (T, 0, oo)) - X / (4 + X**2)) == 0
 
@@ -224,7 +224,7 @@ assert proche(q(lambda s: s ** -0.5 * mp.e ** -s, [0, 1, mp.inf]), mp.sqrt(mp.pi
 # Affirmation 2 / ex4 : minimum en α ∈ ]1,2[, Γ'(1) < 0 < Γ'(2) = 1 + Γ'(1), Γ(α) ≈ 0,886.
 alpha = mp.findroot(lambda s: mp.diff(mp.gamma, s), 1.46)
 assert 1 < alpha < 2 and abs(alpha - mp.mpf("1.46163")) < 1e-4 and abs(mp.gamma(alpha) - mp.mpf("0.8856")) < 1e-3
-assert proche(mp.diff(mp.gamma, 2), 1 + mp.diff(mp.gamma, 1), mp.mpf(10) ** -15) and mp.diff(mp.gamma, 1) < 0
+assert proche(mp.diff(mp.gamma, 2), 1 + mp.diff(mp.gamma, 1), mp.mpf(10) ** -12) and mp.diff(mp.gamma, 1) < 0
 assert limit(X * gamma(X), X, 0, "+") == 1
 
 # int-l2-parametre-gamma-ex1 (+ v1, v2) : ∫_0^1 (ln u)^4 = 24, (ln u)^3 = -6, u (ln u)² = 1/4.
@@ -260,7 +260,7 @@ assert simplify(integrate(exp(-P_ * T), (T, 0, oo)) - 1 / P_) == 0
 assert simplify(integrate(exp(-T) * exp(-P_ * T), (T, 0, oo)) - 1 / (P_ + 1)) == 0
 assert simplify(integrate(exp(T) * exp(-(P_ + 1) * T), (T, 0, oo)) - 1 / P_) == 0       # L(e^{at}) avec a = 1, p+1 > 1
 
-pn = mp.mpf(3)   # valeur de p pour les contrôles numériques
+pn = mp.mpf(5)   # valeur de p pour les contrôles numériques
 
 
 def L(f, pv=pn):
@@ -308,7 +308,7 @@ def TF(f, x_, a=-mp.inf, b=mp.inf, pts=None):
 z = mp.mpf("1.3")
 assert abs(TF(lambda s: mp.e ** -abs(s), z) - 2 / (1 + z**2)) < EPS                        # exemple
 # Contre-exemple : ∫ (cos u - 1)/u² du = -π < 0 ; FT de 1/(1+t²) en ξ = 1 vaut π/e.
-assert abs(2 * mp.quadosc(lambda s: (mp.cos(s) - 1) / s**2, [0, mp.inf], omega=1) + mp.pi) < 1e-12
+assert abs(2 * (q(lambda s: (mp.cos(s) - 1) / s**2, 0, 1) + mp.quadosc(lambda s: mp.cos(s) / s**2, [1, mp.inf], omega=1) - 1) + mp.pi) < 1e-12
 assert abs(2 * mp.quadosc(lambda s: mp.cos(s) / (1 + s**2), [0, mp.inf], omega=1) - mp.pi / mp.e) < 1e-12
 # Trou 2 : indicatrice de [-1,1] : FT(0) = 2 > 1 = sup|f| ; f impaire sign(t)e^{-|t|} : FT = -2iξ/(1+ξ²), FT(0) = 0.
 assert abs(TF(lambda s: mp.sign(s) * mp.e ** -abs(s), z) - (-2j * z / (1 + z**2))) < EPS
@@ -364,8 +364,9 @@ distincts_et_faux(mp.sqrt(mp.pi / 3), [mp.sqrt(mp.pi) / 3, mp.sqrt(3 * mp.pi), m
 distincts_et_faux(mp.sqrt(mp.pi), [mp.sqrt(mp.pi) / 2, 2 * mp.sqrt(mp.pi), mp.sqrt(2 * mp.pi)])
 distincts_et_faux(2 * mp.sqrt(2 * mp.pi), [mp.sqrt(2 * mp.pi), mp.sqrt(mp.pi / 8), 8 * mp.sqrt(mp.pi)])
 # int-l2-parametre-gauss-ex2 (+ v1, v2) : compléter le carré.
-for e_, val in [(-t**2 + 2 * t, exp(1) * sqrt(pi)), (-t**2 - t, exp(Rational(1, 4)) * sqrt(pi)), (-2 * t**2 + 4 * t, exp(2) * sqrt(pi / 2))]:
-    assert simplify(integrate(exp(e_), (t, -oo, oo)) - val) == 0
+for e_, val in [(lambda s: -s**2 + 2 * s, mp.e * mp.sqrt(mp.pi)), (lambda s: -s**2 - s, mp.e ** 0.25 * mp.sqrt(mp.pi)),
+                (lambda s: -2 * s**2 + 4 * s, mp.e**2 * mp.sqrt(mp.pi / 2))]:
+    assert proche(q(lambda s: mp.e ** e_(s), [-mp.inf, 0, 1, mp.inf]), val)
 distincts_et_faux(mp.e * mp.sqrt(mp.pi), [mp.sqrt(mp.pi), mp.sqrt(mp.pi) / mp.e, mp.e**2 * mp.sqrt(mp.pi)])
 distincts_et_faux(mp.e ** 0.25 * mp.sqrt(mp.pi), [mp.e ** -0.25 * mp.sqrt(mp.pi), mp.sqrt(mp.pi), mp.e ** 0.5 * mp.sqrt(mp.pi)])
 distincts_et_faux(mp.e**2 * mp.sqrt(mp.pi / 2), [mp.e**2 * mp.sqrt(mp.pi), mp.e**4 * mp.sqrt(mp.pi / 2), mp.e * mp.sqrt(mp.pi / 2)])

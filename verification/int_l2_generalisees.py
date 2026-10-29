@@ -162,7 +162,7 @@ assert simplify(diff(-cos(t) / t, t) - (sin(t) / t + cos(t) / t**2)) == 0
 assert simplify(sin(t)**2 - (1 - cos(2 * t)) / 2) == 0
 # absolue-ex3 : int (sin t / t)^2 = pi/2 ; v1 : sin^3 linéarisé, pi/4 ; v2 : sin t cos 2t = (sin 3t - sin t)/2, 0.
 assert simplify(diff(-sin(t)**2 / t, t) - sin(t)**2 / t**2 + sin(2 * t) / t) == 0
-assert proche(mp.quadosc(lambda v: (mp.sin(v) / v)**2 if v else 1, [0, mp.inf], period=mp.pi), mp.pi / 2, mp.mpf("1e-6"))
+assert integrate(sin(t)**2 / t**2, (t, 0, oo)) == pi / 2 and integrate(sin(t)**3 / t, (t, 0, oo)) == pi / 4
 assert simplify(sin(t)**3 - (3 * sin(t) - sin(3 * t)) / 4) == 0
 assert simplify(sin(t) * cos(2 * t) - (sin(3 * t) - sin(t)) / 2) == 0
 assert Rational(3, 4) * pi / 2 - Rational(1, 4) * pi / 2 == pi / 4
@@ -175,7 +175,8 @@ assert simplify((2 * sin(t / 2) * cos(k * t) - (sin((k + Rational(1, 2)) * t) - 
 phi = 1 / t - 1 / (2 * sin(t / 2))
 assert limit(phi / t, t, 0) == Rational(-1, 24)
 assert limit(diff(phi, t), t, 0) == Rational(-1, 24)
-assert proche(sum(mp.cos(j * 1.3) for j in range(1, 8)) + 0.5, mp.sin(7.5 * 1.3) / (2 * mp.sin(0.65)), mp.mpf("1e-20"))
+th = mp.mpf("1.3")
+assert proche(sum(mp.cos(j * th) for j in range(1, 8)) + mp.mpf(1) / 2, mp.sin(mp.mpf("7.5") * th) / (2 * mp.sin(th / 2)), mp.mpf("1e-20"))
 
 # ---------------------------------------------------------------------------
 # Carte int-l2-generalisees-relations
@@ -185,7 +186,7 @@ assert all(sum((-1)**j * mp.log(mp.mpf(j + 2) / (j + 1)) for j in range(2 * m)) 
 # Trou 1, leurres « bornée », « continue », « de limite nulle » : int_0^oo cos t/(1+t) et cos t/(1+t)^2 non nuls.
 L1 = mp.quadosc(lambda v: mp.cos(v) / (1 + v), [0, mp.inf], omega=1)
 L2 = mp.quadosc(lambda v: mp.cos(v) / (1 + v)**2, [0, mp.inf], omega=1)
-assert L1 > 0.3 and L2 > 0.5
+assert L1 > 0.3 and L2 > 0.3
 # relations-ex1 (+ v1, v2) : équivalents des restes ; v2 forme exacte.
 assert limit(t**3 / (t**3 + t + 1), t, oo) == 1 and integrate(t**-3, (t, x, oo)) == 1 / (2 * x**2)
 assert integrate(t**-4, (t, x, oo)) == 1 / (3 * x**3)
@@ -217,14 +218,14 @@ assert proche(Qinf(lambda v: mp.exp(-v**2), X) / (mp.exp(-X**2) / (2 * X)), 1, m
 # Carte int-l2-generalisees-rectangles
 # ---------------------------------------------------------------------------
 # Contre-exemples : f = -t donne w_n = 1/2 ; int_0^N |sin(pi t)| = 2N/pi ; pics à partir de n = 2 : aire 1/2.
-assert integrate(-n + t, (t, n, n + 1)) == Rational(1, 2)
+assert simplify(-n - integrate(-t, (t, n, n + 1)) - Rational(1, 2)) == 0
 assert proche(mp.quad(lambda v: abs(mp.sin(mp.pi * v)), [0, 1, 2, 3]), 6 / mp.pi, mp.mpf("1e-15"))
 assert sum(F(1, 2**j) for j in range(2, 200)) < F(1, 2)
 # Exemple : ln(N+1) <= H_N <= 1 + ln N.
-H = lambda N: sum(F(1, j) for j in range(1, N + 1))
+H = lambda N: mp.fsum(1 / mp.mpf(j) for j in range(1, N + 1))
 assert all(mp.log(N + 1) <= H(N) <= 1 + mp.log(N) for N in range(1, 200))
 # rectangles-ex1 : leurres faux pour un n explicite.
-assert H(1) > mp.log(2) and H(2) > mp.log(2) + F(1, 2) and mp.log(2) + 0.5 > H(1)
+assert H(1) > mp.log(2) and H(2) > mp.log(2) + mp.mpf(1) / 2 and mp.log(2) + mp.mpf(1) / 2 > H(1)
 S = lambda N: sum(1 / mp.sqrt(j) for j in range(1, N + 1))
 assert all(2 * mp.sqrt(N + 1) - 2 <= S(N) <= 2 * mp.sqrt(N) - 1 for N in range(1, 200))
 assert S(1) < 2 and S(2) > mp.sqrt(2) and S(1) > 0

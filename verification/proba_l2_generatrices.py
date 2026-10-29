@@ -389,4 +389,18 @@ assert sum(1 for x_ in range(6) for y_ in range(6) for z_ in range(6) if x_ + y_
 assert math.comb(6, 2) == 15 and math.comb(5, 2) == 10
 assert sorted((9 - 3 * y_, y_) for y_ in range(4)) == [(0, 3), (3, 2), (6, 1), (9, 0)]  # q8
 assert coeffs(1 / ((1 - t) * (1 - t**3)), 9)[9] == 4
+# Ajouts de la relecture indépendante.
+# proba-l2-generatrices-q6 : G_{2X+Y}(t) = G_X(t^2) G_Y(t), contrôlé par énumération (X ~ B(2, 1/3), Y ~ B(3, 1/4)).
+lx = {k: binomial(2, k) * Rational(1, 3) ** k * Rational(2, 3) ** (2 - k) for k in range(3)}
+ly = {k: binomial(3, k) * Rational(1, 4) ** k * Rational(3, 4) ** (3 - k) for k in range(4)}
+G2XY = sum(lx[a] * ly[b] * t ** (2 * a + b) for a in lx for b in ly)
+assert expand(G2XY - sum(v * t ** (2 * k) for k, v in lx.items()) * sum(v * t**k for k, v in ly.items())) == 0
+# proba-l2-generatrices-somme-ex3 : les trois leurres diffèrent aussi de la bonne réponse pour r = 2, n = 3, p = 1/3.
+pr, qr = Rational(1, 3), Rational(2, 3)
+c23 = coeffs((pr * t / (1 - qr * t)) ** 2, 3)[3]
+assert c23 == binomial(2, 1) * pr**2 * qr == Rational(4, 27)
+assert all(c23 != v for v in [binomial(3, 2) * pr**2 * qr, binomial(2, 2) * pr**2 * qr, binomial(2, 1) * pr * qr**2])
+# proba-l2-generatrices-moments-ex4 : le taux d'accroissement -ln(1-t)/t tend vers +infini en 1^-.
+assert __import__("sympy").limit(-log(1 - t) / t, t, 1, "-") == oo
+assert all(-math.log(1 - tv) / tv > 9 for tv in [1 - 1e-4, 1 - 1e-6])
 print("proba_l2_generatrices : toutes les vérifications passent.")
