@@ -5,6 +5,8 @@ Voir CLAUDE.md, « Contrôle de l'exactitude ». Chaque assert cite l'identifian
 from sympy import (E, Rational, cos, exp, floor, integrate, log, N, pi, simplify, sin, sqrt, symbols, diff,
                    Piecewise, factorial, apart, Integral)
 
+import math
+
 x, t = symbols('x t', real=True)
 
 def distincts(*v):
@@ -12,18 +14,19 @@ def distincts(*v):
     return all(abs(vals[i] - vals[j]) > 1e-12 for i in range(len(vals)) for j in range(i))
 
 def riemann(f, m):
-    return sum(f(Rational(k, m)) for k in range(1, m + 1))/m
+    # somme de Riemann (points de droite) calculée en flottants
+    return sum(f(k/m) for k in range(1, m + 1))/m
 
 # int-l1-riemann-q1 : Σ k/(n²+k²) = (1/n) Σ (k/n)/(1+(k/n)²) -> ∫_0^1 x/(1+x²) = ln2/2.
 I = integrate(x/(1 + x**2), (x, 0, 1))
 assert simplify(I - log(2)/2) == 0 and distincts(I, log(2), pi/4, Rational(1, 2))
 m = 4000
-assert abs(N(sum(Rational(k, m**2 + k**2) for k in range(1, m + 1))) - N(I)) < 1e-3
+assert abs(sum(k/(m**2 + k**2) for k in range(1, m + 1)) - float(N(I))) < 1e-3
 
 # int-l1-riemann-q2 : Σ (k/n²) e^{k/n} -> ∫_0^1 x e^x = 1 ; leurres e-1, e, 1/2.
 I = integrate(x*exp(x), (x, 0, 1))
 assert I == 1 and distincts(I, E - 1, E, Rational(1, 2))
-assert abs(N(riemann(lambda u: u*exp(u), 2000)) - 1) < 2e-3
+assert abs(riemann(lambda u: u*math.exp(u), 2000) - 1) < 2e-3
 
 # int-l1-riemann-q3 : ∫_1^4 dx/(x+√x) = 2 ln(3/2) (x = t², t ∈ [1,2]) ; leurres ln(3/2), 2 ln 3, ln(5/2).
 J = integrate(2*t/(t**2 + t), (t, 1, 2))
@@ -65,7 +68,7 @@ assert distincts(I, 6 - sqrt(2) - sqrt(3), Rational(8, 3), 3 - sqrt(2))
 # variante 1 : ∫_0^2 ⌊e^x⌋ = 14 - ln(7!) = 14 - ln 5040.
 I1 = sum(k*(log(k + 1) - log(k)) for k in range(1, 7)) + 7*(2 - log(7))
 assert simplify(I1 - (14 - log(5040))) == 0 and factorial(7) == 5040
-approx = sum(int(float(N(exp(2*Rational(k, 20000))))) for k in range(20000))*2/20000
+approx = sum(math.floor(math.exp(2*k/20000)) for k in range(20000))*2/20000
 assert abs(approx - float(N(I1))) < 2e-3
 assert distincts(I1, 14 - log(720), exp(2) - 1, 13 - log(5040))
 # variante 2 : ∫_0^1 ⌊3x²⌋ = 2 - (√6 + √3)/3.
