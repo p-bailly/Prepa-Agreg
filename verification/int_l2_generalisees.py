@@ -237,11 +237,11 @@ assert simplify(diff(-1 / log(t), t) - 1 / (t * log(t)**2)) == 0
 assert simplify(diff(2 * sqrt(log(t)), t) - 1 / (t * sqrt(log(t)))) == 0
 # rectangles-ex3 (+ v1, v2) : bornes des restes.
 for N in [1, 5, 20]:
-    R = mp.nsum(lambda j: 1 / j**2, [N + 1, mp.inf])
+    R = mp.zeta(2, N + 1)
     assert mp.mpf(1) / (N + 1) <= R <= mp.mpf(1) / N
-    R = mp.nsum(lambda j: 1 / j**3, [N + 1, mp.inf])
+    R = mp.zeta(3, N + 1)
     assert 1 / (2 * mp.mpf(N + 1)**2) <= R <= 1 / (2 * mp.mpf(N)**2)
-    R = mp.nsum(lambda j: j**-1.5, [N + 1, mp.inf])
+    R = mp.zeta(mp.mpf(3) / 2, N + 1)
     assert 2 / mp.sqrt(N + 1) <= R <= 2 / mp.sqrt(N)
 # rectangles-ex4 (+ v1, v2) : gamma dans [0,1] ; limites ln 2, ln 3, ln 2.
 assert 0 <= mp.euler <= 1
