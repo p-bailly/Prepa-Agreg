@@ -1,5 +1,5 @@
 // Écriture du fichier d'export : dans l'APK, fichier temporaire puis feuille de partage Android (Drive, mail, Fichiers…) ;
-// dans un navigateur (développement), téléchargement.
+// dans un navigateur (version web, développement), téléchargement.
 import { Capacitor } from '@capacitor/core'
 
 export async function partagerFichier(nom: string, contenu: string): Promise<void> {

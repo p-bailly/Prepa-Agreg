@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import katex from 'katex'
 import { describe, expect, it } from 'vitest'
 import { CONTENU } from './chargement'
-import { formulesDe } from './texte'
+import { decouperTexte, formulesDe } from './texte'
 import type { Carte, Contenu, Exercice, Theme } from './types'
 import { textesDe, validerContenu } from './validation'
 import { carte, contenu, exercice } from '../repetition/outils-test'
@@ -106,6 +106,17 @@ describe('contenu de content/', () => {
       .flatMap(({ ou, texte }) => formulesDe(texte).map((f) => ({ ou, f: f.t })))
       .filter(({ f }) => /\\mathbb(?!\s*\{?[A-Z])|\^-[0-9A-Za-z]/.test(f))
       .map(({ ou, f }) => `${ou} : ${f}`)
+    expect(fautes).toEqual([])
+  })
+
+  it('n’a pas de notation LaTeX hors des formules', () => {
+    // « X^a − 1 » ou « \mathbb{R} » écrits hors de $…$ s'afficheraient tels quels.
+    const fautes = textesDe(tout)
+      .flatMap(({ ou, texte }) =>
+        decouperTexte(texte).flatMap((p) => (p.k === 'p' ? [p.morceaux] : p.k === 'liste' ? p.items : [])).flat().map((m) => ({ ou, m })),
+      )
+      .filter(({ m }) => m.k === 'texte' && /[\\^_{}]/.test(m.t))
+      .map(({ ou, m }) => `${ou} : ${m.k === 'texte' ? m.t : ''}`)
     expect(fautes).toEqual([])
   })
 })

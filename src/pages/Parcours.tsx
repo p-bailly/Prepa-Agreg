@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Volet } from '../composants/Blocs'
 import { Cadenas, Pastille } from '../composants/Icones'
+import { Texte } from '../composants/Texte'
 import { NIVEAUX, NOMS_NIVEAUX, rangNiveau, type Carte, type Chapitre, type Contenu } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 import type { Progression } from '../lib/progression'
@@ -166,7 +167,7 @@ export function Parcours({ surChapitre }: { surChapitre: (id: string) => void })
               {cadenas === ch.id && (
                 <div className="bloc petit" style={{ marginLeft: 58 }}>
                   À voir d’abord (au moins « en cours ») :{' '}
-                  {e.manquants.map((id) => cartesParId.get(id)?.titre ?? id).join(' ; ')}.
+                  <Texte texte={e.manquants.map((id) => cartesParId.get(id)?.titre ?? id).join(' ; ')} enLigne />.
                 </div>
               )}
             </li>

@@ -9,6 +9,9 @@ Contenu rédigé et contrôlé par une IA, **non relu par un humain** (méthode 
 
 ## Installer
 
+Version web : <https://p-bailly.github.io/Prepa-Agreg/> (republiée à chaque push sur la branche par défaut ; la progression
+reste dans le navigateur, export / import JSON dans les Réglages pour la transférer).
+
 APK : <https://github.com/p-bailly/Prepa-Agreg/releases/latest/download/prepa-agreg.apk>. Reconstruit par GitHub Actions
 à chaque push sur la branche par défaut, il s'installe par-dessus l'ancien et est suivi par
 [« Mes applis »](https://github.com/p-bailly/Managing-Apps).

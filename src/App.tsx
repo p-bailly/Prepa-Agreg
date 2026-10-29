@@ -81,6 +81,26 @@ function Navigation() {
     return () => retrait?.()
   }, [depiler])
 
+  // Même chose avec le bouton retour du navigateur (version web, GitHub Pages) : une entrée d'historique « sentinelle »
+  // est posée tant qu'on n'est pas sur l'accueil sans écran empilé ; la retirer (retour) fait reculer l'appli d'un cran.
+  const sentinelle = useRef(false)
+  useEffect(() => {
+    if (natif) return
+    const surRetour = () => {
+      sentinelle.current = false
+      const { pile: p, onglet: o } = etat.current
+      if (p.length) depiler()
+      else if (o !== 'accueil') setOnglet('accueil')
+    }
+    window.addEventListener('popstate', surRetour)
+    return () => window.removeEventListener('popstate', surRetour)
+  }, [depiler])
+  useEffect(() => {
+    if (natif || sentinelle.current || (!pile.length && onglet === 'accueil')) return
+    history.pushState(null, '')
+    sentinelle.current = true
+  }, [pile, onglet])
+
   const reviser = () => {
     setSeance(nouvelleSeance(construireSeance(d.contenu, d.progression, d.reglages, d.horloge(), d.aujourdhui()), d.horloge()))
     empiler({ k: 'seance' })
