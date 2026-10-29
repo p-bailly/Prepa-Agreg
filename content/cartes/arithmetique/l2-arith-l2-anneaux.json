@@ -1,0 +1,555 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l2-anneaux-ideaux",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Idéaux et anneaux quotients",
+      "recto": "Définir un idéal d'un anneau commutatif et énoncer la construction de l'anneau quotient $A/I$ avec ses propriétés.",
+      "cours": "Un idéal est la bonne notion de « partie par laquelle on peut quotienter » : pour que la multiplication des classes ne dépende pas des représentants, il faut que $xy-x'y'=x(y-y')+(x-x')y'$ soit dans $I$ dès que $x-x'$ et $y-y'$ y sont, ce qu'assure exactement l'absorption ($ax\\in I$ pour $a\\in A$ et $x\\in I$). L'exemple fondateur est $n\\mathbb{Z}$, idéal de $\\mathbb{Z}$, qui donne l'anneau $\\mathbb{Z}/n\\mathbb{Z}$ des congruences. Dans $\\mathbb{K}[X]$, l'idéal $(P)=P\\,\\mathbb{K}[X]$ des multiples de $P$ donne $\\mathbb{K}[X]/(P)$, où l'on calcule « modulo $P$ » : chaque classe a un unique représentant de degré $<\\deg P$, le reste de la division euclidienne par $P$.\n\nLe programme suppose les anneaux unitaires et définit les idéaux dans un anneau commutatif. Pour $a\\in A$, $aA=\\{ab : b\\in A\\}$ est l'idéal engendré par $a$ ; plus généralement $aA+bA$ est le plus petit idéal contenant $a$ et $b$. L'intersection et la somme de deux idéaux sont des idéaux ; leur réunion ne l'est pas en général.\n\n**Méthode.** Pour montrer que $I$ est un idéal : $0\\in I$, $x-y\\in I$ pour $x,y\\in I$, et $ax\\in I$ pour $a\\in A$ et $x\\in I$. Il est souvent plus rapide de reconnaître le noyau d'un morphisme d'anneaux, qui est toujours un idéal. Pour calculer dans $A/I$, on calcule dans $A$ puis on remplace le résultat par un représentant commode. Un idéal qui contient un élément inversible $u$ contient $u^{-1}u=1$, donc il est égal à $A$.\n\n**Pièges.** Un sous-anneau n'est pas un idéal : il contient $1$, donc un sous-anneau qui est un idéal est $A$ tout entier. Ainsi $\\mathbb{Z}$ est un sous-anneau de $\\mathbb{Q}$, et le quotient de $\\mathbb{Q}$ par $\\mathbb{Z}$ est un groupe, pas un anneau. Dans un anneau commutatif, la formule du binôme $(x+y)^n=\\sum_{k=0}^n\\binom nkx^ky^{n-k}$ s'applique ; dans un anneau quelconque, elle demande que $x$ et $y$ commutent.",
+      "hypotheses": [
+        "$A$ est un anneau commutatif.",
+        "$I$ est un sous-groupe de $(A,+)$.",
+        "$ax\\in I$ pour tous $a\\in A$ et $x\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$I$ est un sous-anneau de $A$ (à la place d'un idéal).",
+        "$I$ est un sous-groupe de $(A,+)$ stable par produit, c'est-à-dire $xy\\in I$ pour tous $x,y\\in I$ (à la place de $ax\\in I$ pour tous $a\\in A$ et $x\\in I$).",
+        "$0\\in I$ et $ax\\in I$ pour tous $a\\in A$ et $x\\in I$, sans que $I$ soit un sous-groupe de $(A,+)$."
+      ],
+      "enonce": "Soient $A$ un anneau commutatif et $I$ une partie de $A$. On dit que $I$ est un **idéal** de $A$ si $I$ est un sous-groupe de $(A,+)$ et si $ax\\in I$ pour tous $a\\in A$ et $x\\in I$.\n\n**Théorème.** Si $I$ est un idéal de $A$, la relation définie par « $x\\equiv y$ si et seulement si $x-y\\in I$ » est une relation d'équivalence sur $A$. Notons $\\overline x$ la classe de $x$ et $A/I$ l'ensemble des classes. Les opérations $\\overline x+\\overline y=\\overline{x+y}$ et $\\overline x\\,\\overline y=\\overline{xy}$ sont bien définies (elles ne dépendent pas des représentants choisis) et font de $A/I$ un anneau commutatif, de zéro $\\overline0=I$ et d'unité $\\overline1$. La projection $\\pi:A\\to A/I$, $x\\mapsto\\overline x$, est un morphisme d'anneaux surjectif de noyau $I$. Enfin, $A/I$ est l'anneau nul si et seulement si $1\\in I$, c'est-à-dire si et seulement si $I=A$.",
+      "enonce_trous": "Soient $A$ un anneau commutatif et $I$ {{1}} de $A$. Alors les opérations $\\overline x+\\overline y=\\overline{x+y}$ et $\\overline x\\,\\overline y=\\overline{xy}$ sont bien définies sur $A/I$ et en font un anneau commutatif ; la projection $\\pi:A\\to A/I$ est un morphisme d'anneaux surjectif de noyau {{2}}, et $A/I$ est l'anneau nul si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "un idéal",
+          "leurres": [
+            "un sous-anneau",
+            "un sous-groupe additif",
+            "une partie stable par addition et par multiplication"
+          ]
+        },
+        {
+          "reponse": "$I$",
+          "leurres": [
+            "$\\{0\\}$",
+            "$A$",
+            "$A/I$"
+          ]
+        },
+        {
+          "reponse": "$1\\in I$",
+          "leurres": [
+            "$0\\in I$",
+            "$I$ contient un élément non inversible",
+            "$A$ est un corps"
+          ]
+        }
+      ],
+      "demo": "**Relation d'équivalence.** $x-x=0\\in I$ ; si $x-y\\in I$, alors $y-x=-(x-y)\\in I$ ; si $x-y\\in I$ et $y-z\\in I$, alors $x-z=(x-y)+(y-z)\\in I$, car $I$ est un sous-groupe additif.\n\n**Opérations bien définies.** Soient $x\\equiv x'$ et $y\\equiv y'$. Alors $(x+y)-(x'+y')=(x-x')+(y-y')\\in I$, et\n$$xy-x'y'=x(y-y')+(x-x')y'\\in I,$$\ncar $x(y-y')\\in I$ et $(x-x')y'=y'(x-x')\\in I$ par absorption (et commutativité).\n\n**Structure d'anneau.** Les axiomes (associativités, commutativités, distributivité, neutres $\\overline0$ et $\\overline1$, opposé $\\overline{-x}$ de $\\overline x$) se vérifient sur des représentants : par exemple $\\overline x\\left(\\overline y+\\overline z\\right)=\\overline{x(y+z)}=\\overline{xy+xz}=\\overline x\\,\\overline y+\\overline x\\,\\overline z$. Par construction, $\\pi(x+y)=\\pi(x)+\\pi(y)$, $\\pi(xy)=\\pi(x)\\pi(y)$ et $\\pi(1)=\\overline1$ ; $\\pi$ est surjective, et $\\pi(x)=\\overline0$ si et seulement si $x-0\\in I$ : $\\ker\\pi=I$.\n\n**Anneau nul.** Si $1\\in I$, alors $a=a\\cdot1\\in I$ pour tout $a\\in A$, donc $I=A$, toutes les classes sont égales et $A/I=\\{\\overline0\\}$. Réciproquement, si $A/I$ est nul, $\\overline1=\\overline0$, c'est-à-dire $1\\in I$.",
+      "exemple": "Dans $A=\\mathbb{R}[X]/(X^2+1)$, notons $x$ la classe de $X$. Chaque classe s'écrit de façon unique $a+bx$ avec $a,b\\in\\mathbb{R}$ (reste de la division euclidienne par $X^2+1$), et $x^2=-1$ car $X^2-(-1)=X^2+1$ est dans l'idéal. Par exemple $(1+x)(2-3x)=2-3x+2x-3x^2=5-x$ : on calcule comme dans $\\mathbb{C}$, avec $x$ à la place de $i$.",
+      "contre_exemple": "- **Un sous-anneau ne suffit pas** : $\\mathbb{Z}$ est un sous-anneau de $\\mathbb{Q}$, et un sous-groupe stable par produit, mais la multiplication des classes modulo $\\mathbb{Z}$ n'est pas bien définie : $\\frac12\\equiv\\frac32$, alors que $\\frac12\\cdot\\frac12=\\frac14$ et $\\frac32\\cdot\\frac12=\\frac34$ diffèrent de $\\frac12\\notin\\mathbb{Z}$.\n- **Le sous-groupe additif est nécessaire** : $J=2\\mathbb{Z}\\cup3\\mathbb{Z}$ contient $0$ et vérifie $aJ\\subset J$ pour tout $a\\in\\mathbb{Z}$, mais la relation « $x-y\\in J$ » n'est pas transitive : $0-2\\in J$ et $2-5\\in J$, alors que $0-5=-5\\notin J$.",
+      "affirmations": [
+        {
+          "texte": "L'intersection de deux idéaux d'un anneau commutatif $A$ est un idéal de $A$.",
+          "vrai": true,
+          "justification": "Elle contient $0$, elle est stable par différence, et si $x\\in I\\cap J$ et $a\\in A$, alors $ax\\in I$ et $ax\\in J$."
+        },
+        {
+          "texte": "La réunion de deux idéaux d'un anneau commutatif $A$ est un idéal de $A$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{Z}$, $2\\mathbb{Z}\\cup3\\mathbb{Z}$ contient $2$ et $3$, mais pas $2+3=5$."
+        },
+        {
+          "texte": "Un idéal de $A$ qui contient un élément inversible est égal à $A$.",
+          "vrai": true,
+          "justification": "S'il contient $u$ inversible, il contient $u^{-1}u=1$, puis $a\\cdot1=a$ pour tout $a\\in A$."
+        },
+        {
+          "texte": "$\\mathbb{Z}$ est un idéal de $\\mathbb{Q}$.",
+          "vrai": false,
+          "contre_exemple": "$1\\in\\mathbb{Z}$ et $\\frac12\\in\\mathbb{Q}$, mais $\\frac12\\cdot1\\notin\\mathbb{Z}$. Le seul idéal de $\\mathbb{Q}$ qui contient $1$ est $\\mathbb{Q}$."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-equivalence",
+        "gr-l1-groupes-sous-groupes"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-isomorphisme",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Morphismes d'anneaux et théorème d'isomorphisme",
+      "recto": "Énoncer le théorème d'isomorphisme pour un morphisme d'anneaux $f:A\\to B$, avec ses hypothèses.",
+      "cours": "Un morphisme d'anneaux respecte l'addition, la multiplication et l'unité. Le théorème d'isomorphisme dit que **tout morphisme se factorise** en une projection sur un quotient suivie d'un isomorphisme : $f=\\iota\\circ\\overline f\\circ\\pi$, avec $\\pi:A\\to A/\\ker f$ la projection et $\\iota$ l'inclusion de $\\operatorname{Im}f$ dans $B$. Il sert surtout à **identifier un quotient** : pour comprendre $A/I$, on cherche un morphisme surjectif de $A$ vers un anneau connu dont le noyau est exactement $I$.\n\nExemples clés : la réduction $\\mathbb{Z}\\to\\mathbb{Z}/n\\mathbb{Z}$ ; l'évaluation $\\mathbb{R}[X]\\to\\mathbb{C}$, $P\\mapsto P(i)$, qui donne $\\mathbb{R}[X]/(X^2+1)\\simeq\\mathbb{C}$ ; le morphisme $\\mathbb{Z}\\to\\mathbb{Z}/m\\mathbb{Z}\\times\\mathbb{Z}/n\\mathbb{Z}$, de noyau $(m\\vee n)\\mathbb{Z}$, qui redonne le théorème chinois quand $m\\wedge n=1$.\n\n**Méthode.** (1) Définir $f$ et vérifier que c'est un morphisme (souvent une évaluation ou une réduction, qui en sont par construction). (2) Montrer la surjectivité, ou décrire l'image. (3) Calculer le noyau : l'inclusion $I\\subset\\ker f$ est en général immédiate, l'inclusion réciproque utilise une division euclidienne ou un argument de cardinal. (4) Conclure : $A/\\ker f\\simeq\\operatorname{Im}f$.\n\n**Pièges.** La condition $f(1_A)=1_B$ fait partie de la définition : $n\\mapsto(n,0)$, de $\\mathbb{Z}$ dans $\\mathbb{Z}^2$, respecte somme et produit, mais pas l'unité, et son image n'est pas un sous-anneau. Il n'existe pas toujours de morphisme entre deux anneaux donnés : il n'y en a aucun de $\\mathbb{Z}/n\\mathbb{Z}$ ($n\\ge1$) dans $\\mathbb{Z}$, car on aurait $0=f(\\overline n)=n\\,f(\\overline1)=n$. Enfin, un morphisme d'anneaux d'un corps vers un anneau non nul est toujours injectif : son noyau est un idéal du corps qui ne contient pas $1$, donc il est nul.",
+      "hypotheses": [
+        "$f(x+y)=f(x)+f(y)$ pour tous $x,y\\in A$.",
+        "$f(xy)=f(x)f(y)$ pour tous $x,y\\in A$.",
+        "$f(1_A)=1_B$."
+      ],
+      "hypotheses_pieges": [
+        "$f(x+y)=f(x)+f(y)$ et $f(xy)=f(x)f(y)$ pour tous $x,y\\in A$, sans exiger $f(1_A)=1_B$.",
+        "$f(x+y)=f(x)+f(y)$ pour tous $x,y\\in A$ et $f(1_A)=1_B$, sans exiger $f(xy)=f(x)f(y)$.",
+        "$f(xy)=f(x)f(y)$ pour tous $x,y\\in A$ et $f(1_A)=1_B$, sans exiger $f(x+y)=f(x)+f(y)$."
+      ],
+      "enonce": "Soient $A$ un anneau commutatif, $B$ un anneau et $f:A\\to B$ un **morphisme d'anneaux**, c'est-à-dire une application telle que $f(x+y)=f(x)+f(y)$ et $f(xy)=f(x)f(y)$ pour tous $x,y\\in A$, et $f(1_A)=1_B$. Alors :\n\n- le noyau $\\ker f=\\{x\\in A : f(x)=0\\}$ est un idéal de $A$, et $f$ est injective si et seulement si $\\ker f=\\{0\\}$ ;\n- l'image $\\operatorname{Im}f=f(A)$ est un sous-anneau de $B$ ;\n- l'application $\\overline f:A/\\ker f\\to\\operatorname{Im}f$, $\\overline x\\mapsto f(x)$, est bien définie, et c'est un isomorphisme d'anneaux : $A/\\ker f\\simeq\\operatorname{Im}f$.",
+      "enonce_trous": "Soit $f:A\\to B$ un morphisme d'anneaux, avec $A$ commutatif. Alors $\\ker f$ est {{1}} de $A$, $\\operatorname{Im}f$ est {{2}} de $B$, et $\\overline x\\mapsto f(x)$ est un isomorphisme d'anneaux de {{3}} sur $\\operatorname{Im}f$.",
+      "trous": [
+        {
+          "reponse": "un idéal",
+          "leurres": [
+            "un sous-anneau",
+            "un idéal non nul",
+            "un sous-corps"
+          ]
+        },
+        {
+          "reponse": "un sous-anneau",
+          "leurres": [
+            "un idéal",
+            "un sous-corps",
+            "un sous-anneau intègre"
+          ]
+        },
+        {
+          "reponse": "$A/\\ker f$",
+          "leurres": [
+            "$A$",
+            "$B/\\ker f$",
+            "$A/\\operatorname{Im}f$"
+          ]
+        }
+      ],
+      "demo": "**Noyau.** $f(0)=f(0+0)=2f(0)$ donne $f(0)=0$, puis $f(-x)=-f(x)$. Donc $\\ker f$ contient $0$ et est stable par différence ; si $x\\in\\ker f$ et $a\\in A$, $f(ax)=f(a)f(x)=0$ : c'est un idéal. Comme $f(x)=f(y)$ équivaut à $f(x-y)=0$, $f$ est injective si et seulement si $\\ker f=\\{0\\}$.\n\n**Image.** $1_B=f(1_A)\\in\\operatorname{Im}f$, et $f(x)-f(y)=f(x-y)$, $f(x)f(y)=f(xy)$ sont dans $\\operatorname{Im}f$ : c'est un sous-anneau de $B$.\n\n**Factorisation.** Si $\\overline x=\\overline{x'}$, alors $x-x'\\in\\ker f$, donc $f(x)=f(x')$ : $\\overline f$ est bien définie. C'est un morphisme d'anneaux, car $\\overline f\\left(\\overline x+\\overline y\\right)=f(x+y)=f(x)+f(y)$, $\\overline f\\left(\\overline x\\,\\overline y\\right)=f(xy)=f(x)f(y)$ et $\\overline f\\left(\\overline1\\right)=1_B$. Elle est surjective sur $\\operatorname{Im}f$ par définition, et injective : $\\overline f\\left(\\overline x\\right)=0$ signifie $x\\in\\ker f$, c'est-à-dire $\\overline x=\\overline0$. C'est donc un isomorphisme.",
+      "exemple": "L'évaluation $f:\\mathbb{R}[X]\\to\\mathbb{C}$, $P\\mapsto P(i)$, est un morphisme d'anneaux, surjectif car $f(a+bX)=a+bi$. Son noyau est $(X^2+1)$ : si $P(i)=0$, la division euclidienne $P=(X^2+1)Q+aX+b$, avec $a,b\\in\\mathbb{R}$, donne $ai+b=0$, donc $a=b=0$ et $X^2+1$ divise $P$ ; la réciproque est claire. Donc $\\mathbb{R}[X]/(X^2+1)\\simeq\\mathbb{C}$, la classe de $X$ correspondant à $i$.",
+      "contre_exemple": "- **Sans $f(1_A)=1_B$** : $g:\\mathbb{Z}\\to\\mathbb{Z}^2$, $n\\mapsto(n,0)$, respecte somme et produit, mais $g(1)=(1,0)\\neq(1,1)$, et $g(\\mathbb{Z})=\\mathbb{Z}\\times\\{0\\}$ n'est pas un sous-anneau de $\\mathbb{Z}^2$ (il ne contient pas $(1,1)$).\n- **Sans la multiplicativité** : $h:\\mathbb{Z}^2\\to\\mathbb{Z}$, $(a,b)\\mapsto2a-b$, est additive et $h(1,1)=1$, mais son noyau n'est pas un idéal : $(1,2)\\in\\ker h$, et $(1,0)\\cdot(1,2)=(1,0)\\notin\\ker h$.\n- **Sans l'additivité** : $n\\mapsto n^2$, de $\\mathbb{Z}$ dans $\\mathbb{Z}$, est multiplicative et envoie $1$ sur $1$, mais son image, l'ensemble des carrés, n'est pas un sous-anneau : $1+1=2$ n'est pas un carré.",
+      "affirmations": [
+        {
+          "texte": "Il existe un morphisme d'anneaux de $\\mathbb{Z}/6\\mathbb{Z}$ dans $\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "Un tel $f$ vérifierait $f(\\overline1)=1$, donc $0=f(\\overline0)=f(6\\cdot\\overline1)=6f(\\overline1)=6$ : c'est impossible."
+        },
+        {
+          "texte": "Un morphisme d'anneaux d'un corps $\\mathbb{K}$ vers un anneau non nul est injectif.",
+          "vrai": true,
+          "justification": "Son noyau est un idéal de $\\mathbb{K}$ ; il ne contient pas $1$, car $f(1)=1\\neq0$, donc il ne contient aucun élément non nul (qui serait inversible) : il est réduit à $\\{0\\}$."
+        },
+        {
+          "texte": "Pour tout anneau $B$, il existe un unique morphisme d'anneaux de $\\mathbb{Z}$ dans $B$.",
+          "vrai": true,
+          "justification": "C'est $k\\mapsto k\\cdot1_B$ : un morphisme envoie $1$ sur $1_B$, donc $k$ sur $k\\cdot1_B$ par additivité."
+        },
+        {
+          "texte": "L'image d'un morphisme d'anneaux $f:A\\to B$ est un idéal de $B$.",
+          "vrai": false,
+          "contre_exemple": "L'inclusion de $\\mathbb{Z}$ dans $\\mathbb{Q}$ est un morphisme d'anneaux, et $\\mathbb{Z}$ n'est pas un idéal de $\\mathbb{Q}$ ($\\frac12\\cdot1\\notin\\mathbb{Z}$)."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-ideaux",
+        "gr-l1-groupes-noyau"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-integres",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Anneaux intègres et corps des fractions",
+      "recto": "Définir un anneau intègre et énoncer la construction du corps des fractions avec sa propriété universelle.",
+      "cours": "Dans un anneau intègre, on peut simplifier : $ab=ac$ et $a\\neq0$ entraînent $b=c$, car $a(b-c)=0$. Les exemples de base sont $\\mathbb{Z}$, $\\mathbb{K}[X]$ pour un corps $\\mathbb{K}$, $\\mathbb{Z}[i]$, et plus généralement tout sous-anneau d'un corps. À l'inverse, $\\mathbb{Z}/6\\mathbb{Z}$ n'est pas intègre ($\\overline2\\cdot\\overline3=\\overline0$), ni $\\mathbb{Z}^2$ ($(1,0)(0,1)=(0,0)$). Pour $n\\ge2$, $\\mathbb{Z}/n\\mathbb{Z}$ est intègre si et seulement si $n$ est premier ; un anneau intègre **fini** est un corps (la multiplication par $a\\neq0$ est injective, donc bijective).\n\nLe corps des fractions généralise la construction de $\\mathbb{Q}$ à partir de $\\mathbb{Z}$ : $\\operatorname{Frac}(\\mathbb{Z})=\\mathbb{Q}$, $\\operatorname{Frac}(\\mathbb{K}[X])=\\mathbb{K}(X)$ (fractions rationnelles), $\\operatorname{Frac}(\\mathbb{Z}[i])\\simeq\\mathbb{Q}(i)=\\{a+bi : a,b\\in\\mathbb{Q}\\}$. La propriété universelle dit que c'est le **plus petit corps contenant $A$** : tout corps qui contient $A$ contient une copie de $\\operatorname{Frac}(A)$. Si $A$ est un sous-anneau d'un corps $L$, $\\operatorname{Frac}(A)$ s'identifie au sous-corps $\\left\\{ab^{-1} : a,b\\in A,\\ b\\neq0\\right\\}$ de $L$.\n\n**Méthode.** Pour montrer qu'un anneau est intègre, on le plonge dans un corps (un sous-anneau d'un corps est intègre) ou on raisonne sur un degré, une norme, une valuation. Pour identifier $\\operatorname{Frac}(A)$ à un sous-corps $K$ d'un corps $L$ contenant $A$, on vérifie que $K$ est un corps contenant $A$ et que tout élément de $K$ s'écrit $ab^{-1}$ avec $a,b\\in A$.\n\n**Pièges.** L'intégrité sert à deux endroits : la transitivité de la relation, et le fait que le dénominateur $bd$ d'une somme ou d'un produit soit encore non nul. Dans $\\mathbb{Z}/6\\mathbb{Z}$, le produit de « $\\frac12$ » par « $\\frac13$ » aurait un dénominateur nul. Par convention, l'anneau nul n'est pas intègre (et n'est pas un corps).",
+      "hypotheses": [
+        "$A$ est commutatif.",
+        "$A$ n'est pas réduit à $\\{0\\}$.",
+        "Pour tous $a,b\\in A$, $ab=0$ entraîne $a=0$ ou $b=0$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est commutatif et non nul, sans condition sur les produits nuls (à la place de : $ab=0$ entraîne $a=0$ ou $b=0$).",
+        "$A$ est commutatif, non nul, et aucun élément non nul de $A$ n'est nilpotent (à la place de : $ab=0$ entraîne $a=0$ ou $b=0$).",
+        "Pour tous $a,b\\in A$, $ab=0$ entraîne $a=0$ ou $b=0$, sans exiger que $A$ soit non nul."
+      ],
+      "enonce": "Un anneau commutatif $A$ est **intègre** s'il n'est pas réduit à $\\{0\\}$ et si, pour tous $a,b\\in A$, $ab=0$ entraîne $a=0$ ou $b=0$.\n\n**Théorème.** Soit $A$ un anneau intègre. Sur $A\\times(A\\setminus\\{0\\})$, la relation définie par $(a,b)\\sim(c,d)\\iff ad=bc$ est une relation d'équivalence ; on note $\\frac ab$ la classe de $(a,b)$ et $\\operatorname{Frac}(A)$ l'ensemble des classes. Les opérations\n$$\\frac ab+\\frac cd=\\frac{ad+bc}{bd},\\qquad\\frac ab\\cdot\\frac cd=\\frac{ac}{bd}$$\nsont bien définies et font de $\\operatorname{Frac}(A)$ un corps commutatif, le **corps des fractions** de $A$, et $a\\mapsto\\frac a1$ est un morphisme d'anneaux injectif de $A$ dans $\\operatorname{Frac}(A)$.\n\n**Propriété universelle.** Pour tout morphisme d'anneaux injectif $j$ de $A$ dans un corps commutatif $L$, il existe un unique morphisme d'anneaux $\\widehat j:\\operatorname{Frac}(A)\\to L$ tel que $\\widehat j\\left(\\frac a1\\right)=j(a)$ pour tout $a\\in A$, à savoir $\\widehat j\\left(\\frac ab\\right)=j(a)j(b)^{-1}$ ; il est injectif.",
+      "enonce_trous": "Soit $A$ un anneau intègre. Sur $A\\times(A\\setminus\\{0\\})$, la relation définie par {{1}} est une relation d'équivalence ; muni des opérations usuelles sur les fractions, l'ensemble des classes est {{2}}, et $a\\mapsto\\frac a1$ est un morphisme d'anneaux {{3}}.",
+      "trous": [
+        {
+          "reponse": "$(a,b)\\sim(c,d)\\iff ad=bc$",
+          "leurres": [
+            "$(a,b)\\sim(c,d)\\iff ac=bd$",
+            "$(a,b)\\sim(c,d)\\iff a+d=b+c$",
+            "$(a,b)\\sim(c,d)\\iff(a=c$ et $b=d)$"
+          ]
+        },
+        {
+          "reponse": "un corps commutatif",
+          "leurres": [
+            "un anneau intègre qui n'est jamais un corps",
+            "un anneau isomorphe à $A$",
+            "un corps fini"
+          ]
+        },
+        {
+          "reponse": "injectif",
+          "leurres": [
+            "surjectif",
+            "bijectif",
+            "nul"
+          ]
+        }
+      ],
+      "demo": "**Équivalence.** Réflexivité et symétrie sont immédiates (commutativité). Si $ad=bc$ et $cf=de$, avec $b,d,f\\neq0$, alors $adf=bcf=bde$, donc $d(af-be)=0$ ; comme $d\\neq0$ et $A$ est intègre, $af=be$.\n\n**Opérations.** Si $b,d\\neq0$, alors $bd\\neq0$ (intégrité), donc les fractions écrites ont un sens. Si $\\frac ab=\\frac{a'}{b'}$, c'est-à-dire $ab'=a'b$, alors $(ad+bc)b'd=(a'd+b'c)bd$ et $ac\\,b'd=a'c\\,bd$ : le résultat ne dépend pas du représentant de la première fraction, et de même pour la seconde.\n\n**Corps.** Les axiomes d'anneau commutatif se vérifient par calcul sur les représentants, avec $\\frac01$ pour zéro et $\\frac11$ pour unité ; $\\frac11\\neq\\frac01$ car $1\\neq0$. Si $\\frac ab\\neq\\frac01$, alors $a\\neq0$ et $\\frac ba$ est son inverse : $\\frac ab\\cdot\\frac ba=\\frac{ab}{ab}=\\frac11$.\n\n**Injection.** $a\\mapsto\\frac a1$ respecte somme, produit et unité, et $\\frac a1=\\frac01$ équivaut à $a=0$.\n\n**Propriété universelle.** Si $b\\neq0$, alors $j(b)\\neq0$ ($j$ injective), donc $j(b)$ est inversible dans $L$. Si $ab'=a'b$, alors $j(a)j(b')=j(a')j(b)$, d'où $j(a)j(b)^{-1}=j(a')j(b')^{-1}$ : $\\widehat j$ est bien définie, et c'est un morphisme par calcul direct. Unicité : un morphisme $\\psi$ qui prolonge $j$ vérifie $\\psi\\left(\\frac b1\\right)\\psi\\left(\\frac1b\\right)=\\psi\\left(\\frac11\\right)=1$, donc $\\psi\\left(\\frac ab\\right)=\\psi\\left(\\frac a1\\right)\\psi\\left(\\frac1b\\right)=j(a)j(b)^{-1}$. Enfin, un morphisme d'anneaux d'un corps vers un anneau non nul est injectif.",
+      "exemple": "$\\mathbb{Z}[\\sqrt2]=\\{a+b\\sqrt2 : a,b\\in\\mathbb{Z}\\}$ est un sous-anneau de $\\mathbb{R}$, donc il est intègre. Son corps des fractions s'identifie à $\\mathbb{Q}(\\sqrt2)=\\{r+s\\sqrt2 : r,s\\in\\mathbb{Q}\\}$. Ce dernier est un corps : pour $(r,s)\\neq(0,0)$, $r^2-2s^2\\neq0$ car $\\sqrt2$ est irrationnel, et $\\frac1{r+s\\sqrt2}=\\frac{r-s\\sqrt2}{r^2-2s^2}$. Et $r+s\\sqrt2=\\frac{a+b\\sqrt2}c$ en réduisant $r$ et $s$ au même dénominateur $c$. Par exemple $\\frac1{1+\\sqrt2}=\\frac{1-\\sqrt2}{1-2}=-1+\\sqrt2$.",
+      "contre_exemple": "- **Avec des diviseurs de zéro** : dans $\\mathbb{Z}/6\\mathbb{Z}$, $\\overline2\\neq\\overline0$ et $\\overline3\\neq\\overline0$, mais $\\overline2\\cdot\\overline3=\\overline0$ : le produit des fractions $\\frac{\\overline1}{\\overline2}$ et $\\frac{\\overline1}{\\overline3}$ aurait le dénominateur $\\overline0$. La relation n'est pas non plus transitive : $(\\overline0,\\overline1)\\sim(\\overline0,\\overline2)$ et $(\\overline0,\\overline2)\\sim(\\overline3,\\overline1)$ (car $\\overline0\\cdot\\overline1=\\overline2\\cdot\\overline3$), mais $(\\overline0,\\overline1)\\not\\sim(\\overline3,\\overline1)$.\n- **L'absence de nilpotent non nul ne suffit pas** : $\\mathbb{Z}/6\\mathbb{Z}$ n'a aucun élément nilpotent non nul, et n'est pas intègre.",
+      "affirmations": [
+        {
+          "texte": "Un sous-anneau d'un anneau intègre est intègre.",
+          "vrai": true,
+          "justification": "Il est commutatif, non nul (il contient $1\\neq0$), et un produit nul de deux de ses éléments l'est aussi dans le grand anneau."
+        },
+        {
+          "texte": "Le produit $\\mathbb{Z}\\times\\mathbb{Z}$ de deux anneaux intègres est intègre.",
+          "vrai": false,
+          "contre_exemple": "$(1,0)\\cdot(0,1)=(0,0)$, avec $(1,0)\\neq(0,0)$ et $(0,1)\\neq(0,0)$."
+        },
+        {
+          "texte": "Dans un anneau intègre, $ab=ac$ entraîne $b=c$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{Z}$, $0\\cdot1=0\\cdot2$ et $1\\neq2$ : la simplification exige $a\\neq0$."
+        },
+        {
+          "texte": "Un anneau intègre fini est un corps.",
+          "vrai": true,
+          "justification": "Pour $a\\neq0$, $x\\mapsto ax$ est injective (intégrité), donc bijective sur l'ensemble fini $A$ : il existe $b$ avec $ab=1$."
+        },
+        {
+          "texte": "Le corps des fractions de $\\mathbb{Z}[i]$ est isomorphe à $\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "Il s'identifie à $\\mathbb{Q}(i)=\\{a+bi : a,b\\in\\mathbb{Q}\\}$, qui est dénombrable, alors que $\\mathbb{C}$ ne l'est pas ; par exemple $\\sqrt2\\notin\\mathbb{Q}(i)$."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-isomorphisme",
+        "fond-l1-ensembles-equivalence"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-principaux",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Anneaux principaux : $\\mathbb{Z}$ et $\\mathbb{K}[X]$",
+      "recto": "Énoncer la description des idéaux de $\\mathbb{Z}$ et de $\\mathbb{K}[X]$, et le critère pour que $\\mathbb{Z}/n\\mathbb{Z}$ ou $\\mathbb{K}[X]/(P)$ soit un corps.",
+      "cours": "Dans $\\mathbb{Z}$ comme dans $\\mathbb{K}[X]$, tout repose sur la **division euclidienne** : le reste de la division d'un élément de $I$ par un élément « minimal » de $I$ est encore dans $I$ et plus petit, donc nul. On note $(a)=aA$ l'idéal engendré par $a$. Dans un anneau principal, $(a)+(b)=(d)$ où $d$ est un PGCD de $a$ et $b$, et $(a)\\cap(b)=(m)$ où $m$ est un PPCM : c'est l'origine des théorèmes de Bézout dans $\\mathbb{Z}$ et dans $\\mathbb{K}[X]$.\n\nUn polynôme $P$ est **irréductible** dans $\\mathbb{K}[X]$ s'il n'est pas constant et si ses seuls diviseurs sont les constantes non nulles et les $\\lambda P$, $\\lambda\\in\\mathbb{K}^*$. Le critère « $\\mathbb{K}[X]/(P)$ est un corps si et seulement si $P$ est irréductible » fabrique des corps : $\\mathbb{R}[X]/(X^2+1)\\simeq\\mathbb{C}$, $\\mathbb{Q}[X]/(X^3-2)$, ou encore $(\\mathbb{Z}/2\\mathbb{Z})[X]/(X^2+X+1)$, corps à $4$ éléments. Si $\\deg P=d$, chaque classe a un unique représentant de degré $<d$, et l'inverse de la classe d'un polynôme $A$ premier avec $P$ se calcule par une relation de Bézout $AU+PV=1$ : c'est la classe de $U$.\n\n**Méthode.** Pour trouver le générateur d'un idéal de $\\mathbb{K}[X]$, on cherche un polynôme unitaire de l'idéal qui divise tous les autres : un PGCD pour $(A)+(B)$, ou le produit $\\prod(X-a_k)$ pour les polynômes qui s'annulent en des points $a_k$ distincts. Pour reconnaître qu'un polynôme de degré $2$ ou $3$ est irréductible sur $\\mathbb{K}$, il suffit de vérifier qu'il n'a pas de racine dans $\\mathbb{K}$.\n\n**Pièges.** « Sans racine » ne suffit plus à partir du degré $4$ : $(X^2+1)^2$ n'a pas de racine réelle mais n'est pas irréductible, et $\\mathbb{R}[X]/\\left((X^2+1)^2\\right)$ n'est pas intègre. L'hypothèse « $\\mathbb{K}$ est un corps » est essentielle : $\\mathbb{Z}[X]$ n'est pas principal, l'idéal $(2)+(X)$ n'étant engendré par aucun polynôme.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps commutatif.",
+        "$I$ est un idéal de $\\mathbb{K}[X]$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est un anneau intègre (à la place d'un corps).",
+        "$I$ est un sous-groupe de $(\\mathbb{K}[X],+)$ (à la place d'un idéal).",
+        "$I$ est un sous-anneau de $\\mathbb{K}[X]$ (à la place d'un idéal)."
+      ],
+      "enonce": "Un anneau intègre $A$ est **principal** si tout idéal de $A$ est de la forme $aA$ pour un $a\\in A$. On note $(P)=P\\,\\mathbb{K}[X]$.\n\n**Théorème.** Soit $\\mathbb{K}$ un corps commutatif.\n\n- Tout idéal $I$ de $\\mathbb{Z}$ s'écrit $I=n\\mathbb{Z}$ pour un unique $n\\in\\mathbb{N}$ ; si $I\\neq\\{0\\}$, $n$ est le plus petit élément strictement positif de $I$.\n- Tout idéal $I$ de $\\mathbb{K}[X]$ s'écrit $I=P\\,\\mathbb{K}[X]$ pour un unique $P$ nul ou unitaire ; si $I\\neq\\{0\\}$, $P$ est l'unique polynôme unitaire de degré minimal dans $I$.\n- Ainsi $\\mathbb{Z}$ et $\\mathbb{K}[X]$ sont principaux. De plus, pour $n\\ge2$, $\\mathbb{Z}/n\\mathbb{Z}$ est un corps si et seulement si $n$ est premier ; pour $P\\in\\mathbb{K}[X]$ non constant, $\\mathbb{K}[X]/(P)$ est un corps si et seulement si $P$ est irréductible dans $\\mathbb{K}[X]$.",
+      "enonce_trous": "Soit $\\mathbb{K}$ un corps commutatif. Tout idéal $I\\neq\\{0\\}$ de $\\mathbb{K}[X]$ est égal à $P\\,\\mathbb{K}[X]$, où $P$ est {{1}}. Pour $P$ non constant, $\\mathbb{K}[X]/(P)$ est un corps si et seulement si {{2}}. Pour $n\\ge2$, $\\mathbb{Z}/n\\mathbb{Z}$ est un corps si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "l'unique polynôme unitaire de degré minimal dans $I$",
+          "leurres": [
+            "n'importe quel élément non nul de $I$",
+            "un élément irréductible de $I$",
+            "un élément de degré maximal de $I$"
+          ]
+        },
+        {
+          "reponse": "$P$ est irréductible",
+          "leurres": [
+            "$P$ est unitaire",
+            "$P$ n'a pas de racine dans $\\mathbb{K}$",
+            "$\\deg P\\le2$"
+          ]
+        },
+        {
+          "reponse": "$n$ est premier",
+          "leurres": [
+            "$n$ est impair",
+            "$n$ est sans facteur carré",
+            "$n$ est une puissance d'un nombre premier"
+          ]
+        }
+      ],
+      "demo": "**Idéaux de $\\mathbb{Z}$.** Si $I\\neq\\{0\\}$, il contient un élément strictement positif ($x$ ou $-x$) ; soit $n$ le plus petit. Alors $n\\mathbb{Z}\\subset I$, et pour $a\\in I$, $a=nq+r$ avec $0\\le r<n$ et $r=a-nq\\in I$, donc $r=0$ par minimalité : $I=n\\mathbb{Z}$. L'unicité de $n\\ge0$ vient de ce que $n\\mathbb{Z}=n'\\mathbb{Z}$ entraîne $n\\mid n'$ et $n'\\mid n$.\n\n**Idéaux de $\\mathbb{K}[X]$.** Si $I\\neq\\{0\\}$, soit $P_0\\in I$ non nul de degré minimal $d$ ; comme $\\mathbb{K}$ est un corps, en divisant $P_0$ par son coefficient dominant on obtient $P\\in I$ unitaire de degré $d$. Pour $A\\in I$, $A=PQ+R$ avec $\\deg R<d$ et $R=A-PQ\\in I$, donc $R=0$ : $I=P\\,\\mathbb{K}[X]$. Unicité : si $P\\,\\mathbb{K}[X]=P'\\,\\mathbb{K}[X]$ avec $P$ et $P'$ unitaires, $P\\mid P'$ et $P'\\mid P$, donc $P'=\\lambda P$ et $\\lambda=1$.\n\n**Critère de corps.** Soient $P$ irréductible et $A\\notin(P)$. Un diviseur commun de $A$ et $P$ est une constante non nulle ou un $\\lambda P$ ; or $P\\nmid A$, donc $A\\wedge P=1$, et Bézout donne $AU+PV=1$, soit $\\overline A\\,\\overline U=\\overline1$ : toute classe non nulle est inversible, et $\\overline1\\neq\\overline0$ car $\\deg P\\ge1$. Réciproquement, si $P=BC$ avec $1\\le\\deg B<\\deg P$ et $1\\le\\deg C<\\deg P$, alors $\\overline B\\neq\\overline0$, $\\overline C\\neq\\overline0$ et $\\overline B\\,\\overline C=\\overline0$ : le quotient n'est pas intègre, donc ce n'est pas un corps. Pour $\\mathbb{Z}/n\\mathbb{Z}$, même raisonnement, avec Bézout dans $\\mathbb{Z}$, et $n=ab$ avec $1<a,b<n$ si $n$ n'est pas premier.",
+      "exemple": "Dans $\\mathbb{Q}[X]/(X^3-2)$, qui est un corps car $X^3-2$ est de degré $3$ sans racine rationnelle, notons $x$ la classe de $X$. Comme $(X+1)(X^2-X+1)=X^3+1=(X^3-2)+3$, on a $(x+1)(x^2-x+1)=3$, donc $(x+1)^{-1}=\\frac{x^2-x+1}3$.",
+      "contre_exemple": "- **Si $\\mathbb{K}$ n'est pas un corps** : dans $\\mathbb{Z}[X]$, l'idéal $I=2\\mathbb{Z}[X]+X\\mathbb{Z}[X]$ n'est pas principal. Si $I=(P)$, alors $P$ divise $2$, donc $P$ est constant, $P\\in\\{\\pm1,\\pm2\\}$ ; $P$ divise $X$, donc $P=\\pm1$ ; ainsi $1\\in I$, $1=2A+XB$, et en évaluant en $0$, $1=2A(0)$, ce qui est impossible dans $\\mathbb{Z}$.\n- **Un sous-groupe ou un sous-anneau ne suffit pas** : $\\mathbb{K}$ (les polynômes constants) est un sous-anneau de $\\mathbb{K}[X]$, mais il n'est pas de la forme $P\\,\\mathbb{K}[X]$ : $\\{0\\}$ ne contient pas $1$, et si $P\\neq0$, $P\\,\\mathbb{K}[X]$ contient $XP$, de degré au moins $1$.\n- **« Sans racine » ne suffit pas** : $(X^2+1)^2$ n'a pas de racine réelle, mais dans $\\mathbb{R}[X]/\\left((X^2+1)^2\\right)$, la classe $u$ de $X^2+1$ est non nulle et $u^2=0$.",
+      "affirmations": [
+        {
+          "texte": "Un sous-anneau d'un anneau principal est principal.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}[X]$ est un sous-anneau de l'anneau principal $\\mathbb{Q}[X]$, et l'idéal $(2)+(X)$ de $\\mathbb{Z}[X]$ n'est pas principal."
+        },
+        {
+          "texte": "$\\mathbb{Q}[X]/(X^2-2)$ est un corps.",
+          "vrai": true,
+          "justification": "$X^2-2$ est de degré $2$ sans racine rationnelle ($\\sqrt2$ est irrationnel), donc irréductible sur $\\mathbb{Q}$."
+        },
+        {
+          "texte": "$\\mathbb{R}[X]/(X^2-1)$ est un corps.",
+          "vrai": false,
+          "contre_exemple": "Les classes $x-1$ et $x+1$ sont non nulles et $(x-1)(x+1)=x^2-1=0$ : le quotient n'est pas intègre."
+        },
+        {
+          "texte": "Dans $\\mathbb{K}[X]$, l'idéal des polynômes qui s'annulent en $a$ et en $b$, avec $a\\neq b$, est engendré par $(X-a)(X-b)$.",
+          "vrai": true,
+          "justification": "Si $P(a)=P(b)=0$, $X-a$ et $X-b$, premiers entre eux, divisent $P$, donc leur produit aussi ; la réciproque est claire."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-ideaux",
+        "arith-l2-anneaux-integres",
+        "gr-l1-groupes-sous-groupes-z",
+        "arith-l1-polynomes-division",
+        "arith-l1-polynomes-bezout",
+        "arith-l1-congruences-inversibles"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-gauss",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Entiers de Gauss et sommes de deux carrés",
+      "recto": "Énoncer les propriétés de l'anneau $\\mathbb{Z}[i]$ (norme, inversibles, division euclidienne) et le théorème des deux carrés.",
+      "cours": "$\\mathbb{Z}[i]$ est le prototype d'anneau principal autre que $\\mathbb{Z}$ et $\\mathbb{K}[X]$. La norme $N$ joue le rôle de la valeur absolue : elle est multiplicative, à valeurs dans $\\mathbb{N}$, et ne vaut $1$ que pour les inversibles. La division euclidienne se fait **en arrondissant** : on calcule $\\frac zw$ dans $\\mathbb{Q}(i)$ et on prend pour $q$ l'entier de Gauss le plus proche (parties réelle et imaginaire arrondies à l'entier le plus proche) ; le reste $r=z-qw$ vérifie $N(r)\\le\\frac{N(w)}2$. On en déduit, comme dans $\\mathbb{Z}$, que $\\mathbb{Z}[i]$ est principal.\n\nL'application arithmétique phare est le **théorème des deux carrés** (Fermat, Euler) : $a^2+b^2=(a+bi)(a-bi)$, donc un nombre premier $p$ est somme de deux carrés si et seulement s'il est le produit de deux entiers de Gauss non inversibles. Pour $p\\equiv1\\pmod4$, $-1$ est un carré modulo $p$ (par Wilson, $x=\\left(\\frac{p-1}2\\right)!$ vérifie $x^2\\equiv-1$), et $p$ divise $x^2+1=(x+i)(x-i)$ sans diviser aucun des deux facteurs. L'identité de Lagrange $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2$, qui n'est autre que $N(z)N(w)=N(zw)$, montre qu'un produit de sommes de deux carrés en est une.\n\n**Méthode.** Pour savoir si $n$ est somme de deux carrés, décomposer $n$ en facteurs premiers et regarder les exposants des premiers congrus à $3$ modulo $4$. Pour l'écrire explicitement, écrire chaque facteur ($2=1^2+1^2$, $p\\equiv1\\pmod4$ par essais, $q^2=q^2+0^2$) et multiplier les entiers de Gauss correspondants. Un entier de Gauss dont la norme est un nombre premier est irréductible.\n\n**Pièges.** La condition porte sur les **nombres premiers** : $21\\equiv1\\pmod4$ n'est pas somme de deux carrés ($21=3\\times7$). Le nombre $2=(1+i)(1-i)$ n'est pas irréductible dans $\\mathbb{Z}[i]$, alors que $3$ l'est. Le quotient de la division euclidienne n'est pas unique en général. Enfin, les anneaux de ce type ne sont pas tous principaux : dans $\\mathbb{Z}[i\\sqrt5]$, $6=2\\times3=(1+i\\sqrt5)(1-i\\sqrt5)$, et $2$ y est irréductible sans diviser aucun des deux derniers facteurs, ce qui est impossible dans un anneau principal.",
+      "hypotheses": [
+        "$p$ est un nombre premier.",
+        "$p\\equiv1\\pmod4$."
+      ],
+      "hypotheses_pieges": [
+        "$p\\equiv1\\pmod4$, sans exiger que $p$ soit premier.",
+        "$p$ est un nombre premier impair, sans condition modulo $4$.",
+        "$p$ est un nombre premier et $p\\equiv3\\pmod4$ (à la place de $p\\equiv1\\pmod4$)."
+      ],
+      "enonce": "Soit $\\mathbb{Z}[i]=\\{a+bi : a,b\\in\\mathbb{Z}\\}$, sous-anneau de $\\mathbb{C}$, muni de la norme $N(a+bi)=a^2+b^2=|a+bi|^2$.\n\n- $N(zw)=N(z)N(w)$ ; les inversibles de $\\mathbb{Z}[i]$ sont les éléments de norme $1$, c'est-à-dire $1$, $-1$, $i$ et $-i$.\n- **Division euclidienne** : pour $z,w\\in\\mathbb{Z}[i]$ avec $w\\neq0$, il existe $q,r\\in\\mathbb{Z}[i]$ tels que $z=qw+r$ et $N(r)\\le\\frac{N(w)}2<N(w)$. Par suite, $\\mathbb{Z}[i]$ est principal.\n- **Théorème des deux carrés** : un nombre premier impair $p$ est somme de deux carrés d'entiers si et seulement si $p\\equiv1\\pmod4$. Plus généralement, un entier $n\\ge1$ est somme de deux carrés si et seulement si tout nombre premier congru à $3$ modulo $4$ figure avec un exposant pair dans la décomposition de $n$ en facteurs premiers.",
+      "enonce_trous": "Un nombre premier impair $p$ est somme de deux carrés d'entiers si et seulement si {{1}}. Les inversibles de $\\mathbb{Z}[i]$ sont {{2}}. Un entier $n\\ge1$ est somme de deux carrés si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$p\\equiv1\\pmod4$",
+          "leurres": [
+            "$p\\equiv3\\pmod4$",
+            "$p\\equiv1\\pmod8$",
+            "$-1$ n'est pas un carré modulo $p$"
+          ]
+        },
+        {
+          "reponse": "$1$, $-1$, $i$ et $-i$",
+          "leurres": [
+            "$1$ et $-1$",
+            "tous les éléments non nuls",
+            "les éléments de norme au plus $2$"
+          ]
+        },
+        {
+          "reponse": "tout nombre premier congru à $3$ modulo $4$ figure avec un exposant pair dans sa décomposition",
+          "leurres": [
+            "aucun nombre premier congru à $3$ modulo $4$ ne divise $n$",
+            "tout facteur premier de $n$ est congru à $1$ modulo $4$",
+            "tout nombre premier congru à $1$ modulo $4$ figure avec un exposant pair dans sa décomposition"
+          ]
+        }
+      ],
+      "demo": "**Norme et inversibles.** $N(z)=z\\overline z$, donc $N(zw)=N(z)N(w)$. Si $uv=1$, alors $N(u)N(v)=1$ dans $\\mathbb{N}$, donc $N(u)=1$ ; réciproquement $a^2+b^2=1$ donne $\\pm1$ et $\\pm i$, qui sont inversibles.\n\n**Division.** Écrivons $\\frac zw=x+iy$ avec $x,y\\in\\mathbb{Q}$, et choisissons $m,n\\in\\mathbb{Z}$ avec $|x-m|\\le\\frac12$ et $|y-n|\\le\\frac12$. Pour $q=m+ni$ et $r=z-qw\\in\\mathbb{Z}[i]$ : $N(r)=\\left|\\frac zw-q\\right|^2N(w)\\le\\left(\\frac14+\\frac14\\right)N(w)$. Si $I\\neq\\{0\\}$ est un idéal, un élément $w\\in I$ non nul de norme minimale l'engendre : pour $z\\in I$, $r=z-qw\\in I$ et $N(r)<N(w)$ imposent $r=0$.\n\n**Deux carrés, condition nécessaire.** Un carré est congru à $0$ ou $1$ modulo $4$, donc $a^2+b^2\\not\\equiv3\\pmod4$.\n\n**Condition suffisante.** Soit $p\\equiv1\\pmod4$ et $x=\\left(\\frac{p-1}2\\right)!$. En associant $k$ et $p-k\\equiv-k$, le théorème de Wilson donne $-1\\equiv(p-1)!\\equiv(-1)^{\\frac{p-1}2}x^2=x^2\\pmod p$. Soit $d$ un générateur de l'idéal $p\\,\\mathbb{Z}[i]+(x+i)\\mathbb{Z}[i]$. Comme $d\\mid p$, $N(d)$ divise $N(p)=p^2$. Si $N(d)=1$, $d$ est inversible et $1=p\\alpha+(x+i)\\beta$ ; en multipliant par $x-i$, $x-i=p\\alpha(x-i)+(x^2+1)\\beta$ serait divisible par $p$, ce qui est faux car $\\frac{-1}p\\notin\\mathbb{Z}$. Si $N(d)=p^2$, alors $p=de$ avec $N(e)=1$, et $p$ diviserait $x+i$ : même contradiction. Donc $N(d)=p$ et, si $d=a+bi$, $p=a^2+b^2$.\n\n**Cas général.** Si chaque premier $q\\equiv3\\pmod4$ a un exposant pair, $n$ est un produit de facteurs $2=1^2+1^2$, de premiers $p\\equiv1\\pmod4$ et de carrés $q^2=q^2+0^2$ : c'est une somme de deux carrés, par multiplicativité de $N$. Réciproquement, si un premier $q\\equiv3\\pmod4$ divise $n=a^2+b^2$ avec $q\\nmid b$, alors $c\\equiv ab^{-1}\\pmod q$ vérifie $c^2\\equiv-1$, et le petit théorème de Fermat donne $1\\equiv c^{q-1}=\\left(c^2\\right)^{\\frac{q-1}2}\\equiv(-1)^{\\frac{q-1}2}=-1\\pmod q$, impossible. Donc $q\\mid b$, puis $q\\mid a$, et $\\frac n{q^2}=\\left(\\frac aq\\right)^2+\\left(\\frac bq\\right)^2$ ; une récurrence forte sur $n$ montre alors que l'exposant de $q$ dans $n$ est pair.",
+      "exemple": "$13=2^2+3^2=(2+3i)(2-3i)$ et $5=1^2+2^2=(1+2i)(1-2i)$, donc $65=N\\big((1+2i)(2+3i)\\big)=N(-4+7i)=4^2+7^2$, et aussi $65=N\\big((1+2i)(2-3i)\\big)=N(8+i)=8^2+1^2$. Division euclidienne de $z=7+5i$ par $w=2+i$ : $\\frac zw=\\frac{(7+5i)(2-i)}5=\\frac{19+3i}5=3{,}8+0{,}6i$, d'où $q=4+i$, $r=z-qw=7+5i-(7+6i)=-i$, et $N(r)=1\\le\\frac52$.",
+      "contre_exemple": "- **La primalité est nécessaire** : $21\\equiv1\\pmod4$, mais $21-0$, $21-1$, $21-4$, $21-9$ et $21-16$, soit $21$, $20$, $17$, $12$ et $5$, ne sont pas des carrés : $21$ n'est pas somme de deux carrés (le premier $3\\equiv3\\pmod4$ y a l'exposant $1$).\n- **La condition modulo $4$ est nécessaire** : $3$, $7$ et $11$ ne sont pas sommes de deux carrés.\n- **$2$ n'est pas irréductible dans $\\mathbb{Z}[i]$** : $2=(1+i)(1-i)$, et $N(1\\pm i)=2\\neq1$.",
+      "affirmations": [
+        {
+          "texte": "$3$ est irréductible dans $\\mathbb{Z}[i]$.",
+          "vrai": true,
+          "justification": "Si $3=zw$ avec $z$ et $w$ non inversibles, $N(z)N(w)=9$ impose $N(z)=3$, mais $3$ n'est pas somme de deux carrés."
+        },
+        {
+          "texte": "Tout entier naturel congru à $1$ modulo $4$ est somme de deux carrés.",
+          "vrai": false,
+          "contre_exemple": "$21\\equiv1\\pmod4$, et aucun des nombres $21$, $20$, $17$, $12$, $5$ n'est un carré : $21$ n'est pas somme de deux carrés."
+        },
+        {
+          "texte": "Le produit de deux entiers qui sont sommes de deux carrés est une somme de deux carrés.",
+          "vrai": true,
+          "justification": "$(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2$, c'est-à-dire $N(z)N(w)=N(zw)$."
+        },
+        {
+          "texte": "$5$ est irréductible dans $\\mathbb{Z}[i]$.",
+          "vrai": false,
+          "contre_exemple": "$5=(1+2i)(1-2i)$, et $N(1\\pm2i)=5\\neq1$ : aucun des deux facteurs n'est inversible."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-principaux",
+        "arith-l1-congruences-wilson",
+        "arith-t-fermat",
+        "arith-t-premiers-decomposition",
+        "geo-t-complexes-module"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-caracteristique",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "theoreme",
+      "titre": "Caractéristique et corps premier",
+      "recto": "Définir la caractéristique d'un anneau, dire ce qu'elle vaut pour un anneau intègre, décrire le corps premier d'un corps et le morphisme de Frobenius.",
+      "cours": "La caractéristique mesure l'image de $\\mathbb{Z}$ dans $A$ : par le théorème d'isomorphisme, $\\varphi(\\mathbb{Z})\\simeq\\mathbb{Z}/n\\mathbb{Z}$ (et $\\varphi(\\mathbb{Z})\\simeq\\mathbb{Z}$ si $n=0$). Exemples : $\\mathbb{Z}$, $\\mathbb{Q}$, $\\mathbb{R}$, $\\mathbb{C}$ sont de caractéristique $0$ ; $\\mathbb{Z}/n\\mathbb{Z}$ est de caractéristique $n$ ; pour $m,n\\ge1$, $\\mathbb{Z}/m\\mathbb{Z}\\times\\mathbb{Z}/n\\mathbb{Z}$ est de caractéristique $m\\vee n$.\n\nLe **corps premier** est le sous-corps engendré par $1$ : c'est l'image de $\\varphi$ en caractéristique $p$, et l'image du prolongement de $\\varphi$ à $\\mathbb{Q}$ en caractéristique nulle. Un corps fini $\\mathbb{K}$ est un espace vectoriel de dimension finie $d$ sur son corps premier $\\mathbb{Z}/p\\mathbb{Z}$, donc il a $p^d$ éléments : il n'existe pas de corps à $6$ ou à $10$ éléments. En caractéristique $p$, les coefficients $\\binom pk$, $0<k<p$, sont nuls : c'est le « rêve de l'étudiant » $(x+y)^p=x^p+y^p$, qui fait du Frobenius un morphisme.\n\n**Méthode.** Pour calculer la caractéristique, chercher le plus petit $k\\ge1$ tel que $k\\cdot1_A=0$ (pour un produit d'anneaux de caractéristiques non nulles, c'est leur PPCM). Pour développer $(x+y)^{p^k}$ en caractéristique $p$, itérer le Frobenius : $(x+y)^{p^k}=x^{p^k}+y^{p^k}$.\n\n**Pièges.** La réciproque du premier point est fausse : $\\mathbb{Z}/2\\mathbb{Z}\\times\\mathbb{Z}/2\\mathbb{Z}$ est de caractéristique $2$ sans être intègre. Un corps de caractéristique $p$ n'est pas forcément fini : le corps $(\\mathbb{Z}/p\\mathbb{Z})(X)$ des fractions rationnelles est infini, de caractéristique $p$, et son Frobenius n'est pas surjectif ($X$ n'est pas une puissance $p$-ième). La formule $(x+y)^p=x^p+y^p$ suppose que $x$ et $y$ commutent.",
+      "hypotheses": [
+        "$A$ n'est pas réduit à $\\{0\\}$.",
+        "Pour tous $a,b\\in A$, $ab=0$ entraîne $a=0$ ou $b=0$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est commutatif et non nul, sans condition sur les produits nuls.",
+        "$A$ est fini et non nul.",
+        "$A$ est non nul et n'a aucun élément nilpotent non nul (à la place de : $ab=0$ entraîne $a=0$ ou $b=0$)."
+      ],
+      "enonce": "Soit $A$ un anneau. L'application $\\varphi:\\mathbb{Z}\\to A$, $k\\mapsto k\\cdot1_A$, est l'unique morphisme d'anneaux de $\\mathbb{Z}$ dans $A$ ; son noyau est un idéal de $\\mathbb{Z}$, donc s'écrit $n\\mathbb{Z}$ pour un unique $n\\in\\mathbb{N}$, appelé **caractéristique** de $A$. Ainsi $n=0$ si $k\\cdot1_A\\neq0$ pour tout $k\\ge1$, et sinon $n$ est le plus petit entier $k\\ge1$ tel que $k\\cdot1_A=0$.\n\n- Si $A$ est intègre (en particulier si $A$ est un corps), sa caractéristique est $0$ ou un nombre premier.\n- Le **corps premier** d'un corps $\\mathbb{K}$, intersection de tous ses sous-corps, est le plus petit sous-corps de $\\mathbb{K}$ ; il est isomorphe à $\\mathbb{Q}$ si la caractéristique de $\\mathbb{K}$ est nulle, et à $\\mathbb{Z}/p\\mathbb{Z}$ si elle vaut $p$ premier.\n- Si $A$ est commutatif de caractéristique $p$ première, $F:x\\mapsto x^p$ est un morphisme d'anneaux, le **morphisme de Frobenius** : en particulier $(x+y)^p=x^p+y^p$. Il est injectif si $A$ est un corps, et bijectif si $A$ est un corps fini.",
+      "enonce_trous": "La caractéristique d'un anneau intègre est {{1}}. Le corps premier d'un corps de caractéristique nulle est isomorphe à {{2}}. Dans un anneau commutatif de caractéristique $p$ première, on a, pour tous $x$ et $y$, $(x+y)^p=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$0$ ou un nombre premier",
+          "leurres": [
+            "un nombre premier",
+            "$0$",
+            "un entier naturel non nul"
+          ]
+        },
+        {
+          "reponse": "$\\mathbb{Q}$",
+          "leurres": [
+            "$\\mathbb{Z}$",
+            "$\\mathbb{R}$",
+            "$\\mathbb{Z}/p\\mathbb{Z}$ pour un nombre premier $p$"
+          ]
+        },
+        {
+          "reponse": "$x^p+y^p$",
+          "leurres": [
+            "$x^p+y^p+(xy)^p$",
+            "$x^py^p$",
+            "$p\\left(x^p+y^p\\right)$"
+          ]
+        }
+      ],
+      "demo": "**Morphisme $\\varphi$.** Pour $k\\ge0$, $k\\cdot1_A=1_A+\\dots+1_A$ ($k$ termes) et $(-k)\\cdot1_A=-(k\\cdot1_A)$ ; on vérifie $\\varphi(k+l)=\\varphi(k)+\\varphi(l)$ et $\\varphi(kl)=\\varphi(k)\\varphi(l)$ par distributivité, et $\\varphi(1)=1_A$. Tout morphisme $\\psi$ de $\\mathbb{Z}$ dans $A$ vérifie $\\psi(1)=1_A$, donc $\\psi=\\varphi$ par additivité. Son noyau est un idéal de $\\mathbb{Z}$, donc de la forme $n\\mathbb{Z}$ avec $n\\in\\mathbb{N}$ unique.\n\n**Cas intègre.** Comme $1_A\\neq0$, $n\\neq1$. Si $n=ab$ avec $1<a,b<n$, alors $\\varphi(a)\\varphi(b)=\\varphi(n)=0$, donc $\\varphi(a)=0$ ou $\\varphi(b)=0$, ce qui contredit la minimalité de $n$. Donc $n=0$ ou $n$ est premier.\n\n**Corps premier.** Tout sous-corps contient $1$, donc $\\varphi(\\mathbb{Z})$. Si la caractéristique est un nombre premier $p$, $\\varphi(\\mathbb{Z})\\simeq\\mathbb{Z}/p\\mathbb{Z}$ est un corps : c'est le plus petit sous-corps. Si elle est nulle, $\\varphi$ est injectif et se prolonge, par la propriété universelle du corps des fractions, en un morphisme injectif $\\mathbb{Q}\\to\\mathbb{K}$, $\\frac ab\\mapsto\\varphi(a)\\varphi(b)^{-1}$ ; son image est un sous-corps isomorphe à $\\mathbb{Q}$, contenu dans tout sous-corps (qui contient les $\\varphi(a)$ et leurs inverses).\n\n**Frobenius.** Pour $0<k<p$, $k\\binom pk=p\\binom{p-1}{k-1}$ et $p\\nmid k$, donc $p$ divise $\\binom pk$ (lemme d'Euclide), et $\\binom pk\\cdot1_A=0$. La formule du binôme, valable car $A$ est commutatif, donne $(x+y)^p=x^p+y^p$ ; de plus $(xy)^p=x^py^p$ et $1^p=1$. Si $A$ est un corps, $\\ker F=\\{0\\}$, car $x^p=0$ entraîne $x=0$ ; si $A$ est un corps fini, $F$, injective de $A$ dans $A$, est bijective.",
+      "exemple": "$\\mathbb{Z}/4\\mathbb{Z}\\times\\mathbb{Z}/6\\mathbb{Z}$ est de caractéristique $12$ : $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ est nul si et seulement si $4\\mid k$ et $6\\mid k$, c'est-à-dire si et seulement si $12\\mid k$. Dans $(\\mathbb{Z}/3\\mathbb{Z})[X]$, $(X+1)^9=\\left((X+1)^3\\right)^3=\\left(X^3+1\\right)^3=X^9+1$.",
+      "contre_exemple": "- **Sans intégrité** : $\\mathbb{Z}/6\\mathbb{Z}$ est commutatif, non nul et sans élément nilpotent non nul, mais de caractéristique $6$ ; $\\mathbb{Z}/4\\mathbb{Z}$ est fini, de caractéristique $4$.\n- **La réciproque est fausse** : $\\mathbb{Z}/2\\mathbb{Z}\\times\\mathbb{Z}/2\\mathbb{Z}$ est de caractéristique $2$, et $\\left(\\overline1,\\overline0\\right)\\left(\\overline0,\\overline1\\right)=\\left(\\overline0,\\overline0\\right)$.\n- **Frobenius non surjectif** : dans $\\mathbb{K}=(\\mathbb{Z}/2\\mathbb{Z})(X)$, si $X=\\left(\\frac AB\\right)^2$ avec $A,B$ polynômes et $B\\neq0$, alors $XB^2=A^2$, et les degrés $1+2\\deg B$ et $2\\deg A$ n'ont pas la même parité.",
+      "affirmations": [
+        {
+          "texte": "Le cardinal d'un corps fini est une puissance de sa caractéristique.",
+          "vrai": true,
+          "justification": "Un corps fini $\\mathbb{K}$ est de caractéristique un nombre premier $p$, et c'est un espace vectoriel de dimension finie $d$ sur son corps premier à $p$ éléments : $|\\mathbb{K}|=p^d$."
+        },
+        {
+          "texte": "Un anneau de caractéristique première est intègre.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}/2\\mathbb{Z}\\times\\mathbb{Z}/2\\mathbb{Z}$ est de caractéristique $2$, et $\\left(\\overline1,\\overline0\\right)\\left(\\overline0,\\overline1\\right)=\\left(\\overline0,\\overline0\\right)$."
+        },
+        {
+          "texte": "Un corps infini est de caractéristique nulle.",
+          "vrai": false,
+          "contre_exemple": "Le corps $(\\mathbb{Z}/2\\mathbb{Z})(X)$ des fractions rationnelles à coefficients dans $\\mathbb{Z}/2\\mathbb{Z}$ est infini (il contient les $X^k$) et de caractéristique $2$."
+        },
+        {
+          "texte": "Un corps de caractéristique nulle est infini.",
+          "vrai": true,
+          "justification": "Son corps premier est isomorphe à $\\mathbb{Q}$, qui est infini."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-integres",
+        "arith-l2-anneaux-principaux",
+        "proba-t-binomiale-pascal",
+        "arith-t-premiers-euclide"
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-anneaux",
+      "type": "methode",
+      "titre": "Applications : calendriers, codage et cryptographie",
+      "recto": "Énoncer et justifier le principe du chiffrement affine et du chiffrement RSA dans $\\mathbb{Z}/n\\mathbb{Z}$, et dire comment on traite un problème de calendrier.",
+      "cours": "Ces applications illustrent le calcul dans $\\mathbb{Z}/n\\mathbb{Z}$ ; le programme les cite expressément : problèmes de calendriers, exemples de méthodes de codage et de cryptage.\n\n**Calendriers.** Une année non bissextile compte $365=52\\times7+1$ jours, une année bissextile $366\\equiv2\\pmod7$ : d'une année à l'autre, une même date avance d'un jour de la semaine, ou de deux si un $29$ février est franchi. Dans le calendrier grégorien, une année est bissextile si elle est divisible par $4$, sauf si elle est divisible par $100$ sans l'être par $400$. Les cycles combinés (jours de la semaine et quantièmes du mois, cycles de $19$ ans de la lune…) se traitent par le théorème chinois.\n\n**Codes détecteurs d'erreurs.** Une clé de contrôle est une congruence imposée aux chiffres d'un numéro. Pour l'ISBN à $10$ chiffres $a_1\\dots a_{10}$, on impose $\\sum_{k=1}^{10}ka_k\\equiv0\\pmod{11}$ (avec $a_{10}=10$ noté X) : comme $11$ est premier, une erreur sur un chiffre, ou l'échange de deux chiffres distincts, change la somme modulo $11$ et est détectée.\n\n**Cryptographie.** Le chiffrement affine ($x\\mapsto ax+b$ sur les $26$ lettres numérotées de $0$ à $25$) n'a qu'un intérêt pédagogique : deux couples (clair, chiffré) suffisent en général à retrouver $a$ et $b$. Dans RSA, la clé publique est $(n,e)$ et la clé secrète est $d$ ; calculer $d$ demande de connaître $(p-1)(q-1)$, ce qui revient à factoriser $n$ : connaître $n$ et $m=(p-1)(q-1)$ donne $p+q=n-m+1$, puis $p$ et $q$ comme racines de $X^2-(p+q)X+n$.\n\n**Méthode.** Calendrier : compter les jours écoulés et réduire modulo $7$. Chiffrement affine : vérifier que $a\\wedge n=1$ et calculer l'inverse $a'$ par l'algorithme d'Euclide étendu. RSA : trouver $d$ comme inverse de $e$ modulo $(p-1)(q-1)$ par Euclide étendu, puis calculer les puissances modulo $n$ par exponentiation rapide, ou modulo $p$ et modulo $q$ séparément avant de recoller par le théorème chinois.\n\n**Pièges.** RSA vaut pour **tout** $x$, même non premier avec $n$, mais le théorème d'Euler seul ne couvre que le cas $x\\wedge n=1$ : le cas général passe par le petit théorème de Fermat modulo $p$ et modulo $q$. Il faut $p\\neq q$ : modulo $p^2$, l'élément $p$ n'est pas retrouvé. Pour le chiffrement affine, $a$ doit être inversible modulo $n$ : $x\\mapsto2x+1$ n'est pas injective modulo $26$.",
+      "hypotheses": [
+        "$p$ et $q$ sont deux nombres premiers distincts.",
+        "$ed\\equiv1\\pmod{(p-1)(q-1)}$."
+      ],
+      "hypotheses_pieges": [
+        "$p=q$ est un nombre premier (à la place de deux nombres premiers distincts).",
+        "$p$ et $q$ sont premiers entre eux, sans être forcément des nombres premiers.",
+        "$ed\\equiv1\\pmod n$ (à la place de $ed\\equiv1\\pmod{(p-1)(q-1)}$)."
+      ],
+      "enonce": "**Calendriers.** Si une date tombe le jour $j$ de la semaine (jours numérotés modulo $7$), la date située $N$ jours plus tard tombe le jour $j+N$ modulo $7$. Si un phénomène revient tous les $m$ jours et un autre tous les $n$ jours, avec $m\\wedge n=1$, un jour dont on connaît la position $a$ dans le premier cycle et la position $b$ dans le second est déterminé modulo $mn$ (théorème chinois).\n\n**Chiffrement affine.** Soient $n\\ge2$ et $a,b\\in\\mathbb{Z}$. L'application $x\\mapsto ax+b$ de $\\mathbb{Z}/n\\mathbb{Z}$ dans lui-même est bijective si et seulement si $a\\wedge n=1$ ; sa réciproque est alors $y\\mapsto a'(y-b)$, où $a'$ est un inverse de $a$ modulo $n$.\n\n**Chiffrement RSA.** Soient $p$ et $q$ deux nombres premiers distincts, $n=pq$, et $e,d\\ge1$ deux entiers tels que $ed\\equiv1\\pmod{(p-1)(q-1)}$. Alors $x^{ed}\\equiv x\\pmod n$ pour tout $x\\in\\mathbb{Z}$ : sur $\\mathbb{Z}/n\\mathbb{Z}$, le déchiffrement $y\\mapsto y^d$ est la réciproque du chiffrement $x\\mapsto x^e$.",
+      "enonce_trous": "Soient $p$ et $q$ {{1}}, $n=pq$, et $e,d\\ge1$ deux entiers tels que {{2}}. Alors {{3}} pour tout $x\\in\\mathbb{Z}$.",
+      "trous": [
+        {
+          "reponse": "deux nombres premiers distincts",
+          "leurres": [
+            "deux entiers premiers entre eux",
+            "deux nombres premiers",
+            "deux entiers impairs distincts"
+          ]
+        },
+        {
+          "reponse": "$ed\\equiv1\\pmod{(p-1)(q-1)}$",
+          "leurres": [
+            "$ed\\equiv1\\pmod n$",
+            "$ed\\equiv1\\pmod{p+q}$",
+            "$ed\\equiv1\\pmod{p-1}$"
+          ]
+        },
+        {
+          "reponse": "$x^{ed}\\equiv x\\pmod n$",
+          "leurres": [
+            "$x^e\\equiv x^d\\pmod n$",
+            "$x^e\\equiv x\\pmod n$",
+            "$x^{ed}\\equiv1\\pmod n$"
+          ]
+        }
+      ],
+      "demo": "**Calendriers.** La première affirmation est la définition du calcul modulo $7$. Pour la seconde, le système $x\\equiv a\\pmod m$, $x\\equiv b\\pmod n$ a une unique solution modulo $mn$ (lemme chinois).\n\n**Chiffrement affine.** $x\\mapsto ax+b$ est bijective si et seulement si $x\\mapsto ax$ l'est (on compose avec la translation $y\\mapsto y+b$, bijective). Si $a\\wedge n=1$, $a$ a un inverse $a'$ modulo $n$, et $y\\mapsto a'(y-b)$ est la réciproque : $a'(ax+b-b)=x$ et $a\\,a'(y-b)+b=y$. Si $d=a\\wedge n>1$, alors $a\\cdot\\frac nd=n\\cdot\\frac ad\\equiv0\\pmod n$, alors que $\\frac nd\\not\\equiv0\\pmod n$ : les classes de $0$ et de $\\frac nd$ ont la même image, donc $x\\mapsto ax$ n'est pas injective.\n\n**RSA.** Écrivons $ed=1+k(p-1)(q-1)$ avec $k\\in\\mathbb{N}$ (car $ed\\ge1$). Montrons que $x^{ed}\\equiv x\\pmod p$. Si $p\\mid x$, les deux membres sont nuls modulo $p$. Sinon, le petit théorème de Fermat donne $x^{p-1}\\equiv1\\pmod p$, donc $x^{ed}=x\\cdot\\left(x^{p-1}\\right)^{k(q-1)}\\equiv x\\pmod p$. De même modulo $q$. Ainsi $p$ et $q$, premiers distincts donc premiers entre eux, divisent $x^{ed}-x$, donc $pq$ aussi (lemme de Gauss) : $x^{ed}\\equiv x\\pmod n$. Enfin $\\left(x^e\\right)^d=x^{ed}$ et $\\left(y^d\\right)^e=y^{ed}$ : les applications $x\\mapsto x^e$ et $y\\mapsto y^d$ de $\\mathbb{Z}/n\\mathbb{Z}$ dans lui-même sont réciproques l'une de l'autre.",
+      "exemple": "RSA avec $p=5$ et $q=11$ : $n=55$ et $(p-1)(q-1)=40$. Pour $e=3$, l'inverse de $3$ modulo $40$ est $d=27$, car $3\\times27=81=2\\times40+1$. Le message $x=7$ est chiffré en $7^3=343\\equiv13\\pmod{55}$, et $13^{27}\\equiv7\\pmod{55}$ le redonne. Calendrier : le $1^{\\text{er}}$ janvier 2027 est un vendredi ; 2028 étant bissextile, le $1^{\\text{er}}$ janvier 2030 vient $365+366+365=1096=156\\times7+4$ jours plus tard : c'est un mardi.",
+      "contre_exemple": "- **$p\\neq q$ est nécessaire** : pour $p=q=3$, $n=9$, $(p-1)(q-1)=4$ et $e=d=3$ ($ed=9\\equiv1\\pmod4$), on a $3^9\\equiv0\\not\\equiv3\\pmod9$.\n- **La primalité de $p$ et $q$ est nécessaire** : pour $p=9$ et $q=5$, premiers entre eux, $n=45$, $(p-1)(q-1)=32$, $e=3$ et $d=11$ ($33\\equiv1\\pmod{32}$), on a $2^{33}\\equiv17\\not\\equiv2\\pmod{45}$.\n- **Le module est $(p-1)(q-1)$, pas $n$** : pour $p=3$, $q=5$, $e=2$ et $d=8$ ($16\\equiv1\\pmod{15}$), $2^{16}=65536\\equiv1\\not\\equiv2\\pmod{15}$.\n- **Chiffrement affine** : modulo $26$, $x\\mapsto2x+1$ envoie $0$ et $13$ sur $1$.",
+      "affirmations": [
+        {
+          "texte": "Le chiffrement $x\\mapsto4x+3$ sur $\\mathbb{Z}/26\\mathbb{Z}$ est bijectif.",
+          "vrai": false,
+          "contre_exemple": "$4\\wedge26=2$ : les classes de $0$ et de $13$ ont la même image, car $4\\times13+3=55\\equiv3\\pmod{26}$."
+        },
+        {
+          "texte": "Si le $1^{\\text{er}}$ mars d'une année est un lundi, le $1^{\\text{er}}$ mars de l'année suivante est un mardi ou un mercredi.",
+          "vrai": true,
+          "justification": "Entre les deux dates il y a $365\\equiv1$ ou $366\\equiv2$ jours modulo $7$, selon que le $29$ février de l'année suivante existe ou non."
+        },
+        {
+          "texte": "Dans RSA, $x^{ed}\\equiv x\\pmod n$ n'est vrai que pour les $x$ premiers avec $n$.",
+          "vrai": false,
+          "contre_exemple": "Pour $p=5$, $q=11$, $e=3$, $d=27$ et $x=5$, non premier avec $55$ : $5^{81}\\equiv5\\pmod{55}$. Le théorème vaut pour tout $x$."
+        },
+        {
+          "texte": "Connaître $n=pq$ et $(p-1)(q-1)$ permet de calculer $p$ et $q$.",
+          "vrai": true,
+          "justification": "On obtient $p+q=n-(p-1)(q-1)+1$, puis $p$ et $q$ comme racines de $X^2-(p+q)X+n$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-chinois",
+        "arith-l1-congruences-inversibles",
+        "arith-t-fermat",
+        "arith-t-gauss"
+      ]
+    }
+  ]
+}
