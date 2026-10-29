@@ -83,7 +83,7 @@ function Deroule({
       <main className="ecran">
         <div className="barre-haut">
           <button className="retour" onClick={surRetour}>
-            ← Retour à la carte
+            ← Retour
           </button>
           <span className="avancement">Difficulté {exercice.difficulte} / 5</span>
         </div>

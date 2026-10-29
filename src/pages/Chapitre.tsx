@@ -1,71 +1,144 @@
-// Cartes d'un chapitre, avec leur état ; toucher une carte l'ouvre en révision libre.
-import { NOMS_NIVEAUX } from '../contenu/types'
-import { Pastille } from '../composants/Icones'
+// Chapitre : en tête son numéro, son thème et son niveau, puis trois onglets. Notions : introduction du chapitre et
+// notions numérotées (chacune ouvre son cours et ses exercices). Exercices : tous les exercices du chapitre, les
+// exercices (difficulté 1 à 3) puis les problèmes (4 et 5). QCM : questions tirées du chapitre, meilleur résultat.
+import { useMemo, useState } from 'react'
+import { avancementNotion, chapitresNumerotes, meilleurQcm, notionsDe } from '../chapitres/plan'
+import { questionsChapitre } from '../chapitres/qcm'
+import { BandeauDoute, Segments, Volet } from '../composants/Blocs'
+import { Ligne, LigneExercice, NOMS_AVANCEMENT } from '../composants/Lignes'
 import { Texte } from '../composants/Texte'
+import { NOMS_NIVEAUX, type Exercice } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
-import { etatAffiche, prerequisManquants, sousLeDepart } from '../repetition/etat'
+import { etatExercice } from '../exercices/niveaux'
 
-const SYMBOLES = { neuve: 'vide', 'en-cours': 'moitie', acquise: 'plein' } as const
-const NOMS = { neuve: 'neuve', 'en-cours': 'en cours', acquise: 'acquise' } as const
+type Onglet = 'notions' | 'exercices' | 'qcm'
+
+const NOMS_TYPES = { theoreme: 'Théorème', definition: 'Définition', methode: 'Méthode' } as const
 
 export function Chapitre({
   id,
-  surCarte,
-  surLecon,
+  surNotion,
+  surExercice,
+  surQcm,
   surRetour,
 }: {
   id: string
-  surCarte: (id: string) => void
-  surLecon: (chapitre: string, cartes: string[]) => void
+  surNotion: (id: string) => void
+  surExercice: (id: string) => void
+  surQcm: () => void
   surRetour: () => void
 }) {
-  const { contenu, progression, reglages, cartesParId } = useDonnees()
-  const theme = contenu.themes.find((t) => t.chapitres.some((c) => c.id === id))
-  const ch = theme?.chapitres.find((c) => c.id === id)
-  const cartes = contenu.cartes.filter((k) => k.chapitre === id)
+  const { contenu, progression, exercicesParCarte } = useDonnees()
+  const [onglet, setOnglet] = useState<Onglet>('notions')
+  const entree = useMemo(() => chapitresNumerotes(contenu).find((x) => x.chapitre.id === id), [contenu, id])
+  const notions = useMemo(() => notionsDe(contenu, id), [contenu, id])
+  const nbQuestions = useMemo(() => questionsChapitre(contenu, id).length, [contenu, id])
+  if (!entree) return null
+  const { numero, chapitre, theme } = entree
+  const intro = contenu.lecons?.find((l) => l.chapitre === id)
+  const numeroNotion = new Map(notions.map((k, i) => [k.id, `${numero}.${i + 1}`]))
+  const exercices = notions.flatMap((k) => exercicesParCarte.get(k.id) ?? [])
+  const parDifficulte = (l: Exercice[]) => [...l].sort((a, b) => a.difficulte - b.difficulte)
+  const qcm = meilleurQcm(progression, id)
+  const faits = progression.qcm[id] ?? []
+
+  const listeExercices = (l: Exercice[]) => (
+    <ul className="liste">
+      {parDifficulte(l).map((e) => (
+        <li key={e.id}>
+          <LigneExercice exercice={e} etat={etatExercice(progression.exercices[e.id])} avant={`Notion ${numeroNotion.get(e.carte)}`} surExercice={surExercice} />
+        </li>
+      ))}
+    </ul>
+  )
+
   return (
     <main className="ecran">
       <button className="retour" onClick={surRetour}>
         ← Retour
       </button>
-      <h1 className="titre-ecran">{ch?.titre}</h1>
-      <span className="etiquette">
-        {theme?.titre} · {ch ? NOMS_NIVEAUX[ch.niveau] : ''}
+      <span className="sur-titre-ecran">
+        Chapitre {numero} · {theme.titre} · {NOMS_NIVEAUX[chapitre.niveau]}
       </span>
-      {cartes.length > 0 && (
-        <button className="bouton" style={{ marginBottom: 14 }} onClick={() => surLecon(id, cartes.map((k) => k.id))}>
-          {cartes.some((k) => etatAffiche(k, progression, reglages) === 'neuve') ? 'Apprendre la leçon' : 'Relire la leçon'}
-        </button>
+      <h1 className="titre-ecran">{chapitre.titre}</h1>
+      <Segments
+        options={[
+          { id: 'notions', nom: 'Notions' },
+          { id: 'exercices', nom: 'Exercices' },
+          { id: 'qcm', nom: 'QCM' },
+        ]}
+        valeur={onglet}
+        surChange={setOnglet}
+      />
+
+      {onglet === 'notions' && (
+        <>
+          {intro && (
+            <Volet titre="Introduction du chapitre">
+              <div style={{ paddingTop: 12 }}>
+                <BandeauDoute doute={intro.doute} />
+                <Texte texte={intro.introduction} />
+              </div>
+            </Volet>
+          )}
+          <ul className="liste bloc-liste">
+            {notions.map((k) => {
+              const ex = exercicesParCarte.get(k.id) ?? []
+              const a = avancementNotion(k, ex, progression)
+              return (
+                <li key={k.id}>
+                  <Ligne
+                    avancement={a}
+                    numero={numeroNotion.get(k.id)}
+                    titre={k.titre}
+                    dessous={`${NOMS_TYPES[k.type]} · cours et ${ex.length} exercice${ex.length > 1 ? 's' : ''} · ${NOMS_AVANCEMENT[a]}`}
+                    surClic={() => surNotion(k.id)}
+                  />
+                </li>
+              )
+            })}
+          </ul>
+          {chapitre.notions.length > notions.length && (
+            <p className="petit doux">
+              {notions.length} notions rédigées sur {chapitre.notions.length} prévues.
+            </p>
+          )}
+        </>
       )}
-      <ul className="liste-cartes">
-        {cartes.map((k) => {
-          const e = etatAffiche(k, progression, reglages)
-          const manquants = e === 'neuve' && !sousLeDepart(k, reglages) ? prerequisManquants(k, cartesParId, progression, reglages) : []
-          return (
-            <li key={k.id}>
-              <button className="bouton" style={{ justifyContent: 'flex-start', textAlign: 'left' }} onClick={() => surCarte(k.id)}>
-                <Pastille etat={SYMBOLES[e]} />
-                <span>
-                  <Texte texte={k.titre} enLigne />
-                  <span className="petit doux" style={{ display: 'block' }}>
-                    {NOMS[e]}
-                    {manquants.length > 0 && (
-                      <>
-                        {' · d’abord : '}
-                        <Texte texte={manquants.map((m) => cartesParId.get(m)?.titre ?? m).join(', ')} enLigne />
-                      </>
-                    )}
-                  </span>
-                </span>
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-      <p className="petit doux">
-        La leçon présente chaque notion avant qu’elle entre en révision. Une carte ouverte ici est révisée hors séance : la
-        notation compte comme une révision.
-      </p>
+
+      {onglet === 'exercices' && (
+        <>
+          <h2 className="sous-titre">Exercices ({exercices.filter((e) => e.difficulte <= 3).length})</h2>
+          <p className="petit doux">Difficulté 1 à 3 : application directe, calcul standard, classique en plusieurs étapes.</p>
+          <div className="bloc-liste">{listeExercices(exercices.filter((e) => e.difficulte <= 3))}</div>
+          <h2 className="sous-titre">Problèmes ({exercices.filter((e) => e.difficulte >= 4).length})</h2>
+          <p className="petit doux">Difficulté 4 et 5 : questions d’écrit enchaînées, idées moins immédiates.</p>
+          {exercices.some((e) => e.difficulte >= 4) ? (
+            <div className="bloc-liste">{listeExercices(exercices.filter((e) => e.difficulte >= 4))}</div>
+          ) : (
+            <p className="doux">Pas encore de problème pour ce chapitre.</p>
+          )}
+        </>
+      )}
+
+      {onglet === 'qcm' && (
+        <div className="bloc">
+          <p>
+            <strong>{Math.min(10, nbQuestions)} questions</strong> tirées au hasard parmi {nbQuestions} : vrai ou faux, énoncés à
+            compléter et questions d’exercices, avec la justification après chaque réponse.
+          </p>
+          {qcm ? (
+            <p className="petit doux">
+              Meilleur résultat : {qcm.bonnes} / {qcm.total} · fait {faits.length} fois.
+            </p>
+          ) : (
+            <p className="petit doux">Pas encore fait.</p>
+          )}
+          <button className="bouton-principal" disabled={!nbQuestions} onClick={surQcm}>
+            Lancer le QCM
+          </button>
+        </div>
+      )}
     </main>
   )
 }

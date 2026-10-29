@@ -1,5 +1,6 @@
-// Navigation : quatre onglets (Accueil · Parcours · Stats · Réglages) et, par-dessus, une pile d'écrans (séance, carte,
-// exercice, chapitre). Le bouton retour d'Android dépile.
+// Navigation : trois onglets (Accueil · Parcours · Réglages) et, par-dessus, une pile d'écrans (chapitre, notion, QCM,
+// carte, exercice). Tous les écrans de la pile restent montés (seul le dernier est visible) : au retour, chacun est tel
+// qu'on l'a laissé. Le bouton retour d'Android dépile.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { voletsDe } from './contenu/types'
 import { FournisseurDonnees, useDonnees } from './etat/Donnees'
@@ -12,27 +13,27 @@ import { Accueil } from './pages/Accueil'
 import { Chapitre } from './pages/Chapitre'
 import { EcranCarte } from './pages/EcranCarte'
 import { EcranExercice } from './pages/EcranExercice'
-import { EcranLecon } from './pages/EcranLecon'
+import { EcranNotion } from './pages/EcranNotion'
+import { EcranQcm } from './pages/EcranQcm'
 import { Parcours } from './pages/Parcours'
 import { Reglages } from './pages/Reglages'
-import { Seance } from './pages/Seance'
-import type { EtatSeance } from './repetition/deroulement'
-import { Stats } from './pages/Stats'
 import type { Mode } from './lib/reglages'
 
-type Onglet = 'accueil' | 'parcours' | 'stats' | 'reglages'
+type Onglet = 'accueil' | 'parcours' | 'reglages'
 
 type Ecran =
-  | { k: 'seance' }
   | { k: 'chapitre'; id: string }
+  | { k: 'notion'; id: string }
+  | { k: 'qcm'; chapitre: string }
   | { k: 'carte'; id: string; mode: Mode; neuve: boolean }
   | { k: 'exercice'; id: string }
-  | { k: 'lecon'; chapitre: string; cartes: string[] }
+
+/** Écrans affichés avec la barre d'onglets ; les autres prennent tout l'écran. */
+const AVEC_ONGLETS: Ecran['k'][] = ['chapitre', 'notion']
 
 const ONGLETS: { id: Onglet; nom: string }[] = [
   { id: 'accueil', nom: 'Accueil' },
   { id: 'parcours', nom: 'Parcours' },
-  { id: 'stats', nom: 'Stats' },
   { id: 'reglages', nom: 'Réglages' },
 ]
 
@@ -48,7 +49,6 @@ function Navigation() {
   const d = useDonnees()
   const [onglet, setOnglet] = useState<Onglet>('accueil')
   const [pile, setPile] = useState<Ecran[]>([])
-  const [seance, setSeance] = useState<EtatSeance | null>(null)
   // Position de défilement de chaque écran de la pile, rendue au retour.
   const defilements = useRef<number[]>([])
   const empiler = (e: Ecran) => {
@@ -61,7 +61,6 @@ function Navigation() {
     setPile((p) => p.slice(0, -1))
     requestAnimationFrame(() => window.scrollTo(0, y))
   }, [])
-  const changerSeance = useCallback((f: (s: EtatSeance) => EtatSeance) => setSeance((s) => (s ? f(s) : s)), [])
 
   // Bouton retour d'Android : dépile, sinon revient à l'accueil, sinon laisse l'appli se fermer.
   const etat = useRef({ pile, onglet })
@@ -100,8 +99,6 @@ function Navigation() {
     sentinelle.current = true
   }, [pile, onglet])
 
-  const lireLecon = (chapitre: string, cartes: string[]) => empiler({ k: 'lecon', chapitre, cartes })
-
   const ouvrirCarte = (id: string) => {
     const carte = d.cartesParId.get(id)
     if (!carte) return
@@ -110,97 +107,92 @@ function Navigation() {
     d.changerProgression((p) => retenirMode(p, mode))
     empiler({ k: 'carte', id, mode, neuve })
   }
+  const surChapitre = (id: string) => empiler({ k: 'chapitre', id })
+  const surExercice = (id: string) => empiler({ k: 'exercice', id })
 
-  const haut = pile[pile.length - 1]
-  // Un exercice s'ouvre par-dessus la carte (ou la séance) sans la démonter : au retour, la carte est telle qu'on l'a laissée.
-  const exercice = haut?.k === 'exercice' ? d.exercicesParId.get(haut.id) : undefined
-  const dessous = exercice ? pile[pile.length - 2] : haut
-  let ecran: ReactNode = null
-  if (dessous?.k === 'seance' && seance)
-    ecran = (
-      <Seance
-        seance={seance}
-        changer={changerSeance}
-        surExercice={(id) => empiler({ k: 'exercice', id })}
-        surFin={() => {
-          setSeance(null)
-          depiler()
-        }}
-      />
-    )
-  else if (dessous?.k === 'lecon') {
-    const chapitre = d.contenu.themes.flatMap((t) => t.chapitres).find((c) => c.id === dessous.chapitre)
-    const cartes = dessous.cartes.map((id) => d.cartesParId.get(id)).filter((c) => c !== undefined)
-    if (chapitre)
-      ecran = (
-        <EcranLecon
-          key={`${chapitre.id}-${pile.length}`}
-          chapitre={chapitre}
-          cartes={cartes}
-          surExercice={(id) => empiler({ k: 'exercice', id })}
-          surFin={depiler}
+  const rendre = (e: Ecran): ReactNode => {
+    if (e.k === 'chapitre')
+      return (
+        <Chapitre
+          id={e.id}
+          surNotion={(id) => empiler({ k: 'notion', id })}
+          surExercice={surExercice}
+          surQcm={() => empiler({ k: 'qcm', chapitre: e.id })}
+          surRetour={depiler}
         />
       )
-  } else if (dessous?.k === 'carte') {
-    const carte = d.cartesParId.get(dessous.id)
-    if (carte)
-      ecran = (
+    if (e.k === 'notion') {
+      const carte = d.cartesParId.get(e.id)
+      return carte && <EcranNotion carte={carte} surExercice={surExercice} surMemoriser={() => ouvrirCarte(carte.id)} surRetour={depiler} />
+    }
+    if (e.k === 'qcm') return <EcranQcm chapitre={e.chapitre} surFin={depiler} />
+    if (e.k === 'exercice') {
+      const exercice = d.exercicesParId.get(e.id)
+      return exercice && <EcranExercice exercice={exercice} surRetour={depiler} />
+    }
+    const carte = d.cartesParId.get(e.id)
+    return (
+      carte && (
         <EcranCarte
-          key={carte.id}
           carte={carte}
           volets={voletsDe(carte)}
-          neuve={dessous.neuve}
-          mode={dessous.mode}
+          neuve={e.neuve}
+          mode={e.mode}
           surNote={(volet, note, principal) => {
             const t = d.horloge()
             d.changerProgression((p) => noterVolet(p, carte.id, volet, note, t, d.aujourdhui(), principal))
             if (principal) depiler()
           }}
-          surExercice={(id) => empiler({ k: 'exercice', id })}
+          surExercice={surExercice}
           surQuitter={depiler}
           libelleQuitter="Retour"
         />
       )
-  }
-  if (ecran || exercice)
-    return (
-      <>
-        {ecran && <div style={exercice ? { display: 'none' } : undefined}>{ecran}</div>}
-        {exercice && <EcranExercice key={exercice.id} exercice={exercice} surRetour={depiler} />}
-      </>
     )
+  }
 
-  let contenu
-  if (haut?.k === 'chapitre')
-    contenu = <Chapitre id={haut.id} surCarte={ouvrirCarte} surLecon={lireLecon} surRetour={depiler} />
-  else if (onglet === 'accueil')
-    contenu = <Accueil surChapitre={(id) => empiler({ k: 'chapitre', id })} />
-  else if (onglet === 'parcours') contenu = <Parcours surChapitre={(id) => empiler({ k: 'chapitre', id })} />
-  else if (onglet === 'stats') contenu = <Stats />
-  else contenu = <Reglages />
+  const haut = pile[pile.length - 1]
+  const onglets = !haut || AVEC_ONGLETS.includes(haut.k)
+  let base
+  if (onglet === 'accueil') base = <Accueil surChapitre={surChapitre} />
+  else if (onglet === 'parcours') base = <Parcours surChapitre={surChapitre} />
+  else base = <Reglages />
 
   return (
-    <div className="appli avec-onglets">
-      {contenu}
-      <nav className="onglets" aria-label="Onglets">
-        {ONGLETS.map((o) => (
-          <button
-            key={o.id}
-            aria-current={o.id === onglet && !haut ? 'page' : undefined}
-            onClick={() => {
-              defilements.current = []
-              setPile([])
-              setOnglet(o.id)
-              window.scrollTo(0, 0)
-            }}
-          >
-            <span className="indicateur">
-              <IconeOnglet onglet={o.id} />
-            </span>
-            {o.nom}
-          </button>
-        ))}
-      </nav>
-    </div>
+    <>
+      <div className="appli avec-onglets" style={haut ? { display: 'none' } : undefined}>
+        {base}
+      </div>
+      {pile.map((e, i) => (
+        <div
+          key={`${i}-${e.k}-${'id' in e ? e.id : e.chapitre}`}
+          className={AVEC_ONGLETS.includes(e.k) ? 'appli avec-onglets' : undefined}
+          style={i < pile.length - 1 ? { display: 'none' } : undefined}
+        >
+          {rendre(e)}
+        </div>
+      ))}
+      {onglets && (
+        <nav className="onglets" aria-label="Onglets">
+          {ONGLETS.map((o) => (
+            <button
+              key={o.id}
+              aria-current={o.id === onglet && !haut ? 'page' : undefined}
+              onClick={() => {
+                defilements.current = []
+                setPile([])
+                setOnglet(o.id)
+                window.scrollTo(0, 0)
+              }}
+            >
+              <span className="indicateur">
+                <IconeOnglet onglet={o.id} />
+              </span>
+              {o.nom}
+            </button>
+          ))}
+        </nav>
+      )}
+    </>
   )
 }
