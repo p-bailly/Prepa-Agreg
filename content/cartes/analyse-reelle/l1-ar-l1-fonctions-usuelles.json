@@ -1,0 +1,397 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l1-fonctions-usuelles-puissances",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Fonctions puissances réelles et croissances comparées",
+      "recto": "Définir $x^a$ pour $x>0$ et $a$ réel, donner ses propriétés (règles de calcul, dérivée, prolongement en $0$) et énoncer les croissances comparées avec des exposants réels.",
+      "cours": "Pour $x>0$ et $a$ réel, on **définit** $x^a=e^{a\\ln x}$. Cette définition prolonge les puissances entières (pour $n\\in\\mathbb{N}$, $e^{n\\ln x}=\\left(e^{\\ln x}\\right)^n=x^n$) et les racines ($x^{1/n}=\\sqrt[n]{x}$), et elle garde toutes les règles de calcul, qui viennent de celles de $\\exp$ et de $\\ln$. Elle ne vaut que pour $x>0$.\n\nLa fonction $x\\mapsto x^a$ se dérive comme une puissance entière, $(x^a)'=ax^{a-1}$ ; mais quand l'exposant varie, il faut revenir à la forme exponentielle : $(x^x)'=(\\ln x+1)\\,x^x$, et non $x\\cdot x^{x-1}$.\n\nMéthode pour une limite avec un exposant variable (formes $1^\\infty$, $0^0$, $\\infty^0$) : écrire $u(x)^{v(x)}=e^{v(x)\\ln u(x)}$ et chercher la limite de $v\\ln u$. Les croissances comparées s'étendent aux exposants réels : en $+\\infty$, toute puissance de $\\ln x$ est négligeable devant toute puissance $x^\\alpha$ avec $\\alpha>0$, elle-même négligeable devant toute exponentielle $e^{\\beta x}$ avec $\\beta>0$ ; en $0^+$, $x^\\alpha$ l'emporte sur $|\\ln x|^\\beta$.\n\nPièges : $(x^a)^b=x^{ab}$, mais $x^{a^b}$ est autre chose ; l'ordre entre $x^a$ et $x^b$ dépend de la position de $x$ par rapport à $1$ ($x^2<x$ pour $0<x<1$) ; et le prolongement par $0$ en $0$ de $x\\mapsto x^a$ ($a>0$) n'est dérivable en $0$ que si $a\\ge1$ : $\\sqrt x$ ne l'est pas.",
+      "hypotheses": [
+        "$\\alpha>0$.",
+        "$\\beta>0$."
+      ],
+      "hypotheses_pieges": [
+        "$\\alpha\\ge0$ (à la place de $\\alpha>0$).",
+        "$\\beta\\neq0$ (à la place de $\\beta>0$).",
+        "$\\alpha+\\beta>0$ (à la place de : $\\alpha>0$ et $\\beta>0$)."
+      ],
+      "enonce": "Pour $x>0$ et $a\\in\\mathbb{R}$, on pose $x^a=e^{a\\ln x}$. Pour tous réels $a,b$ et tous $x,y>0$ :\n$$x^{a+b}=x^ax^b,\\qquad (xy)^a=x^ay^a,\\qquad \\ln\\left(x^a\\right)=a\\ln x,\\qquad \\left(x^a\\right)^b=x^{ab}.$$\nLa fonction $x\\mapsto x^a$ est dérivable sur $\\left]0,+\\infty\\right[$, de dérivée $x\\mapsto ax^{a-1}$ ; elle est strictement croissante si $a>0$, strictement décroissante si $a<0$. Si $a>0$, $x^a\\to0$ quand $x\\to0^+$ et $x^a\\to+\\infty$ quand $x\\to+\\infty$ ; prolongée par $0$ en $0$, elle est continue en $0$, et dérivable en $0$ si et seulement si $a\\ge1$.\n\n**Croissances comparées.** Pour tous réels $\\alpha>0$ et $\\beta>0$ :\n$$\\lim_{x\\to+\\infty}\\frac{(\\ln x)^\\beta}{x^\\alpha}=0,\\qquad \\lim_{x\\to+\\infty}\\frac{x^\\alpha}{e^{\\beta x}}=0,\\qquad \\lim_{x\\to0^+}x^\\alpha\\,|\\ln x|^\\beta=0.$$",
+      "enonce_trous": "Pour tous réels $\\alpha>0$ et $\\beta>0$, {{1}} quand $x\\to+\\infty$ ; pour $a>0$, la fonction $x\\mapsto x^a$ prolongée par $0$ en $0$ est dérivable en $0$ si et seulement si {{2}} ; enfin, pour tous $x>0$ et $a,b$ réels, $\\left(x^a\\right)^b=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{(\\ln x)^\\beta}{x^\\alpha}\\to0$",
+          "leurres": [
+            "$\\frac{x^\\alpha}{(\\ln x)^\\beta}\\to0$",
+            "$\\frac{x^\\alpha}{e^{\\beta x}}\\to+\\infty$",
+            "$\\frac{e^{\\beta x}}{x^\\alpha}\\to0$"
+          ]
+        },
+        {
+          "reponse": "$a\\ge1$",
+          "leurres": [
+            "$a>1$",
+            "$a\\ge\\frac12$",
+            "$a$ est un entier"
+          ]
+        },
+        {
+          "reponse": "$x^{ab}$",
+          "leurres": [
+            "$x^{a+b}$",
+            "$x^{a^b}$",
+            "$x^ax^b$"
+          ]
+        }
+      ],
+      "demo": "**Règles de calcul.** Elles viennent de celles de $\\exp$ et de $\\ln$ : $x^{a+b}=e^{(a+b)\\ln x}=e^{a\\ln x}e^{b\\ln x}=x^ax^b$ ; $(xy)^a=e^{a(\\ln x+\\ln y)}=x^ay^a$ ; $\\ln\\left(x^a\\right)=\\ln\\left(e^{a\\ln x}\\right)=a\\ln x$, d'où $\\left(x^a\\right)^b=e^{b\\ln(x^a)}=e^{ab\\ln x}=x^{ab}$.\n\n**Dérivée et variations.** Par composition, $x\\mapsto e^{a\\ln x}$ est dérivable sur $\\left]0,+\\infty\\right[$, de dérivée $\\frac ax\\,e^{a\\ln x}=a\\,x^{-1}x^{a}=a\\,x^{a-1}$. Comme $x^{a-1}>0$, la dérivée a le signe de $a$.\n\n**Limites et prolongement.** Si $a>0$, $a\\ln x\\to-\\infty$ quand $x\\to0^+$, donc $x^a\\to0$ ; et $a\\ln x\\to+\\infty$ quand $x\\to+\\infty$. Pour la fonction $f$ prolongée par $f(0)=0$, le taux d'accroissement en $0$ vaut $\\frac{f(x)-f(0)}{x}=x^{a-1}$ : il tend vers $0$ si $a>1$, vaut $1$ si $a=1$, tend vers $+\\infty$ si $0<a<1$. Donc $f$ est dérivable en $0$ si et seulement si $a\\ge1$.\n\n**Croissances comparées.** Pour $x>1$, $\\ln\\frac{(\\ln x)^\\beta}{x^\\alpha}=\\beta\\ln(\\ln x)-\\alpha\\ln x=\\ln x\\left(\\beta\\,\\frac{\\ln(\\ln x)}{\\ln x}-\\alpha\\right)$. Avec $X=\\ln x\\to+\\infty$, $\\frac{\\ln X}{X}\\to0$ (croissances comparées de Terminale), donc la parenthèse tend vers $-\\alpha<0$ et le tout vers $-\\infty$ : le quotient tend vers $0$. De même, $\\ln\\frac{x^\\alpha}{e^{\\beta x}}=x\\left(\\alpha\\,\\frac{\\ln x}{x}-\\beta\\right)\\to-\\infty$, car la parenthèse tend vers $-\\beta<0$. Enfin, pour $0<x<1$, posons $u=\\frac1x$, qui tend vers $+\\infty$ quand $x\\to0^+$ : $|\\ln x|=\\ln u$, donc $x^\\alpha|\\ln x|^\\beta=\\frac{(\\ln u)^\\beta}{u^\\alpha}\\to0$ par la première limite.",
+      "exemple": "- $\\lim_{x\\to+\\infty}x^{1/x}=1$, car $x^{1/x}=e^{\\frac{\\ln x}{x}}$ et $\\frac{\\ln x}{x}\\to0$.\n- $\\lim_{x\\to0^+}x^x=1$, car $x^x=e^{x\\ln x}$ et $x\\ln x\\to0$ (troisième limite avec $\\alpha=\\beta=1$).\n- $\\frac{(\\ln x)^{100}}{\\sqrt x}\\to0$ quand $x\\to+\\infty$ ($\\alpha=\\frac12$, $\\beta=100$), bien que ce quotient dépasse $10^{100}$ pour $x=10^{10}$ : une croissance comparée est un énoncé de limite, pas une inégalité.",
+      "contre_exemple": "- **$x>0$ est indispensable** : appliquer la règle $\\left(x^a\\right)^b=x^{ab}$ à $x=-1$, $a=2$, $b=\\frac12$ donnerait $1=\\left((-1)^2\\right)^{1/2}=(-1)^1=-1$.\n- **$\\alpha>0$ est nécessaire** : avec $\\alpha=0$ et $\\beta=1$, $\\frac{\\ln x}{x^0}=\\ln x\\to+\\infty$.\n- **$\\beta>0$ est nécessaire** : avec $\\alpha=1$ et $\\beta=-1$, $\\frac{x}{e^{-x}}=xe^x\\to+\\infty$.\n- **Pas de dérivabilité en $0$ pour $0<a<1$** : pour $\\sqrt x=x^{1/2}$, le taux d'accroissement en $0$ vaut $\\frac{\\sqrt x}{x}=\\frac1{\\sqrt x}\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous réels $x>0$, $a$ et $b$, $\\left(x^a\\right)^b=\\left(x^b\\right)^a$.",
+          "vrai": true,
+          "justification": "Les deux membres valent $x^{ab}=e^{ab\\ln x}$."
+        },
+        {
+          "texte": "Pour tout réel $x>0$, $x^{\\sqrt2}\\le x^{3/2}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=\\frac14$ : $\\left(\\frac14\\right)^{\\sqrt2}=e^{-\\sqrt2\\ln4}\\approx0{,}141$ et $\\left(\\frac14\\right)^{3/2}=\\frac18=0{,}125$. Pour $0<x<1$, $a\\mapsto x^a$ est décroissante, et $\\sqrt2<\\frac32$ donne $x^{\\sqrt2}>x^{3/2}$."
+        },
+        {
+          "texte": "$\\lim_{x\\to+\\infty}\\frac{(\\ln x)^{1000}}{x^{0{,}001}}=0$.",
+          "vrai": true,
+          "justification": "Croissances comparées avec $\\alpha=0{,}001>0$ et $\\beta=1000$."
+        },
+        {
+          "texte": "La fonction $x\\mapsto x^x$ est croissante sur $\\left]0,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "Sa dérivée $(\\ln x+1)x^x$ est négative sur $\\left]0,\\frac1e\\right[$ : par exemple $\\frac14<\\frac1e$, mais $\\left(\\frac14\\right)^{1/4}=\\frac1{\\sqrt2}\\approx0{,}707>\\left(\\frac1e\\right)^{1/e}=e^{-1/e}\\approx0{,}692$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-croissances",
+        "ar-t-fonctions-usuelles-ln",
+        "ar-t-derivation-composee"
+      ]
+    },
+    {
+      "id": "ar-l1-fonctions-usuelles-circulaires",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Fonctions circulaires réciproques",
+      "recto": "Définir $\\arcsin$, $\\arccos$ et $\\arctan$ (ensembles de départ et d'arrivée), donner leurs dérivées et les relations entre elles.",
+      "cours": "Les fonctions circulaires ne sont pas injectives sur $\\mathbb{R}$ : on les **restreint** à un intervalle où elles sont strictement monotones, puis on inverse. Ainsi $\\arcsin x$ est l'unique réel de $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ dont le sinus vaut $x$, $\\arccos x$ l'unique réel de $[0,\\pi]$ dont le cosinus vaut $x$, $\\arctan x$ l'unique réel de $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ dont la tangente vaut $x$.\n\nLes dérivées viennent du théorème de dérivation d'une réciproque, en simplifiant $\\cos(\\arcsin x)=\\sqrt{1-x^2}$ (le cosinus est positif sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$) et $1+\\tan^2(\\arctan x)=1+x^2$. Ces dérivées sont algébriques : $\\arcsin$ et $\\arctan$ sont des primitives de $\\frac1{\\sqrt{1-x^2}}$ et de $\\frac1{1+x^2}$, ce qui sert sans cesse en calcul intégral.\n\nMéthode : pour simplifier $\\arcsin(\\sin\\theta)$, ramener $\\theta$ dans $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ par périodicité et symétrie ; pour établir une identité entre fonctions réciproques, dériver sur un **intervalle** et évaluer en un point ; pour calculer $\\cos(\\arctan x)$ ou $\\tan(\\arcsin x)$, poser $\\theta=\\arctan x$ (ou $\\theta=\\arcsin x$) et utiliser $\\cos^2\\theta+\\sin^2\\theta=1$ avec le bon signe.\n\nPièges : $\\arcsin(\\sin\\theta)=\\theta$ seulement si $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ ; $\\arcsin$ et $\\arccos$ ne sont pas dérivables en $-1$ et en $1$ ; $\\arctan x+\\arctan\\frac1x$ vaut $\\frac\\pi2$ pour $x>0$ mais $-\\frac\\pi2$ pour $x<0$ (la dérivée est nulle sur $\\mathbb{R}^*$, qui n'est pas un intervalle) ; et la formule $\\arctan a+\\arctan b=\\arctan\\frac{a+b}{1-ab}$ demande $ab<1$.",
+      "hypotheses": [
+        "Pour la dérivabilité de $\\arcsin$ et de $\\arccos$ en $x$ : $-1<x<1$.",
+        "Pour $\\arcsin(\\sin\\theta)=\\theta$ : $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$.",
+        "Pour $\\arctan x+\\arctan\\frac1x=\\frac\\pi2$ : $x>0$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la dérivabilité de $\\arcsin$ et de $\\arccos$ en $x$ : $-1\\le x\\le1$ (à la place de $-1<x<1$).",
+        "Pour $\\arcsin(\\sin\\theta)=\\theta$ : $\\theta\\in[0,\\pi]$ (à la place de $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$).",
+        "Pour $\\arctan x+\\arctan\\frac1x=\\frac\\pi2$ : $x\\neq0$ (à la place de $x>0$)."
+      ],
+      "enonce": "- La restriction de $\\sin$ à $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ est une bijection strictement croissante sur $[-1,1]$ ; sa réciproque $\\arcsin:[-1,1]\\to\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ est continue, strictement croissante, impaire, dérivable sur $\\left]-1,1\\right[$ (et pas en $\\pm1$), avec $\\arcsin'(x)=\\frac1{\\sqrt{1-x^2}}$.\n- La restriction de $\\cos$ à $[0,\\pi]$ est une bijection strictement décroissante sur $[-1,1]$ ; sa réciproque $\\arccos:[-1,1]\\to[0,\\pi]$ est continue, strictement décroissante, dérivable sur $\\left]-1,1\\right[$ (et pas en $\\pm1$), avec $\\arccos'(x)=-\\frac1{\\sqrt{1-x^2}}$.\n- La restriction de $\\tan$ à $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ est une bijection strictement croissante sur $\\mathbb{R}$ ; sa réciproque $\\arctan:\\mathbb{R}\\to\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ est impaire, dérivable sur $\\mathbb{R}$, avec $\\arctan'(x)=\\frac1{1+x^2}$, et tend vers $\\pm\\frac\\pi2$ en $\\pm\\infty$.\n\nOn a $\\sin(\\arcsin x)=x$ pour $x\\in[-1,1]$, mais $\\arcsin(\\sin\\theta)=\\theta$ seulement pour $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$. Enfin, $\\arcsin x+\\arccos x=\\frac\\pi2$ pour tout $x\\in[-1,1]$, et $\\arctan x+\\arctan\\frac1x=\\frac\\pi2$ pour tout $x>0$ ($-\\frac\\pi2$ pour $x<0$).",
+      "enonce_trous": "La fonction $\\arcsin$ est définie sur $[-1,1]$, d'image {{1}}, et dérivable sur $\\left]-1,1\\right[$ de dérivée {{2}} ; la dérivée de $\\arctan$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\left[-\\frac\\pi2,\\frac\\pi2\\right]$",
+          "leurres": [
+            "$[0,\\pi]$",
+            "$\\left]-\\frac\\pi2,\\frac\\pi2\\right[$",
+            "$[-1,1]$"
+          ]
+        },
+        {
+          "reponse": "$x\\mapsto\\frac{1}{\\sqrt{1-x^2}}$",
+          "leurres": [
+            "$x\\mapsto-\\frac{1}{\\sqrt{1-x^2}}$",
+            "$x\\mapsto\\frac{1}{\\sqrt{1+x^2}}$",
+            "$x\\mapsto\\sqrt{1-x^2}$"
+          ]
+        },
+        {
+          "reponse": "$x\\mapsto\\frac{1}{1+x^2}$",
+          "leurres": [
+            "$x\\mapsto\\frac{1}{1-x^2}$",
+            "$x\\mapsto1+\\tan^2x$",
+            "$x\\mapsto-\\frac{1}{1+x^2}$"
+          ]
+        }
+      ],
+      "demo": "**arcsin.** Sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, $\\sin$ est continue et strictement croissante (sa dérivée $\\cos$ est strictement positive sur l'intervalle ouvert), de $-1$ à $1$ : par le théorème de la bijection réciproque, $\\arcsin$ est une bijection continue strictement croissante de $[-1,1]$ sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, impaire car $\\sin$ l'est sur un intervalle symétrique. Pour $x\\in\\left]-1,1\\right[$, $\\theta=\\arcsin x$ est dans $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, où $\\sin'(\\theta)=\\cos\\theta\\neq0$ : $\\arcsin$ est dérivable en $x$ et $\\arcsin'(x)=\\frac1{\\cos\\theta}$. Or $\\cos\\theta>0$ et $\\cos^2\\theta=1-\\sin^2\\theta=1-x^2$, donc $\\cos\\theta=\\sqrt{1-x^2}$. En $\\pm1$, $\\sin'\\left(\\pm\\frac\\pi2\\right)=0$, donc $\\arcsin$ n'y est pas dérivable (tangente verticale).\n\n**arccos.** Même raisonnement avec $\\cos$ sur $[0,\\pi]$, strictement décroissante, de dérivée $-\\sin$, non nulle sur $\\left]0,\\pi\\right[$ ; pour $\\theta=\\arccos x\\in\\left]0,\\pi\\right[$, $\\sin\\theta=\\sqrt{1-x^2}$, d'où $\\arccos'(x)=-\\frac1{\\sqrt{1-x^2}}$.\n\n**arctan.** $\\tan=\\frac{\\sin}{\\cos}$ est dérivable sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, de dérivée $1+\\tan^2>0$, et tend vers $-\\infty$ et $+\\infty$ aux bornes : c'est une bijection strictement croissante sur $\\mathbb{R}$, et $\\arctan'(x)=\\frac1{1+\\tan^2(\\arctan x)}=\\frac1{1+x^2}$. Les limites de $\\arctan$ en $\\pm\\infty$ sont les bornes $\\pm\\frac\\pi2$.\n\n**Relations.** $g(x)=\\arcsin x+\\arccos x$ est continue sur $[-1,1]$, de dérivée nulle sur $\\left]-1,1\\right[$, donc constante (accroissements finis), égale à $g(0)=0+\\frac\\pi2$. De même, $h(x)=\\arctan x+\\arctan\\frac1x$ a pour dérivée $\\frac1{1+x^2}-\\frac1{x^2}\\cdot\\frac1{1+\\frac1{x^2}}=0$ sur l'intervalle $\\left]0,+\\infty\\right[$, et $h(1)=\\frac\\pi4+\\frac\\pi4=\\frac\\pi2$ ; $h$ étant impaire, elle vaut $-\\frac\\pi2$ sur $\\left]-\\infty,0\\right[$.",
+      "exemple": "$\\arcsin\\frac12=\\frac\\pi6$, $\\arccos\\left(-\\frac12\\right)=\\frac{2\\pi}3$, $\\arctan1=\\frac\\pi4$, $\\arctan\\sqrt3=\\frac\\pi3$. Pour $x\\in\\left]-1,1\\right[$, $\\tan(\\arcsin x)=\\frac{x}{\\sqrt{1-x^2}}$, car $\\cos(\\arcsin x)=\\sqrt{1-x^2}$. Et $\\arcsin\\left(\\sin\\frac{5\\pi}6\\right)=\\arcsin\\frac12=\\frac\\pi6$ : le résultat n'est pas $\\frac{5\\pi}6$, qui sort de $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$.",
+      "contre_exemple": "- **$\\arcsin(\\sin\\theta)\\neq\\theta$ hors de $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$** : $\\arcsin(\\sin\\pi)=\\arcsin0=0\\neq\\pi$.\n- **Le signe de $x$ compte** : pour $x=-1$, $\\arctan(-1)+\\arctan(-1)=-\\frac\\pi2$, et non $\\frac\\pi2$.\n- **Pas de dérivabilité en $1$** : $\\sin'\\left(\\frac\\pi2\\right)=0$, et le taux $\\frac{\\arcsin x-\\frac\\pi2}{x-1}$ tend vers $+\\infty$ quand $x\\to1^-$ (tangente verticale).\n- **La formule d'addition demande $ab<1$** : pour $a=b=2$, $2\\arctan2\\approx2{,}214>\\frac\\pi2$, alors que $\\arctan\\frac{2+2}{1-4}=\\arctan\\left(-\\frac43\\right)<0$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $x\\in[-1,1]$, $\\cos(\\arcsin x)=\\sqrt{1-x^2}$.",
+          "vrai": true,
+          "justification": "Avec $\\theta=\\arcsin x\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, $\\cos\\theta\\ge0$ et $\\cos^2\\theta=1-x^2$."
+        },
+        {
+          "texte": "Pour tout réel $\\theta$, $\\arccos(\\cos\\theta)=|\\theta|$.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\theta=\\frac{3\\pi}2$ : $\\cos\\theta=0$ et $\\arccos0=\\frac\\pi2\\neq\\frac{3\\pi}2$. L'égalité n'est vraie que pour $\\theta\\in[-\\pi,\\pi]$."
+        },
+        {
+          "texte": "La fonction $\\arctan$ est bornée sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Elle est à valeurs dans $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$."
+        },
+        {
+          "texte": "Pour tous réels $a$ et $b$ tels que $ab\\neq1$, $\\arctan a+\\arctan b=\\arctan\\frac{a+b}{1-ab}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $a=b=2$ : $2\\arctan2\\approx2{,}214$, mais $\\arctan\\left(-\\frac43\\right)\\approx-0{,}927$. La formule demande $ab<1$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-continuite-reciproque",
+        "ar-l1-derivabilite-reciproque",
+        "ar-t-fonctions-usuelles-trigo",
+        "ar-l1-taf"
+      ]
+    },
+    {
+      "id": "ar-l1-fonctions-usuelles-hyperboliques",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Fonctions hyperboliques directes et réciproques",
+      "recto": "Définir $\\operatorname{ch}$, $\\operatorname{sh}$, $\\operatorname{th}$ et leurs réciproques, avec leurs formules explicites, leurs ensembles de définition et leurs dérivées.",
+      "cours": "Les fonctions hyperboliques sont la partie paire et la partie impaire de l'exponentielle : $e^x=\\operatorname{ch}x+\\operatorname{sh}x$. Leur nom vient de l'identité $\\operatorname{ch}^2t-\\operatorname{sh}^2t=1$ : le point $(\\operatorname{ch}t,\\operatorname{sh}t)$ décrit une branche de l'hyperbole d'équation $x^2-y^2=1$, comme $(\\cos t,\\sin t)$ décrit le cercle d'équation $x^2+y^2=1$. Les formules ressemblent à celles de la trigonométrie, avec des changements de signe : $\\operatorname{ch}'=\\operatorname{sh}$ (sans signe moins), $\\operatorname{ch}(a+b)=\\operatorname{ch}a\\operatorname{ch}b+\\operatorname{sh}a\\operatorname{sh}b$.\n\nLes réciproques s'expriment avec des logarithmes : pour résoudre $\\operatorname{sh}x=y$ ou $\\operatorname{ch}x=y$, on pose $X=e^x>0$ et l'on obtient une équation du second degré en $X$. Leurs dérivées $\\frac1{\\sqrt{x^2+1}}$, $\\frac1{\\sqrt{x^2-1}}$ et $\\frac1{1-x^2}$ en font des primitives usuelles, à côté de $\\arcsin$ et de $\\arctan$.\n\nMéthode : pour une équation ou une simplification, revenir aux exponentielles, ou utiliser $\\operatorname{ch}^2-\\operatorname{sh}^2=1$ avec $\\operatorname{ch}>0$ : $\\operatorname{ch}(\\operatorname{argsh}x)=\\sqrt{1+x^2}$, et $\\operatorname{sh}(\\operatorname{argch}x)=\\sqrt{x^2-1}$ pour $x\\ge1$.\n\nPièges : $\\operatorname{ch}$ est paire, donc pas injective sur $\\mathbb{R}$ : pour $y>1$, l'équation $\\operatorname{ch}x=y$ a deux solutions opposées, et $\\operatorname{argch}(\\operatorname{ch}t)=|t|$ ; $\\operatorname{argch}$ n'est pas dérivable en $1$ ; et $\\operatorname{argth}$ n'est définie que sur $\\left]-1,1\\right[$.",
+      "hypotheses": [
+        "Pour $\\operatorname{argch}(\\operatorname{ch}t)=t$ : $t\\ge0$.",
+        "Pour la dérivabilité de $\\operatorname{argch}$ en $x$ : $x>1$.",
+        "Pour $\\operatorname{argth}x=\\frac12\\ln\\frac{1+x}{1-x}$ : $-1<x<1$."
+      ],
+      "hypotheses_pieges": [
+        "Pour $\\operatorname{argch}(\\operatorname{ch}t)=t$ : $t$ réel quelconque (à la place de $t\\ge0$).",
+        "Pour la dérivabilité de $\\operatorname{argch}$ en $x$ : $x\\ge1$ (à la place de $x>1$).",
+        "Pour la dérivabilité de $\\operatorname{argch}$ en $x$ : $x>0$ (à la place de $x>1$)."
+      ],
+      "enonce": "Pour tout réel $x$, $\\operatorname{ch}x=\\frac{e^x+e^{-x}}2$, $\\operatorname{sh}x=\\frac{e^x-e^{-x}}2$ et $\\operatorname{th}x=\\frac{\\operatorname{sh}x}{\\operatorname{ch}x}$. La fonction $\\operatorname{ch}$ est paire, $\\operatorname{sh}$ et $\\operatorname{th}$ sont impaires, et\n$$\\operatorname{ch}^2x-\\operatorname{sh}^2x=1,\\qquad \\operatorname{ch}'=\\operatorname{sh},\\qquad \\operatorname{sh}'=\\operatorname{ch},\\qquad \\operatorname{th}'=1-\\operatorname{th}^2=\\frac1{\\operatorname{ch}^2}.$$\nPour tous réels $a,b$ : $\\operatorname{ch}(a+b)=\\operatorname{ch}a\\operatorname{ch}b+\\operatorname{sh}a\\operatorname{sh}b$ et $\\operatorname{sh}(a+b)=\\operatorname{sh}a\\operatorname{ch}b+\\operatorname{ch}a\\operatorname{sh}b$.\n\n- $\\operatorname{sh}$ est une bijection strictement croissante de $\\mathbb{R}$ sur $\\mathbb{R}$ ; sa réciproque $\\operatorname{argsh}$ vérifie, pour tout réel $x$, $\\operatorname{argsh}x=\\ln\\left(x+\\sqrt{x^2+1}\\right)$ et $\\operatorname{argsh}'(x)=\\frac1{\\sqrt{x^2+1}}$.\n- La restriction de $\\operatorname{ch}$ à $\\left[0,+\\infty\\right[$ est une bijection strictement croissante sur $\\left[1,+\\infty\\right[$ ; sa réciproque $\\operatorname{argch}$ vérifie $\\operatorname{argch}x=\\ln\\left(x+\\sqrt{x^2-1}\\right)$ pour $x\\ge1$ ; elle est dérivable sur $\\left]1,+\\infty\\right[$, pas en $1$, avec $\\operatorname{argch}'(x)=\\frac1{\\sqrt{x^2-1}}$. On a $\\operatorname{argch}(\\operatorname{ch}t)=t$ seulement pour $t\\ge0$.\n- $\\operatorname{th}$ est une bijection strictement croissante de $\\mathbb{R}$ sur $\\left]-1,1\\right[$ ; sa réciproque $\\operatorname{argth}$ vérifie, pour $-1<x<1$, $\\operatorname{argth}x=\\frac12\\ln\\frac{1+x}{1-x}$ et $\\operatorname{argth}'(x)=\\frac1{1-x^2}$.",
+      "enonce_trous": "Pour tout réel $x$, $\\operatorname{ch}^2x-\\operatorname{sh}^2x=$ {{1}} et $\\operatorname{argsh}x=$ {{2}} ; la dérivée de $\\operatorname{th}$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$1$",
+          "leurres": [
+            "$-1$",
+            "$0$",
+            "$\\operatorname{ch}(2x)$"
+          ]
+        },
+        {
+          "reponse": "$\\ln\\left(x+\\sqrt{x^2+1}\\right)$",
+          "leurres": [
+            "$\\ln\\left(x+\\sqrt{x^2-1}\\right)$",
+            "$\\ln\\left(\\sqrt{x^2+1}-x\\right)$",
+            "$\\frac12\\ln\\frac{1+x}{1-x}$"
+          ]
+        },
+        {
+          "reponse": "$1-\\operatorname{th}^2$",
+          "leurres": [
+            "$1+\\operatorname{th}^2$",
+            "$\\operatorname{th}^2-1$",
+            "$\\frac{1}{\\operatorname{sh}^2}$"
+          ]
+        }
+      ],
+      "demo": "**Formules.** $\\operatorname{ch}^2x-\\operatorname{sh}^2x=(\\operatorname{ch}x-\\operatorname{sh}x)(\\operatorname{ch}x+\\operatorname{sh}x)=e^{-x}e^{x}=1$. Les dérivées viennent de $(e^{-x})'=-e^{-x}$, et $\\operatorname{th}'=\\frac{\\operatorname{ch}^2-\\operatorname{sh}^2}{\\operatorname{ch}^2}=\\frac1{\\operatorname{ch}^2}=1-\\operatorname{th}^2$. Pour l'addition, en développant : $\\operatorname{ch}a\\operatorname{ch}b+\\operatorname{sh}a\\operatorname{sh}b=\\frac{(e^a+e^{-a})(e^b+e^{-b})+(e^a-e^{-a})(e^b-e^{-b})}4=\\frac{2e^{a+b}+2e^{-a-b}}4=\\operatorname{ch}(a+b)$, et de même pour $\\operatorname{sh}(a+b)$.\n\n**argsh.** $\\operatorname{sh}'=\\operatorname{ch}>0$ : $\\operatorname{sh}$ est continue, strictement croissante, de limites $-\\infty$ et $+\\infty$, donc bijective de $\\mathbb{R}$ sur $\\mathbb{R}$. Pour $y$ réel, avec $X=e^x>0$, l'équation $\\operatorname{sh}x=y$ s'écrit $X^2-2yX-1=0$ ; le produit des racines vaut $-1$, donc la seule racine positive est $X=y+\\sqrt{y^2+1}$, et $\\operatorname{argsh}y=\\ln\\left(y+\\sqrt{y^2+1}\\right)$. Comme $\\operatorname{sh}'=\\operatorname{ch}$ ne s'annule pas, $\\operatorname{argsh}$ est dérivable et $\\operatorname{argsh}'(y)=\\frac1{\\operatorname{ch}(\\operatorname{argsh}y)}=\\frac1{\\sqrt{1+y^2}}$, car $\\operatorname{ch}=\\sqrt{1+\\operatorname{sh}^2}$ (puisque $\\operatorname{ch}>0$).\n\n**argch.** Sur $\\left[0,+\\infty\\right[$, $\\operatorname{ch}'=\\operatorname{sh}$ est positive et ne s'annule qu'en $0$ : $\\operatorname{ch}$ y est strictement croissante, de $1$ à $+\\infty$. Pour $y\\ge1$, $X^2-2yX+1=0$ a pour racines $y\\pm\\sqrt{y^2-1}$, de produit $1$ ; la solution $x\\ge0$ correspond à $X\\ge1$, soit $X=y+\\sqrt{y^2-1}$. Pour $y>1$, $\\operatorname{sh}(\\operatorname{argch}y)=\\sqrt{y^2-1}\\neq0$, d'où $\\operatorname{argch}'(y)=\\frac1{\\sqrt{y^2-1}}$ ; en $y=1$, $\\operatorname{ch}'(0)=0$ et $\\operatorname{argch}$ n'est pas dérivable (tangente verticale).\n\n**argth.** $\\operatorname{th}'>0$, et $\\operatorname{th}x=\\frac{e^{2x}-1}{e^{2x}+1}$ tend vers $-1$ et $1$ en $-\\infty$ et $+\\infty$. Pour $-1<y<1$, $\\operatorname{th}x=y\\iff e^{2x}(1-y)=1+y\\iff e^{2x}=\\frac{1+y}{1-y}$, d'où la formule ; et $\\operatorname{argth}'(y)=\\frac1{1-\\operatorname{th}^2(\\operatorname{argth}y)}=\\frac1{1-y^2}$.",
+      "exemple": "$\\operatorname{ch}(\\ln2)=\\frac{2+\\frac12}2=\\frac54$, $\\operatorname{sh}(\\ln2)=\\frac{2-\\frac12}2=\\frac34$, $\\operatorname{th}(\\ln2)=\\frac35$. Inversement, $\\operatorname{argsh}\\frac34=\\ln\\left(\\frac34+\\sqrt{\\frac9{16}+1}\\right)=\\ln\\left(\\frac34+\\frac54\\right)=\\ln2$ et $\\operatorname{argth}\\frac35=\\frac12\\ln\\frac{8/5}{2/5}=\\frac12\\ln4=\\ln2$.",
+      "contre_exemple": "- **$\\operatorname{argch}(\\operatorname{ch}t)\\neq t$ pour $t<0$** : $\\operatorname{argch}(\\operatorname{ch}(-1))=\\operatorname{argch}(\\operatorname{ch}1)=1\\neq-1$.\n- **$\\operatorname{ch}$ n'est pas injective sur $\\mathbb{R}$** : $\\operatorname{ch}(-\\ln2)=\\operatorname{ch}(\\ln2)=\\frac54$ ; l'équation $\\operatorname{ch}x=\\frac54$ a deux solutions.\n- **Pas de dérivabilité de $\\operatorname{argch}$ en $1$** : $\\operatorname{ch}'(0)=\\operatorname{sh}0=0$, et le taux $\\frac{\\operatorname{argch}x}{x-1}$ tend vers $+\\infty$ quand $x\\to1^+$.\n- **Attention aux signes** : $\\operatorname{ch}^2x+\\operatorname{sh}^2x$ ne vaut pas $1$, mais $\\operatorname{ch}(2x)$ ; par exemple, pour $x=1$, $\\operatorname{ch}2\\approx3{,}76$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $x$, $\\operatorname{ch}x+\\operatorname{sh}x=e^x$.",
+          "vrai": true,
+          "justification": "$\\frac{e^x+e^{-x}}2+\\frac{e^x-e^{-x}}2=e^x$."
+        },
+        {
+          "texte": "Pour tout réel $x$, $\\operatorname{ch}(2x)=2\\operatorname{ch}^2x-1$.",
+          "vrai": true,
+          "justification": "$\\operatorname{ch}(2x)=\\operatorname{ch}^2x+\\operatorname{sh}^2x=\\operatorname{ch}^2x+\\left(\\operatorname{ch}^2x-1\\right)$."
+        },
+        {
+          "texte": "La fonction $\\operatorname{ch}$ est une bijection de $\\mathbb{R}$ sur $\\left[1,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$\\operatorname{ch}(-1)=\\operatorname{ch}(1)$ : $\\operatorname{ch}$ est paire, donc pas injective sur $\\mathbb{R}$. Seule sa restriction à $\\left[0,+\\infty\\right[$ est une bijection sur $\\left[1,+\\infty\\right[$."
+        },
+        {
+          "texte": "Pour tout réel $x$, $\\operatorname{sh}x\\ge x$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=-1$ : $\\operatorname{sh}(-1)=-\\operatorname{sh}1\\approx-1{,}175<-1$. L'inégalité n'est vraie que pour $x\\ge0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-fonctions-usuelles-exp",
+        "ar-t-fonctions-usuelles-ln",
+        "ar-l1-continuite-reciproque",
+        "ar-l1-derivabilite-reciproque"
+      ]
+    },
+    {
+      "id": "ar-l1-fonctions-usuelles-equations-fonctionnelles",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Équations fonctionnelles de l'exponentielle, du logarithme et des puissances",
+      "recto": "Énoncer les caractérisations, parmi les fonctions continues, des fonctions linéaires, exponentielles, logarithmes et puissances par des équations fonctionnelles.",
+      "cours": "Le programme demande de **caractériser** $x\\mapsto ax$, les exponentielles, les logarithmes et les puissances comme les seules fonctions continues qui transforment les sommes ou les produits en sommes ou en produits : additive ($f(x+y)=f(x)+f(y)$), exponentielle (somme en produit), logarithme (produit en somme), puissance (produit en produit).\n\nLa méthode de base est celle de l'équation de Cauchy : valeurs particulières ($x=y=0$, puis $y=-x$), entiers par récurrence, rationnels ($q\\,f\\left(\\frac pq\\right)=f(p)$), puis réels par **densité de $\\mathbb{Q}$ et continuité**. Les trois autres équations s'y ramènent en composant par $\\exp$ ou par $\\ln$ : on étudie $\\ln\\circ f$, $f\\circ\\exp$ ou $\\ln\\circ f\\circ\\exp$. Il faut alors avoir prouvé d'abord que $f>0$, ce qui exige d'écarter la fonction nulle.\n\nLa continuité peut être remplacée par une hypothèse plus faible : continuité en un seul point, monotonie, ou caractère borné sur un intervalle (voir les exercices). Mais elle ne peut pas être supprimée : on démontre, avec l'axiome du choix (résultat admis ici), qu'il existe des fonctions additives non linéaires.\n\nPièges : oublier la solution nulle des équations multiplicatives ; composer par $\\ln$ sans avoir prouvé que $f>0$ ; utiliser la relation pour des valeurs où elle n'est pas supposée vraie.",
+      "hypotheses": [
+        "$f$ est continue sur son ensemble de définition ($\\mathbb{R}$ ou $\\left]0,+\\infty\\right[$).",
+        "La relation fonctionnelle est vraie pour **tous** les $x$ et $y$ de l'ensemble de définition.",
+        "Pour $f(x+y)=f(x)f(y)$ et $f(xy)=f(x)f(y)$ : $f$ n'est pas la fonction nulle."
+      ],
+      "hypotheses_pieges": [
+        "La relation $f(x+y)=f(x)+f(y)$ n'est supposée que pour des entiers $x$ et $y$ (à la place de tous les réels).",
+        "La relation $f(x+y)=f(x)+f(y)$ n'est supposée que pour $x\\ge0$ et $y\\ge0$, la conclusion étant affirmée sur tout $\\mathbb{R}$ (à la place de tous les réels).",
+        "Pour $f(x+y)=f(x)f(y)$ : aucune condition sur $f$ autre que la continuité (à la place de : $f$ n'est pas la fonction nulle)."
+      ],
+      "enonce": "Soit $f$ une fonction **continue** à valeurs réelles.\n- Si $f:\\mathbb{R}\\to\\mathbb{R}$ vérifie $f(x+y)=f(x)+f(y)$ pour tous réels $x,y$, alors $f(x)=ax$ pour tout réel $x$, avec $a=f(1)$.\n- Si $f:\\mathbb{R}\\to\\mathbb{R}$ n'est pas la fonction nulle et vérifie $f(x+y)=f(x)f(y)$ pour tous réels $x,y$, alors $f(1)>0$ et $f(x)=f(1)^x=e^{kx}$ pour tout réel $x$, avec $k=\\ln f(1)$.\n- Si $f:\\left]0,+\\infty\\right[\\to\\mathbb{R}$ vérifie $f(xy)=f(x)+f(y)$ pour tous $x,y>0$, alors il existe un réel $c$ tel que $f(x)=c\\ln x$ pour tout $x>0$.\n- Si $f:\\left]0,+\\infty\\right[\\to\\mathbb{R}$ n'est pas la fonction nulle et vérifie $f(xy)=f(x)f(y)$ pour tous $x,y>0$, alors il existe un réel $a$ tel que $f(x)=x^a$ pour tout $x>0$.\n\nRéciproquement, ces fonctions vérifient les relations correspondantes.",
+      "enonce_trous": "Si $f:\\mathbb{R}\\to\\mathbb{R}$ est continue et vérifie {{1}} pour tous réels $x$ et $y$, alors $f(x)=f(1)\\,x$ pour tout réel $x$. Si $f:\\mathbb{R}\\to\\mathbb{R}$ est continue, {{2}}, et vérifie $f(x+y)=f(x)f(y)$ pour tous réels $x$ et $y$, alors {{3}} pour tout réel $x$.",
+      "trous": [
+        {
+          "reponse": "$f(x+y)=f(x)+f(y)$",
+          "leurres": [
+            "$f(x+y)=f(x)f(y)$",
+            "$f(xy)=f(x)f(y)$",
+            "$f(x+y)\\le f(x)+f(y)$"
+          ]
+        },
+        {
+          "reponse": "non identiquement nulle",
+          "leurres": [
+            "positive ou nulle",
+            "majorée",
+            "bornée sur $[0,1]$"
+          ]
+        },
+        {
+          "reponse": "$f(1)>0$ et $f(x)=f(1)^x$",
+          "leurres": [
+            "$f(x)=f(1)\\,x$",
+            "$f(x)=e^{x}$",
+            "$f(x)=x^{f(1)}$"
+          ]
+        }
+      ],
+      "demo": "**Équation de Cauchy $f(x+y)=f(x)+f(y)$.** Avec $x=y=0$, $f(0)=2f(0)$, donc $f(0)=0$ ; avec $y=-x$, $f(-x)=-f(x)$. Par récurrence, $f(nx)=nf(x)$ pour tout $n\\in\\mathbb{N}$, donc pour tout $n\\in\\mathbb{Z}$ par imparité. Pour $r=\\frac pq$ avec $p\\in\\mathbb{Z}$ et $q\\ge1$ : $q\\,f(r)=f(qr)=f(p)=p\\,f(1)$, donc $f(r)=ar$ avec $a=f(1)$. Pour $x$ réel, la densité de $\\mathbb{Q}$ fournit une suite de rationnels $r_n\\to x$ ; par continuité (caractérisation séquentielle), $f(x)=\\lim f(r_n)=\\lim ar_n=ax$.\n\n**Équation $f(x+y)=f(x)f(y)$, $f$ non nulle.** Pour tout $x$, $f(x)=f\\left(\\frac x2\\right)^2\\ge0$. Si $f(x_0)=0$, alors $f(x)=f(x_0)f(x-x_0)=0$ pour tout $x$, ce qui est exclu : donc $f>0$. La fonction $g=\\ln\\circ f$ est continue et vérifie $g(x+y)=g(x)+g(y)$ : $g(x)=kx$ avec $k=g(1)=\\ln f(1)$, et $f(x)=e^{kx}=\\left(e^{k}\\right)^x=f(1)^x$, avec $f(1)>0$.\n\n**Équations sur $\\left]0,+\\infty\\right[$.** Si $f(xy)=f(x)+f(y)$, la fonction $g(t)=f\\left(e^t\\right)$ est continue sur $\\mathbb{R}$ et additive : $g(t)=ct$, donc $f(x)=g(\\ln x)=c\\ln x$. Si $f(xy)=f(x)f(y)$ avec $f$ non nulle, $g(t)=f\\left(e^t\\right)$ vérifie $g(s+t)=g(s)g(t)$ et n'est pas nulle : $g(t)=e^{at}$ avec $a$ réel, donc $f(x)=e^{a\\ln x}=x^a$.\n\n**Réciproque.** $a(x+y)=ax+ay$, $e^{k(x+y)}=e^{kx}e^{ky}$, $c\\ln(xy)=c\\ln x+c\\ln y$, $(xy)^a=x^ay^a$.",
+      "exemple": "- Les fonctions continues $f:\\mathbb{R}\\to\\mathbb{R}$ telles que $f(x+y)=f(x)+f(y)$ et $f(2)=6$ : $f(x)=ax$ avec $2a=6$, donc $f(x)=3x$.\n- Les fonctions continues non nulles telles que $f(x+y)=f(x)f(y)$ et $f(1)=2$ : $f(x)=2^x$.\n- Les fonctions continues sur $\\left]0,+\\infty\\right[$ telles que $f(xy)=f(x)f(y)$ et $f(4)=2$ : $f(x)=x^a$ avec $4^a=2$, donc $a=\\frac12$ et $f(x)=\\sqrt x$.",
+      "contre_exemple": "- **La fonction nulle** vérifie $f(x+y)=f(x)f(y)$ et $f(xy)=f(x)f(y)$ sans être une exponentielle ni une puissance : d'où l'hypothèse « non nulle ».\n- **La relation pour tous les réels** : $f(x)=\\sin(2\\pi x)$ est continue et vérifie $f(m+n)=0=f(m)+f(n)$ pour tous entiers $m,n$, mais $f\\left(\\frac14\\right)=1\\neq\\frac14f(1)=0$.\n- **La relation sur une demi-droite ne suffit pas** : $f(x)=x$ pour $x\\ge0$ et $f(x)=2x$ pour $x<0$ est continue et vérifie $f(x+y)=f(x)+f(y)$ pour $x,y\\ge0$, mais $f(-1)=-2\\neq f(1)\\cdot(-1)$.\n- **Sans continuité**, il existe des fonctions additives non linéaires (résultat admis, qui repose sur l'axiome du choix) : l'hypothèse de régularité ne peut pas être simplement supprimée.",
+      "affirmations": [
+        {
+          "texte": "Une fonction $f:\\mathbb{R}\\to\\mathbb{R}$ telle que $f(x+y)=f(x)+f(y)$ pour tous réels $x,y$ est impaire.",
+          "vrai": true,
+          "justification": "Avec $x=y=0$, $f(0)=0$ ; avec $y=-x$, $0=f(x)+f(-x)$. La continuité ne sert pas ici."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}\\to\\mathbb{R}$ vérifie $f(x+y)=f(x)+f(y)$ pour tous réels $x,y$, alors $f(r)=f(1)\\,r$ pour tout rationnel $r$.",
+          "vrai": true,
+          "justification": "C'est la partie de la démonstration qui passe par les entiers puis les rationnels ; elle n'utilise pas la continuité."
+        },
+        {
+          "texte": "Si $f:\\left]0,+\\infty\\right[\\to\\mathbb{R}$ est continue et vérifie $f(xy)=f(x)+f(y)$ pour tous $x,y>0$, alors $f=\\ln$.",
+          "vrai": false,
+          "contre_exemple": "$f=2\\ln$ (ou la fonction nulle) vérifie la relation. On a seulement $f=c\\ln$ pour un réel $c$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}\\to\\mathbb{R}$ est continue et vérifie $f(x+y)=f(x)f(y)$ pour tous réels $x,y$, alors $f(x)>0$ pour tout réel $x$.",
+          "vrai": false,
+          "contre_exemple": "La fonction nulle est continue et vérifie la relation."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-reels-densite",
+        "ar-l1-continuite-sequentielle",
+        "ar-t-fonctions-usuelles-exp",
+        "ar-t-fonctions-usuelles-ln",
+        "ar-l1-fonctions-usuelles-puissances"
+      ]
+    },
+    {
+      "id": "ar-l1-fonctions-usuelles-decimal",
+      "theme": "analyse-reelle",
+      "niveau": "l1",
+      "chapitre": "ar-l1-fonctions-usuelles",
+      "type": "theoreme",
+      "titre": "Développement décimal d'un réel, cas des rationnels",
+      "recto": "Énoncer l'existence et l'unicité du développement décimal d'un réel (approximations décimales, chiffres), et caractériser les rationnels par leur développement décimal.",
+      "cours": "Écrire $x=0{,}a_1a_2a_3\\ldots$, c'est dire que les **approximations décimales** $d_n=\\frac{\\lfloor10^nx\\rfloor}{10^n}$, obtenues en tronquant après $n$ chiffres, encadrent $x$ à $10^{-n}$ près : $d_n\\le x<d_n+10^{-n}$. Les chiffres se lisent sur ces approximations, $a_k=10^k(d_k-d_{k-1})$, et $x$ est la limite des $d_n$ : tout repose sur la partie entière et la propriété d'Archimède.\n\nCe développement ne se termine jamais par une infinité de $9$. Une suite de chiffres qui se termine par des $9$ définit encore un réel, mais c'est un nombre décimal, qui a déjà un développement fini : $0{,}4999\\ldots=0{,}5$ et $0{,}999\\ldots=1$. Les décimaux sont exactement les réels qui ont deux développements.\n\nLes rationnels sont les réels dont le développement est **périodique à partir d'un certain rang**. Dans un sens, c'est la division posée : les restes successifs de la division par $q$ ne prennent qu'un nombre fini de valeurs, donc l'un d'eux se répète (principe des tiroirs), et tout se répète ensuite. Dans l'autre, si $y$ a un développement périodique de période $T$ dès le premier chiffre, $10^Ty-y$ est l'entier formé de ses $T$ premiers chiffres.\n\nMéthode : pour écrire un développement périodique comme une fraction, multiplier par une puissance de $10$ pour que la période commence juste après la virgule, puis par $10^T$, et soustraire. Pour montrer qu'un réel est irrationnel, il suffit de montrer que son développement n'est pas périodique.\n\nPièges : la période peut ne commencer qu'après quelques chiffres ($\\frac16=0{,}1666\\ldots$) ; et un développement fini est périodique (le chiffre $0$ se répète), ce qui est cohérent avec le fait que les décimaux sont rationnels.",
+      "hypotheses": [
+        "Pour l'unicité du développement : la suite des chiffres n'est pas stationnaire à $9$.",
+        "Pour la caractérisation des rationnels : le développement est périodique à partir d'un certain rang (pas forcément dès le premier chiffre)."
+      ],
+      "hypotheses_pieges": [
+        "Pour l'unicité du développement : chaque chiffre est dans $\\{0,\\dots,9\\}$, sans autre condition (à la place de : non stationnaire à $9$).",
+        "Pour la caractérisation des rationnels : le développement est périodique dès le premier chiffre après la virgule (à la place de : à partir d'un certain rang).",
+        "Pour la caractérisation des rationnels : le développement est fini, c'est-à-dire nul à partir d'un certain rang (à la place de : périodique à partir d'un certain rang)."
+      ],
+      "enonce": "Soit $x$ un réel. Pour tout $n\\in\\mathbb{N}$, l'**approximation décimale par défaut** $d_n=\\frac{\\lfloor10^nx\\rfloor}{10^n}$ vérifie $d_n\\le x<d_n+10^{-n}$ ; la suite $(d_n)$ est croissante et converge vers $x$.\n\n**Développement décimal.** Posons $a_0=\\lfloor x\\rfloor$ et, pour $k\\ge1$, $a_k=\\lfloor10^kx\\rfloor-10\\lfloor10^{k-1}x\\rfloor$. Alors chaque $a_k$ ($k\\ge1$) est un chiffre de $\\{0,\\dots,9\\}$, $d_n=a_0+\\sum_{k=1}^{n}a_k10^{-k}$ pour tout $n$, et la suite $(a_k)_{k\\ge1}$ n'est pas stationnaire à $9$. Réciproquement, pour tout entier relatif $a_0$ et toute suite de chiffres $(a_k)_{k\\ge1}$ non stationnaire à $9$, il existe un unique réel dont ce sont les chiffres, à savoir $\\lim_{n\\to+\\infty}\\left(a_0+\\sum_{k=1}^{n}a_k10^{-k}\\right)$ ; pour $x\\ge0$ on écrit $x=a_0{,}a_1a_2a_3\\ldots$\n\nUne suite de chiffres stationnaire à $9$ donne encore une limite, mais c'est un nombre décimal qui a aussi un développement fini (par exemple $0{,}4999\\ldots=0{,}5$) : les réels qui ont deux développements sont exactement les nombres décimaux.\n\n**Cas des rationnels.** Le réel $x$ est rationnel si et seulement si la suite de ses chiffres est périodique à partir d'un certain rang. Pour $x=\\frac pq$ avec $q\\ge1$, on peut choisir une période au plus égale à $q$.",
+      "enonce_trous": "Pour tout réel $x$ et tout entier $n\\ge0$, $\\frac{\\lfloor10^nx\\rfloor}{10^n}\\le x<$ {{1}}. Un réel est rationnel si et seulement si son développement décimal est {{2}} ; il admet deux développements décimaux si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{\\lfloor10^nx\\rfloor+1}{10^n}$",
+          "leurres": [
+            "$\\frac{\\lfloor10^nx\\rfloor}{10^n}+10^{-n-1}$",
+            "$\\frac{\\lfloor10^nx\\rfloor+1}{10^{n+1}}$",
+            "$\\frac{\\lfloor10^{n+1}x\\rfloor}{10^{n+1}}$"
+          ]
+        },
+        {
+          "reponse": "périodique à partir d'un certain rang",
+          "leurres": [
+            "fini",
+            "périodique dès le premier chiffre après la virgule",
+            "non périodique"
+          ]
+        },
+        {
+          "reponse": "c'est un nombre décimal",
+          "leurres": [
+            "c'est un rationnel",
+            "c'est un entier",
+            "c'est un irrationnel"
+          ]
+        }
+      ],
+      "demo": "**Approximations.** Par définition de la partie entière, $\\lfloor10^nx\\rfloor\\le10^nx<\\lfloor10^nx\\rfloor+1$ ; on divise par $10^n$. L'entier $10\\lfloor10^nx\\rfloor$ est inférieur ou égal à $10^{n+1}x$, donc à $\\lfloor10^{n+1}x\\rfloor$ : $d_n\\le d_{n+1}$. Enfin $0\\le x-d_n<10^{-n}\\to0$.\n\n**Chiffres.** Avec $m=\\lfloor10^{k-1}x\\rfloor$ : $10m\\le10^kx<10m+10$, donc $10m\\le\\lfloor10^kx\\rfloor\\le10m+9$, c'est-à-dire $0\\le a_k\\le9$. La somme $\\sum_{k=1}^n a_k10^{-k}=\\sum_{k=1}^n\\left(d_k-d_{k-1}\\right)$ est télescopique et vaut $d_n-d_0$, avec $d_0=a_0$. Si l'on avait $a_k=9$ pour tout $k>N$, on aurait $d_n=d_N+\\sum_{k=N+1}^n9\\cdot10^{-k}=d_N+10^{-N}-10^{-n}$, et à la limite $x=d_N+10^{-N}$, ce qui contredit $x<d_N+10^{-N}$.\n\n**Réciproque.** Soit $s_n=a_0+\\sum_{k=1}^na_k10^{-k}$, suite croissante majorée par $a_0+1$, donc convergente vers un réel $x$. Pour tout $n$, il existe $k_0>n$ avec $a_{k_0}\\le8$, donc $\\sum_{k=n+1}^{m}a_k10^{-k}\\le10^{-n}-10^{-k_0}$ pour $m\\ge k_0$, et $s_n\\le x\\le s_n+10^{-n}-10^{-k_0}<s_n+10^{-n}$. Comme $10^ns_n$ est entier, $\\lfloor10^nx\\rfloor=10^ns_n$ : les chiffres de $x$ sont les $a_k$. L'unicité vient de ce que les chiffres déterminent les $d_n$, qui convergent vers $x$.\n\n**Périodique implique rationnel.** Supposons $a_{k+T}=a_k$ pour tout $k>N$. Le réel $y=10^Nx-\\lfloor10^Nx\\rfloor\\in[0,1[$ a pour chiffres $a_{N+1},a_{N+2},\\dots$ (car $\\lfloor10^jy\\rfloor=\\lfloor10^{N+j}x\\rfloor-10^j\\lfloor10^Nx\\rfloor$). Si $B$ est l'entier formé des chiffres $a_{N+1}\\dots a_{N+T}$, alors $10^Ty=B+\\lim_{n\\to+\\infty}\\sum_{i=1}^{n}a_{N+T+i}10^{-i}=B+y$ par périodicité, donc $y=\\frac{B}{10^T-1}$ est rationnel, et $x=\\frac{\\lfloor10^Nx\\rfloor+y}{10^N}$ aussi.\n\n**Rationnel implique périodique.** Soit $x=\\frac pq$ avec $q\\ge1$ et $r_k=10^kx-\\lfloor10^kx\\rfloor$. Comme $q\\,r_k=10^kp-q\\lfloor10^kx\\rfloor$ est un entier de $\\{0,\\dots,q-1\\}$, $r_k$ ne prend que $q$ valeurs. De plus $a_{k+1}=\\lfloor10r_k\\rfloor$ et $r_{k+1}=10r_k-a_{k+1}$ : $a_{k+1}$ et $r_{k+1}$ ne dépendent que de $r_k$. Parmi $r_0,\\dots,r_q$, deux sont égaux (principe des tiroirs) : $r_i=r_j$ avec $i<j\\le q$. Par récurrence, $r_{k+j-i}=r_k$ pour tout $k\\ge i$, puis $a_{k+j-i}=a_k$ pour tout $k>i$ : le développement est périodique à partir du rang $i+1$, de période $j-i\\le q$.",
+      "exemple": "$\\frac17=0{,}142857\\,142857\\ldots$ (période $6$, au plus $7$) ; $\\frac16=0{,}1666\\ldots$ (périodique à partir du deuxième chiffre). Inversement, $y=0{,}1212\\ldots$ vérifie $100y-y=12$, donc $y=\\frac{12}{99}=\\frac4{33}$. Pour $\\sqrt2$ : $d_3=1{,}414$ et $1{,}414\\le\\sqrt2<1{,}415$.",
+      "contre_exemple": "- **Unicité** : sans la condition « non stationnaire à $9$ », $0{,}4999\\ldots$ et $0{,}5000\\ldots$ représentent le même réel, car $0{,}4+\\sum_{k=2}^n9\\cdot10^{-k}=0{,}5-10^{-n}\\to0{,}5$.\n- **Périodique dès le début** : $\\frac16$ est rationnel, mais $0{,}1666\\ldots$ n'est pas périodique dès le premier chiffre (une période $T$ donnerait $a_{1+T}=a_1=1$, alors que $a_k=6$ pour $k\\ge2$).\n- **Un développement non périodique** : $0{,}1010010001\\ldots$ (un $1$, un zéro, un $1$, deux zéros, un $1$, trois zéros…) est irrationnel. S'il était périodique de période $T$ à partir du rang $N$, une plage de $T$ zéros consécutifs située après le rang $N$ se répéterait indéfiniment, et tous les chiffres suivants seraient nuls ; or il apparaît toujours des $1$ plus loin.",
+      "affirmations": [
+        {
+          "texte": "Le développement décimal de $\\frac17$ est périodique de période $6$ dès le premier chiffre.",
+          "vrai": true,
+          "justification": "$\\frac17=0{,}142857\\,142857\\ldots$ ; la division posée redonne le reste $1$ après $6$ étapes, car $10^6-1=7\\times142857$."
+        },
+        {
+          "texte": "Tout réel dont les chiffres après la virgule ne sont que des $0$ et des $1$ est rationnel.",
+          "vrai": false,
+          "contre_exemple": "$0{,}1010010001\\ldots$ (les plages de zéros s'allongent d'un chiffre à chaque fois) n'a pas de développement périodique, donc est irrationnel."
+        },
+        {
+          "texte": "Le réel $0{,}999\\ldots$ (que des $9$) est strictement inférieur à $1$.",
+          "vrai": false,
+          "contre_exemple": "$\\sum_{k=1}^n9\\cdot10^{-k}=1-10^{-n}\\to1$ : la limite vaut exactement $1$."
+        },
+        {
+          "texte": "La somme de deux réels dont les développements sont périodiques à partir d'un certain rang a elle aussi un développement périodique à partir d'un certain rang.",
+          "vrai": true,
+          "justification": "Ces réels sont rationnels, leur somme aussi, et un rationnel a un développement périodique à partir d'un certain rang."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-reels-densite",
+        "fond-l1-ensembles-tiroirs",
+        "ar-t-limite-monotone",
+        "ar-t-suites-geometrique"
+      ]
+    }
+  ]
+}
