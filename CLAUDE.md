@@ -14,7 +14,7 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   Sans Android Studio : `sdkmanager "platforms;android-36" "build-tools;36.0.0"` puis `sdk.dir=…` dans `android/local.properties`.
 - CI : `verification.yml` (PR : typecheck, tests, SymPy, build, APK + contrôle du `versionName`) et `android.yml` (push sur la
   branche par défaut : tests, SymPy, build, APK publié dans la release « apk ») et `pages.yml` (push sur la branche par
-  défaut : tests, build, `dist/` publié sur GitHub Pages ; source Pages « GitHub Actions » à activer dans les réglages).
+  défaut : tests, build, `dist/` poussé dans la branche `gh-pages`, servie par GitHub Pages ; ne jamais y commiter à la main).
 - Logo : `npm run logo` (= `node design/logo/generer.mjs` puis `node design/logo/png.cjs`, qui pilote Chrome ; chemin dans
   `CHROME_PATH` au besoin). Les fichiers produits (SVG, calques adaptatifs, PNG) ne s'éditent jamais à la main.
 
