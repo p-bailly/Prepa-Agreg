@@ -162,7 +162,7 @@ assert simplify(diff(-cos(t) / t, t) - (sin(t) / t + cos(t) / t**2)) == 0
 assert simplify(sin(t)**2 - (1 - cos(2 * t)) / 2) == 0
 # absolue-ex3 : int (sin t / t)^2 = pi/2 ; v1 : sin^3 linéarisé, pi/4 ; v2 : sin t cos 2t = (sin 3t - sin t)/2, 0.
 assert simplify(diff(-sin(t)**2 / t, t) - sin(t)**2 / t**2 + sin(2 * t) / t) == 0
-assert proche(Qinf(lambda v: (mp.sin(v) / v)**2 if v else 1), mp.pi / 2, mp.mpf("1e-6"))
+assert proche(mp.quadosc(lambda v: (mp.sin(v) / v)**2 if v else 1, [0, mp.inf], period=mp.pi), mp.pi / 2, mp.mpf("1e-6"))
 assert simplify(sin(t)**3 - (3 * sin(t) - sin(3 * t)) / 4) == 0
 assert simplify(sin(t) * cos(2 * t) - (sin(3 * t) - sin(t)) / 2) == 0
 assert Rational(3, 4) * pi / 2 - Rational(1, 4) * pi / 2 == pi / 4

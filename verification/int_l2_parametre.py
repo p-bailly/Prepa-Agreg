@@ -220,7 +220,7 @@ assert proche(q(lambda s: mp.e ** -s * mp.log(s), [0, 1, mp.inf]), -mp.euler)
 assert all(mp.e ** -s / s >= mp.e ** -1 / s for s in mp.linspace(0.01, 1, 50))  # contre-exemple x = 0
 # Trous : Γ(x) = xΓ(x+1) faux en x = 2 ; Γ(2x) = 2xΓ(x) faux en x = 1 ; Γ(2) = 1 ≠ 2! ; 1^1 e^{-1} ≠ 1.
 assert gamma(2) != 2 * gamma(3) and gamma(2) != 2 * gamma(1) and gamma(2) != 2 * 1 and exp(-1) != 1
-assert proche(q(lambda s: s ** -0.5 * mp.e ** -s), mp.sqrt(mp.pi))           # converge pour x = 1/2 (leurres x > 1, x ≥ 1)
+assert proche(q(lambda s: s ** -0.5 * mp.e ** -s, [0, 1, mp.inf]), mp.sqrt(mp.pi), 1e-10)           # converge pour x = 1/2 (leurres x > 1, x ≥ 1)
 # Affirmation 2 / ex4 : minimum en α ∈ ]1,2[, Γ'(1) < 0 < Γ'(2) = 1 + Γ'(1), Γ(α) ≈ 0,886.
 alpha = mp.findroot(lambda s: mp.diff(mp.gamma, s), 1.46)
 assert 1 < alpha < 2 and abs(alpha - mp.mpf("1.46163")) < 1e-4 and abs(mp.gamma(alpha) - mp.mpf("0.8856")) < 1e-3
