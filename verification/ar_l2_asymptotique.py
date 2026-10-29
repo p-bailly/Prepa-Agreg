@@ -358,8 +358,10 @@ fN = x - G(x) / diff(G(x), x)
 f1 = simplify(diff(fN, x) - G(x) * diff(G(x), x, 2) / diff(G(x), x) ** 2)
 assert f1 == 0
 f2 = diff(fN, x, 2)
-f2_l = f2.subs(G(x), 0)  # en un point où g = 0
-assert simplify(f2_l.doit() - diff(G(x), x, 2) / diff(G(x), x)) == 0
+s0, s1, s2, s3 = symbols("s0 s1 s2 s3")
+f2s = f2.subs(diff(G(x), x, 3), s3).subs(diff(G(x), x, 2), s2).subs(diff(G(x), x), s1).subs(G(x), s0)
+assert simplify(f2s - ((s1 * s2 + s0 * s3) / s1**2 - 2 * s0 * s2**2 / s1**3)) == 0
+assert simplify(f2s.subs(s0, 0) - s2 / s1) == 0  # en un point où g = 0 : f''(l) = g''(l)/g'(l)
 # Exemple g = x^2 - 2 : limite 1/(2 sqrt 2) ; les leurres diffèrent.
 gg = x**2 - 2
 lim = (diff(gg, x, 2) / (2 * diff(gg, x))).subs(x, sqrt(2))
@@ -414,7 +416,7 @@ for p, A, nb, eq in [(5, 1, 1, 1), (3, 1, 2, 2), (7, 2, 1, F(1, 2))]:
         borne = F(nb, A * N)
         assert P(F(0)) < 0 < P(borne) and P(borne) == borne**p
         r = mp.findroot(lambda t: t**p + A * N * t - nb, mp.mpf(eq) / N)
-        assert 0 < r < borne
+        assert 0 < r < mp.mpf(borne.numerator) / borne.denominator
     rN = mp.findroot(lambda t: t**p + A * 10**6 * t - nb, mp.mpf(eq) / 10**6)
     assert abs(rN * 10**6 / mp.mpf(eq) - 1) < 1e-6
 # Terme suivant de ex1 : x_n = 1/n - 1/n^6 + o(1/n^6).
