@@ -72,3 +72,16 @@ export function BandeauDoute({ doute }: { doute?: string }) {
 export function Etiquette({ children }: { children: ReactNode }) {
   return <span className="etiquette">{children}</span>
 }
+
+/** Onglets internes d'un écran (Notions · Exercices · QCM…) : boutons collés en pilule, l'actif en aplat tonal. */
+export function Segments<T extends string>({ options, valeur, surChange }: { options: { id: T; nom: string }[]; valeur: T; surChange: (v: T) => void }) {
+  return (
+    <div className="segments" role="tablist">
+      {options.map((o) => (
+        <button key={o.id} role="tab" aria-selected={o.id === valeur} onClick={() => surChange(o.id)}>
+          {o.nom}
+        </button>
+      ))}
+    </div>
+  )
+}

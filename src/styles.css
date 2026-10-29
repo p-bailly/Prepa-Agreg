@@ -931,58 +931,6 @@ p {
   outline-offset: -2px;
 }
 
-/* ---------- Jauges et barres ---------- */
-
-.jauge {
-  margin: 0 0 14px;
-}
-
-.jauge .ligne {
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.barre {
-  height: 8px;
-  border-radius: 4px;
-  background: var(--trait);
-  position: relative;
-  overflow: hidden;
-}
-
-.barre > span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 4px;
-  background: var(--primaire);
-}
-
-.barre.seconde > span {
-  background: var(--seconde);
-}
-
-.histogramme {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 120px;
-  border-bottom: 1px solid var(--contour);
-  margin-bottom: 6px;
-}
-
-.histogramme > span {
-  flex: 1;
-  border-radius: 3px 3px 0 0;
-  background: var(--indicateur);
-  min-height: 0;
-}
-
-.histogramme > span.aujourdhui {
-  background: var(--primaire);
-}
-
 /* ---------- Parcours : chemin vertical de nœuds ---------- */
 
 .chemin {
@@ -1181,25 +1129,34 @@ textarea {
   margin-top: 8px;
 }
 
-/* ---------- Liste des chapitres (accueil) ---------- */
+/* ---------- Listes (chapitres, notions, exercices) ---------- */
 
 .groupe-chapitres + .groupe-chapitres {
   margin-top: 14px;
 }
 
-.liste-chapitres {
+.liste {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.chapitre-ligne {
+/* Liste posée sur une surface (hors volet). */
+.bloc-liste {
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  border-radius: 24px;
+  padding: 4px 14px;
+  margin: 0 0 16px;
+}
+
+.ligne-liste {
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
   min-height: 52px;
-  padding: 6px 4px;
+  padding: 8px 2px;
   background: none;
   border: none;
   border-top: 1px solid var(--trait);
@@ -1209,18 +1166,23 @@ textarea {
   text-align: left;
 }
 
-.liste-chapitres li:first-child .chapitre-ligne {
+.liste li:first-child .ligne-liste {
   border-top: none;
 }
 
-.chapitre-ligne small {
+.ligne-liste .intitule {
+  flex: 1;
+  min-width: 0;
+}
+
+.ligne-liste small {
   display: block;
   color: var(--doux);
   font-size: 13px;
   font-weight: 400;
 }
 
-.chapitre-ligne .pastille {
+.ligne-liste .pastille {
   flex: none;
   display: flex;
   justify-content: center;
@@ -1228,11 +1190,81 @@ textarea {
   color: var(--primaire);
 }
 
-.chapitre-ligne:disabled {
+.ligne-liste .numero {
+  flex: none;
+  min-width: 30px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: var(--conteneur);
+  color: var(--sur-conteneur);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ligne-liste:disabled {
   color: var(--doux);
   cursor: default;
 }
 
-.chapitre-ligne:disabled .pastille {
+.ligne-liste:disabled .pastille {
   color: var(--desactive);
 }
+
+.ligne-liste:disabled .numero {
+  background: var(--fond-desactive);
+  color: var(--desactive);
+}
+
+.sur-titre-ecran {
+  display: block;
+  color: var(--doux);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+
+/* Onglets internes d'un écran : pilule, l'actif en aplat tonal. */
+.segments {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 0 16px;
+  border-radius: 22px;
+  background: var(--surface-basse);
+}
+
+.segments button {
+  flex: 1;
+  min-height: 44px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--doux);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.segments button[aria-selected='true'] {
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: 700;
+}
+
+.question-qcm {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.liste-revoir {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.rangee-boutons:has(> :nth-child(2):last-child) {
+  grid-template-columns: 1fr 1fr;
+}
+

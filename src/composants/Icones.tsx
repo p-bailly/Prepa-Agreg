@@ -37,12 +37,11 @@ export function CaseNiveau({ etat, taille = 22 }: { etat: 'reussi' | 'partiel' |
 const TRAITS = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
 
 /** Icônes de la barre d'onglets. */
-export function IconeOnglet({ onglet, taille = 22 }: { onglet: 'accueil' | 'parcours' | 'stats' | 'reglages'; taille?: number }) {
+export function IconeOnglet({ onglet, taille = 22 }: { onglet: 'accueil' | 'parcours' | 'reglages'; taille?: number }) {
   return (
     <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" {...TRAITS}>
       {onglet === 'accueil' && <path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z" />}
       {onglet === 'parcours' && <path d="M4 6h16M4 12h16M4 18h10" />}
-      {onglet === 'stats' && <path d="M5 20v-9M12 20V5M19 20v-6" />}
       {onglet === 'reglages' && (
         <>
           <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />

@@ -2,7 +2,7 @@
 
 Prépa Agreg : appli Android perso (Capacitor + React 19 + Vite + TypeScript + KaTeX) pour monter de la Terminale jusqu'aux
 attendus de l'écrit de l'agrégation externe de mathématiques : cartes de révision à répétition espacée, exercices de difficulté
-croissante par notion, tableau de bord. Version web sur GitHub Pages (`https://p-bailly.github.io/Prepa-Agreg/`, même construction que l'APK) ;
+croissante par notion, QCM par chapitre, chapitres numérotés. Version web sur GitHub Pages (`https://p-bailly.github.io/Prepa-Agreg/`, même construction que l'APK) ;
 pas de compte, pas de serveur. Code, commentaires, textes,
 commits : en français. Les commentaires qui renvoient à une rubrique de ce fichier citent son titre : le garder en cas de renommage.
 
@@ -39,15 +39,18 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   - `src/repetition/` : `planification.ts` (SM-2 simplifié par volet), `etat.ts` (neuve / en cours / acquise, prérequis),
     `seance.ts` (cartes à revoir, cartes neuves, plafond quotidien, filtres, ordre d'introduction), `modes.ts` (quatre modes),
     `deroulement.ts` (séance courte : reprises, arrêt au temps).
-  - `src/exercices/niveaux.ts` : cases des cinq niveaux, exercice suggéré. `src/stats/tableau.ts` : tableau de bord.
+  - `src/exercices/niveaux.ts` : état d'un exercice et de ses niveaux, variante suivante.
+  - `src/chapitres/` : `plan.ts` (numérotation des chapitres, avancement d'une notion ou d'un chapitre), `qcm.ts` (QCM d'un
+    chapitre tiré du contenu vérifié).
   - `src/contenu/` : types, chargement (`import.meta.glob` de `content/`), découpage du texte (`texte.ts`), validation.
   - `src/lib/` : stockage local, réglages, progression (fonctions pures), sauvegarde JSON, notifications, partage de fichier.
-- Écrans React dans `src/pages/` (Accueil, Parcours, Chapitre, Stats, Réglages, Séance, EcranCarte, EcranExercice) ; données
-  partagées par `src/etat/Donnees.tsx` (contexte : contenu, réglages, progression, horloge) ; navigation dans `App.tsx`
-  (quatre onglets + pile d'écrans, bouton retour Android ; sur le web, retour du navigateur par une entrée d'historique). Dossiers prévus pour plus tard (pas de code en v1) :
+- Écrans React dans `src/pages/` (Accueil, Parcours, Réglages, Chapitre, EcranNotion, EcranQcm, EcranCarte, EcranExercice) ;
+  données partagées par `src/etat/Donnees.tsx` (contexte : contenu, réglages, progression, horloge) ; navigation dans
+  `App.tsx` (trois onglets + pile d'écrans gardés montés, bouton retour Android ; sur le web, retour du navigateur par une
+  entrée d'historique). Onglet Stats, séance de révision et écran de leçon retirés le 2026-10-29 à la demande du propriétaire. Dossiers prévus pour plus tard (pas de code en v1) :
   `src/sujets/`, `src/seance/` (sujets chronométrés, séances longues) et `content/sujets/`.
-- Persistance locale versionnée : `reglages-v1`, `progression-v1` (localStorage de la WebView) ; changer un format = changer le
-  suffixe ; la lecture fusionne avec les valeurs par défaut et répare les champs invalides (`normaliser…`). La progression est
+- Persistance locale versionnée : `reglages-v1`, `progression-v1` (localStorage de la WebView ; `qcm`, scores des QCM par
+  chapitre, ajouté sans changer de suffixe car absent = vide) ; changer un format = changer le suffixe ; la lecture fusionne avec les valeurs par défaut et répare les champs invalides (`normaliser…`). La progression est
   indexée par identifiant de carte (`idCarte#enonce`, `#demo`, `#contre`) et d'exercice : **renommer un identifiant perd son
   historique**, ne jamais le faire sans migration.
 - Tout est embarqué dans l'APK (contenu, KaTeX et ses polices, Latin Modern) : hors ligne par construction, aucun CDN.
@@ -61,10 +64,17 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   ombre ni dégradé. Sombre : fond `#111418`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
 - Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
   aller avec les formules KaTeX.
-- Accueil : tuiles sable / menthe / rose (série, niveau atteint, écrit), puis la **liste de tous les chapitres**, un volet
-  par niveau (Terminale → agrégation, ouverts d'emblée s'ils ont des cartes), groupés par thème, chacun avec sa pastille
-  d'avancement ; un chapitre pas encore rédigé est grisé. Plus de bloc « Aujourd’hui », de leçon du jour ni d'objectif du
-  jour (retirés à la demande du propriétaire le 2026-10-29).
+- Accueil : compte à rebours de l'écrit (tuile rose, seulement avec une date), puis **tous les chapitres numérotés de 1 à n**
+  (ordre : niveau, thème, `themes.json`), un volet par niveau, groupés par thème, pastille d'avancement ; un chapitre pas encore
+  rédigé est grisé. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29).
+- Chapitre : trois onglets (`Segments`). **Notions** : introduction (`content/lecons/`), notions numérotées « 17.4 » ;
+  **Exercices** : exercices (difficulté 1 à 3) puis problèmes (4 et 5) ; **QCM**. Notion (`EcranNotion`) : onglets **Cours**
+  (cours, énoncé encadré, exemple, démonstration, contre-exemples, pièges, « Mémoriser l'énoncé » vers la carte de révision)
+  et **Exercices** rangés par niveau de difficulté. Ouvrir le cours marque la notion apprise.
+- QCM (`EcranQcm`) : 10 questions tirées en alternant les genres parmi le contenu déjà vérifié du chapitre : affirmations
+  (vrai ou faux, justification ou contre-exemple), énoncés à trous (bonne réponse parmi les leurres), questions des exercices
+  de difficulté 1 ou 2 (avec l'énoncé et la correction). Score gardé ; chapitre « fait » quand toutes ses notions sont faites
+  (tous leurs exercices réussis) et un QCM à 80 % au moins.
   Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
   lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
   son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
@@ -76,24 +86,22 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   × facilité, Facile = (I + retard) × facilité × 1,3, strictement croissants, plafond 365 j ; facilité 1,3 à 3. Échéances en
   **jours civils** (un changement de fuseau ne décale rien de plus d'un jour). Volet **acquis** à 21 j ; carte acquise quand
   tous ses volets le sont.
-- **On apprend avant de réviser.** Une notion nouvelle se découvre dans une **leçon** (`EcranLecon` : introduction du
-  chapitre `content/lecons/<chapitre>.json`, puis par notion le texte `cours`, l'énoncé, l'exemple, la démonstration, les
-  contre-exemples, les pièges, les exercices) ; passer à la suite la marque apprise (`progression.apprises`, carte → jour).
+- **On apprend avant de réviser.** Une notion nouvelle se découvre dans son **cours** (`EcranNotion` ; l'introduction du
+  chapitre, `content/lecons/<chapitre>.json`, est en tête de l'onglet Notions) ; ouvrir le cours la marque apprise
+  (`progression.apprises`, carte → jour).
   Une carte n'entre en révision qu'apprise, et jamais le jour même : tous ses volets deviennent dus le lendemain.
 - Leçon du jour : les prochaines notions à apprendre (prérequis au moins appris, ou sous le niveau de départ ; ordre :
   niveau le plus bas, thèmes alternés, chapitres de `themes.json`, ordre du fichier), dans la limite du plafond quotidien
-  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Calcul gardé (`resumeDuJour`), mais plus affiché :
-  on passe par la liste de l'accueil ou Parcours → chapitre → « Apprendre / Relire la leçon ».
+  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Calcul gardé (`resumeDuJour`), mais plus affiché : on
+  apprend par le cours de chaque notion (accueil ou Parcours → chapitre → notion).
 - Séance de révision : cartes apprises dues, les plus en retard en premier ; au plus `seanceCartes` cartes et
-  `seanceMinutes` minutes (la carte en cours est finie). Plus de bouton qui la lance depuis le 2026-10-29 (le bouton Réviser
-  était sur l'accueil) ; ses réglages et l'objectif quotidien restent dans `reglages-v1` mais ne sont plus affichés.
+  `seanceMinutes` minutes (la carte en cours est finie). Logique gardée (`seance.ts`, `deroulement.ts`) mais plus d'écran
+  depuis le 2026-10-29 ; ses réglages et l'objectif quotidien restent dans `reglages-v1` sans être affichés. La carte de
+  révision (`EcranCarte`, notation des volets) reste ouverte depuis le cours d'une notion.
 - Modes : une carte neuve se découvre toujours en « énoncer de tête » ; sinon on prend le mode possible et actif qui suit le
   dernier utilisé (`progression.dernierMode`). Volet principal = premier volet dû (énoncé, démonstration, contre-exemple), noté
   par le pied ; les autres volets dus ont leurs boutons dans le volet ouvert.
-- « Niveau atteint » : plus haut niveau dont 80 % des cartes **visées** (`prevues` de `themes.json`, au moins les cartes
-  rédigées) sont acquises ; les niveaux sous le niveau de départ comptent comme acquis (ou sont masqués, au choix).
-- Exercices : hors répétition espacée ; niveau ■ réussi quand chacun de ses exercices a été réussi une fois, ◧ dès une
-  tentative ; exercice suggéré = premier non réussi du premier niveau non réussi.
+- Exercices : hors répétition espacée ; un exercice est réussi s'il l'a été une fois, tenté sinon.
 
 ## Niveaux (choix, pas une source officielle)
 Plancher : programme de Terminale (spécialité mathématiques et option mathématiques expertes, programmes de 2019 en vigueur en
@@ -112,7 +120,7 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 - `content/themes.json` : la carte du parcours complet. `{ "themes": [ { "id", "titre", "chapitres": [ { "id", "niveau",
   "titre", "notions", "prevues" } ] } ] }`. `notions` = les notions à couvrir, une carte chacune (plan de rédaction, établi
   d'après les sous-sections du programme de l'agrégation 2027 et des programmes de Terminale) ; `prevues` = leur nombre (le
-  total que vise le tableau de bord ; contrôlé par le test). L'ordre des chapitres d'un thème est l'ordre du parcours, les
+  total prévu ; contrôlé par le test). L'ordre des chapitres d'un thème est l'ordre du parcours, les
   niveaux y sont croissants.
 - `content/cartes/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` (fichier réservé à un chapitre, pour rédiger des
   chapitres en parallèle) : `{ "cartes": [ … ] }`. Ordre d'introduction : chapitres dans l'ordre de `themes.json`, puis ordre

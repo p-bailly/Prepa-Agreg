@@ -22,6 +22,14 @@ export interface Tentative {
   variante?: number
 }
 
+/** Un QCM de chapitre terminé. */
+export interface ResultatQcm {
+  date: number
+  jour: string
+  bonnes: number
+  total: number
+}
+
 export interface Signalement {
   date: number
   /** Identifiant de la carte ou de l'exercice. */
@@ -45,13 +53,15 @@ export interface Progression {
   /** Notions apprises en leçon : carte → jour où la leçon a été lue. Une carte n'entre en révision qu'une fois apprise. */
   apprises: Record<string, string>
   exercices: Record<string, Tentative[]>
+  /** QCM terminés, par identifiant de chapitre (champ ajouté sans changer de suffixe : absent = aucun). */
+  qcm: Record<string, ResultatQcm[]>
   jours: Record<string, ActiviteJour>
   signalements: Signalement[]
   /** Dernier mode de révision utilisé, pour les alterner d'une carte à l'autre. */
   dernierMode: Mode | null
 }
 
-export const PROGRESSION_VIDE: Progression = { volets: {}, apprises: {}, exercices: {}, jours: {}, signalements: [], dernierMode: null }
+export const PROGRESSION_VIDE: Progression = { volets: {}, apprises: {}, exercices: {}, qcm: {}, jours: {}, signalements: [], dernierMode: null }
 export const CLE_PROGRESSION = 'progression-v1'
 
 export function normaliserProgression(brut: unknown): Progression {
@@ -62,6 +72,7 @@ export function normaliserProgression(brut: unknown): Progression {
     volets: objet<EtatVolet>(p.volets),
     apprises: objet<string>(p.apprises),
     exercices: objet<Tentative[]>(p.exercices),
+    qcm: Object.fromEntries(Object.entries(objet<unknown>(p.qcm)).filter((e): e is [string, ResultatQcm[]] => Array.isArray(e[1]))),
     jours: objet<ActiviteJour>(p.jours),
     signalements: Array.isArray(p.signalements) ? p.signalements : [],
     dernierMode: typeof p.dernierMode === 'string' ? p.dernierMode : null,
@@ -125,4 +136,8 @@ export function ajouterSignalement(p: Progression, s: Signalement): Progression 
 
 export function retenirMode(p: Progression, mode: Mode): Progression {
   return p.dernierMode === mode ? p : { ...p, dernierMode: mode }
+}
+
+export function enregistrerQcm(p: Progression, chapitre: string, r: ResultatQcm): Progression {
+  return { ...p, qcm: { ...p.qcm, [chapitre]: [...(p.qcm[chapitre] ?? []), r] } }
 }

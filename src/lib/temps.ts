@@ -28,3 +28,8 @@ export function ajouterJours(jour: string, n: number): string {
 export function joursEntre(a: string, b: string): number {
   return Math.round((versMs(b) - versMs(a)) / MS_JOUR)
 }
+
+/** Jours restants avant l'écrit ; null sans date (la date est facultative et rien d'autre n'en dépend). */
+export function joursAvantEcrit(dateEcrit: string | null, jour: string): number | null {
+  return dateEcrit ? joursEntre(jour, dateEcrit) : null
+}

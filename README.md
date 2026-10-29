@@ -2,7 +2,8 @@
 
 Appli Android perso pour **monter de la Terminale jusqu'aux attendus de l'écrit de l'agrégation externe de
 mathématiques** : cartes de révision à répétition espacée (énoncé, démonstration et contre-exemple notés séparément),
-exercices de difficulté 1 à 5 pour chaque notion, tableau de bord de progression. Tout est sur le téléphone : pas de
+exercices de difficulté 1 à 5 pour chaque notion, QCM par chapitre (vrai-faux, énoncés à compléter, questions
+d'exercices). Tout est sur le téléphone : pas de
 compte, pas de serveur, hors ligne.
 
 Contenu rédigé et contrôlé par une IA, **non relu par un humain** (méthode de contrôle dans [`CLAUDE.md`](CLAUDE.md)).
