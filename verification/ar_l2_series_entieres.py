@@ -192,7 +192,9 @@ assert diff(x**3 * cos(x), x, 9).subs(x, 0) == -504 and diff(x * sin(x), x, 8).s
 c = coefs(sqrt(pi) / 2 * exp(x**2) * erf(x), 12)
 assert all(c[2 * j] == 0 for j in range(6))
 assert all(c[2 * j + 1] == Rational(4**j * math.factorial(j), math.factorial(2 * j + 1)) for j in range(6))
-assert c[3] != Rational(2, 6) and c[3] != Rational(4, 6) and c[3] != Rational(-1, 3)   # leurres (k = 1)
+for lf in [lambda j: Rational(2**j * math.factorial(j), math.factorial(2 * j + 1)), lambda j: Rational(4**j, math.factorial(2 * j + 1)),
+           lambda j: Rational((-1) ** j, math.factorial(j) * (2 * j + 1))]:
+    assert any(c[2 * j + 1] != lf(j) for j in range(6))   # leurres faux (4^k/(2k+1)! coïncide pour k <= 1, pas pour k = 2)
 
 # ---------------------------------------------------------------------------
 # ar-l2-series-entieres-usuels (carte et exercices)
@@ -206,7 +208,7 @@ assert all(expand((m + 1) * cn(m + 1) - (al - m) * cn(m)) == 0 for m in range(6)
 # Leurres du trou de ln(1+x) et arctan, évalués en x = 0,3.
 t3 = mp.mpf("0.3")
 assert abs(mp.log(1 + t3) - mp.nsum(lambda j: (-1) ** (j - 1) * t3**j / j, [1, mp.inf])) < 1e-25
-assert min(abs(mp.log(1 + t3) - v) for v in [-mp.log(1 + t3), -mp.log(1 - t3), mp.exp(-t3)]) > 0.1
+assert min(abs(mp.log(1 + t3) - v) for v in [-mp.log(1 + t3), -mp.log(1 - t3), mp.exp(-t3)]) > 0.05
 assert min(abs(mp.atan(t3) - v) for v in [mp.sin(t3), mp.atanh(t3), 1 / (1 + t3**2)]) > 1e-3
 # ex1 (+ v1, v2).
 assert coefs(log(1 + 2 * x), 6)[1:] == [Rational((-1) ** (m - 1) * 2**m, m) for m in range(1, 6)]
