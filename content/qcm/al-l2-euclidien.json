@@ -1,0 +1,99 @@
+{
+  "chapitre": "al-l2-euclidien",
+  "questions": [
+    {
+      "id": "al-l2-euclidien-q1",
+      "carte": "al-l2-euclidien-cauchy-schwarz",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute fonction $f$ continue sur $[0,1]$ à valeurs réelles, $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$.",
+      "vrai": true,
+      "explication": "Vrai. C'est l'inégalité de Cauchy-Schwarz pour le produit scalaire $\\langle f,g\\rangle=\\int_0^1fg$, appliquée à $f$ et à la fonction constante $1$ : $\\langle f,1\\rangle^2\\le\\|f\\|^2\\|1\\|^2=\\int_0^1f^2$. L'égalité a lieu si et seulement si $f$ est constante."
+    },
+    {
+      "id": "al-l2-euclidien-q2",
+      "carte": "al-l2-euclidien-schmidt",
+      "genre": "choix",
+      "enonce": "Dans $\\mathbb{R}^2$ usuel, on applique le procédé de Schmidt à la famille $(e_1,e_2)$ avec $e_1=(1,1)$ et $e_2=(1,0)$. Quel est le vecteur $f_2$ obtenu ?",
+      "propositions": [
+        "$\\left(\\frac12,-\\frac12\\right)$",
+        "$\\frac1{\\sqrt2}(1,-1)$",
+        "$\\frac1{\\sqrt2}(-1,1)$",
+        "$(0,1)$"
+      ],
+      "bonne": 1,
+      "explication": "$f_1=\\frac1{\\sqrt2}(1,1)$ et $g_2=e_2-\\langle e_2,f_1\\rangle f_1=(1,0)-\\frac12(1,1)=\\left(\\frac12,-\\frac12\\right)$, de norme $\\frac1{\\sqrt2}$, d'où $f_2=\\frac1{\\sqrt2}(1,-1)$. Le vecteur $\\left(\\frac12,-\\frac12\\right)$ n'est pas normé, et $\\frac1{\\sqrt2}(-1,1)$ vérifie $\\langle f_2,e_2\\rangle<0$."
+    },
+    {
+      "id": "al-l2-euclidien-q3",
+      "carte": "al-l2-euclidien-projection",
+      "genre": "choix",
+      "enonce": "Dans $\\mathbb{R}^3$ usuel, quelle est la distance du point $x=(1,2,3)$ à la droite $D=\\mathrm{Vect}((1,1,1))$ ?",
+      "propositions": [
+        "$2$",
+        "$2\\sqrt3$",
+        "$\\sqrt{14}$",
+        "$\\sqrt2$"
+      ],
+      "bonne": 3,
+      "explication": "$p_D(x)=\\frac{\\langle x,a\\rangle}{\\|a\\|^2}a$ avec $a=(1,1,1)$ : $\\frac63a=(2,2,2)$. Donc $x-p_D(x)=(-1,0,1)$ et $d(x,D)=\\sqrt2$. Contrôle : $\\|x\\|^2=14=\\|p_D(x)\\|^2+d^2=12+2$ ; $2\\sqrt3$ est la norme du projeté et $\\sqrt{14}$ celle de $x$."
+    },
+    {
+      "id": "al-l2-euclidien-q4",
+      "carte": "al-l2-euclidien-adjoint",
+      "genre": "vrai-faux",
+      "enonce": "Dans une base quelconque d'un espace euclidien, la matrice de l'adjoint $u^*$ est la transposée de la matrice de $u$.",
+      "vrai": false,
+      "explication": "Faux : c'est vrai dans une base orthonormale seulement. Dans $\\mathbb{R}^2$ usuel, la projection orthogonale $p(x,y)=(x,0)$ vérifie $p^*=p$, mais dans la base $e_1=(1,0)$, $e_2=(1,1)$ sa matrice est $\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$, qui n'est pas symétrique."
+    },
+    {
+      "id": "al-l2-euclidien-q5",
+      "carte": "al-l2-euclidien-orthogonal",
+      "genre": "choix",
+      "enonce": "Laquelle de ces matrices est orthogonale ?",
+      "propositions": [
+        "$\\begin{pmatrix}1&1\\\\-1&1\\end{pmatrix}$",
+        "$\\frac15\\begin{pmatrix}3&-4\\\\4&3\\end{pmatrix}$",
+        "$\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$",
+        "$\\frac12\\begin{pmatrix}1&\\sqrt3\\\\\\sqrt3&1\\end{pmatrix}$"
+      ],
+      "bonne": 1,
+      "explication": "Les colonnes de $\\frac15\\begin{pmatrix}3&-4\\\\4&3\\end{pmatrix}$ sont de norme $\\frac{\\sqrt{9+16}}5=1$ et orthogonales ($-12+12=0$). Les colonnes de $\\begin{pmatrix}1&1\\\\-1&1\\end{pmatrix}$ sont orthogonales mais de norme $\\sqrt2$ ; $\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$ a une colonne de norme $\\sqrt2$, bien que son déterminant vaille $1$ ; les colonnes de la dernière ont un produit scalaire $\\frac{\\sqrt3}2\\neq0$."
+    },
+    {
+      "id": "al-l2-euclidien-q6",
+      "carte": "al-l2-euclidien-spectral",
+      "genre": "vrai-faux",
+      "enonce": "Toute matrice symétrique à coefficients complexes est diagonalisable.",
+      "vrai": false,
+      "explication": "Faux. $S=\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ est symétrique et vérifie $S^2=\\begin{pmatrix}1+i^2&i-i\\\\i-i&i^2+1\\end{pmatrix}=0$ : nilpotente et non nulle, elle n'est pas diagonalisable. Le théorème spectral concerne les matrices symétriques **réelles**."
+    },
+    {
+      "id": "al-l2-euclidien-q7",
+      "carte": "al-l2-euclidien-positifs",
+      "genre": "choix",
+      "enonce": "Quelle est la norme subordonnée à la norme euclidienne de $A=\\begin{pmatrix}0&2\\\\0&0\\end{pmatrix}$ ?",
+      "propositions": [
+        "$0$",
+        "$2$",
+        "$\\sqrt2$",
+        "$4$"
+      ],
+      "bonne": 1,
+      "explication": "${}^tAA=\\begin{pmatrix}0&0\\\\0&4\\end{pmatrix}$, de plus grande valeur propre $4$, donc $\\|A\\|=\\sqrt4=2$ (atteint en $X=(0,1)$, d'image $(2,0)$). La seule valeur propre de $A$ est $0$ : pour une matrice non symétrique, la norme n'est pas le plus grand module des valeurs propres."
+    },
+    {
+      "id": "al-l2-euclidien-q8",
+      "carte": "al-l2-euclidien-produit-vectoriel",
+      "genre": "choix",
+      "enonce": "Dans une base orthonormale directe, que vaut $(1,2,0)\\wedge(0,1,3)$ ?",
+      "propositions": [
+        "$(6,-3,1)$",
+        "$(-6,3,-1)$",
+        "$(6,3,1)$",
+        "$(0,2,0)$"
+      ],
+      "bonne": 0,
+      "explication": "$(x_2y_3-x_3y_2,\\ x_3y_1-x_1y_3,\\ x_1y_2-x_2y_1)=(2\\cdot3-0\\cdot1,\\ 0\\cdot0-1\\cdot3,\\ 1\\cdot1-2\\cdot0)=(6,-3,1)$. On vérifie l'orthogonalité : $\\langle(6,-3,1),(1,2,0)\\rangle=0$ et $\\langle(6,-3,1),(0,1,3)\\rangle=0$. Le vecteur opposé correspond à $(0,1,3)\\wedge(1,2,0)$."
+    }
+  ]
+}

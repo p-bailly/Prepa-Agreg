@@ -393,4 +393,24 @@ assert F(37, 1728) <= R1 <= F(1, 27) and R1 > 1 / 64
 cc = cauchy(lambda j: F(1, math.factorial(j)), lambda j: F((-1) ** j, math.factorial(j)), 20)
 assert cc[0] == 1 and all(v == 0 for v in cc[1:])
 
+# ---------------------------------------------------------------------------
+# Ajouts de la relecture indépendante
+# ---------------------------------------------------------------------------
+# ar-l2-series-alternees-ex3 v1 : |u_n| = 1/(n + (-1)^n) vaut 1/3, 1/2, 1/5, 1/4 pour n = 2..5 (non décroissante).
+assert [F(1, m + (-1) ** m) for m in range(2, 6)] == [F(1, 3), F(1, 2), F(1, 5), F(1, 4)]
+# ar-l2-series-alternees-ex3 : |u_2| = 1/(sqrt 2 + 1) < |u_3| = 1/(sqrt 3 - 1).
+assert 1 / (math.sqrt(2) + 1) < 1 / (math.sqrt(3) - 1)
+# ar-l2-series-sommation-comparaison-ex1 (+ v1, v2) : la constante n'est pas 1 (w_k = 1/k^2 donne 2/k^3, etc.),
+# d'où l'indice « w_k = c/k^2, déterminer c » ; restes calculés : 1/(2n^2), 1/(3n^3), 2/sqrt n.
+for p, cst in [(3, F(1, 2)), (4, F(1, 3))]:
+    assert limit((1 / (n - 1) ** (p - 1) - 1 / n ** (p - 1)) * n**p, n, oo) == p - 1
+    assert abs(float(mp.nsum(lambda j: 1 / j**p, [1001, mp.inf])) * 1000 ** (p - 1) - float(cst)) < 2e-3
+assert abs(float(mp.zeta(1.5, 10**6 + 1)) * 1000 - 2) < 2e-3  # zêta de Hurwitz : reste exact
+# ar-l2-series-alternees-ex3 v2 : 1 + (-1)^n/sqrt n > 0 pour n >= 2.
+assert 1 - 1 / math.sqrt(2) > 0
+# ar-l2-series-positives-ex4, question 4 : u_n = 1/(n ln^2 n) donne sqrt(u_n/n) = 1/(n ln n) (sommes partielles non bornées).
+assert math.fsum(1 / (j * math.log(j)) for j in range(2, 10**5)) > math.log(math.log(10**5)) - math.log(math.log(2))
+# ar-l2-series-q7 : theta dans pi Z, termes nuls ; sinon sommes partielles de sin(n theta) bornées.
+assert all(abs(math.sin(m * math.pi)) < 1e-9 for m in range(1, 50))
+
 print("ar_l2_series : toutes les vérifications passent.")

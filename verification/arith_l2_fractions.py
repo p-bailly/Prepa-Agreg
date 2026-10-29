@@ -53,11 +53,9 @@ for F, bonne, leurres, gcd_attendu in [
     num, den = F.as_numer_denom()
     assert gcd(num, den) == gcd_attendu
     assert egal(F, bonne) and all(not egal(F, l) for l in leurres)
-    # la bonne écriture est irréductible et à dénominateur unitaire
+    # la bonne écriture P/Q : Q unitaire de degré 1 (X+1, X-2, X), P premier avec Q
     p, q = cancel(bonne).as_numer_denom()
-    assert gcd(p, q) == 1
-    # le leurre « dénominateur non unitaire » est une écriture de F, mais pas la forme normalisée
-    assert Poly(cancel(F).as_numer_denom()[1], X).LC() != 1 or True
+    assert gcd(p, q) == 1 and Poly(q, X).degree() == 1
 
 # arith-l2-fractions-forme-irreductible-ex2 (+ v1, v2) : Euclide, PGCD et forme irréductible.
 for A, B, D, bonne, leurres in [
@@ -249,7 +247,6 @@ assert egal(-sum(-z / (X + z) for z in w3) / 3, 1 / (X**3 + 1))  # racines de X^
 
 # arith-l2-fractions-elements-simples-ex5 (+ v1, v2) : identités binomiales, n = 1..12.
 for N in range(1, 13):
-    Fn = factorial(N) / Poly(1, X).as_expr()
     den = 1
     for j in range(N + 1):
         den *= X + j
@@ -258,11 +255,11 @@ for N in range(1, 13):
     s1 = sum(Fr((-1) ** k * comb(N, k), k + 1) for k in range(N + 1))
     s2 = sum(Fr((-1) ** k * comb(N, k), k + 2) for k in range(N + 1))
     s3 = sum(Fr((-1) ** k * comb(N, k), 2 * k + 1) for k in range(N + 1))
-    assert s1 == Fr(1, N + 1) and len({s1, Fr(1, N), Fr(0), Fr(2**N, N + 1)}) == 4
-    assert s2 == Fr(1, (N + 1) * (N + 2)) and len({s2, Fr(1, N + 2), Fr(2, (N + 1) * (N + 2)), Fr(1, 2 * (N + 1))}) == 4
+    assert s1 == Fr(1, N + 1) and len({s1, Fr(1, N), Fr(0), Fr(1, N + 2)}) == 4
+    assert s2 == Fr(1, (N + 1) * (N + 2)) and len({s2, Fr(1, N + 2), Fr(1, N * (N + 1)), Fr(1, (N + 2) * (N + 3))}) == 4
     v = Fr(4**N * factorial(N) ** 2, factorial(2 * N + 1))
     assert s3 == v and len({s3, Fr(2**N * factorial(N) ** 2, factorial(2 * N + 1)), Fr(4**N * factorial(N) ** 2, factorial(2 * N)),
-                            Fr(1, 2 * N + 1)}) == 4
+                            Fr(factorial(N) ** 2, factorial(2 * N + 1))}) == 4
 
 # ---------------------------------------------------------------------------
 # arith-l2-fractions-applications (carte)
@@ -388,8 +385,7 @@ assert egal(cx**2 + cy**2, 1) and egal(cy / (1 + cx), t)
 # Seconde intersection de y = t(x+1) avec le cercle.
 assert egal(expand(x**2 + t**2 * (x + 1) ** 2 - 1), expand((x + 1) * ((1 + t**2) * x - (1 - t**2))))
 # Réciproque : pour (x, y) sur le cercle, 1 + t^2 = 2/(1+x) avec t = y/(1+x).
-tt = y / (1 + x)
-assert egal((1 + tt**2).subs(y**2, 1 - x**2) if False else ((1 + x) ** 2 + (1 - x**2)) / (1 + x) ** 2, 2 / (1 + x))
+assert egal(((1 + x) ** 2 + (1 - x**2)) / (1 + x) ** 2, 2 / (1 + x))
 # Trou 3, leurres : en t = 2, point (-3/5, 4/5) : y/(1-x) = 1/2, x/(1+y) = -1/3, y/x = -4/3, aucun ne vaut 2.
 px, py = cx.subs(t, 2), cy.subs(t, 2)
 assert (px, py) == (Rational(-3, 5), Rational(4, 5))

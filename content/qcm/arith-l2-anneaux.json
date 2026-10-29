@@ -1,0 +1,99 @@
+{
+  "chapitre": "arith-l2-anneaux",
+  "questions": [
+    {
+      "id": "arith-l2-anneaux-q1",
+      "carte": "arith-l2-anneaux-ideaux",
+      "genre": "vrai-faux",
+      "enonce": "L'ensemble des polynômes de $\\mathbb{Z}[X]$ dont le coefficient constant est pair est un idéal de $\\mathbb{Z}[X]$.",
+      "vrai": true,
+      "explication": "C'est le noyau du morphisme d'anneaux $\\mathbb{Z}[X]\\to\\mathbb{Z}/2\\mathbb{Z}$ qui envoie $P$ sur la classe de $P(0)$ modulo $2$ ; un noyau de morphisme d'anneaux est un idéal. Directement : si $P(0)$ et $Q(0)$ sont pairs, $(P-Q)(0)$ l'est, et pour tout $A\\in\\mathbb{Z}[X]$, $(AP)(0)=A(0)P(0)$ est pair. Cet idéal est $2\\mathbb{Z}[X]+X\\mathbb{Z}[X]$, qui n'est pas principal."
+    },
+    {
+      "id": "arith-l2-anneaux-q2",
+      "carte": "arith-l2-anneaux-isomorphisme",
+      "genre": "choix",
+      "enonce": "À quel anneau $\\mathbb{R}[X]/(X^2-1)$ est-il isomorphe ?",
+      "propositions": [
+        "$\\mathbb{C}$",
+        "$\\mathbb{R}\\times\\mathbb{R}$",
+        "$\\mathbb{R}$",
+        "$\\mathbb{R}[X]/(X^2)$"
+      ],
+      "bonne": 1,
+      "explication": "Le morphisme $P\\mapsto\\left(P(1),P(-1)\\right)$, de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$, est surjectif (antécédent de degré au plus $1$) et de noyau $(X^2-1)$ ; le théorème d'isomorphisme donne $\\mathbb{R}[X]/(X^2-1)\\simeq\\mathbb{R}\\times\\mathbb{R}$. Ce n'est pas $\\mathbb{C}$ ni $\\mathbb{R}$, qui sont des corps, alors que $(x-1)(x+1)=0$ ; ce n'est pas $\\mathbb{R}[X]/(X^2)$, qui contient l'élément nilpotent non nul $x$, alors que $\\mathbb{R}\\times\\mathbb{R}$ n'en a pas."
+    },
+    {
+      "id": "arith-l2-anneaux-q3",
+      "carte": "arith-l2-anneaux-integres",
+      "genre": "vrai-faux",
+      "enonce": "L'anneau $\\mathbb{Z}/9\\mathbb{Z}$ est intègre.",
+      "vrai": false,
+      "explication": "$\\overline3\\neq\\overline0$ et $\\overline3\\cdot\\overline3=\\overline9=\\overline0$. Pour $n\\ge2$, $\\mathbb{Z}/n\\mathbb{Z}$ est intègre si et seulement si $n$ est premier, et $9$ ne l'est pas, bien qu'il soit impair."
+    },
+    {
+      "id": "arith-l2-anneaux-q4",
+      "carte": "arith-l2-anneaux-principaux",
+      "genre": "choix",
+      "enonce": "Lequel de ces anneaux est un corps ?",
+      "propositions": [
+        "$\\mathbb{Q}[X]/(X^2-4)$",
+        "$\\mathbb{R}[X]/(X^2)$",
+        "$\\mathbb{Q}[X]/(X^2-2)$",
+        "$\\mathbb{Z}/15\\mathbb{Z}$"
+      ],
+      "bonne": 2,
+      "explication": "$X^2-2$ est de degré $2$ sans racine rationnelle, donc irréductible sur $\\mathbb{Q}$, et $\\mathbb{Q}[X]/(X^2-2)$ est un corps. En revanche $X^2-4=(X-2)(X+2)$ et $X^2=X\\cdot X$ sont réductibles (dans les quotients, $(x-2)(x+2)=0$ et $x\\cdot x=0$), et $15=3\\times5$ n'est pas premier ($\\overline3\\cdot\\overline5=\\overline0$)."
+    },
+    {
+      "id": "arith-l2-anneaux-q5",
+      "carte": "arith-l2-anneaux-gauss",
+      "genre": "choix",
+      "enonce": "Lequel de ces entiers est somme de deux carrés d'entiers ?",
+      "propositions": [
+        "$43$",
+        "$47$",
+        "$51$",
+        "$41$"
+      ],
+      "bonne": 3,
+      "explication": "$41=4^2+5^2$ ; c'est un nombre premier congru à $1$ modulo $4$. Les nombres premiers $43$ et $47$ sont congrus à $3$ modulo $4$, et $51=3\\times17$ contient le facteur $3\\equiv3\\pmod4$ avec l'exposant $1$ : aucun des trois n'est somme de deux carrés."
+    },
+    {
+      "id": "arith-l2-anneaux-q6",
+      "carte": "arith-l2-anneaux-caracteristique",
+      "genre": "vrai-faux",
+      "enonce": "Tout corps infini est de caractéristique nulle.",
+      "vrai": false,
+      "explication": "Le corps $(\\mathbb{Z}/2\\mathbb{Z})(X)$ des fractions rationnelles à coefficients dans $\\mathbb{Z}/2\\mathbb{Z}$ est infini (il contient tous les $X^k$) et de caractéristique $2$, car $1+1=0$. La réciproque est vraie : un corps de caractéristique nulle contient une copie de $\\mathbb{Q}$, donc il est infini."
+    },
+    {
+      "id": "arith-l2-anneaux-q7",
+      "carte": "arith-l2-anneaux-applications",
+      "genre": "choix",
+      "enonce": "Dans un chiffrement RSA de clé publique $(n,e)=(33,3)$, quelle est la clé secrète $d\\in\\{1,\\dots,19\\}$ ?",
+      "propositions": [
+        "$7$",
+        "$11$",
+        "$3$",
+        "$13$"
+      ],
+      "bonne": 0,
+      "explication": "$33=3\\times11$, donc $(p-1)(q-1)=2\\times10=20$, et $d$ est l'inverse de $3$ modulo $20$ : $3\\times7=21\\equiv1\\pmod{20}$, d'où $d=7$. Les autres valeurs ne conviennent pas : $3\\times11=33\\equiv13$, $3\\times3=9$ et $3\\times13=39\\equiv19$ modulo $20$."
+    },
+    {
+      "id": "arith-l2-anneaux-q8",
+      "carte": "arith-l2-anneaux-integres",
+      "genre": "choix",
+      "enonce": "Quel est, à isomorphisme près, le corps des fractions de $\\mathbb{Z}[i]$ ?",
+      "propositions": [
+        "$\\mathbb{C}$",
+        "$\\mathbb{Q}$",
+        "$\\mathbb{Z}[i]$",
+        "$\\mathbb{Q}(i)=\\{a+bi : a,b\\in\\mathbb{Q}\\}$"
+      ],
+      "bonne": 3,
+      "explication": "$\\mathbb{Q}(i)$ est un sous-corps de $\\mathbb{C}$ qui contient $\\mathbb{Z}[i]$, et tout élément $a+bi$ de $\\mathbb{Q}(i)$ s'écrit $\\frac{a'+b'i}c$ avec $a',b',c$ entiers : c'est donc le corps des fractions de $\\mathbb{Z}[i]$. Ce n'est pas $\\mathbb{C}$ (qui contient $\\sqrt2\\notin\\mathbb{Q}(i)$), ni $\\mathbb{Z}[i]$, qui n'est pas un corps ($2$ n'y est pas inversible), ni $\\mathbb{Q}$, qui ne contient pas $i$."
+    }
+  ]
+}

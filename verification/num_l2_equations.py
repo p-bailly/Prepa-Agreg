@@ -436,4 +436,31 @@ assert simplify(Rational(2, 1) / (2 * 2 * sqrt(2)) - sqrt(2) / 4) == 0  # q6
 assert 0 < mpmath.sin(ell_cos) < 1  # q7
 assert F(1, 10**4) / 4 == F(25, 10**6) and F(1, 10**4) / 16 == F(625, 10**8)  # q8
 
+# ---------------------------------------------------------------------------------------------------------------
+# Ajouts de la relecture indépendante
+# ---------------------------------------------------------------------------------------------------------------
+# num-l2-equations-newton (contre-exemple « f décroissante ») : e^-x - 1/2 sur [0,2] ; de x_0 = 0, la suite croît vers
+# ln 2 (théorème appliqué à f(-x)) ; de x_0 = 2, x_1 = 3 - e^2/2 ~ -0,69 sort de [0,2].
+fd, fdp = (lambda t: mpmath.exp(-t) - 0.5), (lambda t: -mpmath.exp(-t))
+xd = newton(fd, fdp, 0, 8, exact=False)
+assert all(xd[k] < xd[k + 1] <= mpmath.log(2) for k in range(5)) and abs(xd[8] - mpmath.log(2)) < 1e-20
+x1d = newton(fd, fdp, 2, 1, exact=False)[1]
+assert abs(x1d - (3 - mpmath.e**2 / 2)) < 1e-30 and abs(x1d + 0.69) < 0.01 and x1d < 0
+# num-l2-equations-newton-ex5 v2 : x_0 - √5 < 0, d'où la valeur absolue dans la question (n = 0 ne convient pas).
+assert 2 - math.sqrt(5) < 0 and abs(2 - math.sqrt(5)) > 0.2
+# num-l2-equations-dichotomie, trou 1 : f(0) = -1, f = 1 sur ]0,1] est dérivable sur ]0,1[, monotone et bornée, et la
+# dichotomie converge vers 0, qui n'est pas un zéro.
+sd = lambda t: -1 if t == 0 else 1
+assert dicho(sd, 0, 1, 10)[-1] == (0, F(1, 2**10)) and sd(0) != 0
+# num-l2-equations-point-fixe, trou 2 : x + 1 sur R est 1-lipschitzienne, strictement croissante, continue, sans point fixe.
+assert all((t + 1) - t == 1 for t in range(-5, 6))
+# num-l2-equations-ordre (cours) : pour |g'(l)| = 1 (x_{n+1} = sin x_n), le rapport e_{n+1}/e_n tend vers 1.
+xs_sin = [mpmath.mpf(1)]
+for _ in range(2000):
+    xs_sin.append(mpmath.sin(xs_sin[-1]))
+assert 0.999 < xs_sin[-1] / xs_sin[-2] < 1
+# num-l2-equations-erreur-ex2 (+ v1, v2) : énoncé en « k tel que l ∈ ]k/1000, (k+1)/1000[ » ; k = 682, 453, 754.
+for f_, k in [(lambda t: t**3 + t - 1, 682), (lambda t: t**3 + 2 * t - 1, 453), (lambda t: t**5 + t - 1, 754)]:
+    assert f_(F(k, 1000)) < 0 < f_(F(k + 1, 1000))
+
 print("num_l2_equations : toutes les vérifications passent.")
