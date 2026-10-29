@@ -91,4 +91,15 @@ assert solveset(2 * X**2 - 3 * X + 1 < 0, X, Reals) == Interval.open(R(1, 2), 1)
 assert solveset(2 * log(x)**2 - 3 * log(x) + 1 < 0, x, Interval.open(0, oo)) == Interval.open(sqrt(E), E)
 # leurres de la variante 2 : ]e/2, e[ contient 1,5 qui n'est pas solution.
 assert (2 * log(x)**2 - 3 * log(x) + 1).subs(x, R(3, 2)).evalf() > 0 and E / 2 < R(3, 2) < sqrt(E)
+# Relecture indépendante (2026-10-29) : leurres des exercices ajoutés.
+from sympy import E as _E, Interval as _I, Union as _U, exp as _exp, oo as _oo, sqrt as _sqrt
+# ar-t-fonctions-usuelles-limites-zero-ex5 (et variantes) : leurres distincts de la limite (1, 3, -1).
+assert all(_l != 1 for _l in (0, 2)) and all(_l != 3 for _l in (1, 4, 0)) and all(_l != -1 for _l in (1, 3, -2))
+# ar-t-fonctions-usuelles-ln-ex6 (et variantes) : chaque leurre diffère de l'ensemble des solutions.
+_sol = (_U(_I.open(0, _exp(-1)), _I.open(_exp(2), _oo)), _I(_exp(-3), _exp(2)), _I.open(_sqrt(_E), _E))
+_leurres = ((_U(_I.open(-_oo, -1), _I.open(2, _oo)), _I.open(_exp(-1), _exp(2)), _I.open(_exp(2), _oo)),
+            (_I(-3, 2), _U(_I.Lopen(0, _exp(-3)), _I.Ropen(_exp(2), _oo)), _I.Lopen(0, _exp(2))),
+            (_I.open(0.5, 1), _U(_I.open(0, _sqrt(_E)), _I.open(_E, _oo)), _I.open(_E / 2, _E)))
+for _s, _ls in zip(_sol, _leurres):
+    assert all(_l != _s for _l in _ls)
 print('enrichi_ar_t_fonctions_usuelles : tout est vérifié')

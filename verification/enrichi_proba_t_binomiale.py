@@ -84,7 +84,7 @@ for p, n, seuil, attendu, p0, p1, p2, V in cas:
     assert 1 - q ** (attendu - 1) < seuil
     leurre_naif = math.ceil(seuil / p)
     assert leurre_naif != attendu and 1 - q**leurre_naif < seuil
-# Valeurs citées dans la correction (exercice) : 1 - 0,96^73 ≈ 0,9491 et 1 - 0,96^74 ≈ 0,9512.
+# Valeurs citées dans la correction (exercice) : 1 - 0,96^73 ≈ 0,9492 et 1 - 0,96^74 ≈ 0,9512.
 assert round(1 - 0.96**73, 4) == 0.9492 and round(1 - 0.96**74, 4) == 0.9512
 assert round(1 - 0.95**89, 4) == 0.9896 and round(1 - 0.95**90, 4) == 0.9901  # v1
 assert round(1 - 0.98**113, 4) == 0.8980 and round(1 - 0.98**114, 4) == 0.9001  # v2
@@ -122,5 +122,15 @@ assert perm(10, 4) == 5040 and F(5040, 10000) == F(63, 125)
 assert coincidence(10, 4) == F(62, 125) and F(62, 125) < F(1, 2)
 assert coincidence(10, 5) == F(436, 625) and F(436, 625) > F(1, 2) and perm(10, 5) == 30240
 assert all(v != F(62, 125) for v in (F(63, 125), F(3, 5), F(436, 625)))
+
+# --- Relecture indépendante (2026-10-29) : recalculs à partir des seuls énoncés ---
+# proba-t-binomiale-pascal-ex5 : C(n+1, 3) - C(n, 3) = 28, 45, 66 a pour unique solution n ≥ 3 : 8, 10, 12.
+for valeur, attendu in ((28, 8), (45, 10), (66, 12)):
+    assert [n for n in range(3, 500) if comb(n + 1, 3) - comb(n, 3) == valeur] == [attendu]
+# proba-t-binomiale-ex5 : seuils recalculés en exact, n = 74, 90, 114 (v2 : marge faible, 113,97, vérifiée en exact).
+for q_, seuil, attendu in ((F(96, 100), F(95, 100), 74), (F(95, 100), F(99, 100), 90), (F(98, 100), F(9, 10), 114)):
+    assert 1 - q_ ** (attendu - 1) < seuil <= 1 - q_**attendu
+# proba-t-binomiale-q8 : C(21, 9) recalculé directement.
+assert comb(21, 9) == 293930
 
 print("enrichi_proba_t_binomiale : tout est vérifié.")

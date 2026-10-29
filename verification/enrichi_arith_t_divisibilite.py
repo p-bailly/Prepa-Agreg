@@ -96,3 +96,28 @@ for v, (a, b, p, ta, tb, rest) in enumerate([(3, 4, 7, 6, 3, 1), (2, 3, 5, 4, 4,
     assert all((2 * pow(a, r, p)) % p != 0 for r in range(0, ta, 2))
 
 print("enrichi_arith_t_divisibilite : tout est vérifié")
+
+
+# --- Relecture indépendante (2026-10-29) : résultats intermédiaires des corrections, recalculés à part. ---
+# arith-t-division-euclidienne-ex5 (et v1, v2) : quotient = reste dans la division par b ⇔ a = (b + 1) r, 1 ≤ r ≤ b − 1 ;
+# 22, 16, 30 entiers, le plus grand 528, 288, 960.
+for (b, nb, gd) in [(23, 22, 528), (17, 16, 288), (31, 30, 960)]:
+    sols = [a for a in range(1, 5000) if a // b == a % b]
+    assert sols == [(b + 1) * r for r in range(1, b)] and len(sols) == nb and max(sols) == gd
+# arith-t-divisibilite-combinaisons-ex5 (et v1, v2) : solutions exactes de x² − y² = N.
+for (N, att) in [(45, {(23, 22), (9, 6), (7, 2)}), (60, {(16, 14), (8, 2)}),
+                 (105, {(53, 52), (19, 16), (13, 8), (11, 4)})]:
+    assert {(x, y) for x in range(N + 1) for y in range(x + 1) if x * x - y * y == N} == att
+# arith-t-divisibilite-congruences-ex5 (et v1, v2) : listes des restes, périodes, divisibilité ⇔ n impair, reste de A_2026.
+for (u, v, m, per_u, per_v, restes_u, r2026) in [(3, 4, 7, 6, 3, [1, 3, 2, 6, 4, 5, 1], 1),
+                                                 (2, 3, 5, 4, 4, [1, 2, 4, 3, 1], 3),
+                                                 (5, 8, 13, 4, 4, [1, 5, 12, 8, 1], 11)]:
+    assert [pow(u, k, m) for k in range(len(restes_u))] == restes_u
+    assert pow(u, per_u, m) == 1 and pow(v, per_v, m) == 1 and (u + v) % m == 0
+    assert all(((u**n + v**n) % m == 0) == (n % 2 == 1) for n in range(200))
+    assert (pow(u, 2026, m) + pow(v, 2026, m)) % m == r2026
+# arith-t-divisibilite-q7 : quotient 9 dans la division de 256 par b : b ∈ {26, 27, 28}, restes 22, 13, 4.
+assert [(b, 256 % b) for b in range(1, 257) if 256 // b == 9] == [(26, 22), (27, 13), (28, 4)]
+# arith-t-divisibilite-q8 : 7 | 2^n − 1 ⇔ 3 | n (n ≤ 300) ; 2^3 − 1 = 7 contredit « pairs », « multiples de 6 ou de 7 ».
+assert all(((2**n - 1) % 7 == 0) == (n % 3 == 0) for n in range(301))
+print("enrichi_arith_t_divisibilite : relecture indépendante vérifiée.")

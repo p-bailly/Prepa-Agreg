@@ -106,4 +106,16 @@ for c, Vmax, leurres in ((12, 128, (144, 108, 216)), (18, 432, (486, 384, 729)),
     assert maximum(V, x, Interval.open(0, R(c, 2))) == Vmax
     assert all(l != Vmax for l in leurres)
 assert (12 * x * (12 - 2 * x)**2).subs(x, 3) / 12 == 108  # V(3) = 108 pour la plaque de 12 cm
+# Relecture indépendante (2026-10-29) : ar-t-derivation-inflexion-ex5 (et variantes), d = f - T a d' >= 0 des deux côtés
+# du point d'inflexion (d croissante), comme l'affirme la correction.
+from sympy import E as _E, Rational as _R, diff as _diff, exp as _exp, symbols as _sym
+_x = _sym('x')
+for _f, _x0, _T in (((_x + 2) * _exp(-_x), 0, 2 - _x), ((_x + 3) * _exp(-_x), -1, -_E * _x + _E),
+                    ((_x - 1) * _exp(_x), -1, -(_x + 3) / _E)):
+    _dp = _diff(_f - _T, _x)
+    assert _dp.subs(_x, _x0) == 0
+    for _h in (_R(1, 10), _R(1, 2), 1, 3, 6):
+        assert _dp.subs(_x, _x0 - _h).evalf() > 0 and _dp.subs(_x, _x0 + _h).evalf() > 0
+# ar-t-derivation-q5 : 1/(1+x) - (1-x) = x^2/(1+x).
+assert (1 / (1 + _x) - (1 - _x) - _x**2 / (1 + _x)).simplify() == 0
 print('enrichi_ar_t_derivation : tout est vérifié')

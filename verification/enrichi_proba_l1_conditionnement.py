@@ -145,3 +145,42 @@ for v, (pg, pp, p1, a, b, ell, u1, p2, bayes) in enumerate([
     rep("proba-l1-probas-totales-bayes-ex5", v, ell)
 
 print("enrichi_proba_l1_conditionnement : tout est vérifié")
+
+
+# --- Relecture indépendante (2026-10-29) : résultats intermédiaires des corrections, recalculés à part. ---
+from fractions import Fraction as _F
+from itertools import permutations as _perm, product as _prod
+
+# proba-l1-conditionnement-composees-ex5 (et v1, v2) : énumération des tirages ordonnés de 3 pièces distinctes :
+# 8/57, 153/1012, 35/272 ; le leurre « avec remise » et le leurre « dans un ordre quelconque » (×3) sont faux.
+for (N, D, att) in [(20, 4, _F(8, 57)), (24, 6, _F(153, 1012)), (18, 3, _F(35, 272))]:
+    tir = list(_perm(range(N), 3))
+    fav = sum(1 for t in tir if t[0] >= D and t[1] >= D and t[2] < D)  # pièces 0..D−1 défectueuses
+    assert _F(fav, len(tir)) == att and att != _F(N - D, N) ** 2 * _F(D, N) and 3 * att < 1
+# proba-l1-independance-mutuelle-ex5 (et v1, v2) : énumération des 8 états : P(S) et P(F_2 | S) = 40/47, 3/4, 10/11.
+for (p1, p2, p3, pS, pc) in [(_F(9, 10), _F(8, 10), _F(7, 10), _F(846, 1000), _F(40, 47)),
+                             (_F(95, 100), _F(6, 10), _F(5, 10), _F(76, 100), _F(3, 4)),
+                             (_F(8, 10), _F(9, 10), _F(9, 10), _F(792, 1000), _F(10, 11))]:
+    tot = s2 = _F(0)
+    for e in _prod([0, 1], repeat=3):
+        w = (p1 if e[0] else 1 - p1) * (p2 if e[1] else 1 - p2) * (p3 if e[2] else 1 - p3)
+        if e[0] and (e[1] or e[2]):
+            tot += w
+            s2 += w if e[1] else 0
+    assert tot == pS and s2 / tot == pc
+# proba-l1-probas-totales-bayes-ex5 (et v1, v2) : p_2, forme close p_n = ℓ + (p_1 − ℓ) a^(n−1) vérifiée sur 30 termes
+# par la récurrence exacte, limite ℓ = 3/7, 2/5, 2/3 et P(G_1 | G_2) = 2/3, 7/9, 2/5.
+for (p1, g, q, p2_att, ell_att, bayes_att) in [(_F(1, 2), _F(6, 10), _F(3, 10), _F(45, 100), _F(3, 7), _F(2, 3)),
+                                               (_F(1, 2), _F(7, 10), _F(2, 10), _F(45, 100), _F(2, 5), _F(7, 9)),
+                                               (_F(1, 4), _F(8, 10), _F(4, 10), _F(1, 2), _F(2, 3), _F(2, 5))]:
+    a, b = g - q, q
+    ell = b / (1 - a)
+    assert ell == ell_att
+    p = p1
+    for n in range(1, 31):
+        assert p == ell + (p1 - ell) * a ** (n - 1) and 0 < p < 1
+        if n == 1:
+            p2 = g * p + q * (1 - p)
+            assert p2 == p2_att and g * p1 / p2 == bayes_att
+        p = g * p + q * (1 - p)
+print("enrichi_proba_l1_conditionnement : relecture indépendante vérifiée.")

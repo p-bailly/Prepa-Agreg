@@ -172,7 +172,7 @@ Contrôle : comme les exercices (résolution à l'aveugle par un sous-agent ind�
 
 ### Texte et formules
 - Texte avec formules KaTeX : `$…$` en ligne, `$$…$$` centré. Paragraphes séparés par une ligne vide (`\n\n`), lignes de liste
-  commençant par `- `, gras `**…**`. Pas d'autre balisage. En JSON, chaque `\` s'écrit `\\`.
+  commençant par `- ` (une liste peut suivre directement la ligne qui l'annonce), gras `**…**`. Pas d'autre balisage. En JSON, chaque `\` s'écrit `\\`.
 - Intervalles à la française : `\left]a,b\right[`, `\left[a,b\right[`. Ensembles `\mathbb{R}`, `\mathbb{N}`. Pas de `\dfrac` dans
   les formules en ligne trop hautes ; `\displaystyle` à éviter.
 - Toute formule doit passer `katex.renderToString(…, { throwOnError: true })` (contrôlé par le test).

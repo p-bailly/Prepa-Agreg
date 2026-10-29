@@ -92,4 +92,19 @@ for m in range(300):
     assert a >= m + 1 - 1e-9 and b >= 2 + m / 2 - 1e-9 and c <= -m / 2 + 1e-9
     assert 3 + 2 * float(cos(m)) >= 1 and 1 - float(cos(m)) / 2 >= 0.5 and -1 + float(sin(m)) / 2 <= -0.5
     a += 3 + 2 * float(cos(m)); b += 1 - float(cos(m)) / 2; c += -1 + float(sin(m)) / 2
+# Relecture indépendante (2026-10-29) : contrôles complémentaires.
+from sympy import Rational as _R, factorial as _fact, limit as _lim, oo as _oo, symbols as _sym
+_n = _sym('n', positive=True, integer=True)
+# ar-t-limite-monotone-ex4 : v_n - u_n = 1/(n n!) -> 0, donc même limite.
+assert _lim(1 / (_n * _fact(_n)), _n, _oo) == 0
+# ar-t-suites-q6 : itération directe, u_n = 3 - 1/2^(n-1) pour n >= 1.
+_u = _R(1)
+for _m in range(12):
+    _u += _R(1, 2**_m)
+    assert _u == 3 - _R(1, 2**_m)
+# ar-t-suites-q8 : itération directe, u_n = (n+1)^2 jusqu'à n = 30.
+_u = 1
+for _m in range(30):
+    assert _u == (_m + 1)**2
+    _u += 2 * _m + 3
 print('enrichi_ar_t_suites : tout est vérifié')

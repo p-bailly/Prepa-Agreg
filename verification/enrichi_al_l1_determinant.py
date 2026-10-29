@@ -173,4 +173,35 @@ assert (U.det() - (1 - 2 * t**2)).expand() == 0
 assert set(solve(U.det(), t)) == {sqrt(2) / 2, -sqrt(2) / 2}
 assert U.subs(t, 1).det() != 0 and U.subs(t, 0).det() != 0  # leurres t ∉ {-1, 1}, t ≠ 0 (exclusions à tort)
 
+# --- Relecture indépendante (2026-10-29) : recalculs à partir des seuls énoncés ---
+from sympy.combinatorics import Permutation
+
+# al-l1-determinant-q3 : déterminant 4x4 recalculé directement (30), leurres -30, 10, -10 faux.
+assert Matrix([[2, 0, 1, 3], [1, -1, 0, 2], [0, 0, 3, 0], [4, 0, 1, 1]]).det() == 30
+# al-l1-determinant-q7 : renverser 4 colonnes = permutation (1 4)(2 3), de signature +1 ; à l'ordre 3, signature -1.
+assert Permutation([3, 2, 1, 0]).signature() == 1 and Permutation([2, 1, 0]).signature() == -1
+# al-l1-determinant-q8 : avec des vecteurs symboliques, det(w, u, v + 2u) = det(u, v, w).
+s_ = symbols("a0:9")
+u_, v_, w_ = Matrix(s_[0:3]), Matrix(s_[3:6]), Matrix(s_[6:9])
+assert (Matrix.hstack(w_, u_, v_ + 2 * u_).det() - Matrix.hstack(u_, v_, w_).det()).expand() == 0
+# al-l1-determinant-produit-ex5 : formule par blocs symbolique pour p = q = 2 (B quelconque).
+blocs = symbols("b0:16")
+Mb = Matrix(4, 4, list(blocs))
+for i in (2, 3):
+    for j in (0, 1):
+        Mb[i, j] = 0
+assert (Mb.det() - Mb[0:2, 0:2].det() * Mb[2:4, 2:4].det()).expand() == 0
+for Mn, attendu in (([[2, 1, 5, -3], [1, 3, 0, 7], [0, 0, 4, 1], [0, 0, 2, 3]], 50),
+                    ([[3, -1, 2, 4], [2, 1, -5, 1], [0, 0, 1, 2], [0, 0, 3, -1]], -35),  # v1
+                    ([[1, 4, 0, 2], [2, 3, 6, -1], [0, 0, 5, 2], [0, 0, 3, 1]], 5)):  # v2
+    assert Matrix(Mn).det() == attendu
+# al-l1-determinant-famille-ex5 : 200 matrices aléatoires (diagonale impaire, reste pair) : det impair ; le
+# contre-exemple diag(3, 1) montre que det ne vaut pas toujours ±1.
+rng = random.Random(29)
+for _ in range(200):
+    n_ = rng.randint(2, 5)
+    M_ = Matrix(n_, n_, lambda i, j: 2 * rng.randint(-5, 5) + (1 if i == j else 0))
+    assert M_.det() % 2 == 1
+assert diag(3, 1).det() == 3
+
 print("enrichi_al_l1_determinant : tout est vérifié.")

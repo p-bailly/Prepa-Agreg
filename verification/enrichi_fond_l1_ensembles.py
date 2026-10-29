@@ -148,4 +148,31 @@ for n in range(0, 5):
             if n >= 1 and A_ == E and B_ == E:
                 assert not surjective
 
+# --- Relecture indépendante (2026-10-29) : recalculs à partir des seuls énoncés ---
+# fond-l1-ensembles-tiroirs-ex6, question 4 : A = {p/q : |x - p/q| < 1/q^2}, énuméré en fractions exactes pour
+# q ≤ 60 (au-delà, la minoration |x - p/q| ≥ 1/(bq) pour p/q ≠ x = a/b exclut tout q ≥ b, sauf p/q = x).
+def ensemble_A(x, qmax=60):
+    res = set()
+    for q in range(1, qmax + 1):
+        for p in range(-3 * q, 3 * q + 1):
+            if abs(x - F(p, q)) < F(1, q * q):
+                res.add(F(p, q))
+    return res
+assert ensemble_A(F(1, 2)) == {F(0), F(1, 2), F(1)}
+assert ensemble_A(F(1, 3)) == {F(0), F(1, 3), F(1, 2), F(1)}  # v1
+assert ensemble_A(F(2, 5)) == {F(0), F(1, 3), F(2, 5), F(1, 2), F(1)}  # v2
+# fond-l1-ensembles-recurrence-forte-ex5 : u_10 par la récurrence elle-même (1025 ; v1 117074 ; v2 5120).
+def suite(u0, u1, a, b, n):
+    u = [u0, u1]
+    while len(u) <= n:
+        u.append(a * u[-1] + b * u[-2])
+    return u
+assert suite(2, 3, 3, -2, 30) == [2**k + 1 for k in range(31)] and suite(2, 3, 3, -2, 10)[10] == 1025
+assert suite(1, 4, 5, -6, 30) == [2 * 3**k - 2**k for k in range(31)] and suite(1, 4, 5, -6, 10)[10] == 117074
+assert suite(0, 1, 4, -4, 30) == [F(k * 2**k, 2) for k in range(31)] and suite(0, 1, 4, -4, 10)[10] == 5120
+# fond-l1-ensembles-q4 : Fibonacci (u_0 = u_1 = 1) ≤ 2^n jusqu'à n = 200.
+assert all(v <= 2**k for k, v in enumerate(suite(1, 1, 1, 1, 200)))
+# fond-l1-ensembles-q6 : 7 = 2 × 3 + 1 chaussettes (chaque couleur en a au moins 2 : 10, 8, 6).
+assert min(10, 8, 6) >= 2 and 2 * 3 + 1 == 7
+
 print("enrichi_fond_l1_ensembles : tout est vérifié.")

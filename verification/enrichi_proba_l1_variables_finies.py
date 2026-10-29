@@ -141,3 +141,32 @@ for v, (r, d, bon, faux) in enumerate([
     assert rf_["bonne"] == 0 and len(set(rf_["propositions"])) == 4
 
 print("enrichi_proba_l1_variables_finies : tout est vérifié")
+
+
+# --- Relecture indépendante (2026-10-29) : résultats intermédiaires des corrections, recalculés à part. ---
+from fractions import Fraction as _F
+from itertools import product as _prod
+
+# proba-l1-variables-finies-transfert-ex5 (et v1, v2) : P(X = k) = k/S somme à 1, E(X) = 3, 11/3, 13/3,
+# E(1/X) = 2/5, 1/3, 2/7, strictement supérieur à 1/E(X).
+for (m, S, EXa, Einv) in [(4, 10, 3, _F(2, 5)), (5, 15, _F(11, 3), _F(1, 3)), (6, 21, _F(13, 3), _F(2, 7))]:
+    loi = {k: _F(k, S) for k in range(1, m + 1)}
+    assert sum(loi.values()) == 1 and sum(k * w for k, w in loi.items()) == EXa
+    assert sum(w / k for k, w in loi.items()) == Einv and Einv > 1 / EXa
+# proba-l1-variables-finies-independance-ex5 (et v1, v2) : énumération de l'urne ; X, Y indépendantes (les quatre
+# égalités) ⇔ n pair, multiple de 3, multiple de 5 ; formule de P(Y = 1) avec la partie entière.
+for (R, d) in [(4, 2), (6, 3), (5, 5)]:
+    for n in range(1, 61):
+        boules = [(1, i) for i in range(1, R + 1)] + [(0, i) for i in range(1, n + 1)]
+        t = len(boules)
+        P = lambda f: _F(sum(1 for bl in boules if f(bl)), t)
+        assert P(lambda bl: bl[1] % d == 0) == _F(R // d + n // d, t)
+        ind = all(P(lambda bl: bl[0] == x and (bl[1] % d == 0) == y) == P(lambda bl: bl[0] == x) * P(lambda bl: (bl[1] % d == 0) == y)
+                  for x in (0, 1) for y in (False, True))
+        assert ind == (n % d == 0), (R, d, n)
+# proba-l1-variables-finies-couples-ex5 : P(X < Y) = (n − 1)/(2n) et E(D) pour n = 6, 4, 10 : 35/18, 5/4, 33/10.
+for (n, att) in [(6, _F(35, 18)), (4, _F(5, 4)), (10, _F(33, 10))]:
+    cs = list(_prod(range(1, n + 1), repeat=2))
+    assert _F(sum(1 for x, y in cs if x < y), n * n) == _F(n - 1, 2 * n)
+    assert _F(sum(abs(x - y) for x, y in cs), n * n) == att
+print("enrichi_proba_l1_variables_finies : relecture indépendante vérifiée.")

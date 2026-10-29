@@ -35,5 +35,9 @@ describe('découpage du texte', () => {
   })
   it('ne prend pas $ … $ … $$ pour une seule formule centrée', () => {
     expect(decouperTexte('$$a$$ et $$b$$').map((x) => x.k)).toEqual(['p'])
+    // Liste collée au texte qui l'annonce, puis texte de nouveau : trois morceaux, sans tiret affiché.
+    const colle = decouperTexte('Deux cas :\n- $x>0$\n- $x<0$\nFin.')
+    expect(colle.map((x) => x.k)).toEqual(['p', 'liste', 'p'])
+    expect(colle[1].k === 'liste' && colle[1].items.length).toBe(2)
   })
 })

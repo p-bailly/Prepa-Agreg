@@ -148,3 +148,28 @@ for v, (nq, k, b, a, delta, bt, nmin) in enumerate([(20, 4, 3, 10, F(1), F(2, 5)
     assert [valeur(p) for p in r["propositions"]][1:] == [VN / F(5, 100), (b + 1) * VN / F(5, 100), VS / delta**2]
 
 print("enrichi_proba_t_concentration : tout est vérifié")
+
+
+# --- Relecture indépendante (2026-10-29) : résultats intermédiaires des corrections, recalculés à part. ---
+# proba-t-concentration-linearite-ex5 (et v1, v2) : P(A_i) = 1/k par énumération des couples, plus petit m tel que
+# (m − 1)/k ≥ seuil : 19, 11, 41.
+for (k, seuil, m_attendu) in [(6, 3, 19), (2, 5, 11), (4, 10, 41)]:
+    assert F(sum(1 for a, b in product(range(k), repeat=2) if a == b), k * k) == F(1, k)
+    assert min(m for m in range(2, 1000) if F(m - 1, k) >= seuil) == m_attendu
+# proba-t-concentration-variance-somme-ex5 (et v1, v2) : E(T), V(T) et minorant 1 − V(T)/a² : 0,84 ; 0,91 ; 0,75.
+for (mu, s, n, a, minor) in [(200, 4, 25, 50, F(84, 100)), (500, 3, 16, 40, F(91, 100)), (250, 5, 36, 60, F(3, 4))]:
+    assert 1 - F(n * s * s, a * a) == minor and n * mu - a > 0
+# proba-t-lgn-ex5 (et v1, v2) : loi binomiale exacte de N, S = gain·N − perte·(q − N), E(S) = 0, V(S) = 60, 120, 10,
+# minorant de P(|S| < a) : 0,4 ; 0,7 ; 0,6 ; plus petit n tel que V(S)/(n δ²) ≤ 0,05 : 1200, 600, 800.
+for (q, p, g, pe, a, d, VS, minor, n_att) in [(20, F(1, 4), 3, 1, 10, 1, 60, F(2, 5), 1200),
+                                              (30, F(1, 5), 4, 1, 20, 2, 120, F(7, 10), 600),
+                                              (10, F(1, 2), 1, 1, 5, F(1, 2), 10, F(3, 5), 800)]:
+    loi = {g * k - pe * (q - k): comb(q, k) * p**k * (1 - p) ** (q - k) for k in range(q + 1)}
+    ES = sum(s * w for s, w in loi.items())
+    assert ES == 0 and sum((s - ES) ** 2 * w for s, w in loi.items()) == VS
+    assert 1 - F(VS) / a**2 == minor
+    assert sum(w for s, w in loi.items() if abs(s) < a) >= minor  # la minoration est bien vérifiée par la vraie loi
+    assert min(n for n in range(1, 10**5) if F(VS) / (n * F(d) ** 2) <= F(5, 100)) == n_att
+# proba-t-concentration-q4 : la variable à deux valeurs 8 et 12 a bien E = 10, V = 4 et P(8 < X < 12) = 0.
+assert F(8 + 12, 2) == 10 and F((8 - 10) ** 2 + (12 - 10) ** 2, 2) == 4
+print("enrichi_proba_t_concentration : relecture indépendante vérifiée.")

@@ -113,4 +113,27 @@ assert all(((15 * x - 21) % 36 == 0) == ((5 * x - 7) % 12 == 0) for x in range(-
 assert gcd(14, 48) == 2 and lin(14, 20, 48) == [22, 46] and (7 * 7) % 24 == 1 and 70 % 24 == 22
 assert all(((14 * x - 20) % 48 == 0) == ((7 * x - 10) % 24 == 0) for x in range(-300, 300))
 
+
+# --- Relecture indépendante (2026-10-29) : contrôles complémentaires ----------------------------------------------
+# arith-l1-congruences-euler-ex6 (et variantes) : x ↦ x^e mod n est une bijection de {0, …, n − 1} (question 4),
+# d'inverse c ↦ c^d ; le chiffré proposé a donc un seul antécédent, et les trois leurres ne le chiffrent pas.
+for (_p, _q, _e, _d, _c, _x, _leurres) in [(11, 17, 7, 23, 175, 10, [175, 43, 98]), (5, 23, 3, 59, 52, 8, [52, 23, 37]),
+                                           (7, 13, 5, 29, 23, 4, [23, 10, 17])]:
+    _n = _p * _q
+    assert (_e * _d) % ((_p - 1) * (_q - 1)) == 1
+    assert all(pow(pow(x, _e, _n), _d, _n) == x for x in range(_n))
+    assert [x for x in range(_n) if pow(x, _e, _n) == _c] == [_x]
+    assert all(pow(l, _e, _n) != _c for l in _leurres)
+assert 10 ** 7 == 187 * 53475 + 175
+# arith-l1-chinois-ex5 (et variantes) : solution unique dans l'intervalle, leurres faux.
+for (_sys, _lo, _hi, _N, _leurres) in [([(4, 3), (5, 2), (7, 4)], 100, 300, 207, [67, 247, 187]),
+                                       ([(3, 2), (5, 4), (8, 5)], 200, 300, 269, [149, 254, 239]),
+                                       ([(5, 4), (6, 1), (7, 2)], 200, 400, 289, [79, 259, 349])]:
+    _ok = lambda N: all(N % m == r for (m, r) in _sys)
+    assert [N for N in range(_lo, _hi + 1) if _ok(N)] == [_N]
+    assert all(not (_ok(l) and _lo <= l <= _hi) for l in _leurres)
+# arith-l1-congruences-inversibles-ex6 : nombre de solutions = PGCD quand il divise le second membre.
+for (_a, _b, _m, _sol) in [(12, 18, 30, [4, 9, 14, 19, 24, 29]), (15, 21, 36, [11, 23, 35]), (14, 20, 48, [22, 46])]:
+    assert [x for x in range(_m) if (_a * x - _b) % _m == 0] == _sol and len(_sol) == gcd(_a, _m)
+
 print("enrichi_arith_l1_congruences : tout est vérifié.")

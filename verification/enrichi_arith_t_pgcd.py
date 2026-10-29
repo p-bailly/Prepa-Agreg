@@ -131,4 +131,22 @@ assert sol == [(21 * k, 10 * k) for k in range(-19, 20)]
 assert [(x, y) for (x, y) in sol if 50 <= x - y <= 150] == [(21 * k, 10 * k) for k in range(5, 14)]
 assert 11 * 4 == 44 and 11 * 14 == 154
 
+
+# --- Relecture indépendante (2026-10-29) : contrôles complémentaires ----------------------------------------------
+# arith-t-pgcd-q4 : identité de la multiplication des deux relations de Bézout de l'explication.
+from sympy import symbols as _s, expand as _e
+_a, _b, _u, _v, _u2, _v2 = _s("a b u v u2 v2")
+assert _e(((_a + _b) * _u + _a * _v) * ((_a + _b) * _u2 + _b * _v2)
+          - ((_a + _b) * ((_a + _b) * _u * _u2 + _b * _u * _v2 + _a * _u2 * _v) + _a * _b * _v * _v2)) == 0
+# arith-t-pgcd-q3 : identité de l'explication ac·uu' + b(auv' + cu'v + bvv') = (au + bv)(cu' + bv').
+_c = _s("c")
+assert _e((_a * _u + _b * _v) * (_c * _u2 + _b * _v2) - (_a * _c * _u * _u2 + _b * (_a * _u * _v2 + _c * _u2 * _v + _b * _v * _v2))) == 0
+# arith-t-pgcd-q7 : leurres 2, 4, 9 différents du vrai nombre de couples.
+assert len([(x, y) for x in range(48) for y in range(48) if 3 * x + 5 * y == 47]) == 3
+# arith-t-bezout-ex5 (et variantes) : le codage est une bijection, donc W n'a qu'un antécédent (seule la bonne
+# proposition convient), et le décodage x ≡ a'y + c inverse bien le codage sur les 26 lettres.
+for (_k, _m, _ap, _cc) in [(11, 8, 19, 4), (7, 3, 15, 7), (5, 12, 21, 8)]:
+    assert all((_ap * ((_k * x + _m) % 26) + _cc) % 26 == x for x in range(26))
+    assert [x for x in range(26) if (_k * x + _m) % 26 == 22] == [(_ap * 22 + _cc) % 26]
+
 print("enrichi_arith_t_pgcd : tout est vérifié.")

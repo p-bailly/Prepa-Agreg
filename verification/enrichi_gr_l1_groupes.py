@@ -181,4 +181,45 @@ H = {(a, 0) for a in range(6)}
 for (a, b) in G:
     assert ((2 * a) % 6, 0) in H
 
+# --- Relecture indépendante (2026-10-29) : recalculs à partir des seuls énoncés ---
+from sympy import totient as _phi
+
+# gr-l1-groupes-noyau-ex5 : pour 1 ≤ m, n ≤ 20, les morphismes Z/mZ -> Z/nZ (applications k -> ka avec n | ma,
+# testées sur toute la table) sont au nombre de m ∧ n ; les injectifs sont φ(m) si m | n, aucun sinon.
+for m_ in range(1, 21):
+    for n_ in range(1, 21):
+        # une application f est un morphisme ssi f((x + y) mod m) = f(x) + f(y) mod n ; un morphisme est
+        # déterminé par a = f(1), et f(k) = ka : on énumère les applications distinctes ainsi obtenues.
+        morph = {tuple((k * a) % n_ for k in range(m_)) for a in range(n_)}
+        morph = [f_ for f_ in morph if all(f_[(x + y) % m_] == (f_[x] + f_[y]) % n_
+                                          for x in range(m_) for y in range(m_))]
+        assert len(morph) == gcd(m_, n_)
+        inj = [f_ for f_ in morph if len(set(f_)) == m_]
+        assert len(inj) == (_phi(m_) if n_ % m_ == 0 else 0)
+# Valeurs de la question 5 : (12, 18) -> 6, 0 ; v1 (6, 18) -> 6, 2 ; v2 (4, 10) -> 2, 0.
+assert (gcd(12, 18), gcd(6, 18), gcd(4, 10)) == (6, 6, 2) and _phi(6) == 2
+# gr-l1-groupes-sous-groupes-ex5 : les z de module 1 avec z^n réel sont les racines 2n-ièmes de l'unité :
+# 24 (n = 12), 12 (v1, n = 6), 10 (v2, n = 5) ; contrôle sur une grille fine d'arguments.
+for n_, attendu in ((12, 24), (6, 12), (5, 10)):
+    N_ = 2 * n_ * 997  # grille d'arguments 2πk/N_, qui contient les racines 2n-ièmes de l'unité
+    pts = [k for k in range(N_) if abs((cmath.exp(2j * cmath.pi * k / N_) ** n_).imag) < 1e-9]
+    assert len(pts) == attendu and all(k % 997 == 0 for k in pts)
+    # leurres : n (racines n-ièmes seulement), 2 (seulement ±1), une infinité : faux
+    assert attendu not in (n_, 2)
+
+# gr-l1-groupes-lagrange-ex5 (remarque de la correction) : dans S3, {id, deux permutations circulaires} est un
+# sous-groupe d'indice 2 qui contient tous les carrés et les éléments d'ordre impair.
+S3 = list(permutations(range(3)))
+comp = lambda s, t_: tuple(s[t_[i]] for i in range(3))
+idt = (0, 1, 2)
+H3 = {idt, (1, 2, 0), (2, 0, 1)}
+assert all(comp(a, b) in H3 for a in H3 for b in H3) and len(S3) == 2 * len(H3)
+assert all(comp(s, s) in H3 for s in S3)
+def _pow(s, k):
+    r = idt
+    for _ in range(k):
+        r = comp(r, s)
+    return r
+assert all(s in H3 for s in S3 if next(k for k in range(1, 7) if _pow(s, k) == idt) % 2 == 1)
+
 print("enrichi_gr_l1_groupes : tout est vérifié.")

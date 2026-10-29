@@ -122,4 +122,27 @@ for m in range(1, 20):
     assert simplify(sin(1 / (2 / ((4 * m + 1) * pi)))) == 1
 assert limit(1 / (n * pi), n, oo) == 0 and limit(2 / ((4 * n + 1) * pi), n, oo) == 0
 assert limit(x * sin(1 / x), x, 0) == 0
+# Relecture indépendante (2026-10-29) : contrôles complémentaires par itération.
+from sympy import Rational as _R, sqrt as _sqrt
+# ar-t-continuite-q7 : u_0 = 1, u_{n+1} = (u_n^2+6)/5 reste dans [6/5, 2] dès n = 1 et tend vers 2.
+_u = 1.0
+for _m in range(200):
+    _u = (_u**2 + 6) / 5
+    assert 1.2 - 1e-12 <= _u <= 2
+assert abs(_u - 2) < 1e-6
+# ar-t-continuite-q8 : u_0 = 2, u_{n+1} = u_n/2 + 1/u_n décroît vers sqrt 2.
+_u = _R(2)
+for _m in range(6):
+    _v = _u / 2 + 1 / _u
+    assert _sqrt(2) <= _v <= _u
+    _u = _v
+assert abs(float(_u) - 2**0.5) < 1e-12
+# ar-t-point-fixe-ex5 (et variantes) : la formule explicite coïncide avec l'itération pour n <= 8.
+for (_a, _b, _u0, _formule) in ((3, 2, _R(0), lambda m: _R(2 * 4**m - 2, 4**m + 2)),
+                                (4, 3, _R(0), lambda m: _R(3 * 5**m - 3, 5**m + 3)),
+                                (5, 4, _R(6), lambda m: _R(28 * 6**m + 2, 7 * 6**m - 2))):
+    _u = _u0
+    for _m in range(9):
+        assert _u == _formule(_m)
+        _u = (_a * _u + _b) / (_u + 2)
 print('enrichi_ar_t_continuite : tout est vérifié')

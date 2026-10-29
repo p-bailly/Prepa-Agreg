@@ -134,4 +134,27 @@ verifier_pgcd(X ** 4 + X ** 3 + 2 * X ** 2 + X + 1, X ** 3 + X ** 2 + X + 1, X *
               [X + 1, X ** 3 + X ** 2 + X + 1, 1])
 assert discriminant(X ** 2 + X + 1, X) == -3
 
+
+# --- Relecture indépendante (2026-10-29) : contrôles complémentaires ----------------------------------------------
+# arith-l1-polynomes-division-ex5 : formule générale du reste de X^n par (X − 1)²(X + 1), n de 0 à 40.
+_B = (X - 1) ** 2 * (X + 1)
+for _n in range(0, 41):
+    if _n % 2 == 0:
+        _R = Rational(_n, 2) * (X ** 2 - 1) + 1
+    else:
+        _R = Rational(_n - 1, 2) * (X ** 2 - 1) + X
+    assert expand(rem(X ** _n, _B, X) - _R) == 0
+# arith-l1-polynomes-bezout-ex5 (et variantes) : PGCD unitaire ; le leurre non unitaire n'est pas « le » PGCD.
+for (_A, _Bp, _D) in [(X ** 5 - X ** 4 + 2 * X ** 3 - 2 * X ** 2 + X - 1, X ** 4 - 1, X ** 3 - X ** 2 + X - 1),
+                      (X ** 4 + 2 * X ** 3 + 2 * X ** 2 + 2 * X + 1, X ** 4 - 1, X ** 3 + X ** 2 + X + 1),
+                      (X ** 4 + X ** 3 + 2 * X ** 2 + X + 1, X ** 3 + X ** 2 + X + 1, X ** 2 + 1)]:
+    assert expand(gcd(_A, _Bp) - _D) == 0
+# arith-l1-polynomes-q6 : identité x1²x2x3 + x1x2²x3 + x1x2x3² = σ1σ3.
+_x1, _x2, _x3 = symbols("x1 x2 x3")
+assert expand(_x1 ** 2 * _x2 * _x3 + _x1 * _x2 ** 2 * _x3 + _x1 * _x2 * _x3 ** 2
+              - (_x1 + _x2 + _x3) * _x1 * _x2 * _x3) == 0
+# arith-l1-polynomes-viete-ex5 : (1 + x1)(1 + x2)(1 + x3) = 1 + σ1 + σ2 + σ3.
+assert expand((1 + _x1) * (1 + _x2) * (1 + _x3) - (1 + (_x1 + _x2 + _x3) + (_x1 * _x2 + _x1 * _x3 + _x2 * _x3)
+                                                  + _x1 * _x2 * _x3)) == 0
+
 print("enrichi_arith_l1_polynomes : tout est vérifié.")

@@ -72,9 +72,13 @@ function trouverFinMath(ligne: string, debut: number, bloc: boolean): number {
   return -1
 }
 
-/** Découpe un texte complet en paragraphes, listes et formules centrées. */
+/**
+ * Découpe un texte complet en paragraphes, listes et formules centrées. Dans un paragraphe, une suite de lignes « - »
+ * forme une liste même collée à une ligne de texte (« Soit : » puis les cas) ; le texte autour reste en paragraphes.
+ */
 export function decouperTexte(texte: string): Paragraphe[] {
   const sortie: Paragraphe[] = []
+  const estItem = (l: string) => /^\s*- /.test(l)
   for (const brut of texte.split(/\n\s*\n/)) {
     const lignes = brut.split('\n').map((l) => l.trimEnd()).filter((l) => l.trim() !== '')
     if (!lignes.length) continue
@@ -84,11 +88,14 @@ export function decouperTexte(texte: string): Paragraphe[] {
       sortie.push({ k: 'bloc', t: entier.slice(2, -2).trim() })
       continue
     }
-    if (lignes.every((l) => /^\s*- /.test(l))) {
-      sortie.push({ k: 'liste', items: lignes.map((l) => decouperLigne(l.replace(/^\s*- /, ''))) })
-      continue
+    for (let i = 0; i < lignes.length; ) {
+      let j = i
+      while (j < lignes.length && estItem(lignes[j]) === estItem(lignes[i])) j++
+      const groupe = lignes.slice(i, j)
+      if (estItem(lignes[i])) sortie.push({ k: 'liste', items: groupe.map((l) => decouperLigne(l.replace(/^\s*- /, ''))) })
+      else sortie.push({ k: 'p', morceaux: decouperLigne(groupe.join(' ')) })
+      i = j
     }
-    sortie.push({ k: 'p', morceaux: decouperLigne(lignes.join(' ')) })
   }
   return sortie
 }

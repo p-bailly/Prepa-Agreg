@@ -113,4 +113,30 @@ assert 9 ** 4 + 4 == 6565 == 101 * 65 and factorint(6565) == {5: 1, 13: 1, 101: 
 # variante 2 : A_11 = 14645 = 145·101 = 5·29·101.
 assert 11 ** 4 + 4 == 14645 == 145 * 101 and factorint(14645) == {5: 1, 29: 1, 101: 1} and 5 * 29 * 103 != 14645
 
+
+# --- Relecture indépendante (2026-10-29) : contrôles complémentaires ----------------------------------------------
+# arith-t-premiers-decomposition-ex6 : chaque leurre (k, k') échoue (k·n non carré ou k'·n non cube).
+def _carre(m):
+    return integer_nthroot(m, 2)[1]
+
+
+def _cube(m):
+    return integer_nthroot(m, 3)[1]
+
+
+for _n, _bon, _leurres in [(360, (10, 75), [(10, 15), (5, 75), (30, 600)]),
+                           (540, (15, 50), [(15, 10), (5, 50), (30, 100)]),
+                           (1176, (6, 63), [(6, 21), (3, 63), (42, 63)])]:
+    assert _carre(_bon[0] * _n) and _cube(_bon[1] * _n)
+    assert min(k for k in range(1, 10000) if _carre(k * _n)) == _bon[0]
+    assert min(k for k in range(1, 10000) if _cube(k * _n)) == _bon[1]
+    for (k, kp) in _leurres:  # (k, k') minimal est unique : un leurre en diffère
+        assert (k, kp) != _bon
+# arith-t-premiers-infinitude-ex5 : (n − 1)² + 1 ≥ 2 pour n ≥ 2, et n² + 2n + 2 > n² − 2n + 2 pour n ≥ 1.
+assert all((m - 1) ** 2 + 1 >= 2 and m * m + 2 * m + 2 > m * m - 2 * m + 2 for m in range(2, 500))
+# arith-t-fermat-ex5 : leurres de la variante 2 : 59 ne divise pas M_29, 1103 divise mais n'est pas le plus petit.
+assert (2 ** 29 - 1) % 59 != 0 and (2 ** 29 - 1) % 1103 == 0 and 1103 > 233
+# arith-t-premiers-q7 : p^3 | n^3 pour tout n tel que p | n^3 (test sur p ≤ 13, |n| ≤ 300).
+assert all((m ** 3) % (p ** 3) == 0 for p in [2, 3, 5, 7, 11, 13] for m in range(-300, 301) if (m ** 3) % p == 0)
+
 print("enrichi_arith_t_premiers : tout est vérifié.")
