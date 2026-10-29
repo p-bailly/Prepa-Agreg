@@ -410,7 +410,7 @@ assert abs(r10 - (10 * mp.pi + mp.pi / 2 - 1 / (10 * mp.pi))) > 1.4e-3
 # x + ln x = n : e^{x_n} = e^n / x_n ~ e^n / n.
 
 # ar-l2-asymptotique-implicite-ex1 (+ v1, v2) : x^p + a n x - nb = 0.
-for p, A, nb, eq in [(5, 1, 1, 1), (3, 1, 2, 2), (7, 2, 1, F(1, 2))]:
+for p, A, nb, eq in [(5, 1, 1, 1), (3, 1, 2, 2), (7, 2, 1, 0.5)]:
     for N in [10, 1000, 10**6]:
         P = lambda t: t**p + A * N * t - nb
         borne = F(nb, A * N)
