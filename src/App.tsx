@@ -7,7 +7,6 @@ import { noterVolet, retenirMode } from './lib/progression'
 import { natif } from './lib/notifications'
 import { choisirMode } from './repetition/modes'
 import { etatCarte } from './repetition/etat'
-import { construireSeance } from './repetition/seance'
 import { IconeOnglet } from './composants/Icones'
 import { Accueil } from './pages/Accueil'
 import { Chapitre } from './pages/Chapitre'
@@ -17,7 +16,7 @@ import { EcranLecon } from './pages/EcranLecon'
 import { Parcours } from './pages/Parcours'
 import { Reglages } from './pages/Reglages'
 import { Seance } from './pages/Seance'
-import { nouvelleSeance, type EtatSeance } from './repetition/deroulement'
+import type { EtatSeance } from './repetition/deroulement'
 import { Stats } from './pages/Stats'
 import type { Mode } from './lib/reglages'
 
@@ -101,11 +100,6 @@ function Navigation() {
     sentinelle.current = true
   }, [pile, onglet])
 
-  const reviser = () => {
-    setSeance(nouvelleSeance(construireSeance(d.contenu, d.progression, d.reglages, d.horloge(), d.aujourdhui()), d.horloge()))
-    empiler({ k: 'seance' })
-  }
-
   const lireLecon = (chapitre: string, cartes: string[]) => empiler({ k: 'lecon', chapitre, cartes })
 
   const ouvrirCarte = (id: string) => {
@@ -180,7 +174,7 @@ function Navigation() {
   if (haut?.k === 'chapitre')
     contenu = <Chapitre id={haut.id} surCarte={ouvrirCarte} surLecon={lireLecon} surRetour={depiler} />
   else if (onglet === 'accueil')
-    contenu = <Accueil surReviser={reviser} surApprendre={(l) => lireLecon(l.chapitre.id, l.cartes.map((c) => c.id))} />
+    contenu = <Accueil surChapitre={(id) => empiler({ k: 'chapitre', id })} />
   else if (onglet === 'parcours') contenu = <Parcours surChapitre={(id) => empiler({ k: 'chapitre', id })} />
   else if (onglet === 'stats') contenu = <Stats />
   else contenu = <Reglages />
