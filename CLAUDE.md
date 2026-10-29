@@ -30,7 +30,7 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   `GITHUB_RUN_NUMBER` (0 en local) ; `versionCode` = `github.run_number`. Utilisée par l'APK, `vite.config.ts` (`__VERSION__`)
   et les Réglages ; `verification.yml` contrôle l'APK.
 - Polices Latin Modern : `.otf` CTAN non modifiés dans `src/polices/` (GUST Font License, voir `src/polices/LISEZMOI.md`).
-  Police d'interface Plus Jakarta Sans : paquet npm `@fontsource-variable/plus-jakarta-sans` (SIL OFL 1.1), importé dans
+  Police d'interface Nunito : paquet npm `@fontsource-variable/nunito` (SIL OFL 1.1), importé dans
   `src/main.tsx`, donc embarqué par Vite.
 
 ## Architecture
@@ -58,15 +58,24 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   l'export / import JSON permet de passer de l'un à l'autre. Pas de rappel quotidien dans un navigateur.
 
 ## Allure visuelle
-Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
-`--conteneur`, `--sable`, `--menthe`, `--rose`, `--lilas`…), redéfinis pour le sombre sous `:root[data-theme='dark']`.
-- Fond gris bleuté `#F4F6FA`, surfaces blanches à grands arrondis (20 à 32 px), bleu ardoise `#3E5F8A`, aplats tonals ; ni
-  ombre ni dégradé. Sombre : fond `#111418`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
-- Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
-  aller avec les formules KaTeX.
+Thème « Moderne coloré » (direction B, mise en page d'accueil 3, choisies par le propriétaire le 2026-10-29 sur maquettes ;
+il remplace « Tonal ardoise »), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
+`--conteneur`, `--sable`, `--menthe`, `--rose`, `--lilas`, `--th-<thème>`…), redéfinis pour le sombre sous
+`:root[data-theme='dark']`.
+- Fond lavande `#F6F4FF`, surfaces blanches très arrondies (18 à 28 px) avec un léger relief dessous (`--relief`), violet
+  `#6C4CF5` ; boutons principaux pleins avec une ombre portée de `--primaire-fonce` (enfoncés au toucher). Sombre : fond
+  `#17132A`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
+- **Une couleur par thème** du parcours (`--th-analyse-reelle`…, classe `th-<id>` qui pose `--th`) et une icône par thème
+  (`IconeTheme`, `src/composants/Icones.tsx`) : étiquettes de thème, numéros de chapitre et de notion, pastilles, puces du
+  Parcours.
+- Interface en Nunito ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour aller
+  avec les formules KaTeX.
+- Téléphone (APK) : une colonne, barre d'onglets en bas. À partir de 900 px (version web) : barre latérale à gauche (nom
+  de l'appli, onglets), contenu élargi (1120 px ; 860 px pour le cours d'une notion, 820 px pour les écrans plein écran).
 - Accueil : compte à rebours de l'écrit (tuile rose, seulement avec une date), puis **tous les chapitres numérotés de 1 à n**
-  (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau, groupés par thème, pastille d'avancement ; un chapitre pas encore
-  rédigé est grisé. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
+  (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau (barre d'avancement des
+  chapitres faits), groupés par thème, en cartes (une colonne au téléphone, thèmes sur deux colonnes sur grand écran),
+  pastille d'avancement ; un chapitre pas encore rédigé est en pointillés. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
   chaque niveau rédigé, « Tout le niveau » : un **QCM du niveau** (20 questions à choix) et un **Vrai ou faux du niveau**
   (20 affirmations), pris à tour de rôle dans chacun de ses chapitres (`tirerCible`).
 - Chapitre : trois onglets (`Segments`). **Notions** : introduction (`content/lecons/`), notions numérotées « 17.4 » ;
@@ -78,8 +87,8 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   de difficulté 1 ou 2 (avec l'énoncé et la correction). Score gardé ; chapitre « fait » quand toutes ses notions sont faites
   (tous leurs exercices réussis) et un QCM à 80 % au moins. Les scores sont gardés dans `progression.qcm`, sous l'identifiant
   du chapitre ou sous `niveau-<niveau>-qcm` / `niveau-<niveau>-vrai-faux` pour un niveau entier.
-  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
-  lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
+  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème violet, définition menthe, exemple
+  bleu clair (`--lilas`), méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, violet, menthe), chacun avec
   son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
 - Le logo (crayon rouge `#CE2029`) n'a pas suivi : il se régénère avec `npm run logo` si on veut l'accorder.
 
@@ -278,6 +287,7 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 - 2026-10-29 · `cartes/algebre-lineaire/l2-al-l2-euclidien.json`, `exercices/algebre-lineaire/l2-al-l2-euclidien.json`, `lecons/al-l2-euclidien.json`, `qcm/al-l2-euclidien.json`, `verification/al_l2_euclidien.py` (8 cartes, 32 exercices, 46 variantes, 8 questions) : relecture indépendante des cartes (énoncés, hypothèses, pièges, chaque leurre des trous, démonstrations, contre-exemples, affirmations, `cours` et introduction re-dérivés, confrontés au programme de l'interne 2027) et résolution à l'aveugle des 86 éléments (76 réponses finales et 8 réponses de QCM concordantes, 2 démonstrations conformes ; leurres vérifiés faux en SymPy, en calcul exact et par énumération) ; listes des cartes contrôlées (vrais sauts de ligne) ; corrigé : justification de « la norme subordonnée majore le plus grand module des valeurs propres » limitée au cas des valeurs propres réelles (positifs-ex2 et ses 2 variantes), « matrice symétrique » dans la définition de $\mathcal{S}_n^+$ et $\mathcal{S}_n^{++}$ (carte positifs) ; asserts ajoutés au script de vérification ; aucun doute.
 - 2026-10-29 · `cartes/groupes/l2-gr-l2-symetrique.json`, `exercices/groupes/l2-gr-l2-symetrique.json`, `lecons/gr-l2-symetrique.json`, `qcm/gr-l2-symetrique.json`, `verification/gr_l2_symetrique.py` (5 cartes, 25 exercices, 34 variantes, 8 questions) : relecture indépendante des cartes (énoncés, hypothèses, pièges, chaque leurre des trous, démonstrations, contre-exemples, affirmations, `cours` et introduction re-dérivés, confrontés au programme de l'interne 2027) et résolution à l'aveugle de 67 éléments (55 réponses finales et 8 QCM concordants, 4 démonstrations conformes), leurres vérifiés faux par force brute dans 𝔖ₙ (énumération, sous-groupes engendrés, plus courts chemins en transpositions voisines, lemme de Zolotarev pour p ≤ 17) ; corrigé : indice 1 de signature-ex3 et de ses variantes qui éliminait le leurre de la permutation inverse, indice 2 d'ordre-ex5 et de ses variantes qui livrait la minoration, énumération d'ordre-ex3 v2, phrase de cycles-ex3 v1, phrase du `cours` de la carte ordre sur l'ordre d'un produit de permutations qui commutent ; script complété (taquin, produits dans l'autre ordre, exemple de la signature, leurres des trous) ; aucun doute.
 - 2026-10-29 · L2 complète (18 chapitres : 115 cartes, 493 exercices, 726 variantes, 144 questions de QCM) : chaque chapitre rédigé par un agent qui ne citait en prérequis que des cartes de Terminale, de L1 ou de son chapitre, puis relu par un sous-agent indépendant (lignes ci-dessus) ; prérequis entre chapitres de L2 ajoutés ensuite (comparaison → séries, séries → séries entières, convergence normale et dérivation → séries entières, convergence dominée → intégrales à paramètre, réduction → systèmes différentiels et théorème spectral, variables discrètes et séries entières → fonctions génératrices, vitesse de convergence → ordre d'une méthode, barycentres → triangle) ; aucun doute.
+- 2026-10-29 · `cartes/analyse-reelle/l1-ar-l1-fonctions-usuelles.json`, `exercices/analyse-reelle/l1-ar-l1-fonctions-usuelles.json`, `lecons/ar-l1-fonctions-usuelles.json`, `qcm/ar-l1-fonctions-usuelles.json`, `verification/ar_l1_fonctions_usuelles.py` (5 cartes, 24 exercices, 36 variantes, 8 questions ; dernier chapitre de L1) : relecture indépendante des cartes (énoncés, hypothèses, pièges, chaque leurre des trous, démonstrations dont l'existence et l'unicité du développement décimal, contre-exemples, affirmations, `cours` et introduction re-dérivés et confrontés aux rubriques 9.1 et 9.5 du programme 2027) et résolution à l'aveugle des 68 éléments (58 réponses finales et 8 réponses de QCM concordantes, 2 démonstrations conformes ; leurres vérifiés faux en SymPy, mpmath à 30 chiffres, fractions exactes et force brute sur les périodes décimales) ; corrigé : `cours` des équations fonctionnelles (le programme demande exponentielles, logarithmes et puissances, pas les fonctions linéaires ; fonction nulle mise à part ; « $f>0$ » seulement pour composer par $\ln$ ; hypothèses plus faibles limitées à l'équation de Cauchy), réel $y\in[0,1[$ dans le `cours` du développement décimal, indices qui livraient la réponse (puissances-ex4 v1 « limite de $g$ en $0^+$ », hyperboliques-ex4 v2 « $x=e^{\ln x}$ »), introduction ($\operatorname{ch}$, $\operatorname{sh}$, $\operatorname{th}$ définies par l'exponentielle, équations fonctionnelles selon le texte du programme), asserts ajoutés (q1, hyperboliques-ex4 et v2, circulaires-ex5 v2) ; aucun doute (circulaires-ex5 et hyperboliques-ex5, très guidés, pourraient valoir 3 au lieu de 4).
 
 ## Pièges
 - Formules : `\\` en JSON ; jamais de trou `{{n}}` dans une formule (le test le refuse) ; intervalles `\left]…\right[`.
@@ -285,7 +295,7 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
   accolades passent KaTeX mais s'affichent mal ; le test « formule mal composée » les refuse.
 - `content/` est importé à la construction : après un ajout de fichier, relancer `npm run dev`.
 - Les symboles ■ ◧ □ ● ◐ ○, le cadenas, les icônes d'onglets et le chevron des volets sont dessinés en SVG
-  (`src/composants/Icones.tsx`) : Latin Modern et Plus Jakarta Sans n'ont pas ces glyphes.
+  (`src/composants/Icones.tsx`) : Latin Modern et Nunito n'ont pas ces glyphes.
 - Largeurs des barres : pourcentages CSS sans espace (`50%`), l'affichage français met une espace (`50 %`).
 - Rappel quotidien : `@capacitor/local-notifications` (`schedule.on`), permission Android 13+ demandée à l'activation ;
   dans un navigateur, il n'y a pas de rappel.
