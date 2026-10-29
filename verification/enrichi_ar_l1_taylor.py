@@ -116,4 +116,10 @@ assert limit(x*((x + 1)*exp(1/x) - x - 2), x, oo) == Rational(3, 2)
 assert limit(sqrt(x**2 + 2*x) - x - 1, x, oo) == 0
 assert limit(x*(sqrt(x**2 + 2*x) - x - 1), x, oo) == Rational(-1, 2)
 
+# Relecture indépendante (résolution à l'aveugle) :
+# ar-l1-taylor-reste-integral-ex5 variante 1 : minorant (2/n⁴)Σk² = (n+1)(2n+1)/(3n³), qui tend vers 0.
+assert simplify(2*summation(k**2, (k, 1, n))/n**4 - (n + 1)*(2*n + 1)/(3*n**3)) == 0
+assert limit((n + 1)*(2*n + 1)/(3*n**3), n, oo) == 0
+# ar-l1-taylor-q8 : C = 1/8 convient pour tout x >= 0 car |f''| <= 1/4 et 1/4 × 1/2! = 1/8.
+assert Rational(1, 4)/factorial(2) == Rational(1, 8)
 print("enrichi_ar_l1_taylor : tout est vérifié.")

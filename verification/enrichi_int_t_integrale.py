@@ -89,4 +89,9 @@ assert integrate(1 + x**3, (x, 0, 1)) == Rational(5, 4)
 assert integrate(1 + x**2/2, (x, 0, 1)) == Rational(7, 6)
 assert simplify(integrate(exp(x/2), (x, 0, 1)) - 2*(sqrt(E) - 1)) == 0
 assert simplify(integrate(exp(x), (x, 0, 1)) - (E - 1)) == 0
+# Relecture indépendante (résolution à l'aveugle) :
+# int-t-integrale-q4 : la moyenne des valeurs aux bornes de √x sur [0,4] vaut 1 (le piège), la valeur moyenne 4/3.
+assert (sqrt(0) + sqrt(4))/2 == 1 and integrate(sqrt(x), (x, 0, 4))/4 == Rational(4, 3)
+# int-t-integrale-moyenne-ex5 variante 2 (correction allégée) : μ = ∫_0^1 2x/(1+x²) dx = ln 2 <= 1.
+assert simplify(integrate(2*x/(1 + x**2), (x, 0, 1)) - log(2)) == 0 and N(log(2)) <= 1
 print("enrichi_int_t_integrale : tout est vérifié.")

@@ -484,6 +484,10 @@ for v, (p_, q_) in {0: (18, 30), 1: (28, 42), 2: (45, 75)}.items():
 # ---------- toutes les questions à choix du fichier ont été vérifiées
 attendues = {(e["id"], 0) for e in EXOS if "reponse_finale" in e} | {
     (e["id"], i + 1) for e in EXOS for i, v in enumerate(e.get("variantes", [])) if "reponse_finale" in v}
+# Exercices ajoutés le 2026-10-29 (enrichissement) : vérifiés dans enrichi_gr_l1_groupes.py, écartés ici.
+AJOUTS = {"gr-l1-groupes-noyau-ex5", "gr-l1-groupes-sous-groupes-ex5", "gr-l1-groupes-lagrange-ex5"}
+assert AJOUTS <= {e["id"] for e in EXOS}
+attendues = {a for a in attendues if a[0] not in AJOUTS}
 assert attendues == VUES, attendues ^ VUES
 # chaque carte a 3 à 6 exercices, et les identifiants suivent <carte>-exN
 for c in CARTES:

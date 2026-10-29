@@ -89,4 +89,9 @@ assert N(log(Rational(3, 2)) - (2*log(2) - 1)) > 0
 # int-l1-riemann-nulle-ex5, question 3 : f(t) = 2t - 1 ne convient pas (|∫f| = 0 ≠ ∫|f| = 1/2).
 assert integrate(2*t - 1, (t, 0, 1)) == 0
 assert integrate(1 - 2*t, (t, 0, Rational(1, 2))) + integrate(2*t - 1, (t, Rational(1, 2), 1)) == Rational(1, 2)
+# Relecture indépendante (résolution à l'aveugle) :
+# int-l1-riemann-sommes-ex5, question 3, exemple f(t) = t : (∫t)² = 1/4 <= ∫t² = 1/3.
+assert integrate(t, (t, 0, 1))**2 == Rational(1, 4) and integrate(t**2, (t, 0, 1)) == Rational(1, 3)
+# int-l1-riemann-q1 : la limite de Σ n/(n²+k²) (citée dans l'explication) est ∫_0^1 dx/(1+x²) = π/4.
+assert simplify(integrate(1/(1 + x**2), (x, 0, 1)) - pi/4) == 0
 print("enrichi_int_l1_riemann : tout est vérifié.")

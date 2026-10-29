@@ -442,8 +442,13 @@ BONNES = {
     "fond-l1-ensembles-cantor-ex2": [r"$\{1, 3\}$", r"$\{2\}$", r"$\{1, 3, 5\}$"],
 }
 exos = json.loads((RACINE / "content/exercices/fondements/l1-fond-l1-ensembles.json").read_text(encoding="utf-8"))["exercices"]
+# Exercices ajoutés le 2026-10-29 (enrichissement) : vérifiés dans enrichi_fond_l1_ensembles.py, écartés ici.
+AJOUTS = {"fond-l1-ensembles-tiroirs-ex6", "fond-l1-ensembles-recurrence-forte-ex5", "fond-l1-ensembles-composition-ex6"}
+assert AJOUTS <= {e["id"] for e in exos}
 vus = set()
 for e in exos:
+    if e["id"] in AJOUTS:
+        continue
     rfs = [e.get("reponse_finale")] + [v.get("reponse_finale") for v in e.get("variantes", [])]
     if rfs[0] is None:
         assert all(r is None for r in rfs) and e["id"] not in BONNES

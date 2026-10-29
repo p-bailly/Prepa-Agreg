@@ -76,8 +76,12 @@ def verifie(f0, f2_, f3, bas1, haut1, min5, minm1, g_haut, g_bas):
 verifie(2, 0, 1, -1, 1, 3, 3, Max(2 - x, x - 2), Max(2 - 3*x, x - 2))
 # variante 1 : f(0)=0, f(2)=4, f(3)=7 : 1 <= f(1) <= 2, f(5) >= 13, f(-1) >= -2.
 verifie(0, 4, 7, 1, 2, 13, -2, Max(2*x, 3*x - 2), Max(x, 3*x - 2))
-# variante 2 : f(0)=4, f(2)=2, f(3)=3 : 1 <= f(1) <= 3, f(5) >= 5, f(-1) >= 5.
-verifie(4, 2, 3, 1, 3, 5, 5, Max(4 - x, x), Max(4 - 3*x, x))
+# variante 2 (remplacée à la relecture : l'ancienne, f(0)=4, f(2)=2, f(3)=3, n'était que l'exercice décalé de 2) :
+# f(0)=1, f(2)=-1, f(3)=2 : -4 <= f(1) <= 0, f(5) >= 8, f(-1) >= 2.
+verifie(1, -1, 2, -4, 0, 8, 2, Max(1 - x, 3*x - 7), Max(1 - 5*x, 3*x - 7))
+# leurres de la variante 2 : -1 <= f(1) et -2 <= f(1) sont contredits par la borne -4 atteinte ;
+# f(1) <= 1 est vrai mais pas le meilleur (0 est atteint).
+assert Max(1 - 5*x, 3*x - 7).subs(x, 1) == -4 and Max(1 - x, 3*x - 7).subs(x, 1) == 0
 # (les fonctions max de deux fonctions affines sont convexes)
 
 # ar-l1-convexite-derivables-ex6 : f_a = x⁴ + a x³ + c x², f'' = 12x² + 6ax + 2c >= 0 sur R ssi Δ <= 0.
@@ -90,4 +94,14 @@ for cc, borne in ((6, 4), (24, 8), (Rational(3, 2), 2)):
     assert factor(d2.subs(a, borne)) == 12*(x + Rational(borne, 4))**2 or simplify(d2.subs(a, borne) - 12*(x + Rational(borne, 4))**2) == 0
     xm = -Rational(6*(borne + 1), 24)
     assert d2.subs({a: borne + 1, x: xm}) < 0
+# ar-l1-convexite-derivables-ex5, réponse finale (remplacée à la relecture : l'ancienne demandait l'encadrement de
+# sin x, déjà écrit dans l'énoncé) : 1 - e^{-π/2} <= n I_n <= π/2 pour tout n >= 1.
+# Leurres faux : n I_1 ≈ 0,873 < 1 ; n I_2 ≈ 1,075 > 1 ; n I_n <= π/2 contredit « π/2 <= n I_n » (n I_1 < π/2).
+from mpmath import mp, quad, exp as mexp, sin as msin, pi as mpi
+mp.dps = 30
+def nI(m):
+    return m*quad(lambda s: mexp(-m*msin(s)), [0, mpi/2])
+for m in range(1, 40):
+    assert 1 - mexp(-mpi/2) <= nI(m) <= mpi/2
+assert nI(1) < 1 and nI(2) > 1 and nI(1) < mpi/2
 print("enrichi_ar_l1_convexite : tout est vérifié.")

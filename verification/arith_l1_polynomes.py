@@ -49,6 +49,10 @@ def multiplicite(P, a):
     return k
 
 
+# Exercices ajoutés le 2026-10-29 (enrichissement) : vérifiés dans enrichi_arith_l1_polynomes.py, écartés ici.
+AJOUTS = {"arith-l1-polynomes-division-ex5", "arith-l1-polynomes-viete-ex5", "arith-l1-polynomes-bezout-ex5"}
+assert AJOUTS <= set(EXOS)
+EXOS = {k: v for k, v in EXOS.items() if k not in AJOUTS}
 # Structure : 6 cartes, 4 exercices par carte, 2 variantes par exercice sauf la démonstration pure.
 assert len(CARTES) == 6 and len(EXOS) == 24
 for eid, e in EXOS.items():
