@@ -1325,6 +1325,192 @@
           "correction": "1. $P = \\frac{1}{4}(I_3 + J)$ : coefficients $\\frac{1}{2}$ sur la diagonale, $\\frac{1}{4}$ ailleurs. Chaque coefficient de $J^2$ est une somme de $3$ termes égaux à $1$ : $J^2 = 3J$, donc $Q^2 = \\frac{1}{9}J^2 = \\frac{3}{9}J = Q$.\n\n2. $Q + \\frac{1}{4}(I_3 - Q) = \\frac{3}{4}Q + \\frac{1}{4}I_3 = \\frac{1}{4}J + \\frac{1}{4}I_3 = P$. Puis $Q(I_3 - Q) = Q - Q^2 = 0$, de même $(I_3 - Q)Q = 0$, et $(I_3 - Q)^2 = I_3 - 2Q + Q^2 = I_3 - Q$.\n\n3. Notons $c = \\frac{1}{4}$. Pour $n = 0$ : $Q + (I_3 - Q) = I_3 = P^0$. Si $P^n = Q + c^n(I_3 - Q)$, alors, avec $P = Q + c(I_3 - Q)$ et les relations de la question 2,\n\n$$P^{n+1} = P^nP = Q^2 + c\\,Q(I_3 - Q) + c^n(I_3 - Q)Q + c^{n+1}(I_3 - Q)^2 = Q + c^{n+1}(I_3 - Q).$$\n\n4. Comme $X_0 = 1$, $P(X_n = 1)$ est le coefficient $(1,1)$ de $P^n$. Celui de $Q$ vaut $\\frac{1}{3}$ et celui de $I_3 - Q$ vaut $1 - \\frac{1}{3}$, donc\n\n$$P(X_n = 1) = \\frac{1}{3} + \\frac{2}{3}\\left(\\frac{1}{4}\\right)^n.$$\n\nComme $0 < \\frac{1}{4} < 1$, $\\left(\\frac{1}{4}\\right)^n \\to 0$. Ainsi $P(X_n = 1) \\to \\frac{1}{3}$, et $P^n \\to Q$ coefficient par coefficient.\n\n**Distribution invariante.** La ligne $\\pi^* = \\frac{1}{3}\\begin{pmatrix} 1 & 1 & 1 \\end{pmatrix}$ convient : chaque colonne de $P$ a pour somme $1$ ($P$ est symétrique), donc $\\pi^*P = \\pi^*$. Réciproquement, si $\\pi P = \\pi$, alors $\\pi = \\pi P^n$ pour tout $n$ ; en faisant tendre $n$ vers $+\\infty$, $\\pi = \\pi Q$, et comme les coefficients de $\\pi$ ont pour somme $1$, chaque coefficient de $\\pi Q$ vaut $\\frac{1}{3}$. Donc $\\pi = \\pi^*$ : elle est unique."
         }
       ]
+    },
+    {
+      "id": "al-t-matrices-inverse-ex5",
+      "carte": "al-t-matrices-inverse",
+      "difficulte": 4,
+      "titre": "Inverse d'une matrice de la forme $aI_3 + bJ$",
+      "enonce": "On note $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$.\n\n1. Calculer $J^2$ et l'exprimer en fonction de $J$.\n\n2. Soient $a$, $b$, $c$, $d$ des réels. Montrer que $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + (ad + bc + 3bd)J.$$ En déduire que deux matrices de la forme $aI_3 + bJ$ commutent.\n\n3. Soient $a$ et $b$ des réels tels que $a \\neq 0$ et $a + 3b \\neq 0$, et $A = aI_3 + bJ$. Déterminer un réel $d$ tel que $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3$. En déduire que $A$ est inversible et donner $A^{-1}$.\n\n4. On suppose maintenant $a = 0$ ou $a + 3b = 0$, et l'on pose encore $A = aI_3 + bJ$. Trouver une matrice colonne $X$ non nulle telle que $AX = 0$, et en déduire que $A$ n'est pas inversible.\n\n5. Application : résoudre le système $$\\begin{cases} 3x + y + z = 4 \\\\ x + 3y + z = 6 \\\\ x + y + 3z = 10 \\end{cases}$$",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, chaque coefficient de $J^2$ est une somme de trois produits égaux.",
+        "En 3, développer à l'aide de la question 2 et choisir $d$ pour que le coefficient de $J$ soit nul.",
+        "En 4, chercher $X$ parmi les colonnes dont les trois coefficients sont égaux, ou dont la somme des coefficients est nulle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la solution $(x, y, z)$ du système de la question 5 ?",
+        "propositions": [
+          "$(0, 1, 3)$",
+          "$(2, 3, 5)$",
+          "$(0, 3, 1)$",
+          "$(-2, -1, 1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Chaque coefficient de $J^2$ vaut $1 \\times 1 + 1 \\times 1 + 1 \\times 1 = 3$, donc $J^2 = 3J$.\n\n2. Par distributivité, et parce que $I_3$ commute avec toute matrice, $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + adJ + bcJ + bdJ^2 = acI_3 + (ad + bc + 3bd)J.$$ Cette expression ne change pas quand on échange $(a, b)$ et $(c, d)$ : le produit dans l'autre ordre donne la même matrice, donc deux telles matrices commutent.\n\n3. D'après 2, avec $c = \\frac{1}{a}$ : $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3 + \\left(ad + \\frac{b}{a} + 3bd\\right)J$. Il suffit que $d(a + 3b) = -\\frac{b}{a}$, soit $d = -\\frac{b}{a(a + 3b)}$, ce qui a un sens car $a \\neq 0$ et $a + 3b \\neq 0$. En posant $B = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J$, on a $AB = I_3$, et $BA = AB = I_3$ d'après 2. Donc $A$ est inversible et $$A^{-1} = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J.$$\n\n4. Si $a + 3b = 0$, prenons pour $X$ la colonne dont les trois coefficients valent $1$ : $JX = 3X$, donc $AX = aX + 3bX = (a + 3b)X = 0$. Si $a = 0$, prenons pour $X$ la colonne de coefficients $1$, $-1$, $0$ : $JX = 0$, donc $AX = aX + bJX = 0$. Dans les deux cas $X \\neq 0$. Si $A$ était inversible, on aurait $X = A^{-1}(AX) = A^{-1} \\times 0 = 0$, ce qui est faux. Donc $A$ n'est pas inversible.\n\n5. Le système s'écrit $AX = Y$ avec $A = 2I_3 + J$, $X = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$ et $Y = \\begin{pmatrix} 4 \\\\ 6 \\\\ 10 \\end{pmatrix}$. Ici $a = 2 \\neq 0$ et $a + 3b = 5 \\neq 0$, donc $A^{-1} = \\frac{1}{2}I_3 - \\frac{1}{10}J$. Comme $JY$ a ses trois coefficients égaux à $4 + 6 + 10 = 20$, $$X = A^{-1}Y = \\frac{1}{2}\\begin{pmatrix} 4 \\\\ 6 \\\\ 10 \\end{pmatrix} - \\frac{1}{10}\\begin{pmatrix} 20 \\\\ 20 \\\\ 20 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 1 \\\\ 3 \\end{pmatrix}.$$ Contrôle : $3 \\times 0 + 1 + 3 = 4$, $0 + 3 + 3 = 6$ et $0 + 1 + 9 = 10$. La solution est $(x, y, z) = (0, 1, 3)$.",
+      "variantes": [
+        {
+          "enonce": "On note $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$.\n\n1. Calculer $J^2$ et l'exprimer en fonction de $J$.\n\n2. Soient $a$, $b$, $c$, $d$ des réels. Montrer que $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + (ad + bc + 3bd)J.$$ En déduire que deux matrices de la forme $aI_3 + bJ$ commutent.\n\n3. Soient $a$ et $b$ des réels tels que $a \\neq 0$ et $a + 3b \\neq 0$, et $A = aI_3 + bJ$. Déterminer un réel $d$ tel que $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3$. En déduire que $A$ est inversible et donner $A^{-1}$.\n\n4. On suppose maintenant $a = 0$ ou $a + 3b = 0$, et l'on pose encore $A = aI_3 + bJ$. Trouver une matrice colonne $X$ non nulle telle que $AX = 0$, et en déduire que $A$ n'est pas inversible.\n\n5. Application : résoudre le système $$\\begin{cases} 4x + y + z = 6 \\\\ x + 4y + z = 3 \\\\ x + y + 4z = 9 \\end{cases}$$",
+          "indices": [
+            "Pour la question 1, chaque coefficient de $J^2$ est une somme de trois produits égaux.",
+            "En 3, développer à l'aide de la question 2 et choisir $d$ pour que le coefficient de $J$ soit nul.",
+            "En 4, chercher $X$ parmi les colonnes dont les trois coefficients sont égaux, ou dont la somme des coefficients est nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la solution $(x, y, z)$ du système de la question 5 ?",
+            "propositions": [
+              "$(2, 1, 3)$",
+              "$(1, 0, 2)$",
+              "$(0, 1, 2)$",
+              "$(1, 2, 0)$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. Chaque coefficient de $J^2$ vaut $1 \\times 1 + 1 \\times 1 + 1 \\times 1 = 3$, donc $J^2 = 3J$.\n\n2. Par distributivité, et parce que $I_3$ commute avec toute matrice, $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + adJ + bcJ + bdJ^2 = acI_3 + (ad + bc + 3bd)J.$$ Cette expression ne change pas quand on échange $(a, b)$ et $(c, d)$ : le produit dans l'autre ordre donne la même matrice, donc deux telles matrices commutent.\n\n3. D'après 2, avec $c = \\frac{1}{a}$ : $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3 + \\left(ad + \\frac{b}{a} + 3bd\\right)J$. Il suffit que $d(a + 3b) = -\\frac{b}{a}$, soit $d = -\\frac{b}{a(a + 3b)}$, ce qui a un sens car $a \\neq 0$ et $a + 3b \\neq 0$. En posant $B = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J$, on a $AB = I_3$, et $BA = AB = I_3$ d'après 2. Donc $A$ est inversible et $$A^{-1} = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J.$$\n\n4. Si $a + 3b = 0$, prenons pour $X$ la colonne dont les trois coefficients valent $1$ : $JX = 3X$, donc $AX = aX + 3bX = (a + 3b)X = 0$. Si $a = 0$, prenons pour $X$ la colonne de coefficients $1$, $-1$, $0$ : $JX = 0$, donc $AX = aX + bJX = 0$. Dans les deux cas $X \\neq 0$. Si $A$ était inversible, on aurait $X = A^{-1}(AX) = A^{-1} \\times 0 = 0$, ce qui est faux. Donc $A$ n'est pas inversible.\n\n5. Le système s'écrit $AX = Y$ avec $A = 3I_3 + J$, $X = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$ et $Y = \\begin{pmatrix} 6 \\\\ 3 \\\\ 9 \\end{pmatrix}$. Ici $a = 3 \\neq 0$ et $a + 3b = 6 \\neq 0$, donc $A^{-1} = \\frac{1}{3}I_3 - \\frac{1}{18}J$. Comme $JY$ a ses trois coefficients égaux à $6 + 3 + 9 = 18$, $$X = A^{-1}Y = \\frac{1}{3}\\begin{pmatrix} 6 \\\\ 3 \\\\ 9 \\end{pmatrix} - \\frac{1}{18}\\begin{pmatrix} 18 \\\\ 18 \\\\ 18 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 0 \\\\ 2 \\end{pmatrix}.$$ Contrôle : $4 + 0 + 2 = 6$, $1 + 0 + 2 = 3$ et $1 + 0 + 8 = 9$. La solution est $(x, y, z) = (1, 0, 2)$."
+        },
+        {
+          "enonce": "On note $J$ la matrice carrée d'ordre $3$ dont tous les coefficients valent $1$.\n\n1. Calculer $J^2$ et l'exprimer en fonction de $J$.\n\n2. Soient $a$, $b$, $c$, $d$ des réels. Montrer que $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + (ad + bc + 3bd)J.$$ En déduire que deux matrices de la forme $aI_3 + bJ$ commutent.\n\n3. Soient $a$ et $b$ des réels tels que $a \\neq 0$ et $a + 3b \\neq 0$, et $A = aI_3 + bJ$. Déterminer un réel $d$ tel que $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3$. En déduire que $A$ est inversible et donner $A^{-1}$.\n\n4. On suppose maintenant $a = 0$ ou $a + 3b = 0$, et l'on pose encore $A = aI_3 + bJ$. Trouver une matrice colonne $X$ non nulle telle que $AX = 0$, et en déduire que $A$ n'est pas inversible.\n\n5. Application : résoudre le système $$\\begin{cases} y + z = 1 \\\\ x + z = 0 \\\\ x + y = 3 \\end{cases}$$",
+          "indices": [
+            "Pour la question 1, chaque coefficient de $J^2$ est une somme de trois produits égaux.",
+            "En 3, développer à l'aide de la question 2 et choisir $d$ pour que le coefficient de $J$ soit nul.",
+            "En 4, chercher $X$ parmi les colonnes dont les trois coefficients sont égaux, ou dont la somme des coefficients est nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la solution $(x, y, z)$ du système de la question 5 ?",
+            "propositions": [
+              "$(-1, 0, -3)$",
+              "$(2, 1, -1)$",
+              "$(1, 2, -1)$",
+              "$(1, -1, 2)$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. Chaque coefficient de $J^2$ vaut $1 \\times 1 + 1 \\times 1 + 1 \\times 1 = 3$, donc $J^2 = 3J$.\n\n2. Par distributivité, et parce que $I_3$ commute avec toute matrice, $$(aI_3 + bJ)(cI_3 + dJ) = acI_3 + adJ + bcJ + bdJ^2 = acI_3 + (ad + bc + 3bd)J.$$ Cette expression ne change pas quand on échange $(a, b)$ et $(c, d)$ : le produit dans l'autre ordre donne la même matrice, donc deux telles matrices commutent.\n\n3. D'après 2, avec $c = \\frac{1}{a}$ : $A\\left(\\frac{1}{a}I_3 + dJ\\right) = I_3 + \\left(ad + \\frac{b}{a} + 3bd\\right)J$. Il suffit que $d(a + 3b) = -\\frac{b}{a}$, soit $d = -\\frac{b}{a(a + 3b)}$, ce qui a un sens car $a \\neq 0$ et $a + 3b \\neq 0$. En posant $B = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J$, on a $AB = I_3$, et $BA = AB = I_3$ d'après 2. Donc $A$ est inversible et $$A^{-1} = \\frac{1}{a}I_3 - \\frac{b}{a(a + 3b)}J.$$\n\n4. Si $a + 3b = 0$, prenons pour $X$ la colonne dont les trois coefficients valent $1$ : $JX = 3X$, donc $AX = aX + 3bX = (a + 3b)X = 0$. Si $a = 0$, prenons pour $X$ la colonne de coefficients $1$, $-1$, $0$ : $JX = 0$, donc $AX = aX + bJX = 0$. Dans les deux cas $X \\neq 0$. Si $A$ était inversible, on aurait $X = A^{-1}(AX) = A^{-1} \\times 0 = 0$, ce qui est faux. Donc $A$ n'est pas inversible.\n\n5. Le système s'écrit $AX = Y$ avec $A = -I_3 + J$ (coefficients diagonaux nuls, les autres égaux à $1$), $X = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$ et $Y = \\begin{pmatrix} 1 \\\\ 0 \\\\ 3 \\end{pmatrix}$. Ici $a = -1 \\neq 0$, $b = 1$ et $a + 3b = 2 \\neq 0$, donc $A^{-1} = -I_3 - \\frac{1}{(-1) \\times 2}J = -I_3 + \\frac{1}{2}J$. Comme $JY$ a ses trois coefficients égaux à $1 + 0 + 3 = 4$, $$X = A^{-1}Y = -\\begin{pmatrix} 1 \\\\ 0 \\\\ 3 \\end{pmatrix} + \\frac{1}{2}\\begin{pmatrix} 4 \\\\ 4 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix}.$$ Contrôle : $2 - 1 = 1$, $1 - 1 = 0$ et $1 + 2 = 3$. La solution est $(x, y, z) = (1, 2, -1)$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-adjacence-ex6",
+      "carte": "al-t-matrices-adjacence",
+      "difficulte": 3,
+      "titre": "Distance entre deux sommets d'un graphe",
+      "enonce": "Dans un graphe non orienté, la **distance** entre deux sommets distincts $i$ et $j$ est la plus petite longueur d'une chaîne reliant $i$ à $j$. On considère le graphe de sommets $1, \\dots, 5$ dont les arêtes sont $\\{1,2\\}$, $\\{1,3\\}$, $\\{2,4\\}$, $\\{3,4\\}$ et $\\{4,5\\}$, et sa matrice d'adjacence $M$.\n\n1. Expliquer pourquoi, si $i$ et $j$ sont reliés par au moins une chaîne, leur distance est le plus petit entier $n \\geq 1$ tel que le coefficient $(i,j)$ de $M^n$ soit non nul.\n\n2. Écrire $M$, puis calculer les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$.\n\n3. En déduire la distance entre les sommets $1$ et $5$ et le nombre de chaînes de longueur minimale qui les relient ; décrire ces chaînes.",
+      "duree_min": 15,
+      "indices": [
+        "Le coefficient $(i,j)$ de $M^n$ compte les chaînes de longueur $n$ allant de $i$ à $j$.",
+        "La ligne $1$ de $M^{n}$ s'obtient en multipliant la ligne $1$ de $M^{n-1}$ par $M$ : il suffit de calculer les premières lignes des puissances successives."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la distance entre les sommets $1$ et $5$, et combien de chaînes de longueur minimale les relient ?",
+        "propositions": [
+          "Distance $3$, avec $2$ chaînes",
+          "Distance $3$, avec $1$ chaîne",
+          "Distance $2$, avec $2$ chaînes",
+          "Distance $4$, avec $2$ chaînes"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. D'après le cours, le coefficient $(i,j)$ de $M^n$ est le nombre de chaînes de longueur $n$ allant de $i$ à $j$. Si $n_0$ est le plus petit entier $n \\geq 1$ pour lequel ce coefficient est non nul, il existe une chaîne de longueur $n_0$ de $i$ à $j$, et aucune de longueur $1, \\dots, n_0 - 1$ : la distance vaut $n_0$. Un tel entier existe dès que $i$ et $j$ sont reliés par une chaîne.\n\n2. $$M = \\begin{pmatrix} 0 & 1 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 & 0 \\\\ 0 & 1 & 1 & 0 & 1 \\\\ 0 & 0 & 0 & 1 & 0 \\end{pmatrix}.$$ La ligne $1$ de $M$ est $\\begin{pmatrix} 0 & 1 & 1 & 0 & 0 \\end{pmatrix}$ ; en la multipliant par $M$, la ligne $1$ de $M^2$ est $\\begin{pmatrix} 2 & 0 & 0 & 2 & 0 \\end{pmatrix}$, puis celle de $M^3$ est $\\begin{pmatrix} 0 & 4 & 4 & 0 & 2 \\end{pmatrix}$. Les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$ valent donc $0$, $0$ et $2$.\n\n3. D'après 1, la distance entre $1$ et $5$ vaut $3$, et il y a exactement $2$ chaînes de longueur $3$ : $(1, 2, 4, 5)$ et $(1, 3, 4, 5)$.",
+      "variantes": [
+        {
+          "enonce": "Dans un graphe non orienté, la **distance** entre deux sommets distincts $i$ et $j$ est la plus petite longueur d'une chaîne reliant $i$ à $j$. On considère le graphe de sommets $1, \\dots, 5$ dont les arêtes sont $\\{1,2\\}$, $\\{1,3\\}$, $\\{1,4\\}$, $\\{2,5\\}$, $\\{3,5\\}$ et $\\{4,5\\}$, et sa matrice d'adjacence $M$.\n\n1. Expliquer pourquoi, si $i$ et $j$ sont reliés par au moins une chaîne, leur distance est le plus petit entier $n \\geq 1$ tel que le coefficient $(i,j)$ de $M^n$ soit non nul.\n\n2. Écrire $M$, puis calculer les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$.\n\n3. En déduire la distance entre les sommets $1$ et $5$ et le nombre de chaînes de longueur minimale qui les relient ; décrire ces chaînes.",
+          "indices": [
+            "Le coefficient $(i,j)$ de $M^n$ compte les chaînes de longueur $n$ allant de $i$ à $j$.",
+            "La ligne $1$ de $M^{n}$ s'obtient en multipliant la ligne $1$ de $M^{n-1}$ par $M$ : il suffit de calculer les premières lignes des puissances successives."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distance entre les sommets $1$ et $5$, et combien de chaînes de longueur minimale les relient ?",
+            "propositions": [
+              "Distance $2$, avec $1$ chaîne",
+              "Distance $2$, avec $3$ chaînes",
+              "Distance $3$, avec $6$ chaînes",
+              "Distance $1$, avec $3$ chaînes"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. D'après le cours, le coefficient $(i,j)$ de $M^n$ est le nombre de chaînes de longueur $n$ allant de $i$ à $j$. Si $n_0$ est le plus petit entier $n \\geq 1$ pour lequel ce coefficient est non nul, il existe une chaîne de longueur $n_0$ de $i$ à $j$, et aucune de longueur $1, \\dots, n_0 - 1$ : la distance vaut $n_0$. Un tel entier existe dès que $i$ et $j$ sont reliés par une chaîne.\n\n2. $$M = \\begin{pmatrix} 0 & 1 & 1 & 1 & 0 \\\\ 1 & 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 & 1 \\\\ 0 & 1 & 1 & 1 & 0 \\end{pmatrix}.$$ La ligne $1$ de $M$ est $\\begin{pmatrix} 0 & 1 & 1 & 1 & 0 \\end{pmatrix}$ ; en la multipliant par $M$, la ligne $1$ de $M^2$ est $\\begin{pmatrix} 3 & 0 & 0 & 0 & 3 \\end{pmatrix}$, puis celle de $M^3$ est $\\begin{pmatrix} 0 & 6 & 6 & 6 & 0 \\end{pmatrix}$. Les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$ valent donc $0$, $3$ et $0$.\n\n3. D'après 1, la distance entre $1$ et $5$ vaut $2$, et il y a exactement $3$ chaînes de longueur $2$ : $(1, 2, 5)$, $(1, 3, 5)$ et $(1, 4, 5)$. Le coefficient nul de $M^3$ montre de plus qu'aucune chaîne de longueur $3$ ne relie $1$ à $5$."
+        },
+        {
+          "enonce": "Dans un graphe non orienté, la **distance** entre deux sommets distincts $i$ et $j$ est la plus petite longueur d'une chaîne reliant $i$ à $j$. On considère le graphe de sommets $1, \\dots, 5$ dont les arêtes sont $\\{1,2\\}$, $\\{2,3\\}$, $\\{2,4\\}$, $\\{3,4\\}$ et $\\{4,5\\}$, et sa matrice d'adjacence $M$.\n\n1. Expliquer pourquoi, si $i$ et $j$ sont reliés par au moins une chaîne, leur distance est le plus petit entier $n \\geq 1$ tel que le coefficient $(i,j)$ de $M^n$ soit non nul.\n\n2. Écrire $M$, puis calculer les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$.\n\n3. En déduire la distance entre les sommets $1$ et $5$ et le nombre de chaînes de longueur minimale qui les relient ; décrire ces chaînes.",
+          "indices": [
+            "Le coefficient $(i,j)$ de $M^n$ compte les chaînes de longueur $n$ allant de $i$ à $j$.",
+            "La ligne $1$ de $M^{n}$ s'obtient en multipliant la ligne $1$ de $M^{n-1}$ par $M$ : il suffit de calculer les premières lignes des puissances successives."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la distance entre les sommets $1$ et $5$, et combien de chaînes de longueur minimale les relient ?",
+            "propositions": [
+              "Distance $3$, avec $3$ chaînes",
+              "Distance $4$, avec $1$ chaîne",
+              "Distance $2$, avec $1$ chaîne",
+              "Distance $3$, avec $1$ chaîne"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. D'après le cours, le coefficient $(i,j)$ de $M^n$ est le nombre de chaînes de longueur $n$ allant de $i$ à $j$. Si $n_0$ est le plus petit entier $n \\geq 1$ pour lequel ce coefficient est non nul, il existe une chaîne de longueur $n_0$ de $i$ à $j$, et aucune de longueur $1, \\dots, n_0 - 1$ : la distance vaut $n_0$. Un tel entier existe dès que $i$ et $j$ sont reliés par une chaîne.\n\n2. $$M = \\begin{pmatrix} 0 & 1 & 0 & 0 & 0 \\\\ 1 & 0 & 1 & 1 & 0 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 1 & 1 & 0 & 1 \\\\ 0 & 0 & 0 & 1 & 0 \\end{pmatrix}.$$ La ligne $1$ de $M$ est $\\begin{pmatrix} 0 & 1 & 0 & 0 & 0 \\end{pmatrix}$ ; en la multipliant par $M$, la ligne $1$ de $M^2$ est $\\begin{pmatrix} 1 & 0 & 1 & 1 & 0 \\end{pmatrix}$, puis celle de $M^3$ est $\\begin{pmatrix} 0 & 3 & 1 & 1 & 1 \\end{pmatrix}$. Les coefficients d'indice $(1,5)$ de $M$, $M^2$ et $M^3$ valent donc $0$, $0$ et $1$.\n\n3. D'après 1, la distance entre $1$ et $5$ vaut $3$, et une seule chaîne de longueur $3$ les relie : $(1, 2, 4, 5)$."
+        }
+      ]
+    },
+    {
+      "id": "al-t-matrices-markov-ex6",
+      "carte": "al-t-matrices-markov",
+      "difficulte": 2,
+      "titre": "Chaîne de Markov à trois états décrite par un énoncé",
+      "enonce": "Chaque jour, un livreur emprunte l'un des trois itinéraires $A$, $B$ ou $C$ (états $1$, $2$ et $3$). S'il a pris $A$ un jour, il prend $A$ le lendemain avec probabilité $0{,}5$ et $B$ avec probabilité $0{,}3$. S'il a pris $B$, il prend $A$ le lendemain avec probabilité $0{,}4$ et $B$ avec probabilité $0{,}4$. S'il a pris $C$, il ne reprend jamais $C$ le lendemain et prend $A$ avec probabilité $0{,}6$. On note $X_n$ l'itinéraire du jour $n$ et l'on admet que $(X_n)$ est une chaîne de Markov homogène. Le jour $0$, il emprunte l'itinéraire $A$.\n\n1. Écrire la matrice de transition $P$, les états étant rangés dans l'ordre $A$, $B$, $C$.\n\n2. Calculer les lois $\\pi_1$ et $\\pi_2$ de $X_1$ et $X_2$.\n\n3. Quelle est la probabilité qu'il emprunte l'itinéraire $C$ le jour $2$ ?",
+      "duree_min": 12,
+      "indices": [
+        "Chaque ligne de $P$ a pour somme $1$ : les probabilités qui ne sont pas données s'en déduisent.",
+        "Écrire la loi initiale $\\pi_0$ sous forme de matrice ligne, puis utiliser $\\pi_{n+1} = \\pi_nP$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la probabilité $P(X_2 = 3)$ ?",
+        "propositions": [
+          "$0{,}16$",
+          "$0{,}2$",
+          "$0{,}04$",
+          "$0{,}36$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Les probabilités manquantes s'obtiennent par complément à $1$ : de $A$ vers $C$, $1 - 0{,}5 - 0{,}3 = 0{,}2$ ; de $B$ vers $C$, $1 - 0{,}4 - 0{,}4 = 0{,}2$ ; de $C$ vers $B$, $1 - 0{,}6 = 0{,}4$. Donc $$P = \\begin{pmatrix} 0{,}5 & 0{,}3 & 0{,}2 \\\\ 0{,}4 & 0{,}4 & 0{,}2 \\\\ 0{,}6 & 0{,}4 & 0 \\end{pmatrix}.$$\n\n2. La loi initiale est $\\pi_0 = \\begin{pmatrix} 1 & 0 & 0 \\end{pmatrix}$, donc $\\pi_1 = \\pi_0P$ est la ligne $1$ de $P$ : $\\pi_1 = \\begin{pmatrix} 0{,}5 & 0{,}3 & 0{,}2 \\end{pmatrix}$. Puis $\\pi_2 = \\pi_1P$ : son coefficient $j$ vaut $\\sum_i P(X_1 = i)\\,p_{ij}$, ce qui donne $$\\pi_2 = \\begin{pmatrix} 0{,}49 & 0{,}35 & 0{,}16 \\end{pmatrix}.$$ Par exemple, le troisième coefficient vaut $0{,}5 \\times 0{,}2 + 0{,}3 \\times 0{,}2 + 0{,}2 \\times 0 = 0{,}16$. Contrôle : la somme des coefficients vaut $1$.\n\n3. La probabilité cherchée est $P(X_2 = 3) = 0{,}16$.",
+      "variantes": [
+        {
+          "enonce": "Chaque jour, un livreur emprunte l'un des trois itinéraires $A$, $B$ ou $C$ (états $1$, $2$ et $3$). S'il a pris $A$ un jour, il prend $A$ le lendemain avec probabilité $0{,}6$ et $B$ avec probabilité $0{,}1$. S'il a pris $B$, il prend $A$ le lendemain avec probabilité $0{,}5$ et $B$ avec probabilité $0{,}2$. S'il a pris $C$, il ne reprend jamais $C$ le lendemain et prend $A$ avec probabilité $0{,}7$. On note $X_n$ l'itinéraire du jour $n$ et l'on admet que $(X_n)$ est une chaîne de Markov homogène. Le jour $0$, il emprunte l'itinéraire $A$.\n\n1. Écrire la matrice de transition $P$, les états étant rangés dans l'ordre $A$, $B$, $C$.\n\n2. Calculer les lois $\\pi_1$ et $\\pi_2$ de $X_1$ et $X_2$.\n\n3. Quelle est la probabilité qu'il emprunte l'itinéraire $B$ le jour $2$ ?",
+          "indices": [
+            "Chaque ligne de $P$ a pour somme $1$ : les probabilités qui ne sont pas données s'en déduisent.",
+            "Écrire la loi initiale $\\pi_0$ sous forme de matrice ligne, puis utiliser $\\pi_{n+1} = \\pi_nP$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la probabilité $P(X_2 = 2)$ ?",
+            "propositions": [
+              "$0{,}1$",
+              "$0{,}01$",
+              "$0{,}17$",
+              "$0{,}21$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. Les probabilités manquantes s'obtiennent par complément à $1$ : de $A$ vers $C$, $1 - 0{,}6 - 0{,}1 = 0{,}3$ ; de $B$ vers $C$, $1 - 0{,}5 - 0{,}2 = 0{,}3$ ; de $C$ vers $B$, $1 - 0{,}7 = 0{,}3$. Donc $$P = \\begin{pmatrix} 0{,}6 & 0{,}1 & 0{,}3 \\\\ 0{,}5 & 0{,}2 & 0{,}3 \\\\ 0{,}7 & 0{,}3 & 0 \\end{pmatrix}.$$\n\n2. La loi initiale est $\\pi_0 = \\begin{pmatrix} 1 & 0 & 0 \\end{pmatrix}$, donc $\\pi_1 = \\pi_0P$ est la ligne $1$ de $P$ : $\\pi_1 = \\begin{pmatrix} 0{,}6 & 0{,}1 & 0{,}3 \\end{pmatrix}$. Puis $\\pi_2 = \\pi_1P$ : son coefficient $j$ vaut $\\sum_i P(X_1 = i)\\,p_{ij}$, ce qui donne $$\\pi_2 = \\begin{pmatrix} 0{,}62 & 0{,}17 & 0{,}21 \\end{pmatrix}.$$ Par exemple, le troisième coefficient vaut $0{,}6 \\times 0{,}3 + 0{,}1 \\times 0{,}3 + 0{,}3 \\times 0 = 0{,}21$. Contrôle : la somme des coefficients vaut $1$.\n\n3. La probabilité cherchée est $P(X_2 = 2) = 0{,}17$."
+        },
+        {
+          "enonce": "Chaque jour, un livreur emprunte l'un des trois itinéraires $A$, $B$ ou $C$ (états $1$, $2$ et $3$). S'il a pris $A$ un jour, il prend $A$ le lendemain avec probabilité $0{,}7$ et $B$ avec probabilité $0{,}2$. S'il a pris $B$, il prend $A$ le lendemain avec probabilité $0{,}3$ et $B$ avec probabilité $0{,}5$. S'il a pris $C$, il ne reprend jamais $C$ le lendemain et prend $A$ avec probabilité $0{,}5$. On note $X_n$ l'itinéraire du jour $n$ et l'on admet que $(X_n)$ est une chaîne de Markov homogène. Le jour $0$, il emprunte l'itinéraire $B$.\n\n1. Écrire la matrice de transition $P$, les états étant rangés dans l'ordre $A$, $B$, $C$.\n\n2. Calculer les lois $\\pi_1$ et $\\pi_2$ de $X_1$ et $X_2$.\n\n3. Quelle est la probabilité qu'il emprunte l'itinéraire $A$ le jour $2$ ?",
+          "indices": [
+            "Chaque ligne de $P$ a pour somme $1$ : les probabilités qui ne sont pas données s'en déduisent.",
+            "Écrire la loi initiale $\\pi_0$ sous forme de matrice ligne, puis utiliser $\\pi_{n+1} = \\pi_nP$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la probabilité $P(X_2 = 1)$ ?",
+            "propositions": [
+              "$0{,}3$",
+              "$0{,}46$",
+              "$0{,}09$",
+              "$0{,}41$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. Les probabilités manquantes s'obtiennent par complément à $1$ : de $A$ vers $C$, $1 - 0{,}7 - 0{,}2 = 0{,}1$ ; de $B$ vers $C$, $1 - 0{,}3 - 0{,}5 = 0{,}2$ ; de $C$ vers $B$, $1 - 0{,}5 = 0{,}5$. Donc $$P = \\begin{pmatrix} 0{,}7 & 0{,}2 & 0{,}1 \\\\ 0{,}3 & 0{,}5 & 0{,}2 \\\\ 0{,}5 & 0{,}5 & 0 \\end{pmatrix}.$$\n\n2. La loi initiale est $\\pi_0 = \\begin{pmatrix} 0 & 1 & 0 \\end{pmatrix}$, donc $\\pi_1 = \\pi_0P$ est la ligne $2$ de $P$ : $\\pi_1 = \\begin{pmatrix} 0{,}3 & 0{,}5 & 0{,}2 \\end{pmatrix}$. Puis $\\pi_2 = \\pi_1P$ : son coefficient $j$ vaut $\\sum_i P(X_1 = i)\\,p_{ij}$, ce qui donne $$\\pi_2 = \\begin{pmatrix} 0{,}46 & 0{,}41 & 0{,}13 \\end{pmatrix}.$$ Par exemple, le troisième coefficient vaut $0{,}3 \\times 0{,}1 + 0{,}5 \\times 0{,}2 + 0{,}2 \\times 0 = 0{,}13$. Contrôle : la somme des coefficients vaut $1$.\n\n3. La probabilité cherchée est $P(X_2 = 1) = 0{,}46$."
+        }
+      ]
     }
   ]
 }

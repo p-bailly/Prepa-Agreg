@@ -675,6 +675,195 @@
           ]
         }
       ]
+    },
+    {
+      "id": "proba-t-binomiale-ex5",
+      "carte": "proba-t-binomiale",
+      "difficulte": 4,
+      "titre": "Contrôle de qualité d'une production",
+      "enonce": "Une usine fabrique des composants électroniques. Chaque composant est défectueux avec la probabilité $0{,}04$, indépendamment des autres. On prélève au hasard $50$ composants ; la production est assez importante pour qu'on assimile ce prélèvement à $50$ tirages indépendants avec remise. On note $X$ le nombre de composants défectueux du prélèvement.\n\n1. Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.\n\n2. Calculer $P(X = 0)$ et $P(X \\geq 2)$, arrondies à $10^{-4}$.\n\n3. Calculer l'espérance et la variance de $X$. Interpréter l'espérance.\n\n4. On prélève désormais $n$ composants ($n \\geq 1$) dans les mêmes conditions. Exprimer en fonction de $n$ la probabilité $p_n$ qu'au moins un composant du prélèvement soit défectueux, puis déterminer le plus petit entier $n$ tel que $p_n \\geq 0{,}95$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : identifier l'épreuve de Bernoulli répétée, son succès et sa probabilité, et justifier l'indépendance des répétitions.",
+        "Question 2 : passer par l'événement contraire de $\\{X \\geq 2\\}$.",
+        "Question 4 : l'événement « au moins un composant défectueux » a pour contraire « aucun composant défectueux » ; résoudre ensuite une inéquation à l'aide du logarithme népérien."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit entier $n$ tel que $p_n \\geq 0{,}95$ ?",
+        "propositions": [
+          "$74$",
+          "$73$",
+          "$24$",
+          "$75$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. On répète $50$ fois, de façon indépendante, une épreuve de Bernoulli dont le succès, « le composant est défectueux », a la probabilité $0{,}04$ ; $X$ compte les succès. Donc $X$ suit la loi binomiale $\\mathcal{B}(50\\,;\\,0{,}04)$.\n\n2. $P(X = 0) = 0{,}96^{50} \\approx 0{,}1299$. De plus, $P(X = 1) = \\binom{50}{1} \\times 0{,}04 \\times 0{,}96^{49} = 2 \\times 0{,}96^{49} \\approx 0{,}2706$. Donc $P(X \\geq 2) = 1 - P(X = 0) - P(X = 1) \\approx 0{,}5995$.\n\n3. $E(X) = 50 \\times 0{,}04 = 2$ et $V(X) = 50 \\times 0{,}04 \\times 0{,}96 = 1{,}92$. Sur un grand nombre de prélèvements de $50$ composants, on compte en moyenne $2$ composants défectueux par prélèvement.\n\n4. Le nombre $X_n$ de composants défectueux parmi $n$ suit la loi $\\mathcal{B}(n\\,;\\,0{,}04)$, et $p_n = P(X_n \\geq 1) = 1 - P(X_n = 0) = 1 - 0{,}96^n$. Alors\n$$p_n \\geq 0{,}95 \\iff 0{,}96^n \\leq 0{,}05 \\iff n \\ln(0{,}96) \\leq \\ln(0{,}05) \\iff n \\geq \\frac{\\ln(0{,}05)}{\\ln(0{,}96)},$$\nl'inégalité changeant de sens dans la dernière étape car $\\ln(0{,}96) < 0$ (la fonction $\\ln$ étant strictement croissante, la deuxième équivalence est justifiée). Or $\\frac{\\ln(0{,}05)}{\\ln(0{,}96)} \\approx 73{,}39$ : le plus petit entier convenable est $n = 74$. Vérification : $1 - 0{,}96^{73} \\approx 0{,}9492 < 0{,}95$ et $1 - 0{,}96^{74} \\approx 0{,}9512 \\geq 0{,}95$.",
+      "variantes": [
+        {
+          "enonce": "Une usine fabrique des composants électroniques. Chaque composant est défectueux avec la probabilité $0{,}05$, indépendamment des autres. On prélève au hasard $40$ composants ; la production est assez importante pour qu'on assimile ce prélèvement à $40$ tirages indépendants avec remise. On note $X$ le nombre de composants défectueux du prélèvement.\n\n1. Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.\n\n2. Calculer $P(X = 0)$ et $P(X \\geq 2)$, arrondies à $10^{-4}$.\n\n3. Calculer l'espérance et la variance de $X$. Interpréter l'espérance.\n\n4. On prélève désormais $n$ composants ($n \\geq 1$) dans les mêmes conditions. Exprimer en fonction de $n$ la probabilité $p_n$ qu'au moins un composant du prélèvement soit défectueux, puis déterminer le plus petit entier $n$ tel que $p_n \\geq 0{,}99$.",
+          "indices": [
+            "Question 1 : identifier l'épreuve de Bernoulli répétée, son succès et sa probabilité, et justifier l'indépendance des répétitions.",
+            "Question 2 : passer par l'événement contraire de $\\{X \\geq 2\\}$.",
+            "Question 4 : l'événement « au moins un composant défectueux » a pour contraire « aucun composant défectueux » ; résoudre ensuite une inéquation à l'aide du logarithme népérien."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $n$ tel que $p_n \\geq 0{,}99$ ?",
+            "propositions": [
+              "$90$",
+              "$89$",
+              "$20$",
+              "$91$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. On répète $40$ fois, de façon indépendante, une épreuve de Bernoulli dont le succès, « le composant est défectueux », a la probabilité $0{,}05$ ; $X$ compte les succès. Donc $X$ suit la loi binomiale $\\mathcal{B}(40\\,;\\,0{,}05)$.\n\n2. $P(X = 0) = 0{,}95^{40} \\approx 0{,}1285$. De plus, $P(X = 1) = \\binom{40}{1} \\times 0{,}05 \\times 0{,}95^{39} = 2 \\times 0{,}95^{39} \\approx 0{,}2706$. Donc $P(X \\geq 2) = 1 - P(X = 0) - P(X = 1) \\approx 0{,}6009$.\n\n3. $E(X) = 40 \\times 0{,}05 = 2$ et $V(X) = 40 \\times 0{,}05 \\times 0{,}95 = 1{,}9$. Sur un grand nombre de prélèvements de $40$ composants, on compte en moyenne $2$ composants défectueux par prélèvement.\n\n4. Le nombre $X_n$ de composants défectueux parmi $n$ suit la loi $\\mathcal{B}(n\\,;\\,0{,}05)$, et $p_n = P(X_n \\geq 1) = 1 - P(X_n = 0) = 1 - 0{,}95^n$. Alors\n$$p_n \\geq 0{,}99 \\iff 0{,}95^n \\leq 0{,}01 \\iff n \\ln(0{,}95) \\leq \\ln(0{,}01) \\iff n \\geq \\frac{\\ln(0{,}01)}{\\ln(0{,}95)},$$\nl'inégalité changeant de sens dans la dernière étape car $\\ln(0{,}95) < 0$ (la fonction $\\ln$ étant strictement croissante, la deuxième équivalence est justifiée). Or $\\frac{\\ln(0{,}01)}{\\ln(0{,}95)} \\approx 89{,}78$ : le plus petit entier convenable est $n = 90$. Vérification : $1 - 0{,}95^{89} \\approx 0{,}9896 < 0{,}99$ et $1 - 0{,}95^{90} \\approx 0{,}9901 \\geq 0{,}99$."
+        },
+        {
+          "enonce": "Une usine fabrique des composants électroniques. Chaque composant est défectueux avec la probabilité $0{,}02$, indépendamment des autres. On prélève au hasard $100$ composants ; la production est assez importante pour qu'on assimile ce prélèvement à $100$ tirages indépendants avec remise. On note $X$ le nombre de composants défectueux du prélèvement.\n\n1. Justifier que $X$ suit une loi binomiale dont on précisera les paramètres.\n\n2. Calculer $P(X = 0)$ et $P(X \\geq 2)$, arrondies à $10^{-4}$.\n\n3. Calculer l'espérance et la variance de $X$. Interpréter l'espérance.\n\n4. On prélève désormais $n$ composants ($n \\geq 1$) dans les mêmes conditions. Exprimer en fonction de $n$ la probabilité $p_n$ qu'au moins un composant du prélèvement soit défectueux, puis déterminer le plus petit entier $n$ tel que $p_n \\geq 0{,}9$.",
+          "indices": [
+            "Question 1 : identifier l'épreuve de Bernoulli répétée, son succès et sa probabilité, et justifier l'indépendance des répétitions.",
+            "Question 2 : passer par l'événement contraire de $\\{X \\geq 2\\}$.",
+            "Question 4 : l'événement « au moins un composant défectueux » a pour contraire « aucun composant défectueux » ; résoudre ensuite une inéquation à l'aide du logarithme népérien."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $n$ tel que $p_n \\geq 0{,}9$ ?",
+            "propositions": [
+              "$114$",
+              "$113$",
+              "$45$",
+              "$115$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. On répète $100$ fois, de façon indépendante, une épreuve de Bernoulli dont le succès, « le composant est défectueux », a la probabilité $0{,}02$ ; $X$ compte les succès. Donc $X$ suit la loi binomiale $\\mathcal{B}(100\\,;\\,0{,}02)$.\n\n2. $P(X = 0) = 0{,}98^{100} \\approx 0{,}1326$. De plus, $P(X = 1) = \\binom{100}{1} \\times 0{,}02 \\times 0{,}98^{99} = 2 \\times 0{,}98^{99} \\approx 0{,}2707$. Donc $P(X \\geq 2) = 1 - P(X = 0) - P(X = 1) \\approx 0{,}5967$.\n\n3. $E(X) = 100 \\times 0{,}02 = 2$ et $V(X) = 100 \\times 0{,}02 \\times 0{,}98 = 1{,}96$. Sur un grand nombre de prélèvements de $100$ composants, on compte en moyenne $2$ composants défectueux par prélèvement.\n\n4. Le nombre $X_n$ de composants défectueux parmi $n$ suit la loi $\\mathcal{B}(n\\,;\\,0{,}02)$, et $p_n = P(X_n \\geq 1) = 1 - P(X_n = 0) = 1 - 0{,}98^n$. Alors\n$$p_n \\geq 0{,}9 \\iff 0{,}98^n \\leq 0{,}1 \\iff n \\ln(0{,}98) \\leq \\ln(0{,}1) \\iff n \\geq \\frac{\\ln(0{,}1)}{\\ln(0{,}98)},$$\nl'inégalité changeant de sens dans la dernière étape car $\\ln(0{,}98) < 0$ (la fonction $\\ln$ étant strictement croissante, la deuxième équivalence est justifiée). Or $\\frac{\\ln(0{,}1)}{\\ln(0{,}98)} \\approx 113{,}97$ : le plus petit entier convenable est $n = 114$. Vérification : $1 - 0{,}98^{113} \\approx 0{,}8980 < 0{,}9$ et $1 - 0{,}98^{114} \\approx 0{,}9001 \\geq 0{,}9$."
+        }
+      ]
+    },
+    {
+      "id": "proba-t-binomiale-pascal-ex5",
+      "carte": "proba-t-binomiale-pascal",
+      "difficulte": 2,
+      "titre": "Une équation résolue par la relation de Pascal",
+      "enonce": "Déterminer l'entier $n \\geq 3$ tel que $\\binom{n+1}{3} - \\binom{n}{3} = 28$.",
+      "duree_min": 8,
+      "indices": [
+        "Simplifier la différence à l'aide de la relation de Pascal.",
+        "On obtient une équation du second degré en $n$."
+      ],
+      "reponse_finale": {
+        "question": "Quel entier $n$ convient ?",
+        "propositions": [
+          "$n = 8$",
+          "$n = 7$",
+          "$n = 28$",
+          "$n = 9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $n \\geq 3$, la relation de Pascal (avec $k = 2 \\leq n - 1$) donne $\\binom{n}{2} + \\binom{n}{3} = \\binom{n+1}{3}$, donc\n$$\\binom{n+1}{3} - \\binom{n}{3} = \\binom{n}{2} = \\frac{n(n-1)}{2}.$$\n\nL'équation devient $n(n - 1) = 56$, soit $n^2 - n - 56 = 0$. Son discriminant vaut $1 + 4 \\times 56 = 15^2$, et ses racines sont $\\frac{1 + 15}{2} = 8$ et $\\frac{1 - 15}{2} = -7$. Seule $n = 8$ convient, puisque $n \\geq 3$.\n\nVérification : $\\binom{9}{3} - \\binom{8}{3} = 84 - 56 = 28$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer l'entier $n \\geq 3$ tel que $\\binom{n+1}{3} - \\binom{n}{3} = 45$.",
+          "indices": [
+            "Simplifier la différence à l'aide de la relation de Pascal.",
+            "On obtient une équation du second degré en $n$."
+          ],
+          "reponse_finale": {
+            "question": "Quel entier $n$ convient ?",
+            "propositions": [
+              "$n = 10$",
+              "$n = 9$",
+              "$n = 45$",
+              "$n = 11$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n \\geq 3$, la relation de Pascal (avec $k = 2 \\leq n - 1$) donne $\\binom{n}{2} + \\binom{n}{3} = \\binom{n+1}{3}$, donc\n$$\\binom{n+1}{3} - \\binom{n}{3} = \\binom{n}{2} = \\frac{n(n-1)}{2}.$$\n\nL'équation devient $n(n - 1) = 90$, soit $n^2 - n - 90 = 0$. Son discriminant vaut $1 + 4 \\times 90 = 19^2$, et ses racines sont $\\frac{1 + 19}{2} = 10$ et $\\frac{1 - 19}{2} = -9$. Seule $n = 10$ convient, puisque $n \\geq 3$.\n\nVérification : $\\binom{11}{3} - \\binom{10}{3} = 165 - 120 = 45$."
+        },
+        {
+          "enonce": "Déterminer l'entier $n \\geq 3$ tel que $\\binom{n+1}{3} - \\binom{n}{3} = 66$.",
+          "indices": [
+            "Simplifier la différence à l'aide de la relation de Pascal.",
+            "On obtient une équation du second degré en $n$."
+          ],
+          "reponse_finale": {
+            "question": "Quel entier $n$ convient ?",
+            "propositions": [
+              "$n = 12$",
+              "$n = 11$",
+              "$n = 66$",
+              "$n = 13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $n \\geq 3$, la relation de Pascal (avec $k = 2 \\leq n - 1$) donne $\\binom{n}{2} + \\binom{n}{3} = \\binom{n+1}{3}$, donc\n$$\\binom{n+1}{3} - \\binom{n}{3} = \\binom{n}{2} = \\frac{n(n-1)}{2}.$$\n\nL'équation devient $n(n - 1) = 132$, soit $n^2 - n - 132 = 0$. Son discriminant vaut $1 + 4 \\times 132 = 23^2$, et ses racines sont $\\frac{1 + 23}{2} = 12$ et $\\frac{1 - 23}{2} = -11$. Seule $n = 12$ convient, puisque $n \\geq 3$.\n\nVérification : $\\binom{13}{3} - \\binom{12}{3} = 286 - 220 = 66$."
+        }
+      ]
+    },
+    {
+      "id": "proba-t-binomiale-produit-ex5",
+      "carte": "proba-t-binomiale-produit",
+      "difficulte": 3,
+      "titre": "Coïncidences dans un petit groupe",
+      "enonce": "Cinq personnes sont choisies au hasard. On admet que leurs mois de naissance sont indépendants et que chacune est née l'un des $12$ mois de l'année avec la même probabilité $\\frac{1}{12}$.\n\n1. Décrire l'univers $\\Omega$ modélisant la liste des mois de naissance des cinq personnes, et la probabilité dont il est muni. Combien $\\Omega$ a-t-il d'éléments ?\n\n2. Calculer la probabilité que leurs mois de naissance soient deux à deux distincts.\n\n3. En déduire la probabilité $q$ qu'au moins deux de ces personnes soient nées le même mois, sous forme de fraction irréductible, puis arrondie à $10^{-3}$.\n\n4. Avec quatre personnes seulement, la probabilité qu'au moins deux d'entre elles soient nées le même mois dépasse-t-elle $\\frac{1}{2}$ ?",
+      "duree_min": 15,
+      "indices": [
+        "Les épreuves sont indépendantes et chacune suit la loi uniforme : quelle est alors la probabilité de chaque issue de l'univers produit ?",
+        "Compter les $5$-uplets d'éléments deux à deux distincts d'un ensemble à $12$ éléments.",
+        "Passer à l'événement contraire."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $q$ ?",
+        "propositions": [
+          "$\\frac{89}{144}$",
+          "$\\frac{55}{144}$",
+          "$\\frac{5}{6}$",
+          "$\\frac{41}{96}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Notons $M = \\{1, 2, \\dots, 12\\}$ l'ensemble des mois. L'univers est $\\Omega = M^5$ : une issue est la liste $(m_1, \\dots, m_5)$ des mois de naissance des cinq personnes. Les cinq épreuves étant indépendantes, $\\Omega$ est muni de la probabilité produit : chaque issue a la probabilité $\\left(\\frac{1}{12}\\right)^5$, c'est la probabilité uniforme sur $\\Omega$, qui a $12^5 = 248832$ éléments.\n\n2. L'événement $D$ « les mois sont deux à deux distincts » est l'ensemble des $5$-uplets d'éléments deux à deux distincts de $M$ ; il en compte $12 \\times 11 \\times 10 \\times 9 \\times 8 = 95040$. La probabilité étant uniforme, $P(D) = \\frac{95040}{248832} = \\frac{55}{144}$.\n\n3. L'événement « au moins deux personnes sont nées le même mois » est le contraire de $D$ : $q = 1 - \\frac{55}{144} = \\frac{89}{144} \\approx 0{,}618$.\n\n4. Avec quatre personnes, le même raisonnement, dans l'univers $M^4$ à $12^4 = 20736$ éléments, donne $1 - \\frac{12 \\times 11 \\times 10 \\times 9}{12^4} = 1 - \\frac{11880}{20736} = 1 - \\frac{55}{96} = \\frac{41}{96} \\approx 0{,}427$. Cette probabilité est inférieure à $\\frac{1}{2}$ : la réponse est non.",
+      "variantes": [
+        {
+          "enonce": "Quatre personnes sont choisies au hasard. On admet que leurs jours de naissance dans la semaine sont indépendants et que chacune est née l'un des $7$ jours de la semaine avec la même probabilité $\\frac{1}{7}$.\n\n1. Décrire l'univers $\\Omega$ modélisant la liste des jours de la semaine où sont nées les quatre personnes, et la probabilité dont il est muni. Combien $\\Omega$ a-t-il d'éléments ?\n\n2. Calculer la probabilité que ces jours soient deux à deux distincts.\n\n3. En déduire la probabilité $q$ qu'au moins deux de ces personnes soient nées le même jour de la semaine, sous forme de fraction irréductible, puis arrondie à $10^{-3}$.\n\n4. Avec trois personnes seulement, la probabilité qu'au moins deux d'entre elles soient nées le même jour de la semaine dépasse-t-elle $\\frac{1}{2}$ ?",
+          "indices": [
+            "Les épreuves sont indépendantes et chacune suit la loi uniforme : quelle est alors la probabilité de chaque issue de l'univers produit ?",
+            "Compter les $4$-uplets d'éléments deux à deux distincts d'un ensemble à $7$ éléments.",
+            "Passer à l'événement contraire."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $q$ ?",
+            "propositions": [
+              "$\\frac{223}{343}$",
+              "$\\frac{120}{343}$",
+              "$\\frac{6}{7}$",
+              "$\\frac{19}{49}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Notons $J = \\{1, 2, \\dots, 7\\}$ l'ensemble des jours de la semaine. L'univers est $\\Omega = J^4$ : une issue est la liste des jours de naissance des quatre personnes. Les épreuves étant indépendantes, $\\Omega$ est muni de la probabilité produit : chaque issue a la probabilité $\\left(\\frac{1}{7}\\right)^4$, c'est la probabilité uniforme sur $\\Omega$, qui a $7^4 = 2401$ éléments.\n\n2. L'événement $D$ « les jours sont deux à deux distincts » est l'ensemble des $4$-uplets d'éléments deux à deux distincts de $J$ ; il en compte $7 \\times 6 \\times 5 \\times 4 = 840$. Donc $P(D) = \\frac{840}{2401} = \\frac{120}{343}$.\n\n3. L'événement « au moins deux personnes sont nées le même jour de la semaine » est le contraire de $D$ : $q = 1 - \\frac{120}{343} = \\frac{223}{343} \\approx 0{,}650$.\n\n4. Avec trois personnes, dans l'univers $J^3$ à $343$ éléments : $1 - \\frac{7 \\times 6 \\times 5}{7^3} = 1 - \\frac{210}{343} = \\frac{133}{343} = \\frac{19}{49} \\approx 0{,}388$. Cette probabilité est inférieure à $\\frac{1}{2}$ : la réponse est non."
+        },
+        {
+          "enonce": "Quatre personnes choisissent chacune un chiffre de $0$ à $9$. On admet que ces choix sont indépendants et que chaque personne choisit chacun des $10$ chiffres avec la même probabilité $\\frac{1}{10}$.\n\n1. Décrire l'univers $\\Omega$ modélisant la liste des chiffres choisis par les quatre personnes, et la probabilité dont il est muni. Combien $\\Omega$ a-t-il d'éléments ?\n\n2. Calculer la probabilité que ces chiffres soient deux à deux distincts.\n\n3. En déduire la probabilité $q$ qu'au moins deux de ces personnes aient choisi le même chiffre, sous forme de fraction irréductible, puis arrondie à $10^{-3}$.\n\n4. Avec cinq personnes, la probabilité qu'au moins deux d'entre elles aient choisi le même chiffre dépasse-t-elle $\\frac{1}{2}$ ?",
+          "indices": [
+            "Les épreuves sont indépendantes et chacune suit la loi uniforme : quelle est alors la probabilité de chaque issue de l'univers produit ?",
+            "Compter les $4$-uplets d'éléments deux à deux distincts d'un ensemble à $10$ éléments.",
+            "Passer à l'événement contraire."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $q$ ?",
+            "propositions": [
+              "$\\frac{62}{125}$",
+              "$\\frac{63}{125}$",
+              "$\\frac{3}{5}$",
+              "$\\frac{436}{625}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Notons $K = \\{0, 1, \\dots, 9\\}$ l'ensemble des chiffres. L'univers est $\\Omega = K^4$ : une issue est la liste des chiffres choisis par les quatre personnes. Les choix étant indépendants, $\\Omega$ est muni de la probabilité produit : chaque issue a la probabilité $\\left(\\frac{1}{10}\\right)^4$, c'est la probabilité uniforme sur $\\Omega$, qui a $10^4 = 10000$ éléments.\n\n2. L'événement $D$ « les chiffres sont deux à deux distincts » est l'ensemble des $4$-uplets d'éléments deux à deux distincts de $K$ ; il en compte $10 \\times 9 \\times 8 \\times 7 = 5040$. Donc $P(D) = \\frac{5040}{10000} = \\frac{63}{125}$.\n\n3. L'événement « au moins deux personnes ont choisi le même chiffre » est le contraire de $D$ : $q = 1 - \\frac{63}{125} = \\frac{62}{125} = 0{,}496$.\n\n4. Avec cinq personnes, dans l'univers $K^5$ à $10^5$ éléments : $1 - \\frac{10 \\times 9 \\times 8 \\times 7 \\times 6}{10^5} = 1 - \\frac{30240}{100000} = 1 - \\frac{189}{625} = \\frac{436}{625} \\approx 0{,}698$. Cette probabilité est supérieure à $\\frac{1}{2}$ : la réponse est oui, alors qu'avec quatre personnes elle était légèrement inférieure à $\\frac{1}{2}$."
+        }
+      ]
     }
   ]
 }

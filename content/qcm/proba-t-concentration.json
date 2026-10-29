@@ -1,0 +1,99 @@
+{
+  "chapitre": "proba-t-concentration",
+  "questions": [
+    {
+      "id": "proba-t-concentration-q1",
+      "carte": "proba-t-concentration-linearite",
+      "genre": "choix",
+      "enonce": "Soit $X$ une variable aléatoire de loi binomiale $\\mathcal{B}(20\\,;0{,}3)$ et $Y=3X-5$. Que vaut $E(Y)$ ?",
+      "propositions": [
+        "$13$",
+        "$18$",
+        "$1$",
+        "$23$"
+      ],
+      "bonne": 0,
+      "explication": "$E(X)=np=20\\times 0{,}3=6$ et, par linéarité de l'espérance, $E(Y)=3E(X)-5=18-5=13$. Les autres valeurs oublient la constante ($18$), le facteur $3$ ($1$) ou changent le signe de la constante ($23$)."
+    },
+    {
+      "id": "proba-t-concentration-q2",
+      "carte": "proba-t-concentration-variance-somme",
+      "genre": "choix",
+      "enonce": "Soit $X$ une variable aléatoire de loi binomiale $\\mathcal{B}(50\\,;0{,}2)$. Que vaut $V(-2X+7)$ ?",
+      "propositions": [
+        "$32$",
+        "$-9$",
+        "$16$",
+        "$39$"
+      ],
+      "bonne": 0,
+      "explication": "$V(X)=np(1-p)=50\\times 0{,}2\\times 0{,}8=8$ et $V(aX+b)=a^2V(X)$, donc $V(-2X+7)=(-2)^2\\times 8=32$. La constante $7$ décale les valeurs sans les disperser, le facteur $-2$ intervient par son carré, et une variance n'est jamais négative."
+    },
+    {
+      "id": "proba-t-concentration-q3",
+      "carte": "proba-t-concentration-variance-somme",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ sont deux variables aléatoires indépendantes d'écarts-types $\\sigma(X)=3$ et $\\sigma(Y)=4$, alors $\\sigma(X+Y)=5$.",
+      "vrai": true,
+      "explication": "Vrai. Par indépendance, les variances s'additionnent : $V(X+Y)=3^2+4^2=25$, donc $\\sigma(X+Y)=\\sqrt{25}=5$, et non $3+4=7$ : ce sont les variances, pas les écarts-types, qui s'additionnent."
+    },
+    {
+      "id": "proba-t-concentration-q4",
+      "carte": "proba-t-bienayme",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute variable aléatoire $X$ d'espérance $10$ et de variance $4$, on a $P(8<X<12)\\geq\\frac{1}{2}$.",
+      "vrai": false,
+      "explication": "Faux. Contre-exemple : $X$ prend les valeurs $8$ et $12$ avec la probabilité $\\frac{1}{2}$ chacune. Alors $E(X)=10$, $V(X)=\\frac{1}{2}\\times 2^2+\\frac{1}{2}\\times 2^2=4$ et $P(8<X<12)=0$. L'inégalité de Bienaymé-Tchebychev avec $a=2$ donne seulement $P\\left(|X-10|\\geq 2\\right)\\leq\\frac{4}{2^2}=1$, ce qui n'apprend rien."
+    },
+    {
+      "id": "proba-t-concentration-q5",
+      "carte": "proba-t-lgn",
+      "genre": "choix",
+      "enonce": "Soit $(X_1,\\dots,X_{400})$ un échantillon de taille $400$ d'une loi d'espérance $\\mu$ et de variance $9$, et $M_{400}$ sa moyenne. Quel majorant de $P\\left(|M_{400}-\\mu|\\geq 0{,}5\\right)$ l'inégalité de concentration fournit-elle ?",
+      "propositions": [
+        "$0{,}09$",
+        "$0{,}045$",
+        "$0{,}0225$",
+        "$0{,}3$"
+      ],
+      "bonne": 0,
+      "explication": "L'inégalité de concentration donne $P\\left(|M_n-\\mu|\\geq\\delta\\right)\\leq\\frac{V(X)}{n\\delta^2}=\\frac{9}{400\\times 0{,}5^2}=\\frac{9}{100}=0{,}09$. Le dénominateur contient $\\delta^2=0{,}25$ : avec $\\delta$ à la place, on trouverait $0{,}045$, et sans $\\delta^2$, $0{,}0225$."
+    },
+    {
+      "id": "proba-t-concentration-q6",
+      "carte": "proba-t-lgn",
+      "genre": "vrai-faux",
+      "enonce": "Quand on double la taille $n$ de l'échantillon, le majorant $\\frac{V(X)}{n\\delta^2}$ fourni par l'inégalité de concentration est divisé par $4$.",
+      "vrai": false,
+      "explication": "Faux : il est divisé par $2$, car $n$ figure au dénominateur à la puissance $1$. Par exemple, avec $V(X)=1$ et $\\delta=1$, on passe de $\\frac{1}{n}$ à $\\frac{1}{2n}$. C'est diviser $\\delta$ par $2$ qui multiplie le majorant par $4$ : pour garder le même majorant avec une précision deux fois plus fine, il faut quadrupler $n$."
+    },
+    {
+      "id": "proba-t-concentration-q7",
+      "carte": "proba-t-concentration-linearite",
+      "genre": "choix",
+      "enonce": "On tire simultanément, au hasard, $5$ cartes d'un jeu de $32$ cartes qui contient $4$ as. Quelle est l'espérance du nombre d'as obtenus ?",
+      "propositions": [
+        "$\\frac{5}{8}$",
+        "$\\frac{1}{8}$",
+        "$\\frac{5}{32}$",
+        "$\\frac{1}{2}$"
+      ],
+      "bonne": 0,
+      "explication": "Pour $j\\in\\{1,2,3,4\\}$, soit $A_j$ l'événement « le $j$-ième as fait partie des $5$ cartes » : $P(A_j)=\\frac{\\binom{31}{4}}{\\binom{32}{5}}=\\frac{5}{32}$. Le nombre d'as est $N=\\mathbf{1}_{A_1}+\\mathbf{1}_{A_2}+\\mathbf{1}_{A_3}+\\mathbf{1}_{A_4}$ et, par linéarité de l'espérance (qui ne demande pas l'indépendance des $A_j$), $E(N)=4\\times\\frac{5}{32}=\\frac{5}{8}$."
+    },
+    {
+      "id": "proba-t-concentration-q8",
+      "carte": "proba-t-bienayme",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ a pour espérance $50$ et pour écart-type $5$. Quel est le plus petit réel $a>0$ pour lequel l'inégalité de Bienaymé-Tchebychev garantit $P\\left(|X-50|<a\\right)\\geq 0{,}96$ ?",
+      "propositions": [
+        "$25$",
+        "$125$",
+        "$625$",
+        "$5$"
+      ],
+      "bonne": 0,
+      "explication": "L'inégalité donne $P\\left(|X-50|<a\\right)\\geq 1-\\frac{V(X)}{a^2}=1-\\frac{25}{a^2}$, car $V(X)=5^2=25$. Ce minorant est au moins $0{,}96$ si et seulement si $\\frac{25}{a^2}\\leq 0{,}04$, soit $a^2\\geq 625$, c'est-à-dire $a\\geq 25$. La valeur $125=\\frac{5}{0{,}04}$ confond variance et écart-type, et $625$ est $a^2$, pas $a$."
+    }
+  ]
+}

@@ -430,6 +430,154 @@
         "Question 2 : faire tendre $n$ vers $+\\infty$ dans l'égalité de la question 1, à l'aide de la continuité en $0$."
       ],
       "correction": "**1.** Fixons $x$ et raisonnons par récurrence sur $n$. Pour $n=0$, c'est évident. Si $f(x)=f\\left(\\frac{x}{2^n}\\right)$, on applique la relation à $y=\\frac{x}{2^{n+1}}$ : $f(2y)=f(y)$, c'est-à-dire $f\\left(\\frac{x}{2^n}\\right)=f\\left(\\frac{x}{2^{n+1}}\\right)$, d'où $f(x)=f\\left(\\frac{x}{2^{n+1}}\\right)$.\n\n**2.** Soit $x$ un réel et $u_n=\\frac{x}{2^n}=x\\left(\\frac12\\right)^n$. Comme $-1<\\frac12<1$, $u_n\\to0$. La fonction $f$ étant continue en $0$, $f(u_n)\\to f(0)$. Or $f(u_n)=f(x)$ pour tout $n$ : la suite constante égale à $f(x)$ tend vers $f(0)$, donc $f(x)=f(0)$. Ainsi $f$ est constante.\n\n**3.** Soit $f(0)=0$ et $f(x)=1$ pour $x\\neq0$. Pour $x=0$, $f(2x)=f(0)=f(x)$ ; pour $x\\neq0$, $2x\\neq0$ et $f(2x)=1=f(x)$. Cette fonction n'est pas constante ; elle n'est pas continue en $0$ : avec $u_n=\\frac1{2^n}\\to0$, $f(u_n)=1$ ne tend pas vers $f(0)=0$."
+    },
+    {
+      "id": "ar-t-point-fixe-ex5",
+      "carte": "ar-t-point-fixe",
+      "difficulte": 4,
+      "titre": "Suite récurrente homographique",
+      "enonce": "On considère la fonction $f$ définie sur $\\left[0,+\\infty\\right[$ par $f(x)=\\frac{3x+2}{x+2}$, et la suite définie par $u_0=0$ et $u_{n+1}=f(u_n)$ pour tout $n\\ge0$.\n\n**1.** Étudier les variations de $f$ sur $\\left[0,+\\infty\\right[$ et montrer que $f([0,2])\\subset[0,2]$.\n\n**2.** Montrer par récurrence que $0\\le u_n\\le u_{n+1}\\le2$ pour tout $n$.\n\n**3.** En déduire que $(u_n)$ converge et déterminer sa limite.\n\n**4.** On pose $v_n=\\frac{u_n-2}{u_n+1}$. Montrer que $(v_n)$ est géométrique, puis exprimer $u_n$ en fonction de $n$ et retrouver la limite.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 1, $f$ étant croissante, l'image de $[0,2]$ est comprise entre $f(0)$ et $f(2)$.",
+        "Pour la question 2, appliquer la fonction croissante $f$ à l'encadrement supposé au rang $n$.",
+        "Pour la question 4, calculer séparément $u_{n+1}-2$ et $u_{n+1}+1$ en fonction de $u_n$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'expression de $u_n$ ?",
+        "propositions": [
+          "$u_n=\\frac{2\\times4^n-2}{4^n+2}$",
+          "$u_n=2-2\\left(\\frac14\\right)^n$",
+          "$u_n=\\frac{2\\times4^n-2}{4^n+1}$",
+          "$u_n=\\frac{2\\times4^n+2}{4^n-2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f$ est dérivable sur $\\left[0,+\\infty\\right[$ et $f'(x)=\\frac{3(x+2)-(3x+2)}{(x+2)^2}=\\frac{4}{(x+2)^2}>0$ : $f$ est strictement croissante. Pour $x\\in[0,2]$, $f(0)\\le f(x)\\le f(2)$, avec $f(0)=1$ et $f(2)=2$ : $f([0,2])\\subset[1,2]\\subset[0,2]$.\n\n**2.** Soit $P(n)$ : « $0\\le u_n\\le u_{n+1}\\le2$ ». On a $u_0=0$ et $u_1=f(0)=1$ : $P(0)$ est vraie. Si $P(n)$ est vraie, comme $f$ est croissante sur $[0,2]$, $f(0)\\le f(u_n)\\le f(u_{n+1})\\le f(2)$, soit $1\\le u_{n+1}\\le u_{n+2}\\le2$, d'où $P(n+1)$.\n\n**3.** $(u_n)$ est croissante et majorée par $2$ : elle converge vers un réel $\\ell\\in[0,2]$. La fonction $f$ est continue en $\\ell$, donc, en passant à la limite dans $u_{n+1}=f(u_n)$, $\\ell=f(\\ell)$, soit $\\ell(\\ell+2)=3\\ell+2$, c'est-à-dire $\\ell^2-\\ell-2=0$ : $\\ell=2$ ou $\\ell=-1$. Comme $\\ell\\ge0$, $\\ell=2$.\n\n**4.** Comme $u_n\\ge0$, $v_n$ est défini. On a $u_{n+1}-2=\\frac{3u_n+2-2u_n-4}{u_n+2}=\\frac{u_n-2}{u_n+2}$ et $u_{n+1}+1=\\frac{4u_n+4}{u_n+2}=\\frac{4(u_n+1)}{u_n+2}$, donc\n$$v_{n+1}=\\frac{u_n-2}{4(u_n+1)}=\\frac14\\,v_n.$$\n$(v_n)$ est géométrique de raison $\\frac14$ et de premier terme $v_0=-2$ : $v_n=-2\\left(\\frac14\\right)^n$. De $v_n(u_n+1)=u_n-2$, on tire $u_n(1-v_n)=2+v_n$ ; comme $v_n<0$, $1-v_n\\neq0$ et\n$$u_n=\\frac{2+v_n}{1-v_n}=\\frac{2-2\\times4^{-n}}{1+2\\times4^{-n}}=\\frac{2\\times4^n-2}{4^n+2}.$$\nComme $4^{-n}\\to0$, on retrouve $u_n\\to2$.",
+      "variantes": [
+        {
+          "enonce": "On considère la fonction $f$ définie sur $\\left[0,+\\infty\\right[$ par $f(x)=\\frac{4x+3}{x+2}$, et la suite définie par $u_0=0$ et $u_{n+1}=f(u_n)$ pour tout $n\\ge0$.\n\n**1.** Étudier les variations de $f$ sur $\\left[0,+\\infty\\right[$ et montrer que $f([0,3])\\subset[0,3]$.\n\n**2.** Montrer par récurrence que $0\\le u_n\\le u_{n+1}\\le3$ pour tout $n$.\n\n**3.** En déduire que $(u_n)$ converge et déterminer sa limite.\n\n**4.** On pose $v_n=\\frac{u_n-3}{u_n+1}$. Montrer que $(v_n)$ est géométrique, puis exprimer $u_n$ en fonction de $n$ et retrouver la limite.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=\\frac{3\\times5^n-3}{5^n+3}$",
+              "$u_n=3-3\\left(\\frac15\\right)^n$",
+              "$u_n=\\frac{3\\times5^n-3}{5^n+1}$",
+              "$u_n=\\frac{3\\times5^n+3}{5^n-3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f'(x)=\\frac{4(x+2)-(4x+3)}{(x+2)^2}=\\frac{5}{(x+2)^2}>0$ : $f$ est strictement croissante sur $\\left[0,+\\infty\\right[$. Pour $x\\in[0,3]$, $f(0)\\le f(x)\\le f(3)$, avec $f(0)=\\frac32$ et $f(3)=3$ : $f([0,3])\\subset\\left[\\frac32,3\\right]\\subset[0,3]$.\n\n**2.** Soit $P(n)$ : « $0\\le u_n\\le u_{n+1}\\le3$ ». $u_0=0$ et $u_1=\\frac32$ : $P(0)$ est vraie. Si $P(n)$ est vraie, $f$ étant croissante sur $[0,3]$, $f(0)\\le f(u_n)\\le f(u_{n+1})\\le f(3)$, soit $\\frac32\\le u_{n+1}\\le u_{n+2}\\le3$, d'où $P(n+1)$.\n\n**3.** $(u_n)$ est croissante et majorée par $3$ : elle converge vers $\\ell\\in[0,3]$. Par continuité de $f$ en $\\ell$, $\\ell=f(\\ell)$, soit $\\ell^2+2\\ell=4\\ell+3$, c'est-à-dire $\\ell^2-2\\ell-3=0$ : $\\ell=3$ ou $\\ell=-1$. Comme $\\ell\\ge0$, $\\ell=3$.\n\n**4.** $u_{n+1}-3=\\frac{4u_n+3-3u_n-6}{u_n+2}=\\frac{u_n-3}{u_n+2}$ et $u_{n+1}+1=\\frac{5(u_n+1)}{u_n+2}$, donc $v_{n+1}=\\frac15\\,v_n$ : $(v_n)$ est géométrique de raison $\\frac15$, avec $v_0=-3$, donc $v_n=-3\\left(\\frac15\\right)^n$. De $v_n(u_n+1)=u_n-3$ et $v_n<0$, on tire\n$$u_n=\\frac{3+v_n}{1-v_n}=\\frac{3-3\\times5^{-n}}{1+3\\times5^{-n}}=\\frac{3\\times5^n-3}{5^n+3},$$\net $u_n\\to3$.",
+          "indices": [
+            "Pour la question 1, $f$ étant croissante, l'image de $[0,3]$ est comprise entre $f(0)$ et $f(3)$.",
+            "Pour la question 2, appliquer la fonction croissante $f$ à l'encadrement supposé au rang $n$.",
+            "Pour la question 4, calculer séparément $u_{n+1}-3$ et $u_{n+1}+1$ en fonction de $u_n$."
+          ]
+        },
+        {
+          "enonce": "On considère la fonction $f$ définie sur $\\left[0,+\\infty\\right[$ par $f(x)=\\frac{5x+4}{x+2}$, et la suite définie par $u_0=6$ et $u_{n+1}=f(u_n)$ pour tout $n\\ge0$.\n\n**1.** Étudier les variations de $f$ sur $\\left[0,+\\infty\\right[$ et montrer que $f\\left(\\left[4,+\\infty\\right[\\right)\\subset\\left[4,+\\infty\\right[$.\n\n**2.** Montrer par récurrence que $4\\le u_{n+1}\\le u_n$ pour tout $n$.\n\n**3.** En déduire que $(u_n)$ converge et déterminer sa limite.\n\n**4.** On pose $v_n=\\frac{u_n-4}{u_n+1}$. Montrer que $(v_n)$ est géométrique, puis exprimer $u_n$ en fonction de $n$ et retrouver la limite.",
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=\\frac{28\\times6^n+2}{7\\times6^n-2}$",
+              "$u_n=4+2\\left(\\frac16\\right)^n$",
+              "$u_n=\\frac{28\\times6^n-2}{7\\times6^n+2}$",
+              "$u_n=\\frac{4\\times6^n+2}{6^n-2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f'(x)=\\frac{5(x+2)-(5x+4)}{(x+2)^2}=\\frac{6}{(x+2)^2}>0$ : $f$ est strictement croissante sur $\\left[0,+\\infty\\right[$. Pour $x\\ge4$, $f(x)\\ge f(4)=\\frac{24}{6}=4$ : $f\\left(\\left[4,+\\infty\\right[\\right)\\subset\\left[4,+\\infty\\right[$.\n\n**2.** Soit $P(n)$ : « $4\\le u_{n+1}\\le u_n$ ». $u_0=6$ et $u_1=f(6)=\\frac{34}{8}=\\frac{17}{4}$ : $P(0)$ est vraie. Si $P(n)$ est vraie, $f$ étant croissante sur $\\left[4,+\\infty\\right[$, $f(4)\\le f(u_{n+1})\\le f(u_n)$, soit $4\\le u_{n+2}\\le u_{n+1}$, d'où $P(n+1)$.\n\n**3.** $(u_n)$ est décroissante et minorée par $4$ : elle converge vers $\\ell\\ge4$. Par continuité de $f$ en $\\ell$, $\\ell=f(\\ell)$, soit $\\ell^2+2\\ell=5\\ell+4$, c'est-à-dire $\\ell^2-3\\ell-4=0$ : $\\ell=4$ ou $\\ell=-1$. Comme $\\ell\\ge4$, $\\ell=4$.\n\n**4.** $u_{n+1}-4=\\frac{5u_n+4-4u_n-8}{u_n+2}=\\frac{u_n-4}{u_n+2}$ et $u_{n+1}+1=\\frac{6(u_n+1)}{u_n+2}$, donc $v_{n+1}=\\frac16\\,v_n$ : $(v_n)$ est géométrique de raison $\\frac16$, avec $v_0=\\frac27$, donc $v_n=\\frac27\\left(\\frac16\\right)^n$. De $v_n(u_n+1)=u_n-4$ et $0<v_n\\le\\frac27<1$, on tire\n$$u_n=\\frac{4+v_n}{1-v_n}=\\frac{4+\\frac27\\times6^{-n}}{1-\\frac27\\times6^{-n}}=\\frac{28\\times6^n+2}{7\\times6^n-2},$$\net $u_n\\to4$.",
+          "indices": [
+            "Pour la question 1, $f$ étant croissante, comparer $f(x)$ à $f(4)$ pour $x\\ge4$.",
+            "Pour la question 2, appliquer la fonction croissante $f$ à l'encadrement supposé au rang $n$.",
+            "Pour la question 4, calculer séparément $u_{n+1}-4$ et $u_{n+1}+1$ en fonction de $u_n$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-t-tvi-ex5",
+      "carte": "ar-t-tvi",
+      "difficulte": 2,
+      "titre": "Deux solutions et un encadrement",
+      "enonce": "On considère l'équation $(E)$ : $e^x=2-x^2$, et la fonction $g$ définie sur $\\mathbb{R}$ par $g(x)=e^x+x^2-2$.\n\n**1.** Montrer que $(E)$ admet au moins une solution dans $\\left]-2,-1\\right[$ et au moins une solution dans $\\left]0,1\\right[$.\n\n**2.** On admet que $(E)$ a une seule solution $\\alpha$ dans $\\left]0,1\\right[$. À l'aide de la calculatrice, déterminer un encadrement de $\\alpha$ d'amplitude $0{,}1$.",
+      "duree_min": 10,
+      "indices": [
+        "$(E)$ équivaut à $g(x)=0$ : calculer $g$ aux bornes des intervalles, puis appliquer le théorème des valeurs intermédiaires.",
+        "Pour la question 2, calculer $g(0{,}1)$, $g(0{,}2)$, … jusqu'à un changement de signe."
+      ],
+      "reponse_finale": {
+        "question": "Quel encadrement de $\\alpha$ obtient-on ?",
+        "propositions": [
+          "$0{,}5<\\alpha<0{,}6$",
+          "$0{,}6<\\alpha<0{,}7$",
+          "$0{,}4<\\alpha<0{,}5$",
+          "$0{,}7<\\alpha<0{,}8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $(E)$ équivaut à $g(x)=0$, et $g$ est continue sur $\\mathbb{R}$. $g(-2)=e^{-2}+2>0$ et $g(-1)=e^{-1}-1<0$ : par le théorème des valeurs intermédiaires, $g$ s'annule sur $\\left]-2,-1\\right[$. De même, $g(0)=-1<0$ et $g(1)=e-1>0$ : $g$ s'annule sur $\\left]0,1\\right[$.\n\n**2.** $g(0{,}5)=e^{0{,}5}-1{,}75\\approx-0{,}10<0$ et $g(0{,}6)=e^{0{,}6}-1{,}64\\approx0{,}18>0$. Par le théorème des valeurs intermédiaires, $g$ s'annule entre $0{,}5$ et $0{,}6$ ; la solution étant unique dans $\\left]0,1\\right[$, c'est $\\alpha$ : $0{,}5<\\alpha<0{,}6$.",
+      "variantes": [
+        {
+          "enonce": "On considère l'équation $(E)$ : $e^x=3-x^2$, et la fonction $g$ définie sur $\\mathbb{R}$ par $g(x)=e^x+x^2-3$.\n\n**1.** Montrer que $(E)$ admet au moins une solution dans $\\left]-2,-1\\right[$ et au moins une solution dans $\\left]0,1\\right[$.\n\n**2.** On admet que $(E)$ a une seule solution $\\alpha$ dans $\\left]0,1\\right[$. À l'aide de la calculatrice, déterminer un encadrement de $\\alpha$ d'amplitude $0{,}1$.",
+          "reponse_finale": {
+            "question": "Quel encadrement de $\\alpha$ obtient-on ?",
+            "propositions": [
+              "$0{,}8<\\alpha<0{,}9$",
+              "$0{,}7<\\alpha<0{,}8$",
+              "$0{,}9<\\alpha<1$",
+              "$0{,}6<\\alpha<0{,}7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $(E)$ équivaut à $g(x)=0$, et $g$ est continue sur $\\mathbb{R}$. $g(-2)=e^{-2}+1>0$ et $g(-1)=e^{-1}-2<0$ : par le théorème des valeurs intermédiaires, $g$ s'annule sur $\\left]-2,-1\\right[$. De même, $g(0)=-2<0$ et $g(1)=e-2>0$ : $g$ s'annule sur $\\left]0,1\\right[$.\n\n**2.** $g(0{,}8)=e^{0{,}8}-2{,}36\\approx-0{,}13<0$ et $g(0{,}9)=e^{0{,}9}-2{,}19\\approx0{,}27>0$. Par le théorème des valeurs intermédiaires et l'unicité admise, $0{,}8<\\alpha<0{,}9$.",
+          "indices": [
+            "$(E)$ équivaut à $g(x)=0$ : calculer $g$ aux bornes des intervalles, puis appliquer le théorème des valeurs intermédiaires.",
+            "Pour la question 2, calculer $g(0{,}1)$, $g(0{,}2)$, … jusqu'à un changement de signe."
+          ]
+        },
+        {
+          "enonce": "On considère l'équation $(E)$ : $e^x=4-x^2$, et la fonction $g$ définie sur $\\mathbb{R}$ par $g(x)=e^x+x^2-4$.\n\n**1.** Montrer que $(E)$ admet au moins une solution dans $\\left]-2,-1\\right[$ et au moins une solution dans $\\left]1,2\\right[$.\n\n**2.** On admet que $(E)$ a une seule solution $\\alpha$ dans $\\left]1,2\\right[$. À l'aide de la calculatrice, déterminer un encadrement de $\\alpha$ d'amplitude $0{,}1$.",
+          "reponse_finale": {
+            "question": "Quel encadrement de $\\alpha$ obtient-on ?",
+            "propositions": [
+              "$1<\\alpha<1{,}1$",
+              "$1{,}1<\\alpha<1{,}2$",
+              "$1{,}2<\\alpha<1{,}3$",
+              "$1{,}3<\\alpha<1{,}4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $(E)$ équivaut à $g(x)=0$, et $g$ est continue sur $\\mathbb{R}$. $g(-2)=e^{-2}>0$ et $g(-1)=e^{-1}-3<0$ : par le théorème des valeurs intermédiaires, $g$ s'annule sur $\\left]-2,-1\\right[$. De même, $g(1)=e-3<0$ et $g(2)=e^{2}>0$ : $g$ s'annule sur $\\left]1,2\\right[$.\n\n**2.** $g(1)=e-3\\approx-0{,}28<0$ et $g(1{,}1)=e^{1{,}1}-2{,}79\\approx0{,}21>0$. Par le théorème des valeurs intermédiaires et l'unicité admise, $1<\\alpha<1{,}1$.",
+          "indices": [
+            "$(E)$ équivaut à $g(x)=0$ : calculer $g$ aux bornes des intervalles, puis appliquer le théorème des valeurs intermédiaires.",
+            "Pour la question 2, calculer $g(1{,}1)$, $g(1{,}2)$, … jusqu'à un changement de signe."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ar-t-continuite-image-suite-ex5",
+      "carte": "ar-t-continuite-image-suite",
+      "difficulte": 3,
+      "titre": "Prolonger par continuité ?",
+      "enonce": "On considère les fonctions $f$ et $g$ définies sur $\\mathbb{R}^*$ par $f(x)=\\sin\\left(\\frac1x\\right)$ et $g(x)=x\\sin\\left(\\frac1x\\right)$.\n\n**1.** Pour $n\\ge1$, on pose $a_n=\\frac{1}{n\\pi}$ et $b_n=\\frac{2}{(4n+1)\\pi}$. Calculer $f(a_n)$ et $f(b_n)$.\n\n**2.** Existe-t-il un réel $c$ tel que la fonction $\\tilde f$, égale à $f$ sur $\\mathbb{R}^*$ et à $c$ en $0$, soit continue en $0$ ?\n\n**3.** Montrer que $|g(x)|\\le|x|$ pour tout $x\\neq0$. En déduire la limite de $g$ en $0$, puis un prolongement de $g$ continu en $0$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 2, raisonner par l'absurde : si $\\tilde f$ était continue en $0$, vers quoi tendraient $\\tilde f(a_n)$ et $\\tilde f(b_n)$ ?",
+        "Pour la question 3, utiliser $|\\sin t|\\le1$ pour tout réel $t$, puis le théorème des gendarmes."
+      ],
+      "reponse_finale": {
+        "question": "Existe-t-il un réel $c$ qui rende $\\tilde f$ continue en $0$ ?",
+        "propositions": [
+          "Non, aucun réel ne convient",
+          "Oui, $c=0$",
+          "Oui, $c=1$",
+          "Oui, tout réel $c$ de $[-1,1]$ convient"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f(a_n)=\\sin(n\\pi)=0$ et $f(b_n)=\\sin\\left(\\frac{(4n+1)\\pi}{2}\\right)=\\sin\\left(\\frac\\pi2+2n\\pi\\right)=1$ pour tout $n\\ge1$.\n\n**2.** Supposons $\\tilde f$ continue en $0$. Les suites $(a_n)$ et $(b_n)$ tendent vers $0$ ; par le théorème sur l'image d'une suite convergente par une fonction continue, $\\tilde f(a_n)\\to\\tilde f(0)=c$ et $\\tilde f(b_n)\\to c$. Or $\\tilde f(a_n)=f(a_n)=0$ et $\\tilde f(b_n)=f(b_n)=1$ pour tout $n$ : on aurait $c=0$ et $c=1$, ce qui est absurde. Aucun réel $c$ ne convient.\n\n**3.** $|g(x)|=|x|\\left|\\sin\\frac1x\\right|\\le|x|$. Ainsi $-|x|\\le g(x)\\le|x|$, et $|x|\\to0$ quand $x\\to0$ : par le théorème des gendarmes, $\\lim_{x\\to0}g(x)=0$. La fonction $\\tilde g$ égale à $g$ sur $\\mathbb{R}^*$ et à $0$ en $0$ est donc continue en $0$ : le facteur $x$ écrase les oscillations."
     }
   ]
 }

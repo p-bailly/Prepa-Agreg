@@ -1698,6 +1698,195 @@
           "correction": "Par $L_2 \\leftarrow L_2 - L_1$ et $L_3 \\leftarrow L_3 - L_1$ : $y + (m - 1)z = 1$ et $(m - 1)y + z = 2$. Puis $L_3 \\leftarrow L_3 - (m - 1)L_2$ donne\n$$\\big(1 - (m - 1)^2\\big) z = 2 - (m - 1) = 3 - m, \\qquad \\text{avec } 1 - (m - 1)^2 = m(2 - m).$$\n- **Si $m = 0$** : on obtient $0 = 3$ ; **si $m = 2$** : $0 = 1$. Dans ces deux cas, le système n'a aucune solution.\n- **Si $m \\notin \\{0, 2\\}$** : $z = \\frac{3 - m}{m(2 - m)}$, puis $y = 1 - (m - 1)z$ et $x = 1 - y - z$ ; le calcul donne l'unique solution\n$$\\left(\\frac{m - 3}{m}, \\frac{2m - 3}{m(m - 2)}, \\frac{m - 3}{m(m - 2)}\\right).$$\n\nLe système n'a aucune solution exactement pour $m \\in \\{0, 2\\}$."
         }
       ]
+    },
+    {
+      "id": "al-l1-applications-rang-ex6",
+      "carte": "al-l1-applications-rang",
+      "difficulte": 4,
+      "titre": "L'opérateur de différence finie et les sommes de puissances",
+      "enonce": "Soit $n \\geq 1$ un entier. Pour $P \\in \\mathbb{R}_n[X]$, on pose $\\Delta(P) = P(X + 1) - P(X)$.\n\n1. Montrer que $\\Delta$ est un endomorphisme de $\\mathbb{R}_n[X]$ et que, si $P$ est de degré $k \\geq 1$, alors $\\Delta(P)$ est de degré $k - 1$.\n\n2. Déterminer $\\mathrm{Ker}\\, \\Delta$.\n\n3. Montrer que $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. On prend $n = 3$. En déduire qu'il existe un unique polynôme $P \\in \\mathbb{R}_{3}[X]$ tel que $\\Delta(P) = X^2$ et $P(0) = 0$, puis le déterminer.\n\n5. En déduire, pour tout entier $N \\geq 0$, une expression factorisée de $\\sum_{k=0}^{N} k^2$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour le degré, développer $(X + 1)^k - X^k$ par la formule du binôme.",
+        "Si $\\Delta(P) = 0$, que vaut $P(m)$ pour tout entier naturel $m$ ?",
+        "Pour 5, appliquer l'égalité $\\Delta(P) = X^2$ aux entiers $k = 0, 1, \\dots, N$, puis sommer."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le polynôme $P$ de la question 4 ?",
+        "propositions": [
+          "$\\frac{X(X+1)(2X+1)}{6}$",
+          "$\\frac{X(X-1)(2X-1)}{6}$",
+          "$\\frac{X^3}{3}$",
+          "$\\frac{X(X-1)}{2}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "1. Pour $P$, $Q$ dans $\\mathbb{R}_n[X]$ et $\\lambda$, $\\mu$ réels, $\\Delta(\\lambda P + \\mu Q) = \\lambda P(X + 1) + \\mu Q(X + 1) - \\lambda P(X) - \\mu Q(X) = \\lambda\\Delta(P) + \\mu\\Delta(Q)$, et $\\Delta(P)$ est de degré au plus $n$ : $\\Delta$ est un endomorphisme. Si $P = \\sum_{i=0}^{k} a_iX^i$ avec $a_k \\neq 0$ et $k \\geq 1$, alors $(X + 1)^i - X^i$ est de degré au plus $i - 1$ pour $i \\geq 1$ (nul pour $i = 0$), et $(X + 1)^k - X^k = kX^{k-1} + \\dots$ (termes de degré au plus $k - 2$). Donc $\\Delta(P)$ a pour terme de degré $k - 1$ le monôme $ka_kX^{k-1}$, non nul : $\\Delta(P)$ est de degré $k - 1$.\n\n2. Les constantes sont dans le noyau. Réciproquement, si $\\Delta(P) = 0$, alors $P(m + 1) = P(m)$ pour tout entier $m$, donc $P(m) = P(0)$ pour tout $m \\in \\mathbb{N}$ : le polynôme $P - P(0)$ a une infinité de racines, il est nul. Ainsi $\\mathrm{Ker}\\, \\Delta = \\mathbb{R}_0[X]$, l'ensemble des polynômes constants, de dimension $1$.\n\n3. D'après 1, $\\Delta(P)$ est de degré au plus $n - 1$ pour tout $P \\in \\mathbb{R}_n[X]$ (il est nul si $P$ est constant), donc $\\mathrm{Im}\\, \\Delta \\subset \\mathbb{R}_{n-1}[X]$. Par le théorème du rang, $\\mathrm{rg}\\, \\Delta = (n + 1) - 1 = n = \\dim \\mathbb{R}_{n-1}[X]$. Un sous-espace inclus dans un autre et de même dimension finie lui est égal : $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. Avec $n = 3$, $X^2 \\in \\mathbb{R}_{2}[X] = \\mathrm{Im}\\, \\Delta$ : il existe $P_0$ tel que $\\Delta(P_0) = X^2$, et $P = P_0 - P_0(0)$ vérifie encore $\\Delta(P) = X^2$, avec $P(0) = 0$. Si $P_1$ et $P_2$ conviennent, $\\Delta(P_1 - P_2) = 0$, donc $P_1 - P_2$ est constant d'après 2, et cette constante vaut $P_1(0) - P_2(0) = 0$ : $P$ est unique. Pour le déterminer, on cherche $P = aX^3 + bX^2 + cX$ (car $P(0) = 0$). Alors $\\Delta(P) = a(3X^2 + 3X + 1) + b(2X + 1) + c = 3aX^2 + (3a + 2b)X + (a + b + c)$, et $\\Delta(P) = X^2$ équivaut à $3a = 1$, $3a + 2b = 0$, $a + b + c = 0$, soit $a = \\frac{1}{3}$, $b = -\\frac{1}{2}$, $c = \\frac{1}{6}$. Donc $$P = \\frac{X^3}{3} - \\frac{X^2}{2} + \\frac{X}{6} = \\frac{X(X - 1)(2X - 1)}{6}.$$\n\n5. Pour tout entier $k$, $\\Delta(P)(k) = P(k + 1) - P(k) = k^2$. En sommant de $k = 0$ à $N$, les termes se télescopent : $$\\sum_{k=0}^{N} k^2 = P(N + 1) - P(0) = \\frac{N(N + 1)(2N + 1)}{6}.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $n \\geq 1$ un entier. Pour $P \\in \\mathbb{R}_n[X]$, on pose $\\Delta(P) = P(X + 1) - P(X)$.\n\n1. Montrer que $\\Delta$ est un endomorphisme de $\\mathbb{R}_n[X]$ et que, si $P$ est de degré $k \\geq 1$, alors $\\Delta(P)$ est de degré $k - 1$.\n\n2. Déterminer $\\mathrm{Ker}\\, \\Delta$.\n\n3. Montrer que $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. On prend $n = 4$. En déduire qu'il existe un unique polynôme $P \\in \\mathbb{R}_{4}[X]$ tel que $\\Delta(P) = X^3$ et $P(0) = 0$, puis le déterminer.\n\n5. En déduire, pour tout entier $N \\geq 0$, une expression factorisée de $\\sum_{k=0}^{N} k^3$.",
+          "indices": [
+            "Pour le degré, développer $(X + 1)^k - X^k$ par la formule du binôme.",
+            "Si $\\Delta(P) = 0$, que vaut $P(m)$ pour tout entier naturel $m$ ?",
+            "Pour 5, appliquer l'égalité $\\Delta(P) = X^3$ aux entiers $k = 0, 1, \\dots, N$, puis sommer."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le polynôme $P$ de la question 4 ?",
+            "propositions": [
+              "$\\frac{X^2(X+1)^2}{4}$",
+              "$\\frac{X^4}{4}$",
+              "$\\frac{X(X-1)(2X-1)}{6}$",
+              "$\\frac{X^2(X-1)^2}{4}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. Pour $P$, $Q$ dans $\\mathbb{R}_n[X]$ et $\\lambda$, $\\mu$ réels, $\\Delta(\\lambda P + \\mu Q) = \\lambda P(X + 1) + \\mu Q(X + 1) - \\lambda P(X) - \\mu Q(X) = \\lambda\\Delta(P) + \\mu\\Delta(Q)$, et $\\Delta(P)$ est de degré au plus $n$ : $\\Delta$ est un endomorphisme. Si $P = \\sum_{i=0}^{k} a_iX^i$ avec $a_k \\neq 0$ et $k \\geq 1$, alors $(X + 1)^i - X^i$ est de degré au plus $i - 1$ pour $i \\geq 1$ (nul pour $i = 0$), et $(X + 1)^k - X^k = kX^{k-1} + \\dots$ (termes de degré au plus $k - 2$). Donc $\\Delta(P)$ a pour terme de degré $k - 1$ le monôme $ka_kX^{k-1}$, non nul : $\\Delta(P)$ est de degré $k - 1$.\n\n2. Les constantes sont dans le noyau. Réciproquement, si $\\Delta(P) = 0$, alors $P(m + 1) = P(m)$ pour tout entier $m$, donc $P(m) = P(0)$ pour tout $m \\in \\mathbb{N}$ : le polynôme $P - P(0)$ a une infinité de racines, il est nul. Ainsi $\\mathrm{Ker}\\, \\Delta = \\mathbb{R}_0[X]$, l'ensemble des polynômes constants, de dimension $1$.\n\n3. D'après 1, $\\Delta(P)$ est de degré au plus $n - 1$ pour tout $P \\in \\mathbb{R}_n[X]$ (il est nul si $P$ est constant), donc $\\mathrm{Im}\\, \\Delta \\subset \\mathbb{R}_{n-1}[X]$. Par le théorème du rang, $\\mathrm{rg}\\, \\Delta = (n + 1) - 1 = n = \\dim \\mathbb{R}_{n-1}[X]$. Un sous-espace inclus dans un autre et de même dimension finie lui est égal : $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. Avec $n = 4$, $X^3 \\in \\mathbb{R}_{3}[X] = \\mathrm{Im}\\, \\Delta$ : il existe $P_0$ tel que $\\Delta(P_0) = X^3$, et $P = P_0 - P_0(0)$ vérifie encore $\\Delta(P) = X^3$, avec $P(0) = 0$. Si $P_1$ et $P_2$ conviennent, $\\Delta(P_1 - P_2) = 0$, donc $P_1 - P_2$ est constant d'après 2, et cette constante vaut $P_1(0) - P_2(0) = 0$ : $P$ est unique. Pour le déterminer, on cherche $P = aX^4 + bX^3 + cX^2 + dX$ (car $P(0) = 0$). Alors $\\Delta(P) = a(4X^3 + 6X^2 + 4X + 1) + b(3X^2 + 3X + 1) + c(2X + 1) + d = 4aX^3 + (6a + 3b)X^2 + (4a + 3b + 2c)X + (a + b + c + d)$, et $\\Delta(P) = X^3$ équivaut à $4a = 1$, $6a + 3b = 0$, $4a + 3b + 2c = 0$, $a + b + c + d = 0$, soit $a = \\frac{1}{4}$, $b = -\\frac{1}{2}$, $c = \\frac{1}{4}$, $d = 0$. Donc $$P = \\frac{X^4}{4} - \\frac{X^3}{2} + \\frac{X^2}{4} = \\frac{X^2(X - 1)^2}{4}.$$\n\n5. Pour tout entier $k$, $\\Delta(P)(k) = P(k + 1) - P(k) = k^3$. En sommant de $k = 0$ à $N$, les termes se télescopent : $$\\sum_{k=0}^{N} k^3 = P(N + 1) - P(0) = \\frac{N^2(N + 1)^2}{4}.$$"
+        },
+        {
+          "enonce": "Soit $n \\geq 1$ un entier. Pour $P \\in \\mathbb{R}_n[X]$, on pose $\\Delta(P) = P(X + 1) - P(X)$.\n\n1. Montrer que $\\Delta$ est un endomorphisme de $\\mathbb{R}_n[X]$ et que, si $P$ est de degré $k \\geq 1$, alors $\\Delta(P)$ est de degré $k - 1$.\n\n2. Déterminer $\\mathrm{Ker}\\, \\Delta$.\n\n3. Montrer que $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. On prend $n = 2$. En déduire qu'il existe un unique polynôme $P \\in \\mathbb{R}_{2}[X]$ tel que $\\Delta(P) = X$ et $P(0) = 0$, puis le déterminer.\n\n5. En déduire, pour tout entier $N \\geq 0$, une expression factorisée de $\\sum_{k=0}^{N} k$.",
+          "indices": [
+            "Pour le degré, développer $(X + 1)^k - X^k$ par la formule du binôme.",
+            "Si $\\Delta(P) = 0$, que vaut $P(m)$ pour tout entier naturel $m$ ?",
+            "Pour 5, appliquer l'égalité $\\Delta(P) = X$ aux entiers $k = 0, 1, \\dots, N$, puis sommer."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le polynôme $P$ de la question 4 ?",
+            "propositions": [
+              "$\\frac{X(X+1)}{2}$",
+              "$\\frac{X(X-1)}{2}$",
+              "$\\frac{X^2}{2}$",
+              "$\\frac{X^2-1}{2}$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. Pour $P$, $Q$ dans $\\mathbb{R}_n[X]$ et $\\lambda$, $\\mu$ réels, $\\Delta(\\lambda P + \\mu Q) = \\lambda P(X + 1) + \\mu Q(X + 1) - \\lambda P(X) - \\mu Q(X) = \\lambda\\Delta(P) + \\mu\\Delta(Q)$, et $\\Delta(P)$ est de degré au plus $n$ : $\\Delta$ est un endomorphisme. Si $P = \\sum_{i=0}^{k} a_iX^i$ avec $a_k \\neq 0$ et $k \\geq 1$, alors $(X + 1)^i - X^i$ est de degré au plus $i - 1$ pour $i \\geq 1$ (nul pour $i = 0$), et $(X + 1)^k - X^k = kX^{k-1} + \\dots$ (termes de degré au plus $k - 2$). Donc $\\Delta(P)$ a pour terme de degré $k - 1$ le monôme $ka_kX^{k-1}$, non nul : $\\Delta(P)$ est de degré $k - 1$.\n\n2. Les constantes sont dans le noyau. Réciproquement, si $\\Delta(P) = 0$, alors $P(m + 1) = P(m)$ pour tout entier $m$, donc $P(m) = P(0)$ pour tout $m \\in \\mathbb{N}$ : le polynôme $P - P(0)$ a une infinité de racines, il est nul. Ainsi $\\mathrm{Ker}\\, \\Delta = \\mathbb{R}_0[X]$, l'ensemble des polynômes constants, de dimension $1$.\n\n3. D'après 1, $\\Delta(P)$ est de degré au plus $n - 1$ pour tout $P \\in \\mathbb{R}_n[X]$ (il est nul si $P$ est constant), donc $\\mathrm{Im}\\, \\Delta \\subset \\mathbb{R}_{n-1}[X]$. Par le théorème du rang, $\\mathrm{rg}\\, \\Delta = (n + 1) - 1 = n = \\dim \\mathbb{R}_{n-1}[X]$. Un sous-espace inclus dans un autre et de même dimension finie lui est égal : $\\mathrm{Im}\\, \\Delta = \\mathbb{R}_{n-1}[X]$.\n\n4. Avec $n = 2$, $X \\in \\mathbb{R}_{1}[X] = \\mathrm{Im}\\, \\Delta$ : il existe $P_0$ tel que $\\Delta(P_0) = X$, et $P = P_0 - P_0(0)$ vérifie encore $\\Delta(P) = X$, avec $P(0) = 0$. Si $P_1$ et $P_2$ conviennent, $\\Delta(P_1 - P_2) = 0$, donc $P_1 - P_2$ est constant d'après 2, et cette constante vaut $P_1(0) - P_2(0) = 0$ : $P$ est unique. Pour le déterminer, on cherche $P = aX^2 + bX$ (car $P(0) = 0$). Alors $\\Delta(P) = a(2X + 1) + b = 2aX + (a + b)$, et $\\Delta(P) = X$ équivaut à $2a = 1$ et $a + b = 0$, soit $a = \\frac{1}{2}$, $b = -\\frac{1}{2}$. Donc $$P = \\frac{X^2}{2} - \\frac{X}{2} = \\frac{X(X - 1)}{2}.$$\n\n5. Pour tout entier $k$, $\\Delta(P)(k) = P(k + 1) - P(k) = k$. En sommant de $k = 0$ à $N$, les termes se télescopent : $$\\sum_{k=0}^{N} k = P(N + 1) - P(0) = \\frac{N(N + 1)}{2}.$$"
+        }
+      ]
+    },
+    {
+      "id": "al-l1-applications-isomorphismes-ex5",
+      "carte": "al-l1-applications-isomorphismes",
+      "difficulte": 2,
+      "titre": "Un endomorphisme de $\\mathbb{R}^3$ dépendant d'un paramètre",
+      "enonce": "Pour tout réel $a$, on note $f_a$ l'application de $\\mathbb{R}^3$ dans $\\mathbb{R}^3$ définie par $$f_a(x, y, z) = (x + ay, y + az, z + ax).$$\n\n1. Justifier que $f_a$ est un endomorphisme de $\\mathbb{R}^3$.\n\n2. Déterminer les réels $a$ pour lesquels $f_a$ est un automorphisme de $\\mathbb{R}^3$. Pour les autres valeurs, donner un vecteur non nul du noyau.",
+      "duree_min": 10,
+      "indices": [
+        "Un endomorphisme d'un espace vectoriel de dimension finie est bijectif si et seulement s'il est injectif.",
+        "Résoudre $f_a(x, y, z) = (0, 0, 0)$ en exprimant les inconnues les unes en fonction des autres."
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $a$ l'endomorphisme $f_a$ est-il un automorphisme ?",
+        "propositions": [
+          "Pour tout $a \\neq -1$",
+          "Pour tout $a \\neq 1$",
+          "Pour tout $a \\notin \\{-1, 1\\}$",
+          "Pour tout réel $a$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Chaque coordonnée de $f_a(x, y, z)$ est une combinaison linéaire de $x$, $y$, $z$ : $f_a$ est linéaire, de $\\mathbb{R}^3$ dans lui-même.\n\n2. Comme $\\mathbb{R}^3$ est de dimension finie, $f_a$ est un automorphisme si et seulement si $\\mathrm{Ker}\\, f_a = \\{0\\}$. Si $f_a(x, y, z) = 0$, alors $x = -ay$, $y = -az$ et $z = -ax$, d'où $x = -ay = a^2z = -a^3x$, soit $(1 + a^3)x = 0$. Or $1 + a^3 = (1 + a)(1 - a + a^2)$ et $1 - a + a^2 = \\left(a - \\frac12\\right)^2 + \\frac34 > 0$. Si $a \\neq -1$, on obtient $x = 0$, puis $z = -ax = 0$ et $y = -az = 0$ : le noyau est réduit à $\\{0\\}$ et $f_a$ est un automorphisme. Si $a = -1$, $f_{-1}(1, 1, 1) = (0, 0, 0)$ : $f_{-1}$ n'est pas injectif. Ainsi $f_a$ est un automorphisme si et seulement si $a \\neq -1$.",
+      "variantes": [
+        {
+          "enonce": "Pour tout réel $a$, on note $f_a$ l'application de $\\mathbb{R}^3$ dans $\\mathbb{R}^3$ définie par $$f_a(x, y, z) = (ax + y, x + ay, z).$$\n\n1. Justifier que $f_a$ est un endomorphisme de $\\mathbb{R}^3$.\n\n2. Déterminer les réels $a$ pour lesquels $f_a$ est un automorphisme de $\\mathbb{R}^3$. Pour les autres valeurs, donner un vecteur non nul du noyau.",
+          "indices": [
+            "Un endomorphisme d'un espace vectoriel de dimension finie est bijectif si et seulement s'il est injectif.",
+            "Résoudre $f_a(x, y, z) = (0, 0, 0)$ en exprimant les inconnues les unes en fonction des autres."
+          ],
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ l'endomorphisme $f_a$ est-il un automorphisme ?",
+            "propositions": [
+              "Pour tout $a \\neq -1$",
+              "Pour tout $a \\notin \\{-1, 1\\}$",
+              "Pour tout $a \\neq 0$",
+              "Pour tout $a \\neq 1$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. Chaque coordonnée de $f_a(x, y, z)$ est une combinaison linéaire de $x$, $y$, $z$ : $f_a$ est linéaire, de $\\mathbb{R}^3$ dans lui-même.\n\n2. Comme $\\mathbb{R}^3$ est de dimension finie, $f_a$ est un automorphisme si et seulement si $\\mathrm{Ker}\\, f_a = \\{0\\}$. Si $f_a(x, y, z) = 0$, alors $z = 0$, $y = -ax$ et $x + ay = 0$, d'où $(1 - a^2)x = 0$. Si $a \\notin \\{-1, 1\\}$, on obtient $x = 0$, puis $y = 0$ : le noyau est réduit à $\\{0\\}$ et $f_a$ est un automorphisme. Si $a = 1$, $f_1(1, -1, 0) = (0, 0, 0)$ ; si $a = -1$, $f_{-1}(1, 1, 0) = (0, 0, 0)$ : dans ces deux cas, $f_a$ n'est pas injectif. Ainsi $f_a$ est un automorphisme si et seulement si $a \\notin \\{-1, 1\\}$."
+        },
+        {
+          "enonce": "Pour tout réel $a$, on note $f_a$ l'application de $\\mathbb{R}^3$ dans $\\mathbb{R}^3$ définie par $$f_a(x, y, z) = (x + y + z, x + ay, x + az).$$\n\n1. Justifier que $f_a$ est un endomorphisme de $\\mathbb{R}^3$.\n\n2. Déterminer les réels $a$ pour lesquels $f_a$ est un automorphisme de $\\mathbb{R}^3$. Pour les autres valeurs, donner un vecteur non nul du noyau.",
+          "indices": [
+            "Un endomorphisme d'un espace vectoriel de dimension finie est bijectif si et seulement s'il est injectif.",
+            "Résoudre $f_a(x, y, z) = (0, 0, 0)$ en exprimant les inconnues les unes en fonction des autres."
+          ],
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ l'endomorphisme $f_a$ est-il un automorphisme ?",
+            "propositions": [
+              "Pour tout $a \\notin \\{0, 2\\}$",
+              "Pour tout $a \\neq 2$",
+              "Pour tout $a \\notin \\{0, -2\\}$",
+              "Pour tout $a \\neq 0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Chaque coordonnée de $f_a(x, y, z)$ est une combinaison linéaire de $x$, $y$, $z$ : $f_a$ est linéaire, de $\\mathbb{R}^3$ dans lui-même.\n\n2. Comme $\\mathbb{R}^3$ est de dimension finie, $f_a$ est un automorphisme si et seulement si $\\mathrm{Ker}\\, f_a = \\{0\\}$. Si $f_a(x, y, z) = 0$, alors $x = -ay$, $x = -az$ et $x + y + z = 0$. Si $a = 0$, on obtient $x = 0$ et $y + z = 0$ : $f_0(0, 1, -1) = (0, 0, 0)$, et $f_0$ n'est pas injectif. Si $a \\neq 0$, $y = z = -\\frac{x}{a}$, et la première équation donne $x\\left(1 - \\frac{2}{a}\\right) = 0$, soit $\\frac{(a - 2)x}{a} = 0$. Si de plus $a \\neq 2$, alors $x = 0$, puis $y = z = 0$ : $f_a$ est un automorphisme. Si $a = 2$, $f_2(2, -1, -1) = (0, 0, 0)$ : $f_2$ n'est pas injectif. Ainsi $f_a$ est un automorphisme si et seulement si $a \\notin \\{0, 2\\}$."
+        }
+      ]
+    },
+    {
+      "id": "al-l1-applications-matrice-ex5",
+      "carte": "al-l1-applications-matrice",
+      "difficulte": 3,
+      "titre": "Matrices des deux composées de deux applications linéaires",
+      "enonce": "On considère les applications linéaires $f : \\mathbb{R}^2 \\to \\mathbb{R}^3$ et $g : \\mathbb{R}^3 \\to \\mathbb{R}^2$ définies par $$f(x, y) = (x + y, x - y, 2x) \\qquad \\text{et} \\qquad g(x, y, z) = (x - z, y + z).$$\n\n1. Écrire les matrices $A$ de $f$ et $B$ de $g$ dans les bases canoniques.\n\n2. En déduire la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$. L'endomorphisme $g \\circ f$ est-il bijectif ?\n\n3. Calculer la matrice de $f \\circ g$ dans la base canonique de $\\mathbb{R}^3$, puis justifier, sans calcul, que $f \\circ g$ n'est pas bijectif.",
+      "duree_min": 15,
+      "indices": [
+        "La $j$-ième colonne de la matrice d'une application linéaire est formée des coordonnées de l'image du $j$-ième vecteur de la base de départ.",
+        "La matrice d'une composée $v \\circ u$ est le produit de la matrice de $v$ par celle de $u$, dans cet ordre.",
+        "Pour la dernière question, comparer $\\mathrm{Im}(f \\circ g)$ et $\\mathrm{Im}\\, f$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$ ?",
+        "propositions": [
+          "$\\begin{pmatrix} -1 & 3 \\\\ 1 & -1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} -1 & 1 \\\\ 3 & -1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} 1 & -1 \\\\ 3 & -1 \\end{pmatrix}$",
+          "$\\begin{pmatrix} -1 & 1 \\\\ 3 & 1 \\end{pmatrix}$"
+        ],
+        "bonne": 1
+      },
+      "correction": "1. Les colonnes de $A$ sont $f(1, 0)$ et $f(0, 1)$, celles de $B$ sont $g(1, 0, 0)$, $g(0, 1, 0)$ et $g(0, 0, 1)$ : $$A = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\\\ 2 & 0 \\end{pmatrix}, \\qquad B = \\begin{pmatrix} 1 & 0 & -1 \\\\ 0 & 1 & 1 \\end{pmatrix}.$$\n\n2. La matrice de $g \\circ f$ est $$BA = \\begin{pmatrix} -1 & 1 \\\\ 3 & -1 \\end{pmatrix}.$$ Elle est d'ordre $2$ et $ad - bc = (-1)(-1) - 1 \\times 3 = -2 \\neq 0$, donc elle est inversible : $g \\circ f$ est bijectif. (On peut aussi résoudre $-x + y = 0$, $3x - y = 0$, qui n'a que la solution nulle.)\n\n3. La matrice de $f \\circ g$ est $$AB = \\begin{pmatrix} 1 & 1 & 0 \\\\ 1 & -1 & -2 \\\\ 2 & 0 & -2 \\end{pmatrix}.$$ L'image de $f \\circ g$ est contenue dans celle de $f$, qui est de dimension au plus $\\dim \\mathbb{R}^2 = 2$ (théorème du rang). Donc $\\mathrm{rg}(f \\circ g) \\leq 2 < 3$ : $f \\circ g$ n'est pas surjectif, donc pas bijectif.",
+      "variantes": [
+        {
+          "enonce": "On considère les applications linéaires $f : \\mathbb{R}^2 \\to \\mathbb{R}^3$ et $g : \\mathbb{R}^3 \\to \\mathbb{R}^2$ définies par $$f(x, y) = (x, x + y, y) \\qquad \\text{et} \\qquad g(x, y, z) = (x + y + z, x - z).$$\n\n1. Écrire les matrices $A$ de $f$ et $B$ de $g$ dans les bases canoniques.\n\n2. En déduire la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$. L'endomorphisme $g \\circ f$ est-il bijectif ?\n\n3. Calculer la matrice de $f \\circ g$ dans la base canonique de $\\mathbb{R}^3$, puis justifier, sans calcul, que $f \\circ g$ n'est pas bijectif.",
+          "indices": [
+            "La $j$-ième colonne de la matrice d'une application linéaire est formée des coordonnées de l'image du $j$-ième vecteur de la base de départ.",
+            "La matrice d'une composée $v \\circ u$ est le produit de la matrice de $v$ par celle de $u$, dans cet ordre.",
+            "Pour la dernière question, comparer $\\mathrm{Im}(f \\circ g)$ et $\\mathrm{Im}\\, f$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 2 & 2 \\\\ 1 & -1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 1 \\\\ 2 & -1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 2 \\\\ 1 & 1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 2 \\\\ 1 & -1 \\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Les colonnes de $A$ sont $f(1, 0)$ et $f(0, 1)$, celles de $B$ sont $g(1, 0, 0)$, $g(0, 1, 0)$ et $g(0, 0, 1)$ : $$A = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 0 & 1 \\end{pmatrix}, \\qquad B = \\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & 0 & -1 \\end{pmatrix}.$$\n\n2. La matrice de $g \\circ f$ est $$BA = \\begin{pmatrix} 2 & 2 \\\\ 1 & -1 \\end{pmatrix}.$$ Elle est d'ordre $2$ et $ad - bc = 2 \\times (-1) - 2 \\times 1 = -4 \\neq 0$, donc elle est inversible : $g \\circ f$ est bijectif. (On peut aussi résoudre $2x + 2y = 0$, $x - y = 0$, qui n'a que la solution nulle.)\n\n3. La matrice de $f \\circ g$ est $$AB = \\begin{pmatrix} 1 & 1 & 1 \\\\ 2 & 1 & 0 \\\\ 1 & 0 & -1 \\end{pmatrix}.$$ L'image de $f \\circ g$ est contenue dans celle de $f$, qui est de dimension au plus $\\dim \\mathbb{R}^2 = 2$ (théorème du rang). Donc $\\mathrm{rg}(f \\circ g) \\leq 2 < 3$ : $f \\circ g$ n'est pas surjectif, donc pas bijectif."
+        },
+        {
+          "enonce": "On considère les applications linéaires $f : \\mathbb{R}^2 \\to \\mathbb{R}^3$ et $g : \\mathbb{R}^3 \\to \\mathbb{R}^2$ définies par $$f(x, y) = (x - y, y, x + y) \\qquad \\text{et} \\qquad g(x, y, z) = (x + z, y - z).$$\n\n1. Écrire les matrices $A$ de $f$ et $B$ de $g$ dans les bases canoniques.\n\n2. En déduire la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$. L'endomorphisme $g \\circ f$ est-il bijectif ?\n\n3. Calculer la matrice de $f \\circ g$ dans la base canonique de $\\mathbb{R}^3$, puis justifier, sans calcul, que $f \\circ g$ n'est pas bijectif.",
+          "indices": [
+            "La $j$-ième colonne de la matrice d'une application linéaire est formée des coordonnées de l'image du $j$-ième vecteur de la base de départ.",
+            "La matrice d'une composée $v \\circ u$ est le produit de la matrice de $v$ par celle de $u$, dans cet ordre.",
+            "Pour la dernière question, comparer $\\mathrm{Im}(f \\circ g)$ et $\\mathrm{Im}\\, f$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la matrice de $g \\circ f$ dans la base canonique de $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$\\begin{pmatrix} 2 & -1 \\\\ 0 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 0 \\\\ 1 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0 & 2 \\\\ 0 & -1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 0 \\\\ -1 & 0 \\end{pmatrix}$"
+            ],
+            "bonne": 3
+          },
+          "correction": "1. Les colonnes de $A$ sont $f(1, 0)$ et $f(0, 1)$, celles de $B$ sont $g(1, 0, 0)$, $g(0, 1, 0)$ et $g(0, 0, 1)$ : $$A = \\begin{pmatrix} 1 & -1 \\\\ 0 & 1 \\\\ 1 & 1 \\end{pmatrix}, \\qquad B = \\begin{pmatrix} 1 & 0 & 1 \\\\ 0 & 1 & -1 \\end{pmatrix}.$$\n\n2. La matrice de $g \\circ f$ est $$BA = \\begin{pmatrix} 2 & 0 \\\\ -1 & 0 \\end{pmatrix}.$$ Sa seconde colonne est nulle : $(g \\circ f)(0, 1) = (0, 0)$. En effet $f(0, 1) = (-1, 1, 1)$ et $g(-1, 1, 1) = (0, 0)$. Le noyau de $g \\circ f$ n'est pas réduit à $\\{0\\}$ : ici, $g \\circ f$ n'est pas bijectif.\n\n3. La matrice de $f \\circ g$ est $$AB = \\begin{pmatrix} 1 & -1 & 2 \\\\ 0 & 1 & -1 \\\\ 1 & 1 & 0 \\end{pmatrix}.$$ L'image de $f \\circ g$ est contenue dans celle de $f$, qui est de dimension au plus $\\dim \\mathbb{R}^2 = 2$ (théorème du rang). Donc $\\mathrm{rg}(f \\circ g) \\leq 2 < 3$ : $f \\circ g$ n'est pas surjectif, donc pas bijectif."
+        }
+      ]
     }
   ]
 }

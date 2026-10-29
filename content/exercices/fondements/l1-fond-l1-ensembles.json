@@ -1165,6 +1165,154 @@
         "Pour la question 3, définir $t(k)$ à partir de $s_k(k)$."
       ],
       "correction": "1. Pour $x \\in g(\\mathcal{P}(E))$, il existe une unique partie $A$ telle que $g(A) = x$ (injectivité de $g$) : on pose $h(x) = A$. Pour $x \\notin g(\\mathcal{P}(E))$, on pose $h(x) = \\emptyset$. Alors, pour toute partie $A$ de $E$, $h(g(A)) = A$ : toute partie a un antécédent par $h$, qui est surjective.\n\n2. Le théorème de Cantor interdit l'existence d'une surjection de $E$ sur $\\mathcal{P}(E)$. Donc l'hypothèse de la question 1 est absurde : il n'existe aucune injection de $\\mathcal{P}(E)$ dans $E$.\n\n3. Posons $t(k) = 1 - s_k(k)$ pour $k \\in \\mathbb{N}$ : c'est un élément de $\\{0, 1\\}^{\\mathbb{N}}$, et $t(k) \\neq s_k(k)$, donc $t \\neq s_k$ pour tout $k$. Aucune suite $(s_k)$ ne prend toutes les valeurs de $\\{0, 1\\}^{\\mathbb{N}}$ : il n'existe pas de surjection de $\\mathbb{N}$ sur $\\{0, 1\\}^{\\mathbb{N}}$, qui n'est donc pas au plus dénombrable. C'est l'argument diagonal, sous sa forme la plus nue."
+    },
+    {
+      "id": "fond-l1-ensembles-tiroirs-ex6",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "difficulte": 4,
+      "titre": "Approcher un réel par des rationnels",
+      "enonce": "Soit $x$ un réel. Pour $t \\in \\mathbb{R}$, on note $r(t) = t - \\lfloor t \\rfloor$, qui appartient à $\\left[0, 1\\right[$. On pose\n$$A = \\left\\{\\frac{p}{q} : p \\in \\mathbb{Z},\\ q \\in \\mathbb{N}^*,\\ \\left|x - \\frac{p}{q}\\right| < \\frac{1}{q^2}\\right\\}.$$\n\n1. Soit $N \\geq 1$ un entier. En considérant les $N + 1$ réels $r(kx)$, $0 \\leq k \\leq N$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, montrer qu'il existe deux entiers $l < k$ de $\\{0, \\dots, N\\}$ tels que $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. En déduire qu'il existe $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $|qx - p| < \\frac{1}{N}$, puis que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$.\n\n3. On suppose $x$ irrationnel. Montrer que $A$ est infini.\n\n4. Dans cette question, $x = \\frac{1}{2}$. Montrer que, si $\\frac{p}{q} \\neq \\frac{1}{2}$, alors $\\left|x - \\frac{p}{q}\\right| \\geq \\frac{1}{2q}$, puis déterminer $A$. L'hypothèse « $x$ irrationnel » est-elle utile à la question 3 ?",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : principe des tiroirs, avec $N + 1$ réels répartis dans $N$ intervalles.",
+        "Question 2 : prendre $q = k - l$ et exprimer $r(kx) - r(lx)$ à l'aide de $\\lfloor kx \\rfloor$ et $\\lfloor lx \\rfloor$.",
+        "Question 3 : raisonner par l'absurde ; si $A$ est fini, la distance de $x$ aux éléments de $A$ est minorée par un réel strictement positif."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble $A$ obtenu à la question 4 ?",
+        "propositions": [
+          "$\\left\\{0, \\frac{1}{2}, 1\\right\\}$",
+          "$\\left\\{\\frac{1}{2}\\right\\}$",
+          "$\\left\\{0, \\frac{1}{2}\\right\\}$",
+          "Un ensemble infini"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $0 \\leq k \\leq N$, $r(kx) \\in \\left[0, 1\\right[$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, forment une partition de $\\left[0, 1\\right[$. L'application qui à $k \\in \\{0, \\dots, N\\}$ associe l'indice $j$ de l'intervalle contenant $r(kx)$ va d'un ensemble à $N + 1$ éléments dans un ensemble à $N$ éléments : par le principe des tiroirs, elle n'est pas injective. Il existe donc $l < k$ tels que $r(kx)$ et $r(lx)$ soient dans le même intervalle, semi-ouvert de longueur $\\frac{1}{N}$, d'où $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. Posons $q = k - l \\in \\{1, \\dots, N\\}$ et $p = \\lfloor kx \\rfloor - \\lfloor lx \\rfloor \\in \\mathbb{Z}$. Alors $qx - p = (kx - \\lfloor kx \\rfloor) - (lx - \\lfloor lx \\rfloor) = r(kx) - r(lx)$, donc $|qx - p| < \\frac{1}{N}$. En divisant par $q \\geq 1$, on obtient $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN}$, et $\\frac{1}{qN} \\leq \\frac{1}{q^2}$ car $q \\leq N$.\n\n3. D'après la question 2, appliquée avec $N = 1$, $A$ n'est pas vide. Supposons $A$ fini. Comme $x$ est irrationnel, $x \\notin A$, donc $\\delta = \\min_{a \\in A} |x - a|$ est un réel strictement positif. Choisissons un entier $N \\geq 1$ tel que $\\frac{1}{N} < \\delta$. La question 2 fournit $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$ : ainsi $\\frac{p}{q} \\in A$. Mais $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{N} < \\delta$, ce qui contredit la définition de $\\delta$. Donc $A$ est infini.\n\n4. Si $\\frac{p}{q} \\neq \\frac{1}{2}$, l'entier $q - 2p$ est non nul, donc $\\left|\\frac{1}{2} - \\frac{p}{q}\\right| = \\frac{|q - 2p|}{2q} \\geq \\frac{1}{2q}$. Pour qu'un tel quotient $\\frac{p}{q}$ vérifie la condition définissant $A$, il faut $\\frac{1}{2q} < \\frac{1}{q^2}$, soit $q < 2$, c'est-à-dire $q = 1$ ; alors $\\left|\\frac{1}{2} - p\\right| < 1$ impose $p \\in \\{0, 1\\}$, et ces deux valeurs conviennent : $\\left|\\frac{1}{2} - 0\\right| = \\left|\\frac{1}{2} - 1\\right| = \\frac{1}{2} < 1$. Enfin $\\frac{1}{2} \\in A$ (avec $p = 1$ et $q = 2$, l'écart est nul).\n\nDonc $A = \\left\\{0, \\frac{1}{2}, 1\\right\\}$ est fini : sans l'hypothèse « $x$ irrationnel », la conclusion de la question 3 tombe en défaut ; c'est elle qui assure $\\delta > 0$.",
+      "variantes": [
+        {
+          "enonce": "Soit $x$ un réel. Pour $t \\in \\mathbb{R}$, on note $r(t) = t - \\lfloor t \\rfloor$, qui appartient à $\\left[0, 1\\right[$. On pose\n$$A = \\left\\{\\frac{p}{q} : p \\in \\mathbb{Z},\\ q \\in \\mathbb{N}^*,\\ \\left|x - \\frac{p}{q}\\right| < \\frac{1}{q^2}\\right\\}.$$\n\n1. Soit $N \\geq 1$ un entier. En considérant les $N + 1$ réels $r(kx)$, $0 \\leq k \\leq N$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, montrer qu'il existe deux entiers $l < k$ de $\\{0, \\dots, N\\}$ tels que $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. En déduire qu'il existe $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $|qx - p| < \\frac{1}{N}$, puis que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$.\n\n3. On suppose $x$ irrationnel. Montrer que $A$ est infini.\n\n4. Dans cette question, $x = \\frac{1}{3}$. Montrer que, si $\\frac{p}{q} \\neq \\frac{1}{3}$, alors $\\left|x - \\frac{p}{q}\\right| \\geq \\frac{1}{3q}$, puis déterminer $A$. L'hypothèse « $x$ irrationnel » est-elle utile à la question 3 ?",
+          "indices": [
+            "Question 1 : principe des tiroirs, avec $N + 1$ réels répartis dans $N$ intervalles.",
+            "Question 2 : prendre $q = k - l$ et exprimer $r(kx) - r(lx)$ à l'aide de $\\lfloor kx \\rfloor$ et $\\lfloor lx \\rfloor$.",
+            "Question 3 : raisonner par l'absurde ; si $A$ est fini, la distance de $x$ aux éléments de $A$ est minorée par un réel strictement positif."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble $A$ obtenu à la question 4 ?",
+            "propositions": [
+              "$\\left\\{0, \\frac{1}{3}, \\frac{1}{2}, 1\\right\\}$",
+              "$\\left\\{0, \\frac{1}{3}, 1\\right\\}$",
+              "$\\left\\{\\frac{1}{3}\\right\\}$",
+              "Un ensemble infini"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $0 \\leq k \\leq N$, $r(kx) \\in \\left[0, 1\\right[$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, forment une partition de $\\left[0, 1\\right[$. L'application qui à $k \\in \\{0, \\dots, N\\}$ associe l'indice $j$ de l'intervalle contenant $r(kx)$ va d'un ensemble à $N + 1$ éléments dans un ensemble à $N$ éléments : par le principe des tiroirs, elle n'est pas injective. Il existe donc $l < k$ tels que $r(kx)$ et $r(lx)$ soient dans le même intervalle, semi-ouvert de longueur $\\frac{1}{N}$, d'où $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. Posons $q = k - l \\in \\{1, \\dots, N\\}$ et $p = \\lfloor kx \\rfloor - \\lfloor lx \\rfloor \\in \\mathbb{Z}$. Alors $qx - p = (kx - \\lfloor kx \\rfloor) - (lx - \\lfloor lx \\rfloor) = r(kx) - r(lx)$, donc $|qx - p| < \\frac{1}{N}$. En divisant par $q \\geq 1$, on obtient $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN}$, et $\\frac{1}{qN} \\leq \\frac{1}{q^2}$ car $q \\leq N$.\n\n3. D'après la question 2, appliquée avec $N = 1$, $A$ n'est pas vide. Supposons $A$ fini. Comme $x$ est irrationnel, $x \\notin A$, donc $\\delta = \\min_{a \\in A} |x - a|$ est un réel strictement positif. Choisissons un entier $N \\geq 1$ tel que $\\frac{1}{N} < \\delta$. La question 2 fournit $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$ : ainsi $\\frac{p}{q} \\in A$. Mais $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{N} < \\delta$, ce qui contredit la définition de $\\delta$. Donc $A$ est infini.\n\n4. Si $\\frac{p}{q} \\neq \\frac{1}{3}$, l'entier $q - 3p$ est non nul, donc $\\left|\\frac{1}{3} - \\frac{p}{q}\\right| = \\frac{|q - 3p|}{3q} \\geq \\frac{1}{3q}$. Pour qu'un tel quotient vérifie la condition définissant $A$, il faut $\\frac{1}{3q} < \\frac{1}{q^2}$, soit $q < 3$.\n\n- Pour $q = 1$ : $\\left|\\frac{1}{3} - p\\right| < 1$ impose $p \\in \\{0, 1\\}$, et les écarts $\\frac{1}{3}$ et $\\frac{2}{3}$ conviennent.\n- Pour $q = 2$ : la condition $\\left|\\frac{1}{3} - \\frac{p}{2}\\right| < \\frac{1}{4}$ s'écrit $|2 - 3p| < \\frac{3}{2}$, ce qui impose $p = 1$ ; l'écart vaut $\\frac{1}{6} < \\frac{1}{4}$.\n\nEnfin $\\frac{1}{3} \\in A$ (écart nul). Donc $A = \\left\\{0, \\frac{1}{3}, \\frac{1}{2}, 1\\right\\}$ est fini : sans l'hypothèse « $x$ irrationnel », la conclusion de la question 3 tombe en défaut ; c'est elle qui assure $\\delta > 0$."
+        },
+        {
+          "enonce": "Soit $x$ un réel. Pour $t \\in \\mathbb{R}$, on note $r(t) = t - \\lfloor t \\rfloor$, qui appartient à $\\left[0, 1\\right[$. On pose\n$$A = \\left\\{\\frac{p}{q} : p \\in \\mathbb{Z},\\ q \\in \\mathbb{N}^*,\\ \\left|x - \\frac{p}{q}\\right| < \\frac{1}{q^2}\\right\\}.$$\n\n1. Soit $N \\geq 1$ un entier. En considérant les $N + 1$ réels $r(kx)$, $0 \\leq k \\leq N$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, montrer qu'il existe deux entiers $l < k$ de $\\{0, \\dots, N\\}$ tels que $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. En déduire qu'il existe $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $|qx - p| < \\frac{1}{N}$, puis que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$.\n\n3. On suppose $x$ irrationnel. Montrer que $A$ est infini.\n\n4. Dans cette question, $x = \\frac{2}{5}$. Montrer que, si $\\frac{p}{q} \\neq \\frac{2}{5}$, alors $\\left|x - \\frac{p}{q}\\right| \\geq \\frac{1}{5q}$, puis déterminer $A$. L'hypothèse « $x$ irrationnel » est-elle utile à la question 3 ?",
+          "indices": [
+            "Question 1 : principe des tiroirs, avec $N + 1$ réels répartis dans $N$ intervalles.",
+            "Question 2 : prendre $q = k - l$ et exprimer $r(kx) - r(lx)$ à l'aide de $\\lfloor kx \\rfloor$ et $\\lfloor lx \\rfloor$.",
+            "Question 3 : raisonner par l'absurde ; si $A$ est fini, la distance de $x$ aux éléments de $A$ est minorée par un réel strictement positif."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble $A$ obtenu à la question 4 ?",
+            "propositions": [
+              "$\\left\\{0, \\frac{1}{3}, \\frac{2}{5}, \\frac{1}{2}, 1\\right\\}$",
+              "$\\left\\{0, \\frac{2}{5}, \\frac{1}{2}, 1\\right\\}$",
+              "$\\left\\{\\frac{1}{3}, \\frac{2}{5}, \\frac{1}{2}\\right\\}$",
+              "Un ensemble infini"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $0 \\leq k \\leq N$, $r(kx) \\in \\left[0, 1\\right[$, et les $N$ intervalles $\\left[\\frac{j}{N}, \\frac{j+1}{N}\\right[$, $0 \\leq j \\leq N - 1$, forment une partition de $\\left[0, 1\\right[$. L'application qui à $k \\in \\{0, \\dots, N\\}$ associe l'indice $j$ de l'intervalle contenant $r(kx)$ va d'un ensemble à $N + 1$ éléments dans un ensemble à $N$ éléments : par le principe des tiroirs, elle n'est pas injective. Il existe donc $l < k$ tels que $r(kx)$ et $r(lx)$ soient dans le même intervalle, semi-ouvert de longueur $\\frac{1}{N}$, d'où $|r(kx) - r(lx)| < \\frac{1}{N}$.\n\n2. Posons $q = k - l \\in \\{1, \\dots, N\\}$ et $p = \\lfloor kx \\rfloor - \\lfloor lx \\rfloor \\in \\mathbb{Z}$. Alors $qx - p = (kx - \\lfloor kx \\rfloor) - (lx - \\lfloor lx \\rfloor) = r(kx) - r(lx)$, donc $|qx - p| < \\frac{1}{N}$. En divisant par $q \\geq 1$, on obtient $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN}$, et $\\frac{1}{qN} \\leq \\frac{1}{q^2}$ car $q \\leq N$.\n\n3. D'après la question 2, appliquée avec $N = 1$, $A$ n'est pas vide. Supposons $A$ fini. Comme $x$ est irrationnel, $x \\notin A$, donc $\\delta = \\min_{a \\in A} |x - a|$ est un réel strictement positif. Choisissons un entier $N \\geq 1$ tel que $\\frac{1}{N} < \\delta$. La question 2 fournit $p \\in \\mathbb{Z}$ et $q \\in \\{1, \\dots, N\\}$ tels que $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{q^2}$ : ainsi $\\frac{p}{q} \\in A$. Mais $\\left|x - \\frac{p}{q}\\right| < \\frac{1}{qN} \\leq \\frac{1}{N} < \\delta$, ce qui contredit la définition de $\\delta$. Donc $A$ est infini.\n\n4. Si $\\frac{p}{q} \\neq \\frac{2}{5}$, l'entier $2q - 5p$ est non nul, donc $\\left|\\frac{2}{5} - \\frac{p}{q}\\right| = \\frac{|2q - 5p|}{5q} \\geq \\frac{1}{5q}$. Pour qu'un tel quotient vérifie la condition définissant $A$, il faut $\\frac{1}{5q} < \\frac{1}{q^2}$, soit $q < 5$. La condition s'écrit $|2q - 5p| < \\frac{5}{q}$.\n\n- Pour $q = 1$ : $|2 - 5p| < 5$ impose $p \\in \\{0, 1\\}$, d'où $0$ et $1$.\n- Pour $q = 2$ : $|4 - 5p| < \\frac{5}{2}$ impose $p = 1$, d'où $\\frac{1}{2}$.\n- Pour $q = 3$ : $|6 - 5p| < \\frac{5}{3}$ impose $p = 1$, d'où $\\frac{1}{3}$.\n- Pour $q = 4$ : $|8 - 5p| < \\frac{5}{4}$ imposerait $|8 - 5p| \\leq 1$ ; or $8 - 5p$ n'est jamais égal à $-1$, $0$ ou $1$ pour $p$ entier : aucun quotient.\n\nEnfin $\\frac{2}{5} \\in A$ (écart nul). Donc $A = \\left\\{0, \\frac{1}{3}, \\frac{2}{5}, \\frac{1}{2}, 1\\right\\}$ est fini : sans l'hypothèse « $x$ irrationnel », la conclusion de la question 3 tombe en défaut ; c'est elle qui assure $\\delta > 0$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-recurrence-forte-ex5",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "difficulte": 2,
+      "titre": "Une récurrence d'ordre deux",
+      "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 2$, $u_1 = 3$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+2} = 3u_{n+1} - 2u_n$. Montrer par récurrence forte que $u_n = 2^n + 1$ pour tout $n \\in \\mathbb{N}$, puis calculer $u_{10}$.",
+      "duree_min": 10,
+      "indices": [
+        "L'hérédité utilise les deux rangs précédents : vérifier directement la formule aux rangs $0$ et $1$.",
+        "Pour $n \\geq 1$, supposer la formule vraie aux rangs $n - 1$ et $n$, et exprimer $u_{n+1}$ à l'aide de $u_n$ et $u_{n-1}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $u_{10}$ ?",
+        "propositions": [
+          "$1025$",
+          "$1024$",
+          "$2049$",
+          "$1023$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Notons $P(n)$ la propriété « $u_n$ est donné par la formule de l'énoncé ». On raisonne par récurrence forte.\n\n**Initialisation.** $u_0 = 2 = 2^0 + 1$ et $u_1 = 3 = 2^1 + 1$ : $P(0)$ et $P(1)$ sont vraies.\n\n**Hérédité.** Soit $n \\geq 0$ tel que $P(k)$ soit vraie pour tout $k \\in \\{0, \\dots, n\\}$ ; montrons $P(n + 1)$. Si $n = 0$, $P(1)$ a été vérifiée directement. Si $n \\geq 1$, les propriétés $P(n - 1)$ et $P(n)$ sont vraies, et la relation de récurrence (au rang $n - 1$) donne\n$$u_{n+1} = 3u_n - 2u_{n-1} = 3(2^n + 1) - 2(2^{n-1} + 1) = 3 \\cdot 2^n + 3 - 2^n - 2 = 2 \\cdot 2^n + 1 = 2^{n+1} + 1.$$\n\nDonc $P(n)$ est vraie pour tout $n \\in \\mathbb{N}$. En particulier, $u_{10} = 2^{10} + 1 = 1025$.",
+      "variantes": [
+        {
+          "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 1$, $u_1 = 4$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+2} = 5u_{n+1} - 6u_n$. Montrer par récurrence forte que $u_n = 2 \\cdot 3^n - 2^n$ pour tout $n \\in \\mathbb{N}$, puis calculer $u_{10}$.",
+          "indices": [
+            "L'hérédité utilise les deux rangs précédents : vérifier directement la formule aux rangs $0$ et $1$.",
+            "Pour $n \\geq 1$, supposer la formule vraie aux rangs $n - 1$ et $n$, et exprimer $u_{n+1}$ à l'aide de $u_n$ et $u_{n-1}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_{10}$ ?",
+            "propositions": [
+              "$117074$",
+              "$118098$",
+              "$58025$",
+              "$352246$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Notons $P(n)$ la propriété « $u_n$ est donné par la formule de l'énoncé ». On raisonne par récurrence forte.\n\n**Initialisation.** $u_0 = 1 = 2 \\cdot 3^0 - 2^0$ et $u_1 = 4 = 2 \\cdot 3 - 2$ : $P(0)$ et $P(1)$ sont vraies.\n\n**Hérédité.** Soit $n \\geq 0$ tel que $P(k)$ soit vraie pour tout $k \\in \\{0, \\dots, n\\}$ ; montrons $P(n + 1)$. Si $n = 0$, $P(1)$ a été vérifiée directement. Si $n \\geq 1$, les propriétés $P(n - 1)$ et $P(n)$ sont vraies, et la relation de récurrence (au rang $n - 1$) donne\n$$u_{n+1} = 5u_n - 6u_{n-1} = 5(2 \\cdot 3^n - 2^n) - 6(2 \\cdot 3^{n-1} - 2^{n-1}) = 10 \\cdot 3^n - 5 \\cdot 2^n - 4 \\cdot 3^n + 3 \\cdot 2^n = 6 \\cdot 3^n - 2 \\cdot 2^n = 2 \\cdot 3^{n+1} - 2^{n+1}.$$\n\nDonc $P(n)$ est vraie pour tout $n \\in \\mathbb{N}$. En particulier, $u_{10} = 2 \\cdot 3^{10} - 2^{10} = 2 \\times 59049 - 1024 = 117074$."
+        },
+        {
+          "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = 0$, $u_1 = 1$ et, pour tout $n \\in \\mathbb{N}$, $u_{n+2} = 4u_{n+1} - 4u_n$. Montrer par récurrence forte que $u_n = n \\cdot 2^{n-1}$ pour tout $n \\in \\mathbb{N}$, puis calculer $u_{10}$.",
+          "indices": [
+            "L'hérédité utilise les deux rangs précédents : vérifier directement la formule aux rangs $0$ et $1$.",
+            "Pour $n \\geq 1$, supposer la formule vraie aux rangs $n - 1$ et $n$, et exprimer $u_{n+1}$ à l'aide de $u_n$ et $u_{n-1}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $u_{10}$ ?",
+            "propositions": [
+              "$5120$",
+              "$10240$",
+              "$1024$",
+              "$4608$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Notons $P(n)$ la propriété « $u_n$ est donné par la formule de l'énoncé ». On raisonne par récurrence forte.\n\n**Initialisation.** $u_0 = 0 = 0 \\cdot 2^{-1}$ et $u_1 = 1 = 1 \\cdot 2^0$ : $P(0)$ et $P(1)$ sont vraies.\n\n**Hérédité.** Soit $n \\geq 0$ tel que $P(k)$ soit vraie pour tout $k \\in \\{0, \\dots, n\\}$ ; montrons $P(n + 1)$. Si $n = 0$, $P(1)$ a été vérifiée directement. Si $n \\geq 1$, les propriétés $P(n - 1)$ et $P(n)$ sont vraies, et la relation de récurrence (au rang $n - 1$) donne\n$$u_{n+1} = 4u_n - 4u_{n-1} = 4n \\cdot 2^{n-1} - 4(n - 1) \\cdot 2^{n-2} = 2n \\cdot 2^n - (n - 1) \\cdot 2^n = (n + 1) \\cdot 2^n.$$\n\nDonc $P(n)$ est vraie pour tout $n \\in \\mathbb{N}$. En particulier, $u_{10} = 10 \\cdot 2^9 = 5120$."
+        }
+      ]
+    },
+    {
+      "id": "fond-l1-ensembles-composition-ex6",
+      "carte": "fond-l1-ensembles-composition",
+      "difficulte": 3,
+      "titre": "Trace d'une partie sur deux sous-ensembles",
+      "enonce": "Soient $E$ un ensemble, $A$ et $B$ deux parties de $E$, et\n$$\\varphi : \\mathcal{P}(E) \\to \\mathcal{P}(A) \\times \\mathcal{P}(B), \\quad X \\mapsto (X \\cap A, X \\cap B).$$\n\n1. Montrer que $\\varphi$ est injective si et seulement si $A \\cup B = E$.\n\n2. Montrer que $\\varphi$ est surjective si et seulement si $A \\cap B = \\emptyset$.\n\n3. Lorsque $\\varphi$ est bijective, déterminer sa réciproque.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : si $A \\cup B \\neq E$, comparer les images de $\\emptyset$ et de $\\{x\\}$ pour un $x$ hors de $A \\cup B$ ; dans l'autre sens, écrire $X = (X \\cap A) \\cup (X \\cap B)$.",
+        "Question 2 : si $x \\in A \\cap B$, le couple $(\\{x\\}, \\emptyset)$ a-t-il un antécédent ? Dans l'autre sens, chercher un antécédent de $(Y, Z)$ sous la forme $Y \\cup Z$."
+      ],
+      "reponse_finale": {
+        "question": "À quelle condition $\\varphi$ est-elle bijective ?",
+        "propositions": [
+          "$A \\cup B = E$ et $A \\cap B = \\emptyset$",
+          "$A \\cup B = E$",
+          "$A \\cap B = \\emptyset$",
+          "$A = B = E$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Supposons $A \\cup B = E$. Pour toute partie $X$ de $E$, $X = X \\cap (A \\cup B) = (X \\cap A) \\cup (X \\cap B)$. Si $\\varphi(X) = \\varphi(X')$, alors $X \\cap A = X' \\cap A$ et $X \\cap B = X' \\cap B$, donc $X = (X \\cap A) \\cup (X \\cap B) = (X' \\cap A) \\cup (X' \\cap B) = X'$ : $\\varphi$ est injective.\n\nRéciproquement, supposons $A \\cup B \\neq E$ et soit $x \\in E$ hors de $A \\cup B$. Alors $\\varphi(\\{x\\}) = (\\emptyset, \\emptyset) = \\varphi(\\emptyset)$, alors que $\\{x\\} \\neq \\emptyset$ : $\\varphi$ n'est pas injective.\n\n2. Supposons $A \\cap B = \\emptyset$ et soit $(Y, Z) \\in \\mathcal{P}(A) \\times \\mathcal{P}(B)$. Posons $X = Y \\cup Z$. Comme $Y \\subset A$ et $Z \\cap A \\subset B \\cap A = \\emptyset$, on a $X \\cap A = (Y \\cap A) \\cup (Z \\cap A) = Y$ ; de même, $X \\cap B = Z$. Donc $\\varphi(X) = (Y, Z)$ : $\\varphi$ est surjective.\n\nRéciproquement, supposons qu'il existe $x \\in A \\cap B$. Le couple $(\\{x\\}, \\emptyset)$ appartient à $\\mathcal{P}(A) \\times \\mathcal{P}(B)$. S'il avait un antécédent $X$, on aurait $X \\cap A = \\{x\\}$, donc $x \\in X$, puis $x \\in X \\cap B = \\emptyset$ : c'est absurde. $\\varphi$ n'est donc pas surjective.\n\n3. D'après 1 et 2, $\\varphi$ est bijective si et seulement si $A \\cup B = E$ et $A \\cap B = \\emptyset$, c'est-à-dire si $B$ est le complémentaire de $A$ dans $E$. Dans ce cas, la question 2 montre que $\\varphi(Y \\cup Z) = (Y, Z)$ pour tout $(Y, Z)$ ; la réciproque est donc $\\varphi^{-1} : (Y, Z) \\mapsto Y \\cup Z$. On vérifie aussi que $\\varphi^{-1}(\\varphi(X)) = (X \\cap A) \\cup (X \\cap B) = X$, d'après la question 1."
     }
   ]
 }

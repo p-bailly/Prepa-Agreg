@@ -1,0 +1,99 @@
+{
+  "chapitre": "ed-l1-lineaires",
+  "questions": [
+    {
+      "id": "ed-l1-lineaires-q1",
+      "carte": "ed-l1-lineaires-ordre1",
+      "genre": "choix",
+      "enonce": "Les solutions sur $\\mathbb{R}$ de l'équation $y'+(\\cos x)\\,y=0$ sont les fonctions ($C$ décrivant $\\mathbb{R}$) :",
+      "propositions": [
+        "$x\\mapsto Ce^{-\\sin x}$",
+        "$x\\mapsto Ce^{\\sin x}$",
+        "$x\\mapsto Ce^{-\\cos x}$",
+        "$x\\mapsto C\\cos x$"
+      ],
+      "bonne": 0,
+      "explication": "Le coefficient $a=\\cos$ est continu sur l'intervalle $\\mathbb{R}$, de primitive $A=\\sin$ ; les solutions sont les $x\\mapsto Ce^{-A(x)}=Ce^{-\\sin x}$. Vérification : $\\left(Ce^{-\\sin x}\\right)'=-\\cos x\\,Ce^{-\\sin x}$. La fonction $x\\mapsto e^{\\sin x}$ résout $y'=(\\cos x)\\,y$ : erreur de signe."
+    },
+    {
+      "id": "ed-l1-lineaires-q2",
+      "carte": "ed-l1-lineaires-ordre2",
+      "genre": "choix",
+      "enonce": "Les solutions réelles sur $\\mathbb{R}$ de $y''+2y'+2y=0$ sont les fonctions ($\\lambda$, $\\mu$ décrivant $\\mathbb{R}$) :",
+      "propositions": [
+        "$x\\mapsto e^{-x}(\\lambda\\cos x+\\mu\\sin x)$",
+        "$x\\mapsto e^{x}(\\lambda\\cos x+\\mu\\sin x)$",
+        "$x\\mapsto e^{-x}(\\lambda\\cos 2x+\\mu\\sin 2x)$",
+        "$x\\mapsto(\\lambda+\\mu x)e^{-x}$"
+      ],
+      "bonne": 0,
+      "explication": "L'équation caractéristique $r^2+2r+2=0$ a pour discriminant $-4<0$ et pour racines $-1\\pm i$ : partie réelle $-1$, partie imaginaire $1$. D'où les solutions $x\\mapsto e^{-x}(\\lambda\\cos x+\\mu\\sin x)$. La forme $(\\lambda+\\mu x)e^{-x}$ correspond à une racine double, qui n'est pas le cas ici."
+    },
+    {
+      "id": "ed-l1-lineaires-q3",
+      "carte": "ed-l1-lineaires-ordre2",
+      "genre": "vrai-faux",
+      "enonce": "La fonction $x\\mapsto e^{2x}$ est l'unique solution sur $\\mathbb{R}$ de $y''-4y=0$ telle que $y(0)=1$ et $y'(0)=2$.",
+      "vrai": true,
+      "explication": "Les solutions sont les $x\\mapsto\\lambda e^{2x}+\\mu e^{-2x}$ (racines $\\pm2$). Les conditions donnent $\\lambda+\\mu=1$ et $2\\lambda-2\\mu=2$, d'où $\\lambda=1$ et $\\mu=0$ : une seule solution, $x\\mapsto e^{2x}$."
+    },
+    {
+      "id": "ed-l1-lineaires-q4",
+      "carte": "ed-l1-lineaires-exp-polynome",
+      "genre": "vrai-faux",
+      "enonce": "L'équation $y''+y=xe^{x}$ admet une solution particulière de la forme $x\\mapsto\\alpha xe^{x}$, avec $\\alpha$ réel.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** Pour $y=\\alpha xe^{x}$, on a $y''=\\alpha(x+2)e^{x}$ et $y''+y=\\alpha(2x+2)e^{x}$ ; l'égalité avec $xe^{x}$ demanderait $2\\alpha=1$ et $2\\alpha=0$, ce qui est impossible. Comme $1$ n'est pas racine de $r^2+1$, il faut chercher $(\\alpha x+\\beta)e^{x}$ avec un polynôme complet de degré $1$ : on trouve $x\\mapsto\\frac{x-1}{2}e^{x}$."
+    },
+    {
+      "id": "ed-l1-lineaires-q5",
+      "carte": "ed-l1-lineaires-exp-polynome",
+      "genre": "choix",
+      "enonce": "On considère $y''-4y'+4y=(x+1)e^{2x}$. Parmi ces formes, laquelle contient une solution particulière (pour des réels $\\alpha$, $\\beta$ bien choisis) ?",
+      "propositions": [
+        "$x\\mapsto x^2(\\alpha x+\\beta)e^{2x}$",
+        "$x\\mapsto(\\alpha x+\\beta)e^{2x}$",
+        "$x\\mapsto x(\\alpha x+\\beta)e^{2x}$",
+        "$x\\mapsto\\alpha x^2e^{2x}$"
+      ],
+      "bonne": 0,
+      "explication": "$2$ est racine double de $r^2-4r+4=(r-2)^2$ et le polynôme $x+1$ est de degré $1$ : on cherche $x^2(\\alpha x+\\beta)e^{2x}$. En posant $y=z(x)e^{2x}$, l'équation devient $z''=x+1$, d'où $z(x)=\\frac{x^3}{6}+\\frac{x^2}{2}$ convient ($\\alpha=\\frac16$, $\\beta=\\frac12$). Pour les trois autres formes, $z''$ est constant (nul pour la deuxième, égal à $2\\alpha$ pour les deux dernières) et ne peut valoir $x+1$."
+    },
+    {
+      "id": "ed-l1-lineaires-q6",
+      "carte": "ed-l1-lineaires-superposition",
+      "genre": "choix",
+      "enonce": "Une solution particulière sur $\\mathbb{R}$ de l'équation $y'+y=x+e^{-x}$ est :",
+      "propositions": [
+        "$x\\mapsto x-1+xe^{-x}$",
+        "$x\\mapsto x+1+xe^{-x}$",
+        "$x\\mapsto x-1+\\frac12e^{-x}$",
+        "$x\\mapsto x-1-xe^{-x}$"
+      ],
+      "bonne": 0,
+      "explication": "Par superposition, on additionne une solution de $y'+y=x$ et une solution de $y'+y=e^{-x}$. Pour la première, $x\\mapsto x-1$ convient : $1+(x-1)=x$. Pour la seconde, $-1$ est racine de $r+1$, donc on cherche $\\alpha xe^{-x}$ : $(\\alpha xe^{-x})'+\\alpha xe^{-x}=\\alpha e^{-x}$, d'où $\\alpha=1$. Une fonction $Ce^{-x}$ ne convient pas, car elle est solution de l'équation homogène."
+    },
+    {
+      "id": "ed-l1-lineaires-q7",
+      "carte": "ed-l1-lineaires-ordre1",
+      "genre": "vrai-faux",
+      "enonce": "Toute solution sur $\\mathbb{R}$ de l'équation $y'+y=\\sin x$ est bornée sur $\\mathbb{R}$.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $y:x\\mapsto e^{-x}+\\frac{\\sin x-\\cos x}{2}$ vérifie $y'(x)+y(x)=-e^{-x}+\\frac{\\cos x+\\sin x}{2}+e^{-x}+\\frac{\\sin x-\\cos x}{2}=\\sin x$, et $y(x)\\to+\\infty$ quand $x\\to-\\infty$. Les solutions sont bornées sur $\\left[0,+\\infty\\right[$, mais seule $x\\mapsto\\frac{\\sin x-\\cos x}{2}$ l'est sur $\\mathbb{R}$."
+    },
+    {
+      "id": "ed-l1-lineaires-q8",
+      "carte": "ed-l1-lineaires-variation-constante",
+      "genre": "choix",
+      "enonce": "Quelle est la solution sur $\\mathbb{R}$ de $y'-2y=\\frac{e^{2x}}{1+x^2}$ telle que $y(0)=0$ ?",
+      "propositions": [
+        "$x\\mapsto e^{2x}\\arctan x$",
+        "$x\\mapsto e^{-2x}\\arctan x$",
+        "$x\\mapsto\\frac12e^{2x}\\ln(1+x^2)$",
+        "$x\\mapsto\\frac{xe^{2x}}{1+x^2}$"
+      ],
+      "bonne": 0,
+      "explication": "Les solutions homogènes sont les $Ce^{2x}$. En posant $y=C(x)e^{2x}$, l'équation devient $C'(x)e^{2x}=\\frac{e^{2x}}{1+x^2}$, soit $C'(x)=\\frac{1}{1+x^2}$ et $C(x)=\\arctan x+K$. La condition $y(0)=K=0$ donne $y(x)=e^{2x}\\arctan x$. Les trois autres fonctions s'annulent aussi en $0$, mais ne sont pas solutions."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "chapitre": "int-t-integrale",
+  "questions": [
+    {
+      "id": "int-t-integrale-q1",
+      "carte": "int-t-integrale-ipp",
+      "genre": "choix",
+      "enonce": "Que vaut $\\int_0^\\pi x\\sin x\\,\\mathrm{d}x$ ?",
+      "propositions": [
+        "$\\pi$",
+        "$0$",
+        "$-\\pi$",
+        "$2$"
+      ],
+      "bonne": 0,
+      "explication": "On intègre par parties avec $u(x)=x$ et $v'(x)=\\sin x$, $v(x)=-\\cos x$ (fonctions de dérivées continues) :\n$$\\int_0^\\pi x\\sin x\\,\\mathrm{d}x=\\big[-x\\cos x\\big]_0^\\pi+\\int_0^\\pi\\cos x\\,\\mathrm{d}x=\\pi+\\big[\\sin x\\big]_0^\\pi=\\pi.$$\nLa valeur $0$ est exclue d'emblée : la fonction intégrée est positive et non nulle sur $[0,\\pi]$."
+    },
+    {
+      "id": "int-t-integrale-q2",
+      "carte": "int-t-integrale-fondamental",
+      "genre": "choix",
+      "enonce": "On pose $F(x)=\\int_0^xe^{-t^2}\\,\\mathrm{d}t$ pour $x\\in\\mathbb{R}$. Quelle affirmation est vraie ?",
+      "propositions": [
+        "$F$ est strictement croissante sur $\\mathbb{R}$",
+        "$F$ est décroissante sur $\\left[0,+\\infty\\right[$",
+        "$F$ est paire",
+        "$F(-1)>0$"
+      ],
+      "bonne": 0,
+      "explication": "La fonction $t\\mapsto e^{-t^2}$ est continue sur $\\mathbb{R}$, donc $F$ est la primitive qui s'annule en $0$ : $F'(x)=e^{-x^2}>0$, et $F$ est strictement croissante sur $\\mathbb{R}$. En particulier $F(-1)<F(0)=0<F(1)$, ce qui exclut aussi « $F(-1)>0$ » et « $F$ paire »."
+    },
+    {
+      "id": "int-t-integrale-q3",
+      "carte": "int-t-integrale-proprietes",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout entier naturel $n$, $\\int_0^1\\frac{x^{n+1}}{1+x^2}\\,\\mathrm{d}x\\le\\int_0^1\\frac{x^n}{1+x^2}\\,\\mathrm{d}x$.",
+      "vrai": true,
+      "explication": "Pour $x\\in[0,1]$, $x^{n+1}=x\\cdot x^n\\le x^n$, donc $\\frac{x^{n+1}}{1+x^2}\\le\\frac{x^n}{1+x^2}$. Comme $0\\le1$, la croissance de l'intégrale donne l'inégalité : la suite de ces intégrales est décroissante."
+    },
+    {
+      "id": "int-t-integrale-q4",
+      "carte": "int-t-integrale-moyenne",
+      "genre": "vrai-faux",
+      "enonce": "La valeur moyenne de la fonction racine carrée sur $[0,4]$ est égale à $1$.",
+      "vrai": false,
+      "explication": "La valeur moyenne vaut $\\frac{1}{4-0}\\int_0^4\\sqrt x\\,\\mathrm{d}x=\\frac14\\left[\\frac23x^{3/2}\\right]_0^4=\\frac14\\times\\frac{16}{3}=\\frac43$, et non $1$. La valeur moyenne n'est en général ni la moyenne des valeurs aux bornes (ici $1$), ni la valeur au milieu de l'intervalle."
+    },
+    {
+      "id": "int-t-integrale-q5",
+      "carte": "int-t-integrale-fondamental",
+      "genre": "vrai-faux",
+      "enonce": "$\\int_0^{\\ln2}e^{2x}\\,\\mathrm{d}x=\\frac32$.",
+      "vrai": true,
+      "explication": "$x\\mapsto\\frac12e^{2x}$ est une primitive de $x\\mapsto e^{2x}$, donc l'intégrale vaut $\\frac12\\left(e^{2\\ln2}-e^0\\right)=\\frac12(4-1)=\\frac32$."
+    },
+    {
+      "id": "int-t-integrale-q6",
+      "carte": "int-t-integrale-aire",
+      "genre": "choix",
+      "enonce": "Quelle est l'aire, en unités d'aire, du domaine borné compris entre les paraboles d'équations $y=x^2$ et $y=2-x^2$ ?",
+      "propositions": [
+        "$\\frac83$",
+        "$\\frac43$",
+        "$4$",
+        "$2$"
+      ],
+      "bonne": 0,
+      "explication": "Les courbes se coupent quand $x^2=2-x^2$, soit $x=\\pm1$, et $x^2\\le2-x^2$ sur $[-1,1]$. L'aire vaut donc\n$$\\int_{-1}^1\\big(2-x^2-x^2\\big)\\,\\mathrm{d}x=\\left[2x-\\frac{2x^3}{3}\\right]_{-1}^1=\\frac43-\\left(-\\frac43\\right)=\\frac83.$$"
+    },
+    {
+      "id": "int-t-integrale-q7",
+      "carte": "int-t-integrale-moyenne",
+      "genre": "choix",
+      "enonce": "Quelle est la valeur moyenne de $x\\mapsto\\frac1x$ sur $[1,e]$ ?",
+      "propositions": [
+        "$\\frac{1}{e-1}$",
+        "$\\frac{e+1}{2e}$",
+        "$1$",
+        "$e-1$"
+      ],
+      "bonne": 0,
+      "explication": "Elle vaut $\\frac{1}{e-1}\\int_1^e\\frac{\\mathrm{d}x}{x}=\\frac{1}{e-1}\\big[\\ln x\\big]_1^e=\\frac{1}{e-1}\\approx0{,}58$. La proposition $\\frac{e+1}{2e}\\approx0{,}68$ est la moyenne des valeurs aux bornes, $\\frac12\\left(1+\\frac1e\\right)$, qui n'est pas la valeur moyenne ; $1$ est l'intégrale, pas la valeur moyenne."
+    },
+    {
+      "id": "int-t-integrale-q8",
+      "carte": "int-t-integrale-ipp",
+      "genre": "choix",
+      "enonce": "Que vaut $\\int_0^1(2x+1)e^x\\,\\mathrm{d}x$ ?",
+      "propositions": [
+        "$e+1$",
+        "$3e-1$",
+        "$e-1$",
+        "$2e$"
+      ],
+      "bonne": 0,
+      "explication": "Par parties avec $u(x)=2x+1$ et $v'(x)=e^x$ :\n$$\\int_0^1(2x+1)e^x\\,\\mathrm{d}x=\\big[(2x+1)e^x\\big]_0^1-\\int_0^12e^x\\,\\mathrm{d}x=(3e-1)-2(e-1)=e+1.$$\nLa proposition $3e-1$ oublie l'intégrale restante."
+    }
+  ]
+}

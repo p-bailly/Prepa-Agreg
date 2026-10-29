@@ -427,6 +427,189 @@
         "Pour 3, développer $(X+Y)^2$, puis utiliser la linéarité de l'espérance et la formule $V(Z)=E(Z^2)-E(Z)^2$."
       ],
       "correction": "**1.** Les événements $\\{X=x_i\\}\\cap\\{Y=y_j\\}$ forment une partition de $\\Omega$ (certains peuvent être vides), et sur chacun d'eux $X(\\omega)Y(\\omega)=x_iy_j$. En regroupant les issues,\n$$E(XY)=\\sum_{\\omega\\in\\Omega}X(\\omega)Y(\\omega)P\\left(\\{\\omega\\}\\right)=\\sum_{i=1}^{r}\\sum_{j=1}^{s}x_iy_j\\sum_{\\omega\\in\\{X=x_i\\}\\cap\\{Y=y_j\\}}P\\left(\\{\\omega\\}\\right)=\\sum_{i=1}^{r}\\sum_{j=1}^{s}x_iy_j\\,P\\left(\\{X=x_i\\}\\cap\\{Y=y_j\\}\\right).$$\n\n**2.** Par indépendance, $P\\left(\\{X=x_i\\}\\cap\\{Y=y_j\\}\\right)=P(X=x_i)P(Y=y_j)$, donc\n$$E(XY)=\\sum_{i=1}^{r}\\sum_{j=1}^{s}x_iP(X=x_i)\\,y_jP(Y=y_j)=\\left(\\sum_{i=1}^{r}x_iP(X=x_i)\\right)\\left(\\sum_{j=1}^{s}y_jP(Y=y_j)\\right)=E(X)E(Y).$$\n\n**3.** Par linéarité, $E\\left((X+Y)^2\\right)=E(X^2)+2E(XY)+E(Y^2)$, et $\\left(E(X+Y)\\right)^2=E(X)^2+2E(X)E(Y)+E(Y)^2$. En soustrayant :\n$$V(X+Y)=\\left(E(X^2)-E(X)^2\\right)+\\left(E(Y^2)-E(Y)^2\\right)+2\\left(E(XY)-E(X)E(Y)\\right)=V(X)+V(Y)+2\\left(E(XY)-E(X)E(Y)\\right).$$\nSi $X$ et $Y$ sont indépendantes, le dernier terme est nul d'après la question 2.\n\n**4.** $E(X)=0$ et $E(X^2)=\\frac{2}{3}$, donc $V(X)=\\frac{2}{3}$. $Y$ suit la loi de Bernoulli de paramètre $\\frac{2}{3}$, donc $V(Y)=\\frac{2}{3}\\cdot\\frac{1}{3}=\\frac{2}{9}$. Enfin $XY=X^3=X$, donc $E(XY)=0=E(X)E(Y)$ et la question 3 donne $V(X+Y)=V(X)+V(Y)=\\frac{8}{9}$ (directement : $X+Y$ vaut $0$ avec probabilité $\\frac{2}{3}$ et $2$ avec probabilité $\\frac{1}{3}$, d'où $V(X+Y)=\\frac{4}{3}-\\frac{4}{9}=\\frac{8}{9}$). Mais $P\\left(\\{X=0\\}\\cap\\{Y=1\\}\\right)=0$ alors que $P(X=0)P(Y=1)=\\frac{1}{3}\\cdot\\frac{2}{3}=\\frac{2}{9}$ : $X$ et $Y$ ne sont pas indépendantes.\n\nConclusion : la réciproque de l'additivité est fausse. L'égalité $V(X+Y)=V(X)+V(Y)$ équivaut à $E(XY)=E(X)E(Y)$, condition strictement plus faible que l'indépendance."
+    },
+    {
+      "id": "proba-t-concentration-linearite-ex5",
+      "carte": "proba-t-concentration-linearite",
+      "difficulte": 3,
+      "titre": "Répétitions dans une suite de lancers",
+      "enonce": "On lance $12$ fois un dé équilibré à $6$ faces numérotées de $1$ à $6$, les lancers étant indépendants, et l'on note $X_1,\\dots,X_{12}$ les résultats. Pour $1\\leq i\\leq 11$, on dit qu'il y a une répétition au rang $i$ si $X_i=X_{i+1}$, et l'on note $N$ le nombre de répétitions.\n1. Pour $1\\leq i\\leq 11$, soit $A_i$ l'événement $\\{X_i=X_{i+1}\\}$. Exprimer $N$ à l'aide des indicatrices $\\mathbf{1}_{A_i}$.\n2. Calculer $P(A_i)$.\n3. En déduire $E(N)$.\n4. Pour $m\\geq 2$ lancers, on note $N_m$ le nombre de répétitions correspondant. Déterminer le plus petit entier $m$ tel que $E(N_m)\\geq 3$.",
+      "duree_min": 12,
+      "indices": [
+        "Une répétition au rang $i$ ne dépend que des lancers numéros $i$ et $i+1$.",
+        "Pour la question 2, compter les couples formés de deux résultats égaux parmi les couples équiprobables $(X_i,X_{i+1})$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(N)$ ?",
+        "propositions": [
+          "$\\frac{11}{6}$",
+          "$2$",
+          "$\\frac{11}{36}$",
+          "$\\frac{1}{6}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $N=\\mathbf{1}_{A_1}+\\mathbf{1}_{A_2}+\\dots+\\mathbf{1}_{A_{11}}$ : chaque indicatrice vaut $1$ exactement quand il y a une répétition au rang correspondant.\n\n**2.** Les lancers $i$ et $i+1$ étant indépendants et équilibrés, le couple $(X_i,X_{i+1})$ est uniforme sur les $36$ couples de $\\{1,\\dots,6\\}^2$, dont $6$ sont formés de deux résultats égaux : $P(A_i)=\\frac{6}{36}=\\frac{1}{6}$.\n\n**3.** Par linéarité de l'espérance, $E(N)=\\sum_{i=1}^{11}P(A_i)=\\frac{11}{6}$. On n'a pas eu besoin de savoir si les événements $A_i$ sont indépendants : la linéarité ne le demande pas.\n\n**4.** De même, $E(N_m)=\\frac{m-1}{6}$, et $E(N_m)\\geq 3$ équivaut à $m-1\\geq 18$, soit $m\\geq 19$. Le plus petit entier convenable est $m=19$.",
+      "variantes": [
+        {
+          "enonce": "On lance $20$ fois une pièce équilibrée, dont les faces sont numérotées $1$ et $2$, les lancers étant indépendants, et l'on note $X_1,\\dots,X_{20}$ les résultats. Pour $1\\leq i\\leq 19$, on dit qu'il y a une répétition au rang $i$ si $X_i=X_{i+1}$, et l'on note $N$ le nombre de répétitions.\n1. Pour $1\\leq i\\leq 19$, soit $A_i$ l'événement $\\{X_i=X_{i+1}\\}$. Exprimer $N$ à l'aide des indicatrices $\\mathbf{1}_{A_i}$.\n2. Calculer $P(A_i)$.\n3. En déduire $E(N)$.\n4. Pour $m\\geq 2$ lancers, on note $N_m$ le nombre de répétitions correspondant. Déterminer le plus petit entier $m$ tel que $E(N_m)\\geq 5$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(N)$ ?",
+            "propositions": [
+              "$\\frac{19}{2}$",
+              "$10$",
+              "$\\frac{19}{4}$",
+              "$\\frac{1}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $N=\\mathbf{1}_{A_1}+\\mathbf{1}_{A_2}+\\dots+\\mathbf{1}_{A_{19}}$ : chaque indicatrice vaut $1$ exactement quand il y a une répétition au rang correspondant.\n\n**2.** Les lancers $i$ et $i+1$ étant indépendants et équilibrés, le couple $(X_i,X_{i+1})$ est uniforme sur les $4$ couples de $\\{1,2\\}^2$, dont $2$ sont formés de deux résultats égaux : $P(A_i)=\\frac{2}{4}=\\frac{1}{2}$.\n\n**3.** Par linéarité de l'espérance, $E(N)=\\sum_{i=1}^{19}P(A_i)=\\frac{19}{2}$. On n'a pas eu besoin de savoir si les événements $A_i$ sont indépendants : la linéarité ne le demande pas.\n\n**4.** De même, $E(N_m)=\\frac{m-1}{2}$, et $E(N_m)\\geq 5$ équivaut à $m-1\\geq 10$, soit $m\\geq 11$. Le plus petit entier convenable est $m=11$.",
+          "indices": [
+            "Une répétition au rang $i$ ne dépend que des lancers numéros $i$ et $i+1$.",
+            "Pour la question 2, compter les couples formés de deux résultats égaux parmi les couples équiprobables $(X_i,X_{i+1})$."
+          ]
+        },
+        {
+          "enonce": "On lance $25$ fois un dé équilibré à $4$ faces numérotées de $1$ à $4$, les lancers étant indépendants, et l'on note $X_1,\\dots,X_{25}$ les résultats. Pour $1\\leq i\\leq 24$, on dit qu'il y a une répétition au rang $i$ si $X_i=X_{i+1}$, et l'on note $N$ le nombre de répétitions.\n1. Pour $1\\leq i\\leq 24$, soit $A_i$ l'événement $\\{X_i=X_{i+1}\\}$. Exprimer $N$ à l'aide des indicatrices $\\mathbf{1}_{A_i}$.\n2. Calculer $P(A_i)$.\n3. En déduire $E(N)$.\n4. Pour $m\\geq 2$ lancers, on note $N_m$ le nombre de répétitions correspondant. Déterminer le plus petit entier $m$ tel que $E(N_m)\\geq 10$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(N)$ ?",
+            "propositions": [
+              "$6$",
+              "$\\frac{25}{4}$",
+              "$\\frac{3}{2}$",
+              "$\\frac{1}{4}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $N=\\mathbf{1}_{A_1}+\\mathbf{1}_{A_2}+\\dots+\\mathbf{1}_{A_{24}}$ : chaque indicatrice vaut $1$ exactement quand il y a une répétition au rang correspondant.\n\n**2.** Les lancers $i$ et $i+1$ étant indépendants et équilibrés, le couple $(X_i,X_{i+1})$ est uniforme sur les $16$ couples de $\\{1,\\dots,4\\}^2$, dont $4$ sont formés de deux résultats égaux : $P(A_i)=\\frac{4}{16}=\\frac{1}{4}$.\n\n**3.** Par linéarité de l'espérance, $E(N)=\\sum_{i=1}^{24}P(A_i)=6$. On n'a pas eu besoin de savoir si les événements $A_i$ sont indépendants : la linéarité ne le demande pas.\n\n**4.** De même, $E(N_m)=\\frac{m-1}{4}$, et $E(N_m)\\geq 10$ équivaut à $m-1\\geq 40$, soit $m\\geq 41$. Le plus petit entier convenable est $m=41$.",
+          "indices": [
+            "Une répétition au rang $i$ ne dépend que des lancers numéros $i$ et $i+1$.",
+            "Pour la question 2, compter les couples formés de deux résultats égaux parmi les couples équiprobables $(X_i,X_{i+1})$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-t-concentration-variance-somme-ex5",
+      "carte": "proba-t-concentration-variance-somme",
+      "difficulte": 2,
+      "titre": "Masse totale d'un carton de sachets",
+      "enonce": "Une machine remplit des sachets. La masse d'un sachet, en grammes, est une variable aléatoire d'espérance $200$ et d'écart-type $4$. Un carton contient $25$ sachets, dont les masses $X_1,\\dots,X_{25}$ sont indépendantes et de même loi ; on note $T=X_1+\\dots+X_{25}$ la masse totale des sachets du carton.\n1. Calculer $E(T)$, $V(T)$ et $\\sigma(T)$.\n2. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer la probabilité que $T$ soit strictement comprise entre $4950$ et $5050$ grammes.",
+      "duree_min": 8,
+      "indices": [
+        "Les masses étant indépendantes, calculer d'abord $V(T)$, puis en déduire $\\sigma(T)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sigma(T)$, en grammes ?",
+        "propositions": [
+          "$20$",
+          "$100$",
+          "$400$",
+          "$80$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par linéarité de l'espérance, $E(T)=25\\times 200=5000$. Les masses $X_i$ étant indépendantes, les variances s'additionnent : $V(T)=V(X_1)+\\dots+V(X_{25})=25\\times 4^2=400$, d'où $\\sigma(T)=\\sqrt{400}=20$. On remarque que $\\sigma(T)=\\sqrt{25}\\times 4$, et non $25\\times 4=100$ : ce sont les variances, pas les écarts-types, qui s'additionnent.\n\n**2.** L'événement $\\{4950<T<5050\\}$ est $\\{|T-5000|<50\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|T-5000|\\geq 50\\right)\\leq\\frac{400}{50^2}=0{,}16$, donc $P(4950<T<5050)\\geq 1-0{,}16=0{,}84$.",
+      "variantes": [
+        {
+          "enonce": "Une machine remplit des sachets. La masse d'un sachet, en grammes, est une variable aléatoire d'espérance $500$ et d'écart-type $3$. Un carton contient $16$ sachets, dont les masses $X_1,\\dots,X_{16}$ sont indépendantes et de même loi ; on note $T=X_1+\\dots+X_{16}$ la masse totale des sachets du carton.\n1. Calculer $E(T)$, $V(T)$ et $\\sigma(T)$.\n2. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer la probabilité que $T$ soit strictement comprise entre $7960$ et $8040$ grammes.",
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma(T)$, en grammes ?",
+            "propositions": [
+              "$12$",
+              "$48$",
+              "$144$",
+              "$36$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par linéarité de l'espérance, $E(T)=16\\times 500=8000$. Les masses $X_i$ étant indépendantes, les variances s'additionnent : $V(T)=V(X_1)+\\dots+V(X_{16})=16\\times 3^2=144$, d'où $\\sigma(T)=\\sqrt{144}=12$. On remarque que $\\sigma(T)=\\sqrt{16}\\times 3$, et non $16\\times 3=48$ : ce sont les variances, pas les écarts-types, qui s'additionnent.\n\n**2.** L'événement $\\{7960<T<8040\\}$ est $\\{|T-8000|<40\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|T-8000|\\geq 40\\right)\\leq\\frac{144}{40^2}=0{,}09$, donc $P(7960<T<8040)\\geq 1-0{,}09=0{,}91$.",
+          "indices": [
+            "Les masses étant indépendantes, calculer d'abord $V(T)$, puis en déduire $\\sigma(T)$."
+          ]
+        },
+        {
+          "enonce": "Une machine remplit des sachets. La masse d'un sachet, en grammes, est une variable aléatoire d'espérance $250$ et d'écart-type $5$. Un carton contient $36$ sachets, dont les masses $X_1,\\dots,X_{36}$ sont indépendantes et de même loi ; on note $T=X_1+\\dots+X_{36}$ la masse totale des sachets du carton.\n1. Calculer $E(T)$, $V(T)$ et $\\sigma(T)$.\n2. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer la probabilité que $T$ soit strictement comprise entre $8940$ et $9060$ grammes.",
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma(T)$, en grammes ?",
+            "propositions": [
+              "$30$",
+              "$180$",
+              "$900$",
+              "$150$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par linéarité de l'espérance, $E(T)=36\\times 250=9000$. Les masses $X_i$ étant indépendantes, les variances s'additionnent : $V(T)=V(X_1)+\\dots+V(X_{36})=36\\times 5^2=900$, d'où $\\sigma(T)=\\sqrt{900}=30$. On remarque que $\\sigma(T)=\\sqrt{36}\\times 5$, et non $36\\times 5=180$ : ce sont les variances, pas les écarts-types, qui s'additionnent.\n\n**2.** L'événement $\\{8940<T<9060\\}$ est $\\{|T-9000|<60\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|T-9000|\\geq 60\\right)\\leq\\frac{900}{60^2}=0{,}25$, donc $P(8940<T<9060)\\geq 1-0{,}25=0{,}75$.",
+          "indices": [
+            "Les masses étant indépendantes, calculer d'abord $V(T)$, puis en déduire $\\sigma(T)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-t-lgn-ex5",
+      "carte": "proba-t-lgn",
+      "difficulte": 4,
+      "titre": "Répondre au hasard à un questionnaire",
+      "enonce": "Un questionnaire comporte $20$ questions ; chacune propose $4$ réponses, dont une seule est juste. Un candidat répond à toutes les questions au hasard, indépendamment d'une question à l'autre. Une bonne réponse rapporte $3$ points, une mauvaise en retire $1$. On note $N$ le nombre de bonnes réponses et $S$ la note obtenue (positive ou négative).\n1. Déterminer la loi de $N$, puis $E(N)$ et $V(N)$.\n2. Exprimer $S$ en fonction de $N$. En déduire $E(S)$ et $V(S)$, et interpréter la valeur de $E(S)$.\n3. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer $P\\left(-10<S<10\\right)$.\n4. On fait passer le questionnaire à $n$ candidats qui répondent tous au hasard, indépendamment les uns des autres, et l'on note $M_n$ la moyenne de leurs notes. Déterminer le plus petit entier $n$ pour lequel l'inégalité de concentration garantit $P\\left(|M_n|\\geq 1\\right)\\leq 0{,}05$.",
+      "duree_min": 25,
+      "indices": [
+        "Chaque question est une épreuve de Bernoulli, et les réponses aux différentes questions sont indépendantes.",
+        "Le nombre de mauvaises réponses s'exprime à l'aide de $N$ ; pour la variance d'une expression affine, penser à $V(aN+b)=a^2V(N)$.",
+        "Pour la question 4, les notes des $n$ candidats forment un échantillon de la loi de $S$ ; écrire le majorant de l'inégalité de concentration en fonction de $n$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit entier $n$ cherché à la question 4 ?",
+        "propositions": [
+          "$1200$",
+          "$75$",
+          "$300$",
+          "$60$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Chaque question est une épreuve de Bernoulli dont le succès, « bonne réponse », a la probabilité $\\frac{1}{4}$, et les $20$ épreuves sont indépendantes : $N$ suit la loi binomiale $\\mathcal{B}\\left(20\\,;\\frac{1}{4}\\right)$. Donc $E(N)=20\\times\\frac{1}{4}=5$ et $V(N)=20\\times\\frac{1}{4}\\times\\frac{3}{4}=\\frac{15}{4}$.\n\n**2.** Le candidat donne $N$ bonnes réponses et $20-N$ mauvaises : $S=3N-(20-N)=4N-20$. Par linéarité, $E(S)=4E(N)-20=0$, et $V(S)=4^2\\,V(N)=16\\times\\frac{15}{4}=60$. En moyenne, répondre au hasard rapporte $0$ point : le barème neutralise le hasard.\n\n**3.** Comme $E(S)=0$, l'événement $\\{-10<S<10\\}$ est $\\{|S-E(S)|<10\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|S|\\geq 10\\right)\\leq\\frac{60}{10^2}=0{,}6$, donc $P(-10<S<10)\\geq 1-0{,}6=0{,}4$.\n\n**4.** Les notes $S_1,\\dots,S_n$ des candidats forment un échantillon de la loi de $S$, d'espérance $0$ et de variance $60$. L'inégalité de concentration avec $\\delta=1$ donne $P\\left(|M_n|\\geq 1\\right)\\leq\\frac{60}{n\\times 1^2}=\\frac{60}{n}$. Or $\\frac{60}{n}\\leq 0{,}05$ si et seulement si $n\\geq\\frac{60}{0{,}05}=1200$. Le plus petit entier qui convient est $n=1200$.",
+      "variantes": [
+        {
+          "enonce": "Un questionnaire comporte $30$ questions ; chacune propose $5$ réponses, dont une seule est juste. Un candidat répond à toutes les questions au hasard, indépendamment d'une question à l'autre. Une bonne réponse rapporte $4$ points, une mauvaise en retire $1$. On note $N$ le nombre de bonnes réponses et $S$ la note obtenue (positive ou négative).\n1. Déterminer la loi de $N$, puis $E(N)$ et $V(N)$.\n2. Exprimer $S$ en fonction de $N$. En déduire $E(S)$ et $V(S)$, et interpréter la valeur de $E(S)$.\n3. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer $P\\left(-20<S<20\\right)$.\n4. On fait passer le questionnaire à $n$ candidats qui répondent tous au hasard, indépendamment les uns des autres, et l'on note $M_n$ la moyenne de leurs notes. Déterminer le plus petit entier $n$ pour lequel l'inégalité de concentration garantit $P\\left(|M_n|\\geq 2\\right)\\leq 0{,}05$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $n$ cherché à la question 4 ?",
+            "propositions": [
+              "$600$",
+              "$96$",
+              "$480$",
+              "$30$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Chaque question est une épreuve de Bernoulli dont le succès, « bonne réponse », a la probabilité $\\frac{1}{5}$, et les $30$ épreuves sont indépendantes : $N$ suit la loi binomiale $\\mathcal{B}\\left(30\\,;\\frac{1}{5}\\right)$. Donc $E(N)=30\\times\\frac{1}{5}=6$ et $V(N)=30\\times\\frac{1}{5}\\times\\frac{4}{5}=\\frac{24}{5}$.\n\n**2.** Le candidat donne $N$ bonnes réponses et $30-N$ mauvaises : $S=4N-(30-N)=5N-30$. Par linéarité, $E(S)=5E(N)-30=0$, et $V(S)=5^2\\,V(N)=25\\times\\frac{24}{5}=120$. En moyenne, répondre au hasard rapporte $0$ point : le barème neutralise le hasard.\n\n**3.** Comme $E(S)=0$, l'événement $\\{-20<S<20\\}$ est $\\{|S-E(S)|<20\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|S|\\geq 20\\right)\\leq\\frac{120}{20^2}=0{,}3$, donc $P(-20<S<20)\\geq 1-0{,}3=0{,}7$.\n\n**4.** Les notes $S_1,\\dots,S_n$ des candidats forment un échantillon de la loi de $S$, d'espérance $0$ et de variance $120$. L'inégalité de concentration avec $\\delta=2$ donne $P\\left(|M_n|\\geq 2\\right)\\leq\\frac{120}{n\\times 2^2}=\\frac{30}{n}$. Or $\\frac{30}{n}\\leq 0{,}05$ si et seulement si $n\\geq\\frac{30}{0{,}05}=600$. Le plus petit entier qui convient est $n=600$.",
+          "indices": [
+            "Chaque question est une épreuve de Bernoulli, et les réponses aux différentes questions sont indépendantes.",
+            "Le nombre de mauvaises réponses s'exprime à l'aide de $N$ ; pour la variance d'une expression affine, penser à $V(aN+b)=a^2V(N)$.",
+            "Pour la question 4, les notes des $n$ candidats forment un échantillon de la loi de $S$ ; écrire le majorant de l'inégalité de concentration en fonction de $n$."
+          ]
+        },
+        {
+          "enonce": "Un questionnaire comporte $10$ questions ; chacune est une affirmation dont il faut dire si elle est vraie ou fausse. Un candidat répond à toutes les questions au hasard, indépendamment d'une question à l'autre. Une bonne réponse rapporte $1$ point, une mauvaise en retire $1$. On note $N$ le nombre de bonnes réponses et $S$ la note obtenue (positive ou négative).\n1. Déterminer la loi de $N$, puis $E(N)$ et $V(N)$.\n2. Exprimer $S$ en fonction de $N$. En déduire $E(S)$ et $V(S)$, et interpréter la valeur de $E(S)$.\n3. À l'aide de l'inégalité de Bienaymé-Tchebychev, minorer $P\\left(-5<S<5\\right)$.\n4. On fait passer le questionnaire à $n$ candidats qui répondent tous au hasard, indépendamment les uns des autres, et l'on note $M_n$ la moyenne de leurs notes. Déterminer le plus petit entier $n$ pour lequel l'inégalité de concentration garantit $P\\left(|M_n|\\geq 0{,}5\\right)\\leq 0{,}05$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $n$ cherché à la question 4 ?",
+            "propositions": [
+              "$800$",
+              "$50$",
+              "$100$",
+              "$40$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Chaque question est une épreuve de Bernoulli dont le succès, « bonne réponse », a la probabilité $\\frac{1}{2}$, et les $10$ épreuves sont indépendantes : $N$ suit la loi binomiale $\\mathcal{B}\\left(10\\,;\\frac{1}{2}\\right)$. Donc $E(N)=10\\times\\frac{1}{2}=5$ et $V(N)=10\\times\\frac{1}{2}\\times\\frac{1}{2}=\\frac{5}{2}$.\n\n**2.** Le candidat donne $N$ bonnes réponses et $10-N$ mauvaises : $S=N-(10-N)=2N-10$. Par linéarité, $E(S)=2E(N)-10=0$, et $V(S)=2^2\\,V(N)=4\\times\\frac{5}{2}=10$. En moyenne, répondre au hasard rapporte $0$ point : le barème neutralise le hasard.\n\n**3.** Comme $E(S)=0$, l'événement $\\{-5<S<5\\}$ est $\\{|S-E(S)|<5\\}$. L'inégalité de Bienaymé-Tchebychev donne $P\\left(|S|\\geq 5\\right)\\leq\\frac{10}{5^2}=0{,}4$, donc $P(-5<S<5)\\geq 1-0{,}4=0{,}6$.\n\n**4.** Les notes $S_1,\\dots,S_n$ des candidats forment un échantillon de la loi de $S$, d'espérance $0$ et de variance $10$. L'inégalité de concentration avec $\\delta=0{,}5$ donne $P\\left(|M_n|\\geq 0{,}5\\right)\\leq\\frac{10}{n\\times 0{,}5^2}=\\frac{40}{n}$. Or $\\frac{40}{n}\\leq 0{,}05$ si et seulement si $n\\geq\\frac{40}{0{,}05}=800$. Le plus petit entier qui convient est $n=800$.",
+          "indices": [
+            "Chaque question est une épreuve de Bernoulli, et les réponses aux différentes questions sont indépendantes.",
+            "Le nombre de mauvaises réponses s'exprime à l'aide de $N$ ; pour la variance d'une expression affine, penser à $V(aN+b)=a^2V(N)$.",
+            "Pour la question 4, les notes des $n$ candidats forment un échantillon de la loi de $S$ ; écrire le majorant de l'inégalité de concentration en fonction de $n$."
+          ]
+        }
+      ]
     }
   ]
 }

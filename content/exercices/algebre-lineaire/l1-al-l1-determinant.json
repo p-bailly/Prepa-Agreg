@@ -1294,6 +1294,154 @@
           "correction": "1. Écrivons $P_{j-1} = \\sum_{l=1}^{n} t_{lj} X^{l-1}$, où $t_{lj} = 0$ pour $l > j$ (car $\\deg P_{j-1} = j - 1$) et $t_{jj} = c_{j-1}$. Alors $P_{j-1}(x_i) = \\sum_{l} x_i^{l-1} t_{lj}$ : la matrice $\\left(P_{j-1}(x_i)\\right)$ est le produit $W T$, où $W = (x_i^{l-1})_{i, l}$ est la matrice de Vandermonde et $T = (t_{lj})$ est triangulaire supérieure de diagonale $c_0, \\dots, c_{n-1}$. Par la formule du produit, son déterminant vaut $\\det W \\det T = V(x_1, \\dots, x_n) \\, c_0 c_1 \\cdots c_{n-1}$.\n\n2. $B_k$ est de degré $k$, de coefficient dominant $\\frac{1}{k!}$. La question 1 donne le déterminant $\\frac{1}{0!} \\cdot \\frac{1}{1!} \\cdots \\frac{1}{(n-1)!} \\, V(x_1, \\dots, x_n)$.\n\n3. Pour $k = 0$, $B_0(m) = 1$. Soit $k \\geq 1$. Si $m \\geq k$, $B_k(m) = \\frac{m!}{k! \\, (m - k)!} = \\binom{m}{k} \\in \\mathbb{Z}$. Si $0 \\leq m \\leq k - 1$, le produit $m(m - 1) \\cdots (m - k + 1)$ contient le facteur $m - m = 0$, donc $B_k(m) = 0$. Si $m < 0$, posons $p = -m \\geq 1$ : $B_k(m) = \\frac{(-p)(-p - 1) \\cdots (-p - k + 1)}{k!} = (-1)^k \\frac{p(p + 1) \\cdots (p + k - 1)}{k!} = (-1)^k \\binom{p + k - 1}{k} \\in \\mathbb{Z}$.\n\n4. Par 3, la matrice $\\left(B_{j-1}(a_i)\\right)$ est à coefficients entiers, donc son déterminant $N$ est un entier (formule explicite). Par 2, $\\prod_{i < j} (a_j - a_i) = V(a_1, \\dots, a_n) = 0! \\, 1! \\cdots (n - 1)! \\times N$ : il est divisible par $0! \\, 1! \\cdots (n - 1)!$.\n\n5. $V(-1, 0, 2, 6) = (0 + 1)(2 + 1)(6 + 1)(2 - 0)(6 - 0)(6 - 2) = 1 \\times 3 \\times 7 \\times 2 \\times 6 \\times 4 = 1008$ et $0! \\, 1! \\, 2! \\, 3! = 12$, donc le déterminant vaut $\\frac{1008}{12} = 84$."
         }
       ]
+    },
+    {
+      "id": "al-l1-determinant-produit-ex5",
+      "carte": "al-l1-determinant-produit",
+      "difficulte": 4,
+      "titre": "Déterminant d'une matrice triangulaire par blocs",
+      "enonce": "Soient $p, q \\geq 1$ des entiers, $n = p + q$, $A \\in \\mathcal{M}_p(\\mathbb{K})$, $B \\in \\mathcal{M}_{p,q}(\\mathbb{K})$ et $D \\in \\mathcal{M}_q(\\mathbb{K})$. On considère la matrice carrée d'ordre $n$ écrite par blocs\n$$M = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix}.$$\n\n1. Montrer, par récurrence sur $p$, que $\\det \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} = \\det D$.\n\n2. Montrer, par récurrence sur $q$, que $\\det \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\det A$.\n\n3. Vérifier que $M = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$ et en déduire $\\det M$.\n\n4. En déduire que $M$ est inversible si et seulement si $A$ et $D$ le sont.\n\n5. Application : calculer le déterminant de la matrice $\\begin{pmatrix} 2 & 1 & 5 & -3 \\\\ 1 & 3 & 0 & 7 \\\\ 0 & 0 & 4 & 1 \\\\ 0 & 0 & 2 & 3 \\end{pmatrix}$.",
+      "duree_min": 25,
+      "indices": [
+        "Questions 1 et 2 : développer selon la première colonne, puis selon la dernière ligne.",
+        "Question 3 : effectuer le produit par blocs, puis utiliser le déterminant d'un produit.",
+        "Question 5 : la matrice est triangulaire par blocs avec $p = q = 2$ ; le bloc $B$ n'intervient pas."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le déterminant de la matrice de la question 5 ?",
+        "propositions": [
+          "$50$",
+          "$15$",
+          "$-50$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Notons $G_p = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix}$, d'ordre $p + q$. Sa première colonne est le premier vecteur de la base canonique : son seul coefficient non nul est le $1$ en position $(1, 1)$. En développant selon cette colonne, $\\det G_p = (-1)^{1+1} \\times 1 \\times \\Delta_{11}$, où $\\Delta_{11}$ est le déterminant de la matrice obtenue en supprimant la première ligne et la première colonne de $G_p$ : c'est $G_{p-1}$ si $p \\geq 2$, et $D$ si $p = 1$. Ainsi $\\det G_1 = \\det D$ et $\\det G_p = \\det G_{p-1}$ pour $p \\geq 2$ : par récurrence, $\\det G_p = \\det D$ pour tout $p \\geq 1$.\n\n2. Notons $H = \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$, d'ordre $n$. Sa dernière ligne a pour seul coefficient non nul le $1$ en position $(n, n)$. En développant selon cette ligne, $\\det H = (-1)^{n+n} \\times 1 \\times \\Delta_{nn}$, et la matrice obtenue en supprimant la dernière ligne et la dernière colonne est $A$ si $q = 1$, et $\\begin{pmatrix} A & B' \\\\ 0 & I_{q-1} \\end{pmatrix}$ si $q \\geq 2$, où $B'$ est la matrice $B$ privée de sa dernière colonne. On montre donc par récurrence sur $q$ la propriété « pour toute matrice $B$ à $p$ lignes et $q$ colonnes, $\\det H = \\det A$ » : elle est vraie pour $q = 1$, et le développement ci-dessus la transmet de $q - 1$ à $q$.\n\n3. Les tailles des blocs sont compatibles, et le produit par blocs donne\n$$\\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\begin{pmatrix} I_p A + 0 & I_p B + 0 \\\\ 0 + 0 & 0 + D I_q \\end{pmatrix} = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix} = M.$$\nPar le déterminant d'un produit et les questions 1 et 2, $\\det M = \\det D \\times \\det A$.\n\n4. $M$ est inversible si et seulement si $\\det M = \\det A \\det D \\neq 0$, c'est-à-dire si et seulement si $\\det A \\neq 0$ et $\\det D \\neq 0$ : si et seulement si $A$ et $D$ sont inversibles.\n\n5. Ici $p = q = 2$, $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 3 \\end{pmatrix}$ et $D = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$. On a $\\det A = 6 - 1 = 5$ et $\\det D = 12 - 2 = 10$, donc le déterminant vaut $5 \\times 10 = 50$, quel que soit le bloc $B$.",
+      "variantes": [
+        {
+          "enonce": "Soient $p, q \\geq 1$ des entiers, $n = p + q$, $A \\in \\mathcal{M}_p(\\mathbb{K})$, $B \\in \\mathcal{M}_{p,q}(\\mathbb{K})$ et $D \\in \\mathcal{M}_q(\\mathbb{K})$. On considère la matrice carrée d'ordre $n$ écrite par blocs\n$$M = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix}.$$\n\n1. Montrer, par récurrence sur $p$, que $\\det \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} = \\det D$.\n\n2. Montrer, par récurrence sur $q$, que $\\det \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\det A$.\n\n3. Vérifier que $M = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$ et en déduire $\\det M$.\n\n4. En déduire que $M$ est inversible si et seulement si $A$ et $D$ le sont.\n\n5. Application : calculer le déterminant de la matrice $\\begin{pmatrix} 3 & -1 & 2 & 4 \\\\ 2 & 1 & -5 & 1 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 3 & -1 \\end{pmatrix}$.",
+          "indices": [
+            "Questions 1 et 2 : développer selon la première colonne, puis selon la dernière ligne.",
+            "Question 3 : effectuer le produit par blocs, puis utiliser le déterminant d'un produit.",
+            "Question 5 : la matrice est triangulaire par blocs avec $p = q = 2$ ; le bloc $B$ n'intervient pas."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le déterminant de la matrice de la question 5 ?",
+            "propositions": [
+              "$-35$",
+              "$35$",
+              "$-2$",
+              "$-7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Notons $G_p = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix}$, d'ordre $p + q$. Sa première colonne est le premier vecteur de la base canonique : son seul coefficient non nul est le $1$ en position $(1, 1)$. En développant selon cette colonne, $\\det G_p = (-1)^{1+1} \\times 1 \\times \\Delta_{11}$, où $\\Delta_{11}$ est le déterminant de la matrice obtenue en supprimant la première ligne et la première colonne de $G_p$ : c'est $G_{p-1}$ si $p \\geq 2$, et $D$ si $p = 1$. Ainsi $\\det G_1 = \\det D$ et $\\det G_p = \\det G_{p-1}$ pour $p \\geq 2$ : par récurrence, $\\det G_p = \\det D$ pour tout $p \\geq 1$.\n\n2. Notons $H = \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$, d'ordre $n$. Sa dernière ligne a pour seul coefficient non nul le $1$ en position $(n, n)$. En développant selon cette ligne, $\\det H = (-1)^{n+n} \\times 1 \\times \\Delta_{nn}$, et la matrice obtenue en supprimant la dernière ligne et la dernière colonne est $A$ si $q = 1$, et $\\begin{pmatrix} A & B' \\\\ 0 & I_{q-1} \\end{pmatrix}$ si $q \\geq 2$, où $B'$ est la matrice $B$ privée de sa dernière colonne. On montre donc par récurrence sur $q$ la propriété « pour toute matrice $B$ à $p$ lignes et $q$ colonnes, $\\det H = \\det A$ » : elle est vraie pour $q = 1$, et le développement ci-dessus la transmet de $q - 1$ à $q$.\n\n3. Les tailles des blocs sont compatibles, et le produit par blocs donne\n$$\\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\begin{pmatrix} I_p A + 0 & I_p B + 0 \\\\ 0 + 0 & 0 + D I_q \\end{pmatrix} = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix} = M.$$\nPar le déterminant d'un produit et les questions 1 et 2, $\\det M = \\det D \\times \\det A$.\n\n4. $M$ est inversible si et seulement si $\\det M = \\det A \\det D \\neq 0$, c'est-à-dire si et seulement si $\\det A \\neq 0$ et $\\det D \\neq 0$ : si et seulement si $A$ et $D$ sont inversibles.\n\n5. Ici $p = q = 2$, $A = \\begin{pmatrix} 3 & -1 \\\\ 2 & 1 \\end{pmatrix}$ et $D = \\begin{pmatrix} 1 & 2 \\\\ 3 & -1 \\end{pmatrix}$. On a $\\det A = 3 + 2 = 5$ et $\\det D = -1 - 6 = -7$, donc le déterminant vaut $5 \\times (-7) = -35$, quel que soit le bloc $B$."
+        },
+        {
+          "enonce": "Soient $p, q \\geq 1$ des entiers, $n = p + q$, $A \\in \\mathcal{M}_p(\\mathbb{K})$, $B \\in \\mathcal{M}_{p,q}(\\mathbb{K})$ et $D \\in \\mathcal{M}_q(\\mathbb{K})$. On considère la matrice carrée d'ordre $n$ écrite par blocs\n$$M = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix}.$$\n\n1. Montrer, par récurrence sur $p$, que $\\det \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} = \\det D$.\n\n2. Montrer, par récurrence sur $q$, que $\\det \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\det A$.\n\n3. Vérifier que $M = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$ et en déduire $\\det M$.\n\n4. En déduire que $M$ est inversible si et seulement si $A$ et $D$ le sont.\n\n5. Application : calculer le déterminant de la matrice $\\begin{pmatrix} 1 & 4 & 0 & 2 \\\\ 2 & 3 & 6 & -1 \\\\ 0 & 0 & 5 & 2 \\\\ 0 & 0 & 3 & 1 \\end{pmatrix}$.",
+          "indices": [
+            "Questions 1 et 2 : développer selon la première colonne, puis selon la dernière ligne.",
+            "Question 3 : effectuer le produit par blocs, puis utiliser le déterminant d'un produit.",
+            "Question 5 : la matrice est triangulaire par blocs avec $p = q = 2$ ; le bloc $B$ n'intervient pas."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le déterminant de la matrice de la question 5 ?",
+            "propositions": [
+              "$5$",
+              "$-5$",
+              "$-6$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Notons $G_p = \\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix}$, d'ordre $p + q$. Sa première colonne est le premier vecteur de la base canonique : son seul coefficient non nul est le $1$ en position $(1, 1)$. En développant selon cette colonne, $\\det G_p = (-1)^{1+1} \\times 1 \\times \\Delta_{11}$, où $\\Delta_{11}$ est le déterminant de la matrice obtenue en supprimant la première ligne et la première colonne de $G_p$ : c'est $G_{p-1}$ si $p \\geq 2$, et $D$ si $p = 1$. Ainsi $\\det G_1 = \\det D$ et $\\det G_p = \\det G_{p-1}$ pour $p \\geq 2$ : par récurrence, $\\det G_p = \\det D$ pour tout $p \\geq 1$.\n\n2. Notons $H = \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix}$, d'ordre $n$. Sa dernière ligne a pour seul coefficient non nul le $1$ en position $(n, n)$. En développant selon cette ligne, $\\det H = (-1)^{n+n} \\times 1 \\times \\Delta_{nn}$, et la matrice obtenue en supprimant la dernière ligne et la dernière colonne est $A$ si $q = 1$, et $\\begin{pmatrix} A & B' \\\\ 0 & I_{q-1} \\end{pmatrix}$ si $q \\geq 2$, où $B'$ est la matrice $B$ privée de sa dernière colonne. On montre donc par récurrence sur $q$ la propriété « pour toute matrice $B$ à $p$ lignes et $q$ colonnes, $\\det H = \\det A$ » : elle est vraie pour $q = 1$, et le développement ci-dessus la transmet de $q - 1$ à $q$.\n\n3. Les tailles des blocs sont compatibles, et le produit par blocs donne\n$$\\begin{pmatrix} I_p & 0 \\\\ 0 & D \\end{pmatrix} \\begin{pmatrix} A & B \\\\ 0 & I_q \\end{pmatrix} = \\begin{pmatrix} I_p A + 0 & I_p B + 0 \\\\ 0 + 0 & 0 + D I_q \\end{pmatrix} = \\begin{pmatrix} A & B \\\\ 0 & D \\end{pmatrix} = M.$$\nPar le déterminant d'un produit et les questions 1 et 2, $\\det M = \\det D \\times \\det A$.\n\n4. $M$ est inversible si et seulement si $\\det M = \\det A \\det D \\neq 0$, c'est-à-dire si et seulement si $\\det A \\neq 0$ et $\\det D \\neq 0$ : si et seulement si $A$ et $D$ sont inversibles.\n\n5. Ici $p = q = 2$, $A = \\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix}$ et $D = \\begin{pmatrix} 5 & 2 \\\\ 3 & 1 \\end{pmatrix}$. On a $\\det A = 3 - 8 = -5$ et $\\det D = 5 - 6 = -1$, donc le déterminant vaut $(-5) \\times (-1) = 5$, quel que soit le bloc $B$."
+        }
+      ]
+    },
+    {
+      "id": "al-l1-determinant-famille-ex5",
+      "carte": "al-l1-determinant-famille",
+      "difficulte": 3,
+      "titre": "Une matrice entière à diagonale impaire",
+      "enonce": "Soient $n \\geq 2$ et $A = (a_{ij}) \\in \\mathcal{M}_n(\\mathbb{Z})$ une matrice à coefficients entiers dont les coefficients diagonaux $a_{11}, \\dots, a_{nn}$ sont impairs et dont tous les autres coefficients sont pairs.\n\n1. Justifier que $\\det A$ est un entier.\n\n2. Soit $\\sigma \\in \\mathfrak{S}_n$ une permutation différente de l'identité. Montrer que le produit $a_{\\sigma(1) 1} a_{\\sigma(2) 2} \\cdots a_{\\sigma(n) n}$ est pair.\n\n3. En déduire que $\\det A$ est impair, puis que $A$ est inversible dans $\\mathcal{M}_n(\\mathbb{R})$.",
+      "duree_min": 15,
+      "indices": [
+        "Utiliser la formule explicite du déterminant, somme indexée par les permutations de $\\{1, \\dots, n\\}$.",
+        "Si $\\sigma$ n'est pas l'identité, il existe un indice $j$ tel que $\\sigma(j) \\neq j$ : où se trouve le coefficient $a_{\\sigma(j) j}$ dans la matrice ?"
+      ],
+      "reponse_finale": {
+        "question": "Que peut-on affirmer de $\\det A$ pour toute matrice $A$ de ce type ?",
+        "propositions": [
+          "C'est un entier impair.",
+          "C'est un entier pair.",
+          "Il est nul.",
+          "Il vaut $1$ ou $-1$."
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Par la formule explicite, $\\det A = \\sum_{\\sigma \\in \\mathfrak{S}_n} \\varepsilon(\\sigma) \\, a_{\\sigma(1) 1} \\cdots a_{\\sigma(n) n}$, avec $\\varepsilon(\\sigma) \\in \\{-1, 1\\}$ : c'est une somme de produits d'entiers, donc un entier.\n\n2. Comme $\\sigma$ n'est pas l'identité, il existe $j$ tel que $\\sigma(j) \\neq j$. Le coefficient $a_{\\sigma(j) j}$ est alors situé hors de la diagonale, donc pair. Le produit $a_{\\sigma(1) 1} \\cdots a_{\\sigma(n) n}$ contient ce facteur pair, les autres facteurs étant entiers : il est pair.\n\n3. Le terme de l'identité est $\\varepsilon(\\mathrm{id}) \\, a_{11} a_{22} \\cdots a_{nn} = a_{11} a_{22} \\cdots a_{nn}$, produit d'entiers impairs, donc impair. D'après la question 2, chacun des autres termes est, au signe près, un entier pair, donc leur somme $S$ est paire. Ainsi $\\det A = a_{11} \\cdots a_{nn} + S$ est la somme d'un entier impair et d'un entier pair : il est impair.\n\nEn particulier $\\det A \\neq 0$, puisque $0$ est pair, donc $A$ est inversible dans $\\mathcal{M}_n(\\mathbb{R})$.\n\nLe déterminant n'est pas forcément égal à $\\pm 1$ : pour $n = 2$, la matrice $\\begin{pmatrix} 3 & 0 \\\\ 0 & 1 \\end{pmatrix}$ est de ce type et son déterminant vaut $3$ ; son inverse n'est d'ailleurs pas à coefficients entiers."
+    },
+    {
+      "id": "al-l1-determinant-inversibilite-ex5",
+      "carte": "al-l1-determinant-inversibilite",
+      "difficulte": 2,
+      "titre": "Pour quelles valeurs du paramètre a-t-on une base ?",
+      "enonce": "Pour $t \\in \\mathbb{R}$, on considère dans $\\mathbb{R}^3$ les vecteurs $u_t = (t, 1, 0)$, $v_t = (1, t, 1)$ et $w_t = (0, 1, t)$. Déterminer les réels $t$ pour lesquels $(u_t, v_t, w_t)$ est une base de $\\mathbb{R}^3$.",
+      "duree_min": 8,
+      "indices": [
+        "Une famille de trois vecteurs de $\\mathbb{R}^3$ en est une base si et seulement si son déterminant dans la base canonique est non nul.",
+        "Développer ce déterminant selon la première colonne, puis factoriser le polynôme obtenu."
+      ],
+      "reponse_finale": {
+        "question": "Pour quels réels $t$ la famille $(u_t, v_t, w_t)$ est-elle une base de $\\mathbb{R}^3$ ?",
+        "propositions": [
+          "$t \\notin \\{-\\sqrt{2}, 0, \\sqrt{2}\\}$",
+          "$t \\notin \\{-\\sqrt{2}, \\sqrt{2}\\}$",
+          "$t \\neq 0$",
+          "$t \\notin \\{-1, 0, 1\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La famille $(u_t, v_t, w_t)$ est une base de $\\mathbb{R}^3$ si et seulement si son déterminant dans la base canonique, c'est-à-dire le déterminant de la matrice dont les colonnes sont $u_t$, $v_t$, $w_t$, est non nul :\n$$D(t) = \\det \\begin{pmatrix} t & 1 & 0 \\\\ 1 & t & 1 \\\\ 0 & 1 & t \\end{pmatrix}.$$\n\nEn développant selon la première colonne :\n$$D(t) = t \\det \\begin{pmatrix} t & 1 \\\\ 1 & t \\end{pmatrix} - 1 \\times \\det \\begin{pmatrix} 1 & 0 \\\\ 1 & t \\end{pmatrix} = t(t^2 - 1) - t = t^3 - 2t = t(t^2 - 2).$$\n\nDonc $D(t) = 0$ si et seulement si $t \\in \\{-\\sqrt{2}, 0, \\sqrt{2}\\}$ : la famille est une base de $\\mathbb{R}^3$ si et seulement si $t \\notin \\{-\\sqrt{2}, 0, \\sqrt{2}\\}$.",
+      "variantes": [
+        {
+          "enonce": "Pour $t \\in \\mathbb{R}$, on considère dans $\\mathbb{R}^3$ les vecteurs $u_t = (t, 2, 0)$, $v_t = (2, t, 2)$ et $w_t = (0, 2, t)$. Déterminer les réels $t$ pour lesquels $(u_t, v_t, w_t)$ est une base de $\\mathbb{R}^3$.",
+          "indices": [
+            "Une famille de trois vecteurs de $\\mathbb{R}^3$ en est une base si et seulement si son déterminant dans la base canonique est non nul.",
+            "Développer ce déterminant selon la première colonne, puis factoriser le polynôme obtenu."
+          ],
+          "reponse_finale": {
+            "question": "Pour quels réels $t$ la famille $(u_t, v_t, w_t)$ est-elle une base de $\\mathbb{R}^3$ ?",
+            "propositions": [
+              "$t \\notin \\{-2\\sqrt{2}, 0, 2\\sqrt{2}\\}$",
+              "$t \\notin \\{-2, 0, 2\\}$",
+              "$t \\notin \\{-2\\sqrt{2}, 2\\sqrt{2}\\}$",
+              "$t \\neq 0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La famille est une base de $\\mathbb{R}^3$ si et seulement si son déterminant dans la base canonique est non nul :\n$$D(t) = \\det \\begin{pmatrix} t & 2 & 0 \\\\ 2 & t & 2 \\\\ 0 & 2 & t \\end{pmatrix}.$$\n\nEn développant selon la première colonne :\n$$D(t) = t \\det \\begin{pmatrix} t & 2 \\\\ 2 & t \\end{pmatrix} - 2 \\det \\begin{pmatrix} 2 & 0 \\\\ 2 & t \\end{pmatrix} = t(t^2 - 4) - 4t = t^3 - 8t = t(t^2 - 8).$$\n\nComme $\\sqrt{8} = 2\\sqrt{2}$, $D(t) = 0$ si et seulement si $t \\in \\{-2\\sqrt{2}, 0, 2\\sqrt{2}\\}$ : la famille est une base si et seulement si $t \\notin \\{-2\\sqrt{2}, 0, 2\\sqrt{2}\\}$."
+        },
+        {
+          "enonce": "Pour $t \\in \\mathbb{R}$, on considère dans $\\mathbb{R}^3$ les vecteurs $u_t = (1, t, 0)$, $v_t = (t, 1, t)$ et $w_t = (0, t, 1)$. Déterminer les réels $t$ pour lesquels $(u_t, v_t, w_t)$ est une base de $\\mathbb{R}^3$.",
+          "indices": [
+            "Une famille de trois vecteurs de $\\mathbb{R}^3$ en est une base si et seulement si son déterminant dans la base canonique est non nul.",
+            "Développer ce déterminant selon la première colonne."
+          ],
+          "reponse_finale": {
+            "question": "Pour quels réels $t$ la famille $(u_t, v_t, w_t)$ est-elle une base de $\\mathbb{R}^3$ ?",
+            "propositions": [
+              "$t \\notin \\left\\{-\\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{2}}{2}\\right\\}$",
+              "$t \\notin \\{-1, 1\\}$",
+              "$t \\notin \\left\\{-\\frac{\\sqrt{2}}{2}, 0, \\frac{\\sqrt{2}}{2}\\right\\}$",
+              "$t \\notin \\{-\\sqrt{2}, \\sqrt{2}\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La famille est une base de $\\mathbb{R}^3$ si et seulement si son déterminant dans la base canonique est non nul :\n$$D(t) = \\det \\begin{pmatrix} 1 & t & 0 \\\\ t & 1 & t \\\\ 0 & t & 1 \\end{pmatrix}.$$\n\nEn développant selon la première colonne :\n$$D(t) = 1 \\times \\det \\begin{pmatrix} 1 & t \\\\ t & 1 \\end{pmatrix} - t \\det \\begin{pmatrix} t & 0 \\\\ t & 1 \\end{pmatrix} = (1 - t^2) - t^2 = 1 - 2t^2.$$\n\nDonc $D(t) = 0$ si et seulement si $t^2 = \\frac{1}{2}$, soit $t = \\pm \\frac{\\sqrt{2}}{2}$ : la famille est une base si et seulement si $t \\notin \\left\\{-\\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{2}}{2}\\right\\}$ (pour $t = 0$, $D(0) = 1$ : c'est la base canonique)."
+        }
+      ]
     }
   ]
 }

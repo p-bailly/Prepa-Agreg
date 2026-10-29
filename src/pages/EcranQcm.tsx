@@ -3,7 +3,7 @@
 import { useMemo, useState, type CSSProperties } from 'react'
 import { chapitresNumerotes } from '../chapitres/plan'
 import { CONSIGNES, questionsChapitre, tirerQcm } from '../chapitres/qcm'
-import { Volet } from '../composants/Blocs'
+import { BandeauDoute, Volet } from '../composants/Blocs'
 import { Texte } from '../composants/Texte'
 import { useDonnees } from '../etat/Donnees'
 import { enregistrerQcm } from '../lib/progression'
@@ -55,6 +55,7 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
             <span className="etiquette">
               {CONSIGNES[q.genre]} · notion « <Texte texte={cartesParId.get(q.carte)?.titre ?? ''} enLigne /> »
             </span>
+            <BandeauDoute doute={q.doute} />
             {q.contexte && (
               <div className="bloc">
                 <Texte texte={q.contexte} />

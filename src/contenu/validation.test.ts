@@ -9,7 +9,7 @@ import { decouperTexte, formulesDe } from './texte'
 import type { Carte, Contenu, Exercice, Theme } from './types'
 import { textesDe, validerContenu } from './validation'
 import { carte, contenu, exercice } from '../repetition/outils-test'
-import type { Exercice as Ex, IntroLecon } from './types'
+import type { Exercice as Ex, FichierQcm, IntroLecon } from './types'
 
 /** Exercice de test avec assez d'indices pour sa difficulté. */
 const exo = (id: string, c: string, d: number): Ex => ({ ...exercice(id, c, d), indices: d >= 3 ? ['i1', 'i2'] : [] })
@@ -47,6 +47,13 @@ function lireTout(): { contenu: Contenu; erreurs: string[] } {
   }
   const cartes = lireDossier<Carte>('cartes')
   const exercices = lireDossier<Exercice>('exercices')
+  const qcm = readdirSync(join(RACINE, 'qcm'))
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => {
+      const q = JSON.parse(readFileSync(join(RACINE, 'qcm', f), 'utf8')) as FichierQcm
+      if (`${q.chapitre}.json` !== f) erreurs.push(`qcm/${f} : le nom du fichier doit être <chapitre>.json`)
+      return q
+    })
   const lecons = readdirSync(join(RACINE, 'lecons'))
     .filter((f) => f.endsWith('.json'))
     .map((f) => {
@@ -59,7 +66,7 @@ function lireTout(): { contenu: Contenu; erreurs: string[] } {
     const k = parId.get(e.carte)
     if (k && !e.id.startsWith(k.id)) erreurs.push(`exercice ${e.id} : identifiant attendu « ${k.id}-exN »`)
   }
-  return { contenu: { themes, cartes, exercices, lecons }, erreurs }
+  return { contenu: { themes, cartes, exercices, lecons, qcm }, erreurs }
 }
 
 describe('contenu de content/', () => {
@@ -73,6 +80,7 @@ describe('contenu de content/', () => {
     expect(CONTENU.cartes.map((c) => c.id).sort()).toEqual(tout.cartes.map((c) => c.id).sort())
     expect(CONTENU.exercices.length).toBe(tout.exercices.length)
     expect(CONTENU.lecons?.length).toBe(tout.lecons?.length)
+    expect(CONTENU.qcm?.length).toBe(tout.qcm?.length)
   })
 
   it('a chaque formule rendue par KaTeX sans erreur', () => {
@@ -140,6 +148,21 @@ describe('le contrôle du contenu repère les erreurs', () => {
     const c2 = carte('c2', 'analyse', 'terminale', ['c1'])
     const exs = ['c1', 'c2'].flatMap((c) => [exo(`${c}-ex1`, c, 1), exo(`${c}-ex2`, c, 2), exo(`${c}-ex3`, c, 5)])
     expect(validerContenu(contenu([c1, c2], exs)).join()).toMatch(/cycle/)
+  })
+  it('refuse des questions de QCM mal formées', () => {
+    const { a, b, ex } = base()
+    const c = contenu([a, b], ex)
+    const ch = a.chapitre
+    const q = (x: object) => ({ id: `${ch}-q1`, carte: 'a', genre: 'choix', enonce: 'e', propositions: ['1', '2', '3', '4'], bonne: 0, explication: 'x', ...x })
+    expect(validerContenu({ ...c, qcm: [{ chapitre: ch, questions: [q({})] }] } as never)).toEqual([])
+    const msg = (x: object) => validerContenu({ ...c, qcm: [{ chapitre: ch, questions: [q(x)] }] } as never).join()
+    expect(msg({ propositions: ['1', '1', '2', '3'] })).toMatch(/non distinctes/)
+    expect(msg({ bonne: 4 })).toMatch(/« bonne » invalide/)
+    expect(msg({ carte: 'b' })).toMatch(/absente du chapitre/)
+    expect(msg({ explication: '' })).toMatch(/obligatoires/)
+    expect(msg({ id: 'autre-q1' })).toMatch(/identifiant attendu/)
+    expect(msg({ genre: 'vrai-faux' })).toMatch(/un vrai-faux a « vrai »/)
+    expect(validerContenu({ ...c, qcm: [{ chapitre: ch, questions: [{ id: `${ch}-q2`, carte: 'a', genre: 'vrai-faux', enonce: 'e', vrai: false, explication: 'x' }] }] } as never)).toEqual([])
   })
   it('refuse trous mal formés et leurres en double', () => {
     const { a, b, ex } = base()

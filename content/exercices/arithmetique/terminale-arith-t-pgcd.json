@@ -603,6 +603,189 @@
           "correction": "1. Comme $4 \\times (-2) + 9 \\times 1 = 1$, le couple $(-2n, n)$ est solution de $4x + 9y = n$. Comme $4 \\wedge 9 = 1$, les solutions sont les couples $(-2n + 9k, n - 4k)$, $k \\in \\mathbb{Z}$ (résolution des équations $ax + by = c$). Les abscisses $-2n + 9k$ décrivent exactement une classe modulo $9$, qui contient un unique entier de $\\{0, \\dots, 8\\}$ (le reste de $-2n$ dans la division par $9$) : d'où l'existence et l'unicité de $(x_n, y_n)$.\n\n2. Si $y_n \\geq 0$, alors $(x_n, y_n) \\in \\mathbb{N}^2$ et $n$ est payable. Réciproquement, si $4x + 9y = n$ avec $x, y \\geq 0$, alors $(x, y) = (x_n + 9k, y_n - 4k)$ avec $k \\in \\mathbb{Z}$ ; comme $x \\geq 0$ et $x_n \\leq 8$, on a $9k = x - x_n \\geq -8$, donc $k \\geq 0$, et $y_n = y + 4k \\geq 0$.\n\n3. Si $n \\geq 24$, alors $9y_n = n - 4x_n \\geq 24 - 32 = -8 > -9$, donc $y_n > -1$, soit $y_n \\geq 0$ : $n$ est payable. Pour $n = 23$ : la congruence $4x \\equiv 23 \\pmod{9}$, soit $4x \\equiv 5 \\pmod{9}$, équivaut à $x \\equiv 8 \\pmod{9}$ (car $4 \\times 7 \\equiv 1 \\pmod{9}$ et $7 \\times 5 \\equiv 8$) ; ainsi $x_{23} = 8$ et $y_{23} = (23 - 32)/9 = -1 < 0$ : $23$ n'est pas payable.\n\n4. Un entier $n$ tel que $x_n = x$ s'écrit $n = 4x + 9y_n$ ; il est non payable si et seulement si $y_n \\leq -1$, c'est-à-dire $n = 4x - 9j$ avec $j \\geq 1$ (et, réciproquement, un tel $n$ vérifie bien $x_n = x$, par unicité). Les entiers naturels de cette forme sont au nombre de $\\lfloor 4x/9 \\rfloor$ (les $j$ tels que $1 \\leq j \\leq 4x/9$). En sommant sur $x = 0, \\dots, 8$ : $0 + 0 + 0 + 1 + 1 + 2 + 2 + 3 + 3 = 12$. Il y a $12$ entiers naturels non payables : $1, 2, 3, 5, 6, 7, 10, 11, 14, 15, 19, 23$."
         }
       ]
+    },
+    {
+      "id": "arith-t-bezout-ex5",
+      "carte": "arith-t-bezout",
+      "difficulte": 4,
+      "titre": "Un chiffrement affine modulo $26$",
+      "enonce": "On numérote les lettres de l'alphabet de $0$ à $25$ : A correspond à $0$, B à $1$, et ainsi de suite jusqu'à Z, qui correspond à $25$. Pour coder une lettre de numéro $x$, on calcule le reste $y$ de la division euclidienne de $11x + 8$ par $26$, et on remplace la lettre par celle de numéro $y$.\n\n1. Coder la lettre K (numéro $10$).\n\n2. a) Justifier que $11$ et $26$ sont premiers entre eux et déterminer, à l'aide de l'algorithme d'Euclide, un couple $(u, v) \\in \\mathbb{Z}^2$ tel que $11u + 26v = 1$.\n\nb) En déduire un entier $a'$ de $\\{0, 1, \\dots, 25\\}$ tel que $11a' \\equiv 1 \\pmod{26}$.\n\n3. Soient $x$ et $y$ deux entiers. Montrer que $y \\equiv 11x + 8 \\pmod{26}$ si et seulement si $x \\equiv 19y + 4 \\pmod{26}$.\n\n4. Décoder la lettre W (numéro $22$).\n\n5. Montrer, à l'aide du lemme de Gauss, que deux lettres distinctes sont toujours codées par deux lettres distinctes.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 2, effectuer les divisions de l'algorithme d'Euclide en partant de $26$ et $11$, puis les remonter.",
+        "Pour la question 3, multiplier la congruence $y \\equiv 11x + 8$ par l'entier $a'$ de la question 2 ; pour la réciproque, multiplier par $11$.",
+        "Pour la question 5, si les lettres de numéros $x$ et $x'$ ont le même code, que peut-on dire de $26$ et de la différence des deux expressions ?"
+      ],
+      "reponse_finale": {
+        "question": "Quelle lettre est codée par W ?",
+        "propositions": [
+          "G",
+          "C",
+          "Q",
+          "U"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $11 \\times 10 + 8 = 118 = 26 \\times 4 + 14$ : la lettre K est codée par la lettre de numéro $14$, c'est-à-dire O.\n\n2. a) $26 = 11 \\times 2 + 4$ ; $11 = 4 \\times 2 + 3$ ; $4 = 3 \\times 1 + 1$ ; $3 = 1 \\times 3 + 0$. Le dernier reste non nul est $1$, donc $11 \\wedge 26 = 1$. En remontant les calculs : $1 = 4 - 3 = 4 - (11 - 2 \\times 4) = 3 \\times 4 - 11 = 3(26 - 2 \\times 11) - 11 = 3 \\times 26 - 7 \\times 11$. Ainsi $(u, v) = (-7, 3)$ convient.\n\nb) On a donc $11 \\times (-7) \\equiv 1 \\pmod{26}$ et $-7 \\equiv 19 \\pmod{26}$ : $a' = 19$ convient ($11 \\times 19 = 209 = 26 \\times 8 + 1$).\n\n3. Si $y \\equiv 11x + 8 \\pmod{26}$, en multipliant par $19$ : $19y \\equiv 209x + 152 \\pmod{26}$. Or $209 = 8 \\times 26 + 1 \\equiv 1$, donc $x \\equiv 19y - 152 \\pmod{26}$, et $-152 = -6 \\times 26 + 4$ : $x \\equiv 19y + 4 \\pmod{26}$. Réciproquement, si $x \\equiv 19y + 4 \\pmod{26}$, en multipliant par $11$ : $11x \\equiv 209y + 44 \\equiv y + 18 \\pmod{26}$, donc $y \\equiv 11x - 18 \\equiv 11x + 8 \\pmod{26}$.\n\n4. Pour $y = 22$ : $19 \\times 22 + 4 = 422 = 26 \\times 16 + 6$, donc $x = 6$ : W est le code de la lettre G. Vérification : $11 \\times 6 + 8 = 74 = 2 \\times 26 + 22$.\n\n5. Si les lettres de numéros $x$ et $x'$ ont le même code, alors $11x + 8 \\equiv 11x' + 8 \\pmod{26}$, donc $26$ divise $11(x - x')$. Comme $26 \\wedge 11 = 1$, le lemme de Gauss donne $26 \\mid x - x'$ ; or $-25 \\leq x - x' \\leq 25$, donc $x - x' = 0$. Le codage est injectif sur l'alphabet, qui est fini : il permute les $26$ lettres.\n\n(Erreurs fréquentes à la question 4 : oublier la constante $4$ donne $19 \\times 22 \\equiv 2$, soit C ; coder W au lieu de le décoder donne Q.)",
+      "variantes": [
+        {
+          "enonce": "On numérote les lettres de l'alphabet de $0$ à $25$ : A correspond à $0$, B à $1$, et ainsi de suite jusqu'à Z, qui correspond à $25$. Pour coder une lettre de numéro $x$, on calcule le reste $y$ de la division euclidienne de $7x + 3$ par $26$, et on remplace la lettre par celle de numéro $y$.\n\n1. Coder la lettre K (numéro $10$).\n\n2. a) Justifier que $7$ et $26$ sont premiers entre eux et déterminer, à l'aide de l'algorithme d'Euclide, un couple $(u, v) \\in \\mathbb{Z}^2$ tel que $7u + 26v = 1$.\n\nb) En déduire un entier $a'$ de $\\{0, 1, \\dots, 25\\}$ tel que $7a' \\equiv 1 \\pmod{26}$.\n\n3. Soient $x$ et $y$ deux entiers. Montrer que $y \\equiv 7x + 3 \\pmod{26}$ si et seulement si $x \\equiv 15y + 7 \\pmod{26}$.\n\n4. Décoder la lettre W (numéro $22$).\n\n5. Montrer, à l'aide du lemme de Gauss, que deux lettres distinctes sont toujours codées par deux lettres distinctes.",
+          "indices": [
+            "Pour la question 2, effectuer les divisions de l'algorithme d'Euclide en partant de $26$ et $7$, puis les remonter.",
+            "Pour la question 3, multiplier la congruence $y \\equiv 7x + 3$ par l'entier $a'$ de la question 2 ; pour la réciproque, multiplier par $7$.",
+            "Pour la question 5, si les lettres de numéros $x$ et $x'$ ont le même code, que peut-on dire de $26$ et de la différence des deux expressions ?"
+          ],
+          "reponse_finale": {
+            "question": "Quelle lettre est codée par W ?",
+            "propositions": [
+              "Z",
+              "S",
+              "B",
+              "P"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $7 \\times 10 + 3 = 73 = 26 \\times 2 + 21$ : la lettre K est codée par la lettre de numéro $21$, c'est-à-dire V.\n\n2. a) $26 = 7 \\times 3 + 5$ ; $7 = 5 \\times 1 + 2$ ; $5 = 2 \\times 2 + 1$ ; $2 = 1 \\times 2 + 0$. Le dernier reste non nul est $1$, donc $7 \\wedge 26 = 1$. En remontant les calculs : $1 = 5 - 2 \\times 2 = 5 - 2(7 - 5) = 3 \\times 5 - 2 \\times 7 = 3(26 - 3 \\times 7) - 2 \\times 7 = 3 \\times 26 - 11 \\times 7$. Ainsi $(u, v) = (-11, 3)$ convient.\n\nb) On a donc $7 \\times (-11) \\equiv 1 \\pmod{26}$ et $-11 \\equiv 15 \\pmod{26}$ : $a' = 15$ convient ($7 \\times 15 = 105 = 26 \\times 4 + 1$).\n\n3. Si $y \\equiv 7x + 3 \\pmod{26}$, en multipliant par $15$ : $15y \\equiv 105x + 45 \\pmod{26}$. Or $105 = 4 \\times 26 + 1 \\equiv 1$, donc $x \\equiv 15y - 45 \\pmod{26}$, et $-45 = -2 \\times 26 + 7$ : $x \\equiv 15y + 7 \\pmod{26}$. Réciproquement, si $x \\equiv 15y + 7 \\pmod{26}$, en multipliant par $7$ : $7x \\equiv 105y + 49 \\equiv y + 23 \\pmod{26}$, donc $y \\equiv 7x - 23 \\equiv 7x + 3 \\pmod{26}$.\n\n4. Pour $y = 22$ : $15 \\times 22 + 7 = 337 = 26 \\times 12 + 25$, donc $x = 25$ : W est le code de la lettre Z. Vérification : $7 \\times 25 + 3 = 178 = 6 \\times 26 + 22$.\n\n5. Si les lettres de numéros $x$ et $x'$ ont le même code, alors $7x + 3 \\equiv 7x' + 3 \\pmod{26}$, donc $26$ divise $7(x - x')$. Comme $26 \\wedge 7 = 1$, le lemme de Gauss donne $26 \\mid x - x'$ ; or $-25 \\leq x - x' \\leq 25$, donc $x - x' = 0$. Le codage est injectif sur l'alphabet, qui est fini : il permute les $26$ lettres.\n\n(Erreurs fréquentes à la question 4 : oublier la constante $7$ donne $15 \\times 22 \\equiv 18$, soit S ; coder W au lieu de le décoder donne B.)"
+        },
+        {
+          "enonce": "On numérote les lettres de l'alphabet de $0$ à $25$ : A correspond à $0$, B à $1$, et ainsi de suite jusqu'à Z, qui correspond à $25$. Pour coder une lettre de numéro $x$, on calcule le reste $y$ de la division euclidienne de $5x + 12$ par $26$, et on remplace la lettre par celle de numéro $y$.\n\n1. Coder la lettre E (numéro $4$).\n\n2. a) Justifier que $5$ et $26$ sont premiers entre eux et déterminer, à l'aide de l'algorithme d'Euclide, un couple $(u, v) \\in \\mathbb{Z}^2$ tel que $5u + 26v = 1$.\n\nb) En déduire un entier $a'$ de $\\{0, 1, \\dots, 25\\}$ tel que $5a' \\equiv 1 \\pmod{26}$.\n\n3. Soient $x$ et $y$ deux entiers. Montrer que $y \\equiv 5x + 12 \\pmod{26}$ si et seulement si $x \\equiv 21y + 8 \\pmod{26}$.\n\n4. Décoder la lettre W (numéro $22$).\n\n5. Montrer, à l'aide du lemme de Gauss, que deux lettres distinctes sont toujours codées par deux lettres distinctes.",
+          "indices": [
+            "Pour la question 2, effectuer les divisions de l'algorithme d'Euclide en partant de $26$ et $5$, puis les remonter.",
+            "Pour la question 3, multiplier la congruence $y \\equiv 5x + 12$ par l'entier $a'$ de la question 2 ; pour la réciproque, multiplier par $5$.",
+            "Pour la question 5, si les lettres de numéros $x$ et $x'$ ont le même code, que peut-on dire de $26$ et de la différence des deux expressions ?"
+          ],
+          "reponse_finale": {
+            "question": "Quelle lettre est codée par W ?",
+            "propositions": [
+              "C",
+              "U",
+              "S",
+              "I"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $5 \\times 4 + 12 = 32 = 26 \\times 1 + 6$ : la lettre E est codée par la lettre de numéro $6$, c'est-à-dire G.\n\n2. a) $26 = 5 \\times 5 + 1$ ; $5 = 1 \\times 5 + 0$. Le dernier reste non nul est $1$, donc $5 \\wedge 26 = 1$. En remontant les calculs : $1 = 26 - 5 \\times 5 = 1 \\times 26 - 5 \\times 5$. Ainsi $(u, v) = (-5, 1)$ convient.\n\nb) On a donc $5 \\times (-5) \\equiv 1 \\pmod{26}$ et $-5 \\equiv 21 \\pmod{26}$ : $a' = 21$ convient ($5 \\times 21 = 105 = 26 \\times 4 + 1$).\n\n3. Si $y \\equiv 5x + 12 \\pmod{26}$, en multipliant par $21$ : $21y \\equiv 105x + 252 \\pmod{26}$. Or $105 = 4 \\times 26 + 1 \\equiv 1$, donc $x \\equiv 21y - 252 \\pmod{26}$, et $-252 = -10 \\times 26 + 8$ : $x \\equiv 21y + 8 \\pmod{26}$. Réciproquement, si $x \\equiv 21y + 8 \\pmod{26}$, en multipliant par $5$ : $5x \\equiv 105y + 40 \\equiv y + 14 \\pmod{26}$, donc $y \\equiv 5x - 14 \\equiv 5x + 12 \\pmod{26}$.\n\n4. Pour $y = 22$ : $21 \\times 22 + 8 = 470 = 26 \\times 18 + 2$, donc $x = 2$ : W est le code de la lettre C. Vérification : $5 \\times 2 + 12 = 22$.\n\n5. Si les lettres de numéros $x$ et $x'$ ont le même code, alors $5x + 12 \\equiv 5x' + 12 \\pmod{26}$, donc $26$ divise $5(x - x')$. Comme $26 \\wedge 5 = 1$, le lemme de Gauss donne $26 \\mid x - x'$ ; or $-25 \\leq x - x' \\leq 25$, donc $x - x' = 0$. Le codage est injectif sur l'alphabet, qui est fini : il permute les $26$ lettres.\n\n(Erreurs fréquentes à la question 4 : oublier la constante $8$ donne $21 \\times 22 \\equiv 20$, soit U ; coder W au lieu de le décoder donne S.)"
+        }
+      ]
+    },
+    {
+      "id": "arith-t-pgcd-euclide-ex6",
+      "carte": "arith-t-pgcd-euclide",
+      "difficulte": 3,
+      "titre": "Deux entiers dont on connaît la somme et le PGCD",
+      "enonce": "On cherche les couples $(a, b)$ d'entiers naturels tels que $a \\leq b$, $a + b = 168$ et $a \\wedge b = 12$.\n\n1. Montrer que si $(a, b)$ convient, on peut écrire $a = 12a'$ et $b = 12b'$, où $a'$ et $b'$ sont des entiers naturels tels que $a' \\leq b'$, $a' + b' = 14$ et $a' \\wedge b' = 1$.\n\n2. Soient $a'$ et $b'$ des entiers naturels tels que $a' + b' = 14$. Montrer que $a' \\wedge b' = a' \\wedge 14$.\n\n3. En déduire tous les couples cherchés.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, utiliser le lemme sur lequel repose l'algorithme d'Euclide.",
+        "Pour la question 3, traduire la condition $a' \\leq b'$ en une inégalité portant sur $a'$ seul."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de couples $(a, b)$ solutions ?",
+        "propositions": [
+          "$3$",
+          "$7$",
+          "$4$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Comme $d = 12$ est le PGCD de $a$ et $b$, on écrit $a = 12a'$ et $b = 12b'$ avec $a', b' \\in \\mathbb{N}$, et l'on sait qu'alors $a' \\wedge b' = 1$. De plus $a \\leq b$ donne $a' \\leq b'$, et $12(a' + b') = 168$ donne $a' + b' = 14$.\n\n2. Si $a' = 0$, les deux membres valent $14$. Sinon, on écrit $14 = a' \\times 1 + b'$ : d'après le lemme de l'algorithme d'Euclide, $14$ et $a'$ ont les mêmes diviseurs communs que $a'$ et $b'$, donc $a' \\wedge b' = a' \\wedge 14$.\n\n3. D'après 1 et 2, il faut $a' \\wedge 14 = 1$, ce qui exclut $a' = 0$ (car $0 \\wedge 14 = 14$), et $a' \\leq 14 - a'$, soit $a' \\leq 7$. Les entiers de $\\{1, \\dots, 7\\}$ premiers avec $14 = 2 \\times 7$ sont les entiers impairs différents de $7$ : $a' \\in \\{1, 3, 5\\}$.\n\nRéciproquement, pour un tel $a'$ et $b' = 14 - a'$, on a $a' \\wedge b' = a' \\wedge 14 = 1$ : il existe $u, v \\in \\mathbb{Z}$ tels que $a'u + b'v = 1$, d'où $au + bv = 12$ avec $a = 12a'$, $b = 12b'$. Tout diviseur commun de $a$ et $b$ divise donc $12$, et $12$ divise $a$ et $b$ : $a \\wedge b = 12$. On a aussi $a + b = 168$ et $a \\leq b$.\n\nLes couples cherchés sont $(12, 156)$, $(36, 132)$ et $(60, 108)$ : il y en a $3$.",
+      "variantes": [
+        {
+          "enonce": "On cherche les couples $(a, b)$ d'entiers naturels tels que $a \\leq b$, $a + b = 300$ et $a \\wedge b = 15$.\n\n1. Montrer que si $(a, b)$ convient, on peut écrire $a = 15a'$ et $b = 15b'$, où $a'$ et $b'$ sont des entiers naturels tels que $a' \\leq b'$, $a' + b' = 20$ et $a' \\wedge b' = 1$.\n\n2. Soient $a'$ et $b'$ des entiers naturels tels que $a' + b' = 20$. Montrer que $a' \\wedge b' = a' \\wedge 20$.\n\n3. En déduire tous les couples cherchés.",
+          "indices": [
+            "Pour la question 2, utiliser le lemme sur lequel repose l'algorithme d'Euclide.",
+            "Pour la question 3, traduire la condition $a' \\leq b'$ en une inégalité portant sur $a'$ seul."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de couples $(a, b)$ solutions ?",
+            "propositions": [
+              "$4$",
+              "$10$",
+              "$5$",
+              "$8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $d = 15$ est le PGCD de $a$ et $b$, on écrit $a = 15a'$ et $b = 15b'$ avec $a', b' \\in \\mathbb{N}$, et l'on sait qu'alors $a' \\wedge b' = 1$. De plus $a \\leq b$ donne $a' \\leq b'$, et $15(a' + b') = 300$ donne $a' + b' = 20$.\n\n2. Si $a' = 0$, les deux membres valent $20$. Sinon, on écrit $20 = a' \\times 1 + b'$ : d'après le lemme de l'algorithme d'Euclide, $20$ et $a'$ ont les mêmes diviseurs communs que $a'$ et $b'$, donc $a' \\wedge b' = a' \\wedge 20$.\n\n3. D'après 1 et 2, il faut $a' \\wedge 20 = 1$, ce qui exclut $a' = 0$ (car $0 \\wedge 20 = 20$), et $a' \\leq 20 - a'$, soit $a' \\leq 10$. Les entiers de $\\{1, \\dots, 10\\}$ premiers avec $20 = 2^2 \\times 5$ sont les entiers impairs non multiples de $5$ : $a' \\in \\{1, 3, 7, 9\\}$.\n\nRéciproquement, pour un tel $a'$ et $b' = 20 - a'$, on a $a' \\wedge b' = a' \\wedge 20 = 1$ : il existe $u, v \\in \\mathbb{Z}$ tels que $a'u + b'v = 1$, d'où $au + bv = 15$ avec $a = 15a'$, $b = 15b'$. Tout diviseur commun de $a$ et $b$ divise donc $15$, et $15$ divise $a$ et $b$ : $a \\wedge b = 15$. On a aussi $a + b = 300$ et $a \\leq b$.\n\nLes couples cherchés sont $(15, 285)$, $(45, 255)$, $(105, 195)$ et $(135, 165)$ : il y en a $4$."
+        },
+        {
+          "enonce": "On cherche les couples $(a, b)$ d'entiers naturels tels que $a \\leq b$, $a + b = 168$ et $a \\wedge b = 8$.\n\n1. Montrer que si $(a, b)$ convient, on peut écrire $a = 8a'$ et $b = 8b'$, où $a'$ et $b'$ sont des entiers naturels tels que $a' \\leq b'$, $a' + b' = 21$ et $a' \\wedge b' = 1$.\n\n2. Soient $a'$ et $b'$ des entiers naturels tels que $a' + b' = 21$. Montrer que $a' \\wedge b' = a' \\wedge 21$.\n\n3. En déduire tous les couples cherchés.",
+          "indices": [
+            "Pour la question 2, utiliser le lemme sur lequel repose l'algorithme d'Euclide.",
+            "Pour la question 3, traduire la condition $a' \\leq b'$ en une inégalité portant sur $a'$ seul."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de couples $(a, b)$ solutions ?",
+            "propositions": [
+              "$6$",
+              "$10$",
+              "$12$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Comme $d = 8$ est le PGCD de $a$ et $b$, on écrit $a = 8a'$ et $b = 8b'$ avec $a', b' \\in \\mathbb{N}$, et l'on sait qu'alors $a' \\wedge b' = 1$. De plus $a \\leq b$ donne $a' \\leq b'$, et $8(a' + b') = 168$ donne $a' + b' = 21$.\n\n2. Si $a' = 0$, les deux membres valent $21$. Sinon, on écrit $21 = a' \\times 1 + b'$ : d'après le lemme de l'algorithme d'Euclide, $21$ et $a'$ ont les mêmes diviseurs communs que $a'$ et $b'$, donc $a' \\wedge b' = a' \\wedge 21$.\n\n3. D'après 1 et 2, il faut $a' \\wedge 21 = 1$, ce qui exclut $a' = 0$ (car $0 \\wedge 21 = 21$), et $a' \\leq 21 - a'$, soit $a' \\leq 10$ ($a'$ étant entier). Les entiers de $\\{1, \\dots, 10\\}$ premiers avec $21 = 3 \\times 7$ sont ceux qui ne sont multiples ni de $3$ ni de $7$ : $a' \\in \\{1, 2, 4, 5, 8, 10\\}$.\n\nRéciproquement, pour un tel $a'$ et $b' = 21 - a'$, on a $a' \\wedge b' = a' \\wedge 21 = 1$ : il existe $u, v \\in \\mathbb{Z}$ tels que $a'u + b'v = 1$, d'où $au + bv = 8$ avec $a = 8a'$, $b = 8b'$. Tout diviseur commun de $a$ et $b$ divise donc $8$, et $8$ divise $a$ et $b$ : $a \\wedge b = 8$. On a aussi $a + b = 168$ et $a \\leq b$.\n\nLes couples cherchés sont $(8, 160)$, $(16, 152)$, $(32, 136)$, $(40, 128)$, $(64, 104)$ et $(80, 88)$ : il y en a $6$."
+        }
+      ]
+    },
+    {
+      "id": "arith-t-gauss-ex5",
+      "carte": "arith-t-gauss",
+      "difficulte": 2,
+      "titre": "Une équation du type $ax = by$ sous contrainte",
+      "enonce": "1. Déterminer l'ensemble des couples $(x, y) \\in \\mathbb{Z}^2$ tels que $8x = 15y$.\n\n2. Combien de ces couples vérifient $100 \\leq x + y \\leq 200$ ? Les donner.",
+      "duree_min": 10,
+      "indices": [
+        "Utiliser que $15$ divise $8x$ et que $15$ et $8$ sont premiers entre eux."
+      ],
+      "reponse_finale": {
+        "question": "Combien de couples solutions vérifient $100 \\leq x + y \\leq 200$ ?",
+        "propositions": [
+          "$4$",
+          "$5$",
+          "$3$",
+          "$8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Si $8x = 15y$, alors $15$ divise $8x$ ; comme $15 \\wedge 8 = 1$, le lemme de Gauss donne $15 \\mid x$ : $x = 15k$ avec $k \\in \\mathbb{Z}$. Alors $8 \\times 15k = 15y$, donc $y = 8k$. Réciproquement, $8 \\times 15k = 15 \\times 8k$. Les solutions sont les couples $(15k, 8k)$, $k \\in \\mathbb{Z}$.\n\n2. Pour ces couples, $x + y = 23k$, et $100 \\leq 23k \\leq 200$ équivaut, pour $k$ entier, à $5 \\leq k \\leq 8$ ($23 \\times 4 = 92$ et $23 \\times 9 = 207$). Il y a $4$ couples : $(75, 40)$, $(90, 48)$, $(105, 56)$ et $(120, 64)$.",
+      "variantes": [
+        {
+          "enonce": "1. Déterminer l'ensemble des couples $(x, y) \\in \\mathbb{Z}^2$ tels que $7x = 12y$.\n\n2. Combien de ces couples vérifient $100 \\leq x + y \\leq 300$ ? Les donner.",
+          "indices": [
+            "Utiliser que $12$ divise $7x$ et que $12$ et $7$ sont premiers entre eux."
+          ],
+          "reponse_finale": {
+            "question": "Combien de couples solutions vérifient $100 \\leq x + y \\leq 300$ ?",
+            "propositions": [
+              "$10$",
+              "$11$",
+              "$9$",
+              "$16$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Si $7x = 12y$, alors $12$ divise $7x$ ; comme $12 \\wedge 7 = 1$, le lemme de Gauss donne $12 \\mid x$ : $x = 12k$ avec $k \\in \\mathbb{Z}$. Alors $7 \\times 12k = 12y$, donc $y = 7k$. Réciproquement, $7 \\times 12k = 12 \\times 7k$. Les solutions sont les couples $(12k, 7k)$, $k \\in \\mathbb{Z}$.\n\n2. Pour ces couples, $x + y = 19k$, et $100 \\leq 19k \\leq 300$ équivaut, pour $k$ entier, à $6 \\leq k \\leq 15$ ($19 \\times 5 = 95$ et $19 \\times 16 = 304$). Il y a $10$ couples : les couples $(12k, 7k)$ pour $k = 6, 7, \\dots, 15$, de $(72, 42)$ à $(180, 105)$."
+        },
+        {
+          "enonce": "1. Déterminer l'ensemble des couples $(x, y) \\in \\mathbb{Z}^2$ tels que $10x = 21y$.\n\n2. Combien de ces couples vérifient $50 \\leq x - y \\leq 150$ ? Les donner.",
+          "indices": [
+            "Utiliser que $21$ divise $10x$ et que $21$ et $10$ sont premiers entre eux."
+          ],
+          "reponse_finale": {
+            "question": "Combien de couples solutions vérifient $50 \\leq x - y \\leq 150$ ?",
+            "propositions": [
+              "$9$",
+              "$10$",
+              "$8$",
+              "$13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Si $10x = 21y$, alors $21$ divise $10x$ ; comme $21 \\wedge 10 = 1$, le lemme de Gauss donne $21 \\mid x$ : $x = 21k$ avec $k \\in \\mathbb{Z}$. Alors $10 \\times 21k = 21y$, donc $y = 10k$. Réciproquement, $10 \\times 21k = 21 \\times 10k$. Les solutions sont les couples $(21k, 10k)$, $k \\in \\mathbb{Z}$.\n\n2. Pour ces couples, $x - y = 11k$, et $50 \\leq 11k \\leq 150$ équivaut, pour $k$ entier, à $5 \\leq k \\leq 13$ ($11 \\times 4 = 44$ et $11 \\times 14 = 154$). Il y a $9$ couples : les couples $(21k, 10k)$ pour $k = 5, 6, \\dots, 13$, de $(105, 50)$ à $(273, 130)$."
+        }
+      ]
     }
   ]
 }

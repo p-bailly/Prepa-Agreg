@@ -1,0 +1,99 @@
+{
+  "chapitre": "proba-l1-conditionnement",
+  "questions": [
+    {
+      "id": "proba-l1-conditionnement-q1",
+      "carte": "proba-l1-probas-totales-bayes",
+      "genre": "choix",
+      "enonce": "Une maladie touche $1\\,\\%$ d'une population. Un test est positif chez $99\\,\\%$ des malades et chez $2\\,\\%$ des personnes saines. Une personne prise au hasard a un test positif. Quelle est la probabilité qu'elle soit malade ?",
+      "propositions": [
+        "$\\frac{1}{3}$",
+        "$0{,}99$",
+        "$0{,}0297$",
+        "$\\frac{1}{2}$"
+      ],
+      "bonne": 0,
+      "explication": "Notons $M$ « la personne est malade » et $T$ « le test est positif ». La formule des probabilités totales donne $P(T)=0{,}99\\times 0{,}01+0{,}02\\times 0{,}99=0{,}0099+0{,}0198=0{,}0297$, puis la formule de Bayes $P(M\\mid T)=\\frac{0{,}0099}{0{,}0297}=\\frac{1}{3}$. Les personnes saines étant très majoritaires, leurs faux positifs font les deux tiers des tests positifs ; $0{,}99$ est $P(T\\mid M)$, et non $P(M\\mid T)$."
+    },
+    {
+      "id": "proba-l1-conditionnement-q2",
+      "carte": "proba-l1-conditionnement-composees",
+      "genre": "choix",
+      "enonce": "Une urne contient $5$ boules rouges et $3$ boules noires. On tire les boules une à une, au hasard et sans remise. Quelle est la probabilité que la première boule noire apparaisse au troisième tirage ?",
+      "propositions": [
+        "$\\frac{5}{28}$",
+        "$\\frac{75}{512}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{15}{56}$"
+      ],
+      "bonne": 0,
+      "explication": "Avec $R_k$ « la $k$-ième boule tirée est rouge », l'événement cherché est $R_1\\cap R_2\\cap\\overline{R_3}$. Par la formule des probabilités composées, sa probabilité est $P(R_1)P(R_2\\mid R_1)P\\left(\\overline{R_3}\\mid R_1\\cap R_2\\right)=\\frac{5}{8}\\times\\frac{4}{7}\\times\\frac{3}{6}=\\frac{5}{28}$. La valeur $\\frac{75}{512}=\\left(\\frac{5}{8}\\right)^2\\times\\frac{3}{8}$ correspondrait à des tirages avec remise."
+    },
+    {
+      "id": "proba-l1-conditionnement-q3",
+      "carte": "proba-l1-conditionnement-independance",
+      "genre": "vrai-faux",
+      "enonce": "On tire une carte au hasard dans un jeu de $32$ cartes, formé de $4$ couleurs de $8$ cartes avec un as dans chaque couleur. Les événements $C$ « la carte est un cœur » et $A$ « la carte est un as » sont indépendants.",
+      "vrai": true,
+      "explication": "Vrai : $P(C)=\\frac{8}{32}=\\frac{1}{4}$, $P(A)=\\frac{4}{32}=\\frac{1}{8}$ et $P(A\\cap C)=\\frac{1}{32}$, car seul l'as de cœur convient ; on a bien $P(A\\cap C)=\\frac{1}{4}\\times\\frac{1}{8}=P(A)P(C)$."
+    },
+    {
+      "id": "proba-l1-conditionnement-q4",
+      "carte": "proba-l1-probas-totales-bayes",
+      "genre": "vrai-faux",
+      "enonce": "Soit $A$ un événement de probabilité strictement comprise entre $0$ et $1$, et $B$ un événement tel que $P(B\\mid A)=0{,}5$ et $P(B\\mid\\overline{A})=0{,}3$. Alors $P(B)=0{,}4$, quelle que soit la valeur de $P(A)$.",
+      "vrai": false,
+      "explication": "Faux. Par la formule des probabilités totales, $P(B)=0{,}5\\,P(A)+0{,}3\\left(1-P(A)\\right)=0{,}3+0{,}2\\,P(A)$, qui dépend de $P(A)$ : par exemple, si $P(A)=0{,}2$, alors $P(B)=0{,}34$. On obtient $0{,}4$, la moyenne des deux probabilités conditionnelles, seulement si $P(A)=0{,}5$."
+    },
+    {
+      "id": "proba-l1-conditionnement-q5",
+      "carte": "proba-l1-independance-mutuelle",
+      "genre": "vrai-faux",
+      "enonce": "Si $A$, $B$, $C$ sont trois événements mutuellement indépendants de probabilité $\\frac{1}{3}$ chacun, alors la probabilité que l'un au moins des trois se réalise vaut $1$.",
+      "vrai": false,
+      "explication": "Faux. Les événements contraires $\\overline{A}$, $\\overline{B}$, $\\overline{C}$ sont encore mutuellement indépendants, donc $P\\left(\\overline{A}\\cap\\overline{B}\\cap\\overline{C}\\right)=\\left(\\frac{2}{3}\\right)^3=\\frac{8}{27}$ et $P(A\\cup B\\cup C)=1-\\frac{8}{27}=\\frac{19}{27}<1$. Additionner les probabilités ($\\frac{1}{3}+\\frac{1}{3}+\\frac{1}{3}=1$) n'est permis que pour des événements deux à deux incompatibles."
+    },
+    {
+      "id": "proba-l1-conditionnement-q6",
+      "carte": "proba-l1-conditionnement-independance",
+      "genre": "choix",
+      "enonce": "Soit $A$ et $B$ deux événements indépendants tels que $P(A)=0{,}4$ et $P(A\\cup B)=0{,}7$. Que vaut $P(B)$ ?",
+      "propositions": [
+        "$0{,}5$",
+        "$0{,}3$",
+        "$0{,}75$",
+        "$0{,}28$"
+      ],
+      "bonne": 0,
+      "explication": "Par indépendance, $P(A\\cup B)=P(A)+P(B)-P(A)P(B)=0{,}4+0{,}6\\,P(B)$. L'égalité $0{,}4+0{,}6\\,P(B)=0{,}7$ donne $P(B)=0{,}5$. La valeur $0{,}3$ serait celle d'événements incompatibles, pas indépendants."
+    },
+    {
+      "id": "proba-l1-conditionnement-q7",
+      "carte": "proba-l1-probas-totales-bayes",
+      "genre": "choix",
+      "enonce": "L'urne $U_1$ contient $3$ boules rouges et $2$ blanches, l'urne $U_2$ contient $1$ boule rouge et $4$ blanches. On tire au hasard une boule de $U_1$, que l'on place dans $U_2$ sans regarder sa couleur, puis on tire au hasard une boule de $U_2$. Quelle est la probabilité que cette dernière soit rouge ?",
+      "propositions": [
+        "$\\frac{4}{15}$",
+        "$\\frac{1}{5}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{3}$"
+      ],
+      "bonne": 0,
+      "explication": "Soit $R_1$ « la boule transférée est rouge » et $R_2$ « la boule tirée de $U_2$ est rouge ». Après le transfert, $U_2$ contient $6$ boules, dont $2$ rouges si $R_1$ est réalisé et $1$ sinon. La formule des probabilités totales avec le système complet $\\left(R_1,\\overline{R_1}\\right)$ donne $P(R_2)=\\frac{3}{5}\\times\\frac{2}{6}+\\frac{2}{5}\\times\\frac{1}{6}=\\frac{6}{30}+\\frac{2}{30}=\\frac{4}{15}$."
+    },
+    {
+      "id": "proba-l1-conditionnement-q8",
+      "carte": "proba-l1-independance-mutuelle",
+      "genre": "choix",
+      "enonce": "Combien de fois faut-il au minimum lancer un dé équilibré à $6$ faces, les lancers étant indépendants, pour que la probabilité d'obtenir au moins un six soit strictement supérieure à $0{,}9$ ?",
+      "propositions": [
+        "$13$",
+        "$12$",
+        "$6$",
+        "$9$"
+      ],
+      "bonne": 0,
+      "explication": "Les événements « pas de six au $k$-ième lancer » sont mutuellement indépendants, de probabilité $\\frac{5}{6}$ : en $n$ lancers, la probabilité d'obtenir au moins un six est $1-\\left(\\frac{5}{6}\\right)^n$. On veut $\\left(\\frac{5}{6}\\right)^n<0{,}1$, soit $n>\\frac{\\ln 10}{\\ln 1{,}2}\\approx 12{,}6$. Donc $n=13$ : $1-\\left(\\frac{5}{6}\\right)^{13}\\approx 0{,}907$, alors que $1-\\left(\\frac{5}{6}\\right)^{12}\\approx 0{,}888$."
+    }
+  ]
+}

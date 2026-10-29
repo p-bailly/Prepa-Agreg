@@ -1,0 +1,99 @@
+{
+  "chapitre": "al-t-matrices",
+  "questions": [
+    {
+      "id": "al-t-matrices-q1",
+      "carte": "al-t-matrices-produit",
+      "genre": "choix",
+      "enonce": "Soient $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Que vaut le produit $AB$ ?",
+      "propositions": [
+        "$\\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 3 & 4 \\\\ 1 & 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 0 & 2 \\\\ 3 & 0 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$"
+      ],
+      "bonne": 0,
+      "explication": "Le coefficient $(i,j)$ de $AB$ est le produit de la ligne $i$ de $A$ par la colonne $j$ de $B$ : $AB = \\begin{pmatrix} 1 \\times 0 + 2 \\times 1 & 1 \\times 1 + 2 \\times 0 \\\\ 3 \\times 0 + 4 \\times 1 & 3 \\times 1 + 4 \\times 0 \\end{pmatrix} = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$. Multiplier $A$ à droite par $B$ échange ses colonnes ; $BA = \\begin{pmatrix} 3 & 4 \\\\ 1 & 2 \\end{pmatrix}$ échange les lignes de $A$, et $\\begin{pmatrix} 0 & 2 \\\\ 3 & 0 \\end{pmatrix}$ est le produit coefficient par coefficient, qui n'est pas le produit matriciel."
+    },
+    {
+      "id": "al-t-matrices-q2",
+      "carte": "al-t-matrices-produit",
+      "genre": "vrai-faux",
+      "enonce": "Pour toutes matrices carrées $A$ et $B$ de même ordre, $(A + B)(A - B) = A^2 - B^2$.",
+      "vrai": false,
+      "explication": "Faux. En développant, $(A + B)(A - B) = A^2 - AB + BA - B^2$ : l'égalité demande $AB = BA$. Contre-exemple : $A = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$ et $B = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ donnent $AB = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}$ et $BA = \\begin{pmatrix} 0 & 0 \\\\ 0 & 0 \\end{pmatrix}$, donc $(A + B)(A - B) - (A^2 - B^2) = BA - AB = \\begin{pmatrix} 0 & -1 \\\\ 0 & 0 \\end{pmatrix} \\neq 0$."
+    },
+    {
+      "id": "al-t-matrices-q3",
+      "carte": "al-t-matrices-inverse",
+      "genre": "choix",
+      "enonce": "Pour quelles valeurs du réel $m$ la matrice $\\begin{pmatrix} m & 2 \\\\ 2 & m - 3 \\end{pmatrix}$ est-elle inversible ?",
+      "propositions": [
+        "Pour tout $m \\notin \\{-1, 4\\}$",
+        "Pour tout $m \\notin \\{1, -4\\}$",
+        "Pour tout $m \\notin \\{0, 3\\}$",
+        "Pour tout $m \\neq 4$"
+      ],
+      "bonne": 0,
+      "explication": "Une matrice d'ordre $2$ est inversible si et seulement si $ad - bc \\neq 0$. Ici $ad - bc = m(m - 3) - 4 = m^2 - 3m - 4 = (m + 1)(m - 4)$, qui s'annule pour $m = -1$ et $m = 4$ seulement. Les valeurs $0$ et $3$ annulent le produit des coefficients diagonaux, ce qui ne suffit pas à conclure."
+    },
+    {
+      "id": "al-t-matrices-q4",
+      "carte": "al-t-matrices-inverse",
+      "genre": "vrai-faux",
+      "enonce": "Si $A$ est une matrice carrée d'ordre $n$ telle que $A^2 = A$ et $A \\neq I_n$, alors $A$ n'est pas inversible.",
+      "vrai": true,
+      "explication": "Vrai. Si $A$ était inversible, en multipliant $A^2 = A$ à gauche par $A^{-1}$, on obtiendrait $A = I_n$, ce qui est exclu. Par exemple, $A = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}$ vérifie $A^2 = A$ et n'est pas inversible ($ad - bc = 0$)."
+    },
+    {
+      "id": "al-t-matrices-q5",
+      "carte": "al-t-matrices-suites",
+      "genre": "choix",
+      "enonce": "La suite de matrices colonnes $(U_n)$ vérifie $U_0 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ et $U_{n+1} = AU_n$ pour tout $n \\in \\mathbb{N}$, avec $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$. Que vaut $U_{10}$ ?",
+      "propositions": [
+        "$\\begin{pmatrix} 21 \\\\ 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 11 \\\\ 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 20 \\\\ 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1024 \\\\ 1 \\end{pmatrix}$"
+      ],
+      "bonne": 0,
+      "explication": "Par récurrence, $A^n = \\begin{pmatrix} 1 & 2n \\\\ 0 & 1 \\end{pmatrix}$ : c'est vrai pour $n = 0$, et $A^{n+1} = A^nA = \\begin{pmatrix} 1 & 2n + 2 \\\\ 0 & 1 \\end{pmatrix}$. Donc $U_n = A^nU_0 = \\begin{pmatrix} 1 + 2n \\\\ 1 \\end{pmatrix}$ et $U_{10} = \\begin{pmatrix} 21 \\\\ 1 \\end{pmatrix}$. On peut aussi voir que la seconde coordonnée reste égale à $1$ et que la première augmente de $2$ à chaque étape."
+    },
+    {
+      "id": "al-t-matrices-q6",
+      "carte": "al-t-matrices-adjacence",
+      "genre": "vrai-faux",
+      "enonce": "Dans un graphe non orienté de matrice d'adjacence $M$, pour tout $n \\geq 1$, le nombre de chaînes de longueur $n$ de $i$ à $j$ est égal au nombre de chaînes de longueur $n$ de $j$ à $i$ : la matrice $M^n$ est symétrique.",
+      "vrai": true,
+      "explication": "Vrai. Dans un graphe non orienté, si $(s_0, s_1, \\dots, s_n)$ est une chaîne de $i$ à $j$, la suite parcourue à l'envers $(s_n, \\dots, s_1, s_0)$ est une chaîne de $j$ à $i$, et cette correspondance est bijective. Les coefficients $(i,j)$ et $(j,i)$ de $M^n$, qui comptent ces chaînes, sont donc égaux."
+    },
+    {
+      "id": "al-t-matrices-q7",
+      "carte": "al-t-matrices-adjacence",
+      "genre": "choix",
+      "enonce": "Un graphe orienté a pour sommets $1, 2, 3, 4$ et pour arcs $1 \\to 2$, $1 \\to 3$, $2 \\to 3$, $2 \\to 4$, $3 \\to 4$ et $4 \\to 1$. Combien y a-t-il de chemins de longueur $3$ allant du sommet $1$ au sommet $1$ ?",
+      "propositions": [
+        "$2$",
+        "$1$",
+        "$3$",
+        "$0$"
+      ],
+      "bonne": 0,
+      "explication": "La matrice d'adjacence est $M = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 \\end{pmatrix}$ et l'on trouve $M^3 = \\begin{pmatrix} 2 & 0 & 0 & 1 \\\\ 1 & 1 & 1 & 0 \\\\ 0 & 1 & 1 & 0 \\\\ 0 & 0 & 1 & 2 \\end{pmatrix}$ : son coefficient $(1,1)$ vaut $2$. Ce sont les chemins $(1, 2, 4, 1)$ et $(1, 3, 4, 1)$ ; le chemin $(1, 2, 3, 4, 1)$ est de longueur $4$."
+    },
+    {
+      "id": "al-t-matrices-q8",
+      "carte": "al-t-matrices-markov",
+      "genre": "choix",
+      "enonce": "Une chaîne de Markov à deux états a pour matrice de transition $P = \\begin{pmatrix} 0{,}7 & 0{,}3 \\\\ 0{,}4 & 0{,}6 \\end{pmatrix}$, avec $X_0 = 1$. Que vaut $P(X_2 = 1)$ ?",
+      "propositions": [
+        "$0{,}61$",
+        "$0{,}49$",
+        "$0{,}7$",
+        "$0{,}42$"
+      ],
+      "bonne": 0,
+      "explication": "$P(X_2 = 1 \\mid X_0 = 1)$ est le coefficient $(1,1)$ de $P^2$ : $0{,}7 \\times 0{,}7 + 0{,}3 \\times 0{,}4 = 0{,}49 + 0{,}12 = 0{,}61$. On ajoute les deux façons d'être en $1$ à l'instant $2$ : rester deux fois en $1$, ou passer par $2$ puis revenir. Oublier le second chemin donne $0{,}49 = (p_{11})^2$, ce qui est faux."
+    }
+  ]
+}

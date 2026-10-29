@@ -1339,6 +1339,192 @@
      "correction": "**1.** $1-\\cos x=\\frac{x^2}{2}-\\frac{x^4}{24}+o(x^4)$, donc pour $x\\neq0$, $f(x)=\\frac x2-\\frac{x^3}{24}+o(x^3)\\to0$. On pose $f(0)=0$.\n\n**2.** L'égalité vaut aussi en $0$ : $f(x)=\\frac x2+0\\cdot x^2-\\frac{x^3}{24}+o(x^3)$ (à l'ordre $2$, le terme $x^2$ est nul et l'on ne pourrait pas conclure).\n\n**3.** $f$ est dérivable en $0$, $f'(0)=\\frac12$, tangente $y=\\frac x2$. Pour $x\\neq0$, $f'(x)=\\frac{x\\sin x-1+\\cos x}{x^2}$ ; le numérateur vaut $x^2-\\frac{x^4}{6}-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4)=\\frac{x^2}{2}-\\frac{x^4}{8}+o(x^4)$, donc $f'(x)=\\frac12-\\frac{x^2}{8}+o(x^2)\\to\\frac12=f'(0)$. Avec la régularité sur $\\mathbb{R}^*$, $f$ est de classe $C^1$ sur $\\mathbb{R}$.\n\n**4.** $p=3$ impair et $c_3=-\\frac1{24}$ : $f(x)-\\frac x2$ a le signe de $-\\frac{x^3}{24}$, positif pour $x<0$ et négatif pour $x>0$. La courbe traverse sa tangente : l'origine est un point d'inflexion."
     }
    ]
+  },
+  {
+   "id": "ar-l1-taylor-reste-integral-ex5",
+   "carte": "ar-l1-taylor-reste-integral",
+   "difficulte": 4,
+   "titre": "Limite d'un produit par encadrement du logarithme",
+   "enonce": "Pour $n\\ge1$, on pose $P_n=\\prod_{k=1}^{n}\\left(1+\\frac{k}{n^2}\\right)$.\n\n**1.** Écrire la formule de Taylor avec reste intégral à l'ordre $1$ en $0$ pour $x\\mapsto\\ln(1+x)$, et en déduire que, pour tout $x\\ge0$, $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** En déduire un encadrement de $\\ln P_n$, puis la limite de $(P_n)$. On rappelle que $\\sum_{k=1}^nk=\\frac{n(n+1)}{2}$ et $\\sum_{k=1}^nk^2=\\frac{n(n+1)(2n+1)}{6}$.\n\n**3.** Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^{n}\\frac{1}{n+k}$ et $Q_n=\\prod_{k=1}^{n}\\left(1+\\frac{1}{n+k}\\right)$. Calculer $Q_n$ (le produit est télescopique), puis montrer à l'aide de la question 1 que $S_n-\\ln Q_n\\to0$. En déduire la limite de $(S_n)$.",
+   "duree_min": 30,
+   "indices": [
+    "Question 1 : sur $[0,x]$, comparer $\\frac{x-t}{(1+t)^2}$ à $0$ et à $x-t$.",
+    "Question 2 : $\\ln P_n=\\sum_{k=1}^n\\ln\\left(1+\\frac{k}{n^2}\\right)$ ; appliquer la question 1 à chaque terme.",
+    "Question 3 : $1+\\frac{1}{n+k}=\\frac{n+k+1}{n+k}$, et $\\frac{1}{(n+k)^2}\\le\\frac{1}{n^2}$."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la limite de $(P_n)$ ?",
+    "propositions": [
+     "$\\sqrt e$",
+     "$e$",
+     "$1$",
+     "$e^{1/3}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** Pour $f(x)=\\ln(1+x)$ sur $\\left]-1,+\\infty\\right[$, de classe $C^2$, on a $f(0)=0$, $f'(t)=\\frac{1}{1+t}$, $f'(0)=1$ et $f''(t)=-\\frac{1}{(1+t)^2}$. La formule de Taylor avec reste intégral à l'ordre $1$ en $0$ s'écrit\n$$\\ln(1+x)=x-\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t.$$\nSoit $x\\ge0$. Pour $t\\in[0,x]$, $x-t\\ge0$ et $(1+t)^2\\ge1$, donc $0\\le\\frac{x-t}{(1+t)^2}\\le x-t$. Par croissance de l'intégrale (bornes $0\\le x$), $0\\le\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t\\le\\int_0^x(x-t)\\,\\mathrm{d}t=\\frac{x^2}{2}$, d'où $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** On a $\\ln P_n=\\sum_{k=1}^n\\ln\\left(1+\\frac{k}{n^2}\\right)$. La question 1 appliquée à $x=\\frac{k}{n^2}\\ge0$ donne, en sommant,\n$$\\frac{1}{n^2}\\sum_{k=1}^nk-\\frac{1}{2n^4}\\sum_{k=1}^nk^2\\le\\ln P_n\\le\\frac{1}{n^2}\\sum_{k=1}^nk,$$\nc'est-à-dire $\\frac{n+1}{2n}-\\frac{(n+1)(2n+1)}{12n^3}\\le\\ln P_n\\le\\frac{n+1}{2n}$. Les deux bornes tendent vers $\\frac12$ (le terme $\\frac{(n+1)(2n+1)}{12n^3}$ est équivalent à $\\frac{1}{6n}$), donc $\\ln P_n\\to\\frac12$ par le théorème des gendarmes et, par continuité de l'exponentielle, $P_n\\to e^{1/2}=\\sqrt e$.\n\n**3.** Le produit est télescopique : $Q_n=\\prod_{k=1}^{n}\\frac{n+k+1}{n+k}=\\frac{2n+1}{n+1}$, donc $Q_n\\to2$ et $\\ln Q_n\\to\\ln2$. En appliquant la question 1 à $x=\\frac{1}{n+k}\\ge0$ et en sommant, $S_n-\\frac12\\sum_{k=1}^n\\frac{1}{(n+k)^2}\\le\\ln Q_n\\le S_n$. Comme $\\frac{1}{(n+k)^2}\\le\\frac1{n^2}$, $0\\le S_n-\\ln Q_n\\le\\frac12\\cdot\\frac{n}{n^2}=\\frac{1}{2n}$, donc $S_n-\\ln Q_n\\to0$ et $S_n\\to\\ln2$.",
+   "variantes": [
+    {
+     "enonce": "Pour $n\\ge1$, on pose $P_n=\\prod_{k=1}^{n}\\left(1+\\frac{2k}{n^2}\\right)$.\n\n**1.** Écrire la formule de Taylor avec reste intégral à l'ordre $1$ en $0$ pour $x\\mapsto\\ln(1+x)$, et en déduire que, pour tout $x\\ge0$, $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** En déduire un encadrement de $\\ln P_n$, puis la limite de $(P_n)$. On rappelle que $\\sum_{k=1}^nk=\\frac{n(n+1)}{2}$ et $\\sum_{k=1}^nk^2=\\frac{n(n+1)(2n+1)}{6}$.\n\n**3.** Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^{n}\\frac{1}{n+k}$ et $Q_n=\\prod_{k=1}^{n}\\left(1+\\frac{1}{n+k}\\right)$. Calculer $Q_n$ (le produit est télescopique), puis montrer à l'aide de la question 1 que $S_n-\\ln Q_n\\to0$. En déduire la limite de $(S_n)$.",
+     "reponse_finale": {
+      "question": "Quelle est la limite de $(P_n)$ ?",
+      "propositions": [
+       "$e$",
+       "$\\sqrt e$",
+       "$e^2$",
+       "$1$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Pour $f(x)=\\ln(1+x)$ sur $\\left]-1,+\\infty\\right[$, de classe $C^2$, on a $f(0)=0$, $f'(t)=\\frac{1}{1+t}$, $f'(0)=1$ et $f''(t)=-\\frac{1}{(1+t)^2}$. La formule de Taylor avec reste intégral à l'ordre $1$ en $0$ s'écrit\n$$\\ln(1+x)=x-\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t.$$\nSoit $x\\ge0$. Pour $t\\in[0,x]$, $x-t\\ge0$ et $(1+t)^2\\ge1$, donc $0\\le\\frac{x-t}{(1+t)^2}\\le x-t$. Par croissance de l'intégrale (bornes $0\\le x$), $0\\le\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t\\le\\int_0^x(x-t)\\,\\mathrm{d}t=\\frac{x^2}{2}$, d'où $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** La question 1 appliquée à $x=\\frac{2k}{n^2}\\ge0$ donne, en sommant,\n$$\\frac{2}{n^2}\\sum_{k=1}^nk-\\frac{2}{n^4}\\sum_{k=1}^nk^2\\le\\ln P_n\\le\\frac{2}{n^2}\\sum_{k=1}^nk,$$\nc'est-à-dire $\\frac{n+1}{n}-\\frac{(n+1)(2n+1)}{3n^3}\\le\\ln P_n\\le\\frac{n+1}{n}$. Les deux bornes tendent vers $1$, donc $\\ln P_n\\to1$ et $P_n\\to e$.\n\n**3.** Le produit est télescopique : $Q_n=\\prod_{k=1}^{n}\\frac{n+k+1}{n+k}=\\frac{2n+1}{n+1}$, donc $Q_n\\to2$ et $\\ln Q_n\\to\\ln2$. En appliquant la question 1 à $x=\\frac{1}{n+k}\\ge0$ et en sommant, $S_n-\\frac12\\sum_{k=1}^n\\frac{1}{(n+k)^2}\\le\\ln Q_n\\le S_n$. Comme $\\frac{1}{(n+k)^2}\\le\\frac1{n^2}$, $0\\le S_n-\\ln Q_n\\le\\frac12\\cdot\\frac{n}{n^2}=\\frac{1}{2n}$, donc $S_n-\\ln Q_n\\to0$ et $S_n\\to\\ln2$.",
+     "indices": [
+      "Question 1 : sur $[0,x]$, comparer $\\frac{x-t}{(1+t)^2}$ à $0$ et à $x-t$.",
+      "Question 2 : $\\ln P_n=\\sum_{k=1}^n\\ln\\left(1+\\frac{2k}{n^2}\\right)$ ; appliquer la question 1 à chaque terme.",
+      "Question 3 : $1+\\frac{1}{n+k}=\\frac{n+k+1}{n+k}$, et $\\frac{1}{(n+k)^2}\\le\\frac{1}{n^2}$."
+     ]
+    },
+    {
+     "enonce": "Pour $n\\ge1$, on pose $P_n=\\prod_{k=1}^{n}\\left(1+\\frac{k^2}{n^3}\\right)$.\n\n**1.** Écrire la formule de Taylor avec reste intégral à l'ordre $1$ en $0$ pour $x\\mapsto\\ln(1+x)$, et en déduire que, pour tout $x\\ge0$, $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** En déduire un encadrement de $\\ln P_n$, puis la limite de $(P_n)$. On rappelle que $\\sum_{k=1}^nk^2=\\frac{n(n+1)(2n+1)}{6}$, et l'on pourra majorer $k^4$ par $n^4$.\n\n**3.** Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^{n}\\frac{1}{n+k}$ et $Q_n=\\prod_{k=1}^{n}\\left(1+\\frac{1}{n+k}\\right)$. Calculer $Q_n$ (le produit est télescopique), puis montrer à l'aide de la question 1 que $S_n-\\ln Q_n\\to0$. En déduire la limite de $(S_n)$.",
+     "reponse_finale": {
+      "question": "Quelle est la limite de $(P_n)$ ?",
+      "propositions": [
+       "$e^{1/3}$",
+       "$e^{1/2}$",
+       "$e$",
+       "$1$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Pour $f(x)=\\ln(1+x)$ sur $\\left]-1,+\\infty\\right[$, de classe $C^2$, on a $f(0)=0$, $f'(t)=\\frac{1}{1+t}$, $f'(0)=1$ et $f''(t)=-\\frac{1}{(1+t)^2}$. La formule de Taylor avec reste intégral à l'ordre $1$ en $0$ s'écrit\n$$\\ln(1+x)=x-\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t.$$\nSoit $x\\ge0$. Pour $t\\in[0,x]$, $x-t\\ge0$ et $(1+t)^2\\ge1$, donc $0\\le\\frac{x-t}{(1+t)^2}\\le x-t$. Par croissance de l'intégrale (bornes $0\\le x$), $0\\le\\int_0^x\\frac{x-t}{(1+t)^2}\\,\\mathrm{d}t\\le\\int_0^x(x-t)\\,\\mathrm{d}t=\\frac{x^2}{2}$, d'où $x-\\frac{x^2}{2}\\le\\ln(1+x)\\le x$.\n\n**2.** La question 1 appliquée à $x=\\frac{k^2}{n^3}\\ge0$ donne, en sommant,\n$$\\frac{1}{n^3}\\sum_{k=1}^nk^2-\\frac{1}{2n^6}\\sum_{k=1}^nk^4\\le\\ln P_n\\le\\frac{1}{n^3}\\sum_{k=1}^nk^2.$$\nLe majorant vaut $\\frac{(n+1)(2n+1)}{6n^2}$, qui tend vers $\\frac13$. Comme $k^4\\le n^4$ pour $1\\le k\\le n$, $0\\le\\frac{1}{2n^6}\\sum_{k=1}^nk^4\\le\\frac{n\\cdot n^4}{2n^6}=\\frac{1}{2n}$, qui tend vers $0$. Les deux bornes tendent vers $\\frac13$, donc $\\ln P_n\\to\\frac13$ et $P_n\\to e^{1/3}$.\n\n**3.** Le produit est télescopique : $Q_n=\\prod_{k=1}^{n}\\frac{n+k+1}{n+k}=\\frac{2n+1}{n+1}$, donc $Q_n\\to2$ et $\\ln Q_n\\to\\ln2$. En appliquant la question 1 à $x=\\frac{1}{n+k}\\ge0$ et en sommant, $S_n-\\frac12\\sum_{k=1}^n\\frac{1}{(n+k)^2}\\le\\ln Q_n\\le S_n$. Comme $\\frac{1}{(n+k)^2}\\le\\frac1{n^2}$, $0\\le S_n-\\ln Q_n\\le\\frac12\\cdot\\frac{n}{n^2}=\\frac{1}{2n}$, donc $S_n-\\ln Q_n\\to0$ et $S_n\\to\\ln2$.",
+     "indices": [
+      "Question 1 : sur $[0,x]$, comparer $\\frac{x-t}{(1+t)^2}$ à $0$ et à $x-t$.",
+      "Question 2 : $\\ln P_n=\\sum_{k=1}^n\\ln\\left(1+\\frac{k^2}{n^3}\\right)$ ; appliquer la question 1 à chaque terme.",
+      "Question 3 : $1+\\frac{1}{n+k}=\\frac{n+k+1}{n+k}$, et $\\frac{1}{(n+k)^2}\\le\\frac{1}{n^2}$."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-dl-usuels-ex5",
+   "carte": "ar-l1-taylor-dl-usuels",
+   "difficulte": 2,
+   "titre": "Une limite par développements limités au numérateur et au dénominateur",
+   "enonce": "Calculer $\\lim_{x\\to0}\\frac{x-\\sin x}{x(1-\\cos x)}$.",
+   "duree_min": 8,
+   "indices": [
+    "Développer le numérateur et le dénominateur à un même ordre, suffisant pour que chacun ait un premier terme non nul.",
+    "Le quotient a pour limite le quotient des coefficients de ces premiers termes, s'ils sont de même degré."
+   ],
+   "reponse_finale": {
+    "question": "Que vaut cette limite ?",
+    "propositions": [
+     "$\\frac13$",
+     "$\\frac16$",
+     "$-\\frac13$",
+     "$\\frac12$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Quand $x\\to0$, $\\sin x=x-\\frac{x^3}{6}+o(x^3)$, donc $x-\\sin x=\\frac{x^3}{6}+o(x^3)$. De même $1-\\cos x=\\frac{x^2}{2}+o(x^2)$, donc $x(1-\\cos x)=\\frac{x^3}{2}+o(x^3)$. Pour $x\\neq0$ proche de $0$,\n$$\\frac{x-\\sin x}{x(1-\\cos x)}=\\frac{\\frac16+o(1)}{\\frac12+o(1)}\\xrightarrow[x\\to0]{}\\frac{1/6}{1/2}=\\frac13.$$",
+   "variantes": [
+    {
+     "enonce": "Calculer $\\lim_{x\\to0}\\frac{\\ln(1+x)-x}{1-\\cos x}$.",
+     "reponse_finale": {
+      "question": "Que vaut cette limite ?",
+      "propositions": [
+       "$-1$",
+       "$1$",
+       "$-\\frac12$",
+       "$0$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Quand $x\\to0$, $\\ln(1+x)=x-\\frac{x^2}{2}+o(x^2)$, donc $\\ln(1+x)-x=-\\frac{x^2}{2}+o(x^2)$, et $1-\\cos x=\\frac{x^2}{2}+o(x^2)$. Pour $x\\neq0$ proche de $0$,\n$$\\frac{\\ln(1+x)-x}{1-\\cos x}=\\frac{-\\frac12+o(1)}{\\frac12+o(1)}\\xrightarrow[x\\to0]{}-1.$$",
+     "indices": [
+      "Développer le numérateur et le dénominateur à un même ordre, suffisant pour que chacun ait un premier terme non nul.",
+      "Le quotient a pour limite le quotient des coefficients de ces premiers termes, s'ils sont de même degré."
+     ]
+    },
+    {
+     "enonce": "Calculer $\\lim_{x\\to0}\\frac{e^x-1-\\sin x}{1-\\cos x}$.",
+     "reponse_finale": {
+      "question": "Que vaut cette limite ?",
+      "propositions": [
+       "$1$",
+       "$\\frac12$",
+       "$0$",
+       "$2$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Quand $x\\to0$, $e^x=1+x+\\frac{x^2}{2}+o(x^2)$ et $\\sin x=x+o(x^2)$, donc $e^x-1-\\sin x=\\frac{x^2}{2}+o(x^2)$ ; et $1-\\cos x=\\frac{x^2}{2}+o(x^2)$. Pour $x\\neq0$ proche de $0$,\n$$\\frac{e^x-1-\\sin x}{1-\\cos x}=\\frac{\\frac12+o(1)}{\\frac12+o(1)}\\xrightarrow[x\\to0]{}1.$$",
+     "indices": [
+      "Développer le numérateur et le dénominateur à un même ordre, suffisant pour que chacun ait un premier terme non nul.",
+      "Le quotient a pour limite le quotient des coefficients de ces premiers termes, s'ils sont de même degré."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-taylor-dl-usuels-ex6",
+   "carte": "ar-l1-taylor-dl-usuels",
+   "difficulte": 3,
+   "titre": "Asymptote oblique et position de la courbe",
+   "enonce": "Soit $f(x)=x\\,e^{1/x}$ pour $x>0$.\n\n**1.** Montrer que $f(x)=x+1+\\frac{1}{2x}+o\\left(\\frac1x\\right)$ quand $x\\to+\\infty$.\n\n**2.** En déduire que la courbe de $f$ admet une asymptote oblique en $+\\infty$, et préciser la position de la courbe par rapport à cette asymptote pour $x$ assez grand.",
+   "duree_min": 12,
+   "indices": [
+    "Poser $u=\\frac1x$, qui tend vers $0$ quand $x\\to+\\infty$, et utiliser un développement limité usuel en $u$ à l'ordre $2$.",
+    "Le signe de l'écart entre la courbe et l'asymptote est, pour $x$ assez grand, celui du premier terme non nul de son développement."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est l'asymptote en $+\\infty$, et où se trouve la courbe pour $x$ assez grand ?",
+    "propositions": [
+     "$y=x+1$, courbe au-dessus",
+     "$y=x+1$, courbe au-dessous",
+     "$y=x$, courbe au-dessus",
+     "$y=x+\\frac12$, courbe au-dessus"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** Posons $u=\\frac1x$, qui tend vers $0$. Comme $e^u=1+u+\\frac{u^2}{2}+o(u^2)$,\n$$f(x)=\\frac{e^u}{u}=\\frac1u+1+\\frac u2+o(u)=x+1+\\frac{1}{2x}+o\\left(\\frac1x\\right).$$\n\n**2.** On a $f(x)-(x+1)=\\frac{1}{2x}+o\\left(\\frac1x\\right)$, qui tend vers $0$ : la droite d'équation $y=x+1$ est asymptote à la courbe en $+\\infty$. De plus $f(x)-(x+1)=\\frac{1}{x}\\left(\\frac12+o(1)\\right)$ ; le facteur $\\frac12+o(1)$ est strictement positif pour $x$ assez grand, donc $f(x)-(x+1)>0$ : la courbe est au-dessus de son asymptote.",
+   "variantes": [
+    {
+     "enonce": "Soit $f(x)=(x+1)\\,e^{1/x}$ pour $x>0$.\n\n**1.** Montrer que $f(x)=x+2+\\frac{3}{2x}+o\\left(\\frac1x\\right)$ quand $x\\to+\\infty$.\n\n**2.** En déduire que la courbe de $f$ admet une asymptote oblique en $+\\infty$, et préciser la position de la courbe par rapport à cette asymptote pour $x$ assez grand.",
+     "reponse_finale": {
+      "question": "Quelle est l'asymptote en $+\\infty$, et où se trouve la courbe pour $x$ assez grand ?",
+      "propositions": [
+       "$y=x+2$, courbe au-dessus",
+       "$y=x+2$, courbe au-dessous",
+       "$y=x+1$, courbe au-dessus",
+       "$y=x+\\frac32$, courbe au-dessus"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Posons $u=\\frac1x\\to0$. Avec $e^u=1+u+\\frac{u^2}{2}+o(u^2)$,\n$$f(x)=\\left(\\frac1u+1\\right)e^u=\\frac{(1+u)\\left(1+u+\\frac{u^2}{2}+o(u^2)\\right)}{u}=\\frac{1+2u+\\frac32u^2+o(u^2)}{u}=x+2+\\frac{3}{2x}+o\\left(\\frac1x\\right).$$\n\n**2.** $f(x)-(x+2)=\\frac{3}{2x}+o\\left(\\frac1x\\right)\\to0$ : la droite $y=x+2$ est asymptote en $+\\infty$. Comme $f(x)-(x+2)=\\frac1x\\left(\\frac32+o(1)\\right)>0$ pour $x$ assez grand, la courbe est au-dessus de son asymptote.",
+     "indices": [
+      "Poser $u=\\frac1x$, qui tend vers $0$ quand $x\\to+\\infty$, et utiliser un développement limité usuel en $u$ à l'ordre $2$.",
+      "Le signe de l'écart entre la courbe et l'asymptote est, pour $x$ assez grand, celui du premier terme non nul de son développement."
+     ]
+    },
+    {
+     "enonce": "Soit $f(x)=\\sqrt{x^2+2x}$ pour $x>0$.\n\n**1.** Montrer que $f(x)=x+1-\\frac{1}{2x}+o\\left(\\frac1x\\right)$ quand $x\\to+\\infty$.\n\n**2.** En déduire que la courbe de $f$ admet une asymptote oblique en $+\\infty$, et préciser la position de la courbe par rapport à cette asymptote pour $x$ assez grand.",
+     "reponse_finale": {
+      "question": "Quelle est l'asymptote en $+\\infty$, et où se trouve la courbe pour $x$ assez grand ?",
+      "propositions": [
+       "$y=x+1$, courbe au-dessous",
+       "$y=x+1$, courbe au-dessus",
+       "$y=x+2$, courbe au-dessous",
+       "$y=x$, courbe au-dessous"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Pour $x>0$, $f(x)=x\\sqrt{1+\\frac2x}$. Posons $u=\\frac2x\\to0$ ; comme $(1+u)^{1/2}=1+\\frac u2-\\frac{u^2}{8}+o(u^2)$,\n$$f(x)=x\\left(1+\\frac1x-\\frac{1}{2x^2}+o\\left(\\frac{1}{x^2}\\right)\\right)=x+1-\\frac{1}{2x}+o\\left(\\frac1x\\right).$$\n\n**2.** $f(x)-(x+1)=-\\frac{1}{2x}+o\\left(\\frac1x\\right)\\to0$ : la droite $y=x+1$ est asymptote en $+\\infty$. Comme $f(x)-(x+1)=\\frac1x\\left(-\\frac12+o(1)\\right)<0$ pour $x$ assez grand, la courbe est au-dessous de son asymptote.",
+     "indices": [
+      "Écrire $f(x)=x\\sqrt{1+\\frac2x}$, poser $u=\\frac2x$, qui tend vers $0$, et utiliser le développement limité de $(1+u)^{1/2}$ à l'ordre $2$.",
+      "Le signe de l'écart entre la courbe et l'asymptote est, pour $x$ assez grand, celui du premier terme non nul de son développement."
+     ]
+    }
+   ]
   }
  ]
 }

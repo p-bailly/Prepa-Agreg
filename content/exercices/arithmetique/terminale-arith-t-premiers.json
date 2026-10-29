@@ -618,6 +618,189 @@
           "correction": "1. $x^2 \\equiv y^2 \\pmod{p}$ signifie $p \\mid x^2 - y^2 = (x - y)(x + y)$, ce qui équivaut, par le lemme d'Euclide ($p$ premier), à $p \\mid x - y$ ou $p \\mid x + y$ (la réciproque est immédiate).\n\n2. Soient $1 \\leq x < y \\leq \\frac{p-1}{2}$. Si $x^2 \\equiv y^2$, la question 1 donne $p \\mid y - x$ ou $p \\mid x + y$. Or $0 < y - x < p$ et $0 < x + y \\leq p - 1 < p$ : aucun de ces entiers n'est multiple de $p$. Les $\\frac{p-1}{2}$ carrés sont donc deux à deux non congrus. Soit ensuite $a \\equiv z^2$ un carré non divisible par $p$ ; alors $p \\nmid z$, et le reste $r$ de $z$ modulo $p$ est dans $\\{1, \\dots, p - 1\\}$. Si $r \\leq \\frac{p-1}{2}$, $a \\equiv r^2$ ; sinon $p - r \\in \\{1, \\dots, \\frac{p-1}{2}\\}$ et $a \\equiv (-r)^2 \\equiv (p - r)^2$. Les restes non nuls qui sont des carrés sont donc exactement les restes de $1^2, \\dots, \\left(\\frac{p-1}{2}\\right)^2$ : il y en a $\\frac{p-1}{2}$.\n\n3. Pour $p = 17$ : $1^2 = 1$, $2^2 = 4$, $3^2 = 9$, $4^2 = 16$, $5^2 = 25 \\equiv 8$, $6^2 = 36 \\equiv 2$, $7^2 = 49 \\equiv 15$, $8^2 = 64 \\equiv 13$. Les restes non nuls qui sont des carrés modulo $17$ sont $1, 2, 4, 8, 9, 13, 15, 16$ (il y en a $8 = \\frac{17 - 1}{2}$) ; $3, 5, 6, 7, 10, 11, 12, 14$ n'en sont pas.\n\n4. Non : $6^2 = 36 \\equiv 1 = 1^2 \\pmod{35}$, alors que $6 \\not\\equiv 1$ et $6 \\not\\equiv -1 \\pmod{35}$. Le lemme d'Euclide ne s'applique pas, car $35$ n'est pas premier."
         }
       ]
+    },
+    {
+      "id": "arith-t-fermat-ex5",
+      "carte": "arith-t-fermat",
+      "difficulte": 4,
+      "titre": "Diviseurs premiers des nombres de Mersenne",
+      "enonce": "Pour un entier $p \\geq 2$, on pose $M_p = 2^p - 1$. Dans les questions 1 et 2, $p$ est un nombre premier impair et $q$ est un nombre premier qui divise $M_p$.\n\n1. Justifier que $q \\neq 2$, puis qu'il existe un plus petit entier $d \\geq 1$ tel que $2^d \\equiv 1 \\pmod{q}$.\n\n2. a) Soit $n \\in \\mathbb{N}$ tel que $2^n \\equiv 1 \\pmod{q}$. En effectuant la division euclidienne de $n$ par $d$, montrer que $d$ divise $n$.\n\nb) En déduire que $d = p$.\n\nc) À l'aide du petit théorème de Fermat, montrer que $p$ divise $q - 1$, puis que $q \\equiv 1 \\pmod{2p}$.\n\n3. Déterminer le plus petit diviseur premier de $M_{11} = 2047$.\n\n4. Montrer que $M_{13} = 8191$ est premier.",
+      "duree_min": 40,
+      "indices": [
+        "Pour 2 a), écrire $n = dk + r$ avec $0 \\leq r < d$ et calculer $2^r$ modulo $q$.",
+        "Pour 2 c), appliquer le petit théorème de Fermat à l'entier $2$ modulo $q$, puis utiliser le fait que $q - 1$ est pair.",
+        "Pour les questions 3 et 4, combiner 2 c) avec le fait qu'un entier $N \\geq 2$ non premier a un diviseur premier inférieur ou égal à $\\sqrt{N}$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit diviseur premier de $M_{11}$ ?",
+        "propositions": [
+          "$23$",
+          "$11$",
+          "$3$",
+          "$89$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $M_p = 2^p - 1$ est impair, donc $q \\neq 2$. L'ensemble des entiers $k \\geq 1$ tels que $2^k \\equiv 1 \\pmod{q}$ contient $p$, puisque $q$ divise $2^p - 1$ : c'est une partie non vide de $\\mathbb{N}$, qui a donc un plus petit élément $d$.\n\n2. a) Écrivons $n = dk + r$ avec $k \\in \\mathbb{N}$ et $0 \\leq r < d$. Alors $2^n = (2^d)^k \\times 2^r \\equiv 2^r \\pmod{q}$, donc $2^r \\equiv 1 \\pmod{q}$. Si l'on avait $r \\geq 1$, cela contredirait la minimalité de $d$, puisque $r < d$ ; donc $r = 0$, et $d$ divise $n$.\n\nb) Comme $2^p \\equiv 1 \\pmod{q}$, la question a) donne $d \\mid p$ ; $p$ étant premier, $d = 1$ ou $d = p$. Si $d = 1$, $q$ diviserait $2^1 - 1 = 1$, ce qui est impossible. Donc $d = p$.\n\nc) $q$ est premier et ne divise pas $2$, donc $2^{q-1} \\equiv 1 \\pmod{q}$ (petit théorème de Fermat). D'après a), $d = p$ divise $q - 1$ : $q - 1 = pm$ avec $m \\in \\mathbb{N}$. De plus $q$ est impair, donc $2$ divise $pm$ ; comme $p$ est impair, $2 \\wedge p = 1$ et le lemme de Gauss donne $2 \\mid m$. Ainsi $2p$ divise $q - 1$, c'est-à-dire $q \\equiv 1 \\pmod{2p}$.\n\n3. Pour $p = 11$, tout diviseur premier $q$ de $2047$ vérifie $q \\equiv 1 \\pmod{22}$, donc $q \\geq 23$. Or $2047 = 23 \\times 89$, et $23$ est premier : le plus petit diviseur premier de $M_{11}$ est $23$. En particulier, $M_{11}$ n'est pas premier, bien que $11$ le soit.\n\n4. Si $8191$ n'était pas premier, son plus petit diviseur premier $q$ vérifierait $q \\leq \\sqrt{8191} < 91$ (car $91^2 = 8281$) et, d'après 2 c) avec $p = 13$, $q \\equiv 1 \\pmod{26}$, donc $q \\in \\{27, 53, 79\\}$. Or $27 = 3^3$ n'est pas premier, $8191 = 53 \\times 154 + 29$ et $8191 = 79 \\times 103 + 54$. Aucun candidat ne convient : $M_{13}$ est premier.",
+      "variantes": [
+        {
+          "enonce": "Pour un entier $p \\geq 2$, on pose $M_p = 2^p - 1$. Dans les questions 1 et 2, $p$ est un nombre premier impair et $q$ est un nombre premier qui divise $M_p$.\n\n1. Justifier que $q \\neq 2$, puis qu'il existe un plus petit entier $d \\geq 1$ tel que $2^d \\equiv 1 \\pmod{q}$.\n\n2. a) Soit $n \\in \\mathbb{N}$ tel que $2^n \\equiv 1 \\pmod{q}$. En effectuant la division euclidienne de $n$ par $d$, montrer que $d$ divise $n$.\n\nb) En déduire que $d = p$.\n\nc) À l'aide du petit théorème de Fermat, montrer que $p$ divise $q - 1$, puis que $q \\equiv 1 \\pmod{2p}$.\n\n3. Déterminer le plus petit diviseur premier de $M_{23} = 8\\,388\\,607$.\n\n4. Montrer que $M_7 = 127$ est premier.",
+          "indices": [
+            "Pour 2 a), écrire $n = dk + r$ avec $0 \\leq r < d$ et calculer $2^r$ modulo $q$.",
+            "Pour 2 c), appliquer le petit théorème de Fermat à l'entier $2$ modulo $q$, puis utiliser le fait que $q - 1$ est pair.",
+            "Pour la question 3, chercher le plus petit nombre premier congru à $1$ modulo $46$, puis calculer $2^{23}$ modulo ce nombre par carrés successifs."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit diviseur premier de $M_{23}$ ?",
+            "propositions": [
+              "$47$",
+              "$23$",
+              "$3$",
+              "$7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $M_p = 2^p - 1$ est impair, donc $q \\neq 2$. L'ensemble des entiers $k \\geq 1$ tels que $2^k \\equiv 1 \\pmod{q}$ contient $p$, puisque $q$ divise $2^p - 1$ : c'est une partie non vide de $\\mathbb{N}$, qui a donc un plus petit élément $d$.\n\n2. a) Écrivons $n = dk + r$ avec $k \\in \\mathbb{N}$ et $0 \\leq r < d$. Alors $2^n = (2^d)^k \\times 2^r \\equiv 2^r \\pmod{q}$, donc $2^r \\equiv 1 \\pmod{q}$. Si l'on avait $r \\geq 1$, cela contredirait la minimalité de $d$, puisque $r < d$ ; donc $r = 0$, et $d$ divise $n$.\n\nb) Comme $2^p \\equiv 1 \\pmod{q}$, la question a) donne $d \\mid p$ ; $p$ étant premier, $d = 1$ ou $d = p$. Si $d = 1$, $q$ diviserait $2^1 - 1 = 1$, ce qui est impossible. Donc $d = p$.\n\nc) $q$ est premier et ne divise pas $2$, donc $2^{q-1} \\equiv 1 \\pmod{q}$ (petit théorème de Fermat). D'après a), $d = p$ divise $q - 1$ : $q - 1 = pm$ avec $m \\in \\mathbb{N}$. De plus $q$ est impair, donc $2$ divise $pm$ ; comme $p$ est impair, $2 \\wedge p = 1$ et le lemme de Gauss donne $2 \\mid m$. Ainsi $2p$ divise $q - 1$, c'est-à-dire $q \\equiv 1 \\pmod{2p}$.\n\n3. Pour $p = 23$, tout diviseur premier $q$ de $M_{23}$ vérifie $q \\equiv 1 \\pmod{46}$, donc $q \\geq 47$, et $47$ est premier. Calculons $2^{23}$ modulo $47$ : $2^8 = 256 = 5 \\times 47 + 21$, donc $2^8 \\equiv 21$ ; $2^{16} \\equiv 21^2 = 441 = 9 \\times 47 + 18 \\equiv 18$ ; $2^{23} = 2^{16} \\times 2^7 \\equiv 18 \\times 128 = 2304 = 49 \\times 47 + 1 \\equiv 1 \\pmod{47}$. Ainsi $47$ divise $M_{23}$ : c'est son plus petit diviseur premier.\n\n4. Si $127$ n'était pas premier, son plus petit diviseur premier $q$ vérifierait $q \\leq \\sqrt{127} < 12$ (car $12^2 = 144$) et, d'après 2 c) avec $p = 7$, $q \\equiv 1 \\pmod{14}$, donc $q \\geq 15$ : c'est impossible. $M_7$ est premier."
+        },
+        {
+          "enonce": "Pour un entier $p \\geq 2$, on pose $M_p = 2^p - 1$. Dans les questions 1 et 2, $p$ est un nombre premier impair et $q$ est un nombre premier qui divise $M_p$.\n\n1. Justifier que $q \\neq 2$, puis qu'il existe un plus petit entier $d \\geq 1$ tel que $2^d \\equiv 1 \\pmod{q}$.\n\n2. a) Soit $n \\in \\mathbb{N}$ tel que $2^n \\equiv 1 \\pmod{q}$. En effectuant la division euclidienne de $n$ par $d$, montrer que $d$ divise $n$.\n\nb) En déduire que $d = p$.\n\nc) À l'aide du petit théorème de Fermat, montrer que $p$ divise $q - 1$, puis que $q \\equiv 1 \\pmod{2p}$.\n\n3. Déterminer le plus petit diviseur premier de $M_{29} = 536\\,870\\,911$.\n\n4. On admet que $M_{17} = 131\\,071$ n'est divisible par aucun des nombres premiers $103$, $137$, $239$ et $307$. Montrer que $M_{17}$ est premier.",
+          "indices": [
+            "Pour 2 a), écrire $n = dk + r$ avec $0 \\leq r < d$ et calculer $2^r$ modulo $q$.",
+            "Pour 2 c), appliquer le petit théorème de Fermat à l'entier $2$ modulo $q$, puis utiliser le fait que $q - 1$ est pair.",
+            "Pour la question 3, examiner dans l'ordre les entiers congrus à $1$ modulo $58$, et calculer $2^{29}$ modulo ceux qui sont premiers, par carrés successifs."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus petit diviseur premier de $M_{29}$ ?",
+            "propositions": [
+              "$233$",
+              "$59$",
+              "$1103$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $M_p = 2^p - 1$ est impair, donc $q \\neq 2$. L'ensemble des entiers $k \\geq 1$ tels que $2^k \\equiv 1 \\pmod{q}$ contient $p$, puisque $q$ divise $2^p - 1$ : c'est une partie non vide de $\\mathbb{N}$, qui a donc un plus petit élément $d$.\n\n2. a) Écrivons $n = dk + r$ avec $k \\in \\mathbb{N}$ et $0 \\leq r < d$. Alors $2^n = (2^d)^k \\times 2^r \\equiv 2^r \\pmod{q}$, donc $2^r \\equiv 1 \\pmod{q}$. Si l'on avait $r \\geq 1$, cela contredirait la minimalité de $d$, puisque $r < d$ ; donc $r = 0$, et $d$ divise $n$.\n\nb) Comme $2^p \\equiv 1 \\pmod{q}$, la question a) donne $d \\mid p$ ; $p$ étant premier, $d = 1$ ou $d = p$. Si $d = 1$, $q$ diviserait $2^1 - 1 = 1$, ce qui est impossible. Donc $d = p$.\n\nc) $q$ est premier et ne divise pas $2$, donc $2^{q-1} \\equiv 1 \\pmod{q}$ (petit théorème de Fermat). D'après a), $d = p$ divise $q - 1$ : $q - 1 = pm$ avec $m \\in \\mathbb{N}$. De plus $q$ est impair, donc $2$ divise $pm$ ; comme $p$ est impair, $2 \\wedge p = 1$ et le lemme de Gauss donne $2 \\mid m$. Ainsi $2p$ divise $q - 1$, c'est-à-dire $q \\equiv 1 \\pmod{2p}$.\n\n3. Pour $p = 29$, tout diviseur premier de $M_{29}$ est congru à $1$ modulo $58$. Les premiers candidats sont $59$, $117 = 9 \\times 13$, $175 = 25 \\times 7$ et $233$ ; $59$ et $233$ sont premiers.\n\nModulo $59$ : $2^6 = 64 \\equiv 5$, $2^{12} \\equiv 25$, $2^{24} \\equiv 625 = 10 \\times 59 + 35 \\equiv 35$, puis $2^{29} = 2^{24} \\times 2^5 \\equiv 35 \\times 32 = 1120 = 18 \\times 59 + 58 \\equiv -1 \\pmod{59}$ : $59$ ne divise pas $M_{29}$.\n\nModulo $233$ : $2^8 = 256 \\equiv 23$, $2^{16} \\equiv 529 = 2 \\times 233 + 63 \\equiv 63$, $2^{24} \\equiv 63 \\times 23 = 1449 = 6 \\times 233 + 51 \\equiv 51$, puis $2^{29} \\equiv 51 \\times 32 = 1632 = 7 \\times 233 + 1 \\equiv 1 \\pmod{233}$. Le plus petit diviseur premier de $M_{29}$ est donc $233$.\n\n4. Si $131\\,071$ n'était pas premier, son plus petit diviseur premier $q$ vérifierait $q \\leq \\sqrt{131\\,071} < 363$ (car $363^2 = 131\\,769$) et $q \\equiv 1 \\pmod{34}$. Les entiers congrus à $1$ modulo $34$ entre $2$ et $362$ sont $35$, $69$, $103$, $137$, $171$, $205$, $239$, $273$, $307$ et $341$ ; parmi eux, $35 = 5 \\times 7$, $69 = 3 \\times 23$, $171 = 9 \\times 19$, $205 = 5 \\times 41$, $273 = 3 \\times 91$ et $341 = 11 \\times 31$ ne sont pas premiers. Il ne reste que $103$, $137$, $239$ et $307$, qui ne divisent pas $M_{17}$ : $M_{17}$ est premier."
+        }
+      ]
+    },
+    {
+      "id": "arith-t-premiers-decomposition-ex6",
+      "carte": "arith-t-premiers-decomposition",
+      "difficulte": 2,
+      "titre": "Compléter un entier en un carré ou en un cube",
+      "enonce": "Soit $n = 360$.\n\n1. Décomposer $n$ en produit de facteurs premiers.\n\n2. Déterminer le plus petit entier $k \\geq 1$ tel que $kn$ soit le carré d'un entier.\n\n3. Déterminer le plus petit entier $k' \\geq 1$ tel que $k'n$ soit le cube d'un entier.",
+      "duree_min": 10,
+      "indices": [
+        "Par unicité de la décomposition, un entier $N \\geq 2$ est un carré (resp. un cube) si et seulement si tous les exposants de sa décomposition en facteurs premiers sont des multiples de $2$ (resp. de $3$)."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont les entiers $k$ et $k'$ ?",
+        "propositions": [
+          "$k = 10$ et $k' = 75$",
+          "$k = 10$ et $k' = 15$",
+          "$k = 5$ et $k' = 75$",
+          "$k = 30$ et $k' = 600$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $n = 360 = 2^3 \\times 3^2 \\times 5$.\n\n2. Par unicité de la décomposition, l'exposant d'un nombre premier dans $kn$ est la somme de ses exposants dans $k$ et dans $n$. Pour que $kn$ soit un carré, il faut que tous ces exposants soient pairs : l'exposant de $2$ dans $k$ doit être impair, donc au moins $1$, et celui de $5$ aussi ; $k$ est donc divisible par $2 \\times 5 = 10$. Ainsi $k \\geq 10$, et $k = 10$ convient : $10 \\times 360 = 3600 = 60^2$.\n\n3. De même, $k'n$ est un cube si et seulement si tous ses exposants sont multiples de $3$ : $k'$ doit contenir $3$ avec un exposant au moins $1$ et $5$ avec un exposant au moins $2$ (l'exposant de $2$ dans $n$ est déjà $3$) ; $k'$ est donc divisible par $3 \\times 5^2 = 75$. Ainsi $k' \\geq 75$, et $k' = 75$ convient : $75 \\times 360 = 27\\,000 = 30^3$.",
+      "variantes": [
+        {
+          "enonce": "Soit $n = 540$.\n\n1. Décomposer $n$ en produit de facteurs premiers.\n\n2. Déterminer le plus petit entier $k \\geq 1$ tel que $kn$ soit le carré d'un entier.\n\n3. Déterminer le plus petit entier $k' \\geq 1$ tel que $k'n$ soit le cube d'un entier.",
+          "indices": [
+            "Par unicité de la décomposition, un entier $N \\geq 2$ est un carré (resp. un cube) si et seulement si tous les exposants de sa décomposition en facteurs premiers sont des multiples de $2$ (resp. de $3$)."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les entiers $k$ et $k'$ ?",
+            "propositions": [
+              "$k = 15$ et $k' = 50$",
+              "$k = 15$ et $k' = 10$",
+              "$k = 5$ et $k' = 50$",
+              "$k = 30$ et $k' = 100$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $n = 540 = 2^2 \\times 3^3 \\times 5$.\n\n2. Par unicité de la décomposition, l'exposant d'un nombre premier dans $kn$ est la somme de ses exposants dans $k$ et dans $n$. Pour que $kn$ soit un carré, il faut que tous ces exposants soient pairs : l'exposant de $3$ dans $k$ doit être impair, donc au moins $1$, et celui de $5$ aussi ; $k$ est donc divisible par $3 \\times 5 = 15$. Ainsi $k \\geq 15$, et $k = 15$ convient : $15 \\times 540 = 8100 = 90^2$.\n\n3. De même, $k'n$ est un cube si et seulement si tous ses exposants sont multiples de $3$ : $k'$ doit contenir $2$ avec un exposant au moins $1$ et $5$ avec un exposant au moins $2$ (l'exposant de $3$ dans $n$ est déjà $3$) ; $k'$ est donc divisible par $2 \\times 5^2 = 50$. Ainsi $k' \\geq 50$, et $k' = 50$ convient : $50 \\times 540 = 27\\,000 = 30^3$."
+        },
+        {
+          "enonce": "Soit $n = 1176$.\n\n1. Décomposer $n$ en produit de facteurs premiers.\n\n2. Déterminer le plus petit entier $k \\geq 1$ tel que $kn$ soit le carré d'un entier.\n\n3. Déterminer le plus petit entier $k' \\geq 1$ tel que $k'n$ soit le cube d'un entier.",
+          "indices": [
+            "Par unicité de la décomposition, un entier $N \\geq 2$ est un carré (resp. un cube) si et seulement si tous les exposants de sa décomposition en facteurs premiers sont des multiples de $2$ (resp. de $3$)."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les entiers $k$ et $k'$ ?",
+            "propositions": [
+              "$k = 6$ et $k' = 63$",
+              "$k = 6$ et $k' = 21$",
+              "$k = 3$ et $k' = 63$",
+              "$k = 42$ et $k' = 63$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $n = 1176 = 2^3 \\times 3 \\times 7^2$.\n\n2. Par unicité de la décomposition, l'exposant d'un nombre premier dans $kn$ est la somme de ses exposants dans $k$ et dans $n$. Pour que $kn$ soit un carré, il faut que tous ces exposants soient pairs : l'exposant de $2$ dans $k$ doit être impair, donc au moins $1$, et celui de $3$ aussi ; $k$ est donc divisible par $2 \\times 3 = 6$. Ainsi $k \\geq 6$, et $k = 6$ convient : $6 \\times 1176 = 7056 = 84^2$.\n\n3. De même, $k'n$ est un cube si et seulement si tous ses exposants sont multiples de $3$ : $k'$ doit contenir $3$ avec un exposant au moins $2$ et $7$ avec un exposant au moins $1$ (l'exposant de $2$ dans $n$ est déjà $3$) ; $k'$ est donc divisible par $3^2 \\times 7 = 63$. Ainsi $k' \\geq 63$, et $k' = 63$ convient : $63 \\times 1176 = 74\\,088 = 42^3$."
+        }
+      ]
+    },
+    {
+      "id": "arith-t-premiers-infinitude-ex5",
+      "carte": "arith-t-premiers-infinitude",
+      "difficulte": 3,
+      "titre": "Primalité des entiers $n^4 + 4$",
+      "enonce": "Pour $n \\in \\mathbb{N}^*$, on pose $A_n = n^4 + 4$.\n\n1. Vérifier que $A_n = (n^2 + 2n + 2)(n^2 - 2n + 2)$.\n\n2. En déduire que $A_n$ n'est pas premier pour $n \\geq 2$. Que se passe-t-il pour $n = 1$ ?\n\n3. Décomposer $A_{7}$ en produit de facteurs premiers.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, reconnaître une différence de deux carrés dans le produit.",
+        "Pour la question 2, minorer le plus petit des deux facteurs lorsque $n \\geq 2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition de $A_{7}$ en facteurs premiers ?",
+        "propositions": [
+          "$5 \\times 13 \\times 37$",
+          "$5 \\times 481$",
+          "$5 \\times 13 \\times 41$",
+          "$A_7$ est premier"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $(n^2 + 2 + 2n)(n^2 + 2 - 2n) = (n^2 + 2)^2 - (2n)^2 = n^4 + 4n^2 + 4 - 4n^2 = n^4 + 4$.\n\n2. Pour $n \\geq 2$, le facteur $n^2 - 2n + 2 = (n - 1)^2 + 1$ est au moins égal à $2$, et l'autre facteur, $n^2 + 2n + 2$, lui est strictement supérieur. Ainsi $A_n$ est le produit de deux entiers au moins égaux à $2$ : il admet un diviseur $n^2 - 2n + 2$ tel que $1 < n^2 - 2n + 2 < A_n$, donc il n'est pas premier. Pour $n = 1$, le second facteur vaut $1$ et $A_1 = 5$ est premier : $n = 1$ est le seul entier $n \\geq 1$ pour lequel $A_n$ est premier.\n\n3. D'après la question 1, $A_{7} = 2405 = (49 + 14 + 2)(49 - 14 + 2) = 65 \\times 37$, d'où $A_{7} = 5 \\times 13 \\times 37$, où $37$ est premier (il n'est divisible ni par $2$, ni par $3$, ni par $5$, et $7^2 = 49 > 37$).",
+      "variantes": [
+        {
+          "enonce": "Pour $n \\in \\mathbb{N}^*$, on pose $A_n = n^4 + 4$.\n\n1. Vérifier que $A_n = (n^2 + 2n + 2)(n^2 - 2n + 2)$.\n\n2. En déduire que $A_n$ n'est pas premier pour $n \\geq 2$. Que se passe-t-il pour $n = 1$ ?\n\n3. Décomposer $A_{9}$ en produit de facteurs premiers.",
+          "indices": [
+            "Pour la question 1, reconnaître une différence de deux carrés dans le produit.",
+            "Pour la question 2, minorer le plus petit des deux facteurs lorsque $n \\geq 2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition de $A_{9}$ en facteurs premiers ?",
+            "propositions": [
+              "$5 \\times 13 \\times 101$",
+              "$65 \\times 101$",
+              "$5 \\times 13 \\times 103$",
+              "$A_9$ est premier"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $(n^2 + 2 + 2n)(n^2 + 2 - 2n) = (n^2 + 2)^2 - (2n)^2 = n^4 + 4n^2 + 4 - 4n^2 = n^4 + 4$.\n\n2. Pour $n \\geq 2$, le facteur $n^2 - 2n + 2 = (n - 1)^2 + 1$ est au moins égal à $2$, et l'autre facteur, $n^2 + 2n + 2$, lui est strictement supérieur. Ainsi $A_n$ est le produit de deux entiers au moins égaux à $2$ : il admet un diviseur $n^2 - 2n + 2$ tel que $1 < n^2 - 2n + 2 < A_n$, donc il n'est pas premier. Pour $n = 1$, le second facteur vaut $1$ et $A_1 = 5$ est premier : $n = 1$ est le seul entier $n \\geq 1$ pour lequel $A_n$ est premier.\n\n3. D'après la question 1, $A_{9} = 6565 = (81 + 18 + 2)(81 - 18 + 2) = 101 \\times 65$, d'où $A_{9} = 5 \\times 13 \\times 101$, où $101$ est premier (il n'est divisible ni par $2$, ni par $3$, ni par $5$, ni par $7$, et $11^2 = 121 > 101$)."
+        },
+        {
+          "enonce": "Pour $n \\in \\mathbb{N}^*$, on pose $A_n = n^4 + 4$.\n\n1. Vérifier que $A_n = (n^2 + 2n + 2)(n^2 - 2n + 2)$.\n\n2. En déduire que $A_n$ n'est pas premier pour $n \\geq 2$. Que se passe-t-il pour $n = 1$ ?\n\n3. Décomposer $A_{11}$ en produit de facteurs premiers.",
+          "indices": [
+            "Pour la question 1, reconnaître une différence de deux carrés dans le produit.",
+            "Pour la question 2, minorer le plus petit des deux facteurs lorsque $n \\geq 2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition de $A_{11}$ en facteurs premiers ?",
+            "propositions": [
+              "$5 \\times 29 \\times 101$",
+              "$145 \\times 101$",
+              "$5 \\times 29 \\times 103$",
+              "$A_{11}$ est premier"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $(n^2 + 2 + 2n)(n^2 + 2 - 2n) = (n^2 + 2)^2 - (2n)^2 = n^4 + 4n^2 + 4 - 4n^2 = n^4 + 4$.\n\n2. Pour $n \\geq 2$, le facteur $n^2 - 2n + 2 = (n - 1)^2 + 1$ est au moins égal à $2$, et l'autre facteur, $n^2 + 2n + 2$, lui est strictement supérieur. Ainsi $A_n$ est le produit de deux entiers au moins égaux à $2$ : il admet un diviseur $n^2 - 2n + 2$ tel que $1 < n^2 - 2n + 2 < A_n$, donc il n'est pas premier. Pour $n = 1$, le second facteur vaut $1$ et $A_1 = 5$ est premier : $n = 1$ est le seul entier $n \\geq 1$ pour lequel $A_n$ est premier.\n\n3. D'après la question 1, $A_{11} = 14645 = (121 + 22 + 2)(121 - 22 + 2) = 145 \\times 101$, d'où $A_{11} = 5 \\times 29 \\times 101$, car $145 = 5 \\times 29$, et $29$ et $101$ sont premiers (aucun nombre premier inférieur ou égal à $5$, resp. à $7$, ne les divise, et $6^2 > 29$, $11^2 > 101$)."
+        }
+      ]
     }
   ]
 }

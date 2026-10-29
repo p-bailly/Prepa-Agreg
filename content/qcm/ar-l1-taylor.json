@@ -1,0 +1,99 @@
+{
+  "chapitre": "ar-l1-taylor",
+  "questions": [
+    {
+      "id": "ar-l1-taylor-q1",
+      "carte": "ar-l1-taylor-dl-usuels",
+      "genre": "choix",
+      "enonce": "Que vaut $\\lim_{x\\to0}\\frac{\\cos x-1+\\frac{x^2}{2}}{x^4}$ ?",
+      "propositions": [
+        "$\\frac{1}{24}$",
+        "$-\\frac{1}{24}$",
+        "$\\frac{1}{12}$",
+        "$0$"
+      ],
+      "bonne": 0,
+      "explication": "Le développement limité usuel à l'ordre $4$ donne $\\cos x=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4)$, donc $\\cos x-1+\\frac{x^2}{2}=\\frac{x^4}{24}+o(x^4)$ et le quotient tend vers $\\frac{1}{24}$. S'arrêter à l'ordre $2$ ne laisse que $o(x^2)$ au numérateur, ce qui ne permet pas de conclure."
+    },
+    {
+      "id": "ar-l1-taylor-q2",
+      "carte": "ar-l1-taylor-dl-operations",
+      "genre": "choix",
+      "enonce": "Quel est le développement limité à l'ordre $2$ en $0$ de $x\\mapsto e^x\\cos x$ ?",
+      "propositions": [
+        "$1+x+o(x^2)$",
+        "$1+x+x^2+o(x^2)$",
+        "$1+x-x^2+o(x^2)$",
+        "$1+x+\\frac{x^2}{2}+o(x^2)$"
+      ],
+      "bonne": 0,
+      "explication": "On multiplie $e^x=1+x+\\frac{x^2}{2}+o(x^2)$ par $\\cos x=1-\\frac{x^2}{2}+o(x^2)$ en ne gardant que les termes de degré au plus $2$ : $\\left(1+x+\\frac{x^2}{2}\\right)\\left(1-\\frac{x^2}{2}\\right)=1+x+\\frac{x^2}{2}-\\frac{x^2}{2}+\\dots$, d'où $e^x\\cos x=1+x+0\\cdot x^2+o(x^2)$."
+    },
+    {
+      "id": "ar-l1-taylor-q3",
+      "carte": "ar-l1-taylor-young",
+      "genre": "choix",
+      "enonce": "Soit $f$ de classe $C^3$ au voisinage de $0$ telle que $f(x)=2-x+3x^2-x^3+o(x^3)$ quand $x\\to0$. Que vaut $f''(0)$ ?",
+      "propositions": [
+        "$6$",
+        "$3$",
+        "$\\frac32$",
+        "$-6$"
+      ],
+      "bonne": 0,
+      "explication": "Par la formule de Taylor-Young, $f(x)=f(0)+f'(0)x+\\frac{f''(0)}{2}x^2+\\frac{f'''(0)}{6}x^3+o(x^3)$. Par unicité du développement limité, $\\frac{f''(0)}{2}=3$, donc $f''(0)=6$ (et $f'''(0)=-6$). Le coefficient de $x^2$ n'est pas $f''(0)$ lui-même : il faut multiplier par $2!$."
+    },
+    {
+      "id": "ar-l1-taylor-q4",
+      "carte": "ar-l1-taylor-lagrange",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout $x\\in[0,1]$, $0\\le e^x-1-x\\le\\frac{e\\,x^2}{2}$.",
+      "vrai": true,
+      "explication": "Sur $[0,1]$, $|\\exp''|=\\exp\\le e$ ; l'inégalité de Taylor-Lagrange à l'ordre $1$ en $0$ donne $|e^x-1-x|\\le\\frac{e\\,x^2}{2}$. Par ailleurs $e^x\\ge1+x$ pour tout réel $x$ (l'exponentielle est convexe, au-dessus de sa tangente en $0$), d'où la minoration par $0$."
+    },
+    {
+      "id": "ar-l1-taylor-q5",
+      "carte": "ar-l1-taylor-dl-position",
+      "genre": "vrai-faux",
+      "enonce": "Au voisinage de $0$, la courbe de $x\\mapsto\\ln(1+x)$ est au-dessus de sa tangente en $0$.",
+      "vrai": false,
+      "explication": "La tangente en $0$ est $y=x$ et $\\ln(1+x)-x=-\\frac{x^2}{2}+o(x^2)$ : la différence est du signe de $-\\frac{x^2}{2}$, donc strictement négative pour $x\\neq0$ proche de $0$. La courbe est au-dessous de sa tangente. Par exemple, $\\ln(1{,}1)\\approx0{,}0953<0{,}1$."
+    },
+    {
+      "id": "ar-l1-taylor-q6",
+      "carte": "ar-l1-taylor-dl-position",
+      "genre": "choix",
+      "enonce": "Que présente en $0$ la fonction $f:x\\mapsto\\cos x+\\frac{x^2}{2}$ ?",
+      "propositions": [
+        "Un minimum local strict",
+        "Un maximum local strict",
+        "Ni minimum ni maximum : la courbe traverse sa tangente",
+        "On ne peut pas conclure à l'aide d'un développement limité"
+      ],
+      "bonne": 0,
+      "explication": "$\\cos x=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4)$ donne $f(x)=1+\\frac{x^4}{24}+o(x^4)$. La tangente en $0$ est horizontale ($y=1$) et le premier terme non constant, $\\frac{x^4}{24}$, est de degré pair et de coefficient positif : $f(x)>1=f(0)$ pour $x\\neq0$ proche de $0$. C'est un minimum local strict."
+    },
+    {
+      "id": "ar-l1-taylor-q7",
+      "carte": "ar-l1-taylor-reste-integral",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout réel $x$, $\\cos x\\ge1-\\frac{x^2}{2}$.",
+      "vrai": true,
+      "explication": "La formule de Taylor avec reste intégral à l'ordre $1$ en $0$, appliquée à $g(x)=\\cos x+\\frac{x^2}{2}$ (avec $g(0)=1$, $g'(0)=0$ et $g''(t)=1-\\cos t$), donne $\\cos x-1+\\frac{x^2}{2}=\\int_0^x(x-t)(1-\\cos t)\\,\\mathrm{d}t$. Si $x\\ge0$, l'intégrande est positif sur $[0,x]$ ; si $x<0$, l'intégrale vaut $\\int_x^0(t-x)(1-\\cos t)\\,\\mathrm{d}t$, d'intégrande positif. Dans les deux cas elle est positive."
+    },
+    {
+      "id": "ar-l1-taylor-q8",
+      "carte": "ar-l1-taylor-lagrange",
+      "genre": "choix",
+      "enonce": "Quelle est la plus petite constante $C$ telle que $\\left|\\sqrt{1+x}-1-\\frac x2\\right|\\le C\\,x^2$ pour tout $x\\ge0$ ?",
+      "propositions": [
+        "$\\frac18$",
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac1{16}$"
+      ],
+      "bonne": 0,
+      "explication": "Pour $f(x)=\\sqrt{1+x}$, $f''(t)=-\\frac{1}{4(1+t)^{3/2}}$, donc $|f''|\\le\\frac14$ sur $\\left[0,+\\infty\\right[$ et l'inégalité de Taylor-Lagrange à l'ordre $1$ en $0$ donne la majoration avec $C=\\frac{1}{4}\\times\\frac{1}{2!}=\\frac18$. Aucune constante plus petite ne convient : $\\sqrt{1+x}-1-\\frac x2=-\\frac{x^2}{8}+o(x^2)$, donc le quotient par $x^2$ de la valeur absolue tend vers $\\frac18$ en $0$. Les valeurs $\\frac14$ et $\\frac12$ conviennent aussi, mais ne sont pas les plus petites."
+    }
+  ]
+}

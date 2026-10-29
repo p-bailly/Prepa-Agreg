@@ -63,12 +63,33 @@ describe('QCM des chapitres', () => {
     }
   })
 
+  it('reprend les questions écrites du chapitre', () => {
+    const a = carte('a', 'x', 'l1')
+    const c = {
+      ...contenu([a]),
+      qcm: [
+        {
+          chapitre: 'x-l1',
+          questions: [
+            { id: 'x-l1-q1', carte: 'a', genre: 'vrai-faux' as const, enonce: 'e', vrai: false, explication: 'x' },
+            { id: 'x-l1-q2', carte: 'a', genre: 'choix' as const, enonce: 'e', propositions: ['1', '2', '3', '4'], bonne: 2, explication: 'x' },
+          ],
+        },
+      ],
+    }
+    const qs = questionsChapitre(c, 'x-l1')
+    expect(qs.map((q) => [q.genre, q.propositions[q.bonne]])).toEqual([
+      ['vrai-faux', 'Faux'],
+      ['question', '3'],
+    ])
+  })
+
   it('tire des questions de chaque genre et garde la bonne réponse en mélangeant', () => {
     const qs = questionsChapitre(CONTENU, 'ar-t-suites')
     const t = tirerQcm(qs, 10, graine(7))
     expect(t).toHaveLength(10)
     expect(new Set(t.map((q) => q.id)).size).toBe(10)
-    expect(new Set(t.map((q) => q.genre)).size).toBe(3)
+    expect(new Set(t.map((q) => q.genre)).size).toBeGreaterThanOrEqual(3)
     for (const q of t) {
       const origine = qs.find((x) => x.id === q.id)!
       expect(q.propositions[q.bonne]).toBe(origine.propositions[origine.bonne])
