@@ -142,4 +142,26 @@ for f, g, A, B, BA, AB, bij, leurres in cas:
 assert M([[-1, 1], [3, -1]]).det() == -2 and M([[2, 2], [1, -1]]).det() == -4
 assert M([[2, 0], [-1, 0]]) * M([0, 1]) == zeros(2, 1)
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ici.
+from sympy import Matrix as _M, symbols as _sym, expand as _expand, factor as _factor, summation as _sum, Rational as _R
+_X, _N, _k, _a = _sym('X N k a')
+# al-l1-applications-rang-ex6 (exercice, v1, v2) : Δ(P) = X², X³, X ; P(0) = 0 ; sommes de puissances ; leurres faux
+for _P, _cible, _leurres in [(_X * (_X - 1) * (2 * _X - 1) / 6, _X ** 2, [_X * (_X + 1) * (2 * _X + 1) / 6, _X ** 3 / 3, _X * (_X - 1) / 2]),
+                             (_X ** 2 * (_X - 1) ** 2 / 4, _X ** 3, [_X ** 2 * (_X + 1) ** 2 / 4, _X ** 4 / 4, _X * (_X - 1) * (2 * _X - 1) / 6]),
+                             (_X * (_X - 1) / 2, _X, [_X * (_X + 1) / 2, _X ** 2 / 2, (_X ** 2 - 1) / 2])]:
+    _D = lambda Q: _expand(Q.subs(_X, _X + 1) - Q)
+    assert _D(_P) == _cible and _P.subs(_X, 0) == 0
+    assert all(_D(L) != _cible or L.subs(_X, 0) != 0 for L in _leurres)
+    assert _factor(_sum(_cible.subs(_X, _k), (_k, 0, _N)) - _P.subs(_X, _N + 1)) == 0
+# al-l1-applications-isomorphismes-ex5 (exercice, v1, v2) : déterminants 1 + a³, a² - 1, a(a - 2) et vecteurs des noyaux
+_mats = [_M([[1, _a, 0], [0, 1, _a], [_a, 0, 1]]), _M([[_a, 1, 0], [1, _a, 0], [0, 0, 1]]), _M([[1, 1, 1], [1, _a, 0], [1, 0, _a]])]
+assert [_factor(m.det()) for m in _mats] == [_factor(1 + _a ** 3), _factor(_a ** 2 - 1), _factor(_a * (_a - 2))]
+for _m, _val, _v in [(0, -1, (1, 1, 1)), (1, 1, (1, -1, 0)), (1, -1, (1, 1, 0)), (2, 0, (0, 1, -1)), (2, 2, (-2, 1, 1))]:
+    assert _mats[_m].subs(_a, _val) * _M(_v) == _M([0, 0, 0])
+# al-l1-applications-matrice-ex5 (exercice, v1, v2) : BA et AB recalculés à partir des formules de f et g
+for _A, _B, _BA, _AB in [([[1, 1], [1, -1], [2, 0]], [[1, 0, -1], [0, 1, 1]], [[-1, 1], [3, -1]], [[1, 1, 0], [1, -1, -2], [2, 0, -2]]),
+                         ([[1, 0], [1, 1], [0, 1]], [[1, 1, 1], [1, 0, -1]], [[2, 2], [1, -1]], [[1, 1, 1], [2, 1, 0], [1, 0, -1]]),
+                         ([[1, -1], [0, 1], [1, 1]], [[1, 0, 1], [0, 1, -1]], [[2, 0], [-1, 0]], [[1, -1, 2], [0, 1, -1], [1, 1, 0]])]:
+    assert _M(_B) * _M(_A) == _M(_BA) and _M(_A) * _M(_B) == _M(_AB) and (_M(_AB)).rank() <= 2
+
 print("enrichi_al_l1_applications : tout est vérifié.")

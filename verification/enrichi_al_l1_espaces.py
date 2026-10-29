@@ -111,4 +111,28 @@ for n_h, (u1, u2), u3, aval, base_h, a_leurres in cas:
     # les propositions « pour tout a » et « aucune valeur » sont fausses
     assert eqH(u3(aval + 1)) != 0 and eqH(u3(aval)) == 0
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ici.
+from sympy import Matrix as _M, symbols as _sym, expand as _expand
+# al-l1-espaces-q3 : (X-1)² + 3(X-1) + 3 = X² + X + 1
+_X = _sym('X')
+assert _expand((_X - 1) ** 2 + 3 * (_X - 1) + 3) == _X ** 2 + _X + 1
+# al-l1-espaces-q8 : (1,1,1) hors du plan x - y + 2z = 0, les trois autres vecteurs dedans
+assert [v[0] - v[1] + 2 * v[2] for v in [(1, 1, 1), (1, 1, 0), (2, 0, -1), (0, 2, 1)]] == [2, 0, 0, 0]
+# al-l1-espaces-dimension-ex6 (exercice, v1, v2) : rang de la famille et de la base extraite
+for _u, _base, _r in [([(1, 0, 1, 2), (0, 1, 1, 1), (1, 1, 2, 3), (2, -1, 1, 3)], [0, 1], 2),
+                      ([(1, 1, 0, 0), (0, 1, 1, 0), (1, 0, -1, 0), (0, 0, 1, 1)], [0, 1, 3], 3),
+                      ([(1, 2, 0, -1), (2, 4, 0, -2), (0, 1, 1, 1), (1, 3, 1, 0)], [0, 2], 2)]:
+    assert _M(_u).rank() == _r and _M([_u[i] for i in _base]).rank() == _r
+# al-l1-espaces-inclusion-ex5 (exercice, v1, v2) : F_a = H exactement pour a = 2, 1, -1 ; sinon dim(F_a ∩ H) = 2
+_a = _sym('a')
+for _h, _u1, _u2, _u3, _bon in [((1, 2, -1, 1), (1, 0, 1, 0), (0, 1, 2, 0), (1, 1, _a, -1), 2),
+                                ((1, -1, 2, -1), (1, 1, 0, 0), (0, 2, 1, 0), (1, 0, _a, 3), 1),
+                                ((2, 1, 1, -3), (1, -2, 0, 0), (0, 1, -1, 0), (2, 0, _a, 1), -1)]:
+    _H = _M([_h])
+    for _val in [_bon, _bon + 3]:
+        _F = _M([_u1, _u2, [c.subs(_a, _val) if hasattr(c, 'subs') else c for c in _u3]])
+        assert _F.rank() == 3
+        _dimsomme = _M.vstack(_F, _M(_H.nullspace()[0].T), _M(_H.nullspace()[1].T), _M(_H.nullspace()[2].T)).rank()
+        assert (_dimsomme == 3) == (_val == _bon) and 3 + 3 - _dimsomme == (3 if _val == _bon else 2)
+
 print("enrichi_al_l1_espaces : tout est vérifié.")

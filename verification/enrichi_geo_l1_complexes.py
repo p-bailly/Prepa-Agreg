@@ -130,4 +130,28 @@ for ww, d, r1, r2, leurres in cas:
     assert Abs(ww) == {(-119 - 120 * I): 169, (-7 - 24 * I): 25, (161 + 240 * I): 289}[ww]
     assert Abs(d) ** 2 == Abs(ww)
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ici sans reprendre le code ci-dessus.
+from sympy import I as _I, expand as _expand, binomial as _binom, cos as _cos, sin as _sin, pi as _pi, nsimplify as _ns, symbols as _sym, simplify as _simp, exp as _exp, Abs as _Abs, sqrt as _sqrt
+# geo-l1-complexes-q1 : (2+3i)^2 = -5+12i ; q3 : racines de 3-4i = ±(2-i), signes contraires
+assert _expand((2 + 3 * _I) ** 2) == -5 + 12 * _I and _expand((2 - _I) ** 2) == 3 - 4 * _I
+# geo-l1-complexes-q2 : 1 et 2+i ont pour somme 3+i et pour produit 2+i
+assert _expand(1 + (2 + _I)) == 3 + _I and _expand(1 * (2 + _I)) == 2 + _I
+# geo-l1-complexes-q5 : |4+8i| = √5 + 3√5
+assert _simp(_Abs(4 + 8 * _I) - (_sqrt(5) + 3 * _sqrt(5))) == 0
+# geo-l1-complexes-q6 : h(r(z)) = 2(iz - 1) + 1 = 2iz - 1
+_z = _sym('z')
+assert _expand(2 * (_I * _z - 1) + 1) == 2 * _I * _z - 1
+# geo-l1-complexes-q8 : sin θ cos³ θ = sin 2θ / 4 + sin 4θ / 8 (valeurs en plusieurs points)
+_t = _sym('t')
+for _v in [_pi / 7, _pi / 5, 1, 2]:
+    assert abs(float((_sin(_t) * _cos(_t) ** 3 - (_sin(4 * _t) + 2 * _sin(2 * _t)) / 8).subs(_t, _v))) < 1e-12
+# geo-l1-complexes-euler-ex6 Q3 : somme des C(n,k) cos(2kπ/3) = cos(nπ/3) pour n = 1..12
+for _n in range(1, 13):
+    assert _ns(sum(_binom(_n, _k) * _cos(2 * _k * _pi / 3) for _k in range(_n + 1))) == _cos(_n * _pi / 3)
+# geo-l1-complexes-racines-carrees-ex6 (exercice, v1, v2) : les quatre solutions élevées à la puissance 4, et z0, iz0, -z0, -iz0
+for _w, _z0, _z1 in [(-119 - 120 * _I, 3 - 2 * _I, 2 + 3 * _I), (-7 - 24 * _I, 2 - _I, 1 + 2 * _I), (161 + 240 * _I, 4 + _I, 1 - 4 * _I)]:
+    for _s in [_z0, -_z0, _z1, -_z1]:
+        assert _expand(_s ** 4) == _w
+    assert {_expand(_I * _z0), _expand(-_I * _z0)} == {_z1, _expand(-_z1)}
+
 print("enrichi_geo_l1_complexes : tout est vérifié.")

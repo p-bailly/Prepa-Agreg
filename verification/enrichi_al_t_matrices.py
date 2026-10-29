@@ -159,4 +159,28 @@ for donnees, depart, cible, bonne, leurres, pi2_cite in cas:
 # compléments cités dans les corrections : 0,2 ; 0,2 ; 0,4 (exercice) etc.
 assert 1 - R(5, 10) - R(3, 10) == R(2, 10) and 1 - R(7, 10) - R(2, 10) == R(1, 10) and 1 - R(6, 10) - R(1, 10) == R(3, 10)
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ici.
+from sympy import Matrix as _M, Rational as _R, eye as _eye, ones as _ones
+from itertools import product as _prod
+# al-t-matrices-q7 : M³ du graphe orienté, coefficient (1,1) = 2
+_G = _M([[0, 1, 1, 0], [0, 0, 1, 1], [0, 0, 0, 1], [1, 0, 0, 0]])
+assert _G ** 3 == _M([[2, 0, 0, 1], [1, 1, 1, 0], [0, 1, 1, 0], [0, 0, 1, 2]])
+# al-t-matrices-inverse-ex5 Q5 (exercice, v1, v2) : résolution directe des trois systèmes
+for _a, _Y, _sol in [(2, [4, 6, 10], [0, 1, 3]), (3, [6, 3, 9], [1, 0, 2]), (-1, [1, 0, 3], [1, 2, -1])]:
+    _A = _a * _eye(3) + _ones(3, 3)
+    assert _A.solve(_M(_Y)) == _M(_sol)
+    # A^{-1} = (1/a) I - b/(a(a+3b)) J avec b = 1
+    assert _A.inv() == _R(1, _a) * _eye(3) - _R(1, _a * (_a + 3)) * _ones(3, 3)
+# al-t-matrices-adjacence-ex6 (exercice, v1, v2) : distance et nombre de chaînes minimales par énumération des suites de sommets
+def _chaines(aretes, n):
+    adj = {frozenset(e) for e in aretes}
+    return [c for c in _prod(range(1, 6), repeat=n - 1) if all(frozenset(p) in adj for p in zip((1,) + c, c + (5,)))]
+for _ar, _d, _nb in [([(1, 2), (1, 3), (2, 4), (3, 4), (4, 5)], 3, 2), ([(1, 2), (1, 3), (1, 4), (2, 5), (3, 5), (4, 5)], 2, 3),
+                     ([(1, 2), (2, 3), (2, 4), (3, 4), (4, 5)], 3, 1)]:
+    assert all(len(_chaines(_ar, _k)) == 0 for _k in range(1, _d)) and len(_chaines(_ar, _d)) == _nb
+# al-t-matrices-markov-ex6 (exercice, v1, v2) : π2 = π0 P²
+for _P, _pi0, _pi2 in [([[5, 3, 2], [4, 4, 2], [6, 4, 0]], [1, 0, 0], [49, 35, 16]), ([[6, 1, 3], [5, 2, 3], [7, 3, 0]], [1, 0, 0], [62, 17, 21]),
+                       ([[7, 2, 1], [3, 5, 2], [5, 5, 0]], [0, 1, 0], [46, 41, 13])]:
+    assert _M([_pi0]) * (_M(_P) / 10) ** 2 == _M([_pi2]) / 100
+
 print("enrichi_al_t_matrices : tout est vérifié.")
