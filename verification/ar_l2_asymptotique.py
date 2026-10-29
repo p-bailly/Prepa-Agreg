@@ -323,7 +323,7 @@ for A, u0, u1, u2, leurres, e1 in [(3, F(2), F(7, 4), F(97, 56), [F(26, 15), F(1
     assert 0 < float(u1) - r < e1 and 0 <= float(u2) - r < 1e-4
     assert (e1**2) / (2 * float(u1)) < 1e-4
 assert abs((97 / 56 - math.sqrt(3)) - 9.2e-5) < 1e-6 and abs((161 / 72 - math.sqrt(5)) - 4.3e-5) < 1e-6
-assert abs((127 / 48 - math.sqrt(7)) - 8.3e-5) < 1e-6
+assert abs((127 / 48 - math.sqrt(7)) - 8.2e-5) < 5e-7  # ar-l2-asymptotique-vitesse-ex1 v2 (8,2·10^-5)
 assert math.sqrt(3) > 1.732 and math.sqrt(5) > 2.236 and math.sqrt(7) > 2.6457
 
 # ar-l2-asymptotique-vitesse-ex2 (+ v1, v2) : (u^2 + a)/(a+1), rapport (u+1)/(a+1) -> 2/(a+1).
@@ -471,5 +471,26 @@ for N in [10**4, 10**8, 10**12]:
     assert abs(ratio - approx) < 0.05  # terme suivant -ln ln n / n
 assert abs((1 - xn(10**8)) / (mp.log(10**8) / 10**8) - 0.85) < 0.01  # remarque « environ 0,85 »
 # Leurres : 1/n (rapport -> +oo), ln n/(2n) (rapport -> 2), e^-n : faux.
+
+# ---------------------------------------------------------------------------
+# Ajouts de la relecture indépendante (2026-10-29).
+# ---------------------------------------------------------------------------
+# lecons/ar-l2-asymptotique (introduction) : un point répulsif peut être atteint, la suite est alors stationnaire :
+# f(x) = 4x(1 - x), f'(0) = 4 > 1, u_0 = 1 donne u_1 = 0 puis 0, 0, ...
+assert it(lambda t: 4 * t * (1 - t), F(1), 4) == [1, 0, 0, 0, 0] and diff(4 * x * (1 - x), x).subs(x, 0) == 4
+# ar-l2-asymptotique-homographique (cours) : points fixes non réels => |k| = 1 et k != 1.
+for A, B, Cc, D in [(0, -1, 1, 0), (1, -2, 1, 1), (2, -5, 1, -1), (3, -7, 2, 1)]:
+    r = solve(Cc * x**2 + (D - A) * x - B, x)
+    assert all(not t.is_real for t in r) and A * D - B * Cc != 0
+    kk = (A - Cc * r[0]) / (A - Cc * r[1])
+    assert abs(complex(kk.evalf())) - 1 < 1e-12 and abs(abs(complex(kk.evalf())) - 1) < 1e-12
+    assert abs(complex(kk.evalf()) - 1) > 1e-6
+# ar-l2-asymptotique-vitesse-ex3 : « environ 13 itérations par décimale » : ln 10 / (-ln sin 1) ≈ 13,3.
+assert 13 < -mp.log(10) / mp.log(mp.sin(1)) < 13.5
+# ar-l2-asymptotique-comparaison-ex4 (leurre « (v_n) bornée ») : suffisant, pas nécessaire.
+assert limit((n + 1 / n) - n, n, oo) == 0 and limit((n + 1 / n) / n, n, oo) == 1  # e^{n+1/n} ~ e^n, v non bornée
+assert limit((1 + 1 / n) * (1 + 1 / n**2) - (1 + 1 / n), n, oo) == 0  # v bornée, u ~ v => u - v -> 0
+# ar-l2-asymptotique-homographique-ex4 (indice 2) : h(x) - g = (1 - g)(x - g)/(x + 1) pour g^2 = m.
+assert simplify((x + gm**2) / (x + 1) - gm - (1 - gm) * (x - gm) / (x + 1)) == 0
 
 print("ar_l2_asymptotique : toutes les vérifications passent.")

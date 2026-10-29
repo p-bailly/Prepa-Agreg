@@ -1,0 +1,397 @@
+{
+  "cartes": [
+    {
+      "id": "gr-l2-symetrique-cycles",
+      "theme": "groupes",
+      "niveau": "l2",
+      "chapitre": "gr-l2-symetrique",
+      "type": "theoreme",
+      "titre": "Décomposition en cycles à supports disjoints",
+      "recto": "Définir un cycle et son support, puis énoncer le théorème de décomposition d'une permutation en produit de cycles à supports disjoints.",
+      "cours": "Une permutation de $E$ se visualise en reliant chaque élément à son image par une flèche. Comme $\\sigma$ est une bijection d'un ensemble fini, en suivant les flèches à partir d'un point on finit toujours par y revenir : le dessin se compose de circuits disjoints. Chaque circuit est un cycle, et le théorème dit que $\\sigma$ est le produit de ces cycles, qui commutent puisqu'ils agissent sur des parties disjointes. Les circuits sont les orbites de $\\sigma$ ; les points fixes forment des circuits d'un seul point et n'apparaissent pas dans l'écriture.\n\nMéthode : partir du plus petit élément non encore rencontré, écrire ses images successives jusqu'au retour au point de départ, fermer la parenthèse, et recommencer. Pour composer des cycles qui ne sont pas disjoints, on calcule l'image de chaque élément en appliquant d'abord le facteur de droite (convention $\\sigma\\tau=\\sigma\\circ\\tau$), puis on décompose le résultat.\n\nCette décomposition est l'outil de base du chapitre : elle donne l'ordre (ppcm des longueurs), la signature, le nombre minimal de transpositions, et elle permet de dénombrer les permutations d'un type donné. Il y a $\\frac{n!}{\\prod_k k^{m_k}m_k!}$ permutations de $\\mathfrak{S}_n$ ayant $m_k$ cycles de longueur $k$ pour chaque $k$, les points fixes étant comptés comme cycles de longueur $1$.\n\nPièges : deux cycles dont les supports se rencontrent ne commutent pas en général ; un même cycle de longueur $k$ a $k$ écritures, $(a_1\\ a_2\\ \\cdots\\ a_k)=(a_2\\ \\cdots\\ a_k\\ a_1)$, et l'unicité porte sur les cycles, pas sur leur écriture ; enfin, certains ouvrages composent de gauche à droite, ce qui change les calculs : toujours préciser la convention.",
+      "hypotheses": [
+        "$E$ est un ensemble fini.",
+        "$\\sigma$ est une bijection de $E$ sur $E$.",
+        "Pour l'unicité : les cycles de l'écriture sont à supports deux à deux disjoints."
+      ],
+      "hypotheses_pieges": [
+        "$\\sigma$ est une application quelconque de $E$ dans $E$ (à la place d'une bijection).",
+        "$E$ est un ensemble quelconque, éventuellement infini (à la place de : fini).",
+        "Pour l'unicité : les cycles de l'écriture commutent deux à deux (à la place de : supports deux à deux disjoints)."
+      ],
+      "enonce": "Soit $E$ un ensemble fini. Une **permutation** de $E$ est une bijection de $E$ sur $E$ ; les permutations forment un groupe pour la composition, noté $\\mathfrak{S}(E)$, et $\\mathfrak{S}_n$ si $E=\\{1,\\dots,n\\}$. On note $\\sigma\\tau=\\sigma\\circ\\tau$. Le **support** de $\\sigma$ est $\\{x\\in E:\\sigma(x)\\neq x\\}$, et l'**orbite** de $x$ est $\\{\\sigma^m(x):m\\in\\mathbb{Z}\\}$. Pour $k\\ge2$ et $a_1,\\dots,a_k$ des éléments distincts de $E$, le **cycle** $(a_1\\ a_2\\ \\cdots\\ a_k)$ est la permutation qui envoie $a_1$ sur $a_2$, …, $a_{k-1}$ sur $a_k$, $a_k$ sur $a_1$, et fixe les autres éléments ; $k$ est sa **longueur** et $\\{a_1,\\dots,a_k\\}$ son support. Les cycles de longueur $2$ sont les **transpositions**.\n\n**Théorème.** Deux permutations à supports disjoints commutent. Toute permutation $\\sigma\\neq\\mathrm{id}$ de $E$ s'écrit $\\sigma=c_1c_2\\cdots c_r$, où $c_1,\\dots,c_r$ sont des cycles à supports deux à deux disjoints, et cette écriture est unique à l'ordre des facteurs près. Les supports des $c_i$ sont les orbites de $\\sigma$ ayant au moins deux éléments, et chaque $c_i$ coïncide avec $\\sigma$ sur son support.",
+      "enonce_trous": "Toute permutation $\\sigma\\neq\\mathrm{id}$ d'un ensemble fini s'écrit comme un produit de cycles {{1}}, de façon unique à l'ordre des facteurs près. Les supports de ces cycles sont {{2}}, et ces cycles {{3}}.",
+      "trous": [
+        {
+          "reponse": "à supports deux à deux disjoints",
+          "leurres": [
+            "de longueur $2$",
+            "de même longueur",
+            "qui commutent deux à deux"
+          ]
+        },
+        {
+          "reponse": "les orbites de $\\sigma$ ayant au moins deux éléments",
+          "leurres": [
+            "toutes les orbites de $\\sigma$, points fixes compris",
+            "des parties de réunion égale à l'ensemble tout entier",
+            "les paires $\\{x,\\sigma(x)\\}$ pour $x$ dans le support de $\\sigma$"
+          ]
+        },
+        {
+          "reponse": "commutent deux à deux",
+          "leurres": [
+            "sont tous de même longueur",
+            "sont tous d'ordre premier",
+            "engendrent le groupe de toutes les permutations"
+          ]
+        }
+      ],
+      "demo": "**Orbites.** La relation « $y=\\sigma^m(x)$ pour un $m\\in\\mathbb{Z}$ » est une relation d'équivalence sur $E$ (prendre $m=0$, puis $-m$, puis $m+m'$) ; ses classes sont les orbites, qui forment une partition de $E$. Soit $x\\in E$. Comme $E$ est fini, les $\\sigma^m(x)$, $m\\ge0$, ne sont pas tous distincts : si $\\sigma^a(x)=\\sigma^b(x)$ avec $a<b$, alors $\\sigma^{b-a}(x)=x$. Soit $p\\ge1$ le plus petit entier tel que $\\sigma^p(x)=x$. Les éléments $x,\\sigma(x),\\dots,\\sigma^{p-1}(x)$ sont distincts (une égalité $\\sigma^i(x)=\\sigma^j(x)$ avec $0\\le i<j<p$ donnerait $\\sigma^{j-i}(x)=x$ avec $0<j-i<p$), et pour $m\\in\\mathbb{Z}$, en écrivant $m=qp+s$ avec $0\\le s<p$, on a $\\sigma^m(x)=\\sigma^s(x)$. L'orbite de $x$ est donc $\\{x,\\sigma(x),\\dots,\\sigma^{p-1}(x)\\}$, à $p$ éléments, et si $p\\ge2$, $\\sigma$ y agit comme le cycle $(x\\ \\sigma(x)\\ \\cdots\\ \\sigma^{p-1}(x))$.\n\n**Supports disjoints.** Soient $\\alpha$, $\\beta$ de supports disjoints $A$ et $B$. On a $\\alpha(A)\\subset A$ : si $x\\in A$ et $\\alpha(x)\\notin A$, alors $\\alpha(\\alpha(x))=\\alpha(x)$, puis $\\alpha(x)=x$ par injectivité, ce qui contredit $x\\in A$. Pour $x\\in A$, $\\beta$ fixe $x$ et $\\alpha(x)$, donc $\\alpha\\beta(x)=\\alpha(x)=\\beta\\alpha(x)$. De même pour $x\\in B$, et les deux produits fixent les points hors de $A\\cup B$ : $\\alpha\\beta=\\beta\\alpha$.\n\n**Existence.** Soient $O_1,\\dots,O_r$ les orbites à au moins deux éléments ($r\\ge1$ car $\\sigma\\neq\\mathrm{id}$) et $c_i$ la permutation égale à $\\sigma$ sur $O_i$ et à l'identité ailleurs : c'est un cycle de support $O_i$. Pour $x\\in O_i$, les $c_j$ ($j\\neq i$) fixent $x$ et $c_i(x)=\\sigma(x)\\in O_i$, donc $c_1\\cdots c_r(x)=\\sigma(x)$ ; un point fixe de $\\sigma$ est fixé par tous les $c_j$. Ainsi $\\sigma=c_1\\cdots c_r$.\n\n**Unicité.** Soit $\\sigma=c'_1\\cdots c'_s$, avec des cycles à supports deux à deux disjoints, et soit $x$ dans le support $S$ de $c'_j$. Comme les facteurs commutent, $\\sigma^m=(c'_j)^m\\prod_{i\\neq j}(c'_i)^m$ pour $m\\ge0$, et les $(c'_i)^m$, $i\\neq j$, fixent $x$ : $\\sigma^m(x)=(c'_j)^m(x)$. Le support $S$ d'un cycle est l'orbite de chacun de ses points sous ce cycle, donc $S$ est l'orbite de $x$ sous $\\sigma$, et $c'_j$ coïncide avec $\\sigma$ sur $S$ : $c'_j$ est le cycle associé à cette orbite. Les $c'_j$ sont donc exactement les $c_i$.",
+      "exemple": "Dans $\\mathfrak{S}_9$, soit $$\\sigma=\\begin{pmatrix}1&2&3&4&5&6&7&8&9\\\\4&7&3&9&2&6&5&1&8\\end{pmatrix}.$$ On suit les images : $1\\mapsto4\\mapsto9\\mapsto8\\mapsto1$, puis $2\\mapsto7\\mapsto5\\mapsto2$ ; $3$ et $6$ sont fixes. Donc $\\sigma=(1\\ 4\\ 9\\ 8)(2\\ 7\\ 5)=(2\\ 7\\ 5)(1\\ 4\\ 9\\ 8)$.",
+      "contre_exemple": "- **Supports non disjoints : ni commutation, ni unicité.** $(1\\ 2)(2\\ 3)=(1\\ 2\\ 3)$, mais $(2\\ 3)(1\\ 2)=(1\\ 3\\ 2)$. Et $(1\\ 2\\ 3)=(1\\ 3\\ 2)(1\\ 3\\ 2)$ est un autre produit de cycles qui commutent entre eux, mais qui ne sont pas à supports disjoints.\n- **$E$ fini est nécessaire** : la bijection $x\\mapsto x+1$ de $\\mathbb{Z}$ déplace tous les entiers, alors qu'un produit fini de cycles ne déplace qu'un nombre fini d'éléments.\n- **$\\sigma$ bijective est nécessaire** : l'application constante égale à $1$ sur $\\{1,2\\}$ n'est pas un produit de cycles, qui serait bijectif.",
+      "affirmations": [
+        {
+          "texte": "Deux cycles qui commutent ont des supports disjoints.",
+          "vrai": false,
+          "contre_exemple": "$c=(1\\ 2\\ 3)$ et $c^2=(1\\ 3\\ 2)$ commutent (deux puissances d'une même permutation commutent) et ont le même support $\\{1,2,3\\}$."
+        },
+        {
+          "texte": "Une permutation de $\\{1,2,3,4,5\\}$ sans point fixe est un cycle de longueur $5$.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)(3\\ 4\\ 5)$ n'a pas de point fixe ; par unicité de la décomposition, ce n'est pas un cycle."
+        },
+        {
+          "texte": "Pour $n\\ge3$, $\\mathfrak{S}_n$ contient exactement $\\frac{n(n-1)(n-2)}{3}$ cycles de longueur $3$.",
+          "vrai": true,
+          "justification": "On choisit le support ($\\binom n3$ façons), puis l'un des $2$ cycles sur ce support, $(a\\ b\\ c)$ ou $(a\\ c\\ b)$ : $2\\binom n3=\\frac{n(n-1)(n-2)}{3}$."
+        },
+        {
+          "texte": "Si $\\sigma$ et $\\tau$ ont des supports disjoints, le support de $\\sigma\\tau$ est la réunion des supports de $\\sigma$ et de $\\tau$.",
+          "vrai": true,
+          "justification": "Si $x$ est dans le support $A$ de $\\sigma$, $\\tau$ fixe $x$ et $\\sigma\\tau(x)=\\sigma(x)\\neq x$ ; de même sur le support de $\\tau$, en écrivant $\\sigma\\tau=\\tau\\sigma$ ; ailleurs, $\\sigma\\tau(x)=x$."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-composition",
+        "fond-l1-ensembles-equivalence"
+      ]
+    },
+    {
+      "id": "gr-l2-symetrique-signature",
+      "theme": "groupes",
+      "niveau": "l2",
+      "chapitre": "gr-l2-symetrique",
+      "type": "theoreme",
+      "titre": "Signature d'une permutation",
+      "recto": "Définir la signature d'une permutation et énoncer ses propriétés : formule produit, morphisme, signature d'une transposition et d'un cycle, lien avec les orbites.",
+      "cours": "La signature mesure la parité d'une permutation. On la définit en comptant les inversions, c'est-à-dire les couples de positions dont les images sont dans le mauvais ordre : l'identité n'en a aucune, le retournement $i\\mapsto n+1-i$ les a toutes. La formule produit montre que $\\varepsilon$ est un morphisme ; c'est le point essentiel, car il en découle que deux écritures d'une même permutation comme produit de transpositions ont des nombres de facteurs de même parité.\n\nEn pratique, on calcule rarement $\\varepsilon$ par les inversions. On décompose la permutation en cycles à supports disjoints et on multiplie les $(-1)^{k-1}$ ; ou bien on compte les orbites, points fixes compris : $\\varepsilon(\\sigma)=(-1)^{n-p}$. Retenir qu'un cycle de longueur paire est impair, et qu'un cycle de longueur impaire est pair.\n\nLa signature est l'unique morphisme non constant de $\\mathfrak{S}_n$ dans $\\mathbb{C}^*$ (voir les exercices). Elle intervient dans la formule du déterminant, $\\det A=\\sum_{\\sigma\\in\\mathfrak{S}_n}\\varepsilon(\\sigma)a_{\\sigma(1)1}\\cdots a_{\\sigma(n)n}$, et son noyau est le groupe alterné.\n\nPièges : la formule $\\varepsilon(\\sigma)=(-1)^m$ ne vaut que pour une écriture en $m$ transpositions, pas en $m$ cycles quelconques ; l'ordre et la signature n'ont pas de lien simple (une permutation d'ordre $2$ peut être paire) ; compter les descentes $\\sigma(i)>\\sigma(i+1)$ au lieu des inversions est une erreur classique.",
+      "hypotheses": [
+        "Pour la formule $\\varepsilon(\\sigma)=(-1)^m$ : $\\sigma\\in\\mathfrak{S}_n$ s'écrit $\\sigma=\\tau_1\\cdots\\tau_m$.",
+        "Chaque $\\tau_i$ est une transposition."
+      ],
+      "hypotheses_pieges": [
+        "Chaque $\\tau_i$ est un cycle, de longueur quelconque (à la place d'une transposition).",
+        "Chaque $\\tau_i$ est une permutation d'ordre $2$ (à la place d'une transposition).",
+        "Chaque $\\tau_i$ est un cycle de longueur $3$ (à la place d'une transposition)."
+      ],
+      "enonce": "Soient $n\\ge2$ et $\\sigma\\in\\mathfrak{S}_n$. Une **inversion** de $\\sigma$ est un couple $(i,j)$ tel que $1\\le i<j\\le n$ et $\\sigma(i)>\\sigma(j)$. Si $N(\\sigma)$ est le nombre d'inversions de $\\sigma$, la **signature** de $\\sigma$ est $\\varepsilon(\\sigma)=(-1)^{N(\\sigma)}$ ; $\\sigma$ est **paire** si $\\varepsilon(\\sigma)=1$, **impaire** sinon.\n\n**Théorème.**\n- $\\varepsilon(\\sigma)=\\prod_{1\\le i<j\\le n}\\frac{\\sigma(j)-\\sigma(i)}{j-i}$.\n- $\\varepsilon$ est un morphisme de groupes de $\\mathfrak{S}_n$ dans $(\\{-1,1\\},\\times)$ : $\\varepsilon(\\sigma\\tau)=\\varepsilon(\\sigma)\\varepsilon(\\tau)$.\n- Une transposition a pour signature $-1$ ; un cycle de longueur $k$ a pour signature $(-1)^{k-1}$.\n- Si $\\sigma=\\tau_1\\cdots\\tau_m$ où les $\\tau_i$ sont des transpositions, alors $\\varepsilon(\\sigma)=(-1)^m$ : la parité de $m$ ne dépend que de $\\sigma$.\n- Si $\\sigma$ a $p$ orbites (points fixes compris), alors $\\varepsilon(\\sigma)=(-1)^{n-p}$.",
+      "enonce_trous": "Pour $n\\ge2$, la signature $\\varepsilon$, définie sur $\\mathfrak{S}_n$ et à valeurs dans $\\{-1,1\\}$, est {{1}}. Un cycle de longueur $k$ a pour signature {{2}}. Si $\\sigma\\in\\mathfrak{S}_n$ a $p$ orbites, points fixes compris, la signature de $\\sigma$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "un morphisme de groupes : $\\varepsilon(\\sigma\\tau)=\\varepsilon(\\sigma)\\varepsilon(\\tau)$",
+          "leurres": [
+            "additive : $\\varepsilon(\\sigma\\tau)=\\varepsilon(\\sigma)+\\varepsilon(\\tau)$",
+            "constante",
+            "telle que $\\varepsilon(\\sigma^{-1})=-\\varepsilon(\\sigma)$ pour tout $\\sigma$"
+          ]
+        },
+        {
+          "reponse": "$(-1)^{k-1}$",
+          "leurres": [
+            "$(-1)^k$",
+            "$-1$",
+            "$(-1)^{k(k-1)/2}$"
+          ]
+        },
+        {
+          "reponse": "$(-1)^{n-p}$",
+          "leurres": [
+            "$(-1)^p$",
+            "$(-1)^{n-p+1}$",
+            "$(-1)^n$"
+          ]
+        }
+      ],
+      "demo": "**Formule produit.** L'application $\\{i,j\\}\\mapsto\\{\\sigma(i),\\sigma(j)\\}$ est une bijection de l'ensemble des paires de $\\{1,\\dots,n\\}$ sur lui-même (sa réciproque est induite par $\\sigma^{-1}$). Donc $\\prod_{i<j}|\\sigma(j)-\\sigma(i)|=\\prod_{i<j}(j-i)$, et le produit $\\prod_{i<j}(\\sigma(j)-\\sigma(i))$ a exactement $N(\\sigma)$ facteurs négatifs : il vaut $(-1)^{N(\\sigma)}\\prod_{i<j}(j-i)$.\n\n**Morphisme.** Pour $\\sigma,\\tau\\in\\mathfrak{S}_n$,\n$$\\varepsilon(\\sigma\\tau)=\\prod_{i<j}\\frac{\\sigma(\\tau(j))-\\sigma(\\tau(i))}{\\tau(j)-\\tau(i)}\\times\\prod_{i<j}\\frac{\\tau(j)-\\tau(i)}{j-i}.$$\nLe second produit vaut $\\varepsilon(\\tau)$. Dans le premier, le quotient $\\frac{\\sigma(b)-\\sigma(a)}{b-a}$ ne change pas quand on échange $a$ et $b$ : il ne dépend que de la paire $\\{a,b\\}$ ; et quand $\\{i,j\\}$ parcourt les paires, $\\{\\tau(i),\\tau(j)\\}$ les parcourt aussi, chacune une fois. Le premier produit vaut donc $\\prod_{a<b}\\frac{\\sigma(b)-\\sigma(a)}{b-a}=\\varepsilon(\\sigma)$.\n\n**Transpositions et cycles.** Pour $\\tau=(i\\ j)$ avec $i<j$, les inversions sont $(i,j)$, puis $(i,k)$ et $(k,j)$ pour chacun des $j-i-1$ entiers $k$ tels que $i<k<j$ : $N(\\tau)=2(j-i-1)+1$ est impair et $\\varepsilon(\\tau)=-1$. Un cycle de longueur $k$ est un produit de $k-1$ transpositions, $(a_1\\ a_2\\ \\cdots\\ a_k)=(a_1\\ a_2)(a_2\\ a_3)\\cdots(a_{k-1}\\ a_k)$ : pour $i<k$, $a_i$ est fixé par les facteurs situés à droite de $(a_i\\ a_{i+1})$, envoyé sur $a_{i+1}$ par ce facteur, et $a_{i+1}$ est fixé par les facteurs situés à sa gauche ; enfin $a_k$ est envoyé successivement sur $a_{k-1},\\dots,a_1$. Par le morphisme, la signature du cycle est $(-1)^{k-1}$.\n\n**Conséquences.** Si $\\sigma=\\tau_1\\cdots\\tau_m$, alors $\\varepsilon(\\sigma)=\\prod\\varepsilon(\\tau_i)=(-1)^m$. Enfin, si les orbites de $\\sigma$ ont $k_1,\\dots,k_p$ éléments ($k_1+\\cdots+k_p=n$), $\\sigma$ est le produit des cycles associés aux orbites à au moins deux éléments, et $\\varepsilon(\\sigma)=\\prod_{i=1}^{p}(-1)^{k_i-1}=(-1)^{n-p}$ (une orbite à un élément contribue par $(-1)^0=1$).",
+      "exemple": "Pour $\\sigma=(1\\ 4\\ 9\\ 8)(2\\ 7\\ 5)\\in\\mathfrak{S}_9$, de suite d'images $4,7,3,9,2,6,5,1,8$ : $\\varepsilon(\\sigma)=(-1)^3(-1)^2=-1$. Contrôles : $\\sigma$ a $p=4$ orbites ($\\{1,4,8,9\\}$, $\\{2,5,7\\}$, $\\{3\\}$, $\\{6\\}$), et $(-1)^{9-4}=-1$ ; elle a $N(\\sigma)=19$ inversions, nombre impair.",
+      "contre_exemple": "- **Des cycles quelconques ne suffisent pas** : $(1\\ 2\\ 3)$ est un produit de $m=1$ cycle, mais $\\varepsilon((1\\ 2\\ 3))=1\\neq(-1)^1$. La formule $(-1)^m$ suppose des transpositions.\n- **Une permutation d'ordre $2$ n'est pas forcément une transposition** : $(1\\ 2)(3\\ 4)$ est d'ordre $2$ et paire.\n- **Compter les descentes ne suffit pas** : $\\sigma=(1\\ 3)\\in\\mathfrak{S}_3$ a pour suite d'images $3,2,1$ ; elle a $2$ descentes ($\\sigma(1)>\\sigma(2)$ et $\\sigma(2)>\\sigma(3)$) mais $3$ inversions, et $\\varepsilon(\\sigma)=-1$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $\\sigma\\in\\mathfrak{S}_n$, $\\varepsilon(\\sigma^{-1})=\\varepsilon(\\sigma)$.",
+          "vrai": true,
+          "justification": "$\\varepsilon(\\sigma)\\varepsilon(\\sigma^{-1})=\\varepsilon(\\mathrm{id})=1$ et $\\varepsilon(\\sigma)=\\pm1$ est son propre inverse."
+        },
+        {
+          "texte": "Toute permutation d'ordre $2$ est impaire.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)(3\\ 4)$ est d'ordre $2$ et de signature $(-1)(-1)=1$."
+        },
+        {
+          "texte": "Un cycle de longueur paire est une permutation impaire.",
+          "vrai": true,
+          "justification": "Sa signature est $(-1)^{k-1}=-1$ pour $k$ pair."
+        },
+        {
+          "texte": "Le produit de deux permutations impaires est une permutation impaire.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)(2\\ 3)=(1\\ 2\\ 3)$ est paire ; en général $\\varepsilon(\\sigma\\tau)=(-1)(-1)=1$."
+        },
+        {
+          "texte": "Pour tous $\\sigma,\\tau\\in\\mathfrak{S}_n$, $\\varepsilon(\\tau\\sigma\\tau^{-1})=\\varepsilon(\\sigma)$.",
+          "vrai": true,
+          "justification": "$\\varepsilon(\\tau\\sigma\\tau^{-1})=\\varepsilon(\\tau)\\varepsilon(\\sigma)\\varepsilon(\\tau)^{-1}=\\varepsilon(\\sigma)$, car $\\{-1,1\\}$ est commutatif."
+        }
+      ],
+      "prerequis": [
+        "gr-l2-symetrique-cycles",
+        "gr-l1-groupes-noyau"
+      ]
+    },
+    {
+      "id": "gr-l2-symetrique-transpositions",
+      "theme": "groupes",
+      "niveau": "l2",
+      "chapitre": "gr-l2-symetrique",
+      "type": "theoreme",
+      "titre": "Les transpositions engendrent le groupe symétrique",
+      "recto": "Énoncer les résultats de génération du groupe symétrique par des transpositions, avec le nombre minimal de transpositions nécessaires.",
+      "cours": "Une transposition échange deux éléments : c'est la permutation la plus simple. Le théorème dit que toutes les permutations s'obtiennent en enchaînant des échanges, ce que fait tout algorithme de tri, et il précise combien il en faut : $n-p$, où $p$ est le nombre d'orbites. La clé est que multiplier une permutation par une transposition coupe une de ses orbites en deux ou en fusionne deux : le nombre d'orbites change exactement de $1$.\n\nOn peut se restreindre à des familles plus petites : les transpositions $(1\\ k)$, grâce à $(a\\ b)=(1\\ a)(1\\ b)(1\\ a)$ ; ou les transpositions de voisins $(k\\ k+1)$, grâce à $(i\\ j+1)=(j\\ j+1)(i\\ j)(j\\ j+1)$, et le nombre minimal de transpositions voisines est alors le nombre d'inversions (tri à bulles). Plus généralement, un ensemble de transpositions engendre $\\mathfrak{S}_n$ exactement quand le graphe qu'elles dessinent sur $\\{1,\\dots,n\\}$ est connexe (voir les exercices). On engendre même $\\mathfrak{S}_n$ avec les deux éléments $(1\\ 2)$ et $(1\\ 2\\ \\cdots\\ n)$.\n\nMéthode pour démontrer une propriété de toutes les permutations : vérifier qu'elle est stable par produit et vraie pour les transpositions, ou pour une famille génératrice. C'est ainsi qu'on montre qu'un morphisme défini sur $\\mathfrak{S}_n$ est déterminé par ses valeurs sur les transpositions.\n\nPièges : l'écriture en produit de transpositions n'est pas unique, même en nombre de facteurs ; seule la parité de ce nombre est déterminée (signature). Des transpositions à supports disjoints commutent et n'engendrent qu'un petit groupe.",
+      "hypotheses": [
+        "$n\\ge2$.",
+        "$\\sigma$ est une bijection de $\\{1,\\dots,n\\}$ sur lui-même."
+      ],
+      "hypotheses_pieges": [
+        "$\\sigma$ est une application quelconque de $\\{1,\\dots,n\\}$ dans lui-même (à la place d'une bijection).",
+        "$\\sigma$ est une bijection de $\\mathbb{N}$ sur lui-même (à la place de $\\{1,\\dots,n\\}$).",
+        "Les transpositions de l'écriture sont à supports deux à deux disjoints (à la place de transpositions quelconques)."
+      ],
+      "enonce": "Soit $n\\ge2$. On dit qu'une partie $T$ de $\\mathfrak{S}_n$ **engendre** $\\mathfrak{S}_n$ si toute permutation est un produit d'éléments de $T$ et de leurs inverses (l'identité étant le produit vide).\n- Toute permutation $\\sigma\\in\\mathfrak{S}_n$ est un produit de transpositions. Plus précisément, si $\\sigma$ a $p$ orbites (points fixes compris), $\\sigma$ est un produit de $n-p$ transpositions, et n'est pas un produit de moins de $n-p$ transpositions. En particulier, toute permutation est un produit d'au plus $n-1$ transpositions, et un cycle de longueur $n$ n'est pas un produit de moins de $n-1$ transpositions.\n- $\\mathfrak{S}_n$ est engendré par les $n-1$ transpositions $(1\\ k)$, $2\\le k\\le n$.\n- $\\mathfrak{S}_n$ est engendré par les $n-1$ transpositions $(k\\ k+1)$, $1\\le k\\le n-1$.",
+      "enonce_trous": "Pour $n\\ge3$, toute permutation de $\\{1,\\dots,n\\}$ est un produit d'au plus {{1}} transpositions, et ce nombre est nécessaire pour les cycles de longueur $n$. Le groupe $\\mathfrak{S}_n$ est engendré par les transpositions {{2}}, et aussi par les transpositions {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n-1$",
+          "leurres": [
+            "$n-2$",
+            "$\\lfloor n/2\\rfloor$",
+            "$n$"
+          ]
+        },
+        {
+          "reponse": "$(1\\ k)$, $2\\le k\\le n$",
+          "leurres": [
+            "$(1\\ k)$, $2\\le k\\le n-1$",
+            "$(2\\ k)$, $3\\le k\\le n$",
+            "$(1\\ k)$ avec $k$ pair"
+          ]
+        },
+        {
+          "reponse": "$(k\\ k+1)$, $1\\le k\\le n-1$",
+          "leurres": [
+            "$(k\\ k+1)$, $1\\le k\\le n-2$",
+            "$(k\\ k+1)$ avec $k$ impair",
+            "$(k\\ k+2)$, $1\\le k\\le n-2$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Si $\\sigma=\\mathrm{id}$, $p=n$ et $\\sigma$ est le produit vide. Sinon, $\\sigma$ est le produit des cycles associés à ses orbites à au moins deux éléments, et un cycle de longueur $k$ est un produit de $k-1$ transpositions : $(a_1\\ \\cdots\\ a_k)=(a_1\\ a_2)(a_2\\ a_3)\\cdots(a_{k-1}\\ a_k)$. Si les orbites ont $k_1,\\dots,k_p$ éléments, on obtient $\\sum_{i=1}^{p}(k_i-1)=n-p$ transpositions (les points fixes ne coûtent rien).\n\n**Minimalité.** Soient $\\sigma\\in\\mathfrak{S}_n$ et $\\tau=(a\\ b)$. La permutation $\\sigma\\tau$ coïncide avec $\\sigma$ hors de $\\{a,b\\}$, et $\\sigma\\tau(a)=\\sigma(b)$, $\\sigma\\tau(b)=\\sigma(a)$. Si $a$ et $b$ sont dans la même orbite de $\\sigma$, sur laquelle $\\sigma$ agit comme $(a\\ x_1\\ \\cdots\\ x_r\\ b\\ y_1\\ \\cdots\\ y_s)$ ($r,s\\ge0$), alors $\\sigma\\tau$ agit sur cette orbite comme $(a\\ y_1\\ \\cdots\\ y_s)(b\\ x_1\\ \\cdots\\ x_r)$ (un « cycle » réduit à un élément étant un point fixe) : l'orbite se coupe en deux. Si $a$ et $b$ sont dans deux orbites différentes, sur lesquelles $\\sigma$ agit comme $(a\\ x_1\\ \\cdots\\ x_r)$ et $(b\\ y_1\\ \\cdots\\ y_s)$, alors $\\sigma\\tau$ agit sur leur réunion comme $(a\\ y_1\\ \\cdots\\ y_s\\ b\\ x_1\\ \\cdots\\ x_r)$ : les deux orbites fusionnent. Dans tous les cas, multiplier à droite par une transposition change le nombre d'orbites de $\\pm1$. Partant de $\\mathrm{id}$, qui a $n$ orbites, un produit de $m$ transpositions a donc au moins $n-m$ orbites ; si ce produit est $\\sigma$, $p\\ge n-m$, soit $m\\ge n-p$. Un cycle de longueur $n$ a une seule orbite : il faut au moins $n-1$ transpositions.\n\n**Transpositions $(1\\ k)$.** Pour $a\\neq b$ tous deux différents de $1$, $(a\\ b)=(1\\ a)(1\\ b)(1\\ a)$ : le membre de droite envoie $a\\mapsto1\\mapsto b\\mapsto b$, $b\\mapsto b\\mapsto1\\mapsto a$, $1\\mapsto a\\mapsto a\\mapsto1$, et fixe les autres points. Toute transposition, donc toute permutation, est un produit de transpositions $(1\\ k)$.\n\n**Transpositions $(k\\ k+1)$.** Pour $i<j$, $(i\\ j+1)=(j\\ j+1)(i\\ j)(j\\ j+1)$ : le membre de droite envoie $i\\mapsto i\\mapsto j\\mapsto j+1$, $j+1\\mapsto j\\mapsto i\\mapsto i$, $j\\mapsto j+1\\mapsto j+1\\mapsto j$, et fixe les autres points. Par récurrence sur $j-i$, toute transposition $(i\\ j)$ est un produit de transpositions $(k\\ k+1)$, d'où le résultat.",
+      "exemple": "$\\sigma=(1\\ 3\\ 5)(2\\ 4)\\in\\mathfrak{S}_5$ a $p=2$ orbites : c'est un produit de $5-2=3$ transpositions, $\\sigma=(1\\ 3)(3\\ 5)(2\\ 4)$, et pas de moins. Avec des transpositions voisines : $(1\\ 3)=(2\\ 3)(1\\ 2)(2\\ 3)$.",
+      "contre_exemple": "- **Transpositions disjointes** : un produit de transpositions à supports deux à deux disjoints vérifie $\\pi^2=\\mathrm{id}$ ; le cycle $(1\\ 2\\ 3)$, d'ordre $3$, n'en est donc pas un.\n- **Familles qui n'engendrent pas** : les transpositions $(1\\ 2)$ et $(3\\ 4)$ n'engendrent pas $\\mathfrak{S}_4$, car tous leurs produits laissent stable $\\{1,2\\}$, alors que $(2\\ 3)$ ne le laisse pas stable.\n- **Hors du cadre fini** : la bijection de $\\mathbb{N}$ qui échange $2k$ et $2k+1$ pour tout $k$ n'est pas un produit fini de transpositions, car elle déplace une infinité d'entiers.",
+      "affirmations": [
+        {
+          "texte": "Pour $n\\ge2$, toute permutation de $\\mathfrak{S}_n$ est un produit de transpositions de la forme $(1\\ k)$.",
+          "vrai": true,
+          "justification": "$(a\\ b)=(1\\ a)(1\\ b)(1\\ a)$ pour $a\\neq b$ différents de $1$, et toute permutation est un produit de transpositions."
+        },
+        {
+          "texte": "Une permutation qui est un produit de $5$ transpositions peut aussi s'écrire comme un produit de $4$ transpositions.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)=(1\\ 2)(1\\ 2)(1\\ 2)(1\\ 2)(1\\ 2)$ ; un produit de $4$ transpositions a pour signature $(-1)^4=1$, alors que $\\varepsilon((1\\ 2))=-1$."
+        },
+        {
+          "texte": "Un cycle de longueur $k$ est un produit de $k-1$ transpositions, et n'est pas un produit de moins de $k-1$ transpositions.",
+          "vrai": true,
+          "justification": "Dans $\\mathfrak{S}_n$, il a $p=n-k+1$ orbites, et $n-p=k-1$."
+        },
+        {
+          "texte": "Les transpositions $(1\\ 2)$ et $(2\\ 3)$ engendrent $\\mathfrak{S}_4$.",
+          "vrai": false,
+          "contre_exemple": "Leurs produits fixent tous $4$ ; ils ne donnent donc pas $(3\\ 4)$."
+        }
+      ],
+      "prerequis": [
+        "gr-l2-symetrique-cycles"
+      ]
+    },
+    {
+      "id": "gr-l2-symetrique-alterne",
+      "theme": "groupes",
+      "niveau": "l2",
+      "chapitre": "gr-l2-symetrique",
+      "type": "theoreme",
+      "titre": "Groupe alterné",
+      "recto": "Définir le groupe alterné et énoncer ses propriétés : sous-groupe de cardinal $\\frac{n!}{2}$, stabilité par conjugaison, cycles pairs, génération par les $3$-cycles.",
+      "cours": "Le groupe alterné est formé des permutations paires. Étant le noyau de la signature, c'est un sous-groupe ; il contient exactement la moitié des permutations, l'autre moitié, les permutations impaires, s'obtenant en multipliant ses éléments par une transposition fixée. Il est stable par conjugaison, ce qui en fait un sous-groupe distingué (notion étudiée en L3).\n\nSes générateurs naturels sont les $3$-cycles : un produit de deux transpositions est un produit de $3$-cycles, grâce à $(a\\ b)(a\\ c)=(a\\ c\\ b)$ et $(a\\ b)(c\\ d)=(a\\ b\\ c)(b\\ c\\ d)$. Pour reconnaître un élément de $\\mathfrak{A}_n$, on décompose en cycles : un cycle est pair si et seulement si sa longueur est impaire, et la signature d'un produit est le produit des signatures.\n\nPetits cas à connaître : $\\mathfrak{A}_3=\\{\\mathrm{id},(1\\ 2\\ 3),(1\\ 3\\ 2)\\}$ est cyclique d'ordre $3$ ; $\\mathfrak{A}_4$, d'ordre $12$, est formé de l'identité, des $8$ cycles de longueur $3$ et des $3$ doubles transpositions, et il n'a pas de sous-groupe d'ordre $6$ : la réciproque du théorème de Lagrange est fausse. On peut montrer que $\\mathfrak{A}_n$ est simple pour $n\\ge5$, ce qui dépasse ce chapitre.\n\nPièges : les permutations impaires ne forment pas un sous-groupe ; un produit de deux cycles n'est pas forcément pair ; $\\mathfrak{A}_n$ ne contient aucune transposition.",
+      "hypotheses": [
+        "Pour la génération par les $3$-cycles : $n\\ge3$.",
+        "$\\sigma\\in\\mathfrak{S}_n$ est paire : $\\varepsilon(\\sigma)=1$."
+      ],
+      "hypotheses_pieges": [
+        "$\\sigma\\in\\mathfrak{S}_n$ est d'ordre $2$ (à la place de : paire).",
+        "$\\sigma\\in\\mathfrak{S}_n$ est un cycle (à la place de : paire).",
+        "$\\sigma\\in\\mathfrak{S}_n$ est un produit de deux cycles (à la place de : paire)."
+      ],
+      "enonce": "Soit $n\\ge2$. Le **groupe alterné** $\\mathfrak{A}_n$ est l'ensemble des permutations paires de $\\{1,\\dots,n\\}$ : c'est le noyau de la signature $\\varepsilon:\\mathfrak{S}_n\\to\\{-1,1\\}$.\n- $\\mathfrak{A}_n$ est un sous-groupe de $\\mathfrak{S}_n$, de cardinal $\\frac{n!}{2}$. Pour toute permutation impaire $\\tau$, l'ensemble $\\tau\\mathfrak{A}_n=\\{\\tau\\alpha:\\alpha\\in\\mathfrak{A}_n\\}$ est l'ensemble des permutations impaires, et $\\mathfrak{S}_n$ est la réunion disjointe de $\\mathfrak{A}_n$ et de $\\tau\\mathfrak{A}_n$.\n- Pour tout $\\sigma\\in\\mathfrak{S}_n$, $\\sigma\\mathfrak{A}_n\\sigma^{-1}=\\mathfrak{A}_n$.\n- Un cycle de longueur $k$ appartient à $\\mathfrak{A}_n$ si et seulement si $k$ est impair.\n- Pour $n\\ge3$, toute permutation paire est un produit de cycles de longueur $3$ : $\\mathfrak{A}_n$ est engendré par les $3$-cycles.",
+      "enonce_trous": "Pour $n\\ge2$, le groupe alterné $\\mathfrak{A}_n$ est {{1}} ; il a {{2}} éléments. Pour $n\\ge3$, il est engendré par {{3}}.",
+      "trous": [
+        {
+          "reponse": "le noyau de la signature",
+          "leurres": [
+            "l'image de la signature",
+            "l'ensemble des permutations d'ordre $2$",
+            "l'ensemble des permutations sans point fixe"
+          ]
+        },
+        {
+          "reponse": "$\\frac{n!}{2}$",
+          "leurres": [
+            "$(n-1)!$",
+            "$2^{n-1}$",
+            "$\\frac{n(n-1)}{2}$"
+          ]
+        },
+        {
+          "reponse": "les cycles de longueur $3$",
+          "leurres": [
+            "les transpositions",
+            "les cycles de longueur $4$",
+            "les permutations d'ordre $2$"
+          ]
+        }
+      ],
+      "demo": "**Sous-groupe et cardinal.** $\\mathfrak{A}_n$ est le noyau d'un morphisme de groupes, donc un sous-groupe de $\\mathfrak{S}_n$. Soit $\\tau$ impaire (par exemple $(1\\ 2)$) et $I$ l'ensemble des permutations impaires. Comme $\\varepsilon(\\tau\\alpha)=-\\varepsilon(\\alpha)$, l'application $\\alpha\\mapsto\\tau\\alpha$ envoie $\\mathfrak{A}_n$ dans $I$ ; elle est injective, et surjective car pour $\\beta\\in I$, $\\tau^{-1}\\beta$ est paire et $\\tau(\\tau^{-1}\\beta)=\\beta$. Donc $\\tau\\mathfrak{A}_n=I$, $|I|=|\\mathfrak{A}_n|$, et $n!=|\\mathfrak{A}_n|+|I|=2|\\mathfrak{A}_n|$.\n\n**Conjugaison.** Pour $\\alpha\\in\\mathfrak{A}_n$, $\\varepsilon(\\sigma\\alpha\\sigma^{-1})=\\varepsilon(\\sigma)\\varepsilon(\\alpha)\\varepsilon(\\sigma)^{-1}=\\varepsilon(\\alpha)=1$, car $\\{-1,1\\}$ est commutatif : $\\sigma\\mathfrak{A}_n\\sigma^{-1}\\subset\\mathfrak{A}_n$. Appliquée à $\\sigma^{-1}$, cette inclusion donne $\\sigma^{-1}\\mathfrak{A}_n\\sigma\\subset\\mathfrak{A}_n$, d'où $\\mathfrak{A}_n\\subset\\sigma\\mathfrak{A}_n\\sigma^{-1}$.\n\n**Cycles.** Un cycle de longueur $k$ a pour signature $(-1)^{k-1}$, qui vaut $1$ si et seulement si $k$ est impair.\n\n**$3$-cycles.** Les $3$-cycles sont pairs, donc tout produit de $3$-cycles est dans $\\mathfrak{A}_n$. Réciproquement, une permutation paire $\\sigma$ est un produit de transpositions, en nombre pair puisque $\\varepsilon(\\sigma)=1$ ; on les groupe deux par deux. Pour $a,b,c,d$ distincts : $(a\\ b)(a\\ b)=\\mathrm{id}$, $(a\\ b)(a\\ c)=(a\\ c\\ b)$ et $(a\\ b)(c\\ d)=(a\\ b)(b\\ c)(b\\ c)(c\\ d)=(a\\ b\\ c)(b\\ c\\ d)$, en utilisant $(x\\ y)(y\\ z)=(x\\ y\\ z)$. Deux transpositions ont $2$, $1$ ou $0$ éléments communs, et quitte à écrire $(x\\ y)=(y\\ x)$, leur produit relève de l'un de ces trois cas : c'est un produit de $3$-cycles (l'identité étant le produit vide), et $\\sigma$ aussi.",
+      "exemple": "$\\mathfrak{A}_3=\\{\\mathrm{id},(1\\ 2\\ 3),(1\\ 3\\ 2)\\}$. $\\mathfrak{A}_4$ a $12$ éléments : l'identité, les $8$ cycles de longueur $3$ et les $3$ doubles transpositions $(1\\ 2)(3\\ 4)$, $(1\\ 3)(2\\ 4)$, $(1\\ 4)(2\\ 3)$ ; par exemple $(1\\ 2)(3\\ 4)=(1\\ 2\\ 3)(2\\ 3\\ 4)$.",
+      "contre_exemple": "- **Un produit de cycles n'est pas forcément pair** : $(1\\ 2)(3\\ 4\\ 5)$ est un produit de deux cycles, mais sa signature est $(-1)\\times1=-1$ ; elle n'est donc pas un produit de $3$-cycles.\n- **Ordre $2$ ne suffit pas** : la transposition $(1\\ 2)$ est d'ordre $2$ et impaire.\n- **Les permutations impaires ne forment pas un sous-groupe** : elles ne contiennent pas l'identité, et $(1\\ 2)(2\\ 3)=(1\\ 2\\ 3)$ est paire.",
+      "affirmations": [
+        {
+          "texte": "Pour $n\\ge2$, la moitié exactement des permutations de $\\mathfrak{S}_n$ sont paires.",
+          "vrai": true,
+          "justification": "$|\\mathfrak{A}_n|=\\frac{n!}{2}$ : la multiplication par $(1\\ 2)$ échange permutations paires et impaires."
+        },
+        {
+          "texte": "Pour $n\\ge4$, le groupe $\\mathfrak{A}_n$ est commutatif.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2\\ 3)(1\\ 2\\ 4)=(1\\ 3)(2\\ 4)$ et $(1\\ 2\\ 4)(1\\ 2\\ 3)=(1\\ 4)(2\\ 3)$."
+        },
+        {
+          "texte": "L'ensemble des permutations impaires de $\\mathfrak{S}_n$ est un sous-groupe.",
+          "vrai": false,
+          "contre_exemple": "Il ne contient pas l'identité, qui est paire."
+        },
+        {
+          "texte": "Pour $n\\ge5$, tout cycle de longueur $5$ de $\\mathfrak{S}_n$ appartient à $\\mathfrak{A}_n$.",
+          "vrai": true,
+          "justification": "Sa signature est $(-1)^{5-1}=1$."
+        },
+        {
+          "texte": "Pour $n\\ge3$, $\\mathfrak{A}_n$ est engendré par les transpositions qu'il contient.",
+          "vrai": false,
+          "contre_exemple": "$\\mathfrak{A}_n$ ne contient aucune transposition (elles sont impaires) ; elles n'engendrent donc que $\\{\\mathrm{id}\\}$, alors que $(1\\ 2\\ 3)\\in\\mathfrak{A}_n$."
+        }
+      ],
+      "prerequis": [
+        "gr-l2-symetrique-signature",
+        "gr-l2-symetrique-transpositions",
+        "gr-l1-groupes-noyau"
+      ]
+    },
+    {
+      "id": "gr-l2-symetrique-ordre",
+      "theme": "groupes",
+      "niveau": "l2",
+      "chapitre": "gr-l2-symetrique",
+      "type": "theoreme",
+      "titre": "Ordre d'une permutation",
+      "recto": "Énoncer comment calculer l'ordre d'une permutation à partir de sa décomposition en cycles à supports disjoints.",
+      "cours": "L'ordre d'une permutation se lit sur sa décomposition en cycles à supports disjoints : un cycle de longueur $k$ revient à l'identité au bout de $k$ itérations, et comme des cycles disjoints commutent et agissent indépendamment, $\\sigma^m=\\mathrm{id}$ exactement quand chaque longueur divise $m$. L'ordre est donc le ppcm des longueurs, et non leur produit.\n\nMéthode : décomposer, prendre le ppcm. Pour calculer une grande puissance $\\sigma^m$, réduire $m$ modulo l'ordre, ou modulo la longueur de chaque cycle séparément. Pour chercher les permutations d'un ordre donné, raisonner sur les longueurs des cycles : une permutation est d'ordre premier $p$ si et seulement si elle est un produit de cycles de longueur $p$ à supports disjoints ; en particulier, elle est d'ordre $2$ si et seulement si c'est un produit de transpositions à supports disjoints.\n\nLe plus grand ordre d'un élément de $\\mathfrak{S}_n$ se cherche parmi les ppcm d'entiers de somme au plus $n$ : il vaut $4$ pour $n=4$, $6$ pour $n=5$ et $n=6$, $12$ pour $n=7$. Il est bien plus petit que $n!$, mais peut dépasser $n$.\n\nPièges : pour des cycles qui ne sont pas à supports disjoints, la formule est fausse ($(1\\ 2)(2\\ 3)$ est d'ordre $3$) ; et l'ordre d'un produit $\\sigma\\tau$ n'est pas lié simplement aux ordres de $\\sigma$ et de $\\tau$, même quand ils commutent.",
+      "hypotheses": [
+        "$\\sigma=c_1\\cdots c_r$ où les $c_i$ sont des cycles.",
+        "Les supports des $c_i$ sont deux à deux disjoints.",
+        "$k_i$ est la longueur du cycle $c_i$."
+      ],
+      "hypotheses_pieges": [
+        "Les $c_i$ commutent deux à deux (à la place de : supports deux à deux disjoints).",
+        "Les supports des $c_i$ sont deux à deux distincts (à la place de : disjoints).",
+        "Les $c_i$ sont des permutations quelconques et $k_i$ est l'ordre de $c_i$ (à la place de cycles à supports disjoints de longueurs $k_i$)."
+      ],
+      "enonce": "Soient $\\sigma\\in\\mathfrak{S}_n$, $\\sigma\\neq\\mathrm{id}$, et $\\sigma=c_1\\cdots c_r$ sa décomposition en cycles à supports deux à deux disjoints, $c_i$ étant de longueur $k_i$. Alors :\n- un cycle de longueur $k$ est d'ordre $k$ ;\n- pour $m\\in\\mathbb{Z}$, $\\sigma^m=\\mathrm{id}$ si et seulement si $k_i$ divise $m$ pour tout $i$ ;\n- l'ordre de $\\sigma$ est $\\mathrm{ppcm}(k_1,\\dots,k_r)$.\n\nEn particulier, l'ordre de tout élément de $\\mathfrak{S}_n$ divise $\\mathrm{ppcm}(1,2,\\dots,n)$.",
+      "enonce_trous": "Si $\\sigma=c_1\\cdots c_r$, où les $c_i$ sont des cycles {{1}}, de longueurs $k_1,\\dots,k_r$, alors l'ordre de $\\sigma$ est {{2}}. En particulier, l'ordre de tout élément de $\\mathfrak{S}_n$ divise {{3}}.",
+      "trous": [
+        {
+          "reponse": "à supports deux à deux disjoints",
+          "leurres": [
+            "qui commutent deux à deux",
+            "quelconques",
+            "de supports deux à deux distincts"
+          ]
+        },
+        {
+          "reponse": "$\\mathrm{ppcm}(k_1,\\dots,k_r)$",
+          "leurres": [
+            "$k_1k_2\\cdots k_r$",
+            "$k_1+\\cdots+k_r$",
+            "$\\max(k_1,\\dots,k_r)$"
+          ]
+        },
+        {
+          "reponse": "$\\mathrm{ppcm}(1,2,\\dots,n)$",
+          "leurres": [
+            "$n$",
+            "$2^n$",
+            "$n(n-1)$"
+          ]
+        }
+      ],
+      "demo": "**Ordre d'un cycle.** Soit $c=(a_1\\ \\cdots\\ a_k)$, les indices étant lus modulo $k$. Pour $m\\ge0$, $c^m(a_j)=a_{j+m}$, et $c^m$ fixe les points hors du support. Donc $c^m=\\mathrm{id}$ si et seulement si $a_{1+m}=a_1$, c'est-à-dire si $k$ divise $m$ ; le plus petit tel $m\\ge1$ est $k$.\n\n**Puissances de $\\sigma$.** Les $c_i$ commutent deux à deux (supports disjoints), donc $\\sigma^m=c_1^m\\cdots c_r^m$ pour $m\\ge0$. Soit $x$ dans le support $S_i$ de $c_i$ : les $c_j$, $j\\neq i$, fixent les points de $S_i$, et $c_i^m(x)\\in S_i$, donc $\\sigma^m(x)=c_i^m(x)$. Les points hors des $S_i$ sont fixés par $\\sigma^m$ et par les $c_i^m$. Ainsi $\\sigma^m=\\mathrm{id}$ si et seulement si $c_i^m=\\mathrm{id}$ pour tout $i$, c'est-à-dire si $k_i$ divise $m$ pour tout $i$, c'est-à-dire si $\\mathrm{ppcm}(k_1,\\dots,k_r)$ divise $m$. Pour $m<0$, $\\sigma^m=\\mathrm{id}$ équivaut à $\\sigma^{-m}=\\mathrm{id}$. L'ordre de $\\sigma$, plus petit $m\\ge1$ tel que $\\sigma^m=\\mathrm{id}$, est donc $\\mathrm{ppcm}(k_1,\\dots,k_r)$.\n\n**Divisibilité.** Chaque $k_i$ est au plus $n$, donc divise $\\mathrm{ppcm}(1,\\dots,n)$, et le ppcm des $k_i$ aussi.",
+      "exemple": "$\\sigma=(1\\ 6\\ 3)(2\\ 5\\ 8\\ 4)(7\\ 9)\\in\\mathfrak{S}_9$ est d'ordre $\\mathrm{ppcm}(3,4,2)=12$, et non $3\\times4\\times2=24$. Ainsi $\\sigma^{100}=\\sigma^4$ car $100=8\\times12+4$, et $\\sigma^4=(1\\ 6\\ 3)$ : la puissance quatrième du $4$-cycle et celle de la transposition valent $\\mathrm{id}$, et $(1\\ 6\\ 3)^4=(1\\ 6\\ 3)$.",
+      "contre_exemple": "- **Supports non disjoints** : $(1\\ 2)(2\\ 3)=(1\\ 2\\ 3)$ est d'ordre $3$, et non $\\mathrm{ppcm}(2,2)=2$.\n- **Le produit des longueurs n'est pas l'ordre** : $(1\\ 2)(3\\ 4)$ est d'ordre $2$, et non $4$.\n- **Des cycles qui commutent ne suffisent pas** : $c=(1\\ 2\\ 3)$ et $c^2=(1\\ 3\\ 2)$ commutent, mais $c\\,c^2=\\mathrm{id}$ est d'ordre $1$, et non $\\mathrm{ppcm}(3,3)=3$.",
+      "affirmations": [
+        {
+          "texte": "L'ordre d'un élément de $\\mathfrak{S}_n$ est au plus $n$.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)(3\\ 4\\ 5)\\in\\mathfrak{S}_5$ est d'ordre $\\mathrm{ppcm}(2,3)=6>5$."
+        },
+        {
+          "texte": "L'ordre d'un élément de $\\mathfrak{S}_n$ divise $n!$.",
+          "vrai": true,
+          "justification": "Par le théorème de Lagrange, l'ordre d'un élément d'un groupe fini divise le cardinal du groupe."
+        },
+        {
+          "texte": "Une permutation d'ordre premier $p$ est un produit de cycles de longueur $p$ à supports disjoints.",
+          "vrai": true,
+          "justification": "Les longueurs $k_i\\ge2$ de ses cycles divisent leur ppcm $p$, donc valent $p$."
+        },
+        {
+          "texte": "Si $\\sigma$ est d'ordre $d$, alors $\\sigma^2$ est aussi d'ordre $d$.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)$ est d'ordre $2$ et son carré $\\mathrm{id}$ est d'ordre $1$."
+        }
+      ],
+      "prerequis": [
+        "gr-l2-symetrique-cycles",
+        "gr-l1-groupes-ordre",
+        "gr-l1-groupes-lagrange"
+      ]
+    }
+  ]
+}
