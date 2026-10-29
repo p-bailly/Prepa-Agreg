@@ -1181,181 +1181,58 @@ textarea {
   margin-top: 8px;
 }
 
-/* ---------- Pyramide des chapitres (accueil) ---------- */
+/* ---------- Liste des chapitres (accueil) ---------- */
 
-.pyramide-cadre {
-  overflow: auto;
-  max-height: 72vh;
-  background: var(--surface);
-  border: 1px solid var(--trait);
-  border-radius: 24px;
-  margin: 0 0 10px;
-  overscroll-behavior: contain;
+.groupe-chapitres + .groupe-chapitres {
+  margin-top: 14px;
 }
 
-.pyramide {
-  display: block;
-  height: auto;
-  cursor: pointer;
-  font-family: var(--police);
-}
-
-.pyramide .bande {
-  fill: color-mix(in srgb, var(--fond) 40%, var(--surface));
-}
-
-.pyramide .bande.paire {
-  fill: var(--fond);
-}
-
-.pyramide .niveau {
-  fill: var(--doux);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.pyramide .liens path,
-.pyramide .liens-choisis path {
-  fill: none;
-}
-
-.pyramide .liens path {
-  stroke: var(--contour);
-  stroke-width: 1;
-}
-
-.pyramide .liens.estompes path {
-  opacity: 0.25;
-}
-
-.pyramide .liens-choisis path,
-.trait-legende line {
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-
-.avant {
-  stroke: var(--primaire);
-}
-
-.apres {
-  stroke: var(--seconde);
-}
-
-.pyramide .noeud-graphe text {
-  fill: var(--texte);
-  font-size: 10px;
-  font-weight: 600;
-  text-anchor: middle;
-  paint-order: stroke;
-  stroke: var(--surface);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-}
-
-.noeud-graphe circle {
-  stroke: var(--primaire);
-  stroke-width: 1.5;
-}
-
-.noeud-graphe.a-venir circle {
-  fill: var(--surface);
-  stroke: var(--desactive);
-  stroke-dasharray: 3 2;
-}
-
-.noeud-graphe.a-decouvrir circle {
-  fill: var(--conteneur);
-}
-
-.noeud-graphe.en-cours circle {
-  fill: color-mix(in srgb, var(--primaire) 55%, var(--conteneur));
-}
-
-.noeud-graphe.acquis circle {
-  fill: var(--primaire);
-}
-
-.pyramide .noeud-graphe .halo {
-  fill: none;
-  stroke: var(--texte);
-  stroke-width: 2;
-  stroke-dasharray: none;
-}
-
-.pyramide .noeud-graphe.loin {
-  opacity: 0.3;
-}
-
-.pyramide .noeud-graphe:focus {
-  outline: none;
-}
-
-.pyramide .noeud-graphe:focus-visible circle {
-  stroke: var(--texte);
-  stroke-width: 3;
-}
-
-.pyramide-outils {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin: 0 0 12px;
-}
-
-.legende-pyramide {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 12px;
+.liste-chapitres {
   margin: 0;
-  padding: 0 0 0 4px;
+  padding: 0;
   list-style: none;
-  font-size: 13px;
+}
+
+.chapitre-ligne {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 6px 4px;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--trait);
+  color: var(--texte);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+}
+
+.liste-chapitres li:first-child .chapitre-ligne {
+  border-top: none;
+}
+
+.chapitre-ligne small {
+  display: block;
   color: var(--doux);
+  font-size: 13px;
+  font-weight: 400;
 }
 
-.legende-pyramide li {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.zoom {
-  display: flex;
-  gap: 6px;
+.chapitre-ligne .pastille {
   flex: none;
-}
-
-.zoom .bouton.compact {
-  min-width: 44px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.zoom .bouton + .bouton {
-  margin-top: 0;
-}
-
-.fiche-chapitre .titre-fiche {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 4px;
-}
-
-.fiche-chapitre .etiquette {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 12px;
+  justify-content: center;
+  width: 24px;
+  color: var(--primaire);
 }
 
-.fiche-chapitre .etiquette:first-child {
-  margin-top: 0;
+.chapitre-ligne:disabled {
+  color: var(--doux);
+  cursor: default;
 }
 
-.notions-fiche {
-  margin: 0 0 14px;
-  padding-left: 1.3em;
-  font-size: 15px;
+.chapitre-ligne:disabled .pastille {
+  color: var(--desactive);
 }

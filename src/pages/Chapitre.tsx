@@ -26,7 +26,7 @@ export function Chapitre({
   return (
     <main className="ecran">
       <button className="retour" onClick={surRetour}>
-        ← Parcours
+        ← Retour
       </button>
       <h1 className="titre-ecran">{ch?.titre}</h1>
       <span className="etiquette">
