@@ -3,7 +3,6 @@
 // par exercice ; les exercices ne sont pas replanifiés.
 import { useMemo, useState, type CSSProperties } from 'react'
 import { BandeauDoute, Volet } from '../composants/Blocs'
-import { Signaler } from '../composants/Signalement'
 import { Texte } from '../composants/Texte'
 import { nombreVariantes, NOMS_NIVEAUX, variante, type Exercice } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
@@ -170,7 +169,6 @@ function Deroule({
             </div>
           </Volet>
         </div>
-        <Signaler cible={exercice.id} genre="exercice" ou={correction ? 'correction' : undefined} />
       </main>
 
       <div className="pied">

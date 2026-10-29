@@ -1,24 +1,19 @@
 // Navigation : trois onglets (Accueil · Parcours · Réglages) et, par-dessus, une pile d'écrans (chapitre, notion, QCM,
-// carte, exercice). Tous les écrans de la pile restent montés (seul le dernier est visible) : au retour, chacun est tel
+// exercice). Tous les écrans de la pile restent montés (seul le dernier est visible) : au retour, chacun est tel
 // qu'on l'a laissé. Le bouton retour d'Android dépile.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { cleQcm, type CibleQcm } from './chapitres/qcm'
-import { voletsDe, type Niveau } from './contenu/types'
+import type { Niveau } from './contenu/types'
 import { FournisseurDonnees, useDonnees } from './etat/Donnees'
-import { noterVolet, retenirMode } from './lib/progression'
-import { natif } from './lib/notifications'
-import { choisirMode } from './repetition/modes'
-import { etatCarte } from './repetition/etat'
+import { annulerRappel, natif } from './lib/notifications'
 import { IconeOnglet } from './composants/Icones'
 import { Accueil } from './pages/Accueil'
 import { Chapitre } from './pages/Chapitre'
-import { EcranCarte } from './pages/EcranCarte'
 import { EcranExercice } from './pages/EcranExercice'
 import { EcranNotion } from './pages/EcranNotion'
 import { EcranQcm } from './pages/EcranQcm'
 import { Parcours } from './pages/Parcours'
 import { Reglages } from './pages/Reglages'
-import type { Mode } from './lib/reglages'
 
 type Onglet = 'accueil' | 'parcours' | 'reglages'
 
@@ -26,7 +21,6 @@ type Ecran =
   | { k: 'chapitre'; id: string }
   | { k: 'notion'; id: string }
   | { k: 'qcm'; cible: CibleQcm }
-  | { k: 'carte'; id: string; mode: Mode; neuve: boolean }
   | { k: 'exercice'; id: string }
 
 /** Écrans affichés avec la barre d'onglets ; les autres prennent tout l'écran. */
@@ -62,6 +56,14 @@ function Navigation() {
     setPile((p) => p.slice(0, -1))
     requestAnimationFrame(() => window.scrollTo(0, y))
   }, [])
+
+  // Rappel quotidien retiré le 2026-10-29 : celui qu'une version précédente a programmé est annulé une fois pour toutes.
+  const { reglages, changerReglages } = d
+  useEffect(() => {
+    if (!reglages.rappel.actif) return
+    void annulerRappel()
+    changerReglages((r) => ({ ...r, rappel: { ...r.rappel, actif: false } }))
+  }, [reglages.rappel.actif, changerReglages])
 
   // Bouton retour d'Android : dépile, sinon revient à l'accueil, sinon laisse l'appli se fermer.
   const etat = useRef({ pile, onglet })
@@ -100,14 +102,6 @@ function Navigation() {
     sentinelle.current = true
   }, [pile, onglet])
 
-  const ouvrirCarte = (id: string) => {
-    const carte = d.cartesParId.get(id)
-    if (!carte) return
-    const neuve = etatCarte(carte, d.progression) === 'neuve'
-    const mode = choisirMode(carte, d.reglages.modesActifs, d.progression.dernierMode, neuve)
-    d.changerProgression((p) => retenirMode(p, mode))
-    empiler({ k: 'carte', id, mode, neuve })
-  }
   const surChapitre = (id: string) => empiler({ k: 'chapitre', id })
   const surExercice = (id: string) => empiler({ k: 'exercice', id })
 
@@ -124,32 +118,11 @@ function Navigation() {
       )
     if (e.k === 'notion') {
       const carte = d.cartesParId.get(e.id)
-      return carte && <EcranNotion carte={carte} surExercice={surExercice} surMemoriser={() => ouvrirCarte(carte.id)} surRetour={depiler} />
+      return carte && <EcranNotion carte={carte} surExercice={surExercice} surRetour={depiler} />
     }
     if (e.k === 'qcm') return <EcranQcm cible={e.cible} surFin={depiler} />
-    if (e.k === 'exercice') {
-      const exercice = d.exercicesParId.get(e.id)
-      return exercice && <EcranExercice exercice={exercice} surRetour={depiler} />
-    }
-    const carte = d.cartesParId.get(e.id)
-    return (
-      carte && (
-        <EcranCarte
-          carte={carte}
-          volets={voletsDe(carte)}
-          neuve={e.neuve}
-          mode={e.mode}
-          surNote={(volet, note, principal) => {
-            const t = d.horloge()
-            d.changerProgression((p) => noterVolet(p, carte.id, volet, note, t, d.aujourdhui(), principal))
-            if (principal) depiler()
-          }}
-          surExercice={surExercice}
-          surQuitter={depiler}
-          libelleQuitter="Retour"
-        />
-      )
-    )
+    const exercice = d.exercicesParId.get(e.id)
+    return exercice && <EcranExercice exercice={exercice} surRetour={depiler} />
   }
 
   const haut = pile[pile.length - 1]

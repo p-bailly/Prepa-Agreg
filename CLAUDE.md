@@ -44,10 +44,10 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
     chapitre tiré du contenu vérifié).
   - `src/contenu/` : types, chargement (`import.meta.glob` de `content/`), découpage du texte (`texte.ts`), validation.
   - `src/lib/` : stockage local, réglages, progression (fonctions pures), sauvegarde JSON, notifications, partage de fichier.
-- Écrans React dans `src/pages/` (Accueil, Parcours, Réglages, Chapitre, EcranNotion, EcranQcm, EcranCarte, EcranExercice) ;
+- Écrans React dans `src/pages/` (Accueil, Parcours, Réglages, Chapitre, EcranNotion, EcranQcm, EcranExercice) ;
   données partagées par `src/etat/Donnees.tsx` (contexte : contenu, réglages, progression, horloge) ; navigation dans
   `App.tsx` (trois onglets + pile d'écrans gardés montés, bouton retour Android ; sur le web, retour du navigateur par une
-  entrée d'historique). Onglet Stats, séance de révision et écran de leçon retirés le 2026-10-29 à la demande du propriétaire. Dossiers prévus pour plus tard (pas de code en v1) :
+  entrée d'historique). Onglet Stats, séance de révision et écran de leçon retirés le 2026-10-29 à la demande du propriétaire ; le même jour, aussi à sa demande : carte de révision (`EcranCarte`, notation, modes dans les Réglages), rappel quotidien, date de l'écrit (compte à rebours), « Signaler une erreur » et l'avertissement « Contenu rédigé et contrôlé par une IA » des Réglages. Dossiers prévus pour plus tard (pas de code en v1) :
   `src/sujets/`, `src/seance/` (sujets chronométrés, séances longues) et `content/sujets/`.
 - Persistance locale versionnée : `reglages-v1`, `progression-v1` (localStorage de la WebView ; `qcm`, scores des QCM par
   chapitre, ajouté sans changer de suffixe car absent = vide) ; changer un format = changer le suffixe ; la lecture fusionne avec les valeurs par défaut et répare les champs invalides (`normaliser…`). La progression est
@@ -55,7 +55,7 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   historique**, ne jamais le faire sans migration.
 - Tout est embarqué dans l'APK (contenu, KaTeX et ses polices, Latin Modern) : hors ligne par construction, aucun CDN.
 - Version web : la progression reste dans le navigateur (localStorage de `p-bailly.github.io`), sans lien avec l'APK ;
-  l'export / import JSON permet de passer de l'un à l'autre. Pas de rappel quotidien dans un navigateur.
+  l'export / import JSON permet de passer de l'un à l'autre.
 
 ## Allure visuelle
 Thème « Moderne coloré » (direction B, mise en page d'accueil 3, choisies par le propriétaire le 2026-10-29 sur maquettes ;
@@ -72,7 +72,7 @@ il remplace « Tonal ardoise »), tout dans `src/styles.css` sous forme de jeton
   avec les formules KaTeX.
 - Téléphone (APK) : une colonne, barre d'onglets en bas. À partir de 900 px (version web) : barre latérale à gauche (nom
   de l'appli, onglets), contenu élargi (1120 px ; 860 px pour le cours d'une notion, 820 px pour les écrans plein écran).
-- Accueil : compte à rebours de l'écrit (tuile rose, seulement avec une date), puis **tous les chapitres numérotés de 1 à n**
+- Accueil : **tous les chapitres numérotés de 1 à n**
   (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau (barre d'avancement des
   chapitres faits), groupés par thème, en cartes (une colonne au téléphone, thèmes sur deux colonnes sur grand écran),
   pastille d'avancement ; un chapitre pas encore rédigé est en pointillés. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
@@ -80,16 +80,15 @@ il remplace « Tonal ardoise »), tout dans `src/styles.css` sous forme de jeton
   (20 affirmations), pris à tour de rôle dans chacun de ses chapitres (`tirerCible`).
 - Chapitre : trois onglets (`Segments`). **Notions** : introduction (`content/lecons/`), notions numérotées « 17.4 » ;
   **Exercices** : exercices (difficulté 1 à 3) puis problèmes (4 et 5) ; **QCM**. Notion (`EcranNotion`) : onglets **Cours**
-  (cours, énoncé encadré, exemple, démonstration, contre-exemples, pièges, « Mémoriser l'énoncé » vers la carte de révision)
+  (cours, énoncé encadré, exemple, démonstration, contre-exemples, pièges)
   et **Exercices** rangés par niveau de difficulté. Ouvrir le cours marque la notion apprise.
 - QCM (`EcranQcm`) : 10 questions tirées en alternant les genres parmi le contenu déjà vérifié du chapitre : affirmations
   (vrai ou faux, justification ou contre-exemple), énoncés à trous (bonne réponse parmi les leurres), questions des exercices
   de difficulté 1 ou 2 (avec l'énoncé et la correction). Score gardé ; chapitre « fait » quand toutes ses notions sont faites
   (tous leurs exercices réussis) et un QCM à 80 % au moins. Les scores sont gardés dans `progression.qcm`, sous l'identifiant
   du chapitre ou sous `niveau-<niveau>-qcm` / `niveau-<niveau>-vrai-faux` pour un niveau entier.
-  Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème violet, définition menthe, exemple
-  bleu clair (`--lilas`), méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, violet, menthe), chacun avec
-  son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
+  Encadrés en aplat selon le type (théorème violet, définition menthe, exemple bleu clair (`--lilas`), méthode sable,
+  remarque neutre). Onglets : icône dans une pilule pour l'onglet actif.
 - Le logo (crayon rouge `#CE2029`) n'a pas suivi : il se régénère avec `npm run logo` si on veut l'accorder.
 
 ## Répétition espacée et séance (choix non évidents)
@@ -109,7 +108,8 @@ il remplace « Tonal ardoise »), tout dans `src/styles.css` sous forme de jeton
 - Séance de révision : cartes apprises dues, les plus en retard en premier ; au plus `seanceCartes` cartes et
   `seanceMinutes` minutes (la carte en cours est finie). Logique gardée (`seance.ts`, `deroulement.ts`) mais plus d'écran
   depuis le 2026-10-29 ; ses réglages et l'objectif quotidien restent dans `reglages-v1` sans être affichés. La carte de
-  révision (`EcranCarte`, notation des volets) reste ouverte depuis le cours d'une notion.
+  révision (`EcranCarte`, notation des volets) a été retirée le même jour : plus aucun écran ne note de volet ; la
+  planification (`planification.ts`, `modes.ts`) et les volets déjà notés dans `progression-v1` sont gardés.
 - Modes : une carte neuve se découvre toujours en « énoncer de tête » ; sinon on prend le mode possible et actif qui suit le
   dernier utilisé (`progression.dernierMode`). Volet principal = premier volet dû (énoncé, démonstration, contre-exemple), noté
   par le pied ; les autres volets dus ont leurs boutons dans le volet ouvert.
@@ -213,7 +213,8 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
   vérifie aussi énoncé complet et non ambigu, bonne proposition seule juste, leurres faux, indices qui ne donnent pas la réponse,
   difficulté plausible.
 - Un élément dont une partie reste incertaine est retiré, ou gardé avec un champ `doute` (bandeau « Non garanti : … »).
-- Chaque correction de contenu après un signalement (Réglages → Erreurs signalées, inclus dans l'export) suit la même procédure.
+- Chaque correction de contenu après un signalement suit la même procédure (« Signaler une erreur » retiré de l'appli le
+  2026-10-29 ; les anciens signalements restent dans `progression.signalements` et dans l'export).
 
 ### Journal
 - 2026-10-27 · `cartes/arithmetique/terminale.json`, `cartes/arithmetique/l1.json` (6 cartes) : relecture indépendante, tout
@@ -297,7 +298,7 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 - Les symboles ■ ◧ □ ● ◐ ○, le cadenas, les icônes d'onglets et le chevron des volets sont dessinés en SVG
   (`src/composants/Icones.tsx`) : Latin Modern et Nunito n'ont pas ces glyphes.
 - Largeurs des barres : pourcentages CSS sans espace (`50%`), l'affichage français met une espace (`50 %`).
-- Rappel quotidien : `@capacitor/local-notifications` (`schedule.on`), permission Android 13+ demandée à l'activation ;
-  dans un navigateur, il n'y a pas de rappel.
+- Rappel quotidien retiré (2026-10-29) : `@capacitor/local-notifications` reste une dépendance pour annuler au démarrage
+  le rappel qu'une version précédente a pu programmer (`annulerRappel`, quand `reglages.rappel.actif`).
 - Export : fichier écrit dans le cache puis feuille de partage Android (`@capacitor/filesystem` + `@capacitor/share`) ; import :
   `<input type="file">` (sélecteur de fichiers Android). L'import remplace la progression après confirmation.
