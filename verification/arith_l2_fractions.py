@@ -237,11 +237,11 @@ for N in range(2, 10):
         assert abs(s - N / (c**N - 1)) < 1e-9
         # leurres : 1/(c^n-1), n c^(n-1)/(c^n-1) (= somme des 1/(c-w)), n/(c^n+1)
         assert abs(sum(1 / (c - z) for z in w) - N * c ** (N - 1) / (c**N - 1)) < 1e-9
-        assert min(abs(s - v) for v in (1 / (c**N - 1), N * c ** (N - 1) / (c**N - 1), N / (c**N + 1))) > 1e-6
+        assert len({Fr(N, c**N - 1), Fr(1, c**N - 1), Fr(N * c ** (N - 1), c**N - 1), Fr(N, c**N + 1)}) == 4
     r = [cmath.exp(1j * cmath.pi * (2 * k + 1) / N) for k in range(N)]  # racines de X^N + 1
     assert all(abs(z**N + 1) < 1e-9 for z in r)
     s = sum(z / (1 - z) for z in r)
-    assert abs(s + N / 2) < 1e-9 and min(abs(s - v) for v in (N / 2, -0.5, -N)) > 1e-6
+    assert abs(s + N / 2) < 1e-9 and len({Fr(-N, 2), Fr(N, 2), Fr(-1, 2), Fr(-N)}) == 4
 # Décompositions symboliques pour n = 3 : 1/(X^3-1) = (1/3) Σ ω/(X-ω), 1/(X^3+1) = -(1/3) Σ a/(X-a).
 w3 = [1, Rational(-1, 2) + sqrt(3) * I / 2, Rational(-1, 2) - sqrt(3) * I / 2]
 assert egal(sum(z / (X - z) for z in w3) / 3, 1 / (X**3 - 1))

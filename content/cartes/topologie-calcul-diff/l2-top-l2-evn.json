@@ -1,0 +1,464 @@
+{
+  "cartes": [
+    {
+      "id": "top-l2-evn-normes",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "definition",
+      "titre": "Normes et normes équivalentes",
+      "recto": "Définir une norme sur un espace vectoriel et deux normes équivalentes ; comparer les normes $\\|\\cdot\\|_1$, $\\|\\cdot\\|_2$ et $\\|\\cdot\\|_\\infty$ sur $\\mathbb{K}^n$.",
+      "cours": "Une norme mesure la « taille » d'un vecteur : elle généralise la valeur absolue et le module, et la distance $d(x,y)=N(x-y)$ permet de parler de boules, de limites et de continuité dans un espace vectoriel. Les trois axiomes sont la séparation, l'homogénéité (avec $|\\lambda|$, pas $\\lambda$) et l'inégalité triangulaire ; on en déduit $N(0)=0$, $N(-x)=N(x)$ et la seconde inégalité triangulaire $|N(x)-N(y)|\\le N(x-y)$.\n\nSur $\\mathbb{K}^n$, les normes usuelles $\\|\\cdot\\|_1$, $\\|\\cdot\\|_2$ et $\\|\\cdot\\|_\\infty$ ont des boules unités de formes différentes (dans $\\mathbb{R}^2$ : un losange, un disque, un carré), mais chaque boule unité contient une copie réduite des autres. C'est exactement la notion de normes **équivalentes** : $\\alpha N\\le N'\\le\\beta N$. Des normes équivalentes définissent les mêmes ouverts, les mêmes suites convergentes et les mêmes parties bornées.\n\nMéthode. Pour montrer qu'une application est une norme, on vérifie les trois axiomes ; souvent, on écrit $N(x)=\\|\\varphi(x)\\|$ avec $\\varphi$ linéaire injective et $\\|\\cdot\\|$ une norme connue. Pour montrer que deux normes ne sont pas équivalentes, on exhibe une suite $(x_n)$ de vecteurs non nuls telle que $\\frac{N'(x_n)}{N(x_n)}$ tende vers $+\\infty$ ou vers $0$. Pour trouver la meilleure constante dans $N'\\le\\beta N$, on majore, puis on cherche un cas d'égalité.\n\nPièges : l'homogénéité porte sur $|\\lambda|$ ; une application qui s'annule sur des vecteurs non nuls, comme $(x,y)\\mapsto|x|$ sur $\\mathbb{R}^2$, n'est qu'une semi-norme ; l'équivalence demande les **deux** inégalités ($N_1\\le N_\\infty$ sur $C^0([0,1],\\mathbb{R})$ ne suffit pas). En dimension finie, toutes les normes sont équivalentes, mais pas en dimension infinie.",
+      "hypotheses": [
+        "$N(x)=0\\Rightarrow x=0$ pour tout $x\\in E$.",
+        "$N(\\lambda x)=|\\lambda|\\,N(x)$ pour tous $\\lambda\\in\\mathbb{K}$ et $x\\in E$.",
+        "$N(x+y)\\le N(x)+N(y)$ pour tous $x,y\\in E$."
+      ],
+      "hypotheses_pieges": [
+        "$N(0)=0$ (à la place de : $N(x)=0\\Rightarrow x=0$).",
+        "$N(\\lambda x)=\\lambda N(x)$ pour tous $\\lambda\\in\\mathbb{K}$ et $x\\in E$ (à la place de $|\\lambda|\\,N(x)$).",
+        "$N(x+y)=N(x)+N(y)$ pour tous $x,y\\in E$ (à la place de l'inégalité triangulaire)."
+      ],
+      "enonce": "Soit $E$ un espace vectoriel sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$. Une **norme** sur $E$ est une application $N:E\\to\\left[0,+\\infty\\right[$ telle que, pour tous $x,y\\in E$ et tout $\\lambda\\in\\mathbb{K}$ :\n- séparation : $N(x)=0\\Rightarrow x=0$ ;\n- homogénéité : $N(\\lambda x)=|\\lambda|\\,N(x)$ ;\n- inégalité triangulaire : $N(x+y)\\le N(x)+N(y)$.\n\nLa distance associée est $d(x,y)=N(x-y)$. Deux normes $N$ et $N'$ sur $E$ sont **équivalentes** s'il existe des réels $\\alpha>0$ et $\\beta>0$ tels que $\\alpha N(x)\\le N'(x)\\le\\beta N(x)$ pour tout $x\\in E$.\n\nSur $\\mathbb{K}^n$, $\\|x\\|_1=\\sum_{i=1}^n|x_i|$, $\\|x\\|_2=\\big(\\sum_{i=1}^n|x_i|^2\\big)^{1/2}$ et $\\|x\\|_\\infty=\\max_{1\\le i\\le n}|x_i|$ sont des normes, et pour tout $x\\in\\mathbb{K}^n$ :\n\n$$\\|x\\|_\\infty\\le\\|x\\|_2\\le\\|x\\|_1\\le\\sqrt n\\,\\|x\\|_2\\le n\\,\\|x\\|_\\infty.$$",
+      "enonce_trous": "Deux normes $N$ et $N'$ sur $E$ sont équivalentes s'il existe des réels $\\alpha>0$ et $\\beta>0$ tels que {{1}} pour tout $x\\in E$. Sur $\\mathbb{K}^n$ avec $n\\ge2$, on a pour tout $x$ : $\\|x\\|_1\\le$ {{2}} et $\\|x\\|_\\infty\\le$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\alpha N(x)\\le N'(x)\\le\\beta N(x)$",
+          "leurres": [
+            "$N'(x)\\le\\beta N(x)$",
+            "$\\alpha N(x)\\le N'(x)$",
+            "$\\alpha\\le N'(x)\\le\\beta$"
+          ]
+        },
+        {
+          "reponse": "$\\sqrt n\\,\\|x\\|_2$",
+          "leurres": [
+            "$\\|x\\|_2$",
+            "$\\|x\\|_\\infty$",
+            "$\\sqrt n\\,\\|x\\|_\\infty$"
+          ]
+        },
+        {
+          "reponse": "$\\|x\\|_2$",
+          "leurres": [
+            "$\\frac1n\\|x\\|_1$",
+            "$\\frac1{\\sqrt n}\\|x\\|_2$",
+            "$\\min_{1\\le i\\le n}|x_i|$"
+          ]
+        }
+      ],
+      "demo": "**Les trois applications sont des normes.** Pour $\\|\\cdot\\|_1$ et $\\|\\cdot\\|_\\infty$, séparation et homogénéité sont immédiates, et l'inégalité triangulaire vient de $|x_i+y_i|\\le|x_i|+|y_i|$. Pour $\\|\\cdot\\|_2$, on utilise l'inégalité de Cauchy-Schwarz pour des réels positifs, $\\sum_ia_ib_i\\le\\big(\\sum_ia_i^2\\big)^{1/2}\\big(\\sum_ib_i^2\\big)^{1/2}$ (le polynôme $t\\mapsto\\sum_i(a_it+b_i)^2$, positif, a un discriminant négatif ou nul) :\n\n$$\\|x+y\\|_2^2\\le\\sum_i(|x_i|+|y_i|)^2=\\|x\\|_2^2+2\\sum_i|x_i||y_i|+\\|y\\|_2^2\\le(\\|x\\|_2+\\|y\\|_2)^2.$$\n\n**Comparaisons.** Si $|x_{i_0}|=\\|x\\|_\\infty$, alors $\\|x\\|_\\infty^2=|x_{i_0}|^2\\le\\sum_i|x_i|^2=\\|x\\|_2^2$. Ensuite $\\|x\\|_1^2=\\sum_{i,j}|x_i||x_j|\\ge\\sum_i|x_i|^2=\\|x\\|_2^2$. Par Cauchy-Schwarz avec $b_i=1$ : $\\|x\\|_1=\\sum_i|x_i|\\cdot1\\le\\sqrt n\\,\\|x\\|_2$. Enfin $\\|x\\|_2^2\\le n\\|x\\|_\\infty^2$, d'où $\\sqrt n\\,\\|x\\|_2\\le n\\|x\\|_\\infty$.\n\n**L'équivalence des normes est une relation d'équivalence.** Elle est réflexive ($\\alpha=\\beta=1$), symétrique (si $\\alpha N\\le N'\\le\\beta N$, alors $\\frac1\\beta N'\\le N\\le\\frac1\\alpha N'$) et transitive (si de plus $\\gamma N'\\le N''\\le\\delta N'$, alors $\\alpha\\gamma N\\le N''\\le\\beta\\delta N$).",
+      "exemple": "Pour $x=(1,-2,2)\\in\\mathbb{R}^3$ : $\\|x\\|_1=5$, $\\|x\\|_2=3$ et $\\|x\\|_\\infty=2$ ; on a bien $2\\le3\\le5\\le3\\sqrt3\\le6$. Sur $\\mathbb{K}^n$, les normes $\\|\\cdot\\|_1$ et $\\|\\cdot\\|_\\infty$ sont équivalentes, puisque $\\|x\\|_\\infty\\le\\|x\\|_1\\le n\\|x\\|_\\infty$.",
+      "contre_exemple": "- **Normes non équivalentes** : sur $E=C^0([0,1],\\mathbb{R})$, $N_\\infty(f)=\\sup_{[0,1]}|f|$ et $N_1(f)=\\int_0^1|f(t)|\\,\\mathrm{d}t$ sont des normes, avec $N_1\\le N_\\infty$ ; mais pour $f_n(t)=t^n$, $N_\\infty(f_n)=1$ et $N_1(f_n)=\\frac1{n+1}$, donc aucun $\\beta$ ne vérifie $N_\\infty\\le\\beta N_1$.\n- **Semi-norme** : sur $\\mathbb{R}^2$, $N(x,y)=|x|$ est homogène et vérifie l'inégalité triangulaire, mais $N(0,1)=0$ : ce n'est pas une norme.\n- **Homogénéité** : sur $\\mathbb{R}$, $N(x)=x^2$ vérifie la séparation, mais $N(2)=4\\neq2N(1)$.",
+      "affirmations": [
+        {
+          "texte": "Sur $\\mathbb{K}^n$, les normes $\\|\\cdot\\|_1$ et $\\|\\cdot\\|_\\infty$ sont équivalentes.",
+          "vrai": true,
+          "justification": "Pour tout $x$, $\\|x\\|_\\infty\\le\\|x\\|_1\\le n\\|x\\|_\\infty$."
+        },
+        {
+          "texte": "Si $N$ et $N'$ sont deux normes sur $E$, alors $N+N'$ et $\\max(N,N')$ sont des normes sur $E$.",
+          "vrai": true,
+          "justification": "Les trois axiomes se vérifient directement ; par exemple $\\max(N,N')(x+y)\\le\\max\\big(N(x)+N(y),N'(x)+N'(y)\\big)\\le\\max(N,N')(x)+\\max(N,N')(y)$."
+        },
+        {
+          "texte": "Si $N$ et $N'$ sont deux normes sur $E$, alors $\\min(N,N')$ est une norme sur $E$.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{R}^2$, avec $N(x,y)=|x|+2|y|$ et $N'(x,y)=2|x|+|y|$ : $\\min(N,N')$ vaut $1$ en $(1,0)$ et en $(0,1)$, mais $3>1+1$ en $(1,1)$ ; l'inégalité triangulaire est fausse."
+        },
+        {
+          "texte": "Deux normes sur un même espace vectoriel sont toujours équivalentes.",
+          "vrai": false,
+          "contre_exemple": "Sur $C^0([0,1],\\mathbb{R})$, $N_1$ et $N_\\infty$ ne le sont pas : pour $f_n(t)=t^n$, $\\frac{N_\\infty(f_n)}{N_1(f_n)}=n+1\\to+\\infty$."
+        },
+        {
+          "texte": "Si $N$ est une norme sur $E$, alors $|N(x)-N(y)|\\le N(x-y)$ pour tous $x,y\\in E$.",
+          "vrai": true,
+          "justification": "$N(x)\\le N(x-y)+N(y)$ et, de même, $N(y)\\le N(y-x)+N(x)=N(x-y)+N(x)$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-reels-triangulaire",
+        "al-l1-espaces-sev"
+      ]
+    },
+    {
+      "id": "top-l2-evn-ouverts-fermes",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "definition",
+      "titre": "Ouverts, fermés, intérieur, adhérence",
+      "recto": "Définir les boules, les parties ouvertes et fermées, l'intérieur et l'adhérence d'une partie d'un espace vectoriel normé, et énoncer leurs propriétés de stabilité.",
+      "cours": "Un ouvert est une partie qui contient, autour de chacun de ses points, une petite boule : on peut bouger un peu sans en sortir. Un fermé est le complémentaire d'un ouvert ; ce n'est pas le contraire d'un ouvert : $\\left[0,1\\right[$ n'est ni ouvert ni fermé dans $\\mathbb{R}$, et $\\emptyset$ et $E$ sont à la fois ouverts et fermés.\n\nL'intérieur $\\mathring A$ rassemble les points « bien à l'intérieur » de $A$ (une boule centrée en ce point est contenue dans $A$) ; l'adhérence $\\overline A$ rassemble les points « collés » à $A$ (toute boule centrée en ce point rencontre $A$). On a $\\mathring A\\subset A\\subset\\overline A$ ; $A$ est ouverte si et seulement si $A=\\mathring A$, fermée si et seulement si $A=\\overline A$ ; le passage au complémentaire échange les deux notions : $E\\setminus\\overline A$ est l'intérieur de $E\\setminus A$.\n\nMéthode. Pour montrer qu'une partie est ouverte, on fixe un point $a$ de la partie et on construit un rayon $r>0$ explicite (souvent une distance au « bord ») ; pour un fermé, on travaille sur le complémentaire, ou plus simplement avec les suites (notion suivante). Dans $\\mathbb{R}^2$ muni de $\\|\\cdot\\|_\\infty$, les boules sont des carrés, ce qui simplifie l'étude des produits d'intervalles.\n\nPièges : une intersection **infinie** d'ouverts n'est pas toujours ouverte, une réunion infinie de fermés n'est pas toujours fermée ; $\\overline{A\\cap B}$ peut être strictement inclus dans $\\overline A\\cap\\overline B$, et l'intérieur de $A\\cup B$ peut contenir strictement $\\mathring A\\cup\\mathring B$. Ces notions dépendent de la norme, mais ne changent pas quand on la remplace par une norme équivalente.",
+      "hypotheses": [
+        "Chaque $U_i$ ($i\\in I$) est un ouvert de $E$.",
+        "L'ensemble d'indices $I$ est fini."
+      ],
+      "hypotheses_pieges": [
+        "L'ensemble d'indices $I$ est dénombrable (à la place de : fini).",
+        "La suite $(U_n)_{n\\in\\mathbb{N}}$ est décroissante pour l'inclusion (à la place de : $I$ fini).",
+        "Chaque $U_i$ est une boule fermée de rayon strictement positif (à la place de : un ouvert)."
+      ],
+      "enonce": "Soient $(E,N)$ un espace vectoriel normé, $a\\in E$ et $r>0$. La **boule ouverte** est $B(a,r)=\\{x\\in E:N(x-a)<r\\}$, la **boule fermée** $B'(a,r)=\\{x\\in E:N(x-a)\\le r\\}$.\n\n- Une partie $U$ de $E$ est **ouverte** si pour tout $a\\in U$ il existe $r>0$ tel que $B(a,r)\\subset U$ ; une partie $F$ est **fermée** si son complémentaire $E\\setminus F$ est ouvert.\n- L'**intérieur** $\\mathring A$ d'une partie $A$ est l'ensemble des $a\\in E$ pour lesquels il existe $r>0$ avec $B(a,r)\\subset A$ ; c'est le plus grand ouvert contenu dans $A$.\n- L'**adhérence** $\\overline A$ est l'ensemble des $a\\in E$ tels que $B(a,r)\\cap A\\neq\\emptyset$ pour tout $r>0$ ; c'est le plus petit fermé contenant $A$, et $E\\setminus\\overline A$ est l'intérieur de $E\\setminus A$.\n\n**Stabilité.** Toute réunion d'ouverts est ouverte et toute intersection **finie** d'ouverts est ouverte ; toute intersection de fermés est fermée et toute réunion **finie** de fermés est fermée. Une boule ouverte est ouverte, une boule fermée est fermée. Deux normes équivalentes définissent les mêmes ouverts.",
+      "enonce_trous": "Toute réunion d'ouverts est un ouvert, et toute intersection {{1}} d'ouverts est un ouvert. Un point $a$ est adhérent à $A$ si et seulement si {{2}}. L'adhérence de $A$ est le plus petit {{3}} contenant $A$.",
+      "trous": [
+        {
+          "reponse": "finie",
+          "leurres": [
+            "dénombrable",
+            "quelconque",
+            "décroissante"
+          ]
+        },
+        {
+          "reponse": "toute boule ouverte de centre $a$ rencontre $A$",
+          "leurres": [
+            "une boule ouverte de centre $a$ rencontre $A$",
+            "une boule ouverte de centre $a$ est contenue dans $A$",
+            "toute boule ouverte de centre $a$ rencontre $E\\setminus A$"
+          ]
+        },
+        {
+          "reponse": "fermé",
+          "leurres": [
+            "ouvert",
+            "sous-espace vectoriel",
+            "boule fermée"
+          ]
+        }
+      ],
+      "demo": "**Boules.** Si $x\\in B(a,r)$, posons $\\rho=r-N(x-a)>0$ ; pour $y\\in B(x,\\rho)$, $N(y-a)\\le N(y-x)+N(x-a)<r$, donc $B(x,\\rho)\\subset B(a,r)$ : la boule ouverte est ouverte. Si $N(x-a)>r$, posons $\\rho=N(x-a)-r$ ; pour $y\\in B(x,\\rho)$, $N(y-a)\\ge N(x-a)-N(x-y)>r$ : le complémentaire de $B'(a,r)$ est ouvert.\n\n**Stabilité.** Une réunion d'ouverts est ouverte : la boule qui convient pour l'un des ouverts convient pour la réunion. Si $U_1,\\dots,U_p$ sont ouverts et $a\\in\\bigcap U_i$, on choisit $r_i>0$ avec $B(a,r_i)\\subset U_i$ et $r=\\min_ir_i>0$ convient. On passe aux fermés par complémentaire.\n\n**Intérieur.** Si $B(a,r)\\subset A$ et $x\\in B(a,r)$, alors $B(x,r-N(x-a))\\subset B(a,r)\\subset A$ : $\\mathring A$ est ouvert. Tout ouvert $U\\subset A$ est contenu dans $\\mathring A$ par définition. Donc $\\mathring A$ est le plus grand ouvert contenu dans $A$.\n\n**Adhérence.** On a $a\\notin\\overline A$ si et seulement s'il existe $r>0$ avec $B(a,r)\\cap A=\\emptyset$, c'est-à-dire $B(a,r)\\subset E\\setminus A$, c'est-à-dire $a$ intérieur à $E\\setminus A$. Donc $\\overline A$ est le complémentaire d'un ouvert : il est fermé et contient $A$. Si $F$ est un fermé contenant $A$, l'ouvert $E\\setminus F$ est contenu dans $E\\setminus A$, donc dans son intérieur $E\\setminus\\overline A$, d'où $\\overline A\\subset F$.\n\n**Normes équivalentes.** Si $\\alpha N\\le N'\\le\\beta N$, alors $B_N\\big(a,\\frac r\\beta\\big)\\subset B_{N'}(a,r)$ et $B_{N'}(a,\\alpha r)\\subset B_N(a,r)$ : toute boule de l'une des normes contient une boule de l'autre de même centre, donc les ouverts sont les mêmes.",
+      "exemple": "Dans $\\mathbb{R}$, pour $A=\\left[0,1\\right[$ : $\\mathring A=\\left]0,1\\right[$ et $\\overline A=[0,1]$ ; $A$ n'est ni ouverte ni fermée. Par densité de $\\mathbb{Q}$ et de $\\mathbb{R}\\setminus\\mathbb{Q}$ dans $\\mathbb{R}$, l'adhérence de $\\mathbb{Q}$ est $\\mathbb{R}$ et son intérieur est vide.",
+      "contre_exemple": "- **Intersection infinie d'ouverts** : $\\bigcap_{n\\ge1}\\left]-\\frac1n,\\frac1n\\right[=\\{0\\}$ n'est pas ouvert dans $\\mathbb{R}$.\n- **Réunion infinie de fermés** : $\\bigcup_{n\\ge1}\\left[\\frac1n,1\\right]=\\left]0,1\\right]$ n'est pas fermé dans $\\mathbb{R}$.\n- **« Non ouvert » ne veut pas dire « fermé »** : $\\left[0,1\\right[$ n'est ni ouvert ni fermé ; $\\emptyset$ et $E$ sont à la fois ouverts et fermés.",
+      "affirmations": [
+        {
+          "texte": "Une partie d'un espace vectoriel normé qui n'est pas ouverte est fermée.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, $\\left[0,1\\right[$ n'est pas ouverte (aucune boule centrée en $0$ n'y est contenue) et n'est pas fermée ($1$ est adhérent sans appartenir à la partie)."
+        },
+        {
+          "texte": "Pour toutes parties $A$ et $B$, $\\overline{A\\cup B}=\\overline A\\cup\\overline B$.",
+          "vrai": true,
+          "justification": "$\\overline A\\cup\\overline B$ est un fermé (réunion finie) qui contient $A\\cup B$, donc contient $\\overline{A\\cup B}$ ; réciproquement $A\\subset A\\cup B$ donne $\\overline A\\subset\\overline{A\\cup B}$, de même pour $B$."
+        },
+        {
+          "texte": "Pour toutes parties $A$ et $B$, $\\overline{A\\cap B}=\\overline A\\cap\\overline B$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, $A=\\left]0,1\\right[$ et $B=\\left]1,2\\right[$ : $A\\cap B=\\emptyset$ a une adhérence vide, mais $\\overline A\\cap\\overline B=\\{1\\}$."
+        },
+        {
+          "texte": "Dans un espace vectoriel normé, l'adhérence de la boule ouverte $B(a,r)$, avec $r>0$, est la boule fermée $B'(a,r)$.",
+          "vrai": true,
+          "justification": "$B'(a,r)$ est un fermé contenant $B(a,r)$ ; et si $N(x-a)=r$, les points $a+\\left(1-\\frac1n\\right)(x-a)$ sont dans $B(a,r)$ et tendent vers $x$."
+        },
+        {
+          "texte": "Le complémentaire de l'intérieur de $A$ est l'adhérence du complémentaire de $A$.",
+          "vrai": true,
+          "justification": "Appliquer $E\\setminus\\overline C=\\operatorname{int}(E\\setminus C)$ à $C=E\\setminus A$, puis passer au complémentaire."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-normes",
+        "ar-l1-reels-densite"
+      ]
+    },
+    {
+      "id": "top-l2-evn-suites",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "theoreme",
+      "titre": "Suites et caractérisation séquentielle",
+      "recto": "Définir la convergence d'une suite dans un espace vectoriel normé et énoncer la caractérisation séquentielle de l'adhérence et des parties fermées.",
+      "cours": "Les suites donnent une façon commode de manipuler la topologie : un point est adhérent à $A$ quand on peut l'atteindre comme limite d'éléments de $A$, et une partie est fermée quand on ne peut pas en « sortir » par passage à la limite. La convergence $x_n\\to\\ell$ signifie $N(x_n-\\ell)\\to0$ : on se ramène à une suite réelle. Les opérations sont continues : si $x_n\\to x$, $y_n\\to y$ et $\\lambda_n\\to\\lambda$, alors $x_n+y_n\\to x+y$ et $\\lambda_nx_n\\to\\lambda x$, car $N(\\lambda_nx_n-\\lambda x)\\le|\\lambda_n|\\,N(x_n-x)+|\\lambda_n-\\lambda|\\,N(x)$.\n\nMéthode. Pour montrer qu'une partie définie par des égalités ou des inégalités larges est fermée (par exemple $\\{(x,y):xy=1\\}$ ou $\\{(x,y):x^2+y^2\\le1\\}$), on prend une suite de la partie qui converge, on passe à la limite dans la relation, et on conclut. Pour montrer qu'une partie n'est pas fermée, on exhibe une suite de la partie qui converge hors de la partie. Dans $\\mathbb{K}^p$ muni de $\\|\\cdot\\|_\\infty$, on raisonne coordonnée par coordonnée.\n\nPour déterminer une adhérence, on cherche toutes les limites possibles de suites d'éléments de $A$ : c'est là qu'on extrait des sous-suites (indices bornés ou non, signe constant, etc.).\n\nPièges : une suite d'éléments d'un fermé n'a aucune raison de converger (dans $\\mathbb{R}$, $x_n=n$) ; la caractérisation dit seulement que **si** elle converge, sa limite est dans le fermé. La convergence des normes $N(x_n)\\to N(\\ell)$ ne donne pas $x_n\\to\\ell$. En dimension infinie, la convergence dépend de la norme : $t\\mapsto t^n$ tend vers $0$ pour $N_1$ mais pas pour $N_\\infty$ sur $C^0([0,1],\\mathbb{R})$.",
+      "hypotheses": [
+        "$A$ est une partie fermée de $E$.",
+        "$(x_n)$ est une suite d'éléments de $A$.",
+        "$(x_n)$ converge vers $\\ell\\in E$."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est une partie bornée de $E$ (à la place de : fermée).",
+        "$A$ est une partie ouverte de $E$ (à la place de : fermée).",
+        "$N(x_n)\\to N(\\ell)$ (à la place de : $(x_n)$ converge vers $\\ell$)."
+      ],
+      "enonce": "Soit $(E,N)$ un espace vectoriel normé. Une suite $(x_n)$ d'éléments de $E$ **converge** vers $\\ell\\in E$ si $N(x_n-\\ell)\\to0$ ; la limite, si elle existe, est unique, et elle ne change pas si l'on remplace $N$ par une norme équivalente. Dans $\\mathbb{K}^p$ muni de $\\|\\cdot\\|_\\infty$, une suite converge si et seulement si chacune de ses coordonnées converge.\n\n**Théorème.** Soient $A$ une partie de $E$ et $a\\in E$.\n- $a\\in\\overline A$ si et seulement s'il existe une suite d'éléments de $A$ qui converge vers $a$.\n- $A$ est fermée si et seulement si, pour toute suite $(x_n)$ d'éléments de $A$ qui converge vers un $\\ell\\in E$, on a $\\ell\\in A$.",
+      "enonce_trous": "Un point $a$ appartient à l'adhérence de $A$ si et seulement s'il existe {{1}} qui converge vers $a$. La partie $A$ est fermée si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "une suite d'éléments de $A$",
+          "leurres": [
+            "une suite d'éléments de $E\\setminus A$",
+            "une suite constante d'éléments de $A$",
+            "une suite d'éléments de l'intérieur de $A$"
+          ]
+        },
+        {
+          "reponse": "la limite de toute suite convergente d'éléments de $A$ appartient à $A$",
+          "leurres": [
+            "toute suite d'éléments de $A$ converge vers un élément de $A$",
+            "la limite de toute suite convergente d'éléments de $E\\setminus A$ appartient à $E\\setminus A$",
+            "toute suite d'éléments de $A$ admet une sous-suite convergente"
+          ]
+        }
+      ],
+      "demo": "**Unicité, normes équivalentes, coordonnées.** Si $x_n\\to\\ell$ et $x_n\\to\\ell'$, alors $N(\\ell-\\ell')\\le N(\\ell-x_n)+N(x_n-\\ell')\\to0$, donc $\\ell=\\ell'$. Si $N'\\le\\beta N$, alors $N'(x_n-\\ell)\\le\\beta N(x_n-\\ell)\\to0$. Dans $\\mathbb{K}^p$, $|x_{n,i}-\\ell_i|\\le\\|x_n-\\ell\\|_\\infty\\le\\sum_{j=1}^p|x_{n,j}-\\ell_j|$ pour chaque coordonnée $i$.\n\n**Adhérence.** Si $a\\in\\overline A$, pour tout $n$ la boule $B\\big(a,\\frac1{n+1}\\big)$ rencontre $A$ : on y choisit $x_n$, et $N(x_n-a)<\\frac1{n+1}\\to0$. Réciproquement, si $x_n\\in A$ et $x_n\\to a$, pour tout $r>0$ on a $N(x_n-a)<r$ pour $n$ assez grand, donc $B(a,r)\\cap A\\neq\\emptyset$.\n\n**Fermés.** $A$ est fermée si et seulement si $A=\\overline A$ (l'adhérence est le plus petit fermé contenant $A$). Si $A$ est fermée et si $x_n\\in A$ converge vers $\\ell$, alors $\\ell\\in\\overline A=A$. Réciproquement, si la condition est vérifiée, tout point de $\\overline A$ est limite d'une suite d'éléments de $A$, donc appartient à $A$ : $\\overline A\\subset A$, et $A=\\overline A$ est fermée.",
+      "exemple": "Dans $\\mathbb{R}^2$ muni de $\\|\\cdot\\|_\\infty$, l'hyperbole $H=\\{(x,y):xy=1\\}$ est fermée : si $(x_n,y_n)\\in H$ converge vers $(x,y)$, chaque coordonnée converge, donc $1=x_ny_n\\to xy$ et $(x,y)\\in H$. En revanche $\\left]0,1\\right]$ n'est pas fermé dans $\\mathbb{R}$ : $\\frac1{n+1}\\to0$, qui n'appartient pas à $\\left]0,1\\right]$.",
+      "contre_exemple": "- **Partie non fermée** : la suite $x_n=\\frac1{n+1}$ d'éléments de $\\left]0,1\\right]$ converge vers $0$, hors de la partie.\n- **La convergence des normes ne suffit pas** : dans $\\mathbb{R}^2$ muni de $\\|\\cdot\\|_\\infty$, $x_n=(1,(-1)^n)$ vérifie $\\|x_n\\|_\\infty=1$ pour tout $n$, mais ne converge pas (sa seconde coordonnée diverge).\n- **Dépendance de la norme en dimension infinie** : sur $C^0([0,1],\\mathbb{R})$, $f_n(t)=t^n$ tend vers $0$ pour $N_1$ ($N_1(f_n)=\\frac1{n+1}$), mais ne converge pas pour $N_\\infty$ : une limite pour $N_\\infty$ serait aussi une limite pour $N_1\\le N_\\infty$, donc nulle, alors que $N_\\infty(f_n)=1$.",
+      "affirmations": [
+        {
+          "texte": "Si $x_n\\to\\ell$ dans $(E,N)$, alors $N(x_n)\\to N(\\ell)$.",
+          "vrai": true,
+          "justification": "$|N(x_n)-N(\\ell)|\\le N(x_n-\\ell)\\to0$."
+        },
+        {
+          "texte": "Si $N(x_n)\\to N(\\ell)$, alors $x_n\\to\\ell$.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\ell\\neq0$ et $x_n=-\\ell$ pour tout $n$ : $N(x_n)=N(\\ell)$, mais $N(x_n-\\ell)=2N(\\ell)\\neq0$."
+        },
+        {
+          "texte": "Si toute suite convergente d'éléments de $A$ a sa limite dans $A$, alors $A$ est fermée.",
+          "vrai": true,
+          "justification": "C'est le sens réciproque de la caractérisation séquentielle des fermés."
+        },
+        {
+          "texte": "Toute suite d'éléments d'une partie fermée $A$ converge vers un élément de $A$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\mathbb{R}$ est fermée dans $\\mathbb{R}$, mais la suite $x_n=n$ ne converge pas."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-ouverts-fermes",
+        "ar-l1-reels-sup-sequentielle"
+      ]
+    },
+    {
+      "id": "top-l2-evn-continuite-lineaire",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "theoreme",
+      "titre": "Applications linéaires continues et norme subordonnée",
+      "recto": "Caractériser la continuité d'une application linéaire entre espaces vectoriels normés et définir sa norme subordonnée.",
+      "cours": "Pour une application linéaire, la continuité est une affaire d'**échelle** : par linéarité, ce qui se passe près de $0$ se transporte partout, et la continuité équivaut à l'existence d'une constante $C$ telle que $N_F(u(x))\\le C\\,N_E(x)$. La meilleure constante est la norme subordonnée $|||u|||$, qui mesure le facteur d'agrandissement maximal de $u$ sur la boule unité.\n\nMéthode. Pour montrer qu'une application linéaire est continue et calculer sa norme : (1) majorer $N_F(u(x))\\le C\\,N_E(x)$ pour tout $x$, ce qui donne $|||u|||\\le C$ ; (2) trouver un $x\\neq0$ qui réalise l'égalité, ou une suite $(x_n)$ de vecteurs non nuls telle que $\\frac{N_F(u(x_n))}{N_E(x_n)}\\to C$, ce qui donne $|||u|||=C$. Pour montrer qu'elle n'est pas continue, on exhibe une suite $(x_n)$ avec $N_E(x_n)=1$ et $N_F(u(x_n))\\to+\\infty$.\n\nExemples à connaître : sur $(\\mathbb{K}^n,\\|\\cdot\\|_\\infty)$, la norme de $x\\mapsto Ax$ est le maximum sur les lignes des sommes $\\sum_j|a_{ij}|$ ; sur $(\\mathbb{K}^n,\\|\\cdot\\|_1)$, c'est le maximum sur les colonnes des sommes $\\sum_i|a_{ij}|$. La sous-multiplicativité $|||v\\circ u|||\\le|||v|||\\,|||u|||$ donne $|||u^k|||\\le|||u|||^k$, utile pour les suites de puissances et les séries d'endomorphismes.\n\nPièges : en dimension infinie, une application linéaire peut ne pas être continue (dérivation pour la norme uniforme, évaluation en un point pour $N_1$), et la continuité dépend des normes choisies au départ et à l'arrivée ; la borne supérieure qui définit $|||u|||$ n'est pas toujours atteinte ; et $|||v\\circ u|||$ peut être strictement plus petite que $|||v|||\\,|||u|||$.",
+      "hypotheses": [
+        "$u:E\\to F$ est linéaire.",
+        "Il existe $C\\ge0$ tel que $N_F(u(x))\\le C\\,N_E(x)$ pour tout $x\\in E$."
+      ],
+      "hypotheses_pieges": [
+        "$u:E\\to F$ vérifie seulement $u(0)=0$ (à la place de : $u$ linéaire).",
+        "Pour tout $x\\in E$, il existe $C_x\\ge0$ tel que $N_F(u(x))\\le C_x\\,N_E(x)$ (à la place d'une constante $C$ indépendante de $x$).",
+        "Il existe $C\\ge0$ tel que $N_F(u(e))\\le C\\,N_E(e)$ pour tout vecteur $e$ d'une base de $E$ (à la place de : pour tout $x\\in E$)."
+      ],
+      "enonce": "Soient $(E,N_E)$ et $(F,N_F)$ deux espaces vectoriels normés. Une application $f:E\\to F$ est **continue en $a$** si $\\forall\\varepsilon>0,\\ \\exists\\eta>0,\\ \\forall x\\in E,\\ N_E(x-a)<\\eta\\Rightarrow N_F(f(x)-f(a))<\\varepsilon$ ; de façon équivalente, si $f(x_n)\\to f(a)$ pour toute suite $(x_n)$ qui converge vers $a$.\n\n**Théorème.** Pour $u:E\\to F$ **linéaire**, les propriétés suivantes sont équivalentes :\n- $u$ est continue sur $E$ ;\n- $u$ est continue en $0$ ;\n- il existe $C\\ge0$ tel que $N_F(u(x))\\le C\\,N_E(x)$ pour tout $x\\in E$ ;\n- $u$ est lipschitzienne.\n\nPour $E\\neq\\{0\\}$, on pose alors $|||u|||=\\sup_{x\\neq0}\\frac{N_F(u(x))}{N_E(x)}=\\sup_{N_E(x)\\le1}N_F(u(x))$ : c'est la plus petite constante $C$ possible, et $|||\\cdot|||$ est une norme sur l'espace $\\mathcal{L}_c(E,F)$ des applications linéaires continues de $E$ dans $F$, appelée **norme subordonnée**. Si $(G,N_G)$ est un troisième espace normé et $v\\in\\mathcal{L}_c(F,G)$, alors $|||v\\circ u|||\\le|||v|||\\,|||u|||$.",
+      "enonce_trous": "Une application linéaire $u:E\\to F$ entre espaces vectoriels normés est continue si et seulement si elle est continue {{1}}, si et seulement s'il existe $C\\ge0$ tel que {{2}} pour tout $x\\in E$. Si $v:F\\to G$ est aussi linéaire continue, la norme subordonnée vérifie $|||v\\circ u|||$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "en $0$",
+          "leurres": [
+            "sur une droite vectorielle de $E$",
+            "sur tout sous-espace de dimension finie de $E$",
+            "en restriction à une base de $E$"
+          ]
+        },
+        {
+          "reponse": "$N_F(u(x))\\le C\\,N_E(x)$",
+          "leurres": [
+            "$N_F(u(x))\\le C$",
+            "$N_F(u(x))\\ge C\\,N_E(x)$",
+            "$N_F(u(x))\\le C+N_E(x)$"
+          ]
+        },
+        {
+          "reponse": "$\\le|||v|||\\,|||u|||$",
+          "leurres": [
+            "$=|||v|||\\,|||u|||$",
+            "$\\ge|||v|||\\,|||u|||$",
+            "$\\le|||v|||+|||u|||$"
+          ]
+        }
+      ],
+      "demo": "**Caractérisation séquentielle de la continuité.** Si $f$ est continue en $a$ et $x_n\\to a$, pour $\\varepsilon>0$ et le $\\eta$ associé, $N_E(x_n-a)<\\eta$ pour $n$ assez grand, donc $N_F(f(x_n)-f(a))<\\varepsilon$. Si $f$ n'est pas continue en $a$, il existe $\\varepsilon>0$ et, pour tout $n$, un $x_n$ avec $N_E(x_n-a)<\\frac1{n+1}$ et $N_F(f(x_n)-f(a))\\ge\\varepsilon$ : $x_n\\to a$ mais $f(x_n)\\not\\to f(a)$.\n\n**Équivalences.** Continue sur $E$ entraîne continue en $0$. Si $u$ est continue en $0$, avec $\\varepsilon=1$ on obtient $\\eta>0$ tel que $N_E(y)<\\eta\\Rightarrow N_F(u(y))<1$ (car $u(0)=0$). Pour $x\\neq0$, $y=\\frac{\\eta}{2N_E(x)}x$ vérifie $N_E(y)=\\frac\\eta2$, donc $N_F(u(y))<1$, soit $N_F(u(x))<\\frac2\\eta N_E(x)$ : $C=\\frac2\\eta$ convient. Si $N_F(u(x))\\le C\\,N_E(x)$, alors $N_F(u(x)-u(y))=N_F(u(x-y))\\le C\\,N_E(x-y)$ : $u$ est $C$-lipschitzienne. Enfin une application lipschitzienne est continue.\n\n**Norme subordonnée.** Si $C$ convient, chaque quotient $\\frac{N_F(u(x))}{N_E(x)}$ est majoré par $C$, donc $|||u|||\\le C$ ; et $N_F(u(x))\\le|||u|||\\,N_E(x)$ par définition : $|||u|||$ est la plus petite constante. Si $N_E(x)\\le1$ et $x\\neq0$, $N_F(u(x))\\le|||u|||\\,N_E(x)\\le|||u|||$, et pour $x\\neq0$ le quotient vaut $N_F\\big(u\\big(\\frac{x}{N_E(x)}\\big)\\big)$ : les deux bornes supérieures coïncident. Les axiomes : $|||u|||=0$ force $u=0$ ; $|||\\lambda u|||=|\\lambda|\\,|||u|||$ ; $N_F(u(x)+v(x))\\le(|||u|||+|||v|||)N_E(x)$ donne l'inégalité triangulaire. Enfin $N_G(v(u(x)))\\le|||v|||\\,N_F(u(x))\\le|||v|||\\,|||u|||\\,N_E(x)$.",
+      "exemple": "Sur $\\mathbb{K}^n$ muni de $\\|\\cdot\\|_\\infty$, pour $A=(a_{ij})\\in M_n(\\mathbb{K})$, l'application $x\\mapsto Ax$ est continue et sa norme subordonnée est $\\max_i\\sum_j|a_{ij}|$. Sur $C^0([0,1],\\mathbb{R})$ muni de $N_\\infty$, la forme linéaire $\\varphi(f)=\\int_0^1f(t)\\,\\mathrm{d}t$ est continue, de norme $1$ : $|\\varphi(f)|\\le N_\\infty(f)$, avec égalité pour $f=1$.",
+      "contre_exemple": "- **Dérivation** : sur $\\mathbb{R}[X]$ muni de $N(P)=\\sup_{[0,1]}|P|$, l'application linéaire $D:P\\mapsto P'$ n'est pas continue : pour $n\\ge1$, $N(X^n)=1$ et $N(D(X^n))=N(nX^{n-1})=n$, donc aucune constante $C$ ne convient.\n- **Évaluation pour $N_1$** : sur $C^0([0,1],\\mathbb{R})$ muni de $N_1(f)=\\int_0^1|f(t)|\\,\\mathrm{d}t$, la forme linéaire $f\\mapsto f(0)$ n'est pas continue : $f_n(t)=(1-t)^n$ vérifie $N_1(f_n)=\\frac1{n+1}\\to0$, mais $f_n(0)=1$.\n- **Borne non atteinte** : sur $(C^0([0,1],\\mathbb{R}),N_\\infty)$, $\\varphi(f)=\\int_0^{1/2}f-\\int_{1/2}^1f$ est de norme $1$, mais $|\\varphi(f)|<1$ dès que $N_\\infty(f)\\le1$.",
+      "affirmations": [
+        {
+          "texte": "Une application linéaire entre espaces vectoriels normés qui est continue en un point est continue sur $E$.",
+          "vrai": true,
+          "justification": "Si $u$ est continue en $a$ et $x_n\\to0$, alors $a+x_n\\to a$, donc $u(x_n)=u(a+x_n)-u(a)\\to0$ : $u$ est continue en $0$."
+        },
+        {
+          "texte": "Toute application linéaire entre espaces vectoriels normés est continue.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{R}[X]$ muni de $N(P)=\\sup_{[0,1]}|P|$, la dérivation n'est pas continue : $N(X^n)=1$ et $N(nX^{n-1})=n$."
+        },
+        {
+          "texte": "Si $u$ est linéaire continue, alors $N_F(u(x))\\le|||u|||\\,N_E(x)$ pour tout $x\\in E$.",
+          "vrai": true,
+          "justification": "C'est la définition de $|||u|||$ comme borne supérieure des quotients $\\frac{N_F(u(x))}{N_E(x)}$."
+        },
+        {
+          "texte": "Pour $u$ et $v$ linéaires continues, on a toujours $|||v\\circ u|||=|||v|||\\,|||u|||$.",
+          "vrai": false,
+          "contre_exemple": "Sur $(\\mathbb{R}^2,\\|\\cdot\\|_\\infty)$, $u(x,y)=(x,0)$ et $v(x,y)=(0,y)$ sont de norme $1$, mais $v\\circ u=0$."
+        },
+        {
+          "texte": "Une application linéaire est continue si et seulement si elle est bornée sur la boule unité fermée.",
+          "vrai": true,
+          "justification": "Bornée par $C$ sur la boule unité fermée équivaut, par homogénéité, à $N_F(u(x))\\le C\\,N_E(x)$ pour tout $x$."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-suites",
+        "al-l1-applications-noyau",
+        "ar-l1-continuite-sequentielle"
+      ]
+    },
+    {
+      "id": "top-l2-evn-equivalence-dim-finie",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "theoreme",
+      "titre": "Équivalence des normes en dimension finie",
+      "recto": "Énoncer le théorème d'équivalence des normes en dimension finie et ses principales conséquences.",
+      "cours": "En dimension finie, le choix de la norme n'a aucune importance topologique : toutes les normes sont équivalentes, donc elles définissent les mêmes ouverts, les mêmes fermés, les mêmes parties bornées et les mêmes suites convergentes. On peut donc toujours choisir la norme la plus commode, souvent $\\|\\cdot\\|_\\infty$ relative à une base, et raisonner coordonnée par coordonnée.\n\nLa démonstration repose sur la compacité : de toute suite de la sphère unité de $\\|\\cdot\\|_\\infty$, on extrait une sous-suite convergente (Bolzano–Weierstrass coordonnée par coordonnée), et une norme quelconque, continue pour $\\|\\cdot\\|_\\infty$, y atteint un minimum strictement positif. C'est là, et seulement là, que la dimension finie intervient.\n\nConséquences pratiques : une suite de matrices converge si et seulement si chaque coefficient converge ; les applications linéaires définies sur un espace de dimension finie sont continues, ainsi que les fonctions polynomiales en les coordonnées (trace, déterminant, produit matriciel) ; une partie définie par des égalités polynomiales, comme $O_n(\\mathbb{R})$ ou $\\{A:\\det A=0\\}$, est fermée. Le programme de l'agrégation interne applique ce théorème à la topologie de $\\mathcal{L}(E)$ : $GL(E)$ est un ouvert dense de $\\mathcal{L}(E)$.\n\nPièges : le théorème est faux en dimension infinie (sur $\\mathbb{R}[X]$, $\\sum_k|a_k|$ et $\\max_k|a_k|$ ne sont pas équivalentes) ; une application linéaire **à valeurs** dans un espace de dimension finie n'est pas forcément continue : c'est l'espace de **départ** qui doit être de dimension finie. Les constantes $\\alpha$ et $\\beta$ existent, mais dépendent des normes, et en général de la dimension.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie.",
+        "$N$ et $N'$ sont deux normes sur $E$."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel ayant une base dénombrable (à la place de : de dimension finie).",
+        "$N$ et $N'$ sont homogènes et vérifient l'inégalité triangulaire (à la place de : ce sont des normes).",
+        "$N$ et $N'$ coïncident sur les vecteurs d'une base de $E$ (à la place de : $E$ de dimension finie)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de **dimension finie** ($\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$). Alors toutes les normes sur $E$ sont équivalentes.\n\n**Conséquences.** Soit $(e_1,\\dots,e_n)$ une base de $E$.\n- Les ouverts, les fermés, les parties bornées, les suites convergentes et leurs limites ne dépendent pas de la norme choisie sur $E$.\n- Une suite de $E$ converge si et seulement si chacune de ses coordonnées dans la base $(e_1,\\dots,e_n)$ converge.\n- Toute application linéaire de $E$ dans un espace vectoriel normé quelconque est continue.",
+      "enonce_trous": "Sur un espace vectoriel de {{1}}, toutes les normes sont équivalentes. En conséquence, toute application linéaire {{2}} est continue.",
+      "trous": [
+        {
+          "reponse": "dimension finie",
+          "leurres": [
+            "dimension infinie",
+            "dimension dénombrable",
+            "dimension au moins $2$"
+          ]
+        },
+        {
+          "reponse": "définie sur un espace de dimension finie",
+          "leurres": [
+            "à valeurs dans un espace de dimension finie",
+            "de rang fini",
+            "entre espaces vectoriels normés quelconques"
+          ]
+        }
+      ],
+      "demo": "On peut supposer $E\\neq\\{0\\}$. Fixons une base $(e_1,\\dots,e_n)$ et, pour $x=\\sum_ix_ie_i$, posons $\\|x\\|_\\infty=\\max_i|x_i|$ : c'est une norme sur $E$. L'équivalence des normes étant une relation d'équivalence, il suffit de montrer que toute norme $N$ sur $E$ est équivalente à $\\|\\cdot\\|_\\infty$.\n\n**Majoration.** $N(x)\\le\\sum_i|x_i|\\,N(e_i)\\le\\beta\\|x\\|_\\infty$ avec $\\beta=\\sum_iN(e_i)>0$. En particulier, $|N(x)-N(y)|\\le N(x-y)\\le\\beta\\|x-y\\|_\\infty$.\n\n**Minoration.** Soit $S=\\{x\\in E:\\|x\\|_\\infty=1\\}$ et $\\alpha=\\inf_SN\\ge0$. Il existe une suite $(x_k)$ de $S$ telle que $N(x_k)\\to\\alpha$. Les coordonnées des $x_k$ sont bornées par $1$ ; en appliquant le théorème de Bolzano–Weierstrass successivement aux $n$ coordonnées (à leurs parties réelles et imaginaires si $\\mathbb{K}=\\mathbb{C}$), on extrait une sous-suite $(x_{\\varphi(k)})$ dont chaque coordonnée converge ; elle converge donc pour $\\|\\cdot\\|_\\infty$ vers un $x\\in E$. Alors $\\|x\\|_\\infty=\\lim\\|x_{\\varphi(k)}\\|_\\infty=1$, donc $x\\neq0$, et $N(x)=\\lim N(x_{\\varphi(k)})=\\alpha$ d'après la majoration. Ainsi $\\alpha=N(x)>0$ et, pour $x\\neq0$, $N\\big(\\frac{x}{\\|x\\|_\\infty}\\big)\\ge\\alpha$, soit $N(x)\\ge\\alpha\\|x\\|_\\infty$.\n\n**Conséquences.** Les deux premières viennent de ce que des normes équivalentes ont les mêmes ouverts et les mêmes suites convergentes, et de la caractérisation par les coordonnées pour $\\|\\cdot\\|_\\infty$. Pour $u:E\\to F$ linéaire, avec $C=\\sum_iN_F(u(e_i))$ : $N_F(u(x))\\le\\sum_i|x_i|\\,N_F(u(e_i))\\le C\\|x\\|_\\infty\\le\\frac C\\alpha N(x)$.",
+      "exemple": "Sur $M_n(\\mathbb{R})$, toutes les normes sont équivalentes : une suite de matrices $(A_k)$ converge si et seulement si chacun de ses coefficients converge, et $A\\mapsto\\operatorname{tr}A$, $A\\mapsto A^{\\top}$, $A\\mapsto PAQ$ sont continues. Le déterminant, polynôme en les coefficients, est continu : si $A_k\\to A$, alors $\\det A_k\\to\\det A$.",
+      "contre_exemple": "- **Dimension infinie** : sur $\\mathbb{R}[X]$, en notant $P=\\sum_ka_kX^k$, $N_1(P)=\\sum_k|a_k|$ et $N_\\infty(P)=\\max_k|a_k|$ sont des normes non équivalentes : $P_n=\\sum_{k=0}^nX^k$ vérifie $N_\\infty(P_n)=1$ et $N_1(P_n)=n+1$. Elles coïncident pourtant sur la base $(X^k)$.\n- **Forme linéaire non continue** : sur $(\\mathbb{R}[X],N_\\infty)$, la forme linéaire $P\\mapsto P(1)=\\sum_ka_k$, de rang $1$, n'est pas continue, puisque $P_n(1)=n+1$ alors que $N_\\infty(P_n)=1$.\n- **Les constantes dépendent de la dimension** : sur $\\mathbb{R}^n$, la meilleure constante dans $\\|x\\|_1\\le\\beta\\|x\\|_\\infty$ est $\\beta=n$.",
+      "affirmations": [
+        {
+          "texte": "Si $N$ est une norme sur $\\mathbb{R}^n$, il existe $\\alpha>0$ tel que $N(x)\\ge\\alpha\\|x\\|_2$ pour tout $x\\in\\mathbb{R}^n$.",
+          "vrai": true,
+          "justification": "$N$ et $\\|\\cdot\\|_2$ sont équivalentes, puisque $\\mathbb{R}^n$ est de dimension finie."
+        },
+        {
+          "texte": "Sur $\\mathbb{R}[X]$, toutes les normes sont équivalentes.",
+          "vrai": false,
+          "contre_exemple": "$N_1(P)=\\sum_k|a_k|$ et $N_\\infty(P)=\\max_k|a_k|$ ne le sont pas : pour $P_n=\\sum_{k=0}^nX^k$, $\\frac{N_1(P_n)}{N_\\infty(P_n)}=n+1$."
+        },
+        {
+          "texte": "Toute forme linéaire sur un espace vectoriel normé de dimension finie est continue.",
+          "vrai": true,
+          "justification": "C'est une application linéaire définie sur un espace de dimension finie."
+        },
+        {
+          "texte": "Toute forme linéaire sur un espace vectoriel normé est continue, puisque $\\mathbb{K}$ est de dimension finie.",
+          "vrai": false,
+          "contre_exemple": "Sur $(\\mathbb{R}[X],N_\\infty)$, $P\\mapsto P(1)$ n'est pas continue ; c'est l'espace de départ qui doit être de dimension finie."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-continuite-lineaire",
+        "ar-l1-bolzano-weierstrass",
+        "al-l1-espaces-familles"
+      ]
+    },
+    {
+      "id": "top-l2-evn-compacts",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l2",
+      "chapitre": "top-l2-evn",
+      "type": "theoreme",
+      "titre": "Compacts en dimension finie",
+      "recto": "Définir une partie compacte d'un espace vectoriel normé, caractériser les compacts en dimension finie et énoncer le théorème des bornes atteintes sur un compact.",
+      "cours": "Une partie compacte est une partie dont on ne peut pas « s'échapper » avec une suite : toute suite y a une sous-suite qui converge, et la limite reste dans la partie. C'est l'outil qui donne l'**existence** : extremums d'une fonction continue, distance à un fermé atteinte, point fixe.\n\nDans tout espace normé, un compact est fermé et borné. En dimension finie, la réciproque est vraie : c'est la généralisation à $\\mathbb{K}^n$ du théorème de Bolzano–Weierstrass, que l'on obtient en extrayant successivement sur chaque coordonnée. Pour prouver qu'une partie de $\\mathbb{R}^n$ ou de $M_n(\\mathbb{R})$ est compacte, on vérifie donc qu'elle est fermée (avec les suites) et bornée (avec une inégalité).\n\nMéthode pour un problème d'existence : se ramener à une fonction continue sur un compact non vide. Par exemple, pour la distance de $a$ à un fermé non vide $F$ d'un espace de dimension finie, on fixe $x_0\\in F$ et on minimise $x\\mapsto N(a-x)$ sur $F\\cap B'(a,N(a-x_0))$, qui est fermé, borné et non vide.\n\nPièges : en dimension infinie, une partie fermée et bornée n'est pas forcément compacte (voir la boule unité de $\\mathbb{R}[X]$) ; une partie fermée non bornée ou bornée non fermée n'est pas compacte ; une fonction continue sur une partie bornée non fermée peut ne pas atteindre ses bornes. La définition demande que la limite de la sous-suite soit **dans** $K$.",
+      "hypotheses": [
+        "$E$ est de dimension finie.",
+        "$K$ est une partie fermée de $E$.",
+        "$K$ est une partie bornée de $E$."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est un espace vectoriel normé quelconque (à la place de : de dimension finie).",
+        "$K$ est une partie ouverte de $E$ (à la place de : fermée).",
+        "$K$ est d'intérieur vide (à la place de : bornée)."
+      ],
+      "enonce": "Soit $(E,N)$ un espace vectoriel normé. Une partie $K$ de $E$ est **compacte** si toute suite d'éléments de $K$ admet une sous-suite qui converge vers un élément de $K$.\n\n- Toute partie compacte est fermée et bornée.\n- **Si $E$ est de dimension finie**, les parties compactes de $E$ sont exactement ses parties fermées et bornées, et toute suite bornée de $E$ admet une sous-suite convergente.\n- Si $K$ est une partie compacte non vide et $f:K\\to\\mathbb{R}$ est continue, alors $f$ est bornée et atteint ses bornes.",
+      "enonce_trous": "Dans un espace vectoriel normé {{1}}, une partie est compacte si et seulement si elle est {{2}}. Une fonction continue sur un compact non vide, à valeurs réelles, est {{3}}.",
+      "trous": [
+        {
+          "reponse": "de dimension finie",
+          "leurres": [
+            "quelconque",
+            "de dimension infinie",
+            "réel"
+          ]
+        },
+        {
+          "reponse": "fermée et bornée",
+          "leurres": [
+            "fermée",
+            "bornée",
+            "ouverte et bornée"
+          ]
+        },
+        {
+          "reponse": "bornée et atteint ses bornes",
+          "leurres": [
+            "lipschitzienne",
+            "majorée mais pas toujours minorée",
+            "constante"
+          ]
+        }
+      ],
+      "demo": "**Compact implique fermé et borné.** Si $(x_n)$ est une suite de $K$ qui converge vers $\\ell\\in E$, une sous-suite converge vers un élément de $K$ ; sa limite est aussi $\\ell$, donc $\\ell\\in K$ : $K$ est fermée. Si $K$ n'était pas bornée, il existerait $x_n\\in K$ avec $N(x_n)\\ge n$ ; une sous-suite convergente serait bornée, ce qui est impossible.\n\n**Dimension finie.** Toutes les normes étant équivalentes, on munit $E$ de $\\|\\cdot\\|_\\infty$ relative à une base. Une suite bornée a des coordonnées bornées ; par Bolzano–Weierstrass appliqué successivement à chaque coordonnée, elle a une sous-suite dont toutes les coordonnées convergent, donc qui converge. Si $K$ est fermée et bornée, toute suite de $K$ a ainsi une sous-suite convergente, dont la limite est dans $K$ puisque $K$ est fermée.\n\n**Bornes atteintes.** Si $f$ n'était pas majorée, il existerait $x_n\\in K$ avec $f(x_n)\\ge n$ ; une sous-suite $(x_{\\varphi(n)})$ converge vers un $a\\in K$, et $f(x_{\\varphi(n)})\\to f(a)$ par continuité, ce qui contredit $f(x_{\\varphi(n)})\\ge\\varphi(n)\\ge n$. Soit $M=\\sup_Kf$ et $x_n\\in K$ avec $f(x_n)\\to M$ ; une sous-suite converge vers un $b\\in K$, et $f(b)=M$ par continuité. On traite la borne inférieure en appliquant ce qui précède à $-f$.",
+      "exemple": "La sphère $S=\\{x\\in\\mathbb{R}^n:\\|x\\|_2=1\\}$ est compacte : elle est bornée, et fermée car si $x_k\\in S$ tend vers $x$, alors $\\|x\\|_2=\\lim\\|x_k\\|_2=1$. Le groupe orthogonal $O_n(\\mathbb{R})$ est compact dans $M_n(\\mathbb{R})$. Si $F$ est un fermé non vide d'un espace de dimension finie et $a\\in E$, la distance $d(a,F)=\\inf_{x\\in F}N(a-x)$ est atteinte.",
+      "contre_exemple": "- **Dimension infinie** : sur $\\mathbb{R}[X]$ muni de $N_\\infty(P)=\\max_k|a_k|$, la boule unité fermée est fermée et bornée, mais la suite $(X^n)$ n'a aucune sous-suite convergente, car $N_\\infty(X^n-X^m)=1$ pour $n\\neq m$ (deux termes d'une suite convergente finissent par être à distance strictement inférieure à $1$).\n- **Fermé non borné, borné non fermé** : $\\mathbb{Z}$ est fermé dans $\\mathbb{R}$ mais n'est pas compact ($x_n=n$) ; $\\left]0,1\\right]$ est borné mais n'est pas compact ($x_n=\\frac1{n+1}$).\n- **La continuité est nécessaire** : sur le compact $[0,1]$, la fonction égale à $\\frac1x$ pour $x>0$ et à $0$ en $0$ n'est pas bornée.",
+      "affirmations": [
+        {
+          "texte": "Dans $\\mathbb{R}^n$, une partie fermée et bornée est compacte.",
+          "vrai": true,
+          "justification": "$\\mathbb{R}^n$ est de dimension finie."
+        },
+        {
+          "texte": "Dans tout espace vectoriel normé, la boule unité fermée est compacte.",
+          "vrai": false,
+          "contre_exemple": "Dans $(\\mathbb{R}[X],N_\\infty)$, la suite $(X^n)$ de la boule unité fermée n'a pas de sous-suite convergente."
+        },
+        {
+          "texte": "Si $K$ est compacte et $F$ fermée, alors $K\\cap F$ est compacte.",
+          "vrai": true,
+          "justification": "Une suite de $K\\cap F$ a une sous-suite qui converge vers un élément de $K$, et cette limite est dans $F$ puisque $F$ est fermée."
+        },
+        {
+          "texte": "Une réunion quelconque de parties compactes est compacte.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{N}=\\bigcup_{n}\\{n\\}$ est une réunion de compacts de $\\mathbb{R}$, mais n'est pas bornée."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-equivalence-dim-finie",
+        "ar-l1-bornes-atteintes"
+      ]
+    }
+  ]
+}
