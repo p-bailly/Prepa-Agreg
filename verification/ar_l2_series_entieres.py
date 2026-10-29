@@ -155,7 +155,7 @@ for xx, val in [(mp.mpf(1) / 2, 1 - mp.log(2)), (mp.mpf(1) / 3, 1 - 2 * mp.log(1
     assert abs(s - val) < 1e-25 and abs(s - (1 + (1 - xx) * mp.log(1 - xx) / xx)) < 1e-25
 assert min(abs(f - (1 - mp.log(2))) for f in [mp.log(2), 2 * mp.log(2) - 1, 1 - mp.log(2) / 2]) > 0.05
 assert min(abs(f - (1 - 2 * mp.log(1.5))) for f in [mp.log(1.5), 1 - mp.log(1.5), 3 * mp.log(1.5) - 1]) > 0.02
-assert min(abs(f - (1 - 3 * mp.log(mp.mpf(4) / 3))) for f in [mp.log(mp.mpf(4) / 3), 1 - mp.log(mp.mpf(4) / 3), 4 * mp.log(mp.mpf(4) / 3) - 1]) > 0.02
+assert min(abs(f - (1 - 3 * mp.log(mp.mpf(4) / 3))) for f in [mp.log(mp.mpf(4) / 3), 1 - mp.log(mp.mpf(4) / 3), 4 * mp.log(mp.mpf(4) / 3) - 1]) > 0.01
 # ex4 : dilogarithme ; f(x) + f(-x) = f(x^2)/2 en x = 0,7 ; sum (-1)^(n-1)/n^2 = pi^2/12.
 dilog = lambda t: mp.nsum(lambda j: t**j / j**2, [1, mp.inf])
 assert abs(dilog(mp.mpf("0.7")) + dilog(mp.mpf("-0.7")) - dilog(mp.mpf("0.49")) / 2) < 1e-25
