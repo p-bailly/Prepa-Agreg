@@ -1,0 +1,93 @@
+{
+  "chapitre": "ar-l2-series",
+  "questions": [
+    {
+      "id": "ar-l2-series-q1",
+      "carte": "ar-l2-series-positives",
+      "genre": "choix",
+      "enonce": "Laquelle de ces séries converge ?",
+      "propositions": [
+        "$\\sum_{n\\ge1}\\sin\\frac1n$",
+        "$\\sum_{n\\ge1}\\left(1-\\cos\\frac1n\\right)$",
+        "$\\sum_{n\\ge1}\\ln\\left(1+\\frac1n\\right)$",
+        "$\\sum_{n\\ge1}\\left(e^{1/n}-1\\right)$"
+      ],
+      "bonne": 1,
+      "explication": "Les quatre termes généraux sont positifs. $1-\\cos\\frac1n\\sim\\frac1{2n^2}$, terme d'une série de Riemann convergente. Les trois autres sont équivalents à $\\frac1n$ : $\\sin x\\sim x$, $\\ln(1+x)\\sim x$, $e^x-1\\sim x$ en $0$, donc ces séries divergent."
+    },
+    {
+      "id": "ar-l2-series-q2",
+      "carte": "ar-l2-series-riemann",
+      "genre": "vrai-faux",
+      "enonce": "Si $u_n>0$ pour tout $n$ et $\\frac{u_{n+1}}{u_n}\\to1$, alors la série $\\sum u_n$ diverge.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $u_n=\\frac1{n^2}$ ($n\\ge1$) : $\\frac{u_{n+1}}{u_n}=\\frac{n^2}{(n+1)^2}\\to1$, et la série converge. Quand le rapport tend vers $1$, la règle de d'Alembert ne permet pas de conclure : $\\sum\\frac1n$ diverge et $\\sum\\frac1{n^2}$ converge, avec le même comportement du rapport."
+    },
+    {
+      "id": "ar-l2-series-q3",
+      "carte": "ar-l2-series-sommation-comparaison",
+      "genre": "choix",
+      "enonce": "Quel est un équivalent de $\\sum_{k=1}^{n}\\ln\\left(1+\\frac1{\\sqrt k}\\right)$ quand $n\\to+\\infty$ ?",
+      "propositions": [
+        "$2\\sqrt n$",
+        "$\\sqrt n$",
+        "$\\ln n$",
+        "$n$"
+      ],
+      "bonne": 0,
+      "explication": "$\\ln\\left(1+\\frac1{\\sqrt k}\\right)\\sim\\frac1{\\sqrt k}$, termes positifs d'une série divergente : par sommation des équivalents, la somme est équivalente à $\\sum_{k=1}^{n}\\frac1{\\sqrt k}$. Comme $\\frac1{\\sqrt k}\\sim2\\left(\\sqrt{k+1}-\\sqrt k\\right)$, cette dernière est équivalente à $2\\left(\\sqrt{n+1}-1\\right)\\sim2\\sqrt n$."
+    },
+    {
+      "id": "ar-l2-series-q4",
+      "carte": "ar-l2-series-integrale",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout entier $n\\ge1$, $\\ln(n+1)\\le\\sum_{k=1}^{n}\\frac1k\\le1+\\ln n$.",
+      "vrai": true,
+      "explication": "La fonction $t\\mapsto\\frac1t$ est positive et décroissante sur $\\left[1,+\\infty\\right[$ : $\\int_k^{k+1}\\frac{dt}t\\le\\frac1k$ pour $k\\ge1$ et $\\frac1k\\le\\int_{k-1}^{k}\\frac{dt}t$ pour $k\\ge2$. En sommant : $\\ln(n+1)\\le\\sum_{k=1}^{n}\\frac1k\\le1+\\ln n$ (pour $n=1$ : $\\ln2\\le1\\le1$)."
+    },
+    {
+      "id": "ar-l2-series-q5",
+      "carte": "ar-l2-series-cauchy-absolue",
+      "genre": "vrai-faux",
+      "enonce": "Si la série $\\sum u_n$ converge et si la suite $(v_n)$ est bornée, alors la série $\\sum u_nv_n$ converge.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $u_n=\\frac{(-1)^n}{n+1}$ (série convergente, critère des séries alternées) et $v_n=(-1)^n$, bornée : $u_nv_n=\\frac1{n+1}$, et la série harmonique diverge. Le résultat est vrai si $\\sum u_n$ converge **absolument**, car alors $|u_nv_n|\\le M|u_n|$."
+    },
+    {
+      "id": "ar-l2-series-q6",
+      "carte": "ar-l2-series-alternees",
+      "genre": "choix",
+      "enonce": "Soit $S=\\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{(n+1)^3}$. Que peut-on affirmer de $S-\\frac78$ ?",
+      "propositions": [
+        "$0\\le S-\\frac78\\le\\frac1{27}$",
+        "$-\\frac1{27}\\le S-\\frac78\\le0$",
+        "$0\\le S-\\frac78\\le\\frac1{64}$",
+        "$-\\frac18\\le S-\\frac78\\le0$"
+      ],
+      "bonne": 0,
+      "explication": "$\\frac78=1-\\frac18=S_1$, et $\\left(\\frac1{(n+1)^3}\\right)$ décroît vers $0$. Le reste $R_1=S-S_1$ est du signe de son premier terme $+\\frac1{27}$ et $|R_1|\\le\\frac1{27}$ : $0\\le S-\\frac78\\le\\frac1{27}$. La majoration par $\\frac1{64}$ est fausse : $R_1=\\frac1{27}+R_2$ avec $-\\frac1{64}\\le R_2\\le0$, donc $R_1\\ge\\frac1{27}-\\frac1{64}=\\frac{37}{1728}>\\frac1{64}$."
+    },
+    {
+      "id": "ar-l2-series-q7",
+      "carte": "ar-l2-series-abel",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout réel $\\theta$, la série $\\sum_{n\\ge1}\\frac{\\sin(n\\theta)}n$ converge.",
+      "vrai": true,
+      "explication": "Si $\\theta\\in2\\pi\\mathbb{Z}$ (ou plus généralement $\\theta\\in\\pi\\mathbb{Z}$), tous les termes sont nuls. Sinon $\\theta\\notin2\\pi\\mathbb{Z}$ : $\\left(\\frac1n\\right)$ décroît vers $0$ et les sommes partielles de $\\sum\\sin(n\\theta)$, parties imaginaires de celles de $\\sum e^{in\\theta}$, sont bornées par $\\frac1{|\\sin(\\theta/2)|}$ : le critère d'Abel s'applique. (Pour le cosinus, $\\theta=0$ donne la série harmonique, divergente.)"
+    },
+    {
+      "id": "ar-l2-series-q8",
+      "carte": "ar-l2-series-produit-cauchy",
+      "genre": "choix",
+      "enonce": "Quel est le terme général $c_n$ du produit de Cauchy des séries $\\sum_{n\\ge0}\\frac1{n!}$ et $\\sum_{n\\ge0}\\frac{(-1)^n}{n!}$ ?",
+      "propositions": [
+        "$c_0=1$ et $c_n=0$ pour $n\\ge1$",
+        "$c_n=\\frac{(-1)^n}{(n!)^2}$",
+        "$c_n=\\frac{2^n}{n!}$",
+        "$c_n=\\frac{(-1)^n2^n}{n!}$"
+      ],
+      "bonne": 0,
+      "explication": "$c_n=\\sum_{k=0}^{n}\\frac1{k!}\\cdot\\frac{(-1)^{n-k}}{(n-k)!}=\\frac1{n!}\\sum_{k=0}^{n}\\binom nk(-1)^{n-k}=\\frac{(1-1)^n}{n!}$, qui vaut $1$ pour $n=0$ et $0$ pour $n\\ge1$. On retrouve $e\\cdot e^{-1}=1$, conformément au théorème (les deux séries convergent absolument)."
+    }
+  ]
+}

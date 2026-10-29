@@ -1,0 +1,1588 @@
+{
+  "exercices": [
+    {
+      "id": "int-l2-parametre-segment-ex1",
+      "carte": "int-l2-parametre-segment",
+      "difficulte": 1,
+      "titre": "Dérivée en $0$ d'une intégrale à paramètre",
+      "enonce": "Pour $x\\in\\left]-1,+\\infty\\right[$, on pose $F(x)=\\int_0^1\\frac{\\mathrm{d}t}{1+xt}$. Justifier que $F$ est de classe $\\mathcal{C}^1$ et calculer $F'(0)$ en dérivant sous le signe somme.",
+      "duree_min": 5,
+      "indices": [
+        "Vérifier que $(x,t)\\mapsto\\frac1{1+xt}$ et sa dérivée par rapport à $x$ sont continues sur $\\left]-1,+\\infty\\right[\\times[0,1]$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $F'(0)$ ?",
+        "propositions": [
+          "$-\\frac12$",
+          "$\\frac12$",
+          "$-1$",
+          "$-\\frac13$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $x>-1$ et $t\\in[0,1]$, $1+xt\\ge\\min(1,1+x)>0$ (fonction affine de $t$, positive aux deux extrémités). La fonction $f(x,t)=\\frac1{1+xt}$ est donc continue sur $\\left]-1,+\\infty\\right[\\times[0,1]$, ainsi que $\\frac{\\partial f}{\\partial x}(x,t)=-\\frac t{(1+xt)^2}$. Par le théorème de dérivation sur un segment, $F$ est de classe $\\mathcal{C}^1$ et\n$$F'(x)=-\\int_0^1\\frac t{(1+xt)^2}\\,\\mathrm{d}t,\\qquad F'(0)=-\\int_0^1t\\,\\mathrm{d}t=-\\frac12.$$\nVérification : $F(x)=\\frac{\\ln(1+x)}x=1-\\frac x2+o(x)$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^1e^{-xt^2}\\,\\mathrm{d}t$. Justifier que $F$ est de classe $\\mathcal{C}^1$ et calculer $F'(0)$ en dérivant sous le signe somme.",
+          "indices": [
+            "Vérifier que $(x,t)\\mapsto e^{-xt^2}$ et sa dérivée par rapport à $x$ sont continues sur $\\mathbb{R}\\times[0,1]$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F'(0)$ ?",
+            "propositions": [
+              "$-\\frac13$",
+              "$\\frac13$",
+              "$-\\frac12$",
+              "$-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f(x,t)=e^{-xt^2}$ et $\\frac{\\partial f}{\\partial x}(x,t)=-t^2e^{-xt^2}$ sont continues sur $\\mathbb{R}\\times[0,1]$. Par le théorème de dérivation sur un segment, $F$ est de classe $\\mathcal{C}^1$ et\n$$F'(x)=-\\int_0^1t^2e^{-xt^2}\\,\\mathrm{d}t,\\qquad F'(0)=-\\int_0^1t^2\\,\\mathrm{d}t=-\\frac13.$$"
+        },
+        {
+          "enonce": "Pour $x\\in\\left]-1,+\\infty\\right[$, on pose $F(x)=\\int_0^1\\sqrt{1+xt}\\,\\mathrm{d}t$. Justifier que $F$ est de classe $\\mathcal{C}^1$ et calculer $F'(0)$ en dérivant sous le signe somme.",
+          "indices": [
+            "Vérifier que $1+xt>0$ sur $\\left]-1,+\\infty\\right[\\times[0,1]$, puis que $(x,t)\\mapsto\\sqrt{1+xt}$ et sa dérivée par rapport à $x$ y sont continues."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F'(0)$ ?",
+            "propositions": [
+              "$\\frac14$",
+              "$-\\frac14$",
+              "$\\frac12$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $x>-1$ et $t\\in[0,1]$, $1+xt\\ge\\min(1,1+x)>0$. La fonction $f(x,t)=\\sqrt{1+xt}$ et $\\frac{\\partial f}{\\partial x}(x,t)=\\frac t{2\\sqrt{1+xt}}$ sont donc continues sur $\\left]-1,+\\infty\\right[\\times[0,1]$. Par le théorème de dérivation sur un segment, $F$ est de classe $\\mathcal{C}^1$ et\n$$F'(x)=\\int_0^1\\frac t{2\\sqrt{1+xt}}\\,\\mathrm{d}t,\\qquad F'(0)=\\int_0^1\\frac t2\\,\\mathrm{d}t=\\frac14.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-segment-ex2",
+      "carte": "int-l2-parametre-segment",
+      "difficulte": 2,
+      "titre": "Dérivée de $x\\mapsto\\int_0^1\\arctan(xt)\\,\\mathrm{d}t$",
+      "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^1\\arctan(xt)\\,\\mathrm{d}t$. Justifier que $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, exprimer $F'(x)$ pour $x\\neq0$ sans signe intégrale, et en déduire $F'(1)$.",
+      "duree_min": 10,
+      "indices": [
+        "$\\frac{\\partial}{\\partial x}\\arctan(xt)=\\frac t{1+x^2t^2}$ ; reconnaître la dérivée de $t\\mapsto\\ln(1+x^2t^2)$ à un facteur près."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $F'(1)$ ?",
+        "propositions": [
+          "$\\frac{\\ln2}{2}$",
+          "$\\ln2$",
+          "$\\frac{\\pi}{4}$",
+          "$\\frac{\\ln2}{4}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La fonction $f(x,t)=\\arctan(xt)$ et $\\frac{\\partial f}{\\partial x}(x,t)=\\frac t{1+x^2t^2}$ sont continues sur $\\mathbb{R}\\times[0,1]$ : par le théorème de dérivation sur un segment, $F$ est de classe $\\mathcal{C}^1$ et, pour $x\\neq0$,\n$$F'(x)=\\int_0^1\\frac t{1+x^2t^2}\\,\\mathrm{d}t=\\left[\\frac{\\ln(1+x^2t^2)}{2x^2}\\right]_0^1=\\frac{\\ln(1+x^2)}{2x^2}.$$\nDonc $F'(1)=\\frac{\\ln2}2$. (Contrôle : une intégration par parties donne $F(x)=\\arctan x-\\frac{\\ln(1+x^2)}{2x}$ pour $x\\neq0$, dont la dérivée est bien $\\frac{\\ln(1+x^2)}{2x^2}$.)",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^1\\arctan(xt)\\,\\mathrm{d}t$. Justifier que $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, exprimer $F'(x)$ pour $x\\neq0$ sans signe intégrale, et en déduire $F'(2)$.",
+          "indices": [
+            "$\\frac{\\partial}{\\partial x}\\arctan(xt)=\\frac t{1+x^2t^2}$ ; reconnaître la dérivée de $t\\mapsto\\ln(1+x^2t^2)$ à un facteur près, puis prendre $x=2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F'(2)$ ?",
+            "propositions": [
+              "$\\frac{\\ln5}{8}$",
+              "$\\frac{\\ln5}{4}$",
+              "$\\frac{\\ln5}{16}$",
+              "$\\frac15$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f(x,t)=\\arctan(xt)$ et $\\frac{\\partial f}{\\partial x}(x,t)=\\frac t{1+x^2t^2}$ sont continues sur $\\mathbb{R}\\times[0,1]$ : $F$ est de classe $\\mathcal{C}^1$ et, pour $x\\neq0$,\n$$F'(x)=\\int_0^1\\frac t{1+x^2t^2}\\,\\mathrm{d}t=\\left[\\frac{\\ln(1+x^2t^2)}{2x^2}\\right]_0^1=\\frac{\\ln(1+x^2)}{2x^2}.$$\nDonc $F'(2)=\\frac{\\ln5}8$."
+        },
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^1\\arctan(xt)\\,\\mathrm{d}t$. Justifier que $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, exprimer $F'(x)$ pour $x\\neq0$ sans signe intégrale, et en déduire $F'\\left(\\frac12\\right)$.",
+          "indices": [
+            "$\\frac{\\partial}{\\partial x}\\arctan(xt)=\\frac t{1+x^2t^2}$ ; reconnaître la dérivée de $t\\mapsto\\ln(1+x^2t^2)$ à un facteur près, puis prendre $x=\\frac12$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F'\\left(\\frac12\\right)$ ?",
+            "propositions": [
+              "$2\\ln\\frac54$",
+              "$\\ln\\frac54$",
+              "$\\frac12\\ln\\frac54$",
+              "$\\frac45$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f(x,t)=\\arctan(xt)$ et $\\frac{\\partial f}{\\partial x}(x,t)=\\frac t{1+x^2t^2}$ sont continues sur $\\mathbb{R}\\times[0,1]$ : $F$ est de classe $\\mathcal{C}^1$ et, pour $x\\neq0$,\n$$F'(x)=\\int_0^1\\frac t{1+x^2t^2}\\,\\mathrm{d}t=\\left[\\frac{\\ln(1+x^2t^2)}{2x^2}\\right]_0^1=\\frac{\\ln(1+x^2)}{2x^2}.$$\nDonc $F'\\left(\\frac12\\right)=\\frac{\\ln\\frac54}{2\\cdot\\frac14}=2\\ln\\frac54$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-segment-ex3",
+      "carte": "int-l2-parametre-segment",
+      "difficulte": 3,
+      "titre": "Une intégrale calculée par dérivation sous le signe somme",
+      "enonce": "Pour $x\\ge0$, on pose $f(x,t)=\\frac{t^x-1}{\\ln t}$ si $t\\in\\left]0,1\\right[$, $f(x,0)=0$ et $f(x,1)=x$, puis $F(x)=\\int_0^1f(x,t)\\,\\mathrm{d}t$.\n\n**1.** Montrer que $f$ est continue sur $\\left[0,+\\infty\\right[\\times[0,1]$.\n\n**2.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(x)$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $I=\\int_0^1\\frac{t^2-1}{\\ln t}\\,\\mathrm{d}t$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour $t\\in\\left]0,1\\right[$, $\\frac{\\partial}{\\partial x}\\frac{t^x-1}{\\ln t}=t^x$.",
+        "Près de $t=1$, écrire $t^x-1=e^{x\\ln t}-1$ ; près de $t=0$, majorer $|t^x-1|$ par $1$.",
+        "$F(0)=0$, et $F$ est continue en $0$ par la question 1."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I=\\int_0^1\\frac{t^2-1}{\\ln t}\\,\\mathrm{d}t$ ?",
+        "propositions": [
+          "$\\ln3$",
+          "$\\ln2$",
+          "$2$",
+          "$2\\ln3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Sur $\\left[0,+\\infty\\right[\\times\\left]0,1\\right[$, $f$ est continue comme quotient de fonctions continues. Près d'un point $(x_0,1)$ : pour $t\\in\\left]0,1\\right[$, $\\frac{t^x-1}{\\ln t}=x\\,\\varphi(x\\ln t)$ avec $\\varphi(u)=\\frac{e^u-1}u$ prolongée par $\\varphi(0)=1$, continue ; quand $(x,t)\\to(x_0,1)$, $x\\ln t\\to0$ et $f(x,t)\\to x_0=f(x_0,1)$ (et $f(x,1)=x\\to x_0$). Près d'un point $(x_0,0)$ : pour $t\\in\\left]0,1\\right[$ et $x\\ge0$, $0\\le t^x\\le1$, donc $|f(x,t)|\\le\\frac1{|\\ln t|}\\to0=f(x_0,0)$ quand $t\\to0$.\n\n**2.** Pour $x>0$ : $\\frac{\\partial f}{\\partial x}(x,t)=t^x$ si $t\\in\\left]0,1\\right[$, $\\frac{\\partial f}{\\partial x}(x,0)=0$ (car $f(\\cdot,0)=0$) et $\\frac{\\partial f}{\\partial x}(x,1)=1$. Cette dérivée partielle s'écrit $t^x$ sur $[0,1]$ (avec $0^x=0$), et elle est continue sur $\\left]0,+\\infty\\right[\\times[0,1]$ : en un point $(x_0,0)$ avec $x_0>0$, on a $0\\le t^x\\le t^{x_0/2}\\to0$ pour $x\\ge\\frac{x_0}2$ et $t\\in\\left]0,1\\right[$. Par le théorème de dérivation sur un segment (appliqué sur $J=\\left]0,+\\infty\\right[$),\n$$F'(x)=\\int_0^1t^x\\,\\mathrm{d}t=\\frac1{x+1}.$$\n\n**3.** Il existe donc une constante $c$ telle que $F(x)=\\ln(1+x)+c$ pour $x>0$. Par la question 1 et le théorème de continuité sur un segment, $F$ est continue sur $\\left[0,+\\infty\\right[$, et $F(0)=0$ ; en faisant tendre $x$ vers $0$, $c=0$. Ainsi $F(x)=\\ln(1+x)$ pour tout $x\\ge0$, et $I=F(2)=\\ln3$.\n\nRemarque : en $x=0$, $\\frac{\\partial f}{\\partial x}$ n'est pas continue ($t^0=1$ pour $t>0$ mais $\\frac{\\partial f}{\\partial x}(0,0)=0$) ; c'est pourquoi on dérive sur $\\left]0,+\\infty\\right[$ et l'on utilise la continuité en $0$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\ge0$, on pose $f(x,t)=\\frac{t^x-1}{\\ln t}$ si $t\\in\\left]0,1\\right[$, $f(x,0)=0$ et $f(x,1)=x$, puis $F(x)=\\int_0^1f(x,t)\\,\\mathrm{d}t$.\n\n**1.** Montrer que $f$ est continue sur $\\left[0,+\\infty\\right[\\times[0,1]$.\n\n**2.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(x)$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $I=\\int_0^1\\frac{t^3-t}{\\ln t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour $t\\in\\left]0,1\\right[$, $\\frac{\\partial}{\\partial x}\\frac{t^x-1}{\\ln t}=t^x$.",
+            "Près de $t=1$, écrire $t^x-1=e^{x\\ln t}-1$ ; près de $t=0$, majorer $|t^x-1|$ par $1$.",
+            "Écrire $\\frac{t^3-t}{\\ln t}$ comme une différence de deux valeurs de $f$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I=\\int_0^1\\frac{t^3-t}{\\ln t}\\,\\mathrm{d}t$ ?",
+            "propositions": [
+              "$\\ln2$",
+              "$\\ln3$",
+              "$\\ln4$",
+              "$\\ln\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Sur $\\left[0,+\\infty\\right[\\times\\left]0,1\\right[$, $f$ est continue. Près de $(x_0,1)$ : $\\frac{t^x-1}{\\ln t}=x\\,\\varphi(x\\ln t)$ avec $\\varphi(u)=\\frac{e^u-1}u$, $\\varphi(0)=1$, continue, donc $f(x,t)\\to x_0=f(x_0,1)$. Près de $(x_0,0)$ : $|f(x,t)|\\le\\frac1{|\\ln t|}\\to0$.\n\n**2.** Pour $x>0$, $\\frac{\\partial f}{\\partial x}(x,t)=t^x$ sur $[0,1]$ (avec $0^x=0$), continue sur $\\left]0,+\\infty\\right[\\times[0,1]$ (pour $x\\ge\\frac{x_0}2$, $0\\le t^x\\le t^{x_0/2}$). Par le théorème de dérivation sur un segment, $F'(x)=\\int_0^1t^x\\,\\mathrm{d}t=\\frac1{x+1}$.\n\n**3.** Donc $F(x)=\\ln(1+x)+c$ sur $\\left]0,+\\infty\\right[$, et la continuité de $F$ en $0$, avec $F(0)=0$, donne $c=0$ : $F(x)=\\ln(1+x)$ pour $x\\ge0$. Enfin $\\frac{t^3-t}{\\ln t}=\\frac{t^3-1}{\\ln t}-\\frac{t-1}{\\ln t}$, donc $I=F(3)-F(1)=\\ln4-\\ln2=\\ln2$."
+        },
+        {
+          "enonce": "Pour $x\\ge0$, on pose $f(x,t)=\\frac{t^x-1}{\\ln t}$ si $t\\in\\left]0,1\\right[$, $f(x,0)=0$ et $f(x,1)=x$, puis $F(x)=\\int_0^1f(x,t)\\,\\mathrm{d}t$.\n\n**1.** Montrer que $f$ est continue sur $\\left[0,+\\infty\\right[\\times[0,1]$.\n\n**2.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(x)$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $I=\\int_0^1\\frac{t^4-1}{\\ln t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour $t\\in\\left]0,1\\right[$, $\\frac{\\partial}{\\partial x}\\frac{t^x-1}{\\ln t}=t^x$.",
+            "Près de $t=1$, écrire $t^x-1=e^{x\\ln t}-1$ ; près de $t=0$, majorer $|t^x-1|$ par $1$.",
+            "$F(0)=0$, et $F$ est continue en $0$ par la question 1."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I=\\int_0^1\\frac{t^4-1}{\\ln t}\\,\\mathrm{d}t$ ?",
+            "propositions": [
+              "$\\ln5$",
+              "$\\ln4$",
+              "$4$",
+              "$\\frac{\\ln5}{4}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Sur $\\left[0,+\\infty\\right[\\times\\left]0,1\\right[$, $f$ est continue. Près de $(x_0,1)$ : $\\frac{t^x-1}{\\ln t}=x\\,\\varphi(x\\ln t)$ avec $\\varphi(u)=\\frac{e^u-1}u$, $\\varphi(0)=1$, continue, donc $f(x,t)\\to x_0=f(x_0,1)$. Près de $(x_0,0)$ : $|f(x,t)|\\le\\frac1{|\\ln t|}\\to0$.\n\n**2.** Pour $x>0$, $\\frac{\\partial f}{\\partial x}(x,t)=t^x$ sur $[0,1]$ (avec $0^x=0$), continue sur $\\left]0,+\\infty\\right[\\times[0,1]$ (pour $x\\ge\\frac{x_0}2$, $0\\le t^x\\le t^{x_0/2}$). Par le théorème de dérivation sur un segment, $F'(x)=\\int_0^1t^x\\,\\mathrm{d}t=\\frac1{x+1}$.\n\n**3.** Donc $F(x)=\\ln(1+x)+c$ sur $\\left]0,+\\infty\\right[$, et la continuité de $F$ en $0$, avec $F(0)=0$, donne $c=0$ : $F(x)=\\ln(1+x)$ pour $x\\ge0$, et $I=F(4)=\\ln5$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-segment-ex4",
+      "carte": "int-l2-parametre-segment",
+      "difficulte": 4,
+      "titre": "Borne variable et équation différentielle",
+      "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ continue, admettant une dérivée partielle $\\frac{\\partial f}{\\partial x}$ continue sur $\\mathbb{R}^2$. On pose $G(x)=\\int_0^xf(x,t)\\,\\mathrm{d}t$.\n\n**1.** Soit $x_0\\in\\mathbb{R}$. Écrire, pour $x\\neq x_0$,\n$$\\frac{G(x)-G(x_0)}{x-x_0}=\\int_0^{x_0}\\frac{f(x,t)-f(x_0,t)}{x-x_0}\\,\\mathrm{d}t+\\frac1{x-x_0}\\int_{x_0}^xf(x,t)\\,\\mathrm{d}t,$$\net en déduire que $G$ est dérivable en $x_0$ avec $G'(x_0)=f(x_0,x_0)+\\int_0^{x_0}\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t$.\n\n**2.** Soit $g:\\mathbb{R}\\to\\mathbb{R}$ continue et $y(x)=\\int_0^x\\sin(x-t)g(t)\\,\\mathrm{d}t$. Calculer $y'$, puis montrer que $y''+y=g$, avec $y(0)=y'(0)=0$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour le premier terme, appliquer le théorème de dérivation sur le segment fixe d'extrémités $0$ et $x_0$.",
+        "Pour le second terme, comparer $\\frac1{x-x_0}\\int_{x_0}^xf(x,t)\\,\\mathrm{d}t$ à $f(x_0,x_0)$ en utilisant la continuité de $f$ en $(x_0,x_0)$.",
+        "Dans la question 2, $\\sin(x-t)$ s'annule pour $t=x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $y'(x)$ ?",
+        "propositions": [
+          "$\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t$",
+          "$g(x)+\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t$",
+          "$-\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t$",
+          "$\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t-g(0)\\sin x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Notons $[\\alpha,\\beta]$ le segment d'extrémités $0$ et $x_0$ (si $x_0=0$, le premier terme est nul). La fonction $H(x)=\\int_0^{x_0}f(x,t)\\,\\mathrm{d}t$ est de classe $\\mathcal{C}^1$ par le théorème de dérivation sur un segment ($f$ et $\\frac{\\partial f}{\\partial x}$ sont continues sur $\\mathbb{R}\\times[\\alpha,\\beta]$), et le premier terme est $\\frac{H(x)-H(x_0)}{x-x_0}\\to H'(x_0)=\\int_0^{x_0}\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t$.\n\nPour le second, soit $\\varepsilon>0$ ; par continuité de $f$ en $(x_0,x_0)$, il existe $\\eta>0$ tel que $|u-x_0|\\le\\eta$ et $|t-x_0|\\le\\eta$ entraînent $|f(u,t)-f(x_0,x_0)|\\le\\varepsilon$. Pour $0<|x-x_0|\\le\\eta$, tout $t$ entre $x_0$ et $x$ vérifie $|t-x_0|\\le\\eta$, donc\n$$\\left|\\frac1{x-x_0}\\int_{x_0}^xf(x,t)\\,\\mathrm{d}t-f(x_0,x_0)\\right|=\\left|\\frac1{x-x_0}\\int_{x_0}^x\\big(f(x,t)-f(x_0,x_0)\\big)\\,\\mathrm{d}t\\right|\\le\\varepsilon.$$\nLe second terme tend vers $f(x_0,x_0)$, d'où la formule : $G'(x_0)=f(x_0,x_0)+\\int_0^{x_0}\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t$.\n\n**2.** Avec $f(x,t)=\\sin(x-t)g(t)$, continue ainsi que $\\frac{\\partial f}{\\partial x}(x,t)=\\cos(x-t)g(t)$ :\n$$y'(x)=\\sin(0)g(x)+\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t=\\int_0^x\\cos(x-t)g(t)\\,\\mathrm{d}t.$$\nOn applique encore la question 1 à $f_1(x,t)=\\cos(x-t)g(t)$, de dérivée partielle $-\\sin(x-t)g(t)$ :\n$$y''(x)=\\cos(0)g(x)-\\int_0^x\\sin(x-t)g(t)\\,\\mathrm{d}t=g(x)-y(x).$$\nDonc $y''+y=g$, et $y(0)=y'(0)=0$ (intégrales sur $[0,0]$). C'est la solution de ce problème de Cauchy obtenue par la méthode de variation des constantes, écrite sous forme d'intégrale."
+    },
+    {
+      "id": "int-l2-parametre-continuite-ex1",
+      "carte": "int-l2-parametre-continuite",
+      "difficulte": 1,
+      "titre": "Limite d'une intégrale à paramètre",
+      "enonce": "Pour $x\\ge0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{e^{-xt}}{1+t^2}\\,\\mathrm{d}t$. Montrer que $F$ est continue sur $\\left[0,+\\infty\\right[$ et en déduire la limite de $F(x)$ quand $x\\to0^+$.",
+      "duree_min": 5,
+      "indices": [
+        "Majorer $\\frac{e^{-xt}}{1+t^2}$ par une fonction de $t$ seul, intégrable sur $\\left[0,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $F(x)$ quand $x\\to0^+$ ?",
+        "propositions": [
+          "$\\frac\\pi2$",
+          "$0$",
+          "$1$",
+          "$+\\infty$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout $t\\ge0$, $x\\mapsto\\frac{e^{-xt}}{1+t^2}$ est continue ; pour tout $x\\ge0$, $t\\mapsto\\frac{e^{-xt}}{1+t^2}$ est continue ; et pour tous $x,t\\ge0$, $0\\le\\frac{e^{-xt}}{1+t^2}\\le\\frac1{1+t^2}$, fonction intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Par le théorème de continuité par domination, $F$ est continue sur $\\left[0,+\\infty\\right[$, donc\n$$\\lim_{x\\to0^+}F(x)=F(0)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{1+t^2}=\\frac\\pi2.$$",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\cos(xt)}{(1+t)^2}\\,\\mathrm{d}t$. Montrer que $F$ est continue sur $\\mathbb{R}$ et en déduire la limite de $F(x)$ quand $x\\to0$.",
+          "indices": [
+            "Majorer $\\left|\\frac{\\cos(xt)}{(1+t)^2}\\right|$ par une fonction de $t$ seul, intégrable sur $\\left[0,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $F(x)$ quand $x\\to0$ ?",
+            "propositions": [
+              "$1$",
+              "$0$",
+              "$\\frac12$",
+              "$\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $t\\ge0$, $x\\mapsto\\frac{\\cos(xt)}{(1+t)^2}$ est continue ; pour tout $x$, $t\\mapsto\\frac{\\cos(xt)}{(1+t)^2}$ est continue ; et $\\left|\\frac{\\cos(xt)}{(1+t)^2}\\right|\\le\\frac1{(1+t)^2}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Par le théorème de continuité par domination, $F$ est continue sur $\\mathbb{R}$, donc\n$$\\lim_{x\\to0}F(x)=F(0)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t)^2}=\\left[-\\frac1{1+t}\\right]_0^{+\\infty}=1.$$"
+        },
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}t^2e^{-t}\\cos(xt)\\,\\mathrm{d}t$. Montrer que $F$ est continue sur $\\mathbb{R}$ et en déduire la limite de $F(x)$ quand $x\\to0$.",
+          "indices": [
+            "Majorer $|t^2e^{-t}\\cos(xt)|$ par une fonction de $t$ seul, intégrable sur $\\left[0,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $F(x)$ quand $x\\to0$ ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$0$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $t\\ge0$, $x\\mapsto t^2e^{-t}\\cos(xt)$ est continue ; pour tout $x$, $t\\mapsto t^2e^{-t}\\cos(xt)$ est continue ; et $|t^2e^{-t}\\cos(xt)|\\le t^2e^{-t}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Par le théorème de continuité par domination, $F$ est continue sur $\\mathbb{R}$, donc\n$$\\lim_{x\\to0}F(x)=F(0)=\\int_0^{+\\infty}t^2e^{-t}\\,\\mathrm{d}t=\\Gamma(3)=2.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-continuite-ex2",
+      "carte": "int-l2-parametre-continuite",
+      "difficulte": 2,
+      "titre": "Ensemble de définition et continuité",
+      "enonce": "Pour quels réels $x$ l'intégrale $F(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t^2)^x}$ converge-t-elle ? Montrer que $F$ est continue sur son ensemble de définition et calculer $F(1)$.",
+      "duree_min": 10,
+      "indices": [
+        "Comparer $\\frac1{(1+t^2)^x}$ à une puissance de $t$ quand $t\\to+\\infty$.",
+        "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a$ dans l'ensemble de définition."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'ensemble des réels $x$ pour lesquels l'intégrale converge ?",
+        "propositions": [
+          "$\\left]\\frac12,+\\infty\\right[$",
+          "$\\left]1,+\\infty\\right[$",
+          "$\\left]0,+\\infty\\right[$",
+          "$\\left[\\frac12,+\\infty\\right[$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Convergence.** La fonction $t\\mapsto(1+t^2)^{-x}$ est continue et positive sur $\\left[0,+\\infty\\right[$, et $(1+t^2)^{-x}\\sim t^{-2x}$ quand $t\\to+\\infty$. Elle est intégrable si et seulement si $2x>1$ : l'ensemble de définition est $\\left]\\frac12,+\\infty\\right[$. (Pour $x=\\frac12$, $\\frac1{\\sqrt{1+t^2}}\\sim\\frac1t$ n'est pas intégrable.)\n\n**Continuité.** Soit $a>\\frac12$. Pour $x\\ge a$ et $t\\ge0$, $1+t^2\\ge1$ donne $0<(1+t^2)^{-x}\\le(1+t^2)^{-a}$, intégrable et indépendante de $x$. La fonction $x\\mapsto(1+t^2)^{-x}$ est continue pour chaque $t$. Le théorème de continuité par domination montre que $F$ est continue sur $\\left[a,+\\infty\\right[$ ; comme $a>\\frac12$ est quelconque, $F$ est continue sur $\\left]\\frac12,+\\infty\\right[$. On ne peut pas dominer sur $\\left]\\frac12,+\\infty\\right[$ tout entier : $\\sup_{x>1/2}(1+t^2)^{-x}=(1+t^2)^{-1/2}$ n'est pas intégrable.\n\n**Valeur.** $F(1)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{1+t^2}=\\frac\\pi2$.",
+      "variantes": [
+        {
+          "enonce": "Pour quels réels $x$ l'intégrale $F(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t)^x}$ converge-t-elle ? Montrer que $F$ est continue sur son ensemble de définition et calculer $F(2)$.",
+          "indices": [
+            "Comparer $\\frac1{(1+t)^x}$ à une puissance de $t$ quand $t\\to+\\infty$.",
+            "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a$ dans l'ensemble de définition."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des réels $x$ pour lesquels l'intégrale converge ?",
+            "propositions": [
+              "$\\left]1,+\\infty\\right[$",
+              "$\\left]0,+\\infty\\right[$",
+              "$\\left[1,+\\infty\\right[$",
+              "$\\left]2,+\\infty\\right[$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Convergence.** $t\\mapsto(1+t)^{-x}$ est continue et positive sur $\\left[0,+\\infty\\right[$, et $(1+t)^{-x}\\sim t^{-x}$ en $+\\infty$ : elle est intégrable si et seulement si $x>1$. L'ensemble de définition est $\\left]1,+\\infty\\right[$.\n\n**Continuité.** Pour $a>1$, $x\\ge a$ et $t\\ge0$ : $0<(1+t)^{-x}\\le(1+t)^{-a}$, intégrable et indépendante de $x$. Par domination, $F$ est continue sur $\\left[a,+\\infty\\right[$ pour tout $a>1$, donc sur $\\left]1,+\\infty\\right[$.\n\n**Valeur.** $F(2)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t)^2}=1$ ; plus généralement $F(x)=\\frac1{x-1}$."
+        },
+        {
+          "enonce": "Pour quels réels $x$ l'intégrale $F(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t^3)^x}$ converge-t-elle ? Montrer que $F$ est continue sur son ensemble de définition.",
+          "indices": [
+            "Comparer $\\frac1{(1+t^3)^x}$ à une puissance de $t$ quand $t\\to+\\infty$.",
+            "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a$ dans l'ensemble de définition."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'ensemble des réels $x$ pour lesquels l'intégrale converge ?",
+            "propositions": [
+              "$\\left]\\frac13,+\\infty\\right[$",
+              "$\\left]1,+\\infty\\right[$",
+              "$\\left[\\frac13,+\\infty\\right[$",
+              "$\\left]3,+\\infty\\right[$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Convergence.** $t\\mapsto(1+t^3)^{-x}$ est continue et positive sur $\\left[0,+\\infty\\right[$, et $(1+t^3)^{-x}\\sim t^{-3x}$ en $+\\infty$ : elle est intégrable si et seulement si $3x>1$. L'ensemble de définition est $\\left]\\frac13,+\\infty\\right[$.\n\n**Continuité.** Pour $a>\\frac13$, $x\\ge a$ et $t\\ge0$ : $0<(1+t^3)^{-x}\\le(1+t^3)^{-a}$, intégrable et indépendante de $x$. Par domination, $F$ est continue sur $\\left[a,+\\infty\\right[$ pour tout $a>\\frac13$, donc sur $\\left]\\frac13,+\\infty\\right[$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-continuite-ex3",
+      "carte": "int-l2-parametre-continuite",
+      "difficulte": 3,
+      "titre": "Limite en $+\\infty$ par domination",
+      "enonce": "Pour $x>1$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{1+t^x}$. Déterminer la limite de $F(x)$ quand $x\\to+\\infty$.",
+      "duree_min": 15,
+      "indices": [
+        "Calculer, pour chaque $t\\ge0$ fixé, la limite de $\\frac1{1+t^x}$ quand $x\\to+\\infty$ (distinguer $t<1$, $t=1$, $t>1$).",
+        "Pour $x\\ge2$, trouver une fonction intégrable indépendante de $x$ qui majore $\\frac1{1+t^x}$, en séparant $[0,1]$ et $\\left[1,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $F(x)$ quand $x\\to+\\infty$ ?",
+        "propositions": [
+          "$1$",
+          "$0$",
+          "$\\frac12$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $(x_n)$ une suite de réels $\\ge2$ qui tend vers $+\\infty$, et $\\varphi_n(t)=\\frac1{1+t^{x_n}}$.\n\n**Limite simple.** Si $0\\le t<1$, $t^{x_n}\\to0$ et $\\varphi_n(t)\\to1$ ; si $t=1$, $\\varphi_n(1)=\\frac12$ ; si $t>1$, $t^{x_n}\\to+\\infty$ et $\\varphi_n(t)\\to0$. La limite $\\ell$ vaut $1$ sur $\\left[0,1\\right[$, $\\frac12$ en $1$, $0$ sur $\\left]1,+\\infty\\right[$ : elle est continue par morceaux.\n\n**Domination.** Pour $x\\ge2$ : si $0\\le t\\le1$, $\\frac1{1+t^x}\\le1$ ; si $t\\ge1$, $\\frac1{1+t^x}\\le\\frac1{t^x}\\le\\frac1{t^2}$. La fonction $g$ égale à $1$ sur $[0,1]$ et à $\\frac1{t^2}$ sur $\\left]1,+\\infty\\right[$ est intégrable et indépendante de $x$.\n\n**Conclusion.** Par convergence dominée, $F(x_n)\\to\\int_0^{+\\infty}\\ell(t)\\,\\mathrm{d}t=1$. Ceci vaut pour toute suite, donc $F(x)\\to1$ quand $x\\to+\\infty$. (On peut montrer que $F(x)=\\frac{\\pi/x}{\\sin(\\pi/x)}$, ce qui confirme la limite.)",
+      "variantes": [
+        {
+          "enonce": "Pour $x>2$, on pose $F(x)=\\int_0^{+\\infty}\\frac{t\\,\\mathrm{d}t}{1+t^x}$. Déterminer la limite de $F(x)$ quand $x\\to+\\infty$.",
+          "indices": [
+            "Calculer, pour chaque $t\\ge0$ fixé, la limite de $\\frac t{1+t^x}$ quand $x\\to+\\infty$ (distinguer $t<1$, $t=1$, $t>1$).",
+            "Pour $x\\ge4$, trouver une fonction intégrable indépendante de $x$ qui majore $\\frac t{1+t^x}$, en séparant $[0,1]$ et $\\left[1,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $F(x)$ quand $x\\to+\\infty$ ?",
+            "propositions": [
+              "$\\frac12$",
+              "$1$",
+              "$0$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $(x_n)$ une suite de réels $\\ge4$ qui tend vers $+\\infty$, et $\\varphi_n(t)=\\frac t{1+t^{x_n}}$.\n\n**Limite simple.** $\\varphi_n(t)\\to t$ si $0\\le t<1$, $\\varphi_n(1)=\\frac12$, et $\\varphi_n(t)\\to0$ si $t>1$. La limite $\\ell$ ($t$ sur $\\left[0,1\\right[$, $\\frac12$ en $1$, $0$ ensuite) est continue par morceaux.\n\n**Domination.** Pour $x\\ge4$ : sur $[0,1]$, $\\frac t{1+t^x}\\le1$ ; pour $t\\ge1$, $\\frac t{1+t^x}\\le t^{1-x}\\le\\frac1{t^3}$. La fonction égale à $1$ sur $[0,1]$ et à $\\frac1{t^3}$ ensuite est intégrable.\n\n**Conclusion.** Par convergence dominée, $F(x_n)\\to\\int_0^1t\\,\\mathrm{d}t=\\frac12$, pour toute suite : $F(x)\\to\\frac12$."
+        },
+        {
+          "enonce": "Pour $x>0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t^x)(1+t^2)}$. Déterminer la limite de $F(x)$ quand $x\\to+\\infty$.",
+          "indices": [
+            "Calculer, pour chaque $t\\ge0$ fixé, la limite de $\\frac1{1+t^x}$ quand $x\\to+\\infty$ (distinguer $t<1$, $t=1$, $t>1$).",
+            "Trouver une fonction intégrable indépendante de $x$ qui majore la fonction intégrée."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $F(x)$ quand $x\\to+\\infty$ ?",
+            "propositions": [
+              "$\\frac\\pi4$",
+              "$\\frac\\pi2$",
+              "$\\frac\\pi8$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $(x_n)$ une suite de réels $>0$ qui tend vers $+\\infty$, et $\\varphi_n(t)=\\frac1{(1+t^{x_n})(1+t^2)}$.\n\n**Limite simple.** $\\varphi_n(t)\\to\\frac1{1+t^2}$ si $0\\le t<1$, $\\varphi_n(1)=\\frac14$, et $\\varphi_n(t)\\to0$ si $t>1$ : la limite $\\ell$ est continue par morceaux.\n\n**Domination.** $0\\le\\varphi_n(t)\\le\\frac1{1+t^2}$, intégrable et indépendante de $n$.\n\n**Conclusion.** Par convergence dominée, $F(x_n)\\to\\int_0^1\\frac{\\mathrm{d}t}{1+t^2}=\\frac\\pi4$, pour toute suite : $F(x)\\to\\frac\\pi4$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-continuite-ex4",
+      "carte": "int-l2-parametre-continuite",
+      "difficulte": 4,
+      "titre": "Équivalent d'une intégrale à paramètre en $0^+$",
+      "enonce": "Pour $x>0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{e^{-t}}{x+t}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est définie et continue sur $\\left]0,+\\infty\\right[$, et que $F(x)\\to0$ quand $x\\to+\\infty$.\n\n**2.** Montrer que $F(x)-\\ln\\left(1+\\frac1x\\right)$ est bornée sur $\\left]0,1\\right]$, et en déduire un équivalent de $F(x)$ quand $x\\to0^+$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a>0$.",
+        "Écrire $F(x)=\\int_0^1\\frac{\\mathrm{d}t}{x+t}+\\int_0^1\\frac{e^{-t}-1}{x+t}\\,\\mathrm{d}t+\\int_1^{+\\infty}\\frac{e^{-t}}{x+t}\\,\\mathrm{d}t$.",
+        "$|e^{-t}-1|\\le t$ pour $t\\ge0$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est un équivalent de $F(x)$ quand $x\\to0^+$ ?",
+        "propositions": [
+          "$-\\ln x$",
+          "$\\frac1x$",
+          "$\\frac1{\\sqrt x}$",
+          "$-\\frac{\\ln x}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $x>0$, $t\\mapsto\\frac{e^{-t}}{x+t}$ est continue sur $\\left[0,+\\infty\\right[$ et majorée par $\\frac{e^{-t}}x$, intégrable : $F$ est définie. Soit $a>0$ : pour $x\\ge a$ et $t\\ge0$, $0\\le\\frac{e^{-t}}{x+t}\\le\\frac{e^{-t}}a$, intégrable et indépendante de $x$, et $x\\mapsto\\frac{e^{-t}}{x+t}$ est continue. Par domination, $F$ est continue sur $\\left[a,+\\infty\\right[$, pour tout $a>0$, donc sur $\\left]0,+\\infty\\right[$. Enfin $0\\le F(x)\\le\\frac1x\\int_0^{+\\infty}e^{-t}\\,\\mathrm{d}t=\\frac1x\\to0$.\n\n**2.** Pour $x\\in\\left]0,1\\right]$, $\\int_0^1\\frac{\\mathrm{d}t}{x+t}=\\ln\\frac{1+x}x=\\ln\\left(1+\\frac1x\\right)$, et\n$$F(x)-\\ln\\left(1+\\frac1x\\right)=\\int_0^1\\frac{e^{-t}-1}{x+t}\\,\\mathrm{d}t+\\int_1^{+\\infty}\\frac{e^{-t}}{x+t}\\,\\mathrm{d}t.$$\nComme $|e^{-t}-1|\\le t\\le x+t$, la première intégrale est majorée en valeur absolue par $1$ ; la seconde est comprise entre $0$ et $\\int_1^{+\\infty}e^{-t}\\,\\mathrm{d}t=e^{-1}$. La différence est donc bornée. Or $\\ln\\left(1+\\frac1x\\right)=-\\ln x+\\ln(1+x)$, avec $\\ln(1+x)\\to0$ et $-\\ln x\\to+\\infty$ : $F(x)=-\\ln x+O(1)$, donc\n$$F(x)\\underset{x\\to0^+}{\\sim}-\\ln x.$$",
+      "variantes": [
+        {
+          "enonce": "Pour $x>0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{e^{-t}}{x+t^2}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est définie et continue sur $\\left]0,+\\infty\\right[$, et que $F(x)\\to0$ quand $x\\to+\\infty$.\n\n**2.** Montrer que $F(x)-\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{x+t^2}$ est négligeable devant $\\frac1{\\sqrt x}$ quand $x\\to0^+$, et en déduire un équivalent de $F(x)$ quand $x\\to0^+$.",
+          "indices": [
+            "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a>0$.",
+            "Calculer $\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{x+t^2}$ par le changement de variable $t=\\sqrt x\\,u$.",
+            "Pour l'écart, utiliser $0\\le1-e^{-t}\\le\\min(t,1)$ et séparer $[0,1]$ et $\\left[1,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est un équivalent de $F(x)$ quand $x\\to0^+$ ?",
+            "propositions": [
+              "$\\frac{\\pi}{2\\sqrt x}$",
+              "$\\frac1{\\sqrt x}$",
+              "$-\\ln x$",
+              "$\\frac{\\pi}{2x}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x>0$, $0\\le\\frac{e^{-t}}{x+t^2}\\le\\frac{e^{-t}}x$, intégrable : $F$ est définie. Pour $x\\ge a>0$, $\\frac{e^{-t}}{x+t^2}\\le\\frac{e^{-t}}a$, intégrable et indépendante de $x$ : par domination, $F$ est continue sur $\\left[a,+\\infty\\right[$ pour tout $a>0$. Enfin $0\\le F(x)\\le\\frac1x\\to0$.\n\n**2.** Avec $t=\\sqrt x\\,u$, $\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{x+t^2}=\\frac1{\\sqrt x}\\int_0^{+\\infty}\\frac{\\mathrm{d}u}{1+u^2}=\\frac\\pi{2\\sqrt x}$. Ensuite, pour $0<x\\le1$,\n$$0\\le\\int_0^{+\\infty}\\frac{1-e^{-t}}{x+t^2}\\,\\mathrm{d}t\\le\\int_0^1\\frac{t}{x+t^2}\\,\\mathrm{d}t+\\int_1^{+\\infty}\\frac{\\mathrm{d}t}{t^2}=\\frac12\\ln\\left(1+\\frac1x\\right)+1,$$\net $\\sqrt x\\left(\\frac12\\ln\\left(1+\\frac1x\\right)+1\\right)\\to0$ (croissances comparées). Donc $F(x)=\\frac\\pi{2\\sqrt x}+o\\left(\\frac1{\\sqrt x}\\right)$, soit $F(x)\\underset{x\\to0^+}{\\sim}\\frac\\pi{2\\sqrt x}$."
+        },
+        {
+          "enonce": "Pour $x>0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{e^{-t}}{\\sqrt x+t}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est définie et continue sur $\\left]0,+\\infty\\right[$, et que $F(x)\\to0$ quand $x\\to+\\infty$.\n\n**2.** En posant $y=\\sqrt x$, montrer que $F(x)-\\ln\\left(1+\\frac1y\\right)$ est bornée pour $x\\in\\left]0,1\\right]$, et en déduire un équivalent de $F(x)$ quand $x\\to0^+$.",
+          "indices": [
+            "Pour la continuité, dominer sur $\\left[a,+\\infty\\right[$ avec $a>0$.",
+            "Écrire $F(x)=\\int_0^1\\frac{\\mathrm{d}t}{y+t}+\\int_0^1\\frac{e^{-t}-1}{y+t}\\,\\mathrm{d}t+\\int_1^{+\\infty}\\frac{e^{-t}}{y+t}\\,\\mathrm{d}t$.",
+            "$|e^{-t}-1|\\le t$ pour $t\\ge0$, et $\\ln\\left(1+\\frac1y\\right)=-\\ln y+\\ln(1+y)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est un équivalent de $F(x)$ quand $x\\to0^+$ ?",
+            "propositions": [
+              "$-\\frac{\\ln x}{2}$",
+              "$-\\ln x$",
+              "$\\frac1{\\sqrt x}$",
+              "$-2\\ln x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x>0$, $0\\le\\frac{e^{-t}}{\\sqrt x+t}\\le\\frac{e^{-t}}{\\sqrt x}$, intégrable : $F$ est définie. Pour $x\\ge a>0$, $\\frac{e^{-t}}{\\sqrt x+t}\\le\\frac{e^{-t}}{\\sqrt a}$, intégrable et indépendante de $x$, et $x\\mapsto\\frac{e^{-t}}{\\sqrt x+t}$ est continue : $F$ est continue sur $\\left[a,+\\infty\\right[$ pour tout $a>0$. Enfin $0\\le F(x)\\le\\frac1{\\sqrt x}\\to0$.\n\n**2.** Pour $y=\\sqrt x\\in\\left]0,1\\right]$, $\\int_0^1\\frac{\\mathrm{d}t}{y+t}=\\ln\\left(1+\\frac1y\\right)$, et\n$$F(x)-\\ln\\left(1+\\frac1y\\right)=\\int_0^1\\frac{e^{-t}-1}{y+t}\\,\\mathrm{d}t+\\int_1^{+\\infty}\\frac{e^{-t}}{y+t}\\,\\mathrm{d}t,$$\nde valeur absolue au plus $1+e^{-1}$ (car $|e^{-t}-1|\\le t\\le y+t$). Comme $\\ln\\left(1+\\frac1y\\right)=-\\ln y+\\ln(1+y)$ et $-\\ln y=-\\frac12\\ln x\\to+\\infty$, on obtient $F(x)\\underset{x\\to0^+}{\\sim}-\\frac{\\ln x}2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-derivation-ex1",
+      "carte": "int-l2-parametre-derivation",
+      "difficulte": 2,
+      "titre": "Moments de l'exponentielle par dérivation sous le signe somme",
+      "enonce": "Pour $x>0$, on pose $G(x)=\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$. Montrer que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ en dérivant sous le signe somme, exprimer $G^{(n)}(x)$ de deux façons, et en déduire la valeur de $\\int_0^{+\\infty}t^3e^{-2t}\\,\\mathrm{d}t$.",
+      "duree_min": 10,
+      "indices": [
+        "Pour $x\\ge b>0$, majorer $t^ke^{-xt}$ par $t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$, puis prendre $n=3$ et $x=2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$\\frac38$",
+          "$\\frac3{16}$",
+          "$\\frac18$",
+          "$\\frac34$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Posons $f(x,t)=e^{-xt}$ pour $x>0$, $t\\ge0$ : $\\frac{\\partial^kf}{\\partial x^k}(x,t)=(-t)^ke^{-xt}$, continue en $(x,t)$. Soit $b>0$ : pour $x\\ge b$, $|(-t)^ke^{-xt}|\\le t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Le théorème de dérivation, appliqué de proche en proche avec cette domination sur chaque $\\left[b,+\\infty\\right[$, montre que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ et que\n$$G^{(n)}(x)=(-1)^n\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t.$$\nD'autre part, $G(x)=\\frac1x$ donne $G^{(n)}(x)=\\frac{(-1)^nn!}{x^{n+1}}$. Donc $\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t=\\frac{n!}{x^{n+1}}$, et avec $n=3$, $x=2$ : $\\frac{6}{2^{4}}=\\frac38$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x>0$, on pose $G(x)=\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$. Montrer que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ en dérivant sous le signe somme, exprimer $G^{(n)}(x)$ de deux façons, et en déduire la valeur de $\\int_0^{+\\infty}t^2e^{-3t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour $x\\ge b>0$, majorer $t^ke^{-xt}$ par $t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$, puis prendre $n=2$ et $x=3$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac2{27}$",
+              "$\\frac29$",
+              "$\\frac1{27}$",
+              "$\\frac2{81}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Posons $f(x,t)=e^{-xt}$ pour $x>0$, $t\\ge0$ : $\\frac{\\partial^kf}{\\partial x^k}(x,t)=(-t)^ke^{-xt}$, continue en $(x,t)$. Soit $b>0$ : pour $x\\ge b$, $|(-t)^ke^{-xt}|\\le t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Le théorème de dérivation, appliqué de proche en proche avec cette domination sur chaque $\\left[b,+\\infty\\right[$, montre que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ et que\n$$G^{(n)}(x)=(-1)^n\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t.$$\nD'autre part, $G(x)=\\frac1x$ donne $G^{(n)}(x)=\\frac{(-1)^nn!}{x^{n+1}}$. Donc $\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t=\\frac{n!}{x^{n+1}}$, et avec $n=2$, $x=3$ : $\\frac{2}{3^{3}}=\\frac2{27}$."
+        },
+        {
+          "enonce": "Pour $x>0$, on pose $G(x)=\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$. Montrer que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ en dérivant sous le signe somme, exprimer $G^{(n)}(x)$ de deux façons, et en déduire la valeur de $\\int_0^{+\\infty}t^4e^{-t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour $x\\ge b>0$, majorer $t^ke^{-xt}$ par $t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$, puis prendre $n=4$ et $x=1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$24$",
+              "$6$",
+              "$120$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Posons $f(x,t)=e^{-xt}$ pour $x>0$, $t\\ge0$ : $\\frac{\\partial^kf}{\\partial x^k}(x,t)=(-t)^ke^{-xt}$, continue en $(x,t)$. Soit $b>0$ : pour $x\\ge b$, $|(-t)^ke^{-xt}|\\le t^ke^{-bt}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. Le théorème de dérivation, appliqué de proche en proche avec cette domination sur chaque $\\left[b,+\\infty\\right[$, montre que $G$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ et que\n$$G^{(n)}(x)=(-1)^n\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t.$$\nD'autre part, $G(x)=\\frac1x$ donne $G^{(n)}(x)=\\frac{(-1)^nn!}{x^{n+1}}$. Donc $\\int_0^{+\\infty}t^ne^{-xt}\\,\\mathrm{d}t=\\frac{n!}{x^{n+1}}$, et avec $n=4$, $x=1$ : $\\frac{24}{1^{5}}=24$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-derivation-ex2",
+      "carte": "int-l2-parametre-derivation",
+      "difficulte": 3,
+      "titre": "Calcul de $\\int_0^{+\\infty}\\frac{1-\\cos(xt)}{t}e^{-at}\\,\\mathrm{d}t$",
+      "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{1-\\cos(xt)}{t}e^{-t}\\,\\mathrm{d}t$. Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, calculer $F'(x)$, puis $F(x)$, et en déduire $F(1)$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour l'intégrabilité, utiliser $0\\le1-\\cos u\\le\\frac{u^2}2$.",
+        "La dérivée partielle par rapport à $x$ est $\\sin(xt)e^{-t}$ ; calculer $\\int_0^{+\\infty}\\sin(xt)e^{-t}\\,\\mathrm{d}t$ comme partie imaginaire d'une intégrale d'exponentielle complexe.",
+        "$F(0)=0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $F(1)$ ?",
+        "propositions": [
+          "$\\frac12\\ln2$",
+          "$\\ln2$",
+          "$\\frac\\pi4$",
+          "$1-\\frac1{\\sqrt2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Définition.** Pour $t>0$, $0\\le\\frac{1-\\cos(xt)}te^{-t}\\le\\frac{x^2t}2e^{-t}$, intégrable sur $\\left]0,+\\infty\\right[$ : $F(x)$ est bien défini.\n\n**Dérivation.** $\\frac{\\partial}{\\partial x}\\left(\\frac{1-\\cos(xt)}te^{-t}\\right)=\\sin(xt)e^{-t}$, continue en $x$ et en $t$, et $|\\sin(xt)e^{-t}|\\le e^{-t}$, intégrable et indépendante de $x$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et\n$$F'(x)=\\int_0^{+\\infty}\\sin(xt)e^{-t}\\,\\mathrm{d}t=\\mathrm{Im}\\int_0^{+\\infty}e^{(-1+ix)t}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{1-ix}=\\frac x{1+x^2}.$$\n\n**Calcul.** Comme $F(0)=0$, $F(x)=\\frac12\\ln(1+x^2)$, et $F(1)=\\frac12\\ln2$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{1-\\cos(xt)}{t}e^{-2t}\\,\\mathrm{d}t$. Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, calculer $F'(x)$, puis $F(x)$, et en déduire $F(1)$.",
+          "indices": [
+            "Pour l'intégrabilité, utiliser $0\\le1-\\cos u\\le\\frac{u^2}2$.",
+            "La dérivée partielle par rapport à $x$ est $\\sin(xt)e^{-2t}$ ; calculer $\\int_0^{+\\infty}\\sin(xt)e^{-2t}\\,\\mathrm{d}t$ comme partie imaginaire d'une intégrale d'exponentielle complexe.",
+            "$F(0)=0$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F(1)$ ?",
+            "propositions": [
+              "$\\frac12\\ln\\frac54$",
+              "$\\frac12\\ln2$",
+              "$\\ln\\frac54$",
+              "$\\arctan\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Définition.** Pour $t>0$, $0\\le\\frac{1-\\cos(xt)}te^{-2t}\\le\\frac{x^2t}2e^{-2t}$, intégrable sur $\\left]0,+\\infty\\right[$ : $F(x)$ est bien défini.\n\n**Dérivation.** $\\frac{\\partial}{\\partial x}\\left(\\frac{1-\\cos(xt)}te^{-2t}\\right)=\\sin(xt)e^{-2t}$, continue en $x$ et en $t$, et $|\\sin(xt)e^{-2t}|\\le e^{-2t}$, intégrable et indépendante de $x$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et\n$$F'(x)=\\int_0^{+\\infty}\\sin(xt)e^{-2t}\\,\\mathrm{d}t=\\mathrm{Im}\\int_0^{+\\infty}e^{(-2+ix)t}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{2-ix}=\\frac x{4+x^2}.$$\n\n**Calcul.** Comme $F(0)=0$, $F(x)=\\frac12\\ln\\left(1+\\frac{x^2}4\\right)$, et $F(1)=\\frac12\\ln\\frac54$."
+        },
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{1-\\cos(xt)}{t}e^{-t}\\,\\mathrm{d}t$. Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, calculer $F'(x)$, puis $F(x)$, et en déduire $F(\\sqrt3)$.",
+          "indices": [
+            "Pour l'intégrabilité, utiliser $0\\le1-\\cos u\\le\\frac{u^2}2$.",
+            "La dérivée partielle par rapport à $x$ est $\\sin(xt)e^{-t}$ ; calculer $\\int_0^{+\\infty}\\sin(xt)e^{-t}\\,\\mathrm{d}t$ comme partie imaginaire d'une intégrale d'exponentielle complexe.",
+            "$F(0)=0$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F(\\sqrt3)$ ?",
+            "propositions": [
+              "$\\ln2$",
+              "$\\frac12\\ln2$",
+              "$\\frac\\pi3$",
+              "$\\ln4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Définition.** Pour $t>0$, $0\\le\\frac{1-\\cos(xt)}te^{-t}\\le\\frac{x^2t}2e^{-t}$, intégrable sur $\\left]0,+\\infty\\right[$ : $F(x)$ est bien défini.\n\n**Dérivation.** $\\frac{\\partial}{\\partial x}\\left(\\frac{1-\\cos(xt)}te^{-t}\\right)=\\sin(xt)e^{-t}$, continue en $x$ et en $t$, et $|\\sin(xt)e^{-t}|\\le e^{-t}$, intégrable et indépendante de $x$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et\n$$F'(x)=\\int_0^{+\\infty}\\sin(xt)e^{-t}\\,\\mathrm{d}t=\\mathrm{Im}\\int_0^{+\\infty}e^{(-1+ix)t}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{1-ix}=\\frac x{1+x^2}.$$\n\n**Calcul.** Comme $F(0)=0$, $F(x)=\\frac12\\ln(1+x^2)$, et $F(\\sqrt3)=\\ln2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-derivation-ex3",
+      "carte": "int-l2-parametre-derivation",
+      "difficulte": 3,
+      "titre": "Une équation différentielle vérifiée par une intégrale à paramètre",
+      "enonce": "Pour $x\\ge0$, on pose $F(x)=\\int_0^{+\\infty}\\frac{e^{-xt}}{1+t^2}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est continue sur $\\left[0,+\\infty\\right[$ et de classe $\\mathcal{C}^2$ sur $\\left]0,+\\infty\\right[$, en exprimant $F'$ et $F''$ par des intégrales.\n\n**2.** En déduire une équation différentielle linéaire vérifiée par $F$ sur $\\left]0,+\\infty\\right[$, et la limite de $F$ en $+\\infty$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour $x\\ge a>0$, majorer $\\frac{t^ke^{-xt}}{1+t^2}$ ($k=1,2$) par une fonction de $t$ seul.",
+        "Calculer $F''(x)+F(x)$ en regroupant les deux intégrales."
+      ],
+      "reponse_finale": {
+        "question": "Quelle équation $F$ vérifie-t-elle sur $\\left]0,+\\infty\\right[$ ?",
+        "propositions": [
+          "$F''+F=\\frac1x$",
+          "$F''-F=\\frac1x$",
+          "$F''+F=\\frac1{x^2}$",
+          "$F''+F=0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $x,t\\ge0$, $0\\le\\frac{e^{-xt}}{1+t^2}\\le\\frac1{1+t^2}$, intégrable et indépendante de $x$ : par domination, $F$ est continue sur $\\left[0,+\\infty\\right[$. Les dérivées partielles $\\frac{\\partial f}{\\partial x}=-\\frac{te^{-xt}}{1+t^2}$ et $\\frac{\\partial^2f}{\\partial x^2}=\\frac{t^2e^{-xt}}{1+t^2}$ sont continues ; pour $x\\ge a>0$, elles sont majorées en module par $e^{-at}$ (car $\\frac t{1+t^2}\\le1$ et $\\frac{t^2}{1+t^2}\\le1$), intégrable et indépendante de $x$. Le théorème de dérivation, appliqué deux fois sur chaque $\\left[a,+\\infty\\right[$, montre que $F$ est de classe $\\mathcal{C}^2$ sur $\\left]0,+\\infty\\right[$, avec\n$$F'(x)=-\\int_0^{+\\infty}\\frac{te^{-xt}}{1+t^2}\\,\\mathrm{d}t,\\qquad F''(x)=\\int_0^{+\\infty}\\frac{t^2e^{-xt}}{1+t^2}\\,\\mathrm{d}t.$$\n\n**2.** Pour $x>0$,\n$$F''(x)+F(x)=\\int_0^{+\\infty}\\frac{(t^2+1)e^{-xt}}{1+t^2}\\,\\mathrm{d}t=\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x.$$\nEnfin $0\\le F(x)\\le\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$, donc $F(x)\\to0$ quand $x\\to+\\infty$."
+    },
+    {
+      "id": "int-l2-parametre-derivation-ex4",
+      "carte": "int-l2-parametre-derivation",
+      "difficulte": 4,
+      "titre": "Calcul d'une intégrale par dérivation : $\\int_0^{+\\infty}\\frac{\\arctan(xt)}{t(1+t^2)}\\,\\mathrm{d}t$",
+      "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\arctan(xt)}{t(1+t^2)}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, et exprimer $F'(x)$ par une intégrale.\n\n**2.** Calculer $F'(x)$ pour $x>0$, $x\\neq1$, à l'aide d'une décomposition en éléments simples en $t$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $\\int_0^{+\\infty}\\frac{\\arctan t}{t(1+t^2)}\\,\\mathrm{d}t$.",
+      "duree_min": 30,
+      "indices": [
+        "$|\\arctan u|\\le|u|$, et $\\frac{\\partial}{\\partial x}\\frac{\\arctan(xt)}{t(1+t^2)}=\\frac1{(1+x^2t^2)(1+t^2)}$.",
+        "Pour $x\\neq\\pm1$, écrire $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$.",
+        "$F(0)=0$, et $F'$ est continue en $1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$\\frac\\pi2\\ln2$",
+          "$\\ln2$",
+          "$\\frac\\pi4\\ln2$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $t>0$, $\\left|\\frac{\\arctan(xt)}{t(1+t^2)}\\right|\\le\\frac{|x|}{1+t^2}$ : la fonction intégrée est intégrable sur $\\left]0,+\\infty\\right[$. Sa dérivée partielle $\\frac{\\partial f}{\\partial x}(x,t)=\\frac1{(1+x^2t^2)(1+t^2)}$ est continue en $x$ et en $t$, et majorée par $\\frac1{1+t^2}$, intégrable et indépendante de $x\\in\\mathbb{R}$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et $F'(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+x^2t^2)(1+t^2)}$.\n\n**2.** Pour $x>0$, $x\\neq1$, la décomposition $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$ et $\\int_0^{+\\infty}\\frac{x^2\\,\\mathrm{d}t}{1+x^2t^2}=x\\cdot\\frac\\pi2$ donnent\n$$F'(x)=\\frac1{1-x^2}\\left(\\frac\\pi2-\\frac{\\pi x}2\\right)=\\frac\\pi{2(1+x)}.$$\n\n**3.** Par continuité de $F'$, cette formule vaut aussi en $x=1$, donc sur $\\left]0,+\\infty\\right[$, et $F(x)=\\frac\\pi2\\ln(1+x)+c$ pour $x>0$. Comme $F$ est continue en $0$ avec $F(0)=0$, $c=0$ : $F(x)=\\frac\\pi2\\ln(1+x)$ pour $x\\ge0$ (et $F$ est impaire). D'où $\\int_0^{+\\infty}\\frac{\\arctan t}{t(1+t^2)}\\,\\mathrm{d}t$ $=\\frac\\pi2\\ln2$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\arctan(xt)}{t(1+t^2)}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, et exprimer $F'(x)$ par une intégrale.\n\n**2.** Calculer $F'(x)$ pour $x>0$, $x\\neq1$, à l'aide d'une décomposition en éléments simples en $t$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $\\int_0^{+\\infty}\\frac{\\arctan(2t)}{t(1+t^2)}\\,\\mathrm{d}t$.",
+          "indices": [
+            "$|\\arctan u|\\le|u|$, et $\\frac{\\partial}{\\partial x}\\frac{\\arctan(xt)}{t(1+t^2)}=\\frac1{(1+x^2t^2)(1+t^2)}$.",
+            "Pour $x\\neq\\pm1$, écrire $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$.",
+            "$F(0)=0$, et $F'$ est continue en $1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac\\pi2\\ln3$",
+              "$\\frac\\pi2\\ln2$",
+              "$\\pi\\ln3$",
+              "$\\frac\\pi4\\ln3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t>0$, $\\left|\\frac{\\arctan(xt)}{t(1+t^2)}\\right|\\le\\frac{|x|}{1+t^2}$ : la fonction intégrée est intégrable sur $\\left]0,+\\infty\\right[$. Sa dérivée partielle $\\frac{\\partial f}{\\partial x}(x,t)=\\frac1{(1+x^2t^2)(1+t^2)}$ est continue en $x$ et en $t$, et majorée par $\\frac1{1+t^2}$, intégrable et indépendante de $x\\in\\mathbb{R}$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et $F'(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+x^2t^2)(1+t^2)}$.\n\n**2.** Pour $x>0$, $x\\neq1$, la décomposition $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$ et $\\int_0^{+\\infty}\\frac{x^2\\,\\mathrm{d}t}{1+x^2t^2}=x\\cdot\\frac\\pi2$ donnent\n$$F'(x)=\\frac1{1-x^2}\\left(\\frac\\pi2-\\frac{\\pi x}2\\right)=\\frac\\pi{2(1+x)}.$$\n\n**3.** Par continuité de $F'$, cette formule vaut aussi en $x=1$, donc sur $\\left]0,+\\infty\\right[$, et $F(x)=\\frac\\pi2\\ln(1+x)+c$ pour $x>0$. Comme $F$ est continue en $0$ avec $F(0)=0$, $c=0$ : $F(x)=\\frac\\pi2\\ln(1+x)$ pour $x\\ge0$ (et $F$ est impaire). D'où $\\int_0^{+\\infty}\\frac{\\arctan(2t)}{t(1+t^2)}\\,\\mathrm{d}t$ $=\\frac\\pi2\\ln3$."
+        },
+        {
+          "enonce": "Pour $x\\in\\mathbb{R}$, on pose $F(x)=\\int_0^{+\\infty}\\frac{\\arctan(xt)}{t(1+t^2)}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $F$ est bien définie et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, et exprimer $F'(x)$ par une intégrale.\n\n**2.** Calculer $F'(x)$ pour $x>0$, $x\\neq1$, à l'aide d'une décomposition en éléments simples en $t$.\n\n**3.** En déduire $F(x)$ pour $x\\ge0$, puis la valeur de $\\int_0^{+\\infty}\\frac{\\arctan(t/2)}{t(1+t^2)}\\,\\mathrm{d}t$.",
+          "indices": [
+            "$|\\arctan u|\\le|u|$, et $\\frac{\\partial}{\\partial x}\\frac{\\arctan(xt)}{t(1+t^2)}=\\frac1{(1+x^2t^2)(1+t^2)}$.",
+            "Pour $x\\neq\\pm1$, écrire $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$.",
+            "$F(0)=0$, et $F'$ est continue en $1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac\\pi2\\ln\\frac32$",
+              "$\\frac\\pi4\\ln\\frac32$",
+              "$\\frac\\pi2\\ln2$",
+              "$\\frac\\pi4\\ln3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t>0$, $\\left|\\frac{\\arctan(xt)}{t(1+t^2)}\\right|\\le\\frac{|x|}{1+t^2}$ : la fonction intégrée est intégrable sur $\\left]0,+\\infty\\right[$. Sa dérivée partielle $\\frac{\\partial f}{\\partial x}(x,t)=\\frac1{(1+x^2t^2)(1+t^2)}$ est continue en $x$ et en $t$, et majorée par $\\frac1{1+t^2}$, intégrable et indépendante de $x\\in\\mathbb{R}$. Par le théorème de dérivation par domination, $F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ et $F'(x)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+x^2t^2)(1+t^2)}$.\n\n**2.** Pour $x>0$, $x\\neq1$, la décomposition $\\frac1{(1+x^2t^2)(1+t^2)}=\\frac1{1-x^2}\\left(\\frac1{1+t^2}-\\frac{x^2}{1+x^2t^2}\\right)$ et $\\int_0^{+\\infty}\\frac{x^2\\,\\mathrm{d}t}{1+x^2t^2}=x\\cdot\\frac\\pi2$ donnent\n$$F'(x)=\\frac1{1-x^2}\\left(\\frac\\pi2-\\frac{\\pi x}2\\right)=\\frac\\pi{2(1+x)}.$$\n\n**3.** Par continuité de $F'$, cette formule vaut aussi en $x=1$, donc sur $\\left]0,+\\infty\\right[$, et $F(x)=\\frac\\pi2\\ln(1+x)+c$ pour $x>0$. Comme $F$ est continue en $0$ avec $F(0)=0$, $c=0$ : $F(x)=\\frac\\pi2\\ln(1+x)$ pour $x\\ge0$ (et $F$ est impaire). D'où $\\int_0^{+\\infty}\\frac{\\arctan(t/2)}{t(1+t^2)}\\,\\mathrm{d}t$ $=\\frac\\pi2\\ln\\frac32$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gamma-ex1",
+      "carte": "int-l2-parametre-gamma",
+      "difficulte": 1,
+      "titre": "Une intégrale de logarithme ramenée à la fonction Gamma",
+      "enonce": "À l'aide du changement de variable $t=-\\ln u$, calculer $\\int_0^1(\\ln u)^4\\,\\mathrm{d}u$.",
+      "duree_min": 5,
+      "indices": [
+        "Avec $u=e^{-t}$, $\\mathrm{d}u=-e^{-t}\\,\\mathrm{d}t$, et $u$ décrit $\\left]0,1\\right]$ quand $t$ décrit $\\left[0,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$24$",
+          "$-24$",
+          "$4$",
+          "$120$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le changement de variable $u=e^{-t}$ (bijection $\\mathcal{C}^1$ de $\\left[0,+\\infty\\right[$ sur $\\left]0,1\\right]$, avec $\\ln u=-t$, $\\mathrm{d}u=-e^{-t}\\,\\mathrm{d}t$) donne, les intégrales étant de même nature,\n$$\\int_0^1(\\ln u)^4\\,\\mathrm{d}u=\\int_0^{+\\infty}(-t)^4e^{-t}\\,\\mathrm{d}t=\\Gamma(5)=4!=24.$$",
+      "variantes": [
+        {
+          "enonce": "À l'aide du changement de variable $t=-\\ln u$, calculer $\\int_0^1(\\ln u)^3\\,\\mathrm{d}u$.",
+          "indices": [
+            "Avec $u=e^{-t}$, $\\mathrm{d}u=-e^{-t}\\,\\mathrm{d}t$ ; attention au signe de $(\\ln u)^3$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$-6$",
+              "$6$",
+              "$-2$",
+              "$-24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=e^{-t}$ ($\\ln u=-t$, $\\mathrm{d}u=-e^{-t}\\,\\mathrm{d}t$) :\n$$\\int_0^1(\\ln u)^3\\,\\mathrm{d}u=\\int_0^{+\\infty}(-t)^3e^{-t}\\,\\mathrm{d}t=-\\Gamma(4)=-3!=-6.$$"
+        },
+        {
+          "enonce": "À l'aide du changement de variable $t=-\\ln u$, calculer $\\int_0^1u(\\ln u)^2\\,\\mathrm{d}u$.",
+          "indices": [
+            "Avec $u=e^{-t}$, on obtient une intégrale de la forme $\\int_0^{+\\infty}t^2e^{-\\lambda t}\\,\\mathrm{d}t$, puis on pose $s=\\lambda t$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac14$",
+              "$2$",
+              "$\\frac12$",
+              "$\\frac18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=e^{-t}$ ($\\ln u=-t$, $\\mathrm{d}u=-e^{-t}\\,\\mathrm{d}t$) :\n$$\\int_0^1u(\\ln u)^2\\,\\mathrm{d}u=\\int_0^{+\\infty}e^{-t}t^2e^{-t}\\,\\mathrm{d}t=\\int_0^{+\\infty}t^2e^{-2t}\\,\\mathrm{d}t=\\frac1{2^3}\\Gamma(3)=\\frac14$$\n(changement de variable $s=2t$)."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gamma-ex2",
+      "carte": "int-l2-parametre-gamma",
+      "difficulte": 2,
+      "titre": "Intégrale gaussienne ramenée à la fonction Gamma",
+      "enonce": "À l'aide du changement de variable $t=u^2$, exprimer $\\int_0^{+\\infty}u^{5}e^{-u^2}\\,\\mathrm{d}u$ à l'aide de la fonction $\\Gamma$, puis calculer sa valeur.",
+      "duree_min": 8,
+      "indices": [
+        "Pour $u>0$, $u=\\sqrt t$ et $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ ; reconnaître ensuite une valeur de $\\Gamma$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$1$",
+          "$2$",
+          "$\\frac12$",
+          "$60$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le changement de variable $u=\\sqrt t$ (bijection $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même) donne $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ et\n$$\\int_0^{+\\infty}u^{5}e^{-u^2}\\,\\mathrm{d}u=\\int_0^{+\\infty}t^{5/2}e^{-t}\\frac{\\mathrm{d}t}{2t^{1/2}}=\\frac12\\int_0^{+\\infty}t^{2}e^{-t}\\,\\mathrm{d}t=\\frac12\\Gamma(3)=\\frac12\\cdot2!=1.$$",
+      "variantes": [
+        {
+          "enonce": "À l'aide du changement de variable $t=u^2$, exprimer $\\int_0^{+\\infty}u^{3}e^{-u^2}\\,\\mathrm{d}u$ à l'aide de la fonction $\\Gamma$, puis calculer sa valeur.",
+          "indices": [
+            "Pour $u>0$, $u=\\sqrt t$ et $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ ; reconnaître ensuite une valeur de $\\Gamma$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac12$",
+              "$1$",
+              "$3$",
+              "$\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le changement de variable $u=\\sqrt t$ (bijection $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même) donne $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ et\n$$\\int_0^{+\\infty}u^{3}e^{-u^2}\\,\\mathrm{d}u=\\int_0^{+\\infty}t^{3/2}e^{-t}\\frac{\\mathrm{d}t}{2t^{1/2}}=\\frac12\\int_0^{+\\infty}t^{1}e^{-t}\\,\\mathrm{d}t=\\frac12\\Gamma(2)=\\frac12\\cdot1!=\\frac12.$$"
+        },
+        {
+          "enonce": "À l'aide du changement de variable $t=u^2$, exprimer $\\int_0^{+\\infty}u^{7}e^{-u^2}\\,\\mathrm{d}u$ à l'aide de la fonction $\\Gamma$, puis calculer sa valeur.",
+          "indices": [
+            "Pour $u>0$, $u=\\sqrt t$ et $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ ; reconnaître ensuite une valeur de $\\Gamma$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$3$",
+              "$6$",
+              "$12$",
+              "$24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le changement de variable $u=\\sqrt t$ (bijection $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même) donne $\\mathrm{d}u=\\frac{\\mathrm{d}t}{2\\sqrt t}$ et\n$$\\int_0^{+\\infty}u^{7}e^{-u^2}\\,\\mathrm{d}u=\\int_0^{+\\infty}t^{7/2}e^{-t}\\frac{\\mathrm{d}t}{2t^{1/2}}=\\frac12\\int_0^{+\\infty}t^{3}e^{-t}\\,\\mathrm{d}t=\\frac12\\Gamma(4)=\\frac12\\cdot3!=3.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gamma-ex3",
+      "carte": "int-l2-parametre-gamma",
+      "difficulte": 3,
+      "titre": "Valeurs de Gamma aux demi-entiers",
+      "enonce": "On admet que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$. Montrer que $\\Gamma\\left(n+\\frac12\\right)=\\frac{(2n)!}{4^nn!}\\sqrt\\pi$ pour tout $n\\in\\mathbb{N}$, puis calculer $\\Gamma\\left(\\frac72\\right)$.",
+      "duree_min": 15,
+      "indices": [
+        "Appliquer $\\Gamma(x+1)=x\\Gamma(x)$ avec $x=n+\\frac12$, et raisonner par récurrence sur $n$.",
+        "$\\left(n+\\frac12\\right)\\frac{(2n)!}{4^nn!}=\\frac{(2n+1)(2n+2)}{4(n+1)}\\cdot\\frac{(2n)!}{4^nn!}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\Gamma\\left(\\frac72\\right)$ ?",
+        "propositions": [
+          "$\\frac{15\\sqrt\\pi}{8}$",
+          "$\\frac{15\\sqrt\\pi}{4}$",
+          "$\\frac{105\\sqrt\\pi}{16}$",
+          "$\\frac{3\\sqrt\\pi}{4}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Récurrence.** Pour $n=0$, la formule donne $\\sqrt\\pi=\\Gamma\\left(\\frac12\\right)$. Si elle vaut au rang $n$, alors\n$$\\Gamma\\left(n+\\frac32\\right)=\\left(n+\\frac12\\right)\\Gamma\\left(n+\\frac12\\right)=\\frac{2n+1}2\\cdot\\frac{(2n)!}{4^nn!}\\sqrt\\pi=\\frac{(2n+2)(2n+1)(2n)!}{4\\cdot4^n(n+1)n!}\\sqrt\\pi=\\frac{(2n+2)!}{4^{n+1}(n+1)!}\\sqrt\\pi.$$\n\n**Valeur.** Directement : $\\Gamma\\left(\\frac72\\right)=\\frac52\\cdot\\frac32\\cdot\\frac12\\sqrt\\pi=\\frac{15\\sqrt\\pi}8$.",
+      "variantes": [
+        {
+          "enonce": "On admet que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$. Montrer que $\\Gamma\\left(n+\\frac12\\right)=\\frac{(2n)!}{4^nn!}\\sqrt\\pi$ pour tout $n\\in\\mathbb{N}$, puis calculer $\\Gamma\\left(\\frac92\\right)$.",
+          "indices": [
+            "Appliquer $\\Gamma(x+1)=x\\Gamma(x)$ avec $x=n+\\frac12$, et raisonner par récurrence sur $n$.",
+            "$\\left(n+\\frac12\\right)\\frac{(2n)!}{4^nn!}=\\frac{(2n+1)(2n+2)}{4(n+1)}\\cdot\\frac{(2n)!}{4^nn!}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\Gamma\\left(\\frac92\\right)$ ?",
+            "propositions": [
+              "$\\frac{105\\sqrt\\pi}{16}$",
+              "$\\frac{105\\sqrt\\pi}{8}$",
+              "$\\frac{15\\sqrt\\pi}{8}$",
+              "$\\frac{945\\sqrt\\pi}{32}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Récurrence.** Pour $n=0$, la formule donne $\\sqrt\\pi=\\Gamma\\left(\\frac12\\right)$. Si elle vaut au rang $n$, alors\n$$\\Gamma\\left(n+\\frac32\\right)=\\left(n+\\frac12\\right)\\Gamma\\left(n+\\frac12\\right)=\\frac{2n+1}2\\cdot\\frac{(2n)!}{4^nn!}\\sqrt\\pi=\\frac{(2n+2)(2n+1)(2n)!}{4\\cdot4^n(n+1)n!}\\sqrt\\pi=\\frac{(2n+2)!}{4^{n+1}(n+1)!}\\sqrt\\pi.$$\n\n**Valeur.** Directement : $\\Gamma\\left(\\frac92\\right)=\\frac72\\cdot\\frac52\\cdot\\frac32\\cdot\\frac12\\sqrt\\pi=\\frac{105\\sqrt\\pi}{16}$."
+        },
+        {
+          "enonce": "On admet que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$. Montrer que $\\Gamma\\left(n+\\frac12\\right)=\\frac{(2n)!}{4^nn!}\\sqrt\\pi$ pour tout $n\\in\\mathbb{N}$, puis calculer $\\Gamma\\left(\\frac52\\right)$.",
+          "indices": [
+            "Appliquer $\\Gamma(x+1)=x\\Gamma(x)$ avec $x=n+\\frac12$, et raisonner par récurrence sur $n$.",
+            "$\\left(n+\\frac12\\right)\\frac{(2n)!}{4^nn!}=\\frac{(2n+1)(2n+2)}{4(n+1)}\\cdot\\frac{(2n)!}{4^nn!}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\Gamma\\left(\\frac52\\right)$ ?",
+            "propositions": [
+              "$\\frac{3\\sqrt\\pi}{4}$",
+              "$\\frac{3\\sqrt\\pi}{2}$",
+              "$\\frac{\\sqrt\\pi}{2}$",
+              "$\\frac{15\\sqrt\\pi}{8}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Récurrence.** Pour $n=0$, la formule donne $\\sqrt\\pi=\\Gamma\\left(\\frac12\\right)$. Si elle vaut au rang $n$, alors\n$$\\Gamma\\left(n+\\frac32\\right)=\\left(n+\\frac12\\right)\\Gamma\\left(n+\\frac12\\right)=\\frac{2n+1}2\\cdot\\frac{(2n)!}{4^nn!}\\sqrt\\pi=\\frac{(2n+2)(2n+1)(2n)!}{4\\cdot4^n(n+1)n!}\\sqrt\\pi=\\frac{(2n+2)!}{4^{n+1}(n+1)!}\\sqrt\\pi.$$\n\n**Valeur.** Directement : $\\Gamma\\left(\\frac52\\right)=\\frac32\\cdot\\frac12\\sqrt\\pi=\\frac{3\\sqrt\\pi}4$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gamma-ex4",
+      "carte": "int-l2-parametre-gamma",
+      "difficulte": 4,
+      "titre": "Variations de la fonction Gamma",
+      "enonce": "On admet que $\\Gamma$ est de classe $\\mathcal{C}^2$ sur $\\left]0,+\\infty\\right[$, avec $\\Gamma''(x)=\\int_0^{+\\infty}(\\ln t)^2t^{x-1}e^{-t}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $\\Gamma'$ est strictement croissante sur $\\left]0,+\\infty\\right[$.\n\n**2.** En utilisant $\\Gamma(1)=\\Gamma(2)$, montrer que $\\Gamma'$ s'annule en un unique point $\\alpha$, que $\\alpha\\in\\left]1,2\\right[$, et donner les variations de $\\Gamma$.\n\n**3.** Déterminer les limites de $\\Gamma$ en $0^+$ et en $+\\infty$.\n\n**4.** En dérivant $\\Gamma(x+1)=x\\Gamma(x)$, exprimer $\\Gamma'(2)$ en fonction de $\\Gamma'(1)$.",
+      "duree_min": 25,
+      "indices": [
+        "L'intégrande de $\\Gamma''$ est positif et ne s'annule qu'en $t=1$.",
+        "Appliquer le théorème de Rolle à $\\Gamma$ sur $[1,2]$.",
+        "En $0^+$, écrire $\\Gamma(x)=\\frac{\\Gamma(x+1)}x$ ; en $+\\infty$, utiliser $\\Gamma(n+1)=n!$ et la monotonie."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\Gamma'(2)$ ?",
+        "propositions": [
+          "$1+\\Gamma'(1)$",
+          "$\\Gamma'(1)$",
+          "$2\\Gamma'(1)$",
+          "$1-\\Gamma'(1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $x>0$, $t\\mapsto(\\ln t)^2t^{x-1}e^{-t}$ est continue, positive, et non identiquement nulle sur $\\left]0,+\\infty\\right[$ : $\\Gamma''(x)>0$. Donc $\\Gamma'$ est strictement croissante.\n\n**2.** $\\Gamma(1)=0!=1=1!=\\Gamma(2)$. Par le théorème de Rolle, $\\Gamma'$ s'annule en un point $\\alpha\\in\\left]1,2\\right[$, et ce point est unique par stricte croissance de $\\Gamma'$. Ainsi $\\Gamma'<0$ sur $\\left]0,\\alpha\\right[$ et $\\Gamma'>0$ sur $\\left]\\alpha,+\\infty\\right[$ : $\\Gamma$ est strictement décroissante sur $\\left]0,\\alpha\\right]$, strictement croissante sur $\\left[\\alpha,+\\infty\\right[$, et atteint en $\\alpha$ son minimum (numériquement $\\alpha\\approx1{,}46$ et $\\Gamma(\\alpha)\\approx0{,}886$).\n\n**3.** $\\Gamma(x)=\\frac{\\Gamma(x+1)}x$ et $\\Gamma(x+1)\\to\\Gamma(1)=1$ quand $x\\to0^+$ (continuité de $\\Gamma$) : $\\Gamma(x)\\to+\\infty$. En $+\\infty$, $\\Gamma$ est croissante sur $\\left[\\alpha,+\\infty\\right[$, donc admet une limite, qui est celle de la suite $\\Gamma(n+1)=n!$ : $\\Gamma(x)\\to+\\infty$.\n\n**4.** En dérivant $\\Gamma(x+1)=x\\Gamma(x)$ : $\\Gamma'(x+1)=\\Gamma(x)+x\\Gamma'(x)$. En $x=1$ : $\\Gamma'(2)=1+\\Gamma'(1)$. (On sait que $\\Gamma'(1)=-\\gamma\\approx-0{,}577$, d'où $\\Gamma'(2)\\approx0{,}423$, de signes cohérents avec la question 2.)"
+    },
+    {
+      "id": "int-l2-parametre-laplace-ex1",
+      "carte": "int-l2-parametre-laplace",
+      "difficulte": 1,
+      "titre": "Transformée de Laplace d'une fonction usuelle",
+      "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=\\sin(2t)$ pour $t\\ge0$. Montrer que $\\mathcal{L}f(p)$ est défini pour tout $p>0$ et le calculer.",
+      "duree_min": 5,
+      "indices": [
+        "Écrire $\\sin(2t)=\\mathrm{Im}\\,e^{2it}$ et calculer $\\int_0^{+\\infty}e^{(2i-p)t}\\,\\mathrm{d}t$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>0$ ?",
+        "propositions": [
+          "$\\frac{2}{p^2+4}$",
+          "$\\frac{p}{p^2+4}$",
+          "$\\frac{2}{p^2-4}$",
+          "$\\frac{1}{p^2+4}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $p>0$, $|\\sin(2t)e^{-pt}|\\le e^{-pt}$, intégrable sur $\\left[0,+\\infty\\right[$ : $\\mathcal{L}f(p)$ est défini. Comme $|e^{(2i-p)t}|=e^{-pt}\\to0$,\n$$\\int_0^{+\\infty}e^{(2i-p)t}\\,\\mathrm{d}t=\\frac1{p-2i}=\\frac{p+2i}{p^2+4},\\qquad\\text{donc}\\qquad\\mathcal{L}f(p)=\\mathrm{Im}\\frac{p+2i}{p^2+4}=\\frac2{p^2+4}.$$",
+      "variantes": [
+        {
+          "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=\\cos(3t)$ pour $t\\ge0$. Montrer que $\\mathcal{L}f(p)$ est défini pour tout $p>0$ et le calculer.",
+          "indices": [
+            "Écrire $\\cos(3t)=\\mathrm{Re}\\,e^{3it}$ et calculer $\\int_0^{+\\infty}e^{(3i-p)t}\\,\\mathrm{d}t$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>0$ ?",
+            "propositions": [
+              "$\\frac{p}{p^2+9}$",
+              "$\\frac{3}{p^2+9}$",
+              "$\\frac{p}{p^2-9}$",
+              "$\\frac{p}{p^2+3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $p>0$, $|\\cos(3t)e^{-pt}|\\le e^{-pt}$, intégrable : $\\mathcal{L}f(p)$ est défini. Et\n$$\\int_0^{+\\infty}e^{(3i-p)t}\\,\\mathrm{d}t=\\frac1{p-3i}=\\frac{p+3i}{p^2+9},\\qquad\\text{donc}\\qquad\\mathcal{L}f(p)=\\mathrm{Re}\\frac{p+3i}{p^2+9}=\\frac p{p^2+9}.$$"
+        },
+        {
+          "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=\\mathrm{sh}\\,t$ pour $t\\ge0$. Montrer que $\\mathcal{L}f(p)$ est défini pour tout $p>1$ et le calculer.",
+          "indices": [
+            "Écrire $\\mathrm{sh}\\,t=\\frac{e^t-e^{-t}}2$ et utiliser $\\mathcal{L}(e^{at})(p)=\\frac1{p-a}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>1$ ?",
+            "propositions": [
+              "$\\frac{1}{p^2-1}$",
+              "$\\frac{p}{p^2-1}$",
+              "$\\frac{1}{p^2+1}$",
+              "$\\frac{1}{(p-1)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $p>1$, $|\\mathrm{sh}\\,t\\,e^{-pt}|\\le e^{(1-p)t}$, intégrable : $\\mathcal{L}f(p)$ est défini. Par linéarité,\n$$\\mathcal{L}f(p)=\\frac12\\left(\\frac1{p-1}-\\frac1{p+1}\\right)=\\frac1{p^2-1}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-laplace-ex2",
+      "carte": "int-l2-parametre-laplace",
+      "difficulte": 2,
+      "titre": "Dériver la transformée de Laplace",
+      "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=t^2e^{-t}$ pour $t\\ge0$. En utilisant la formule de dérivation de la transformée de Laplace et la transformée de $e^{-t}$, calculer $\\mathcal{L}f(p)$ pour $p>-1$.",
+      "duree_min": 8,
+      "indices": [
+        "$(\\mathcal{L}g)^{(k)}(p)=\\int_0^{+\\infty}(-t)^kg(t)e^{-pt}\\,\\mathrm{d}t$, à appliquer avec $g(t)=e^{-t}$ et $k=2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>-1$ ?",
+        "propositions": [
+          "$\\frac{2}{(p+1)^3}$",
+          "$\\frac{1}{(p+1)^3}$",
+          "$-\\frac{2}{(p+1)^3}$",
+          "$\\frac{2}{(p+1)^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $g(t)=e^{-t}$ : pour $p>-1$, $\\mathcal{L}g(p)=\\int_0^{+\\infty}e^{-(p+1)t}\\,\\mathrm{d}t=\\frac1{p+1}$, et $g(t)e^{-p_0t}$ est intégrable pour tout $p_0>-1$. Le théorème sur la transformée de Laplace donne, pour $p>-1$, $(\\mathcal{L}g)''(p)=\\int_0^{+\\infty}t^2g(t)e^{-pt}\\,\\mathrm{d}t=\\mathcal{L}f(p)$, donc\n$$\\mathcal{L}f(p)=\\frac{\\mathrm{d}^2}{\\mathrm{d}p^2}\\left(\\frac1{p+1}\\right)=\\frac{2}{(p+1)^3}.$$",
+      "variantes": [
+        {
+          "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=t\\sin t$ pour $t\\ge0$. En utilisant la formule de dérivation de la transformée de Laplace et la transformée de $\\sin t$, calculer $\\mathcal{L}f(p)$ pour $p>0$.",
+          "indices": [
+            "$(\\mathcal{L}g)^{(k)}(p)=\\int_0^{+\\infty}(-t)^kg(t)e^{-pt}\\,\\mathrm{d}t$, à appliquer avec $g(t)=\\sin t$ et $k=1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>0$ ?",
+            "propositions": [
+              "$\\frac{2p}{(p^2+1)^2}$",
+              "$-\\frac{2p}{(p^2+1)^2}$",
+              "$\\frac{1}{(p^2+1)^2}$",
+              "$\\frac{2}{(p^2+1)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $g(t)=\\sin t$ : pour $p>0$, $\\mathcal{L}g(p)=\\mathrm{Im}\\int_0^{+\\infty}e^{(i-p)t}\\,\\mathrm{d}t=\\mathrm{Im}\\frac{p+i}{p^2+1}=\\frac1{p^2+1}$, et $g(t)e^{-p_0t}$ est intégrable pour tout $p_0>0$. Le théorème sur la transformée de Laplace donne, pour $p>0$, $(\\mathcal{L}g)'(p)=-\\int_0^{+\\infty}tg(t)e^{-pt}\\,\\mathrm{d}t=-\\mathcal{L}f(p)$, donc\n$$\\mathcal{L}f(p)=-\\frac{\\mathrm{d}}{\\mathrm{d}p}\\left(\\frac1{p^2+1}\\right)=\\frac{2p}{(p^2+1)^2}.$$"
+        },
+        {
+          "enonce": "On note $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$. Soit $f(t)=t\\cos t$ pour $t\\ge0$. En utilisant la formule de dérivation de la transformée de Laplace et la transformée de $\\cos t$, calculer $\\mathcal{L}f(p)$ pour $p>0$.",
+          "indices": [
+            "$(\\mathcal{L}g)^{(k)}(p)=\\int_0^{+\\infty}(-t)^kg(t)e^{-pt}\\,\\mathrm{d}t$, à appliquer avec $g(t)=\\cos t$ et $k=1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\mathcal{L}f(p)$ pour $p>0$ ?",
+            "propositions": [
+              "$\\frac{p^2-1}{(p^2+1)^2}$",
+              "$\\frac{1-p^2}{(p^2+1)^2}$",
+              "$\\frac{2p}{(p^2+1)^2}$",
+              "$\\frac{p^2}{(p^2+1)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $g(t)=\\cos t$ : pour $p>0$, $\\mathcal{L}g(p)=\\mathrm{Re}\\int_0^{+\\infty}e^{(i-p)t}\\,\\mathrm{d}t=\\mathrm{Re}\\frac{p+i}{p^2+1}=\\frac p{p^2+1}$, et $g(t)e^{-p_0t}$ est intégrable pour tout $p_0>0$. Le théorème sur la transformée de Laplace donne, pour $p>0$, $(\\mathcal{L}g)'(p)=-\\int_0^{+\\infty}tg(t)e^{-pt}\\,\\mathrm{d}t=-\\mathcal{L}f(p)$, donc\n$$\\mathcal{L}f(p)=-\\frac{\\mathrm{d}}{\\mathrm{d}p}\\left(\\frac p{p^2+1}\\right)=-\\frac{(p^2+1)-2p^2}{(p^2+1)^2}=\\frac{p^2-1}{(p^2+1)^2}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-laplace-ex3",
+      "carte": "int-l2-parametre-laplace",
+      "difficulte": 3,
+      "titre": "Transformée de Laplace de $\\frac{\\sin t}{t}$",
+      "enonce": "Pour $p>0$, on pose $F(p)=\\int_0^{+\\infty}\\frac{\\sin t}te^{-pt}\\,\\mathrm{d}t$ (la fonction intégrée étant prolongée par $1$ en $t=0$).\n\n**1.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(p)$.\n\n**2.** Déterminer la limite de $F$ en $+\\infty$, en déduire $F(p)$, puis la valeur de $F(1)$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$.",
+        "$\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{p-i}$.",
+        "$\\left|\\frac{\\sin t}t\\right|\\le1$ : $F$ est la transformée de Laplace d'une fonction bornée."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $F(1)$ ?",
+        "propositions": [
+          "$\\frac\\pi4$",
+          "$\\frac\\pi2$",
+          "$\\ln2$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $f(p,t)=\\frac{\\sin t}te^{-pt}$. Pour $p>0$, $|f(p,t)|\\le e^{-pt}$ (car $|\\sin t|\\le t$), intégrable. La dérivée partielle $\\frac{\\partial f}{\\partial p}(p,t)=-\\sin t\\,e^{-pt}$ est continue, et pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$, intégrable et indépendante de $p$. Par le théorème de dérivation (domination sur chaque $\\left[a,+\\infty\\right[$), $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et\n$$F'(p)=-\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=-\\mathrm{Im}\\frac1{p-i}=-\\frac1{1+p^2}.$$\n\n**2.** $F$ est la transformée de Laplace de $t\\mapsto\\frac{\\sin t}t$, et $\\frac{\\sin t}te^{-p_0t}$ est intégrable pour tout $p_0>0$ : $F(p)\\to0$ quand $p\\to+\\infty$ (directement : $|F(p)|\\le\\int_0^{+\\infty}e^{-pt}\\,\\mathrm{d}t=\\frac1p$). Donc $F(p)=c-\\arctan p$ avec $0=c-\\frac\\pi2$, soit $F(p)=\\frac\\pi2-\\arctan p$, et $F(1)=\\frac\\pi2-\\frac\\pi4=\\frac\\pi4$.\n\nRemarque : faire tendre $p$ vers $0^+$, ce qui donnerait $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t=\\frac\\pi2$, ne relève pas du théorème de domination : $t\\mapsto\\frac{\\sin t}t$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$.",
+      "variantes": [
+        {
+          "enonce": "Pour $p>0$, on pose $F(p)=\\int_0^{+\\infty}\\frac{\\sin t}te^{-pt}\\,\\mathrm{d}t$ (la fonction intégrée étant prolongée par $1$ en $t=0$).\n\n**1.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(p)$.\n\n**2.** Déterminer la limite de $F$ en $+\\infty$, en déduire $F(p)$, puis la valeur de $F(\\sqrt3)$.",
+          "indices": [
+            "Pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$.",
+            "$\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{p-i}$.",
+            "$\\left|\\frac{\\sin t}t\\right|\\le1$ : $F$ est la transformée de Laplace d'une fonction bornée."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F(\\sqrt3)$ ?",
+            "propositions": [
+              "$\\frac\\pi6$",
+              "$\\frac\\pi3$",
+              "$\\frac\\pi2$",
+              "$\\frac{\\sqrt3}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $f(p,t)=\\frac{\\sin t}te^{-pt}$. Pour $p>0$, $|f(p,t)|\\le e^{-pt}$ (car $|\\sin t|\\le t$), intégrable. La dérivée partielle $\\frac{\\partial f}{\\partial p}(p,t)=-\\sin t\\,e^{-pt}$ est continue, et pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$, intégrable et indépendante de $p$. Par le théorème de dérivation (domination sur chaque $\\left[a,+\\infty\\right[$), $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et\n$$F'(p)=-\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=-\\mathrm{Im}\\frac1{p-i}=-\\frac1{1+p^2}.$$\n\n**2.** $F$ est la transformée de Laplace de $t\\mapsto\\frac{\\sin t}t$, et $\\frac{\\sin t}te^{-p_0t}$ est intégrable pour tout $p_0>0$ : $F(p)\\to0$ quand $p\\to+\\infty$ (directement : $|F(p)|\\le\\int_0^{+\\infty}e^{-pt}\\,\\mathrm{d}t=\\frac1p$). Donc $F(p)=c-\\arctan p$ avec $0=c-\\frac\\pi2$, soit $F(p)=\\frac\\pi2-\\arctan p$, et $F(\\sqrt3)=\\frac\\pi2-\\frac\\pi3=\\frac\\pi6$.\n\nRemarque : faire tendre $p$ vers $0^+$, ce qui donnerait $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t=\\frac\\pi2$, ne relève pas du théorème de domination : $t\\mapsto\\frac{\\sin t}t$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$."
+        },
+        {
+          "enonce": "Pour $p>0$, on pose $F(p)=\\int_0^{+\\infty}\\frac{\\sin t}te^{-pt}\\,\\mathrm{d}t$ (la fonction intégrée étant prolongée par $1$ en $t=0$).\n\n**1.** Montrer que $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et calculer $F'(p)$.\n\n**2.** Déterminer la limite de $F$ en $+\\infty$, en déduire $F(p)$, puis la valeur de $F(\\frac1{\\sqrt3})$.",
+          "indices": [
+            "Pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$.",
+            "$\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=\\mathrm{Im}\\frac1{p-i}$.",
+            "$\\left|\\frac{\\sin t}t\\right|\\le1$ : $F$ est la transformée de Laplace d'une fonction bornée."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $F(\\frac1{\\sqrt3})$ ?",
+            "propositions": [
+              "$\\frac\\pi3$",
+              "$\\frac\\pi6$",
+              "$\\frac\\pi2$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $f(p,t)=\\frac{\\sin t}te^{-pt}$. Pour $p>0$, $|f(p,t)|\\le e^{-pt}$ (car $|\\sin t|\\le t$), intégrable. La dérivée partielle $\\frac{\\partial f}{\\partial p}(p,t)=-\\sin t\\,e^{-pt}$ est continue, et pour $p\\ge a>0$, $|\\sin t\\,e^{-pt}|\\le e^{-at}$, intégrable et indépendante de $p$. Par le théorème de dérivation (domination sur chaque $\\left[a,+\\infty\\right[$), $F$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et\n$$F'(p)=-\\int_0^{+\\infty}\\sin t\\,e^{-pt}\\,\\mathrm{d}t=-\\mathrm{Im}\\frac1{p-i}=-\\frac1{1+p^2}.$$\n\n**2.** $F$ est la transformée de Laplace de $t\\mapsto\\frac{\\sin t}t$, et $\\frac{\\sin t}te^{-p_0t}$ est intégrable pour tout $p_0>0$ : $F(p)\\to0$ quand $p\\to+\\infty$ (directement : $|F(p)|\\le\\int_0^{+\\infty}e^{-pt}\\,\\mathrm{d}t=\\frac1p$). Donc $F(p)=c-\\arctan p$ avec $0=c-\\frac\\pi2$, soit $F(p)=\\frac\\pi2-\\arctan p$, et $F(\\frac1{\\sqrt3})=\\frac\\pi2-\\frac\\pi6=\\frac\\pi3$.\n\nRemarque : faire tendre $p$ vers $0^+$, ce qui donnerait $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t=\\frac\\pi2$, ne relève pas du théorème de domination : $t\\mapsto\\frac{\\sin t}t$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-laplace-ex4",
+      "carte": "int-l2-parametre-laplace",
+      "difficulte": 4,
+      "titre": "Théorèmes de la valeur initiale et de la valeur finale",
+      "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ continue et bornée.\n\n**1.** Montrer que $\\mathcal{L}f$ est définie sur $\\left]0,+\\infty\\right[$ et que $p\\,\\mathcal{L}f(p)=\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$ pour $p>0$.\n\n**2.** Montrer que $p\\,\\mathcal{L}f(p)\\to f(0)$ quand $p\\to+\\infty$ (théorème de la valeur initiale).\n\n**3.** On suppose que $f(t)$ tend vers un réel $\\ell$ quand $t\\to+\\infty$. Montrer que $p\\,\\mathcal{L}f(p)\\to\\ell$ quand $p\\to0^+$ (théorème de la valeur finale).\n\n**4.** Application : $f(t)=\\arctan t$. Donner un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$.",
+      "duree_min": 30,
+      "indices": [
+        "Changement de variable $u=pt$ dans $\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$.",
+        "Raisonner avec des suites $(p_n)$ et appliquer la convergence dominée à $u\\mapsto f\\left(\\frac u{p_n}\\right)e^{-u}$, avec $M=\\sup|f|$.",
+        "Pour la question 4, calculer la limite de $f$ en $+\\infty$ et vérifier qu'elle est non nulle."
+      ],
+      "reponse_finale": {
+        "question": "Quel est un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$ ?",
+        "propositions": [
+          "$\\frac{\\pi}{2p}$",
+          "$\\frac1p$",
+          "$\\frac{\\pi}{2p^2}$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $M=\\sup_{t\\ge0}|f(t)|$.\n\n**1.** Pour $p>0$, $|f(t)e^{-pt}|\\le Me^{-pt}$, intégrable : $\\mathcal{L}f(p)$ est défini. Le changement de variable $u=pt$ (affine, de $\\left[0,+\\infty\\right[$ sur lui-même) donne $\\mathcal{L}f(p)=\\frac1p\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$.\n\n**2.** Soit $(p_n)$ une suite de réels $>0$ tendant vers $+\\infty$ et $\\varphi_n(u)=f\\left(\\frac u{p_n}\\right)e^{-u}$. Par continuité de $f$ en $0$, $\\varphi_n(u)\\to f(0)e^{-u}$ pour tout $u\\ge0$, et $|\\varphi_n(u)|\\le Me^{-u}$, intégrable. Par convergence dominée, $p_n\\mathcal{L}f(p_n)\\to f(0)\\int_0^{+\\infty}e^{-u}\\,\\mathrm{d}u=f(0)$.\n\n**3.** Même raisonnement avec $p_n\\to0^+$ : pour $u>0$, $\\frac u{p_n}\\to+\\infty$, donc $\\varphi_n(u)\\to\\ell e^{-u}$ ; la limite simple vaut $\\ell e^{-u}$ sauf peut-être en $u=0$ (fonction continue par morceaux), et la domination par $Me^{-u}$ subsiste. D'où $p_n\\mathcal{L}f(p_n)\\to\\ell$.\n\n**4.** $\\arctan$ est continue, bornée par $\\frac\\pi2$, et $\\arctan t\\to\\frac\\pi2$. Ici $f$ est continue et bornée, de limite $\\ell=\\frac\\pi2\\neq0$ en $+\\infty$, donc $p\\,\\mathcal{L}f(p)\\to\\frac\\pi2$, c'est-à-dire $\\mathcal{L}f(p)\\underset{p\\to0^+}{\\sim}\\frac{\\pi}{2p}$. (Et la question 2 donne $p\\,\\mathcal{L}f(p)\\to f(0)=0$ en $+\\infty$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ continue et bornée.\n\n**1.** Montrer que $\\mathcal{L}f$ est définie sur $\\left]0,+\\infty\\right[$ et que $p\\,\\mathcal{L}f(p)=\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$ pour $p>0$.\n\n**2.** Montrer que $p\\,\\mathcal{L}f(p)\\to f(0)$ quand $p\\to+\\infty$ (théorème de la valeur initiale).\n\n**3.** On suppose que $f(t)$ tend vers un réel $\\ell$ quand $t\\to+\\infty$. Montrer que $p\\,\\mathcal{L}f(p)\\to\\ell$ quand $p\\to0^+$ (théorème de la valeur finale).\n\n**4.** Application : $f(t)=\\frac{t}{1+t}$. Donner un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$.",
+          "indices": [
+            "Changement de variable $u=pt$ dans $\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$.",
+            "Raisonner avec des suites $(p_n)$ et appliquer la convergence dominée à $u\\mapsto f\\left(\\frac u{p_n}\\right)e^{-u}$, avec $M=\\sup|f|$.",
+            "Pour la question 4, calculer la limite de $f$ en $+\\infty$ et vérifier qu'elle est non nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quel est un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$ ?",
+            "propositions": [
+              "$\\frac1p$",
+              "$\\frac{1}{p^2}$",
+              "$\\frac2p$",
+              "$-\\ln p$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $M=\\sup_{t\\ge0}|f(t)|$.\n\n**1.** Pour $p>0$, $|f(t)e^{-pt}|\\le Me^{-pt}$, intégrable : $\\mathcal{L}f(p)$ est défini. Le changement de variable $u=pt$ (affine, de $\\left[0,+\\infty\\right[$ sur lui-même) donne $\\mathcal{L}f(p)=\\frac1p\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$.\n\n**2.** Soit $(p_n)$ une suite de réels $>0$ tendant vers $+\\infty$ et $\\varphi_n(u)=f\\left(\\frac u{p_n}\\right)e^{-u}$. Par continuité de $f$ en $0$, $\\varphi_n(u)\\to f(0)e^{-u}$ pour tout $u\\ge0$, et $|\\varphi_n(u)|\\le Me^{-u}$, intégrable. Par convergence dominée, $p_n\\mathcal{L}f(p_n)\\to f(0)\\int_0^{+\\infty}e^{-u}\\,\\mathrm{d}u=f(0)$.\n\n**3.** Même raisonnement avec $p_n\\to0^+$ : pour $u>0$, $\\frac u{p_n}\\to+\\infty$, donc $\\varphi_n(u)\\to\\ell e^{-u}$ ; la limite simple vaut $\\ell e^{-u}$ sauf peut-être en $u=0$ (fonction continue par morceaux), et la domination par $Me^{-u}$ subsiste. D'où $p_n\\mathcal{L}f(p_n)\\to\\ell$.\n\n**4.** $0\\le\\frac t{1+t}\\le1$ et $\\frac t{1+t}\\to1$. Ici $f$ est continue et bornée, de limite $\\ell=1\\neq0$ en $+\\infty$, donc $p\\,\\mathcal{L}f(p)\\to1$, c'est-à-dire $\\mathcal{L}f(p)\\underset{p\\to0^+}{\\sim}\\frac1p$. (Et la question 2 donne $p\\,\\mathcal{L}f(p)\\to f(0)=0$ en $+\\infty$.)"
+        },
+        {
+          "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ continue et bornée.\n\n**1.** Montrer que $\\mathcal{L}f$ est définie sur $\\left]0,+\\infty\\right[$ et que $p\\,\\mathcal{L}f(p)=\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$ pour $p>0$.\n\n**2.** Montrer que $p\\,\\mathcal{L}f(p)\\to f(0)$ quand $p\\to+\\infty$ (théorème de la valeur initiale).\n\n**3.** On suppose que $f(t)$ tend vers un réel $\\ell$ quand $t\\to+\\infty$. Montrer que $p\\,\\mathcal{L}f(p)\\to\\ell$ quand $p\\to0^+$ (théorème de la valeur finale).\n\n**4.** Application : $f(t)=2-e^{-t}$. Donner un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$.",
+          "indices": [
+            "Changement de variable $u=pt$ dans $\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$.",
+            "Raisonner avec des suites $(p_n)$ et appliquer la convergence dominée à $u\\mapsto f\\left(\\frac u{p_n}\\right)e^{-u}$, avec $M=\\sup|f|$.",
+            "Pour la question 4, calculer la limite de $f$ en $+\\infty$ et vérifier qu'elle est non nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quel est un équivalent de $\\mathcal{L}f(p)$ quand $p\\to0^+$ ?",
+            "propositions": [
+              "$\\frac2p$",
+              "$\\frac1p$",
+              "$\\frac3p$",
+              "$\\frac{2}{p^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $M=\\sup_{t\\ge0}|f(t)|$.\n\n**1.** Pour $p>0$, $|f(t)e^{-pt}|\\le Me^{-pt}$, intégrable : $\\mathcal{L}f(p)$ est défini. Le changement de variable $u=pt$ (affine, de $\\left[0,+\\infty\\right[$ sur lui-même) donne $\\mathcal{L}f(p)=\\frac1p\\int_0^{+\\infty}f\\left(\\frac up\\right)e^{-u}\\,\\mathrm{d}u$.\n\n**2.** Soit $(p_n)$ une suite de réels $>0$ tendant vers $+\\infty$ et $\\varphi_n(u)=f\\left(\\frac u{p_n}\\right)e^{-u}$. Par continuité de $f$ en $0$, $\\varphi_n(u)\\to f(0)e^{-u}$ pour tout $u\\ge0$, et $|\\varphi_n(u)|\\le Me^{-u}$, intégrable. Par convergence dominée, $p_n\\mathcal{L}f(p_n)\\to f(0)\\int_0^{+\\infty}e^{-u}\\,\\mathrm{d}u=f(0)$.\n\n**3.** Même raisonnement avec $p_n\\to0^+$ : pour $u>0$, $\\frac u{p_n}\\to+\\infty$, donc $\\varphi_n(u)\\to\\ell e^{-u}$ ; la limite simple vaut $\\ell e^{-u}$ sauf peut-être en $u=0$ (fonction continue par morceaux), et la domination par $Me^{-u}$ subsiste. D'où $p_n\\mathcal{L}f(p_n)\\to\\ell$.\n\n**4.** $1\\le2-e^{-t}\\le2$ et $2-e^{-t}\\to2$ ; on peut d'ailleurs calculer $\\mathcal{L}f(p)=\\frac2p-\\frac1{p+1}$. Ici $f$ est continue et bornée, de limite $\\ell=2\\neq0$ en $+\\infty$, donc $p\\,\\mathcal{L}f(p)\\to2$, c'est-à-dire $\\mathcal{L}f(p)\\underset{p\\to0^+}{\\sim}\\frac2p$. (Et la question 2 donne $p\\,\\mathcal{L}f(p)\\to f(0)=1$ en $+\\infty$.)"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-fourier-ex1",
+      "carte": "int-l2-parametre-fourier",
+      "difficulte": 1,
+      "titre": "Transformée de Fourier d'une indicatrice",
+      "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f$ l'indicatrice de $[-1,1]$ (égale à $1$ sur $[-1,1]$, à $0$ ailleurs). Calculer $\\hat f(\\xi)$ pour $\\xi\\neq0$, puis $\\hat f\\left(\\frac\\pi2\\right)$.",
+      "duree_min": 5,
+      "indices": [
+        "$\\hat f(\\xi)=\\int_{-1}^1e^{-i\\xi t}\\,\\mathrm{d}t$ ; utiliser une primitive de $t\\mapsto e^{-i\\xi t}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\hat f\\left(\\frac\\pi2\\right)$ ?",
+        "propositions": [
+          "$\\frac4\\pi$",
+          "$\\frac2\\pi$",
+          "$\\frac4{\\pi^2}$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est continue par morceaux et intégrable. Pour $\\xi\\neq0$,\n$$\\hat f(\\xi)=\\int_{-1}^1e^{-i\\xi t}\\,\\mathrm{d}t=\\left[\\frac{e^{-i\\xi t}}{-i\\xi}\\right]_{-1}^1=\\frac{e^{i\\xi}-e^{-i\\xi}}{i\\xi}=\\frac{2\\sin\\xi}\\xi,$$\net $\\hat f(0)=2$. Donc $\\hat f\\left(\\frac\\pi2\\right)=\\frac{2}{\\pi/2}=\\frac4\\pi$.",
+      "variantes": [
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f$ l'indicatrice de $[-2,2]$. Calculer $\\hat f(\\xi)$ pour $\\xi\\neq0$, puis $\\hat f\\left(\\frac\\pi4\\right)$.",
+          "indices": [
+            "$\\hat f(\\xi)=\\int_{-2}^2e^{-i\\xi t}\\,\\mathrm{d}t$ ; utiliser une primitive de $t\\mapsto e^{-i\\xi t}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f\\left(\\frac\\pi4\\right)$ ?",
+            "propositions": [
+              "$\\frac8\\pi$",
+              "$\\frac4\\pi$",
+              "$\\frac{4\\sqrt2}{\\pi}$",
+              "$\\frac{16}\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $\\xi\\neq0$,\n$$\\hat f(\\xi)=\\int_{-2}^2e^{-i\\xi t}\\,\\mathrm{d}t=\\frac{e^{2i\\xi}-e^{-2i\\xi}}{i\\xi}=\\frac{2\\sin(2\\xi)}\\xi,$$\ndonc $\\hat f\\left(\\frac\\pi4\\right)=\\frac{2\\sin\\frac\\pi2}{\\pi/4}=\\frac8\\pi$."
+        },
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f$ l'indicatrice de $[0,1]$. Calculer $\\hat f(\\xi)$ pour $\\xi\\neq0$, puis $\\hat f(\\pi)$.",
+          "indices": [
+            "$\\hat f(\\xi)=\\int_0^1e^{-i\\xi t}\\,\\mathrm{d}t$ ; utiliser une primitive de $t\\mapsto e^{-i\\xi t}$ et $e^{-i\\pi}=-1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\pi)$ ?",
+            "propositions": [
+              "$-\\frac{2i}{\\pi}$",
+              "$\\frac{2i}{\\pi}$",
+              "$\\frac2\\pi$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $\\xi\\neq0$,\n$$\\hat f(\\xi)=\\int_0^1e^{-i\\xi t}\\,\\mathrm{d}t=\\frac{1-e^{-i\\xi}}{i\\xi},$$\ndonc $\\hat f(\\pi)=\\frac{1-(-1)}{i\\pi}=\\frac2{i\\pi}=-\\frac{2i}\\pi$. Ici $f$ n'est pas paire, et $\\hat f$ n'est pas réelle."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-fourier-ex2",
+      "carte": "int-l2-parametre-fourier",
+      "difficulte": 2,
+      "titre": "Transformée de Fourier d'une exponentielle décroissante",
+      "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-2|t|}$. Justifier que $\\hat f$ est définie, puis calculer $\\hat f(\\xi)$.",
+      "duree_min": 8,
+      "indices": [
+        "Séparer $\\int_{-\\infty}^0$ et $\\int_0^{+\\infty}$, et calculer $\\int_0^{+\\infty}e^{-(2+i\\xi)t}\\,\\mathrm{d}t$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\hat f(\\xi)$ ?",
+        "propositions": [
+          "$\\frac{4}{4+\\xi^2}$",
+          "$\\frac{2}{4+\\xi^2}$",
+          "$\\frac{4}{2+\\xi^2}$",
+          "$\\frac{1}{4+\\xi^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est continue et intégrable sur $\\mathbb{R}$ ($\\int_{\\mathbb{R}}e^{-2|t|}\\,\\mathrm{d}t=1$). Comme $|e^{-(2\\pm i\\xi)t}|=e^{-2t}\\to0$ en $+\\infty$,\n$$\\hat f(\\xi)=\\int_0^{+\\infty}e^{-(2+i\\xi)t}\\,\\mathrm{d}t+\\int_0^{+\\infty}e^{-(2-i\\xi)t}\\,\\mathrm{d}t=\\frac1{2+i\\xi}+\\frac1{2-i\\xi}=\\frac4{4+\\xi^2}.$$",
+      "variantes": [
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-3|t|}$. Justifier que $\\hat f$ est définie, puis calculer $\\hat f(\\xi)$.",
+          "indices": [
+            "Séparer $\\int_{-\\infty}^0$ et $\\int_0^{+\\infty}$, et calculer $\\int_0^{+\\infty}e^{-(3+i\\xi)t}\\,\\mathrm{d}t$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$\\frac{6}{9+\\xi^2}$",
+              "$\\frac{3}{9+\\xi^2}$",
+              "$\\frac{6}{3+\\xi^2}$",
+              "$\\frac{2}{9+\\xi^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est continue et intégrable sur $\\mathbb{R}$. Et\n$$\\hat f(\\xi)=\\int_0^{+\\infty}e^{-(3+i\\xi)t}\\,\\mathrm{d}t+\\int_0^{+\\infty}e^{-(3-i\\xi)t}\\,\\mathrm{d}t=\\frac1{3+i\\xi}+\\frac1{3-i\\xi}=\\frac6{9+\\xi^2}.$$"
+        },
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-t}$ pour $t\\ge0$ et $f(t)=0$ pour $t<0$. Justifier que $\\hat f$ est définie, puis calculer $\\hat f(\\xi)$.",
+          "indices": [
+            "Calculer $\\int_0^{+\\infty}e^{-(1+i\\xi)t}\\,\\mathrm{d}t$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$\\frac{1}{1+i\\xi}$",
+              "$\\frac{1}{1-i\\xi}$",
+              "$\\frac{2}{1+\\xi^2}$",
+              "$\\frac{1}{1+\\xi^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est continue par morceaux et intégrable sur $\\mathbb{R}$. Comme $|e^{-(1+i\\xi)t}|=e^{-t}\\to0$,\n$$\\hat f(\\xi)=\\int_0^{+\\infty}e^{-(1+i\\xi)t}\\,\\mathrm{d}t=\\frac1{1+i\\xi}=\\frac{1-i\\xi}{1+\\xi^2}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-fourier-ex3",
+      "carte": "int-l2-parametre-fourier",
+      "difficulte": 3,
+      "titre": "Multiplier par une puissance de $t$, dériver la transformée",
+      "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. On rappelle que la transformée de Fourier de $g(t)=e^{-|t|}$ est $\\hat g(\\xi)=\\frac2{1+\\xi^2}$. Soit $f(t)=te^{-|t|}$. Justifier que $\\hat g$ est de classe $\\mathcal{C}^1$ et en déduire $\\hat f(\\xi)$.",
+      "duree_min": 15,
+      "indices": [
+        "$t^jg(t)$ est intégrable pour tout $j$ ; appliquer une fois le théorème de dérivation de la transformée de Fourier.",
+        "Dériver $\\hat g$ fait apparaître $\\widehat{(-it)g}$ ; attention aux puissances de $i$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\hat f(\\xi)$ ?",
+        "propositions": [
+          "$-\\frac{4i\\xi}{(1+\\xi^2)^2}$",
+          "$\\frac{4i\\xi}{(1+\\xi^2)^2}$",
+          "$-\\frac{4\\xi}{(1+\\xi^2)^2}$",
+          "$\\frac{2i}{(1+\\xi^2)^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout $j\\in\\mathbb{N}$, $t\\mapsto t^jg(t)$ est continue et intégrable sur $\\mathbb{R}$ (croissances comparées). Comme $g$ et $t\\mapsto tg(t)$ sont intégrables, le théorème de dérivation de la transformée de Fourier montre que $\\hat g$ est de classe $\\mathcal{C}^1$ avec $\\hat g'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)g(t)e^{-i\\xi t}\\,\\mathrm{d}t=-i\\hat f(\\xi)$. Donc\n$$\\hat f(\\xi)=i\\,\\hat g'(\\xi)=i\\cdot\\left(-\\frac{4\\xi}{(1+\\xi^2)^2}\\right)=-\\frac{4i\\xi}{(1+\\xi^2)^2}.$$",
+      "variantes": [
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. On rappelle que la transformée de Fourier de $g(t)=e^{-2|t|}$ est $\\hat g(\\xi)=\\frac4{4+\\xi^2}$. Soit $f(t)=te^{-2|t|}$. Justifier que $\\hat g$ est de classe $\\mathcal{C}^1$ et en déduire $\\hat f(\\xi)$.",
+          "indices": [
+            "$t^jg(t)$ est intégrable pour tout $j$ ; appliquer une fois le théorème de dérivation de la transformée de Fourier.",
+            "Dériver $\\hat g$ fait apparaître $\\widehat{(-it)g}$ ; attention aux puissances de $i$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$-\\frac{8i\\xi}{(4+\\xi^2)^2}$",
+              "$\\frac{8i\\xi}{(4+\\xi^2)^2}$",
+              "$-\\frac{8\\xi}{(4+\\xi^2)^2}$",
+              "$-\\frac{4i\\xi}{(4+\\xi^2)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $j\\in\\mathbb{N}$, $t\\mapsto t^jg(t)$ est continue et intégrable sur $\\mathbb{R}$ (croissances comparées). Comme $g$ et $t\\mapsto tg(t)$ sont intégrables, le théorème de dérivation de la transformée de Fourier montre que $\\hat g$ est de classe $\\mathcal{C}^1$ avec $\\hat g'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)g(t)e^{-i\\xi t}\\,\\mathrm{d}t=-i\\hat f(\\xi)$. Donc\n$$\\hat f(\\xi)=i\\,\\hat g'(\\xi)=i\\cdot\\left(-\\frac{8\\xi}{(4+\\xi^2)^2}\\right)=-\\frac{8i\\xi}{(4+\\xi^2)^2}.$$"
+        },
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. On rappelle que la transformée de Fourier de $g(t)=e^{-|t|}$ est $\\hat g(\\xi)=\\frac2{1+\\xi^2}$. Soit $f(t)=t^2e^{-|t|}$. Justifier que $\\hat g$ est de classe $\\mathcal{C}^2$ et en déduire $\\hat f(\\xi)$.",
+          "indices": [
+            "$t^jg(t)$ est intégrable pour tout $j$ ; appliquer deux fois le théorème de dérivation de la transformée de Fourier.",
+            "Dériver $\\hat g$ fait apparaître $\\widehat{(-it)g}$ ; attention aux puissances de $i$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$\\frac{4-12\\xi^2}{(1+\\xi^2)^3}$",
+              "$\\frac{12\\xi^2-4}{(1+\\xi^2)^3}$",
+              "$\\frac{4}{(1+\\xi^2)^3}$",
+              "$-\\frac{4}{(1+\\xi^2)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout $j\\in\\mathbb{N}$, $t\\mapsto t^jg(t)$ est continue et intégrable sur $\\mathbb{R}$ (croissances comparées). Le théorème de dérivation de la transformée de Fourier, appliqué à $g$ puis à $t\\mapsto tg(t)$ (car $t\\mapsto t^2g(t)$ est intégrable), montre que $\\hat g$ est de classe $\\mathcal{C}^2$ avec $\\hat g''(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)^2g(t)e^{-i\\xi t}\\,\\mathrm{d}t=-\\hat f(\\xi)$. Donc\n$$\\hat f(\\xi)=-\\hat g''(\\xi)=-\\frac{12\\xi^2-4}{(1+\\xi^2)^3}=\\frac{4-12\\xi^2}{(1+\\xi^2)^3}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-fourier-ex4",
+      "carte": "int-l2-parametre-fourier",
+      "difficulte": 4,
+      "titre": "Transformée de Fourier d'une gaussienne",
+      "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-t^2/2}$. On admet que $\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=\\sqrt\\pi$.\n\n**1.** Montrer que $\\hat f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$.\n\n**2.** Par une intégration par parties, montrer que $\\hat f$ vérifie une équation différentielle linéaire du premier ordre.\n\n**3.** En déduire $\\hat f(\\xi)$ pour tout réel $\\xi$.",
+      "duree_min": 30,
+      "indices": [
+        "$t\\mapsto tf(t)$ est intégrable ; et $-itf(t)=if'(t)$.",
+        "Dans l'intégrale de $\\hat f'$, intégrer par parties en dérivant $e^{-i\\xi t}$ ; le crochet est nul aux bornes.",
+        "$\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t$ se calcule par un changement de variable affine."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\hat f(\\xi)$ ?",
+        "propositions": [
+          "$\\sqrt{2\\pi}\\,e^{-\\xi^2/2}$",
+          "$\\sqrt{2\\pi}\\,e^{-\\xi^2}$",
+          "$\\sqrt{\\pi}\\,e^{-\\xi^2/2}$",
+          "$\\sqrt{2\\pi}\\,e^{-2\\xi^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f$ et $t\\mapsto tf(t)$ sont continues et intégrables sur $\\mathbb{R}$ (croissances comparées) : par le théorème de dérivation de la transformée de Fourier, $\\hat f$ est de classe $\\mathcal{C}^1$ et $\\hat f'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)f(t)e^{-i\\xi t}\\,\\mathrm{d}t$.\n\n**2.** Comme $f'(t)=-tf(t)$, on a $-itf(t)=if'(t)$. Une intégration par parties sur $[-A,A]$, avec $f(\\pm A)\\to0$, donne\n$$\\hat f'(\\xi)=i\\int_{-\\infty}^{+\\infty}f'(t)e^{-i\\xi t}\\,\\mathrm{d}t=i\\left(0+i\\xi\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t\\right)=-\\xi \\hat f(\\xi).$$\n\n**3.** Les solutions de $y'=-\\xi y$ sont $\\xi\\mapsto Ce^{-\\xi^2/2}$ ; donc $\\hat f(\\xi)=\\hat f(0)e^{-\\xi^2/2}$. Par le changement de variable $u=\\sqrt{\\frac12}\\,t$, $\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t=\\sqrt{2\\pi}$. Ainsi $\\hat f(\\xi)=\\sqrt{2\\pi}\\,e^{-\\xi^2/2}$.",
+      "variantes": [
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-t^2}$. On admet que $\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=\\sqrt\\pi$.\n\n**1.** Montrer que $\\hat f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$.\n\n**2.** Par une intégration par parties, montrer que $\\hat f$ vérifie une équation différentielle linéaire du premier ordre.\n\n**3.** En déduire $\\hat f(\\xi)$ pour tout réel $\\xi$.",
+          "indices": [
+            "$t\\mapsto tf(t)$ est intégrable ; et $-itf(t)=\\frac{i}{2}f'(t)$.",
+            "Dans l'intégrale de $\\hat f'$, intégrer par parties en dérivant $e^{-i\\xi t}$ ; le crochet est nul aux bornes.",
+            "$\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t$ se calcule par un changement de variable affine."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$\\sqrt\\pi\\,e^{-\\xi^2/4}$",
+              "$\\sqrt\\pi\\,e^{-\\xi^2}$",
+              "$\\sqrt{2\\pi}\\,e^{-\\xi^2/2}$",
+              "$\\sqrt\\pi\\,e^{-\\xi^2/2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f$ et $t\\mapsto tf(t)$ sont continues et intégrables sur $\\mathbb{R}$ (croissances comparées) : par le théorème de dérivation de la transformée de Fourier, $\\hat f$ est de classe $\\mathcal{C}^1$ et $\\hat f'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)f(t)e^{-i\\xi t}\\,\\mathrm{d}t$.\n\n**2.** Comme $f'(t)=-2tf(t)$, on a $-itf(t)=\\frac i{2}f'(t)$. Une intégration par parties sur $[-A,A]$, avec $f(\\pm A)\\to0$, donne\n$$\\hat f'(\\xi)=\\frac i{2}\\int_{-\\infty}^{+\\infty}f'(t)e^{-i\\xi t}\\,\\mathrm{d}t=\\frac i{2}\\left(0+i\\xi\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t\\right)=-\\frac\\xi{2}\\hat f(\\xi).$$\n\n**3.** Les solutions de $y'=-\\frac\\xi{2}y$ sont $\\xi\\mapsto Ce^{-\\xi^2/4}$ ; donc $\\hat f(\\xi)=\\hat f(0)e^{-\\xi^2/4}$. Par l'intégrale de Gauss, $\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t=\\sqrt\\pi$. Ainsi $\\hat f(\\xi)=\\sqrt\\pi\\,e^{-\\xi^2/4}$."
+        },
+        {
+          "enonce": "On note $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$. Soit $f(t)=e^{-2t^2}$. On admet que $\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=\\sqrt\\pi$.\n\n**1.** Montrer que $\\hat f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$.\n\n**2.** Par une intégration par parties, montrer que $\\hat f$ vérifie une équation différentielle linéaire du premier ordre.\n\n**3.** En déduire $\\hat f(\\xi)$ pour tout réel $\\xi$.",
+          "indices": [
+            "$t\\mapsto tf(t)$ est intégrable ; et $-itf(t)=\\frac{i}{4}f'(t)$.",
+            "Dans l'intégrale de $\\hat f'$, intégrer par parties en dérivant $e^{-i\\xi t}$ ; le crochet est nul aux bornes.",
+            "$\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t$ se calcule par un changement de variable affine."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\hat f(\\xi)$ ?",
+            "propositions": [
+              "$\\sqrt{\\frac\\pi2}\\,e^{-\\xi^2/8}$",
+              "$\\sqrt{\\frac\\pi2}\\,e^{-\\xi^2/2}$",
+              "$\\sqrt{2\\pi}\\,e^{-\\xi^2/8}$",
+              "$\\sqrt\\pi\\,e^{-\\xi^2/8}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f$ et $t\\mapsto tf(t)$ sont continues et intégrables sur $\\mathbb{R}$ (croissances comparées) : par le théorème de dérivation de la transformée de Fourier, $\\hat f$ est de classe $\\mathcal{C}^1$ et $\\hat f'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)f(t)e^{-i\\xi t}\\,\\mathrm{d}t$.\n\n**2.** Comme $f'(t)=-4tf(t)$, on a $-itf(t)=\\frac i{4}f'(t)$. Une intégration par parties sur $[-A,A]$, avec $f(\\pm A)\\to0$, donne\n$$\\hat f'(\\xi)=\\frac i{4}\\int_{-\\infty}^{+\\infty}f'(t)e^{-i\\xi t}\\,\\mathrm{d}t=\\frac i{4}\\left(0+i\\xi\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t\\right)=-\\frac\\xi{4}\\hat f(\\xi).$$\n\n**3.** Les solutions de $y'=-\\frac\\xi{4}y$ sont $\\xi\\mapsto Ce^{-\\xi^2/8}$ ; donc $\\hat f(\\xi)=\\hat f(0)e^{-\\xi^2/8}$. Par le changement de variable $u=\\sqrt{2}\\,t$, $\\hat f(0)=\\int_{-\\infty}^{+\\infty}f(t)\\,\\mathrm{d}t=\\sqrt{\\frac\\pi2}$. Ainsi $\\hat f(\\xi)=\\sqrt{\\frac\\pi2}\\,e^{-\\xi^2/8}$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gauss-ex1",
+      "carte": "int-l2-parametre-gauss",
+      "difficulte": 1,
+      "titre": "Intégrale gaussienne avec un facteur d'échelle",
+      "enonce": "Calculer $\\int_{-\\infty}^{+\\infty}e^{-3t^2}\\,\\mathrm{d}t$ à partir de l'intégrale de Gauss.",
+      "duree_min": 3,
+      "indices": [
+        "Poser $u=\\sqrt3\\,t$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$\\sqrt{\\frac\\pi3}$",
+          "$\\frac{\\sqrt\\pi}{3}$",
+          "$\\sqrt{3\\pi}$",
+          "$\\frac\\pi3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le changement de variable $u=\\sqrt3\\,t$ donne $\\int_{-\\infty}^{+\\infty}e^{-3t^2}\\,\\mathrm{d}t=\\frac1{\\sqrt3}\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=\\sqrt{\\frac\\pi3}$.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_0^{+\\infty}e^{-t^2/4}\\,\\mathrm{d}t$ à partir de l'intégrale de Gauss.",
+          "indices": [
+            "Poser $u=\\frac t2$, et faire attention à l'intervalle d'intégration."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\sqrt\\pi$",
+              "$\\frac{\\sqrt\\pi}{2}$",
+              "$2\\sqrt\\pi$",
+              "$\\sqrt{2\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=\\frac t2$, $\\int_0^{+\\infty}e^{-t^2/4}\\,\\mathrm{d}t=2\\int_0^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=2\\cdot\\frac{\\sqrt\\pi}2=\\sqrt\\pi$."
+        },
+        {
+          "enonce": "Calculer $\\int_{-\\infty}^{+\\infty}e^{-t^2/8}\\,\\mathrm{d}t$ à partir de l'intégrale de Gauss.",
+          "indices": [
+            "Poser $u=\\frac t{2\\sqrt2}$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$2\\sqrt{2\\pi}$",
+              "$\\sqrt{2\\pi}$",
+              "$\\sqrt{\\frac{\\pi}{8}}$",
+              "$8\\sqrt\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $u=\\frac t{2\\sqrt2}$, $\\int_{-\\infty}^{+\\infty}e^{-t^2/8}\\,\\mathrm{d}t=2\\sqrt2\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=2\\sqrt2\\sqrt\\pi=2\\sqrt{2\\pi}$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gauss-ex2",
+      "carte": "int-l2-parametre-gauss",
+      "difficulte": 2,
+      "titre": "Compléter le carré dans une intégrale gaussienne",
+      "enonce": "Calculer $\\int_{-\\infty}^{+\\infty}e^{-t^2+2t}\\,\\mathrm{d}t$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire $-t^2+2t$ sous la forme $-(t-a)^2+b$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$e\\sqrt\\pi$",
+          "$\\sqrt\\pi$",
+          "$e^{-1}\\sqrt\\pi$",
+          "$e^2\\sqrt\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On complète le carré : $-t^2+2t=-(t-1)^2+1$. Après un changement de variable affine (translation, puis homothétie si besoin) et l'intégrale de Gauss,\n$$\\int_{-\\infty}^{+\\infty}e^{-t^2+2t}\\,\\mathrm{d}t=e\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=e\\sqrt\\pi.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\int_{-\\infty}^{+\\infty}e^{-t^2-t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Écrire $-t^2-t$ sous la forme $-(t-a)^2+b$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$e^{1/4}\\sqrt\\pi$",
+              "$e^{-1/4}\\sqrt\\pi$",
+              "$\\sqrt\\pi$",
+              "$e^{1/2}\\sqrt\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On complète le carré : $-t^2-t=-\\left(t+\\frac12\\right)^2+\\frac14$. Après un changement de variable affine (translation, puis homothétie si besoin) et l'intégrale de Gauss,\n$$\\int_{-\\infty}^{+\\infty}e^{-t^2-t}\\,\\mathrm{d}t=e^{1/4}\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=e^{1/4}\\sqrt\\pi.$$"
+        },
+        {
+          "enonce": "Calculer $\\int_{-\\infty}^{+\\infty}e^{-2t^2+4t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Écrire $-2t^2+4t$ sous la forme $-2(t-a)^2+b$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$e^2\\sqrt{\\frac\\pi2}$",
+              "$e^2\\sqrt\\pi$",
+              "$e^4\\sqrt{\\frac\\pi2}$",
+              "$e\\sqrt{\\frac\\pi2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On complète le carré : $-2t^2+4t=-2(t-1)^2+2$. Après un changement de variable affine (translation, puis homothétie si besoin) et l'intégrale de Gauss,\n$$\\int_{-\\infty}^{+\\infty}e^{-2t^2+4t}\\,\\mathrm{d}t=e^2\\int_{-\\infty}^{+\\infty}e^{-2u^2}\\,\\mathrm{d}u=e^2\\sqrt{\\frac\\pi2}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gauss-ex3",
+      "carte": "int-l2-parametre-gauss",
+      "difficulte": 3,
+      "titre": "Moments gaussiens par intégration par parties",
+      "enonce": "Pour $n\\in\\mathbb{N}$, on pose $M_n=\\int_{-\\infty}^{+\\infty}t^{2n}e^{-t^2/2}\\,\\mathrm{d}t$. Établir une relation entre $M_{n+1}$ et $M_n$, et en déduire $M_2$.",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $t^{2n+2}e^{-t^2/2}=t^{2n+1}\\cdot te^{-t^2/2}$ et intégrer par parties.",
+        "$M_0=\\sqrt{2\\pi}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $M_2$ ?",
+        "propositions": [
+          "$3\\sqrt{2\\pi}$",
+          "$\\sqrt{2\\pi}$",
+          "$2\\sqrt{2\\pi}$",
+          "$15\\sqrt{2\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les intégrales convergent ($t^{2n}e^{-t^2/2}=o\\left(\\frac1{t^2}\\right)$ en $\\pm\\infty$). Sur $[-A,A]$, avec $u=t^{2n+1}$ et $v'=te^{-t^2/2}$, $v=-e^{-t^2/2}$ :\n$$\\int_{-A}^At^{2n+2}e^{-t^2/2}\\,\\mathrm{d}t=\\left[-t^{2n+1}e^{-t^2/2}\\right]_{-A}^A+(2n+1)\\int_{-A}^At^{2n}e^{-t^2/2}\\,\\mathrm{d}t.$$\nLe crochet tend vers $0$, d'où $M_{n+1}=(2n+1)M_n$. Comme $M_0=\\sqrt{2\\pi}$ (intégrale de Gauss avec $a=\\frac12$), $M_1=\\sqrt{2\\pi}$ et $M_2=3M_1=3\\sqrt{2\\pi}$.",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\in\\mathbb{N}$, on pose $M_n=\\int_{-\\infty}^{+\\infty}t^{2n}e^{-t^2/2}\\,\\mathrm{d}t$. Établir une relation entre $M_{n+1}$ et $M_n$, et en déduire $M_3$.",
+          "indices": [
+            "Écrire $t^{2n+2}e^{-t^2/2}=t^{2n+1}\\cdot te^{-t^2/2}$ et intégrer par parties.",
+            "$M_0=\\sqrt{2\\pi}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $M_3$ ?",
+            "propositions": [
+              "$15\\sqrt{2\\pi}$",
+              "$3\\sqrt{2\\pi}$",
+              "$5\\sqrt{2\\pi}$",
+              "$105\\sqrt{2\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[-A,A]$, avec $u=t^{2n+1}$ et $v=-e^{-t^2/2}$, l'intégration par parties donne, le crochet tendant vers $0$, $M_{n+1}=(2n+1)M_n$. Avec $M_0=\\sqrt{2\\pi}$ : $M_1=\\sqrt{2\\pi}$, $M_2=3\\sqrt{2\\pi}$, $M_3=5M_2=15\\sqrt{2\\pi}$."
+        },
+        {
+          "enonce": "Pour $n\\in\\mathbb{N}$, on pose $N_n=\\int_0^{+\\infty}t^{2n}e^{-t^2}\\,\\mathrm{d}t$. Établir une relation entre $N_{n+1}$ et $N_n$, et en déduire $N_1$.",
+          "indices": [
+            "Écrire $t^{2n+2}e^{-t^2}=t^{2n+1}\\cdot te^{-t^2}$ et intégrer par parties.",
+            "$N_0=\\frac{\\sqrt\\pi}2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $N_1$ ?",
+            "propositions": [
+              "$\\frac{\\sqrt\\pi}{4}$",
+              "$\\frac{\\sqrt\\pi}{2}$",
+              "$\\frac{\\sqrt\\pi}{8}$",
+              "$\\sqrt\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,A]$, avec $u=t^{2n+1}$ et $v'=te^{-t^2}$, $v=-\\frac12e^{-t^2}$ :\n$$\\int_0^At^{2n+2}e^{-t^2}\\,\\mathrm{d}t=\\left[-\\frac12t^{2n+1}e^{-t^2}\\right]_0^A+\\frac{2n+1}2\\int_0^At^{2n}e^{-t^2}\\,\\mathrm{d}t.$$\nLe crochet tend vers $0$ : $N_{n+1}=\\frac{2n+1}2N_n$. Avec $N_0=\\frac{\\sqrt\\pi}2$ : $N_1=\\frac12\\cdot\\frac{\\sqrt\\pi}2=\\frac{\\sqrt\\pi}4$."
+        }
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gauss-ex4",
+      "carte": "int-l2-parametre-gauss",
+      "difficulte": 4,
+      "titre": "Une intégrale gaussienne à deux échelles",
+      "enonce": "Pour $a\\ge0$, on pose $I(a)=\\int_0^{+\\infty}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $I$ est continue sur $\\left[0,+\\infty\\right[$ et de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$.\n\n**2.** Pour $a>0$, montrer que $I'(a)=-2I(a)$ à l'aide du changement de variable $u=\\frac at$.\n\n**3.** En déduire $I(a)$ pour tout $a\\ge0$, puis la valeur de $\\int_0^{+\\infty}e^{-t^2-1/t^2}\\,\\mathrm{d}t$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour la dérivabilité, dominer $\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ pour $a\\in[\\alpha,\\beta]\\subset\\left]0,+\\infty\\right[$, en utilisant $e^{-a^2/t^2}\\le e^{-\\alpha^2/t^2}$.",
+        "Le changement de variable $u=\\frac at$ transforme $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$ en $I(a)$.",
+        "$I(0)=\\frac{\\sqrt\\pi}2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle valeur obtient-on ?",
+        "propositions": [
+          "$\\frac{\\sqrt\\pi}{2}e^{-2}$",
+          "$\\frac{\\sqrt\\pi}{2}e^{-1}$",
+          "$\\sqrt\\pi\\,e^{-2}$",
+          "$\\frac{\\sqrt\\pi}{2}e^{-1/2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $f(a,t)=e^{-t^2-a^2/t^2}$ pour $a\\ge0$, $t>0$. Elle est continue en $a$ et en $t$, et $0<f(a,t)\\le e^{-t^2}$, intégrable et indépendante de $a$ : par domination, $I$ est continue sur $\\left[0,+\\infty\\right[$. Ensuite $\\frac{\\partial f}{\\partial a}(a,t)=-\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ ; pour $a\\in[\\alpha,\\beta]$ avec $0<\\alpha<\\beta$,\n$$\\left|\\frac{\\partial f}{\\partial a}(a,t)\\right|\\le\\frac{2\\beta}{t^2}e^{-\\alpha^2/t^2}e^{-t^2},$$\nfonction continue sur $\\left]0,+\\infty\\right[$, de limite nulle en $0$ (car $\\frac1{t^2}e^{-\\alpha^2/t^2}\\to0$), et intégrable en $+\\infty$. Par le théorème de dérivation (domination sur chaque segment), $I$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et $I'(a)=-2\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**2.** Le changement de variable $u=\\frac at$ (bijection décroissante de classe $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même, $\\mathrm{d}u=-\\frac a{t^2}\\,\\mathrm{d}t$, et $t^2+\\frac{a^2}{t^2}=\\frac{a^2}{u^2}+u^2$) donne $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t=\\int_0^{+\\infty}e^{-u^2-a^2/u^2}\\,\\mathrm{d}u=I(a)$. Donc $I'(a)=-2I(a)$.\n\n**3.** Sur $\\left]0,+\\infty\\right[$, $I(a)=Ce^{-2a}$ ; par continuité en $0$, $C=I(0)=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$. Ainsi $I(a)=\\frac{\\sqrt\\pi}2e^{-2a}$ pour tout $a\\ge0$. En $a=1$ : $\\int_0^{+\\infty}e^{-t^2-1/t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2e^{-2}$.",
+      "variantes": [
+        {
+          "enonce": "Pour $a\\ge0$, on pose $I(a)=\\int_0^{+\\infty}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $I$ est continue sur $\\left[0,+\\infty\\right[$ et de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$.\n\n**2.** Pour $a>0$, montrer que $I'(a)=-2I(a)$ à l'aide du changement de variable $u=\\frac at$.\n\n**3.** En déduire $I(a)$ pour tout $a\\ge0$, puis la valeur de $\\int_0^{+\\infty}e^{-t^2-4/t^2}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour la dérivabilité, dominer $\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ pour $a\\in[\\alpha,\\beta]\\subset\\left]0,+\\infty\\right[$, en utilisant $e^{-a^2/t^2}\\le e^{-\\alpha^2/t^2}$.",
+            "Le changement de variable $u=\\frac at$ transforme $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$ en $I(a)$.",
+            "$I(0)=\\frac{\\sqrt\\pi}2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac{\\sqrt\\pi}{2}e^{-4}$",
+              "$\\frac{\\sqrt\\pi}{2}e^{-2}$",
+              "$\\sqrt\\pi\\,e^{-4}$",
+              "$\\frac{\\sqrt\\pi}{2}e^{-8}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $f(a,t)=e^{-t^2-a^2/t^2}$ pour $a\\ge0$, $t>0$. Elle est continue en $a$ et en $t$, et $0<f(a,t)\\le e^{-t^2}$, intégrable et indépendante de $a$ : par domination, $I$ est continue sur $\\left[0,+\\infty\\right[$. Ensuite $\\frac{\\partial f}{\\partial a}(a,t)=-\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ ; pour $a\\in[\\alpha,\\beta]$ avec $0<\\alpha<\\beta$,\n$$\\left|\\frac{\\partial f}{\\partial a}(a,t)\\right|\\le\\frac{2\\beta}{t^2}e^{-\\alpha^2/t^2}e^{-t^2},$$\nfonction continue sur $\\left]0,+\\infty\\right[$, de limite nulle en $0$ (car $\\frac1{t^2}e^{-\\alpha^2/t^2}\\to0$), et intégrable en $+\\infty$. Par le théorème de dérivation (domination sur chaque segment), $I$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et $I'(a)=-2\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**2.** Le changement de variable $u=\\frac at$ (bijection décroissante de classe $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même, $\\mathrm{d}u=-\\frac a{t^2}\\,\\mathrm{d}t$, et $t^2+\\frac{a^2}{t^2}=\\frac{a^2}{u^2}+u^2$) donne $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t=\\int_0^{+\\infty}e^{-u^2-a^2/u^2}\\,\\mathrm{d}u=I(a)$. Donc $I'(a)=-2I(a)$.\n\n**3.** Sur $\\left]0,+\\infty\\right[$, $I(a)=Ce^{-2a}$ ; par continuité en $0$, $C=I(0)=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$. Ainsi $I(a)=\\frac{\\sqrt\\pi}2e^{-2a}$ pour tout $a\\ge0$. En $a=2$ : $\\int_0^{+\\infty}e^{-t^2-4/t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2e^{-4}$."
+        },
+        {
+          "enonce": "Pour $a\\ge0$, on pose $I(a)=\\int_0^{+\\infty}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**1.** Montrer que $I$ est continue sur $\\left[0,+\\infty\\right[$ et de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$.\n\n**2.** Pour $a>0$, montrer que $I'(a)=-2I(a)$ à l'aide du changement de variable $u=\\frac at$.\n\n**3.** En déduire $I(a)$ pour tout $a\\ge0$, puis la valeur de $\\int_0^{+\\infty}e^{-\\left(t-\\frac1t\\right)^2}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour la dérivabilité, dominer $\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ pour $a\\in[\\alpha,\\beta]\\subset\\left]0,+\\infty\\right[$, en utilisant $e^{-a^2/t^2}\\le e^{-\\alpha^2/t^2}$.",
+            "Le changement de variable $u=\\frac at$ transforme $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$ en $I(a)$.",
+            "$I(0)=\\frac{\\sqrt\\pi}2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle valeur obtient-on ?",
+            "propositions": [
+              "$\\frac{\\sqrt\\pi}{2}$",
+              "$\\sqrt\\pi$",
+              "$\\frac{\\sqrt\\pi}{2}e^{-2}$",
+              "$\\frac{\\sqrt\\pi}{2}e^{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $f(a,t)=e^{-t^2-a^2/t^2}$ pour $a\\ge0$, $t>0$. Elle est continue en $a$ et en $t$, et $0<f(a,t)\\le e^{-t^2}$, intégrable et indépendante de $a$ : par domination, $I$ est continue sur $\\left[0,+\\infty\\right[$. Ensuite $\\frac{\\partial f}{\\partial a}(a,t)=-\\frac{2a}{t^2}e^{-t^2-a^2/t^2}$ ; pour $a\\in[\\alpha,\\beta]$ avec $0<\\alpha<\\beta$,\n$$\\left|\\frac{\\partial f}{\\partial a}(a,t)\\right|\\le\\frac{2\\beta}{t^2}e^{-\\alpha^2/t^2}e^{-t^2},$$\nfonction continue sur $\\left]0,+\\infty\\right[$, de limite nulle en $0$ (car $\\frac1{t^2}e^{-\\alpha^2/t^2}\\to0$), et intégrable en $+\\infty$. Par le théorème de dérivation (domination sur chaque segment), $I$ est de classe $\\mathcal{C}^1$ sur $\\left]0,+\\infty\\right[$ et $I'(a)=-2\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t$.\n\n**2.** Le changement de variable $u=\\frac at$ (bijection décroissante de classe $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même, $\\mathrm{d}u=-\\frac a{t^2}\\,\\mathrm{d}t$, et $t^2+\\frac{a^2}{t^2}=\\frac{a^2}{u^2}+u^2$) donne $\\int_0^{+\\infty}\\frac a{t^2}e^{-t^2-a^2/t^2}\\,\\mathrm{d}t=\\int_0^{+\\infty}e^{-u^2-a^2/u^2}\\,\\mathrm{d}u=I(a)$. Donc $I'(a)=-2I(a)$.\n\n**3.** Sur $\\left]0,+\\infty\\right[$, $I(a)=Ce^{-2a}$ ; par continuité en $0$, $C=I(0)=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$. Ainsi $I(a)=\\frac{\\sqrt\\pi}2e^{-2a}$ pour tout $a\\ge0$. Enfin $\\left(t-\\frac1t\\right)^2=t^2-2+\\frac1{t^2}$, donc $\\int_0^{+\\infty}e^{-\\left(t-\\frac1t\\right)^2}\\,\\mathrm{d}t=e^2I(1)=\\frac{\\sqrt\\pi}2$."
+        }
+      ]
+    }
+  ]
+}

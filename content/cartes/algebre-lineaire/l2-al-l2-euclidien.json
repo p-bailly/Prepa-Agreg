@@ -1,0 +1,631 @@
+{
+  "cartes": [
+    {
+      "id": "al-l2-euclidien-cauchy-schwarz",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Inégalité de Cauchy-Schwarz et norme euclidienne",
+      "recto": "Énoncer l'inégalité de Cauchy-Schwarz dans un espace préhilbertien réel, avec son cas d'égalité, et en déduire que $x\\mapsto\\sqrt{\\langle x,x\\rangle}$ est une norme.",
+      "cours": "Un **produit scalaire** sur un $\\mathbb{R}$-espace vectoriel $E$ est une forme bilinéaire symétrique définie positive : $\\langle x,x\\rangle\\ge0$ pour tout $x$, avec égalité seulement pour $x=0$. On note $\\|x\\|=\\sqrt{\\langle x,x\\rangle}$. L'espace est alors **préhilbertien réel** ; il est **euclidien** s'il est de plus de dimension finie. Exemples à connaître : $\\langle x,y\\rangle=\\sum x_iy_i$ sur $\\mathbb{R}^n$, $\\langle f,g\\rangle=\\int_a^bfg$ sur l'espace des fonctions continues sur $[a,b]$, $\\langle A,B\\rangle=\\mathrm{tr}({}^tAB)=\\sum_{i,j}a_{ij}b_{ij}$ sur $\\mathcal{M}_n(\\mathbb{R})$.\n\nL'inégalité de Cauchy-Schwarz dit que $|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$ : dans le plan usuel, c'est $|\\cos\\theta|\\le1$. Elle permet de définir l'angle non orienté $\\theta\\in[0,\\pi]$ de deux vecteurs non nuls par $\\cos\\theta=\\frac{\\langle x,y\\rangle}{\\|x\\|\\,\\|y\\|}$, et elle donne l'inégalité triangulaire, donc le fait que $\\|\\cdot\\|$ est une norme. La preuve tient en une ligne : le trinôme $t\\mapsto\\|tx+y\\|^2$ est positif, donc son discriminant est négatif ou nul.\n\nMéthode : pour majorer une somme ou une intégrale, reconnaître un produit scalaire et choisir les deux vecteurs. Avec $x=(1,\\dots,1)$ et $y=(a_1,\\dots,a_n)$ : $\\left(\\sum a_k\\right)^2\\le n\\sum a_k^2$ ; avec $f$ et la fonction constante $1$ : $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$. Le cas d'égalité (famille liée) sert à trouver les extremums sous contrainte. L'**identité de polarisation** $\\langle x,y\\rangle=\\frac12\\left(\\|x+y\\|^2-\\|x\\|^2-\\|y\\|^2\\right)$ montre que la norme détermine le produit scalaire, et l'**identité du parallélogramme** $\\|x+y\\|^2+\\|x-y\\|^2=2\\|x\\|^2+2\\|y\\|^2$ est une condition nécessaire pour qu'une norme provienne d'un produit scalaire.\n\nPièges : l'inégalité demande une forme **symétrique positive** (sans positivité, ou sans symétrie, elle peut être fausse) ; le caractère **défini** sert au cas d'égalité et au fait que $\\|x\\|=0$ entraîne $x=0$. Le cas d'égalité de Cauchy-Schwarz (famille liée) n'est pas celui de l'inégalité triangulaire : $\\|x+y\\|=\\|x\\|+\\|y\\|$ demande $x=0$ ou $y=\\lambda x$ avec $\\lambda\\ge0$ ; pour $y=-x\\neq0$, la famille est liée mais $\\|x+y\\|=0<2\\|x\\|$.",
+      "hypotheses": [
+        "$\\langle\\cdot,\\cdot\\rangle$ est une forme bilinéaire symétrique sur $E$.",
+        "$\\langle x,x\\rangle\\ge0$ pour tout $x\\in E$ (positivité).",
+        "$\\langle x,x\\rangle=0$ seulement pour $x=0$ (caractère défini)."
+      ],
+      "hypotheses_pieges": [
+        "$\\langle\\cdot,\\cdot\\rangle$ est bilinéaire et vérifie $\\langle x,x\\rangle>0$ pour tout $x\\neq0$, sans être supposée symétrique (à la place de : symétrique).",
+        "$\\langle\\cdot,\\cdot\\rangle$ est bilinéaire symétrique et non dégénérée (à la place de : positive et définie).",
+        "$\\langle\\cdot,\\cdot\\rangle$ est bilinéaire symétrique et positive, sans être supposée définie (à la place de : définie positive)."
+      ],
+      "enonce": "Soit $E$ un espace préhilbertien réel, c'est-à-dire un $\\mathbb{R}$-espace vectoriel muni d'un produit scalaire $\\langle\\cdot,\\cdot\\rangle$ (forme bilinéaire symétrique définie positive), et $\\|x\\|=\\sqrt{\\langle x,x\\rangle}$.\n\n- **Inégalité de Cauchy-Schwarz.** Pour tous $x,y\\in E$ : $|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$, avec égalité si et seulement si la famille $(x,y)$ est liée.\n- **Norme euclidienne.** $\\|\\cdot\\|$ est une norme : $\\|x\\|=0$ si et seulement si $x=0$, $\\|\\lambda x\\|=|\\lambda|\\,\\|x\\|$, et $\\|x+y\\|\\le\\|x\\|+\\|y\\|$, avec égalité si et seulement si $x=0$ ou $y=\\lambda x$ avec $\\lambda\\ge0$.\n- **Identité du parallélogramme.** $\\|x+y\\|^2+\\|x-y\\|^2=2\\|x\\|^2+2\\|y\\|^2$.\n\nUn **espace euclidien** est un espace préhilbertien réel de dimension finie.",
+      "enonce_trous": "Pour tous $x,y\\in E$, {{1}}, avec égalité si et seulement si {{2}}. L'inégalité triangulaire $\\|x+y\\|\\le\\|x\\|+\\|y\\|$ est une égalité si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$",
+          "leurres": [
+            "$\\|x\\|\\,\\|y\\|\\le|\\langle x,y\\rangle|$",
+            "$|\\langle x,y\\rangle|\\le\\min(\\|x\\|,\\|y\\|)$",
+            "$\\langle x,y\\rangle^2\\le\\langle x,x\\rangle+\\langle y,y\\rangle$"
+          ]
+        },
+        {
+          "reponse": "la famille $(x,y)$ est liée",
+          "leurres": [
+            "$x$ et $y$ sont orthogonaux",
+            "$\\|x\\|=\\|y\\|$",
+            "$y=\\lambda x$ avec $\\lambda\\ge0$"
+          ]
+        },
+        {
+          "reponse": "$x=0$ ou $y=\\lambda x$ avec $\\lambda\\ge0$",
+          "leurres": [
+            "la famille $(x,y)$ est liée",
+            "$x$ et $y$ sont orthogonaux",
+            "$\\|x\\|=\\|y\\|$"
+          ]
+        }
+      ],
+      "demo": "**Cauchy-Schwarz.** Si $x=0$, les deux membres sont nuls et la famille est liée. Supposons $x\\neq0$. Pour tout réel $t$, $0\\le\\|tx+y\\|^2=t^2\\|x\\|^2+2t\\langle x,y\\rangle+\\|y\\|^2$ (bilinéarité et symétrie). C'est un trinôme du second degré ($\\|x\\|^2>0$) qui ne prend que des valeurs positives : son discriminant est négatif ou nul, $4\\langle x,y\\rangle^2-4\\|x\\|^2\\|y\\|^2\\le0$, d'où l'inégalité.\n\n**Cas d'égalité.** Il y a égalité si et seulement si le discriminant est nul, c'est-à-dire si le trinôme a une racine $t_0$ : $\\|t_0x+y\\|=0$, soit $y=-t_0x$ (caractère défini). Ainsi l'égalité entraîne que $(x,y)$ est liée ; réciproquement, si $x\\neq0$ et $(x,y)$ est liée, $y=\\lambda x$ et $|\\langle x,y\\rangle|=|\\lambda|\\,\\|x\\|^2=\\|x\\|\\,\\|y\\|$.\n\n**Norme.** $\\|x\\|=0$ entraîne $\\langle x,x\\rangle=0$, donc $x=0$ ; $\\|\\lambda x\\|^2=\\lambda^2\\|x\\|^2$. Ensuite $\\|x+y\\|^2=\\|x\\|^2+2\\langle x,y\\rangle+\\|y\\|^2\\le\\|x\\|^2+2\\|x\\|\\,\\|y\\|+\\|y\\|^2=(\\|x\\|+\\|y\\|)^2$, car $\\langle x,y\\rangle\\le|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$. Il y a égalité si et seulement si $\\langle x,y\\rangle=\\|x\\|\\,\\|y\\|$. Si $x\\neq0$, Cauchy-Schwarz impose alors $y=\\lambda x$, et $\\lambda\\|x\\|^2=|\\lambda|\\,\\|x\\|^2$ donne $\\lambda\\ge0$ ; réciproquement $x=0$, ou $y=\\lambda x$ avec $\\lambda\\ge0$, donne bien l'égalité.\n\n**Parallélogramme.** On développe : $\\|x\\pm y\\|^2=\\|x\\|^2\\pm2\\langle x,y\\rangle+\\|y\\|^2$, et l'on ajoute les deux égalités.",
+      "exemple": "Dans $\\mathbb{R}^n$ muni du produit scalaire usuel, avec $x=(1,\\dots,1)$ et $y=(a_1,\\dots,a_n)$ : $\\left(\\sum_{k=1}^na_k\\right)^2\\le n\\sum_{k=1}^na_k^2$, avec égalité si et seulement si les $a_k$ sont tous égaux. Pour $a_k=k$, cela donne $\\left(\\frac{n(n+1)}2\\right)^2\\le n\\cdot\\frac{n(n+1)(2n+1)}6$, soit $3(n+1)\\le2(2n+1)$, vrai pour tout $n\\ge1$, avec égalité seulement pour $n=1$.",
+      "contre_exemple": "- **Sans symétrie** : sur $\\mathbb{R}^2$, $b(x,y)=x_1y_1+x_2y_2+2(x_1y_2-x_2y_1)$ est bilinéaire et $b(x,x)=x_1^2+x_2^2>0$ pour $x\\neq0$ ; pourtant $b((1,0),(0,1))=2>1=\\sqrt{b((1,0),(1,0))}\\sqrt{b((0,1),(0,1))}$.\n- **Sans positivité** : $b(x,y)=x_1y_1-x_2y_2$ est symétrique non dégénérée ; pour $x=(2,1)$ et $y=(1,0)$, $b(x,x)=3$, $b(y,y)=1$ et $b(x,y)=2>\\sqrt3$.\n- **Sans caractère défini** : $b(x,y)=x_1y_1$ est symétrique positive ; pour $x=(0,1)$ et $y=(1,0)$, $|b(x,y)|=0=\\sqrt{b(x,x)}\\sqrt{b(y,y)}$ alors que $(x,y)$ est libre, et $\\sqrt{b(x,x)}=0$ avec $x\\neq0$.\n- **Une norme qui ne vient pas d'un produit scalaire** : pour $\\|(a,b)\\|_1=|a|+|b|$, $x=(1,0)$ et $y=(0,1)$, $\\|x+y\\|_1^2+\\|x-y\\|_1^2=8\\neq4=2\\|x\\|_1^2+2\\|y\\|_1^2$.",
+      "affirmations": [
+        {
+          "texte": "Dans un espace préhilbertien réel, $\\|x+y\\|^2=\\|x\\|^2+\\|y\\|^2$ si et seulement si $\\langle x,y\\rangle=0$.",
+          "vrai": true,
+          "justification": "$\\|x+y\\|^2=\\|x\\|^2+2\\langle x,y\\rangle+\\|y\\|^2$ (théorème de Pythagore)."
+        },
+        {
+          "texte": "Si $|\\langle x,y\\rangle|=\\|x\\|\\,\\|y\\|$, alors $\\|x+y\\|=\\|x\\|+\\|y\\|$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x\\neq0$ et $y=-x$ : $|\\langle x,y\\rangle|=\\|x\\|^2=\\|x\\|\\,\\|y\\|$, mais $\\|x+y\\|=0<2\\|x\\|$."
+        },
+        {
+          "texte": "La norme $\\|(a,b)\\|_\\infty=\\max(|a|,|b|)$ sur $\\mathbb{R}^2$ est associée à un produit scalaire.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=(1,0)$ et $y=(0,1)$ : $\\|x+y\\|_\\infty^2+\\|x-y\\|_\\infty^2=2$, alors que $2\\|x\\|_\\infty^2+2\\|y\\|_\\infty^2=4$ ; l'identité du parallélogramme est en défaut."
+        },
+        {
+          "texte": "Pour tous réels $a_1,\\dots,a_n$, $\\left(\\sum_{k=1}^na_k\\right)^2\\le n\\sum_{k=1}^na_k^2$.",
+          "vrai": true,
+          "justification": "C'est Cauchy-Schwarz dans $\\mathbb{R}^n$ pour $(1,\\dots,1)$ et $(a_1,\\dots,a_n)$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-familles",
+        "geo-t-espace-orthogonalite"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-schmidt",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Bases orthonormales et procédé de Schmidt",
+      "recto": "Énoncer le théorème d'orthonormalisation de Schmidt (existence, unicité, formules) et ses conséquences sur les bases orthonormales d'un espace euclidien.",
+      "cours": "Une famille $(e_1,\\dots,e_p)$ est **orthogonale** si ses vecteurs sont deux à deux orthogonaux, **orthonormale** s'ils sont de plus de norme $1$. Dans une base orthonormale, tout se calcule comme dans $\\mathbb{R}^n$ usuel : les coordonnées sont les produits scalaires $x_i=\\langle x,e_i\\rangle$, et $\\langle x,y\\rangle=\\sum x_iy_i$. Le procédé de Schmidt fabrique de telles bases à partir de n'importe quelle base.\n\nIdée : on redresse les vecteurs un par un. On garde la direction de $e_1$ ; on retire à $e_2$ sa composante selon $f_1$, ce qui laisse un vecteur orthogonal à $f_1$, que l'on norme ; puis on retire à $e_3$ ses composantes selon $f_1$ et $f_2$, et ainsi de suite. À chaque étape, $g_k=e_k-\\sum_{i<k}\\langle e_k,f_i\\rangle f_i$ est $e_k$ moins son projeté orthogonal sur $\\mathrm{Vect}(e_1,\\dots,e_{k-1})$, et $f_k=g_k/\\|g_k\\|$.\n\nEn version matricielle, c'est la décomposition $QR$ : toute matrice inversible $A$ s'écrit de façon unique $A=QR$ avec ${}^tQQ=I_n$ et $R$ triangulaire supérieure à coefficients diagonaux strictement positifs ; si $C_1,\\dots,C_n$ sont les colonnes de $A$, les colonnes de $Q$ sont les vecteurs $f_1,\\dots,f_n$ obtenus par Schmidt, $r_{ij}=\\langle C_j,f_i\\rangle$ pour $i\\le j$ et $r_{jj}=\\|g_j\\|$. Dans les espaces de polynômes, Schmidt appliqué à $(1,X,X^2,\\dots)$ donne les familles de polynômes orthogonaux (polynômes de Legendre pour $\\int_{-1}^1PQ$).\n\nPièges : dans la formule de $g_k$, les $f_i$ doivent être **normés** (si l'on garde les $g_i$ non normés, on divise par $\\|g_i\\|^2$) ; le résultat dépend de l'ordre des vecteurs ; une famille liée fait apparaître un $g_k$ nul. L'unicité exige la condition de signe $\\langle f_k,e_k\\rangle>0$ : sans elle, on peut changer le signe de chaque $f_k$.",
+      "hypotheses": [
+        "$(e_1,\\dots,e_p)$ est une famille libre de $E$.",
+        "$(f_1,\\dots,f_p)$ est orthonormale.",
+        "Pour chaque $k$, $\\mathrm{Vect}(f_1,\\dots,f_k)=\\mathrm{Vect}(e_1,\\dots,e_k)$ et $\\langle f_k,e_k\\rangle>0$."
+      ],
+      "hypotheses_pieges": [
+        "$(e_1,\\dots,e_p)$ est une famille génératrice de $E$, non nécessairement libre (à la place de : libre).",
+        "Pour chaque $k$, $\\mathrm{Vect}(f_1,\\dots,f_k)=\\mathrm{Vect}(e_1,\\dots,e_k)$, sans condition de signe (à la place de : avec $\\langle f_k,e_k\\rangle>0$).",
+        "$\\mathrm{Vect}(f_1,\\dots,f_p)=\\mathrm{Vect}(e_1,\\dots,e_p)$ et $\\langle f_k,e_k\\rangle>0$ pour chaque $k$ (à la place de : l'égalité des $\\mathrm{Vect}$ pour chaque $k$)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien de dimension $n\\ge1$.\n\n- Toute famille orthogonale de vecteurs non nuls est libre ; toute famille orthonormale de $E$ peut être complétée en une base orthonormale ; en particulier $E$ possède des bases orthonormales.\n- **Procédé de Schmidt.** Si $(e_1,\\dots,e_p)$ est une famille libre de $E$, il existe une unique famille orthonormale $(f_1,\\dots,f_p)$ telle que, pour tout $k\\in\\{1,\\dots,p\\}$, $\\mathrm{Vect}(f_1,\\dots,f_k)=\\mathrm{Vect}(e_1,\\dots,e_k)$ et $\\langle f_k,e_k\\rangle>0$. Elle est donnée par $f_k=\\frac{g_k}{\\|g_k\\|}$, où $g_k=e_k-\\sum_{i=1}^{k-1}\\langle e_k,f_i\\rangle f_i$ (en particulier $f_1=\\frac{e_1}{\\|e_1\\|}$).\n- Si $(f_1,\\dots,f_n)$ est une base orthonormale de $E$, alors pour tous $x,y\\in E$ : $x=\\sum_{i=1}^n\\langle x,f_i\\rangle f_i$, $\\langle x,y\\rangle=\\sum_{i=1}^nx_iy_i$ et $\\|x\\|^2=\\sum_{i=1}^nx_i^2$, où $x_i=\\langle x,f_i\\rangle$ et $y_i=\\langle y,f_i\\rangle$.",
+      "enonce_trous": "Si $(e_1,\\dots,e_p)$ est {{1}}, il existe une unique famille {{2}} $(f_1,\\dots,f_p)$ telle que, pour tout $k$, {{3}} et $\\langle f_k,e_k\\rangle>0$.",
+      "trous": [
+        {
+          "reponse": "une famille libre",
+          "leurres": [
+            "une famille quelconque",
+            "une famille génératrice de $E$",
+            "une famille de vecteurs non nuls"
+          ]
+        },
+        {
+          "reponse": "orthonormale",
+          "leurres": [
+            "orthogonale",
+            "libre",
+            "de vecteurs unitaires"
+          ]
+        },
+        {
+          "reponse": "$\\mathrm{Vect}(f_1,\\dots,f_k)=\\mathrm{Vect}(e_1,\\dots,e_k)$",
+          "leurres": [
+            "$\\mathrm{Vect}(f_k)=\\mathrm{Vect}(e_k)$",
+            "$f_k\\in\\mathrm{Vect}(e_1,\\dots,e_p)$",
+            "$\\langle f_k,e_k\\rangle=\\|e_k\\|$"
+          ]
+        }
+      ],
+      "demo": "**Liberté.** Si $(e_1,\\dots,e_p)$ est orthogonale, de vecteurs non nuls, et $\\sum\\lambda_ie_i=0$, le produit scalaire avec $e_j$ donne $\\lambda_j\\|e_j\\|^2=0$, donc $\\lambda_j=0$.\n\n**Existence (récurrence sur $k$).** Pour $k=1$, $e_1\\neq0$ et $f_1=e_1/\\|e_1\\|$ convient. Supposons $f_1,\\dots,f_{k-1}$ construits, orthonormaux, avec $\\mathrm{Vect}(f_1,\\dots,f_{k-1})=\\mathrm{Vect}(e_1,\\dots,e_{k-1})=F_{k-1}$. Posons $g_k=e_k-\\sum_{i<k}\\langle e_k,f_i\\rangle f_i$. Pour $j<k$, $\\langle g_k,f_j\\rangle=\\langle e_k,f_j\\rangle-\\langle e_k,f_j\\rangle=0$. De plus $g_k\\neq0$, sinon $e_k\\in F_{k-1}=\\mathrm{Vect}(e_1,\\dots,e_{k-1})$, contredisant la liberté. On pose $f_k=g_k/\\|g_k\\|$ : $(f_1,\\dots,f_k)$ est orthonormale, contenue dans $\\mathrm{Vect}(e_1,\\dots,e_k)$, libre de $k$ vecteurs, donc une base de cet espace de dimension $k$. Enfin $\\langle f_k,e_k\\rangle=\\langle f_k,g_k\\rangle+\\sum_{i<k}\\langle e_k,f_i\\rangle\\langle f_k,f_i\\rangle=\\|g_k\\|>0$.\n\n**Unicité.** Soit $(f'_1,\\dots,f'_p)$ une autre famille qui convient ; montrons $f'_k=f_k$ par récurrence. Si $f'_i=f_i$ pour $i<k$, alors $f'_k\\in\\mathrm{Vect}(f_1,\\dots,f_k)$ et $f'_k$ est orthogonal à $f_1,\\dots,f_{k-1}$, donc $f'_k=\\sum_{i\\le k}\\langle f'_k,f_i\\rangle f_i=\\langle f'_k,f_k\\rangle f_k$. Comme $\\|f'_k\\|=1$, $f'_k=\\pm f_k$. Enfin $\\langle f'_k,e_k\\rangle>0$ et $\\langle f_k,e_k\\rangle>0$ imposent le signe $+$.\n\n**Complétion.** Une famille orthonormale est libre ; on la complète en une base $(e_1,\\dots,e_n)$ (théorème de la base incomplète) et l'on applique Schmidt. Les premiers vecteurs, déjà orthonormaux, ne sont pas modifiés : $g_k=e_k$ car $\\langle e_k,f_i\\rangle=0$ pour $i<k$.\n\n**Coordonnées.** Si $x=\\sum_ix_if_i$, le produit scalaire avec $f_j$ donne $\\langle x,f_j\\rangle=x_j$ ; puis $\\langle x,y\\rangle=\\sum_{i,j}x_iy_j\\langle f_i,f_j\\rangle=\\sum_ix_iy_i$.",
+      "exemple": "Dans $\\mathbb{R}^3$ usuel, orthonormalisons $e_1=(1,1,0)$, $e_2=(1,0,1)$, $e_3=(0,1,1)$. On a $f_1=\\frac1{\\sqrt2}(1,1,0)$. Puis $g_2=e_2-\\langle e_2,f_1\\rangle f_1=(1,0,1)-\\frac12(1,1,0)=\\left(\\frac12,-\\frac12,1\\right)$, de norme $\\sqrt{\\frac32}$, d'où $f_2=\\frac1{\\sqrt6}(1,-1,2)$. Enfin $g_3=e_3-\\frac1{\\sqrt2}f_1-\\frac1{\\sqrt6}f_2=(0,1,1)-\\frac12(1,1,0)-\\frac16(1,-1,2)=\\left(-\\frac23,\\frac23,\\frac23\\right)$, d'où $f_3=\\frac1{\\sqrt3}(-1,1,1)$.",
+      "contre_exemple": "- **Famille liée** : pour $e_1=(1,0)$ et $e_2=(2,0)$ dans $\\mathbb{R}^2$, $g_2=e_2-2e_1=0$ ne peut pas être normé ; aucune famille orthonormale $(f_1,f_2)$ ne vérifie $\\mathrm{Vect}(f_1,f_2)=\\mathrm{Vect}(e_1,e_2)$, qui est une droite.\n- **Sans la condition de signe** : si $(f_1,f_2)$ convient, $(f_1,-f_2)$ vérifie encore les conditions sur les $\\mathrm{Vect}$ ; l'unicité est perdue.\n- **Égalité des $\\mathrm{Vect}$ seulement pour $k=p$** : pour $e_1=(1,0)$, $e_2=(0,1)$ et $0<t<\\frac\\pi2$, $f_1=(\\cos t,\\sin t)$ et $f_2=(-\\sin t,\\cos t)$ forment une base orthonormale de $\\mathbb{R}^2$ avec $\\langle f_1,e_1\\rangle=\\langle f_2,e_2\\rangle=\\cos t>0$ : une infinité de familles conviennent.\n- **L'ordre compte** : pour $e_1=(1,0)$ et $e_2=(1,1)$, Schmidt donne $((1,0),(0,1))$ ; appliqué à $(e_2,e_1)$, il donne $\\left(\\frac1{\\sqrt2}(1,1),\\frac1{\\sqrt2}(1,-1)\\right)$.",
+      "affirmations": [
+        {
+          "texte": "Toute famille orthonormale d'un espace euclidien est libre.",
+          "vrai": true,
+          "justification": "Ses vecteurs sont non nuls et deux à deux orthogonaux."
+        },
+        {
+          "texte": "Si $(e_1,e_2)$ est libre avec $\\|e_1\\|=\\|e_2\\|=1$, le procédé de Schmidt donne $f_2=e_2-\\langle e_2,e_1\\rangle e_1$.",
+          "vrai": false,
+          "contre_exemple": "Il faut encore normer : pour $e_1=(1,0)$ et $e_2=\\frac1{\\sqrt2}(1,1)$, $e_2-\\langle e_2,e_1\\rangle e_1=\\left(0,\\frac1{\\sqrt2}\\right)$ est de norme $\\frac1{\\sqrt2}\\neq1$ ; en fait $f_2=(0,1)$."
+        },
+        {
+          "texte": "La famille obtenue par le procédé de Schmidt ne dépend pas de l'ordre des vecteurs de départ.",
+          "vrai": false,
+          "contre_exemple": "Pour $(1,0),(1,1)$ on obtient $((1,0),(0,1))$, et pour $(1,1),(1,0)$ on obtient $\\left(\\frac1{\\sqrt2}(1,1),\\frac1{\\sqrt2}(1,-1)\\right)$."
+        },
+        {
+          "texte": "Dans toute base $(e_1,\\dots,e_n)$ d'un espace euclidien, $\\langle x,y\\rangle=\\sum x_iy_i$, où les $x_i$ et $y_i$ sont les coordonnées de $x$ et $y$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$ usuel avec la base $e_1=(1,0)$, $e_2=(1,1)$ : $x=y=e_2$ a pour coordonnées $(0,1)$, donc $\\sum x_iy_i=1$, alors que $\\|e_2\\|^2=2$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-cauchy-schwarz",
+        "al-l1-espaces-dimension"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-projection",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Projection orthogonale, distance, matrice de Gram, moindres carrés",
+      "recto": "Énoncer le théorème de la projection orthogonale sur un sous-espace de dimension finie (formule, distance), la propriété du déterminant de Gram et la caractérisation des solutions d'un problème de moindres carrés.",
+      "cours": "L'**orthogonal** d'une partie $A$ de $E$ est l'ensemble $A^\\perp$ des vecteurs orthogonaux à tous les éléments de $A$ ; c'est un sous-espace. Si $F$ est de dimension finie, $E=F\\oplus F^\\perp$, et la projection sur $F$ parallèlement à $F^\\perp$ est la **projection orthogonale** $p_F$. Géométriquement, $p_F(x)$ est le pied de la perpendiculaire abaissée de $x$ sur $F$ : c'est le point de $F$ le plus proche de $x$, et $x-p_F(x)$ est orthogonal à $F$.\n\nCalcul : avec une base orthonormale $(f_1,\\dots,f_p)$ de $F$, $p_F(x)=\\sum\\langle x,f_i\\rangle f_i$ ; avec une base quelconque $(x_1,\\dots,x_p)$, on écrit $p_F(x)=\\sum\\lambda_jx_j$ et l'on résout les $p$ équations $\\langle x-p_F(x),x_i\\rangle=0$, système dont la matrice est la matrice de Gram $(\\langle x_i,x_j\\rangle)$. Pour une droite $D=\\mathrm{Vect}(a)$ : $p_D(x)=\\frac{\\langle x,a\\rangle}{\\|a\\|^2}a$ ; pour un hyperplan $H=a^\\perp$ : $d(x,H)=\\frac{|\\langle x,a\\rangle|}{\\|a\\|}$.\n\nLes moindres carrés en sont l'application la plus utilisée : un système $AX=b$ surdéterminé n'a en général pas de solution, et l'on cherche $X$ qui rend $\\|AX-b\\|$ minimal. Comme $AX$ décrit $\\mathrm{Im}\\,A$, la meilleure approximation est $AX=p_{\\mathrm{Im}\\,A}(b)$, ce qui équivaut à $AX-b\\perp\\mathrm{Im}\\,A$, soit ${}^tA(AX-b)=0$. Pour la droite de régression $y=ax+c$ de points $(x_i,y_i)$, $A$ a pour colonnes $(x_i)_i$ et $(1,\\dots,1)$. De même, $\\min_{a,b}\\int_0^1(f(x)-ax-b)^2\\,dx$ est le carré de la distance de $f$ au plan des fonctions affines pour $\\langle f,g\\rangle=\\int_0^1fg$.\n\nPièges : la formule $\\sum\\langle x,f_i\\rangle f_i$ exige une base **orthonormale** de $F$ ; un projecteur ($p\\circ p=p$) n'est une projection orthogonale que si son noyau et son image sont orthogonaux ; un sous-espace de dimension infinie peut ne pas avoir de supplémentaire orthogonal. Le déterminant de Gram est positif ou nul, mais les coefficients de la matrice de Gram peuvent être négatifs.",
+      "hypotheses": [
+        "$F$ est un sous-espace de dimension finie de $E$.",
+        "$(f_1,\\dots,f_p)$ est une base orthonormale de $F$."
+      ],
+      "hypotheses_pieges": [
+        "$(f_1,\\dots,f_p)$ est une base quelconque de $F$ (à la place de : orthonormale).",
+        "$(f_1,\\dots,f_p)$ est une base orthogonale de $F$ (à la place de : orthonormale).",
+        "$F$ est un sous-espace quelconque de $E$, éventuellement de dimension infinie (à la place de : de dimension finie)."
+      ],
+      "enonce": "Soit $E$ un espace préhilbertien réel et $F$ un sous-espace de dimension finie $p\\ge1$ de $E$ (par exemple n'importe quel sous-espace non nul d'un espace euclidien).\n\n- **Projection.** $E=F\\oplus F^\\perp$. La projection orthogonale $p_F$ sur $F$ (projection sur $F$ parallèlement à $F^\\perp$) vérifie, pour toute base orthonormale $(f_1,\\dots,f_p)$ de $F$ : $p_F(x)=\\sum_{i=1}^p\\langle x,f_i\\rangle f_i$.\n- **Distance.** Pour tout $x\\in E$, $p_F(x)$ est l'unique $y\\in F$ qui minimise $\\|x-y\\|$ ; ainsi $d(x,F)=\\|x-p_F(x)\\|$ et $d(x,F)^2=\\|x\\|^2-\\|p_F(x)\\|^2$.\n- **Gram.** Pour $x_1,\\dots,x_q\\in E$, la matrice de Gram $G(x_1,\\dots,x_q)=(\\langle x_i,x_j\\rangle)_{1\\le i,j\\le q}$ vérifie $\\det G(x_1,\\dots,x_q)\\ge0$, avec $\\det G(x_1,\\dots,x_q)>0$ si et seulement si $(x_1,\\dots,x_q)$ est libre. Si $(x_1,\\dots,x_p)$ est une base de $F$, alors pour tout $x\\in E$ : $d(x,F)^2=\\frac{\\det G(x_1,\\dots,x_p,x)}{\\det G(x_1,\\dots,x_p)}$.\n- **Moindres carrés.** Soit $A\\in\\mathcal{M}_{n,p}(\\mathbb{R})$ et $b\\in\\mathbb{R}^n$, avec la norme euclidienne usuelle. Le minimum de $\\|AX-b\\|$ pour $X\\in\\mathbb{R}^p$ est atteint, et $X$ le réalise si et seulement si ${}^tAAX={}^tAb$ (équations normales) ; si $\\mathrm{rg}\\,A=p$, il est atteint en un unique point $X=({}^tAA)^{-1}\\,{}^tAb$.",
+      "enonce_trous": "Soit $F$ un sous-espace de dimension finie et $(f_1,\\dots,f_p)$ {{1}} de $F$. Pour tout $x\\in E$, le vecteur $\\sum_{i=1}^p\\langle x,f_i\\rangle f_i$ est {{2}}, et c'est l'unique point de $F$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "une base orthonormale",
+          "leurres": [
+            "une base quelconque",
+            "une famille orthogonale",
+            "une famille génératrice"
+          ]
+        },
+        {
+          "reponse": "le projeté orthogonal de $x$ sur $F$",
+          "leurres": [
+            "le projeté orthogonal de $x$ sur $F^\\perp$",
+            "le symétrique orthogonal de $x$ par rapport à $F$",
+            "la composante de $x$ dans $F^\\perp$"
+          ]
+        },
+        {
+          "reponse": "qui minimise $\\|x-y\\|$ pour $y\\in F$",
+          "leurres": [
+            "qui maximise $\\langle x,y\\rangle$ pour $y\\in F$",
+            "orthogonal à $x$",
+            "de même norme que $x$"
+          ]
+        }
+      ],
+      "demo": "**Supplémentaires.** Si $x\\in F\\cap F^\\perp$, $\\langle x,x\\rangle=0$ donc $x=0$. Soit $(f_1,\\dots,f_p)$ une base orthonormale de $F$ (procédé de Schmidt) et $x\\in E$ ; posons $y=\\sum\\langle x,f_i\\rangle f_i\\in F$. Pour tout $j$, $\\langle x-y,f_j\\rangle=\\langle x,f_j\\rangle-\\langle x,f_j\\rangle=0$, donc $x-y\\in F^\\perp$. Ainsi $x=y+(x-y)$ avec $y\\in F$ et $x-y\\in F^\\perp$ : $E=F\\oplus F^\\perp$ et $p_F(x)=y$.\n\n**Distance.** Pour $z\\in F$, $x-z=(x-p_F(x))+(p_F(x)-z)$ avec $x-p_F(x)\\in F^\\perp$ et $p_F(x)-z\\in F$ ; par Pythagore, $\\|x-z\\|^2=\\|x-p_F(x)\\|^2+\\|p_F(x)-z\\|^2\\ge\\|x-p_F(x)\\|^2$, avec égalité si et seulement si $z=p_F(x)$. De même $x=p_F(x)+(x-p_F(x))$ donne $\\|x\\|^2=\\|p_F(x)\\|^2+d(x,F)^2$.\n\n**Gram.** Soit $(\\varepsilon_1,\\dots,\\varepsilon_m)$ une base orthonormale de $W=\\mathrm{Vect}(x_1,\\dots,x_q)$ (si $W\\neq\\{0\\}$) et $M\\in\\mathcal{M}_{m,q}(\\mathbb{R})$ la matrice des coordonnées des $x_j$ dans cette base : $\\langle x_i,x_j\\rangle=\\sum_kM_{ki}M_{kj}$, donc $G={}^tMM$. Si la famille est libre, $m=q$, $M$ est carrée inversible et $\\det G=(\\det M)^2>0$. Sinon, il existe $\\lambda\\neq0$ avec $\\sum_j\\lambda_jx_j=0$ ; la ligne $i$ de $G\\lambda$ vaut $\\langle x_i,\\sum_j\\lambda_jx_j\\rangle=0$, donc $G\\lambda=0$ et $\\det G=0$.\n\n**Distance par Gram.** Écrivons $x=\\sum_ja_jx_j+h$ avec $\\sum_ja_jx_j=p_F(x)$ et $h\\in F^\\perp$. Dans $G(x_1,\\dots,x_p,x)$, retranchons à la dernière colonne $\\sum_ja_j$ fois la colonne $j$ : ses $p$ premiers coefficients deviennent $\\langle x_i,h\\rangle=0$ et le dernier $\\langle x,h\\rangle=\\|h\\|^2$. La matrice obtenue est triangulaire par blocs, d'où $\\det G(x_1,\\dots,x_p,x)=\\det G(x_1,\\dots,x_p)\\,\\|h\\|^2$, et $\\|h\\|=d(x,F)$.\n\n**Moindres carrés.** Quand $X$ décrit $\\mathbb{R}^p$, $AX$ décrit $\\mathrm{Im}\\,A$, de dimension finie. D'après ce qui précède, $\\|AX-b\\|$ est minimal si et seulement si $AX=p_{\\mathrm{Im}\\,A}(b)$, ce qui arrive pour au moins un $X$, et cela équivaut à $AX-b\\in(\\mathrm{Im}\\,A)^\\perp$. Or $y\\in(\\mathrm{Im}\\,A)^\\perp$ si et seulement si ${}^tY\\,{}^tAy=0$ pour tout $Y\\in\\mathbb{R}^p$, c'est-à-dire ${}^tAy=0$. La condition s'écrit donc ${}^tA(AX-b)=0$. Si $\\mathrm{rg}\\,A=p$, $A$ est injective, d'où l'unicité de $X$ ; de plus ${}^tAAX=0$ entraîne $\\|AX\\|^2={}^tX\\,{}^tAAX=0$, donc $X=0$ : ${}^tAA$ est inversible.",
+      "exemple": "Droite des moindres carrés des points $(0,1)$, $(1,1)$, $(2,3)$ : on cherche $y=ax+c$ minimisant $\\sum(ax_i+c-y_i)^2$. Avec $A=\\begin{pmatrix}0&1\\\\1&1\\\\2&1\\end{pmatrix}$ et $b=\\begin{pmatrix}1\\\\1\\\\3\\end{pmatrix}$, les équations normales ${}^tAA\\begin{pmatrix}a\\\\c\\end{pmatrix}={}^tAb$ s'écrivent $5a+3c=7$ et $3a+3c=5$, d'où $a=1$ et $c=\\frac23$. Les écarts sont $\\frac13$, $-\\frac23$, $\\frac13$, de somme des carrés $\\frac23$, et le vecteur des écarts est bien orthogonal aux deux colonnes de $A$.",
+      "contre_exemple": "- **Base non orthonormale** : pour $F=\\mathbb{R}^2$ et la base $f_1=(1,0)$, $f_2=(1,1)$, avec $x=(1,0)$ : $\\langle x,f_1\\rangle f_1+\\langle x,f_2\\rangle f_2=(2,1)\\neq x=p_F(x)$. Même problème pour une base orthogonale non normée : pour $F=\\mathrm{Vect}((2,0))$, $\\langle x,f_1\\rangle f_1=4x_1(1,0)$ au lieu de $x_1(1,0)$.\n- **Dimension infinie** : sur $\\mathbb{R}[X]$ muni de $\\langle P,Q\\rangle=\\sum_kp_kq_k$ (produit des coefficients), soit $F=\\{P:P(1)=0\\}$. Si $Q\\in F^\\perp$, alors $\\langle Q,X^k-1\\rangle=q_k-q_0=0$ pour tout $k\\ge1$ ; comme $q_k=0$ pour $k$ grand, $q_0=0$ puis $Q=0$. Ainsi $F^\\perp=\\{0\\}$ et $F\\oplus F^\\perp=F\\neq E$ (car $1\\notin F$).\n- **Moindres carrés sans rang plein** : pour $A=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$ et $b=(1,0)$, tous les $X=(s,t)$ avec $s+t=\\frac12$ réalisent le minimum : pas d'unicité.\n- **Un projecteur non orthogonal** : $p(x,y)=(x-y,0)$ vérifie $p\\circ p=p$, mais son image $\\mathrm{Vect}((1,0))$ et son noyau $\\mathrm{Vect}((1,1))$ ne sont pas orthogonaux ; $p(0,1)=(-1,0)$ n'est pas le point de l'axe le plus proche de $(0,1)$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $x\\in E$, $\\|p_F(x)\\|\\le\\|x\\|$.",
+          "vrai": true,
+          "justification": "$\\|x\\|^2=\\|p_F(x)\\|^2+\\|x-p_F(x)\\|^2$."
+        },
+        {
+          "texte": "Un projecteur $p$ d'un espace euclidien tel que $\\|p(x)\\|\\le\\|x\\|$ pour tout $x$ est une projection orthogonale.",
+          "vrai": true,
+          "justification": "Pour $x\\in\\mathrm{Im}\\,p$, $y\\in\\mathrm{Ker}\\,p$ et $t\\in\\mathbb{R}$ : $p(x+ty)=x$, donc $\\|x\\|^2\\le\\|x+ty\\|^2=\\|x\\|^2+2t\\langle x,y\\rangle+t^2\\|y\\|^2$ pour tout $t$, ce qui impose $\\langle x,y\\rangle=0$."
+        },
+        {
+          "texte": "Tout projecteur ($p\\circ p=p$) d'un espace euclidien est une projection orthogonale.",
+          "vrai": false,
+          "contre_exemple": "$p(x,y)=(x-y,0)$ sur $\\mathbb{R}^2$ : $p\\circ p=p$, mais $\\mathrm{Im}\\,p=\\mathrm{Vect}((1,0))$ et $\\mathrm{Ker}\\,p=\\mathrm{Vect}((1,1))$ ne sont pas orthogonaux."
+        },
+        {
+          "texte": "Si $\\det G(x_1,x_2,x_3)=0$, alors deux des trois vecteurs sont colinéaires.",
+          "vrai": false,
+          "contre_exemple": "$x_1=(1,0)$, $x_2=(0,1)$, $x_3=(1,1)$ dans $\\mathbb{R}^2$ : la famille est liée, donc $\\det G=0$, mais deux quelconques d'entre eux ne sont pas colinéaires."
+        },
+        {
+          "texte": "Les équations normales ${}^tAAX={}^tAb$ ont toujours au moins une solution.",
+          "vrai": true,
+          "justification": "Une solution est un $X$ tel que $AX=p_{\\mathrm{Im}\\,A}(b)$, qui existe car $p_{\\mathrm{Im}\\,A}(b)\\in\\mathrm{Im}\\,A$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-schmidt",
+        "al-l1-applications-projecteurs",
+        "al-l1-determinant-produit",
+        "geo-t-espace-projete"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-adjoint",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Adjoint d'un endomorphisme",
+      "recto": "Énoncer l'existence et l'unicité de l'adjoint d'un endomorphisme d'un espace euclidien, sa matrice dans une base orthonormale et ses propriétés (composée, noyau, image, sous-espaces stables).",
+      "cours": "L'adjoint généralise la transposée. Le point de départ est l'**isomorphisme canonique** avec le dual : en dimension finie, toute forme linéaire $\\varphi$ sur $E$ s'écrit de façon unique $\\varphi=\\langle a,\\cdot\\rangle$ (théorème de représentation de Riesz). Appliqué, pour $y$ fixé, à la forme linéaire $x\\mapsto\\langle u(x),y\\rangle$, il fournit le vecteur $u^*(y)$.\n\nDans une base orthonormale, la matrice de $u^*$ est la transposée de celle de $u$ : le coefficient $(i,j)$ de $\\mathrm{Mat}(u)$ est $\\langle u(e_j),e_i\\rangle$. Dans une base quelconque, de matrice de Gram $G$, c'est $G^{-1}\\,{}^tM\\,G$. Méthode pour trouver $u^*$ sans base : partir de $\\langle u(x),y\\rangle$ et faire « passer » $u$ de l'autre côté. Exemple type : sur $\\mathcal{M}_n(\\mathbb{R})$ muni de $\\langle M,N\\rangle=\\mathrm{tr}({}^tMN)$, l'adjoint de $M\\mapsto AM$ est $M\\mapsto{}^tAM$.\n\nVocabulaire : $u$ est **autoadjoint** (ou symétrique) si $u^*=u$, **antisymétrique** si $u^*=-u$ ; dans une base orthonormale, cela revient à une matrice symétrique ou antisymétrique. Un projecteur est autoadjoint si et seulement s'il est une projection orthogonale. Les relations $\\mathrm{Ker}\\,u^*=(\\mathrm{Im}\\,u)^\\perp$ et $\\mathrm{Im}\\,u^*=(\\mathrm{Ker}\\,u)^\\perp$ donnent $\\mathrm{rg}\\,u^*=\\mathrm{rg}\\,u$, et la stabilité de $F^\\perp$ par $u^*$ est l'outil clé de la preuve du théorème spectral.\n\nPièges : la matrice de $u^*$ n'est la transposée que dans une base **orthonormale** ; $(u\\circ v)^*=v^*\\circ u^*$ (l'ordre s'inverse) ; si $F$ est stable par $u$, c'est par $u^*$, et non par $u$, que $F^\\perp$ est stable ; en dimension infinie, un endomorphisme peut ne pas avoir d'adjoint.",
+      "hypotheses": [
+        "$E$ est un espace euclidien (de dimension finie).",
+        "La base $\\mathcal{B}$ dans laquelle on lit la matrice de $u^*$ est orthonormale.",
+        "Pour la stabilité : $F$ est stable par $u$, et l'on conclut que $F^\\perp$ est stable par $u^*$."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est un espace préhilbertien réel de dimension quelconque (à la place de : euclidien).",
+        "$\\mathcal{B}$ est une base quelconque de $E$ (à la place de : orthonormale).",
+        "$F$ est stable par $u$, et l'on conclut que $F^\\perp$ est stable par $u$ (à la place de : par $u^*$)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien et $u\\in\\mathcal{L}(E)$.\n\n- Il existe un unique $u^*\\in\\mathcal{L}(E)$, l'**adjoint** de $u$, tel que $\\langle u(x),y\\rangle=\\langle x,u^*(y)\\rangle$ pour tous $x,y\\in E$.\n- Si $\\mathcal{B}$ est une base **orthonormale** de $E$, alors $\\mathrm{Mat}_{\\mathcal{B}}(u^*)={}^t\\mathrm{Mat}_{\\mathcal{B}}(u)$.\n- Pour $u,v\\in\\mathcal{L}(E)$ et $\\lambda\\in\\mathbb{R}$ : $(u^*)^*=u$, $(\\lambda u+v)^*=\\lambda u^*+v^*$, $(u\\circ v)^*=v^*\\circ u^*$.\n- $\\mathrm{Ker}\\,u^*=(\\mathrm{Im}\\,u)^\\perp$ et $\\mathrm{Im}\\,u^*=(\\mathrm{Ker}\\,u)^\\perp$ ; en particulier $\\mathrm{rg}\\,u^*=\\mathrm{rg}\\,u$.\n- Si un sous-espace $F$ est stable par $u$, alors $F^\\perp$ est stable par $u^*$.",
+      "enonce_trous": "L'adjoint $u^*$ est l'unique endomorphisme tel que $\\langle u(x),y\\rangle=$ {{1}} pour tous $x,y\\in E$. Dans une base {{2}}, sa matrice est la transposée de celle de $u$, et $\\mathrm{Ker}\\,u^*=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\langle x,u^*(y)\\rangle$",
+          "leurres": [
+            "$\\langle u^*(x),y\\rangle$",
+            "$\\langle x,u(y)\\rangle$",
+            "$-\\langle x,u^*(y)\\rangle$"
+          ]
+        },
+        {
+          "reponse": "orthonormale",
+          "leurres": [
+            "quelconque",
+            "orthogonale",
+            "directe"
+          ]
+        },
+        {
+          "reponse": "$(\\mathrm{Im}\\,u)^\\perp$",
+          "leurres": [
+            "$(\\mathrm{Ker}\\,u)^\\perp$",
+            "$\\mathrm{Ker}\\,u$",
+            "$\\mathrm{Im}\\,u$"
+          ]
+        }
+      ],
+      "demo": "**Riesz.** L'application $a\\mapsto\\langle a,\\cdot\\rangle$ de $E$ dans son dual est linéaire et injective ($\\langle a,a\\rangle=0$ entraîne $a=0$) ; comme $\\dim E^*=\\dim E$, c'est un isomorphisme.\n\n**Existence et unicité.** Pour $y$ fixé, $x\\mapsto\\langle u(x),y\\rangle$ est une forme linéaire : il existe un unique vecteur, noté $u^*(y)$, tel que $\\langle u(x),y\\rangle=\\langle x,u^*(y)\\rangle$ pour tout $x$. L'application $u^*$ est linéaire : $\\langle x,u^*(\\lambda y+y')\\rangle=\\lambda\\langle u(x),y\\rangle+\\langle u(x),y'\\rangle=\\langle x,\\lambda u^*(y)+u^*(y')\\rangle$ pour tout $x$, et l'unicité conclut.\n\n**Matrice.** Si $\\mathcal{B}=(e_1,\\dots,e_n)$ est orthonormale, le coefficient $(i,j)$ de $\\mathrm{Mat}_{\\mathcal{B}}(u)$ est la $i$-ème coordonnée de $u(e_j)$, soit $\\langle u(e_j),e_i\\rangle$. Celui de $\\mathrm{Mat}_{\\mathcal{B}}(u^*)$ est $\\langle u^*(e_j),e_i\\rangle=\\langle e_j,u(e_i)\\rangle$, qui est le coefficient $(j,i)$ de $\\mathrm{Mat}_{\\mathcal{B}}(u)$.\n\n**Règles de calcul.** $\\langle u^*(x),y\\rangle=\\langle y,u^*(x)\\rangle=\\langle u(y),x\\rangle=\\langle x,u(y)\\rangle$, donc $(u^*)^*=u$. De même $\\langle u(v(x)),y\\rangle=\\langle v(x),u^*(y)\\rangle=\\langle x,v^*(u^*(y))\\rangle$, et la linéarité se vérifie de la même façon (ou sur les matrices dans une base orthonormale).\n\n**Noyau et image.** $y\\in\\mathrm{Ker}\\,u^*$ si et seulement si $\\langle x,u^*(y)\\rangle=0$ pour tout $x$, c'est-à-dire $\\langle u(x),y\\rangle=0$ pour tout $x$, soit $y\\in(\\mathrm{Im}\\,u)^\\perp$. Appliqué à $u^*$ : $\\mathrm{Ker}\\,u=(\\mathrm{Im}\\,u^*)^\\perp$, donc $\\mathrm{Im}\\,u^*=(\\mathrm{Im}\\,u^*)^{\\perp\\perp}=(\\mathrm{Ker}\\,u)^\\perp$ (en dimension finie, $G^{\\perp\\perp}=G$ : on a $G\\subset G^{\\perp\\perp}$, et $\\dim G^{\\perp\\perp}=n-\\dim G^\\perp=\\dim G$ car $E=G\\oplus G^\\perp=G^\\perp\\oplus G^{\\perp\\perp}$). Enfin $\\mathrm{rg}\\,u^*=n-\\dim\\mathrm{Ker}\\,u=\\mathrm{rg}\\,u$.\n\n**Stabilité.** Si $u(F)\\subset F$, $y\\in F^\\perp$ et $x\\in F$, alors $\\langle x,u^*(y)\\rangle=\\langle u(x),y\\rangle=0$ : $u^*(y)\\in F^\\perp$.",
+      "exemple": "Sur $\\mathcal{M}_n(\\mathbb{R})$ muni de $\\langle M,N\\rangle=\\mathrm{tr}({}^tMN)$, soit $u(M)=AM$ pour une matrice $A$ fixée. Alors $\\langle AM,N\\rangle=\\mathrm{tr}({}^tM\\,{}^tAN)=\\langle M,{}^tAN\\rangle$ : $u^*(N)={}^tAN$. Ainsi $u$ est autoadjoint si $A$ est symétrique. Dans $\\mathbb{R}^2$ usuel, l'adjoint de $u(x,y)=(x+2y,3y)$, de matrice $\\begin{pmatrix}1&2\\\\0&3\\end{pmatrix}$ dans la base canonique (orthonormale), est $u^*(x,y)=(x,2x+3y)$.",
+      "contre_exemple": "- **Base non orthonormale** : dans $\\mathbb{R}^2$ usuel, la projection orthogonale $p(x,y)=(x,0)$ est autoadjointe ; dans la base $e_1=(1,0)$, $e_2=(1,1)$, on a $p(e_1)=e_1$ et $p(e_2)=e_1$, donc $\\mathrm{Mat}(p)=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$, qui n'est pas égale à sa transposée, alors que $p^*=p$.\n- **$F^\\perp$ n'est pas stable par $u$** : $u(x,y)=(x+y,y)$ laisse stable $F=\\mathrm{Vect}((1,0))$, mais $u(0,1)=(1,1)\\notin F^\\perp=\\mathrm{Vect}((0,1))$.\n- **Dimension infinie** : sur $\\mathbb{R}[X]$ muni de $\\langle P,Q\\rangle=\\sum_kp_kq_k$, soit $u(P)=P(1)$ (polynôme constant). Si $u$ avait un adjoint, $v=u^*(1)$ vérifierait $\\langle X^k,v\\rangle=\\langle u(X^k),1\\rangle=1$ pour tout $k$ : tous les coefficients de $v$ vaudraient $1$, ce qui est impossible pour un polynôme.",
+      "affirmations": [
+        {
+          "texte": "Pour tout endomorphisme $u$ d'un espace euclidien, $\\mathrm{rg}\\,u^*=\\mathrm{rg}\\,u$.",
+          "vrai": true,
+          "justification": "Dans une base orthonormale, une matrice et sa transposée ont le même rang."
+        },
+        {
+          "texte": "$u$ et $u^*$ ont toujours le même noyau.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$ usuel, $u$ de matrice $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ a pour noyau $\\mathrm{Vect}((1,0))$, et $u^*$, de matrice $\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, a pour noyau $\\mathrm{Vect}((0,1))$."
+        },
+        {
+          "texte": "Si $u$ est inversible, $u^*$ l'est aussi et $(u^*)^{-1}=(u^{-1})^*$.",
+          "vrai": true,
+          "justification": "$u^*\\circ(u^{-1})^*=(u^{-1}\\circ u)^*=\\mathrm{id}_E^*=\\mathrm{id}_E$."
+        },
+        {
+          "texte": "Pour tous $u,v\\in\\mathcal{L}(E)$, $(u\\circ v)^*=u^*\\circ v^*$.",
+          "vrai": false,
+          "contre_exemple": "Avec les matrices élémentaires $u=E_{12}$ et $v=E_{21}$ dans une base orthonormale de $\\mathbb{R}^2$ : $(uv)^*=E_{11}^*=E_{11}$, mais $u^*v^*=E_{21}E_{12}=E_{22}$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-schmidt",
+        "al-l1-applications-matrice",
+        "al-l1-applications-rang"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-orthogonal",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Groupe orthogonal et réflexions",
+      "recto": "Énoncer les caractérisations des endomorphismes orthogonaux d'un espace euclidien, les propriétés de $\\mathrm{O}(E)$ et $\\mathrm{SO}(E)$, et le théorème de génération de $\\mathrm{O}(E)$ par les réflexions.",
+      "cours": "Les endomorphismes orthogonaux (ou isométries vectorielles) sont ceux qui conservent les longueurs ; par polarisation, ils conservent alors les produits scalaires, donc les angles et l'orthogonalité. Matriciellement, une matrice est orthogonale quand ses colonnes forment une base orthonormale de $\\mathbb{R}^n$, c'est-à-dire ${}^tMM=I_n$, ou encore $M^{-1}={}^tM$ : l'inverse se calcule sans effort.\n\nLe déterminant vaut $\\pm1$ car $\\det({}^tMM)=(\\det M)^2=1$. Les éléments de $\\mathrm{SO}(E)$ sont les **rotations** ; ceux de déterminant $-1$ renversent l'orientation. Les **réflexions** (symétries orthogonales par rapport à un hyperplan) sont les briques de base : $s_a(x)=x-2\\frac{\\langle x,a\\rangle}{\\|a\\|^2}a$ fixe l'hyperplan $a^\\perp$ et envoie $a$ sur $-a$. Deux vecteurs distincts de même norme sont toujours échangés par la réflexion $s_{x-y}$ : c'est le ressort de la preuve, par récurrence, que tout élément de $\\mathrm{O}(E)$ est un produit d'au plus $n$ réflexions.\n\nMéthode : pour vérifier qu'une matrice est orthogonale, contrôler que ses colonnes sont normées et deux à deux orthogonales. Pour décomposer $u\\in\\mathrm{O}(E)$ en réflexions, choisir $e$ avec $u(e)\\neq e$, composer à gauche par la réflexion $s$ qui échange $e$ et $u(e)$ : $s\\circ u$ fixe $e$, et l'on recommence dans $e^\\perp$. Une rotation du plan est le produit de deux réflexions ; une matrice orthogonale a ses coefficients dans $[-1,1]$, et ses valeurs propres réelles valent $\\pm1$.\n\nPièges : une application non linéaire peut conserver la norme (il faut supposer la linéarité, ou bien $u(0)=0$ et la conservation des distances $\\|u(x)-u(y)\\|=\\|x-y\\|$) ; conserver l'orthogonalité ne suffit pas ($2\\,\\mathrm{id}_E$) ; $|\\det u|=1$ non plus (une transvection) ; et ${}^tMM=I_n$ ne caractérise les endomorphismes orthogonaux que pour une matrice écrite dans une base **orthonormale**.",
+      "hypotheses": [
+        "$u$ est un endomorphisme de $E$ (application linéaire).",
+        "$\\|u(x)\\|=\\|x\\|$ pour tout $x\\in E$.",
+        "La base dans laquelle on lit ${}^tMM=I_n$ est orthonormale."
+      ],
+      "hypotheses_pieges": [
+        "$u:E\\to E$ est une application quelconque, non supposée linéaire, telle que $\\|u(x)\\|=\\|x\\|$ pour tout $x$ (à la place de : un endomorphisme qui conserve la norme).",
+        "$u$ est linéaire et conserve l'orthogonalité : $\\langle x,y\\rangle=0$ entraîne $\\langle u(x),u(y)\\rangle=0$ (à la place de : conserve la norme).",
+        "$u$ est linéaire et $|\\det u|=1$ (à la place de : conserve la norme).",
+        "${}^tMM=I_n$ pour la matrice $M$ de $u$ dans une base quelconque (à la place de : orthonormale)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien de dimension $n\\ge1$. Pour $u\\in\\mathcal{L}(E)$, les propriétés suivantes sont équivalentes :\n\n- (i) $\\|u(x)\\|=\\|x\\|$ pour tout $x\\in E$ ;\n- (ii) $\\langle u(x),u(y)\\rangle=\\langle x,y\\rangle$ pour tous $x,y\\in E$ ;\n- (iii) $u^*\\circ u=\\mathrm{id}_E$ ;\n- (iv) l'image par $u$ d'une base orthonormale est une base orthonormale ;\n- (v) la matrice $M$ de $u$ dans une base orthonormale vérifie ${}^tMM=I_n$.\n\nCes endomorphismes, dits **orthogonaux**, forment un groupe pour la composition, le **groupe orthogonal** $\\mathrm{O}(E)$ ; leur déterminant vaut $1$ ou $-1$, et $\\mathrm{SO}(E)=\\{u\\in\\mathrm{O}(E):\\det u=1\\}$ en est un sous-groupe.\n\n**Réflexions.** Pour $a\\neq0$, la symétrie orthogonale par rapport à l'hyperplan $a^\\perp$, $s_a(x)=x-2\\frac{\\langle x,a\\rangle}{\\|a\\|^2}a$, appartient à $\\mathrm{O}(E)$ et $\\det s_a=-1$. Si $x\\neq y$ et $\\|x\\|=\\|y\\|$, alors $s_{x-y}(x)=y$. Tout élément de $\\mathrm{O}(E)$ est la composée d'au plus $n$ réflexions (l'identité étant la composée de zéro réflexion).",
+      "enonce_trous": "Un endomorphisme $u$ de $E$ est orthogonal si et seulement si {{1}}, si et seulement si sa matrice $M$ dans une base {{2}} vérifie {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\|u(x)\\|=\\|x\\|$ pour tout $x\\in E$",
+          "leurres": [
+            "$\\det u=\\pm1$",
+            "$u$ conserve l'orthogonalité",
+            "$u\\circ u=\\mathrm{id}_E$"
+          ]
+        },
+        {
+          "reponse": "orthonormale",
+          "leurres": [
+            "quelconque",
+            "orthogonale",
+            "directe"
+          ]
+        },
+        {
+          "reponse": "${}^tMM=I_n$",
+          "leurres": [
+            "${}^tM=M$",
+            "$\\det M=1$",
+            "$M^2=I_n$"
+          ]
+        }
+      ],
+      "demo": "**(i) ⇒ (ii)** par polarisation : $\\langle u(x),u(y)\\rangle=\\frac12\\left(\\|u(x+y)\\|^2-\\|u(x)\\|^2-\\|u(y)\\|^2\\right)=\\frac12\\left(\\|x+y\\|^2-\\|x\\|^2-\\|y\\|^2\\right)=\\langle x,y\\rangle$. **(ii) ⇒ (i)** avec $y=x$.\n\n**(ii) ⇔ (iii).** (ii) s'écrit $\\langle x,u^*u(y)-y\\rangle=0$ pour tous $x,y$, c'est-à-dire $u^*u(y)=y$ pour tout $y$.\n\n**(ii) ⇔ (iv).** Si (ii) et si $(e_i)$ est orthonormale, $\\langle u(e_i),u(e_j)\\rangle=\\langle e_i,e_j\\rangle$ : les $u(e_i)$ forment une famille orthonormale de $n$ vecteurs, donc une base. Réciproquement, si $(e_i)$ et $(u(e_i))$ sont orthonormales, pour $x=\\sum x_ie_i$ et $y=\\sum y_ie_i$ : $\\langle u(x),u(y)\\rangle=\\sum_{i,j}x_iy_j\\langle u(e_i),u(e_j)\\rangle=\\sum_ix_iy_i=\\langle x,y\\rangle$.\n\n**(iii) ⇔ (v).** Dans une base orthonormale, $\\mathrm{Mat}(u^*)={}^tM$, et (iii) s'écrit ${}^tMM=I_n$.\n\n**Groupe, déterminant.** $\\mathrm{id}_E\\in\\mathrm{O}(E)$ ; la composée de deux applications qui conservent la norme la conserve ; un $u\\in\\mathrm{O}(E)$ est inversible d'inverse $u^*$, qui conserve la norme car $u^*=u^{-1}$ et $\\|u^{-1}(x)\\|=\\|u(u^{-1}(x))\\|=\\|x\\|$. Puis $\\det({}^tMM)=(\\det M)^2=1$. Enfin $\\mathrm{SO}(E)$ est le noyau du morphisme $\\det:\\mathrm{O}(E)\\to\\{-1,1\\}$.\n\n**Réflexions.** $s_a$ fixe tout $x\\in a^\\perp$ et $s_a(a)=a-2a=-a$ : dans une base orthonormale formée d'une base de $a^\\perp$ et de $\\frac{a}{\\|a\\|}$, sa matrice est $\\mathrm{diag}(1,\\dots,1,-1)$, orthogonale de déterminant $-1$. Si $\\|x\\|=\\|y\\|$ et $a=x-y\\neq0$ : $\\|a\\|^2=2\\|x\\|^2-2\\langle x,y\\rangle=2\\langle x,a\\rangle$, donc $s_a(x)=x-a=y$.\n\n**Génération (récurrence sur $n$).** Pour $n=1$, $\\mathrm{O}(E)=\\{\\mathrm{id}_E,-\\mathrm{id}_E\\}$ et $-\\mathrm{id}_E$ est une réflexion. Soit $n\\ge2$, $u\\in\\mathrm{O}(E)$ et $e$ unitaire. Si $u(e)\\neq e$, la réflexion $s=s_{u(e)-e}$ échange $e$ et $u(e)$, et $v=s\\circ u$ fixe $e$ ; sinon on pose $v=u$. Dans les deux cas $v\\in\\mathrm{O}(E)$ fixe $e$, donc laisse stable $H=e^\\perp$ (car $\\langle v(h),e\\rangle=\\langle v(h),v(e)\\rangle=\\langle h,e\\rangle=0$), et $v_{|H}\\in\\mathrm{O}(H)$ est, par hypothèse de récurrence, une composée d'au plus $n-1$ réflexions $s'_{a_i}$ de $H$ ($a_i\\in H$). Chaque $s_{a_i}$ (réflexion de $E$) coïncide avec $s'_{a_i}$ sur $H$ et fixe $e$ : $v$ est la composée des $s_{a_i}$, et $u=v$ ou $u=s\\circ v$ est une composée d'au plus $n$ réflexions.",
+      "exemple": "La réflexion de $\\mathbb{R}^3$ usuel par rapport au plan $x+y+z=0$ est $s_a$ avec $a=(1,1,1)$ : $s_a(x)=x-\\frac23\\langle x,a\\rangle a$, de matrice $I_3-\\frac23J=\\frac13\\begin{pmatrix}1&-2&-2\\\\-2&1&-2\\\\-2&-2&1\\end{pmatrix}$ (où $J$ n'a que des $1$) ; ses colonnes sont normées et deux à deux orthogonales, et elle échange $(3,0,0)$ et $(1,-2,-2)$, de même norme $3$. La rotation d'angle $\\theta$ du plan, $\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$, est dans $\\mathrm{SO}_2(\\mathbb{R})$.",
+      "contre_exemple": "- **Sans linéarité** : pour $e$ unitaire fixé, $u(x)=\\|x\\|e$ conserve la norme, mais n'est pas linéaire ($u(-e)=e\\neq-u(e)$).\n- **Conserver l'orthogonalité** : $2\\,\\mathrm{id}_E$ conserve l'orthogonalité mais double les normes.\n- **$|\\det u|=1$** : la transvection de matrice $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour déterminant $1$, mais envoie $(0,1)$ sur $(1,1)$, de norme $\\sqrt2$.\n- **Base non orthonormale** : dans $\\mathbb{R}^2$ usuel, avec la base $e_1=(1,0)$, $e_2=(1,1)$, l'endomorphisme qui échange $e_1$ et $e_2$ a pour matrice $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, qui vérifie ${}^tMM=I_2$, mais il envoie $e_1$, de norme $1$, sur $e_2$, de norme $\\sqrt2$.",
+      "affirmations": [
+        {
+          "texte": "Les coefficients d'une matrice orthogonale sont dans $[-1,1]$.",
+          "vrai": true,
+          "justification": "Chaque colonne est de norme $1$, donc chacun de ses coefficients est de valeur absolue au plus $1$."
+        },
+        {
+          "texte": "Toute matrice de déterminant $1$ à coefficients dans $[-1,1]$ est orthogonale.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour déterminant $1$ et des coefficients dans $[-1,1]$, mais sa deuxième colonne est de norme $\\sqrt2$."
+        },
+        {
+          "texte": "La composée de deux réflexions est une réflexion.",
+          "vrai": false,
+          "contre_exemple": "Son déterminant vaut $(-1)^2=1$, alors qu'une réflexion est de déterminant $-1$ ; par exemple $s_a\\circ s_a=\\mathrm{id}_E$."
+        },
+        {
+          "texte": "Les valeurs propres réelles d'un endomorphisme orthogonal valent $1$ ou $-1$.",
+          "vrai": true,
+          "justification": "Si $u(x)=\\lambda x$ avec $x\\neq0$, alors $\\|x\\|=\\|u(x)\\|=|\\lambda|\\,\\|x\\|$, donc $|\\lambda|=1$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-adjoint",
+        "al-l1-determinant-produit",
+        "gr-l1-groupes-sous-groupes"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-spectral",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Théorème spectral",
+      "recto": "Énoncer le théorème spectral pour un endomorphisme autoadjoint d'un espace euclidien et sa version matricielle.",
+      "cours": "Rappel : $\\lambda\\in\\mathbb{R}$ est **valeur propre** de $u$ s'il existe $x\\neq0$ avec $u(x)=\\lambda x$ ($x$ est alors un vecteur propre), c'est-à-dire si $\\det(u-\\lambda\\,\\mathrm{id}_E)=0$ ; $u$ est **diagonalisable** s'il existe une base de vecteurs propres. Le théorème spectral dit qu'un endomorphisme autoadjoint est non seulement diagonalisable, mais diagonalisable **dans une base orthonormale** : ses sous-espaces propres sont orthogonaux deux à deux et leur somme est $E$.\n\nGéométriquement, une matrice symétrique réelle agit comme une dilatation de rapports $\\lambda_i$ (éventuellement négatifs) selon des axes perpendiculaires. C'est ce qui permet de trouver les axes d'une conique ou d'une quadrique, d'écrire une forme quadratique $q(x)=\\langle u(x),x\\rangle$ sous la forme $\\sum\\lambda_ix_i^2$ dans une base orthonormale, et de définir les endomorphismes symétriques positifs.\n\nMéthode pour $S\\in\\mathcal{S}_n(\\mathbb{R})$ : calculer les valeurs propres (racines du polynôme caractéristique, toutes réelles), une base de chaque sous-espace propre, puis une base orthonormale de chacun par Schmidt (pour une valeur propre simple, il suffit de normer) ; des vecteurs propres associés à des valeurs propres différentes sont automatiquement orthogonaux. Les colonnes de $P$ sont ces vecteurs, dans l'ordre des valeurs propres de $D$, et $P^{-1}={}^tP$.\n\nPièges : le résultat est faux pour les matrices symétriques **complexes** ($\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ est nilpotente non nulle) ; une matrice diagonalisable ne l'est pas forcément dans une base orthonormale ; et, pour une valeur propre multiple, une base quelconque du sous-espace propre n'est pas orthonormale : il faut l'orthonormaliser.",
+      "hypotheses": [
+        "$E$ est un espace euclidien, ou la matrice $S$ est à coefficients **réels**.",
+        "$u$ est autoadjoint ($u^*=u$), ou la matrice $S$ est symétrique."
+      ],
+      "hypotheses_pieges": [
+        "$S$ est une matrice symétrique à coefficients complexes (à la place de : réels).",
+        "$u$ est diagonalisable (à la place de : autoadjoint).",
+        "La matrice de $u$ est symétrique dans une certaine base de $E$, non nécessairement orthonormale (à la place de : $u$ autoadjoint).",
+        "$u$ est antisymétrique, $u^*=-u$ (à la place de : $u^*=u$)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien de dimension $n\\ge1$ et $u\\in\\mathcal{L}(E)$ **autoadjoint** : $u^*=u$. Alors les valeurs propres de $u$ sont réelles, ses sous-espaces propres sont deux à deux orthogonaux, et $E$ possède une base orthonormale formée de vecteurs propres de $u$. Réciproquement, un endomorphisme qui admet une base orthonormale de vecteurs propres est autoadjoint.\n\n**Version matricielle.** Pour toute matrice symétrique réelle $S\\in\\mathcal{S}_n(\\mathbb{R})$, il existe une matrice orthogonale $P\\in\\mathrm{O}_n(\\mathbb{R})$ et une matrice diagonale réelle $D$ telles que $S=PD\\,{}^tP=PDP^{-1}$.",
+      "enonce_trous": "Si $S\\in\\mathcal{M}_n(\\mathbb{R})$ est {{1}}, il existe $P$ {{2}} et $D$ {{3}} telles que $S=PD\\,{}^tP$.",
+      "trous": [
+        {
+          "reponse": "symétrique",
+          "leurres": [
+            "inversible",
+            "orthogonale",
+            "antisymétrique"
+          ]
+        },
+        {
+          "reponse": "orthogonale",
+          "leurres": [
+            "diagonale",
+            "triangulaire supérieure",
+            "nilpotente"
+          ]
+        },
+        {
+          "reponse": "diagonale réelle",
+          "leurres": [
+            "scalaire (multiple de $I_n$)",
+            "diagonale à coefficients strictement positifs",
+            "nilpotente"
+          ]
+        }
+      ],
+      "demo": "Soit $M$ la matrice de $u$ dans une base orthonormale : $M$ est symétrique réelle.\n\n**Les valeurs propres sont réelles.** Le polynôme caractéristique de $M$ a une racine complexe $\\lambda$ (théorème de d'Alembert-Gauss) : il existe $X\\in\\mathbb{C}^n$ non nul avec $MX=\\lambda X$. Le nombre $\\alpha={}^t\\overline{X}MX$ est réel : $\\overline{\\alpha}={}^tX M\\overline{X}$, et ce nombre, égal à sa transposée, vaut ${}^t\\overline{X}\\,{}^tMX={}^t\\overline{X}MX=\\alpha$. Or $\\alpha=\\lambda\\,{}^t\\overline{X}X=\\lambda\\sum|x_i|^2$ avec $\\sum|x_i|^2>0$ : $\\lambda$ est réel. Alors $\\det(M-\\lambda I_n)=0$ et $\\lambda$ est une valeur propre réelle de $u$, avec un vecteur propre réel.\n\n**Orthogonalité des sous-espaces propres.** Si $u(x)=\\lambda x$ et $u(y)=\\mu y$ avec $\\lambda\\neq\\mu$ : $\\lambda\\langle x,y\\rangle=\\langle u(x),y\\rangle=\\langle x,u(y)\\rangle=\\mu\\langle x,y\\rangle$, donc $\\langle x,y\\rangle=0$.\n\n**Base orthonormale de vecteurs propres (récurrence sur $n$).** Pour $n=1$, tout vecteur unitaire convient. Soit $n\\ge2$ ; prenons $e_1$ unitaire, vecteur propre pour une valeur propre réelle. La droite $\\mathrm{Vect}(e_1)$ est stable par $u$, donc $H=e_1^\\perp$ est stable par $u^*=u$. La restriction de $u$ à $H$ est autoadjointe pour le produit scalaire induit ; par hypothèse de récurrence, $H$, de dimension $n-1$, a une base orthonormale $(e_2,\\dots,e_n)$ de vecteurs propres, et $(e_1,\\dots,e_n)$ convient.\n\n**Réciproque et version matricielle.** Dans une base orthonormale de vecteurs propres, la matrice de $u$ est diagonale, donc symétrique, et $u^*=u$. Pour $S\\in\\mathcal{S}_n(\\mathbb{R})$, l'endomorphisme de $\\mathbb{R}^n$ usuel de matrice $S$ dans la base canonique est autoadjoint ; si $P$ est la matrice de passage de la base canonique à une base orthonormale de vecteurs propres, $P$ est orthogonale (ses colonnes sont orthonormées) et $S=PDP^{-1}=PD\\,{}^tP$.",
+      "exemple": "$S=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ a pour polynôme caractéristique $(\\lambda-2)^2-1=(\\lambda-1)(\\lambda-3)$. Les vecteurs propres $\\frac1{\\sqrt2}(1,1)$ (pour $3$) et $\\frac1{\\sqrt2}(1,-1)$ (pour $1$) sont orthogonaux, et $S=PD\\,{}^tP$ avec $P=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ et $D=\\begin{pmatrix}3&0\\\\0&1\\end{pmatrix}$.",
+      "contre_exemple": "- **Coefficients complexes** : $S=\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ est symétrique et $S^2=0$ ; si elle était diagonalisable, elle serait semblable à une matrice diagonale nilpotente, donc nulle.\n- **Diagonalisable ne suffit pas** : $M=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$ est diagonalisable (valeurs propres $1$ et $2$), ses sous-espaces propres sont les droites $\\mathrm{Vect}((1,0))$ et $\\mathrm{Vect}((1,1))$, non orthogonales : aucune base orthonormale n'est formée de vecteurs propres. Pourtant, dans la base $((1,0),(1,1))$, sa matrice est $\\mathrm{diag}(1,2)$, qui est symétrique.\n- **Antisymétrique** : la rotation d'angle $\\frac\\pi2$ de $\\mathbb{R}^2$, de matrice $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, n'a aucune valeur propre réelle (polynôme caractéristique $\\lambda^2+1$).\n- **Une base de vecteurs propres n'est pas toujours orthogonale** : pour $S=I_2$, la base $((1,0),(1,1))$ est formée de vecteurs propres.",
+      "affirmations": [
+        {
+          "texte": "Deux vecteurs propres d'une matrice symétrique réelle associés à des valeurs propres distinctes sont orthogonaux.",
+          "vrai": true,
+          "justification": "C'est l'orthogonalité des sous-espaces propres : $\\lambda\\langle x,y\\rangle=\\langle Sx,y\\rangle=\\langle x,Sy\\rangle=\\mu\\langle x,y\\rangle$."
+        },
+        {
+          "texte": "Toute base de vecteurs propres d'une matrice symétrique réelle est orthogonale.",
+          "vrai": false,
+          "contre_exemple": "Pour $S=I_2$, la base $((1,0),(1,1))$ est formée de vecteurs propres et n'est pas orthogonale."
+        },
+        {
+          "texte": "Une matrice réelle dont toutes les valeurs propres complexes sont réelles est symétrique.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour seule valeur propre $1$ et n'est pas symétrique."
+        },
+        {
+          "texte": "Une matrice symétrique réelle nilpotente est nulle.",
+          "vrai": true,
+          "justification": "Elle s'écrit $PD\\,{}^tP$ avec $D$ diagonale ; $D=\\,{}^tPSP$ est nilpotente, donc ses coefficients diagonaux sont nuls, et $S=0$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-adjoint",
+        "al-l2-euclidien-schmidt",
+        "arith-l1-polynomes-irreductibles",
+        "al-l1-determinant-inversibilite",
+        "al-l2-reduction-diagonalisabilite"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-positifs",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "theoreme",
+      "titre": "Endomorphismes symétriques positifs",
+      "recto": "Définir les endomorphismes autoadjoints positifs et définis positifs, et énoncer leur caractérisation spectrale, l'encadrement de Rayleigh, l'existence et l'unicité de la racine carrée, et l'expression de la norme subordonnée d'un endomorphisme.",
+      "cours": "Un endomorphisme autoadjoint $u$ est **positif** si $\\langle u(x),x\\rangle\\ge0$ pour tout $x$ : la forme quadratique associée ne prend que des valeurs positives. Par le théorème spectral, dans une base orthonormale de vecteurs propres, $\\langle u(x),x\\rangle=\\sum\\lambda_ix_i^2$ : positivité et signe des valeurs propres, c'est la même chose. Les exemples fondamentaux sont les matrices de Gram ${}^tAA$, et plus généralement $u^*u$ pour tout $u\\in\\mathcal{L}(E)$.\n\nOn en tire une racine carrée, en prenant la racine des valeurs propres dans la même base, et une formule pour la norme subordonnée : $\\|u(x)\\|^2=\\langle u^*u(x),x\\rangle\\le\\lambda_{\\max}(u^*u)\\|x\\|^2$. Pour $u$ autoadjoint, $\\|u\\|$ est le plus grand module de valeur propre. La décomposition polaire $A=OS$ d'une matrice inversible ($O$ orthogonale, $S$ symétrique définie positive) en découle, avec $S=\\sqrt{{}^tAA}$.\n\nMéthodes pour montrer qu'une matrice symétrique est (définie) positive : étudier le signe des valeurs propres ; en dimension $2$, $S$ est définie positive si et seulement si $\\mathrm{tr}\\,S>0$ et $\\det S>0$ ; écrire $S={}^tAA$ ; ou minorer directement $\\langle SX,X\\rangle$. Les coefficients diagonaux d'une matrice positive (resp. définie positive) sont positifs (resp. strictement positifs) : c'est une condition nécessaire, pas suffisante.\n\nPièges : la positivité de $\\langle u(x),x\\rangle$ ne dit rien si $u$ n'est pas autoadjoint (une rotation d'angle $\\frac\\pi2$ vérifie $\\langle u(x),x\\rangle=0$) ; des coefficients tous positifs ne suffisent pas, $\\det S\\ge0$ non plus ; la racine carrée n'est unique que **parmi les endomorphismes positifs** ; et, pour $A$ non symétrique, $\\|A\\|$ n'est pas le plus grand module des valeurs propres.",
+      "hypotheses": [
+        "$u$ est autoadjoint.",
+        "$\\langle u(x),x\\rangle\\ge0$ pour tout $x\\in E$."
+      ],
+      "hypotheses_pieges": [
+        "$\\langle u(x),x\\rangle\\ge0$ pour tout $x$, sans que $u$ soit supposé autoadjoint (à la place de : $u$ autoadjoint).",
+        "$u$ est autoadjoint et ses coefficients diagonaux dans une base orthonormale sont positifs (à la place de : $\\langle u(x),x\\rangle\\ge0$ pour tout $x$).",
+        "$u$ est autoadjoint et $\\det u\\ge0$ (à la place de : $\\langle u(x),x\\rangle\\ge0$ pour tout $x$).",
+        "$u$ est autoadjoint et tous les coefficients de sa matrice dans une base orthonormale sont positifs (à la place de : $\\langle u(x),x\\rangle\\ge0$ pour tout $x$)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien et $u\\in\\mathcal{L}(E)$ autoadjoint. On dit que $u$ est **positif** si $\\langle u(x),x\\rangle\\ge0$ pour tout $x\\in E$, **défini positif** si $\\langle u(x),x\\rangle>0$ pour tout $x\\neq0$. Pour une matrice symétrique $S\\in\\mathcal{S}_n(\\mathbb{R})$ : $S\\in\\mathcal{S}_n^+(\\mathbb{R})$ si ${}^tXSX\\ge0$ pour tout $X$, $S\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ si ${}^tXSX>0$ pour tout $X\\neq0$.\n\n- **Rayleigh.** Si $\\lambda_{\\min}$ et $\\lambda_{\\max}$ sont la plus petite et la plus grande valeur propre de $u$, alors $\\lambda_{\\min}\\|x\\|^2\\le\\langle u(x),x\\rangle\\le\\lambda_{\\max}\\|x\\|^2$ pour tout $x$, avec égalité pour un vecteur propre associé. En conséquence, $u$ est positif si et seulement si ses valeurs propres sont positives ou nulles, défini positif si et seulement si elles sont strictement positives.\n- **Racine carrée.** Si $u$ est positif, il existe un unique $v$ autoadjoint positif tel que $v^2=u$.\n- **Gram.** Pour $A\\in\\mathcal{M}_{n,p}(\\mathbb{R})$, ${}^tAA\\in\\mathcal{S}_p^+(\\mathbb{R})$, et ${}^tAA\\in\\mathcal{S}_p^{++}(\\mathbb{R})$ si et seulement si $\\mathrm{rg}\\,A=p$.\n- **Norme.** Pour tout $w\\in\\mathcal{L}(E)$, la norme subordonnée à la norme euclidienne, $\\|w\\|=\\sup_{x\\neq0}\\frac{\\|w(x)\\|}{\\|x\\|}$, vaut $\\sqrt{\\lambda_{\\max}(w^*w)}$ ; si $w$ est autoadjoint, $\\|w\\|$ est le maximum des $|\\lambda|$ pour $\\lambda$ valeur propre de $w$.",
+      "enonce_trous": "Un endomorphisme autoadjoint $u$ est positif si et seulement si {{1}}. Il admet alors une unique racine carrée {{2}}. En notant $\\lambda_{\\max}$ sa plus grande valeur propre, on a, pour tout $x$, $\\langle u(x),x\\rangle\\le$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "ses valeurs propres sont positives ou nulles",
+          "leurres": [
+            "ses coefficients diagonaux dans une base orthonormale sont positifs ou nuls",
+            "son déterminant est positif ou nul",
+            "sa trace est positive ou nulle"
+          ]
+        },
+        {
+          "reponse": "autoadjointe positive",
+          "leurres": [
+            "autoadjointe",
+            "dans $\\mathcal{L}(E)$",
+            "orthogonale"
+          ]
+        },
+        {
+          "reponse": "$\\lambda_{\\max}\\|x\\|^2$",
+          "leurres": [
+            "$\\lambda_{\\max}\\|x\\|$",
+            "$\\lambda_{\\max}^2\\|x\\|^2$",
+            "$\\lambda_{\\max}+\\|x\\|^2$"
+          ]
+        }
+      ],
+      "demo": "Soit $(e_1,\\dots,e_n)$ une base orthonormale de vecteurs propres de $u$, $u(e_i)=\\lambda_ie_i$ (théorème spectral).\n\n**Rayleigh.** Pour $x=\\sum x_ie_i$, $\\langle u(x),x\\rangle=\\sum\\lambda_ix_i^2$, compris entre $\\lambda_{\\min}\\sum x_i^2$ et $\\lambda_{\\max}\\sum x_i^2$, avec $\\sum x_i^2=\\|x\\|^2$ ; pour $x=e_i$ associé à $\\lambda_{\\max}$ (resp. $\\lambda_{\\min}$), on obtient l'égalité. Ainsi $\\langle u(x),x\\rangle\\ge0$ pour tout $x$ si et seulement si $\\lambda_{\\min}\\ge0$, et $>0$ pour $x\\neq0$ si et seulement si $\\lambda_{\\min}>0$.\n\n**Existence de la racine.** Si les $\\lambda_i$ sont positifs, soit $v$ défini par $v(e_i)=\\sqrt{\\lambda_i}e_i$ : sa matrice dans une base orthonormale est diagonale, donc $v$ est autoadjoint, de valeurs propres positives, donc positif, et $v^2(e_i)=\\lambda_ie_i=u(e_i)$.\n\n**Unicité.** Soit $w$ autoadjoint positif avec $w^2=u$. Alors $w$ commute avec $u=w^2$, donc laisse stable chaque sous-espace propre $E_\\lambda=\\mathrm{Ker}(u-\\lambda\\,\\mathrm{id}_E)$ (si $u(x)=\\lambda x$, $u(w(x))=w(u(x))=\\lambda w(x)$). La restriction de $w$ à $E_\\lambda$ est autoadjointe positive ; par le théorème spectral, $E_\\lambda$ a une base orthonormale de vecteurs propres de $w$, pour des valeurs propres $\\mu\\ge0$ telles que $\\mu^2=\\lambda$ (car $w^2=\\lambda\\,\\mathrm{id}$ sur $E_\\lambda$), donc $\\mu=\\sqrt\\lambda$. Ainsi $w=\\sqrt\\lambda\\,\\mathrm{id}$ sur chaque $E_\\lambda$ ; comme $E$ est somme des $E_\\lambda$, $w$ est entièrement déterminé : $w=v$.\n\n**Gram.** ${}^tAA$ est symétrique et ${}^tX\\,{}^tAAX=\\|AX\\|^2\\ge0$, nul si et seulement si $AX=0$. Donc ${}^tAA$ est définie positive si et seulement si $\\mathrm{Ker}\\,A=\\{0\\}$, c'est-à-dire $\\mathrm{rg}\\,A=p$ (théorème du rang).\n\n**Norme.** $w^*w$ est autoadjoint positif ($\\langle w^*w(x),x\\rangle=\\|w(x)\\|^2$). Par Rayleigh, $\\|w(x)\\|^2\\le\\lambda_{\\max}(w^*w)\\|x\\|^2$, avec égalité pour un vecteur propre associé : $\\|w\\|=\\sqrt{\\lambda_{\\max}(w^*w)}$. Si $w$ est autoadjoint de valeurs propres $\\lambda_i$, $w^*w=w^2$ a pour valeurs propres les $\\lambda_i^2$ (dans la même base), d'où $\\|w\\|=\\max|\\lambda_i|$.",
+      "exemple": "$S=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ a pour valeurs propres $3$ et $1$, strictement positives : $S\\in\\mathcal{S}_2^{++}(\\mathbb{R})$. Avec $P=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$, sa racine carrée positive est $P\\,\\mathrm{diag}(\\sqrt3,1)\\,{}^tP=\\frac12\\begin{pmatrix}\\sqrt3+1&\\sqrt3-1\\\\\\sqrt3-1&\\sqrt3+1\\end{pmatrix}$. Pour $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, ${}^tAA=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$ a pour valeurs propres $\\frac{3\\pm\\sqrt5}2$, donc $\\|A\\|=\\sqrt{\\frac{3+\\sqrt5}2}=\\frac{1+\\sqrt5}2$, alors que la seule valeur propre de $A$ est $1$.",
+      "contre_exemple": "- **Non autoadjoint** : la rotation $u$ d'angle $\\frac\\pi2$ de $\\mathbb{R}^2$ vérifie $\\langle u(x),x\\rangle=0\\ge0$ pour tout $x$, mais n'a pas de valeur propre réelle, et aucun $v$ autoadjoint ne vérifie $v^2=u$ ($v^2$ serait autoadjoint).\n- **Coefficients positifs** : $\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ a tous ses coefficients positifs, mais pour valeurs propres $3$ et $-1$ ; en $X=(1,-1)$, ${}^tXSX=-2$.\n- **Déterminant positif** : $-I_2$ est symétrique de déterminant $1$, mais ${}^tX(-I_2)X=-\\|X\\|^2<0$ pour $X\\neq0$.\n- **Racine carrée non positive** : $\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$ est symétrique et son carré est $I_2$ ; la racine carrée positive de $I_2$ est $I_2$.\n- **Norme et valeurs propres** : $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ n'a que la valeur propre $0$, mais $\\|A\\|=1$ (car $A(0,1)=(1,0)$).",
+      "affirmations": [
+        {
+          "texte": "Si $S\\in\\mathcal{S}_n^{++}(\\mathbb{R})$, ses coefficients diagonaux sont strictement positifs.",
+          "vrai": true,
+          "justification": "$s_{ii}={}^te_iSe_i>0$, où $e_i$ est le $i$-ème vecteur de la base canonique."
+        },
+        {
+          "texte": "Si $S\\in\\mathcal{S}_n^{+}(\\mathbb{R})$ et $s_{ii}=0$, la $i$-ème ligne de $S$ est nulle.",
+          "vrai": true,
+          "justification": "Pour $j\\neq i$ et $t\\in\\mathbb{R}$, ${}^t(te_i+e_j)S(te_i+e_j)=2ts_{ij}+s_{jj}\\ge0$ pour tout $t$, ce qui impose $s_{ij}=0$."
+        },
+        {
+          "texte": "Le produit de deux matrices symétriques positives est symétrique positive.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$ sont symétriques positives, mais $AB=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$ n'est pas symétrique."
+        },
+        {
+          "texte": "Pour toute $A\\in\\mathcal{M}_n(\\mathbb{R})$, la norme subordonnée $\\|A\\|$ est le plus grand module des valeurs propres complexes de $A$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ n'a que la valeur propre $0$, mais $\\|A\\|=1$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-spectral"
+      ]
+    },
+    {
+      "id": "al-l2-euclidien-produit-vectoriel",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-euclidien",
+      "type": "definition",
+      "titre": "Produit vectoriel et produit mixte",
+      "recto": "Définir le produit mixte et le produit vectoriel dans un espace euclidien orienté de dimension $3$, donner l'expression en coordonnées et les propriétés principales.",
+      "cours": "En dimension $3$, dans un espace orienté, le déterminant dans une base orthonormale directe ne dépend pas de la base choisie : c'est le **produit mixte** $[x,y,z]$, volume orienté du parallélépipède construit sur $x,y,z$. Le **produit vectoriel** $x\\wedge y$ est le vecteur qui représente la forme linéaire $z\\mapsto[x,y,z]$ ; il est orthogonal à $x$ et à $y$, sa norme $\\|x\\|\\,\\|y\\|\\sin\\theta$ est l'aire du parallélogramme construit sur $x$ et $y$ ($\\theta$ étant leur angle), et $(x,y,x\\wedge y)$ est directe si $(x,y)$ est libre.\n\nUsages : vecteur normal $u\\wedge v$ à un plan dirigé par $u$ et $v$ ; aire d'un triangle $ABC$, $\\frac12\\|\\overrightarrow{AB}\\wedge\\overrightarrow{AC}\\|$ ; distance d'un point $M$ à la droite passant par $A$ dirigée par $u$, $\\frac{\\|\\overrightarrow{AM}\\wedge u\\|}{\\|u\\|}$ ; volume d'un tétraèdre $ABCD$, $\\frac16\\left|[\\overrightarrow{AB},\\overrightarrow{AC},\\overrightarrow{AD}]\\right|$ ; test de liberté de trois vecteurs ($[x,y,z]\\neq0$). Le calcul en coordonnées se retient par permutation circulaire des indices $1\\to2\\to3\\to1$ : la première coordonnée est $x_2y_3-x_3y_2$, les autres s'en déduisent.\n\nLe double produit vectoriel $x\\wedge(y\\wedge z)=\\langle x,z\\rangle y-\\langle x,y\\rangle z$ permet de résoudre les équations $x\\wedge a=b$ et d'établir l'identité de Jacobi. Enfin, une rotation conserve le produit vectoriel : $u(x)\\wedge u(y)=u(x\\wedge y)$ pour $u\\in\\mathrm{SO}(E)$.\n\nPièges : la formule en coordonnées n'est valable que dans une base **orthonormale directe** (dans une base orthonormale indirecte, elle donne $-x\\wedge y$) ; le produit vectoriel n'est **pas associatif**, et $x\\wedge y=x\\wedge z$ n'entraîne pas $y=z$ ; il est antisymétrique : $y\\wedge x=-x\\wedge y$.",
+      "hypotheses": [
+        "$E$ est un espace euclidien orienté de dimension $3$.",
+        "Le produit mixte et les coordonnées sont calculés dans une base orthonormale directe."
+      ],
+      "hypotheses_pieges": [
+        "Les coordonnées sont lues dans une base orthonormale indirecte (à la place de : directe).",
+        "Les coordonnées sont lues dans une base directe non orthonormale (à la place de : orthonormale directe).",
+        "Le produit mixte est le déterminant dans une base orthonormale quelconque, directe ou non (à la place de : directe)."
+      ],
+      "enonce": "Soit $E$ un espace euclidien orienté de dimension $3$.\n\n- Pour $x,y,z\\in E$, le déterminant $\\det_{\\mathcal{B}}(x,y,z)$ est le même pour toutes les bases orthonormales directes $\\mathcal{B}$ : c'est le **produit mixte** $[x,y,z]$.\n- Pour $x,y\\in E$, il existe un unique vecteur $x\\wedge y$, le **produit vectoriel**, tel que $[x,y,z]=\\langle x\\wedge y,z\\rangle$ pour tout $z\\in E$. Dans une base orthonormale directe, si $x=(x_1,x_2,x_3)$ et $y=(y_1,y_2,y_3)$ : $x\\wedge y=(x_2y_3-x_3y_2,\\ x_3y_1-x_1y_3,\\ x_1y_2-x_2y_1)$.\n- L'application $(x,y)\\mapsto x\\wedge y$ est bilinéaire et antisymétrique ; $x\\wedge y=0$ si et seulement si $(x,y)$ est liée ; $x\\wedge y$ est orthogonal à $x$ et à $y$ ; $\\|x\\wedge y\\|^2+\\langle x,y\\rangle^2=\\|x\\|^2\\|y\\|^2$ ; si $(x,y)$ est libre, $(x,y,x\\wedge y)$ est une base directe.\n- **Double produit vectoriel.** $x\\wedge(y\\wedge z)=\\langle x,z\\rangle y-\\langle x,y\\rangle z$.",
+      "enonce_trous": "Dans une base {{1}}, $[x,y,z]$ est le déterminant de $(x,y,z)$, et $x\\wedge y$ est l'unique vecteur tel que {{2}} pour tout $z$. Il est orthogonal à $x$ et à $y$, et sa norme vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "orthonormale directe",
+          "leurres": [
+            "orthonormale indirecte",
+            "directe quelconque",
+            "orthonormale quelconque"
+          ]
+        },
+        {
+          "reponse": "$\\langle x\\wedge y,z\\rangle=[x,y,z]$",
+          "leurres": [
+            "$\\langle x\\wedge y,z\\rangle=[x,z,y]$",
+            "$\\langle x\\wedge y,z\\rangle=[x,y,x]$",
+            "$\\langle x\\wedge y,z\\rangle=\\langle x,z\\rangle\\langle y,z\\rangle$"
+          ]
+        },
+        {
+          "reponse": "$\\sqrt{\\|x\\|^2\\|y\\|^2-\\langle x,y\\rangle^2}$",
+          "leurres": [
+            "$\\|x\\|\\,\\|y\\|$",
+            "$|\\langle x,y\\rangle|$",
+            "$\\|x\\|^2\\|y\\|^2-\\langle x,y\\rangle^2$"
+          ]
+        }
+      ],
+      "demo": "**Indépendance de la base.** Si $\\mathcal{B}$ et $\\mathcal{B}'$ sont orthonormales directes, $\\det_{\\mathcal{B}'}(x,y,z)=\\det_{\\mathcal{B}'}(\\mathcal{B})\\det_{\\mathcal{B}}(x,y,z)$, et $\\det_{\\mathcal{B}'}(\\mathcal{B})$ est le déterminant d'une matrice de passage orthogonale (entre bases orthonormales), égal à $\\pm1$, et positif car les bases ont même orientation : il vaut $1$.\n\n**Existence et unicité.** $z\\mapsto[x,y,z]$ est une forme linéaire ; par le théorème de représentation de Riesz, elle s'écrit de façon unique $\\langle w,\\cdot\\rangle$, et l'on pose $x\\wedge y=w$. Dans une base orthonormale directe $(e_1,e_2,e_3)$, la coordonnée $\\langle x\\wedge y,e_3\\rangle=\\det(x,y,e_3)=x_1y_2-x_2y_1$ (développement par rapport à la dernière colonne), et de même pour $e_1$ et $e_2$.\n\n**Propriétés.** Bilinéarité et antisymétrie viennent de celles du déterminant. Si $(x,y)$ est liée, $[x,y,z]=0$ pour tout $z$, donc $x\\wedge y=0$ ; si $(x,y)$ est libre, on la complète en une base $(x,y,z)$ et $[x,y,z]\\neq0$, donc $x\\wedge y\\neq0$. Ensuite $\\langle x\\wedge y,x\\rangle=[x,y,x]=0$, de même pour $y$.\n\n**Norme.** Posons $w=x\\wedge y$. La matrice de Gram de $(x,y,w)$ est $G={}^tMM$, où $M$ est la matrice de $(x,y,w)$ dans une base orthonormale directe, donc $\\det G=[x,y,w]^2=\\langle w,w\\rangle^2=\\|w\\|^4$. Comme $w\\perp x$ et $w\\perp y$, $\\det G=\\left(\\|x\\|^2\\|y\\|^2-\\langle x,y\\rangle^2\\right)\\|w\\|^2$. Si $w\\neq0$, on simplifie par $\\|w\\|^2$ ; si $w=0$, $(x,y)$ est liée et les deux membres sont nuls (cas d'égalité de Cauchy-Schwarz). Enfin $\\det(x,y,w)=\\|w\\|^2>0$ quand $(x,y)$ est libre : la base $(x,y,x\\wedge y)$ est directe.\n\n**Double produit.** Avec $y\\wedge z=(y_2z_3-y_3z_2,\\ y_3z_1-y_1z_3,\\ y_1z_2-y_2z_1)$, la première coordonnée de $x\\wedge(y\\wedge z)$ est $x_2(y_1z_2-y_2z_1)-x_3(y_3z_1-y_1z_3)=y_1(x_2z_2+x_3z_3)-z_1(x_2y_2+x_3y_3)=y_1\\langle x,z\\rangle-z_1\\langle x,y\\rangle$. Les autres coordonnées s'obtiennent par la permutation circulaire $1\\to2\\to3\\to1$ des indices, qui laisse inchangées les formules du produit vectoriel.",
+      "exemple": "Dans une base orthonormale directe, pour $x=(1,2,3)$ et $y=(4,5,6)$ : $x\\wedge y=(2\\cdot6-3\\cdot5,\\ 3\\cdot4-1\\cdot6,\\ 1\\cdot5-2\\cdot4)=(-3,6,-3)$. On vérifie $\\langle x\\wedge y,x\\rangle=-3+12-9=0$ et $\\langle x\\wedge y,y\\rangle=-12+30-18=0$, puis $\\|x\\wedge y\\|^2=54=14\\cdot77-32^2=\\|x\\|^2\\|y\\|^2-\\langle x,y\\rangle^2$. L'aire du parallélogramme construit sur $x$ et $y$ est $\\sqrt{54}=3\\sqrt6$.",
+      "contre_exemple": "- **Non-associativité** : avec une base orthonormale directe $(e_1,e_2,e_3)$, $(e_1\\wedge e_1)\\wedge e_2=0$, alors que $e_1\\wedge(e_1\\wedge e_2)=e_1\\wedge e_3=-e_2$.\n- **Base indirecte** : dans la base orthonormale indirecte $(e_1,e_2,-e_3)$, les vecteurs $e_1$ et $e_2$ ont pour coordonnées $(1,0,0)$ et $(0,1,0)$ ; la formule donne $(0,0,1)$, c'est-à-dire le vecteur $-e_3$, alors que $e_1\\wedge e_2=e_3$.\n- **Base non orthonormale** : dans la base directe $(e_1,e_2,2e_3)$, la formule appliquée à $e_1$ et $e_2$ donne le vecteur $2e_3\\neq e_1\\wedge e_2$, et le déterminant de $(e_1,e_2,e_3)$ dans cette base vaut $\\frac12$ et non $1$.\n- **Pas de simplification** : $x\\wedge y=x\\wedge(y+x)$, alors que $y\\neq y+x$ dès que $x\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Le produit vectoriel est associatif.",
+          "vrai": false,
+          "contre_exemple": "$(e_1\\wedge e_1)\\wedge e_2=0$ et $e_1\\wedge(e_1\\wedge e_2)=e_1\\wedge e_3=-e_2$ dans une base orthonormale directe."
+        },
+        {
+          "texte": "Pour tous $x,y,z$, $|[x,y,z]|\\le\\|x\\|\\,\\|y\\|\\,\\|z\\|$.",
+          "vrai": true,
+          "justification": "$|[x,y,z]|=|\\langle x\\wedge y,z\\rangle|\\le\\|x\\wedge y\\|\\,\\|z\\|\\le\\|x\\|\\,\\|y\\|\\,\\|z\\|$ (Cauchy-Schwarz et $\\|x\\wedge y\\|^2\\le\\|x\\|^2\\|y\\|^2$)."
+        },
+        {
+          "texte": "Si $x\\wedge y=x\\wedge z$ avec $x\\neq0$, alors $y=z$.",
+          "vrai": false,
+          "contre_exemple": "$z=y+x$ convient : $x\\wedge z=x\\wedge y+x\\wedge x=x\\wedge y$, et $z\\neq y$."
+        },
+        {
+          "texte": "Si $(x,y)$ est orthonormale, $(x,y,x\\wedge y)$ est une base orthonormale directe.",
+          "vrai": true,
+          "justification": "$x\\wedge y$ est orthogonal à $x$ et $y$, de norme $\\sqrt{1\\cdot1-0}=1$, et la base est directe car $(x,y)$ est libre."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-orthogonal",
+        "al-l1-determinant-developpement",
+        "geo-t-espace-equation-plan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1687 @@
+{
+  "exercices": [
+    {
+      "id": "arith-l2-anneaux-ideaux-ex1",
+      "carte": "arith-l2-anneaux-ideaux",
+      "difficulte": 1,
+      "titre": "Calculer dans un quotient de $\\mathbb{Q}[X]$",
+      "enonce": "Dans l'anneau quotient $A=\\mathbb{Q}[X]/(X^2-3)$, on note $x$ la classe de $X$. Écrire $(1+2x)(4-x)$ sous la forme $\\alpha+\\beta x$ avec $\\alpha,\\beta\\in\\mathbb{Q}$.",
+      "duree_min": 5,
+      "indices": [
+        "Développer dans $\\mathbb{Q}[X]$, puis remplacer $x^2$ en utilisant la relation $x^2-3=0$ vérifiée dans $A$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'écriture de ce produit sous la forme $\\alpha+\\beta x$ ?",
+        "propositions": [
+          "$-2+7x$",
+          "$10+7x$",
+          "$4+7x$",
+          "$-2+9x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Dans $A$, $x^2-3=0$, c'est-à-dire $x^2=3$, car $X^2-3$ appartient à l'idéal $(X^2-3)$. On développe :\n$$(1+2x)(4-x)=4-x+8x-2x^2=4+7x-2\\cdot3=-2+7x.$$\nL'écriture est unique : deux polynômes de degré $<2$ congrus modulo $X^2-3$ sont égaux, car leur différence est un multiple de $X^2-3$ de degré $<2$, donc nul.",
+      "variantes": [
+        {
+          "enonce": "Dans l'anneau quotient $A=\\mathbb{Q}[X]/(X^2+X+1)$, on note $x$ la classe de $X$. Écrire $(2+x)(3-x)$ sous la forme $\\alpha+\\beta x$ avec $\\alpha,\\beta\\in\\mathbb{Q}$.",
+          "indices": [
+            "Développer dans $\\mathbb{Q}[X]$, puis remplacer $x^2$ en utilisant la relation $x^2+x+1=0$ vérifiée dans $A$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'écriture de ce produit sous la forme $\\alpha+\\beta x$ ?",
+            "propositions": [
+              "$7+2x$",
+              "$5$",
+              "$6+x$",
+              "$5+2x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Dans $A$, $x^2+x+1=0$, c'est-à-dire $x^2=-x-1$, car $X^2+X+1$ appartient à l'idéal $(X^2+X+1)$. On développe :\n$$(2+x)(3-x)=6-2x+3x-x^2=6+x-(-x-1)=7+2x.$$\nL'écriture est unique : deux polynômes de degré $<2$ congrus modulo $X^2+X+1$ sont égaux, car leur différence est un multiple de $X^2+X+1$ de degré $<2$, donc nul."
+        },
+        {
+          "enonce": "Dans l'anneau quotient $A=\\mathbb{Q}[X]/(X^2-2X+2)$, on note $x$ la classe de $X$. Écrire $(1+x)(2+3x)$ sous la forme $\\alpha+\\beta x$ avec $\\alpha,\\beta\\in\\mathbb{Q}$.",
+          "indices": [
+            "Développer dans $\\mathbb{Q}[X]$, puis remplacer $x^2$ en utilisant la relation $x^2-2x+2=0$ vérifiée dans $A$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'écriture de ce produit sous la forme $\\alpha+\\beta x$ ?",
+            "propositions": [
+              "$-4+11x$",
+              "$8+11x$",
+              "$-4-x$",
+              "$2+5x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Dans $A$, $x^2-2x+2=0$, c'est-à-dire $x^2=2x-2$, car $X^2-2X+2$ appartient à l'idéal $(X^2-2X+2)$. On développe :\n$$(1+x)(2+3x)=2+3x+2x+3x^2=2+5x+3(2x-2)=-4+11x.$$\nL'écriture est unique : deux polynômes de degré $<2$ congrus modulo $X^2-2X+2$ sont égaux, car leur différence est un multiple de $X^2-2X+2$ de degré $<2$, donc nul."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-ideaux-ex2",
+      "carte": "arith-l2-anneaux-ideaux",
+      "difficulte": 3,
+      "titre": "Compter les idéaux de $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soient $n\\ge2$ et $\\pi:\\mathbb{Z}\\to\\mathbb{Z}/n\\mathbb{Z}$ la projection.\n\n**1.** Montrer que si $J$ est un idéal de $\\mathbb{Z}/n\\mathbb{Z}$, alors $\\pi^{-1}(J)$ est un idéal de $\\mathbb{Z}$ contenant $n\\mathbb{Z}$, et que $J=\\pi\\left(\\pi^{-1}(J)\\right)$.\n\n**2.** En déduire que les idéaux de $\\mathbb{Z}/n\\mathbb{Z}$ sont les $\\pi(d\\mathbb{Z})$, où $d$ parcourt les diviseurs positifs de $n$, et que deux diviseurs distincts donnent des idéaux distincts.\n\n**3.** Combien l'anneau $\\mathbb{Z}/12\\mathbb{Z}$ a-t-il d'idéaux ?",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, $\\pi$ est un morphisme d'anneaux surjectif : l'image réciproque d'un idéal est un idéal, et $\\pi\\left(\\pi^{-1}(J)\\right)=J$ par surjectivité.",
+        "Pour la question 2, un idéal de $\\mathbb{Z}$ qui contient $n\\mathbb{Z}$ s'écrit $d\\mathbb{Z}$ avec $d\\mid n$ ; pour la distinction, calculer $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)$."
+      ],
+      "reponse_finale": {
+        "question": "Combien d'idéaux l'anneau $\\mathbb{Z}/12\\mathbb{Z}$ possède-t-il ?",
+        "propositions": [
+          "$6$",
+          "$12$",
+          "$4$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $I=\\pi^{-1}(J)$ contient $0$ ; si $x,y\\in I$, $\\pi(x-y)=\\pi(x)-\\pi(y)\\in J$ ; si $a\\in\\mathbb{Z}$ et $x\\in I$, $\\pi(ax)=\\pi(a)\\pi(x)\\in J$. C'est donc un idéal de $\\mathbb{Z}$, qui contient $\\ker\\pi=n\\mathbb{Z}$ puisque $\\overline0\\in J$. Comme $\\pi$ est surjective, $\\pi\\left(\\pi^{-1}(J)\\right)=J$.\n\n**2.** Par la question 1, $\\pi^{-1}(J)=d\\mathbb{Z}$ avec $d\\ge0$ et $n\\mathbb{Z}\\subset d\\mathbb{Z}$, c'est-à-dire $d\\mid n$ (donc $d\\ge1$), et $J=\\pi(d\\mathbb{Z})$. Réciproquement, $\\pi(d\\mathbb{Z})$ est un idéal : il contient $\\overline0$, il est stable par différence, et $\\overline a\\,\\overline{dk}=\\overline{d(ak)}$. Pour $d\\mid n$, $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)=d\\mathbb{Z}+n\\mathbb{Z}=d\\mathbb{Z}$ ; donc si $\\pi(d\\mathbb{Z})=\\pi(d'\\mathbb{Z})$ avec $d,d'$ diviseurs positifs de $n$, alors $d\\mathbb{Z}=d'\\mathbb{Z}$ et $d=d'$.\n\n**3.** Les idéaux de $\\mathbb{Z}/12\\mathbb{Z}$ correspondent donc aux diviseurs positifs de $12$, qui sont $1, 2, 3, 4, 6, 12$. Il y en a $6$ (de l'anneau entier, pour $d=1$, à $\\{\\overline0\\}$, pour $d=12$).",
+      "variantes": [
+        {
+          "enonce": "Soient $n\\ge2$ et $\\pi:\\mathbb{Z}\\to\\mathbb{Z}/n\\mathbb{Z}$ la projection.\n\n**1.** Montrer que si $J$ est un idéal de $\\mathbb{Z}/n\\mathbb{Z}$, alors $\\pi^{-1}(J)$ est un idéal de $\\mathbb{Z}$ contenant $n\\mathbb{Z}$, et que $J=\\pi\\left(\\pi^{-1}(J)\\right)$.\n\n**2.** En déduire que les idéaux de $\\mathbb{Z}/n\\mathbb{Z}$ sont les $\\pi(d\\mathbb{Z})$, où $d$ parcourt les diviseurs positifs de $n$, et que deux diviseurs distincts donnent des idéaux distincts.\n\n**3.** Combien l'anneau $\\mathbb{Z}/36\\mathbb{Z}$ a-t-il d'idéaux ?",
+          "indices": [
+            "Pour la question 1, $\\pi$ est un morphisme d'anneaux surjectif : l'image réciproque d'un idéal est un idéal, et $\\pi\\left(\\pi^{-1}(J)\\right)=J$ par surjectivité.",
+            "Pour la question 2, un idéal de $\\mathbb{Z}$ qui contient $n\\mathbb{Z}$ s'écrit $d\\mathbb{Z}$ avec $d\\mid n$ ; pour la distinction, calculer $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'idéaux l'anneau $\\mathbb{Z}/36\\mathbb{Z}$ possède-t-il ?",
+            "propositions": [
+              "$9$",
+              "$36$",
+              "$12$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $I=\\pi^{-1}(J)$ contient $0$ ; si $x,y\\in I$, $\\pi(x-y)=\\pi(x)-\\pi(y)\\in J$ ; si $a\\in\\mathbb{Z}$ et $x\\in I$, $\\pi(ax)=\\pi(a)\\pi(x)\\in J$. C'est donc un idéal de $\\mathbb{Z}$, qui contient $\\ker\\pi=n\\mathbb{Z}$ puisque $\\overline0\\in J$. Comme $\\pi$ est surjective, $\\pi\\left(\\pi^{-1}(J)\\right)=J$.\n\n**2.** Par la question 1, $\\pi^{-1}(J)=d\\mathbb{Z}$ avec $d\\ge0$ et $n\\mathbb{Z}\\subset d\\mathbb{Z}$, c'est-à-dire $d\\mid n$ (donc $d\\ge1$), et $J=\\pi(d\\mathbb{Z})$. Réciproquement, $\\pi(d\\mathbb{Z})$ est un idéal : il contient $\\overline0$, il est stable par différence, et $\\overline a\\,\\overline{dk}=\\overline{d(ak)}$. Pour $d\\mid n$, $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)=d\\mathbb{Z}+n\\mathbb{Z}=d\\mathbb{Z}$ ; donc si $\\pi(d\\mathbb{Z})=\\pi(d'\\mathbb{Z})$ avec $d,d'$ diviseurs positifs de $n$, alors $d\\mathbb{Z}=d'\\mathbb{Z}$ et $d=d'$.\n\n**3.** Les idéaux de $\\mathbb{Z}/36\\mathbb{Z}$ correspondent donc aux diviseurs positifs de $36$, qui sont $1, 2, 3, 4, 6, 9, 12, 18, 36$. Il y en a $9$ (de l'anneau entier, pour $d=1$, à $\\{\\overline0\\}$, pour $d=36$)."
+        },
+        {
+          "enonce": "Soient $n\\ge2$ et $\\pi:\\mathbb{Z}\\to\\mathbb{Z}/n\\mathbb{Z}$ la projection.\n\n**1.** Montrer que si $J$ est un idéal de $\\mathbb{Z}/n\\mathbb{Z}$, alors $\\pi^{-1}(J)$ est un idéal de $\\mathbb{Z}$ contenant $n\\mathbb{Z}$, et que $J=\\pi\\left(\\pi^{-1}(J)\\right)$.\n\n**2.** En déduire que les idéaux de $\\mathbb{Z}/n\\mathbb{Z}$ sont les $\\pi(d\\mathbb{Z})$, où $d$ parcourt les diviseurs positifs de $n$, et que deux diviseurs distincts donnent des idéaux distincts.\n\n**3.** Combien l'anneau $\\mathbb{Z}/60\\mathbb{Z}$ a-t-il d'idéaux ?",
+          "indices": [
+            "Pour la question 1, $\\pi$ est un morphisme d'anneaux surjectif : l'image réciproque d'un idéal est un idéal, et $\\pi\\left(\\pi^{-1}(J)\\right)=J$ par surjectivité.",
+            "Pour la question 2, un idéal de $\\mathbb{Z}$ qui contient $n\\mathbb{Z}$ s'écrit $d\\mathbb{Z}$ avec $d\\mid n$ ; pour la distinction, calculer $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'idéaux l'anneau $\\mathbb{Z}/60\\mathbb{Z}$ possède-t-il ?",
+            "propositions": [
+              "$12$",
+              "$60$",
+              "$16$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $I=\\pi^{-1}(J)$ contient $0$ ; si $x,y\\in I$, $\\pi(x-y)=\\pi(x)-\\pi(y)\\in J$ ; si $a\\in\\mathbb{Z}$ et $x\\in I$, $\\pi(ax)=\\pi(a)\\pi(x)\\in J$. C'est donc un idéal de $\\mathbb{Z}$, qui contient $\\ker\\pi=n\\mathbb{Z}$ puisque $\\overline0\\in J$. Comme $\\pi$ est surjective, $\\pi\\left(\\pi^{-1}(J)\\right)=J$.\n\n**2.** Par la question 1, $\\pi^{-1}(J)=d\\mathbb{Z}$ avec $d\\ge0$ et $n\\mathbb{Z}\\subset d\\mathbb{Z}$, c'est-à-dire $d\\mid n$ (donc $d\\ge1$), et $J=\\pi(d\\mathbb{Z})$. Réciproquement, $\\pi(d\\mathbb{Z})$ est un idéal : il contient $\\overline0$, il est stable par différence, et $\\overline a\\,\\overline{dk}=\\overline{d(ak)}$. Pour $d\\mid n$, $\\pi^{-1}\\left(\\pi(d\\mathbb{Z})\\right)=d\\mathbb{Z}+n\\mathbb{Z}=d\\mathbb{Z}$ ; donc si $\\pi(d\\mathbb{Z})=\\pi(d'\\mathbb{Z})$ avec $d,d'$ diviseurs positifs de $n$, alors $d\\mathbb{Z}=d'\\mathbb{Z}$ et $d=d'$.\n\n**3.** Les idéaux de $\\mathbb{Z}/60\\mathbb{Z}$ correspondent donc aux diviseurs positifs de $60$, qui sont $1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60$. Il y en a $12$ (de l'anneau entier, pour $d=1$, à $\\{\\overline0\\}$, pour $d=60$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-ideaux-ex3",
+      "carte": "arith-l2-anneaux-ideaux",
+      "difficulte": 3,
+      "titre": "Somme, intersection et réunion de deux idéaux",
+      "enonce": "Soient $A$ un anneau commutatif, $I$ et $J$ deux idéaux de $A$.\n\n**1.** Montrer que $I\\cap J$ et $I+J=\\{x+y : x\\in I,\\ y\\in J\\}$ sont des idéaux de $A$, et que $I+J$ est le plus petit idéal de $A$ contenant $I\\cup J$.\n\n**2.** Montrer que $I\\cup J$ est un idéal si et seulement si $I\\subset J$ ou $J\\subset I$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour « le plus petit idéal » : un idéal qui contient $I$ et $J$ est stable par addition.",
+        "Pour le sens direct de la question 2, raisonner par l'absurde avec $x\\in I\\setminus J$ et $y\\in J\\setminus I$, et regarder $x+y$."
+      ],
+      "correction": "**1.** $0\\in I\\cap J$ ; si $x,y\\in I\\cap J$ et $a\\in A$, alors $x-y$ et $ax$ sont dans $I$ et dans $J$ : $I\\cap J$ est un idéal. Ensuite $0=0+0\\in I+J$ ; $(x+y)-(x'+y')=(x-x')+(y-y')\\in I+J$ ; $a(x+y)=ax+ay\\in I+J$ : $I+J$ est un idéal. Il contient $I$ (prendre $y=0$) et $J$. Si $K$ est un idéal contenant $I\\cup J$, il contient $x$ et $y$ pour $x\\in I$, $y\\in J$, donc $x+y$ : $I+J\\subset K$.\n\n**2.** Si $I\\subset J$, alors $I\\cup J=J$ est un idéal ; de même si $J\\subset I$. Réciproquement, supposons que $I\\cup J$ est un idéal, et par l'absurde qu'il existe $x\\in I\\setminus J$ et $y\\in J\\setminus I$. Alors $x+y\\in I\\cup J$. Si $x+y\\in I$, alors $y=(x+y)-x\\in I$, contradiction ; si $x+y\\in J$, alors $x=(x+y)-y\\in J$, contradiction. Donc $I\\subset J$ ou $J\\subset I$. Par exemple, $2\\mathbb{Z}\\cup3\\mathbb{Z}$ n'est pas un idéal de $\\mathbb{Z}$."
+    },
+    {
+      "id": "arith-l2-anneaux-ideaux-ex4",
+      "carte": "arith-l2-anneaux-ideaux",
+      "difficulte": 4,
+      "titre": "Idéal des éléments nilpotents",
+      "enonce": "Soit $A$ un anneau commutatif. Un élément $x\\in A$ est **nilpotent** s'il existe $k\\ge1$ tel que $x^k=0$. On note $N$ l'ensemble des éléments nilpotents de $A$.\n\n**1.** Montrer que $N$ est un idéal de $A$.\n\n**2.** Montrer que l'anneau quotient $A/N$ n'a pas d'élément nilpotent non nul.\n\n**3.** Pour $A=\\mathbb{Z}/72\\mathbb{Z}$, déterminer $N$ et son nombre d'éléments.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la stabilité par somme, développer $(x+y)^{k+l}$ par la formule du binôme lorsque $x^k=0$ et $y^l=0$.",
+        "Pour la question 3, $\\overline a$ est nilpotent si et seulement si $72$ divise une puissance de $a$ : comparer les facteurs premiers de $a$ et de $72=2^3\\times3^2$."
+      ],
+      "reponse_finale": {
+        "question": "Combien d'éléments l'idéal $N$ des nilpotents de $\\mathbb{Z}/72\\mathbb{Z}$ compte-t-il ?",
+        "propositions": [
+          "$12$",
+          "$6$",
+          "$24$",
+          "$36$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $0\\in N$. Si $x^k=0$ et $a\\in A$, alors $(ax)^k=a^kx^k=0$ (commutativité) ; en particulier $-x=(-1)x\\in N$. Si de plus $y^l=0$, alors\n$$(x+y)^{k+l}=\\sum_{j=0}^{k+l}\\binom{k+l}jx^jy^{k+l-j},$$\net chaque terme est nul : soit $j\\ge k$ et $x^j=0$, soit $j<k$, donc $k+l-j>l$ et $y^{k+l-j}=0$. Ainsi $x+y\\in N$, puis $x-y=x+(-y)\\in N$ : $N$ est un idéal.\n\n**2.** Si $\\overline x^k=\\overline0$ dans $A/N$, alors $x^k\\in N$ : il existe $m\\ge1$ tel que $x^{km}=\\left(x^k\\right)^m=0$, donc $x\\in N$ et $\\overline x=\\overline0$.\n\n**3.** Si $72$ divise $a^k$, alors chacun des nombres premiers $2$ et $3$ divise $a^k$, donc $a$ (lemme d'Euclide), et $6\\mid a$. Réciproquement, si $6\\mid a$, alors $a^3$ est divisible par $6^3=216$, donc par $72$. Ainsi $N=\\left\\{\\overline{6j} : 0\\le j<12\\right\\}=6\\mathbb{Z}/72\\mathbb{Z}$, qui a $\\frac{72}{6}=12$ éléments.",
+      "variantes": [
+        {
+          "enonce": "Soit $A$ un anneau commutatif. Un élément $x\\in A$ est **nilpotent** s'il existe $k\\ge1$ tel que $x^k=0$. On note $N$ l'ensemble des éléments nilpotents de $A$.\n\n**1.** Montrer que $N$ est un idéal de $A$.\n\n**2.** Montrer que l'anneau quotient $A/N$ n'a pas d'élément nilpotent non nul.\n\n**3.** Pour $A=\\mathbb{Z}/200\\mathbb{Z}$, déterminer $N$ et son nombre d'éléments.",
+          "indices": [
+            "Pour la stabilité par somme, développer $(x+y)^{k+l}$ par la formule du binôme lorsque $x^k=0$ et $y^l=0$.",
+            "Pour la question 3, $\\overline a$ est nilpotent si et seulement si $200$ divise une puissance de $a$ : comparer les facteurs premiers de $a$ et de $200=2^3\\times5^2$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'éléments l'idéal $N$ des nilpotents de $\\mathbb{Z}/200\\mathbb{Z}$ compte-t-il ?",
+            "propositions": [
+              "$20$",
+              "$10$",
+              "$80$",
+              "$100$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $0\\in N$. Si $x^k=0$ et $a\\in A$, alors $(ax)^k=a^kx^k=0$ (commutativité) ; en particulier $-x=(-1)x\\in N$. Si de plus $y^l=0$, alors\n$$(x+y)^{k+l}=\\sum_{j=0}^{k+l}\\binom{k+l}jx^jy^{k+l-j},$$\net chaque terme est nul : soit $j\\ge k$ et $x^j=0$, soit $j<k$, donc $k+l-j>l$ et $y^{k+l-j}=0$. Ainsi $x+y\\in N$, puis $x-y=x+(-y)\\in N$ : $N$ est un idéal.\n\n**2.** Si $\\overline x^k=\\overline0$ dans $A/N$, alors $x^k\\in N$ : il existe $m\\ge1$ tel que $x^{km}=\\left(x^k\\right)^m=0$, donc $x\\in N$ et $\\overline x=\\overline0$.\n\n**3.** Si $200$ divise $a^k$, alors chacun des nombres premiers $2$ et $5$ divise $a^k$, donc $a$ (lemme d'Euclide), et $10\\mid a$. Réciproquement, si $10\\mid a$, alors $a^3$ est divisible par $10^3=1000$, donc par $200$. Ainsi $N=\\left\\{\\overline{10j} : 0\\le j<20\\right\\}=10\\mathbb{Z}/200\\mathbb{Z}$, qui a $\\frac{200}{10}=20$ éléments."
+        },
+        {
+          "enonce": "Soit $A$ un anneau commutatif. Un élément $x\\in A$ est **nilpotent** s'il existe $k\\ge1$ tel que $x^k=0$. On note $N$ l'ensemble des éléments nilpotents de $A$.\n\n**1.** Montrer que $N$ est un idéal de $A$.\n\n**2.** Montrer que l'anneau quotient $A/N$ n'a pas d'élément nilpotent non nul.\n\n**3.** Pour $A=\\mathbb{Z}/108\\mathbb{Z}$, déterminer $N$ et son nombre d'éléments.",
+          "indices": [
+            "Pour la stabilité par somme, développer $(x+y)^{k+l}$ par la formule du binôme lorsque $x^k=0$ et $y^l=0$.",
+            "Pour la question 3, $\\overline a$ est nilpotent si et seulement si $108$ divise une puissance de $a$ : comparer les facteurs premiers de $a$ et de $108=2^2\\times3^3$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'éléments l'idéal $N$ des nilpotents de $\\mathbb{Z}/108\\mathbb{Z}$ compte-t-il ?",
+            "propositions": [
+              "$18$",
+              "$6$",
+              "$36$",
+              "$54$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $0\\in N$. Si $x^k=0$ et $a\\in A$, alors $(ax)^k=a^kx^k=0$ (commutativité) ; en particulier $-x=(-1)x\\in N$. Si de plus $y^l=0$, alors\n$$(x+y)^{k+l}=\\sum_{j=0}^{k+l}\\binom{k+l}jx^jy^{k+l-j},$$\net chaque terme est nul : soit $j\\ge k$ et $x^j=0$, soit $j<k$, donc $k+l-j>l$ et $y^{k+l-j}=0$. Ainsi $x+y\\in N$, puis $x-y=x+(-y)\\in N$ : $N$ est un idéal.\n\n**2.** Si $\\overline x^k=\\overline0$ dans $A/N$, alors $x^k\\in N$ : il existe $m\\ge1$ tel que $x^{km}=\\left(x^k\\right)^m=0$, donc $x\\in N$ et $\\overline x=\\overline0$.\n\n**3.** Si $108$ divise $a^k$, alors chacun des nombres premiers $2$ et $3$ divise $a^k$, donc $a$ (lemme d'Euclide), et $6\\mid a$. Réciproquement, si $6\\mid a$, alors $a^3$ est divisible par $6^3=216$, donc par $108$. Ainsi $N=\\left\\{\\overline{6j} : 0\\le j<18\\right\\}=6\\mathbb{Z}/108\\mathbb{Z}$, qui a $\\frac{108}{6}=18$ éléments."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-isomorphisme-ex1",
+      "carte": "arith-l2-anneaux-isomorphisme",
+      "difficulte": 1,
+      "titre": "Évaluer en $i$ et réduire modulo $X^2+1$",
+      "enonce": "Soit $f:\\mathbb{R}[X]\\to\\mathbb{C}$, $P\\mapsto P(i)$ ; c'est un morphisme d'anneaux surjectif de noyau $(X^2+1)$. Calculer $f(P)$ pour $P=X^5+2X^3-X+4$, puis en déduire le reste de la division euclidienne de $P$ par $X^2+1$.",
+      "duree_min": 5,
+      "indices": [
+        "Les puissances de $i$ sont périodiques de période $4$.",
+        "Le reste $R=aX+b$, avec $a,b$ réels, vérifie $R(i)=P(i)$, car $P-R$ est dans le noyau de $f$."
+      ],
+      "reponse_finale": {
+        "question": "Que valent $P(i)$ et le reste de la division de $P$ par $X^2+1$ ?",
+        "propositions": [
+          "$P(i)=4-2i$, reste $-2X+4$",
+          "$P(i)=4+2i$, reste $2X+4$",
+          "$P(i)=4$, reste $4$",
+          "$P(i)=4-4i$, reste $-4X+4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $i^2=-1$, $i^3=-i$, $i^4=1$, puis les puissances se répètent avec la période $4$. Donc\n$$P(i)=i+2(-i)-i+4=4-2i.$$\nÉcrivons $P=(X^2+1)Q+R$ avec $R=aX+b$, $a,b\\in\\mathbb{R}$. Comme $f$ est un morphisme et $f(X^2+1)=0$, $R(i)=P(i)$, soit $b+ai=4-2i$. En identifiant parties réelle et imaginaire, $R=-2X+4$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f:\\mathbb{R}[X]\\to\\mathbb{C}$, $P\\mapsto P(i)$ ; c'est un morphisme d'anneaux surjectif de noyau $(X^2+1)$. Calculer $f(P)$ pour $P=X^6-3X^4+X+1$, puis en déduire le reste de la division euclidienne de $P$ par $X^2+1$.",
+          "indices": [
+            "Les puissances de $i$ sont périodiques de période $4$.",
+            "Le reste $R=aX+b$, avec $a,b$ réels, vérifie $R(i)=P(i)$, car $P-R$ est dans le noyau de $f$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $P(i)$ et le reste de la division de $P$ par $X^2+1$ ?",
+            "propositions": [
+              "$P(i)=-3+i$, reste $X-3$",
+              "$P(i)=-1+i$, reste $X-1$",
+              "$P(i)=-5+i$, reste $X-5$",
+              "$P(i)=-3-i$, reste $-X-3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $i^2=-1$, $i^3=-i$, $i^4=1$, puis les puissances se répètent avec la période $4$. Donc\n$$P(i)=-1-3+i+1=-3+i.$$\nÉcrivons $P=(X^2+1)Q+R$ avec $R=aX+b$, $a,b\\in\\mathbb{R}$. Comme $f$ est un morphisme et $f(X^2+1)=0$, $R(i)=P(i)$, soit $b+ai=-3+i$. En identifiant parties réelle et imaginaire, $R=X-3$."
+        },
+        {
+          "enonce": "Soit $f:\\mathbb{R}[X]\\to\\mathbb{C}$, $P\\mapsto P(i)$ ; c'est un morphisme d'anneaux surjectif de noyau $(X^2+1)$. Calculer $f(P)$ pour $P=X^7+X^3+5X^2-2$, puis en déduire le reste de la division euclidienne de $P$ par $X^2+1$.",
+          "indices": [
+            "Les puissances de $i$ sont périodiques de période $4$.",
+            "Le reste $R=aX+b$, avec $a,b$ réels, vérifie $R(i)=P(i)$, car $P-R$ est dans le noyau de $f$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $P(i)$ et le reste de la division de $P$ par $X^2+1$ ?",
+            "propositions": [
+              "$P(i)=-7-2i$, reste $-2X-7$",
+              "$P(i)=3-2i$, reste $-2X+3$",
+              "$P(i)=-7+2i$, reste $2X-7$",
+              "$P(i)=-7$, reste $-7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $i^2=-1$, $i^3=-i$, $i^4=1$, puis les puissances se répètent avec la période $4$. Donc\n$$P(i)=-i-i-5-2=-7-2i.$$\nÉcrivons $P=(X^2+1)Q+R$ avec $R=aX+b$, $a,b\\in\\mathbb{R}$. Comme $f$ est un morphisme et $f(X^2+1)=0$, $R(i)=P(i)$, soit $b+ai=-7-2i$. En identifiant parties réelle et imaginaire, $R=-2X-7$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-isomorphisme-ex2",
+      "carte": "arith-l2-anneaux-isomorphisme",
+      "difficulte": 2,
+      "titre": "Morphismes entre anneaux $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soient $a,b\\ge1$ deux entiers.\n\n**1.** Montrer qu'il existe un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$ si et seulement si $b\\mid a$, et qu'il est alors unique.\n\n**2.** Combien existe-t-il de morphismes d'anneaux de $\\mathbb{Z}/12\\mathbb{Z}$ dans $\\mathbb{Z}/4\\mathbb{Z}$, puis de $\\mathbb{Z}/4\\mathbb{Z}$ dans $\\mathbb{Z}/12\\mathbb{Z}$ ?",
+      "duree_min": 10,
+      "indices": [
+        "Un morphisme d'anneaux $f$ vérifie $f(\\overline1)=\\overline1$, donc $f(\\overline k)=\\overline k$ pour tout $k$.",
+        "La réduction $\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ passe au quotient par $a\\mathbb{Z}$ si et seulement si $a\\mathbb{Z}$ est contenu dans son noyau."
+      ],
+      "reponse_finale": {
+        "question": "Combien de morphismes d'anneaux de $\\mathbb{Z}/12\\mathbb{Z}$ dans $\\mathbb{Z}/4\\mathbb{Z}$, puis de $\\mathbb{Z}/4\\mathbb{Z}$ dans $\\mathbb{Z}/12\\mathbb{Z}$ ?",
+        "propositions": [
+          "$1$ puis $0$",
+          "$0$ puis $1$",
+          "$1$ puis $1$",
+          "$4$ puis $12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $f$ est un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$, alors $f(\\overline k)=f(k\\cdot\\overline1)=k\\cdot f(\\overline1)$, qui est la classe de $k$ modulo $b$ : $f$ est unique. De plus, la classe de $a$ modulo $b$ vaut $f(\\overline a)=f(\\overline0)=0$, donc $b\\mid a$. Réciproquement, si $b\\mid a$, la réduction $\\rho:\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ est un morphisme d'anneaux de noyau $b\\mathbb{Z}\\supset a\\mathbb{Z}$ ; donc l'application qui envoie la classe de $k$ modulo $a$ sur $\\rho(k)$ est bien définie (si $k\\equiv k'\\pmod a$, alors $k\\equiv k'\\pmod b$), et c'est un morphisme d'anneaux.\n\n**2.** Comme $4\\mid12$, il y a un unique morphisme de $\\mathbb{Z}/12\\mathbb{Z}$ dans $\\mathbb{Z}/4\\mathbb{Z}$ (la réduction modulo $4$). Comme $12\\nmid4$, il n'y en a aucun de $\\mathbb{Z}/4\\mathbb{Z}$ dans $\\mathbb{Z}/12\\mathbb{Z}$. Remarque : l'application qui envoie la classe de $k$ modulo $4$ sur celle de $3k$ modulo $12$ est bien définie et respecte la somme, mais elle envoie $\\overline1$ sur $\\overline3\\neq\\overline1$ : ce n'est pas un morphisme d'anneaux.",
+      "variantes": [
+        {
+          "enonce": "Soient $a,b\\ge1$ deux entiers.\n\n**1.** Montrer qu'il existe un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$ si et seulement si $b\\mid a$, et qu'il est alors unique.\n\n**2.** Combien existe-t-il de morphismes d'anneaux de $\\mathbb{Z}/10\\mathbb{Z}$ dans $\\mathbb{Z}/5\\mathbb{Z}$, puis de $\\mathbb{Z}/5\\mathbb{Z}$ dans $\\mathbb{Z}/10\\mathbb{Z}$ ?",
+          "indices": [
+            "Un morphisme d'anneaux $f$ vérifie $f(\\overline1)=\\overline1$, donc $f(\\overline k)=\\overline k$ pour tout $k$.",
+            "La réduction $\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ passe au quotient par $a\\mathbb{Z}$ si et seulement si $a\\mathbb{Z}$ est contenu dans son noyau."
+          ],
+          "reponse_finale": {
+            "question": "Combien de morphismes d'anneaux de $\\mathbb{Z}/10\\mathbb{Z}$ dans $\\mathbb{Z}/5\\mathbb{Z}$, puis de $\\mathbb{Z}/5\\mathbb{Z}$ dans $\\mathbb{Z}/10\\mathbb{Z}$ ?",
+            "propositions": [
+              "$1$ puis $0$",
+              "$0$ puis $1$",
+              "$1$ puis $1$",
+              "$5$ puis $10$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $f$ est un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$, alors $f(\\overline k)=f(k\\cdot\\overline1)=k\\cdot f(\\overline1)$, qui est la classe de $k$ modulo $b$ : $f$ est unique. De plus, la classe de $a$ modulo $b$ vaut $f(\\overline a)=f(\\overline0)=0$, donc $b\\mid a$. Réciproquement, si $b\\mid a$, la réduction $\\rho:\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ est un morphisme d'anneaux de noyau $b\\mathbb{Z}\\supset a\\mathbb{Z}$ ; donc l'application qui envoie la classe de $k$ modulo $a$ sur $\\rho(k)$ est bien définie (si $k\\equiv k'\\pmod a$, alors $k\\equiv k'\\pmod b$), et c'est un morphisme d'anneaux.\n\n**2.** Comme $5\\mid10$, il y a un unique morphisme de $\\mathbb{Z}/10\\mathbb{Z}$ dans $\\mathbb{Z}/5\\mathbb{Z}$ (la réduction modulo $5$). Comme $10\\nmid5$, il n'y en a aucun de $\\mathbb{Z}/5\\mathbb{Z}$ dans $\\mathbb{Z}/10\\mathbb{Z}$ : il enverrait $\\overline5=\\overline0$ sur la classe de $5$ modulo $10$, qui n'est pas nulle."
+        },
+        {
+          "enonce": "Soient $a,b\\ge1$ deux entiers.\n\n**1.** Montrer qu'il existe un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$ si et seulement si $b\\mid a$, et qu'il est alors unique.\n\n**2.** Combien existe-t-il de morphismes d'anneaux de $\\mathbb{Z}/6\\mathbb{Z}$ dans $\\mathbb{Z}/4\\mathbb{Z}$, puis de $\\mathbb{Z}/4\\mathbb{Z}$ dans $\\mathbb{Z}/6\\mathbb{Z}$ ?",
+          "indices": [
+            "Un morphisme d'anneaux $f$ vérifie $f(\\overline1)=\\overline1$, donc $f(\\overline k)=\\overline k$ pour tout $k$.",
+            "La réduction $\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ passe au quotient par $a\\mathbb{Z}$ si et seulement si $a\\mathbb{Z}$ est contenu dans son noyau."
+          ],
+          "reponse_finale": {
+            "question": "Combien de morphismes d'anneaux de $\\mathbb{Z}/6\\mathbb{Z}$ dans $\\mathbb{Z}/4\\mathbb{Z}$, puis de $\\mathbb{Z}/4\\mathbb{Z}$ dans $\\mathbb{Z}/6\\mathbb{Z}$ ?",
+            "propositions": [
+              "$0$ puis $0$",
+              "$1$ puis $0$",
+              "$0$ puis $1$",
+              "$2$ puis $2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $f$ est un morphisme d'anneaux de $\\mathbb{Z}/a\\mathbb{Z}$ dans $\\mathbb{Z}/b\\mathbb{Z}$, alors $f(\\overline k)=f(k\\cdot\\overline1)=k\\cdot f(\\overline1)$, qui est la classe de $k$ modulo $b$ : $f$ est unique. De plus, la classe de $a$ modulo $b$ vaut $f(\\overline a)=f(\\overline0)=0$, donc $b\\mid a$. Réciproquement, si $b\\mid a$, la réduction $\\rho:\\mathbb{Z}\\to\\mathbb{Z}/b\\mathbb{Z}$ est un morphisme d'anneaux de noyau $b\\mathbb{Z}\\supset a\\mathbb{Z}$ ; donc l'application qui envoie la classe de $k$ modulo $a$ sur $\\rho(k)$ est bien définie (si $k\\equiv k'\\pmod a$, alors $k\\equiv k'\\pmod b$), et c'est un morphisme d'anneaux.\n\n**2.** Ni $4$ ne divise $6$, ni $6$ ne divise $4$ : il n'existe aucun morphisme d'anneaux dans un sens ni dans l'autre."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-isomorphisme-ex3",
+      "carte": "arith-l2-anneaux-isomorphisme",
+      "difficulte": 3,
+      "titre": "Image de $\\mathbb{Z}$ dans un produit de deux anneaux $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soient $m,n\\ge1$ et $f:\\mathbb{Z}\\to\\mathbb{Z}/m\\mathbb{Z}\\times\\mathbb{Z}/n\\mathbb{Z}$ l'application qui à $k$ associe le couple formé de sa classe modulo $m$ et de sa classe modulo $n$.\n\n**1.** Montrer que $f$ est un morphisme d'anneaux de noyau $(m\\vee n)\\mathbb{Z}$, où $m\\vee n$ désigne le PPCM de $m$ et $n$.\n\n**2.** En déduire que l'image de $f$ a $m\\vee n$ éléments, puis que $f$ est surjective si et seulement si $m\\wedge n=1$.\n\n**3.** Pour $m=4$ et $n=6$, combien l'image de $f$ a-t-elle d'éléments ?",
+      "duree_min": 15,
+      "indices": [
+        "$f(k)$ est nul si et seulement si $k$ est un multiple commun de $m$ et $n$.",
+        "Par le théorème d'isomorphisme, l'image de $f$ est isomorphe à $\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$ ; comparer avec le cardinal $mn$ du produit, en utilisant $(m\\wedge n)(m\\vee n)=mn$."
+      ],
+      "reponse_finale": {
+        "question": "Combien l'image de $f$ a-t-elle d'éléments pour $m=4$ et $n=6$ ?",
+        "propositions": [
+          "$12$",
+          "$24$",
+          "$2$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les deux composantes de $f$ sont des réductions, qui sont des morphismes d'anneaux, donc $f$ en est un. $f(k)=\\left(\\overline0,\\overline0\\right)$ si et seulement si $m\\mid k$ et $n\\mid k$, c'est-à-dire si et seulement si $k\\in m\\mathbb{Z}\\cap n\\mathbb{Z}=(m\\vee n)\\mathbb{Z}$.\n\n**2.** Par le théorème d'isomorphisme, $\\operatorname{Im}f\\simeq\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$, qui a $m\\vee n$ éléments. Le produit a $mn=(m\\wedge n)(m\\vee n)$ éléments ; donc $f$ est surjective si et seulement si $m\\vee n=mn$, c'est-à-dire $m\\wedge n=1$ : c'est le théorème chinois.\n\n**3.** Pour $m=4$ et $n=6$, $m\\vee n=12$ : l'image a $12$ éléments, et $f$ n'est pas surjective (le produit en a $24$).",
+      "variantes": [
+        {
+          "enonce": "Soient $m,n\\ge1$ et $f:\\mathbb{Z}\\to\\mathbb{Z}/m\\mathbb{Z}\\times\\mathbb{Z}/n\\mathbb{Z}$ l'application qui à $k$ associe le couple formé de sa classe modulo $m$ et de sa classe modulo $n$.\n\n**1.** Montrer que $f$ est un morphisme d'anneaux de noyau $(m\\vee n)\\mathbb{Z}$, où $m\\vee n$ désigne le PPCM de $m$ et $n$.\n\n**2.** En déduire que l'image de $f$ a $m\\vee n$ éléments, puis que $f$ est surjective si et seulement si $m\\wedge n=1$.\n\n**3.** Pour $m=6$ et $n=9$, combien l'image de $f$ a-t-elle d'éléments ?",
+          "indices": [
+            "$f(k)$ est nul si et seulement si $k$ est un multiple commun de $m$ et $n$.",
+            "Par le théorème d'isomorphisme, l'image de $f$ est isomorphe à $\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$ ; comparer avec le cardinal $mn$ du produit, en utilisant $(m\\wedge n)(m\\vee n)=mn$."
+          ],
+          "reponse_finale": {
+            "question": "Combien l'image de $f$ a-t-elle d'éléments pour $m=6$ et $n=9$ ?",
+            "propositions": [
+              "$18$",
+              "$54$",
+              "$3$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les deux composantes de $f$ sont des réductions, qui sont des morphismes d'anneaux, donc $f$ en est un. $f(k)=\\left(\\overline0,\\overline0\\right)$ si et seulement si $m\\mid k$ et $n\\mid k$, c'est-à-dire si et seulement si $k\\in m\\mathbb{Z}\\cap n\\mathbb{Z}=(m\\vee n)\\mathbb{Z}$.\n\n**2.** Par le théorème d'isomorphisme, $\\operatorname{Im}f\\simeq\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$, qui a $m\\vee n$ éléments. Le produit a $mn=(m\\wedge n)(m\\vee n)$ éléments ; donc $f$ est surjective si et seulement si $m\\vee n=mn$, c'est-à-dire $m\\wedge n=1$ : c'est le théorème chinois.\n\n**3.** Pour $m=6$ et $n=9$, $m\\vee n=18$ : l'image a $18$ éléments, et $f$ n'est pas surjective (le produit en a $54$)."
+        },
+        {
+          "enonce": "Soient $m,n\\ge1$ et $f:\\mathbb{Z}\\to\\mathbb{Z}/m\\mathbb{Z}\\times\\mathbb{Z}/n\\mathbb{Z}$ l'application qui à $k$ associe le couple formé de sa classe modulo $m$ et de sa classe modulo $n$.\n\n**1.** Montrer que $f$ est un morphisme d'anneaux de noyau $(m\\vee n)\\mathbb{Z}$, où $m\\vee n$ désigne le PPCM de $m$ et $n$.\n\n**2.** En déduire que l'image de $f$ a $m\\vee n$ éléments, puis que $f$ est surjective si et seulement si $m\\wedge n=1$.\n\n**3.** Pour $m=10$ et $n=15$, combien l'image de $f$ a-t-elle d'éléments ?",
+          "indices": [
+            "$f(k)$ est nul si et seulement si $k$ est un multiple commun de $m$ et $n$.",
+            "Par le théorème d'isomorphisme, l'image de $f$ est isomorphe à $\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$ ; comparer avec le cardinal $mn$ du produit, en utilisant $(m\\wedge n)(m\\vee n)=mn$."
+          ],
+          "reponse_finale": {
+            "question": "Combien l'image de $f$ a-t-elle d'éléments pour $m=10$ et $n=15$ ?",
+            "propositions": [
+              "$30$",
+              "$150$",
+              "$5$",
+              "$15$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les deux composantes de $f$ sont des réductions, qui sont des morphismes d'anneaux, donc $f$ en est un. $f(k)=\\left(\\overline0,\\overline0\\right)$ si et seulement si $m\\mid k$ et $n\\mid k$, c'est-à-dire si et seulement si $k\\in m\\mathbb{Z}\\cap n\\mathbb{Z}=(m\\vee n)\\mathbb{Z}$.\n\n**2.** Par le théorème d'isomorphisme, $\\operatorname{Im}f\\simeq\\mathbb{Z}/(m\\vee n)\\mathbb{Z}$, qui a $m\\vee n$ éléments. Le produit a $mn=(m\\wedge n)(m\\vee n)$ éléments ; donc $f$ est surjective si et seulement si $m\\vee n=mn$, c'est-à-dire $m\\wedge n=1$ : c'est le théorème chinois.\n\n**3.** Pour $m=10$ et $n=15$, $m\\vee n=30$ : l'image a $30$ éléments, et $f$ n'est pas surjective (le produit en a $150$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-isomorphisme-ex4",
+      "carte": "arith-l2-anneaux-isomorphisme",
+      "difficulte": 4,
+      "titre": "Idempotents d'un quotient de $\\mathbb{R}[X]$",
+      "enonce": "Soient $A=\\mathbb{R}[X]/(X^2-1)$ et $x$ la classe de $X$.\n\n**1.** Montrer que $\\varphi:\\mathbb{R}[X]\\to\\mathbb{R}\\times\\mathbb{R}$, $P\\mapsto\\left(P(1),P(-1)\\right)$, est un morphisme d'anneaux surjectif de noyau $(X^2-1)$, et en déduire un isomorphisme $A\\simeq\\mathbb{R}\\times\\mathbb{R}$.\n\n**2.** Un élément $e$ d'un anneau est **idempotent** si $e^2=e$. Déterminer les idempotents de $\\mathbb{R}\\times\\mathbb{R}$, puis ceux de $A$, sous la forme $\\alpha+\\beta x$.\n\n**3.** L'anneau $A$ est-il intègre ?",
+      "duree_min": 20,
+      "indices": [
+        "Pour la surjectivité, chercher un antécédent de $(u,v)$ de degré au plus $1$ (interpolation de Lagrange aux points $1$ et $-1$).",
+        "Pour le noyau, $X^2-1=(X-1)(X+1)$, produit de deux polynômes premiers entre eux.",
+        "Dans $\\mathbb{R}\\times\\mathbb{R}$, $(u,v)^2=(u,v)$ équivaut à $u,v\\in\\{0,1\\}$."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont les idempotents de $A$ autres que $0$ et $1$ ?",
+        "propositions": [
+          "$\\frac{1+x}2$ et $\\frac{1-x}2$",
+          "$1+x$ et $1-x$",
+          "$x$ et $-x$",
+          "$\\frac{1+x}2$ et $\\frac{x-1}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\varphi$ est un morphisme d'anneaux, car ses deux composantes sont des évaluations. Pour $(u,v)\\in\\mathbb{R}^2$, le polynôme $P=\\frac{u+v}2+\\frac{u-v}2X$ vérifie $P(1)=u$ et $P(-1)=v$ : $\\varphi$ est surjectif. Si $P(1)=P(-1)=0$, les deux facteurs de $X^2-1=(X-1)(X+1)$ divisent $P$ ; premiers entre eux, leur produit divise $P$ ; la réciproque est immédiate. Donc $\\ker\\varphi=(X^2-1)$, et le théorème d'isomorphisme fournit $\\overline\\varphi:A\\to\\mathbb{R}\\times\\mathbb{R}$, $\\alpha+\\beta x\\mapsto(\\alpha+\\beta,\\alpha-\\beta)$, isomorphisme d'anneaux.\n\n**2.** $(u,v)^2=(u,v)$ équivaut à $u^2=u$ et $v^2=v$, soit $u,v\\in\\{0,1\\}$ : il y a quatre idempotents, $(0,0)$, $(1,1)$, $(1,0)$ et $(0,1)$. Un isomorphisme d'anneaux conserve les idempotents ; les antécédents sont $0$, $1$, puis $\\frac{1+x}2$ pour $(1,0)$ et $\\frac{1-x}2$ pour $(0,1)$. Vérification : $\\left(\\frac{1+x}2\\right)^2=\\frac{1+2x+x^2}4=\\frac{2+2x}4=\\frac{1+x}2$, puisque $x^2=1$.\n\n**3.** Non : $(1+x)(1-x)=1-x^2=0$ avec $1+x\\neq0$ et $1-x\\neq0$, comme $(1,0)(0,1)=(0,0)$ dans $\\mathbb{R}\\times\\mathbb{R}$.",
+      "variantes": [
+        {
+          "enonce": "Soient $A=\\mathbb{R}[X]/(X^2-3X+2)$ et $x$ la classe de $X$.\n\n**1.** Montrer que $\\varphi:\\mathbb{R}[X]\\to\\mathbb{R}\\times\\mathbb{R}$, $P\\mapsto\\left(P(1),P(2)\\right)$, est un morphisme d'anneaux surjectif de noyau $(X^2-3X+2)$, et en déduire un isomorphisme $A\\simeq\\mathbb{R}\\times\\mathbb{R}$.\n\n**2.** Un élément $e$ d'un anneau est **idempotent** si $e^2=e$. Déterminer les idempotents de $\\mathbb{R}\\times\\mathbb{R}$, puis ceux de $A$, sous la forme $\\alpha+\\beta x$.\n\n**3.** L'anneau $A$ est-il intègre ?",
+          "indices": [
+            "Pour la surjectivité, chercher un antécédent de $(u,v)$ de degré au plus $1$ (interpolation de Lagrange aux points $1$ et $2$).",
+            "Pour le noyau, $X^2-3X+2=(X-1)(X-2)$, produit de deux polynômes premiers entre eux.",
+            "Dans $\\mathbb{R}\\times\\mathbb{R}$, $(u,v)^2=(u,v)$ équivaut à $u,v\\in\\{0,1\\}$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les idempotents de $A$ autres que $0$ et $1$ ?",
+            "propositions": [
+              "$2-x$ et $x-1$",
+              "$x-2$ et $1-x$",
+              "$x$ et $1-x$",
+              "$\\frac x2$ et $1-\\frac x2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\varphi$ est un morphisme d'anneaux, car ses deux composantes sont des évaluations. Pour $(u,v)\\in\\mathbb{R}^2$, le polynôme $P=(2u-v)+(v-u)X$ vérifie $P(1)=u$ et $P(2)=v$ : $\\varphi$ est surjectif. Si $P(1)=P(2)=0$, les deux facteurs de $X^2-3X+2=(X-1)(X-2)$ divisent $P$ ; premiers entre eux, leur produit divise $P$ ; la réciproque est immédiate. Donc $\\ker\\varphi=(X^2-3X+2)$, et le théorème d'isomorphisme fournit $\\overline\\varphi:A\\to\\mathbb{R}\\times\\mathbb{R}$, $\\alpha+\\beta x\\mapsto(\\alpha+\\beta,\\alpha+2\\beta)$, isomorphisme d'anneaux.\n\n**2.** $(u,v)^2=(u,v)$ équivaut à $u^2=u$ et $v^2=v$, soit $u,v\\in\\{0,1\\}$ : il y a quatre idempotents, $(0,0)$, $(1,1)$, $(1,0)$ et $(0,1)$. Un isomorphisme d'anneaux conserve les idempotents ; les antécédents sont $0$, $1$, puis $2-x$ pour $(1,0)$ et $x-1$ pour $(0,1)$. Vérification : $(2-x)^2=4-4x+x^2=4-4x+3x-2=2-x$, puisque $x^2=3x-2$.\n\n**3.** Non : $(x-1)(x-2)=x^2-3x+2=0$ avec $x-1\\neq0$ et $x-2\\neq0$, comme $(1,0)(0,1)=(0,0)$ dans $\\mathbb{R}\\times\\mathbb{R}$."
+        },
+        {
+          "enonce": "Soient $A=\\mathbb{R}[X]/(X^2-4)$ et $x$ la classe de $X$.\n\n**1.** Montrer que $\\varphi:\\mathbb{R}[X]\\to\\mathbb{R}\\times\\mathbb{R}$, $P\\mapsto\\left(P(2),P(-2)\\right)$, est un morphisme d'anneaux surjectif de noyau $(X^2-4)$, et en déduire un isomorphisme $A\\simeq\\mathbb{R}\\times\\mathbb{R}$.\n\n**2.** Un élément $e$ d'un anneau est **idempotent** si $e^2=e$. Déterminer les idempotents de $\\mathbb{R}\\times\\mathbb{R}$, puis ceux de $A$, sous la forme $\\alpha+\\beta x$.\n\n**3.** L'anneau $A$ est-il intègre ?",
+          "indices": [
+            "Pour la surjectivité, chercher un antécédent de $(u,v)$ de degré au plus $1$ (interpolation de Lagrange aux points $2$ et $-2$).",
+            "Pour le noyau, $X^2-4=(X-2)(X+2)$, produit de deux polynômes premiers entre eux.",
+            "Dans $\\mathbb{R}\\times\\mathbb{R}$, $(u,v)^2=(u,v)$ équivaut à $u,v\\in\\{0,1\\}$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les idempotents de $A$ autres que $0$ et $1$ ?",
+            "propositions": [
+              "$\\frac{2+x}4$ et $\\frac{2-x}4$",
+              "$\\frac{2+x}2$ et $\\frac{2-x}2$",
+              "$\\frac x2$ et $-\\frac x2$",
+              "$2+x$ et $2-x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\varphi$ est un morphisme d'anneaux, car ses deux composantes sont des évaluations. Pour $(u,v)\\in\\mathbb{R}^2$, le polynôme $P=\\frac{u+v}2+\\frac{u-v}4X$ vérifie $P(2)=u$ et $P(-2)=v$ : $\\varphi$ est surjectif. Si $P(2)=P(-2)=0$, les deux facteurs de $X^2-4=(X-2)(X+2)$ divisent $P$ ; premiers entre eux, leur produit divise $P$ ; la réciproque est immédiate. Donc $\\ker\\varphi=(X^2-4)$, et le théorème d'isomorphisme fournit $\\overline\\varphi:A\\to\\mathbb{R}\\times\\mathbb{R}$, $\\alpha+\\beta x\\mapsto(\\alpha+2\\beta,\\alpha-2\\beta)$, isomorphisme d'anneaux.\n\n**2.** $(u,v)^2=(u,v)$ équivaut à $u^2=u$ et $v^2=v$, soit $u,v\\in\\{0,1\\}$ : il y a quatre idempotents, $(0,0)$, $(1,1)$, $(1,0)$ et $(0,1)$. Un isomorphisme d'anneaux conserve les idempotents ; les antécédents sont $0$, $1$, puis $\\frac{2+x}4$ pour $(1,0)$ et $\\frac{2-x}4$ pour $(0,1)$. Vérification : $\\left(\\frac{2+x}4\\right)^2=\\frac{4+4x+x^2}{16}=\\frac{8+4x}{16}=\\frac{2+x}4$, puisque $x^2=4$.\n\n**3.** Non : $(x-2)(x+2)=x^2-4=0$ avec $x-2\\neq0$ et $x+2\\neq0$, comme $(1,0)(0,1)=(0,0)$ dans $\\mathbb{R}\\times\\mathbb{R}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-integres-ex1",
+      "carte": "arith-l2-anneaux-integres",
+      "difficulte": 2,
+      "titre": "Diviseurs de zéro de $\\mathbb{Z}/n\\mathbb{Z}$",
+      "enonce": "Soit $n\\ge2$. Un élément $a$ d'un anneau commutatif est un **diviseur de zéro** si $a\\neq0$ et s'il existe $b\\neq0$ tel que $ab=0$.\n\n**1.** Montrer que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et pas les deux à la fois.\n\n**2.** Combien $\\mathbb{Z}/12\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+      "duree_min": 10,
+      "indices": [
+        "Si $d=a\\wedge n>1$, calculer le produit de $\\overline a$ par la classe de $\\frac nd$.",
+        "Le nombre de classes inversibles de $\\mathbb{Z}/12\\mathbb{Z}$ est $\\varphi(12)$."
+      ],
+      "reponse_finale": {
+        "question": "Combien $\\mathbb{Z}/12\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+        "propositions": [
+          "$7$",
+          "$8$",
+          "$4$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soient $\\overline a\\neq\\overline0$ et $d=a\\wedge n$. Si $d=1$, $\\overline a$ est inversible. Si $d>1$, l'entier $b=\\frac nd$ vérifie $0<b<n$, donc $\\overline b\\neq\\overline0$, et $ab=n\\cdot\\frac ad\\equiv0\\pmod n$ : $\\overline a$ est un diviseur de zéro. Un inversible n'est pas un diviseur de zéro : si $\\overline a\\,\\overline b=\\overline0$, alors $\\overline b=\\overline a^{-1}\\,\\overline a\\,\\overline b=\\overline0$.\n\n**2.** Il y a $12$ classes, dont $\\overline0$ et $\\varphi(12)=4$ classes inversibles ($\\overline{1},\\overline{5},\\overline{7},\\overline{11}$), donc $12-1-4=7$ diviseurs de zéro : $\\overline{2},\\overline{3},\\overline{4},\\overline{6},\\overline{8},\\overline{9},\\overline{10}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $n\\ge2$. Un élément $a$ d'un anneau commutatif est un **diviseur de zéro** si $a\\neq0$ et s'il existe $b\\neq0$ tel que $ab=0$.\n\n**1.** Montrer que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et pas les deux à la fois.\n\n**2.** Combien $\\mathbb{Z}/15\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+          "indices": [
+            "Si $d=a\\wedge n>1$, calculer le produit de $\\overline a$ par la classe de $\\frac nd$.",
+            "Le nombre de classes inversibles de $\\mathbb{Z}/15\\mathbb{Z}$ est $\\varphi(15)$."
+          ],
+          "reponse_finale": {
+            "question": "Combien $\\mathbb{Z}/15\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+            "propositions": [
+              "$6$",
+              "$7$",
+              "$8$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soient $\\overline a\\neq\\overline0$ et $d=a\\wedge n$. Si $d=1$, $\\overline a$ est inversible. Si $d>1$, l'entier $b=\\frac nd$ vérifie $0<b<n$, donc $\\overline b\\neq\\overline0$, et $ab=n\\cdot\\frac ad\\equiv0\\pmod n$ : $\\overline a$ est un diviseur de zéro. Un inversible n'est pas un diviseur de zéro : si $\\overline a\\,\\overline b=\\overline0$, alors $\\overline b=\\overline a^{-1}\\,\\overline a\\,\\overline b=\\overline0$.\n\n**2.** Il y a $15$ classes, dont $\\overline0$ et $\\varphi(15)=8$ classes inversibles ($\\overline{1},\\overline{2},\\overline{4},\\overline{7},\\overline{8},\\overline{11},\\overline{13},\\overline{14}$), donc $15-1-8=6$ diviseurs de zéro : $\\overline{3},\\overline{5},\\overline{6},\\overline{9},\\overline{10},\\overline{12}$."
+        },
+        {
+          "enonce": "Soit $n\\ge2$. Un élément $a$ d'un anneau commutatif est un **diviseur de zéro** si $a\\neq0$ et s'il existe $b\\neq0$ tel que $ab=0$.\n\n**1.** Montrer que toute classe non nulle de $\\mathbb{Z}/n\\mathbb{Z}$ est soit inversible, soit un diviseur de zéro, et pas les deux à la fois.\n\n**2.** Combien $\\mathbb{Z}/20\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+          "indices": [
+            "Si $d=a\\wedge n>1$, calculer le produit de $\\overline a$ par la classe de $\\frac nd$.",
+            "Le nombre de classes inversibles de $\\mathbb{Z}/20\\mathbb{Z}$ est $\\varphi(20)$."
+          ],
+          "reponse_finale": {
+            "question": "Combien $\\mathbb{Z}/20\\mathbb{Z}$ a-t-il de diviseurs de zéro ?",
+            "propositions": [
+              "$11$",
+              "$12$",
+              "$8$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soient $\\overline a\\neq\\overline0$ et $d=a\\wedge n$. Si $d=1$, $\\overline a$ est inversible. Si $d>1$, l'entier $b=\\frac nd$ vérifie $0<b<n$, donc $\\overline b\\neq\\overline0$, et $ab=n\\cdot\\frac ad\\equiv0\\pmod n$ : $\\overline a$ est un diviseur de zéro. Un inversible n'est pas un diviseur de zéro : si $\\overline a\\,\\overline b=\\overline0$, alors $\\overline b=\\overline a^{-1}\\,\\overline a\\,\\overline b=\\overline0$.\n\n**2.** Il y a $20$ classes, dont $\\overline0$ et $\\varphi(20)=8$ classes inversibles ($\\overline{1},\\overline{3},\\overline{7},\\overline{9},\\overline{11},\\overline{13},\\overline{17},\\overline{19}$), donc $20-1-8=11$ diviseurs de zéro : $\\overline{2},\\overline{4},\\overline{5},\\overline{6},\\overline{8},\\overline{10},\\overline{12},\\overline{14},\\overline{15},\\overline{16},\\overline{18}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-integres-ex2",
+      "carte": "arith-l2-anneaux-integres",
+      "difficulte": 3,
+      "titre": "Un anneau intègre fini est un corps",
+      "enonce": "**1.** Soit $A$ un anneau intègre fini. Pour $a\\in A$ non nul, montrer que $x\\mapsto ax$ est une injection de $A$ dans $A$, et en déduire que $a$ est inversible. Conclure que $A$ est un corps.\n\n**2.** En déduire que, pour $n\\ge2$, $\\mathbb{Z}/n\\mathbb{Z}$ est intègre si et seulement si c'est un corps, si et seulement si $n$ est premier.\n\n**3.** Donner un exemple d'anneau intègre (infini) qui n'est pas un corps.",
+      "duree_min": 15,
+      "indices": [
+        "Une injection d'un ensemble fini dans lui-même est une bijection : $1$ a un antécédent.",
+        "Si $n=ab$ avec $1<a,b<n$, regarder $\\overline a\\,\\overline b$ ; si $n$ est premier, utiliser le lemme d'Euclide."
+      ],
+      "correction": "**1.** Si $ax=ay$, alors $a(x-y)=0$, et comme $a\\neq0$ et $A$ est intègre, $x=y$ : $x\\mapsto ax$ est injective. L'ensemble $A$ étant fini, elle est bijective ; il existe donc $b\\in A$ tel que $ab=1$, et $ba=1$ par commutativité. Ainsi tout élément non nul est inversible ; comme $A$ est commutatif et non nul, c'est un corps.\n\n**2.** Un corps est intègre. Si $n$ est premier, $\\mathbb{Z}/n\\mathbb{Z}$ est non nul, et $\\overline a\\,\\overline b=\\overline0$ signifie $n\\mid ab$, donc $n\\mid a$ ou $n\\mid b$ (lemme d'Euclide) : il est intègre, donc c'est un corps par la question 1. Si $n$ n'est pas premier, $n=ab$ avec $1<a,b<n$, et $\\overline a\\neq\\overline0$, $\\overline b\\neq\\overline0$, $\\overline a\\,\\overline b=\\overline0$ : il n'est pas intègre.\n\n**3.** $\\mathbb{Z}$ est intègre, et $2$ n'y est pas inversible ($2b=1$ n'a pas de solution entière). De même $\\mathbb{K}[X]$, où $X$ n'est pas inversible pour une raison de degré."
+    },
+    {
+      "id": "arith-l2-anneaux-integres-ex3",
+      "carte": "arith-l2-anneaux-integres",
+      "difficulte": 3,
+      "titre": "Inverse dans $\\mathbb{Q}(\\sqrt2)$",
+      "enonce": "On note $\\mathbb{Q}(\\sqrt2)=\\{r+s\\sqrt2 : r,s\\in\\mathbb{Q}\\}$.\n\n**1.** Montrer que $\\mathbb{Q}(\\sqrt2)$ est un sous-corps de $\\mathbb{R}$, et qu'il est isomorphe au corps des fractions de l'anneau intègre $\\mathbb{Z}[\\sqrt2]=\\{a+b\\sqrt2 : a,b\\in\\mathbb{Z}\\}$.\n\n**2.** Écrire l'inverse de $1+2\\sqrt2$ sous la forme $r+s\\sqrt2$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $(r,s)\\neq(0,0)$, $r^2-2s^2\\neq0$, car $\\sqrt2$ est irrationnel.",
+        "Multiplier numérateur et dénominateur par la quantité conjuguée $r-s\\sqrt2$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'inverse de $1+2\\sqrt2$ ?",
+        "propositions": [
+          "$\\frac{-1+2\\sqrt2}7$",
+          "$\\frac{1-2\\sqrt2}7$",
+          "$\\frac{1-2\\sqrt2}9$",
+          "$1+\\frac{\\sqrt2}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\mathbb{Q}(\\sqrt2)$ contient $0$ et $1$, et il est stable par différence et par produit : $(r+s\\sqrt2)(r'+s'\\sqrt2)=(rr'+2ss')+(rs'+r's)\\sqrt2$. Si $(r,s)\\neq(0,0)$, alors $r^2-2s^2\\neq0$ (sinon $s\\neq0$ et $\\sqrt2=\\left|\\frac rs\\right|$ serait rationnel), et\n$$\\frac1{r+s\\sqrt2}=\\frac{r-s\\sqrt2}{r^2-2s^2}\\in\\mathbb{Q}(\\sqrt2).$$\nC'est donc un sous-corps de $\\mathbb{R}$, qui contient $\\mathbb{Z}[\\sqrt2]$ (lequel est intègre, comme sous-anneau de $\\mathbb{R}$). Par la propriété universelle, l'inclusion $j:\\mathbb{Z}[\\sqrt2]\\to\\mathbb{Q}(\\sqrt2)$ se prolonge en un morphisme injectif $\\widehat j:\\operatorname{Frac}\\left(\\mathbb{Z}[\\sqrt2]\\right)\\to\\mathbb{Q}(\\sqrt2)$, $\\frac uv\\mapsto uv^{-1}$. Il est surjectif : en réduisant $r$ et $s$ au même dénominateur $c\\ge1$, $r+s\\sqrt2=\\frac{a+b\\sqrt2}c=\\widehat j\\left(\\frac{a+b\\sqrt2}c\\right)$ avec $a,b,c\\in\\mathbb{Z}$. C'est donc un isomorphisme.\n\n**2.** $\\frac1{1+2\\sqrt2}=\\frac{1-2\\sqrt2}{1-8}=\\frac{-1+2\\sqrt2}7$. Vérification : $(1+2\\sqrt2)(-1+2\\sqrt2)=-1+8=7$.",
+      "variantes": [
+        {
+          "enonce": "On note $\\mathbb{Q}(\\sqrt2)=\\{r+s\\sqrt2 : r,s\\in\\mathbb{Q}\\}$.\n\n**1.** Montrer que $\\mathbb{Q}(\\sqrt2)$ est un sous-corps de $\\mathbb{R}$, et qu'il est isomorphe au corps des fractions de l'anneau intègre $\\mathbb{Z}[\\sqrt2]=\\{a+b\\sqrt2 : a,b\\in\\mathbb{Z}\\}$.\n\n**2.** Écrire l'inverse de $3+\\sqrt2$ sous la forme $r+s\\sqrt2$.",
+          "indices": [
+            "Pour $(r,s)\\neq(0,0)$, $r^2-2s^2\\neq0$, car $\\sqrt2$ est irrationnel.",
+            "Multiplier numérateur et dénominateur par la quantité conjuguée $r-s\\sqrt2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $3+\\sqrt2$ ?",
+            "propositions": [
+              "$\\frac{3-\\sqrt2}7$",
+              "$\\frac{3-\\sqrt2}{11}$",
+              "$\\frac{-3+\\sqrt2}7$",
+              "$\\frac13+\\sqrt2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\mathbb{Q}(\\sqrt2)$ contient $0$ et $1$, et il est stable par différence et par produit : $(r+s\\sqrt2)(r'+s'\\sqrt2)=(rr'+2ss')+(rs'+r's)\\sqrt2$. Si $(r,s)\\neq(0,0)$, alors $r^2-2s^2\\neq0$ (sinon $s\\neq0$ et $\\sqrt2=\\left|\\frac rs\\right|$ serait rationnel), et\n$$\\frac1{r+s\\sqrt2}=\\frac{r-s\\sqrt2}{r^2-2s^2}\\in\\mathbb{Q}(\\sqrt2).$$\nC'est donc un sous-corps de $\\mathbb{R}$, qui contient $\\mathbb{Z}[\\sqrt2]$ (lequel est intègre, comme sous-anneau de $\\mathbb{R}$). Par la propriété universelle, l'inclusion $j:\\mathbb{Z}[\\sqrt2]\\to\\mathbb{Q}(\\sqrt2)$ se prolonge en un morphisme injectif $\\widehat j:\\operatorname{Frac}\\left(\\mathbb{Z}[\\sqrt2]\\right)\\to\\mathbb{Q}(\\sqrt2)$, $\\frac uv\\mapsto uv^{-1}$. Il est surjectif : en réduisant $r$ et $s$ au même dénominateur $c\\ge1$, $r+s\\sqrt2=\\frac{a+b\\sqrt2}c=\\widehat j\\left(\\frac{a+b\\sqrt2}c\\right)$ avec $a,b,c\\in\\mathbb{Z}$. C'est donc un isomorphisme.\n\n**2.** $\\frac1{3+\\sqrt2}=\\frac{3-\\sqrt2}{9-2}=\\frac{3-\\sqrt2}7$. Vérification : $(3+\\sqrt2)(3-\\sqrt2)=9-2=7$."
+        },
+        {
+          "enonce": "On note $\\mathbb{Q}(\\sqrt2)=\\{r+s\\sqrt2 : r,s\\in\\mathbb{Q}\\}$.\n\n**1.** Montrer que $\\mathbb{Q}(\\sqrt2)$ est un sous-corps de $\\mathbb{R}$, et qu'il est isomorphe au corps des fractions de l'anneau intègre $\\mathbb{Z}[\\sqrt2]=\\{a+b\\sqrt2 : a,b\\in\\mathbb{Z}\\}$.\n\n**2.** Écrire l'inverse de $2-3\\sqrt2$ sous la forme $r+s\\sqrt2$.",
+          "indices": [
+            "Pour $(r,s)\\neq(0,0)$, $r^2-2s^2\\neq0$, car $\\sqrt2$ est irrationnel.",
+            "Multiplier numérateur et dénominateur par la quantité conjuguée $r-s\\sqrt2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $2-3\\sqrt2$ ?",
+            "propositions": [
+              "$-\\frac{2+3\\sqrt2}{14}$",
+              "$\\frac{2+3\\sqrt2}{14}$",
+              "$\\frac{2+3\\sqrt2}{22}$",
+              "$\\frac12-\\frac{\\sqrt2}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\mathbb{Q}(\\sqrt2)$ contient $0$ et $1$, et il est stable par différence et par produit : $(r+s\\sqrt2)(r'+s'\\sqrt2)=(rr'+2ss')+(rs'+r's)\\sqrt2$. Si $(r,s)\\neq(0,0)$, alors $r^2-2s^2\\neq0$ (sinon $s\\neq0$ et $\\sqrt2=\\left|\\frac rs\\right|$ serait rationnel), et\n$$\\frac1{r+s\\sqrt2}=\\frac{r-s\\sqrt2}{r^2-2s^2}\\in\\mathbb{Q}(\\sqrt2).$$\nC'est donc un sous-corps de $\\mathbb{R}$, qui contient $\\mathbb{Z}[\\sqrt2]$ (lequel est intègre, comme sous-anneau de $\\mathbb{R}$). Par la propriété universelle, l'inclusion $j:\\mathbb{Z}[\\sqrt2]\\to\\mathbb{Q}(\\sqrt2)$ se prolonge en un morphisme injectif $\\widehat j:\\operatorname{Frac}\\left(\\mathbb{Z}[\\sqrt2]\\right)\\to\\mathbb{Q}(\\sqrt2)$, $\\frac uv\\mapsto uv^{-1}$. Il est surjectif : en réduisant $r$ et $s$ au même dénominateur $c\\ge1$, $r+s\\sqrt2=\\frac{a+b\\sqrt2}c=\\widehat j\\left(\\frac{a+b\\sqrt2}c\\right)$ avec $a,b,c\\in\\mathbb{Z}$. C'est donc un isomorphisme.\n\n**2.** $\\frac1{2-3\\sqrt2}=\\frac{2+3\\sqrt2}{4-18}=-\\frac{2+3\\sqrt2}{14}$. Vérification : $(2-3\\sqrt2)(2+3\\sqrt2)=4-18=-14$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-integres-ex4",
+      "carte": "arith-l2-anneaux-integres",
+      "difficulte": 4,
+      "titre": "L'anneau des nombres décimaux",
+      "enonce": "Soit $D=\\left\\{\\frac k{10^m} : k\\in\\mathbb{Z},\\ m\\in\\mathbb{N}\\right\\}$ l'ensemble des nombres décimaux.\n\n**1.** Montrer que $D$ est un sous-anneau de $\\mathbb{Q}$, donc un anneau intègre.\n\n**2.** Montrer que le corps des fractions de $D$ est isomorphe à $\\mathbb{Q}$.\n\n**3.** Montrer que les inversibles de $D$ sont les nombres $\\pm2^a5^b$ avec $a,b\\in\\mathbb{Z}$.\n\n**4.** Parmi $0{,}64$, $0{,}12$, $1{,}5$ et $0{,}7$, lequel est inversible dans $D$ ?",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, utiliser la propriété universelle avec l'inclusion de $D$ dans le corps $\\mathbb{Q}$ ; tout rationnel est un quotient d'entiers, et $\\mathbb{Z}\\subset D$.",
+        "Pour la question 3, si $xy=1$ avec $x=\\frac k{10^m}$ et $y=\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$.",
+        "Pour la question 4, écrire chaque nombre sous forme de fraction irréductible et regarder les facteurs premiers du numérateur."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces nombres décimaux est inversible dans $D$ ?",
+        "propositions": [
+          "$0{,}64$",
+          "$0{,}12$",
+          "$1{,}5$",
+          "$0{,}7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $1=\\frac1{10^0}\\in D$ ; $\\frac k{10^m}-\\frac l{10^{m'}}=\\frac{k\\,10^{m'}-l\\,10^m}{10^{m+m'}}$ et $\\frac k{10^m}\\cdot\\frac l{10^{m'}}=\\frac{kl}{10^{m+m'}}$ sont dans $D$. Sous-anneau du corps $\\mathbb{Q}$, $D$ est intègre.\n\n**2.** L'inclusion $j:D\\to\\mathbb{Q}$ est un morphisme d'anneaux injectif vers un corps ; par la propriété universelle, $\\widehat j:\\operatorname{Frac}(D)\\to\\mathbb{Q}$, $\\frac xy\\mapsto xy^{-1}$, est un morphisme injectif. Il est surjectif, car tout rationnel $\\frac pq$, avec $p,q\\in\\mathbb{Z}\\subset D$, vaut $\\widehat j\\left(\\frac pq\\right)$. Donc $\\operatorname{Frac}(D)\\simeq\\mathbb{Q}$.\n\n**3.** $2^{-1}=\\frac5{10}$ et $5^{-1}=\\frac2{10}$ sont dans $D$, donc $\\pm2^a5^b\\in D$ pour tous $a,b\\in\\mathbb{Z}$, d'inverse $\\pm2^{-a}5^{-b}\\in D$. Réciproquement, si $x=\\frac k{10^m}$ est inversible dans $D$, d'inverse $\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$ ; tout facteur premier de $k$ divise $10^{m+m'}$, donc vaut $2$ ou $5$ : $k=\\pm2^\\alpha5^\\beta$ et $x=\\pm2^{\\alpha-m}5^{\\beta-m}$.\n\n**4.** $0{,}64=\\frac{16}{25}=2^45^{-2}$ est inversible dans $D$, d'inverse $\\frac{25}{16}=1{,}5625$. En revanche $0{,}12=\\frac3{25}$, $1{,}5=\\frac32$ et $0{,}7=\\frac7{10}$ ne le sont pas : la forme irréductible d'un nombre $\\pm2^a5^b$ n'a que des facteurs $2$ et $5$, alors que ces fractions irréductibles ont $3$ ou $7$ au numérateur.",
+      "variantes": [
+        {
+          "enonce": "Soit $D=\\left\\{\\frac k{10^m} : k\\in\\mathbb{Z},\\ m\\in\\mathbb{N}\\right\\}$ l'ensemble des nombres décimaux.\n\n**1.** Montrer que $D$ est un sous-anneau de $\\mathbb{Q}$, donc un anneau intègre.\n\n**2.** Montrer que le corps des fractions de $D$ est isomorphe à $\\mathbb{Q}$.\n\n**3.** Montrer que les inversibles de $D$ sont les nombres $\\pm2^a5^b$ avec $a,b\\in\\mathbb{Z}$.\n\n**4.** Parmi $0{,}6$, $2{,}5$, $1{,}4$ et $3{,}5$, lequel est inversible dans $D$ ?",
+          "indices": [
+            "Pour la question 2, utiliser la propriété universelle avec l'inclusion de $D$ dans le corps $\\mathbb{Q}$ ; tout rationnel est un quotient d'entiers, et $\\mathbb{Z}\\subset D$.",
+            "Pour la question 3, si $xy=1$ avec $x=\\frac k{10^m}$ et $y=\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$.",
+            "Pour la question 4, écrire chaque nombre sous forme de fraction irréductible et regarder les facteurs premiers du numérateur."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces nombres décimaux est inversible dans $D$ ?",
+            "propositions": [
+              "$0{,}6$",
+              "$2{,}5$",
+              "$1{,}4$",
+              "$3{,}5$"
+            ],
+            "bonne": 1
+          },
+          "correction": "**1.** $1=\\frac1{10^0}\\in D$ ; $\\frac k{10^m}-\\frac l{10^{m'}}=\\frac{k\\,10^{m'}-l\\,10^m}{10^{m+m'}}$ et $\\frac k{10^m}\\cdot\\frac l{10^{m'}}=\\frac{kl}{10^{m+m'}}$ sont dans $D$. Sous-anneau du corps $\\mathbb{Q}$, $D$ est intègre.\n\n**2.** L'inclusion $j:D\\to\\mathbb{Q}$ est un morphisme d'anneaux injectif vers un corps ; par la propriété universelle, $\\widehat j:\\operatorname{Frac}(D)\\to\\mathbb{Q}$, $\\frac xy\\mapsto xy^{-1}$, est un morphisme injectif. Il est surjectif, car tout rationnel $\\frac pq$, avec $p,q\\in\\mathbb{Z}\\subset D$, vaut $\\widehat j\\left(\\frac pq\\right)$. Donc $\\operatorname{Frac}(D)\\simeq\\mathbb{Q}$.\n\n**3.** $2^{-1}=\\frac5{10}$ et $5^{-1}=\\frac2{10}$ sont dans $D$, donc $\\pm2^a5^b\\in D$ pour tous $a,b\\in\\mathbb{Z}$, d'inverse $\\pm2^{-a}5^{-b}\\in D$. Réciproquement, si $x=\\frac k{10^m}$ est inversible dans $D$, d'inverse $\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$ ; tout facteur premier de $k$ divise $10^{m+m'}$, donc vaut $2$ ou $5$ : $k=\\pm2^\\alpha5^\\beta$ et $x=\\pm2^{\\alpha-m}5^{\\beta-m}$.\n\n**4.** $2{,}5=\\frac52=2^{-1}5$ est inversible dans $D$, d'inverse $0{,}4$. En revanche $0{,}6=\\frac35$, $1{,}4=\\frac75$ et $3{,}5=\\frac72$ ne le sont pas : la forme irréductible d'un nombre $\\pm2^a5^b$ n'a que des facteurs $2$ et $5$, alors que ces fractions irréductibles ont $3$ ou $7$ au numérateur."
+        },
+        {
+          "enonce": "Soit $D=\\left\\{\\frac k{10^m} : k\\in\\mathbb{Z},\\ m\\in\\mathbb{N}\\right\\}$ l'ensemble des nombres décimaux.\n\n**1.** Montrer que $D$ est un sous-anneau de $\\mathbb{Q}$, donc un anneau intègre.\n\n**2.** Montrer que le corps des fractions de $D$ est isomorphe à $\\mathbb{Q}$.\n\n**3.** Montrer que les inversibles de $D$ sont les nombres $\\pm2^a5^b$ avec $a,b\\in\\mathbb{Z}$.\n\n**4.** Parmi $0{,}21$, $0{,}45$, $1{,}1$ et $0{,}032$, lequel est inversible dans $D$ ?",
+          "indices": [
+            "Pour la question 2, utiliser la propriété universelle avec l'inclusion de $D$ dans le corps $\\mathbb{Q}$ ; tout rationnel est un quotient d'entiers, et $\\mathbb{Z}\\subset D$.",
+            "Pour la question 3, si $xy=1$ avec $x=\\frac k{10^m}$ et $y=\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$.",
+            "Pour la question 4, écrire chaque nombre sous forme de fraction irréductible et regarder les facteurs premiers du numérateur."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces nombres décimaux est inversible dans $D$ ?",
+            "propositions": [
+              "$0{,}21$",
+              "$0{,}45$",
+              "$1{,}1$",
+              "$0{,}032$"
+            ],
+            "bonne": 3
+          },
+          "correction": "**1.** $1=\\frac1{10^0}\\in D$ ; $\\frac k{10^m}-\\frac l{10^{m'}}=\\frac{k\\,10^{m'}-l\\,10^m}{10^{m+m'}}$ et $\\frac k{10^m}\\cdot\\frac l{10^{m'}}=\\frac{kl}{10^{m+m'}}$ sont dans $D$. Sous-anneau du corps $\\mathbb{Q}$, $D$ est intègre.\n\n**2.** L'inclusion $j:D\\to\\mathbb{Q}$ est un morphisme d'anneaux injectif vers un corps ; par la propriété universelle, $\\widehat j:\\operatorname{Frac}(D)\\to\\mathbb{Q}$, $\\frac xy\\mapsto xy^{-1}$, est un morphisme injectif. Il est surjectif, car tout rationnel $\\frac pq$, avec $p,q\\in\\mathbb{Z}\\subset D$, vaut $\\widehat j\\left(\\frac pq\\right)$. Donc $\\operatorname{Frac}(D)\\simeq\\mathbb{Q}$.\n\n**3.** $2^{-1}=\\frac5{10}$ et $5^{-1}=\\frac2{10}$ sont dans $D$, donc $\\pm2^a5^b\\in D$ pour tous $a,b\\in\\mathbb{Z}$, d'inverse $\\pm2^{-a}5^{-b}\\in D$. Réciproquement, si $x=\\frac k{10^m}$ est inversible dans $D$, d'inverse $\\frac l{10^{m'}}$, alors $kl=10^{m+m'}$ ; tout facteur premier de $k$ divise $10^{m+m'}$, donc vaut $2$ ou $5$ : $k=\\pm2^\\alpha5^\\beta$ et $x=\\pm2^{\\alpha-m}5^{\\beta-m}$.\n\n**4.** $0{,}032=\\frac4{125}=2^25^{-3}$ est inversible dans $D$, d'inverse $31{,}25$. En revanche $0{,}21=\\frac{21}{100}$, $0{,}45=\\frac9{20}$ et $1{,}1=\\frac{11}{10}$ ne le sont pas : la forme irréductible d'un nombre $\\pm2^a5^b$ n'a que des facteurs $2$ et $5$, alors que ces fractions irréductibles ont $3$, $7$ ou $11$ au numérateur."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-principaux-ex1",
+      "carte": "arith-l2-anneaux-principaux",
+      "difficulte": 2,
+      "titre": "Générateur d'un idéal engendré par deux polynômes",
+      "enonce": "Dans $\\mathbb{Q}[X]$, déterminer le générateur unitaire de l'idéal $I=(X^4-1)+(X^6-1)$.",
+      "duree_min": 10,
+      "indices": [
+        "Dans $\\mathbb{K}[X]$, $(A)+(B)=(D)$, où $D$ est le PGCD unitaire de $A$ et $B$.",
+        "Effectuer l'algorithme d'Euclide, ou factoriser les deux polynômes."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le générateur unitaire de $I$ ?",
+        "propositions": [
+          "$X^2-1$",
+          "$X^{12}-1$",
+          "$X-1$",
+          "$X^2+1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $\\mathbb{Q}[X]$ est principal, $I=(D)$ avec $D$ unitaire. Tout diviseur commun de $A=X^4-1$ et $B=X^6-1$ divise tous les éléments de $I$, donc $D$ ; et $D$ divise $A$ et $B$, qui sont dans $(D)$ : $D$ est le PGCD unitaire de $A$ et $B$. Algorithme d'Euclide : $X^6-1=X^2(X^4-1)+X^2-1$, puis $X^4-1=(X^2+1)(X^2-1)$. Donc $D=X^2-1$, et explicitement $X^2-1=(X^6-1)-X^2(X^4-1)\\in I$.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{Q}[X]$, déterminer le générateur unitaire de l'idéal $I=(X^6-1)+(X^9-1)$.",
+          "indices": [
+            "Dans $\\mathbb{K}[X]$, $(A)+(B)=(D)$, où $D$ est le PGCD unitaire de $A$ et $B$.",
+            "Effectuer l'algorithme d'Euclide, ou factoriser les deux polynômes."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le générateur unitaire de $I$ ?",
+            "propositions": [
+              "$X^3-1$",
+              "$X^{18}-1$",
+              "$X-1$",
+              "$X^3+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\mathbb{Q}[X]$ est principal, $I=(D)$ avec $D$ unitaire. Tout diviseur commun de $A=X^6-1$ et $B=X^9-1$ divise tous les éléments de $I$, donc $D$ ; et $D$ divise $A$ et $B$, qui sont dans $(D)$ : $D$ est le PGCD unitaire de $A$ et $B$. Algorithme d'Euclide : $X^9-1=X^3(X^6-1)+X^3-1$, puis $X^6-1=(X^3+1)(X^3-1)$. Donc $D=X^3-1$, et explicitement $X^3-1=(X^9-1)-X^3(X^6-1)\\in I$."
+        },
+        {
+          "enonce": "Dans $\\mathbb{Q}[X]$, déterminer le générateur unitaire de l'idéal $I=(X^8-1)+(X^{12}-1)$.",
+          "indices": [
+            "Dans $\\mathbb{K}[X]$, $(A)+(B)=(D)$, où $D$ est le PGCD unitaire de $A$ et $B$.",
+            "Effectuer l'algorithme d'Euclide, ou factoriser les deux polynômes."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le générateur unitaire de $I$ ?",
+            "propositions": [
+              "$X^4-1$",
+              "$X^{24}-1$",
+              "$X^2-1$",
+              "$X^4+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\mathbb{Q}[X]$ est principal, $I=(D)$ avec $D$ unitaire. Tout diviseur commun de $A=X^8-1$ et $B=X^{12}-1$ divise tous les éléments de $I$, donc $D$ ; et $D$ divise $A$ et $B$, qui sont dans $(D)$ : $D$ est le PGCD unitaire de $A$ et $B$. Algorithme d'Euclide : $X^{12}-1=X^4(X^8-1)+X^4-1$, puis $X^8-1=(X^4+1)(X^4-1)$. Donc $D=X^4-1$, et explicitement $X^4-1=(X^{12}-1)-X^4(X^8-1)\\in I$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-principaux-ex2",
+      "carte": "arith-l2-anneaux-principaux",
+      "difficulte": 2,
+      "titre": "Polynômes qui s'annulent en deux points",
+      "enonce": "Soit $I=\\{P\\in\\mathbb{R}[X] : P(2)=P(3)=0\\}$. Montrer que $I$ est un idéal de $\\mathbb{R}[X]$ et déterminer son générateur unitaire.",
+      "duree_min": 10,
+      "indices": [
+        "$I$ est le noyau d'un morphisme d'anneaux de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$.",
+        "Si $P(c)=0$, alors $X-c$ divise $P$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le générateur unitaire de $I$ ?",
+        "propositions": [
+          "$X^2-5X+6$",
+          "$X^2+5X+6$",
+          "$X^2-5X-6$",
+          "$2X-5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$I$ est le noyau du morphisme d'anneaux $P\\mapsto\\left(P(2),P(3)\\right)$, de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$ : c'est un idéal. Si $P\\in I$, $X-2$ divise $P$ : $P=(X-2)Q$, et $0=P(3)=(3-2)Q(3)=Q(3)$, donc $Q(3)=0$ et $X-3$ divise $Q$. Ainsi $(X-2)(X-3)=X^2-5X+6$ divise $P$. Réciproquement, ses multiples s'annulent en $2$ et en $3$. Donc $I=(X^2-5X+6)$, et ce générateur unitaire est unique.",
+      "variantes": [
+        {
+          "enonce": "Soit $I=\\{P\\in\\mathbb{R}[X] : P(1)=P(-1)=0\\}$. Montrer que $I$ est un idéal de $\\mathbb{R}[X]$ et déterminer son générateur unitaire.",
+          "indices": [
+            "$I$ est le noyau d'un morphisme d'anneaux de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$.",
+            "Si $P(c)=0$, alors $X-c$ divise $P$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le générateur unitaire de $I$ ?",
+            "propositions": [
+              "$X^2-1$",
+              "$X^2+1$",
+              "$X-1$",
+              "$X^2-2X+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$I$ est le noyau du morphisme d'anneaux $P\\mapsto\\left(P(1),P(-1)\\right)$, de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$ : c'est un idéal. Si $P\\in I$, $X-1$ divise $P$ : $P=(X-1)Q$, et $0=P(-1)=(-1-1)Q(-1)=-2Q(-1)$, donc $Q(-1)=0$ et $X+1$ divise $Q$. Ainsi $(X-1)(X+1)=X^2-1$ divise $P$. Réciproquement, ses multiples s'annulent en $1$ et en $-1$. Donc $I=(X^2-1)$, et ce générateur unitaire est unique."
+        },
+        {
+          "enonce": "Soit $I=\\{P\\in\\mathbb{R}[X] : P(0)=P(4)=0\\}$. Montrer que $I$ est un idéal de $\\mathbb{R}[X]$ et déterminer son générateur unitaire.",
+          "indices": [
+            "$I$ est le noyau d'un morphisme d'anneaux de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$.",
+            "Si $P(c)=0$, alors $X-c$ divise $P$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le générateur unitaire de $I$ ?",
+            "propositions": [
+              "$X^2-4X$",
+              "$X^2+4X$",
+              "$X-4$",
+              "$X^2-4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$I$ est le noyau du morphisme d'anneaux $P\\mapsto\\left(P(0),P(4)\\right)$, de $\\mathbb{R}[X]$ dans $\\mathbb{R}\\times\\mathbb{R}$ : c'est un idéal. Si $P\\in I$, $X$ divise $P$ : $P=XQ$, et $0=P(4)=4Q(4)$, donc $Q(4)=0$ et $X-4$ divise $Q$. Ainsi $X(X-4)=X^2-4X$ divise $P$. Réciproquement, ses multiples s'annulent en $0$ et en $4$. Donc $I=(X^2-4X)$, et ce générateur unitaire est unique."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-principaux-ex3",
+      "carte": "arith-l2-anneaux-principaux",
+      "difficulte": 3,
+      "titre": "Inverse dans un corps $\\mathbb{Q}[X]/(P)$",
+      "enonce": "Soient $\\mathbb{L}=\\mathbb{Q}[X]/(X^3-2)$ et $x$ la classe de $X$.\n\n**1.** Justifier que $\\mathbb{L}$ est un corps et que tout élément de $\\mathbb{L}$ s'écrit de façon unique $a+bx+cx^2$ avec des coefficients rationnels.\n\n**2.** Écrire l'inverse de $x+1$ sous cette forme.",
+      "duree_min": 15,
+      "indices": [
+        "Un polynôme de degré $3$ sans racine dans $\\mathbb{Q}$ est irréductible sur $\\mathbb{Q}$.",
+        "Chercher une relation de Bézout entre $X+1$ et $X^3-2$, par exemple en divisant $X^3-2$ par $X+1$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'inverse de $x+1$ dans $\\mathbb{L}$ ?",
+        "propositions": [
+          "$\\frac{x^2-x+1}3$",
+          "$\\frac{x^2+x+1}3$",
+          "$x^2-x+1$",
+          "$\\frac{x^2-x+1}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Une racine rationnelle $\\frac pq$ (fraction irréductible) de $X^3-2$ vérifierait $p^3=2q^3$, donc $q\\mid p^3$, $q=\\pm1$, puis $p^3=\\pm2$, ce qui est impossible. Un polynôme de degré $3$ réductible aurait un facteur de degré $1$, donc une racine : $X^3-2$ est irréductible, et $\\mathbb{L}$ est un corps. Chaque classe contient un unique polynôme de degré $<3$ (le reste de la division euclidienne par $X^3-2$), d'où l'écriture unique.\n\n**2.** La division donne $X^3-2=(X+1)(X^2-X+1)-3$, donc $(x+1)(x^2-x+1)=3$ dans $\\mathbb{L}$. Donc $(x+1)^{-1}=\\frac{x^2-x+1}3$. Vérification : $(x+1)(x^2-x+1)=x^3+1=2+1=3$.",
+      "variantes": [
+        {
+          "enonce": "Soient $\\mathbb{L}=\\mathbb{Q}[X]/(X^3-2)$ et $x$ la classe de $X$.\n\n**1.** Justifier que $\\mathbb{L}$ est un corps et que tout élément de $\\mathbb{L}$ s'écrit de façon unique $a+bx+cx^2$ avec des coefficients rationnels.\n\n**2.** Écrire l'inverse de $x-1$ sous cette forme.",
+          "indices": [
+            "Un polynôme de degré $3$ sans racine dans $\\mathbb{Q}$ est irréductible sur $\\mathbb{Q}$.",
+            "Chercher une relation de Bézout entre $X-1$ et $X^3-2$, par exemple en divisant $X^3-2$ par $X-1$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $x-1$ dans $\\mathbb{L}$ ?",
+            "propositions": [
+              "$x^2+x+1$",
+              "$x^2-x+1$",
+              "$\\frac{x^2+x+1}3$",
+              "$-x^2-x-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Une racine rationnelle $\\frac pq$ (fraction irréductible) de $X^3-2$ vérifierait $p^3=2q^3$, donc $q\\mid p^3$, $q=\\pm1$, puis $p^3=\\pm2$, ce qui est impossible. Un polynôme de degré $3$ réductible aurait un facteur de degré $1$, donc une racine : $X^3-2$ est irréductible, et $\\mathbb{L}$ est un corps. Chaque classe contient un unique polynôme de degré $<3$ (le reste de la division euclidienne par $X^3-2$), d'où l'écriture unique.\n\n**2.** La division donne $X^3-2=(X-1)(X^2+X+1)-1$, donc $(x-1)(x^2+x+1)=1$ dans $\\mathbb{L}$. Donc $(x-1)^{-1}=x^2+x+1$. Vérification : $(x-1)(x^2+x+1)=x^3-1=2-1=1$."
+        },
+        {
+          "enonce": "Soient $\\mathbb{L}=\\mathbb{Q}[X]/(X^2+X+1)$ et $x$ la classe de $X$.\n\n**1.** Justifier que $\\mathbb{L}$ est un corps et que tout élément de $\\mathbb{L}$ s'écrit de façon unique $a+bx$ avec des coefficients rationnels.\n\n**2.** Écrire l'inverse de $x+2$ sous cette forme.",
+          "indices": [
+            "Un polynôme de degré $2$ sans racine dans $\\mathbb{Q}$ est irréductible sur $\\mathbb{Q}$.",
+            "Chercher une relation de Bézout entre $X+2$ et $X^2+X+1$, par exemple en divisant $X^2+X+1$ par $X+2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'inverse de $x+2$ dans $\\mathbb{L}$ ?",
+            "propositions": [
+              "$\\frac{1-x}3$",
+              "$\\frac{1+x}3$",
+              "$1-x$",
+              "$\\frac{x-1}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Le polynôme $X^2+X+1$ est de degré $2$ et de discriminant $-3<0$ : il n'a pas de racine réelle, a fortiori pas de racine rationnelle, donc il est irréductible sur $\\mathbb{Q}$, et $\\mathbb{L}$ est un corps. Chaque classe contient un unique polynôme de degré $<2$ (le reste de la division euclidienne par $X^2+X+1$), d'où l'écriture unique.\n\n**2.** La division donne $X^2+X+1=(X+2)(X-1)+3$, donc $(x+2)(1-x)=3$ dans $\\mathbb{L}$. Donc $(x+2)^{-1}=\\frac{1-x}3$. Vérification : $(x+2)(1-x)=-x^2-x+2=1+2=3$, puisque $x^2=-x-1$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-principaux-ex4",
+      "carte": "arith-l2-anneaux-principaux",
+      "difficulte": 4,
+      "titre": "L'anneau $\\mathbb{Z}[X]$ n'est pas principal",
+      "enonce": "**1.** Montrer que $\\psi:\\mathbb{Z}[X]\\to\\mathbb{Z}/2\\mathbb{Z}$, qui envoie $P$ sur la classe de $P(0)$ modulo $2$, est un morphisme d'anneaux surjectif de noyau $I=2\\mathbb{Z}[X]+X\\mathbb{Z}[X]$. En déduire que $\\mathbb{Z}[X]/I$ est un corps à deux éléments.\n\n**2.** Montrer que l'idéal $I$ n'est pas principal.\n\n**3.** Montrer que $\\mathbb{Z}[X]/(X)\\simeq\\mathbb{Z}$ et $\\mathbb{Z}[X]/(2)\\simeq(\\mathbb{Z}/2\\mathbb{Z})[X]$. Ces quotients sont-ils des corps ?",
+      "duree_min": 20,
+      "indices": [
+        "Pour le noyau : $P(0)$ est pair si et seulement si $P=2a+XQ$ avec $a\\in\\mathbb{Z}$ et $Q\\in\\mathbb{Z}[X]$.",
+        "Si $I=(P)$, alors $P$ divise $2$ et $X$ : regarder d'abord les degrés, puis les coefficients."
+      ],
+      "correction": "**1.** $\\psi$ est la composée de l'évaluation en $0$, de $\\mathbb{Z}[X]$ dans $\\mathbb{Z}$, et de la réduction modulo $2$ : c'est un morphisme d'anneaux, surjectif car $\\psi(0)=\\overline0$ et $\\psi(1)=\\overline1$. Si $\\psi(P)=\\overline0$, alors $P(0)=2a$ avec $a\\in\\mathbb{Z}$, et $P-P(0)$ est divisible par $X$ : $P=2a+XQ\\in I$. Réciproquement, $\\psi(2A+XB)$ est la classe de $2A(0)$, nulle. Par le théorème d'isomorphisme, $\\mathbb{Z}[X]/I\\simeq\\mathbb{Z}/2\\mathbb{Z}$, corps à deux éléments.\n\n**2.** Supposons $I=(P)$. Comme $2\\in I$, $2=PQ$ ; en regardant les degrés, $\\deg P=0$ : $P=c\\in\\mathbb{Z}$, avec $c\\mid2$. Comme $X\\in I$, $X=cR$ avec $R\\in\\mathbb{Z}[X]$, donc $c$ divise le coefficient $1$ de $X$ : $c=\\pm1$ et $I=\\mathbb{Z}[X]$. Or $1\\notin I$, puisque $\\psi(1)=\\overline1\\neq\\overline0$ : contradiction. L'idéal $I$ n'est pas principal, donc $\\mathbb{Z}[X]$ n'est pas un anneau principal.\n\n**3.** L'évaluation en $0$, de $\\mathbb{Z}[X]$ dans $\\mathbb{Z}$, est surjective, de noyau $(X)$ (car $P(0)=0$ si et seulement si $X\\mid P$) : $\\mathbb{Z}[X]/(X)\\simeq\\mathbb{Z}$, qui n'est pas un corps. La réduction des coefficients modulo $2$, de $\\mathbb{Z}[X]$ dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$, est un morphisme d'anneaux surjectif, de noyau l'ensemble des polynômes à coefficients pairs, c'est-à-dire $(2)$ : $\\mathbb{Z}[X]/(2)\\simeq(\\mathbb{Z}/2\\mathbb{Z})[X]$, qui n'est pas un corps ($X$ n'y est pas inversible, pour une raison de degré)."
+    },
+    {
+      "id": "arith-l2-anneaux-principaux-ex5",
+      "carte": "arith-l2-anneaux-principaux",
+      "difficulte": 4,
+      "titre": "Compter les idéaux d'un quotient de $\\mathbb{K}[X]$",
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif, $P\\in\\mathbb{K}[X]$ unitaire non constant et $\\pi:\\mathbb{K}[X]\\to\\mathbb{K}[X]/(P)$ la projection.\n\n**1.** Montrer que les idéaux de $\\mathbb{K}[X]/(P)$ sont les $\\pi\\big((D)\\big)$, où $D$ parcourt les diviseurs unitaires de $P$, deux diviseurs unitaires distincts donnant des idéaux distincts.\n\n**2.** Combien l'anneau $\\mathbb{Q}[X]/(X^3-X)$ a-t-il d'idéaux ?",
+      "duree_min": 20,
+      "indices": [
+        "L'image réciproque par $\\pi$ d'un idéal est un idéal de $\\mathbb{K}[X]$ contenant $(P)$.",
+        "Factoriser $X^3-X$ en produit d'irréductibles de $\\mathbb{Q}[X]$ et compter ses diviseurs unitaires."
+      ],
+      "reponse_finale": {
+        "question": "Combien d'idéaux l'anneau $\\mathbb{Q}[X]/(X^3-X)$ possède-t-il ?",
+        "propositions": [
+          "$8$",
+          "$3$",
+          "$4$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $J$ est un idéal de $\\mathbb{K}[X]/(P)$, $\\pi^{-1}(J)$ est un idéal de $\\mathbb{K}[X]$ contenant $\\ker\\pi=(P)$ ; il est non nul, donc s'écrit $(D)$ avec $D$ unitaire, et $P\\in(D)$ signifie $D\\mid P$. Par surjectivité, $J=\\pi\\left(\\pi^{-1}(J)\\right)=\\pi\\big((D)\\big)$. Réciproquement, $\\pi\\big((D)\\big)$ est un idéal ($\\pi$ est un morphisme surjectif), et pour $D\\mid P$, $\\pi^{-1}\\big(\\pi((D))\\big)=(D)+(P)=(D)$ : deux diviseurs unitaires distincts engendrent des idéaux distincts de $\\mathbb{K}[X]$, donc ont des images distinctes.\n\n**2.** $X^3-X=X(X-1)(X+1)$ dans $\\mathbb{Q}[X]$. C'est un produit de trois irréductibles unitaires distincts ; par unicité de la décomposition en irréductibles, un diviseur unitaire est le produit d'une partie de ces trois facteurs : il y en a $2^3=8$. L'anneau a donc $8$ idéaux.",
+      "variantes": [
+        {
+          "enonce": "Soient $\\mathbb{K}$ un corps commutatif, $P\\in\\mathbb{K}[X]$ unitaire non constant et $\\pi:\\mathbb{K}[X]\\to\\mathbb{K}[X]/(P)$ la projection.\n\n**1.** Montrer que les idéaux de $\\mathbb{K}[X]/(P)$ sont les $\\pi\\big((D)\\big)$, où $D$ parcourt les diviseurs unitaires de $P$, deux diviseurs unitaires distincts donnant des idéaux distincts.\n\n**2.** Combien l'anneau $\\mathbb{R}[X]/(X^4-1)$ a-t-il d'idéaux ?",
+          "indices": [
+            "L'image réciproque par $\\pi$ d'un idéal est un idéal de $\\mathbb{K}[X]$ contenant $(P)$.",
+            "Factoriser $X^4-1$ en produit d'irréductibles de $\\mathbb{R}[X]$ et compter ses diviseurs unitaires."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'idéaux l'anneau $\\mathbb{R}[X]/(X^4-1)$ possède-t-il ?",
+            "propositions": [
+              "$8$",
+              "$16$",
+              "$4$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $J$ est un idéal de $\\mathbb{K}[X]/(P)$, $\\pi^{-1}(J)$ est un idéal de $\\mathbb{K}[X]$ contenant $\\ker\\pi=(P)$ ; il est non nul, donc s'écrit $(D)$ avec $D$ unitaire, et $P\\in(D)$ signifie $D\\mid P$. Par surjectivité, $J=\\pi\\left(\\pi^{-1}(J)\\right)=\\pi\\big((D)\\big)$. Réciproquement, $\\pi\\big((D)\\big)$ est un idéal ($\\pi$ est un morphisme surjectif), et pour $D\\mid P$, $\\pi^{-1}\\big(\\pi((D))\\big)=(D)+(P)=(D)$ : deux diviseurs unitaires distincts engendrent des idéaux distincts de $\\mathbb{K}[X]$, donc ont des images distinctes.\n\n**2.** $X^4-1=(X-1)(X+1)(X^2+1)$ dans $\\mathbb{R}[X]$. Les trois facteurs sont irréductibles dans $\\mathbb{R}[X]$ ($X^2+1$ est de degré $2$ sans racine réelle) et distincts ; par unicité de la décomposition en irréductibles, un diviseur unitaire est le produit d'une partie de ces trois facteurs : il y en a $2^3=8$. L'anneau a donc $8$ idéaux. Sur $\\mathbb{C}$, $X^4-1$ a quatre facteurs irréductibles distincts, et $\\mathbb{C}[X]/(X^4-1)$ aurait $2^4=16$ idéaux."
+        },
+        {
+          "enonce": "Soient $\\mathbb{K}$ un corps commutatif, $P\\in\\mathbb{K}[X]$ unitaire non constant et $\\pi:\\mathbb{K}[X]\\to\\mathbb{K}[X]/(P)$ la projection.\n\n**1.** Montrer que les idéaux de $\\mathbb{K}[X]/(P)$ sont les $\\pi\\big((D)\\big)$, où $D$ parcourt les diviseurs unitaires de $P$, deux diviseurs unitaires distincts donnant des idéaux distincts.\n\n**2.** Combien l'anneau $\\mathbb{Q}[X]/(X^3-X^2)$ a-t-il d'idéaux ?",
+          "indices": [
+            "L'image réciproque par $\\pi$ d'un idéal est un idéal de $\\mathbb{K}[X]$ contenant $(P)$.",
+            "Factoriser $X^3-X^2$ en produit d'irréductibles de $\\mathbb{Q}[X]$ et compter ses diviseurs unitaires."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'idéaux l'anneau $\\mathbb{Q}[X]/(X^3-X^2)$ possède-t-il ?",
+            "propositions": [
+              "$6$",
+              "$4$",
+              "$3$",
+              "$8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $J$ est un idéal de $\\mathbb{K}[X]/(P)$, $\\pi^{-1}(J)$ est un idéal de $\\mathbb{K}[X]$ contenant $\\ker\\pi=(P)$ ; il est non nul, donc s'écrit $(D)$ avec $D$ unitaire, et $P\\in(D)$ signifie $D\\mid P$. Par surjectivité, $J=\\pi\\left(\\pi^{-1}(J)\\right)=\\pi\\big((D)\\big)$. Réciproquement, $\\pi\\big((D)\\big)$ est un idéal ($\\pi$ est un morphisme surjectif), et pour $D\\mid P$, $\\pi^{-1}\\big(\\pi((D))\\big)=(D)+(P)=(D)$ : deux diviseurs unitaires distincts engendrent des idéaux distincts de $\\mathbb{K}[X]$, donc ont des images distinctes.\n\n**2.** $X^3-X^2=X^2(X-1)$ dans $\\mathbb{Q}[X]$. Par unicité de la décomposition en irréductibles, les diviseurs unitaires sont les $X^a(X-1)^b$ avec $a\\in\\{0,1,2\\}$ et $b\\in\\{0,1\\}$ : il y en a $3\\times2=6$. L'anneau a donc $6$ idéaux."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-gauss-ex1",
+      "carte": "arith-l2-anneaux-gauss",
+      "difficulte": 1,
+      "titre": "Division euclidienne dans $\\mathbb{Z}[i]$",
+      "enonce": "Effectuer la division euclidienne de $z=11+3i$ par $w=3-2i$ dans $\\mathbb{Z}[i]$, en prenant pour quotient $q$ l'entier de Gauss obtenu en arrondissant à l'entier le plus proche les parties réelle et imaginaire de $\\frac zw$. Vérifier que le reste $r=z-qw$ vérifie $N(r)<N(w)$.",
+      "duree_min": 10,
+      "indices": [
+        "Calculer $\\frac zw=\\frac{z\\overline w}{N(w)}$."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont le quotient $q$ et le reste $r=z-qw$ ?",
+        "propositions": [
+          "$q=2+2i$, $r=1+i$",
+          "$q=2+2i$, $r=1-i$",
+          "$q=2-2i$, $r=1+i$",
+          "$q=3+2i$, $r=-2+i$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$N(w)=13$ et $\\frac zw=\\frac{z\\overline w}{N(w)}=\\frac{(11+3i)(3+2i)}{13}=\\frac{27+31i}{13}\\approx2{,}08+2{,}38i$. En arrondissant les parties réelle et imaginaire, $q=2+2i$. Alors $qw=(2+2i)(3-2i)=6-4i+6i+4=10+2i$ et $r=z-qw=1+i$, de norme $2<13$ (et même $2\\le\\frac{13}2$).",
+      "variantes": [
+        {
+          "enonce": "Effectuer la division euclidienne de $z=8-3i$ par $w=1+3i$ dans $\\mathbb{Z}[i]$, en prenant pour quotient $q$ l'entier de Gauss obtenu en arrondissant à l'entier le plus proche les parties réelle et imaginaire de $\\frac zw$. Vérifier que le reste $r=z-qw$ vérifie $N(r)<N(w)$.",
+          "indices": [
+            "Calculer $\\frac zw=\\frac{z\\overline w}{N(w)}$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont le quotient $q$ et le reste $r=z-qw$ ?",
+            "propositions": [
+              "$q=-3i$, $r=-1$",
+              "$q=-3i$, $r=1$",
+              "$q=3i$, $r=-1$",
+              "$q=-1-3i$, $r=-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$N(w)=10$ et $\\frac zw=\\frac{z\\overline w}{N(w)}=\\frac{(8-3i)(1-3i)}{10}=\\frac{-1-27i}{10}=-0{,}1-2{,}7i$. En arrondissant les parties réelle et imaginaire, $q=-3i$. Alors $qw=-3i(1+3i)=9-3i$ et $r=z-qw=-1$, de norme $1<10$ (et même $1\\le\\frac{10}2$)."
+        },
+        {
+          "enonce": "Effectuer la division euclidienne de $z=13+i$ par $w=4+3i$ dans $\\mathbb{Z}[i]$, en prenant pour quotient $q$ l'entier de Gauss obtenu en arrondissant à l'entier le plus proche les parties réelle et imaginaire de $\\frac zw$. Vérifier que le reste $r=z-qw$ vérifie $N(r)<N(w)$.",
+          "indices": [
+            "Calculer $\\frac zw=\\frac{z\\overline w}{N(w)}$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont le quotient $q$ et le reste $r=z-qw$ ?",
+            "propositions": [
+              "$q=2-i$, $r=2-i$",
+              "$q=2-i$, $r=2+i$",
+              "$q=2+i$, $r=2-i$",
+              "$q=3-i$, $r=-2+i$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$N(w)=25$ et $\\frac zw=\\frac{z\\overline w}{N(w)}=\\frac{(13+i)(4-3i)}{25}=\\frac{55-35i}{25}=2{,}2-1{,}4i$. En arrondissant les parties réelle et imaginaire, $q=2-i$. Alors $qw=(2-i)(4+3i)=8+6i-4i+3=11+2i$ et $r=z-qw=2-i$, de norme $5<25$ (et même $5\\le\\frac{25}2$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-gauss-ex2",
+      "carte": "arith-l2-anneaux-gauss",
+      "difficulte": 2,
+      "titre": "Décomposer un nombre premier dans $\\mathbb{Z}[i]$",
+      "enonce": "Écrire $29$ comme somme de deux carrés d'entiers, puis en déduire sa décomposition en produit d'irréductibles de $\\mathbb{Z}[i]$. Justifier l'irréductibilité des facteurs.",
+      "duree_min": 10,
+      "indices": [
+        "Tester les carrés $a^2\\le29$ et regarder si $29-a^2$ est un carré.",
+        "Un entier de Gauss dont la norme est un nombre premier est irréductible."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition de $29$ en produit d'irréductibles de $\\mathbb{Z}[i]$ ?",
+        "propositions": [
+          "$(2+5i)(2-5i)$",
+          "$(3+2i)(3-2i)$",
+          "$29$ est irréductible dans $\\mathbb{Z}[i]$",
+          "$(1+i)(1-i)(5+2i)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$29-0=29$, $29-1=28$, $29-4=25=5^2$ : $29=2^2+5^2=(2+5i)(2-5i)$. Si $2+5i=uv$ avec $u,v\\in\\mathbb{Z}[i]$, alors $N(u)N(v)=29$, qui est premier, donc $N(u)=1$ ou $N(v)=1$ : l'un des facteurs est inversible. Comme $2+5i$ n'est pas inversible (sa norme vaut $29\\neq1$), il est irréductible ; de même pour $2-5i$. Conformément au théorème des deux carrés, $29\\equiv1\\pmod4$. Les autres propositions sont fausses : $(3+2i)(3-2i)=13$, $(1+i)(1-i)(5+2i)=10+4i$, et $29$ n'est pas irréductible puisqu'il est produit de deux éléments non inversibles.",
+      "variantes": [
+        {
+          "enonce": "Écrire $37$ comme somme de deux carrés d'entiers, puis en déduire sa décomposition en produit d'irréductibles de $\\mathbb{Z}[i]$. Justifier l'irréductibilité des facteurs.",
+          "indices": [
+            "Tester les carrés $a^2\\le37$ et regarder si $37-a^2$ est un carré.",
+            "Un entier de Gauss dont la norme est un nombre premier est irréductible."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition de $37$ en produit d'irréductibles de $\\mathbb{Z}[i]$ ?",
+            "propositions": [
+              "$(1+6i)(1-6i)$",
+              "$(2+5i)(2-5i)$",
+              "$37$ est irréductible dans $\\mathbb{Z}[i]$",
+              "$(1+i)(1-i)(6+i)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$37-0=37$, $37-1=36=6^2$ : $37=1^2+6^2=(1+6i)(1-6i)$. Si $1+6i=uv$ avec $u,v\\in\\mathbb{Z}[i]$, alors $N(u)N(v)=37$, qui est premier, donc $N(u)=1$ ou $N(v)=1$ : l'un des facteurs est inversible. Comme $1+6i$ n'est pas inversible (sa norme vaut $37\\neq1$), il est irréductible ; de même pour $1-6i$. Conformément au théorème des deux carrés, $37\\equiv1\\pmod4$. Les autres propositions sont fausses : $(2+5i)(2-5i)=29$, $(1+i)(1-i)(6+i)=12+2i$, et $37$ n'est pas irréductible puisqu'il est produit de deux éléments non inversibles."
+        },
+        {
+          "enonce": "Écrire $53$ comme somme de deux carrés d'entiers, puis en déduire sa décomposition en produit d'irréductibles de $\\mathbb{Z}[i]$. Justifier l'irréductibilité des facteurs.",
+          "indices": [
+            "Tester les carrés $a^2\\le53$ et regarder si $53-a^2$ est un carré.",
+            "Un entier de Gauss dont la norme est un nombre premier est irréductible."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition de $53$ en produit d'irréductibles de $\\mathbb{Z}[i]$ ?",
+            "propositions": [
+              "$(2+7i)(2-7i)$",
+              "$(1+7i)(1-7i)$",
+              "$53$ est irréductible dans $\\mathbb{Z}[i]$",
+              "$(4+5i)(4-5i)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$53-0$, $53-1$, $53-4=49=7^2$ : $53=2^2+7^2=(2+7i)(2-7i)$. Si $2+7i=uv$ avec $u,v\\in\\mathbb{Z}[i]$, alors $N(u)N(v)=53$, qui est premier, donc $N(u)=1$ ou $N(v)=1$ : l'un des facteurs est inversible. Comme $2+7i$ n'est pas inversible (sa norme vaut $53\\neq1$), il est irréductible ; de même pour $2-7i$. Conformément au théorème des deux carrés, $53\\equiv1\\pmod4$. Les autres propositions sont fausses : $(1+7i)(1-7i)=50$, $(4+5i)(4-5i)=41$, et $53$ n'est pas irréductible puisqu'il est produit de deux éléments non inversibles."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-gauss-ex3",
+      "carte": "arith-l2-anneaux-gauss",
+      "difficulte": 3,
+      "titre": "Reconnaître une somme de deux carrés",
+      "enonce": "Parmi les entiers $245$, $147$, $63$ et $99$, déterminer celui qui est somme de deux carrés d'entiers, et l'écrire explicitement comme tel. Justifier que les trois autres ne le sont pas.",
+      "duree_min": 15,
+      "indices": [
+        "Décomposer chaque entier en facteurs premiers et regarder les exposants des nombres premiers congrus à $3$ modulo $4$.",
+        "Si $n=m^2k$ avec $k=a^2+b^2$, alors $n=(ma)^2+(mb)^2$."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces entiers est somme de deux carrés ?",
+        "propositions": [
+          "$245$",
+          "$147$",
+          "$63$",
+          "$99$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$245=5\\times7^2$ : le seul nombre premier congru à $3$ modulo $4$ qui le divise est $7$, d'exposant $2$, donc $245$ est somme de deux carrés ; explicitement, $5=1^2+2^2$ donne $245=7^2\\left(1^2+2^2\\right)=7^2+14^2$. En revanche $147=3\\times7^2$ ($3$ d'exposant $1$), $63=3^2\\times7$ ($7$ d'exposant $1$) et $99=3^2\\times11$ ($11\\equiv3\\pmod4$, d'exposant $1$) ne sont pas sommes de deux carrés, d'après le théorème des deux carrés.",
+      "variantes": [
+        {
+          "enonce": "Parmi les entiers $135$, $84$, $325$ et $300$, déterminer celui qui est somme de deux carrés d'entiers, et l'écrire explicitement comme tel. Justifier que les trois autres ne le sont pas.",
+          "indices": [
+            "Décomposer chaque entier en facteurs premiers et regarder les exposants des nombres premiers congrus à $3$ modulo $4$.",
+            "Si $n=m^2k$ avec $k=a^2+b^2$, alors $n=(ma)^2+(mb)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces entiers est somme de deux carrés ?",
+            "propositions": [
+              "$135$",
+              "$84$",
+              "$325$",
+              "$300$"
+            ],
+            "bonne": 2
+          },
+          "correction": "$325=5^2\\times13$ n'a aucun facteur premier congru à $3$ modulo $4$, donc c'est une somme de deux carrés ; explicitement, $13=2^2+3^2$ donne $325=5^2\\left(2^2+3^2\\right)=10^2+15^2$ (on a aussi $325=1^2+18^2=6^2+17^2$). En revanche $135=3^3\\times5$ ($3$ d'exposant $3$), $84=2^2\\times3\\times7$ et $300=2^2\\times3\\times5^2$ ($3$ d'exposant $1$) ne sont pas sommes de deux carrés, d'après le théorème des deux carrés."
+        },
+        {
+          "enonce": "Parmi les entiers $126$, $192$, $231$ et $98$, déterminer celui qui est somme de deux carrés d'entiers, et l'écrire explicitement comme tel. Justifier que les trois autres ne le sont pas.",
+          "indices": [
+            "Décomposer chaque entier en facteurs premiers et regarder les exposants des nombres premiers congrus à $3$ modulo $4$.",
+            "Si $n=m^2k$ avec $k=a^2+b^2$, alors $n=(ma)^2+(mb)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces entiers est somme de deux carrés ?",
+            "propositions": [
+              "$126$",
+              "$192$",
+              "$231$",
+              "$98$"
+            ],
+            "bonne": 3
+          },
+          "correction": "$98=2\\times7^2$ : le seul nombre premier congru à $3$ modulo $4$ qui le divise est $7$, d'exposant $2$, donc $98$ est somme de deux carrés ; explicitement, $2=1^2+1^2$ donne $98=7^2\\left(1^2+1^2\\right)=7^2+7^2$. En revanche $126=2\\times3^2\\times7$ ($7$ d'exposant $1$), $192=2^6\\times3$ ($3$ d'exposant $1$) et $231=3\\times7\\times11$ ne sont pas sommes de deux carrés, d'après le théorème des deux carrés."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-gauss-ex4",
+      "carte": "arith-l2-anneaux-gauss",
+      "difficulte": 4,
+      "titre": "Un quotient de $\\mathbb{Z}[i]$ qui est un corps",
+      "enonce": "Soient $w=2+i$ et $J=w\\,\\mathbb{Z}[i]$.\n\n**1.** Montrer que $5\\in J$, que $i\\equiv-2$ modulo $J$, et que $J\\cap\\mathbb{Z}=5\\mathbb{Z}$.\n\n**2.** En considérant le morphisme $\\theta:\\mathbb{Z}\\to\\mathbb{Z}[i]/J$, $k\\mapsto\\overline k$, montrer que $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/5\\mathbb{Z}$ ; en particulier, c'est un corps.\n\n**3.** Déterminer l'entier $k\\in\\{0,1,\\dots,4\\}$ tel que $3+2i\\equiv k$ modulo $J$.",
+      "duree_min": 20,
+      "indices": [
+        "$5=(2+i)(2-i)$, et $i+2=2+i$.",
+        "$J\\cap\\mathbb{Z}$ est un idéal de $\\mathbb{Z}$ contenant $5$ ; il ne contient pas $1$, car $w$ n'est pas inversible.",
+        "Pour la surjectivité de $\\theta$ : $a+bi\\equiv a-2b$ modulo $J$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'entier $k\\in\\{0,1,\\dots,4\\}$ tel que $3+2i\\equiv k$ modulo $J$ ?",
+        "propositions": [
+          "$4$",
+          "$1$",
+          "$0$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $5=(2+i)(2-i)\\in J$, et $i+2=2+i\\in J$, donc $i\\equiv-2$ modulo $J$. L'ensemble $J\\cap\\mathbb{Z}$ est un sous-groupe de $\\mathbb{Z}$, stable par multiplication par les entiers : c'est un idéal de $\\mathbb{Z}$, qui contient le nombre premier $5$ ; c'est donc $5\\mathbb{Z}$ ou $\\mathbb{Z}$. Si $1\\in J$, $w$ serait inversible, ce qui est faux car $N(w)=5\\neq1$. Donc $J\\cap\\mathbb{Z}=5\\mathbb{Z}$.\n\n**2.** $\\theta$ est la composée de l'inclusion de $\\mathbb{Z}$ dans $\\mathbb{Z}[i]$ et de la projection : c'est un morphisme d'anneaux. Il est surjectif : $\\overline{a+bi}=\\overline a+\\overline b\\,\\overline i=\\overline{a-2b}=\\theta(a-2b)$. Son noyau est $J\\cap\\mathbb{Z}=5\\mathbb{Z}$. Par le théorème d'isomorphisme, $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/5\\mathbb{Z}$, qui est un corps car $5$ est premier.\n\n**3.** $3+2i\\equiv3+2\\times(-2)=-1\\equiv4\\pmod5$ modulo $J$ : $k=4$.",
+      "variantes": [
+        {
+          "enonce": "Soient $w=3+2i$ et $J=w\\,\\mathbb{Z}[i]$.\n\n**1.** Montrer que $13\\in J$, que $i\\equiv5$ modulo $J$, et que $J\\cap\\mathbb{Z}=13\\mathbb{Z}$.\n\n**2.** En considérant le morphisme $\\theta:\\mathbb{Z}\\to\\mathbb{Z}[i]/J$, $k\\mapsto\\overline k$, montrer que $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/13\\mathbb{Z}$ ; en particulier, c'est un corps.\n\n**3.** Déterminer l'entier $k\\in\\{0,1,\\dots,12\\}$ tel que $1+2i\\equiv k$ modulo $J$.",
+          "indices": [
+            "$13=(3+2i)(3-2i)$, et $i-5=(3+2i)(-1+i)$.",
+            "$J\\cap\\mathbb{Z}$ est un idéal de $\\mathbb{Z}$ contenant $13$ ; il ne contient pas $1$, car $w$ n'est pas inversible.",
+            "Pour la surjectivité de $\\theta$ : $a+bi\\equiv a+5b$ modulo $J$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'entier $k\\in\\{0,1,\\dots,12\\}$ tel que $1+2i\\equiv k$ modulo $J$ ?",
+            "propositions": [
+              "$11$",
+              "$4$",
+              "$3$",
+              "$7$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $13=(3+2i)(3-2i)\\in J$, et $i-5=(3+2i)(-1+i)\\in J$, donc $i\\equiv5$ modulo $J$. L'ensemble $J\\cap\\mathbb{Z}$ est un sous-groupe de $\\mathbb{Z}$, stable par multiplication par les entiers : c'est un idéal de $\\mathbb{Z}$, qui contient le nombre premier $13$ ; c'est donc $13\\mathbb{Z}$ ou $\\mathbb{Z}$. Si $1\\in J$, $w$ serait inversible, ce qui est faux car $N(w)=13\\neq1$. Donc $J\\cap\\mathbb{Z}=13\\mathbb{Z}$.\n\n**2.** $\\theta$ est la composée de l'inclusion de $\\mathbb{Z}$ dans $\\mathbb{Z}[i]$ et de la projection : c'est un morphisme d'anneaux. Il est surjectif : $\\overline{a+bi}=\\overline a+\\overline b\\,\\overline i=\\overline{a+5b}=\\theta(a+5b)$. Son noyau est $J\\cap\\mathbb{Z}=13\\mathbb{Z}$. Par le théorème d'isomorphisme, $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/13\\mathbb{Z}$, qui est un corps car $13$ est premier.\n\n**3.** $1+2i\\equiv1+2\\times5=11$ modulo $J$ : $k=11$."
+        },
+        {
+          "enonce": "Soient $w=1+4i$ et $J=w\\,\\mathbb{Z}[i]$.\n\n**1.** Montrer que $17\\in J$, que $i\\equiv4$ modulo $J$, et que $J\\cap\\mathbb{Z}=17\\mathbb{Z}$.\n\n**2.** En considérant le morphisme $\\theta:\\mathbb{Z}\\to\\mathbb{Z}[i]/J$, $k\\mapsto\\overline k$, montrer que $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/17\\mathbb{Z}$ ; en particulier, c'est un corps.\n\n**3.** Déterminer l'entier $k\\in\\{0,1,\\dots,16\\}$ tel que $2+3i\\equiv k$ modulo $J$.",
+          "indices": [
+            "$17=(1+4i)(1-4i)$, et $i-4=(1+4i)i$.",
+            "$J\\cap\\mathbb{Z}$ est un idéal de $\\mathbb{Z}$ contenant $17$ ; il ne contient pas $1$, car $w$ n'est pas inversible.",
+            "Pour la surjectivité de $\\theta$ : $a+bi\\equiv a+4b$ modulo $J$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est l'entier $k\\in\\{0,1,\\dots,16\\}$ tel que $2+3i\\equiv k$ modulo $J$ ?",
+            "propositions": [
+              "$14$",
+              "$7$",
+              "$5$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $17=(1+4i)(1-4i)\\in J$, et $i-4=(1+4i)i\\in J$, donc $i\\equiv4$ modulo $J$. L'ensemble $J\\cap\\mathbb{Z}$ est un sous-groupe de $\\mathbb{Z}$, stable par multiplication par les entiers : c'est un idéal de $\\mathbb{Z}$, qui contient le nombre premier $17$ ; c'est donc $17\\mathbb{Z}$ ou $\\mathbb{Z}$. Si $1\\in J$, $w$ serait inversible, ce qui est faux car $N(w)=17\\neq1$. Donc $J\\cap\\mathbb{Z}=17\\mathbb{Z}$.\n\n**2.** $\\theta$ est la composée de l'inclusion de $\\mathbb{Z}$ dans $\\mathbb{Z}[i]$ et de la projection : c'est un morphisme d'anneaux. Il est surjectif : $\\overline{a+bi}=\\overline a+\\overline b\\,\\overline i=\\overline{a+4b}=\\theta(a+4b)$. Son noyau est $J\\cap\\mathbb{Z}=17\\mathbb{Z}$. Par le théorème d'isomorphisme, $\\mathbb{Z}[i]/J\\simeq\\mathbb{Z}/17\\mathbb{Z}$, qui est un corps car $17$ est premier.\n\n**3.** $2+3i\\equiv2+3\\times4=14$ modulo $J$ : $k=14$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-caracteristique-ex1",
+      "carte": "arith-l2-anneaux-caracteristique",
+      "difficulte": 1,
+      "titre": "Caractéristique d'un produit d'anneaux",
+      "enonce": "Déterminer la caractéristique de l'anneau $\\mathbb{Z}/6\\mathbb{Z}\\times\\mathbb{Z}/10\\mathbb{Z}$. Cet anneau est-il intègre ?",
+      "duree_min": 5,
+      "indices": [
+        "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ : quand est-ce nul ?"
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la caractéristique de cet anneau ?",
+        "propositions": [
+          "$30$",
+          "$60$",
+          "$2$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ est nul si et seulement si $6\\mid k$ et $10\\mid k$, c'est-à-dire si et seulement si $6\\vee10=30$ divise $k$. La caractéristique est donc $30$. L'anneau n'est pas intègre : sa caractéristique n'est ni nulle ni première, et d'ailleurs $\\left(\\overline1,\\overline0\\right)\\left(\\overline0,\\overline1\\right)=\\left(\\overline0,\\overline0\\right)$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer la caractéristique de l'anneau $\\mathbb{Z}/3\\mathbb{Z}\\times\\mathbb{Z}/9\\mathbb{Z}$. Cet anneau est-il intègre ?",
+          "indices": [
+            "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ : quand est-ce nul ?"
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la caractéristique de cet anneau ?",
+            "propositions": [
+              "$9$",
+              "$27$",
+              "$3$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ est nul si et seulement si $3\\mid k$ et $9\\mid k$, c'est-à-dire si et seulement si $3\\vee9=9$ divise $k$. La caractéristique est donc $9$. L'anneau n'est pas intègre : sa caractéristique n'est ni nulle ni première, et d'ailleurs $\\left(\\overline1,\\overline0\\right)\\left(\\overline0,\\overline1\\right)=\\left(\\overline0,\\overline0\\right)$."
+        },
+        {
+          "enonce": "Déterminer la caractéristique de l'anneau $\\mathbb{Z}/8\\mathbb{Z}\\times\\mathbb{Z}/12\\mathbb{Z}$. Cet anneau est-il intègre ?",
+          "indices": [
+            "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ : quand est-ce nul ?"
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la caractéristique de cet anneau ?",
+            "propositions": [
+              "$24$",
+              "$96$",
+              "$4$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'unité est $\\left(\\overline1,\\overline1\\right)$, et $k\\cdot\\left(\\overline1,\\overline1\\right)=\\left(\\overline k,\\overline k\\right)$ est nul si et seulement si $8\\mid k$ et $12\\mid k$, c'est-à-dire si et seulement si $8\\vee12=24$ divise $k$. La caractéristique est donc $24$. L'anneau n'est pas intègre : sa caractéristique n'est ni nulle ni première, et d'ailleurs $\\left(\\overline1,\\overline0\\right)\\left(\\overline0,\\overline1\\right)=\\left(\\overline0,\\overline0\\right)$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-caracteristique-ex2",
+      "carte": "arith-l2-anneaux-caracteristique",
+      "difficulte": 2,
+      "titre": "Puissances en caractéristique $p$",
+      "enonce": "Dans $(\\mathbb{Z}/5\\mathbb{Z})[X]$, développer $(X+1)^{25}$.",
+      "duree_min": 10,
+      "indices": [
+        "L'anneau $(\\mathbb{Z}/5\\mathbb{Z})[X]$ est commutatif de caractéristique $5$ : appliquer plusieurs fois le morphisme de Frobenius."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $(X+1)^{25}$ dans $(\\mathbb{Z}/5\\mathbb{Z})[X]$ ?",
+        "propositions": [
+          "$X^{25}+1$",
+          "$X^5+1$",
+          "$X^{25}+X^5+X+1$",
+          "$X^{25}-1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'anneau $(\\mathbb{Z}/5\\mathbb{Z})[X]$ est commutatif de caractéristique $5$, donc $(U+V)^{5}=U^{5}+V^{5}$ pour tous $U,V$ (morphisme de Frobenius). Ainsi\n$$(X+1)^{25}=\\left((X+1)^5\\right)^5=\\left(X^5+1\\right)^5=X^{25}+1.$$",
+      "variantes": [
+        {
+          "enonce": "Dans $(\\mathbb{Z}/3\\mathbb{Z})[X]$, développer $(X+2)^9$.",
+          "indices": [
+            "L'anneau $(\\mathbb{Z}/3\\mathbb{Z})[X]$ est commutatif de caractéristique $3$ : appliquer plusieurs fois le morphisme de Frobenius."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $(X+2)^9$ dans $(\\mathbb{Z}/3\\mathbb{Z})[X]$ ?",
+            "propositions": [
+              "$X^9+2$",
+              "$X^9+1$",
+              "$X^3+2$",
+              "$X^9+2X^3+2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'anneau $(\\mathbb{Z}/3\\mathbb{Z})[X]$ est commutatif de caractéristique $3$, donc $(U+V)^{3}=U^{3}+V^{3}$ pour tous $U,V$ (morphisme de Frobenius). Ainsi\n$$(X+2)^9=\\left((X+2)^3\\right)^3=\\left(X^3+8\\right)^3=\\left(X^3+2\\right)^3=X^9+8=X^9+2.$$"
+        },
+        {
+          "enonce": "Dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$, développer $(X^2+X+1)^4$.",
+          "indices": [
+            "L'anneau $(\\mathbb{Z}/2\\mathbb{Z})[X]$ est commutatif de caractéristique $2$ : appliquer plusieurs fois le morphisme de Frobenius."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $(X^2+X+1)^4$ dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$ ?",
+            "propositions": [
+              "$X^8+X^4+1$",
+              "$X^8+1$",
+              "$X^6+X^3+1$",
+              "$X^8+X^2+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'anneau $(\\mathbb{Z}/2\\mathbb{Z})[X]$ est commutatif de caractéristique $2$, donc $(U+V)^{2}=U^{2}+V^{2}$ pour tous $U,V$ (morphisme de Frobenius). Ainsi\n$$(X^2+X+1)^4=\\left((X^2+X+1)^2\\right)^2=\\left(X^4+X^2+1\\right)^2=X^8+X^4+1.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-caracteristique-ex3",
+      "carte": "arith-l2-anneaux-caracteristique",
+      "difficulte": 3,
+      "titre": "Cardinal d'un corps fini",
+      "enonce": "**1.** Soit $\\mathbb{K}$ un corps fini. Montrer que sa caractéristique est un nombre premier $p$, que $\\mathbb{K}$ est un espace vectoriel de dimension finie $d\\ge1$ sur son corps premier, et en déduire que $\\mathbb{K}$ a $p^d$ éléments.\n\n**2.** Parmi les entiers $6$, $10$, $9$ et $12$, lequel est le cardinal d'un corps ? Construire un tel corps.",
+      "duree_min": 15,
+      "indices": [
+        "La caractéristique d'un corps fini ne peut pas être nulle, car $k\\mapsto k\\cdot1$ serait injective.",
+        "Pour la construction, utiliser un quotient $(\\mathbb{Z}/p\\mathbb{Z})[X]/(P)$ avec $P$ irréductible de degré $2$."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces entiers est le cardinal d'un corps ?",
+        "propositions": [
+          "$6$",
+          "$10$",
+          "$9$",
+          "$12$"
+        ],
+        "bonne": 2
+      },
+      "correction": "**1.** Si la caractéristique était nulle, $k\\mapsto k\\cdot1$ serait injective de $\\mathbb{Z}$ dans l'ensemble fini $\\mathbb{K}$ : c'est impossible. Elle est donc un nombre premier $p$ (cas intègre), et le corps premier $\\mathbb{F}$, image de $\\mathbb{Z}$, a $p$ éléments. La multiplication de $\\mathbb{K}$, restreinte à $\\mathbb{F}\\times\\mathbb{K}$, fait de $\\mathbb{K}$ un $\\mathbb{F}$-espace vectoriel (les axiomes découlent de ceux d'anneau), engendré par la famille finie de tous ses éléments, donc de dimension finie $d$, et $d\\ge1$ car $\\mathbb{K}\\neq\\{0\\}$. Une base $(e_1,\\dots,e_d)$ fournit une bijection $(\\lambda_1,\\dots,\\lambda_d)\\mapsto\\sum_k\\lambda_ke_k$ de $\\mathbb{F}^d$ sur $\\mathbb{K}$, d'où $|\\mathbb{K}|=p^d$.\n\n**2.** $6$, $10$ et $12$ ne sont pas des puissances d'un nombre premier : aucun corps n'a ce cardinal. En revanche $9=3^2$ : le polynôme $X^2+1$ n'a pas de racine dans $\\mathbb{Z}/3\\mathbb{Z}$ ($0^2+1=1$, $1^2+1=2$, $2^2+1=5\\equiv2$) ; étant de degré $2$, il est irréductible, et $(\\mathbb{Z}/3\\mathbb{Z})[X]/(X^2+1)$ est un corps. Ses éléments s'écrivent de façon unique $a+bx$ avec $a,b\\in\\mathbb{Z}/3\\mathbb{Z}$ : il y en a $9$.",
+      "variantes": [
+        {
+          "enonce": "**1.** Soit $\\mathbb{K}$ un corps fini. Montrer que sa caractéristique est un nombre premier $p$, que $\\mathbb{K}$ est un espace vectoriel de dimension finie $d\\ge1$ sur son corps premier, et en déduire que $\\mathbb{K}$ a $p^d$ éléments.\n\n**2.** Parmi les entiers $15$, $18$, $20$ et $25$, lequel est le cardinal d'un corps ? Construire un tel corps.",
+          "indices": [
+            "La caractéristique d'un corps fini ne peut pas être nulle, car $k\\mapsto k\\cdot1$ serait injective.",
+            "Pour la construction, utiliser un quotient $(\\mathbb{Z}/p\\mathbb{Z})[X]/(P)$ avec $P$ irréductible de degré $2$."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces entiers est le cardinal d'un corps ?",
+            "propositions": [
+              "$15$",
+              "$18$",
+              "$20$",
+              "$25$"
+            ],
+            "bonne": 3
+          },
+          "correction": "**1.** Si la caractéristique était nulle, $k\\mapsto k\\cdot1$ serait injective de $\\mathbb{Z}$ dans l'ensemble fini $\\mathbb{K}$ : c'est impossible. Elle est donc un nombre premier $p$ (cas intègre), et le corps premier $\\mathbb{F}$, image de $\\mathbb{Z}$, a $p$ éléments. La multiplication de $\\mathbb{K}$, restreinte à $\\mathbb{F}\\times\\mathbb{K}$, fait de $\\mathbb{K}$ un $\\mathbb{F}$-espace vectoriel (les axiomes découlent de ceux d'anneau), engendré par la famille finie de tous ses éléments, donc de dimension finie $d$, et $d\\ge1$ car $\\mathbb{K}\\neq\\{0\\}$. Une base $(e_1,\\dots,e_d)$ fournit une bijection $(\\lambda_1,\\dots,\\lambda_d)\\mapsto\\sum_k\\lambda_ke_k$ de $\\mathbb{F}^d$ sur $\\mathbb{K}$, d'où $|\\mathbb{K}|=p^d$.\n\n**2.** $15$, $18$ et $20$ ne sont pas des puissances d'un nombre premier : aucun corps n'a ce cardinal. En revanche $25=5^2$ : les carrés de $\\mathbb{Z}/5\\mathbb{Z}$ sont $0$, $1$ et $4$, donc $X^2+2$ n'a pas de racine ($x^2=-2=3$ est impossible) ; étant de degré $2$, il est irréductible, et $(\\mathbb{Z}/5\\mathbb{Z})[X]/(X^2+2)$ est un corps. Ses éléments s'écrivent de façon unique $a+bx$ avec $a,b\\in\\mathbb{Z}/5\\mathbb{Z}$ : il y en a $25$."
+        },
+        {
+          "enonce": "**1.** Soit $\\mathbb{K}$ un corps fini. Montrer que sa caractéristique est un nombre premier $p$, que $\\mathbb{K}$ est un espace vectoriel de dimension finie $d\\ge1$ sur son corps premier, et en déduire que $\\mathbb{K}$ a $p^d$ éléments.\n\n**2.** Parmi les entiers $8$, $14$, $21$ et $24$, lequel est le cardinal d'un corps ? Construire un tel corps.",
+          "indices": [
+            "La caractéristique d'un corps fini ne peut pas être nulle, car $k\\mapsto k\\cdot1$ serait injective.",
+            "Pour la construction, utiliser un quotient $(\\mathbb{Z}/p\\mathbb{Z})[X]/(P)$ avec $P$ irréductible de degré $3$."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces entiers est le cardinal d'un corps ?",
+            "propositions": [
+              "$8$",
+              "$14$",
+              "$21$",
+              "$24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si la caractéristique était nulle, $k\\mapsto k\\cdot1$ serait injective de $\\mathbb{Z}$ dans l'ensemble fini $\\mathbb{K}$ : c'est impossible. Elle est donc un nombre premier $p$ (cas intègre), et le corps premier $\\mathbb{F}$, image de $\\mathbb{Z}$, a $p$ éléments. La multiplication de $\\mathbb{K}$, restreinte à $\\mathbb{F}\\times\\mathbb{K}$, fait de $\\mathbb{K}$ un $\\mathbb{F}$-espace vectoriel (les axiomes découlent de ceux d'anneau), engendré par la famille finie de tous ses éléments, donc de dimension finie $d$, et $d\\ge1$ car $\\mathbb{K}\\neq\\{0\\}$. Une base $(e_1,\\dots,e_d)$ fournit une bijection $(\\lambda_1,\\dots,\\lambda_d)\\mapsto\\sum_k\\lambda_ke_k$ de $\\mathbb{F}^d$ sur $\\mathbb{K}$, d'où $|\\mathbb{K}|=p^d$.\n\n**2.** $14$, $21$ et $24$ ne sont pas des puissances d'un nombre premier : aucun corps n'a ce cardinal. En revanche $8=2^3$ : le polynôme $X^3+X+1$ n'a pas de racine dans $\\mathbb{Z}/2\\mathbb{Z}$ (il vaut $1$ en $0$ et en $1$) ; étant de degré $3$, il est irréductible (un facteur de degré $1$ donnerait une racine), et $(\\mathbb{Z}/2\\mathbb{Z})[X]/(X^3+X+1)$ est un corps. Ses éléments s'écrivent de façon unique $a+bx+cx^2$ avec $a,b,c\\in\\mathbb{Z}/2\\mathbb{Z}$ : il y en a $8$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-caracteristique-ex4",
+      "carte": "arith-l2-anneaux-caracteristique",
+      "difficulte": 4,
+      "titre": "Racines carrées dans un corps fini de caractéristique $2$",
+      "enonce": "Soit $\\mathbb{K}$ un corps fini de caractéristique $2$.\n\n**1.** Montrer que $F:a\\mapsto a^2$ est un automorphisme de $\\mathbb{K}$, et en déduire que tout élément de $\\mathbb{K}$ a une unique racine carrée dans $\\mathbb{K}$.\n\n**2.** On considère $\\mathbb{K}=(\\mathbb{Z}/2\\mathbb{Z})[X]/(X^2+X+1)$, corps à $4$ éléments, et $x$ la classe de $X$. Vérifier que $a^{4}=a$ pour tout $a\\in\\mathbb{K}$, puis déterminer la racine carrée de $x$.\n\n**3.** Le résultat de la question 1 subsiste-t-il pour le corps infini $(\\mathbb{Z}/2\\mathbb{Z})(X)$ des fractions rationnelles ?",
+      "duree_min": 20,
+      "indices": [
+        "Le Frobenius est un morphisme injectif, et $\\mathbb{K}$ est un ensemble fini.",
+        "Si $a^{4}=a$, alors $\\left(a^{2}\\right)^2=a$.",
+        "Pour la question 3, comparer les parités des degrés dans l'égalité $XB^2=A^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la racine carrée de $x$ dans $\\mathbb{K}$ ?",
+        "propositions": [
+          "$x+1$",
+          "$x$",
+          "$1$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** En caractéristique $2$, $F$ est un morphisme d'anneaux, car $(a+b)^2=a^2+b^2$ et $(ab)^2=a^2b^2$. Il est injectif, car $a^2=0$ entraîne $a=0$ dans un corps, donc bijectif puisque $\\mathbb{K}$ est fini : tout $y\\in\\mathbb{K}$ s'écrit $y=a^2$ pour un unique $a$.\n\n**2.** Dans $\\mathbb{K}$, $x^2=x+1$ (car $-1=1$). Le groupe $\\mathbb{K}^*$ a $3$ éléments, donc $a^3=1$ pour $a\\neq0$ (théorème de Lagrange), et $a^4=a$ pour tout $a\\in\\mathbb{K}$, y compris $a=0$. Ainsi $\\left(a^{2}\\right)^2=a$ : la racine carrée de $a$ est $a^{2}$. Pour $a=x$ : $\\sqrt x=x^2=x+1$, et en effet $(x+1)^2=x^2+1=x+1+1=x$.\n\n**3.** Non : $X$ n'est pas un carré dans $(\\mathbb{Z}/2\\mathbb{Z})(X)$. Si $X=\\left(\\frac AB\\right)^2$ avec $A,B$ polynômes et $B\\neq0$, alors $XB^2=A^2$, de degré impair à gauche et pair à droite. Le Frobenius y est injectif, mais pas surjectif.",
+      "variantes": [
+        {
+          "enonce": "Soit $\\mathbb{K}$ un corps fini de caractéristique $2$.\n\n**1.** Montrer que $F:a\\mapsto a^2$ est un automorphisme de $\\mathbb{K}$, et en déduire que tout élément de $\\mathbb{K}$ a une unique racine carrée dans $\\mathbb{K}$.\n\n**2.** On considère $\\mathbb{K}=(\\mathbb{Z}/2\\mathbb{Z})[X]/(X^2+X+1)$, corps à $4$ éléments, et $x$ la classe de $X$. Vérifier que $a^{4}=a$ pour tout $a\\in\\mathbb{K}$, puis déterminer la racine carrée de $x+1$.\n\n**3.** Le résultat de la question 1 subsiste-t-il pour le corps infini $(\\mathbb{Z}/2\\mathbb{Z})(X)$ des fractions rationnelles ?",
+          "indices": [
+            "Le Frobenius est un morphisme injectif, et $\\mathbb{K}$ est un ensemble fini.",
+            "Si $a^{4}=a$, alors $\\left(a^{2}\\right)^2=a$.",
+            "Pour la question 3, comparer les parités des degrés dans l'égalité $XB^2=A^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la racine carrée de $x+1$ dans $\\mathbb{K}$ ?",
+            "propositions": [
+              "$x$",
+              "$x+1$",
+              "$1$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** En caractéristique $2$, $F$ est un morphisme d'anneaux, car $(a+b)^2=a^2+b^2$ et $(ab)^2=a^2b^2$. Il est injectif, car $a^2=0$ entraîne $a=0$ dans un corps, donc bijectif puisque $\\mathbb{K}$ est fini : tout $y\\in\\mathbb{K}$ s'écrit $y=a^2$ pour un unique $a$.\n\n**2.** Dans $\\mathbb{K}$, $x^2=x+1$ (car $-1=1$). Le groupe $\\mathbb{K}^*$ a $3$ éléments, donc $a^3=1$ pour $a\\neq0$ (théorème de Lagrange), et $a^4=a$ pour tout $a\\in\\mathbb{K}$, y compris $a=0$. Ainsi $\\left(a^{2}\\right)^2=a$ : la racine carrée de $a$ est $a^{2}$. Pour $a=x+1$ : $\\sqrt{x+1}=(x+1)^2=x^2+1=x$, et en effet $x^2=x+1$.\n\n**3.** Non : $X$ n'est pas un carré dans $(\\mathbb{Z}/2\\mathbb{Z})(X)$. Si $X=\\left(\\frac AB\\right)^2$ avec $A,B$ polynômes et $B\\neq0$, alors $XB^2=A^2$, de degré impair à gauche et pair à droite. Le Frobenius y est injectif, mais pas surjectif."
+        },
+        {
+          "enonce": "Soit $\\mathbb{K}$ un corps fini de caractéristique $2$.\n\n**1.** Montrer que $F:a\\mapsto a^2$ est un automorphisme de $\\mathbb{K}$, et en déduire que tout élément de $\\mathbb{K}$ a une unique racine carrée dans $\\mathbb{K}$.\n\n**2.** On considère $\\mathbb{K}=(\\mathbb{Z}/2\\mathbb{Z})[X]/(X^3+X+1)$, corps à $8$ éléments, et $x$ la classe de $X$. Vérifier que $a^{8}=a$ pour tout $a\\in\\mathbb{K}$, puis déterminer la racine carrée de $x$.\n\n**3.** Le résultat de la question 1 subsiste-t-il pour le corps infini $(\\mathbb{Z}/2\\mathbb{Z})(X)$ des fractions rationnelles ?",
+          "indices": [
+            "Le Frobenius est un morphisme injectif, et $\\mathbb{K}$ est un ensemble fini.",
+            "Si $a^{8}=a$, alors $\\left(a^{4}\\right)^2=a$.",
+            "Pour la question 3, comparer les parités des degrés dans l'égalité $XB^2=A^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la racine carrée de $x$ dans $\\mathbb{K}$ ?",
+            "propositions": [
+              "$x^2+x$",
+              "$x^2$",
+              "$x+1$",
+              "$x^2+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** En caractéristique $2$, $F$ est un morphisme d'anneaux, car $(a+b)^2=a^2+b^2$ et $(ab)^2=a^2b^2$. Il est injectif, car $a^2=0$ entraîne $a=0$ dans un corps, donc bijectif puisque $\\mathbb{K}$ est fini : tout $y\\in\\mathbb{K}$ s'écrit $y=a^2$ pour un unique $a$.\n\n**2.** Dans $\\mathbb{K}$, $x^3=x+1$ (car $-1=1$). Le groupe $\\mathbb{K}^*$ a $7$ éléments, donc $a^7=1$ pour $a\\neq0$ (théorème de Lagrange), et $a^8=a$ pour tout $a\\in\\mathbb{K}$, y compris $a=0$. Ainsi $\\left(a^{4}\\right)^2=a$ : la racine carrée de $a$ est $a^{4}$. Pour $a=x$ : $\\sqrt x=x^4=x\\cdot x^3=x^2+x$, et en effet $\\left(x^2+x\\right)^2=x^4+x^2=x^2+x+x^2=x$.\n\n**3.** Non : $X$ n'est pas un carré dans $(\\mathbb{Z}/2\\mathbb{Z})(X)$. Si $X=\\left(\\frac AB\\right)^2$ avec $A,B$ polynômes et $B\\neq0$, alors $XB^2=A^2$, de degré impair à gauche et pair à droite. Le Frobenius y est injectif, mais pas surjectif."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications-ex1",
+      "carte": "arith-l2-anneaux-applications",
+      "difficulte": 1,
+      "titre": "Jour de la semaine d'une date",
+      "enonce": "Le 14 juillet 2026 est un mardi. Quel jour de la semaine sera le 14 juillet 2030 ?",
+      "duree_min": 5,
+      "indices": [
+        "Compter les jours écoulés, en repérant les $29$ février franchis, et réduire modulo $7$."
+      ],
+      "reponse_finale": {
+        "question": "Quel jour de la semaine sera le 14 juillet 2030 ?",
+        "propositions": [
+          "Dimanche",
+          "Samedi",
+          "Lundi",
+          "Mardi"
+        ],
+        "bonne": 0
+      },
+      "correction": "Entre le 14 juillet 2026 et le 14 juillet 2030, il y a quatre années de $365$ jours, plus le $29$ février 2028 : $4\\times365+1=1461$ jours. Or $1461=208\\times7+5$ : la date avance de $5$ jours de la semaine, et mardi $+5$ donne dimanche.",
+      "variantes": [
+        {
+          "enonce": "Le 25 décembre 2026 est un vendredi. Quel jour de la semaine sera le 25 décembre 2035 ?",
+          "indices": [
+            "Compter les jours écoulés, en repérant les $29$ février franchis, et réduire modulo $7$."
+          ],
+          "reponse_finale": {
+            "question": "Quel jour de la semaine sera le 25 décembre 2035 ?",
+            "propositions": [
+              "Mardi",
+              "Lundi",
+              "Mercredi",
+              "Vendredi"
+            ],
+            "bonne": 0
+          },
+          "correction": "Entre le 25 décembre 2026 et le 25 décembre 2035, il y a neuf années de $365$ jours, plus les $29$ février 2028 et 2032 : $9\\times365+2=3287$ jours. Or $3287=469\\times7+4$ : la date avance de $4$ jours de la semaine, et vendredi $+4$ donne mardi."
+        },
+        {
+          "enonce": "Le $1^{\\text{er}}$ mars 2027 est un lundi. Quel jour de la semaine sera le $1^{\\text{er}}$ mars 2031 ?",
+          "indices": [
+            "Compter les jours écoulés, en repérant les $29$ février franchis, et réduire modulo $7$."
+          ],
+          "reponse_finale": {
+            "question": "Quel jour de la semaine sera le $1^{\\text{er}}$ mars 2031 ?",
+            "propositions": [
+              "Samedi",
+              "Vendredi",
+              "Dimanche",
+              "Lundi"
+            ],
+            "bonne": 0
+          },
+          "correction": "Entre le $1^{\\text{er}}$ mars 2027 et le $1^{\\text{er}}$ mars 2031, il y a quatre années de $365$ jours, plus le $29$ février 2028 : $4\\times365+1=1461$ jours. Or $1461=208\\times7+5$ : la date avance de $5$ jours de la semaine, et lundi $+5$ donne samedi."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications-ex2",
+      "carte": "arith-l2-anneaux-applications",
+      "difficulte": 2,
+      "titre": "Déchiffrer un chiffrement affine",
+      "enonce": "On code les lettres $A,\\dots,Z$ par $0,\\dots,25$ et on chiffre par $x\\mapsto7x+3$ modulo $26$. Montrer que ce chiffrement est bijectif, et donner la fonction de déchiffrement sous la forme $y\\mapsto a'y+b'$ avec $0\\le a',b'\\le25$.",
+      "duree_min": 10,
+      "indices": [
+        "Calculer l'inverse de $7$ modulo $26$ par l'algorithme d'Euclide étendu.",
+        "Résoudre $y\\equiv7x+3\\pmod{26}$ en $x$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la fonction de déchiffrement ?",
+        "propositions": [
+          "$y\\mapsto15y+7$",
+          "$y\\mapsto15y+23$",
+          "$y\\mapsto7y+23$",
+          "$y\\mapsto19y+7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $26=3\\times7+5$, $7=5+2$, $5=2\\times2+1$, d'où $1=5-2\\times2=3\\times5-2\\times7=3\\times26-11\\times7$. Donc $7^{-1}\\equiv15\\pmod{26}$ (vérification : $7\\times15=105=4\\times26+1$). Comme $7\\wedge26=1$, le chiffrement est bijectif, et\n$$y\\equiv7x+3\\iff x\\equiv15(y-3)=15y-45\\equiv15y+7\\pmod{26}.$$\nLe déchiffrement est $y\\mapsto15y+7$. Vérification : $15(7x+3)+7=105x+52\\equiv x\\pmod{26}$.",
+      "variantes": [
+        {
+          "enonce": "On code les lettres $A,\\dots,Z$ par $0,\\dots,25$ et on chiffre par $x\\mapsto5x+8$ modulo $26$. Montrer que ce chiffrement est bijectif, et donner la fonction de déchiffrement sous la forme $y\\mapsto a'y+b'$ avec $0\\le a',b'\\le25$.",
+          "indices": [
+            "Calculer l'inverse de $5$ modulo $26$ par l'algorithme d'Euclide étendu.",
+            "Résoudre $y\\equiv5x+8\\pmod{26}$ en $x$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la fonction de déchiffrement ?",
+            "propositions": [
+              "$y\\mapsto21y+14$",
+              "$y\\mapsto21y+8$",
+              "$y\\mapsto5y+18$",
+              "$y\\mapsto21y+18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $26=5\\times5+1$, d'où $1=26-5\\times5$. Donc $5^{-1}\\equiv21\\pmod{26}$ (vérification : $5\\times21=105=4\\times26+1$). Comme $5\\wedge26=1$, le chiffrement est bijectif, et\n$$y\\equiv5x+8\\iff x\\equiv21(y-8)=21y-168\\equiv21y+14\\pmod{26}.$$\nLe déchiffrement est $y\\mapsto21y+14$. Vérification : $21(5x+8)+14=105x+182\\equiv x\\pmod{26}$."
+        },
+        {
+          "enonce": "On code les lettres $A,\\dots,Z$ par $0,\\dots,25$ et on chiffre par $x\\mapsto9x+2$ modulo $26$. Montrer que ce chiffrement est bijectif, et donner la fonction de déchiffrement sous la forme $y\\mapsto a'y+b'$ avec $0\\le a',b'\\le25$.",
+          "indices": [
+            "Calculer l'inverse de $9$ modulo $26$ par l'algorithme d'Euclide étendu.",
+            "Résoudre $y\\equiv9x+2\\pmod{26}$ en $x$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la fonction de déchiffrement ?",
+            "propositions": [
+              "$y\\mapsto3y+20$",
+              "$y\\mapsto3y+2$",
+              "$y\\mapsto3y+24$",
+              "$y\\mapsto9y+24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $26=2\\times9+8$, $9=8+1$, d'où $1=9-8=9-(26-2\\times9)=3\\times9-26$. Donc $9^{-1}\\equiv3\\pmod{26}$ (vérification : $9\\times3=27=26+1$). Comme $9\\wedge26=1$, le chiffrement est bijectif, et\n$$y\\equiv9x+2\\iff x\\equiv3(y-2)=3y-6\\equiv3y+20\\pmod{26}.$$\nLe déchiffrement est $y\\mapsto3y+20$. Vérification : $3(9x+2)+20=27x+26\\equiv x\\pmod{26}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications-ex3",
+      "carte": "arith-l2-anneaux-applications",
+      "difficulte": 3,
+      "titre": "Clé de contrôle d'un ISBN",
+      "enonce": "Un numéro ISBN à $10$ chiffres $a_1a_2\\dots a_{10}$, où $a_1,\\dots,a_9\\in\\{0,\\dots,9\\}$ et $a_{10}\\in\\{0,\\dots,10\\}$ (la valeur $10$ étant notée X), est valide si $\\sum_{k=1}^{10}ka_k\\equiv0\\pmod{11}$.\n\n**1.** Montrer que la clé $a_{10}$ est déterminée par $a_1,\\dots,a_9$, et que $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$.\n\n**2.** Montrer que la modification d'un seul chiffre, ou l'échange de deux chiffres distincts, est toujours détectée.\n\n**3.** Calculer la clé du numéro dont les neuf premiers chiffres sont $2$, $8$, $4$, $1$, $2$, $3$, $9$, $0$ et $5$.",
+      "duree_min": 15,
+      "indices": [
+        "$10\\equiv-1\\pmod{11}$.",
+        "Une modification change la somme de $k(a_k'-a_k)$, un échange de $(k-j)(a_j-a_k)$ : utiliser que $11$ est premier."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la clé $a_{10}$ de ce numéro ?",
+        "propositions": [
+          "$5$",
+          "$6$",
+          "$0$",
+          "X"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Comme $10\\equiv-1\\pmod{11}$, la condition s'écrit $\\sum_{k=1}^9ka_k-a_{10}\\equiv0$, soit $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$ ; comme $0\\le a_{10}\\le10$, la clé est le reste de cette somme modulo $11$, déterminé par $a_1,\\dots,a_9$.\n\n**2.** Si l'on remplace $a_k$ par $a_k'\\neq a_k$, la somme change de $k(a_k'-a_k)$, avec $1\\le k\\le10$ et $0<|a_k'-a_k|\\le10$ : aucun des deux facteurs n'est divisible par le nombre premier $11$, donc leur produit non plus (lemme d'Euclide), et la nouvelle somme n'est plus divisible par $11$. Si l'on échange $a_j$ et $a_k$ ($j<k$, $a_j\\neq a_k$), la somme change de $ja_k+ka_j-ja_j-ka_k=(k-j)(a_j-a_k)$, avec $0<k-j<11$ et $0<|a_j-a_k|\\le10$ : même conclusion.\n\n**3.** $\\sum_{k=1}^9ka_k=1\\times2+2\\times8+3\\times4+4\\times1+5\\times2+6\\times3+7\\times9+8\\times0+9\\times5=170$, et $170\\equiv5\\pmod{11}$ : la clé est $5$.",
+      "variantes": [
+        {
+          "enonce": "Un numéro ISBN à $10$ chiffres $a_1a_2\\dots a_{10}$, où $a_1,\\dots,a_9\\in\\{0,\\dots,9\\}$ et $a_{10}\\in\\{0,\\dots,10\\}$ (la valeur $10$ étant notée X), est valide si $\\sum_{k=1}^{10}ka_k\\equiv0\\pmod{11}$.\n\n**1.** Montrer que la clé $a_{10}$ est déterminée par $a_1,\\dots,a_9$, et que $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$.\n\n**2.** Montrer que la modification d'un seul chiffre, ou l'échange de deux chiffres distincts, est toujours détectée.\n\n**3.** Calculer la clé du numéro dont les neuf premiers chiffres sont $2$, $0$, $7$, $1$, $1$, $5$, $8$, $6$ et $4$.",
+          "indices": [
+            "$10\\equiv-1\\pmod{11}$.",
+            "Une modification change la somme de $k(a_k'-a_k)$, un échange de $(k-j)(a_j-a_k)$ : utiliser que $11$ est premier."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la clé $a_{10}$ de ce numéro ?",
+            "propositions": [
+              "$4$",
+              "$7$",
+              "$0$",
+              "X"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Comme $10\\equiv-1\\pmod{11}$, la condition s'écrit $\\sum_{k=1}^9ka_k-a_{10}\\equiv0$, soit $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$ ; comme $0\\le a_{10}\\le10$, la clé est le reste de cette somme modulo $11$, déterminé par $a_1,\\dots,a_9$.\n\n**2.** Si l'on remplace $a_k$ par $a_k'\\neq a_k$, la somme change de $k(a_k'-a_k)$, avec $1\\le k\\le10$ et $0<|a_k'-a_k|\\le10$ : aucun des deux facteurs n'est divisible par le nombre premier $11$, donc leur produit non plus (lemme d'Euclide), et la nouvelle somme n'est plus divisible par $11$. Si l'on échange $a_j$ et $a_k$ ($j<k$, $a_j\\neq a_k$), la somme change de $ja_k+ka_j-ja_j-ka_k=(k-j)(a_j-a_k)$, avec $0<k-j<11$ et $0<|a_j-a_k|\\le10$ : même conclusion.\n\n**3.** $\\sum_{k=1}^9ka_k=1\\times2+2\\times0+3\\times7+4\\times1+5\\times1+6\\times5+7\\times8+8\\times6+9\\times4=202$, et $202\\equiv4\\pmod{11}$ : la clé est $4$."
+        },
+        {
+          "enonce": "Un numéro ISBN à $10$ chiffres $a_1a_2\\dots a_{10}$, où $a_1,\\dots,a_9\\in\\{0,\\dots,9\\}$ et $a_{10}\\in\\{0,\\dots,10\\}$ (la valeur $10$ étant notée X), est valide si $\\sum_{k=1}^{10}ka_k\\equiv0\\pmod{11}$.\n\n**1.** Montrer que la clé $a_{10}$ est déterminée par $a_1,\\dots,a_9$, et que $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$.\n\n**2.** Montrer que la modification d'un seul chiffre, ou l'échange de deux chiffres distincts, est toujours détectée.\n\n**3.** Calculer la clé du numéro dont les neuf premiers chiffres sont $1$, $0$, $1$, $9$, $2$, $8$, $3$, $7$ et $4$.",
+          "indices": [
+            "$10\\equiv-1\\pmod{11}$.",
+            "Une modification change la somme de $k(a_k'-a_k)$, un échange de $(k-j)(a_j-a_k)$ : utiliser que $11$ est premier."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la clé $a_{10}$ de ce numéro ?",
+            "propositions": [
+              "$2$",
+              "$9$",
+              "$0$",
+              "X"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Comme $10\\equiv-1\\pmod{11}$, la condition s'écrit $\\sum_{k=1}^9ka_k-a_{10}\\equiv0$, soit $a_{10}\\equiv\\sum_{k=1}^9ka_k\\pmod{11}$ ; comme $0\\le a_{10}\\le10$, la clé est le reste de cette somme modulo $11$, déterminé par $a_1,\\dots,a_9$.\n\n**2.** Si l'on remplace $a_k$ par $a_k'\\neq a_k$, la somme change de $k(a_k'-a_k)$, avec $1\\le k\\le10$ et $0<|a_k'-a_k|\\le10$ : aucun des deux facteurs n'est divisible par le nombre premier $11$, donc leur produit non plus (lemme d'Euclide), et la nouvelle somme n'est plus divisible par $11$. Si l'on échange $a_j$ et $a_k$ ($j<k$, $a_j\\neq a_k$), la somme change de $ja_k+ka_j-ja_j-ka_k=(k-j)(a_j-a_k)$, avec $0<k-j<11$ et $0<|a_j-a_k|\\le10$ : même conclusion.\n\n**3.** $\\sum_{k=1}^9ka_k=1\\times1+2\\times0+3\\times1+4\\times9+5\\times2+6\\times8+7\\times3+8\\times7+9\\times4=211$, et $211\\equiv2\\pmod{11}$ : la clé est $2$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications-ex4",
+      "carte": "arith-l2-anneaux-applications",
+      "difficulte": 4,
+      "titre": "Déchiffrer un message RSA",
+      "enonce": "Pour le chiffrement RSA avec $p=7$, $q=11$ et la clé publique $(n,e)=(77,7)$ :\n\n**1.** Calculer la clé secrète $d\\in\\{1,\\dots,59\\}$ telle que $ed\\equiv1\\pmod{60}$.\n\n**2.** Déchiffrer le message chiffré $y=5$, c'est-à-dire calculer le reste $x$ de $5^d$ modulo $77$, et vérifier le résultat en le chiffrant de nouveau.",
+      "duree_min": 20,
+      "indices": [
+        "Chercher l'inverse de $7$ modulo $60$ par l'algorithme d'Euclide étendu.",
+        "Pour calculer $5^d$ modulo $77$, calculer séparément modulo $7$ et modulo $11$ (petit théorème de Fermat), puis recoller par le théorème chinois."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont la clé secrète $d$ et le message clair $x$ ?",
+        "propositions": [
+          "$d=43$, $x=26$",
+          "$d=43$, $x=47$",
+          "$d=17$, $x=26$",
+          "$d=13$, $x=5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** On a $(p-1)(q-1)=60$. Euclide : $60=8\\times7+4$, $7=4+3$, $4=3+1$, d'où $1=4-3=2\\times4-7=2\\times60-17\\times7$. Donc $7^{-1}\\equiv-17\\equiv43\\pmod{60}$ (vérification : $7\\times43=301=5\\times60+1$) : $d=43$.\n\n**2.** Modulo $7$ : $5^6\\equiv1$ et $43=7\\times6+1$, donc $5^{43}\\equiv5$. Modulo $11$ : $5^{10}\\equiv1$ et $43=4\\times10+3$, donc $5^{43}\\equiv5^3=125\\equiv4$. On cherche $x\\equiv5\\pmod7$ et $x\\equiv4\\pmod{11}$ : parmi $4,15,26,\\dots$, le nombre $26=3\\times7+5$ convient. Donc $x=26$. Vérification : $26\\equiv5\\pmod7$, donc $26^7\\equiv5^7\\equiv5\\pmod7$ ; $26\\equiv4\\pmod{11}$ et $4^5=1024\\equiv1$, donc $26^7\\equiv4^7\\equiv4^2=16\\equiv5\\pmod{11}$ ; ainsi $26^7\\equiv5\\pmod{77}$.",
+      "variantes": [
+        {
+          "enonce": "Pour le chiffrement RSA avec $p=3$, $q=17$ et la clé publique $(n,e)=(51,5)$ :\n\n**1.** Calculer la clé secrète $d\\in\\{1,\\dots,31\\}$ telle que $ed\\equiv1\\pmod{32}$.\n\n**2.** Déchiffrer le message chiffré $y=6$, c'est-à-dire calculer le reste $x$ de $6^d$ modulo $51$, et vérifier le résultat en le chiffrant de nouveau.",
+          "indices": [
+            "Chercher l'inverse de $5$ modulo $32$ par l'algorithme d'Euclide étendu.",
+            "Pour calculer $6^d$ modulo $51$, calculer séparément modulo $3$ et modulo $17$ (petit théorème de Fermat), puis recoller par le théorème chinois."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont la clé secrète $d$ et le message clair $x$ ?",
+            "propositions": [
+              "$d=13$, $x=27$",
+              "$d=13$, $x=6$",
+              "$d=7$, $x=27$",
+              "$d=19$, $x=12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** On a $(p-1)(q-1)=32$. Euclide : $32=6\\times5+2$, $5=2\\times2+1$, d'où $1=5-2\\times2=5-2(32-6\\times5)=13\\times5-2\\times32$. Donc $5^{-1}\\equiv13\\pmod{32}$ (vérification : $5\\times13=65=2\\times32+1$) : $d=13$.\n\n**2.** Modulo $3$ : $6\\equiv0$, donc $6^{13}\\equiv0$. Modulo $17$ : $6^2=36\\equiv2$, donc $6^4\\equiv4$, $6^{12}\\equiv4^3=64\\equiv13$ et $6^{13}\\equiv13\\times6=78\\equiv10$. On cherche $x\\equiv0\\pmod3$ et $x\\equiv10\\pmod{17}$ : parmi $10,27,44,\\dots$, le nombre $27$ convient. Donc $x=27$. Vérification : $27\\equiv0\\pmod3$, donc $27^5\\equiv0\\equiv6\\pmod3$ ; $27\\equiv10\\pmod{17}$, $10^2=100\\equiv-2$, $10^4\\equiv4$, donc $27^5\\equiv4\\times10=40\\equiv6\\pmod{17}$ ; ainsi $27^5\\equiv6\\pmod{51}$."
+        },
+        {
+          "enonce": "Pour le chiffrement RSA avec $p=5$, $q=13$ et la clé publique $(n,e)=(65,5)$ :\n\n**1.** Calculer la clé secrète $d\\in\\{1,\\dots,47\\}$ telle que $ed\\equiv1\\pmod{48}$.\n\n**2.** Déchiffrer le message chiffré $y=7$, c'est-à-dire calculer le reste $x$ de $7^d$ modulo $65$, et vérifier le résultat en le chiffrant de nouveau.",
+          "indices": [
+            "Chercher l'inverse de $5$ modulo $48$ par l'algorithme d'Euclide étendu.",
+            "Pour calculer $7^d$ modulo $65$, calculer séparément modulo $5$ et modulo $13$ (petit théorème de Fermat), puis recoller par le théorème chinois."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont la clé secrète $d$ et le message clair $x$ ?",
+            "propositions": [
+              "$d=29$, $x=37$",
+              "$d=29$, $x=7$",
+              "$d=19$, $x=37$",
+              "$d=13$, $x=22$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** On a $(p-1)(q-1)=48$. Euclide : $48=9\\times5+3$, $5=3+2$, $3=2+1$, d'où $1=3-2=2\\times3-5=2(48-9\\times5)-5=2\\times48-19\\times5$. Donc $5^{-1}\\equiv-19\\equiv29\\pmod{48}$ (vérification : $5\\times29=145=3\\times48+1$) : $d=29$.\n\n**2.** Modulo $5$ : $7\\equiv2$, $2^4\\equiv1$ et $29=7\\times4+1$, donc $7^{29}\\equiv2$. Modulo $13$ : $7^{12}\\equiv1$ et $29=2\\times12+5$, donc $7^{29}\\equiv7^5$ ; $7^2=49\\equiv10$, $7^4\\equiv100\\equiv9$, $7^5\\equiv63\\equiv11$. On cherche $x\\equiv2\\pmod5$ et $x\\equiv11\\pmod{13}$ : parmi $11,24,37,\\dots$, le nombre $37$ convient. Donc $x=37$. Vérification : $37\\equiv2\\pmod5$, donc $37^5\\equiv2^5=32\\equiv2\\equiv7\\pmod5$ ; $37\\equiv11\\equiv-2\\pmod{13}$, donc $37^5\\equiv-32\\equiv7\\pmod{13}$ ; ainsi $37^5\\equiv7\\pmod{65}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-anneaux-applications-ex5",
+      "carte": "arith-l2-anneaux-applications",
+      "difficulte": 3,
+      "titre": "Factoriser $n$ connaissant $(p-1)(q-1)$",
+      "enonce": "Dans un chiffrement RSA, on suppose connus $n=pq=323$ et $m=(p-1)(q-1)=288$, où $p<q$ sont deux nombres premiers.\n\n**1.** Exprimer $p+q$ en fonction de $n$ et $m$.\n\n**2.** En déduire $p$ et $q$.\n\n**3.** Pour l'exposant public $e=5$, calculer la clé secrète $d\\in\\{1,\\dots,m-1\\}$.",
+      "duree_min": 15,
+      "indices": [
+        "Développer $m=(p-1)(q-1)$.",
+        "$p$ et $q$ sont les racines du polynôme $X^2-(p+q)X+pq$."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont $p$, $q$ et $d$ ?",
+        "propositions": [
+          "$p=17$, $q=19$, $d=173$",
+          "$p=13$, $q=23$, $d=173$",
+          "$p=17$, $q=19$, $d=115$",
+          "$p=11$, $q=29$, $d=173$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $m=pq-(p+q)+1$, donc $p+q=n-m+1$.\n\n**2.** Ici $p+q=323-288+1=36$, et $p$, $q$ sont les racines de $X^2-36X+323$, de discriminant $36^2-4\\times323=4=2^2$ : $p=17$ et $q=19$. Vérification : $17\\times19=323$ et $16\\times18=288$.\n\n**3.** Euclide : $288=57\\times5+3$, $5=3+2$, $3=2+1$, d'où $1=3-2=2\\times3-5=2(288-57\\times5)-5=2\\times288-115\\times5$. Donc $5^{-1}\\equiv-115\\equiv173\\pmod{288}$ (vérification : $5\\times173=865=3\\times288+1$) : $d=173$. Connaître $m$ revient donc à connaître la factorisation de $n$, et la clé secrète s'en déduit : la sécurité de RSA repose sur la difficulté de factoriser $n$.",
+      "variantes": [
+        {
+          "enonce": "Dans un chiffrement RSA, on suppose connus $n=pq=391$ et $m=(p-1)(q-1)=352$, où $p<q$ sont deux nombres premiers.\n\n**1.** Exprimer $p+q$ en fonction de $n$ et $m$.\n\n**2.** En déduire $p$ et $q$.\n\n**3.** Pour l'exposant public $e=5$, calculer la clé secrète $d\\in\\{1,\\dots,m-1\\}$.",
+          "indices": [
+            "Développer $m=(p-1)(q-1)$.",
+            "$p$ et $q$ sont les racines du polynôme $X^2-(p+q)X+pq$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont $p$, $q$ et $d$ ?",
+            "propositions": [
+              "$p=17$, $q=23$, $d=141$",
+              "$p=19$, $q=21$, $d=141$",
+              "$p=17$, $q=23$, $d=211$",
+              "$p=13$, $q=29$, $d=141$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $m=pq-(p+q)+1$, donc $p+q=n-m+1$.\n\n**2.** Ici $p+q=391-352+1=40$, et $p$, $q$ sont les racines de $X^2-40X+391$, de discriminant $40^2-4\\times391=36=6^2$ : $p=17$ et $q=23$. Vérification : $17\\times23=391$ et $16\\times22=352$.\n\n**3.** Euclide : $352=70\\times5+2$, $5=2\\times2+1$, d'où $1=5-2\\times2=5-2(352-70\\times5)=141\\times5-2\\times352$. Donc $5^{-1}\\equiv141\\pmod{352}$ (vérification : $5\\times141=705=2\\times352+1$) : $d=141$. Connaître $m$ revient donc à connaître la factorisation de $n$, et la clé secrète s'en déduit : la sécurité de RSA repose sur la difficulté de factoriser $n$."
+        },
+        {
+          "enonce": "Dans un chiffrement RSA, on suppose connus $n=pq=437$ et $m=(p-1)(q-1)=396$, où $p<q$ sont deux nombres premiers.\n\n**1.** Exprimer $p+q$ en fonction de $n$ et $m$.\n\n**2.** En déduire $p$ et $q$.\n\n**3.** Pour l'exposant public $e=5$, calculer la clé secrète $d\\in\\{1,\\dots,m-1\\}$.",
+          "indices": [
+            "Développer $m=(p-1)(q-1)$.",
+            "$p$ et $q$ sont les racines du polynôme $X^2-(p+q)X+pq$."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont $p$, $q$ et $d$ ?",
+            "propositions": [
+              "$p=19$, $q=23$, $d=317$",
+              "$p=17$, $q=25$, $d=317$",
+              "$p=19$, $q=23$, $d=79$",
+              "$p=13$, $q=29$, $d=317$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $m=pq-(p+q)+1$, donc $p+q=n-m+1$.\n\n**2.** Ici $p+q=437-396+1=42$, et $p$, $q$ sont les racines de $X^2-42X+437$, de discriminant $42^2-4\\times437=16=4^2$ : $p=19$ et $q=23$. Vérification : $19\\times23=437$ et $18\\times22=396$.\n\n**3.** Euclide : $396=79\\times5+1$, d'où $1=396-79\\times5$. Donc $5^{-1}\\equiv-79\\equiv317\\pmod{396}$ (vérification : $5\\times317=1585=4\\times396+1$) : $d=317$. Connaître $m$ revient donc à connaître la factorisation de $n$, et la clé secrète s'en déduit : la sécurité de RSA repose sur la difficulté de factoriser $n$."
+        }
+      ]
+    }
+  ]
+}

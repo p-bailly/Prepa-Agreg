@@ -1,0 +1,303 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l2-generatrices-caracterisation",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-generatrices",
+      "type": "theoreme",
+      "titre": "La fonction génératrice caractérise la loi",
+      "recto": "Définir la fonction génératrice d'une variable aléatoire à valeurs dans $\\mathbb{N}$, donner ses premières propriétés et énoncer qu'elle caractérise la loi.",
+      "cours": "La fonction génératrice range toute la loi de $X$ dans une seule fonction : les probabilités $P(X=n)$ deviennent les coefficients d'une série entière. Comme ces coefficients sont positifs et de somme $1$, la série converge absolument dès que $|t|\\le1$ : $G_X$ est toujours définie sur $[-1,1]$, avec $G_X(1)=1$ et $G_X(0)=P(X=0)$.\n\nLe théorème de caractérisation est l'unicité du développement en série entière : les coefficients se lisent sur les dérivées en $0$, $P(X=n)=\\frac{G_X^{(n)}(0)}{n!}$. Il suffit donc de connaître $G_X$ au voisinage de $0$ (et même sur un intervalle $\\left[0,r\\right[$) pour connaître la loi.\n\n**Méthode.** Pour identifier une loi, calculer $G_X$ (formule de transfert, ou produit pour une somme de variables indépendantes), puis reconnaître une fonction génératrice usuelle : $1-p+pt$ (Bernoulli), $(1-p+pt)^n$ (binomiale), $e^{\\lambda(t-1)}$ (Poisson), $\\frac{pt}{1-(1-p)t}$ (géométrique sur $\\mathbb{N}^*$). Sinon, développer $G_X$ en série entière et lire les coefficients. La valeur $G_X(-1)$ est la probabilité que $X$ soit pair moins la probabilité que $X$ soit impair.\n\n**Pièges.** Le rayon de convergence peut valoir exactement $1$ : rien n'assure alors que $G_X$ soit dérivable en $1$. Connaître quelques valeurs de $G_X$, ou quelques moments, ne suffit pas à déterminer la loi : l'égalité sur tout un intervalle qui contient $0$ ou dont $0$ est une extrémité, elle, suffit.",
+      "hypotheses": [
+        "$X$ et $Y$ sont des variables aléatoires à valeurs dans $\\mathbb{N}$.",
+        "$G_X(t)=G_Y(t)$ pour tout $t$ d'un intervalle $\\left]-r,r\\right[$, avec $0<r\\le1$."
+      ],
+      "hypotheses_pieges": [
+        "$G_X(1)=G_Y(1)$ (à la place de l'égalité sur $\\left]-r,r\\right[$).",
+        "$G_X(t_0)=G_Y(t_0)$ pour un réel $t_0\\in\\left]0,1\\right[$ (à la place de l'égalité sur $\\left]-r,r\\right[$).",
+        "$X$ et $Y$ ont la même espérance et la même variance (à la place de l'égalité des fonctions génératrices)."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$. Sa **fonction génératrice** est $G_X(t)=E\\left(t^X\\right)=\\sum_{n=0}^{+\\infty}P(X=n)\\,t^n$, avec la convention $t^0=1$.\n- La série entière $\\sum P(X=n)t^n$ a un rayon de convergence au moins égal à $1$ et converge normalement sur $[-1,1]$ ; $G_X$ est continue sur $[-1,1]$ et $G_X(1)=1$.\n- $G_X$ est de classe $C^\\infty$ sur $\\left]-1,1\\right[$ et, pour tout $n\\in\\mathbb{N}$, $P(X=n)=\\frac{G_X^{(n)}(0)}{n!}$.\n\n**Caractérisation.** Deux variables aléatoires $X$ et $Y$ à valeurs dans $\\mathbb{N}$ ont la même loi si et seulement si $G_X$ et $G_Y$ coïncident sur un intervalle $\\left]-r,r\\right[$, avec $0<r\\le1$.",
+      "enonce_trous": "Si $X$ est à valeurs dans $\\mathbb{N}$, la série entière $\\sum P(X=n)t^n$ a un rayon de convergence {{1}} ; sa somme $G_X$ est continue sur $[-1,1]$, vérifie $G_X(1)=1$ et, pour tout $n\\in\\mathbb{N}$, $P(X=n)$ est égal à {{2}}. Deux variables $X$ et $Y$ à valeurs dans $\\mathbb{N}$ ont la même loi si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "au moins égal à $1$",
+          "leurres": [
+            "égal à $1$",
+            "strictement supérieur à $1$",
+            "infini"
+          ]
+        },
+        {
+          "reponse": "$\\frac{G_X^{(n)}(0)}{n!}$",
+          "leurres": [
+            "$G_X^{(n)}(0)$",
+            "$\\frac{G_X^{(n)}(1)}{n!}$",
+            "$n!\\,G_X^{(n)}(0)$"
+          ]
+        },
+        {
+          "reponse": "$G_X$ et $G_Y$ coïncident sur un intervalle $\\left]-r,r\\right[$, avec $0<r\\le1$",
+          "leurres": [
+            "$G_X(1)=G_Y(1)$",
+            "$G_X(0)=G_Y(0)$",
+            "les séries $\\sum P(X=n)t^n$ et $\\sum P(Y=n)t^n$ ont le même rayon de convergence"
+          ]
+        }
+      ],
+      "demo": "**Convergence.** Pour $|t|\\le1$, $\\left|P(X=n)t^n\\right|\\le P(X=n)$, terme général d'une série convergente de somme $1$. La série $\\sum P(X=n)t^n$ converge donc normalement sur $[-1,1]$ : son rayon de convergence est au moins $1$, sa somme est continue sur $[-1,1]$ (limite uniforme de fonctions continues) et $G_X(1)=\\sum P(X=n)=1$. Comme $\\left|t^X\\right|\\le1$, la variable $t^X$ a une espérance et la formule de transfert donne $E\\left(t^X\\right)=\\sum P(X=n)t^n$.\n\n**Coefficients.** Sur l'intervalle ouvert de convergence, qui contient $\\left]-1,1\\right[$, la somme d'une série entière est de classe $C^\\infty$ et se dérive terme à terme : $G_X^{(k)}(t)=\\sum_{n\\ge k}\\frac{n!}{(n-k)!}P(X=n)t^{n-k}$. En $t=0$, seul le terme $n=k$ subsiste : $G_X^{(k)}(0)=k!\\,P(X=k)$.\n\n**Caractérisation.** Si $X$ et $Y$ ont la même loi, les deux séries ont les mêmes coefficients, donc $G_X=G_Y$ sur $[-1,1]$. Réciproquement, si $G_X=G_Y$ sur $\\left]-r,r\\right[$, leurs dérivées successives en $0$, qui ne dépendent que des valeurs au voisinage de $0$, coïncident : $P(X=k)=\\frac{G_X^{(k)}(0)}{k!}=\\frac{G_Y^{(k)}(0)}{k!}=P(Y=k)$ pour tout $k$.",
+      "exemple": "Fonctions génératrices usuelles :\n- Bernoulli $\\mathcal{B}(p)$ : $G(t)=1-p+pt$ ; binomiale $\\mathcal{B}(n,p)$ : $G(t)=(1-p+pt)^n$, polynôme, de rayon infini.\n- Poisson $\\mathcal{P}(\\lambda)$ : $G(t)=\\sum_{n\\ge0}e^{-\\lambda}\\frac{\\lambda^n}{n!}t^n=e^{\\lambda(t-1)}$ pour tout réel $t$.\n- Géométrique $\\mathcal{G}(p)$ sur $\\mathbb{N}^*$, avec $0<p<1$ : $G(t)=\\sum_{n\\ge1}p(1-p)^{n-1}t^n=\\frac{pt}{1-(1-p)t}$ pour $|t|<\\frac1{1-p}$.\n\nAinsi, si $G_X(t)=\\frac{(1+t)^3}{8}=\\left(\\frac12+\\frac12t\\right)^3$ sur $\\left]-1,1\\right[$, alors $X$ suit la loi $\\mathcal{B}\\left(3,\\frac12\\right)$.",
+      "contre_exemple": "- **Des moments égaux ne suffisent pas** : $X$ de loi $\\mathcal{P}(1)$ et $Y$ de loi $P(Y=0)=P(Y=2)=\\frac12$ ont la même espérance $1$ et la même variance $1$, mais $G_X(t)=e^{t-1}$ et $G_Y(t)=\\frac{1+t^2}2$ diffèrent : $G_X(0)=e^{-1}\\neq\\frac12=G_Y(0)$.\n- **Une seule valeur ne suffit pas** : $X$ de loi $\\mathcal{B}\\left(\\frac12\\right)$ et $Y$ de loi $P(Y=0)=\\frac23$, $P(Y=2)=\\frac13$ vérifient $G_X\\left(\\frac12\\right)=G_Y\\left(\\frac12\\right)=\\frac34$, mais n'ont pas la même loi.\n- **Le rayon peut valoir exactement $1$** : pour $P(X=n)=\\frac{6}{\\pi^2n^2}$ ($n\\ge1$), la série $\\sum\\frac{6}{\\pi^2n^2}t^n$ diverge pour $t>1$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ et $Y$ sont à valeurs dans $\\mathbb{N}$ et si $G_X(t)=G_Y(t)$ pour tout $t\\in\\left[0,\\frac12\\right]$, alors $X$ et $Y$ ont la même loi.",
+          "vrai": true,
+          "justification": "$H=G_X-G_Y$ est de classe $C^\\infty$ sur $\\left]-1,1\\right[$ et nulle sur $\\left]0,\\frac12\\right[$, donc toutes ses dérivées y sont nulles ; par continuité en $0$, $H^{(n)}(0)=0$ pour tout $n$, d'où $P(X=n)=P(Y=n)$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont à valeurs dans $\\mathbb{N}$ et si $G_X\\left(\\frac12\\right)=G_Y\\left(\\frac12\\right)$, alors $X$ et $Y$ ont la même loi.",
+          "vrai": false,
+          "contre_exemple": "$X$ de loi $\\mathcal{B}\\left(\\frac12\\right)$ et $Y$ de loi $P(Y=0)=\\frac23$, $P(Y=2)=\\frac13$ : $G_X\\left(\\frac12\\right)=\\frac12+\\frac14=\\frac34$ et $G_Y\\left(\\frac12\\right)=\\frac23+\\frac13\\cdot\\frac14=\\frac34$, mais $P(X=1)=\\frac12\\neq0=P(Y=1)$."
+        },
+        {
+          "texte": "Pour toute variable $X$ à valeurs dans $\\mathbb{N}$, le rayon de convergence de $\\sum P(X=n)t^n$ est égal à $1$.",
+          "vrai": false,
+          "contre_exemple": "Si $X$ suit la loi $\\mathcal{B}\\left(\\frac12\\right)$, la série se réduit au polynôme $\\frac12+\\frac12t$, de rayon de convergence infini."
+        },
+        {
+          "texte": "Pour toute variable $X$ à valeurs dans $\\mathbb{N}$, $G_X$ est croissante sur $[0,1]$.",
+          "vrai": true,
+          "justification": "Pour $0\\le s\\le t\\le1$, $G_X(t)-G_X(s)=\\sum P(X=n)\\left(t^n-s^n\\right)\\ge0$, chaque terme étant positif."
+        },
+        {
+          "texte": "Pour toute variable $X$ à valeurs dans $\\mathbb{N}$, la probabilité que $X$ soit pair vaut $\\frac{1+G_X(-1)}{2}$.",
+          "vrai": true,
+          "justification": "$G_X(1)+G_X(-1)=\\sum P(X=n)\\left(1+(-1)^n\\right)=2\\sum_{n\\text{ pair}}P(X=n)$, et $G_X(1)=1$."
+        }
+      ],
+      "prerequis": [
+        "proba-l1-variables-finies-transfert",
+        "proba-l2-discretes-repartition",
+        "ar-l2-series-entieres-dse"
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-moments",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-generatrices",
+      "type": "theoreme",
+      "titre": "Espérance et variance par la fonction génératrice",
+      "recto": "Énoncer le lien entre la dérivabilité en $1$ de la fonction génératrice et l'existence de l'espérance et de la variance, avec les formules.",
+      "cours": "Les moments se lisent sur les dérivées de $G_X$ en $1$ : en dérivant terme à terme $\\sum P(X=n)t^n$, on obtient formellement $G_X'(1)=\\sum nP(X=n)=E(X)$ et $G_X''(1)=\\sum n(n-1)P(X=n)=E\\left(X(X-1)\\right)$, le **moment factoriel** d'ordre $2$. La difficulté est que $1$ peut être au bord de l'intervalle de convergence, où la dérivation terme à terme n'est pas automatique. Le théorème dit qu'elle reste valable grâce à la positivité des coefficients, et que la dérivabilité en $1$ équivaut exactement à l'existence du moment.\n\n**Méthode.** Calculer $G_X$ sous forme close, la dériver une et deux fois, évaluer en $1$, puis écrire $E(X)=G_X'(1)$ et $V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$ (König-Huygens, avec $E(X^2)=E\\left(X(X-1)\\right)+E(X)$). Si $G_X$ est la somme d'une série entière de rayon strictement supérieur à $1$ (lois finies, de Poisson, géométriques), elle est de classe $C^\\infty$ au voisinage de $1$ et $X$ a des moments de tous ordres.\n\n**Pièges.** $G_X''(1)$ n'est pas $E(X^2)$ mais $E(X^2)-E(X)$ : oublier le terme $G_X'(1)$ dans la variance est l'erreur classique. Et $G_X$ est toujours continue sur $[-1,1]$ et de classe $C^\\infty$ sur $\\left]-1,1\\right[$ : cela ne dit rien de l'existence de $E(X)$.",
+      "hypotheses": [
+        "$X$ est une variable aléatoire à valeurs dans $\\mathbb{N}$.",
+        "$G_X$ est dérivable (à gauche) en $1$, pour l'espérance.",
+        "$G_X$ est deux fois dérivable (à gauche) en $1$, pour la variance."
+      ],
+      "hypotheses_pieges": [
+        "$G_X$ est continue en $1$ (à la place de : $G_X$ dérivable en $1$).",
+        "$G_X$ est dérivable sur $\\left[0,1\\right[$ (à la place de : $G_X$ dérivable en $1$).",
+        "Le rayon de convergence de $\\sum P(X=n)t^n$ est au moins égal à $1$ (à la place de : $G_X$ dérivable en $1$).",
+        "$G_X$ est dérivable en $1$ (à la place de : deux fois dérivable en $1$, pour la variance)."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$, de fonction génératrice $G_X$, définie sur $[-1,1]$ ; en $1$, la dérivabilité s'entend à gauche.\n- **Espérance.** $X$ admet une espérance si et seulement si $G_X$ est dérivable en $1$, et alors $E(X)=G_X'(1)$. Dans tous les cas, $G_X'(t)$ tend vers $\\sum_{n\\ge0}nP(X=n)\\in[0,+\\infty]$ quand $t\\to1^-$.\n- **Variance.** $X$ admet un moment d'ordre $2$ si et seulement si $G_X$ est deux fois dérivable en $1$ (c'est-à-dire dérivable sur $\\left]-1,1\\right]$, de dérivée $G_X'$ dérivable en $1$), et alors $E\\left(X(X-1)\\right)=G_X''(1)$ et\n$$V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2.$$",
+      "enonce_trous": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$. Elle admet une espérance si et seulement si {{1}}, et alors $E(X)$ est égal à {{2}}. Si $X$ admet un moment d'ordre $2$, $V(X)$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$G_X$ est dérivable à gauche en $1$",
+          "leurres": [
+            "$G_X$ est continue en $1$",
+            "$G_X(1)=1$",
+            "le rayon de convergence de $\\sum P(X=n)t^n$ est au moins égal à $1$"
+          ]
+        },
+        {
+          "reponse": "$G_X'(1)$",
+          "leurres": [
+            "$G_X(1)$",
+            "$G_X'(0)$",
+            "$G_X'(1)^2$"
+          ]
+        },
+        {
+          "reponse": "$G_X''(1)+G_X'(1)-G_X'(1)^2$",
+          "leurres": [
+            "$G_X''(1)-G_X'(1)^2$",
+            "$G_X''(1)+G_X'(1)$",
+            "$G_X''(1)$"
+          ]
+        }
+      ],
+      "demo": "Notons $p_n=P(X=n)$.\n\n**Lemme.** Si, pour chaque $n$, $t\\mapsto a_n(t)$ est positive et croissante sur $\\left[0,1\\right[$, de limite $a_n$ en $1$, alors $\\sum_na_n(t)\\to\\sum_na_n\\in[0,+\\infty]$ quand $t\\to1^-$. En effet, $\\sum_na_n(t)\\le\\sum_na_n$, et pour tout $N$, $\\sum_na_n(t)\\ge\\sum_{n\\le N}a_n(t)$, qui tend vers $\\sum_{n\\le N}a_n$.\n\n**Espérance.** Pour $t\\in\\left[0,1\\right[$,\n$$\\frac{G_X(1)-G_X(t)}{1-t}=\\sum_{n\\ge1}p_n\\,\\frac{1-t^n}{1-t}=\\sum_{n\\ge1}p_n\\left(1+t+\\dots+t^{n-1}\\right),$$\noù chaque terme est positif, croissant en $t$, de limite $np_n$. Par le lemme, ce taux d'accroissement tend vers $\\sum np_n\\in[0,+\\infty]$ : $G_X$ est dérivable à gauche en $1$ si et seulement si cette somme est finie, c'est-à-dire si $X$ admet une espérance, et alors $G_X'(1)=E(X)$. De même, $G_X'(t)=\\sum np_nt^{n-1}$ tend vers $\\sum np_n$ quand $t\\to1^-$.\n\n**Variance.** Si $G_X$ est deux fois dérivable en $1$, elle y est dérivable, donc $E(X)<+\\infty$. Si $E(X)<+\\infty$, la série dérivée $\\sum np_nt^{n-1}$ converge normalement sur $[-1,1]$, donc $G_X$ est de classe $C^1$ sur $[-1,1]$ avec $G_X'(t)=\\sum np_nt^{n-1}$. Le même calcul, appliqué à $G_X'$, donne $\\frac{G_X'(1)-G_X'(t)}{1-t}\\to\\sum n(n-1)p_n$. Ainsi, quand $E(X)<+\\infty$, $G_X'$ est dérivable en $1$ si et seulement si $\\sum n(n-1)p_n<+\\infty$, ce qui équivaut à $E(X^2)<+\\infty$ puisque $n^2=n(n-1)+n$ ; et alors $G_X''(1)=E\\left(X(X-1)\\right)$ par transfert. Enfin $V(X)=E(X^2)-E(X)^2=E\\left(X(X-1)\\right)+E(X)-E(X)^2$.",
+      "exemple": "- $X\\sim\\mathcal{P}(\\lambda)$ : $G_X(t)=e^{\\lambda(t-1)}$, $G_X'(1)=\\lambda$, $G_X''(1)=\\lambda^2$, donc $E(X)=\\lambda$ et $V(X)=\\lambda^2+\\lambda-\\lambda^2=\\lambda$.\n- $X\\sim\\mathcal{G}(p)$ sur $\\mathbb{N}^*$, avec $q=1-p$ : $G_X(t)=\\frac{pt}{1-qt}$, $G_X'(t)=\\frac{p}{(1-qt)^2}$, $G_X''(t)=\\frac{2pq}{(1-qt)^3}$ ; donc $E(X)=\\frac1p$ et $V(X)=\\frac{2q}{p^2}+\\frac1p-\\frac1{p^2}=\\frac{q}{p^2}$.",
+      "contre_exemple": "- **La continuité en $1$ ne suffit pas** : si $P(X=n)=\\frac{6}{\\pi^2n^2}$ pour $n\\ge1$, $G_X$ est continue sur $[-1,1]$, mais $\\frac{G_X(1)-G_X(t)}{1-t}\\to\\sum_{n\\ge1}\\frac{6}{\\pi^2n}=+\\infty$ : $G_X$ n'est pas dérivable en $1$ et $X$ n'a pas d'espérance.\n- **Une seule dérivée ne suffit pas pour la variance** : si $P(X=n)=\\frac{c}{n^3}$ pour $n\\ge1$, avec $c=\\left(\\sum_{k\\ge1}\\frac1{k^3}\\right)^{-1}$, $X$ a une espérance $G_X'(1)=c\\sum_{n\\ge1}\\frac1{n^2}$, mais $\\sum_{n\\ge1}n(n-1)\\frac{c}{n^3}=+\\infty$ : $G_X'$ n'est pas dérivable en $1$ et $X$ n'a pas de variance.",
+      "affirmations": [
+        {
+          "texte": "Si $G_X$ est de classe $C^\\infty$ sur $\\left]-1,1\\right[$, alors $X$ admet une espérance.",
+          "vrai": false,
+          "contre_exemple": "$G_X$ est toujours de classe $C^\\infty$ sur $\\left]-1,1\\right[$. Pour $P(X=n)=\\frac{6}{\\pi^2n^2}$ ($n\\ge1$), $\\sum nP(X=n)=\\sum\\frac{6}{\\pi^2n}=+\\infty$ : $X$ n'a pas d'espérance."
+        },
+        {
+          "texte": "Si le rayon de convergence de $\\sum P(X=n)t^n$ est strictement supérieur à $1$, alors $X$ admet un moment d'ordre $2$.",
+          "vrai": true,
+          "justification": "L'intervalle ouvert de convergence contient alors $1$ : $G_X$ y est de classe $C^\\infty$, donc deux fois dérivable en $1$, et le théorème s'applique."
+        },
+        {
+          "texte": "Si $X$ admet un moment d'ordre $2$, alors $V(X)=G_X''(1)-G_X'(1)^2$.",
+          "vrai": false,
+          "contre_exemple": "Pour $X\\sim\\mathcal{B}\\left(\\frac12\\right)$, $G_X(t)=\\frac{1+t}2$, $G_X''(1)-G_X'(1)^2=0-\\frac14=-\\frac14$, alors que $V(X)=\\frac14$. Il manque le terme $G_X'(1)$."
+        },
+        {
+          "texte": "Si $X$ admet une espérance, alors $E(X)=\\lim_{t\\to1^-}G_X'(t)$.",
+          "vrai": true,
+          "justification": "Pour $t\\in\\left[0,1\\right[$, $G_X'(t)=\\sum nP(X=n)t^{n-1}$, somme de termes positifs croissants en $t$, qui tend vers $\\sum nP(X=n)=E(X)$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-generatrices-caracterisation",
+        "proba-l1-variables-finies-variance",
+        "proba-l2-discretes-esperance"
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-somme",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-generatrices",
+      "type": "theoreme",
+      "titre": "Fonction génératrice d'une somme indépendante",
+      "recto": "Énoncer la formule donnant la fonction génératrice d'une somme de variables aléatoires indépendantes à valeurs dans $\\mathbb{N}$, avec ses hypothèses.",
+      "cours": "Ajouter des variables indépendantes revient à **multiplier** leurs fonctions génératrices : c'est la traduction du produit de Cauchy, puisque la loi de $X+Y$ est la convolution $P(X+Y=k)=\\sum_jP(X=j)P(Y=k-j)$. Avec la caractérisation de la loi par la fonction génératrice, on obtient la loi d'une somme sans calculer de convolution.\n\n**Méthode.** Écrire la variable étudiée comme somme de variables indépendantes simples (indicatrices, lancers, temps d'attente), multiplier les fonctions génératrices, puis reconnaître une loi connue ou développer en série entière. Exemples types : $\\mathcal{B}(n,p)$ est la loi d'une somme de $n$ variables de Bernoulli de paramètre $p$ indépendantes, d'où $G(t)=(1-p+pt)^n$ ; $\\mathcal{B}(n,p)$ et $\\mathcal{B}(m,p)$ indépendantes donnent $\\mathcal{B}(n+m,p)$ ; $\\mathcal{P}(\\lambda)$ et $\\mathcal{P}(\\mu)$ indépendantes donnent $\\mathcal{P}(\\lambda+\\mu)$.\n\n**Pièges.** L'indépendance mutuelle est indispensable : l'indépendance deux à deux, ou une covariance nulle, ne suffit pas. Il faut le même paramètre $p$ pour additionner deux binomiales. Et la réciproque est fausse : l'égalité $G_{X+Y}=G_XG_Y$ ne prouve pas que $X$ et $Y$ sont indépendantes.",
+      "hypotheses": [
+        "$X_1,\\dots,X_n$ sont des variables aléatoires à valeurs dans $\\mathbb{N}$.",
+        "$X_1,\\dots,X_n$ sont mutuellement indépendantes."
+      ],
+      "hypotheses_pieges": [
+        "$X_1,\\dots,X_n$ sont deux à deux indépendantes (à la place de : mutuellement indépendantes).",
+        "$X_1,\\dots,X_n$ sont deux à deux non corrélées (à la place de : mutuellement indépendantes).",
+        "$X_1,\\dots,X_n$ ont la même loi (à la place de : mutuellement indépendantes)."
+      ],
+      "enonce": "Soient $X_1,\\dots,X_n$ des variables aléatoires à valeurs dans $\\mathbb{N}$, **mutuellement indépendantes**. Alors, pour tout $t\\in[-1,1]$,\n$$G_{X_1+\\dots+X_n}(t)=\\prod_{i=1}^{n}G_{X_i}(t).$$\nEn particulier, si $X$ et $Y$ sont indépendantes, $G_{X+Y}=G_XG_Y$ sur $[-1,1]$, et $P(X+Y=k)=\\sum_{j=0}^{k}P(X=j)P(Y=k-j)$ pour tout $k\\in\\mathbb{N}$. La réciproque est fausse : l'égalité $G_{X+Y}=G_XG_Y$ n'entraîne pas l'indépendance de $X$ et $Y$.",
+      "enonce_trous": "Si $X_1,\\dots,X_n$ sont des variables aléatoires à valeurs dans $\\mathbb{N}$ {{1}}, alors pour tout $t\\in[-1,1]$, $G_{X_1+\\dots+X_n}(t)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "mutuellement indépendantes",
+          "leurres": [
+            "deux à deux indépendantes",
+            "deux à deux non corrélées",
+            "de même loi"
+          ]
+        },
+        {
+          "reponse": "$\\prod_{i=1}^{n}G_{X_i}(t)$",
+          "leurres": [
+            "$\\sum_{i=1}^{n}G_{X_i}(t)$",
+            "$G_{X_1}(t)^n$",
+            "$\\frac1n\\sum_{i=1}^{n}G_{X_i}(t)$"
+          ]
+        }
+      ],
+      "demo": "**Deux variables.** Comme $X$ et $Y$ sont indépendantes, pour tout $k\\in\\mathbb{N}$,\n$$P(X+Y=k)=\\sum_{j=0}^{k}P(X=j,\\,Y=k-j)=\\sum_{j=0}^{k}P(X=j)P(Y=k-j).$$\nPour $|t|\\le1$, les séries $\\sum P(X=j)t^j$ et $\\sum P(Y=j)t^j$ convergent absolument ; leur produit de Cauchy converge donc, et a pour somme le produit des sommes :\n$$G_X(t)G_Y(t)=\\sum_{k\\ge0}\\left(\\sum_{j=0}^{k}P(X=j)P(Y=k-j)\\right)t^k=\\sum_{k\\ge0}P(X+Y=k)t^k=G_{X+Y}(t).$$\n\n**$n$ variables.** Par récurrence sur $n$ : la variable $X_1+\\dots+X_{n-1}$ est indépendante de $X_n$ (lemme des coalitions), donc $G_{X_1+\\dots+X_n}=G_{X_1+\\dots+X_{n-1}}\\,G_{X_n}=\\prod_{i=1}^{n}G_{X_i}$.",
+      "exemple": "Si $X\\sim\\mathcal{P}(\\lambda)$ et $Y\\sim\\mathcal{P}(\\mu)$ sont indépendantes, $G_{X+Y}(t)=e^{\\lambda(t-1)}e^{\\mu(t-1)}=e^{(\\lambda+\\mu)(t-1)}$ : c'est la fonction génératrice de $\\mathcal{P}(\\lambda+\\mu)$, donc $X+Y\\sim\\mathcal{P}(\\lambda+\\mu)$ par caractérisation. De même, si $X\\sim\\mathcal{B}(n,p)$ et $Y\\sim\\mathcal{B}(m,p)$ sont indépendantes, $G_{X+Y}(t)=(1-p+pt)^{n+m}$, donc $X+Y\\sim\\mathcal{B}(n+m,p)$.",
+      "contre_exemple": "- **L'indépendance est nécessaire** : si $X\\sim\\mathcal{B}\\left(\\frac12\\right)$ et $Y=X$, alors $G_{X+Y}(t)=G_{2X}(t)=\\frac{1+t^2}2$, alors que $G_X(t)G_Y(t)=\\frac{(1+t)^2}4$.\n- **Deux à deux ne suffit pas** : soient $X_1,X_2$ indépendantes de loi $\\mathcal{B}\\left(\\frac12\\right)$, et $X_3=1$ si $X_1\\neq X_2$, $X_3=0$ sinon. Les trois variables sont deux à deux indépendantes, de loi $\\mathcal{B}\\left(\\frac12\\right)$, mais $X_1+X_2+X_3$ ne prend que les valeurs $0$ et $2$, avec $P(X_1+X_2+X_3=0)=\\frac14$, alors que le coefficient constant de $\\left(\\frac{1+t}2\\right)^3$ est $\\frac18$.\n- **La réciproque est fausse** : si $(X,Y)$ prend les valeurs $(0,0)$, $(1,1)$, $(2,2)$ avec probabilité $\\frac19$ chacune et $(1,0)$, $(2,1)$, $(0,2)$ avec probabilité $\\frac29$ chacune, $X$ et $Y$ suivent la loi uniforme sur $\\{0,1,2\\}$, et $X+Y$ prend les valeurs $0,1,2,3,4$ avec les probabilités $\\frac19,\\frac29,\\frac39,\\frac29,\\frac19$, comme la somme de deux variables indépendantes uniformes sur $\\{0,1,2\\}$ ; donc $G_{X+Y}=G_XG_Y$. Pourtant $P(X=0,Y=1)=0\\neq\\frac19=P(X=0)P(Y=1)$.",
+      "affirmations": [
+        {
+          "texte": "Si $X\\sim\\mathcal{P}(\\lambda)$ et $Y\\sim\\mathcal{P}(\\mu)$ sont indépendantes, alors $X+Y\\sim\\mathcal{P}(\\lambda+\\mu)$.",
+          "vrai": true,
+          "justification": "$G_{X+Y}(t)=e^{\\lambda(t-1)}e^{\\mu(t-1)}=e^{(\\lambda+\\mu)(t-1)}$, fonction génératrice de $\\mathcal{P}(\\lambda+\\mu)$, qui caractérise la loi."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont à valeurs dans $\\mathbb{N}$ et si $G_{X+Y}=G_XG_Y$ sur $[-1,1]$, alors $X$ et $Y$ sont indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$(X,Y)$ égal à $(0,0)$, $(1,1)$, $(2,2)$ avec probabilité $\\frac19$ chacun et à $(1,0)$, $(2,1)$, $(0,2)$ avec probabilité $\\frac29$ chacun : $X$ et $Y$ sont uniformes sur $\\{0,1,2\\}$, $G_{X+Y}(t)=\\frac{1+2t+3t^2+2t^3+t^4}{9}=\\left(\\frac{1+t+t^2}3\\right)^2$, mais $P(X=0,Y=1)=0\\neq\\frac19$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes à valeurs dans $\\mathbb{N}$, alors $G_{XY}=G_XG_Y$.",
+          "vrai": false,
+          "contre_exemple": "$X=Y=1$ (variables constantes, donc indépendantes) : $G_{XY}(t)=t$, alors que $G_X(t)G_Y(t)=t^2$."
+        },
+        {
+          "texte": "Si $X\\sim\\mathcal{B}(n,p)$ et $Y\\sim\\mathcal{B}(m,q)$ sont indépendantes, avec $p\\neq q$, alors $X+Y$ suit une loi binomiale.",
+          "vrai": false,
+          "contre_exemple": "$n=m=1$, $p=\\frac12$, $q=\\frac14$ : $P(X+Y=0)=\\frac38$, $P(X+Y=1)=\\frac12$, $P(X+Y=2)=\\frac18$. Une loi binomiale portée par $\\{0,1,2\\}$ serait $\\mathcal{B}(2,r)$, avec $r^2=\\frac18$ et $(1-r)^2=\\frac38$, ce qui est impossible puisque $r=\\frac{1}{2\\sqrt2}$ donne $(1-r)^2\\approx0{,}418$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-generatrices-caracterisation",
+        "proba-l1-variables-finies-independance",
+        "proba-t-binomiale",
+        "proba-l2-discretes-independance"
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-applications",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-generatrices",
+      "type": "methode",
+      "titre": "Séries génératrices en dénombrement et en probabilités",
+      "recto": "Expliquer la méthode des séries génératrices pour dénombrer ou calculer une loi, en énonçant les deux résultats sur lesquels elle repose (produit de Cauchy et unicité des coefficients).",
+      "cours": "Une série génératrice range les termes d'une suite comme sur une corde à linge : $a_n$ est accroché à $t^n$. Deux opérations font tout le travail. Le **produit** de deux séries correspond à la convolution $c_n=\\sum_ka_kb_{n-k}$, qui compte les façons de répartir une taille $n$ entre deux choix indépendants : le nombre de solutions de $x+2y=n$ dans $\\mathbb{N}^2$ est ainsi le coefficient de $t^n$ dans $\\frac1{1-t}\\cdot\\frac1{1-t^2}$. L'**identification** des coefficients (unicité du développement en série entière) permet ensuite de lire $a_n$ sur une forme close.\n\nEn probabilités, la série génératrice de la suite $\\left(P(X=n)\\right)$ est la fonction génératrice $G_X$ : la loi d'une somme de variables indépendantes s'obtient par produit, et une relation de récurrence entre les $P(X=n)$, obtenue par exemple en conditionnant par le premier lancer, devient une équation sur $G_X$.\n\n**Méthode.** Pour une récurrence linéaire $u_{n+2}=\\alpha u_{n+1}+\\beta u_n$, on multiplie par $t^{n+2}$ et on somme : $U(t)$ est une fraction rationnelle, qu'on décompose en éléments simples, et $\\frac1{1-at}=\\sum a^nt^n$ donne $u_n$. Pour un dénombrement, on décrit chaque objet comme une suite de choix indépendants et on multiplie les séries de chaque choix.\n\n**Pièges.** Le produit de deux séries n'est pas la série des produits $a_nb_n$. Les calculs se font pour $|t|$ assez petit : il faut s'assurer que les séries ont un rayon de convergence strictement positif (par exemple en majorant $|a_n|$ par $M^n$), ou partir d'une fonction dont on connaît le développement. Enfin, l'égalité des sommes en quelques points ne permet pas d'identifier les coefficients.",
+      "hypotheses": [
+        "Les séries entières $\\sum a_nt^n$ et $\\sum b_nt^n$ ont un rayon de convergence au moins égal à $r>0$.",
+        "L'égalité $\\sum a_nt^n=\\sum b_nt^n$ a lieu pour tout $t\\in\\left]-r,r\\right[$ (pour l'identification)."
+      ],
+      "hypotheses_pieges": [
+        "L'égalité $\\sum a_nt^n=\\sum b_nt^n$ a lieu pour un réel $t_0\\neq0$ (à la place de : pour tout $t\\in\\left]-r,r\\right[$).",
+        "L'égalité $\\sum a_nt^n=\\sum b_nt^n$ a lieu pour $t=0$ (à la place de : pour tout $t\\in\\left]-r,r\\right[$).",
+        "Les termes $a_n$ et $b_n$ sont positifs et $\\sum a_n=\\sum b_n$ (à la place de l'égalité des sommes sur $\\left]-r,r\\right[$)."
+      ],
+      "enonce": "À une suite réelle $(a_n)_{n\\in\\mathbb{N}}$ on associe sa **série génératrice** $A(t)=\\sum_{n\\ge0}a_nt^n$, de rayon de convergence supposé strictement positif.\n- **Produit.** Si $\\sum a_nt^n$ et $\\sum b_nt^n$ ont des rayons de convergence au moins égaux à $r>0$, alors pour $|t|<r$, $A(t)B(t)=\\sum_{n\\ge0}c_nt^n$ avec $c_n=\\sum_{k=0}^{n}a_kb_{n-k}$. Si $a_k$ (resp. $b_k$) compte les objets de taille $k$ d'un premier type (resp. d'un second type), $c_n$ compte les couples formés d'un objet de chaque type dont les tailles ont pour somme $n$.\n- **Identification.** Si $\\sum a_nt^n=\\sum b_nt^n$ pour tout $t$ d'un intervalle $\\left]-r,r\\right[$ avec $r>0$, alors $a_n=b_n$ pour tout $n$.\n\n**Méthode.** (1) Traduire le problème en une égalité entre séries génératrices : produit pour un assemblage de choix indépendants, équation pour une récurrence. (2) Résoudre pour obtenir la série cherchée sous forme close. (3) Développer cette fonction en série entière (fractions rationnelles, $(1+t)^\\alpha$, exponentielle). (4) Identifier les coefficients.",
+      "enonce_trous": "Si les séries entières $\\sum a_nt^n$ et $\\sum b_nt^n$ ont des rayons de convergence au moins égaux à $r>0$, alors pour $|t|<r$, $\\left(\\sum a_nt^n\\right)\\left(\\sum b_nt^n\\right)=\\sum c_nt^n$ avec $c_n$ égal à {{1}}. Si de plus $\\sum a_nt^n=\\sum b_nt^n$ {{2}}, alors $a_n=b_n$ pour tout $n$.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{k=0}^{n}a_kb_{n-k}$",
+          "leurres": [
+            "$a_nb_n$",
+            "$\\sum_{k=0}^{n}a_kb_k$",
+            "$a_0b_n+a_nb_0$"
+          ]
+        },
+        {
+          "reponse": "pour tout $t$ d'un intervalle $\\left]-r,r\\right[$",
+          "leurres": [
+            "pour $t=0$",
+            "pour un réel $t_0\\neq0$ fixé",
+            "pour $t=1$"
+          ]
+        }
+      ],
+      "demo": "**Produit.** Pour $|t|<r$, les séries $\\sum a_nt^n$ et $\\sum b_nt^n$ convergent absolument. Le produit de Cauchy de deux séries absolument convergentes converge absolument et a pour somme le produit des sommes ; son terme général est $\\sum_{k=0}^{n}a_kt^k\\,b_{n-k}t^{n-k}=c_nt^n$. Pour le dénombrement, un couple de taille totale $n$ est formé d'un objet du premier type de taille $k\\in\\{0,\\dots,n\\}$ et d'un objet du second type de taille $n-k$ : il y en a $\\sum_ka_kb_{n-k}=c_n$.\n\n**Identification.** Posons $d_n=a_n-b_n$, de sorte que $D(t)=\\sum d_nt^n=0$ pour $|t|<r$. Si les $d_n$ ne sont pas tous nuls, soit $p$ le plus petit indice tel que $d_p\\neq0$. Pour $|t|<r$, $D(t)=t^p\\,h(t)$ avec $h(t)=\\sum_{n\\ge p}d_nt^{n-p}$, somme d'une série entière de même rayon, donc continue en $0$, avec $h(0)=d_p\\neq0$. Alors $h(t)\\neq0$ pour $t$ assez proche de $0$, donc $D(t)\\neq0$ pour $t\\neq0$ assez petit : contradiction. Donc $a_n=b_n$ pour tout $n$.",
+      "exemple": "Nombre $a_n$ de couples $(x,y)\\in\\mathbb{N}^2$ tels que $x+2y=n$ : c'est le coefficient de $t^n$ dans $\\left(\\sum_xt^x\\right)\\left(\\sum_yt^{2y}\\right)=\\frac{1}{(1-t)(1-t^2)}$, pour $|t|<1$. La décomposition\n$$\\frac{1}{(1-t)^2(1+t)}=\\frac{1}{2(1-t)^2}+\\frac{1}{4(1-t)}+\\frac{1}{4(1+t)}$$\net $\\frac1{(1-t)^2}=\\sum_{n\\ge0}(n+1)t^n$ donnent $a_n=\\frac{n+1}2+\\frac14+\\frac{(-1)^n}4=\\frac{2n+3+(-1)^n}{4}$, c'est-à-dire $a_n=\\left\\lfloor\\frac n2\\right\\rfloor+1$.",
+      "contre_exemple": "- **Le produit n'est pas terme à terme** : $\\frac1{1-t}\\cdot\\frac1{1-t}=\\frac1{(1-t)^2}=\\sum(n+1)t^n$, alors que la série des produits $1\\cdot1$ des coefficients est $\\sum t^n=\\frac1{1-t}$.\n- **Une valeur ne suffit pas** : $A(t)=1$ et $B(t)=2t$ coïncident en $t=\\frac12$, mais leurs coefficients diffèrent.\n- **Un rayon nul interdit la méthode telle quelle** : la série $\\sum n!\\,t^n$ ne converge qu'en $0$ (critère de d'Alembert) ; elle n'a de somme sur aucun intervalle $\\left]-r,r\\right[$.",
+      "affirmations": [
+        {
+          "texte": "Pour tous entiers naturels $m$, $p$ et $n$, $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}=\\binom{m+p}n$, avec la convention $\\binom ab=0$ si $b>a$.",
+          "vrai": true,
+          "justification": "C'est l'égalité des coefficients de $t^n$ dans $(1+t)^m(1+t)^p=(1+t)^{m+p}$, le membre de gauche étant donné par le produit de Cauchy."
+        },
+        {
+          "texte": "Si $\\left(\\sum a_nt^n\\right)\\left(\\sum b_nt^n\\right)=\\sum c_nt^n$, alors $c_n=a_nb_n$ pour tout $n$.",
+          "vrai": false,
+          "contre_exemple": "$a_n=b_n=1$ pour tout $n$ : le produit vaut $\\frac1{(1-t)^2}=\\sum(n+1)t^n$, donc $c_1=2\\neq1=a_1b_1$."
+        },
+        {
+          "texte": "Si $\\sum a_nt^n=\\sum b_nt^n$ pour tout $t\\in\\left]0,r\\right[$, avec $r>0$, alors $a_n=b_n$ pour tout $n$.",
+          "vrai": true,
+          "justification": "La démonstration par le premier coefficient non nul s'applique telle quelle en faisant tendre $t$ vers $0$ par valeurs positives."
+        },
+        {
+          "texte": "Si deux séries entières de rayon au moins égal à $1$ ont la même somme en $t=\\frac12$ et en $t=\\frac13$, alors leurs coefficients sont égaux.",
+          "vrai": false,
+          "contre_exemple": "$\\left(t-\\frac12\\right)\\left(t-\\frac13\\right)=\\frac16-\\frac56t+t^2$ et la série nulle ont la même somme $0$ en $\\frac12$ et en $\\frac13$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-generatrices-somme",
+        "proba-t-binomiale-denombrement"
+      ]
+    }
+  ]
+}

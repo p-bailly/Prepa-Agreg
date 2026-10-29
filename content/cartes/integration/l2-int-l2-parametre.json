@@ -1,0 +1,537 @@
+{
+  "cartes": [
+    {
+      "id": "int-l2-parametre-segment",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Continuité et dérivation sous le signe somme sur un segment",
+      "recto": "Énoncer les théorèmes de continuité et de dérivation d'une intégrale à paramètre sur un segment, avec leurs hypothèses.",
+      "cours": "Une intégrale à paramètre est une fonction de la forme $F(x)=\\int_a^bf(x,t)\\,\\mathrm{d}t$ : on intègre en $t$, et le résultat dépend de $x$. La question est de savoir si les propriétés de $f$ par rapport à $x$ (continuité, dérivabilité) passent à $F$, c'est-à-dire si l'on peut échanger limite (ou dérivée) et intégrale.\n\nSur un **segment** $[a,b]$, la réponse est simple : il suffit que $f$ soit continue **par rapport au couple** $(x,t)$. L'outil est la continuité uniforme de $f$ sur les produits $[\\alpha,\\beta]\\times[a,b]$, fermés et bornés (théorème de Heine). Pour dériver, on demande que $\\frac{\\partial f}{\\partial x}$ existe et soit, elle aussi, continue sur $J\\times[a,b]$ : c'est la **formule de Leibniz** $F'(x)=\\int_a^b\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t$.\n\nMéthode : on vérifie la continuité de $f$ et de $\\frac{\\partial f}{\\partial x}$ comme fonctions de deux variables (en général par opérations sur des fonctions usuelles), on dérive sous l'intégrale, puis on calcule $F'$ et l'on intègre en $x$. C'est une technique puissante pour calculer des intégrales qui n'ont pas de primitive simple, par exemple $\\int_0^1\\frac{t^2-1}{\\ln t}\\,\\mathrm{d}t=\\ln3$. Quand une borne dépend aussi de $x$, on se ramène à un segment fixe par le changement de variable $t=a+(x-a)s$ ; on obtient $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_a^xf(x,t)\\,\\mathrm{d}t=f(x,x)+\\int_a^x\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t$, en n'oubliant pas le terme de bord $f(x,x)$.\n\nPièges : la continuité de $f$ par rapport à chaque variable séparément ne suffit pas ; l'existence de $\\frac{\\partial f}{\\partial x}$ sans continuité ne suffit pas non plus. Et ce théorème ne vaut que sur un segment : sur un intervalle non borné, ou si $f$ n'est pas bornée près d'une borne, il faut une hypothèse de domination (cartes suivantes).",
+      "hypotheses": [
+        "$f$ est continue sur $J\\times[a,b]$ (continuité par rapport au couple $(x,t)$).",
+        "Pour la dérivation : $\\frac{\\partial f}{\\partial x}$ existe et est continue sur $J\\times[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "$x\\mapsto f(x,t)$ est continue pour chaque $t$ et $t\\mapsto f(x,t)$ est continue pour chaque $x$ (continuité séparée, à la place de la continuité sur $J\\times[a,b]$).",
+        "Pour la dérivation : $\\frac{\\partial f}{\\partial x}$ existe en tout point de $J\\times[a,b]$ (sans être continue)."
+      ],
+      "enonce": "Soient $J$ un intervalle de $\\mathbb{R}$, $a<b$ deux réels et $f:J\\times[a,b]\\to\\mathbb{K}$ ($\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$). Pour $x\\in J$, on pose $F(x)=\\int_a^bf(x,t)\\,\\mathrm{d}t$.\n\n**Continuité.** Si $f$ est continue sur $J\\times[a,b]$, alors $F$ est continue sur $J$.\n\n**Dérivation.** Si de plus $\\frac{\\partial f}{\\partial x}$ existe et est continue sur $J\\times[a,b]$, alors $F$ est de classe $\\mathcal{C}^1$ sur $J$ et, pour tout $x\\in J$,\n$$F'(x)=\\int_a^b\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t.$$",
+      "enonce_trous": "Soient $J$ un intervalle, $a<b$ et $f$ {{1}} sur $J\\times[a,b]$. Alors $F:x\\mapsto\\int_a^bf(x,t)\\,\\mathrm{d}t$ est continue sur $J$. Si de plus $\\frac{\\partial f}{\\partial x}$ {{2}} sur $J\\times[a,b]$, alors $F$ est de classe $\\mathcal{C}^1$ sur $J$ et {{3}} pour tout $x\\in J$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "bornée",
+            "continue par rapport à chaque variable séparément",
+            "continue par rapport à $x$ pour chaque $t$"
+          ]
+        },
+        {
+          "reponse": "existe et est continue",
+          "leurres": [
+            "existe",
+            "existe et est continue par rapport à $t$ pour chaque $x$",
+            "existe et est continue par rapport à $x$ pour chaque $t$"
+          ]
+        },
+        {
+          "reponse": "$F'(x)=\\int_a^b\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t$",
+          "leurres": [
+            "$F'(x)=\\int_a^b\\frac{\\partial f}{\\partial t}(x,t)\\,\\mathrm{d}t$",
+            "$F'(x)=\\frac{\\partial f}{\\partial x}(x,b)-\\frac{\\partial f}{\\partial x}(x,a)$",
+            "$F'(x)=(b-a)\\frac{\\partial f}{\\partial x}(x,a)$"
+          ]
+        }
+      ],
+      "demo": "Soit $x_0\\in J$. Choisissons un segment $K=[\\alpha,\\beta]\\subset J$ qui contient $x_0$ et qui est un voisinage de $x_0$ dans $J$ (si $x_0$ est une extrémité de $J$, il en est une de $K$).\n\n**Continuité.** $f$ est continue sur $K\\times[a,b]$, partie fermée et bornée de $\\mathbb{R}^2$, donc uniformément continue (théorème de Heine). Soit $\\varepsilon>0$ : il existe $\\eta>0$ tel que, pour $x\\in K$ avec $|x-x_0|\\le\\eta$ et pour tout $t\\in[a,b]$, $|f(x,t)-f(x_0,t)|\\le\\varepsilon$. Alors\n$$|F(x)-F(x_0)|\\le\\int_a^b|f(x,t)-f(x_0,t)|\\,\\mathrm{d}t\\le(b-a)\\varepsilon.$$\nDonc $F$ est continue en $x_0$.\n\n**Dérivation.** Supposons $f$ à valeurs réelles (sinon, on raisonne sur les parties réelle et imaginaire). Pour $x\\in K$, $x\\neq x_0$, et $t\\in[a,b]$, l'égalité des accroissements finis appliquée à $u\\mapsto f(u,t)$ donne $c_{x,t}$ entre $x_0$ et $x$ tel que $\\frac{f(x,t)-f(x_0,t)}{x-x_0}=\\frac{\\partial f}{\\partial x}(c_{x,t},t)$. Comme $\\frac{\\partial f}{\\partial x}$ est uniformément continue sur $K\\times[a,b]$, pour $\\varepsilon>0$ il existe $\\eta>0$ tel que $|x-x_0|\\le\\eta$ entraîne $\\left|\\frac{\\partial f}{\\partial x}(c_{x,t},t)-\\frac{\\partial f}{\\partial x}(x_0,t)\\right|\\le\\varepsilon$ pour tout $t$ (car $|c_{x,t}-x_0|\\le|x-x_0|$). D'où\n$$\\left|\\frac{F(x)-F(x_0)}{x-x_0}-\\int_a^b\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t\\right|\\le(b-a)\\varepsilon.$$\nAinsi $F'(x_0)=\\int_a^b\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t$. Enfin $F'$ est continue par la première partie, appliquée à la fonction continue $\\frac{\\partial f}{\\partial x}$.",
+      "exemple": "Pour $x>0$ et $t\\in[0,1]$, posons $f(x,t)=t^x$ (avec $f(x,0)=0$). Les fonctions $f$ et $\\frac{\\partial f}{\\partial x}(x,t)=t^x\\ln t$ (nulle en $t=0$) sont continues sur $\\left]0,+\\infty\\right[\\times[0,1]$. Donc $F(x)=\\int_0^1t^x\\,\\mathrm{d}t=\\frac1{x+1}$ est de classe $\\mathcal{C}^1$ et\n$$\\int_0^1t^x\\ln t\\,\\mathrm{d}t=F'(x)=-\\frac1{(x+1)^2}.$$\nPar exemple $\\int_0^1t\\ln t\\,\\mathrm{d}t=-\\frac14$.",
+      "contre_exemple": "- **La continuité séparée ne suffit pas.** Soit $f(x,t)=\\frac{2x^2t}{(x^2+t^2)^2}$ pour $(x,t)\\neq(0,0)$ et $f(0,0)=0$, sur $\\mathbb{R}\\times[0,1]$. Pour chaque $t$, $x\\mapsto f(x,t)$ est continue, et pour chaque $x$, $t\\mapsto f(x,t)$ est continue ; mais $f$ n'est pas continue en $(0,0)$ ($f(x,x)=\\frac1{2x}$). Pour $x\\neq0$, $F(x)=\\left[-\\frac{x^2}{x^2+t^2}\\right]_0^1=\\frac1{1+x^2}$, alors que $F(0)=0$ : $F$ n'est pas continue en $0$.\n- **L'existence de $\\frac{\\partial f}{\\partial x}$ ne suffit pas.** Soit $f(x,t)=te^{-t/\\sqrt x}$ pour $x>0$ et $f(x,t)=0$ pour $x\\le0$, sur $\\mathbb{R}\\times[0,1]$. Elle est continue ($|f(x,t)|\\le\\sqrt x\\sup_{s\\ge0}se^{-s}$ pour $x>0$) et $\\frac{\\partial f}{\\partial x}$ existe partout, avec $\\frac{\\partial f}{\\partial x}(0,t)=\\lim_{x\\to0^+}\\frac{te^{-t/\\sqrt x}}{x}=0$. Pourtant $F(x)=0$ pour $x\\le0$ et, pour $x>0$, $F(x)=x\\left(1-\\left(1+\\frac1{\\sqrt x}\\right)e^{-1/\\sqrt x}\\right)$, donc $\\frac{F(x)}x\\to1$ quand $x\\to0^+$ : $F$ n'est pas dérivable en $0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $\\mathbb{R}\\times[0,1]$, alors $x\\mapsto\\int_0^1f(x,t)\\,\\mathrm{d}t$ est continue sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "C'est le théorème de continuité sur un segment, avec $J=\\mathbb{R}$."
+        },
+        {
+          "texte": "Si $x\\mapsto f(x,t)$ est continue sur $\\mathbb{R}$ pour tout $t\\in[0,1]$ et $t\\mapsto f(x,t)$ est continue sur $[0,1]$ pour tout $x$, alors $x\\mapsto\\int_0^1f(x,t)\\,\\mathrm{d}t$ est continue sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,t)=\\frac{2x^2t}{(x^2+t^2)^2}$ (et $f(0,0)=0$) est séparément continue, mais son intégrale vaut $\\frac1{1+x^2}$ pour $x\\neq0$ et $0$ pour $x=0$."
+        },
+        {
+          "texte": "Pour tout réel $x$, $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_0^xe^{xt}\\,\\mathrm{d}t=\\int_0^xte^{xt}\\,\\mathrm{d}t$.",
+          "vrai": false,
+          "contre_exemple": "Il manque le terme de bord $e^{x\\cdot x}=e^{x^2}$. En $x=0$ : $G(x)=\\int_0^xe^{xt}\\,\\mathrm{d}t$ vaut $\\frac{e^{x^2}-1}x=x+\\frac{x^3}2+\\dots$ pour $x\\neq0$ (et $G(0)=0$), donc $G'(0)=1$, alors que le membre de droite est nul en $x=0$."
+        },
+        {
+          "texte": "Si $f$ et $\\frac{\\partial f}{\\partial x}$ sont continues sur $J\\times[a,b]$, alors $x\\mapsto\\int_a^bf(x,t)\\,\\mathrm{d}t$ est de classe $\\mathcal{C}^1$ sur $J$.",
+          "vrai": true,
+          "justification": "C'est le théorème de dérivation sur un segment (formule de Leibniz)."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-continuite-heine",
+        "ar-l1-taf",
+        "int-l1-riemann-cpm"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-continuite",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Continuité sous l'intégrale par domination",
+      "recto": "Énoncer le théorème de continuité d'une intégrale à paramètre sur un intervalle quelconque, avec ses hypothèses.",
+      "cours": "Sur un intervalle quelconque $I$ (non borné, ou ouvert avec une fonction non bornée près d'une borne), la continuité de $f$ ne suffit plus : de la « masse » peut s'échapper à l'infini. Ainsi $\\int_0^{+\\infty}xe^{-xt}\\,\\mathrm{d}t=1$ pour tout $x>0$, alors que la fonction intégrée tend vers $0$ quand $x\\to0^+$ : la masse $1$ s'étale de plus en plus loin.\n\nL'hypothèse qui empêche ce phénomène est la **domination** : une même fonction $g$, intégrable sur $I$ et **indépendante de $x$**, majore $|f(x,t)|$. La preuve combine la caractérisation séquentielle de la continuité et le théorème de convergence dominée (admis au programme). La même preuve donne une limite en un point adhérent à $A$ ou en $\\pm\\infty$ : si $f(x,t)\\to\\ell(t)$ pour chaque $t$, avec $\\ell$ continue par morceaux, et si la domination a lieu, alors $F(x)\\to\\int_I\\ell(t)\\,\\mathrm{d}t$.\n\nMéthode : on majore $|f(x,t)|$ en faisant disparaître $x$, souvent en se restreignant à $x\\in[a,b]$ ou $x\\ge a>0$, puisque la continuité est une propriété locale : il suffit de dominer sur chaque segment (ou sur chaque $\\left[a,+\\infty\\right[$) contenu dans l'ensemble des paramètres. Par exemple, pour $\\int_0^{+\\infty}\\frac{e^{-xt}}{1+t^2}\\,\\mathrm{d}t$, la majoration $\\frac{e^{-xt}}{1+t^2}\\le\\frac1{1+t^2}$ vaut pour tout $x\\ge0$.\n\nPièges : l'intégrabilité de $t\\mapsto f(x,t)$ pour chaque $x$ ne suffit pas, ni une majoration par une fonction bornée non intégrable ; la fonction dominante ne doit pas dépendre de $x$. Et la continuité ne donne pas la dérivabilité : $\\int_0^{+\\infty}\\frac{\\cos(xt)}{1+t^2}\\,\\mathrm{d}t$ est continue mais vaut $\\frac\\pi2e^{-|x|}$, qui n'est pas dérivable en $0$.",
+      "hypotheses": [
+        "Pour tout $t\\in I$, $x\\mapsto f(x,t)$ est continue sur $A$.",
+        "Pour tout $x\\in A$, $t\\mapsto f(x,t)$ est continue par morceaux sur $I$.",
+        "Domination : $|f(x,t)|\\le g(t)$ pour tout $(x,t)\\in A\\times I$, avec $g$ intégrable sur $I$ et indépendante de $x$."
+      ],
+      "hypotheses_pieges": [
+        "Pour tout $x\\in A$, $t\\mapsto f(x,t)$ est intégrable sur $I$ (à la place de la domination par une même fonction $g$).",
+        "$|f(x,t)|\\le g(t)$ avec $g$ continue par morceaux et bornée sur $I$ (à la place de intégrable).",
+        "$\\int_I|f(x,t)|\\,\\mathrm{d}t\\le M$ pour tout $x\\in A$ (intégrales uniformément bornées, à la place de la domination)."
+      ],
+      "enonce": "Soient $A$ une partie de $\\mathbb{R}^n$ (par exemple un intervalle de $\\mathbb{R}$), $I$ un intervalle de $\\mathbb{R}$ et $f:A\\times I\\to\\mathbb{K}$. On suppose :\n- pour tout $t\\in I$, $x\\mapsto f(x,t)$ est continue sur $A$ ;\n- pour tout $x\\in A$, $t\\mapsto f(x,t)$ est continue par morceaux sur $I$ ;\n- **domination** : il existe $g:I\\to\\mathbb{R}_+$ continue par morceaux et intégrable sur $I$ telle que $|f(x,t)|\\le g(t)$ pour tout $(x,t)\\in A\\times I$.\n\nAlors, pour tout $x\\in A$, $t\\mapsto f(x,t)$ est intégrable sur $I$, et $F:x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est continue sur $A$.\n\nQuand $A$ est un intervalle, il suffit que la domination ait lieu sur chaque segment $K\\subset A$, avec une fonction $g_K$ qui peut dépendre de $K$.",
+      "enonce_trous": "Soient $A\\subset\\mathbb{R}^n$, $I$ un intervalle et $f:A\\times I\\to\\mathbb{K}$ continue par rapport à $x$ pour tout $t$ et continue par morceaux par rapport à $t$ pour tout $x$. S'il existe une fonction $g$ {{1}} telle que {{2}} pour tout $(x,t)\\in A\\times I$, alors $F:x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est {{3}} sur $A$.",
+      "trous": [
+        {
+          "reponse": "intégrable sur $I$",
+          "leurres": [
+            "bornée sur $I$",
+            "continue sur $I$",
+            "positive sur $I$"
+          ]
+        },
+        {
+          "reponse": "$|f(x,t)|\\le g(t)$",
+          "leurres": [
+            "$f(x,t)\\le g(t)$",
+            "$|f(x,t)|^2\\le g(t)$",
+            "$\\left|\\int_If(x,t)\\,\\mathrm{d}t\\right|\\le\\int_Ig(t)\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "continue",
+          "leurres": [
+            "dérivable",
+            "lipschitzienne",
+            "uniformément continue"
+          ]
+        }
+      ],
+      "demo": "**Intégrabilité.** Pour $x\\in A$, $t\\mapsto f(x,t)$ est continue par morceaux et $|f(x,t)|\\le g(t)$, avec $g$ intégrable : par comparaison, $t\\mapsto f(x,t)$ est intégrable sur $I$, et $F$ est bien définie.\n\n**Continuité.** Soient $x_0\\in A$ et $(x_k)$ une suite de points de $A$ qui tend vers $x_0$. Posons $\\varphi_k(t)=f(x_k,t)$. Chaque $\\varphi_k$ est continue par morceaux sur $I$ ; pour tout $t$, $\\varphi_k(t)\\to f(x_0,t)$ par continuité de $x\\mapsto f(x,t)$, et la limite $t\\mapsto f(x_0,t)$ est continue par morceaux ; enfin $|\\varphi_k(t)|\\le g(t)$ avec $g$ intégrable. Le théorème de convergence dominée (admis) donne\n$$F(x_k)=\\int_I\\varphi_k(t)\\,\\mathrm{d}t\\longrightarrow\\int_If(x_0,t)\\,\\mathrm{d}t=F(x_0).$$\nPar la caractérisation séquentielle de la continuité, $F$ est continue en $x_0$.\n\n**Domination locale.** Si $A$ est un intervalle et $x_0\\in A$, on choisit un segment $K\\subset A$ voisinage de $x_0$ dans $A$ ; ce qui précède, appliqué à $K$ et $g_K$, montre que $F$ restreinte à $K$ est continue en $x_0$, donc $F$ aussi.",
+      "exemple": "$F(x)=\\int_0^{+\\infty}\\frac{\\cos(xt)}{1+t^2}\\,\\mathrm{d}t$ est continue sur $\\mathbb{R}$ : pour tout $t\\ge0$, $x\\mapsto\\frac{\\cos(xt)}{1+t^2}$ est continue, et $\\left|\\frac{\\cos(xt)}{1+t^2}\\right|\\le\\frac1{1+t^2}$, fonction intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$. En particulier $F(x)\\to F(0)=\\frac\\pi2$ quand $x\\to0$. (On peut montrer que $F(x)=\\frac\\pi2e^{-|x|}$.)",
+      "contre_exemple": "- **Sans domination, la conclusion tombe.** Pour $x\\ge0$ et $t\\ge0$, soit $f(x,t)=xe^{-xt}$. Pour chaque $t$, $x\\mapsto f(x,t)$ est continue ; pour chaque $x$, $t\\mapsto f(x,t)$ est intégrable, et $\\int_0^{+\\infty}xe^{-xt}\\,\\mathrm{d}t=1$ si $x>0$, $0$ si $x=0$. La fonction $F$ n'est pas continue en $0$. Aucune domination n'est possible : $\\sup_{x\\ge0}xe^{-xt}=\\frac1{et}$ pour $t>0$, qui n'est pas intégrable. Le même exemple, restreint à $x\\in[0,1]$, montre qu'une majoration par la constante $1$ (bornée, continue, positive, mais non intégrable sur $\\left[0,+\\infty\\right[$) ne suffit pas.",
+      "affirmations": [
+        {
+          "texte": "$x\\mapsto\\int_0^{+\\infty}\\frac{\\sin(xt)}{1+t^2}\\,\\mathrm{d}t$ est continue sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "$\\left|\\frac{\\sin(xt)}{1+t^2}\\right|\\le\\frac1{1+t^2}$, intégrable sur $\\left[0,+\\infty\\right[$ et indépendante de $x$."
+        },
+        {
+          "texte": "Si, pour tout $x\\in A$, $t\\mapsto f(x,t)$ est intégrable sur $I$ et si, pour tout $t$, $x\\mapsto f(x,t)$ est continue, alors $x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est continue sur $A$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,t)=xe^{-xt}$ sur $\\left[0,+\\infty\\right[\\times\\left[0,+\\infty\\right[$ : l'intégrale vaut $1$ pour $x>0$ et $0$ pour $x=0$."
+        },
+        {
+          "texte": "$x\\mapsto\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t$ est continue sur $\\left[0,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "En $x=0$, $\\int_0^{+\\infty}1\\,\\mathrm{d}t$ diverge : la fonction n'est définie que sur $\\left]0,+\\infty\\right[$, où elle vaut $\\frac1x$, qui tend vers $+\\infty$ en $0^+$."
+        },
+        {
+          "texte": "Si $A$ est un intervalle et si, pour chaque segment $K\\subset A$, il existe $g_K$ intégrable sur $I$ avec $|f(x,t)|\\le g_K(t)$ pour $x\\in K$ (les autres hypothèses étant vérifiées), alors $x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est continue sur $A$.",
+          "vrai": true,
+          "justification": "La continuité est une propriété locale : chaque point de $A$ a un voisinage dans $A$ qui est un segment, sur lequel le théorème s'applique."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-segment",
+        "ar-l1-continuite-sequentielle",
+        "int-l2-generalisees-dominee"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-derivation",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Dérivation sous l'intégrale par domination",
+      "recto": "Énoncer le théorème de dérivation d'une intégrale à paramètre sur un intervalle quelconque, avec ses hypothèses.",
+      "cours": "Pour dériver $F(x)=\\int_If(x,t)\\,\\mathrm{d}t$ sous le signe somme sur un intervalle quelconque, c'est la **dérivée partielle** $\\frac{\\partial f}{\\partial x}$ qu'il faut dominer par une fonction intégrable indépendante de $x$ ; il faut aussi que $t\\mapsto f(x,t)$ soit intégrable pour que $F$ existe. La preuve applique la convergence dominée aux taux d'accroissement, que l'inégalité des accroissements finis majore par la fonction dominante.\n\nEn itérant, on obtient la classe $\\mathcal{C}^k$ : si $\\frac{\\partial^jf}{\\partial x^j}$ existe pour $j\\le k$, continue par rapport à $x$ et continue par morceaux par rapport à $t$, si $t\\mapsto\\frac{\\partial^jf}{\\partial x^j}(x,t)$ est intégrable pour $j\\le k-1$ et si $\\frac{\\partial^kf}{\\partial x^k}$ est dominée (au moins sur chaque segment), alors $F$ est de classe $\\mathcal{C}^k$ et $F^{(k)}(x)=\\int_I\\frac{\\partial^kf}{\\partial x^k}(x,t)\\,\\mathrm{d}t$.\n\nMéthode type pour calculer une intégrale : on dérive sous le signe somme, on calcule $F'$ explicitement, puis on intègre en $x$ en fixant la constante par une valeur connue ($F(0)$, ou la limite de $F$ en $+\\infty$ obtenue par convergence dominée). La domination est souvent seulement locale : pour $\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t$, on domine $te^{-xt}$ par $te^{-at}$ pour $x\\ge a>0$, ce qui suffit pour dériver sur $\\left]0,+\\infty\\right[$, car la dérivabilité est locale.\n\nPièges : dominer $f$ ne suffit pas, c'est $\\frac{\\partial f}{\\partial x}$ qu'il faut dominer ; savoir que chaque $t\\mapsto\\frac{\\partial f}{\\partial x}(x,t)$ est intégrable ne suffit pas non plus ; et la fonction dominante ne doit pas dépendre de $x$.",
+      "hypotheses": [
+        "Pour tout $x\\in J$, $t\\mapsto f(x,t)$ est continue par morceaux et intégrable sur $I$.",
+        "$\\frac{\\partial f}{\\partial x}$ existe sur $J\\times I$, est continue par rapport à $x$ et continue par morceaux par rapport à $t$.",
+        "Domination : $\\left|\\frac{\\partial f}{\\partial x}(x,t)\\right|\\le h(t)$ pour tout $(x,t)\\in J\\times I$, avec $h$ intégrable sur $I$ et indépendante de $x$."
+      ],
+      "hypotheses_pieges": [
+        "Domination de $f$ seulement : $|f(x,t)|\\le g(t)$ avec $g$ intégrable (à la place de la domination de $\\frac{\\partial f}{\\partial x}$).",
+        "Pour tout $x\\in J$, $t\\mapsto\\frac{\\partial f}{\\partial x}(x,t)$ est intégrable sur $I$ (à la place de la domination par une même fonction $h$)."
+      ],
+      "enonce": "Soient $J$ et $I$ deux intervalles de $\\mathbb{R}$ et $f:J\\times I\\to\\mathbb{K}$. On suppose :\n- pour tout $x\\in J$, $t\\mapsto f(x,t)$ est continue par morceaux et intégrable sur $I$ ;\n- $\\frac{\\partial f}{\\partial x}$ existe sur $J\\times I$ ; elle est continue par rapport à $x$ (pour tout $t$) et continue par morceaux par rapport à $t$ (pour tout $x$) ;\n- **domination** : il existe $h:I\\to\\mathbb{R}_+$ continue par morceaux et intégrable sur $I$ telle que $\\left|\\frac{\\partial f}{\\partial x}(x,t)\\right|\\le h(t)$ pour tout $(x,t)\\in J\\times I$.\n\nAlors $F:x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est de classe $\\mathcal{C}^1$ sur $J$ et, pour tout $x\\in J$,\n$$F'(x)=\\int_I\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t.$$\nComme pour la continuité, il suffit que la domination ait lieu sur chaque segment contenu dans $J$.",
+      "enonce_trous": "Soient $J$, $I$ deux intervalles et $f:J\\times I\\to\\mathbb{K}$ telle que $t\\mapsto f(x,t)$ soit continue par morceaux et intégrable sur $I$ pour tout $x\\in J$, et que $\\frac{\\partial f}{\\partial x}$ existe, continue par rapport à $x$ et continue par morceaux par rapport à $t$. S'il existe $h$ intégrable sur $I$ telle que {{1}} pour tout $(x,t)\\in J\\times I$, alors $F:x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est {{2}} sur $J$ et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\left|\\frac{\\partial f}{\\partial x}(x,t)\\right|\\le h(t)$",
+          "leurres": [
+            "$|f(x,t)|\\le h(t)$",
+            "$\\left|\\int_I\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t\\right|\\le\\int_Ih(t)\\,\\mathrm{d}t$",
+            "$\\left|x\\frac{\\partial f}{\\partial x}(x,t)\\right|\\le h(t)$"
+          ]
+        },
+        {
+          "reponse": "de classe $\\mathcal{C}^1$",
+          "leurres": [
+            "de classe $\\mathcal{C}^2$",
+            "de classe $\\mathcal{C}^\\infty$",
+            "convexe"
+          ]
+        },
+        {
+          "reponse": "$F'(x)=\\int_I\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t$",
+          "leurres": [
+            "$F'(x)=\\int_I\\frac{\\partial f}{\\partial t}(x,t)\\,\\mathrm{d}t$",
+            "$F'(x)=\\int_I\\left|\\frac{\\partial f}{\\partial x}(x,t)\\right|\\mathrm{d}t$",
+            "$|F'(x)|=\\int_Ih(t)\\,\\mathrm{d}t$"
+          ]
+        }
+      ],
+      "demo": "Soient $x_0\\in J$ et $(x_k)$ une suite de points de $J\\setminus\\{x_0\\}$ qui tend vers $x_0$. Posons, pour $t\\in I$,\n$$\\tau_k(t)=\\frac{f(x_k,t)-f(x_0,t)}{x_k-x_0}.$$\nChaque $\\tau_k$ est continue par morceaux sur $I$, et $\\tau_k(t)\\to\\frac{\\partial f}{\\partial x}(x_0,t)$ pour tout $t$ ; cette limite est continue par morceaux en $t$ par hypothèse. Pour $t$ fixé, $u\\mapsto f(u,t)$ est dérivable sur le segment d'extrémités $x_0$ et $x_k$, de dérivée majorée en module par $h(t)$ : l'inégalité des accroissements finis (valable aussi pour une fonction à valeurs complexes) donne $|\\tau_k(t)|\\le h(t)$. Par le théorème de convergence dominée (admis),\n$$\\frac{F(x_k)-F(x_0)}{x_k-x_0}=\\int_I\\tau_k(t)\\,\\mathrm{d}t\\longrightarrow\\int_I\\frac{\\partial f}{\\partial x}(x_0,t)\\,\\mathrm{d}t.$$\nCeci valant pour toute suite $(x_k)$, la caractérisation séquentielle de la limite montre que $F$ est dérivable en $x_0$, avec la formule annoncée. Enfin, $\\frac{\\partial f}{\\partial x}$ vérifie les hypothèses du théorème de continuité par domination (continue en $x$, continue par morceaux en $t$, dominée par $h$) : $F'$ est continue sur $J$.",
+      "exemple": "Pour $x\\in\\mathbb{R}$, soit $F(x)=\\int_0^{+\\infty}e^{-t}\\frac{\\sin(xt)}{t}\\,\\mathrm{d}t$. La fonction intégrée est intégrable car $\\left|\\frac{\\sin(xt)}{t}\\right|\\le|x|$, et $\\frac{\\partial}{\\partial x}\\left(e^{-t}\\frac{\\sin(xt)}t\\right)=e^{-t}\\cos(xt)$, majorée en module par $e^{-t}$, intégrable et indépendante de $x$. Donc $F$ est de classe $\\mathcal{C}^1$ et\n$$F'(x)=\\int_0^{+\\infty}e^{-t}\\cos(xt)\\,\\mathrm{d}t=\\mathrm{Re}\\int_0^{+\\infty}e^{(-1+ix)t}\\,\\mathrm{d}t=\\mathrm{Re}\\frac1{1-ix}=\\frac1{1+x^2}.$$\nComme $F(0)=0$, $F(x)=\\arctan x$.",
+      "contre_exemple": "- **Dominer $f$ ne suffit pas.** Sur $J=\\left]-1,1\\right[$ et $I=\\left]0,+\\infty\\right[$, soit $f(x,t)=\\frac{x^2}{x^2+t^2}$. On a $|f(x,t)|\\le\\frac1{1+t^2}$ (car $x^2(1+t^2)\\le x^2+t^2$ pour $|x|<1$), et $\\frac{\\partial f}{\\partial x}(x,t)=\\frac{2xt^2}{(x^2+t^2)^2}$ est continue. Pourtant $F(x)=\\int_0^{+\\infty}\\frac{x^2}{x^2+t^2}\\,\\mathrm{d}t=\\frac\\pi2|x|$ n'est pas dérivable en $0$. La dérivée partielle n'est pas dominée : $\\frac{\\partial f}{\\partial x}(t,t)=\\frac1{2t}$ pour $0<t<1$, et $t\\mapsto\\frac1{2t}$ n'est pas intégrable près de $0$. Le même exemple montre que l'intégrabilité de chaque $t\\mapsto\\frac{\\partial f}{\\partial x}(x,t)$ ne suffit pas.",
+      "affirmations": [
+        {
+          "texte": "Si $|f(x,t)|\\le g(t)$ avec $g$ intégrable sur $I$ et si $\\frac{\\partial f}{\\partial x}$ existe et est continue sur $J\\times I$, alors $x\\mapsto\\int_If(x,t)\\,\\mathrm{d}t$ est dérivable sur $J$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,t)=\\frac{x^2}{x^2+t^2}$ sur $\\left]-1,1\\right[\\times\\left]0,+\\infty\\right[$ est dominée par $\\frac1{1+t^2}$, mais $F(x)=\\frac\\pi2|x|$ n'est pas dérivable en $0$."
+        },
+        {
+          "texte": "Sous les hypothèses du théorème de dérivation par domination, $F'$ est continue sur $J$.",
+          "vrai": true,
+          "justification": "$F'(x)=\\int_I\\frac{\\partial f}{\\partial x}(x,t)\\,\\mathrm{d}t$, et $\\frac{\\partial f}{\\partial x}$ vérifie les hypothèses du théorème de continuité par domination."
+        },
+        {
+          "texte": "$x\\mapsto\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t$ est dérivable sur $\\left]0,+\\infty\\right[$, de dérivée $x\\mapsto-\\int_0^{+\\infty}te^{-xt}\\,\\mathrm{d}t=-\\frac1{x^2}$.",
+          "vrai": true,
+          "justification": "Pour $x\\ge a>0$, $|-te^{-xt}|\\le te^{-at}$, intégrable : la domination sur chaque $[a,b]\\subset\\left]0,+\\infty\\right[$ suffit. Et $\\int_0^{+\\infty}te^{-xt}\\,\\mathrm{d}t=\\frac1{x^2}$, cohérent avec la dérivée de $\\frac1x$."
+        },
+        {
+          "texte": "Pour dériver sous le signe somme, la domination de $\\frac{\\partial f}{\\partial x}$ doit avoir lieu sur $J$ tout entier ; une domination sur chaque segment de $J$ ne suffit pas.",
+          "vrai": false,
+          "contre_exemple": "La dérivabilité est locale, une domination sur chaque segment suffit. Par exemple $x\\mapsto\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$ se dérive sous le signe somme sur $\\left]0,+\\infty\\right[$, alors que $\\sup_{x>0}te^{-xt}=t$ n'est pas intégrable."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-continuite",
+        "ar-l1-taf",
+        "int-l2-generalisees-dominee"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gamma",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Fonction Gamma d'Euler",
+      "recto": "Définir la fonction Gamma d'Euler et énoncer ses principales propriétés (domaine, équation fonctionnelle, valeurs entières, régularité).",
+      "cours": "La fonction $\\Gamma$ prolonge la factorielle aux réels strictement positifs : $\\Gamma(n+1)=n!$, et l'équation fonctionnelle $\\Gamma(x+1)=x\\Gamma(x)$ généralise $(n+1)!=(n+1)\\,n!$. Elle est définie par une intégrale à paramètre sur $\\left]0,+\\infty\\right[$, impropre aux deux bornes : en $0$, $t^{x-1}e^{-t}\\sim t^{x-1}$ est intégrable si et seulement si $x>0$ ; en $+\\infty$, l'exponentielle l'emporte sur toute puissance.\n\nSa régularité est l'application type des théorèmes de domination : les dérivées partielles $(\\ln t)^kt^{x-1}e^{-t}$ ne sont pas dominées sur $\\left]0,+\\infty\\right[$ tout entier ($t^{x-1}$ explose quand $x\\to0^+$ et $t<1$), mais elles le sont sur chaque segment $[a,b]\\subset\\left]0,+\\infty\\right[$, ce qui suffit. On en déduit que $\\Gamma$ est $\\mathcal{C}^\\infty$, strictement convexe ($\\Gamma''>0$), avec $\\Gamma(1)=\\Gamma(2)=1$ : elle décroît puis croît, avec un minimum entre $1$ et $2$.\n\nValeurs à connaître : $\\Gamma(n+1)=n!$, $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$ (intégrale de Gauss), d'où $\\Gamma\\left(n+\\frac12\\right)=\\frac{(2n)!}{4^nn!}\\sqrt\\pi$. Par changement de variable, $\\int_0^{+\\infty}t^{x-1}e^{-\\lambda t}\\,\\mathrm{d}t=\\frac{\\Gamma(x)}{\\lambda^x}$ pour $\\lambda>0$ : beaucoup d'intégrales se ramènent à $\\Gamma$. Elle intervient aussi en probabilités (lois Gamma) et via la formule de Stirling $\\Gamma(x+1)\\sim\\sqrt{2\\pi x}\\left(\\frac xe\\right)^x$ quand $x\\to+\\infty$.\n\nPièges : $\\Gamma(n)=(n-1)!$, et non $n!$ ; l'intégrale diverge pour $x\\le0$ ; et la domination n'est que locale.",
+      "hypotheses": [
+        "$x$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "$x\\ge0$ (à la place de $x>0$).",
+        "$x>-1$ (à la place de $x>0$)."
+      ],
+      "enonce": "Pour $x>0$, on pose $\\Gamma(x)=\\int_0^{+\\infty}t^{x-1}e^{-t}\\,\\mathrm{d}t$.\n- L'intégrale converge si et seulement si $x>0$.\n- Pour tout $x>0$, $\\Gamma(x+1)=x\\,\\Gamma(x)$ ; comme $\\Gamma(1)=1$, $\\Gamma(n+1)=n!$ pour tout $n\\in\\mathbb{N}$.\n- $\\Gamma$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$ et, pour tout $k\\in\\mathbb{N}$, $\\Gamma^{(k)}(x)=\\int_0^{+\\infty}(\\ln t)^kt^{x-1}e^{-t}\\,\\mathrm{d}t$.\n- $\\Gamma$ est strictement positive et strictement convexe, et $\\Gamma(x)\\sim\\frac1x$ quand $x\\to0^+$.",
+      "enonce_trous": "L'intégrale $\\int_0^{+\\infty}t^{x-1}e^{-t}\\,\\mathrm{d}t$ converge si et seulement si {{1}}. La fonction $\\Gamma$ ainsi définie vérifie {{2}} pour tout $x>0$, d'où {{3}} pour tout $n\\in\\mathbb{N}$.",
+      "trous": [
+        {
+          "reponse": "$x>0$",
+          "leurres": [
+            "$x\\ge0$",
+            "$x>1$",
+            "$x\\ge1$"
+          ]
+        },
+        {
+          "reponse": "$\\Gamma(x+1)=x\\Gamma(x)$",
+          "leurres": [
+            "$\\Gamma(x+1)=(x+1)\\Gamma(x)$",
+            "$\\Gamma(x)=x\\Gamma(x+1)$",
+            "$\\Gamma(2x)=2x\\Gamma(x)$"
+          ]
+        },
+        {
+          "reponse": "$\\Gamma(n+1)=n!$",
+          "leurres": [
+            "$\\Gamma(n)=n!$",
+            "$\\Gamma(n+1)=(n+1)!$",
+            "$\\Gamma(n+1)=n^ne^{-n}$"
+          ]
+        }
+      ],
+      "demo": "**Convergence.** La fonction $t\\mapsto t^{x-1}e^{-t}$ est continue et positive sur $\\left]0,+\\infty\\right[$. En $0$, elle équivaut à $t^{x-1}$, intégrable sur $\\left]0,1\\right]$ si et seulement si $x-1>-1$, c'est-à-dire $x>0$. En $+\\infty$, $t^{x-1}e^{-t}=o\\left(\\frac1{t^2}\\right)$ par croissances comparées : elle est intégrable sur $\\left[1,+\\infty\\right[$ pour tout $x$.\n\n**Équation fonctionnelle.** Pour $x>0$ et $0<\\varepsilon<A$, une intégration par parties donne\n$$\\int_\\varepsilon^At^xe^{-t}\\,\\mathrm{d}t=\\left[-t^xe^{-t}\\right]_\\varepsilon^A+x\\int_\\varepsilon^At^{x-1}e^{-t}\\,\\mathrm{d}t.$$\nQuand $\\varepsilon\\to0$ et $A\\to+\\infty$, le crochet tend vers $0$ (car $x>0$), d'où $\\Gamma(x+1)=x\\Gamma(x)$. Comme $\\Gamma(1)=\\int_0^{+\\infty}e^{-t}\\,\\mathrm{d}t=1$, une récurrence donne $\\Gamma(n+1)=n!$.\n\n**Régularité.** Soit $f(x,t)=t^{x-1}e^{-t}=e^{(x-1)\\ln t}e^{-t}$ ; pour tout $k$, $\\frac{\\partial^kf}{\\partial x^k}(x,t)=(\\ln t)^kt^{x-1}e^{-t}$, continue en $(x,t)$. Soit $[a,b]\\subset\\left]0,+\\infty\\right[$. Pour $x\\in[a,b]$ : si $0<t\\le1$, $|\\ln t|^kt^{x-1}e^{-t}\\le|\\ln t|^kt^{a-1}$ ; si $t\\ge1$, $(\\ln t)^kt^{x-1}e^{-t}\\le(\\ln t)^kt^{b-1}e^{-t}$. La fonction $h_k$ égale à $|\\ln t|^kt^{a-1}$ sur $\\left]0,1\\right]$ et à $(\\ln t)^kt^{b-1}e^{-t}$ sur $\\left]1,+\\infty\\right[$ est intégrable (en $0$, $|\\ln t|^kt^{a/2}\\to0$, donc $|\\ln t|^kt^{a-1}\\le Ct^{a/2-1}$ ; en $+\\infty$, croissances comparées). Chaque dérivée partielle est donc dominée sur $[a,b]$, et le théorème de dérivation, appliqué de proche en proche, donne $\\Gamma\\in\\mathcal{C}^\\infty$ avec la formule annoncée.\n\n**Positivité, convexité, équivalent.** L'intégrande de $\\Gamma$ est strictement positif, et celui de $\\Gamma''$ aussi sauf en $t=1$ : $\\Gamma>0$ et $\\Gamma''>0$. Enfin $\\Gamma(x)=\\frac{\\Gamma(x+1)}x$ et $\\Gamma(x+1)\\to\\Gamma(1)=1$ quand $x\\to0^+$ par continuité, d'où $\\Gamma(x)\\sim\\frac1x$.",
+      "exemple": "$\\Gamma(4)=3!=6$, donc, avec $t=2u$, $\\int_0^{+\\infty}u^3e^{-2u}\\,\\mathrm{d}u=\\frac1{2^4}\\int_0^{+\\infty}t^3e^{-t}\\,\\mathrm{d}t=\\frac6{16}=\\frac38$. Et $\\Gamma'(1)=\\int_0^{+\\infty}e^{-t}\\ln t\\,\\mathrm{d}t$ est l'opposé de la constante d'Euler $\\gamma\\approx0{,}577$.",
+      "contre_exemple": "- **$x>0$ est nécessaire.** Pour $x=0$, $\\frac{e^{-t}}t\\ge\\frac{e^{-1}}t$ sur $\\left]0,1\\right]$, et $t\\mapsto\\frac1t$ n'est pas intégrable sur $\\left]0,1\\right]$ : l'intégrale diverge (a fortiori pour $x<0$).\n- **Pas de domination globale.** Pour $0<t<1$, $\\sup_{x>0}t^{x-1}e^{-t}=+\\infty$ (car $t^{x-1}\\to+\\infty$ quand $x\\to0^+$) : on ne peut dominer que sur des segments $[a,b]\\subset\\left]0,+\\infty\\right[$.\n- **$\\Gamma(n)\\neq n!$** : $\\Gamma(2)=1!=1$, alors que $2!=2$.",
+      "affirmations": [
+        {
+          "texte": "$\\Gamma(n)=(n-1)!$ pour tout entier $n\\ge1$.",
+          "vrai": true,
+          "justification": "$\\Gamma(n)=\\Gamma((n-1)+1)=(n-1)!$."
+        },
+        {
+          "texte": "$\\Gamma$ est croissante sur $\\left]0,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$\\Gamma(1)=\\Gamma(2)=1$ et $\\Gamma$ est strictement convexe : elle n'est pas monotone (d'ailleurs $\\Gamma(x)\\to+\\infty$ quand $x\\to0^+$)."
+        },
+        {
+          "texte": "$\\Gamma$ est dérivable sur $\\left]0,+\\infty\\right[$ et $\\Gamma'(1)=\\int_0^{+\\infty}e^{-t}\\ln t\\,\\mathrm{d}t$.",
+          "vrai": true,
+          "justification": "C'est la formule $\\Gamma'(x)=\\int_0^{+\\infty}(\\ln t)t^{x-1}e^{-t}\\,\\mathrm{d}t$ en $x=1$."
+        },
+        {
+          "texte": "$\\int_0^{+\\infty}t^{x-1}e^{-t}\\,\\mathrm{d}t$ converge pour tout réel $x$.",
+          "vrai": false,
+          "contre_exemple": "Pour $x=0$, $\\frac{e^{-t}}t\\ge\\frac{e^{-1}}t$ sur $\\left]0,1\\right]$ : l'intégrale diverge en $0$."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-derivation",
+        "int-t-integrale-ipp",
+        "ar-t-fonctions-usuelles-croissances",
+        "int-l2-generalisees-comparaison"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-laplace",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Transformée de Laplace",
+      "recto": "Définir la transformée de Laplace d'une fonction et énoncer ses propriétés de continuité, de dérivabilité et sa limite en $+\\infty$.",
+      "cours": "La transformée de Laplace associe à une fonction $f$ définie sur $\\left[0,+\\infty\\right[$ la fonction $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$ de la variable réelle $p$. Le facteur $e^{-pt}$ amortit $f$ d'autant plus que $p$ est grand : si l'intégrale converge absolument pour $p_0$, elle converge absolument pour tout $p\\ge p_0$, et l'ensemble de définition est un intervalle non majoré : de la forme $\\left[p_0,+\\infty\\right[$ ou $\\left]p_0,+\\infty\\right[$, sauf s'il est vide ($f(t)=e^{t^2}$) ou égal à $\\mathbb{R}$ ($f$ nulle hors d'un segment).\n\nSes propriétés sont des applications directes des théorèmes de domination : $|f(t)e^{-pt}|\\le|f(t)|e^{-p_0t}$ donne la continuité ; pour dériver, $t^k|f(t)|e^{-pt}\\le M_k|f(t)|e^{-p_0t}$ dès que $p\\ge p_1>p_0$, car $t^ke^{-(p_1-p_0)t}$ est bornée. D'où $\\mathcal{L}f\\in\\mathcal{C}^\\infty$ sur $\\left]p_0,+\\infty\\right[$, avec $(\\mathcal{L}f)'(p)=-\\int_0^{+\\infty}tf(t)e^{-pt}\\,\\mathrm{d}t$ : **dériver la transformée revient à multiplier $f$ par $-t$**.\n\nTable à connaître (pour $p$ assez grand) : $\\mathcal{L}1=\\frac1p$, $\\mathcal{L}(e^{at})=\\frac1{p-a}$ ($p>a$), $\\mathcal{L}(t^n)=\\frac{n!}{p^{n+1}}$, $\\mathcal{L}(\\sin\\omega t)=\\frac\\omega{p^2+\\omega^2}$, $\\mathcal{L}(\\cos\\omega t)=\\frac p{p^2+\\omega^2}$ ($p>0$). Une intégration par parties donne $\\mathcal{L}(f')(p)=p\\,\\mathcal{L}f(p)-f(0)$ pour $f$ de classe $\\mathcal{C}^1$ telle que $f(t)e^{-p_0t}$ et $f'(t)e^{-p_0t}$ soient intégrables, et $p>p_0$ : la transformée change une équation différentielle linéaire en équation algébrique.\n\nPièges : la continuité en $p_0$ demande l'intégrabilité en $p_0$ ; la dérivabilité n'est garantie que sur l'intervalle ouvert $\\left]p_0,+\\infty\\right[$ ; et $\\mathcal{L}f(p)\\to0$, mais $p\\,\\mathcal{L}f(p)$ n'a aucune raison de tendre vers $0$ ($\\mathcal{L}1=\\frac1p$).",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur $\\left[0,+\\infty\\right[$.",
+        "$t\\mapsto f(t)e^{-p_0t}$ est intégrable sur $\\left[0,+\\infty\\right[$ (et l'on regarde $p\\ge p_0$)."
+      ],
+      "hypotheses_pieges": [
+        "$t\\mapsto f(t)e^{-p_0t}$ est bornée sur $\\left[0,+\\infty\\right[$ (à la place de intégrable).",
+        "$f(t)e^{-p_0t}\\to0$ quand $t\\to+\\infty$ (à la place de l'intégrabilité)."
+      ],
+      "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{K}$ continue par morceaux. Sa **transformée de Laplace** est $\\mathcal{L}f(p)=\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$, définie pour les réels $p$ tels que $t\\mapsto f(t)e^{-pt}$ soit intégrable sur $\\left[0,+\\infty\\right[$.\n\n**Théorème.** Si $t\\mapsto f(t)e^{-p_0t}$ est intégrable sur $\\left[0,+\\infty\\right[$, alors :\n- $\\mathcal{L}f$ est définie et continue sur $\\left[p_0,+\\infty\\right[$ ;\n- $\\mathcal{L}f$ est de classe $\\mathcal{C}^\\infty$ sur $\\left]p_0,+\\infty\\right[$ et $(\\mathcal{L}f)^{(k)}(p)=\\int_0^{+\\infty}(-t)^kf(t)e^{-pt}\\,\\mathrm{d}t$ ;\n- $\\mathcal{L}f(p)\\to0$ quand $p\\to+\\infty$.",
+      "enonce_trous": "Soit $f$ continue par morceaux sur $\\left[0,+\\infty\\right[$ telle que {{1}}. Alors $\\mathcal{L}f:p\\mapsto\\int_0^{+\\infty}f(t)e^{-pt}\\,\\mathrm{d}t$ est continue sur $\\left[p_0,+\\infty\\right[$, de classe $\\mathcal{C}^\\infty$ sur $\\left]p_0,+\\infty\\right[$ avec {{2}}, et {{3}} quand $p\\to+\\infty$.",
+      "trous": [
+        {
+          "reponse": "$t\\mapsto f(t)e^{-p_0t}$ soit intégrable sur $\\left[0,+\\infty\\right[$",
+          "leurres": [
+            "$t\\mapsto f(t)e^{-p_0t}$ soit bornée sur $\\left[0,+\\infty\\right[$",
+            "$f(t)e^{-p_0t}\\to0$ quand $t\\to+\\infty$",
+            "$t\\mapsto f(t)e^{-p_0t}$ soit continue sur $\\left[0,+\\infty\\right[$"
+          ]
+        },
+        {
+          "reponse": "$(\\mathcal{L}f)'(p)=-\\int_0^{+\\infty}tf(t)e^{-pt}\\,\\mathrm{d}t$",
+          "leurres": [
+            "$(\\mathcal{L}f)'(p)=\\int_0^{+\\infty}tf(t)e^{-pt}\\,\\mathrm{d}t$",
+            "$(\\mathcal{L}f)'(p)=\\int_0^{+\\infty}f'(t)e^{-pt}\\,\\mathrm{d}t$",
+            "$(\\mathcal{L}f)'(p)=-p\\,\\mathcal{L}f(p)$"
+          ]
+        },
+        {
+          "reponse": "$\\mathcal{L}f(p)\\to0$",
+          "leurres": [
+            "$p\\,\\mathcal{L}f(p)\\to0$",
+            "$\\mathcal{L}f(p)\\to f(0)$",
+            "$\\mathcal{L}f(p)\\to\\int_0^{+\\infty}f(t)\\,\\mathrm{d}t$"
+          ]
+        }
+      ],
+      "demo": "Posons $g(t)=|f(t)|e^{-p_0t}$, intégrable sur $\\left[0,+\\infty\\right[$ par hypothèse.\n\n**Continuité.** Pour $p\\ge p_0$ et $t\\ge0$, $|f(t)e^{-pt}|\\le g(t)$. La fonction $(p,t)\\mapsto f(t)e^{-pt}$ est continue en $p$, continue par morceaux en $t$, dominée par $g$ : par le théorème de continuité, $\\mathcal{L}f$ est définie et continue sur $\\left[p_0,+\\infty\\right[$.\n\n**Classe $\\mathcal{C}^\\infty$.** On a $\\frac{\\partial^k}{\\partial p^k}\\left(f(t)e^{-pt}\\right)=(-t)^kf(t)e^{-pt}$. Soit $p_1>p_0$ et $\\delta=p_1-p_0$. La fonction $t\\mapsto t^ke^{-\\delta t}$ est bornée sur $\\left[0,+\\infty\\right[$, par une constante $M_k$. Pour $p\\ge p_1$ :\n$$|(-t)^kf(t)e^{-pt}|\\le t^ke^{-\\delta t}\\,|f(t)|e^{-p_0t}\\le M_kg(t).$$\nToutes les dérivées partielles sont dominées sur $\\left[p_1,+\\infty\\right[$ par des fonctions intégrables : par le théorème de dérivation appliqué de proche en proche, $\\mathcal{L}f$ est $\\mathcal{C}^\\infty$ sur $\\left[p_1,+\\infty\\right[$, avec la formule annoncée. Comme $p_1>p_0$ est quelconque, c'est vrai sur $\\left]p_0,+\\infty\\right[$.\n\n**Limite.** Soit $(p_n)$ une suite de réels $\\ge p_0$ qui tend vers $+\\infty$. Pour $t>0$, $f(t)e^{-p_nt}\\to0$, et $|f(t)e^{-p_nt}|\\le g(t)$. La limite simple est nulle sauf peut-être en $t=0$ : elle est continue par morceaux, d'intégrale nulle. Par convergence dominée, $\\mathcal{L}f(p_n)\\to0$, et donc $\\mathcal{L}f(p)\\to0$ quand $p\\to+\\infty$.",
+      "exemple": "Pour $f=1$ : $\\mathcal{L}1(p)=\\int_0^{+\\infty}e^{-pt}\\,\\mathrm{d}t=\\frac1p$ pour $p>0$. En dérivant $n$ fois sous le signe somme,\n$$\\int_0^{+\\infty}(-t)^ne^{-pt}\\,\\mathrm{d}t=\\frac{\\mathrm{d}^n}{\\mathrm{d}p^n}\\left(\\frac1p\\right)=\\frac{(-1)^nn!}{p^{n+1}},\\quad\\text{donc}\\quad\\mathcal{L}(t^n)(p)=\\frac{n!}{p^{n+1}}\\quad(p>0).$$",
+      "contre_exemple": "- **L'intégrabilité en $p_0$ est nécessaire.** Pour $f(t)=\\frac1{1+t}$, $f(t)e^{-pt}$ est intégrable pour tout $p>0$, pas pour $p=0$, et $f(t)\\to0$. Et $\\mathcal{L}f(p)\\ge\\int_0^{1/p}\\frac{e^{-1}}{1+t}\\,\\mathrm{d}t=e^{-1}\\ln\\left(1+\\frac1p\\right)\\to+\\infty$ quand $p\\to0^+$.\n- **Pas de dérivabilité en $p_0$ en général.** Pour $f(t)=\\frac1{1+t^2}$ et $p_0=0$, $\\mathcal{L}f$ est continue sur $\\left[0,+\\infty\\right[$, mais pour $0<p<1$, $-(\\mathcal{L}f)'(p)=\\int_0^{+\\infty}\\frac{te^{-pt}}{1+t^2}\\,\\mathrm{d}t\\ge\\int_1^{1/p}\\frac{e^{-1}}{2t}\\,\\mathrm{d}t=\\frac{\\ln(1/p)}{2e}\\to+\\infty$ ; par l'égalité des accroissements finis, le taux $\\frac{\\mathcal{L}f(p)-\\mathcal{L}f(0)}p$ tend vers $-\\infty$ : $\\mathcal{L}f$ n'est pas dérivable à droite en $0$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $a$, $\\mathcal{L}(e^{at})(p)=\\frac1{p-a}$ pour $p>a$.",
+          "vrai": true,
+          "justification": "$\\int_0^{+\\infty}e^{(a-p)t}\\,\\mathrm{d}t=\\frac1{p-a}$ pour $p>a$."
+        },
+        {
+          "texte": "Si $t\\mapsto f(t)e^{-p_0t}$ est intégrable sur $\\left[0,+\\infty\\right[$, alors $\\mathcal{L}f$ est dérivable à droite en $p_0$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac1{1+t^2}$, $p_0=0$ : le taux d'accroissement de $\\mathcal{L}f$ en $0$ tend vers $-\\infty$."
+        },
+        {
+          "texte": "Si $f$ est positive, $\\mathcal{L}f$ est décroissante sur son ensemble de définition.",
+          "vrai": true,
+          "justification": "Pour $p\\le q$, $f(t)e^{-qt}\\le f(t)e^{-pt}$ pour tout $t\\ge0$, et l'on intègre."
+        },
+        {
+          "texte": "Si $\\mathcal{L}f$ est définie en $p_0$, elle est définie sur $\\left]-\\infty,p_0\\right]$.",
+          "vrai": false,
+          "contre_exemple": "$f=1$ : $\\mathcal{L}1(p)=\\frac1p$ est définie en $p_0=1$, mais pas en $p=0$ (ni pour $p<0$)."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-derivation",
+        "ar-t-fonctions-usuelles-croissances"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-fourier",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Transformée de Fourier d'une fonction intégrable",
+      "recto": "Définir la transformée de Fourier d'une fonction intégrable sur $\\mathbb{R}$ et énoncer ses propriétés de continuité et de dérivabilité.",
+      "cours": "La transformée de Fourier $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$ mesure la présence de la fréquence $\\xi$ dans $f$ ; c'est l'analogue, pour une fonction non périodique, des coefficients de Fourier. Comme $|f(t)e^{-i\\xi t}|=|f(t)|$, l'intégrabilité de $f$ suffit à définir $\\hat f$ partout, et le théorème de continuité par domination s'applique avec $g=|f|$, indépendante de $\\xi$.\n\nLe fil conducteur est une **dualité entre décroissance et régularité** : si $tf(t)$ est intégrable (décroissance de $f$), alors $\\hat f$ est de classe $\\mathcal{C}^1$, et multiplier $f$ par $-it$ revient à dériver $\\hat f$ ; si $f$ est de classe $\\mathcal{C}^1$ avec $f'$ intégrable (régularité de $f$), alors $\\widehat{f'}(\\xi)=i\\xi\\hat f(\\xi)$, et $\\hat f(\\xi)=O\\left(\\frac1{|\\xi|}\\right)$. Plus généralement, le lemme de Riemann-Lebesgue (que l'on ne démontre pas ici) affirme que $\\hat f(\\xi)\\to0$ quand $|\\xi|\\to+\\infty$ pour toute $f$ intégrable.\n\nExemples à connaître : $\\widehat{e^{-|t|}}(\\xi)=\\frac2{1+\\xi^2}$ ; l'indicatrice de $[-a,a]$ a pour transformée $\\frac{2\\sin(a\\xi)}\\xi$ (et $2a$ en $0$), qui n'est pas intégrable ; la gaussienne $e^{-t^2/2}$ a pour transformée $\\sqrt{2\\pi}e^{-\\xi^2/2}$, ce que l'on montre en dérivant sous le signe somme pour obtenir une équation différentielle.\n\nPièges : les conventions varient ($e^{-2i\\pi\\xi t}$, facteur $\\frac1{\\sqrt{2\\pi}}$…) et les constantes des formules avec elles ; une fonction seulement bornée ou de limite nulle n'a pas de transformée de Fourier au sens de ce chapitre ; la régularité de $f$ ne donne pas celle de $\\hat f$ ($\\frac1{1+t^2}$ est $\\mathcal{C}^\\infty$, mais sa transformée $\\pi e^{-|\\xi|}$ n'est pas dérivable en $0$).",
+      "hypotheses": [
+        "$f$ est continue par morceaux et intégrable sur $\\mathbb{R}$.",
+        "Pour la dérivabilité : $t\\mapsto tf(t)$ est intégrable sur $\\mathbb{R}$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue par morceaux et bornée sur $\\mathbb{R}$ (à la place de intégrable).",
+        "$f(t)\\to0$ quand $|t|\\to+\\infty$ (à la place de intégrable).",
+        "Pour la dérivabilité : $f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ (à la place de $t\\mapsto tf(t)$ intégrable)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ continue par morceaux et intégrable sur $\\mathbb{R}$. Sa **transformée de Fourier** est la fonction $\\hat f$ définie sur $\\mathbb{R}$ par\n$$\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t.$$\n- $\\hat f$ est continue sur $\\mathbb{R}$ et $|\\hat f(\\xi)|\\le\\int_{-\\infty}^{+\\infty}|f(t)|\\,\\mathrm{d}t$ pour tout $\\xi$.\n- Si de plus $t\\mapsto tf(t)$ est intégrable sur $\\mathbb{R}$, alors $\\hat f$ est de classe $\\mathcal{C}^1$ et $\\hat f'(\\xi)=\\int_{-\\infty}^{+\\infty}(-it)f(t)e^{-i\\xi t}\\,\\mathrm{d}t$.\n- Si $f$ est de classe $\\mathcal{C}^1$ et si $f$ et $f'$ sont intégrables sur $\\mathbb{R}$, alors $\\widehat{f'}(\\xi)=i\\xi\\hat f(\\xi)$ pour tout $\\xi$.",
+      "enonce_trous": "Soit $f$ continue par morceaux et {{1}} sur $\\mathbb{R}$. Alors $\\hat f:\\xi\\mapsto\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$ est continue sur $\\mathbb{R}$ et {{2}} pour tout $\\xi$. Si de plus {{3}}, alors $\\hat f$ est de classe $\\mathcal{C}^1$.",
+      "trous": [
+        {
+          "reponse": "intégrable",
+          "leurres": [
+            "bornée",
+            "de limite nulle en $\\pm\\infty$",
+            "de carré intégrable"
+          ]
+        },
+        {
+          "reponse": "$|\\hat f(\\xi)|\\le\\int_{-\\infty}^{+\\infty}|f(t)|\\,\\mathrm{d}t$",
+          "leurres": [
+            "$|\\hat f(\\xi)|\\le\\sup_{\\mathbb{R}}|f|$",
+            "$|\\hat f(\\xi)|\\le|\\hat f(0)|$",
+            "$\\hat f(-\\xi)=\\hat f(\\xi)$"
+          ]
+        },
+        {
+          "reponse": "$t\\mapsto tf(t)$ est intégrable sur $\\mathbb{R}$",
+          "leurres": [
+            "$f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$",
+            "$f$ est bornée sur $\\mathbb{R}$",
+            "$t\\mapsto t^2f(t)$ est bornée sur $\\mathbb{R}$"
+          ]
+        }
+      ],
+      "demo": "**Continuité et majoration.** Pour tous $\\xi,t$ réels, $|f(t)e^{-i\\xi t}|=|f(t)|$, intégrable et indépendante de $\\xi$ ; la fonction $(\\xi,t)\\mapsto f(t)e^{-i\\xi t}$ est continue en $\\xi$ et continue par morceaux en $t$. Le théorème de continuité par domination montre que $\\hat f$ est définie et continue sur $\\mathbb{R}$, et $|\\hat f(\\xi)|\\le\\int|f(t)e^{-i\\xi t}|\\,\\mathrm{d}t=\\int|f|$.\n\n**Dérivabilité.** $\\frac{\\partial}{\\partial\\xi}\\left(f(t)e^{-i\\xi t}\\right)=-itf(t)e^{-i\\xi t}$ est continue en $\\xi$, continue par morceaux en $t$, de module $|tf(t)|$, intégrable et indépendant de $\\xi$ ; pour chaque $\\xi$, $t\\mapsto f(t)e^{-i\\xi t}$ est intégrable. Le théorème de dérivation donne $\\hat f\\in\\mathcal{C}^1$ et la formule.\n\n**Transformée de la dérivée.** Pour $x\\ge0$, $f(x)=f(0)+\\int_0^xf'(t)\\,\\mathrm{d}t$ ; comme $f'$ est intégrable, $f$ a une limite $\\ell$ en $+\\infty$. Si $\\ell\\neq0$, on aurait $|f(t)|\\ge\\frac{|\\ell|}2$ pour $t$ assez grand, et $f$ ne serait pas intégrable ; donc $\\ell=0$, et de même en $-\\infty$. Une intégration par parties sur $[-A,B]$ donne\n$$\\int_{-A}^Bf'(t)e^{-i\\xi t}\\,\\mathrm{d}t=\\left[f(t)e^{-i\\xi t}\\right]_{-A}^B+i\\xi\\int_{-A}^Bf(t)e^{-i\\xi t}\\,\\mathrm{d}t,$$\net, quand $A,B\\to+\\infty$, le crochet tend vers $0$ : $\\widehat{f'}(\\xi)=i\\xi\\hat f(\\xi)$.",
+      "exemple": "Pour $f(t)=e^{-|t|}$, intégrable sur $\\mathbb{R}$ :\n$$\\hat f(\\xi)=\\int_0^{+\\infty}e^{-(1+i\\xi)t}\\,\\mathrm{d}t+\\int_0^{+\\infty}e^{-(1-i\\xi)t}\\,\\mathrm{d}t=\\frac1{1+i\\xi}+\\frac1{1-i\\xi}=\\frac2{1+\\xi^2}.$$\nComme $t\\mapsto te^{-|t|}$ est aussi intégrable, $\\hat f$ est de classe $\\mathcal{C}^1$, ce que l'on voit sur la formule.",
+      "contre_exemple": "- **L'intégrabilité est nécessaire** : $f=1$ est bornée et $\\mathcal{C}^\\infty$, mais $\\int_{-\\infty}^{+\\infty}e^{-i\\xi t}\\,\\mathrm{d}t$ n'existe pour aucun $\\xi$ ; $f(t)=\\frac1{1+|t|}$ tend vers $0$ mais n'est pas intégrable, et $\\hat f(0)$ n'est pas défini.\n- **$f$ de classe $\\mathcal{C}^\\infty$ ne suffit pas pour dériver $\\hat f$.** Pour $f(t)=\\frac1{1+t^2}$, intégrable mais avec $tf(t)$ non intégrable, $\\hat f$ est paire et, pour $\\xi>0$, le changement de variable $u=\\xi t$ donne\n$$\\frac{\\hat f(\\xi)-\\hat f(0)}\\xi=\\int_{-\\infty}^{+\\infty}\\frac{\\cos(\\xi t)-1}{\\xi(1+t^2)}\\,\\mathrm{d}t=\\int_{-\\infty}^{+\\infty}\\frac{\\cos u-1}{\\xi^2+u^2}\\,\\mathrm{d}u\\longrightarrow\\int_{-\\infty}^{+\\infty}\\frac{\\cos u-1}{u^2}\\,\\mathrm{d}u<0$$\nquand $\\xi\\to0^+$ (convergence dominée par $\\frac{1-\\cos u}{u^2}$, intégrable). Par parité, la dérivée à gauche en $0$ est l'opposée de la dérivée à droite, non nulle : $\\hat f$ n'est pas dérivable en $0$. (En fait $\\hat f(\\xi)=\\pi e^{-|\\xi|}$.)",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est paire, intégrable et à valeurs réelles, alors $\\hat f(\\xi)=2\\int_0^{+\\infty}f(t)\\cos(\\xi t)\\,\\mathrm{d}t$ est réel pour tout $\\xi$.",
+          "vrai": true,
+          "justification": "$e^{-i\\xi t}=\\cos(\\xi t)-i\\sin(\\xi t)$ ; la partie en $\\sin(\\xi t)$ est impaire en $t$ et s'annule, la partie en $\\cos(\\xi t)$ est paire."
+        },
+        {
+          "texte": "La transformée de Fourier d'une fonction intégrable sur $\\mathbb{R}$ est intégrable sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "L'indicatrice de $[-1,1]$ a pour transformée $\\xi\\mapsto\\frac{2\\sin\\xi}\\xi$ (prolongée par $2$ en $0$), qui n'est pas intégrable sur $\\mathbb{R}$ : $\\int\\frac{|\\sin\\xi|}{|\\xi|}\\,\\mathrm{d}\\xi$ diverge."
+        },
+        {
+          "texte": "Si $f$ est intégrable sur $\\mathbb{R}$ et de classe $\\mathcal{C}^\\infty$, alors $\\hat f$ est dérivable sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac1{1+t^2}$ : $\\hat f(\\xi)=\\pi e^{-|\\xi|}$ n'est pas dérivable en $0$ (ici $tf(t)$ n'est pas intégrable)."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux et intégrable sur $\\mathbb{R}$, alors $\\hat f$ est continue et bornée sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Domination par $|f|$, et $|\\hat f(\\xi)|\\le\\int_{\\mathbb{R}}|f|$."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-derivation",
+        "geo-t-complexes-exponentielle"
+      ]
+    },
+    {
+      "id": "int-l2-parametre-gauss",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-parametre",
+      "type": "theoreme",
+      "titre": "Intégrale de Gauss",
+      "recto": "Énoncer la valeur de l'intégrale de Gauss $\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t$ ($a>0$) et en donner une démonstration par une intégrale à paramètre.",
+      "cours": "La fonction $t\\mapsto e^{-t^2}$ n'a pas de primitive qui s'exprime avec les fonctions usuelles, et pourtant son intégrale sur $\\mathbb{R}$ se calcule exactement : elle vaut $\\sqrt\\pi$. C'est l'une des intégrales les plus importantes des mathématiques : elle normalise la loi normale, $\\frac1{\\sqrt{2\\pi}}\\int_{-\\infty}^{+\\infty}e^{-t^2/2}\\,\\mathrm{d}t=1$, et donne $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$.\n\nLa démonstration présentée ici n'utilise qu'une intégrale à paramètre **sur un segment** : on compare $f(x)=\\left(\\int_0^xe^{-t^2}\\,\\mathrm{d}t\\right)^2$ et $g(x)=\\int_0^1\\frac{e^{-x^2(1+t^2)}}{1+t^2}\\,\\mathrm{d}t$, dont les dérivées sont opposées. D'autres preuves classiques passent par les coordonnées polaires dans une intégrale double (théorème de Fubini, programme de troisième année) ou par les intégrales de Wallis.\n\nMéthode pour s'y ramener : par le changement de variable $u=\\sqrt at$, $\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi a}$ ; on complète le carré pour $e^{-at^2+bt}$ ; les moments $\\int t^{2n}e^{-t^2}\\,\\mathrm{d}t$ s'obtiennent par intégrations par parties successives (ou par la fonction $\\Gamma$), et les moments impairs sont nuls par imparité.\n\nPièges : sur $\\left[0,+\\infty\\right[$, l'intégrale vaut $\\frac{\\sqrt\\pi}2$ et non $\\sqrt\\pi$ ; avec un facteur $a$, c'est $\\sqrt{\\frac\\pi a}$ et non $\\frac{\\sqrt\\pi}a$ ; et il faut $a>0$.",
+      "hypotheses": [
+        "$a$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "$a\\ge0$ (à la place de $a>0$).",
+        "$a\\neq0$ (à la place de $a>0$)."
+      ],
+      "enonce": "$$\\int_{-\\infty}^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\sqrt\\pi,\\qquad\\text{donc}\\qquad\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2.$$\nPlus généralement, pour tout réel $a>0$, $\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi a}$. En particulier $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$.",
+      "enonce_trous": "Pour tout réel {{1}}, on a {{2}}. En particulier {{3}}.",
+      "trous": [
+        {
+          "reponse": "$a>0$",
+          "leurres": [
+            "$a\\ge0$",
+            "$a\\neq0$",
+            "$a>-1$"
+          ]
+        },
+        {
+          "reponse": "$\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\sqrt{\\frac{\\pi}{a}}$",
+          "leurres": [
+            "$\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}{a}$",
+            "$\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\sqrt{\\frac{\\pi}{2a}}$",
+            "$\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\frac{\\pi}{a}$"
+          ]
+        },
+        {
+          "reponse": "$\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$",
+          "leurres": [
+            "$\\Gamma\\left(\\frac12\\right)=\\frac{\\sqrt\\pi}2$",
+            "$\\Gamma\\left(\\frac12\\right)=\\pi$",
+            "$\\Gamma\\left(\\frac12\\right)=\\sqrt{2\\pi}$"
+          ]
+        }
+      ],
+      "demo": "**Convergence.** $t\\mapsto e^{-t^2}$ est continue, positive, et $e^{-t^2}\\le e^{-t}$ pour $t\\ge1$ : elle est intégrable sur $\\left[0,+\\infty\\right[$. Posons $I=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t$.\n\n**Deux fonctions.** Pour $x\\in\\mathbb{R}$, soient $f(x)=\\left(\\int_0^xe^{-t^2}\\,\\mathrm{d}t\\right)^2$ et $g(x)=\\int_0^1\\frac{e^{-x^2(1+t^2)}}{1+t^2}\\,\\mathrm{d}t$. La fonction $f$ est de classe $\\mathcal{C}^1$, et $f'(x)=2e^{-x^2}\\int_0^xe^{-t^2}\\,\\mathrm{d}t$. La fonction $(x,t)\\mapsto\\frac{e^{-x^2(1+t^2)}}{1+t^2}$ et sa dérivée partielle $-2xe^{-x^2(1+t^2)}$ sont continues sur $\\mathbb{R}\\times[0,1]$ : par le théorème de dérivation sur un segment, $g$ est de classe $\\mathcal{C}^1$ et\n$$g'(x)=-2e^{-x^2}\\int_0^1xe^{-x^2t^2}\\,\\mathrm{d}t=-2e^{-x^2}\\int_0^xe^{-u^2}\\,\\mathrm{d}u$$\n(changement de variable $u=xt$ si $x\\neq0$ ; l'égalité est claire pour $x=0$). Donc $f'+g'=0$ : $f+g$ est constante, égale à $f(0)+g(0)=\\int_0^1\\frac{\\mathrm{d}t}{1+t^2}=\\frac\\pi4$.\n\n**Passage à la limite.** $0\\le g(x)\\le e^{-x^2}\\int_0^1\\frac{\\mathrm{d}t}{1+t^2}\\le e^{-x^2}\\to0$ quand $x\\to+\\infty$. Donc $f(x)\\to\\frac\\pi4$, c'est-à-dire $I^2=\\frac\\pi4$ ; comme $I\\ge0$, $I=\\frac{\\sqrt\\pi}2$. Par parité, $\\int_{-\\infty}^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=2I=\\sqrt\\pi$.\n\n**Conséquences.** Pour $a>0$, le changement de variable $u=\\sqrt at$ donne $\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\frac1{\\sqrt a}\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=\\sqrt{\\frac\\pi a}$. Et, avec $t=u^2$ ($u>0$), $\\Gamma\\left(\\frac12\\right)=\\int_0^{+\\infty}t^{-1/2}e^{-t}\\,\\mathrm{d}t=\\int_0^{+\\infty}\\frac1ue^{-u^2}\\,2u\\,\\mathrm{d}u=2I=\\sqrt\\pi$.",
+      "exemple": "Avec $a=\\frac12$ : $\\int_{-\\infty}^{+\\infty}e^{-t^2/2}\\,\\mathrm{d}t=\\sqrt{2\\pi}$, ce qui fait de $t\\mapsto\\frac1{\\sqrt{2\\pi}}e^{-t^2/2}$ une densité de probabilité (loi normale centrée réduite). Par une intégration par parties ($u=t$, $v'=te^{-t^2}$), $\\int_{-\\infty}^{+\\infty}t^2e^{-t^2}\\,\\mathrm{d}t=\\frac12\\int_{-\\infty}^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$.",
+      "contre_exemple": "- **$a>0$ est nécessaire** : pour $a=0$, $\\int_{-\\infty}^{+\\infty}1\\,\\mathrm{d}t$ diverge ; pour $a<0$, $e^{-at^2}\\to+\\infty$ quand $|t|\\to+\\infty$ et l'intégrale diverge.\n- **Erreurs de constantes** : $\\int_{-\\infty}^{+\\infty}e^{-4t^2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}2$, et non $\\frac{\\sqrt\\pi}4$ ; $\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$, et non $\\sqrt\\pi$.",
+      "affirmations": [
+        {
+          "texte": "$\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\sqrt\\pi$.",
+          "vrai": false,
+          "contre_exemple": "Par parité, $\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac12\\int_{-\\infty}^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$."
+        },
+        {
+          "texte": "$\\int_{-\\infty}^{+\\infty}e^{-t^2/2}\\,\\mathrm{d}t=\\sqrt{2\\pi}$.",
+          "vrai": true,
+          "justification": "C'est $\\sqrt{\\frac\\pi a}$ avec $a=\\frac12$."
+        },
+        {
+          "texte": "$\\int_{-\\infty}^{+\\infty}t^2e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$.",
+          "vrai": true,
+          "justification": "Intégration par parties : $\\int t\\cdot te^{-t^2}\\,\\mathrm{d}t=\\left[-\\frac t2e^{-t^2}\\right]+\\frac12\\int e^{-t^2}\\,\\mathrm{d}t$, et le crochet tend vers $0$ aux deux bornes."
+        },
+        {
+          "texte": "$\\int_{-\\infty}^{+\\infty}e^{-4t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}4$.",
+          "vrai": false,
+          "contre_exemple": "$\\int_{-\\infty}^{+\\infty}e^{-4t^2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi4}=\\frac{\\sqrt\\pi}2$ (changement de variable $u=2t$)."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-segment",
+        "int-l2-parametre-gamma",
+        "int-l1-riemann-changement-variable"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "chapitre": "int-l2-parametre",
+  "questions": [
+    {
+      "id": "int-l2-parametre-q1",
+      "carte": "int-l2-parametre-segment",
+      "genre": "choix",
+      "enonce": "Pour $x\\in\\mathbb{R}$, soit $F(x)=\\int_0^1e^{xt^2}\\,\\mathrm{d}t$. Que vaut $F'(0)$ ?",
+      "propositions": [
+        "$\\frac13$",
+        "$\\frac12$",
+        "$1$",
+        "$0$"
+      ],
+      "bonne": 0,
+      "explication": "$(x,t)\\mapsto e^{xt^2}$ et sa dérivée partielle $t^2e^{xt^2}$ sont continues sur $\\mathbb{R}\\times[0,1]$ : par le théorème de dérivation sur un segment, $F'(0)=\\int_0^1t^2\\,\\mathrm{d}t=\\frac13$. La valeur $1=F(0)$ confond $F$ et $F'$, et $\\frac12$ vient de $\\int_0^1t\\,\\mathrm{d}t$."
+    },
+    {
+      "id": "int-l2-parametre-q2",
+      "carte": "int-l2-parametre-continuite",
+      "genre": "vrai-faux",
+      "enonce": "La fonction $x\\mapsto\\int_0^{+\\infty}xe^{-xt}\\,\\mathrm{d}t$ est continue sur $\\left[0,+\\infty\\right[$.",
+      "vrai": false,
+      "explication": "Faux. Elle vaut $1$ pour $x>0$ (calcul direct) et $0$ pour $x=0$. Il n'y a pas de domination : $\\sup_{x\\ge0}xe^{-xt}=\\frac1{et}$ n'est pas intégrable sur $\\left]0,+\\infty\\right[$."
+    },
+    {
+      "id": "int-l2-parametre-q3",
+      "carte": "int-l2-parametre-derivation",
+      "genre": "choix",
+      "enonce": "Pour $x>0$, soit $F(x)=\\int_0^{+\\infty}\\frac{e^{-xt}-e^{-t}}{t}\\,\\mathrm{d}t$. Que vaut $F(x)$ ?",
+      "propositions": [
+        "$-\\ln x$",
+        "$\\ln x$",
+        "$\\frac1x$",
+        "$\\ln x-1$"
+      ],
+      "bonne": 0,
+      "explication": "La dérivée partielle par rapport à $x$ est $-e^{-xt}$, dominée par $e^{-at}$ pour $x\\ge a>0$ ; donc $F'(x)=-\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=-\\frac1x$. Comme $F(1)=0$, $F(x)=-\\ln x$. Vérification de signe : pour $x>1$, $e^{-xt}<e^{-t}$, donc $F(x)<0$, ce qu'exclut $\\ln x$."
+    },
+    {
+      "id": "int-l2-parametre-q4",
+      "carte": "int-l2-parametre-gamma",
+      "genre": "choix",
+      "enonce": "Que vaut $\\int_0^{+\\infty}\\sqrt t\\,e^{-t}\\,\\mathrm{d}t$ ?",
+      "propositions": [
+        "$\\frac{\\sqrt\\pi}{2}$",
+        "$\\sqrt\\pi$",
+        "$\\frac12$",
+        "$2\\sqrt\\pi$"
+      ],
+      "bonne": 0,
+      "explication": "C'est $\\Gamma\\left(\\frac32\\right)=\\frac12\\Gamma\\left(\\frac12\\right)=\\frac{\\sqrt\\pi}2$, par l'équation fonctionnelle et $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$."
+    },
+    {
+      "id": "int-l2-parametre-q5",
+      "carte": "int-l2-parametre-laplace",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ est continue par morceaux et bornée sur $\\left[0,+\\infty\\right[$, alors $\\mathcal{L}f$ est définie et continue sur $\\left]0,+\\infty\\right[$.",
+      "vrai": true,
+      "explication": "Vrai. Pour tout $p_0>0$, $|f(t)|e^{-p_0t}\\le Me^{-p_0t}$ est intégrable : $\\mathcal{L}f$ est continue sur $\\left[p_0,+\\infty\\right[$, et ce pour tout $p_0>0$. En $p=0$, elle peut ne pas être définie ($f=1$)."
+    },
+    {
+      "id": "int-l2-parametre-q6",
+      "carte": "int-l2-parametre-fourier",
+      "genre": "choix",
+      "enonce": "Quelle est la transformée de Fourier de $t\\mapsto e^{-|t|}$ (avec $\\hat f(\\xi)=\\int_{-\\infty}^{+\\infty}f(t)e^{-i\\xi t}\\,\\mathrm{d}t$) ?",
+      "propositions": [
+        "$\\frac{2}{1+\\xi^2}$",
+        "$\\frac{1}{1+\\xi^2}$",
+        "$\\frac{1}{1+i\\xi}$",
+        "$\\frac{2}{1-\\xi^2}$"
+      ],
+      "bonne": 0,
+      "explication": "$\\hat f(\\xi)=\\frac1{1+i\\xi}+\\frac1{1-i\\xi}=\\frac2{1+\\xi^2}$, en séparant $\\int_{-\\infty}^0$ et $\\int_0^{+\\infty}$. La fonction étant paire et réelle, sa transformée est réelle, ce qui exclut $\\frac1{1+i\\xi}$ ; et $\\hat f(0)=\\int e^{-|t|}\\,\\mathrm{d}t=2$."
+    },
+    {
+      "id": "int-l2-parametre-q7",
+      "carte": "int-l2-parametre-gauss",
+      "genre": "vrai-faux",
+      "enonce": "$\\int_{-\\infty}^{+\\infty}e^{-t^2/2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi2}$.",
+      "vrai": false,
+      "explication": "Faux : $\\int_{-\\infty}^{+\\infty}e^{-at^2}\\,\\mathrm{d}t=\\sqrt{\\frac\\pi a}$, donc avec $a=\\frac12$ on obtient $\\sqrt{2\\pi}$ (la densité de la loi normale centrée réduite est $\\frac1{\\sqrt{2\\pi}}e^{-t^2/2}$)."
+    },
+    {
+      "id": "int-l2-parametre-q8",
+      "carte": "int-l2-parametre-fourier",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ est continue par morceaux sur $\\mathbb{R}$ et si $f$ et $t\\mapsto tf(t)$ sont intégrables sur $\\mathbb{R}$, alors $\\hat f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$.",
+      "vrai": true,
+      "explication": "Vrai. La dérivée partielle $-itf(t)e^{-i\\xi t}$ est dominée par $|tf(t)|$, intégrable et indépendante de $\\xi$ : le théorème de dérivation donne $\\hat f\\in\\mathcal{C}^1$, avec $\\hat f'(\\xi)=\\int(-it)f(t)e^{-i\\xi t}\\,\\mathrm{d}t$."
+    }
+  ]
+}

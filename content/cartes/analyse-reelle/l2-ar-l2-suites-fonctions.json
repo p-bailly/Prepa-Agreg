@@ -1,0 +1,540 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l2-suites-fonctions-uniforme",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "definition",
+      "titre": "Convergence simple et convergence uniforme",
+      "recto": "Définir la convergence simple et la convergence uniforme d'une suite de fonctions sur un ensemble $I$, et caractériser la convergence uniforme par la norme infinie.",
+      "cours": "La convergence simple compare $f_n(x)$ à $f(x)$ point par point : pour chaque $x$, la suite numérique $(f_n(x))$ tend vers $f(x)$, mais la vitesse peut dépendre de $x$. La convergence uniforme demande un même rang $N$ pour tous les $x$ : à partir de ce rang, tout le graphe de $f_n$ reste dans la bande de largeur $2\\varepsilon$ autour du graphe de $f$. C'est la convergence pour la norme $\\|g\\|_\\infty=\\sup_{x\\in I}|g(x)|$.\n\nMéthode pour étudier une suite $(f_n)$ : (1) chercher la limite simple $f$ en fixant $x$ ; (2) étudier $\\|f_n-f\\|_\\infty$, soit en la calculant (tableau de variations de $f_n-f$), soit en la majorant par une suite $a_n\\to0$ indépendante de $x$ ; (3) pour montrer qu'il n'y a pas convergence uniforme, exhiber des points $x_n\\in I$ tels que $f_n(x_n)-f(x_n)$ ne tende pas vers $0$ (souvent $x_n=\\frac1n$, ou le point où $|f_n-f|$ est maximal).\n\nLa convergence uniforme dépend de l'ensemble $I$ : $x\\mapsto x^n$ converge uniformément vers $0$ sur $[0,a]$ pour tout $a<1$, mais pas sur $\\left[0,1\\right[$. Elle se conserve par réunion finie d'ensembles, pas par réunion infinie.\n\nPièges : la convergence simple n'entraîne pas la convergence uniforme, même sur un segment et même vers une fonction continue (bosse glissante $nxe^{-nx}$) ; la borne supérieure n'est pas toujours atteinte ; le produit de deux suites uniformément convergentes ne converge pas toujours uniformément (il le fait si les deux limites sont bornées).",
+      "hypotheses": [
+        "À partir d'un certain rang, $f_n-f$ est bornée sur $I$.",
+        "$\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$."
+      ],
+      "hypotheses_pieges": [
+        "$f_n(x)-f(x)\\to0$ pour tout $x\\in I$ (à la place de $\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$).",
+        "$\\sup_{x\\in I}|f_{n+1}(x)-f_n(x)|\\to0$ (à la place de $\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$).",
+        "$\\|f_n\\|_\\infty\\to\\|f\\|_\\infty$ (à la place de $\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$)."
+      ],
+      "enonce": "Soit $I$ une partie de $\\mathbb{R}$, $(f_n)$ une suite de fonctions de $I$ dans $\\mathbb{R}$ (ou $\\mathbb{C}$) et $f$ une fonction de $I$ dans $\\mathbb{R}$ (ou $\\mathbb{C}$).\n- $(f_n)$ **converge simplement** vers $f$ sur $I$ si, pour tout $x\\in I$, $f_n(x)\\to f(x)$ : pour tout $x\\in I$ et tout $\\varepsilon>0$, il existe $N$ tel que $|f_n(x)-f(x)|\\le\\varepsilon$ pour tout $n\\ge N$ ($N$ dépend de $x$ et de $\\varepsilon$).\n- $(f_n)$ **converge uniformément** vers $f$ sur $I$ si pour tout $\\varepsilon>0$, il existe $N$ tel que pour tout $n\\ge N$ et tout $x\\in I$, $|f_n(x)-f(x)|\\le\\varepsilon$ ($N$ ne dépend que de $\\varepsilon$).\n\n**Caractérisation.** $(f_n)$ converge uniformément vers $f$ sur $I$ si et seulement si, à partir d'un certain rang, $f_n-f$ est bornée sur $I$ et $\\|f_n-f\\|_\\infty=\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$.\n\nLa convergence uniforme entraîne la convergence simple, vers la même limite ; la réciproque est fausse. Si les $f_n$ sont bornées et convergent uniformément vers $f$ sur $I$, alors $f$ est bornée sur $I$.",
+      "enonce_trous": "La suite $(f_n)$ converge uniformément vers $f$ sur $I$ si {{1}}, autrement dit si {{2}}. Si de plus chaque $f_n$ est bornée sur $I$, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "pour tout $\\varepsilon>0$, il existe $N$ tel que pour tout $n\\ge N$ et tout $x\\in I$, $|f_n(x)-f(x)|\\le\\varepsilon$",
+          "leurres": [
+            "pour tout $x\\in I$ et tout $\\varepsilon>0$, il existe $N$ tel que pour tout $n\\ge N$, $|f_n(x)-f(x)|\\le\\varepsilon$",
+            "il existe $N$ tel que pour tout $n\\ge N$ et tout $x\\in I$, $|f_n(x)-f(x)|\\le1$",
+            "pour tout $\\varepsilon>0$, il existe $N$ et $x\\in I$ tels que pour tout $n\\ge N$, $|f_n(x)-f(x)|\\le\\varepsilon$"
+          ]
+        },
+        {
+          "reponse": "$\\sup_{x\\in I}|f_n(x)-f(x)|\\to0$",
+          "leurres": [
+            "$|f_n(x)-f(x)|\\to0$ pour tout $x\\in I$",
+            "$\\sup_{x\\in I}|f_{n+1}(x)-f_n(x)|\\to0$",
+            "$\\sup_{x\\in I}|f_n(x)|\\to\\sup_{x\\in I}|f(x)|$"
+          ]
+        },
+        {
+          "reponse": "$f$ est bornée sur $I$",
+          "leurres": [
+            "$f$ est continue sur $I$",
+            "$f$ atteint ses bornes sur $I$",
+            "la suite des normes $\\|f_n\\|_\\infty$ est décroissante"
+          ]
+        }
+      ],
+      "demo": "**Caractérisation.** Supposons la convergence uniforme. Soit $\\varepsilon>0$ et $N$ comme dans la définition. Pour $n\\ge N$, $\\varepsilon$ majore $|f_n(x)-f(x)|$ pour tout $x\\in I$ : $f_n-f$ est bornée et $\\|f_n-f\\|_\\infty\\le\\varepsilon$ (la borne supérieure est le plus petit des majorants). Ainsi $\\|f_n-f\\|_\\infty\\to0$. Réciproquement, si $\\|f_n-f\\|_\\infty\\to0$, pour $\\varepsilon>0$ il existe $N$ tel que $\\|f_n-f\\|_\\infty\\le\\varepsilon$ pour $n\\ge N$, et alors $|f_n(x)-f(x)|\\le\\|f_n-f\\|_\\infty\\le\\varepsilon$ pour tout $x\\in I$.\n\n**Uniforme entraîne simple.** Dans la définition de la convergence uniforme, le rang $N$ convient pour chaque $x$ fixé.\n\n**Limite bornée.** Si les $f_n$ sont bornées, on choisit $N$ tel que $\\|f_N-f\\|_\\infty\\le1$ ; alors $|f(x)|\\le|f_N(x)|+1\\le\\|f_N\\|_\\infty+1$ pour tout $x\\in I$.\n\n**Réciproque fausse.** Sur $[0,1]$, $f_n(x)=x^n$ converge simplement vers la fonction $f$ nulle sur $\\left[0,1\\right[$ et telle que $f(1)=1$, mais $\\|f_n-f\\|_\\infty\\ge\\sup_{x\\in\\left[0,1\\right[}x^n=1$.",
+      "exemple": "Sur $[0,a]$ avec $0<a<1$, $\\sup_{x\\in[0,a]}x^n=a^n\\to0$ : la suite $(x^n)$ converge uniformément vers $0$ sur $[0,a]$. Sur $\\left[0,+\\infty\\right[$, $g_n(x)=\\frac{x}{1+nx}=\\frac1n\\cdot\\frac{nx}{1+nx}$ vérifie $0\\le g_n(x)<\\frac1n$ : $(g_n)$ converge uniformément vers $0$, et $\\|g_n\\|_\\infty=\\frac1n$ n'est pas atteint (c'est la limite de $g_n$ en $+\\infty$).",
+      "contre_exemple": "- **Simple sans uniforme** : $f_n(x)=x^n$ sur $[0,1]$ (limite discontinue en $1$, et $\\sup_{x\\in\\left[0,1\\right[}x^n=1$).\n- **Simple sans uniforme, vers une limite continue** : $f_n(x)=nxe^{-nx}$ sur $\\left[0,+\\infty\\right[$ tend simplement vers $0$, mais $f_n\\left(\\frac1n\\right)=e^{-1}$ ; en fait $\\|f_n\\|_\\infty=e^{-1}$ pour tout $n\\ge1$.",
+      "affirmations": [
+        {
+          "texte": "Si $(f_n)$ converge uniformément vers $f$ et vers $g$ sur $I$, alors $f=g$.",
+          "vrai": true,
+          "justification": "La convergence uniforme entraîne la convergence simple, et la limite d'une suite numérique est unique : $f(x)=g(x)$ pour tout $x\\in I$."
+        },
+        {
+          "texte": "Si $(f_n)$ converge simplement vers $f$ sur $I$ et uniformément sur tout segment inclus dans $I$, alors elle converge uniformément sur $I$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=x^n$ sur $I=\\left[0,1\\right[$ : sur tout segment $[a,b]\\subset I$, $\\sup_{[a,b]}|x^n|=b^n\\to0$, mais $\\sup_{x\\in I}x^n=1$."
+        },
+        {
+          "texte": "Si $(f_n)$ et $(g_n)$ convergent uniformément vers $f$ et $g$ sur $I$, alors $(f_ng_n)$ converge uniformément vers $fg$ sur $I$.",
+          "vrai": false,
+          "contre_exemple": "Sur $I=\\mathbb{R}$, $f_n(x)=x+\\frac1n$ et $g_n(x)=x$ convergent uniformément vers $x\\mapsto x$, mais $f_n(x)g_n(x)-x^2=\\frac xn$ n'est pas borné sur $\\mathbb{R}$."
+        },
+        {
+          "texte": "Si $(f_n)$ converge uniformément vers $f$ sur $I$ et sur $J$, alors elle converge uniformément vers $f$ sur $I\\cup J$.",
+          "vrai": true,
+          "justification": "$\\sup_{I\\cup J}|f_n-f|=\\max\\left(\\sup_I|f_n-f|,\\sup_J|f_n-f|\\right)\\to0$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-borne-sup",
+        "ar-l1-reels-triangulaire"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-continuite",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Continuité de la limite uniforme",
+      "recto": "Énoncer le théorème de continuité de la limite uniforme d'une suite de fonctions continues, avec ses hypothèses.",
+      "cours": "Une limite uniforme de fonctions continues est continue : un « saut » ne peut pas apparaître à la limite si toutes les $f_n$ restent proches de $f$ partout à la fois. La preuve est l'argument « en $\\frac\\varepsilon3$ » : on remplace $f$ par une $f_N$ uniformément proche, puis on utilise la continuité de $f_N$.\n\nLe théorème sert de deux façons. Directement : la somme d'une série de fonctions continues qui converge uniformément (par exemple normalement) est continue. Par contraposée : si des fonctions continues convergent simplement vers une fonction discontinue, la convergence n'est pas uniforme ; c'est le moyen le plus rapide de le voir pour $x\\mapsto x^n$ sur $[0,1]$.\n\nLa continuité étant une propriété locale, la convergence uniforme sur tout segment inclus dans $I$ suffit. C'est essentiel sur un intervalle ouvert ou non borné, où la convergence uniforme sur $I$ tout entier est souvent fausse.\n\nPièges : la réciproque est fausse (une limite simple continue ne garantit pas la convergence uniforme) ; la convergence uniforme conserve la continuité mais pas la dérivabilité : $\\sqrt{x^2+\\frac1{n^2}}$ tend uniformément vers $|x|$ sur $\\mathbb{R}$.",
+      "hypotheses": [
+        "Chaque $f_n$ est continue sur $I$.",
+        "$(f_n)$ converge uniformément vers $f$ sur tout segment inclus dans $I$."
+      ],
+      "hypotheses_pieges": [
+        "$(f_n)$ converge simplement vers $f$ sur $I$ (à la place de : uniformément sur tout segment inclus dans $I$).",
+        "Chaque $f_n$ est continue sur $I$ privé d'un point (à la place de : continue sur $I$).",
+        "$(f_n)$ converge simplement vers $f$ sur $I$ et, pour tout $x\\in I$, la suite $(f_n(x))$ est décroissante (à la place de la convergence uniforme sur tout segment)."
+      ],
+      "enonce": "Soit $I$ un intervalle de $\\mathbb{R}$ et $(f_n)$ une suite de fonctions de $I$ dans $\\mathbb{R}$ (ou $\\mathbb{C}$) qui converge uniformément vers $f$ sur $I$. Si chaque $f_n$ est continue en un point $a\\in I$, alors $f$ est continue en $a$. En particulier, si chaque $f_n$ est continue sur $I$, alors $f$ est continue sur $I$.\n\nIl suffit même que $(f_n)$ converge uniformément vers $f$ sur tout segment inclus dans $I$ pour que $f$ soit continue sur $I$.",
+      "enonce_trous": "Si chaque $f_n$ est {{1}} sur $I$ et si $(f_n)$ converge {{2}} vers $f$ sur $I$, alors $f$ est {{3}} sur $I$.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "monotone"
+          ]
+        },
+        {
+          "reponse": "uniformément",
+          "leurres": [
+            "simplement",
+            "simplement, en décroissant",
+            "simplement, en restant bornée par $1$"
+          ]
+        },
+        {
+          "reponse": "continue",
+          "leurres": [
+            "dérivable",
+            "uniformément continue",
+            "bornée"
+          ]
+        }
+      ],
+      "demo": "**Continuité en $a$.** Soit $\\varepsilon>0$. Par convergence uniforme, il existe $N$ tel que $|f_N(x)-f(x)|\\le\\frac\\varepsilon3$ pour tout $x\\in I$. Comme $f_N$ est continue en $a$, il existe $\\delta>0$ tel que $|f_N(x)-f_N(a)|\\le\\frac\\varepsilon3$ pour tout $x\\in I$ vérifiant $|x-a|\\le\\delta$. Pour un tel $x$ :\n\n$$|f(x)-f(a)|\\le|f(x)-f_N(x)|+|f_N(x)-f_N(a)|+|f_N(a)-f(a)|\\le\\frac\\varepsilon3+\\frac\\varepsilon3+\\frac\\varepsilon3=\\varepsilon.$$\n\n**Convergence uniforme sur les segments.** Soit $a\\in I$. Si $I$ est réduit à un point, il n'y a rien à montrer. Sinon, pour $r>0$ assez petit, $J=I\\cap[a-r,a+r]$ est un segment non réduit à un point (car $I$ est un intervalle contenant $a$). Les restrictions des $f_n$ à $J$ sont continues et convergent uniformément vers $f$ sur $J$ : d'après le premier point, la restriction de $f$ à $J$ est continue en $a$. Comme $J$ contient tous les points de $I$ à distance au plus $r$ de $a$, $f$ est continue en $a$.",
+      "exemple": "$f_n(x)=\\sqrt{x^2+\\frac1{n^2}}$ converge uniformément vers $|x|$ sur $\\mathbb{R}$ : $0\\le f_n(x)-|x|=\\frac{1/n^2}{\\sqrt{x^2+1/n^2}+|x|}\\le\\frac1n$. La limite est continue, comme le prévoit le théorème. Par contraposée : $x\\mapsto x^n$ ne converge pas uniformément sur $[0,1]$, car sa limite simple ($0$ sur $\\left[0,1\\right[$, $1$ en $1$) est discontinue.",
+      "contre_exemple": "- **La convergence simple ne suffit pas** : les fonctions $x\\mapsto x^n$, continues sur $[0,1]$, convergent simplement vers une fonction discontinue en $1$.\n- **La réciproque est fausse** : $f_n(x)=nxe^{-nx}$, continues sur $[0,1]$, convergent simplement vers la fonction nulle, continue, mais $f_n\\left(\\frac1n\\right)=e^{-1}$ : la convergence n'est pas uniforme.\n- **La continuité des $f_n$ est nécessaire** : la suite constante $f_n=\\mathbf{1}_{\\left]0,+\\infty\\right[}$ converge uniformément vers une fonction discontinue en $0$.",
+      "affirmations": [
+        {
+          "texte": "Si des fonctions continues sur $[0,1]$ convergent simplement vers une fonction discontinue, la convergence n'est pas uniforme sur $[0,1]$.",
+          "vrai": true,
+          "justification": "C'est la contraposée du théorème : une limite uniforme de fonctions continues est continue."
+        },
+        {
+          "texte": "Si des fonctions continues convergent simplement vers une fonction continue sur $[0,1]$, la convergence est uniforme sur $[0,1]$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=nxe^{-nx}$ tend simplement vers $0$ sur $[0,1]$, mais $f_n\\left(\\frac1n\\right)=e^{-1}$ pour tout $n\\ge1$."
+        },
+        {
+          "texte": "Si des fonctions continues sur $\\mathbb{R}$ convergent uniformément vers $f$ sur tout segment, alors $f$ est continue sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "La continuité est locale : tout point de $\\mathbb{R}$ est intérieur à un segment sur lequel la convergence est uniforme."
+        },
+        {
+          "texte": "Si chaque $f_n$ est discontinue en $0$ et si $(f_n)$ converge uniformément vers $f$, alors $f$ est discontinue en $0$.",
+          "vrai": false,
+          "contre_exemple": "$f_n=\\frac1n\\mathbf{1}_{\\left]0,+\\infty\\right[}$ est discontinue en $0$, et $\\|f_n\\|_\\infty=\\frac1n\\to0$ : la limite uniforme est la fonction nulle, continue."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-suites-fonctions-uniforme",
+        "ar-l1-reels-triangulaire"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-integration",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Intégration de la limite uniforme sur un segment",
+      "recto": "Énoncer le théorème d'intégration de la limite uniforme d'une suite de fonctions continues sur un segment, avec ses hypothèses.",
+      "cours": "Sur un segment, l'intégrale est continue pour la convergence uniforme : $\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le(b-a)\\|f_n-f\\|_\\infty$. On peut donc échanger limite et intégrale, $\\lim\\int_a^bf_n=\\int_a^b\\lim f_n$, dès que la convergence est uniforme sur $[a,b]$. Pour une série de fonctions continues qui converge uniformément sur $[a,b]$, cela donne l'intégration terme à terme : $\\int_a^b\\sum_{n=0}^{+\\infty}u_n=\\sum_{n=0}^{+\\infty}\\int_a^bu_n$.\n\nLe résultat est plus fort qu'il n'y paraît : les primitives $x\\mapsto\\int_a^xf_n$ convergent uniformément sur $[a,b]$. C'est ce qui permet ensuite de dériver une limite (théorème suivant).\n\nLes deux hypothèses comptent. Sur un intervalle non borné, la convergence uniforme ne suffit pas : $\\frac1ne^{-x/n}$ tend uniformément vers $0$ sur $\\left[0,+\\infty\\right[$ mais son intégrale vaut $1$. Et la convergence simple ne suffit pas, même sur $[0,1]$ et vers une fonction continue : une « bosse » de plus en plus haute et étroite, comme $n^2xe^{-nx}$, garde une intégrale proche de $1$.\n\nQuand la convergence n'est pas uniforme, on peut parfois conclure par le théorème de convergence dominée (admis au programme de l'agrégation interne), ou en découpant le segment pour isoler le point où la convergence n'est pas uniforme.",
+      "hypotheses": [
+        "Chaque $f_n$ est continue sur $[a,b]$.",
+        "$(f_n)$ converge uniformément vers $f$ sur $[a,b]$.",
+        "L'intervalle d'intégration $[a,b]$ est un segment (fermé et borné)."
+      ],
+      "hypotheses_pieges": [
+        "$(f_n)$ converge simplement vers une fonction continue $f$ sur $[a,b]$ (à la place de : uniformément).",
+        "$(f_n)$ converge uniformément vers $f$ sur tout segment inclus dans $\\left]a,b\\right]$ (à la place de : sur $[a,b]$).",
+        "Les $f_n$ sont continues et intégrables sur $\\left[a,+\\infty\\right[$ et y convergent uniformément vers $f$ (à la place d'un segment $[a,b]$)."
+      ],
+      "enonce": "Soit $(f_n)$ une suite de fonctions continues sur un segment $[a,b]$ ($a<b$), à valeurs réelles ou complexes, qui converge uniformément vers $f$ sur $[a,b]$. Alors $f$ est continue sur $[a,b]$ et $\\int_a^bf_n(t)\\,dt\\to\\int_a^bf(t)\\,dt$ quand $n\\to+\\infty$. Plus précisément, $\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le(b-a)\\|f_n-f\\|_\\infty$ pour tout $n$, et les primitives $F_n(x)=\\int_a^xf_n(t)\\,dt$ convergent uniformément sur $[a,b]$ vers $F(x)=\\int_a^xf(t)\\,dt$.\n\nLe résultat reste vrai pour des fonctions $f_n$ continues par morceaux, à condition que $f$ soit continue par morceaux.",
+      "enonce_trous": "Si les $f_n$ sont continues sur le segment $[a,b]$ et convergent {{1}} vers $f$ sur $[a,b]$, alors {{2}} et $\\int_a^bf_n\\to\\int_a^bf$ ; plus précisément, pour tout $n$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "uniformément",
+          "leurres": [
+            "simplement",
+            "simplement, en restant positives",
+            "uniformément sur tout segment inclus dans $\\left]a,b\\right]$"
+          ]
+        },
+        {
+          "reponse": "$f$ est continue sur $[a,b]$",
+          "leurres": [
+            "$f$ est dérivable sur $[a,b]$",
+            "$f$ est de classe $C^1$ sur $[a,b]$",
+            "$f$ est lipschitzienne sur $[a,b]$"
+          ]
+        },
+        {
+          "reponse": "$\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le(b-a)\\|f_n-f\\|_\\infty$",
+          "leurres": [
+            "$\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le\\|f_n-f\\|_\\infty$",
+            "$\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le\\frac{\\|f_n-f\\|_\\infty}{b-a}$",
+            "$\\left|\\int_a^bf_n-\\int_a^bf\\right|\\le(b-a)\\left|\\|f_n\\|_\\infty-\\|f\\|_\\infty\\right|$"
+          ]
+        }
+      ],
+      "demo": "**Continuité de $f$.** C'est le théorème de continuité de la limite uniforme.\n\n**Intégrales.** Par linéarité, inégalité triangulaire et croissance de l'intégrale ($a<b$) :\n\n$$\\left|\\int_a^bf_n-\\int_a^bf\\right|=\\left|\\int_a^b(f_n-f)\\right|\\le\\int_a^b|f_n(t)-f(t)|\\,dt\\le\\int_a^b\\|f_n-f\\|_\\infty\\,dt=(b-a)\\|f_n-f\\|_\\infty,$$\n\nqui tend vers $0$.\n\n**Primitives.** Pour $x\\in[a,b]$, le même calcul sur $[a,x]$ donne $|F_n(x)-F(x)|\\le(x-a)\\|f_n-f\\|_\\infty\\le(b-a)\\|f_n-f\\|_\\infty$ ; ce majorant ne dépend pas de $x$ et tend vers $0$.\n\n**Cas continu par morceaux.** Si les $f_n$ et $f$ sont continues par morceaux, $f_n-f$ l'est aussi et le même calcul s'applique.",
+      "exemple": "La fonction $\\arctan$ est $1$-lipschitzienne (sa dérivée $\\frac1{1+x^2}$ est comprise entre $0$ et $1$), donc $\\left|\\arctan\\left(x+\\frac1n\\right)-\\arctan x\\right|\\le\\frac1n$ pour tout $x$ : convergence uniforme sur $[0,1]$. Par conséquent $\\int_0^1\\arctan\\left(x+\\frac1n\\right)dx\\to\\int_0^1\\arctan x\\,dx=\\frac\\pi4-\\frac{\\ln2}2$.",
+      "contre_exemple": "- **Convergence simple seulement** : $f_n(x)=n^2xe^{-nx}$ sur $[0,1]$ tend simplement vers $0$, mais $\\int_0^1f_n=1-(n+1)e^{-n}\\to1$.\n- **Intervalle non borné** : $f_n(x)=\\frac1ne^{-x/n}$ vérifie $\\|f_n\\|_\\infty=\\frac1n\\to0$ sur $\\left[0,+\\infty\\right[$, mais $\\int_0^{+\\infty}f_n=1$ pour tout $n$.\n- **La réciproque est fausse** : $f_n(x)=x^n$ sur $[0,1]$ vérifie $\\int_0^1f_n=\\frac1{n+1}\\to0$, l'intégrale de la fonction nulle, bien que $(f_n)$ ne converge pas uniformément vers $0$ ($f_n(1)=1$).",
+      "affirmations": [
+        {
+          "texte": "Si des fonctions continues $f_n$ convergent uniformément vers $f$ sur $[0,1]$, alors $\\int_0^1|f_n-f|\\to0$.",
+          "vrai": true,
+          "justification": "$\\int_0^1|f_n-f|\\le\\|f_n-f\\|_\\infty\\to0$."
+        },
+        {
+          "texte": "Si des fonctions continues et positives $f_n$ convergent simplement vers $0$ sur $[0,1]$, alors $\\int_0^1f_n\\to0$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=n^2xe^{-nx}$ : positive, de limite simple nulle, et $\\int_0^1f_n=1-(n+1)e^{-n}\\to1$."
+        },
+        {
+          "texte": "Si des fonctions continues vérifient $\\int_0^1f_n\\to\\int_0^1f$, alors $(f_n)$ converge uniformément vers $f$ sur $[0,1]$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=x^n$ et $f=0$ : $\\int_0^1f_n=\\frac1{n+1}\\to0$, mais $f_n(1)=1$ pour tout $n$."
+        },
+        {
+          "texte": "Si des fonctions continues $f_n$ convergent uniformément vers $f$ sur $[0,1]$, alors $x\\mapsto\\int_0^xf_n$ converge uniformément vers $x\\mapsto\\int_0^xf$ sur $[0,1]$.",
+          "vrai": true,
+          "justification": "$\\left|\\int_0^xf_n-\\int_0^xf\\right|\\le x\\|f_n-f\\|_\\infty\\le\\|f_n-f\\|_\\infty$ pour tout $x\\in[0,1]$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-suites-fonctions-continuite",
+        "int-t-integrale-proprietes",
+        "int-l1-riemann-cpm"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-derivation",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Dérivation de la limite d'une suite de fonctions",
+      "recto": "Énoncer le théorème de dérivation de la limite d'une suite de fonctions de classe $C^1$, avec ses hypothèses.",
+      "cours": "La convergence uniforme conserve la continuité et passe à l'intégrale, mais pas à la dérivée : $\\frac{\\sin(nx)}n$ tend uniformément vers $0$, alors que les dérivées $\\cos(nx)$ ne convergent pas. Pour dériver une limite, il faut contrôler les dérivées : c'est leur convergence uniforme qui compte.\n\nL'idée de la preuve est d'intégrer : $f_n(x)=f_n(x_0)+\\int_{x_0}^xf_n'(t)\\,dt$. La convergence uniforme des $f_n'$ sur les segments permet de passer à la limite dans l'intégrale, ce qui donne $f(x)=f(x_0)+\\int_{x_0}^xg(t)\\,dt$, puis $f'=g$ par le théorème fondamental. La même preuve montre qu'il suffit de supposer la convergence de $(f_n(x_0))$ en un seul point $x_0$ : la convergence simple, et même uniforme sur les segments, de $(f_n)$ en découle.\n\nPour une série de fonctions $\\sum u_n$ de classe $C^1$ : si $\\sum u_n$ converge simplement et si $\\sum u_n'$ converge uniformément (par exemple normalement) sur tout segment, alors la somme est de classe $C^1$ et se dérive terme à terme. Par récurrence, on obtient des énoncés pour la classe $C^k$.\n\nPièges : la convergence uniforme de $(f_n)$ ne suffit pas ($\\sqrt{x^2+\\frac1{n^2}}\\to|x|$) ; la convergence simple des dérivées non plus ; l'hypothèse principale porte sur les dérivées, la convergence de $(f_n)$ ne servant qu'à fixer la constante.",
+      "hypotheses": [
+        "Chaque $f_n$ est de classe $C^1$ sur $I$.",
+        "$(f_n)$ converge simplement vers $f$ sur $I$.",
+        "$(f_n')$ converge uniformément vers $g$ sur tout segment inclus dans $I$."
+      ],
+      "hypotheses_pieges": [
+        "$(f_n)$ converge uniformément vers $f$ sur $I$ (à la place de la convergence uniforme de $(f_n')$ sur tout segment).",
+        "$(f_n')$ converge simplement vers $g$ sur $I$ (à la place de : uniformément sur tout segment inclus dans $I$).",
+        "La suite $(f_n(x_0))$ est bornée pour un $x_0\\in I$ (à la place de : $(f_n)$ converge simplement vers $f$ sur $I$)."
+      ],
+      "enonce": "Soit $I$ un intervalle de $\\mathbb{R}$ et $(f_n)$ une suite de fonctions de classe $C^1$ sur $I$, à valeurs réelles ou complexes. On suppose :\n- $(f_n)$ converge simplement sur $I$ vers une fonction $f$ ;\n- $(f_n')$ converge uniformément sur tout segment inclus dans $I$ vers une fonction $g$.\n\nAlors $f$ est de classe $C^1$ sur $I$ et $f'=g$, c'est-à-dire $\\left(\\lim f_n\\right)'=\\lim f_n'$. De plus, $(f_n)$ converge uniformément vers $f$ sur tout segment inclus dans $I$.",
+      "enonce_trous": "Si les $f_n$ sont {{1}} sur l'intervalle $I$, si $(f_n)$ converge simplement vers $f$ sur $I$ et si $(f_n')$ converge {{2}} vers $g$, alors $f$ est {{3}} et $f'=g$.",
+      "trous": [
+        {
+          "reponse": "de classe $C^1$",
+          "leurres": [
+            "dérivables",
+            "continues, et de classe $C^1$ sur $I$ privé d'un point",
+            "de classe $C^1$ par morceaux"
+          ]
+        },
+        {
+          "reponse": "uniformément sur tout segment de $I$",
+          "leurres": [
+            "simplement sur $I$",
+            "simplement sur $I$ en restant bornée par $1$",
+            "uniformément sur tout segment de $I$ ne contenant pas un point $c$ fixé de $I$"
+          ]
+        },
+        {
+          "reponse": "de classe $C^1$ sur $I$",
+          "leurres": [
+            "de classe $C^2$ sur $I$",
+            "lipschitzienne sur $I$",
+            "limite uniforme de $(f_n)$ sur $I$"
+          ]
+        }
+      ],
+      "demo": "Fixons $x_0\\in I$. La fonction $g$ est continue sur $I$, comme limite uniforme sur tout segment de fonctions continues. Soit $x\\in I$ ; le segment d'extrémités $x_0$ et $x$ est inclus dans $I$. Par le théorème fondamental, $f_n(x)=f_n(x_0)+\\int_{x_0}^xf_n'(t)\\,dt$. Comme $(f_n')$ converge uniformément vers $g$ sur ce segment, $\\int_{x_0}^xf_n'\\to\\int_{x_0}^xg$ (intégration de la limite uniforme). En passant à la limite :\n\n$$f(x)=f(x_0)+\\int_{x_0}^xg(t)\\,dt.$$\n\nLa fonction $g$ étant continue, le théorème fondamental montre que $f$ est dérivable sur $I$ de dérivée $g$ : $f$ est de classe $C^1$.\n\n**Convergence uniforme sur un segment** $[\\alpha,\\beta]\\subset I$. Quitte à le remplacer par $[\\min(\\alpha,x_0),\\max(\\beta,x_0)]$, encore inclus dans $I$, on peut supposer $x_0\\in[\\alpha,\\beta]$. Pour $x\\in[\\alpha,\\beta]$ :\n\n$$|f_n(x)-f(x)|\\le|f_n(x_0)-f(x_0)|+\\left|\\int_{x_0}^x(f_n'-g)\\right|\\le|f_n(x_0)-f(x_0)|+(\\beta-\\alpha)\\sup_{[\\alpha,\\beta]}|f_n'-g|,$$\n\nmajorant indépendant de $x$ qui tend vers $0$.",
+      "exemple": "Soit $f_n(x)=\\sum_{k=0}^n\\frac{x^k}{k!}$, de sorte que $f_n'=f_{n-1}$ pour $n\\ge1$. Sur un segment $[-A,A]$, $\\left|\\frac{x^k}{k!}\\right|\\le\\frac{A^k}{k!}$, terme général d'une série convergente : $(f_n)$ converge uniformément sur $[-A,A]$ (convergence normale) vers une fonction $E$, donc $(f_n')=(f_{n-1})$ aussi. Le théorème donne : $E$ est de classe $C^1$ sur $\\mathbb{R}$ et $E'=E$, avec $E(0)=1$ ; $E$ est la fonction exponentielle.",
+      "contre_exemple": "- **Convergence uniforme des $f_n$ seule** : $f_n(x)=\\sqrt{x^2+\\frac1{n^2}}$ est de classe $C^1$ et converge uniformément sur $\\mathbb{R}$ vers $|x|$ (écart au plus $\\frac1n$), qui n'est pas dérivable en $0$. Les dérivées $f_n'(x)=\\frac{x}{\\sqrt{x^2+1/n^2}}$ convergent simplement vers la fonction signe (nulle en $0$), mais pas uniformément sur $[-1,1]$.\n- **Dérivées qui ne convergent pas** : $f_n(x)=\\frac{\\sin(nx)}n$ converge uniformément vers $0$ sur $\\mathbb{R}$, mais $f_n'(\\pi)=\\cos(n\\pi)=(-1)^n$ diverge.\n- **Rôle de la convergence de $(f_n)$** : les fonctions constantes $f_n=(-1)^n$ ont des dérivées nulles, donc uniformément convergentes, mais ne convergent en aucun point.",
+      "affirmations": [
+        {
+          "texte": "Si des fonctions $f_n$ de classe $C^1$ convergent uniformément vers $f$ sur $\\mathbb{R}$, alors $f$ est dérivable sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=\\sqrt{x^2+\\frac1{n^2}}$ converge uniformément vers $|x|$ sur $\\mathbb{R}$ (écart au plus $\\frac1n$), non dérivable en $0$."
+        },
+        {
+          "texte": "Si les $f_n$ sont de classe $C^1$ sur $[0,1]$, si $f_n(0)\\to\\ell$ et si $(f_n')$ converge uniformément vers $g$ sur $[0,1]$, alors $(f_n)$ converge uniformément sur $[0,1]$ vers $x\\mapsto\\ell+\\int_0^xg(t)\\,dt$.",
+          "vrai": true,
+          "justification": "$\\left|f_n(x)-\\ell-\\int_0^xg\\right|\\le|f_n(0)-\\ell|+\\int_0^x|f_n'-g|\\le|f_n(0)-\\ell|+\\|f_n'-g\\|_\\infty$ pour tout $x\\in[0,1]$."
+        },
+        {
+          "texte": "Si $(f_n')$ converge uniformément vers $0$ sur $[0,1]$, les $f_n$ étant de classe $C^1$, alors $(f_n)$ converge simplement sur $[0,1]$.",
+          "vrai": false,
+          "contre_exemple": "Les fonctions constantes $f_n=(-1)^n$ : $f_n'=0$, mais $(f_n(x))$ diverge pour tout $x$."
+        },
+        {
+          "texte": "Si des fonctions $f_n$ de classe $C^1$ convergent uniformément vers $0$ sur $\\mathbb{R}$, alors $(f_n')$ converge simplement vers $0$ sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(x)=\\frac{\\sin(nx)}n$ : $\\|f_n\\|_\\infty=\\frac1n$, mais $f_n'(0)=1$ pour tout $n$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-suites-fonctions-integration",
+        "int-t-integrale-fondamental"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-normale",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Convergence normale d'une série de fonctions",
+      "recto": "Définir la convergence normale d'une série de fonctions sur $I$ et énoncer ce qu'elle entraîne.",
+      "cours": "La convergence normale est le critère pratique de convergence uniforme pour les séries : on majore $|u_n(x)|$ par un $a_n$ qui ne dépend pas de $x$, terme général d'une série convergente (souvent de Riemann ou géométrique). Concrètement, on calcule ou on majore $\\|u_n\\|_\\infty=\\sup_{x\\in I}|u_n(x)|$, au besoin par une étude de fonction, puis on étudie la série numérique $\\sum\\|u_n\\|_\\infty$.\n\nElle entraîne tout le reste : convergence absolue en chaque point, convergence uniforme sur $I$ avec une majoration explicite du reste, $\\sup_{x\\in I}|R_n(x)|\\le\\sum_{k>n}\\|u_k\\|_\\infty$. Combinée aux théorèmes précédents : une série normalement convergente de fonctions continues a une somme continue ; on peut l'intégrer terme à terme sur un segment ; si la série des dérivées converge normalement sur tout segment (et la série elle-même en un point), on peut dériver terme à terme.\n\nComme la convergence uniforme, elle dépend de l'ensemble : $\\sum x^n$ converge normalement sur $[-a,a]$ pour tout $a<1$, mais pas sur $\\left]-1,1\\right[$. On vise donc souvent la convergence normale sur tout segment, ou sur $\\left[a,+\\infty\\right[$ pour tout $a>0$, ce qui suffit pour la continuité et la dérivabilité.\n\nPièges : « normale entraîne uniforme, qui entraîne simple » et « normale entraîne absolue en chaque point » ne se renversent pas. La série $\\sum\\frac{(-1)^n}{n+1}$, vue comme série de fonctions constantes, converge uniformément sans converger normalement ; $\\sum x^n$ converge absolument en chaque point de $\\left]-1,1\\right[$ sans converger uniformément sur cet intervalle.",
+      "hypotheses": [
+        "Pour tout $n$ et tout $x\\in I$, $|u_n(x)|\\le a_n$.",
+        "La série numérique $\\sum a_n$ converge."
+      ],
+      "hypotheses_pieges": [
+        "Pour tout $x\\in I$, la série $\\sum|u_n(x)|$ converge (à la place de la majoration par des $a_n$ indépendants de $x$).",
+        "Pour tout $n$ et tout $x\\in I$, $|u_n(x)|\\le a_n$, avec $a_n\\to0$ (à la place de : $\\sum a_n$ converge).",
+        "Pour tout $n$ et tout $x\\in I$, $u_n(x)\\le a_n$ (à la place de $|u_n(x)|\\le a_n$)."
+      ],
+      "enonce": "Soit $(u_n)$ une suite de fonctions de $I$ dans $\\mathbb{R}$ (ou $\\mathbb{C}$). La série $\\sum u_n$ **converge normalement** sur $I$ si chaque $u_n$ est bornée sur $I$ et si la série numérique $\\sum\\|u_n\\|_\\infty$, où $\\|u_n\\|_\\infty=\\sup_{x\\in I}|u_n(x)|$, converge ; de façon équivalente, s'il existe une série convergente $\\sum a_n$ de réels positifs telle que $|u_n(x)|\\le a_n$ pour tout $n$ et tout $x\\in I$.\n\n**Théorème.** Si $|u_n(x)|\\le a_n$ pour tout $n$ et tout $x\\in I$, avec $\\sum a_n$ convergente, alors pour tout $x\\in I$ la série $\\sum u_n(x)$ converge absolument, et $\\sum u_n$ converge uniformément sur $I$ : les sommes partielles $S_n=\\sum_{k=0}^nu_k$ convergent uniformément sur $I$ vers $S=\\sum_{k=0}^{+\\infty}u_k$, avec $\\|S-S_n\\|_\\infty\\le\\sum_{k=n+1}^{+\\infty}a_k$.",
+      "enonce_trous": "La série $\\sum u_n$ converge normalement sur $I$ si {{1}}. Elle converge alors {{2}} sur $I$, et pour tout $n$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "la série numérique $\\sum\\sup_{x\\in I}|u_n(x)|$ converge",
+          "leurres": [
+            "pour tout $x\\in I$, la série $\\sum|u_n(x)|$ converge",
+            "$\\sup_{x\\in I}|u_n(x)|\\to0$",
+            "la série $\\sum\\sup_{x\\in I}u_n(x)$ converge"
+          ]
+        },
+        {
+          "reponse": "uniformément",
+          "leurres": [
+            "vers une fonction continue",
+            "vers une fonction de classe $C^1$",
+            "vers une fonction bornée par $\\sup_{x\\in I}|u_0(x)|$"
+          ]
+        },
+        {
+          "reponse": "$\\sup_{x\\in I}\\left|\\sum_{k=n+1}^{+\\infty}u_k(x)\\right|\\le\\sum_{k=n+1}^{+\\infty}\\|u_k\\|_\\infty$",
+          "leurres": [
+            "$\\sup_{x\\in I}\\left|\\sum_{k=n+1}^{+\\infty}u_k(x)\\right|\\le\\|u_{n+1}\\|_\\infty$",
+            "$\\sup_{x\\in I}\\left|\\sum_{k=n+1}^{+\\infty}u_k(x)\\right|\\le\\frac1{n+1}$",
+            "$\\sup_{x\\in I}\\left|\\sum_{k=n+1}^{+\\infty}u_k(x)\\right|\\le\\sum_{k=n+1}^{+\\infty}\\|u_k\\|_\\infty^2$"
+          ]
+        }
+      ],
+      "demo": "**Équivalence des deux définitions.** Si $\\sum\\|u_n\\|_\\infty$ converge, on prend $a_n=\\|u_n\\|_\\infty$. Inversement, si $|u_n(x)|\\le a_n$ pour tout $x$, alors $u_n$ est bornée, $0\\le\\|u_n\\|_\\infty\\le a_n$, et $\\sum\\|u_n\\|_\\infty$ converge par comparaison de séries à termes positifs.\n\n**Convergence absolue.** Soit $x\\in I$. La série à termes positifs $\\sum|u_n(x)|$ a des sommes partielles majorées par $\\sum_{k=0}^{+\\infty}a_k$ : elle converge. Ainsi $\\sum u_n(x)$ converge absolument, donc converge (critère de Cauchy dans $\\mathbb{R}$ ou $\\mathbb{C}$). On note $S(x)$ sa somme.\n\n**Convergence uniforme.** Pour $x\\in I$ et $q>n$, $\\left|\\sum_{k=n+1}^{q}u_k(x)\\right|\\le\\sum_{k=n+1}^{q}a_k$ ; en faisant tendre $q$ vers $+\\infty$ :\n\n$$|S(x)-S_n(x)|=\\left|\\sum_{k=n+1}^{+\\infty}u_k(x)\\right|\\le\\sum_{k=n+1}^{+\\infty}a_k.$$\n\nLe majorant est le reste d'une série convergente : il ne dépend pas de $x$ et tend vers $0$. Donc $\\|S-S_n\\|_\\infty\\to0$. Avec $a_k=\\|u_k\\|_\\infty$, on obtient la majoration du reste par $\\sum_{k>n}\\|u_k\\|_\\infty$.",
+      "exemple": "La série $\\sum_{n\\ge1}\\frac{\\sin(nx)}{n^2}$ converge normalement sur $\\mathbb{R}$, car $\\left|\\frac{\\sin(nx)}{n^2}\\right|\\le\\frac1{n^2}$ et $\\sum\\frac1{n^2}$ converge. Sa somme est donc continue sur $\\mathbb{R}$, et le reste est majoré uniformément : $\\left|\\sum_{k>n}\\frac{\\sin(kx)}{k^2}\\right|\\le\\sum_{k>n}\\frac1{k^2}\\le\\sum_{k>n}\\frac1{k(k-1)}=\\frac1n$.",
+      "contre_exemple": "- **Uniforme sans normale** : les fonctions constantes $u_n=\\frac{(-1)^n}{n+1}$ ; $\\sum u_n$ converge uniformément sur $\\mathbb{R}$ (la convergence ne dépend pas de $x$), mais $\\sum\\|u_n\\|_\\infty=\\sum\\frac1{n+1}$ diverge.\n- **Absolue en chaque point, sans convergence uniforme** : $\\sum x^n$ sur $\\left]-1,1\\right[$ ; le reste vaut $\\frac{x^{n+1}}{1-x}$, qui n'est pas borné quand $x\\to1$.\n- **Normale sur tout segment, pas sur l'intervalle** : $\\sum x^n$ converge normalement sur $[-a,a]$ pour $0<a<1$ ($\\|u_n\\|_\\infty=a^n$), mais pas sur $\\left]-1,1\\right[$ ($\\|u_n\\|_\\infty=1$).",
+      "affirmations": [
+        {
+          "texte": "Si $\\sum u_n$ converge normalement sur $I$, alors $(u_n)$ converge uniformément vers $0$ sur $I$.",
+          "vrai": true,
+          "justification": "$\\|u_n\\|_\\infty$ est le terme général d'une série convergente, donc tend vers $0$."
+        },
+        {
+          "texte": "Une série de fonctions qui converge uniformément sur $I$ converge normalement sur $I$.",
+          "vrai": false,
+          "contre_exemple": "Les fonctions constantes $u_n=\\frac{(-1)^n}{n+1}$ sur $\\mathbb{R}$ : convergence uniforme (série alternée), mais $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "La série $\\sum_{n\\ge1}\\frac{x^n}{n}$ converge normalement sur $\\left[-1,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$\\sup_{x\\in\\left[-1,1\\right[}\\left|\\frac{x^n}n\\right|=\\frac1n$ (atteint en $-1$), et $\\sum\\frac1n$ diverge."
+        },
+        {
+          "texte": "La série $\\sum_{n\\ge1}\\frac{\\cos(nx)}{n^2}$ converge normalement sur $\\mathbb{R}$ et sa somme est continue sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "$\\left|\\frac{\\cos(nx)}{n^2}\\right|\\le\\frac1{n^2}$ ; la convergence est uniforme et les termes sont continus."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-suites-fonctions-uniforme",
+        "ar-l1-suites-cauchy",
+        "ar-l2-series-cauchy-absolue"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-cauchy-uniforme",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Critère de Cauchy uniforme",
+      "recto": "Énoncer le critère de Cauchy uniforme pour une suite et pour une série de fonctions.",
+      "cours": "Le critère de Cauchy uniforme permet de prouver une convergence uniforme sans connaître la limite : il suffit que les termes de la suite soient uniformément proches les uns des autres, avec un même rang $N$ valable en tout $x$. Il repose sur la complétude de $\\mathbb{R}$ et de $\\mathbb{C}$ (toute suite de Cauchy converge) ; c'est un cas particulier de la complétude de l'espace des fonctions bornées muni de $\\|\\cdot\\|_\\infty$.\n\nPour les séries, il porte sur les tranches $\\sum_{k=p+1}^qu_k(x)$. C'est l'outil des séries qui convergent uniformément sans converger normalement, notamment par la transformation d'Abel : si les sommes $\\sum_{k=1}^nv_k(x)$ sont bornées indépendamment de $n$ et de $x$, et si $(\\varepsilon_n)$ est une suite réelle décroissante de limite nulle, alors $\\sum\\varepsilon_nv_n(x)$ converge uniformément (exemple : $\\sum\\frac{\\sin(nx)}n$ sur $[a,2\\pi-a]$, $0<a<\\pi$).\n\nIl donne aussi des résultats négatifs. Si $\\sum u_n$ converge uniformément sur $I$, alors $(u_n)$ converge uniformément vers $0$ sur $I$ (prendre $q=p+1$). Si les $u_n$ sont continues sur $[a,b]$ et si la série converge uniformément sur $\\left[a,b\\right[$, le critère passe à la limite en $b$ : la série converge en $b$. Ainsi $\\sum\\frac{x^n}n$ ne converge pas uniformément sur $\\left[0,1\\right[$, sinon $\\sum\\frac1n$ convergerait.\n\nPièges : un critère de Cauchy point par point ne donne que la convergence simple ; contrôler seulement deux termes consécutifs, $|f_{n+1}-f_n|$, ne suffit pas.",
+      "hypotheses": [
+        "Les $f_n$ sont à valeurs dans $\\mathbb{R}$ ou dans $\\mathbb{C}$.",
+        "Pour tout $\\varepsilon>0$, il existe $N$ tel que pour tous $p,q\\ge N$ et tout $x\\in I$, $|f_p(x)-f_q(x)|\\le\\varepsilon$."
+      ],
+      "hypotheses_pieges": [
+        "Pour tout $x\\in I$ et tout $\\varepsilon>0$, il existe $N$ tel que pour tous $p,q\\ge N$, $|f_p(x)-f_q(x)|\\le\\varepsilon$ (à la place du critère uniforme).",
+        "Pour tout $\\varepsilon>0$, il existe $N$ tel que pour tout $n\\ge N$ et tout $x\\in I$, $|f_{n+1}(x)-f_n(x)|\\le\\varepsilon$ (à la place de : pour tous $p,q\\ge N$).",
+        "Les $f_n$ sont à valeurs dans $\\mathbb{Q}$, la limite étant cherchée à valeurs dans $\\mathbb{Q}$ (à la place de $\\mathbb{R}$ ou $\\mathbb{C}$)."
+      ],
+      "enonce": "Soit $(f_n)$ une suite de fonctions de $I$ dans $\\mathbb{R}$ (ou $\\mathbb{C}$). Elle converge uniformément sur $I$ (vers une certaine fonction) si et seulement si elle vérifie le **critère de Cauchy uniforme** : pour tout $\\varepsilon>0$, il existe $N$ tel que pour tous $p,q\\ge N$ et tout $x\\in I$, $|f_p(x)-f_q(x)|\\le\\varepsilon$.\n\nPour une série de fonctions $\\sum u_n$ : elle converge uniformément sur $I$ si et seulement si pour tout $\\varepsilon>0$, il existe $N$ tel que pour tous $q>p\\ge N$ et tout $x\\in I$, $\\left|\\sum_{k=p+1}^{q}u_k(x)\\right|\\le\\varepsilon$.",
+      "enonce_trous": "Une suite $(f_n)$ de fonctions de $I$ dans {{1}} converge uniformément sur $I$ vers une fonction à valeurs dans ce même ensemble si et seulement si : pour tout $\\varepsilon>0$, il existe $N$ tel que pour tous $p,q\\ge N$, {{2}}. Pour une série $\\sum u_n$, cela s'écrit : pour tout $\\varepsilon>0$, il existe $N$ tel que pour tous $q>p\\ge N$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\mathbb{R}$ ou $\\mathbb{C}$",
+          "leurres": [
+            "$\\mathbb{Q}$",
+            "$\\left]0,1\\right]$",
+            "$\\mathbb{R}^*$"
+          ]
+        },
+        {
+          "reponse": "$\\sup_{x\\in I}|f_p(x)-f_q(x)|\\le\\varepsilon$",
+          "leurres": [
+            "$|f_p(x)-f_q(x)|\\le\\varepsilon$ pour au moins un $x\\in I$",
+            "$\\sup_{x\\in I}|f_p(x)-f_q(x)|\\le\\varepsilon|p-q|$",
+            "$\\left|\\sup_{x\\in I}|f_p(x)|-\\sup_{x\\in I}|f_q(x)|\\right|\\le\\varepsilon$"
+          ]
+        },
+        {
+          "reponse": "$\\sup_{x\\in I}\\left|\\sum_{k=p+1}^{q}u_k(x)\\right|\\le\\varepsilon$",
+          "leurres": [
+            "$\\sup_{x\\in I}|u_q(x)|\\le\\varepsilon$",
+            "$\\sum_{k=p+1}^{q}\\sup_{x\\in I}u_k(x)\\le\\varepsilon$",
+            "$\\sup_{x\\in I}\\left|\\sum_{k=p+1}^{q}u_k(x)\\right|\\le\\varepsilon(q-p)$"
+          ]
+        }
+      ],
+      "demo": "**Condition nécessaire.** Si $(f_n)$ converge uniformément vers $f$ sur $I$, soit $\\varepsilon>0$ et $N$ tel que $|f_n(x)-f(x)|\\le\\frac\\varepsilon2$ pour tout $n\\ge N$ et tout $x\\in I$. Pour $p,q\\ge N$ : $|f_p(x)-f_q(x)|\\le|f_p(x)-f(x)|+|f(x)-f_q(x)|\\le\\varepsilon$.\n\n**Condition suffisante.** Supposons le critère vérifié. Pour chaque $x\\in I$, la suite numérique $(f_n(x))$ est de Cauchy, donc converge (complétude de $\\mathbb{R}$ ou de $\\mathbb{C}$) ; on note $f(x)$ sa limite. Soit $\\varepsilon>0$ et $N$ donné par le critère. Pour $p\\ge N$ et $x\\in I$, on fait tendre $q$ vers $+\\infty$ dans $|f_p(x)-f_q(x)|\\le\\varepsilon$ : $|f_p(x)-f(x)|\\le\\varepsilon$. Le rang $N$ ne dépend pas de $x$ : la convergence est uniforme.\n\n**Séries.** On applique ce qui précède à la suite des sommes partielles $S_n=\\sum_{k=0}^nu_k$, en remarquant que $S_q-S_p=\\sum_{k=p+1}^qu_k$ pour $q>p$.",
+      "exemple": "Pour $x\\ge0$, la série $\\sum_{n\\ge1}\\frac{(-1)^n}{n+x}$ est alternée, et $\\frac1{n+x}$ décroît vers $0$. La majoration des tranches d'une série alternée donne, pour $q>p\\ge1$ : $\\left|\\sum_{k=p+1}^{q}\\frac{(-1)^k}{k+x}\\right|\\le\\frac1{p+1+x}\\le\\frac1{p+1}$. Le critère de Cauchy uniforme est vérifié : la série converge uniformément sur $\\left[0,+\\infty\\right[$, alors qu'elle n'y converge pas normalement ($\\|u_n\\|_\\infty=\\frac1n$).",
+      "contre_exemple": "- **Cauchy point par point** : $f_n(x)=x^n$ sur $\\left[0,1\\right[$ ; pour chaque $x$, $(f_n(x))$ est de Cauchy, mais en prenant $x$ tel que $x^n=\\frac12$, on a $|f_n(x)-f_{2n}(x)|=\\frac12-\\frac14=\\frac14$ : le critère uniforme échoue et la convergence n'est pas uniforme.\n- **Termes consécutifs** : les fonctions constantes $f_n=\\sum_{k=1}^n\\frac1k$ vérifient $\\|f_{n+1}-f_n\\|_\\infty=\\frac1{n+1}\\to0$, mais divergent.\n- **Complétude nécessaire** : les fonctions constantes $f_n=\\frac{\\lfloor10^n\\sqrt2\\rfloor}{10^n}$, à valeurs rationnelles, vérifient le critère de Cauchy uniforme ($|f_p-f_q|\\le10^{-\\min(p,q)}$) mais n'ont pas de limite à valeurs dans $\\mathbb{Q}$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\sum u_n$ converge uniformément sur $I$, alors $(u_n)$ converge uniformément vers $0$ sur $I$.",
+          "vrai": true,
+          "justification": "Le critère de Cauchy uniforme avec $q=p+1$ donne $\\sup_{x\\in I}|u_{p+1}(x)|\\le\\varepsilon$ pour $p\\ge N$."
+        },
+        {
+          "texte": "Si $(u_n)$ converge uniformément vers $0$ sur $I$, alors $\\sum u_n$ converge uniformément sur $I$.",
+          "vrai": false,
+          "contre_exemple": "Les fonctions constantes $u_n=\\frac1{n+1}$ tendent uniformément vers $0$, mais $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "Si les $u_n$ sont continues sur $[0,1]$ et si $\\sum u_n$ converge uniformément sur $\\left[0,1\\right[$, alors $\\sum u_n(1)$ converge.",
+          "vrai": true,
+          "justification": "Pour $q>p\\ge N$ et $x\\in\\left[0,1\\right[$, $\\left|\\sum_{k=p+1}^qu_k(x)\\right|\\le\\varepsilon$ ; par continuité, en faisant tendre $x$ vers $1$, $\\left|\\sum_{k=p+1}^qu_k(1)\\right|\\le\\varepsilon$ : la série numérique $\\sum u_k(1)$ vérifie le critère de Cauchy."
+        },
+        {
+          "texte": "La série $\\sum_{n\\ge1}\\frac{x^n}{n}$ converge uniformément sur $\\left[0,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "Sinon, d'après le critère de Cauchy uniforme et la continuité en $1$ des termes, la série $\\sum\\frac1n$ vérifierait le critère de Cauchy ; or $\\sum_{k=N+1}^{2N}\\frac1k\\ge\\frac12$ pour tout $N\\ge1$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-suites-fonctions-uniforme",
+        "ar-l1-suites-cauchy"
+      ]
+    },
+    {
+      "id": "ar-l2-suites-fonctions-approximation",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-suites-fonctions",
+      "type": "theoreme",
+      "titre": "Approximation uniforme : fonctions en escalier, affines par morceaux, polynômes",
+      "recto": "Énoncer les théorèmes d'approximation uniforme d'une fonction continue sur un segment (fonctions en escalier, fonctions affines par morceaux, théorème de Weierstrass).",
+      "cours": "Les fonctions continues sur un segment se laissent approcher uniformément par des fonctions plus simples, à toute précision $\\varepsilon$ fixée à l'avance. Pour les fonctions en escalier et affines par morceaux, l'outil est le théorème de Heine : $f$ est uniformément continue, donc varie de moins de $\\varepsilon$ sur tout intervalle de longueur $\\delta$ ; on découpe $[a,b]$ en morceaux de longueur au plus $\\delta$, et on remplace $f$ par une constante (sa valeur en une extrémité du morceau) ou par la corde.\n\nLe théorème de Weierstrass affirme qu'on peut même prendre des polynômes. Une preuve constructive utilise les polynômes de Bernstein $B_n(f)(t)=\\sum_{k=0}^n\\binom nkf\\left(\\frac kn\\right)t^k(1-t)^{n-k}$ sur $[0,1]$ : $B_n(f)(t)$ est l'espérance de $f\\left(\\frac Xn\\right)$ pour $X$ de loi binomiale $\\mathcal B(n,t)$, et l'inégalité de Bienaymé-Tchebychev montre que $B_n(f)\\to f$ uniformément. On se ramène à $[0,1]$ par le changement de variable affine $x=a+(b-a)t$.\n\nUsage typique, la « densité » : pour établir une propriété de toutes les fonctions continues sur $[a,b]$ qui passe à la limite uniforme, il suffit de la vérifier pour les fonctions en escalier, ou pour les polynômes. Exemples : le lemme de Riemann-Lebesgue, $\\int_a^bf(t)\\sin(nt)\\,dt\\to0$, ou « si $\\int_0^1f(t)t^n\\,dt=0$ pour tout $n$, alors $f=0$ ». Les fonctions continues par morceaux sont aussi limites uniformes de fonctions en escalier (mais pas de polynômes, dès qu'elles sont discontinues).\n\nPièges : le segment est indispensable. Sur $\\mathbb{R}$, ou sur un intervalle qui n'est pas fermé, une fonction continue n'est pas toujours limite uniforme de polynômes ($\\sin$ sur $\\mathbb{R}$, $\\sin\\frac1x$ sur $\\left]0,1\\right]$) ; et une limite uniforme de polynômes sur $[a,b]$ est continue, ce qui exclut toute fonction discontinue.",
+      "hypotheses": [
+        "$f$ est continue sur $[a,b]$.",
+        "L'intervalle $[a,b]$ est un segment : fermé et borné."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue et bornée sur $\\left]a,b\\right]$ (à la place de : continue sur $[a,b]$).",
+        "$f$ est continue et bornée sur $\\left[a,+\\infty\\right[$ (à la place du segment $[a,b]$).",
+        "$f$ est continue par morceaux sur $[a,b]$ (à la place de : continue sur $[a,b]$)."
+      ],
+      "enonce": "Soit $f$ une fonction continue sur un segment $[a,b]$ ($a<b$), à valeurs réelles. Pour tout $\\varepsilon>0$, il existe :\n- une fonction en escalier $\\varphi$ sur $[a,b]$ telle que $\\sup_{x\\in[a,b]}|f(x)-\\varphi(x)|\\le\\varepsilon$ ;\n- une fonction continue et affine par morceaux $\\psi$ sur $[a,b]$ telle que $\\sup_{x\\in[a,b]}|f(x)-\\psi(x)|\\le\\varepsilon$ ;\n- une fonction polynomiale $P$ telle que $\\sup_{x\\in[a,b]}|f(x)-P(x)|\\le\\varepsilon$ (**théorème de Weierstrass**).\n\nAutrement dit, $f$ est limite uniforme sur $[a,b]$ d'une suite de fonctions en escalier, d'une suite de fonctions continues affines par morceaux et d'une suite de polynômes.",
+      "enonce_trous": "Toute fonction {{1}} sur un segment $[a,b]$ est limite uniforme sur $[a,b]$ d'une suite de {{2}} ; c'est le théorème de Weierstrass. Elle est aussi limite uniforme sur $[a,b]$ d'une suite de fonctions {{3}}.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "monotone"
+          ]
+        },
+        {
+          "reponse": "fonctions polynomiales",
+          "leurres": [
+            "fonctions polynomiales de degré au plus $2$",
+            "fonctions polynomiales à coefficients entiers",
+            "fonctions polynomiales positives sur $[a,b]$"
+          ]
+        },
+        {
+          "reponse": "en escalier",
+          "leurres": [
+            "constantes",
+            "monotones",
+            "lipschitziennes de rapport $1$"
+          ]
+        }
+      ],
+      "demo": "Par le théorème de Heine, $f$ est uniformément continue sur $[a,b]$ ; soit $\\delta>0$ tel que $|f(x)-f(y)|\\le\\varepsilon$ dès que $|x-y|\\le\\delta$. On choisit une subdivision $a=x_0<x_1<\\dots<x_m=b$ de pas au plus $\\delta$.\n\n**Escalier.** Soit $\\varphi$ valant $f(x_i)$ sur $\\left[x_i,x_{i+1}\\right[$ pour $0\\le i<m$, et $\\varphi(b)=f(b)$. Pour $x\\in\\left[x_i,x_{i+1}\\right[$, $|f(x)-\\varphi(x)|=|f(x)-f(x_i)|\\le\\varepsilon$ car $|x-x_i|\\le\\delta$.\n\n**Affine par morceaux.** Soit $\\psi$ la fonction continue, affine sur chaque $[x_i,x_{i+1}]$, qui coïncide avec $f$ aux points $x_i$. Pour $x\\in[x_i,x_{i+1}]$, $\\psi(x)=(1-\\lambda)f(x_i)+\\lambda f(x_{i+1})$ avec $\\lambda\\in[0,1]$, donc $|f(x)-\\psi(x)|\\le(1-\\lambda)|f(x)-f(x_i)|+\\lambda|f(x)-f(x_{i+1})|\\le\\varepsilon$.\n\n**Weierstrass** (esquisse, sur $[0,1]$ ; le cas de $[a,b]$ s'en déduit par $x=a+(b-a)t$). Avec $X$ de loi $\\mathcal B(n,t)$, $B_n(f)(t)-f(t)=E\\left(f\\left(\\frac Xn\\right)-f(t)\\right)$. Sur l'événement $\\left|\\frac Xn-t\\right|\\le\\delta$, l'écart est au plus $\\varepsilon$ ; son complémentaire a une probabilité au plus $\\frac{V(X)}{n^2\\delta^2}=\\frac{t(1-t)}{n\\delta^2}\\le\\frac1{4n\\delta^2}$ (Bienaymé-Tchebychev), et l'écart y est au plus $2\\|f\\|_\\infty$. D'où $\\|B_n(f)-f\\|_\\infty\\le\\varepsilon+\\frac{\\|f\\|_\\infty}{2n\\delta^2}\\le2\\varepsilon$ pour $n$ assez grand.",
+      "exemple": "Pour $f(x)=x^2$ sur $[0,1]$ et la subdivision de pas $\\frac1n$, la fonction affine par morceaux $\\psi_n$ qui coïncide avec $f$ aux points $\\frac kn$ vérifie, sur $\\left[\\frac kn,\\frac{k+1}n\\right]$ : $0\\le\\psi_n(x)-x^2=\\left(x-\\frac kn\\right)\\left(\\frac{k+1}n-x\\right)\\le\\frac1{4n^2}$. L'approximation affine par morceaux est ici bien meilleure que l'approximation en escalier, dont l'erreur est de l'ordre de $\\frac1n$.",
+      "contre_exemple": "- **Segment indispensable (intervalle non borné)** : $\\sin$ n'est pas limite uniforme de polynômes sur $\\mathbb{R}$. Si $P-\\sin$ est bornée sur $\\mathbb{R}$, le polynôme $P$ est borné, donc constant égal à $c$, et $\\sup_{\\mathbb{R}}|c-\\sin|=1+|c|\\ge1$.\n- **Segment indispensable (intervalle non fermé)** : $x\\mapsto\\sin\\frac1x$, continue et bornée sur $\\left]0,1\\right]$, n'est pas limite uniforme de polynômes sur $\\left]0,1\\right]$ : une telle limite serait uniformément continue (les polynômes le sont sur $[0,1]$), ce que $\\sin\\frac1x$ n'est pas.\n- **Continuité indispensable** : $\\mathbf{1}_{\\left[\\frac12,1\\right]}$ n'est pas limite uniforme de polynômes sur $[0,1]$ (la limite serait continue), bien qu'elle soit en escalier.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[0,1]$ et si $\\int_0^1f(t)t^n\\,dt=0$ pour tout $n\\in\\mathbb{N}$, alors $f=0$.",
+          "vrai": true,
+          "justification": "Alors $\\int_0^1fP=0$ pour tout polynôme $P$. Avec $P_k\\to f$ uniformément (Weierstrass), $\\int_0^1fP_k\\to\\int_0^1f^2$, donc $\\int_0^1f^2=0$ et $f=0$ par continuité et positivité de $f^2$."
+        },
+        {
+          "texte": "Toute fonction continue sur $\\mathbb{R}$ est limite uniforme sur $\\mathbb{R}$ d'une suite de polynômes.",
+          "vrai": false,
+          "contre_exemple": "$\\sin$ : si $P-\\sin$ est bornée sur $\\mathbb{R}$, $P$ est constant, et $\\sup_{\\mathbb{R}}|P-\\sin|\\ge1$."
+        },
+        {
+          "texte": "Toute fonction continue et bornée sur $\\left]0,1\\right]$ est limite uniforme sur $\\left]0,1\\right]$ d'une suite de polynômes.",
+          "vrai": false,
+          "contre_exemple": "$\\sin\\frac1x$ n'est pas uniformément continue sur $\\left]0,1\\right]$, alors qu'une limite uniforme de polynômes l'est."
+        },
+        {
+          "texte": "Toute fonction continue par morceaux sur $[a,b]$ est limite uniforme sur $[a,b]$ d'une suite de fonctions en escalier.",
+          "vrai": true,
+          "justification": "Sur chaque intervalle ouvert de continuité, $f$ se prolonge en une fonction continue sur le segment fermé correspondant ; on approche chaque prolongement par une fonction en escalier, et on garde les valeurs de $f$ aux points de la subdivision."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-continuite-heine",
+        "ar-l2-suites-fonctions-uniforme"
+      ]
+    }
+  ]
+}

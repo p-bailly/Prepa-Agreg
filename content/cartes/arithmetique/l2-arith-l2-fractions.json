@@ -1,0 +1,390 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l2-fractions-forme-irreductible",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-fractions",
+      "type": "theoreme",
+      "titre": "Corps des fractions rationnelles, forme irréductible",
+      "recto": "Définir le corps $\\mathbb{K}(X)$ des fractions rationnelles et énoncer l'existence et l'unicité de la forme irréductible, avec ses conditions de normalisation.",
+      "cours": "Une fraction rationnelle est un quotient formel $\\frac AB$ de deux polynômes, exactement comme un rationnel est un quotient de deux entiers : $\\mathbb{K}(X)$ est construit à partir de $\\mathbb{K}[X]$ comme $\\mathbb{Q}$ à partir de $\\mathbb{Z}$ (corps des fractions d'un anneau intègre). Deux écritures $\\frac AB$ et $\\frac CD$ représentent la même fraction quand $AD=BC$ : on ne « simplifie » rien, on identifie.\n\nLa forme irréductible joue le rôle de la fraction d'entiers simplifiée au maximum, avec un dénominateur normalisé : $P$ et $Q$ premiers entre eux, $Q$ unitaire. Pour l'obtenir, on calcule $D=A\\wedge B$ (par factorisation ou par l'algorithme d'Euclide), on divise $A$ et $B$ par $D$, puis on divise numérateur et dénominateur par le coefficient dominant du dénominateur. L'unicité repose sur le lemme de Gauss dans $\\mathbb{K}[X]$, conséquence du théorème de Bézout.\n\nLe degré $\\deg F=\\deg A-\\deg B$ est un entier relatif (ou $-\\infty$ pour $F=0$) qui ne dépend pas de l'écriture. Il se comporte comme celui des polynômes pour le produit ; pour la somme, on a seulement une inégalité, car les termes dominants peuvent se compenser.\n\nPièges : sur $\\mathbb{R}$, « $P$ et $Q$ n'ont pas de racine réelle commune » ne suffit pas pour que $P\\wedge Q=1$ (penser à un facteur $X^2+1$ commun) ; sans la condition « $Q$ unitaire », l'écriture n'est unique qu'à un facteur constant non nul près.",
+      "hypotheses": [
+        "$Q$ est unitaire.",
+        "$P$ et $Q$ sont premiers entre eux : $P\\wedge Q=1$."
+      ],
+      "hypotheses_pieges": [
+        "$P$ et $Q$ n'ont aucune racine commune dans $\\mathbb{K}$ (à la place de $P\\wedge Q=1$).",
+        "$Q$ est de degré minimal parmi les dénominateurs des écritures de $F$ (à la place de : $Q$ unitaire et $P\\wedge Q=1$).",
+        "$\\deg P<\\deg Q$ (à la place de $P\\wedge Q=1$)."
+      ],
+      "enonce": "Soit $\\mathbb{K}$ un corps commutatif. Le corps $\\mathbb{K}(X)$ des **fractions rationnelles** est le corps des fractions de l'anneau intègre $\\mathbb{K}[X]$ : ses éléments s'écrivent $\\frac AB$ avec $A,B\\in\\mathbb{K}[X]$, $B\\neq0$, et $\\frac AB=\\frac CD$ si et seulement si $AD=BC$.\n\n**Théorème.** Toute $F\\in\\mathbb{K}(X)$ s'écrit de façon unique $F=\\frac PQ$ avec $P,Q\\in\\mathbb{K}[X]$, $Q$ unitaire et $P\\wedge Q=1$ : c'est la **forme irréductible** de $F$. De plus, les écritures $F=\\frac AB$ de $F$ sont exactement les $\\frac{DP}{DQ}$ avec $D\\in\\mathbb{K}[X]$ non nul.\n\nLe **degré** $\\deg F=\\deg A-\\deg B$ ne dépend pas de l'écriture $F=\\frac AB$ (avec $\\deg0=-\\infty$). Pour $F,G\\in\\mathbb{K}(X)$ : $\\deg(FG)=\\deg F+\\deg G$ et $\\deg(F+G)\\le\\max(\\deg F,\\deg G)$.",
+      "enonce_trous": "Toute fraction rationnelle $F\\in\\mathbb{K}(X)$ s'écrit de façon unique $F=\\frac PQ$ avec $Q$ {{1}} et {{2}} ; les écritures de $F$ sont alors exactement les $\\frac{DP}{DQ}$ avec {{3}}.",
+      "trous": [
+        {
+          "reponse": "unitaire",
+          "leurres": [
+            "de degré au moins $1$",
+            "irréductible",
+            "à coefficients entiers"
+          ]
+        },
+        {
+          "reponse": "$P\\wedge Q=1$",
+          "leurres": [
+            "$\\deg P<\\deg Q$",
+            "$P$ et $Q$ unitaires",
+            "$P$ divise $Q$"
+          ]
+        },
+        {
+          "reponse": "$D\\in\\mathbb{K}[X]$ non nul",
+          "leurres": [
+            "$D\\in\\mathbb{K}$ non nul",
+            "$D$ unitaire",
+            "$D$ premier avec $Q$"
+          ]
+        }
+      ],
+      "demo": "**Lemme de Gauss.** Si $Q$ divise $AB$ et $Q\\wedge A=1$, alors $Q$ divise $B$ : par Bézout, $UA+VQ=1$, donc $B=U(AB)+(VB)Q$ est divisible par $Q$.\n\n**Existence.** Soit $F=\\frac AB$. Si $A=0$, $F=\\frac01$ convient. Sinon, soit $D=A\\wedge B$ : $A=DA_1$, $B=DB_1$ avec $A_1\\wedge B_1=1$, et $\\frac AB=\\frac{A_1}{B_1}$ car $AB_1=DA_1B_1=BA_1$. Si $c$ est le coefficient dominant de $B_1$, $P=\\frac{A_1}c$ et $Q=\\frac{B_1}c$ conviennent.\n\n**Écritures.** Soit $F=\\frac PQ$ sous forme irréductible et $F=\\frac AB$. Alors $AQ=BP$ : $Q$ divise $BP$ et $Q\\wedge P=1$, donc $Q$ divise $B$ (Gauss) : $B=DQ$ avec $D\\neq0$. En simplifiant $AQ=DQP$ par $Q\\neq0$ (intégrité), $A=DP$. Réciproquement, $\\frac{DP}{DQ}=\\frac PQ$ car $DPQ=DQP$.\n\n**Unicité.** Si $\\frac PQ$ et $\\frac{P_1}{Q_1}$ sont deux formes irréductibles de $F$, le point précédent donne $Q_1=DQ$ et $P_1=DP$ ; comme $P_1\\wedge Q_1=1$, $D$ divise $P_1$ et $Q_1$, donc $D$ est une constante, et $Q$, $Q_1$ unitaires imposent $D=1$.\n\n**Degré.** Si $\\frac AB=\\frac CD$ avec $A\\neq0$, alors $AD=BC$ et $\\deg A+\\deg D=\\deg B+\\deg C$, d'où $\\deg A-\\deg B=\\deg C-\\deg D$ (si $A=0$, $C=0$ et les deux valent $-\\infty$). Pour $F=\\frac AB$ et $G=\\frac CD$ : $FG=\\frac{AC}{BD}$ donne la formule du produit, et $F+G=\\frac{AD+BC}{BD}$ donne $\\deg(F+G)\\le\\max(\\deg A+\\deg D,\\deg B+\\deg C)-\\deg B-\\deg D=\\max(\\deg F,\\deg G)$.",
+      "exemple": "Dans $\\mathbb{R}(X)$, $F=\\frac{X^2-1}{2X^2+2X}=\\frac{(X-1)(X+1)}{2X(X+1)}$. Le PGCD du numérateur et du dénominateur est $X+1$, et la forme irréductible est\n$$F=\\frac{\\frac12(X-1)}{X},$$\navec $P=\\frac12(X-1)$, $Q=X$ unitaire et $P\\wedge Q=1$ ; $\\deg F=0$.",
+      "contre_exemple": "- **Pas de racine réelle commune ne suffit pas** : dans $\\mathbb{R}(X)$, $X^2+1$ et $X^3+X$ n'ont aucune racine réelle commune, mais $\\frac{X^2+1}{X^3+X}=\\frac1X$ n'est pas sous forme irréductible ($P\\wedge Q=X^2+1$).\n- **Sans normalisation, pas d'unicité** : $\\frac1X=\\frac2{2X}$, deux écritures à numérateur et dénominateur premiers entre eux.\n- **Le degré d'une somme peut baisser** : $\\frac X{X+1}$ et $-1$ sont de degré $0$, mais $\\frac X{X+1}-1=-\\frac1{X+1}$ est de degré $-1$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\frac PQ$ est la forme irréductible d'une fraction de $\\mathbb{K}(X)$, $P$ et $Q$ n'ont aucune racine commune dans $\\mathbb{K}$.",
+          "vrai": true,
+          "justification": "Une racine commune $a$ donnerait le diviseur commun $X-a$, non constant, alors que $P\\wedge Q=1$."
+        },
+        {
+          "texte": "Si $P,Q\\in\\mathbb{R}[X]$ n'ont aucune racine réelle commune, alors $P\\wedge Q=1$.",
+          "vrai": false,
+          "contre_exemple": "$P=X^2+1$ et $Q=X^3+X=X(X^2+1)$ n'ont aucune racine réelle commune, mais $P\\wedge Q=X^2+1$."
+        },
+        {
+          "texte": "Pour toutes $F,G\\in\\mathbb{K}(X)$, $\\deg(F+G)=\\max(\\deg F,\\deg G)$.",
+          "vrai": false,
+          "contre_exemple": "$F=\\frac X{X+1}$ et $G=-1$ sont de degré $0$, et $F+G=-\\frac1{X+1}$ est de degré $-1$."
+        },
+        {
+          "texte": "Une fraction rationnelle de degré strictement positif n'est pas forcément un polynôme.",
+          "vrai": true,
+          "justification": "$\\frac{X^2}{X+1}$ est de degré $1$ ; ce n'est pas un polynôme, car sa forme irréductible a pour dénominateur $X+1$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-polynomes-bezout",
+        "arith-l1-polynomes-division"
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-poles",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-fractions",
+      "type": "definition",
+      "titre": "Zéros, pôles et multiplicités",
+      "recto": "Définir les zéros et les pôles d'une fraction rationnelle et leur ordre de multiplicité ; énoncer leurs propriétés principales (indépendance de l'écriture, fonction rationnelle, pôles de la dérivée).",
+      "cours": "Les zéros et les pôles se lisent sur la **forme irréductible** $\\frac PQ$ : les zéros sont les racines de $P$, les pôles celles de $Q$, avec leurs multiplicités. Sur une écriture non simplifiée, une racine commune au numérateur et au dénominateur peut n'être ni un zéro ni un pôle ; c'est pourquoi on définit aussi l'entier $v_a(F)$, différence des multiplicités, qui ne dépend pas de l'écriture : positif pour un zéro, négatif pour un pôle, nul sinon.\n\nLa fraction rationnelle (objet algébrique) et la fonction rationnelle (application définie hors des pôles) sont deux objets distincts. Sur un corps infini, la fonction détermine la fraction : c'est le même argument que pour les polynômes (un polynôme non nul a un nombre fini de racines). Sur un corps fini, c'est faux.\n\nLa dérivée d'une fraction se définit formellement par $\\left(\\frac AB\\right)'=\\frac{A'B-AB'}{B^2}$ (le résultat ne dépend pas de l'écriture). En caractéristique nulle, dériver augmente l'ordre de chaque pôle d'exactement $1$ et ne crée pas de nouveau pôle. Conséquence très utile : la dérivée d'une fraction rationnelle n'a jamais de pôle simple ; d'où, par exemple, l'absence de primitive rationnelle pour $\\frac1X$.\n\nMéthode : pour trouver les pôles et leurs ordres, factoriser numérateur et dénominateur, simplifier, puis lire les multiplicités ; ou calculer directement $v_a(F)$ sur une écriture quelconque.",
+      "hypotheses": [
+        "$\\frac PQ$ est la forme irréductible de $F$ (pour lire zéros et pôles sur $P$ et $Q$).",
+        "$\\mathbb{K}$ est infini (pour qu'une fraction soit déterminée par sa fonction rationnelle).",
+        "$\\mathbb{K}$ est de caractéristique nulle (pour l'ordre des pôles de $F'$)."
+      ],
+      "hypotheses_pieges": [
+        "$\\frac PQ$ est une écriture quelconque de $F$ (à la place de la forme irréductible), pour lire zéros et pôles sur $P$ et $Q$.",
+        "$\\mathbb{K}=\\mathbb{Z}/p\\mathbb{Z}$ avec $p$ premier (à la place de $\\mathbb{K}$ infini), pour qu'une fraction soit déterminée par sa fonction rationnelle.",
+        "$\\mathbb{K}$ est de caractéristique $p$ première (à la place de caractéristique nulle), pour l'ordre des pôles de $F'$."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif, $F\\in\\mathbb{K}(X)$ non nulle, de forme irréductible $\\frac PQ$, et $a\\in\\mathbb{K}$.\n- $a$ est un **zéro** de $F$ d'ordre $m\\ge1$ si $a$ est racine de $P$ de multiplicité $m$ ; $a$ est un **pôle** de $F$ d'ordre $m\\ge1$ si $a$ est racine de $Q$ de multiplicité $m$. Comme $P\\wedge Q=1$, $a$ n'est jamais à la fois un zéro et un pôle.\n- Pour toute écriture $F=\\frac AB$, l'entier $v_a(F)=\\mathrm{mult}_a(A)-\\mathrm{mult}_a(B)$ (où $\\mathrm{mult}_a$ désigne la multiplicité de $a$ comme racine, nulle si $a$ n'est pas racine) ne dépend pas de l'écriture : $a$ est un zéro d'ordre $m$ si $v_a(F)=m>0$, un pôle d'ordre $m$ si $v_a(F)=-m<0$. De plus, $v_a(FG)=v_a(F)+v_a(G)$ pour $G$ non nulle.\n- La **fonction rationnelle** $x\\mapsto\\frac{P(x)}{Q(x)}$ est définie sur $\\mathbb{K}$ privé des pôles de $F$. Si $\\mathbb{K}$ est infini, deux fractions rationnelles dont les fonctions rationnelles coïncident sur une partie infinie de $\\mathbb{K}$ (hors de leurs pôles) sont égales ; en particulier, $F$ est déterminée par sa fonction rationnelle.\n- Si $\\mathbb{K}$ est de caractéristique nulle et si $a$ est un pôle d'ordre $m$ de $F$, alors $a$ est un pôle d'ordre $m+1$ de $F'$ ; si $a$ n'est pas un pôle de $F$, ce n'est pas un pôle de $F'$.",
+      "enonce_trous": "Si $\\frac PQ$ est la forme irréductible de $F$, les pôles de $F$ sont {{1}}. Si $\\mathbb{K}$ est de caractéristique nulle, un pôle d'ordre $m$ de $F$ est un pôle d'ordre {{2}} de $F'$. Si $\\mathbb{K}$ est infini, une fraction rationnelle est déterminée par {{3}}.",
+      "trous": [
+        {
+          "reponse": "les racines de $Q$",
+          "leurres": [
+            "les racines de $P$",
+            "les racines de $PQ$",
+            "les racines de $Q'$"
+          ]
+        },
+        {
+          "reponse": "$m+1$",
+          "leurres": [
+            "$m-1$",
+            "$m$",
+            "$m+2$"
+          ]
+        },
+        {
+          "reponse": "sa fonction rationnelle",
+          "leurres": [
+            "ses zéros et ses pôles, avec leurs ordres",
+            "ses pôles et leurs ordres",
+            "sa valeur en un point qui n'est pas un pôle"
+          ]
+        }
+      ],
+      "demo": "**Multiplicités.** Si $U=(X-a)^uU_1$ et $V=(X-a)^vV_1$ avec $U_1(a)V_1(a)\\neq0$, alors $UV=(X-a)^{u+v}U_1V_1$ et $(U_1V_1)(a)\\neq0$ : $\\mathrm{mult}_a(UV)=\\mathrm{mult}_a(U)+\\mathrm{mult}_a(V)$.\n\n**Indépendance de l'écriture.** Toute écriture est de la forme $\\frac{DP}{DQ}$ avec $D\\neq0$ (carte de la forme irréductible), donc $\\mathrm{mult}_a(DP)-\\mathrm{mult}_a(DQ)=\\mathrm{mult}_a(P)-\\mathrm{mult}_a(Q)$. Comme $P\\wedge Q=1$, $a$ n'est pas racine des deux à la fois (sinon $X-a$ diviserait $P$ et $Q$) : $v_a(F)$ vaut $\\mathrm{mult}_a(P)$ ou $-\\mathrm{mult}_a(Q)$, ce qui donne la caractérisation. Pour le produit, $FG=\\frac{AC}{BD}$ et l'on additionne les multiplicités.\n\n**Fonction rationnelle.** Soient $F=\\frac PQ$ et $G=\\frac RS$ sous forme irréductible, dont les fonctions coïncident sur une partie infinie $I$ ne contenant aucun pôle. Pour $x\\in I$, $Q(x)S(x)\\neq0$ et $P(x)S(x)-R(x)Q(x)=0$ : le polynôme $PS-RQ$ a une infinité de racines, il est nul, donc $F=G$.\n\n**Pôles de la dérivée.** Si $a$ n'est pas un pôle, $Q(a)\\neq0$ et $F'=\\frac{P'Q-PQ'}{Q^2}$ avec $Q^2(a)\\neq0$ : $v_a(F')\\ge0$. Si $a$ est un pôle d'ordre $m\\ge1$, $Q=(X-a)^mQ_1$ avec $Q_1(a)\\neq0$ et $P(a)\\neq0$. Posons $G=\\frac P{Q_1}$, de sorte que $F=\\frac G{(X-a)^m}$ ; alors\n$$F'=\\frac{(X-a)G'-mG}{(X-a)^{m+1}}.$$\nLe numérateur $N=(X-a)G'-mG$ s'écrit avec le dénominateur $Q_1^2$, qui ne s'annule pas en $a$, et $N(a)=-m\\frac{P(a)}{Q_1(a)}\\neq0$, car $m\\cdot1_{\\mathbb{K}}\\neq0$ en caractéristique nulle. Donc $v_a(N)=0$ et $v_a(F')=-(m+1)$.",
+      "exemple": "$F=\\frac{X^2-1}{X^3-X^2}=\\frac{(X-1)(X+1)}{X^2(X-1)}=\\frac{X+1}{X^2}$ : $-1$ est un zéro simple, $0$ un pôle double, et $1$, racine du numérateur et du dénominateur de l'écriture de départ, n'est ni un zéro ni un pôle ($v_1(F)=1-1=0$).\n\nSa dérivée est $F'=\\frac{X^2-2X(X+1)}{X^4}=-\\frac{X+2}{X^3}$ : $0$ est un pôle d'ordre $3=2+1$.",
+      "contre_exemple": "- **Écriture non irréductible** : $1$ est racine du numérateur et du dénominateur de $\\frac{X-1}{X(X-1)}$, mais n'est ni un zéro ni un pôle de cette fraction, égale à $\\frac1X$.\n- **Corps fini** : dans $(\\mathbb{Z}/2\\mathbb{Z})(X)$, la fraction $X^2+X$ n'est pas nulle, mais sa fonction rationnelle est nulle sur $\\mathbb{Z}/2\\mathbb{Z}$ ($0^2+0=0$, $1^2+1=0$).\n- **Caractéristique $p$** : dans $(\\mathbb{Z}/p\\mathbb{Z})(X)$, $F=\\frac1{X^p}$ a un pôle d'ordre $p$ en $0$, mais $F'=\\frac{-p}{X^{p+1}}=0$ n'a pas de pôle.",
+      "affirmations": [
+        {
+          "texte": "Sur $\\mathbb{R}$, les pôles de $F'$ sont exactement les pôles de $F$.",
+          "vrai": true,
+          "justification": "Un pôle d'ordre $m$ de $F$ est un pôle d'ordre $m+1$ de $F'$, et un point qui n'est pas un pôle de $F$ n'en est pas un de $F'$ (caractéristique nulle)."
+        },
+        {
+          "texte": "Si $a$ est un pôle d'ordre $m$ de $F$ et de $G$, alors $a$ est un pôle d'ordre $m$ de $F+G$.",
+          "vrai": false,
+          "contre_exemple": "$F=\\frac{X+1}X$ et $G=-\\frac1X$ ont un pôle simple en $0$, mais $F+G=1$ n'a pas de pôle."
+        },
+        {
+          "texte": "Deux fractions de $(\\mathbb{Z}/2\\mathbb{Z})(X)$ sans pôle dans $\\mathbb{Z}/2\\mathbb{Z}$ et dont les fonctions rationnelles coïncident sur $\\mathbb{Z}/2\\mathbb{Z}$ sont égales.",
+          "vrai": false,
+          "contre_exemple": "$X^2+X$ et $0$ ont la même fonction (nulle) sur $\\mathbb{Z}/2\\mathbb{Z}$, mais $X^2+X\\neq0$."
+        },
+        {
+          "texte": "Une fraction rationnelle non constante de $\\mathbb{C}(X)$ a au moins un zéro ou un pôle dans $\\mathbb{C}$.",
+          "vrai": true,
+          "justification": "Si $F=\\frac PQ$ (forme irréductible) n'est pas constante, $P$ ou $Q$ n'est pas constant, donc a une racine dans $\\mathbb{C}$ (d'Alembert-Gauss)."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-fractions-forme-irreductible",
+        "arith-l1-polynomes-multiplicite",
+        "arith-l1-racines-polynome"
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-fractions",
+      "type": "theoreme",
+      "titre": "Décomposition en éléments simples sur $\\mathbb{C}$ et sur $\\mathbb{R}$",
+      "recto": "Énoncer le théorème de décomposition en éléments simples sur un corps commutatif, puis ses formes sur $\\mathbb{C}$ et sur $\\mathbb{R}$ ; donner le coefficient d'un pôle simple.",
+      "cours": "La décomposition en éléments simples écrit une fraction comme un polynôme (sa partie entière) plus une somme de fractions « élémentaires », une famille par facteur irréductible du dénominateur. C'est l'analogue, dans $\\mathbb{K}[X]$, de l'écriture d'un rationnel comme somme d'un entier et de fractions de dénominateurs puissances de nombres premiers.\n\nLa preuve a trois étapes : la division euclidienne isole la partie entière ; le théorème de Bézout sépare les facteurs premiers entre eux ; des divisions successives par $Q_i$ (écriture « en base $Q_i$ ») traitent les puissances. L'unicité vient d'un argument de dimension.\n\nMéthode de calcul :\n- **Partie entière** : quotient de la division euclidienne de $P$ par $Q$ ; elle est nulle si et seulement si $\\deg F<0$.\n- **Pôle simple $a$** : coefficient $\\frac{P(a)}{Q'(a)}$, ou valeur en $a$ de $(X-a)F$.\n- **Pôle d'ordre $m$** : le coefficient de $\\frac1{(X-a)^m}$ est la valeur en $a$ de $(X-a)^mF$ ; les autres s'obtiennent en retranchant les termes connus, en évaluant en des points simples, par limites (multiplier par $X$ et faire tendre $X$ vers l'infini) ou par identification.\n- **Sur $\\mathbb{R}$** : on peut décomposer sur $\\mathbb{C}$ puis regrouper les termes conjugués, ou multiplier par le trinôme et évaluer en une racine complexe.\n\nPièges : oublier la partie entière quand $\\deg P\\ge\\deg Q$ ; mettre des numérateurs constants au-dessus d'un trinôme irréductible (il faut $\\alpha X+\\beta$) ; appliquer la formule $\\frac{P(a)}{Q'(a)}$ à un pôle multiple, où $Q'(a)=0$.",
+      "hypotheses": [
+        "Les $Q_i$ sont irréductibles, unitaires et deux à deux distincts.",
+        "$\\deg A_{i,k}<\\deg Q_i$ pour tous $i$ et $k$.",
+        "Pour la formule $\\frac{P(a)}{Q'(a)}$, le pôle $a$ est simple."
+      ],
+      "hypotheses_pieges": [
+        "$\\deg A_{i,k}<m_i\\deg Q_i$ (à la place de $\\deg A_{i,k}<\\deg Q_i$).",
+        "Les $A_{i,k}$ sont des constantes, quel que soit le corps $\\mathbb{K}$ (à la place de $\\deg A_{i,k}<\\deg Q_i$).",
+        "Pour la formule $\\frac{P(a)}{Q'(a)}$, le pôle $a$ est d'ordre quelconque (à la place de : simple)."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps commutatif et $F=\\frac PQ\\in\\mathbb{K}(X)$ sous forme irréductible, avec $Q=\\prod_{i=1}^rQ_i^{m_i}$, où les $Q_i$ sont irréductibles, unitaires et deux à deux distincts.\n\n**Théorème.** Il existe un unique polynôme $E$ et une unique famille de polynômes $A_{i,k}$ ($1\\le i\\le r$, $1\\le k\\le m_i$), avec $\\deg A_{i,k}<\\deg Q_i$, tels que\n$$F=E+\\sum_{i=1}^r\\sum_{k=1}^{m_i}\\frac{A_{i,k}}{Q_i^k}.$$\nLa **partie entière** $E$ est le quotient de la division euclidienne de $P$ par $Q$, et $A_{i,m_i}\\neq0$ pour tout $i$.\n- **Sur $\\mathbb{C}$** : $Q=\\prod_i(X-a_i)^{m_i}$ et $F=E+\\sum_i\\sum_{k=1}^{m_i}\\frac{\\lambda_{i,k}}{(X-a_i)^k}$, avec des $\\lambda_{i,k}\\in\\mathbb{C}$ uniques. Si $a$ est un pôle simple, le coefficient de $\\frac1{X-a}$ vaut $\\frac{P(a)}{Q'(a)}$.\n- **Sur $\\mathbb{R}$** : $Q=\\prod_i(X-a_i)^{m_i}\\prod_j(X^2+p_jX+q_j)^{n_j}$, avec $p_j^2-4q_j<0$, et\n$$F=E+\\sum_i\\sum_{k=1}^{m_i}\\frac{\\lambda_{i,k}}{(X-a_i)^k}+\\sum_j\\sum_{k=1}^{n_j}\\frac{\\alpha_{j,k}X+\\beta_{j,k}}{(X^2+p_jX+q_j)^k},$$\navec des réels $\\lambda_{i,k}$, $\\alpha_{j,k}$, $\\beta_{j,k}$ uniques.",
+      "enonce_trous": "Si $F=\\frac PQ$ est sous forme irréductible et $Q=\\prod_iQ_i^{m_i}$ (facteurs irréductibles unitaires distincts), $F$ s'écrit de façon unique $E+\\sum_i\\sum_{k=1}^{m_i}\\frac{A_{i,k}}{Q_i^k}$, où $E$ est {{1}} et où {{2}}. Sur $\\mathbb{C}$, si $a$ est un pôle simple, le coefficient de $\\frac1{X-a}$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "le quotient de la division euclidienne de $P$ par $Q$",
+          "leurres": [
+            "le reste de la division euclidienne de $P$ par $Q$",
+            "le quotient de la division euclidienne de $Q$ par $P$",
+            "le PGCD de $P$ et $Q$"
+          ]
+        },
+        {
+          "reponse": "$\\deg A_{i,k}<\\deg Q_i$",
+          "leurres": [
+            "$\\deg A_{i,k}<m_i\\deg Q_i$",
+            "$\\deg A_{i,k}\\le\\deg Q_i$",
+            "les $A_{i,k}$ sont unitaires"
+          ]
+        },
+        {
+          "reponse": "$\\frac{P(a)}{Q'(a)}$",
+          "leurres": [
+            "$\\frac{P'(a)}{Q'(a)}$",
+            "$\\frac{Q'(a)}{P(a)}$",
+            "$-\\frac{P(a)}{Q'(a)}$"
+          ]
+        }
+      ],
+      "demo": "**Partie entière.** La division euclidienne $P=EQ+R$, $\\deg R<\\deg Q$, donne $F=E+\\frac RQ$ avec $\\deg\\frac RQ<0$.\n\n**Séparation des facteurs.** Si $Q=BC$ avec $B\\wedge C=1$ et $\\deg R<\\deg Q$, Bézout donne $UB+VC=1$, d'où $\\frac RQ=\\frac{RV}B+\\frac{RU}C$. En divisant $RV$ par $B$ et $RU$ par $C$, on obtient $\\frac RQ=S+\\frac{R_1}B+\\frac{R_2}C$ avec $S$ polynôme, $\\deg R_1<\\deg B$, $\\deg R_2<\\deg C$ ; alors $S=\\frac RQ-\\frac{R_1}B-\\frac{R_2}C$ est un polynôme de degré $<0$, donc $S=0$. Les $Q_i^{m_i}$ étant deux à deux premiers entre eux (facteurs irréductibles distincts), une récurrence sur $r$ donne $\\frac RQ=\\sum_i\\frac{R_i}{Q_i^{m_i}}$ avec $\\deg R_i<m_i\\deg Q_i$.\n\n**Puissances.** Des divisions successives par $Q_i$ écrivent $R_i=\\sum_{k=0}^{m_i-1}B_kQ_i^k$ avec $\\deg B_k<\\deg Q_i$ (écriture en base $Q_i$), d'où $\\frac{R_i}{Q_i^{m_i}}=\\sum_{k=0}^{m_i-1}\\frac{B_k}{Q_i^{m_i-k}}$ : c'est l'existence.\n\n**Unicité.** Si $E+G=E_1+G_1$ avec $\\deg G,\\deg G_1<0$, alors $E-E_1=G_1-G$ est un polynôme de degré $<0$, nul. Ensuite, soit $n=\\deg Q$ et $V=\\left\\{\\frac RQ:\\deg R<n\\right\\}$, de dimension $n$. L'application linéaire $(A_{i,k})\\mapsto\\sum_{i,k}\\frac{A_{i,k}}{Q_i^k}$, définie sur $\\prod_{i,k}\\mathbb{K}_{\\deg Q_i-1}[X]$, de dimension $\\sum_im_i\\deg Q_i=n$, est à valeurs dans $V$ (le numérateur $A_{i,k}\\frac Q{Q_i^k}$ est de degré $<n$) et surjective d'après l'existence ; entre espaces de même dimension finie, elle est bijective.\n\n**$A_{i,m_i}\\neq0$.** Sinon, $F\\cdot\\frac Q{Q_i}$ serait un polynôme, donc $Q$ diviserait $P\\frac Q{Q_i}$ et $Q_i$ diviserait $P$, contre $P\\wedge Q=1$.\n\n**Cas de $\\mathbb{C}$ et de $\\mathbb{R}$.** Les irréductibles unitaires sont les $X-a$ sur $\\mathbb{C}$, et les $X-a$ et $X^2+pX+q$ avec $p^2-4q<0$ sur $\\mathbb{R}$. Pour un pôle simple $a$ : $Q=(X-a)Q_1$ avec $Q_1(a)\\neq0$ et $F=\\frac\\lambda{X-a}+G$, où $G$ n'a pas de pôle en $a$ ; alors $\\frac P{Q_1}=\\lambda+(X-a)G$ et, en $a$, $\\lambda=\\frac{P(a)}{Q_1(a)}=\\frac{P(a)}{Q'(a)}$, car $Q'=Q_1+(X-a)Q_1'$.",
+      "exemple": "$F=\\frac{X+3}{(X-1)(X+2)}$ : $Q=X^2+X-2$, $Q'=2X+1$, d'où les coefficients $\\frac{P(1)}{Q'(1)}=\\frac43$ et $\\frac{P(-2)}{Q'(-2)}=\\frac1{-3}$ :\n$$F=\\frac4{3(X-1)}-\\frac1{3(X+2)}.$$\n\nSur $\\mathbb{R}$ : $\\frac1{X(X^2+1)}=\\frac1X-\\frac X{X^2+1}$ ; sur $\\mathbb{C}$, $\\frac1{X(X^2+1)}=\\frac1X-\\frac1{2(X-i)}-\\frac1{2(X+i)}$.",
+      "contre_exemple": "- **Partie entière oubliée** : $\\frac{X^2}{X^2-1}\\neq\\frac1{2(X-1)}-\\frac1{2(X+1)}$, qui vaut $\\frac1{X^2-1}$ ; en fait $\\frac{X^2}{X^2-1}=1+\\frac1{2(X-1)}-\\frac1{2(X+1)}$.\n- **Numérateurs constants sur $\\mathbb{R}$** : $\\frac X{X^2+1}$ ne s'écrit pas $\\frac\\beta{X^2+1}$ avec $\\beta$ réel ; sur $\\mathbb{R}$, l'élément simple est $\\frac{\\alpha X+\\beta}{X^2+1}$.\n- **Condition de degré** : avec seulement $\\deg A_{1,k}<2$ pour $Q=X^2$, on aurait deux écritures $\\frac1{X^2}=\\frac0X+\\frac1{X^2}=\\frac1X+\\frac{1-X}{X^2}$.",
+      "affirmations": [
+        {
+          "texte": "La partie entière d'une fraction rationnelle $F$ est nulle si et seulement si $\\deg F<0$.",
+          "vrai": true,
+          "justification": "$F=E+G$ avec $\\deg G<0$ : si $E\\neq0$, $\\deg F=\\deg E\\ge0$ ; si $E=0$, $\\deg F=\\deg G<0$."
+        },
+        {
+          "texte": "Toute $F\\in\\mathbb{R}(X)$ s'écrit comme un polynôme plus une somme de termes $\\frac\\lambda{(X-a)^k}$ avec $\\lambda$ et $a$ réels.",
+          "vrai": false,
+          "contre_exemple": "$\\frac1{X^2+1}$ : vue dans $\\mathbb{C}(X)$, une telle somme n'a que des pôles réels (parmi les $a$), alors que les pôles de $\\frac1{X^2+1}$ sont $i$ et $-i$."
+        },
+        {
+          "texte": "Si $a$ est un pôle d'ordre $m$ de $F=\\frac PQ$, le coefficient de $\\frac1{(X-a)^m}$ est $\\frac{P(a)}{Q^{(m)}(a)}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $F=\\frac1{X^2}$ ($P=1$, $Q=X^2$, $m=2$), $\\frac{P(0)}{Q''(0)}=\\frac12$, alors que le coefficient est $1$. La bonne formule est $\\frac{m!\\,P(a)}{Q^{(m)}(a)}$."
+        },
+        {
+          "texte": "Si $F\\in\\mathbb{R}(X)$, les coefficients de sa décomposition sur $\\mathbb{C}$ en deux pôles conjugués $a$ et $\\bar a$ sont conjugués.",
+          "vrai": true,
+          "justification": "En conjuguant les coefficients de la décomposition de $F$, on obtient une décomposition de $\\bar F=F$ ; par unicité, le coefficient de $\\frac1{(X-\\bar a)^k}$ est le conjugué de celui de $\\frac1{(X-a)^k}$."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-fractions-poles",
+        "arith-l1-polynomes-irreductibles",
+        "arith-l1-polynomes-bezout",
+        "al-l1-applications-isomorphismes"
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-fractions",
+      "type": "theoreme",
+      "titre": "Applications : dérivée logarithmique, primitives, sommes",
+      "recto": "Énoncer la décomposition de la dérivée logarithmique d'un polynôme scindé, le critère d'existence d'une primitive rationnelle et le calcul des sommes télescopiques par éléments simples.",
+      "cours": "Trois usages de la décomposition en éléments simples reviennent sans cesse.\n\n**Dérivée logarithmique.** Pour $P$ scindé, $\\frac{P'}P$ a des pôles simples aux racines de $P$, de coefficients les multiplicités : c'est la version formelle de $(\\ln|P|)'$. En l'évaluant en un point $x$ qui n'est pas racine, on obtient $\\sum_i\\frac{m_i}{x-a_i}$, ce qui calcule des sommes symétriques sur les racines sans les connaître.\n\n**Primitives.** Sur un intervalle sans pôle, une fraction réelle se primitive terme à terme : polynômes, $\\frac1{(x-a)^k}$ ($k\\ge2$) et la partie « dérivée du dénominateur » des termes en $\\frac{\\alpha x+\\beta}{(x^2+px+q)^k}$ ($k\\ge2$) donnent des fractions rationnelles ; les termes $\\frac1{x-a}$ donnent des logarithmes, ceux en $\\frac{\\alpha x+\\beta}{x^2+px+q}$ un logarithme et une arctangente, et les puissances supérieures d'un trinôme une arctangente et des fractions rationnelles via la récurrence des intégrales $\\int\\frac{\\mathrm{d}u}{(1+u^2)^k}$ (méthode de L1). Sur $\\mathbb{C}$, le critère est net : une primitive rationnelle existe exactement quand les coefficients des $\\frac1{X-a}$ sont tous nuls, car la dérivée d'une fraction n'a jamais de pôle simple. Pour $F$ réelle, si $G\\in\\mathbb{C}(X)$ vérifie $G'=F$, la fraction $\\frac12(G+\\bar G)$, où $\\bar G$ s'obtient en conjuguant les coefficients du numérateur et du dénominateur de $G$, est dans $\\mathbb{R}(X)$ et vérifie encore $\\frac12(G+\\bar G)'=F$ : c'est une primitive réelle.\n\n**Sommes.** Pour $F=\\sum_i\\frac{\\lambda_i}{X+a_i}$ avec des $a_i$ entiers, la somme $\\sum_{k=1}^nF(k)$ se réécrit avec des sommes harmoniques décalées ; si $\\sum\\lambda_i=0$, les grands termes se compensent (télescopage) et la série converge. En pratique : décomposer, vérifier que la somme des coefficients est nulle, puis écrire les sommes partielles ou appliquer la formule.\n\nPièges : oublier les multiplicités dans $\\frac{P'}P$ ; croire qu'une fraction de degré $\\le-2$ a toujours une primitive rationnelle ($\\frac1{X(X+1)}$ n'en a pas) ; sommer une série dont la somme des coefficients n'est pas nulle (elle diverge).",
+      "hypotheses": [
+        "$P$ est scindé sur $\\mathbb{K}$ (dérivée logarithmique).",
+        "Dans la décomposition de $F$ sur $\\mathbb{C}$, les coefficients des termes $\\frac1{X-a}$ sont tous nuls (primitive rationnelle).",
+        "$\\sum_i\\lambda_i=0$ (convergence de la série et valeur de la somme)."
+      ],
+      "hypotheses_pieges": [
+        "$P$ est non constant (à la place de scindé), pour la dérivée logarithmique.",
+        "Dans la décomposition de $F$ sur $\\mathbb{C}$, les coefficients des termes $\\frac1{(X-a)^k}$ avec $k\\ge2$ sont tous nuls (à la place des termes $\\frac1{X-a}$), pour la primitive rationnelle.",
+        "$\\sum_i\\lambda_ia_i=0$ (à la place de $\\sum_i\\lambda_i=0$), pour la convergence de la série."
+      ],
+      "enonce": "**1. Dérivée logarithmique.** Soit $P=c\\prod_{i=1}^r(X-a_i)^{m_i}$ un polynôme scindé sur un corps commutatif $\\mathbb{K}$, avec $c\\neq0$ et des $a_i$ deux à deux distincts. Alors\n$$\\frac{P'}P=\\sum_{i=1}^r\\frac{m_i}{X-a_i}.$$\n\n**2. Primitives rationnelles.** Une fraction $F\\in\\mathbb{C}(X)$ admet une primitive dans $\\mathbb{C}(X)$ (une fraction $G$ telle que $G'=F$) si et seulement si, dans sa décomposition en éléments simples sur $\\mathbb{C}$, tous les coefficients des termes $\\frac1{X-a}$ sont nuls.\n\n**3. Sommes télescopiques.** Soient $a_1,\\dots,a_r$ des entiers naturels deux à deux distincts, $\\lambda_1,\\dots,\\lambda_r$ des réels et $F=\\sum_{i=1}^r\\frac{\\lambda_i}{X+a_i}$. La série $\\sum_{k\\ge1}F(k)$ converge si et seulement si $\\sum_i\\lambda_i=0$, et alors\n$$\\sum_{k=1}^{+\\infty}F(k)=-\\sum_{i=1}^r\\lambda_iH_{a_i},$$\noù $H_0=0$ et $H_a=\\sum_{j=1}^a\\frac1j$ pour $a\\ge1$.",
+      "enonce_trous": "Si $P=c\\prod_i(X-a_i)^{m_i}$ est scindé, la dérivée logarithmique $\\frac{P'}P$ est égale à {{1}}. Une fraction de $\\mathbb{C}(X)$ a une primitive dans $\\mathbb{C}(X)$ si et seulement si {{2}}. Pour $F=\\sum_i\\frac{\\lambda_i}{X+a_i}$, avec des $a_i$ entiers naturels distincts, la série $\\sum_{k\\ge1}F(k)$ converge si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_i\\frac{m_i}{X-a_i}$",
+          "leurres": [
+            "$\\sum_i\\frac1{X-a_i}$",
+            "$\\sum_i\\frac{m_i}{(X-a_i)^{m_i}}$",
+            "$\\sum_i\\frac{a_i}{X-a_i}$"
+          ]
+        },
+        {
+          "reponse": "les coefficients des termes $\\frac1{X-a}$ de sa décomposition sont tous nuls",
+          "leurres": [
+            "elle n'a aucun pôle simple",
+            "son degré est au plus $-2$",
+            "son dénominateur est scindé à racines simples"
+          ]
+        },
+        {
+          "reponse": "$\\sum_i\\lambda_i=0$",
+          "leurres": [
+            "$\\sum_i\\lambda_ia_i=0$",
+            "$\\lambda_i=0$ pour tout $i$",
+            "$\\sum_i|\\lambda_i|<1$"
+          ]
+        }
+      ],
+      "demo": "**1.** Par la formule de dérivation d'un produit, $P'=c\\sum_im_i(X-a_i)^{m_i-1}\\prod_{j\\neq i}(X-a_j)^{m_j}$ ; en divisant par $P$, chaque terme devient $\\frac{m_i}{X-a_i}$.\n\n**2.** Si les coefficients des $\\frac1{X-a}$ sont nuls, $F$ est somme d'un polynôme et de termes $\\frac\\lambda{(X-a)^k}$ avec $k\\ge2$, qui ont les primitives rationnelles $-\\frac\\lambda{(k-1)(X-a)^{k-1}}$. Réciproquement, écrivons $F=F_0+\\sum_a\\frac{\\lambda_a}{X-a}$, où $F_0$ (partie entière et termes d'ordre $\\ge2$) a une primitive rationnelle $G_0$. Si $G'=F$ avec $G\\in\\mathbb{C}(X)$, alors $H=G-G_0$ vérifie $H'=\\sum_a\\frac{\\lambda_a}{X-a}$. Si un $\\lambda_a$ n'était pas nul, $a$ serait un pôle simple de $H'$. Or, en caractéristique nulle, si $a$ est un pôle d'ordre $m\\ge1$ de $H$, c'est un pôle d'ordre $m+1\\ge2$ de $H'$, et si $a$ n'est pas un pôle de $H$, ce n'est pas un pôle de $H'$ : contradiction.\n\n**3.** Pour $n\\ge1$, $\\sum_{k=1}^n\\frac1{k+a}=H_{n+a}-H_a$, donc\n$$\\sum_{k=1}^nF(k)=\\sum_i\\lambda_i\\left(H_{n+a_i}-H_n\\right)+\\Big(\\sum_i\\lambda_i\\Big)H_n-\\sum_i\\lambda_iH_{a_i}.$$\nComme $0\\le H_{n+a}-H_n\\le\\frac a{n+1}$, le premier terme tend vers $0$. Puisque $H_n\\to+\\infty$, la somme partielle converge si et seulement si $\\sum_i\\lambda_i=0$, et sa limite est alors $-\\sum_i\\lambda_iH_{a_i}$.",
+      "exemple": "- $P=(X-1)^2(X+2)$ : $\\frac{P'}P=\\frac2{X-1}+\\frac1{X+2}$.\n- $\\frac1{X^2}+\\frac1{(X-1)^2}=\\frac{2X^2-2X+1}{X^2(X-1)^2}$ a la primitive rationnelle $-\\frac1X-\\frac1{X-1}$ ; en revanche, $\\frac1{X^2(X-1)^2}=\\frac2X+\\frac1{X^2}-\\frac2{X-1}+\\frac1{(X-1)^2}$ n'en a pas.\n- $\\frac1{X(X+1)(X+2)}=\\frac1{2X}-\\frac1{X+1}+\\frac1{2(X+2)}$ : les coefficients ont une somme nulle, et $\\sum_{k\\ge1}\\frac1{k(k+1)(k+2)}=-\\left(\\frac12H_0-H_1+\\frac12H_2\\right)=1-\\frac34=\\frac14$.",
+      "contre_exemple": "- **Pas de primitive rationnelle** : $\\frac1X$ n'a pas de primitive dans $\\mathbb{C}(X)$, puisque son coefficient en $\\frac1X$ vaut $1$ (le logarithme n'est pas une fonction rationnelle).\n- **Somme des coefficients non nulle** : pour $F=\\frac1X+\\frac1{X+1}$, $\\sum\\lambda_i=2$ et la série $\\sum_{k\\ge1}\\left(\\frac1k+\\frac1{k+1}\\right)$ diverge ; pour $F=\\frac1X$, $\\sum\\lambda_ia_i=0$ mais la série harmonique diverge.\n- **Polynôme non scindé** : sur $\\mathbb{R}$, $P=X(X^2+1)$ a pour seule racine réelle $0$, mais $\\frac{P'}P=\\frac{3X^2+1}{X^3+X}\\neq\\frac1X$.",
+      "affirmations": [
+        {
+          "texte": "Il n'existe aucune fraction $G\\in\\mathbb{R}(X)$ telle que $G'=\\frac1X$.",
+          "vrai": true,
+          "justification": "Le coefficient de $\\frac1X$ dans $\\frac1X$ vaut $1\\neq0$ ; une fraction réelle étant aussi complexe, le critère sur $\\mathbb{C}$ s'applique."
+        },
+        {
+          "texte": "Toute fraction rationnelle de degré au plus $-2$ admet une primitive rationnelle.",
+          "vrai": false,
+          "contre_exemple": "$\\frac1{X(X+1)}=\\frac1X-\\frac1{X+1}$ est de degré $-2$, mais ses coefficients en $\\frac1X$ et $\\frac1{X+1}$ ne sont pas nuls."
+        },
+        {
+          "texte": "Si $P$ est scindé à racines simples $a_1,\\dots,a_n$ et si $x$ n'est pas racine de $P$, alors $\\sum_{i=1}^n\\frac1{x-a_i}=\\frac{P'(x)}{P(x)}$.",
+          "vrai": true,
+          "justification": "C'est la dérivée logarithmique évaluée en $x$, avec toutes les multiplicités égales à $1$."
+        },
+        {
+          "texte": "La série $\\sum_{k\\ge1}\\left(\\frac1k-\\frac2{k+1}\\right)$ converge.",
+          "vrai": false,
+          "contre_exemple": "La somme des coefficients vaut $1-2=-1\\neq0$ : le terme général est équivalent à $-\\frac1k$, et la série diverge."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-fractions-elements-simples",
+        "int-l1-riemann-fractions"
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elimination",
+      "theme": "arithmetique",
+      "niveau": "l2",
+      "chapitre": "arith-l2-fractions",
+      "type": "methode",
+      "titre": "Élimination et paramétrages rationnels",
+      "recto": "Énoncer le théorème d'élimination pour deux fractions rationnelles et le paramétrage rationnel du cercle ; décrire la méthode pour éliminer un paramètre.",
+      "cours": "Une courbe paramétrée par des fractions rationnelles, $x=f(t)$ et $y=g(t)$, est toujours contenue dans une courbe algébrique $\\Phi(x,y)=0$ : c'est le théorème d'élimination. La preuve est un simple argument de dimension : les produits $f^ig^j$ sont trop nombreux pour être linéairement indépendants dans un espace de fractions de dénominateur fixé.\n\nMéthode pour éliminer $t$ :\n- si l'on peut exprimer $t$ en fonction de $x$ et $y$ (par exemple $t=\\frac yx$, ou $t$ affine en $x$), on remplace dans l'autre relation ;\n- sinon, on combine les relations (sommes de puissances, produits) pour faire disparaître $t$.\nOn vérifie ensuite l'égalité obtenue en y reportant les expressions en $t$. Attention : la courbe $\\Phi=0$ peut contenir des points non atteints par le paramétrage (penser à $x=t^2$, $y=t^4$, qui ne décrit que la moitié de la parabole $y=x^2$).\n\nInversement, une conique qui contient un point $A$ se paramètre rationnellement : une droite de pente $t$ passant par $A$ recoupe la conique en un second point, dont les coordonnées sont des fractions rationnelles en $t$, car l'équation du second degré obtenue a déjà la racine connue (l'abscisse de $A$). Pour le cercle $x^2+y^2=1$ et $A=(-1,0)$, on obtient le paramétrage classique, qui sert aussi à décrire les points rationnels du cercle et les triplets pythagoriciens ; c'est encore lui qui justifie le changement de variable $t=\\tan\\frac\\theta2$.\n\nPiège : avec des droites passant par le centre (qui n'est pas un point du cercle), le second point d'intersection fait intervenir $\\sqrt{1+t^2}$ : le paramétrage n'est plus rationnel.",
+      "hypotheses": [
+        "$f$ et $g$ sont des fractions rationnelles en une seule indéterminée $T$.",
+        "Les droites de pente $t$ passent par un point du cercle, ici $(-1,0)$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ et $g$ sont des fractions rationnelles en deux indéterminées $S$ et $T$ (à la place d'une seule).",
+        "$f$ et $g$ sont des fonctions continues quelconques de $\\mathbb{R}$ dans $\\mathbb{R}$ (à la place de fractions rationnelles).",
+        "Les droites de pente $t$ passent par le centre $(0,0)$ du cercle (à la place d'un point du cercle)."
+      ],
+      "enonce": "**Élimination.** Soient $\\mathbb{K}$ un corps commutatif et $f,g\\in\\mathbb{K}(T)$, que l'on peut écrire avec des numérateurs et des dénominateurs de degré au plus $d$ ($d\\ge1$). Il existe un polynôme non nul $\\Phi\\in\\mathbb{K}[X,Y]$, de degré au plus $2d$ en $X$ et en $Y$, tel que $\\Phi(f,g)=0$. Pour éliminer $t$ entre $x=f(t)$ et $y=g(t)$, on cherche une telle relation (en exprimant $t$ en fonction de $x$ et $y$ quand c'est possible) : tout point $(f(t),g(t))$ vérifie alors $\\Phi(x,y)=0$, mais la courbe $\\Phi(x,y)=0$ peut contenir des points qui ne sont pas atteints.\n\n**Paramétrage rationnel du cercle.** La droite de pente $t$ passant par le point $(-1,0)$ du cercle $\\mathcal{C}$ d'équation $x^2+y^2=1$ recoupe $\\mathcal{C}$ au point $\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$. L'application $t\\mapsto\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$ est une bijection de $\\mathbb{R}$ sur $\\mathcal{C}\\setminus\\{(-1,0)\\}$, de réciproque $(x,y)\\mapsto\\frac y{1+x}$ ; elle envoie $\\mathbb{Q}$ sur l'ensemble des points de $\\mathcal{C}$ à coordonnées rationnelles autres que $(-1,0)$.",
+      "enonce_trous": "Deux fractions rationnelles $f,g\\in\\mathbb{K}(T)$ vérifient toujours {{1}}. La droite de pente $t$ passant par $(-1,0)$ recoupe le cercle $x^2+y^2=1$ en $\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$ ; on obtient ainsi une bijection de $\\mathbb{R}$ sur {{2}}, de réciproque {{3}}.",
+      "trous": [
+        {
+          "reponse": "une relation $\\Phi(f,g)=0$ avec $\\Phi\\in\\mathbb{K}[X,Y]$ non nul",
+          "leurres": [
+            "une relation $g=\\Phi(f)$ avec $\\Phi\\in\\mathbb{K}[X]$",
+            "une relation $f=\\lambda g$ avec $\\lambda\\in\\mathbb{K}$",
+            "une relation $\\Phi(f,g)=0$ avec $\\Phi\\in\\mathbb{K}[X,Y]$ non nul de degré au plus $1$ en chaque variable"
+          ]
+        },
+        {
+          "reponse": "le cercle privé du point $(-1,0)$",
+          "leurres": [
+            "le cercle tout entier",
+            "le cercle privé du point $(1,0)$",
+            "le demi-cercle des points d'ordonnée positive"
+          ]
+        },
+        {
+          "reponse": "$(x,y)\\mapsto\\frac y{1+x}$",
+          "leurres": [
+            "$(x,y)\\mapsto\\frac x{1+y}$",
+            "$(x,y)\\mapsto\\frac y{1-x}$",
+            "$(x,y)\\mapsto\\frac yx$"
+          ]
+        }
+      ],
+      "demo": "**Élimination.** Écrivons $f=\\frac{A_1}{B_1}$ et $g=\\frac{A_2}{B_2}$ avec des degrés au plus $d$, et posons $N=2d$. Pour $0\\le i,j\\le N$,\n$$f^ig^j=\\frac{A_1^iB_1^{N-i}A_2^jB_2^{N-j}}{B_1^NB_2^N},$$\ndont le numérateur est de degré au plus $2Nd$. Les $(N+1)^2$ fractions $f^ig^j$ sont donc dans l'espace $\\left\\{\\frac R{B_1^NB_2^N}:\\deg R\\le2Nd\\right\\}$, de dimension $2Nd+1=4d^2+1<(2d+1)^2$. Elles sont liées : il existe des $c_{i,j}\\in\\mathbb{K}$ non tous nuls tels que $\\sum c_{i,j}f^ig^j=0$, et $\\Phi=\\sum c_{i,j}X^iY^j$ convient.\n\n**Cercle.** La droite d'équation $y=t(x+1)$ coupe $\\mathcal{C}$ aux points d'abscisse $x$ telle que $x^2+t^2(x+1)^2=1$, soit $(x+1)\\big((1+t^2)x-(1-t^2)\\big)=0$ : l'autre point a pour abscisse $x=\\frac{1-t^2}{1+t^2}$ et pour ordonnée $y=t(x+1)=\\frac{2t}{1+t^2}$. Ce point est sur $\\mathcal{C}$ car $(1-t^2)^2+4t^2=(1+t^2)^2$, et $x\\neq-1$ car $1-t^2\\neq-(1+t^2)$.\n\nRéciproquement, soit $(x,y)\\in\\mathcal{C}$ avec $x\\neq-1$, et $t=\\frac y{1+x}$. Alors $1+t^2=\\frac{(1+x)^2+y^2}{(1+x)^2}=\\frac{2+2x}{(1+x)^2}=\\frac2{1+x}$, donc $\\frac{2t}{1+t^2}=y$ et $\\frac{1-t^2}{1+t^2}=\\frac2{1+t^2}-1=x$. Enfin, partant de $t$, $1+x=\\frac2{1+t^2}$ et $\\frac y{1+x}=t$ : les deux applications sont réciproques l'une de l'autre. Si $t\\in\\mathbb{Q}$, le point est à coordonnées rationnelles ; si $x,y\\in\\mathbb{Q}$, $t=\\frac y{1+x}\\in\\mathbb{Q}$.",
+      "exemple": "- $x=t^2$, $y=t^3$ : $y^2=t^6=x^3$. Ici, tout point de la courbe $y^2=x^3$ est atteint : $x\\ge0$, et pour $x>0$ on prend $t=\\frac yx$.\n- Pour $t=\\frac23$ : $\\left(\\frac{1-4/9}{1+4/9},\\frac{4/3}{13/9}\\right)=\\left(\\frac5{13},\\frac{12}{13}\\right)$, d'où le triplet pythagoricien $5^2+12^2=13^2$.",
+      "contre_exemple": "- **Deux indéterminées** : $f=S$ et $g=T$ ne vérifient aucune relation $\\Phi(S,T)=0$ avec $\\Phi\\neq0$.\n- **Fonctions quelconques** : il n'existe pas de polynôme non nul $\\Phi$ tel que $\\Phi(t,e^t)=0$ pour tout réel $t$. Si $\\Phi=\\sum_{j=0}^qc_j(X)Y^j$ avec $c_q\\neq0$, alors $\\sum_jc_j(t)e^{jt}=0$, et en divisant par $e^{qt}$ puis en faisant tendre $t$ vers $+\\infty$ (croissances comparées), on obtient $c_q(t)\\to0$, puis $c_q=0$ (un polynôme qui tend vers $0$ en $+\\infty$ est nul).\n- **Points non atteints** : $(t^2,t^4)$ vérifie $y=x^2$, mais le point $(-1,1)$ de la parabole n'est jamais atteint ; de même, $(-1,0)$ n'est l'image d'aucun réel par le paramétrage du cercle.",
+      "affirmations": [
+        {
+          "texte": "Lorsque $t$ décrit $\\mathbb{R}$, le point $\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$ décrit tout le cercle unité.",
+          "vrai": false,
+          "contre_exemple": "Le point $(-1,0)$ n'est jamais atteint : $\\frac{1-t^2}{1+t^2}=-1$ équivaut à $1-t^2=-1-t^2$, impossible."
+        },
+        {
+          "texte": "L'ensemble des points $(t^2,t^4)$, $t\\in\\mathbb{R}$, est la parabole d'équation $y=x^2$.",
+          "vrai": false,
+          "contre_exemple": "Ces points ont une abscisse $t^2\\ge0$ : le point $(-1,1)$ de la parabole n'est pas atteint. On obtient seulement la moitié $x\\ge0$."
+        },
+        {
+          "texte": "Pour toutes $f,g\\in\\mathbb{R}(T)$, il existe un polynôme non nul $\\Phi\\in\\mathbb{R}[X,Y]$ tel que $\\Phi(f,g)=0$.",
+          "vrai": true,
+          "justification": "C'est le théorème d'élimination : les produits $f^ig^j$, $0\\le i,j\\le2d$, sont liés par un argument de dimension."
+        },
+        {
+          "texte": "Si $x,y$ sont rationnels, $x^2+y^2=1$ et $x\\neq-1$, alors $\\frac y{1+x}$ est rationnel.",
+          "vrai": true,
+          "justification": "C'est un quotient de rationnels, de dénominateur non nul ; c'est le paramètre $t$ du point."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-fractions-forme-irreductible",
+        "al-l1-espaces-dimension"
+      ]
+    }
+  ]
+}

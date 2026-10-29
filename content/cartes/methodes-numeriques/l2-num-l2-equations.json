@@ -1,0 +1,430 @@
+{
+  "cartes": [
+    {
+      "id": "num-l2-equations-dichotomie",
+      "theme": "methodes-numeriques",
+      "niveau": "l2",
+      "chapitre": "num-l2-equations",
+      "type": "theoreme",
+      "titre": "Méthode de dichotomie",
+      "recto": "Énoncer le théorème de convergence de la méthode de dichotomie pour résoudre $f(x)=0$ sur $[a,b]$, avec la majoration de l'erreur.",
+      "cours": "La dichotomie est la version algorithmique du théorème des valeurs intermédiaires : si une fonction continue change de signe aux deux bouts d'un segment, elle s'annule entre les deux. On coupe le segment en son milieu, on garde la moitié aux bouts de laquelle $f$ change encore de signe, et on recommence. À chaque étape, la longueur est divisée par $2$ et un zéro reste piégé dans le segment.\n\nSes qualités : elle ne demande que la continuité et un changement de signe, elle converge toujours, et l'erreur est connue **à l'avance** : après $n$ étapes, le milieu $c_n$ est à moins de $\\frac{b-a}{2^{n+1}}$ d'un zéro. On calcule donc le nombre d'étapes avant de lancer le calcul : il en faut environ $3{,}3$ par décimale exacte (car $2^{10}\\approx10^3$). Son défaut : cette lenteur, indépendante de $f$, à comparer à la méthode de Newton.\n\nMéthode : vérifier la continuité et le signe de $f(a)f(b)$ ; à chaque étape, tester le signe de $f(a_n)f(c_n)$ ; pour une précision $\\varepsilon$, choisir $n$ tel que $\\frac{b-a}{2^{n+1}}\\le\\varepsilon$ (ou $\\frac{b-a}{2^n}\\le\\varepsilon$ si l'on veut un segment de longueur $\\varepsilon$ contenant le zéro).\n\nPièges : sans continuité, la limite n'est pas forcément un zéro ; un zéro sans changement de signe (zéro double, comme pour $(x-\\frac13)^2$) n'est pas détecté ; si $f$ a plusieurs zéros dans $[a,b]$, la méthode en trouve un, qui dépend du découpage ; enfin, si $f(c_n)=0$, l'algorithme écrit sans test d'arrêt continue et peut converger vers un **autre** zéro.",
+      "hypotheses": [
+        "$f$ est continue sur $[a,b]$.",
+        "$f(a)f(b)\\le0$ : $f$ change de signe, au sens large, entre $a$ et $b$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur $\\left]a,b\\right[$ seulement (à la place de : sur $[a,b]$).",
+        "$f(a)$ et $f(b)$ sont non nuls (à la place de : $f(a)f(b)\\le0$).",
+        "$f$ est strictement monotone sur $[a,b]$ (à la place de : $f(a)f(b)\\le0$)."
+      ],
+      "enonce": "Soient $a<b$ deux réels et $f:[a,b]\\to\\mathbb{R}$ une fonction **continue** telle que $f(a)f(b)\\le0$. On pose $a_0=a$, $b_0=b$ et, pour tout $n\\in\\mathbb{N}$, $c_n=\\frac{a_n+b_n}{2}$, puis :\n- $a_{n+1}=a_n$ et $b_{n+1}=c_n$ si $f(a_n)f(c_n)\\le0$ ;\n- $a_{n+1}=c_n$ et $b_{n+1}=b_n$ sinon.\n\nAlors $(a_n)$ est croissante, $(b_n)$ est décroissante, $b_n-a_n=\\frac{b-a}{2^n}$, et les deux suites convergent vers un même réel $\\ell\\in[a,b]$ tel que $f(\\ell)=0$. De plus, pour tout $n$ : $a_n\\le\\ell\\le b_n$ et $|c_n-\\ell|\\le\\frac{b-a}{2^{n+1}}$.\n\nEn particulier, $c_n$ approche $\\ell$ à $\\varepsilon$ près dès que $\\frac{b-a}{2^{n+1}}\\le\\varepsilon$.",
+      "enonce_trous": "Si $f$ est {{1}} sur $[a,b]$ et si {{2}}, la méthode de dichotomie fournit des segments emboîtés $[a_n,b_n]$ de longueur {{3}}, qui contiennent tous la limite commune $\\ell$ des suites $(a_n)$ et $(b_n)$, zéro de $f$ ; le milieu $c_n$ de $[a_n,b_n]$ approche $\\ell$ à {{4}} près.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "dérivable sur $\\left]a,b\\right[$",
+            "monotone",
+            "bornée"
+          ]
+        },
+        {
+          "reponse": "$f(a)f(b)\\le0$",
+          "leurres": [
+            "$f(a)f(b)\\ge0$",
+            "$f(a)\\le f(b)$",
+            "$|f(a)|\\le|f(b)|$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{b-a}{2^n}$",
+          "leurres": [
+            "$\\frac{b-a}{n}$",
+            "$\\frac{b-a}{2n}$",
+            "$\\frac{b-a}{n^2}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{b-a}{2^{n+1}}$",
+          "leurres": [
+            "$\\frac{b-a}{2^{n+2}}$",
+            "$\\frac{b-a}{4^{n}}$",
+            "$\\frac{1}{2^{n}}$"
+          ]
+        }
+      ],
+      "demo": "**Invariant.** Montrons par récurrence que $a\\le a_n\\le a_{n+1}\\le b_{n+1}\\le b_n\\le b$, $b_n-a_n=\\frac{b-a}{2^n}$ et $f(a_n)f(b_n)\\le0$. Au rang $0$, c'est l'hypothèse. Comme $c_n$ est le milieu de $[a_n,b_n]$, le nouveau segment en est une moitié : il est inclus dans $[a_n,b_n]$ et sa longueur est $\\frac{b_n-a_n}{2}=\\frac{b-a}{2^{n+1}}$. Si $f(a_n)f(c_n)\\le0$, le nouveau segment est $[a_n,c_n]$ et l'invariant est clair. Sinon $f(a_n)f(c_n)>0$ : $f(a_n)\\neq0$ et $f(c_n)$ a le signe de $f(a_n)$ ; alors $f(c_n)f(b_n)=\\frac{\\left(f(a_n)f(c_n)\\right)\\left(f(a_n)f(b_n)\\right)}{f(a_n)^2}\\le0$.\n\n**Convergence.** $(a_n)$ est croissante, $(b_n)$ décroissante et $b_n-a_n=\\frac{b-a}{2^n}\\to0$ : les suites sont adjacentes, donc convergent vers une même limite $\\ell$, avec $a_n\\le\\ell\\le b_n$ pour tout $n$ ; en particulier $\\ell\\in[a,b]$.\n\n**Zéro.** Par continuité de $f$ en $\\ell$, $f(a_n)f(b_n)\\to f(\\ell)^2$. Comme $f(a_n)f(b_n)\\le0$ pour tout $n$, $f(\\ell)^2\\le0$, donc $f(\\ell)=0$.\n\n**Erreur.** $\\ell$ et $c_n$ sont dans $[a_n,b_n]$ et $c_n$ en est le milieu, donc $|c_n-\\ell|\\le\\frac{b_n-a_n}{2}=\\frac{b-a}{2^{n+1}}$. (Cette démonstration redonne au passage le théorème des valeurs intermédiaires.)",
+      "exemple": "$f(x)=x^2-2$ sur $[1,2]$ : $f(1)=-1$, $f(2)=2$. On trouve $c_0=1{,}5$, $f(1)f(1{,}5)<0$ : $[1;1{,}5]$ ; $c_1=1{,}25$, $f(1{,}25)<0$ : $[1{,}25;1{,}5]$ ; $c_2=1{,}375$, $f(1{,}375)<0$ : $[1{,}375;1{,}5]$ ; $c_3=1{,}4375$, $f(1{,}4375)>0$ : $[1{,}375;1{,}4375]$. Donc $1{,}375\\le\\sqrt2\\le1{,}4375$.\n\nPour approcher $\\sqrt2$ à $10^{-6}$ près par $c_n$, il suffit que $\\frac{1}{2^{n+1}}\\le10^{-6}$, soit $2^{n+1}\\ge10^6$ : $n=19$ convient ($2^{20}=1\\,048\\,576$).",
+      "contre_exemple": "- **Sans continuité** : sur $[0,1]$, $f(0)=-1$ et $f(x)=1$ pour $x\\in\\left]0,1\\right]$. On a $f(0)f(1)<0$, et à chaque étape $f(a_n)f(c_n)=-1\\le0$ : $a_n=0$, $b_n=2^{-n}$, la limite est $0$ et $f(0)=-1\\neq0$ ($f$ ne s'annule d'ailleurs pas).\n- **Sans changement de signe** : $f(x)=\\left(x-\\frac13\\right)^2$ sur $[0,1]$ s'annule en $\\frac13$, mais $f(a_n)f(c_n)>0$ à chaque étape (les $c_n$ sont des nombres dyadiques, jamais égaux à $\\frac13$) : $b_n=1$ pour tout $n$, $a_n\\to1$, et $f(1)=\\frac49\\neq0$.\n- **Plusieurs zéros** : pour $f(x)=x^3-x$, la dichotomie converge vers $1$ sur $[-2,3]$ et vers $-1$ sur $[-3,2]$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ et $f(a)f(b)<0$, la suite $(c_n)$ des milieux converge vers un zéro de $f$.",
+          "vrai": true,
+          "justification": "$|c_n-\\ell|\\le\\frac{b-a}{2^{n+1}}\\to0$, où $\\ell$ est la limite commune de $(a_n)$ et $(b_n)$, qui est un zéro de $f$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ et $f(a)f(b)>0$, alors $f$ ne s'annule pas sur $[a,b]$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2-\\frac14$ sur $[-1,1]$ : $f(-1)f(1)=\\frac9{16}>0$, mais $f\\left(\\frac12\\right)=0$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $[a,b]$ et $f(a)f(b)<0$, alors $f$ a un unique zéro dans $[a,b]$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3-x$ sur $[-2,3]$ : $f(-2)f(3)=-6\\times24<0$, et $f$ s'annule en $-1$, $0$ et $1$."
+        },
+        {
+          "texte": "Pour tout $n$, $|c_{n+1}-c_n|=\\frac{b-a}{2^{n+2}}$.",
+          "vrai": true,
+          "justification": "$c_{n+1}$ est le milieu d'une moitié de $[a_n,b_n]$, dont $c_n$ est une extrémité : $|c_{n+1}-c_n|=\\frac{b_n-a_n}{4}=\\frac{b-a}{2^{n+2}}$."
+        },
+        {
+          "texte": "L'erreur $|c_n-\\ell|$ décroît avec $n$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x-\\frac12$ sur $[0,1]$ : $c_0=\\frac12=\\ell$, erreur nulle ; comme $f(0)f(c_0)=0\\le0$, on garde $\\left[0,\\frac12\\right]$ et $c_1=\\frac14$, d'erreur $\\frac14$ (la suite converge bien vers $\\ell=\\frac12$)."
+        }
+      ],
+      "prerequis": [
+        "ar-t-tvi",
+        "ar-l1-suites-adjacentes"
+      ]
+    },
+    {
+      "id": "num-l2-equations-point-fixe",
+      "theme": "methodes-numeriques",
+      "niveau": "l2",
+      "chapitre": "num-l2-equations",
+      "type": "theoreme",
+      "titre": "Approximations successives : théorème du point fixe",
+      "recto": "Énoncer le théorème du point fixe pour une fonction contractante d'un intervalle fermé de $\\mathbb{R}$ dans lui-même, avec les majorations a priori de l'erreur.",
+      "cours": "Pour résoudre $f(x)=0$, on réécrit l'équation sous la forme $x=g(x)$ (par exemple $g(x)=x-\\lambda f(x)$, ou une écriture tirée de l'équation), puis on itère $u_{n+1}=g(u_n)$ : c'est la méthode des **approximations successives**. Si $g$ rapproche les points d'un facteur $k<1$, les termes se rapprochent géométriquement les uns des autres et la suite converge vers l'unique point fixe.\n\nLes trois hypothèses ont chacune un rôle : $g(I)\\subset I$ pour que la suite soit définie et reste dans $I$ ; $k<1$ pour la convergence géométrique (suite de Cauchy) ; $I$ **fermé** pour que la limite reste dans $I$. Le critère pratique : $g$ dérivable avec $|g'|\\le k<1$ sur $I$ (inégalité des accroissements finis). L'erreur est connue a priori : $|u_n-\\ell|\\le k^n|u_0-\\ell|\\le k^n(b-a)$ sur $[a,b]$, ou $\\frac{k^n}{1-k}|u_1-u_0|$ à partir des deux premiers termes.\n\nVersion locale, très utile : si $g$ est de classe $C^1$ près d'un point fixe $\\ell$ avec $|g'(\\ell)|<1$, alors $|g'|\\le k<1$ sur un segment $[\\ell-\\delta,\\ell+\\delta]$, qui est stable par $g$ : la suite converge vers $\\ell$ dès que $u_0$ en est assez proche (point fixe **attractif**). Si $|g'(\\ell)|>1$, une suite qui converge vers $\\ell$ est stationnaire (point fixe **répulsif**). Plus $|g'(\\ell)|$ est petit, plus la convergence est rapide.\n\nMéthode : choisir l'écriture $x=g(x)$ (il y en a beaucoup, et toutes ne conviennent pas), trouver un segment $I$ stable par $g$ sur lequel $|g'|\\le k<1$, puis conclure et majorer l'erreur. Pièges : oublier $g(I)\\subset I$ ; se contenter de $|g(x)-g(y)|<|x-y|$, qui ne suffit pas sur un intervalle non borné ; prendre $I$ ouvert.",
+      "hypotheses": [
+        "$I$ est un intervalle fermé non vide.",
+        "$g(I)\\subset I$.",
+        "$g$ est $k$-lipschitzienne sur $I$ avec $0\\le k<1$."
+      ],
+      "hypotheses_pieges": [
+        "$I$ est un intervalle quelconque, par exemple ouvert (à la place de : fermé).",
+        "$g$ est $1$-lipschitzienne sur $I$ (à la place de : $k$-lipschitzienne avec $k<1$).",
+        "$|g(x)-g(y)|<|x-y|$ pour tous $x\\neq y$ de $I$ (à la place de : $k$-lipschitzienne avec $k<1$).",
+        "$g$ est $k$-lipschitzienne de $I$ dans $\\mathbb{R}$ avec $k<1$, sans que $g(I)\\subset I$."
+      ],
+      "enonce": "Soient $I$ un intervalle **fermé** non vide de $\\mathbb{R}$ (par exemple $[a,b]$, $\\left[a,+\\infty\\right[$ ou $\\mathbb{R}$) et $g:I\\to\\mathbb{R}$ telle que :\n- $g(I)\\subset I$ ;\n- $g$ est $k$-lipschitzienne sur $I$ avec $0\\le k<1$ : $|g(x)-g(y)|\\le k|x-y|$ pour tous $x,y\\in I$ (c'est le cas si $g$ est dérivable sur $I$ avec $|g'(x)|\\le k$ pour tout $x\\in I$).\n\nAlors $g$ admet un **unique** point fixe $\\ell\\in I$, et pour tout $u_0\\in I$, la suite définie par $u_{n+1}=g(u_n)$ converge vers $\\ell$ ; pour tout $n\\in\\mathbb{N}$ :\n\n$$|u_n-\\ell|\\le k^n|u_0-\\ell|\\qquad\\text{et}\\qquad|u_n-\\ell|\\le\\frac{k^n}{1-k}|u_1-u_0|.$$",
+      "enonce_trous": "Si $I$ est un intervalle {{1}} non vide et si $g:I\\to I$ est {{2}}, alors $g$ admet {{3}} point fixe $\\ell$, et toute suite définie par $u_0\\in I$ et $u_{n+1}=g(u_n)$ vérifie, pour tout $n$, $|u_n-\\ell|\\le$ {{4}}.",
+      "trous": [
+        {
+          "reponse": "fermé",
+          "leurres": [
+            "ouvert",
+            "borné",
+            "de longueur au plus $1$"
+          ]
+        },
+        {
+          "reponse": "$k$-lipschitzienne avec $k<1$",
+          "leurres": [
+            "$1$-lipschitzienne",
+            "strictement croissante",
+            "continue"
+          ]
+        },
+        {
+          "reponse": "un unique",
+          "leurres": [
+            "au moins deux",
+            "aucun",
+            "une infinité de"
+          ]
+        },
+        {
+          "reponse": "$k^n|u_0-\\ell|$",
+          "leurres": [
+            "$k^{n+1}|u_0-\\ell|$",
+            "$k^{2n}|u_0-\\ell|$",
+            "$nk|u_0-\\ell|$"
+          ]
+        }
+      ],
+      "demo": "**Unicité.** Si $\\ell$ et $\\ell'$ sont deux points fixes, $|\\ell-\\ell'|=|g(\\ell)-g(\\ell')|\\le k|\\ell-\\ell'|$, donc $(1-k)|\\ell-\\ell'|\\le0$ et $\\ell=\\ell'$.\n\n**Existence et convergence.** Comme $g(I)\\subset I$, la suite $(u_n)$ est bien définie et reste dans $I$. Pour $n\\ge1$, $|u_{n+1}-u_n|=|g(u_n)-g(u_{n-1})|\\le k|u_n-u_{n-1}|$, d'où $|u_{n+1}-u_n|\\le k^n|u_1-u_0|$ par récurrence. Pour $p>n$, par l'inégalité triangulaire,\n\n$$|u_p-u_n|\\le\\sum_{j=n}^{p-1}k^j|u_1-u_0|\\le\\frac{k^n}{1-k}|u_1-u_0|,$$\n\nqui tend vers $0$ quand $n\\to+\\infty$ : la suite est de Cauchy, donc converge vers un réel $\\ell$. Comme $I$ est un intervalle fermé, il contient la limite de toute suite convergente de ses points (passage à la limite dans les inégalités larges qui le définissent) : $\\ell\\in I$. Enfin $g$ est continue (car lipschitzienne) : en passant à la limite dans $u_{n+1}=g(u_n)$, $\\ell=g(\\ell)$.\n\n**Majorations.** $|u_{n+1}-\\ell|=|g(u_n)-g(\\ell)|\\le k|u_n-\\ell|$, d'où $|u_n-\\ell|\\le k^n|u_0-\\ell|$. En faisant tendre $p$ vers $+\\infty$ dans $|u_p-u_n|\\le\\frac{k^n}{1-k}|u_1-u_0|$, on obtient $|\\ell-u_n|\\le\\frac{k^n}{1-k}|u_1-u_0|$.\n\n**Cas dérivable.** Si $g$ est dérivable sur l'intervalle $I$ avec $|g'|\\le k$, l'inégalité des accroissements finis donne $|g(x)-g(y)|\\le k|x-y|$ pour tous $x,y\\in I$.",
+      "exemple": "$g=\\cos$ sur $I=[0,1]$ : $\\cos$ est décroissante sur $[0,1]$, donc $\\cos([0,1])=[\\cos1,1]\\subset[0,1]$ (car $\\cos1\\approx0{,}54$), et $|\\cos'(x)|=\\sin x\\le\\sin1\\approx0{,}841$ sur $[0,1]$. L'équation $\\cos x=x$ a donc une unique solution $\\ell\\in[0,1]$ ($\\ell\\approx0{,}739085$), limite de $u_{n+1}=\\cos u_n$ pour tout $u_0\\in[0,1]$, avec $|u_n-\\ell|\\le(\\sin1)^n$ ; pour garantir $10^{-6}$, cette majoration demande $n\\ge81$ : la convergence est lente quand $k$ est proche de $1$.",
+      "contre_exemple": "- **$I$ fermé** : $g(x)=\\frac x2$ sur $I=\\left]0,1\\right]$ vérifie $g(I)=\\left]0,\\frac12\\right]\\subset I$ et est $\\frac12$-lipschitzienne, mais n'a pas de point fixe dans $I$ (le seul point fixe réel, $0$, n'est pas dans $I$).\n- **$k<1$** : $g(x)=x+1$ sur $\\mathbb{R}$ est $1$-lipschitzienne et n'a pas de point fixe.\n- **$|g(x)-g(y)|<|x-y|$ ne suffit pas** : $g(x)=x+\\frac1x$ sur $\\left[1,+\\infty\\right[$ envoie $I$ dans $\\left[2,+\\infty\\right[\\subset I$ et vérifie $|g(x)-g(y)|=|x-y|\\left(1-\\frac1{xy}\\right)<|x-y|$ pour $x\\neq y$ (car $xy>1$), mais $g(x)=x$ est impossible.\n- **$g(I)\\subset I$** : $g(x)=\\frac x2+2$ sur $[0,1]$ est $\\frac12$-lipschitzienne, mais $g([0,1])=\\left[2,\\frac52\\right]$ et son point fixe $4$ n'est pas dans $[0,1]$.",
+      "affirmations": [
+        {
+          "texte": "Si $g:[0,1]\\to[0,1]$ est continue, alors $g$ a au moins un point fixe.",
+          "vrai": true,
+          "justification": "$h(x)=g(x)-x$ est continue, $h(0)=g(0)\\ge0$ et $h(1)=g(1)-1\\le0$ : par le théorème des valeurs intermédiaires, $h$ s'annule."
+        },
+        {
+          "texte": "Si $g:[0,1]\\to[0,1]$ est continue, alors $g$ a un unique point fixe.",
+          "vrai": false,
+          "contre_exemple": "$g(x)=x$ : tous les points de $[0,1]$ sont fixes."
+        },
+        {
+          "texte": "Si $g$ est dérivable sur $\\mathbb{R}$ avec $|g'(x)|<1$ pour tout $x$, alors $g$ a un point fixe.",
+          "vrai": false,
+          "contre_exemple": "$g(x)=\\sqrt{1+x^2}$ : $|g'(x)|=\\frac{|x|}{\\sqrt{1+x^2}}<1$, mais $\\sqrt{1+x^2}>|x|\\ge x$ pour tout $x$, donc $g(x)\\neq x$."
+        },
+        {
+          "texte": "Sous les hypothèses du théorème, la suite $(u_n)$ est monotone.",
+          "vrai": false,
+          "contre_exemple": "$g(x)=-\\frac x2$ sur $\\mathbb{R}$, $u_0=1$ : $u_n=\\left(-\\frac12\\right)^n$ change de signe à chaque rang."
+        },
+        {
+          "texte": "Sous les hypothèses du théorème, $|u_n-\\ell|\\le\\frac{k}{1-k}|u_n-u_{n-1}|$ pour tout $n\\ge1$.",
+          "vrai": true,
+          "justification": "$|u_n-\\ell|\\le|u_n-u_{n+1}|+|u_{n+1}-\\ell|\\le k|u_n-u_{n-1}|+k|u_n-\\ell|$, d'où $(1-k)|u_n-\\ell|\\le k|u_n-u_{n-1}|$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-point-fixe",
+        "ar-l1-suites-cauchy",
+        "ar-l1-taf"
+      ]
+    },
+    {
+      "id": "num-l2-equations-newton",
+      "theme": "methodes-numeriques",
+      "niveau": "l2",
+      "chapitre": "num-l2-equations",
+      "type": "theoreme",
+      "titre": "Méthode de Newton",
+      "recto": "Énoncer un théorème de convergence de la méthode de Newton pour une fonction croissante et convexe sur $[a,b]$, avec la majoration quadratique de l'erreur.",
+      "cours": "La méthode de Newton remplace la courbe de $f$ par sa tangente au point d'abscisse $x_n$ et prend pour $x_{n+1}$ l'abscisse où cette tangente coupe l'axe : $f(x_n)+f'(x_n)(x-x_n)=0$ donne $x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}$. Pour $f(x)=x^2-a$, on retrouve la méthode de Héron $x_{n+1}=\\frac12\\left(x_n+\\frac a{x_n}\\right)$.\n\nQuand elle converge vers un zéro simple, elle est très rapide : l'erreur est majorée par une constante fois le **carré** de l'erreur précédente, si bien que le nombre de décimales exactes double environ à chaque étape. Mais elle peut diverger ou cycler si l'on part loin du zéro. Le théorème donne un cadre sûr : $f$ croissante et convexe, départ à droite du zéro ($f(x_0)\\ge0$) ; la suite descend alors vers $\\ell$ en restant au-dessus, car la tangente est sous la courbe. Les autres cas s'y ramènent en remplaçant $f$ par $-f$, ou $x$ par $-x$ : départ du côté où $f(x_0)$ a le signe, constant, de $f''$.\n\nMéthode : vérifier les hypothèses (signes de $f'$ et $f''$ sur tout $[a,b]$), choisir $x_0$ tel que $f(x_0)\\ge0$ (par exemple $x_0=b$), calculer $m=\\min f'$ et $M=\\max f''$, puis itérer $C(x_{n+1}-\\ell)\\le\\left(C(x_n-\\ell)\\right)^2$ avec $C=\\frac M{2m}$, ce qui donne $C(x_n-\\ell)\\le\\left(C(x_1-\\ell)\\right)^{2^{n-1}}$.\n\nPièges : partir du mauvais côté (la première itération peut sortir de $[a,b]$) ; oublier la convexité (avec $\\arctan$, la suite peut diverger) ; une racine double ($f'(\\ell)=0$) ne donne plus qu'une convergence linéaire.",
+      "hypotheses": [
+        "$f$ est de classe $C^2$ sur $[a,b]$.",
+        "$f(a)<0<f(b)$.",
+        "$f'(x)>0$ pour tout $x\\in[a,b]$.",
+        "$f''(x)\\ge0$ pour tout $x\\in[a,b]$.",
+        "$x_0\\in[a,b]$ et $f(x_0)\\ge0$ (par exemple $x_0=b$)."
+      ],
+      "hypotheses_pieges": [
+        "$x_0=a$ (à la place de : $f(x_0)\\ge0$).",
+        "$f''$ peut changer de signe sur $[a,b]$ (à la place de : $f''\\ge0$).",
+        "$f'(x)<0$ pour tout $x\\in[a,b]$ et $f(a)>0>f(b)$ (à la place de : $f'>0$ et $f(a)<0<f(b)$)."
+      ],
+      "enonce": "Soient $a<b$ et $f:[a,b]\\to\\mathbb{R}$ de classe $C^2$ telle que :\n- $f(a)<0<f(b)$ ;\n- $f'(x)>0$ pour tout $x\\in[a,b]$ ;\n- $f''(x)\\ge0$ pour tout $x\\in[a,b]$ ($f$ est convexe).\n\nAlors $f$ a un unique zéro $\\ell$ dans $[a,b]$, et pour tout $x_0\\in[a,b]$ tel que $f(x_0)\\ge0$ (par exemple $x_0=b$), la suite de Newton\n\n$$x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}$$\n\nest bien définie, décroissante, minorée par $\\ell$, et converge vers $\\ell$. En notant $m=\\min_{[a,b]}f'>0$ et $M=\\max_{[a,b]}f''$, on a pour tout $n$ :\n\n$$0\\le x_{n+1}-\\ell\\le\\frac{M}{2m}(x_n-\\ell)^2.$$",
+      "enonce_trous": "Si $f$ est de classe $C^2$ sur $[a,b]$, avec $f(a)<0<f(b)$, $f'>0$ et {{1}} sur $[a,b]$, alors pour $x_0\\in[a,b]$ tel que {{2}}, la suite définie par $x_{n+1}=$ {{3}} décroît et converge vers l'unique zéro $\\ell$ de $f$, avec $0\\le x_{n+1}-\\ell\\le$ {{4}}, où $m=\\min f'$ et $M=\\max f''$ sur $[a,b]$.",
+      "trous": [
+        {
+          "reponse": "$f''\\ge0$",
+          "leurres": [
+            "$f''\\le0$",
+            "$f''(\\ell)\\ge0$",
+            "$|f''|\\le1$"
+          ]
+        },
+        {
+          "reponse": "$f(x_0)\\ge0$",
+          "leurres": [
+            "$f(x_0)\\le0$",
+            "$x_0=a$",
+            "$x_0=\\frac{a+b}{2}$"
+          ]
+        },
+        {
+          "reponse": "$x_n-\\frac{f(x_n)}{f'(x_n)}$",
+          "leurres": [
+            "$x_n+\\frac{f(x_n)}{f'(x_n)}$",
+            "$x_n-\\frac{f'(x_n)}{f(x_n)}$",
+            "$x_n-f(x_n)f'(x_n)$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{M}{2m}(x_n-\\ell)^2$",
+          "leurres": [
+            "$\\frac{M}{2m}(x_n-\\ell)^3$",
+            "$\\frac{m}{2M}(x_n-\\ell)^2$",
+            "$\\frac{M}{4m}(x_n-\\ell)^2$"
+          ]
+        }
+      ],
+      "demo": "**Zéro unique.** $f$ est continue et strictement croissante (car $f'>0$), avec $f(a)<0<f(b)$ : par le théorème des valeurs intermédiaires et la stricte monotonie, $f$ a un unique zéro $\\ell\\in\\left]a,b\\right[$, et pour $x\\in[a,b]$, $f(x)\\ge0\\iff x\\ge\\ell$.\n\n**Récurrence.** Montrons que $x_n\\in[\\ell,b]$ pour tout $n$. C'est vrai pour $x_0$, car $f(x_0)\\ge0$. Si $x_n\\in[\\ell,b]$, alors $f'(x_n)>0$, donc $x_{n+1}$ est défini, et $x_{n+1}\\le x_n\\le b$ car $f(x_n)\\ge0$. Comme $f$ est convexe et dérivable, sa courbe est au-dessus de sa tangente en $x_n$ : $0=f(\\ell)\\ge f(x_n)+f'(x_n)(\\ell-x_n)$ ; en divisant par $f'(x_n)>0$, $x_n-\\frac{f(x_n)}{f'(x_n)}\\ge\\ell$, c'est-à-dire $x_{n+1}\\ge\\ell$.\n\n**Convergence.** $(x_n)$ est décroissante et minorée par $\\ell$ : elle converge vers un réel $L\\in[\\ell,b]$. Comme $f$ et $f'$ sont continues et $f'(L)>0$, le passage à la limite donne $L=L-\\frac{f(L)}{f'(L)}$, donc $f(L)=0$ et $L=\\ell$.\n\n**Majoration.** $m$ et $M$ existent (fonctions continues sur un segment) et $|f''|\\le M$ sur $[a,b]$. L'inégalité de Taylor-Lagrange à l'ordre $1$ entre $x_n$ et $\\ell$ donne $\\left|f(\\ell)-f(x_n)-f'(x_n)(\\ell-x_n)\\right|\\le\\frac M2(x_n-\\ell)^2$. Or $f(\\ell)-f(x_n)-f'(x_n)(\\ell-x_n)=f'(x_n)\\left(x_n-\\frac{f(x_n)}{f'(x_n)}-\\ell\\right)=f'(x_n)(x_{n+1}-\\ell)$. Comme $f'(x_n)\\ge m$ et $x_{n+1}-\\ell\\ge0$ : $0\\le x_{n+1}-\\ell\\le\\frac{M}{2m}(x_n-\\ell)^2$.",
+      "exemple": "$f(x)=x^2-2$ sur $[1,2]$ : $f(1)<0<f(2)$, $f'(x)=2x\\ge2=m$, $f''=2=M$. Avec $x_0=2$ : $x_1=\\frac32$, $x_2=\\frac{17}{12}$, $x_3=\\frac{577}{408}$, et $0\\le x_{n+1}-\\sqrt2\\le\\frac12(x_n-\\sqrt2)^2$. Effectivement $x_1-\\sqrt2\\approx8{,}6\\cdot10^{-2}$, $x_2-\\sqrt2\\approx2{,}5\\cdot10^{-3}$, $x_3-\\sqrt2\\approx2{,}1\\cdot10^{-6}$ : le nombre de décimales exactes double à peu près à chaque étape.",
+      "contre_exemple": "- **Départ du mauvais côté** : $f(x)=x^3-1$ sur $\\left[\\frac1{10},\\frac32\\right]$ vérifie les hypothèses, mais avec $x_0=\\frac1{10}$ ($f(x_0)<0$), $x_1=\\frac1{10}+\\frac{0{,}999}{0{,}03}=33{,}4$ : $x_1>x_0$, et $x_1$ sort de $[a,b]$.\n- **Sans convexité** : $f=\\arctan$ sur $[-2,2]$ vérifie $f(-2)<0<f(2)$ et $f'>0$, mais $f''(x)=\\frac{-2x}{(1+x^2)^2}$ change de signe. Avec $x_0=2$, $x_1=2-5\\arctan2\\approx-3{,}54$ sort de $[-2,2]$, et les itérés suivants s'éloignent de plus en plus de $0$ en changeant de signe.\n- **$f$ décroissante** : $f(x)=e^{-x}-\\frac12$ sur $[0,2]$ est convexe, $f(0)>0>f(2)$ ; avec $x_0=0$, $x_1=\\frac12>x_0$ et $x_1<\\ln2=\\ell$ : la suite n'est ni décroissante ni minorée par $\\ell$ ; elle croît vers $\\ell$, ce qu'on obtient en appliquant le théorème à $x\\mapsto f(-x)$, croissante et convexe. Partir de $x_0=2$ donnerait $x_1=3-\\frac{e^2}2\\approx-0{,}69$, hors de $[0,2]$.\n- **Cycle** : pour $f(x)=x^3-2x+2$ et $x_0=0$, on trouve $x_1=1$, $x_2=0$, $x_3=1$… : la suite est périodique et ne converge pas.",
+      "affirmations": [
+        {
+          "texte": "Sous les hypothèses du théorème, si $x_0=b$, tous les termes $x_n$ sont dans $[a,b]$.",
+          "vrai": true,
+          "justification": "La démonstration montre que $x_n\\in[\\ell,b]$ pour tout $n$."
+        },
+        {
+          "texte": "Si $f$ est de classe $C^2$ sur $\\mathbb{R}$ et a un zéro $\\ell$ avec $f'(\\ell)\\neq0$, la méthode de Newton converge vers $\\ell$ quel que soit $x_0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^3-2x+2$ a un unique zéro réel $\\ell\\approx-1{,}77$, avec $f'(\\ell)=3\\ell^2-2>0$, mais pour $x_0=0$ la suite vaut $0,1,0,1,\\ldots$"
+        },
+        {
+          "texte": "Pour $f(x)=x^2-a$ ($a>0$), l'itération de Newton s'écrit $x_{n+1}=\\frac12\\left(x_n+\\frac a{x_n}\\right)$.",
+          "vrai": true,
+          "justification": "$x_n-\\frac{x_n^2-a}{2x_n}=\\frac{2x_n^2-x_n^2+a}{2x_n}=\\frac12\\left(x_n+\\frac a{x_n}\\right)$."
+        },
+        {
+          "texte": "Si $f$ est croissante, convexe et $f(x_0)<0$, alors $x_1<x_0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2-2$, $x_0=1$ : $x_1=1-\\frac{-1}{2}=\\frac32>x_0$. En général $x_1=x_0-\\frac{f(x_0)}{f'(x_0)}>x_0$ quand $f(x_0)<0<f'(x_0)$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-tvi",
+        "ar-t-limite-monotone",
+        "ar-l1-convexite-derivables",
+        "ar-l1-taylor-lagrange"
+      ]
+    },
+    {
+      "id": "num-l2-equations-ordre",
+      "theme": "methodes-numeriques",
+      "niveau": "l2",
+      "chapitre": "num-l2-equations",
+      "type": "definition",
+      "titre": "Vitesse de convergence et ordre d'une méthode",
+      "recto": "Définir la convergence linéaire et la convergence d'ordre $p$ d'une suite, et donner le critère d'ordre d'une méthode itérative $x_{n+1}=g(x_n)$.",
+      "cours": "Deux méthodes convergentes ne se valent pas : ce qui compte est la façon dont l'erreur $e_n=x_n-\\ell$ diminue. En convergence **linéaire** de constante $C<1$, l'erreur est multipliée par environ $C$ à chaque étape : on gagne environ $-\\log_{10}C$ décimales par itération. En convergence d'**ordre** $p>1$, $|e_{n+1}|\\approx C|e_n|^p$ : le nombre de décimales exactes est multiplié par environ $p$ à chaque itération (il double pour $p=2$).\n\nPour une méthode de point fixe $x_{n+1}=g(x_n)$, l'ordre se lit sur les dérivées de $g$ en $\\ell$ grâce à la formule de Taylor-Young : pour une suite qui converge vers $\\ell$ sans prendre la valeur $\\ell$, si $0<|g'(\\ell)|<1$, la convergence est linéaire de constante $|g'(\\ell)|$ (si $|g'(\\ell)|=1$, elle peut être plus lente, comme pour $x_{n+1}=\\sin x_n$) ; si $g'(\\ell)=0$, elle est au moins quadratique. La méthode de Newton s'écrit $g(x)=x-\\frac{f(x)}{f'(x)}$ et vérifie $g'(\\ell)=0$ en un zéro simple : c'est pour cela qu'elle est d'ordre au moins $2$ (exactement $2$ si $f''(\\ell)\\neq0$). À l'inverse, la dichotomie ne fournit qu'une majoration $\\frac{b-a}{2^{n+1}}$ divisée par $2$ à chaque étape.\n\nMéthode : calculer la limite de $\\frac{|e_{n+1}|}{|e_n|}$ ; si elle est nulle, chercher $p$ tel que $\\frac{|e_{n+1}|}{|e_n|^p}$ ait une limite finie non nulle ; pour $x_{n+1}=g(x_n)$, calculer $g'(\\ell)$, $g''(\\ell)$… jusqu'à la première dérivée non nulle.\n\nPièges : une limite $C=1$ ne donne pas une convergence linéaire (convergence sous-linéaire, comme $\\frac1n$) ; l'ordre demande une limite **non nulle** (une suite d'ordre $3$ n'est pas d'ordre $2$) ; une suite peut être « superlinéaire » sans avoir d'ordre $p>1$, comme $\\frac1{n!}$ ; enfin la méthode de Newton n'est que linéaire en un zéro multiple.",
+      "hypotheses": [
+        "$g$ est de classe $C^p$ sur l'intervalle $I$, avec $g(I)\\subset I$, et $g(\\ell)=\\ell$.",
+        "$g'(\\ell)=\\dots=g^{(p-1)}(\\ell)=0$ et $g^{(p)}(\\ell)\\neq0$ ; pour $p=1$ : $0<|g'(\\ell)|<1$.",
+        "La suite définie par $x_{n+1}=g(x_n)$ converge vers $\\ell$ et $x_n\\neq\\ell$ pour tout $n$."
+      ],
+      "hypotheses_pieges": [
+        "$g^{(p)}(\\ell)\\neq0$ seulement, sans annulation des dérivées d'ordre $1$ à $p-1$ en $\\ell$.",
+        "$g'(\\ell)=\\dots=g^{(p-1)}(\\ell)=0$ seulement, sans condition sur $g^{(p)}(\\ell)$.",
+        "Pour $p=1$ : $g'(\\ell)\\neq0$ (à la place de : $0<|g'(\\ell)|<1$)."
+      ],
+      "enonce": "Soit $(x_n)$ une suite réelle qui converge vers $\\ell$, avec $x_n\\neq\\ell$ pour tout $n$ ; on note $e_n=x_n-\\ell$.\n- La convergence est **linéaire** (ou géométrique) de constante $C$ si $\\frac{|e_{n+1}|}{|e_n|}\\to C$ avec $0<C<1$ ; c'est l'ordre $1$.\n- Elle est d'**ordre** $p>1$ si $\\frac{|e_{n+1}|}{|e_n|^p}$ tend vers une limite $C$ finie et **non nulle** ; pour $p=2$, on parle de convergence **quadratique**.\n\n**Critère.** Soient $p\\ge1$ un entier, $I$ un intervalle, $g:I\\to I$ de classe $C^p$ et $\\ell\\in I$ tel que $g(\\ell)=\\ell$, avec $g'(\\ell)=\\dots=g^{(p-1)}(\\ell)=0$ et $g^{(p)}(\\ell)\\neq0$ (pour $p=1$ : $0<|g'(\\ell)|<1$). Si la suite définie par $x_0\\in I$ et $x_{n+1}=g(x_n)$ converge vers $\\ell$ sans jamais prendre la valeur $\\ell$, alors $\\frac{e_{n+1}}{e_n^p}\\to\\frac{g^{(p)}(\\ell)}{p!}$ : la convergence est d'ordre $p$.\n\n**Newton.** Si $f$ est de classe $C^2$, $f(\\ell)=0$, $f'(\\ell)\\neq0$ et si la suite de Newton converge vers $\\ell$ sans prendre la valeur $\\ell$, alors $\\frac{e_{n+1}}{e_n^2}\\to\\frac{f''(\\ell)}{2f'(\\ell)}$ : la convergence est quadratique si $f''(\\ell)\\neq0$.",
+      "enonce_trous": "Une suite $(x_n)$ qui converge vers $\\ell$, avec $x_n\\neq\\ell$ pour tout $n$, converge à l'ordre $p>1$ si {{1}} tend vers une limite finie {{2}}. Pour une méthode $x_{n+1}=g(x_n)$ de point fixe $\\ell$, avec $g$ de classe $C^2$, $g'(\\ell)=0$ et $g''(\\ell)\\neq0$, la convergence (quand elle a lieu, sans que la suite prenne la valeur $\\ell$) est d'ordre {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{|x_{n+1}-\\ell|}{|x_n-\\ell|^p}$",
+          "leurres": [
+            "$\\frac{|x_{n+1}-\\ell|}{|x_n-\\ell|}$",
+            "$\\frac{|x_{n+1}-\\ell|^p}{|x_n-\\ell|}$",
+            "$\\frac{|x_{n+1}-\\ell|}{p\\,|x_n-\\ell|}$"
+          ]
+        },
+        {
+          "reponse": "non nulle",
+          "leurres": [
+            "nulle",
+            "égale à $1$",
+            "strictement inférieure à $1$"
+          ]
+        },
+        {
+          "reponse": "$2$",
+          "leurres": [
+            "$1$",
+            "$3$",
+            "au moins $3$"
+          ]
+        }
+      ],
+      "demo": "**Critère.** $g$ est de classe $C^p$ et ses dérivées d'ordre $1$ à $p-1$ sont nulles en $\\ell$ ; la formule de Taylor-Young en $\\ell$ s'écrit $g(x)=\\ell+\\frac{g^{(p)}(\\ell)}{p!}(x-\\ell)^p+(x-\\ell)^p\\varepsilon(x)$, avec $\\varepsilon(x)\\to0$ quand $x\\to\\ell$. Pour $x=x_n$ : $e_{n+1}=g(x_n)-\\ell=e_n^p\\left(\\frac{g^{(p)}(\\ell)}{p!}+\\varepsilon(x_n)\\right)$. Comme $x_n\\to\\ell$, $\\frac{e_{n+1}}{e_n^p}\\to\\frac{g^{(p)}(\\ell)}{p!}$, donc $\\frac{|e_{n+1}|}{|e_n|^p}\\to\\frac{|g^{(p)}(\\ell)|}{p!}$, limite non nulle ; pour $p=1$, cette limite $|g'(\\ell)|$ est dans $\\left]0,1\\right[$ : la convergence est linéaire.\n\n**Newton.** Les formules de Taylor-Young de $f$ à l'ordre $2$ et de $f'$ à l'ordre $1$ en $\\ell$ donnent $f(x_n)=f'(\\ell)e_n+\\frac{f''(\\ell)}2e_n^2+o(e_n^2)$ et $f'(x_n)=f'(\\ell)+f''(\\ell)e_n+o(e_n)$. Donc $f'(x_n)e_n-f(x_n)=\\frac{f''(\\ell)}2e_n^2+o(e_n^2)$, et, comme $f'(x_n)\\to f'(\\ell)\\neq0$,\n\n$$\\frac{e_{n+1}}{e_n^2}=\\frac{e_n-\\frac{f(x_n)}{f'(x_n)}}{e_n^2}=\\frac{f'(x_n)e_n-f(x_n)}{f'(x_n)\\,e_n^2}\\longrightarrow\\frac{f''(\\ell)}{2f'(\\ell)}.$$",
+      "exemple": "Méthode de Héron pour $\\sqrt2$ : $g(x)=\\frac12\\left(x+\\frac2x\\right)$, $g'(x)=\\frac12-\\frac1{x^2}$ s'annule en $\\sqrt2$ et $g''(\\sqrt2)=\\frac{2}{(\\sqrt2)^3}=\\frac1{\\sqrt2}\\neq0$ : convergence quadratique, avec $\\frac{e_{n+1}}{e_n^2}\\to\\frac1{2\\sqrt2}\\approx0{,}354$. En revanche, $u_{n+1}=\\cos u_n$ converge linéairement vers $\\ell\\approx0{,}739$, de constante $|{-\\sin\\ell}|\\approx0{,}674$ : environ $0{,}17$ décimale gagnée par itération.",
+      "contre_exemple": "- **Limite $1$** : $x_n=\\frac1{n+1}\\to0$ et $\\frac{|e_{n+1}|}{|e_n|}=\\frac{n+1}{n+2}\\to1$ : la convergence n'est pas linéaire (elle est sous-linéaire). De même pour $x_{n+1}=\\sin x_n$, $x_0=1$ : $\\frac{\\sin x_n}{x_n}\\to1$, bien que $\\sin'(0)=1\\neq0$.\n- **Limite nulle** : $g(x)=x^3$, $x_0=\\frac12$ : $g'(0)=0$ et $g''(0)=0$ ; $\\frac{e_{n+1}}{e_n^2}=e_n\\to0$ : la convergence n'est pas d'ordre $2$, elle est d'ordre $3$.\n- **Sans ordre** : $x_n=\\frac1{n!}$ vérifie $\\frac{e_{n+1}}{e_n}=\\frac1{n+1}\\to0$, mais pour tout $p>1$, $\\frac{e_{n+1}}{e_n^p}=\\frac{(n!)^{p-1}}{n+1}\\to+\\infty$.\n- **Newton en un zéro double** : pour $f(x)=x^2$, $x_{n+1}=\\frac{x_n}2$ : convergence seulement linéaire, de constante $\\frac12$.\n- **Dérivées précédentes non nulles** : $g(x)=\\frac x2+x^2$ sur $\\left[0,\\frac14\\right]$ (stable par $g$), $x_0=\\frac14$ : $g''(0)=2\\neq0$ mais $g'(0)=\\frac12$ ; la convergence vers $0$ est linéaire, et $\\frac{e_{n+1}}{e_n^2}=\\frac1{2e_n}+1\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $(x_n)$ converge vers $\\ell$ à l'ordre $2$, alors $\\frac{|x_{n+1}-\\ell|}{|x_n-\\ell|}\\to0$.",
+          "vrai": true,
+          "justification": "$\\frac{|e_{n+1}|}{|e_n|}=\\frac{|e_{n+1}|}{|e_n|^2}\\,|e_n|\\to C\\times0=0$."
+        },
+        {
+          "texte": "La méthode de Newton est d'ordre $2$ chaque fois qu'elle converge sans être stationnaire.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2$, $x_0=1$ : $x_n=2^{-n}\\to0$, et $\\frac{|e_{n+1}|}{|e_n|}=\\frac12$ : convergence linéaire."
+        },
+        {
+          "texte": "Si $\\frac{|x_{n+1}-\\ell|}{|x_n-\\ell|}\\to1$, la convergence est linéaire.",
+          "vrai": false,
+          "contre_exemple": "$x_n=\\frac1{n+1}$ : le rapport $\\frac{n+1}{n+2}$ tend vers $1$, ce qui exclut la convergence linéaire, qui demande une limite $C<1$."
+        },
+        {
+          "texte": "Si $(x_n)$ converge vers $\\ell$ à l'ordre $p>1$, elle converge aussi à l'ordre $q$ pour tout $q\\in\\left]1,p\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$x_n=2^{-2^n}$ est d'ordre $2$, mais pour $q=\\frac32$, $\\frac{e_{n+1}}{e_n^{3/2}}=2^{-2^{n+1}+\\frac32\\cdot2^n}=2^{-2^{n-1}}\\to0$ : limite nulle, donc pas d'ordre $\\frac32$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-taylor-young",
+        "num-l2-equations-point-fixe",
+        "num-l2-equations-newton",
+        "ar-l2-asymptotique-vitesse"
+      ]
+    },
+    {
+      "id": "num-l2-equations-erreur",
+      "theme": "methodes-numeriques",
+      "niveau": "l2",
+      "chapitre": "num-l2-equations",
+      "type": "methode",
+      "titre": "Estimation de l'erreur : majorations a posteriori",
+      "recto": "Comment majorer, à partir de la valeur obtenue, l'erreur commise sur un zéro $\\ell$ de $f$ par une valeur approchée $\\tilde x$, ou par le terme $u_n$ d'une suite d'approximations successives ?",
+      "cours": "Une méthode itérative s'arrête quand on est sûr de la précision voulue. Les majorations a priori ($\\frac{b-a}{2^{n+1}}$ pour la dichotomie, $k^n|u_0-\\ell|$ pour un point fixe) sont souvent pessimistes ; les majorations **a posteriori** utilisent la valeur obtenue et donnent un test d'arrêt sûr et économique.\n\nTrois outils :\n- **le résidu** : si $|f'|\\ge m>0$ sur un intervalle contenant $\\tilde x$ et $\\ell$, l'inégalité des accroissements finis donne $|\\tilde x-\\ell|\\le\\frac{|f(\\tilde x)|}m$ ; on a intérêt à prendre l'intervalle petit, pour que $m$ soit grand ;\n- **le changement de signe** : si $f(\\tilde x-\\varepsilon)$ et $f(\\tilde x+\\varepsilon)$ sont de signes contraires et si $\\ell$ est le seul zéro, $\\ell$ est à moins de $\\varepsilon$ de $\\tilde x$ : deux évaluations de $f$ certifient le résultat ;\n- **l'écart entre deux itérés** : pour une suite $u_{n+1}=g(u_n)$ avec $g$ $k$-contractante, $|u_n-\\ell|\\le\\frac k{1-k}|u_n-u_{n-1}|$.\n\nMéthode : majorer l'erreur par une quantité calculable à partir des itérés ($f(\\tilde x)$, $u_n-u_{n-1}$), en contrôlant la constante ($m$, $k$) sur un intervalle qui contient à coup sûr $\\ell$ et les itérés.\n\nPièges : un résidu $|f(\\tilde x)|$ petit ne suffit pas si $f'$ est petite près de $\\ell$ (racine multiple : pour $f(x)=x^2$, $|f(10^{-3})|=10^{-6}$ alors que l'erreur vaut $10^{-3}$) ; un écart $|u_n-u_{n-1}|$ petit ne suffit pas sans contraction (les sommes $\\sum_{j\\le n}\\frac1j$ ont des écarts $\\frac1n\\to0$ et tendent vers $+\\infty$) ; la constante $m$ doit minorer $|f'|$ sur tout l'intervalle, pas seulement en $\\ell$.",
+      "hypotheses": [
+        "$f$ est dérivable sur l'intervalle $I$, qui contient $\\ell$ et $\\tilde x$.",
+        "$|f'(t)|\\ge m>0$ pour tout $t\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$|f'(t)|\\le m$ pour tout $t\\in I$ (à la place de : $|f'(t)|\\ge m$).",
+        "$f'$ ne s'annule pas sur $I$ et $m=|f'(\\ell)|$ (à la place de : $|f'(t)|\\ge m$ pour tout $t\\in I$).",
+        "$|f'(t)|\\ge m$ seulement pour $t$ voisin de $\\ell$ (à la place de : pour tout $t\\in I$)."
+      ],
+      "enonce": "Soient $I$ un intervalle, $f:I\\to\\mathbb{R}$, $\\ell\\in I$ tel que $f(\\ell)=0$, et $\\tilde x\\in I$ une valeur approchée de $\\ell$.\n\n- **Par le résidu.** Si $f$ est dérivable sur $I$ et s'il existe $m>0$ tel que $|f'(t)|\\ge m$ pour tout $t\\in I$, alors $|\\tilde x-\\ell|\\le\\frac{|f(\\tilde x)|}{m}$.\n- **Par un changement de signe.** Si $f$ est continue sur $I$, si $\\ell$ est son seul zéro dans $I$, et si $\\varepsilon>0$ vérifie $[\\tilde x-\\varepsilon,\\tilde x+\\varepsilon]\\subset I$ et $f(\\tilde x-\\varepsilon)f(\\tilde x+\\varepsilon)<0$, alors $|\\tilde x-\\ell|<\\varepsilon$.\n- **Pour des approximations successives.** Si $I$ est fermé, si $g:I\\to I$ est $k$-lipschitzienne avec $k<1$, de point fixe $\\ell$, et si $u_0\\in I$ et $u_{n+1}=g(u_n)$, alors pour tout $n\\ge1$ : $|u_n-\\ell|\\le\\frac{k}{1-k}|u_n-u_{n-1}|$.\n\nCes majorations se calculent avec les valeurs obtenues (a posteriori) et fournissent des tests d'arrêt sûrs ; un résidu $|f(\\tilde x)|$ ou un écart $|u_n-u_{n-1}|$ petits ne suffisent pas seuls.",
+      "enonce_trous": "Si $f$ est dérivable sur un intervalle $I$ contenant $\\ell$ et $\\tilde x$, avec $f(\\ell)=0$ et {{1}}, alors $|\\tilde x-\\ell|\\le$ {{2}}. Pour une suite $u_{n+1}=g(u_n)$, où $g$ est $k$-lipschitzienne ($k<1$) de l'intervalle fermé $I$ dans lui-même, de point fixe $\\ell$, on a pour tout $n\\ge1$ : $|u_n-\\ell|\\le$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|f'(t)|\\ge m>0$ pour tout $t\\in I$",
+          "leurres": [
+            "$|f'(t)|\\le m$ pour tout $t\\in I$",
+            "$|f'(\\ell)|\\ge m>0$",
+            "$|f''(t)|\\ge m>0$ pour tout $t\\in I$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{|f(\\tilde x)|}{m}$",
+          "leurres": [
+            "$m\\,|f(\\tilde x)|$",
+            "$\\frac{|f(\\tilde x)|}{m^2}$",
+            "$|f(\\tilde x)|$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{k}{1-k}|u_n-u_{n-1}|$",
+          "leurres": [
+            "$k|u_n-u_{n-1}|$",
+            "$|u_n-u_{n-1}|$",
+            "$\\frac{k^n}{1-k}|u_n-u_{n-1}|$"
+          ]
+        }
+      ],
+      "demo": "**Résidu.** Si $\\tilde x=\\ell$, il n'y a rien à montrer. Sinon, l'égalité des accroissements finis entre $\\ell$ et $\\tilde x$ (le segment qui les joint est dans l'intervalle $I$) donne $c$ entre eux tel que $f(\\tilde x)=f(\\tilde x)-f(\\ell)=f'(c)(\\tilde x-\\ell)$. Donc $|f(\\tilde x)|\\ge m|\\tilde x-\\ell|$.\n\n**Changement de signe.** $f$ est continue sur $[\\tilde x-\\varepsilon,\\tilde x+\\varepsilon]$ et prend des valeurs non nulles de signes contraires aux bouts : par le théorème des valeurs intermédiaires, elle s'annule en un point de $\\left]\\tilde x-\\varepsilon,\\tilde x+\\varepsilon\\right[$, qui est $\\ell$ puisque $\\ell$ est le seul zéro de $f$ dans $I$. Donc $|\\tilde x-\\ell|<\\varepsilon$.\n\n**Approximations successives.** Par l'inégalité triangulaire, $|u_n-\\ell|\\le|u_n-u_{n+1}|+|u_{n+1}-\\ell|$. Or $|u_{n+1}-u_n|=|g(u_n)-g(u_{n-1})|\\le k|u_n-u_{n-1}|$ et $|u_{n+1}-\\ell|=|g(u_n)-g(\\ell)|\\le k|u_n-\\ell|$. Donc $(1-k)|u_n-\\ell|\\le k|u_n-u_{n-1}|$, et on divise par $1-k>0$.",
+      "exemple": "$f(x)=x-\\cos x$ sur $I=[0,1]$ s'annule en $\\ell\\approx0{,}739085$ et $f'(x)=1+\\sin x\\ge1$. Pour $\\tilde x=0{,}74$, $f(\\tilde x)\\approx0{,}00153$, donc $|\\tilde x-\\ell|\\le0{,}0016$ (l'erreur réelle est environ $0{,}00091$). Et comme $f(0{,}739)<0<f(0{,}740)$, avec $f$ strictement croissante, $0{,}739<\\ell<0{,}740$.",
+      "contre_exemple": "- **$m$ doit minorer $|f'|$ sur tout l'intervalle** : $f=\\arctan$ sur $\\mathbb{R}$, $\\ell=0$, $f'(0)=1$, et $f'$ ne s'annule pas ; pour $\\tilde x=10$, $\\frac{|f(10)|}{1}=\\arctan10\\approx1{,}47<10=|\\tilde x-\\ell|$. De même avec $m=\\frac12$, qui minore $f'$ seulement sur $[-1,1]$ : $\\frac{\\arctan10}{1/2}\\approx2{,}94<10$.\n- **Majorer $|f'|$ au lieu de la minorer** : $f(x)=\\frac x{100}$ vérifie $|f'|\\le1$, mais pour $\\tilde x=1$, $|f(1)|=0{,}01<1=|\\tilde x-\\ell|$.\n- **Racine double** : $f(x)=x^2$, $\\tilde x=10^{-3}$ : résidu $10^{-6}$, erreur $10^{-3}$ ; aucune minoration $|f'|\\ge m>0$ n'est possible près de $0$.\n- **Écarts petits sans contraction** : $u_n=\\sum_{j=1}^n\\frac1j$ vérifie $|u_n-u_{n-1}|=\\frac1n\\to0$, et $u_n\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ s'annule sur $\\mathbb{R}$ et $|f(\\tilde x)|\\le10^{-10}$, alors $\\tilde x$ est à moins de $10^{-10}$ d'un zéro de $f$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x^2$, $\\tilde x=10^{-5}$ : $f(\\tilde x)=10^{-10}$, et le seul zéro, $0$, est à distance $10^{-5}$."
+        },
+        {
+          "texte": "Si $g:I\\to I$ est $\\frac12$-lipschitzienne sur l'intervalle fermé $I$, de point fixe $\\ell$, alors $|u_n-\\ell|\\le|u_n-u_{n-1}|$ pour tout $n\\ge1$.",
+          "vrai": true,
+          "justification": "C'est la majoration a posteriori avec $\\frac{k}{1-k}=\\frac{1/2}{1/2}=1$."
+        },
+        {
+          "texte": "Si $|u_n-u_{n-1}|\\to0$, alors $(u_n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\sqrt n$ : $u_n-u_{n-1}=\\frac1{\\sqrt n+\\sqrt{n-1}}\\to0$, mais $u_n\\to+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\mathbb{R}$ et $f(\\tilde x-\\varepsilon)f(\\tilde x+\\varepsilon)<0$, alors tout zéro de $f$ est à moins de $\\varepsilon$ de $\\tilde x$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x(x-5)$, $\\tilde x=0$, $\\varepsilon=1$ : $f(-1)f(1)=6\\times(-4)<0$, mais $5$ est un zéro de $f$ à distance $5$ de $\\tilde x$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-taf",
+        "ar-t-tvi",
+        "num-l2-equations-point-fixe"
+      ]
+    }
+  ]
+}

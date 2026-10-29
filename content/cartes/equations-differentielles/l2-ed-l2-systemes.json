@@ -1,0 +1,477 @@
+{
+  "cartes": [
+    {
+      "id": "ed-l2-systemes-cauchy",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "theoreme",
+      "titre": "Systèmes $X'=A(t)X+B(t)$ et problème de Cauchy",
+      "recto": "Énoncer le théorème d'existence et d'unicité pour le problème de Cauchy associé à un système différentiel linéaire $X'=A(t)X+B(t)$, avec ses hypothèses.",
+      "cours": "Un système différentiel linéaire couple $n$ fonctions inconnues $x_1,\\dots,x_n$ : la dérivée de chacune est une combinaison linéaire des autres, à coefficients dépendant de $t$, plus un terme connu. En notant $X$ le vecteur colonne des inconnues, le système s'écrit $X'=A(t)X+B(t)$, exactement comme l'équation scalaire $y'=a(t)y+b(t)$, dont il est la généralisation. Le **problème de Cauchy** fixe la valeur de **tout le vecteur** $X$ en un instant $t_0$ : l'état du système à un instant détermine tout son passé et tout son avenir.\n\nLe théorème, **admis** au programme de l'agrégation interne, a deux traits propres au cas linéaire : la solution existe pour **toute** condition initiale, et elle est définie sur **tout l'intervalle** $I$ où $A$ et $B$ sont continues (alors qu'une équation non linéaire comme $x'=x^2$ a des solutions qui « explosent » en temps fini). Il relève du théorème de Cauchy-Lipschitz dans sa version générale (second membre continu et lipschitzien par rapport à $X$), et non du cas $C^1$ énoncé au programme, puisque $A$ et $B$ sont seulement continues ; il donne en plus cette existence globale.\n\nEn pratique : on écrit le système sous forme **normalisée** (chaque $x_i'$ isolé), on identifie $A$ et $B$, puis on cherche le plus grand intervalle contenant $t_0$ sur lequel elles sont continues ; c'est là que le théorème s'applique. L'unicité sert à démontrer des identités : deux fonctions qui vérifient le même problème de Cauchy sont égales (parité, périodicité, formules d'addition). Une équation scalaire d'ordre $n$ se ramène à un système en prenant $X=(x,x',\\dots,x^{(n-1)})$.\n\nRemarque utile : si $A$, $B$ et $X_0$ sont réels, la solution (cherchée à valeurs complexes) est réelle, car sa conjuguée est solution du même problème de Cauchy.\n\nPièges : travailler sur une réunion d'intervalles (les constantes peuvent différer sur chaque morceau) ; oublier de normaliser, alors que le coefficient de $x'$ s'annule ; ne donner qu'une partie des composantes de $X(t_0)$.",
+      "hypotheses": [
+        "$I$ est un intervalle de $\\mathbb{R}$.",
+        "$A:I\\to\\mathcal{M}_n(\\mathbb{K})$ est continue sur $I$.",
+        "$B:I\\to\\mathbb{K}^n$ est continue sur $I$.",
+        "$t_0\\in I$ et $X_0\\in\\mathbb{K}^n$."
+      ],
+      "hypotheses_pieges": [
+        "$I$ est un ouvert de $\\mathbb{R}$, éventuellement réunion de plusieurs intervalles (à la place d'un intervalle).",
+        "$A$ est définie sur $I$ et continue sur $I$ privé d'un point (à la place de continue sur $I$).",
+        "$B$ est continue sur un voisinage de $t_0$ seulement (à la place de continue sur $I$)."
+      ],
+      "enonce": "Soient $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$, $I$ un **intervalle** de $\\mathbb{R}$, $A:I\\to\\mathcal{M}_n(\\mathbb{K})$ et $B:I\\to\\mathbb{K}^n$ deux applications **continues**. Une solution du système $(E):\\ X'=A(t)X+B(t)$ sur $I$ est une application dérivable $X:I\\to\\mathbb{K}^n$ telle que $X'(t)=A(t)X(t)+B(t)$ pour tout $t\\in I$.\n\n**Théorème (admis).** Pour tous $t_0\\in I$ et $X_0\\in\\mathbb{K}^n$, il existe une **unique** solution de $(E)$ **définie sur $I$ tout entier** telle que $X(t_0)=X_0$.\n\nEn particulier, toute solution est de classe $C^1$ sur $I$, et une solution de l'équation homogène $X'=A(t)X$ qui s'annule en un point de $I$ est nulle sur $I$.",
+      "enonce_trous": "Soient $I$ un {{1}}, $A:I\\to\\mathcal{M}_n(\\mathbb{K})$ et $B:I\\to\\mathbb{K}^n$ deux applications {{2}}. Pour tous $t_0\\in I$ et $X_0\\in\\mathbb{K}^n$, le système $X'=A(t)X+B(t)$ admet, sur $I$, {{3}} vérifiant $X(t_0)=X_0$.",
+      "trous": [
+        {
+          "reponse": "intervalle de $\\mathbb{R}$",
+          "leurres": [
+            "ouvert de $\\mathbb{R}$",
+            "partie de $\\mathbb{R}$ contenant au moins deux points",
+            "réunion de deux intervalles disjoints"
+          ]
+        },
+        {
+          "reponse": "continues sur $I$",
+          "leurres": [
+            "continues par morceaux sur $I$",
+            "bornées sur $I$",
+            "continues sur $I$ privé d'un point"
+          ]
+        },
+        {
+          "reponse": "une unique solution",
+          "leurres": [
+            "une infinité de solutions",
+            "exactement deux solutions",
+            "au moins une solution non nulle"
+          ]
+        }
+      ],
+      "demo": "L'existence est admise (programme de l'agrégation interne ; elle se démontre par exemple par la méthode des approximations successives). Montrons l'**unicité** et les conséquences.\n\n**Unicité.** Si $X_1$ et $X_2$ sont deux solutions avec $X_1(t_0)=X_2(t_0)=X_0$, leur différence $X$ est solution de $X'=A(t)X$ et $X(t_0)=0$. Fixons une norme $\\|\\cdot\\|$ sur $\\mathbb{K}^n$ et la norme subordonnée sur $\\mathcal{M}_n(\\mathbb{K})$. Soit $t_1\\in I$ avec $t_1>t_0$ ; sur le segment $[t_0,t_1]$, la fonction continue $t\\mapsto\\|A(t)\\|$ est majorée par un réel $M$. Pour $t\\in[t_0,t_1]$, $X(t)=\\int_{t_0}^tA(s)X(s)\\,ds$, donc $u(t)=\\|X(t)\\|$ vérifie $u(t)\\le M\\int_{t_0}^tu(s)\\,ds$. Posons $U(t)=\\int_{t_0}^tu(s)\\,ds$ : $U'=u\\le MU$, donc $\\left(U(t)e^{-Mt}\\right)'=(U'-MU)e^{-Mt}\\le0$ ; comme $U(t_0)=0$, on obtient $U\\le0$ sur $[t_0,t_1]$, et $U\\ge0$ : $U=0$, puis $u=U'=0$. Ainsi $X=0$ sur $[t_0,t_1]$. Pour $t_1<t_0$, on raisonne de même avec $V(t)=\\int_t^{t_0}u(s)\\,ds$, qui vérifie $\\left(V(t)e^{Mt}\\right)'\\ge0$ et $V(t_0)=0$. Donc $X=0$ sur $I$.\n\n**Régularité.** Si $X$ est solution, $X'=AX+B$ est continue (produits et sommes de fonctions continues) : $X$ est de classe $C^1$.\n\n**Conséquence.** Une solution de $X'=A(t)X$ nulle en $t_0$ a la même valeur en $t_0$ que la solution nulle : c'est la solution nulle.",
+      "exemple": "Le système $x'=y$, $y'=-x$ s'écrit $X'=AX$ avec $X=\\begin{pmatrix}x\\\\y\\end{pmatrix}$ et $A=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$, constante, donc continue sur $\\mathbb{R}$. La fonction $X(t)=\\begin{pmatrix}\\cos t\\\\-\\sin t\\end{pmatrix}$ est solution ($x'=-\\sin t=y$ et $y'=-\\cos t=-x$) et vérifie $X(0)=\\begin{pmatrix}1\\\\0\\end{pmatrix}$ : par unicité, c'est **la** solution de ce problème de Cauchy, et toute solution telle que $x(0)=1$, $y(0)=0$ vérifie $x=\\cos$ et $y=-\\sin$ sur $\\mathbb{R}$.\n\nLe système $tx'=x+t^2y$, $ty'=-y$ se normalise en $X'=A(t)X$ avec $A(t)=\\begin{pmatrix}1/t&t\\\\0&-1/t\\end{pmatrix}$, continue sur $\\left]0,+\\infty\\right[$ et sur $\\left]-\\infty,0\\right[$ : le théorème s'applique sur chacun de ces intervalles, pas sur $\\mathbb{R}$.",
+      "contre_exemple": "- **Le coefficient de $x'$ ne doit pas s'annuler** : sur $\\mathbb{R}$, les solutions de $tx'=2x$ sont les fonctions égales à $at^2$ pour $t\\ge0$ et à $bt^2$ pour $t<0$, $a$ et $b$ quelconques (elles sont dérivables en $0$, de dérivée nulle). Le problème $x(0)=0$ a une infinité de solutions, et $x(0)=1$ n'en a aucune. Normalisée, l'équation s'écrit $x'=\\frac2tx$, dont le coefficient n'est pas défini en $0$.\n- **$I$ doit être un intervalle** : sur $\\mathbb{R}^*$, la fonction égale à $0$ sur $\\left]-\\infty,0\\right[$ et à $1$ sur $\\left]0,+\\infty\\right[$ est, comme la constante $1$, solution de $x'=0$ telle que $x(1)=1$.\n- **L'existence sur tout $I$ est propre au cas linéaire** : pour l'équation non linéaire $x'=x^2$, la solution telle que $x(0)=1$ est $t\\mapsto\\frac1{1-t}$, définie sur $\\left]-\\infty,1\\right[$ seulement ; elle tend vers $+\\infty$ en $1$ et ne se prolonge pas à $\\mathbb{R}$.",
+      "affirmations": [
+        {
+          "texte": "Si $A$ et $B$ sont continues sur l'intervalle $I$, toute solution de $X'=A(t)X+B(t)$ sur $I$ est de classe $C^1$.",
+          "vrai": true,
+          "justification": "$X'=AX+B$ est continue, comme produit et somme de fonctions continues."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont continues sur l'intervalle $I$, toute solution de $X'=A(t)X+B(t)$ sur $I$ est de classe $C^\\infty$.",
+          "vrai": false,
+          "contre_exemple": "Avec $n=1$, $A=0$ et $B(t)=|t|$, continue sur $\\mathbb{R}$ : $x(t)=\\frac{t|t|}2$ vérifie $x'(t)=|t|$, mais $x'$ n'est pas dérivable en $0$, donc $x$ n'est pas de classe $C^2$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$, toute solution de $x'=f(t,x)$ définie au voisinage de $0$ se prolonge en une solution définie sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(t,x)=x^2$ : la solution telle que $x(0)=1$ est $t\\mapsto\\frac1{1-t}$ sur $\\left]-\\infty,1\\right[$ ; elle tend vers $+\\infty$ en $1$, donc ne se prolonge pas au-delà. L'existence sur tout l'intervalle est propre aux équations linéaires."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont continues sur $I$ à valeurs réelles et si $X_0\\in\\mathbb{R}^n$, la solution de $X'=A(t)X+B(t)$, $X(t_0)=X_0$, cherchée à valeurs dans $\\mathbb{C}^n$, est à valeurs réelles.",
+          "vrai": true,
+          "justification": "Sa conjuguée $\\overline X$ vérifie $\\overline X'=A(t)\\overline X+B(t)$ et $\\overline X(t_0)=X_0$ ($A$, $B$, $X_0$ sont réels) : par unicité, $\\overline X=X$."
+        },
+        {
+          "texte": "Si deux solutions de $X'=A(t)X$ ($A$ continue sur l'intervalle $I$, $n\\ge2$) ont la même première composante en un point $t_0$, elles sont égales.",
+          "vrai": false,
+          "contre_exemple": "Pour $x'=y$, $y'=-x$ : $X_1(t)=\\begin{pmatrix}\\cos t\\\\-\\sin t\\end{pmatrix}$ et $X_2(t)=\\begin{pmatrix}\\cos t+\\sin t\\\\\\cos t-\\sin t\\end{pmatrix}$ sont solutions et ont pour première composante $1$ en $0$, mais $X_1(0)\\neq X_2(0)$. Il faut l'égalité de **toutes** les composantes au même point."
+        }
+      ],
+      "prerequis": [
+        "ed-l1-lineaires-ordre1",
+        "al-t-matrices-produit"
+      ]
+    },
+    {
+      "id": "ed-l2-systemes-dimension",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "theoreme",
+      "titre": "Dimension de l'espace des solutions et wronskien",
+      "recto": "Donner la dimension de l'espace des solutions d'un système linéaire homogène $X'=A(t)X$, définir le wronskien de $n$ solutions et énoncer ses propriétés (formule de Liouville).",
+      "cours": "Le théorème de Cauchy dit qu'une solution de $X'=A(t)X$ est entièrement déterminée par sa valeur en un instant $t_0$, et que toute valeur est possible. Autrement dit, « prendre la valeur en $t_0$ » est une **bijection linéaire** de l'espace des solutions sur $\\mathbb{K}^n$ : cet espace est de dimension $n$. Pour connaître toutes les solutions, il suffit donc d'en trouver $n$ indépendantes (un **système fondamental**) ; pour l'équation complète, on leur ajoute une solution particulière.\n\nPour tester l'indépendance de $n$ solutions, on calcule le déterminant de leurs valeurs, le **wronskien** $W(t)$. La bijection ci-dessus montre que, pour des solutions, l'indépendance se lit en **un seul** point : $W$ ne s'annule jamais ou est identiquement nul. La **formule de Liouville** précise ce comportement : $W'=\\operatorname{tr}A(t)\\,W$, donc $W$ se calcule sans résoudre le système, à partir de la trace de $A$ seule.\n\nUsages typiques : vérifier qu'une famille de solutions est un système fondamental (calculer $W$ en un point bien choisi) ; obtenir $W$ par Liouville, puis une seconde solution à partir d'une première ; montrer que $\\det e^{tA}=e^{t\\operatorname{tr}A}$ ; prouver qu'un système à trace d'intégrale non majorée a des solutions non bornées.\n\nPiège : pour des fonctions quelconques, un wronskien identiquement nul ne prouve pas qu'elles sont liées, et un wronskien peut s'annuler en un point isolé ; ces propriétés supposent que les fonctions soient des solutions d'un **même** système homogène, à coefficients **continus** sur un **intervalle**. Si $B$ n'est pas la fonction nulle, l'ensemble des solutions de l'équation complète n'est pas un espace vectoriel, mais un espace affine, dirigé par l'espace des solutions homogènes.",
+      "hypotheses": [
+        "$I$ est un intervalle.",
+        "$A$ est continue sur $I$.",
+        "$X_1,\\dots,X_n$ sont solutions de $X'=A(t)X$ sur $I$.",
+        "$W(t_0)\\neq0$ pour un $t_0\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$X_1,\\dots,X_n$ sont des fonctions dérivables de $I$ dans $\\mathbb{K}^n$ (à la place de solutions de $X'=A(t)X$).",
+        "$X_1,\\dots,X_n$ sont solutions de $X'=A(t)X+B(t)$ avec $B$ continue et non nulle (à la place de l'équation homogène).",
+        "$I$ est une réunion de deux intervalles disjoints (à la place d'un intervalle)."
+      ],
+      "enonce": "Soient $I$ un **intervalle**, $A:I\\to\\mathcal{M}_n(\\mathbb{K})$ et $B:I\\to\\mathbb{K}^n$ **continues**, et $\\mathcal{S}_H$ l'ensemble des solutions de $X'=A(t)X$ sur $I$.\n\n- $\\mathcal{S}_H$ est un $\\mathbb{K}$-espace vectoriel de **dimension $n$** ; pour tout $t_0\\in I$, l'application $X\\mapsto X(t_0)$ est un isomorphisme de $\\mathcal{S}_H$ sur $\\mathbb{K}^n$.\n- Si $X_p$ est une solution de $X'=A(t)X+B(t)$, les solutions de ce système sont exactement les $X_p+X$, $X\\in\\mathcal{S}_H$.\n\n**Wronskien.** Pour $n$ solutions $X_1,\\dots,X_n$ de $X'=A(t)X$, on pose $W(t)=\\det\\left(X_1(t),\\dots,X_n(t)\\right)$ (déterminant dans la base canonique). Pour tous $t_0,t\\in I$,\n$$W(t)=W(t_0)\\exp\\left(\\int_{t_0}^t\\operatorname{tr}A(s)\\,ds\\right)\\qquad\\text{(formule de Liouville).}$$\nDonc $W$ est soit identiquement nul, soit sans zéro sur $I$, et $(X_1,\\dots,X_n)$ est une base de $\\mathcal{S}_H$ (un **système fondamental de solutions**) si et seulement si $W(t_0)\\neq0$ pour un $t_0\\in I$.",
+      "enonce_trous": "Soient $I$ un intervalle et $A:I\\to\\mathcal{M}_n(\\mathbb{K})$ continue. L'ensemble des solutions de $X'=A(t)X$ sur $I$ est un espace vectoriel de dimension {{1}}, et pour tout $t_0\\in I$, l'application $X\\mapsto X(t_0)$ est {{2}}. Le wronskien $W$ de $n$ solutions vérifie, pour tous $t_0,t\\in I$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n$",
+          "leurres": [
+            "$2n$",
+            "$n+1$",
+            "infinie"
+          ]
+        },
+        {
+          "reponse": "un isomorphisme de cet espace sur $\\mathbb{K}^n$",
+          "leurres": [
+            "injective mais non surjective",
+            "surjective mais non injective",
+            "un isomorphisme de cet espace sur $\\mathcal{M}_n(\\mathbb{K})$"
+          ]
+        },
+        {
+          "reponse": "$W(t)=W(t_0)\\exp\\left(\\int_{t_0}^t\\operatorname{tr}A(s)\\,ds\\right)$",
+          "leurres": [
+            "$W(t)=W(t_0)\\exp\\left(-\\int_{t_0}^t\\operatorname{tr}A(s)\\,ds\\right)$",
+            "$W(t)=W(t_0)+\\int_{t_0}^t\\operatorname{tr}A(s)\\,ds$",
+            "$W(t)=W(t_0)\\exp\\left(\\operatorname{tr}A(t)-\\operatorname{tr}A(t_0)\\right)$"
+          ]
+        }
+      ],
+      "demo": "**Espace vectoriel.** Si $X$, $Y$ sont solutions de $X'=A(t)X$ et $\\lambda,\\mu\\in\\mathbb{K}$, alors $(\\lambda X+\\mu Y)'=A(t)(\\lambda X+\\mu Y)$ : $\\mathcal{S}_H$ est un sous-espace vectoriel de l'espace des fonctions de $I$ dans $\\mathbb{K}^n$.\n\n**Isomorphisme.** L'application $\\varphi:X\\mapsto X(t_0)$ est linéaire. Elle est injective : si $X(t_0)=0$, $X$ est nulle par l'unicité du théorème de Cauchy. Elle est surjective : pour tout $X_0$, l'existence donne une solution telle que $X(t_0)=X_0$. Donc $\\dim\\mathcal{S}_H=\\dim\\mathbb{K}^n=n$.\n\n**Équation complète.** Si $X_p$ est solution, $X$ est solution de l'équation complète si et seulement si $(X-X_p)'=A(t)(X-X_p)$, c'est-à-dire $X-X_p\\in\\mathcal{S}_H$.\n\n**Formule de Liouville.** $W(t)$ est un polynôme en les coordonnées des $X_j(t)$ (formule explicite du déterminant), donc $W$ est dérivable et, par multilinéarité, $W'=\\sum_{j=1}^n\\det(X_1,\\dots,X_j',\\dots,X_n)=\\sum_{j=1}^n\\det(X_1,\\dots,AX_j,\\dots,X_n)$. Pour $M\\in\\mathcal{M}_n(\\mathbb{K})$ fixée, l'application $f:(c_1,\\dots,c_n)\\mapsto\\sum_{j=1}^n\\det(c_1,\\dots,Mc_j,\\dots,c_n)$ est $n$-linéaire et alternée : si $c_k=c_l$ avec $k<l$, les termes d'indice $j\\neq k,l$ sont nuls, et les termes $j=k$ et $j=l$ sont opposés, car on passe de l'un à l'autre en échangeant deux vecteurs. Donc $f=f(e_1,\\dots,e_n)\\det$, et $f(e_1,\\dots,e_n)=\\sum_j\\det(e_1,\\dots,Me_j,\\dots,e_n)=\\sum_jm_{jj}=\\operatorname{tr}M$. Ainsi $W'(t)=\\operatorname{tr}A(t)\\,W(t)$ : c'est une équation linéaire scalaire d'ordre $1$ à coefficient continu, d'où la formule.\n\n**Conséquences.** L'exponentielle ne s'annule pas : si $W(t_0)\\neq0$, $W$ n'a pas de zéro sur $I$ ; si $W(t_0)=0$, $W=0$. Enfin $(X_1,\\dots,X_n)$ est une base de $\\mathcal{S}_H$ si et seulement si son image $(X_1(t_0),\\dots,X_n(t_0))$ par l'isomorphisme $\\varphi$ est une base de $\\mathbb{K}^n$, c'est-à-dire si $W(t_0)\\neq0$.",
+      "exemple": "Sur $\\left]0,+\\infty\\right[$, soit $A(t)=\\begin{pmatrix}0&1\\\\-2/t^2&2/t\\end{pmatrix}$. Les fonctions $X_1(t)=\\begin{pmatrix}t\\\\1\\end{pmatrix}$ et $X_2(t)=\\begin{pmatrix}t^2\\\\2t\\end{pmatrix}$ sont solutions : $A(t)X_1(t)=\\begin{pmatrix}1\\\\-2/t+2/t\\end{pmatrix}=X_1'(t)$ et $A(t)X_2(t)=\\begin{pmatrix}2t\\\\-2+4\\end{pmatrix}=X_2'(t)$. Leur wronskien est $W(t)=t\\cdot2t-t^2\\cdot1=t^2$, qui ne s'annule pas : c'est un système fondamental, et les solutions sont les $aX_1+bX_2$, $(a,b)\\in\\mathbb{K}^2$. Liouville le confirme : $\\operatorname{tr}A(t)=\\frac2t$ et $W(1)\\exp\\left(\\int_1^t\\frac2s\\,ds\\right)=t^2$.",
+      "contre_exemple": "- **Wronskien nul, famille libre** : $X_1(t)=\\begin{pmatrix}1\\\\t\\end{pmatrix}$ et $X_2(t)=\\begin{pmatrix}t\\\\t^2\\end{pmatrix}$ ont un wronskien identiquement nul ($t^2-t^2=0$), mais forment une famille libre de fonctions (si $\\lambda X_1+\\mu X_2=0$, la première composante donne $\\lambda+\\mu t=0$ pour tout $t$, d'où $\\lambda=\\mu=0$). D'après le théorème, ce ne sont donc pas deux solutions d'un même système $X'=A(t)X$ avec $A$ continue sur un intervalle.\n- **Wronskien qui s'annule en un seul point** : pour $X_1=\\begin{pmatrix}1\\\\0\\end{pmatrix}$ et $X_2(t)=\\begin{pmatrix}0\\\\t\\end{pmatrix}$, $W(t)=t$ ne s'annule qu'en $0$ ; ces fonctions ne sont pas solutions d'un même système homogène à coefficients continus sur $\\mathbb{R}$.\n- **L'équation complète n'a pas un espace vectoriel de solutions** : les solutions de $x'=1$ sont les $t\\mapsto t+c$, et la fonction nulle n'en fait pas partie.",
+      "affirmations": [
+        {
+          "texte": "Si $n$ solutions de $X'=A(t)X$ ($A$ continue sur l'intervalle $I$) ont des valeurs en un point $t_0$ qui forment une famille libre, elles forment une base de l'espace des solutions.",
+          "vrai": true,
+          "justification": "$X\\mapsto X(t_0)$ est un isomorphisme de l'espace des solutions sur $\\mathbb{K}^n$ : il envoie la famille sur une base de $\\mathbb{K}^n$, donc la famille est une base."
+        },
+        {
+          "texte": "Si le wronskien de $n$ fonctions dérivables de $I$ dans $\\mathbb{K}^n$ est identiquement nul, ces fonctions forment une famille liée.",
+          "vrai": false,
+          "contre_exemple": "$X_1(t)=\\begin{pmatrix}1\\\\t\\end{pmatrix}$ et $X_2(t)=\\begin{pmatrix}t\\\\t^2\\end{pmatrix}$ : $W=t^2-t^2=0$, mais $\\lambda X_1+\\mu X_2=0$ impose $\\lambda+\\mu t=0$ pour tout $t$, donc $\\lambda=\\mu=0$."
+        },
+        {
+          "texte": "Si $\\operatorname{tr}A(t)=0$ pour tout $t\\in I$, toute solution de $X'=A(t)X$ est de norme constante.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, de trace nulle : $X(t)=\\begin{pmatrix}t\\\\1\\end{pmatrix}$ est solution ($x'=1=y$, $y'=0$) et sa norme tend vers $+\\infty$. Seul le wronskien est constant."
+        },
+        {
+          "texte": "L'ensemble des solutions de $X'=A(t)X+B(t)$ ($A$, $B$ continues sur l'intervalle $I$) est un sous-espace vectoriel de dimension $n$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=1$, $A=0$ et $B=1$ : les solutions de $x'=1$ sont les $t\\mapsto t+c$ ; la fonction nulle n'est pas solution. C'est un espace affine de direction l'espace des solutions homogènes."
+        },
+        {
+          "texte": "Si $A$ est une matrice constante, le wronskien d'un système fondamental de solutions de $X'=AX$ est $t\\mapsto W(0)e^{t\\operatorname{tr}A}$.",
+          "vrai": true,
+          "justification": "Formule de Liouville avec $t_0=0$ : $\\int_0^t\\operatorname{tr}A\\,ds=t\\operatorname{tr}A$."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-cauchy",
+        "al-l1-espaces-dimension",
+        "al-l1-determinant-famille",
+        "al-l1-determinant-inversibilite"
+      ]
+    },
+    {
+      "id": "ed-l2-systemes-variation-constantes",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "methode",
+      "titre": "Méthode de variation des constantes",
+      "recto": "Énoncer la méthode de variation des constantes pour un système $X'=A(t)X+B(t)$, avec ses hypothèses, et donner la formule de la solution d'un problème de Cauchy.",
+      "cours": "Une fois connu un système fondamental $(X_1,\\dots,X_n)$ de l'équation homogène, les solutions homogènes sont les $R(t)C$, où $R$ est la matrice de colonnes $X_1,\\dots,X_n$ et $C$ un vecteur **constant**. Comme pour l'équation scalaire d'ordre $1$, on cherche les solutions de l'équation complète en laissant **varier** les constantes : $X(t)=R(t)C(t)$. Cela ne restreint rien, car $R(t)$ est inversible.\n\nLe calcul se simplifie toujours de la même façon : $(RC)'=R'C+RC'=A(RC)+RC'$, car $R'=AR$. Les termes en $C$ disparaissent, et il reste le système linéaire $R(t)C'(t)=B(t)$, de Cramer en chaque $t$ puisque $\\det R(t)$ est le wronskien. On obtient $C'=R^{-1}B$, puis $C$ par intégration, composante par composante.\n\nEn pratique : (1) trouver un système fondamental (à coefficients constants, les colonnes de $e^{tA}$ ; sinon, solutions données ou devinées) ; (2) résoudre $RC'=B$ (pour $n=2$, par les formules de Cramer) ; (3) intégrer **avec** les constantes, qui redonnent toutes les solutions ; (4) former $X=RC$. Pour un problème de Cauchy, la formule $X(t)=R(t)\\left(R(t_0)^{-1}X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds\\right)$ ; à coefficients constants, avec $R(t)=e^{tA}$, elle devient la formule de Duhamel (voir l'exponentielle de matrice). Pour une équation scalaire d'ordre $2$, on l'applique au système associé.\n\nPièges : prendre pour $R$ une famille de solutions qui n'est pas fondamentale ($R(t)$ non inversible) ; oublier $R(t_0)^{-1}$ devant $X_0$ ; écrire $C'$ comme si $C$ était constant ; inverser l'ordre des produits matriciels ($R(s)^{-1}B(s)$, et non l'inverse).",
+      "hypotheses": [
+        "$I$ est un intervalle.",
+        "$A$ et $B$ sont continues sur $I$.",
+        "Les colonnes de $R$ forment un système fondamental de solutions de $X'=A(t)X$.",
+        "On cherche $X$ sous la forme $X=RC$ avec $C$ dérivable sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "Les colonnes de $R$ sont $n$ solutions quelconques de $X'=A(t)X$ (à la place d'un système fondamental).",
+        "Les colonnes de $R$ sont des solutions de $X'=A(t)X+B(t)$ (à la place de l'équation homogène).",
+        "$B$ est seulement continue par morceaux sur $I$ (à la place de continue)."
+      ],
+      "enonce": "Soient $I$ un **intervalle**, $A:I\\to\\mathcal{M}_n(\\mathbb{K})$ et $B:I\\to\\mathbb{K}^n$ **continues**, $(X_1,\\dots,X_n)$ un **système fondamental** de solutions de $X'=A(t)X$, et $R(t)$ la matrice de colonnes $X_1(t),\\dots,X_n(t)$ (matrice **fondamentale** : $R'=AR$ et $R(t)$ est inversible pour tout $t\\in I$).\n\nToute fonction dérivable $X:I\\to\\mathbb{K}^n$ s'écrit $X=RC$ avec $C=R^{-1}X$ dérivable, et\n$$X=RC\\text{ est solution de }X'=A(t)X+B(t)\\iff R(t)C'(t)=B(t)\\text{ pour tout }t\\in I.$$\nOn obtient donc toutes les solutions en prenant pour $C$ les primitives de $R^{-1}B$. Pour $t_0\\in I$ et $X_0\\in\\mathbb{K}^n$, l'unique solution telle que $X(t_0)=X_0$ est\n$$X(t)=R(t)\\left(R(t_0)^{-1}X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds\\right).$$",
+      "enonce_trous": "Soient $I$ un intervalle, $A$ et $B$ continues sur $I$, et $R$ une matrice fondamentale de $X'=A(t)X$. Une fonction $X=RC$, avec $C$ dérivable, est solution de $X'=A(t)X+B(t)$ si et seulement si {{1}} pour tout $t\\in I$, et la solution telle que $X(t_0)=X_0$ est {{2}}.",
+      "trous": [
+        {
+          "reponse": "$R(t)C'(t)=B(t)$",
+          "leurres": [
+            "$C'(t)=B(t)$",
+            "$R'(t)C(t)=B(t)$",
+            "$C'(t)=R(t)B(t)$"
+          ]
+        },
+        {
+          "reponse": "$X(t)=R(t)\\left(R(t_0)^{-1}X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds\\right)$",
+          "leurres": [
+            "$X(t)=R(t)\\left(X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds\\right)$",
+            "$X(t)=R(t)R(t_0)^{-1}X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds$",
+            "$X(t)=R(t)\\left(R(t_0)^{-1}X_0+\\int_{t_0}^tR(s)B(s)\\,ds\\right)$"
+          ]
+        }
+      ],
+      "demo": "Les colonnes de $R$ vérifient $X_j'=AX_j$, donc $R'=AR$ ; et $\\det R(t)$ est le wronskien d'un système fondamental, qui ne s'annule pas sur $I$ : $R(t)$ est inversible. Les coefficients de $R^{-1}=\\frac1{\\det R}{}^t\\operatorname{com}(R)$ sont dérivables (polynômes en les coefficients de $R$, divisés par $\\det R$ qui ne s'annule pas) : si $X$ est dérivable, $C=R^{-1}X$ l'est aussi, et $X=RC$.\n\nPour $C$ dérivable, la dérivée d'un produit matriciel se calcule comme celle d'un produit (coefficient par coefficient) : $(RC)'=R'C+RC'=A(RC)+RC'$. Donc $(RC)'=A(RC)+B$ si et seulement si $RC'=B$, soit $C'=R^{-1}B$.\n\nLa fonction $R^{-1}B$ est continue sur l'**intervalle** $I$ ; ses primitives sont les $t\\mapsto K+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds$, $K\\in\\mathbb{K}^n$ (composante par composante). La condition $X(t_0)=R(t_0)K=X_0$ impose $K=R(t_0)^{-1}X_0$, d'où la formule.",
+      "exemple": "Résolvons $X'=AX+B(t)$ avec $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ et $B(t)=\\begin{pmatrix}0\\\\e^t\\end{pmatrix}$. Les fonctions $e^t\\begin{pmatrix}1\\\\0\\end{pmatrix}$ et $e^t\\begin{pmatrix}t\\\\1\\end{pmatrix}$ sont solutions homogènes (pour la seconde : $x'=(1+t)e^t=x+y$ et $y'=e^t=y$), de wronskien $e^{2t}\\neq0$ : $R(t)=e^t\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$. Le système $RC'=B$ s'écrit $e^t(c_1'+tc_2')=0$, $e^tc_2'=e^t$ : $c_2'=1$ et $c_1'=-t$. Avec $c_1=-\\frac{t^2}2$ et $c_2=t$, on obtient la solution particulière $X(t)=e^t\\begin{pmatrix}t^2/2\\\\t\\end{pmatrix}$, et les solutions sont les $e^t\\begin{pmatrix}t^2/2+a+bt\\\\t+b\\end{pmatrix}$, $(a,b)\\in\\mathbb{K}^2$.",
+      "contre_exemple": "- **$R$ doit être inversible** : avec $R=0$ (ses colonnes, nulles, sont des solutions homogènes, mais ne forment pas un système fondamental), l'équation $RC'=B$ n'a pas de solution dès que $B\\neq0$, alors que $X'=A(t)X+B(t)$ en a.\n- **Ne pas oublier $R(t_0)^{-1}$** : pour $x'=x+1$, $x(0)=1$, avec la matrice fondamentale $R(t)=2e^t$ (de taille $1$), la formule sans $R(t_0)^{-1}$ donne $2e^t\\left(1+\\int_0^t\\frac{e^{-s}}2\\,ds\\right)$, qui vaut $2$ en $0$ ; la bonne formule donne $2e^t\\left(\\frac12+\\int_0^t\\frac{e^{-s}}2\\,ds\\right)=2e^t-1$.\n- **$C$ ne doit pas rester constant** : avec $C$ constant, $RC$ est solution de l'équation homogène, jamais de l'équation complète si $B\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Si $A$ et $B$ sont continues sur l'intervalle $I$, la méthode de variation des constantes fournit toutes les solutions de $X'=A(t)X+B(t)$ sur $I$.",
+          "vrai": true,
+          "justification": "Toute fonction dérivable s'écrit $X=RC$ avec $C=R^{-1}X$ dérivable, et $X$ est solution si et seulement si $C$ est une primitive de $R^{-1}B$."
+        },
+        {
+          "texte": "On peut appliquer la méthode avec la matrice $R$ dont les colonnes sont $n$ solutions quelconques de l'équation homogène.",
+          "vrai": false,
+          "contre_exemple": "Avec $R=0$, l'équation $RC'=B$ n'a aucune solution si $B\\neq0$. Il faut un système fondamental, pour que $R(t)$ soit inversible."
+        },
+        {
+          "texte": "Le vecteur $C$ tel que $X=RC$ soit solution de $X'=A(t)X+B(t)$ est unique.",
+          "vrai": false,
+          "contre_exemple": "Pour $x'=x+1$ et $R(t)=e^t$ : $C(t)=-e^{-t}$ et $C(t)=1-e^{-t}$ conviennent, et donnent les solutions $-1$ et $e^t-1$. $C$ est défini à un vecteur constant près, ce qui redonne toutes les solutions."
+        },
+        {
+          "texte": "Si $A$ et $B$ sont constantes, le système $X'=AX+B$ admet une solution constante.",
+          "vrai": false,
+          "contre_exemple": "$n=1$, $A=0$, $B=1$ : les solutions de $x'=1$ sont les $t+c$, aucune n'est constante. Il y a une solution constante, $-A^{-1}B$, lorsque $A$ est inversible."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-dimension",
+        "ed-l1-lineaires-variation-constante",
+        "al-t-matrices-inverse"
+      ]
+    },
+    {
+      "id": "ed-l2-systemes-exponentielle",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "theoreme",
+      "titre": "Exponentielle de matrice et systèmes à coefficients constants",
+      "recto": "Définir l'exponentielle d'une matrice, énoncer ses propriétés principales et en déduire la solution du problème de Cauchy pour $X'=AX+B(t)$, $A$ constante.",
+      "cours": "Pour l'équation scalaire $x'=ax$, la solution telle que $x(t_0)=x_0$ est $e^{(t-t_0)a}x_0$. Pour un système à coefficients **constants** $X'=AX$, on définit $e^{A}$ par la même série $\\sum\\frac{A^k}{k!}$, et la solution est $e^{(t-t_0)A}X_0$. La série converge pour toute matrice car $\\|A^k\\|\\le\\|A\\|^k$ pour une norme d'algèbre. Pour un endomorphisme $u$ d'un espace de dimension finie, on définit $e^u$ de même ; sa matrice dans une base est l'exponentielle de la matrice de $u$.\n\nRègles de calcul : $e^0=I_n$, $e^{(s+t)A}=e^{sA}e^{tA}$, $\\frac{d}{dt}e^{tA}=Ae^{tA}$, $e^{PMP^{-1}}=Pe^MP^{-1}$, et $\\det e^A=e^{\\operatorname{tr}A}$. Avec un second membre $B(t)$, la variation des constantes, appliquée à la matrice fondamentale $e^{tA}$, donne la **formule de Duhamel** : $X(t)=e^{(t-t_0)A}X_0+\\int_{t_0}^te^{(t-s)A}B(s)\\,ds$.\n\nCalcul pratique de $e^{tA}$ : si $A$ est nilpotente, la série est une somme finie ; si $A^2$ est un multiple de $I_n$, on sépare les termes pairs et impairs (cosinus, sinus, ch, sh apparaissent) ; si $A$ est diagonalisable ou triangulable, voir la carte suivante ; plus généralement, si $A=D+N$ avec $D$ diagonalisable, $N$ nilpotente et $DN=ND$ (décomposition de Dunford), $e^{tA}=e^{tD}\\sum_{k<n}\\frac{t^k}{k!}N^k$.\n\nPièges : $e^{A+B}=e^Ae^B$ **seulement si** $A$ et $B$ commutent ; $e^{tA}$ n'est pas la matrice des $e^{ta_{ij}}$ ; la solution est $e^{(t-t_0)A}X_0$, pas $e^{tA}X_0$ ; et pour des coefficients **variables**, $\\exp\\left(\\int_{t_0}^tA(s)\\,ds\\right)X_0$ n'est pas solution en général.",
+      "hypotheses": [
+        "$A\\in\\mathcal{M}_n(\\mathbb{K})$ est constante (indépendante de $t$).",
+        "$AB=BA$ (pour la formule $e^{A+B}=e^Ae^B$)."
+      ],
+      "hypotheses_pieges": [
+        "$A$ dépend continûment de $t$, et l'on prend $X(t)=\\exp\\left(\\int_{t_0}^tA(s)\\,ds\\right)X_0$ (à la place de $A$ constante).",
+        "$A$ et $B$ sont nilpotentes (à la place de $AB=BA$).",
+        "$A$ et $B$ sont diagonalisables (à la place de $AB=BA$)."
+      ],
+      "enonce": "Soit $A\\in\\mathcal{M}_n(\\mathbb{K})$.\n\n- La série $\\sum_{k\\ge0}\\frac{A^k}{k!}$ converge absolument (pour toute norme) ; sa somme est l'**exponentielle** $e^A$ (ou $\\exp A$).\n- Si $B\\in\\mathcal{M}_n(\\mathbb{K})$ commute avec $A$ ($AB=BA$), alors $e^{A+B}=e^Ae^B$. En particulier, $e^A$ est inversible, d'inverse $e^{-A}$.\n- L'application $t\\mapsto e^{tA}$ est dérivable sur $\\mathbb{R}$, de dérivée $t\\mapsto Ae^{tA}=e^{tA}A$.\n- Pour tous $t_0\\in\\mathbb{R}$ et $X_0\\in\\mathbb{K}^n$, l'unique solution sur $\\mathbb{R}$ de $X'=AX$ telle que $X(t_0)=X_0$ est $t\\mapsto e^{(t-t_0)A}X_0$ ; les colonnes de $e^{tA}$ forment un système fondamental de solutions.\n- Si $B:I\\to\\mathbb{K}^n$ est continue sur un intervalle $I$ contenant $t_0$, l'unique solution sur $I$ de $X'=AX+B(t)$ telle que $X(t_0)=X_0$ est $X(t)=e^{(t-t_0)A}X_0+\\int_{t_0}^te^{(t-s)A}B(s)\\,ds$ (formule de Duhamel).",
+      "enonce_trous": "Pour $A\\in\\mathcal{M}_n(\\mathbb{K})$, l'exponentielle $e^A$ est la somme de la série {{1}}. L'unique solution de $X'=AX$ telle que $X(t_0)=X_0$ est {{2}}. Si {{3}}, alors $e^{A+B}=e^Ae^B$.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{k\\ge0}\\frac{A^k}{k!}$",
+          "leurres": [
+            "$\\sum_{k\\ge0}A^k$",
+            "$\\sum_{k\\ge1}\\frac{A^k}{k}$",
+            "$\\sum_{k\\ge0}\\frac{(-1)^kA^k}{k!}$"
+          ]
+        },
+        {
+          "reponse": "$t\\mapsto e^{(t-t_0)A}X_0$",
+          "leurres": [
+            "$t\\mapsto e^{tA}X_0$",
+            "$t\\mapsto e^{(t_0-t)A}X_0$",
+            "$t\\mapsto X_0+(t-t_0)AX_0$"
+          ]
+        },
+        {
+          "reponse": "$AB=BA$",
+          "leurres": [
+            "$A$ et $B$ sont nilpotentes",
+            "$A$ et $B$ sont diagonalisables",
+            "$A$ est inversible"
+          ]
+        }
+      ],
+      "demo": "**Convergence.** Soit $\\|\\cdot\\|$ une norme d'algèbre sur $\\mathcal{M}_n(\\mathbb{K})$ (par exemple une norme subordonnée) : $\\|A^k\\|\\le\\|A\\|^k$, et la série $\\sum\\frac{\\|A\\|^k}{k!}$ converge (vers $e^{\\|A\\|}$). La série $\\sum\\frac{A^k}{k!}$ converge donc absolument, donc converge, car $\\mathcal{M}_n(\\mathbb{K})$ est de dimension finie, donc complet (et toutes les normes y sont équivalentes).\n\n**Produit.** Si $AB=BA$, la formule du binôme s'applique : $(A+B)^m=\\sum_{k+l=m}\\frac{m!}{k!\\,l!}A^kB^l$. Le produit de Cauchy des séries absolument convergentes $\\sum\\frac{A^k}{k!}$ et $\\sum\\frac{B^l}{l!}$ a pour terme général $\\sum_{k+l=m}\\frac{A^k}{k!}\\frac{B^l}{l!}=\\frac{(A+B)^m}{m!}$, et il converge vers le produit des sommes : $e^Ae^B=e^{A+B}$. Avec $B=-A$ : $e^Ae^{-A}=e^0=I_n$.\n\n**Dérivée.** $tA$ et $hA$ commutent, donc $e^{(t+h)A}=e^{tA}e^{hA}$ et $\\frac{e^{(t+h)A}-e^{tA}}h-Ae^{tA}=e^{tA}\\left(\\frac{e^{hA}-I_n}h-A\\right)$. Pour $h\\neq0$, $\\left\\|\\frac{e^{hA}-I_n}h-A\\right\\|\\le\\sum_{k\\ge2}\\frac{|h|^{k-1}\\|A\\|^k}{k!}=\\frac{e^{|h|\\|A\\|}-1-|h|\\|A\\|}{|h|}$, qui tend vers $0$ avec $h$. Enfin $A$ commute avec chaque somme partielle, donc avec $e^{tA}$.\n\n**Problème de Cauchy.** $X(t)=e^{(t-t_0)A}X_0$ vérifie $X'(t)=Ae^{(t-t_0)A}X_0=AX(t)$ et $X(t_0)=X_0$. Si $Y$ est une autre solution, $Z(t)=e^{-(t-t_0)A}Y(t)$ vérifie $Z'=-Ae^{-(t-t_0)A}Y+e^{-(t-t_0)A}AY=0$ : $Z$ est constante, égale à $Z(t_0)=X_0$, donc $Y(t)=e^{(t-t_0)A}X_0$. Les colonnes de $e^{tA}$ sont les solutions qui valent $e_1,\\dots,e_n$ en $0$ : elles forment un système fondamental.\n\n**Second membre.** $R(t)=e^{tA}$ est une matrice fondamentale, et $R(t)R(s)^{-1}=e^{tA}e^{-sA}=e^{(t-s)A}$ : la formule de variation des constantes $X(t)=R(t)R(t_0)^{-1}X_0+\\int_{t_0}^tR(t)R(s)^{-1}B(s)\\,ds$ est celle de l'énoncé.",
+      "exemple": "- Pour $N=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $N^2=0$, donc $e^{tN}=I_2+tN=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$ : les solutions de $x'=y$, $y'=0$ sont $x=a+bt$, $y=b$.\n- Pour $J=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, $J^2=-I_2$ ; en séparant les termes pairs et impairs de la série, $e^{tJ}=\\cos t\\,I_2+\\sin t\\,J=\\begin{pmatrix}\\cos t&-\\sin t\\\\\\sin t&\\cos t\\end{pmatrix}$ (rotation d'angle $t$).",
+      "contre_exemple": "- **Sans commutation, $e^{A+B}\\neq e^Ae^B$ en général** : pour les matrices nilpotentes $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, $e^Ae^B=(I_2+A)(I_2+B)=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$ et $e^Be^A=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$, alors que $(A+B)^2=I_2$ donne $e^{A+B}=\\begin{pmatrix}\\operatorname{ch}1&\\operatorname{sh}1\\\\\\operatorname{sh}1&\\operatorname{ch}1\\end{pmatrix}$.\n- **Coefficients variables** : pour $A(t)=\\begin{pmatrix}1&t\\\\0&0\\end{pmatrix}$, la solution de $X'=A(t)X$, $X(0)=\\begin{pmatrix}0\\\\1\\end{pmatrix}$ est $X(t)=\\begin{pmatrix}e^t-1-t\\\\1\\end{pmatrix}$, alors que $\\exp\\left(\\int_0^tA(s)\\,ds\\right)X(0)=\\begin{pmatrix}t(e^t-1)/2\\\\1\\end{pmatrix}$ ; en $t=1$, $e-2\\neq\\frac{e-1}2$.\n- **$e^{tA}$ n'est pas la matrice des $e^{ta_{ij}}$** : pour $N$ ci-dessus, $e^{tN}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$, et non $\\begin{pmatrix}1&e^t\\\\1&1\\end{pmatrix}$.",
+      "affirmations": [
+        {
+          "texte": "Pour toute $A\\in\\mathcal{M}_n(\\mathbb{K})$, $e^A$ est inversible et $(e^A)^{-1}=e^{-A}$.",
+          "vrai": true,
+          "justification": "$A$ et $-A$ commutent, donc $e^Ae^{-A}=e^{0}=I_n$."
+        },
+        {
+          "texte": "Pour toutes $A,B\\in\\mathcal{M}_n(\\mathbb{K})$, $e^{A+B}=e^Ae^B$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ : $e^Ae^B=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$, alors que $e^{A+B}=\\begin{pmatrix}\\operatorname{ch}1&\\operatorname{sh}1\\\\\\operatorname{sh}1&\\operatorname{ch}1\\end{pmatrix}$."
+        },
+        {
+          "texte": "Si $e^A=I_n$, alors $A=0$.",
+          "vrai": false,
+          "contre_exemple": "$A=2\\pi J$ avec $J=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ : $e^{A}=\\cos(2\\pi)I_2+\\sin(2\\pi)J=I_2$, et $A\\neq0$."
+        },
+        {
+          "texte": "Pour toute $A\\in\\mathcal{M}_n(\\mathbb{K})$, $\\det(e^A)=e^{\\operatorname{tr}A}$.",
+          "vrai": true,
+          "justification": "$W(t)=\\det e^{tA}$ est le wronskien du système fondamental formé par les colonnes de $e^{tA}$, avec $W(0)=1$ ; la formule de Liouville donne $W(t)=e^{t\\operatorname{tr}A}$, puis $t=1$."
+        },
+        {
+          "texte": "Si $A$ est nilpotente, $e^A$ est nilpotente.",
+          "vrai": false,
+          "contre_exemple": "$A=0$ est nilpotente et $e^0=I_n$ ne l'est pas ; plus généralement, $e^A$ est toujours inversible, donc jamais nilpotente."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-variation-constantes",
+        "al-t-matrices-produit",
+        "ed-t-premier-ordre-ay"
+      ]
+    },
+    {
+      "id": "ed-l2-systemes-reduction",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "methode",
+      "titre": "Résolution de $X'=AX$ par diagonalisation ou triangulation",
+      "recto": "Expliquer comment résoudre $X'=AX$ ($A$ constante) lorsque $A$ est diagonalisable, puis lorsqu'elle est seulement triangulable, et donner la forme générale des solutions.",
+      "cours": "Si $AV=\\lambda V$, la fonction $t\\mapsto e^{\\lambda t}V$ est solution de $X'=AX$ : sa dérivée $\\lambda e^{\\lambda t}V$ vaut $Ae^{\\lambda t}V$. Quand $A$ est **diagonalisable**, une base de vecteurs propres $V_1,\\dots,V_n$ fournit ainsi $n$ solutions indépendantes (leurs valeurs en $0$ forment une base), donc toutes les solutions : $X(t)=\\sum c_ie^{\\lambda_it}V_i$. Matriciellement, $A=PDP^{-1}$ donne $e^{tA}=Pe^{tD}P^{-1}$, et le changement d'inconnue $Y=P^{-1}X$ **découple** le système en $n$ équations scalaires $y_i'=\\lambda_iy_i$.\n\nQuand $A$ n'est que **triangulable** (toujours le cas sur $\\mathbb{C}$), le même changement d'inconnue donne un système triangulaire $Y'=TY$, que l'on résout **en cascade** en partant de la dernière ligne : chaque ligne est une équation scalaire d'ordre $1$ dont le second membre est connu. Des termes $te^{\\lambda t}$, $t^2e^{\\lambda t}$… apparaissent quand une valeur propre est multiple sans que $A$ soit diagonalisable.\n\nMéthode : (1) polynôme caractéristique, valeurs propres ; (2) vecteurs propres ; si $A$ est diagonalisable (par exemple si ses $n$ valeurs propres sont distinctes), écrire directement $X=\\sum c_ie^{\\lambda_it}V_i$ et déterminer les $c_i$ par la condition initiale (système $PC=X_0$) ; (3) sinon, trigonaliser, ou, pour une matrice $2\\times2$ de valeur propre double $\\lambda$, écrire $A=\\lambda I_2+N$ avec $N^2=0$ (Cayley-Hamilton), d'où $e^{tA}=e^{\\lambda t}(I_2+tN)$. Pour une matrice **réelle** de valeurs propres non réelles, on résout dans $\\mathbb{C}$ puis on prend les parties réelle et imaginaire de $e^{\\lambda t}V$.\n\nConséquence qualitative : toutes les solutions tendent vers $0$ en $+\\infty$ si et seulement si toutes les valeurs propres ont une partie réelle strictement négative.\n\nPièges : associer à $\\lambda_i$ un vecteur propre d'une autre valeur propre ; croire que les vecteurs propres suffisent toujours (ils ne suffisent pas pour une matrice non diagonalisable) ; calculer $e^{tA}$ coefficient par coefficient.",
+      "hypotheses": [
+        "$P$ est inversible.",
+        "$D=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)$ est diagonale.",
+        "$A=PDP^{-1}$."
+      ],
+      "hypotheses_pieges": [
+        "Les colonnes de $P$ sont des vecteurs propres de $A$, sans que $P$ soit inversible (à la place de $P$ inversible).",
+        "$D$ est triangulaire supérieure, de coefficients diagonaux $\\lambda_1,\\dots,\\lambda_n$ (à la place de diagonale).",
+        "Les valeurs propres de $A$ sont réelles (à la place de $A=PDP^{-1}$ avec $D$ diagonale)."
+      ],
+      "enonce": "Soit $A\\in\\mathcal{M}_n(\\mathbb{K})$ constante.\n\n- **Cas diagonalisable.** Si $A=PDP^{-1}$ avec $P$ inversible et $D=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)$, alors $e^{tA}=P\\operatorname{diag}\\left(e^{\\lambda_1t},\\dots,e^{\\lambda_nt}\\right)P^{-1}$, et les solutions de $X'=AX$ sur $\\mathbb{R}$ sont exactement les fonctions $t\\mapsto\\sum_{i=1}^nc_ie^{\\lambda_it}V_i$, $c_1,\\dots,c_n\\in\\mathbb{K}$, où $V_i$ est la $i$-ième colonne de $P$ (un vecteur propre de $A$ pour $\\lambda_i$).\n- **Cas triangulable.** Si $A=PTP^{-1}$ avec $P$ inversible et $T=(t_{ij})$ triangulaire supérieure, $X$ est solution de $X'=AX$ si et seulement si $Y=P^{-1}X$ est solution de $Y'=TY$, système que l'on résout **en cascade**, de la dernière ligne à la première : $y_i'=t_{ii}y_i+\\sum_{j>i}t_{ij}y_j$ est une équation scalaire d'ordre $1$.\n- **Forme des solutions.** Pour $\\mathbb{K}=\\mathbb{C}$, toute matrice est triangulable, et chaque composante d'une solution de $X'=AX$ s'écrit $\\sum_\\lambda Q_\\lambda(t)e^{\\lambda t}$, la somme portant sur les valeurs propres $\\lambda$ de $A$, où $Q_\\lambda$ est un polynôme de degré strictement inférieur à la multiplicité de $\\lambda$ comme racine du polynôme caractéristique.",
+      "enonce_trous": "Si $A=PDP^{-1}$ avec $P$ inversible et $D=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)$, alors $e^{tA}$ est égale à {{1}}, et les solutions de $X'=AX$ sont les fonctions {{2}}, où $V_i$ est la $i$-ième colonne de $P$ et $c_1,\\dots,c_n\\in\\mathbb{K}$.",
+      "trous": [
+        {
+          "reponse": "$P\\operatorname{diag}\\left(e^{\\lambda_1t},\\dots,e^{\\lambda_nt}\\right)P^{-1}$",
+          "leurres": [
+            "$P^{-1}\\operatorname{diag}\\left(e^{\\lambda_1t},\\dots,e^{\\lambda_nt}\\right)P$",
+            "$\\operatorname{diag}\\left(e^{\\lambda_1t},\\dots,e^{\\lambda_nt}\\right)$",
+            "$P\\operatorname{diag}\\left(e^{\\lambda_1t},\\dots,e^{\\lambda_nt}\\right)$"
+          ]
+        },
+        {
+          "reponse": "$t\\mapsto\\sum_{i=1}^nc_ie^{\\lambda_it}V_i$",
+          "leurres": [
+            "$t\\mapsto\\sum_{i=1}^nc_ite^{\\lambda_it}V_i$",
+            "$t\\mapsto\\sum_{i=1}^nc_ie^{t}\\lambda_iV_i$",
+            "$t\\mapsto\\sum_{i=1}^nc_ie^{\\lambda_it}P^{-1}V_i$"
+          ]
+        }
+      ],
+      "demo": "**Cas diagonalisable.** Pour tout $k$, $A^k=PD^kP^{-1}$ ; l'application $M\\mapsto PMP^{-1}$ est linéaire, donc continue en dimension finie, et l'on passe à la limite dans les sommes partielles : $e^{tA}=Pe^{tD}P^{-1}$, avec $e^{tD}=\\operatorname{diag}(e^{\\lambda_1t},\\dots,e^{\\lambda_nt})$ puisque $D^k=\\operatorname{diag}(\\lambda_1^k,\\dots,\\lambda_n^k)$. Les solutions sont les $e^{tA}X_0=Pe^{tD}C$, où $C=P^{-1}X_0$ décrit $\\mathbb{K}^n$ quand $X_0$ le décrit, et $Pe^{tD}C=\\sum_ic_ie^{\\lambda_it}V_i$. Enfin $AP=PD$ donne $AV_i=\\lambda_iV_i$.\n\n**Cas triangulable.** Si $X=PY$ ($P$ constante inversible), $X'=PY'$ et $AX=PTY$ ; donc $X'=AX\\iff PY'=PTY\\iff Y'=TY$. La dernière ligne est $y_n'=t_{nn}y_n$ ; une fois $y_{i+1},\\dots,y_n$ connues, la ligne $i$ est une équation linéaire scalaire d'ordre $1$ à second membre continu.\n\n**Forme des solutions.** Notons $\\mu_1,\\dots,\\mu_n$ la diagonale de $T$ : chaque valeur propre $\\lambda$ y figure autant de fois que sa multiplicité $m_\\lambda$. Soit $N_i(\\lambda)$ le nombre d'indices $j\\ge i$ tels que $\\mu_j=\\lambda$. Montrons par récurrence descendante sur $i$ que $y_i=\\sum_\\lambda Q_{i,\\lambda}(t)e^{\\lambda t}$ avec $\\deg Q_{i,\\lambda}<N_i(\\lambda)$ (et $Q_{i,\\lambda}=0$ si $N_i(\\lambda)=0$). Lemme : pour $Q$ polynôme et $\\lambda,\\mu\\in\\mathbb{C}$, les solutions de $y'=\\mu y+Q(t)e^{\\lambda t}$ sont les $ce^{\\mu t}+R(t)e^{\\lambda t}$ avec $\\deg R\\le\\deg Q$ si $\\lambda\\neq\\mu$ et $\\deg R\\le\\deg Q+1$ si $\\lambda=\\mu$ (si $\\lambda=\\mu$, on intègre $(ye^{-\\mu t})'=Q$ ; si $\\lambda\\neq\\mu$, $R\\mapsto R'+(\\lambda-\\mu)R$ est un endomorphisme injectif, donc bijectif, de $\\mathbb{C}_d[X]$, ce qui fournit une solution particulière $R(t)e^{\\lambda t}$). Pour $i=n$, $y_n=ce^{\\mu_nt}$. Pour la ligne $i$, le second membre $\\sum_{j>i}t_{ij}y_j$ a, devant $e^{\\lambda t}$, un polynôme de degré $<N_{i+1}(\\lambda)$ ; par le lemme et le principe de superposition, ce degré est conservé si $\\lambda\\neq\\mu_i$, et augmente d'au plus $1$ si $\\lambda=\\mu_i$, auquel cas $N_i(\\lambda)=N_{i+1}(\\lambda)+1$ ; le terme $ce^{\\mu_it}$ a un coefficient de degré $0<N_i(\\mu_i)$. Pour $i=1$, $N_1(\\lambda)=m_\\lambda$. Les composantes de $X=PY$ sont des combinaisons linéaires des $y_j$ : elles ont la même forme.",
+      "exemple": "- $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ : $\\chi_A(\\lambda)=(\\lambda-1)^2-4$, valeurs propres $3$ et $-1$, de vecteurs propres $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ et $\\begin{pmatrix}1\\\\-1\\end{pmatrix}$. Les solutions sont les $X(t)=c_1e^{3t}\\begin{pmatrix}1\\\\1\\end{pmatrix}+c_2e^{-t}\\begin{pmatrix}1\\\\-1\\end{pmatrix}$ ; celle qui vaut $\\begin{pmatrix}1\\\\0\\end{pmatrix}$ en $0$ correspond à $c_1=c_2=\\frac12$.\n- $A=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$, triangulaire non diagonalisable : en cascade, $y'=2y$ donne $y=be^{2t}$, puis $x'=2x+be^{2t}$ donne $x=(a+bt)e^{2t}$.",
+      "contre_exemple": "- **Non diagonalisable : les vecteurs propres ne suffisent pas.** Pour $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, les seules solutions de la forme $e^{\\lambda t}V$ sont les $ce^t\\begin{pmatrix}1\\\\0\\end{pmatrix}$, alors que l'espace des solutions est de dimension $2$ : il contient $\\begin{pmatrix}te^t\\\\e^t\\end{pmatrix}$.\n- **Une matrice réelle peut n'être diagonalisable que sur $\\mathbb{C}$** : $J=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ a pour valeurs propres $\\pm i$, et $e^{it}\\begin{pmatrix}1\\\\-i\\end{pmatrix}=\\begin{pmatrix}\\cos t+i\\sin t\\\\\\sin t-i\\cos t\\end{pmatrix}$ est solution ; ses parties réelle et imaginaire, $\\begin{pmatrix}\\cos t\\\\\\sin t\\end{pmatrix}$ et $\\begin{pmatrix}\\sin t\\\\-\\cos t\\end{pmatrix}$, forment un système fondamental réel.\n- **Les valeurs propres seules ne déterminent pas $e^{tA}$** : $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ et $I_2$ ont les mêmes valeurs propres, mais $e^{tI_2}=e^tI_2$, alors que l'exponentielle de la première est $e^t\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$.",
+      "affirmations": [
+        {
+          "texte": "Si $A\\in\\mathcal{M}_n(\\mathbb{C})$ est diagonalisable et si toutes ses valeurs propres ont une partie réelle strictement négative, toute solution de $X'=AX$ tend vers $0$ en $+\\infty$.",
+          "vrai": true,
+          "justification": "$X(t)=\\sum c_ie^{\\lambda_it}V_i$ et $|e^{\\lambda_it}|=e^{\\operatorname{Re}(\\lambda_i)t}\\to0$."
+        },
+        {
+          "texte": "Si toutes les valeurs propres de $A$ ont une partie réelle nulle, toutes les solutions de $X'=AX$ sont bornées sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, de seule valeur propre $0$ : $X(t)=\\begin{pmatrix}t\\\\1\\end{pmatrix}$ est solution et n'est pas bornée."
+        },
+        {
+          "texte": "Si $A$ est triangulaire supérieure, $e^{tA}$ est diagonale.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ : $e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$. Elle est seulement triangulaire supérieure."
+        },
+        {
+          "texte": "Si $A$ a $n$ valeurs propres distinctes, chaque composante d'une solution de $X'=AX$ est de la forme $ce^{\\lambda t}$ pour une seule valeur propre $\\lambda$.",
+          "vrai": false,
+          "contre_exemple": "Pour $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$, la solution valant $\\begin{pmatrix}1\\\\0\\end{pmatrix}$ en $0$ a pour première composante $\\frac{e^{3t}+e^{-t}}2$, qui mélange les deux valeurs propres."
+        },
+        {
+          "texte": "Si $A$ est réelle et si $\\lambda=\\alpha+i\\beta$ ($\\beta\\neq0$) est une valeur propre de vecteur propre $V$, les parties réelle et imaginaire de $t\\mapsto e^{\\lambda t}V$ sont des solutions réelles de $X'=AX$.",
+          "vrai": true,
+          "justification": "$Z(t)=e^{\\lambda t}V$ vérifie $Z'=AZ$ ; comme $A$ est réelle, $(\\operatorname{Re}Z)'=\\operatorname{Re}(Z')=A\\operatorname{Re}Z$, et de même pour la partie imaginaire."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-exponentielle",
+        "al-l1-applications-matrice",
+        "al-l2-reduction-diagonalisabilite",
+        "al-l2-reduction-trigonalisation"
+      ]
+    },
+    {
+      "id": "ed-l2-systemes-ordre2",
+      "theme": "equations-differentielles",
+      "niveau": "l2",
+      "chapitre": "ed-l2-systemes",
+      "type": "theoreme",
+      "titre": "Équation scalaire d'ordre 2 à coefficients variables",
+      "recto": "Pour $x''+a(t)x'+b(t)x=c(t)$, à coefficients continus sur un intervalle, énoncer le résultat sur le problème de Cauchy, la structure des solutions, le wronskien, la variation des constantes et la méthode lorsqu'une solution homogène est connue.",
+      "cours": "Une équation d'ordre $2$ se ramène à un système de taille $2$ en prenant pour inconnue le couple (position, vitesse) $X=(x,x')$. Tout ce qui précède s'applique : le problème de Cauchy demande **deux** conditions **au même instant**, $x(t_0)$ et $x'(t_0)$ ; les solutions de l'équation homogène forment un plan vectoriel ; le wronskien $w=x_1x_2'-x_1'x_2$ vérifie $w'=-aw$ (formule d'Abel, cas particulier de Liouville, car la trace du système est $-a$).\n\nÀ la différence des coefficients constants, il n'y a **pas de formule générale** pour les solutions homogènes : il faut en trouver une autrement (polynôme, exponentielle, série entière, indication de l'énoncé). Le programme demande explicitement la suite : quand une solution $x_1$ de l'équation homogène **ne s'annule pas** sur $I$, le changement d'inconnue $x=x_1z$ fait disparaître le terme en $z$, et $z'$ vérifie une équation **d'ordre $1$** (abaissement de l'ordre) ; on en tire une seconde solution, puis toutes. On peut aussi obtenir $w$ par Abel, puis $x_2$ par $\\left(\\frac{x_2}{x_1}\\right)'=\\frac w{x_1^2}$.\n\nMéthode : (1) **normaliser** (diviser par le coefficient de $x''$) et se placer sur un intervalle où ce coefficient ne s'annule pas ; (2) chercher une solution homogène simple ; (3) abaisser l'ordre pour la seconde ; (4) variation des constantes : $\\lambda_1'x_1+\\lambda_2'x_2=0$, $\\lambda_1'x_1'+\\lambda_2'x_2'=c$, soit $\\lambda_1'=-\\frac{x_2c}w$ et $\\lambda_2'=\\frac{x_1c}w$.\n\nPièges : utiliser le second membre de l'équation **non normalisée** dans la variation des constantes ; abaisser l'ordre avec une solution qui s'annule ; imposer deux conditions en deux points différents (problème aux limites, qui peut n'avoir aucune solution ou une infinité).",
+      "hypotheses": [
+        "$I$ est un intervalle.",
+        "$a$, $b$, $c$ sont continues sur $I$.",
+        "Le coefficient de $x''$ vaut $1$ (équation normalisée).",
+        "Pour la dernière méthode : $x_1$ est solution de $(H)$ et ne s'annule pas sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "L'équation est $\\alpha(t)x''+\\beta(t)x'+\\gamma(t)x=0$ avec $\\alpha$, $\\beta$, $\\gamma$ continues, $\\alpha$ pouvant s'annuler sur $I$ (à la place d'une équation normalisée).",
+        "Pour la dernière méthode : $x_1$ est une solution non nulle de $(H)$, qui peut s'annuler sur $I$.",
+        "On impose $x(t_0)=\\alpha$ et $x(t_1)=\\beta$ en deux points distincts (à la place de $x(t_0)=\\alpha$ et $x'(t_0)=\\beta$)."
+      ],
+      "enonce": "Soient $I$ un **intervalle** et $a,b,c:I\\to\\mathbb{K}$ **continues**. On considère $(E):\\ x''+a(t)x'+b(t)x=c(t)$ et l'équation homogène $(H):\\ x''+a(t)x'+b(t)x=0$.\n\n- $x$ est solution de $(E)$ si et seulement si $X=\\begin{pmatrix}x\\\\x'\\end{pmatrix}$ est solution du système $X'=\\begin{pmatrix}0&1\\\\-b(t)&-a(t)\\end{pmatrix}X+\\begin{pmatrix}0\\\\c(t)\\end{pmatrix}$. Pour tous $t_0\\in I$ et $\\alpha,\\beta\\in\\mathbb{K}$, il existe une **unique** solution de $(E)$ sur $I$ telle que $x(t_0)=\\alpha$ et $x'(t_0)=\\beta$ ; les solutions de $(H)$ forment un espace vectoriel de dimension $2$.\n- **Wronskien.** Pour deux solutions $x_1,x_2$ de $(H)$, $w=x_1x_2'-x_1'x_2$ vérifie $w'=-aw$ ; $w$ est soit identiquement nul, soit sans zéro sur $I$, et $(x_1,x_2)$ est une base des solutions de $(H)$ si et seulement si $w$ ne s'annule pas.\n- **Variation des constantes.** Si $(x_1,x_2)$ est une base des solutions de $(H)$ et si $\\lambda_1,\\lambda_2$ sont dérivables et vérifient $\\lambda_1'x_1+\\lambda_2'x_2=0$ et $\\lambda_1'x_1'+\\lambda_2'x_2'=c$, alors $\\lambda_1x_1+\\lambda_2x_2$ est solution de $(E)$ ; toutes les solutions de $(E)$ s'obtiennent ainsi.\n- **Une solution homogène connue.** Si $x_1$ est une solution de $(H)$ **qui ne s'annule pas sur $I$**, $x=x_1z$ est solution de $(E)$ si et seulement si $u=z'$ vérifie l'équation linéaire d'ordre $1$ $x_1u'+(2x_1'+ax_1)u=c$ ; toute solution de $(E)$ s'écrit ainsi, avec $z=\\frac x{x_1}$.",
+      "enonce_trous": "Soient $I$ un intervalle et $a,b,c$ continues sur $I$. Pour tous $t_0\\in I$ et $\\alpha,\\beta\\in\\mathbb{K}$, l'équation $x''+a(t)x'+b(t)x=c(t)$ admet une unique solution sur $I$ telle que {{1}}. Le wronskien $w=x_1x_2'-x_1'x_2$ de deux solutions de l'équation homogène vérifie {{2}}.",
+      "trous": [
+        {
+          "reponse": "$x(t_0)=\\alpha$ et $x'(t_0)=\\beta$",
+          "leurres": [
+            "$x(t_0)=\\alpha$",
+            "$x(t_0)=\\alpha$ et $x(t_1)=\\beta$, pour un point $t_1\\neq t_0$ fixé de $I$",
+            "$x'(t_0)=\\alpha$ et $x''(t_0)=\\beta$"
+          ]
+        },
+        {
+          "reponse": "$w'=-aw$",
+          "leurres": [
+            "$w'=aw$",
+            "$w'=-bw$",
+            "$w'=0$"
+          ]
+        }
+      ],
+      "demo": "**Système associé.** Si $x$ est deux fois dérivable, $X=\\begin{pmatrix}x\\\\x'\\end{pmatrix}$ vérifie $X'=\\begin{pmatrix}x'\\\\x''\\end{pmatrix}$ : la première ligne du système est $x'=x'$, la seconde est exactement $(E)$. Réciproquement, si $X=\\begin{pmatrix}x\\\\y\\end{pmatrix}$ est solution du système, $x'=y$ est dérivable, donc $x$ est deux fois dérivable et vérifie $(E)$. La matrice et le second membre sont continus sur $I$ : le théorème de Cauchy pour les systèmes donne l'existence et l'unicité avec $X(t_0)=\\begin{pmatrix}\\alpha\\\\\\beta\\end{pmatrix}$, et l'application linéaire bijective $x\\mapsto\\begin{pmatrix}x\\\\x'\\end{pmatrix}$ envoie les solutions de $(H)$ sur celles du système homogène, espace de dimension $2$.\n\n**Wronskien.** $w$ est le wronskien des solutions $\\begin{pmatrix}x_1\\\\x_1'\\end{pmatrix}$ et $\\begin{pmatrix}x_2\\\\x_2'\\end{pmatrix}$ du système homogène, dont la matrice a pour trace $-a$ : la formule de Liouville et ses conséquences donnent le résultat. Directement : $w'=x_1x_2''-x_1''x_2=x_1(-ax_2'-bx_2)-(-ax_1'-bx_1)x_2=-aw$.\n\n**Variation des constantes.** Avec la matrice fondamentale $R=\\begin{pmatrix}x_1&x_2\\\\x_1'&x_2'\\end{pmatrix}$ et $C=\\begin{pmatrix}\\lambda_1\\\\\\lambda_2\\end{pmatrix}$, la condition $RC'=\\begin{pmatrix}0\\\\c\\end{pmatrix}$ est le système de l'énoncé. Elle fait de $RC$ une solution du système ; or la première composante de $RC$ est $x=\\lambda_1x_1+\\lambda_2x_2$, solution de $(E)$. Toute solution $x$ de $(E)$ s'obtient avec $C=R^{-1}\\begin{pmatrix}x\\\\x'\\end{pmatrix}$.\n\n**Une solution homogène connue.** Si $x=x_1z$ : $x'=x_1'z+x_1z'$ et $x''=x_1''z+2x_1'z'+x_1z''$, donc $x''+ax'+bx=z\\left(x_1''+ax_1'+bx_1\\right)+x_1z''+(2x_1'+ax_1)z'=x_1z''+(2x_1'+ax_1)z'$. Ainsi $x$ est solution de $(E)$ si et seulement si $u=z'$ vérifie $x_1u'+(2x_1'+ax_1)u=c$ ; comme $x_1$ ne s'annule pas, c'est une équation linéaire d'ordre $1$ à coefficients continus après division par $x_1$. Enfin, toute fonction $x$ deux fois dérivable s'écrit $x_1z$ avec $z=\\frac x{x_1}$, deux fois dérivable.",
+      "exemple": "Résolvons $x''+x=\\frac1{\\cos t}$ sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$. Base de $(H)$ : $x_1=\\cos$, $x_2=\\sin$, de wronskien $w=\\cos^2+\\sin^2=1$. Le système $\\lambda_1'\\cos t+\\lambda_2'\\sin t=0$, $-\\lambda_1'\\sin t+\\lambda_2'\\cos t=\\frac1{\\cos t}$ donne $\\lambda_1'=-\\frac{\\sin t}{\\cos t}$ et $\\lambda_2'=1$, d'où $\\lambda_1=\\ln(\\cos t)$ et $\\lambda_2=t$ : $x_p(t)=\\cos t\\ln(\\cos t)+t\\sin t$ est solution, et les solutions sont les $x_p+\\mu_1\\cos+\\mu_2\\sin$, $(\\mu_1,\\mu_2)\\in\\mathbb{R}^2$.",
+      "contre_exemple": "- **Équation non normalisée** : sur $\\mathbb{R}$, les solutions de $t^2x''-2tx'+2x=0$ sont les $t\\mapsto\\lambda t+\\mu t^2$ (sur $\\left]0,+\\infty\\right[$ et sur $\\left]-\\infty,0\\right[$, l'équation normalisée a pour base $t$, $t^2$, et le raccord des dérivées première et seconde en $0$ impose les mêmes constantes des deux côtés). Toutes s'annulent en $0$ : le problème $x(0)=1$, $x'(0)=0$ n'a pas de solution, et le problème $x(0)=0$, $x'(0)=1$ en a une infinité, les $t+\\mu t^2$.\n- **Deux conditions en deux points ne suffisent pas** : $x''+x=0$, $x(0)=0$, $x(\\pi)=0$ a pour solutions tous les $\\mu\\sin$, $\\mu\\in\\mathbb{R}$.\n- **Abaissement avec une solution qui s'annule** : pour $x''+x=0$ sur $\\left]-1,1\\right[$ et $x_1=\\sin$, la solution $\\cos$ ne s'écrit pas $x_1z$ avec $z$ dérivable sur $\\left]-1,1\\right[$, car $\\sin(0)z(0)=0\\neq\\cos0$.",
+      "affirmations": [
+        {
+          "texte": "Si le wronskien de deux solutions de $x''+a(t)x'+b(t)x=0$ ($a$, $b$ continues sur l'intervalle $I$) s'annule en un point de $I$, ces solutions sont liées.",
+          "vrai": true,
+          "justification": "$w$ est alors identiquement nul, et $(x_1,x_2)$ n'est pas une base ; deux solutions qui ne forment pas une base d'un plan sont liées."
+        },
+        {
+          "texte": "Une solution de $x''+a(t)x'+b(t)x=0$ qui s'annule en un point de $I$ est nulle sur $I$.",
+          "vrai": false,
+          "contre_exemple": "$x''+x=0$ : $\\sin$ s'annule en $0$ sans être nulle. Il faut que $x$ **et** $x'$ s'annulent au même point."
+        },
+        {
+          "texte": "Le wronskien de deux solutions de $x''+a(t)x'+b(t)x=0$ est constant.",
+          "vrai": false,
+          "contre_exemple": "$x''+x'=0$ : $x_1=1$ et $x_2=e^{-t}$ ont pour wronskien $w=1\\cdot(-e^{-t})-0=-e^{-t}$. Il est constant lorsque $a=0$."
+        },
+        {
+          "texte": "Deux solutions non nulles de $x''+a(t)x'+b(t)x=0$ ne peuvent pas s'annuler en un même point.",
+          "vrai": false,
+          "contre_exemple": "$\\sin$ et $2\\sin$ sont solutions de $x''+x=0$ et s'annulent en $0$ (elles sont liées ; deux solutions **indépendantes**, elles, n'ont pas de zéro commun, sinon leur wronskien s'annulerait)."
+        },
+        {
+          "texte": "Une solution de $x''+a(t)x'+b(t)x=0$ telle que $x(t_0)=x'(t_0)=0$ est nulle sur $I$.",
+          "vrai": true,
+          "justification": "La fonction nulle est solution du même problème de Cauchy ; par unicité, $x=0$."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-dimension",
+        "ed-l2-systemes-variation-constantes",
+        "ed-l1-lineaires-ordre2"
+      ]
+    }
+  ]
+}

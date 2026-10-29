@@ -1,0 +1,442 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l2-discretes-espace",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Espace probabilisé, tribu, continuité monotone",
+      "recto": "Définir une tribu, une probabilité, et énoncer la propriété de continuité monotone d'une probabilité.",
+      "cours": "Pour modéliser une expérience dont l'univers est infini (une suite illimitée de lancers, un temps d'attente), les sommes finies ne suffisent plus. On fixe un ensemble $\\Omega$ d'issues, une **tribu** $\\mathcal{A}$ d'événements, c'est-à-dire les parties de $\\Omega$ auxquelles on attribue une probabilité, et une probabilité $P$ **$\\sigma$-additive** : la probabilité d'une réunion dénombrable d'événements deux à deux disjoints est la somme de la série de leurs probabilités. Quand $\\Omega$ est fini ou dénombrable, on prend en général $\\mathcal{A}=\\mathcal{P}(\\Omega)$, et $P$ est déterminée par les nombres $P(\\{\\omega\\})$, positifs et de somme $1$.\n\nLa continuité monotone traduit la $\\sigma$-additivité en termes de limites : pour une suite croissante d'événements, la probabilité de la réunion est la limite des probabilités ; pour une suite décroissante, c'est celle de l'intersection. C'est l'outil qui calcule la probabilité d'un événement « infini » (pile finit par sortir, le jeu s'arrête un jour) comme limite de probabilités d'événements qui ne portent que sur un nombre fini d'épreuves.\n\n**Méthode.** Écrire l'événement étudié comme réunion d'une suite croissante (« … avant le rang $n$ ») ou comme intersection d'une suite décroissante (« … jusqu'au rang $n$ »), calculer la probabilité au rang $n$, puis passer à la limite. Pour une suite quelconque $(A_n)$, on se ramène au cas monotone avec $B_n=A_0\\cup\\dots\\cup A_n$ (suite croissante) ou $C_n=A_0\\cap\\dots\\cap A_n$ (suite décroissante).\n\n**Pièges.** La monotonie porte sur les **événements**, pour l'inclusion, et non sur les nombres $P(A_n)$ ; la formule de la réunion demande une suite croissante, celle de l'intersection une suite décroissante. Enfin, un événement de probabilité nulle n'est pas forcément vide (n'obtenir que des faces), et un événement de probabilité $1$ n'est pas forcément égal à $\\Omega$.",
+      "hypotheses": [
+        "$(\\Omega,\\mathcal{A},P)$ est un espace probabilisé : $P$ est une probabilité $\\sigma$-additive sur la tribu $\\mathcal{A}$.",
+        "$(A_n)_{n\\in\\mathbb{N}}$ est une suite d'éléments de $\\mathcal{A}$.",
+        "La suite $(A_n)$ est croissante pour l'inclusion (pour la réunion), ou décroissante (pour l'intersection)."
+      ],
+      "hypotheses_pieges": [
+        "La suite de réels $\\left(P(A_n)\\right)$ est croissante (à la place de : la suite $(A_n)$ est croissante pour l'inclusion).",
+        "Les événements $A_n$ sont deux à deux disjoints (à la place de : la suite $(A_n)$ est croissante pour l'inclusion).",
+        "La suite $(A_n)$ est décroissante pour l'inclusion, pour la formule de la réunion (à la place de : croissante)."
+      ],
+      "enonce": "Soit $\\Omega$ un ensemble. Une **tribu** sur $\\Omega$ est une partie $\\mathcal{A}$ de $\\mathcal{P}(\\Omega)$ qui contient $\\Omega$ et qui est stable par passage au complémentaire et par réunion dénombrable. Une **probabilité** sur $(\\Omega,\\mathcal{A})$ est une application $P:\\mathcal{A}\\to[0,1]$ telle que $P(\\Omega)=1$ et, pour toute suite $(A_n)_{n\\in\\mathbb{N}}$ d'événements deux à deux disjoints, $P\\left(\\bigcup_{n\\in\\mathbb{N}}A_n\\right)=\\sum_{n=0}^{+\\infty}P(A_n)$ ($\\sigma$-additivité). Le triplet $(\\Omega,\\mathcal{A},P)$ est un **espace probabilisé**.\n\n**Continuité monotone.** Soit $(A_n)_{n\\in\\mathbb{N}}$ une suite d'événements.\n- Si elle est croissante ($A_n\\subset A_{n+1}$ pour tout $n$), alors $P\\left(\\bigcup_{n\\in\\mathbb{N}}A_n\\right)=\\lim_{n\\to+\\infty}P(A_n)$.\n- Si elle est décroissante ($A_{n+1}\\subset A_n$ pour tout $n$), alors $P\\left(\\bigcap_{n\\in\\mathbb{N}}A_n\\right)=\\lim_{n\\to+\\infty}P(A_n)$.",
+      "enonce_trous": "Soit $(\\Omega,\\mathcal{A},P)$ un espace probabilisé et $(A_n)_{n\\in\\mathbb{N}}$ une suite d'événements {{1}}. Alors $P\\left(\\bigcup_{n\\in\\mathbb{N}}A_n\\right)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "croissante pour l'inclusion",
+          "leurres": [
+            "décroissante pour l'inclusion",
+            "deux à deux disjoints",
+            "telle que la suite $\\left(P(A_n)\\right)$ soit croissante"
+          ]
+        },
+        {
+          "reponse": "$\\lim_{n\\to+\\infty}P(A_n)$",
+          "leurres": [
+            "$\\sum_{n=0}^{+\\infty}P(A_n)$",
+            "$\\inf_{n\\in\\mathbb{N}}P(A_n)$",
+            "$1$"
+          ]
+        }
+      ],
+      "demo": "**Premières conséquences.** La suite $(\\Omega,\\emptyset,\\emptyset,\\dots)$ est formée d'événements deux à deux disjoints, donc $P(\\Omega)=P(\\Omega)+\\sum_{n\\geq1}P(\\emptyset)$, d'où $P(\\emptyset)=0$. En complétant une famille finie d'événements disjoints par des $\\emptyset$, on obtient l'additivité finie. Une tribu est stable par intersection dénombrable ($\\bigcap A_n$ est le complémentaire de $\\bigcup\\overline{A_n}$), donc par différence : $A\\setminus B=A\\cap\\overline{B}$.\n\n**Cas croissant.** Posons $B_0=A_0$ et $B_n=A_n\\setminus A_{n-1}$ pour $n\\geq1$. Ce sont des événements deux à deux disjoints et, la suite étant croissante, $B_0\\cup\\dots\\cup B_n=A_n$ pour tout $n$, et $\\bigcup_{n}B_n=\\bigcup_{n}A_n$. Par $\\sigma$-additivité, puis additivité finie :\n$$P\\left(\\bigcup_{n\\in\\mathbb{N}}A_n\\right)=\\sum_{k=0}^{+\\infty}P(B_k)=\\lim_{n\\to+\\infty}\\sum_{k=0}^{n}P(B_k)=\\lim_{n\\to+\\infty}P(A_n).$$\n\n**Cas décroissant.** Les complémentaires $\\overline{A_n}$ forment une suite croissante et $\\overline{\\bigcap_n A_n}=\\bigcup_n\\overline{A_n}$. Par le cas croissant, $1-P\\left(\\bigcap_n A_n\\right)=\\lim_{n}\\left(1-P(A_n)\\right)$, d'où le résultat.",
+      "exemple": "On lance indéfiniment une pièce équilibrée (on admet l'existence d'un espace probabilisé où les lancers sont mutuellement indépendants). Soit $A_n$ l'événement « pile apparaît au moins une fois lors des $n$ premiers lancers ». La suite $(A_n)$ est croissante et $P(A_n)=1-2^{-n}$. Sa réunion est l'événement « pile apparaît au moins une fois », de probabilité $\\lim_{n}\\left(1-2^{-n}\\right)=1$. L'événement « on n'obtient que des faces » est donc de probabilité nulle, sans être vide.",
+      "contre_exemple": "- **La monotonie des événements est nécessaire.** $\\Omega=\\{p,f\\}$ avec $P(\\{p\\})=P(\\{f\\})=\\frac12$, $A_n=\\{p\\}$ pour $n$ pair et $A_n=\\{f\\}$ pour $n$ impair : la suite $\\left(P(A_n)\\right)$ est constante, égale à $\\frac12$ (donc croissante), mais $P\\left(\\bigcup_nA_n\\right)=P(\\Omega)=1$.\n- **Le sens de la monotonie compte.** $\\Omega=\\mathbb{N}$, $P(\\{k\\})=2^{-(k+1)}$ et $A_n=\\{k\\in\\mathbb{N}\\mid k\\geq n\\}$ : la suite est décroissante, $P(A_n)=2^{-n}\\to0$, mais $\\bigcup_nA_n=A_0=\\mathbb{N}$ est de probabilité $1$. (Son intersection est vide, de probabilité $0=\\lim P(A_n)$, comme l'annonce le théorème.)\n- **Des événements disjoints ne conviennent pas.** Avec la même probabilité, $A_n=\\{n\\}$ : $P(A_n)\\to0$ mais $P\\left(\\bigcup_nA_n\\right)=1$ ; pour des événements disjoints, c'est la **somme** des $P(A_n)$ qui donne la probabilité de la réunion.",
+      "affirmations": [
+        {
+          "texte": "Si $(A_n)$ est une suite d'événements tous de probabilité $1$, alors $P\\left(\\bigcap_{n}A_n\\right)=1$.",
+          "vrai": true,
+          "justification": "Les $\\overline{A_n}$ sont de probabilité nulle ; la suite croissante $B_n=\\overline{A_0}\\cup\\dots\\cup\\overline{A_n}$ vérifie $P(B_n)\\leq\\sum_{k\\leq n}P(\\overline{A_k})=0$, donc $P\\left(\\bigcup_n\\overline{A_n}\\right)=\\lim P(B_n)=0$, et l'on passe au complémentaire."
+        },
+        {
+          "texte": "Il existe une probabilité $P$ sur $\\left(\\mathbb{N},\\mathcal{P}(\\mathbb{N})\\right)$ telle que $P(\\{k\\})$ ne dépende pas de $k$.",
+          "vrai": false,
+          "contre_exemple": "Si $P(\\{k\\})=c$ pour tout $k$, la $\\sigma$-additivité donne $1=P(\\mathbb{N})=\\sum_{k\\geq0}c$, qui vaut $0$ si $c=0$ et $+\\infty$ si $c>0$ : aucune valeur ne convient. Il n'y a pas de loi uniforme sur $\\mathbb{N}$."
+        },
+        {
+          "texte": "Si $(A_n)$ est décroissante et si $P(A_n)>0$ pour tout $n$, alors $P\\left(\\bigcap_nA_n\\right)>0$.",
+          "vrai": false,
+          "contre_exemple": "$\\Omega=\\mathbb{N}$, $P(\\{k\\})=2^{-(k+1)}$, $A_n=\\{k\\geq n\\}$ : $P(A_n)=2^{-n}>0$, mais $\\bigcap_nA_n=\\emptyset$."
+        },
+        {
+          "texte": "Une intersection dénombrable d'événements est un événement.",
+          "vrai": true,
+          "justification": "$\\bigcap_nA_n$ est le complémentaire de $\\bigcup_n\\overline{A_n}$, et une tribu est stable par passage au complémentaire et par réunion dénombrable."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-denombrables",
+        "ar-t-limite-monotone"
+      ]
+    },
+    {
+      "id": "proba-l2-discretes-repartition",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Loi et fonction de répartition d'une variable discrète",
+      "recto": "Définir la loi et la fonction de répartition d'une variable aléatoire réelle discrète, et énoncer les propriétés de la fonction de répartition.",
+      "cours": "Une variable aléatoire discrète est une quantité numérique qui ne prend qu'un nombre fini ou dénombrable de valeurs ; pour parler de $P(X=x)$, on demande que chaque $\\{X=x\\}$ soit un événement. C'est équivalent à la définition du programme ($X^{-1}(I)\\in\\mathcal{A}$ pour tout intervalle $I$) : $\\{X\\in I\\}$ est la réunion dénombrable des $\\{X=x\\}$ pour $x\\in X(\\Omega)\\cap I$, et un singleton $\\{x\\}=[x,x]$ est un intervalle.\n\nLa **loi** de $X$ est la donnée des $P(X=x)$ : par $\\sigma$-additivité, elle permet de calculer $P(X\\in B)$ pour toute partie $B$ de $\\mathbb{R}$. La **fonction de répartition** $F_X(t)=P(X\\leq t)$ résume la même information en une fonction de $\\mathbb{R}$ dans $[0,1]$ : elle est croissante, continue à droite, tend vers $0$ en $-\\infty$ et vers $1$ en $+\\infty$, et ses sauts sont exactement les $P(X=x)$, ce qui permet de retrouver la loi. Toutes ces propriétés viennent de la continuité monotone.\n\n**Méthode.** Pour $a<b$, $P(a<X\\leq b)=F_X(b)-F_X(a)$ ; si $X$ est à valeurs entières, $P(X=k)=F_X(k)-F_X(k-1)$. Pour la loi d'un maximum ou d'un minimum, on passe souvent par la fonction de répartition ou par les $P(X\\geq k)$.\n\n**Pièges.** Inégalités larges et strictes ne sont pas interchangeables : $P(X<t)=\\lim_{s\\to t^-}F_X(s)$ diffère de $F_X(t)$ dès que $P(X=t)>0$. Et deux variables de même loi ne sont pas égales pour autant : la loi ne dit rien du lien entre deux variables.",
+      "hypotheses": [
+        "$P$ est une probabilité ($P(\\Omega)=1$ et $\\sigma$-additivité) sur la tribu $\\mathcal{A}$.",
+        "$X(\\Omega)$ est fini ou dénombrable.",
+        "Pour tout réel $x$, $\\{X=x\\}$ appartient à $\\mathcal{A}$."
+      ],
+      "hypotheses_pieges": [
+        "$P$ est une application de $\\mathcal{A}$ dans $[0,1]$ telle que $P(\\emptyset)=0$ et $P(\\Omega)=1$ (à la place de : $P$ est une probabilité).",
+        "Pour tout rationnel $x$, $\\{X=x\\}$ appartient à $\\mathcal{A}$ (à la place de : pour tout réel $x$).",
+        "Pour tout entier relatif $n$, $\\{X\\leq n\\}$ appartient à $\\mathcal{A}$ (à la place de : $\\{X=x\\}\\in\\mathcal{A}$ pour tout réel $x$)."
+      ],
+      "enonce": "Soit $(\\Omega,\\mathcal{A},P)$ un espace probabilisé. Une **variable aléatoire réelle discrète** est une application $X:\\Omega\\to\\mathbb{R}$ dont l'ensemble des valeurs $X(\\Omega)$ est fini ou dénombrable, et telle que $\\{X=x\\}\\in\\mathcal{A}$ pour tout réel $x$.\n\nSa **loi** est la famille $\\left(P(X=x)\\right)_{x\\in X(\\Omega)}$ : ce sont des réels positifs de somme $1$ et, pour toute partie $B$ de $\\mathbb{R}$, $\\{X\\in B\\}$ est un événement et $P(X\\in B)=\\sum_{x\\in X(\\Omega)\\cap B}P(X=x)$.\n\nSa **fonction de répartition** $F_X:t\\mapsto P(X\\leq t)$ est définie sur $\\mathbb{R}$ ; elle est croissante, continue à droite en tout point, de limite $0$ en $-\\infty$ et $1$ en $+\\infty$, et pour tout réel $t$ : $P(X=t)=F_X(t)-\\lim_{s\\to t^-}F_X(s)$. Deux variables discrètes $X$ et $Y$ ont même loi ($P(X=t)=P(Y=t)$ pour tout réel $t$) si et seulement si $F_X=F_Y$.",
+      "enonce_trous": "La fonction de répartition $F_X:t\\mapsto P(X\\leq t)$ d'une variable aléatoire réelle discrète $X$ est croissante, {{1}} en tout point, de limite $1$ en $+\\infty$, et pour tout réel $t$, $P(X=t)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "continue à droite",
+          "leurres": [
+            "continue à gauche",
+            "continue",
+            "dérivable"
+          ]
+        },
+        {
+          "reponse": "$F_X(t)-\\lim_{s\\to t^-}F_X(s)$",
+          "leurres": [
+            "$F_X(t)$",
+            "$\\lim_{s\\to t^+}F_X(s)-F_X(t)$",
+            "$1-F_X(t)$"
+          ]
+        }
+      ],
+      "demo": "**Loi.** Les événements $\\{X=x\\}$, $x\\in X(\\Omega)$, sont deux à deux disjoints, en nombre fini ou dénombrable, et leur réunion est $\\Omega$ : par ($\\sigma$-)additivité, $\\sum_{x\\in X(\\Omega)}P(X=x)=P(\\Omega)=1$ (somme de termes positifs, indépendante de l'ordre). Pour $B\\subset\\mathbb{R}$, $\\{X\\in B\\}$ est la réunion disjointe dénombrable des $\\{X=x\\}$, $x\\in X(\\Omega)\\cap B$ : c'est un événement, et la $\\sigma$-additivité donne la formule. En particulier $\\{X\\leq t\\}$ est un événement et $F_X$ est bien définie.\n\n**Monotonie.** Si $s\\leq t$, $\\{X\\leq s\\}\\subset\\{X\\leq t\\}$, donc $F_X(s)\\leq F_X(t)$. Une fonction croissante a des limites à gauche et à droite en tout point et en $\\pm\\infty$ ; il suffit de les calculer le long d'une suite.\n\n**Limites.** La suite $\\{X\\leq -n\\}$ est décroissante d'intersection vide (pour tout $\\omega$, $X(\\omega)>-n$ dès que $n$ est grand) : par continuité monotone, $F_X(-n)\\to0$. La suite $\\{X\\leq n\\}$ est croissante de réunion $\\Omega$ : $F_X(n)\\to1$.\n\n**Continuité à droite.** La suite $\\{X\\leq t+\\frac1n\\}$ est décroissante d'intersection $\\{X\\leq t\\}$, donc $F_X\\left(t+\\frac1n\\right)\\to F_X(t)$.\n\n**Sauts.** La suite $\\{X\\leq t-\\frac1n\\}$ est croissante de réunion $\\{X<t\\}$, donc $\\lim_{s\\to t^-}F_X(s)=P(X<t)$, et $P(X=t)=P(X\\leq t)-P(X<t)$.\n\n**Caractérisation.** Si $X$ et $Y$ ont même loi, $F_X(t)=P\\left(X\\in\\left]-\\infty,t\\right]\\right)$ s'exprime par la loi seule, donc $F_X=F_Y$. Réciproquement, si $F_X=F_Y$, la formule des sauts donne $P(X=t)=P(Y=t)$ pour tout réel $t$.",
+      "exemple": "Soit $X$ à valeurs dans $\\mathbb{N}^*$ avec $P(X=k)=2^{-k}$ (les $2^{-k}$ sont positifs, de somme $1$). Pour tout entier $n\\geq1$, $F_X(n)=\\sum_{k=1}^{n}2^{-k}=1-2^{-n}$, d'où $F_X(t)=0$ si $t<1$ et $F_X(t)=1-2^{-\\lfloor t\\rfloor}$ si $t\\geq1$. C'est une fonction en escalier, continue à droite, qui saute de $2^{-k}$ en chaque entier $k\\geq1$ et prend une infinité de valeurs.",
+      "contre_exemple": "- **$F_X$ n'est pas continue à gauche en général.** Si $X=0$ (variable constante), $F_X(t)=0$ pour $t<0$ et $F_X(t)=1$ pour $t\\geq0$ : la limite à gauche en $0$ vaut $0\\neq F_X(0)$.\n- **Même loi ne veut pas dire égalité.** On lance une pièce équilibrée ; $X$ vaut $1$ si pile et $0$ sinon, et $Y=1-X$. Les deux variables suivent la loi de Bernoulli de paramètre $\\frac12$, donc $F_X=F_Y$, mais $X(\\omega)\\neq Y(\\omega)$ pour toute issue $\\omega$.\n- **Une fonction de répartition n'est pas toujours en escalier près de chaque point.** Si $P\\left(X=\\frac1k\\right)=2^{-k}$ pour $k\\geq1$, $F_X$ saute en chaque $\\frac1k$ : aucun intervalle $\\left]0,\\varepsilon\\right[$ n'est sans saut.",
+      "affirmations": [
+        {
+          "texte": "Si $F_X$ est continue en $t$, alors $P(X=t)=0$.",
+          "vrai": true,
+          "justification": "$P(X=t)=F_X(t)-\\lim_{s\\to t^-}F_X(s)$, qui est nul si $F_X$ est continue en $t$."
+        },
+        {
+          "texte": "Deux variables aléatoires discrètes de même loi, définies sur le même espace, sont égales.",
+          "vrai": false,
+          "contre_exemple": "Pile ou face équilibré : $X=1$ si pile, $0$ sinon, et $Y=1-X$. Elles ont la même loi de Bernoulli de paramètre $\\frac12$, et $X\\neq Y$ partout."
+        },
+        {
+          "texte": "La fonction de répartition d'une variable discrète ne prend qu'un nombre fini de valeurs.",
+          "vrai": false,
+          "contre_exemple": "Si $P(X=k)=2^{-k}$ pour $k\\geq1$, $F_X(n)=1-2^{-n}$ pour tout entier $n\\geq1$ : une infinité de valeurs."
+        },
+        {
+          "texte": "Pour tous réels $a<b$, $P(a<X\\leq b)=F_X(b)-F_X(a)$.",
+          "vrai": true,
+          "justification": "$\\{X\\leq b\\}$ est la réunion disjointe de $\\{X\\leq a\\}$ et de $\\{a<X\\leq b\\}$."
+        },
+        {
+          "texte": "Pour tous réels $a<b$, $P(a\\leq X\\leq b)=F_X(b)-F_X(a)$.",
+          "vrai": false,
+          "contre_exemple": "$X=0$, $a=0$, $b=1$ : $P(0\\leq X\\leq1)=1$, alors que $F_X(1)-F_X(0)=1-1=0$. La bonne formule est $F_X(b)-\\lim_{s\\to a^-}F_X(s)$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-espace",
+        "proba-l1-variables-finies-transfert"
+      ]
+    },
+    {
+      "id": "proba-l2-discretes-lois-usuelles",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Lois hypergéométrique, géométrique et de Poisson",
+      "recto": "Donner les lois hypergéométrique, géométrique et de Poisson : situation type, loi, espérance et variance.",
+      "cours": "Trois situations types complètent les lois de Bernoulli et binomiale.\n- **Hypergéométrique** : tirage **sans remise** (ou simultané) de $n$ boules dans une urne de $N$ boules dont $K$ gagnantes ; $X$ compte les gagnantes. Même espérance $np$ que la loi binomiale $\\mathcal{B}(n,p)$ des tirages avec remise, mais une variance multipliée par $\\frac{N-n}{N-1}\\leq1$ : sans remise, les tirages se corrigent les uns les autres.\n- **Géométrique** : rang du premier succès dans une suite d'épreuves de Bernoulli indépendantes de même paramètre $p$. Elle est **sans mémoire** : savoir qu'on a déjà attendu $k$ épreuves ne change pas la loi de l'attente restante.\n- **Poisson** : loi des événements rares, limite des lois binomiales $\\mathcal{B}\\left(n,\\frac\\lambda n\\right)$ quand $n\\to+\\infty$ (nombre d'appels reçus en une heure, de désintégrations en une seconde) ; son espérance et sa variance valent toutes deux $\\lambda$.\n\n**Méthode.** Reconnaître la situation (avec ou sans remise, attente d'un premier succès, comptage d'événements rares), puis appliquer les formules. Les calculs d'espérance et de variance reposent sur $\\sum_{k\\geq1}kq^{k-1}=\\frac1{(1-q)^2}$ et $\\sum_{k\\geq2}k(k-1)q^{k-2}=\\frac2{(1-q)^3}$ pour $|q|<1$, et sur $\\sum_{k\\geq0}\\frac{\\lambda^k}{k!}=e^\\lambda$ ; pour la variance, on calcule $E\\left(X(X-1)\\right)$, puis $V(X)=E\\left(X(X-1)\\right)+E(X)-E(X)^2$.\n\n**Pièges.** La loi géométrique est sur $\\mathbb{N}^*$ (rang du premier succès) ; le nombre d'**échecs** avant le premier succès, $X-1$, prend la valeur $0$ et a pour espérance $\\frac1p-1$. Et $P(X>k)=(1-p)^k$, mais $P(X\\geq k)=(1-p)^{k-1}$.",
+      "hypotheses": [
+        "Loi hypergéométrique : les $n$ boules sont tirées sans remise (ou simultanément) dans l'urne.",
+        "Loi géométrique : les épreuves de Bernoulli sont mutuellement indépendantes et ont toutes le même paramètre $p\\in\\left]0,1\\right[$.",
+        "Loi géométrique : $X$ est le rang du premier succès."
+      ],
+      "hypotheses_pieges": [
+        "Loi hypergéométrique : les $n$ boules sont tirées avec remise (à la place de : sans remise).",
+        "Loi géométrique : les épreuves sont indépendantes, la $k$-ième de paramètre $p_k$, avec des $p_k$ non tous égaux (à la place de : toutes de paramètre $p$).",
+        "Loi géométrique : $X$ est le nombre d'échecs avant le premier succès (à la place de : le rang du premier succès)."
+      ],
+      "enonce": "- **Loi hypergéométrique** $\\mathcal{H}(N,K,n)$ (entiers $0\\leq K\\leq N$ et $1\\leq n\\leq N$) : loi du nombre $X$ de boules gagnantes obtenues en tirant sans remise $n$ boules dans une urne de $N$ boules dont $K$ gagnantes. Pour tout entier $k$, $P(X=k)=\\frac{\\binom{K}{k}\\binom{N-K}{n-k}}{\\binom{N}{n}}$ (avec $\\binom{a}{b}=0$ si $b<0$ ou $b>a$). Avec $p=\\frac KN$ : $E(X)=np$ et, si $N\\geq2$, $V(X)=np(1-p)\\frac{N-n}{N-1}$.\n- **Loi géométrique** $\\mathcal{G}(p)$ ($0<p<1$) : loi du rang $X$ du premier succès dans une suite d'épreuves de Bernoulli mutuellement indépendantes de paramètre $p$. Pour tout $k\\in\\mathbb{N}^*$, $P(X=k)=(1-p)^{k-1}p$ et $P(X>k)=(1-p)^k$ ; $E(X)=\\frac1p$, $V(X)=\\frac{1-p}{p^2}$, et pour tous entiers $k,m\\geq0$, $P(X>k+m\\mid X>k)=P(X>m)$ (absence de mémoire).\n- **Loi de Poisson** $\\mathcal{P}(\\lambda)$ ($\\lambda>0$) : $P(X=k)=e^{-\\lambda}\\frac{\\lambda^k}{k!}$ pour tout $k\\in\\mathbb{N}$ ; $E(X)=V(X)=\\lambda$.",
+      "enonce_trous": "Si $X$ suit la loi géométrique de paramètre $p\\in\\left]0,1\\right[$, alors pour tout $k\\in\\mathbb{N}^*$, $P(X=k)$ vaut {{1}} et $E(X)$ vaut {{2}}. Si $Y$ suit la loi de Poisson de paramètre $\\lambda>0$, alors $V(Y)$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$(1-p)^{k-1}p$",
+          "leurres": [
+            "$(1-p)^kp$",
+            "$kp(1-p)^{k-1}$",
+            "$e^{-p}\\frac{p^k}{k!}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac1p$",
+          "leurres": [
+            "$p$",
+            "$\\frac{1-p}{p}$",
+            "$\\frac1{p^2}$"
+          ]
+        },
+        {
+          "reponse": "$\\lambda$",
+          "leurres": [
+            "$2\\lambda$",
+            "$\\lambda+\\lambda^2$",
+            "$\\lambda(1-\\lambda)$"
+          ]
+        }
+      ],
+      "demo": "**Hypergéométrique.** L'univers est l'ensemble des parties à $n$ éléments de l'urne, muni de l'équiprobabilité. Une partie contenant exactement $k$ gagnantes s'obtient en choisissant $k$ gagnantes parmi $K$ et $n-k$ perdantes parmi $N-K$, d'où la loi. Numérotons les gagnantes de $1$ à $K$ et notons $I_i$ l'indicatrice de « la gagnante $i$ est tirée » : $X=I_1+\\dots+I_K$, $P(I_i=1)=\\frac{\\binom{N-1}{n-1}}{\\binom Nn}=\\frac nN$ et, pour $i\\neq j$, $P(I_iI_j=1)=\\frac{\\binom{N-2}{n-2}}{\\binom Nn}=\\frac{n(n-1)}{N(N-1)}$. Par linéarité, $E(X)=K\\frac nN=np$, et\n$$V(X)=\\sum_{i}V(I_i)+\\sum_{i\\neq j}\\mathrm{Cov}(I_i,I_j)=K\\frac nN\\left(1-\\frac nN\\right)+K(K-1)\\left(\\frac{n(n-1)}{N(N-1)}-\\frac{n^2}{N^2}\\right),$$\nqui se simplifie en $np(1-p)\\frac{N-n}{N-1}$.\n\n**Géométrique.** Notons $S_k$ l'événement « succès à l'épreuve $k$ » et $q=1-p$. Par indépendance, $P(X>k)=P\\left(\\overline{S_1}\\cap\\dots\\cap\\overline{S_k}\\right)=q^k$ et $P(X=k)=P\\left(\\overline{S_1}\\cap\\dots\\cap\\overline{S_{k-1}}\\cap S_k\\right)=q^{k-1}p$. L'événement « aucun succès » est l'intersection de la suite décroissante $\\{X>k\\}$, de probabilité $\\lim q^k=0$ : le rang $X$ est défini avec probabilité $1$, et $\\sum_{k\\geq1}q^{k-1}p=1$. Ensuite $E(X)=p\\sum_{k\\geq1}kq^{k-1}=\\frac p{(1-q)^2}=\\frac1p$ et $E\\left(X(X-1)\\right)=pq\\sum_{k\\geq2}k(k-1)q^{k-2}=\\frac{2pq}{p^3}=\\frac{2q}{p^2}$, d'où $V(X)=\\frac{2q}{p^2}+\\frac1p-\\frac1{p^2}=\\frac{q}{p^2}$. Enfin $P(X>k+m\\mid X>k)=\\frac{q^{k+m}}{q^k}=q^m=P(X>m)$.\n\n**Poisson.** Les $e^{-\\lambda}\\frac{\\lambda^k}{k!}$ sont positifs, de somme $e^{-\\lambda}e^\\lambda=1$. Puis $E(X)=e^{-\\lambda}\\sum_{k\\geq1}\\frac{\\lambda^k}{(k-1)!}=\\lambda$ et $E\\left(X(X-1)\\right)=e^{-\\lambda}\\sum_{k\\geq2}\\frac{\\lambda^k}{(k-2)!}=\\lambda^2$, d'où $V(X)=\\lambda^2+\\lambda-\\lambda^2=\\lambda$.",
+      "exemple": "On tire $5$ cartes d'un jeu de $32$ cartes contenant $4$ as. Le nombre d'as suit la loi $\\mathcal{H}(32,4,5)$ : $P(X=0)=\\frac{\\binom{28}{5}}{\\binom{32}{5}}=\\frac{98280}{201376}=\\frac{1755}{3596}\\approx0{,}488$ et $E(X)=5\\times\\frac4{32}=\\frac58$.\n\nSi le nombre d'appels reçus en une minute suit la loi $\\mathcal{P}(2)$, la probabilité de n'en recevoir aucun est $e^{-2}\\approx0{,}135$.",
+      "contre_exemple": "- **Avec remise, la loi n'est plus hypergéométrique.** Urne de $N=2$ boules dont $K=1$ gagnante, $n=2$ tirages avec remise : $P(X=2)=\\frac14$, alors que la loi $\\mathcal{H}(2,1,2)$ donne $P(X=2)=0$ (il n'y a qu'une gagnante). Le nombre de gagnantes suit alors la loi binomiale $\\mathcal{B}\\left(2,\\frac12\\right)$.\n- **Le nombre d'échecs avant le premier succès ne suit pas la loi $\\mathcal{G}(p)$** : il vaut $0$ avec probabilité $p$, alors qu'une variable de loi $\\mathcal{G}(p)$ est à valeurs dans $\\mathbb{N}^*$ ; son espérance est $\\frac1p-1$.\n- **L'égalité de l'espérance et de la variance ne caractérise pas la loi de Poisson** : si $P(X=0)=P(X=2)=\\frac12$, alors $E(X)=V(X)=1$, mais $P(X=1)=0$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ suit la loi $\\mathcal{G}(p)$ avec $0<p<1$, alors $P(X>k+m\\mid X>k)=P(X>m)$ pour tous entiers $k,m\\geq0$.",
+          "vrai": true,
+          "justification": "$P(X>j)=(1-p)^j$ pour tout $j\\geq0$, donc le quotient vaut $\\frac{(1-p)^{k+m}}{(1-p)^k}=(1-p)^m$."
+        },
+        {
+          "texte": "Si $X$ suit la loi $\\mathcal{P}(\\lambda)$, la suite $\\left(P(X=k)\\right)_{k\\in\\mathbb{N}}$ est décroissante.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\lambda=3$ : $P(X=0)=e^{-3}$ et $P(X=1)=3e^{-3}>P(X=0)$. En fait $\\frac{P(X=k+1)}{P(X=k)}=\\frac{\\lambda}{k+1}$ : la suite croît tant que $k+1<\\lambda$."
+        },
+        {
+          "texte": "La variance de la loi $\\mathcal{H}(N,K,n)$ (avec $N\\geq2$) est inférieure ou égale à celle de la loi binomiale $\\mathcal{B}\\left(n,\\frac KN\\right)$.",
+          "vrai": true,
+          "justification": "Elle vaut $np(1-p)\\frac{N-n}{N-1}$, et $0\\leq\\frac{N-n}{N-1}\\leq1$ car $1\\leq n\\leq N$."
+        },
+        {
+          "texte": "Si $X$ suit la loi $\\mathcal{G}(p)$, alors $P(X\\geq k)=(1-p)^k$ pour tout $k\\in\\mathbb{N}^*$.",
+          "vrai": false,
+          "contre_exemple": "Pour $k=1$ : $P(X\\geq1)=1$, alors que $(1-p)^1<1$. En fait $P(X\\geq k)=P(X>k-1)=(1-p)^{k-1}$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-repartition",
+        "proba-l2-discretes-esperance",
+        "proba-t-binomiale",
+        "proba-t-binomiale-denombrement",
+        "proba-l1-independance-mutuelle",
+        "proba-l1-variables-finies-covariance"
+      ]
+    },
+    {
+      "id": "proba-l2-discretes-esperance",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Espérance, variance, théorème de transfert",
+      "recto": "Définir l'espérance et la variance d'une variable aléatoire discrète, et énoncer le théorème de transfert.",
+      "cours": "Pour une variable qui prend une infinité de valeurs, l'espérance est la somme d'une **série** : $E(X)=\\sum x\\,P(X=x)$. On exige l'**absolue convergence**, pour deux raisons : les valeurs de $X$ ne sont pas rangées dans un ordre privilégié, et la somme d'une série absolument convergente ne dépend pas de l'ordre des termes ; c'est aussi ce qui rend vraies la linéarité et les autres règles de calcul. Une variable discrète peut ne pas avoir d'espérance, même positive : $P(X=k)=\\frac1{k(k+1)}$ pour $k\\geq1$.\n\nLe **théorème de transfert** dit que, pour calculer $E\\left(\\varphi(X)\\right)$, il est inutile de déterminer la loi de $\\varphi(X)$ : on somme les $\\varphi(x)P(X=x)$ sur les valeurs de $X$, sous réserve de convergence absolue. La **variance** est définie dès que $X^2$ admet une espérance (on dit que $X$ admet un **moment d'ordre $2$**) et se calcule par la formule de König-Huygens, comme dans le cas fini.\n\n**Méthode.** Pour une variable à valeurs dans $\\mathbb{N}$ : vérifier la convergence de $\\sum k\\,P(X=k)$ (termes positifs), puis calculer la somme ; pour la variance, calculer $E\\left(X(X-1)\\right)$ par transfert, souvent plus simple que $E(X^2)$. Autre outil : $E(X)=\\sum_{k\\geq1}P(X\\geq k)$ pour $X$ à valeurs dans $\\mathbb{N}$.\n\n**Pièges.** $E\\left(\\varphi(X)\\right)$ n'est pas $\\varphi\\left(E(X)\\right)$ en général ; une espérance finie n'entraîne pas un moment d'ordre $2$ fini ; et une série $\\sum x_nP(X=x_n)$ seulement semi-convergente ne définit pas d'espérance.",
+      "hypotheses": [
+        "$X$ est une variable aléatoire réelle discrète.",
+        "$\\varphi$ est une fonction réelle définie sur $X(\\Omega)$.",
+        "La famille $\\left(\\varphi(x)P(X=x)\\right)_{x\\in X(\\Omega)}$ est sommable : $\\sum_{x\\in X(\\Omega)}|\\varphi(x)|P(X=x)<+\\infty$."
+      ],
+      "hypotheses_pieges": [
+        "La série $\\sum_n\\varphi(x_n)P(X=x_n)$ converge pour une certaine énumération $(x_n)$ de $X(\\Omega)$ (à la place de : la famille est sommable).",
+        "Les termes $\\varphi(x_n)P(X=x_n)$ tendent vers $0$ pour une énumération $(x_n)$ de $X(\\Omega)$ (à la place de : la famille est sommable).",
+        "$X$ admet une espérance (à la place de : la famille $\\left(\\varphi(x)P(X=x)\\right)$ est sommable)."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire réelle discrète.\n- $X$ **admet une espérance** si la famille $\\left(x\\,P(X=x)\\right)_{x\\in X(\\Omega)}$ est sommable, c'est-à-dire si $\\sum_{x\\in X(\\Omega)}|x|P(X=x)<+\\infty$ ; on pose alors $E(X)=\\sum_{x\\in X(\\Omega)}x\\,P(X=x)$ (somme indépendante de l'ordre des termes).\n- **Théorème de transfert.** Soit $\\varphi$ une fonction réelle définie sur $X(\\Omega)$. La variable $\\varphi(X)$ admet une espérance si et seulement si $\\sum_{x\\in X(\\Omega)}|\\varphi(x)|P(X=x)<+\\infty$, et alors $E\\left(\\varphi(X)\\right)=\\sum_{x\\in X(\\Omega)}\\varphi(x)P(X=x)$.\n- **Linéarité et positivité.** Si $X$ et $Y$ (discrètes sur le même espace) admettent une espérance, alors pour tous réels $a,b$, $aX+bY$ admet une espérance et $E(aX+bY)=aE(X)+bE(Y)$ ; si de plus $X\\geq0$, alors $E(X)\\geq0$.\n- **Variance.** Si $X^2$ admet une espérance ($X$ admet un moment d'ordre $2$), alors $X$ admet une espérance, et $V(X)=E\\left(\\left(X-E(X)\\right)^2\\right)=E(X^2)-E(X)^2$ ; pour tous réels $a,b$, $V(aX+b)=a^2V(X)$.",
+      "enonce_trous": "Soit $X$ une variable aléatoire discrète et $\\varphi$ une fonction réelle définie sur $X(\\Omega)$. La variable $\\varphi(X)$ admet une espérance si et seulement si {{1}}, et alors $E\\left(\\varphi(X)\\right)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{x\\in X(\\Omega)}|\\varphi(x)|P(X=x)<+\\infty$",
+          "leurres": [
+            "$\\sum_{x\\in X(\\Omega)}|x|P(X=x)<+\\infty$",
+            "$\\varphi$ est continue sur $X(\\Omega)$",
+            "$\\varphi$ est bornée sur $X(\\Omega)$"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{x\\in X(\\Omega)}\\varphi(x)P(X=x)$",
+          "leurres": [
+            "$\\varphi\\left(E(X)\\right)$",
+            "$\\sum_{x\\in X(\\Omega)}\\varphi\\left(x\\,P(X=x)\\right)$",
+            "$\\sum_{x\\in X(\\Omega)}x\\,\\varphi\\left(P(X=x)\\right)$"
+          ]
+        }
+      ],
+      "demo": "On admet le théorème de sommation par paquets : pour une famille dénombrable de réels positifs, on peut regrouper les termes en paquets et sommer d'abord chaque paquet (égalité dans $[0,+\\infty]$) ; pour une famille sommable, on le peut encore, et la somme ne dépend pas de l'ordre.\n\n**Transfert.** Posons $Y=\\varphi(X)$ ; $Y(\\Omega)=\\varphi\\left(X(\\Omega)\\right)$ est fini ou dénombrable et, pour $y\\in Y(\\Omega)$, $\\{Y=y\\}$ est la réunion disjointe des $\\{X=x\\}$ pour $x\\in X(\\Omega)$ tel que $\\varphi(x)=y$ : c'est un événement, et $P(Y=y)=\\sum_{\\varphi(x)=y}P(X=x)$. En regroupant les $x$ selon la valeur de $\\varphi(x)$ :\n$$\\sum_{y\\in Y(\\Omega)}|y|P(Y=y)=\\sum_{y\\in Y(\\Omega)}\\sum_{\\varphi(x)=y}|\\varphi(x)|P(X=x)=\\sum_{x\\in X(\\Omega)}|\\varphi(x)|P(X=x).$$\nDonc $Y$ admet une espérance si et seulement si ce dernier nombre est fini ; dans ce cas, le même calcul sans valeurs absolues (famille sommable) donne $E(Y)=\\sum_{x}\\varphi(x)P(X=x)$.\n\n**Linéarité.** Le couple $(X,Y)$ prend ses valeurs dans l'ensemble dénombrable $X(\\Omega)\\times Y(\\Omega)$, et le transfert s'y étend avec la même preuve. Comme $\\sum_{y}P(X=x,Y=y)=P(X=x)$ ($\\sigma$-additivité), on a $\\sum_{(x,y)}|x|P(X=x,Y=y)=\\sum_{x}|x|P(X=x)<+\\infty$, et de même pour $y$. Avec $|ax+by|\\leq|a||x|+|b||y|$, la famille $\\left((ax+by)P(X=x,Y=y)\\right)$ est sommable, et en séparant les deux sommes : $E(aX+bY)=aE(X)+bE(Y)$. Si $X\\geq0$, $E(X)$ est une somme de termes positifs.\n\n**Variance.** Pour tout réel $x$, $|x|\\leq\\frac{1+x^2}{2}$, donc $\\sum|x|P(X=x)\\leq\\frac{1+E(X^2)}{2}<+\\infty$. Avec $m=E(X)$, $(X-m)^2=X^2-2mX+m^2$ est une combinaison de variables admettant une espérance, et par linéarité $V(X)=E(X^2)-2m^2+m^2=E(X^2)-m^2$. Enfin $aX+b-E(aX+b)=a(X-m)$, d'où $V(aX+b)=a^2V(X)$.",
+      "exemple": "Soit $X$ à valeurs dans $\\mathbb{N}^*$ avec $P(X=k)=2^{-k}$. Alors $E(X)=\\sum_{k\\geq1}k2^{-k}=2$, $E\\left(X(X-1)\\right)=\\sum_{k\\geq2}k(k-1)2^{-k}=4$, donc $E(X^2)=6$ et $V(X)=6-4=2$. Par transfert, $E\\left(\\frac1X\\right)=\\sum_{k\\geq1}\\frac{2^{-k}}{k}=\\ln2$ (série de $-\\ln(1-x)$ en $x=\\frac12$), qui diffère de $\\frac1{E(X)}=\\frac12$.",
+      "contre_exemple": "- **Pas d'espérance.** $P(X=k)=\\frac1{k(k+1)}$ pour $k\\geq1$ (de somme $1$ par télescopage) : $\\sum kP(X=k)=\\sum\\frac1{k+1}=+\\infty$.\n- **Une espérance sans moment d'ordre $2$.** $P(X=k)=\\frac4{k(k+1)(k+2)}$ pour $k\\geq1$ : $E(X)=\\sum\\frac4{(k+1)(k+2)}=2$, mais $\\sum k^2P(X=k)=\\sum\\frac{4k}{(k+1)(k+2)}=+\\infty$.\n- **Une série semi-convergente ne suffit pas.** $P\\left(X=(-1)^k\\frac{2^k}{k}\\right)=2^{-k}$ pour $k\\geq1$ (valeurs deux à deux distinctes) : la série $\\sum(-1)^k\\frac{2^k}{k}2^{-k}=\\sum\\frac{(-1)^k}{k}$ converge (vers $-\\ln2$), mais pas absolument ; un réarrangement changerait sa somme, et $X$ n'admet pas d'espérance.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ admet un moment d'ordre $2$, alors $X$ admet une espérance.",
+          "vrai": true,
+          "justification": "$|x|\\leq\\frac{1+x^2}2$, donc $\\sum|x|P(X=x)\\leq\\frac{1+E(X^2)}2$."
+        },
+        {
+          "texte": "Si $X$ admet une espérance, alors $X^2$ admet une espérance.",
+          "vrai": false,
+          "contre_exemple": "$P(X=k)=\\frac4{k(k+1)(k+2)}$ pour $k\\geq1$ : $E(X)=2$, mais $\\sum k^2P(X=k)=\\sum\\frac{4k}{(k+1)(k+2)}=+\\infty$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ admettent une espérance, alors $XY$ admet une espérance.",
+          "vrai": false,
+          "contre_exemple": "$X=Y$ avec $P(X=k)=\\frac4{k(k+1)(k+2)}$ : $X$ et $Y$ admettent une espérance, mais $XY=X^2$ n'en admet pas."
+        },
+        {
+          "texte": "Si $X$ est à valeurs dans $\\mathbb{N}$, alors $\\sum_{k\\geq1}P(X\\geq k)$ converge si et seulement si $X$ admet une espérance, et dans ce cas cette somme vaut $E(X)$.",
+          "vrai": true,
+          "justification": "$\\sum_{k\\geq1}P(X\\geq k)=\\sum_{k\\geq1}\\sum_{j\\geq k}P(X=j)=\\sum_{j\\geq1}jP(X=j)$ par sommation par paquets (termes positifs)."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-repartition",
+        "proba-l1-variables-finies-variance",
+        "proba-t-concentration-linearite"
+      ]
+    },
+    {
+      "id": "proba-l2-discretes-independance",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Indépendance et covariance de variables discrètes",
+      "recto": "Définir l'indépendance de variables aléatoires discrètes et énoncer les résultats sur l'espérance d'un produit, la covariance et la variance d'une somme.",
+      "cours": "Deux variables discrètes sont indépendantes quand la loi du couple est le produit des lois : $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour toutes valeurs $x$ et $y$. Pour $p$ variables, on demande la factorisation de toutes les probabilités $P(X_1=x_1,\\dots,X_p=x_p)$ ; elle entraîne celle de toute sous-famille (on somme sur les valeurs des variables omises), donc l'indépendance deux à deux, mais la réciproque est fausse.\n\nLa conséquence clé est la règle du produit $E(XY)=E(X)E(Y)$, qui donne une covariance nulle et l'additivité des variances : $V(X_1+\\dots+X_p)=V(X_1)+\\dots+V(X_p)$. Sans indépendance, la covariance mesure le défaut d'additivité : $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$. L'inégalité de Cauchy-Schwarz $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$ permet de définir, quand $\\sigma(X)\\sigma(Y)>0$, le coefficient de corrélation $\\rho(X,Y)=\\frac{\\mathrm{Cov}(X,Y)}{\\sigma(X)\\sigma(Y)}$, qui appartient à $[-1,1]$.\n\n**Méthode.** Pour montrer l'indépendance, vérifier la factorisation sur tous les couples de valeurs ; pour la réfuter, un seul couple suffit, souvent un couple $(x,y)$ tel que $P(X=x,Y=y)=0$ alors que $P(X=x)P(Y=y)>0$. Pour la variance d'une somme, écrire la variable comme somme de variables simples (indicatrices, temps d'attente), puis utiliser la bilinéarité de la covariance et l'indépendance.\n\n**Pièges.** Une covariance nulle n'entraîne pas l'indépendance ; l'indépendance deux à deux n'entraîne pas l'indépendance mutuelle ; et pour des variables indépendantes, $V(X-Y)=V(X)+V(Y)$, et non $V(X)-V(Y)$.",
+      "hypotheses": [
+        "$X$ et $Y$ sont des variables aléatoires discrètes indépendantes.",
+        "$X$ et $Y$ admettent toutes deux une espérance."
+      ],
+      "hypotheses_pieges": [
+        "$X$ et $Y$ ont la même loi (à la place de : $X$ et $Y$ sont indépendantes).",
+        "$X^2$ et $Y^2$ sont indépendantes (à la place de : $X$ et $Y$ sont indépendantes).",
+        "$X$ et $Y$ sont indépendantes et seule $X$ admet une espérance (à la place de : $X$ et $Y$ admettent une espérance)."
+      ],
+      "enonce": "Soient $X_1,\\dots,X_p$ des variables aléatoires réelles discrètes sur un même espace probabilisé. Elles sont **(mutuellement) indépendantes** si, pour tous $x_1\\in X_1(\\Omega),\\dots,x_p\\in X_p(\\Omega)$,\n$$P(X_1=x_1,\\dots,X_p=x_p)=P(X_1=x_1)\\cdots P(X_p=x_p).$$\n- Si $X$ et $Y$ sont indépendantes et admettent une espérance, alors $XY$ admet une espérance et $E(XY)=E(X)E(Y)$.\n- Si $X$ et $Y$ admettent un moment d'ordre $2$, alors $XY$ admet une espérance, la **covariance** $\\mathrm{Cov}(X,Y)=E\\left(\\left(X-E(X)\\right)\\left(Y-E(Y)\\right)\\right)=E(XY)-E(X)E(Y)$ est définie, $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$, et $|\\mathrm{Cov}(X,Y)|\\leq\\sigma(X)\\sigma(Y)$.\n- Deux variables indépendantes admettant un moment d'ordre $2$ ont une covariance nulle (la réciproque est fausse). Si $X_1,\\dots,X_p$ sont indépendantes et admettent un moment d'ordre $2$, alors $V(X_1+\\dots+X_p)=V(X_1)+\\dots+V(X_p)$.",
+      "enonce_trous": "Si $X$ et $Y$ sont des variables aléatoires discrètes {{1}} admettant un moment d'ordre $2$, alors $V(X+Y)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "indépendantes",
+          "leurres": [
+            "de même loi",
+            "à valeurs positives",
+            "d'espérance nulle"
+          ]
+        },
+        {
+          "reponse": "$V(X)+V(Y)$",
+          "leurres": [
+            "$V(X)+V(Y)+2E(X)E(Y)$",
+            "$V(X)\\,V(Y)$",
+            "$\\left(\\sigma(X)+\\sigma(Y)\\right)^2$"
+          ]
+        }
+      ],
+      "demo": "Le théorème de transfert s'étend, avec la même preuve, au couple $(X,Y)$, à valeurs dans l'ensemble dénombrable $X(\\Omega)\\times Y(\\Omega)$ ; on utilise la sommation par paquets.\n\n**Produit.** Par indépendance,\n$$\\sum_{(x,y)}|xy|\\,P(X=x,Y=y)=\\sum_{x}\\sum_{y}|x|P(X=x)\\,|y|P(Y=y)=\\left(\\sum_x|x|P(X=x)\\right)\\left(\\sum_y|y|P(Y=y)\\right)<+\\infty,$$\ndonc $XY$ admet une espérance, et le même calcul sans valeurs absolues donne $E(XY)=E(X)E(Y)$.\n\n**Covariance.** Si $X$ et $Y$ ont un moment d'ordre $2$, $|xy|\\leq\\frac{x^2+y^2}2$ donne $\\sum_{(x,y)}|xy|P(X=x,Y=y)\\leq\\frac{E(X^2)+E(Y^2)}2$ : $XY$ admet une espérance. Avec $a=E(X)$ et $b=E(Y)$, $(X-a)(Y-b)=XY-bX-aY+ab$, et par linéarité $\\mathrm{Cov}(X,Y)=E(XY)-ab$. En développant $\\left((X-a)+(Y-b)\\right)^2$, on obtient $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$.\n\n**Cauchy-Schwarz.** Pour tout réel $t$, $q(t)=E\\left(\\left((X-a)+t(Y-b)\\right)^2\\right)=V(X)+2t\\,\\mathrm{Cov}(X,Y)+t^2V(Y)\\geq0$. Si $V(Y)>0$, le trinôme est de signe constant, donc son discriminant est négatif ou nul : $\\mathrm{Cov}(X,Y)^2\\leq V(X)V(Y)$. Si $V(Y)=0$, la fonction affine $q$ est positive sur $\\mathbb{R}$, donc $\\mathrm{Cov}(X,Y)=0$.\n\n**Sommes.** Pour des variables indépendantes, la règle du produit donne $\\mathrm{Cov}(X,Y)=0$. Si $X_1,\\dots,X_p$ sont mutuellement indépendantes, deux d'entre elles $X_i$, $X_j$ ($i\\neq j$) le sont : on obtient $P(X_i=x,X_j=y)$ en sommant les produits sur les valeurs des autres variables ($\\sigma$-additivité), ce qui donne $P(X_i=x)P(X_j=y)$. Par récurrence sur $p$, $V\\left(\\sum_iX_i\\right)=\\sum_iV(X_i)+2\\sum_{i<j}\\mathrm{Cov}(X_i,X_j)=\\sum_iV(X_i)$.",
+      "exemple": "Si $X$ et $Y$ sont indépendantes, de lois $\\mathcal{P}(2)$ et $\\mathcal{G}\\left(\\frac12\\right)$, alors $E(XY)=2\\times2=4$ et $V(X+Y)=2+\\frac{1/2}{1/4}=4$. Avec un dé équilibré, la somme $S$ de $10$ lancers indépendants vérifie $V(S)=10\\times\\frac{35}{12}=\\frac{175}6$.",
+      "contre_exemple": "- **Covariance nulle sans indépendance.** $X$ de loi uniforme sur $\\{-1,0,1\\}$ et $Y=X^2$ : $\\mathrm{Cov}(X,Y)=E(X^3)-E(X)E(X^2)=0$, mais $P(X=0,Y=1)=0\\neq P(X=0)P(Y=1)=\\frac13\\times\\frac23$.\n- **Sans indépendance, la règle du produit tombe.** $X=Y$ de loi de Bernoulli de paramètre $\\frac12$ : $E(XY)=E(X)=\\frac12\\neq\\frac14=E(X)E(Y)$, et $V(X+Y)=V(2X)=1\\neq\\frac12=V(X)+V(Y)$.\n- **Indépendance deux à deux, pas mutuelle.** $X$ et $Y$ indépendantes de loi uniforme sur $\\{-1,1\\}$, et $Z=XY$ : les trois variables sont deux à deux indépendantes, mais $P(X=1,Y=1,Z=-1)=0\\neq\\frac18$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\mathrm{Cov}(X,Y)=0$, alors $X$ et $Y$ sont indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$X$ uniforme sur $\\{-1,0,1\\}$ et $Y=X^2$ : covariance nulle, mais $P(X=0,Y=1)=0\\neq\\frac29$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont discrètes indépendantes, alors $f(X)$ et $g(Y)$ sont indépendantes pour toutes fonctions réelles $f$ et $g$.",
+          "vrai": true,
+          "justification": "$P\\left(f(X)=a,g(Y)=b\\right)=\\sum_{f(x)=a}\\sum_{g(y)=b}P(X=x)P(Y=y)=P\\left(f(X)=a\\right)P\\left(g(Y)=b\\right)$."
+        },
+        {
+          "texte": "Trois variables discrètes deux à deux indépendantes sont mutuellement indépendantes.",
+          "vrai": false,
+          "contre_exemple": "$X$, $Y$ indépendantes uniformes sur $\\{-1,1\\}$ et $Z=XY$ : deux à deux indépendantes, mais $P(X=1,Y=1,Z=-1)=0\\neq\\frac18$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes et admettent un moment d'ordre $2$, alors $V(X-Y)=V(X)+V(Y)$.",
+          "vrai": true,
+          "justification": "$X$ et $-Y$ sont indépendantes, et $V(-Y)=(-1)^2V(Y)=V(Y)$."
+        },
+        {
+          "texte": "Pour toutes variables $X$ et $Y$ admettant un moment d'ordre $2$, $V(X+Y)\\leq V(X)+V(Y)$.",
+          "vrai": false,
+          "contre_exemple": "$X=Y$ de loi de Bernoulli de paramètre $\\frac12$ : $V(X+Y)=4V(X)=1>\\frac12=V(X)+V(Y)$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-esperance",
+        "proba-l2-discretes-lois-usuelles",
+        "proba-l1-variables-finies-independance",
+        "proba-l1-variables-finies-covariance"
+      ]
+    },
+    {
+      "id": "proba-l2-discretes-markov",
+      "theme": "probabilites",
+      "niveau": "l2",
+      "chapitre": "proba-l2-discretes",
+      "type": "theoreme",
+      "titre": "Inégalités de Markov et de Bienaymé-Tchebychev",
+      "recto": "Énoncer les inégalités de Markov et de Bienaymé-Tchebychev pour une variable aléatoire discrète, avec leurs hypothèses.",
+      "cours": "Ces deux inégalités majorent la probabilité qu'une variable prenne de grandes valeurs à partir de ses seuls moments, sans connaître sa loi. L'inégalité de Markov repose sur une remarque élémentaire : une variable positive ne peut pas dépasser souvent $a$ si sa moyenne est petite, car $X\\geq a\\mathbf{1}_{\\{X\\geq a\\}}$. L'inégalité de Bienaymé-Tchebychev s'en déduit en appliquant Markov à $\\left(X-E(X)\\right)^2$ ; c'est l'outil de la loi faible des grands nombres.\n\nLe même principe donne de meilleures bornes quand on dispose de moments plus forts : $P(|X|\\geq a)\\leq\\frac{E\\left(|X|^r\\right)}{a^r}$ pour $r>0$, ou $P(X\\geq a)\\leq e^{-ta}E\\left(e^{tX}\\right)$ pour $t>0$ (méthode de Chernoff), que l'on optimise ensuite en $t$.\n\n**Méthode.** Mettre l'événement sous la forme $\\{X\\geq a\\}$ avec $X\\geq0$ (Markov) ou $\\{|X-E(X)|\\geq a\\}$ (Bienaymé-Tchebychev), en passant au contraire pour minorer la probabilité d'un intervalle centré en $E(X)$ ; vérifier que $a>0$ et que les moments utilisés existent.\n\n**Pièges.** Markov exige une variable **positive** ; Bienaymé-Tchebychev, un moment d'ordre $2$ et un écart **centré** en l'espérance. Ces bornes sont souvent grossières, mais celle de Markov ne peut pas être améliorée si l'on ne connaît que $E(X)$ : la variable qui vaut $a$ avec probabilité $\\frac{E(X)}a$ et $0$ sinon (pour $0\\leq E(X)\\leq a$) réalise l'égalité.",
+      "hypotheses": [
+        "Pour Markov : $X$ est à valeurs positives et admet une espérance.",
+        "Pour Bienaymé-Tchebychev : $X$ admet un moment d'ordre $2$.",
+        "$a$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "Pour Markov : $E(X)\\geq0$ (à la place de : $X$ est à valeurs positives).",
+        "Pour Markov : $X$ est à valeurs dans $\\left[-1,+\\infty\\right[$ (à la place de : à valeurs positives).",
+        "$a$ est un réel non nul (à la place de : strictement positif)."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire réelle discrète et $a$ un réel strictement positif.\n- **Inégalité de Markov.** Si $X$ est à valeurs positives et admet une espérance, alors $P(X\\geq a)\\leq\\frac{E(X)}{a}$.\n- **Inégalité de Bienaymé-Tchebychev.** Si $X$ admet un moment d'ordre $2$, alors $P\\left(|X-E(X)|\\geq a\\right)\\leq\\frac{V(X)}{a^2}$.",
+      "enonce_trous": "Si $X$ est une variable aléatoire discrète {{1}} admettant une espérance, alors pour tout réel $a>0$, $P(X\\geq a)$ est majoré par {{2}}.",
+      "trous": [
+        {
+          "reponse": "à valeurs positives",
+          "leurres": [
+            "d'espérance positive",
+            "à valeurs entières",
+            "admettant une variance"
+          ]
+        },
+        {
+          "reponse": "$\\frac{E(X)}{a}$",
+          "leurres": [
+            "$\\frac{E(X)}{a^2}$",
+            "$a\\,E(X)$",
+            "$\\frac{V(X)}{a}$"
+          ]
+        }
+      ],
+      "demo": "**Markov.** Comme $X\\geq0$, tous les termes de la somme qui définit $E(X)$ sont positifs ; on ne garde que les valeurs $x\\geq a$ :\n$$E(X)=\\sum_{x\\in X(\\Omega)}x\\,P(X=x)\\geq\\sum_{x\\geq a}x\\,P(X=x)\\geq a\\sum_{x\\geq a}P(X=x)=a\\,P(X\\geq a),$$\npuis on divise par $a>0$.\n\n**Bienaymé-Tchebychev.** La variable $Y=\\left(X-E(X)\\right)^2$ est positive et admet une espérance, $E(Y)=V(X)$. Comme $a>0$, $\\left\\{|X-E(X)|\\geq a\\right\\}=\\{Y\\geq a^2\\}$, et Markov appliqué à $Y$ et à $a^2>0$ donne $P\\left(|X-E(X)|\\geq a\\right)\\leq\\frac{V(X)}{a^2}$.",
+      "exemple": "Si $X$ suit la loi $\\mathcal{P}(4)$, Markov donne $P(X\\geq12)\\leq\\frac4{12}=\\frac13$. Bienaymé-Tchebychev fait mieux : $\\{X\\geq12\\}\\subset\\{|X-4|\\geq8\\}$, donc $P(X\\geq12)\\leq\\frac4{64}=\\frac1{16}$. La vraie valeur est d'environ $9\\times10^{-4}$.",
+      "contre_exemple": "- **La positivité est nécessaire pour Markov.** $P(X=-10)=P(X=10)=\\frac12$ : $E(X)=0$, mais $P(X\\geq1)=\\frac12>0=\\frac{E(X)}1$.\n- **Les inégalités peuvent être des égalités.** $P(X=0)=P(X=2)=\\frac12$ et $a=2$ : $P(X\\geq2)=\\frac12=\\frac{E(X)}2$. De même, $P(X=-1)=P(X=1)=\\frac12$ et $a=1$ : $P\\left(|X-E(X)|\\geq1\\right)=1=\\frac{V(X)}{1}$.\n- **Un réel $a$ négatif ne convient pas.** Pour $X=1$ et $a=-1$ : $P(X\\geq-1)=1$, alors que $\\frac{E(X)}{a}=-1$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ est positive et admet une espérance, alors $P(X>a)\\leq\\frac{E(X)}a$ pour tout réel $a>0$.",
+          "vrai": true,
+          "justification": "$\\{X>a\\}\\subset\\{X\\geq a\\}$, puis inégalité de Markov."
+        },
+        {
+          "texte": "Si $X$ est positive et admet une espérance, alors $P\\left(X\\geq2E(X)\\right)\\leq\\frac12$.",
+          "vrai": false,
+          "contre_exemple": "$X=0$ : $E(X)=0$ et $P(X\\geq0)=1$. L'affirmation est vraie si $E(X)>0$ (Markov avec $a=2E(X)>0$), mais Markov demande $a>0$."
+        },
+        {
+          "texte": "Si $X$ admet un moment d'ordre $2$ et $\\sigma(X)>0$, alors $P\\left(|X-E(X)|\\geq2\\sigma(X)\\right)\\leq\\frac14$.",
+          "vrai": true,
+          "justification": "Bienaymé-Tchebychev avec $a=2\\sigma(X)>0$ : $\\frac{V(X)}{4V(X)}=\\frac14$."
+        },
+        {
+          "texte": "L'inégalité $P(X\\geq a)\\leq\\frac{E(X)}a$ ($a>0$) vaut pour toute variable discrète admettant une espérance.",
+          "vrai": false,
+          "contre_exemple": "$P(X=-10)=P(X=10)=\\frac12$, $a=1$ : $P(X\\geq1)=\\frac12>0=\\frac{E(X)}1$. Il faut $X\\geq0$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-esperance",
+        "proba-t-bienayme"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1259 @@
+{
+  "exercices": [
+    {
+      "id": "arith-l2-fractions-forme-irreductible-ex1",
+      "carte": "arith-l2-fractions-forme-irreductible",
+      "difficulte": 1,
+      "titre": "Mettre une fraction sous forme irréductible",
+      "enonce": "Dans $\\mathbb{R}(X)$, mettre $F=\\frac{X^3-1}{2X^2-2}$ sous forme irréductible et donner son degré.",
+      "duree_min": 5,
+      "indices": [
+        "Factoriser $X^3-1$ et $2X^2-2$ : ils ont un facteur commun de degré $1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la forme irréductible de $F$ (dénominateur unitaire) ?",
+        "propositions": [
+          "$\\frac{\\frac12(X^2+X+1)}{X+1}$",
+          "$\\frac{X^2+X+1}{2X+2}$",
+          "$\\frac{\\frac12(X^2-X+1)}{X+1}$",
+          "$\\frac{\\frac12(X^2+X+1)}{X-1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On factorise : $X^3-1=(X-1)(X^2+X+1)$ et $2X^2-2=2(X-1)(X+1)$. Le facteur commun $X-1$ se simplifie :\n$$F=\\frac{X^2+X+1}{2(X+1)}.$$\nLe trinôme $X^2+X+1$ (discriminant $-3$) n'a pas de racine réelle et ne s'annule pas en $-1$ (il y vaut $1$) : il est premier avec $X+1$. Pour rendre le dénominateur unitaire, on divise numérateur et dénominateur par $2$ : la forme irréductible est\n$$F=\\frac{\\frac12(X^2+X+1)}{X+1},$$\net $\\deg F=2-1=1$.\n\nL'écriture $\\frac{X^2+X+1}{2X+2}$ a bien un numérateur et un dénominateur premiers entre eux, mais son dénominateur n'est pas unitaire : ce n'est pas la forme irréductible au sens de la normalisation.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}(X)$, mettre $F=\\frac{X^3+8}{3X^2-12}$ sous forme irréductible et donner son degré.",
+          "indices": [
+            "Factoriser $X^3+8$ et $3X^2-12$ : ils ont un facteur commun de degré $1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la forme irréductible de $F$ (dénominateur unitaire) ?",
+            "propositions": [
+              "$\\frac{\\frac13(X^2-2X+4)}{X-2}$",
+              "$\\frac{X^2-2X+4}{3X-6}$",
+              "$\\frac{\\frac13(X^2+2X+4)}{X-2}$",
+              "$\\frac{\\frac13(X^2-2X+4)}{X+2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On factorise : $X^3+8=(X+2)(X^2-2X+4)$ et $3X^2-12=3(X-2)(X+2)$. Le facteur commun $X+2$ se simplifie :\n$$F=\\frac{X^2-2X+4}{3(X-2)}.$$\nLe trinôme $X^2-2X+4$ (discriminant $-12$) n'a pas de racine réelle, donc ne s'annule pas en $2$ : il est premier avec $X-2$. En divisant par $3$ pour rendre le dénominateur unitaire, la forme irréductible est\n$$F=\\frac{\\frac13(X^2-2X+4)}{X-2},$$\net $\\deg F=1$. L'écriture $\\frac{X^2-2X+4}{3X-6}$ n'a pas un dénominateur unitaire."
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}(X)$, mettre $F=\\frac{X^4-1}{2X^3-2X}$ sous forme irréductible et donner son degré.",
+          "indices": [
+            "Factoriser $X^4-1$ et $2X^3-2X$ : ils ont un facteur commun de degré $2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la forme irréductible de $F$ (dénominateur unitaire) ?",
+            "propositions": [
+              "$\\frac{\\frac12(X^2+1)}{X}$",
+              "$\\frac{X^2+1}{2X}$",
+              "$\\frac{\\frac12(X^2-1)}{X}$",
+              "$\\frac{\\frac12(X^2+1)}{X^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On factorise : $X^4-1=(X-1)(X+1)(X^2+1)$ et $2X^3-2X=2X(X-1)(X+1)$. Le facteur commun $(X-1)(X+1)$ se simplifie :\n$$F=\\frac{X^2+1}{2X}.$$\n$X^2+1$ ne s'annule pas en $0$, donc est premier avec $X$. En divisant par $2$, la forme irréductible est\n$$F=\\frac{\\frac12(X^2+1)}{X},$$\net $\\deg F=1$. L'écriture $\\frac{X^2+1}{2X}$ n'a pas un dénominateur unitaire."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-forme-irreductible-ex2",
+      "carte": "arith-l2-fractions-forme-irreductible",
+      "difficulte": 2,
+      "titre": "Simplifier une fraction par l'algorithme d'Euclide",
+      "enonce": "Dans $\\mathbb{R}(X)$, on considère $F=\\frac AB$ avec $A=X^4+X^3+2X^2+X+1$ et $B=X^4-X^3+2X^2-X+1$. Calculer $A\\wedge B$ par l'algorithme d'Euclide, puis mettre $F$ sous forme irréductible.",
+      "duree_min": 10,
+      "indices": [
+        "Première division : $A=B\\cdot1+(2X^3+2X)$.",
+        "Le PGCD est le dernier reste non nul, rendu unitaire ; diviser ensuite $A$ et $B$ par ce PGCD."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la forme irréductible de $F$ ?",
+        "propositions": [
+          "$\\frac{X^2+X+1}{X^2-X+1}$",
+          "$\\frac{X^2-X+1}{X^2+X+1}$",
+          "$\\frac{X^2+1}{X^2-X+1}$",
+          "$F$ est déjà sous forme irréductible"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Algorithme d'Euclide.**\n- $A=B\\cdot1+(2X^3+2X)$ ;\n- $B=(2X^3+2X)\\left(\\frac X2-\\frac12\\right)+(X^2+1)$ ;\n- $2X^3+2X=(X^2+1)\\cdot2X+0$.\n\nLe dernier reste non nul est $X^2+1$, déjà unitaire : $A\\wedge B=X^2+1$.\n\n**Forme irréductible.** $A=(X^2+1)(X^2+X+1)$ et $B=(X^2+1)(X^2-X+1)$, donc\n$$F=\\frac{X^2+X+1}{X^2-X+1}.$$\nUn diviseur commun unitaire de $X^2+X+1$ et $X^2-X+1$ divise leur différence $2X$, donc vaut $1$ ou $X$ ; or $X$ ne divise pas $X^2+X+1$ (qui vaut $1$ en $0$). Ils sont donc premiers entre eux, le dénominateur est unitaire : c'est la forme irréductible, et $\\deg F=0$.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}(X)$, on considère $F=\\frac AB$ avec $A=X^3+X^2+2X+2$ et $B=X^3-3X^2+2X-6$. Calculer $A\\wedge B$ par l'algorithme d'Euclide, puis mettre $F$ sous forme irréductible.",
+          "indices": [
+            "Première division : $A=B\\cdot1+(4X^2+8)$.",
+            "Le PGCD est le dernier reste non nul, rendu unitaire ; diviser ensuite $A$ et $B$ par ce PGCD."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la forme irréductible de $F$ ?",
+            "propositions": [
+              "$\\frac{X+1}{X-3}$",
+              "$\\frac{X-3}{X+1}$",
+              "$\\frac{X+1}{X+3}$",
+              "$F$ est déjà sous forme irréductible"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Algorithme d'Euclide.**\n- $A=B\\cdot1+(4X^2+8)$ ;\n- $B=(4X^2+8)\\left(\\frac X4-\\frac34\\right)+0$.\n\nLe dernier reste non nul est $4X^2+8$ ; unitaire, cela donne $A\\wedge B=X^2+2$.\n\n**Forme irréductible.** $A=(X^2+2)(X+1)$ et $B=(X^2+2)(X-3)$, donc\n$$F=\\frac{X+1}{X-3},$$\navec $X+1$ et $X-3$ premiers entre eux (polynômes de degré $1$ distincts et unitaires) et un dénominateur unitaire. $\\deg F=0$."
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}(X)$, on considère $F=\\frac AB$ avec $A=X^4+X^3+4X^2+3X+3$ et $B=X^4+X^3-X^2-2X-2$. Calculer $A\\wedge B$ par l'algorithme d'Euclide, puis mettre $F$ sous forme irréductible.",
+          "indices": [
+            "Première division : $A=B\\cdot1+(5X^2+5X+5)$.",
+            "Le PGCD est le dernier reste non nul, rendu unitaire ; diviser ensuite $A$ et $B$ par ce PGCD."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la forme irréductible de $F$ ?",
+            "propositions": [
+              "$\\frac{X^2+3}{X^2-2}$",
+              "$\\frac{X^2-2}{X^2+3}$",
+              "$\\frac{X^2+3}{X^2+2}$",
+              "$F$ est déjà sous forme irréductible"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Algorithme d'Euclide.**\n- $A=B\\cdot1+(5X^2+5X+5)$ ;\n- $B=(5X^2+5X+5)\\left(\\frac{X^2}5-\\frac25\\right)+0$.\n\nLe dernier reste non nul est $5X^2+5X+5$ ; unitaire, cela donne $A\\wedge B=X^2+X+1$.\n\n**Forme irréductible.** $A=(X^2+X+1)(X^2+3)$ et $B=(X^2+X+1)(X^2-2)$, donc\n$$F=\\frac{X^2+3}{X^2-2}.$$\nUn diviseur commun de $X^2+3$ et $X^2-2$ divise leur différence $5$ : ils sont premiers entre eux, et le dénominateur est unitaire. $\\deg F=0$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-forme-irreductible-ex3",
+      "carte": "arith-l2-fractions-forme-irreductible",
+      "difficulte": 3,
+      "titre": "Carrés dans $\\mathbb{C}(X)$",
+      "enonce": "Soit $A\\in\\mathbb{C}[X]$ non nul.\n\n**1.** Montrer que, s'il existe $F\\in\\mathbb{C}(X)$ telle que $F^2=A$, alors $F$ est un polynôme.\n\n**2.** En déduire une condition nécessaire et suffisante, portant sur les multiplicités des racines de $A$, pour que $A$ soit le carré d'une fraction rationnelle de $\\mathbb{C}(X)$.\n\n**3.** Lequel des polynômes $X^2+1$, $X^3$, $X^4+X^2$, $X^4+2X^2+1$ est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+      "duree_min": 15,
+      "indices": [
+        "Écrire $F=\\frac PQ$ sous forme irréductible et comparer $P^2$ et $AQ^2$.",
+        "Dans un carré de polynôme, chaque racine a une multiplicité paire."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces polynômes est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+        "propositions": [
+          "$X^4+2X^2+1$",
+          "$X^2+1$",
+          "$X^3$",
+          "$X^4+X^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Écrivons $F=\\frac PQ$ sous forme irréductible. De $F^2=A$, on tire $P^2=AQ^2$, donc $Q$ divise $P^2$. Comme $P\\wedge Q=1$, on a aussi $P^2\\wedge Q=1$ (un facteur irréductible commun à $Q$ et $P^2$ diviserait $P$) ; le lemme de Gauss donne alors que $Q$ divise $1$. Le polynôme $Q$, unitaire, vaut $1$ : $F=P$ est un polynôme.\n\n**2.** $A$ est donc un carré dans $\\mathbb{C}(X)$ si et seulement si $A=P^2$ avec $P\\in\\mathbb{C}[X]$. Si $A=P^2$, chaque racine de $A$ a une multiplicité double de celle qu'elle a dans $P$, donc paire. Réciproquement, si $A=c\\prod_i(X-a_i)^{2k_i}$ (d'Alembert-Gauss), on choisit $\\gamma\\in\\mathbb{C}$ tel que $\\gamma^2=c$, et $A=\\left(\\gamma\\prod_i(X-a_i)^{k_i}\\right)^2$. **Condition** : toutes les racines de $A$ sont de multiplicité paire.\n\n**3.** $X^4+2X^2+1=(X^2+1)^2=(X-i)^2(X+i)^2$ : racines doubles, c'est un carré. En revanche, $X^2+1=(X-i)(X+i)$ a des racines simples, $X^3$ a la racine triple $0$, et $X^4+X^2=X^2(X-i)(X+i)$ a les racines simples $\\pm i$ : aucun de ces trois polynômes n'est le carré d'une fraction rationnelle.",
+      "variantes": [
+        {
+          "enonce": "Soit $A\\in\\mathbb{C}[X]$ non nul.\n\n**1.** Montrer que, s'il existe $F\\in\\mathbb{C}(X)$ telle que $F^2=A$, alors $F$ est un polynôme.\n\n**2.** En déduire une condition nécessaire et suffisante, portant sur les multiplicités des racines de $A$, pour que $A$ soit le carré d'une fraction rationnelle de $\\mathbb{C}(X)$.\n\n**3.** Lequel des polynômes $X^4-2X^2+1$, $X^4-1$, $X^4+1$, $X(X-1)^2$ est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+          "indices": [
+            "Écrire $F=\\frac PQ$ sous forme irréductible et comparer $P^2$ et $AQ^2$.",
+            "Dans un carré de polynôme, chaque racine a une multiplicité paire ; factoriser chacun des quatre polynômes sur $\\mathbb{C}$."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces polynômes est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+            "propositions": [
+              "$X^4-2X^2+1$",
+              "$X^4-1$",
+              "$X^4+1$",
+              "$X(X-1)^2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Écrivons $F=\\frac PQ$ sous forme irréductible. De $F^2=A$, on tire $P^2=AQ^2$, donc $Q$ divise $P^2$. Comme $P\\wedge Q=1$, on a aussi $P^2\\wedge Q=1$ (un facteur irréductible commun à $Q$ et $P^2$ diviserait $P$) ; le lemme de Gauss donne alors que $Q$ divise $1$. Le polynôme $Q$, unitaire, vaut $1$ : $F=P$ est un polynôme.\n\n**2.** $A$ est donc un carré dans $\\mathbb{C}(X)$ si et seulement si $A=P^2$ avec $P\\in\\mathbb{C}[X]$. Si $A=P^2$, chaque racine de $A$ a une multiplicité double de celle qu'elle a dans $P$, donc paire. Réciproquement, si $A=c\\prod_i(X-a_i)^{2k_i}$ (d'Alembert-Gauss), on choisit $\\gamma\\in\\mathbb{C}$ tel que $\\gamma^2=c$, et $A=\\left(\\gamma\\prod_i(X-a_i)^{k_i}\\right)^2$. **Condition** : toutes les racines de $A$ sont de multiplicité paire.\n\n**3.** $X^4-2X^2+1=(X^2-1)^2=(X-1)^2(X+1)^2$ : racines doubles, c'est un carré. En revanche, $X^4-1=(X-1)(X+1)(X-i)(X+i)$ a des racines simples ; $X^4+1$ aussi (sa dérivée $4X^3$ ne s'annule qu'en $0$, qui n'est pas racine) ; et $X(X-1)^2$ a la racine simple $0$."
+        },
+        {
+          "enonce": "Soit $A\\in\\mathbb{C}[X]$ non nul.\n\n**1.** Montrer que, s'il existe $F\\in\\mathbb{C}(X)$ telle que $F^2=A$, alors $F$ est un polynôme.\n\n**2.** En déduire une condition nécessaire et suffisante, portant sur les multiplicités des racines de $A$, pour que $A$ soit le carré d'une fraction rationnelle de $\\mathbb{C}(X)$.\n\n**3.** Lequel des polynômes $X^4+4X^3+4X^2$, $X^4+4X^2$, $X^3+4X^2+4X$, $X^4+4$ est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+          "indices": [
+            "Écrire $F=\\frac PQ$ sous forme irréductible et comparer $P^2$ et $AQ^2$.",
+            "Dans un carré de polynôme, chaque racine a une multiplicité paire ; mettre en facteur une puissance de $X$ quand c'est possible."
+          ],
+          "reponse_finale": {
+            "question": "Lequel de ces polynômes est le carré d'une fraction rationnelle de $\\mathbb{C}(X)$ ?",
+            "propositions": [
+              "$X^4+4X^3+4X^2$",
+              "$X^4+4X^2$",
+              "$X^3+4X^2+4X$",
+              "$X^4+4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Écrivons $F=\\frac PQ$ sous forme irréductible. De $F^2=A$, on tire $P^2=AQ^2$, donc $Q$ divise $P^2$. Comme $P\\wedge Q=1$, on a aussi $P^2\\wedge Q=1$ (un facteur irréductible commun à $Q$ et $P^2$ diviserait $P$) ; le lemme de Gauss donne alors que $Q$ divise $1$. Le polynôme $Q$, unitaire, vaut $1$ : $F=P$ est un polynôme.\n\n**2.** $A$ est donc un carré dans $\\mathbb{C}(X)$ si et seulement si $A=P^2$ avec $P\\in\\mathbb{C}[X]$. Si $A=P^2$, chaque racine de $A$ a une multiplicité double de celle qu'elle a dans $P$, donc paire. Réciproquement, si $A=c\\prod_i(X-a_i)^{2k_i}$ (d'Alembert-Gauss), on choisit $\\gamma\\in\\mathbb{C}$ tel que $\\gamma^2=c$, et $A=\\left(\\gamma\\prod_i(X-a_i)^{k_i}\\right)^2$. **Condition** : toutes les racines de $A$ sont de multiplicité paire.\n\n**3.** $X^4+4X^3+4X^2=X^2(X+2)^2$ : racines doubles $0$ et $-2$, c'est un carré. En revanche, $X^4+4X^2=X^2(X-2i)(X+2i)$ a les racines simples $\\pm2i$ ; $X^3+4X^2+4X=X(X+2)^2$ a la racine simple $0$ ; et $X^4+4=(X^2+2X+2)(X^2-2X+2)$ a les quatre racines simples $\\pm1\\pm i$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-forme-irreductible-ex4",
+      "carte": "arith-l2-fractions-forme-irreductible",
+      "difficulte": 4,
+      "titre": "Fractions invariantes par translation",
+      "enonce": "Déterminer toutes les fractions rationnelles $F\\in\\mathbb{C}(X)$ telles que $F(X+1)=F(X)$.\n\n(Pour $F=\\frac AB$, $F(X+1)$ désigne la fraction $\\frac{A(X+1)}{B(X+1)}$.)",
+      "duree_min": 20,
+      "indices": [
+        "Écrire $F=\\frac PQ$ sous forme irréductible et vérifier que $\\frac{P(X+1)}{Q(X+1)}$ est encore une forme irréductible.",
+        "L'unicité de la forme irréductible donne $P(X+1)=P$ et $Q(X+1)=Q$ ; regarder les valeurs de $P$ aux entiers naturels."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les fractions $F\\in\\mathbb{C}(X)$ telles que $F(X+1)=F(X)$ ?",
+        "propositions": [
+          "les fractions constantes",
+          "les polynômes de degré au plus $1$",
+          "les fractions de degré $0$",
+          "les fractions dont tous les pôles sont des entiers"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les constantes conviennent. Réciproquement, soit $F=\\frac PQ$ sous forme irréductible telle que $F(X+1)=F(X)$.\n\n**La forme reste irréductible.** $Q(X+1)$ est unitaire, de même coefficient dominant et de même degré que $Q$. Si $D$ divise $P(X+1)$ et $Q(X+1)$, alors $D(X-1)$ divise $P$ et $Q$ (substituer $X-1$ à $X$), donc $D(X-1)$, puis $D$, est constant. Ainsi $\\frac{P(X+1)}{Q(X+1)}$ est la forme irréductible de $F(X+1)$.\n\n**Unicité.** Comme $F(X+1)=F$, l'unicité de la forme irréductible donne $Q(X+1)=Q$ et $P(X+1)=P$.\n\n**Conclusion.** Pour tout entier naturel $n$, une récurrence donne $P(n)=P(0)$ : le polynôme $P-P(0)$ a une infinité de racines, il est nul, et $P$ est constant. De même $Q$ est constant, donc $Q=1$. Ainsi $F$ est constante.\n\nLes autres propositions échouent : $X$ (degré $1$) vérifie $X+1\\neq X$ ; $\\frac X{X+1}$ est de degré $0$ mais $\\frac{X+1}{X+2}\\neq\\frac X{X+1}$ ; $\\frac1X$ a pour seul pôle l'entier $0$ mais $\\frac1{X+1}\\neq\\frac1X$."
+    },
+    {
+      "id": "arith-l2-fractions-poles-ex1",
+      "carte": "arith-l2-fractions-poles",
+      "difficulte": 1,
+      "titre": "Lire les zéros et les pôles",
+      "enonce": "Dans $\\mathbb{R}(X)$, déterminer les zéros et les pôles de $F=\\frac{X^3-X}{(X-1)^2(X+2)^3}$, avec leurs ordres de multiplicité.",
+      "duree_min": 5,
+      "indices": [
+        "Factoriser le numérateur et simplifier avant de lire les multiplicités."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont les pôles de $F$ et leurs ordres ?",
+        "propositions": [
+          "$1$ (ordre $1$) et $-2$ (ordre $3$)",
+          "$1$ (ordre $2$) et $-2$ (ordre $3$)",
+          "$-2$ (ordre $3$) seulement",
+          "$0$, $-1$, $1$ et $-2$, tous simples"
+        ],
+        "bonne": 0
+      },
+      "correction": "$X^3-X=X(X-1)(X+1)$, donc\n$$F=\\frac{X(X+1)}{(X-1)(X+2)^3},$$\net cette écriture est irréductible : les racines $0$, $-1$ du numérateur ne sont pas racines du dénominateur. Les zéros sont $0$ et $-1$, simples ; les pôles sont $1$, d'ordre $1$, et $-2$, d'ordre $3$.\n\nErreur fréquente : lire « $1$ pôle double » sur l'écriture de départ, qui n'est pas irréductible ($v_1(F)=1-2=-1$).",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}(X)$, déterminer les zéros et les pôles de $F=\\frac{X^3-4X}{(X-2)^3(X+1)^2}$, avec leurs ordres de multiplicité.",
+          "indices": [
+            "Factoriser le numérateur et simplifier avant de lire les multiplicités."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les pôles de $F$ et leurs ordres ?",
+            "propositions": [
+              "$2$ (ordre $2$) et $-1$ (ordre $2$)",
+              "$2$ (ordre $3$) et $-1$ (ordre $2$)",
+              "$-1$ (ordre $2$) seulement",
+              "$2$ (ordre $1$) et $-1$ (ordre $1$)"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^3-4X=X(X-2)(X+2)$, donc\n$$F=\\frac{X(X+2)}{(X-2)^2(X+1)^2},$$\nécriture irréductible. Les zéros sont $0$ et $-2$, simples ; les pôles sont $2$ et $-1$, tous deux d'ordre $2$ ($v_2(F)=1-3=-2$)."
+        },
+        {
+          "enonce": "Dans $\\mathbb{C}(X)$, déterminer les zéros et les pôles de $F=\\frac{X^4-1}{X^2(X-1)^3}$, avec leurs ordres de multiplicité.",
+          "indices": [
+            "Factoriser le numérateur sur $\\mathbb{C}$ et simplifier avant de lire les multiplicités."
+          ],
+          "reponse_finale": {
+            "question": "Quels sont les pôles de $F$ et leurs ordres ?",
+            "propositions": [
+              "$0$ (ordre $2$) et $1$ (ordre $2$)",
+              "$0$ (ordre $2$) et $1$ (ordre $3$)",
+              "$0$ (ordre $2$) seulement",
+              "$0$, $1$, $i$ et $-i$, tous simples"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^4-1=(X-1)(X+1)(X-i)(X+i)$, donc\n$$F=\\frac{(X+1)(X-i)(X+i)}{X^2(X-1)^2},$$\nécriture irréductible. Les zéros sont $-1$, $i$ et $-i$, simples ; les pôles sont $0$ et $1$, tous deux d'ordre $2$ ($v_1(F)=1-3=-2$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-poles-ex2",
+      "carte": "arith-l2-fractions-poles",
+      "difficulte": 2,
+      "titre": "Fraction aux zéros et pôles prescrits",
+      "enonce": "Déterminer la fraction $F\\in\\mathbb{C}(X)$ dont les zéros dans $\\mathbb{C}$ sont exactement $1$ et $-1$, tous deux simples, dont le seul pôle est $0$, d'ordre $2$, et telle que $F(x)\\to3$ quand le réel $x$ tend vers $+\\infty$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire $F=\\frac PQ$ sous forme irréductible : $Q$ est unitaire et scindé sur $\\mathbb{C}$, et l'on connaît toutes ses racines.",
+        "La limite en $+\\infty$ d'une fraction de degré $0$ est le quotient des coefficients dominants."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la fraction $F$ ?",
+        "propositions": [
+          "$\\frac{3(X^2-1)}{X^2}$",
+          "$\\frac{3(X^2-1)}X$",
+          "$\\frac{X^2-1}{3X^2}$",
+          "$\\frac{3X^2}{X^2-1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soit $F=\\frac PQ$ sous forme irréductible. Le polynôme $Q$ est unitaire, scindé sur $\\mathbb{C}$, et sa seule racine est $0$, de multiplicité $2$ : $Q=X^2$. De même, $P$ est scindé, de seules racines $1$ et $-1$, simples : $P=c(X-1)(X+1)$ avec $c\\neq0$. Ces polynômes sont premiers entre eux.\n\n$F$ est de degré $0$ et $F(x)=c\\frac{x^2-1}{x^2}\\to c$ ; donc $c=3$ et\n$$F=\\frac{3(X^2-1)}{X^2}.$$",
+      "variantes": [
+        {
+          "enonce": "Déterminer la fraction $F\\in\\mathbb{C}(X)$ dont les zéros dans $\\mathbb{C}$ sont exactement $2$, simple, et $-1$, double, dont le seul pôle est $1$, d'ordre $3$, et telle que $F(x)\\to-2$ quand le réel $x$ tend vers $+\\infty$.",
+          "indices": [
+            "Écrire $F=\\frac PQ$ sous forme irréductible : $Q$ est unitaire et scindé sur $\\mathbb{C}$, et l'on connaît toutes ses racines.",
+            "La limite en $+\\infty$ d'une fraction de degré $0$ est le quotient des coefficients dominants."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la fraction $F$ ?",
+            "propositions": [
+              "$\\frac{-2(X-2)(X+1)^2}{(X-1)^3}$",
+              "$\\frac{-2(X-2)^2(X+1)}{(X-1)^3}$",
+              "$\\frac{2(X-2)(X+1)^2}{(X-1)^3}$",
+              "$\\frac{-2(X-2)(X+1)^2}{(X-1)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $F=\\frac PQ$ sous forme irréductible. $Q$ est unitaire, scindé, de seule racine $1$ (triple) : $Q=(X-1)^3$. $P$ est scindé, de racines $2$ (simple) et $-1$ (double) : $P=c(X-2)(X+1)^2$ avec $c\\neq0$, premier avec $Q$.\n\n$F$ est de degré $3-3=0$ et $F(x)\\to c$ ; donc $c=-2$ et\n$$F=\\frac{-2(X-2)(X+1)^2}{(X-1)^3}.$$"
+        },
+        {
+          "enonce": "Déterminer la fraction $F\\in\\mathbb{C}(X)$ dont le seul zéro dans $\\mathbb{C}$ est $0$, d'ordre $2$, dont les pôles sont exactement $i$ et $-i$, tous deux simples, et telle que $F(x)\\to5$ quand le réel $x$ tend vers $+\\infty$.",
+          "indices": [
+            "Écrire $F=\\frac PQ$ sous forme irréductible : $Q$ est unitaire et scindé sur $\\mathbb{C}$, et l'on connaît toutes ses racines.",
+            "La limite en $+\\infty$ d'une fraction de degré $0$ est le quotient des coefficients dominants."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la fraction $F$ ?",
+            "propositions": [
+              "$\\frac{5X^2}{X^2+1}$",
+              "$\\frac{5X}{X^2+1}$",
+              "$\\frac{5X^2}{(X^2+1)^2}$",
+              "$\\frac{X^2}{5(X^2+1)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soit $F=\\frac PQ$ sous forme irréductible. $Q$ est unitaire, scindé, de racines simples $i$ et $-i$ : $Q=(X-i)(X+i)=X^2+1$. $P$ est scindé, de seule racine $0$ (double) : $P=cX^2$ avec $c\\neq0$, premier avec $Q$.\n\n$F$ est de degré $0$ et $F(x)\\to c$ ; donc $c=5$ et\n$$F=\\frac{5X^2}{X^2+1}.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-poles-ex3",
+      "carte": "arith-l2-fractions-poles",
+      "difficulte": 3,
+      "titre": "Valeurs prises par une fonction rationnelle",
+      "enonce": "On considère $F=\\frac{2X^2+3}{X^2+1}\\in\\mathbb{C}(X)$ et sa fonction rationnelle, définie sur $\\mathbb{C}$ privé des pôles de $F$.\n\n**1.** Soit $F=\\frac PQ$ une fraction non constante sous forme irréductible et $c\\in\\mathbb{C}$. Montrer que $c$ est une valeur prise par la fonction rationnelle si et seulement si le polynôme $P-cQ$ n'est pas constant.\n\n**2.** En déduire les valeurs $c\\in\\mathbb{C}$ que la fonction rationnelle associée à $F$ ne prend pas.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $c\\in\\mathbb{C}$ et $x$ non pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$.",
+        "Une racine commune à $P-cQ$ et à $Q$ serait une racine commune à $P$ et $Q$."
+      ],
+      "reponse_finale": {
+        "question": "Quelles valeurs $c\\in\\mathbb{C}$ la fonction rationnelle associée à $F$ ne prend-elle pas ?",
+        "propositions": [
+          "$2$ seulement",
+          "aucune",
+          "$2$ et $3$",
+          "$3$ seulement"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $x$ n'est pas un pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$. Réciproquement, si $x$ est une racine de $P-cQ$, alors $Q(x)\\neq0$ : sinon $P(x)=cQ(x)=0$ et $x$ serait racine commune de $P$ et $Q$, contre $P\\wedge Q=1$. Ainsi $c$ est prise si et seulement si $P-cQ$ a une racine dans $\\mathbb{C}$. Le polynôme $P-cQ$ n'est pas nul (sinon $F=c$ serait constante) ; il a une racine si et seulement s'il n'est pas constant (d'Alembert-Gauss).\n\n**2.** Ici $P=2X^2+3$ et $Q=X^2+1$ sont premiers entre eux ($P-2Q=1$). Pour $c\\in\\mathbb{C}$, $P-cQ=(2-c)X^2+3-c$ est non constant si $c\\neq2$, et vaut la constante $1$ si $c=2$. La seule valeur non prise est donc $2$ (la limite de $F$ à l'infini). Par exemple, $3$ est prise : $F(0)=3$.",
+      "variantes": [
+        {
+          "enonce": "On considère $F=\\frac{X^2+X}{X^2+1}\\in\\mathbb{C}(X)$ et sa fonction rationnelle, définie sur $\\mathbb{C}$ privé des pôles de $F$.\n\n**1.** Soit $F=\\frac PQ$ une fraction non constante sous forme irréductible et $c\\in\\mathbb{C}$. Montrer que $c$ est une valeur prise par la fonction rationnelle si et seulement si le polynôme $P-cQ$ n'est pas constant.\n\n**2.** En déduire les valeurs $c\\in\\mathbb{C}$ que la fonction rationnelle associée à $F$ ne prend pas.",
+          "indices": [
+            "Pour $c\\in\\mathbb{C}$ et $x$ non pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$.",
+            "Une racine commune à $P-cQ$ et à $Q$ serait une racine commune à $P$ et $Q$ ; examiner à part la valeur $c$ qui fait baisser le degré de $P-cQ$."
+          ],
+          "reponse_finale": {
+            "question": "Quelles valeurs $c\\in\\mathbb{C}$ la fonction rationnelle associée à $F$ ne prend-elle pas ?",
+            "propositions": [
+              "aucune",
+              "$1$ seulement",
+              "$0$ seulement",
+              "$0$ et $1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $x$ n'est pas un pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$. Réciproquement, si $x$ est une racine de $P-cQ$, alors $Q(x)\\neq0$ : sinon $P(x)=cQ(x)=0$ et $x$ serait racine commune de $P$ et $Q$, contre $P\\wedge Q=1$. Ainsi $c$ est prise si et seulement si $P-cQ$ a une racine dans $\\mathbb{C}$. Le polynôme $P-cQ$ n'est pas nul (sinon $F=c$ serait constante) ; il a une racine si et seulement s'il n'est pas constant (d'Alembert-Gauss).\n\n**2.** Ici $P=X^2+X=X(X+1)$ et $Q=X^2+1$ sont premiers entre eux ($0$ et $-1$ ne sont pas racines de $Q$). Pour $c\\in\\mathbb{C}$, $P-cQ=(1-c)X^2+X-c$ : si $c\\neq1$, il est de degré $2$ ; si $c=1$, il vaut $X-1$, encore non constant. Toutes les valeurs sont donc prises : il n'y a **aucune** valeur omise. Par exemple, $F(1)=\\frac22=1$ et $F(0)=0$, alors que $1$ est la limite de $F$ à l'infini."
+        },
+        {
+          "enonce": "On considère $F=\\frac{3X-1}{X+2}\\in\\mathbb{C}(X)$ et sa fonction rationnelle, définie sur $\\mathbb{C}$ privé des pôles de $F$.\n\n**1.** Soit $F=\\frac PQ$ une fraction non constante sous forme irréductible et $c\\in\\mathbb{C}$. Montrer que $c$ est une valeur prise par la fonction rationnelle si et seulement si le polynôme $P-cQ$ n'est pas constant.\n\n**2.** En déduire les valeurs $c\\in\\mathbb{C}$ que la fonction rationnelle associée à $F$ ne prend pas.",
+          "indices": [
+            "Pour $c\\in\\mathbb{C}$ et $x$ non pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$.",
+            "Une racine commune à $P-cQ$ et à $Q$ serait une racine commune à $P$ et $Q$."
+          ],
+          "reponse_finale": {
+            "question": "Quelles valeurs $c\\in\\mathbb{C}$ la fonction rationnelle associée à $F$ ne prend-elle pas ?",
+            "propositions": [
+              "$3$ seulement",
+              "aucune",
+              "$-\\frac12$ seulement",
+              "$3$ et $-\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Si $x$ n'est pas un pôle, $F(x)=c$ équivaut à $P(x)-cQ(x)=0$. Réciproquement, si $x$ est une racine de $P-cQ$, alors $Q(x)\\neq0$ : sinon $P(x)=cQ(x)=0$ et $x$ serait racine commune de $P$ et $Q$, contre $P\\wedge Q=1$. Ainsi $c$ est prise si et seulement si $P-cQ$ a une racine dans $\\mathbb{C}$. Le polynôme $P-cQ$ n'est pas nul (sinon $F=c$ serait constante) ; il a une racine si et seulement s'il n'est pas constant (d'Alembert-Gauss).\n\n**2.** Ici $P=3X-1$ et $Q=X+2$ sont premiers entre eux ($-2$ n'est pas racine de $P$). Pour $c\\in\\mathbb{C}$, $P-cQ=(3-c)X-1-2c$ est non constant si $c\\neq3$, et vaut la constante $-7$ si $c=3$. La seule valeur non prise est $3$. La valeur $-\\frac12=F(0)$ est prise."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-poles-ex4",
+      "carte": "arith-l2-fractions-poles",
+      "difficulte": 4,
+      "titre": "L'exponentielle n'est pas une fonction rationnelle",
+      "enonce": "**1.** Montrer que la seule fraction $F\\in\\mathbb{C}(X)$ telle que $F'=F$ est la fraction nulle.\n\n**2.** En déduire qu'il n'existe pas de polynômes $P,Q\\in\\mathbb{R}[X]$, $Q$ sans racine réelle, tels que $e^x=\\frac{P(x)}{Q(x)}$ pour tout réel $x$.",
+      "duree_min": 20,
+      "indices": [
+        "Si $a$ était un pôle d'ordre $m$ de $F$, quel serait son ordre comme pôle de $F'$ ?",
+        "Une fraction sans pôle dans $\\mathbb{C}$ est un polynôme ; comparer alors les degrés de $F$ et $F'$.",
+        "Pour la question 2, utiliser qu'une fraction est déterminée par sa fonction rationnelle sur une partie infinie de $\\mathbb{R}$."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les fractions $F\\in\\mathbb{C}(X)$ telles que $F'=F$ ?",
+        "propositions": [
+          "la fraction nulle seulement",
+          "les fractions constantes",
+          "les fractions sans pôle",
+          "les fractions de degré $0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $F\\in\\mathbb{C}(X)$ telle que $F'=F$. Si $F$ avait un pôle $a$, d'ordre $m\\ge1$, ce serait un pôle d'ordre $m+1$ de $F'$ (caractéristique nulle) ; or $F'=F$ a un pôle d'ordre $m$ en $a$ : contradiction. Donc $F=\\frac PQ$ (forme irréductible) n'a pas de pôle : $Q$, unitaire et sans racine dans $\\mathbb{C}$, est constant (d'Alembert-Gauss), donc $Q=1$ et $F=P$ est un polynôme. Si $P\\neq0$, $\\deg P'<\\deg P$ (si $P$ est constant non nul, $P'=0\\neq P$), ce qui contredit $P'=P$. Donc $F=0$, qui convient.\n\n**2.** Supposons $e^x=\\frac{P(x)}{Q(x)}$ pour tout réel $x$, et posons $F=\\frac PQ$. La fonction $x\\mapsto\\frac{P(x)}{Q(x)}$ est dérivable sur $\\mathbb{R}$ de dérivée $\\frac{P'(x)Q(x)-P(x)Q'(x)}{Q(x)^2}$, qui est la fonction rationnelle de $F'$. Comme $\\exp'=\\exp$, les fonctions rationnelles de $F'$ et de $F$ coïncident sur $\\mathbb{R}$, partie infinie sans pôle : donc $F'=F$, puis $F=0$ d'après la question 1. C'est absurde, car $e^0=1\\neq0$.\n\nLes autres propositions échouent : la constante $1$ a pour dérivée $0\\neq1$ ; un polynôme non nul ou une fraction de degré $0$ non nulle ne vérifie pas $F'=F$ d'après la question 1."
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples-ex1",
+      "carte": "arith-l2-fractions-elements-simples",
+      "difficulte": 1,
+      "titre": "Décomposition avec deux pôles simples",
+      "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{X+3}{(X-1)(X+2)}$.",
+      "duree_min": 5,
+      "indices": [
+        "Le degré est négatif : pas de partie entière ; le coefficient du pôle simple $a$ est la valeur en $a$ de $(X-a)F$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+        "propositions": [
+          "$\\frac4{3(X-1)}-\\frac1{3(X+2)}$",
+          "$\\frac4{3(X-1)}+\\frac1{3(X+2)}$",
+          "$\\frac4{X-1}-\\frac1{X+2}$",
+          "$\\frac2{3(X-1)}+\\frac1{3(X+2)}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\deg F=-1<0$ : la partie entière est nulle, et $F=\\frac\\lambda{X-1}+\\frac\\mu{X+2}$.\n- $\\lambda=\\left[(X-1)F\\right](1)=\\frac{1+3}{1+2}=\\frac43$ ;\n- $\\mu=\\left[(X+2)F\\right](-2)=\\frac{-2+3}{-2-1}=-\\frac13$.\n\nDonc $F=\\frac4{3(X-1)}-\\frac1{3(X+2)}$. Vérification : $\\frac{4(X+2)-(X-1)}{3(X-1)(X+2)}=\\frac{3X+9}{3(X-1)(X+2)}=F$.",
+      "variantes": [
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{2X+1}{(X-2)(X+3)}$.",
+          "indices": [
+            "Le degré est négatif : pas de partie entière ; le coefficient du pôle simple $a$ est la valeur en $a$ de $(X-a)F$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$\\frac1{X-2}+\\frac1{X+3}$",
+              "$\\frac1{X-2}-\\frac1{X+3}$",
+              "$\\frac2{X-2}+\\frac1{X+3}$",
+              "$\\frac1{5(X-2)}+\\frac1{5(X+3)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\deg F=-1$ : pas de partie entière, et $F=\\frac\\lambda{X-2}+\\frac\\mu{X+3}$.\n- $\\lambda=\\left[(X-2)F\\right](2)=\\frac{5}{5}=1$ ;\n- $\\mu=\\left[(X+3)F\\right](-3)=\\frac{-5}{-5}=1$.\n\nDonc $F=\\frac1{X-2}+\\frac1{X+3}$. Vérification : $(X+3)+(X-2)=2X+1$."
+        },
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{X-5}{X(X-1)}$.",
+          "indices": [
+            "Le degré est négatif : pas de partie entière ; le coefficient du pôle simple $a$ est la valeur en $a$ de $(X-a)F$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$\\frac5X-\\frac4{X-1}$",
+              "$-\\frac5X+\\frac4{X-1}$",
+              "$\\frac5X+\\frac4{X-1}$",
+              "$\\frac5X-\\frac6{X-1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\deg F=-1$ : pas de partie entière, et $F=\\frac\\lambda X+\\frac\\mu{X-1}$.\n- $\\lambda=\\left[XF\\right](0)=\\frac{-5}{-1}=5$ ;\n- $\\mu=\\left[(X-1)F\\right](1)=\\frac{-4}{1}=-4$.\n\nDonc $F=\\frac5X-\\frac4{X-1}$. Vérification : $5(X-1)-4X=X-5$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples-ex2",
+      "carte": "arith-l2-fractions-elements-simples",
+      "difficulte": 2,
+      "titre": "Partie entière et pôle double",
+      "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{X^3}{(X-1)^2}$.",
+      "duree_min": 10,
+      "indices": [
+        "Commencer par la division euclidienne de $X^3$ par $(X-1)^2=X^2-2X+1$.",
+        "Le coefficient de $\\frac1{(X-1)^2}$ est la valeur en $1$ de $(X-1)^2F$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+        "propositions": [
+          "$X+2+\\frac3{X-1}+\\frac1{(X-1)^2}$",
+          "$X+2+\\frac3{X-1}-\\frac1{(X-1)^2}$",
+          "$X+\\frac3{X-1}+\\frac1{(X-1)^2}$",
+          "$X+2+\\frac1{X-1}+\\frac3{(X-1)^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Partie entière.** La division euclidienne donne $X^3=(X^2-2X+1)(X+2)+3X-2$, donc $E=X+2$ et $F=X+2+\\frac{3X-2}{(X-1)^2}$.\n\n**Partie polaire.** On écrit $3X-2=3(X-1)+1$, d'où $\\frac{3X-2}{(X-1)^2}=\\frac3{X-1}+\\frac1{(X-1)^2}$. (Contrôle : le coefficient de $\\frac1{(X-1)^2}$ est $\\left[(X-1)^2F\\right](1)=1^3=1$.)\n\nDonc $F=X+2+\\frac3{X-1}+\\frac1{(X-1)^2}$.",
+      "variantes": [
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{X^3}{(X+1)^2}$.",
+          "indices": [
+            "Commencer par la division euclidienne de $X^3$ par $(X+1)^2=X^2+2X+1$.",
+            "Le coefficient de $\\frac1{(X+1)^2}$ est la valeur en $-1$ de $(X+1)^2F$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$X-2+\\frac3{X+1}-\\frac1{(X+1)^2}$",
+              "$X-2+\\frac3{X+1}+\\frac1{(X+1)^2}$",
+              "$X+\\frac3{X+1}-\\frac1{(X+1)^2}$",
+              "$X-2-\\frac1{X+1}+\\frac3{(X+1)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Partie entière.** $X^3=(X^2+2X+1)(X-2)+3X+2$, donc $E=X-2$ et $F=X-2+\\frac{3X+2}{(X+1)^2}$.\n\n**Partie polaire.** $3X+2=3(X+1)-1$, d'où $\\frac{3X+2}{(X+1)^2}=\\frac3{X+1}-\\frac1{(X+1)^2}$. (Contrôle : $\\left[(X+1)^2F\\right](-1)=(-1)^3=-1$.)\n\nDonc $F=X-2+\\frac3{X+1}-\\frac1{(X+1)^2}$."
+        },
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac{X^3+1}{(X-2)^2}$.",
+          "indices": [
+            "Commencer par la division euclidienne de $X^3+1$ par $(X-2)^2=X^2-4X+4$.",
+            "Le coefficient de $\\frac1{(X-2)^2}$ est la valeur en $2$ de $(X-2)^2F$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$X+4+\\frac{12}{X-2}+\\frac9{(X-2)^2}$",
+              "$X+4+\\frac9{X-2}+\\frac{12}{(X-2)^2}$",
+              "$X+\\frac{12}{X-2}+\\frac9{(X-2)^2}$",
+              "$X+4+\\frac{12}{X-2}-\\frac7{(X-2)^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Partie entière.** $X^3+1=(X^2-4X+4)(X+4)+12X-15$, donc $E=X+4$ et $F=X+4+\\frac{12X-15}{(X-2)^2}$.\n\n**Partie polaire.** $12X-15=12(X-2)+9$, d'où $\\frac{12X-15}{(X-2)^2}=\\frac{12}{X-2}+\\frac9{(X-2)^2}$. (Contrôle : $\\left[(X-2)^2F\\right](2)=2^3+1=9$.)\n\nDonc $F=X+4+\\frac{12}{X-2}+\\frac9{(X-2)^2}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples-ex3",
+      "carte": "arith-l2-fractions-elements-simples",
+      "difficulte": 3,
+      "titre": "Décomposition sur $\\mathbb{R}$ avec un trinôme irréductible",
+      "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac1{X^3+1}$.",
+      "duree_min": 12,
+      "indices": [
+        "Factoriser $X^3+1$ sur $\\mathbb{R}$ et vérifier que le facteur de degré $2$ est irréductible.",
+        "Le coefficient du pôle réel s'obtient par la formule $\\frac{P(a)}{Q'(a)}$ ; retrancher ce terme de $F$ et simplifier."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+        "propositions": [
+          "$\\frac1{3(X+1)}-\\frac{X-2}{3(X^2-X+1)}$",
+          "$\\frac1{3(X+1)}+\\frac{X-2}{3(X^2-X+1)}$",
+          "$\\frac1{3(X+1)}-\\frac{X+2}{3(X^2-X+1)}$",
+          "$\\frac1{3(X+1)}-\\frac1{X^2-X+1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$X^3+1=(X+1)(X^2-X+1)$, et $X^2-X+1$ (discriminant $-3$) est irréductible sur $\\mathbb{R}$. Comme $\\deg F<0$, il n'y a pas de partie entière et\n$$F=\\frac\\lambda{X+1}+\\frac{\\alpha X+\\beta}{X^2-X+1}.$$\n**Pôle réel.** $\\lambda=\\frac{P(-1)}{Q'(-1)}=\\frac1{3(-1)^2}=\\frac13$.\n\n**Trinôme.** $F-\\frac1{3(X+1)}=\\frac{3-(X^2-X+1)}{3(X+1)(X^2-X+1)}=\\frac{-(X+1)(X-2)}{3(X+1)(X^2-X+1)}=-\\frac{X-2}{3(X^2-X+1)}$.\n\nDonc $F=\\frac1{3(X+1)}-\\frac{X-2}{3(X^2-X+1)}$.",
+      "variantes": [
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac1{X^3-1}$.",
+          "indices": [
+            "Factoriser $X^3-1$ sur $\\mathbb{R}$ et vérifier que le facteur de degré $2$ est irréductible.",
+            "Le coefficient du pôle réel s'obtient par la formule $\\frac{P(a)}{Q'(a)}$ ; retrancher ce terme de $F$ et simplifier."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$\\frac1{3(X-1)}-\\frac{X+2}{3(X^2+X+1)}$",
+              "$\\frac1{3(X-1)}+\\frac{X+2}{3(X^2+X+1)}$",
+              "$\\frac1{3(X-1)}-\\frac{X-2}{3(X^2+X+1)}$",
+              "$\\frac1{X-1}-\\frac{X+2}{X^2+X+1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^3-1=(X-1)(X^2+X+1)$, et $X^2+X+1$ (discriminant $-3$) est irréductible sur $\\mathbb{R}$. Pas de partie entière, et\n$$F=\\frac\\lambda{X-1}+\\frac{\\alpha X+\\beta}{X^2+X+1}.$$\n**Pôle réel.** $\\lambda=\\frac{P(1)}{Q'(1)}=\\frac1{3}$.\n\n**Trinôme.** $F-\\frac1{3(X-1)}=\\frac{3-(X^2+X+1)}{3(X-1)(X^2+X+1)}=\\frac{-(X-1)(X+2)}{3(X-1)(X^2+X+1)}=-\\frac{X+2}{3(X^2+X+1)}$.\n\nDonc $F=\\frac1{3(X-1)}-\\frac{X+2}{3(X^2+X+1)}$."
+        },
+        {
+          "enonce": "Décomposer en éléments simples dans $\\mathbb{R}(X)$ la fraction $F=\\frac X{X^3-8}$.",
+          "indices": [
+            "Factoriser $X^3-8$ sur $\\mathbb{R}$ et vérifier que le facteur de degré $2$ est irréductible.",
+            "Le coefficient du pôle réel s'obtient par la formule $\\frac{P(a)}{Q'(a)}$ ; retrancher ce terme de $F$ et simplifier."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la décomposition en éléments simples de $F$ ?",
+            "propositions": [
+              "$\\frac1{6(X-2)}-\\frac{X-2}{6(X^2+2X+4)}$",
+              "$\\frac1{6(X-2)}+\\frac{X-2}{6(X^2+2X+4)}$",
+              "$\\frac1{6(X-2)}-\\frac{X+2}{6(X^2+2X+4)}$",
+              "$\\frac1{12(X-2)}-\\frac{X-2}{12(X^2+2X+4)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$X^3-8=(X-2)(X^2+2X+4)$, et $X^2+2X+4$ (discriminant $-12$) est irréductible sur $\\mathbb{R}$. Pas de partie entière ($\\deg F=-2$), et\n$$F=\\frac\\lambda{X-2}+\\frac{\\alpha X+\\beta}{X^2+2X+4}.$$\n**Pôle réel.** $\\lambda=\\frac{P(2)}{Q'(2)}=\\frac2{3\\cdot4}=\\frac16$.\n\n**Trinôme.** $F-\\frac1{6(X-2)}=\\frac{6X-(X^2+2X+4)}{6(X-2)(X^2+2X+4)}=\\frac{-(X-2)^2}{6(X-2)(X^2+2X+4)}=-\\frac{X-2}{6(X^2+2X+4)}$.\n\nDonc $F=\\frac1{6(X-2)}-\\frac{X-2}{6(X^2+2X+4)}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples-ex4",
+      "carte": "arith-l2-fractions-elements-simples",
+      "difficulte": 4,
+      "titre": "Racines de l'unité et éléments simples",
+      "enonce": "Soit $n\\ge2$ et, pour $0\\le k\\le n-1$, $\\omega_k=e^{2ik\\pi/n}$.\n\n**1.** Décomposer en éléments simples dans $\\mathbb{C}(X)$ la fraction $\\frac1{X^n-1}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^{n-1}\\frac{\\omega_k}{2-\\omega_k}$.",
+      "duree_min": 20,
+      "indices": [
+        "Les pôles $\\omega_k$ sont simples : utiliser la formule $\\frac{P(a)}{Q'(a)}$.",
+        "La relation $\\omega_k^n=1$ simplifie $\\frac1{n\\omega_k^{n-1}}$.",
+        "Évaluer la décomposition en $X=2$, qui n'est pas un pôle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de la somme demandée ?",
+        "propositions": [
+          "$\\frac n{2^n-1}$",
+          "$\\frac1{2^n-1}$",
+          "$\\frac{n2^{n-1}}{2^n-1}$",
+          "$\\frac n{2^n+1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $X^n-1=\\prod_{k=0}^{n-1}(X-\\omega_k)$ a $n$ racines distinctes, donc simples ; $\\deg\\frac1{X^n-1}<0$ : pas de partie entière. Le coefficient de $\\frac1{X-\\omega_k}$ est\n$$\\frac{1}{n\\omega_k^{n-1}}=\\frac{\\omega_k}{n\\omega_k^n}=\\frac{\\omega_k}n.$$\nDonc $\\frac1{X^n-1}=\\frac1n\\sum_{k=0}^{n-1}\\frac{\\omega_k}{X-\\omega_k}$.\n\n**2.** $2$ n'est pas un pôle ($2^n\\neq1$). En évaluant en $2$ : $\\frac1{2^n-1}=\\frac1n\\sum_k\\frac{\\omega_k}{2-\\omega_k}$, d'où\n$$\\sum_{k=0}^{n-1}\\frac{\\omega_k}{2-\\omega_k}=\\frac n{2^n-1}.$$\nNe pas confondre avec $\\sum_k\\frac1{2-\\omega_k}$, qui vaut $\\frac{P'(2)}{P(2)}=\\frac{n2^{n-1}}{2^n-1}$ (dérivée logarithmique de $P=X^n-1$).",
+      "variantes": [
+        {
+          "enonce": "Soit $n\\ge2$ et, pour $0\\le k\\le n-1$, $\\omega_k=e^{2ik\\pi/n}$.\n\n**1.** Décomposer en éléments simples dans $\\mathbb{C}(X)$ la fraction $\\frac1{X^n-1}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^{n-1}\\frac{\\omega_k}{3-\\omega_k}$.",
+          "indices": [
+            "Les pôles $\\omega_k$ sont simples : utiliser la formule $\\frac{P(a)}{Q'(a)}$.",
+            "La relation $\\omega_k^n=1$ simplifie $\\frac1{n\\omega_k^{n-1}}$.",
+            "Évaluer la décomposition en $X=3$, qui n'est pas un pôle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$\\frac n{3^n-1}$",
+              "$\\frac1{3^n-1}$",
+              "$\\frac{n3^{n-1}}{3^n-1}$",
+              "$\\frac n{3^n+1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $X^n-1=\\prod_k(X-\\omega_k)$ a $n$ racines simples, et $\\deg\\frac1{X^n-1}<0$. Le coefficient de $\\frac1{X-\\omega_k}$ est $\\frac1{n\\omega_k^{n-1}}=\\frac{\\omega_k}{n\\omega_k^n}=\\frac{\\omega_k}n$, donc $\\frac1{X^n-1}=\\frac1n\\sum_{k=0}^{n-1}\\frac{\\omega_k}{X-\\omega_k}$.\n\n**2.** En évaluant en $3$ (qui n'est pas un pôle) : $\\frac1{3^n-1}=\\frac1n\\sum_k\\frac{\\omega_k}{3-\\omega_k}$, d'où\n$$\\sum_{k=0}^{n-1}\\frac{\\omega_k}{3-\\omega_k}=\\frac n{3^n-1}.$$\nLa somme $\\sum_k\\frac1{3-\\omega_k}$, elle, vaut $\\frac{n3^{n-1}}{3^n-1}$."
+        },
+        {
+          "enonce": "Soit $n\\ge2$ et $a_0,\\dots,a_{n-1}$ les racines complexes de $X^n+1$.\n\n**1.** Décomposer en éléments simples dans $\\mathbb{C}(X)$ la fraction $\\frac1{X^n+1}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^{n-1}\\frac{a_k}{1-a_k}$.",
+          "indices": [
+            "Les racines de $X^n+1$ sont simples : utiliser la formule $\\frac{P(a)}{Q'(a)}$.",
+            "La relation $a_k^n=-1$ simplifie $\\frac1{na_k^{n-1}}$.",
+            "Évaluer la décomposition en $X=1$, qui n'est pas un pôle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$-\\frac n2$",
+              "$\\frac n2$",
+              "$-\\frac12$",
+              "$-n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $X^n+1$ et sa dérivée $nX^{n-1}$ n'ont pas de racine commune ($0$ n'est pas racine de $X^n+1$) : les $n$ racines $a_k$ sont simples, et $\\deg\\frac1{X^n+1}<0$. Le coefficient de $\\frac1{X-a_k}$ est\n$$\\frac1{na_k^{n-1}}=\\frac{a_k}{na_k^n}=-\\frac{a_k}n,$$\ndonc $\\frac1{X^n+1}=-\\frac1n\\sum_{k=0}^{n-1}\\frac{a_k}{X-a_k}$.\n\n**2.** $1$ n'est pas un pôle. En évaluant en $1$ : $\\frac12=-\\frac1n\\sum_k\\frac{a_k}{1-a_k}$, d'où\n$$\\sum_{k=0}^{n-1}\\frac{a_k}{1-a_k}=-\\frac n2.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elements-simples-ex5",
+      "carte": "arith-l2-fractions-elements-simples",
+      "difficulte": 4,
+      "titre": "Une identité binomiale par éléments simples",
+      "enonce": "Soit $n\\ge1$ et $F=\\frac{n!}{X(X+1)(X+2)\\cdots(X+n)}$.\n\n**1.** Montrer que $F=\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{X+k}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^n\\frac{(-1)^k}{k+1}\\binom nk$.",
+      "duree_min": 20,
+      "indices": [
+        "Les pôles $0,-1,\\dots,-n$ sont simples ; le coefficient de $\\frac1{X+k}$ est la valeur en $-k$ de $(X+k)F$.",
+        "Séparer, dans le produit $\\prod_{j\\neq k}(j-k)$, les facteurs négatifs ($j<k$) et positifs ($j>k$).",
+        "Évaluer la décomposition en $X=1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de la somme demandée ?",
+        "propositions": [
+          "$\\frac1{n+1}$",
+          "$\\frac1n$",
+          "$0$",
+          "$\\frac1{n+2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Le dénominateur a les $n+1$ racines simples $0,-1,\\dots,-n$, et $\\deg F=-(n+1)<0$ : pas de partie entière. Le coefficient de $\\frac1{X+k}$ est\n$$\\left[(X+k)F\\right](-k)=\\frac{n!}{\\prod_{j\\neq k}(j-k)}=\\frac{n!}{\\big((-k)(-k+1)\\cdots(-1)\\big)\\big(1\\cdot2\\cdots(n-k)\\big)}=\\frac{n!}{(-1)^kk!\\,(n-k)!}=(-1)^k\\binom nk.$$\n**2.** En évaluant en $X=1$, qui n'est pas un pôle :\n$$\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{k+1}=F(1)=\\frac{n!}{1\\cdot2\\cdots(n+1)}=\\frac{n!}{(n+1)!}=\\frac1{n+1}.$$\n(On peut aussi l'obtenir en intégrant $(1-x)^n=\\sum_k(-1)^k\\binom nkx^k$ sur $[0,1]$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $n\\ge1$ et $F=\\frac{n!}{X(X+1)(X+2)\\cdots(X+n)}$.\n\n**1.** Montrer que $F=\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{X+k}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^n\\frac{(-1)^k}{k+2}\\binom nk$.",
+          "indices": [
+            "Les pôles $0,-1,\\dots,-n$ sont simples ; le coefficient de $\\frac1{X+k}$ est la valeur en $-k$ de $(X+k)F$.",
+            "Séparer, dans le produit $\\prod_{j\\neq k}(j-k)$, les facteurs négatifs ($j<k$) et positifs ($j>k$).",
+            "Évaluer la décomposition en $X=2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$\\frac1{(n+1)(n+2)}$",
+              "$\\frac1{n+2}$",
+              "$\\frac1{n(n+1)}$",
+              "$\\frac1{(n+2)(n+3)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Le dénominateur a les racines simples $0,-1,\\dots,-n$, et $\\deg F<0$. Le coefficient de $\\frac1{X+k}$ est\n$$\\frac{n!}{\\prod_{j\\neq k}(j-k)}=\\frac{n!}{(-1)^kk!\\,(n-k)!}=(-1)^k\\binom nk.$$\n**2.** En évaluant en $X=2$ :\n$$\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{k+2}=F(2)=\\frac{n!}{2\\cdot3\\cdots(n+2)}=\\frac{n!}{(n+2)!}=\\frac1{(n+1)(n+2)}.$$"
+        },
+        {
+          "enonce": "Soit $n\\ge1$ et $F=\\frac{n!}{X(X+1)(X+2)\\cdots(X+n)}$.\n\n**1.** Montrer que $F=\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{X+k}$.\n\n**2.** En déduire la valeur de $\\sum_{k=0}^n\\frac{(-1)^k}{2k+1}\\binom nk$.",
+          "indices": [
+            "Les pôles $0,-1,\\dots,-n$ sont simples ; le coefficient de $\\frac1{X+k}$ est la valeur en $-k$ de $(X+k)F$.",
+            "Séparer, dans le produit $\\prod_{j\\neq k}(j-k)$, les facteurs négatifs ($j<k$) et positifs ($j>k$).",
+            "Évaluer la décomposition en $X=\\frac12$, puis écrire $1\\cdot3\\cdots(2n+1)$ à l'aide de factorielles."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$\\frac{4^n(n!)^2}{(2n+1)!}$",
+              "$\\frac{2^n(n!)^2}{(2n+1)!}$",
+              "$\\frac{4^n(n!)^2}{(2n)!}$",
+              "$\\frac{(n!)^2}{(2n+1)!}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Le dénominateur a les racines simples $0,-1,\\dots,-n$, et $\\deg F<0$. Le coefficient de $\\frac1{X+k}$ est\n$$\\frac{n!}{\\prod_{j\\neq k}(j-k)}=\\frac{n!}{(-1)^kk!\\,(n-k)!}=(-1)^k\\binom nk.$$\n**2.** En évaluant en $X=\\frac12$ : $\\sum_k\\frac{(-1)^k\\binom nk}{k+\\frac12}=\\frac{n!}{\\frac12\\cdot\\frac32\\cdots\\frac{2n+1}2}=\\frac{2^{n+1}n!}{1\\cdot3\\cdots(2n+1)}$. Comme $\\frac1{k+\\frac12}=\\frac2{2k+1}$ et $1\\cdot3\\cdots(2n+1)=\\frac{(2n+1)!}{2\\cdot4\\cdots(2n)}=\\frac{(2n+1)!}{2^nn!}$,\n$$\\sum_{k=0}^n\\frac{(-1)^k\\binom nk}{2k+1}=\\frac{2^nn!}{1\\cdot3\\cdots(2n+1)}=\\frac{4^n(n!)^2}{(2n+1)!}.$$\nPar exemple, pour $n=1$ : $1-\\frac13=\\frac23=\\frac{4}{6}$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications-ex1",
+      "carte": "arith-l2-fractions-applications",
+      "difficulte": 1,
+      "titre": "Une somme télescopique",
+      "enonce": "Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^n\\frac1{k(k+1)}$. Décomposer $\\frac1{X(X+1)}$ en éléments simples, calculer $S_n$, puis sa limite.",
+      "duree_min": 5,
+      "indices": [
+        "$\\frac1{X(X+1)}=\\frac1X-\\frac1{X+1}$ : les termes se compensent deux à deux dans la somme."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $S_n$ ?",
+        "propositions": [
+          "$1$",
+          "$\\frac12$",
+          "$2$",
+          "$\\ln2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\frac1{X(X+1)}=\\frac1X-\\frac1{X+1}$ (coefficients $\\frac1{0+1}=1$ et $\\frac1{-1}=-1$). Donc\n$$S_n=\\sum_{k=1}^n\\left(\\frac1k-\\frac1{k+1}\\right)=1-\\frac1{n+1}\\xrightarrow[n\\to+\\infty]{}1.$$",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^n\\frac1{k(k+2)}$. Décomposer $\\frac1{X(X+2)}$ en éléments simples, calculer $S_n$, puis sa limite.",
+          "indices": [
+            "$\\frac1{X(X+2)}=\\frac12\\left(\\frac1X-\\frac1{X+2}\\right)$ : les termes se compensent avec un décalage de $2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $S_n$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$\\frac12$",
+              "$1$",
+              "$\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac1{X(X+2)}=\\frac1{2X}-\\frac1{2(X+2)}$. Donc\n$$S_n=\\frac12\\sum_{k=1}^n\\left(\\frac1k-\\frac1{k+2}\\right)=\\frac12\\left(1+\\frac12-\\frac1{n+1}-\\frac1{n+2}\\right)\\xrightarrow[n\\to+\\infty]{}\\frac34.$$"
+        },
+        {
+          "enonce": "Pour $n\\ge1$, on pose $S_n=\\sum_{k=1}^n\\frac1{k(k+3)}$. Décomposer $\\frac1{X(X+3)}$ en éléments simples, calculer $S_n$, puis sa limite.",
+          "indices": [
+            "$\\frac1{X(X+3)}=\\frac13\\left(\\frac1X-\\frac1{X+3}\\right)$ : les termes se compensent avec un décalage de $3$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $S_n$ ?",
+            "propositions": [
+              "$\\frac{11}{18}$",
+              "$\\frac13$",
+              "$\\frac{11}6$",
+              "$\\frac56$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac1{X(X+3)}=\\frac1{3X}-\\frac1{3(X+3)}$. Donc\n$$S_n=\\frac13\\sum_{k=1}^n\\left(\\frac1k-\\frac1{k+3}\\right)=\\frac13\\left(1+\\frac12+\\frac13-\\frac1{n+1}-\\frac1{n+2}-\\frac1{n+3}\\right)\\xrightarrow[n\\to+\\infty]{}\\frac13\\cdot\\frac{11}6=\\frac{11}{18}.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications-ex2",
+      "carte": "arith-l2-fractions-applications",
+      "difficulte": 2,
+      "titre": "Primitive rationnelle ou non",
+      "enonce": "Décomposer en éléments simples sur $\\mathbb{C}$ les quatre fractions suivantes, puis déterminer celle qui admet une primitive dans $\\mathbb{R}(X)$ et en donner une :\n$$\\frac{2X^2-2X+1}{X^2(X-1)^2},\\qquad\\frac1{X^2(X-1)^2},\\qquad\\frac1{X(X-1)},\\qquad\\frac1{X^2+1}.$$",
+      "duree_min": 10,
+      "indices": [
+        "Une fraction a une primitive rationnelle si et seulement si les coefficients de ses termes $\\frac1{X-a}$ sont tous nuls.",
+        "Pour les deux premières, calculer les coefficients des termes $\\frac1{X^2}$ et $\\frac1{(X-1)^2}$, puis comparer."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fractions admet une primitive dans $\\mathbb{R}(X)$ ?",
+        "propositions": [
+          "$\\frac{2X^2-2X+1}{X^2(X-1)^2}$",
+          "$\\frac1{X^2(X-1)^2}$",
+          "$\\frac1{X(X-1)}$",
+          "$\\frac1{X^2+1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On applique le critère : une fraction admet une primitive rationnelle si et seulement si les coefficients des termes $\\frac1{X-a}$ de sa décomposition sur $\\mathbb{C}$ sont tous nuls (pour une fraction réelle $F$, si $G\\in\\mathbb{C}(X)$ vérifie $G'=F$, la fraction $\\frac12(G+\\bar G)$, où $\\bar G$ s'obtient en conjuguant les coefficients, est dans $\\mathbb{R}(X)$ et vérifie encore $\\frac12(G+\\bar G)'=F$).\n\n- $\\frac{2X^2-2X+1}{X^2(X-1)^2}=\\frac1{X^2}+\\frac1{(X-1)^2}$ (réduire au même dénominateur : $(X-1)^2+X^2=2X^2-2X+1$). Les coefficients des $\\frac1X$, $\\frac1{X-1}$ sont nuls : une primitive est $-\\frac1X-\\frac1{X-1}$.\n- $\\frac1{X^2(X-1)^2}=\\frac2X+\\frac1{X^2}-\\frac2{X-1}+\\frac1{(X-1)^2}$ : coefficients $2$ et $-2$ non nuls.\n- $\\frac1{X(X-1)}=-\\frac1X+\\frac1{X-1}$ : coefficients non nuls.\n- $\\frac1{X^2+1}=\\frac{-i/2}{X-i}+\\frac{i/2}{X+i}$ : coefficients non nuls (ses primitives réelles sont les $\\arctan+C$).\n\nSeule la première admet une primitive rationnelle.",
+      "variantes": [
+        {
+          "enonce": "Décomposer en éléments simples sur $\\mathbb{C}$ les quatre fractions suivantes, puis déterminer celle qui admet une primitive dans $\\mathbb{R}(X)$ et en donner une :\n$$\\frac{X^2+1}{(X^2-1)^2},\\qquad\\frac1{(X^2-1)^2},\\qquad\\frac{2X}{X^2-1},\\qquad\\frac X{X^2+1}.$$",
+          "indices": [
+            "Une fraction a une primitive rationnelle si et seulement si les coefficients de ses termes $\\frac1{X-a}$ sont tous nuls.",
+            "Pour les deux premières, calculer les coefficients des termes $\\frac1{(X-1)^2}$ et $\\frac1{(X+1)^2}$, puis comparer."
+          ],
+          "reponse_finale": {
+            "question": "Laquelle de ces fractions admet une primitive dans $\\mathbb{R}(X)$ ?",
+            "propositions": [
+              "$\\frac{X^2+1}{(X^2-1)^2}$",
+              "$\\frac1{(X^2-1)^2}$",
+              "$\\frac{2X}{X^2-1}$",
+              "$\\frac X{X^2+1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On applique le critère : une fraction admet une primitive rationnelle si et seulement si les coefficients des termes $\\frac1{X-a}$ de sa décomposition sur $\\mathbb{C}$ sont tous nuls (pour une fraction réelle $F$, si $G\\in\\mathbb{C}(X)$ vérifie $G'=F$, la fraction $\\frac12(G+\\bar G)$, où $\\bar G$ s'obtient en conjuguant les coefficients, est dans $\\mathbb{R}(X)$ et vérifie encore $\\frac12(G+\\bar G)'=F$).\n\n- $\\frac{X^2+1}{(X^2-1)^2}=\\frac1{2(X-1)^2}+\\frac1{2(X+1)^2}$ (car $(X+1)^2+(X-1)^2=2X^2+2$) : une primitive est $-\\frac1{2(X-1)}-\\frac1{2(X+1)}=-\\frac X{X^2-1}$.\n- $\\frac1{(X^2-1)^2}=\\frac1{4(X-1)^2}-\\frac1{4(X-1)}+\\frac1{4(X+1)^2}+\\frac1{4(X+1)}$ : coefficients $\\mp\\frac14$ non nuls.\n- $\\frac{2X}{X^2-1}=\\frac1{X-1}+\\frac1{X+1}$ : coefficients non nuls (primitive $\\ln|x^2-1|$).\n- $\\frac X{X^2+1}=\\frac{1/2}{X-i}+\\frac{1/2}{X+i}$ : coefficients non nuls (primitive $\\frac12\\ln(x^2+1)$).\n\nSeule la première admet une primitive rationnelle."
+        },
+        {
+          "enonce": "Décomposer en éléments simples sur $\\mathbb{C}$ les quatre fractions suivantes, puis déterminer celle qui admet une primitive dans $\\mathbb{R}(X)$ et en donner une :\n$$\\frac X{(X^2+1)^2},\\qquad\\frac1{(X^2+1)^2},\\qquad\\frac X{X^2+1},\\qquad\\frac1{X(X^2+1)}.$$",
+          "indices": [
+            "Une fraction a une primitive rationnelle si et seulement si les coefficients de ses termes $\\frac1{X-a}$ sont tous nuls.",
+            "Les pôles des deux premières sont $\\pm i$, doubles : calculer pour chacune le coefficient de $\\frac1{X-i}$ (celui de $\\frac1{X+i}$ est son conjugué)."
+          ],
+          "reponse_finale": {
+            "question": "Laquelle de ces fractions admet une primitive dans $\\mathbb{R}(X)$ ?",
+            "propositions": [
+              "$\\frac X{(X^2+1)^2}$",
+              "$\\frac1{(X^2+1)^2}$",
+              "$\\frac X{X^2+1}$",
+              "$\\frac1{X(X^2+1)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On applique le critère : une fraction admet une primitive rationnelle si et seulement si les coefficients des termes $\\frac1{X-a}$ de sa décomposition sur $\\mathbb{C}$ sont tous nuls (pour une fraction réelle $F$, si $G\\in\\mathbb{C}(X)$ vérifie $G'=F$, la fraction $\\frac12(G+\\bar G)$, où $\\bar G$ s'obtient en conjuguant les coefficients, est dans $\\mathbb{R}(X)$ et vérifie encore $\\frac12(G+\\bar G)'=F$).\n\n- $\\frac X{(X^2+1)^2}=-\\frac{i/4}{(X-i)^2}+\\frac{i/4}{(X+i)^2}$ : pas de terme en $\\frac1{X\\mp i}$. Une primitive est $-\\frac1{2(X^2+1)}$.\n- $\\frac1{(X^2+1)^2}=-\\frac{1/4}{(X-i)^2}-\\frac{i/4}{X-i}-\\frac{1/4}{(X+i)^2}+\\frac{i/4}{X+i}$ : coefficients $\\mp\\frac i4$ non nuls (ses primitives contiennent $\\frac12\\arctan$).\n- $\\frac X{X^2+1}=\\frac{1/2}{X-i}+\\frac{1/2}{X+i}$ : coefficients non nuls.\n- $\\frac1{X(X^2+1)}=\\frac1X-\\frac{1/2}{X-i}-\\frac{1/2}{X+i}$ : coefficients non nuls.\n\nSeule la première admet une primitive rationnelle."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications-ex3",
+      "carte": "arith-l2-fractions-applications",
+      "difficulte": 3,
+      "titre": "Somme sur les racines par la dérivée logarithmique",
+      "enonce": "Soit $P=X^3-3X+1$, de racines complexes $a$, $b$, $c$ (comptées avec multiplicité).\n\n**1.** Exprimer $\\frac{P'}P$ comme somme d'éléments simples.\n\n**2.** En déduire, sans calculer les racines, la valeur de $\\frac1{2-a}+\\frac1{2-b}+\\frac1{2-c}$.",
+      "duree_min": 10,
+      "indices": [
+        "Pour $P$ scindé, $\\frac{P'}P=\\sum_i\\frac{m_i}{X-a_i}$.",
+        "Évaluer cette égalité en un point bien choisi qui n'est pas racine de $P$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de la somme demandée ?",
+        "propositions": [
+          "$3$",
+          "$\\frac13$",
+          "$-3$",
+          "$9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $P$ est scindé sur $\\mathbb{C}$ : $P=(X-a)(X-b)(X-c)$, et $\\frac{P'}P=\\frac1{X-a}+\\frac1{X-b}+\\frac1{X-c}$ (une racine multiple apparaît plusieurs fois dans la liste, ce qui revient à compter sa multiplicité).\n\n**2.** $P(2)=8-6+1=3\\neq0$ : $2$ n'est pas racine. En évaluant en $2$,\n$$\\frac1{2-a}+\\frac1{2-b}+\\frac1{2-c}=\\frac{P'(2)}{P(2)}=\\frac{3\\cdot4-3}{3}=3.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $P=X^3+X+1$, de racines complexes $a$, $b$, $c$ (comptées avec multiplicité).\n\n**1.** Exprimer $\\frac{P'}P$ comme somme d'éléments simples.\n\n**2.** En déduire, sans calculer les racines, la valeur de $\\frac1{1-a}+\\frac1{1-b}+\\frac1{1-c}$.",
+          "indices": [
+            "Pour $P$ scindé, $\\frac{P'}P=\\sum_i\\frac{m_i}{X-a_i}$.",
+            "Évaluer cette égalité en $1$, qui n'est pas racine de $P$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$\\frac43$",
+              "$\\frac34$",
+              "$-\\frac43$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $P=(X-a)(X-b)(X-c)$ sur $\\mathbb{C}$, donc $\\frac{P'}P=\\frac1{X-a}+\\frac1{X-b}+\\frac1{X-c}$.\n\n**2.** $P(1)=3\\neq0$ et $P'(1)=3+1=4$. En évaluant en $1$,\n$$\\frac1{1-a}+\\frac1{1-b}+\\frac1{1-c}=\\frac{P'(1)}{P(1)}=\\frac43.$$"
+        },
+        {
+          "enonce": "Soit $P=X^4-2X+2$, de racines complexes $a_1$, $a_2$, $a_3$, $a_4$ (comptées avec multiplicité).\n\n**1.** Exprimer $\\frac{P'}P$ comme somme d'éléments simples.\n\n**2.** En déduire, sans calculer les racines, la valeur de $\\sum_{i=1}^4\\frac1{1+a_i}$.",
+          "indices": [
+            "Pour $P$ scindé, $\\frac{P'}P=\\sum_i\\frac{m_i}{X-a_i}$.",
+            "Évaluer cette égalité en $-1$, puis faire attention au signe : $\\frac1{-1-a_i}=-\\frac1{1+a_i}$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la valeur de la somme demandée ?",
+            "propositions": [
+              "$\\frac65$",
+              "$-\\frac65$",
+              "$\\frac56$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $P=\\prod_{i=1}^4(X-a_i)$ sur $\\mathbb{C}$, donc $\\frac{P'}P=\\sum_{i=1}^4\\frac1{X-a_i}$.\n\n**2.** $P(-1)=1+2+2=5\\neq0$ et $P'(-1)=4(-1)^3-2=-6$. En évaluant en $-1$ : $\\sum_i\\frac1{-1-a_i}=\\frac{-6}5$, d'où\n$$\\sum_{i=1}^4\\frac1{1+a_i}=\\frac65.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications-ex4",
+      "carte": "arith-l2-fractions-applications",
+      "difficulte": 4,
+      "titre": "Somme d'une série par éléments simples",
+      "enonce": "**1.** Décomposer en éléments simples la fraction $F=\\frac1{X(X+1)(X+2)(X+3)}$.\n\n**2.** Justifier la convergence de la série $\\sum_{k\\ge1}F(k)$ et calculer sa somme.",
+      "duree_min": 20,
+      "indices": [
+        "Les quatre pôles sont simples ; vérifier que la somme des coefficients est nulle.",
+        "Appliquer la formule $-\\sum_i\\lambda_iH_{a_i}$, ou écrire les sommes partielles pour faire apparaître un télescopage."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la somme de la série ?",
+        "propositions": [
+          "$\\frac1{18}$",
+          "$\\frac16$",
+          "$\\frac1{24}$",
+          "$\\frac1{36}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les pôles $0,-1,-2,-3$ sont simples ; le coefficient de $\\frac1{X+a}$ est $\\frac1{\\prod_{j\\neq a}(j-a)}$ :\n$$F=\\frac1{6X}-\\frac1{2(X+1)}+\\frac1{2(X+2)}-\\frac1{6(X+3)}.$$\n**2.** La somme des coefficients est $\\frac16-\\frac12+\\frac12-\\frac16=0$ (c'est aussi la limite de $XF(X)$ à l'infini, nulle car $\\deg F=-4\\le-2$). D'après le théorème des sommes télescopiques, la série converge et\n$$\\sum_{k=1}^{+\\infty}F(k)=-\\left(\\frac16H_0-\\frac12H_1+\\frac12H_2-\\frac16H_3\\right)=-\\left(0-\\frac12+\\frac34-\\frac{11}{36}\\right)=\\frac1{18}.$$\nVariante : $F(k)=\\frac13\\left(\\frac1{k(k+1)(k+2)}-\\frac1{(k+1)(k+2)(k+3)}\\right)$, et la somme télescope en $\\frac13\\cdot\\frac1{1\\cdot2\\cdot3}=\\frac1{18}$.",
+      "variantes": [
+        {
+          "enonce": "**1.** Décomposer en éléments simples la fraction $F=\\frac1{X(X+2)(X+4)}$.\n\n**2.** Justifier la convergence de la série $\\sum_{k\\ge1}F(k)$ et calculer sa somme.",
+          "indices": [
+            "Les trois pôles sont simples ; vérifier que la somme des coefficients est nulle.",
+            "Appliquer la formule $-\\sum_i\\lambda_iH_{a_i}$, avec ici des décalages $0$, $2$ et $4$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la somme de la série ?",
+            "propositions": [
+              "$\\frac{11}{96}$",
+              "$\\frac{11}{48}$",
+              "$\\frac3{32}$",
+              "$\\frac18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les pôles $0,-2,-4$ sont simples :\n$$F=\\frac1{8X}-\\frac1{4(X+2)}+\\frac1{8(X+4)}$$\n(coefficients $\\frac1{2\\cdot4}$, $\\frac1{(-2)\\cdot2}$, $\\frac1{(-4)(-2)}$).\n\n**2.** La somme des coefficients est $\\frac18-\\frac14+\\frac18=0$ : la série converge, et\n$$\\sum_{k=1}^{+\\infty}F(k)=-\\left(\\frac18H_0-\\frac14H_2+\\frac18H_4\\right)=\\frac14\\cdot\\frac32-\\frac18\\cdot\\frac{25}{12}=\\frac38-\\frac{25}{96}=\\frac{11}{96}.$$"
+        },
+        {
+          "enonce": "**1.** Décomposer en éléments simples la fraction $F=\\frac X{(X+1)(X+2)(X+3)}$.\n\n**2.** Justifier la convergence de la série $\\sum_{k\\ge1}F(k)$ et calculer sa somme.",
+          "indices": [
+            "Les trois pôles sont simples ; vérifier que la somme des coefficients est nulle.",
+            "Appliquer la formule $-\\sum_i\\lambda_iH_{a_i}$, avec ici des décalages $1$, $2$ et $3$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la somme de la série ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac12$",
+              "$\\frac16$",
+              "$\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les pôles $-1,-2,-3$ sont simples :\n$$F=-\\frac1{2(X+1)}+\\frac2{X+2}-\\frac3{2(X+3)}$$\n(coefficients $\\frac{-1}{1\\cdot2}$, $\\frac{-2}{(-1)\\cdot1}$, $\\frac{-3}{(-2)(-1)}$).\n\n**2.** La somme des coefficients est $-\\frac12+2-\\frac32=0$ : la série converge, et\n$$\\sum_{k=1}^{+\\infty}F(k)=-\\left(-\\frac12H_1+2H_2-\\frac32H_3\\right)=\\frac12-3+\\frac32\\cdot\\frac{11}6=\\frac12-3+\\frac{11}4=\\frac14.$$"
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-applications-ex5",
+      "carte": "arith-l2-fractions-applications",
+      "difficulte": 4,
+      "titre": "Condition d'existence d'une primitive rationnelle",
+      "enonce": "Soient $a,b$ réels et $F=\\frac{X^2+aX+b}{X^2(X-1)^2}$. Déterminer une condition nécessaire et suffisante sur $(a,b)$ pour que $F$ admette une primitive dans $\\mathbb{R}(X)$, et donner alors une primitive.",
+      "duree_min": 20,
+      "indices": [
+        "Le coefficient de $\\frac1X$ est la dérivée en $0$ de $X^2F$ ; celui de $\\frac1{X-1}$ est la dérivée en $1$ de $(X-1)^2F$.",
+        "Quand $\\deg F\\le-2$, la somme des coefficients des termes $\\frac1{X-c}$ est la limite de $XF(X)$ à l'infini, donc nulle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la condition nécessaire et suffisante sur $(a,b)$ ?",
+        "propositions": [
+          "$a+2b=0$",
+          "$a=b=0$",
+          "$a-2b=0$",
+          "$b=0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Posons $N=X^2+aX+b$. Les pôles sont $0$ et $1$, doubles, et\n$$F=\\frac\\alpha X+\\frac{N(0)}{X^2}+\\frac\\beta{X-1}+\\frac{N(1)}{(X-1)^2}.$$\n**Coefficient de $\\frac1X$.** $G=X^2F=\\frac N{(X-1)^2}=N(0)+\\alpha X+X^2(\\dots)$ au voisinage de $0$, donc $\\alpha=G'(0)$. Or $G'=\\frac{N'(X-1)-2N}{(X-1)^3}$, d'où $\\alpha=\\frac{-N'(0)-2N(0)}{-1}=a+2b$.\n\n**Coefficient de $\\frac1{X-1}$.** $\\deg F=-2$, donc $XF(X)\\to0$ à l'infini ; or $XF(X)\\to\\alpha+\\beta$ (les termes d'ordre $2$ donnent $0$). Ainsi $\\beta=-\\alpha=-(a+2b)$.\n\n**Conclusion.** $F$ admet une primitive rationnelle si et seulement si $\\alpha=\\beta=0$, c'est-à-dire $a+2b=0$. Dans ce cas, $F=\\frac b{X^2}+\\frac{1+a+b}{(X-1)^2}=\\frac b{X^2}+\\frac{1-b}{(X-1)^2}$, et une primitive est\n$$-\\frac bX-\\frac{1-b}{X-1}.$$\nLa condition « $a=b=0$ » est suffisante mais pas nécessaire ($a=-2$, $b=1$ donne $F=\\frac1{X^2}$) ; « $b=0$ » n'est ni nécessaire ni suffisante ($a=1$, $b=0$ ne convient pas).",
+      "variantes": [
+        {
+          "enonce": "Soient $a,b$ réels et $F=\\frac{X^2+aX+b}{X^2(X+1)^2}$. Déterminer une condition nécessaire et suffisante sur $(a,b)$ pour que $F$ admette une primitive dans $\\mathbb{R}(X)$, et donner alors une primitive.",
+          "indices": [
+            "Le coefficient de $\\frac1X$ est la dérivée en $0$ de $X^2F$ ; celui de $\\frac1{X+1}$ est la dérivée en $-1$ de $(X+1)^2F$.",
+            "Quand $\\deg F\\le-2$, la somme des coefficients des termes $\\frac1{X-c}$ est la limite de $XF(X)$ à l'infini, donc nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la condition nécessaire et suffisante sur $(a,b)$ ?",
+            "propositions": [
+              "$a-2b=0$",
+              "$a+2b=0$",
+              "$a=b=0$",
+              "$a=2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Posons $N=X^2+aX+b$. Les pôles sont $0$ et $-1$, doubles, et\n$$F=\\frac\\alpha X+\\frac{N(0)}{X^2}+\\frac\\beta{X+1}+\\frac{N(-1)}{(X+1)^2}.$$\n**Coefficient de $\\frac1X$.** $\\alpha=G'(0)$ avec $G=X^2F=\\frac N{(X+1)^2}$ ; $G'=\\frac{N'(X+1)-2N}{(X+1)^3}$, d'où $\\alpha=N'(0)-2N(0)=a-2b$.\n\n**Coefficient de $\\frac1{X+1}$.** $\\deg F=-2$, donc $\\alpha+\\beta=\\lim XF(X)=0$ et $\\beta=-(a-2b)$.\n\n**Conclusion.** Une primitive rationnelle existe si et seulement si $a-2b=0$. Alors $N(0)=b$, $N(-1)=1-a+b=1-b$, et une primitive est\n$$-\\frac bX-\\frac{1-b}{X+1}.$$\n« $a=2$ » ne suffit pas ($a=2$, $b=0$ ne convient pas) ; « $a+2b=0$ » non plus ($a=-2$, $b=1$ donne $\\alpha=-4$)."
+        },
+        {
+          "enonce": "Soient $a,b$ réels et $F=\\frac{aX+b}{X^3(X-1)}$. Déterminer une condition nécessaire et suffisante sur $(a,b)$ pour que $F$ admette une primitive dans $\\mathbb{R}(X)$, et donner alors une primitive.",
+          "indices": [
+            "Le coefficient de $\\frac1{X-1}$ est la valeur en $1$ de $(X-1)F$.",
+            "Quand $\\deg F\\le-2$, la somme des coefficients des termes $\\frac1{X-c}$ est la limite de $XF(X)$ à l'infini, donc nulle."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la condition nécessaire et suffisante sur $(a,b)$ ?",
+            "propositions": [
+              "$a+b=0$",
+              "$a=b$",
+              "$b=0$",
+              "$a=b=0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les pôles sont $0$ (triple) et $1$ (simple) ; notons $\\alpha$ le coefficient de $\\frac1X$ et $\\beta$ celui de $\\frac1{X-1}$.\n\n**Coefficient de $\\frac1{X-1}$.** $\\beta=\\left[(X-1)F\\right](1)=\\frac{a+b}{1}=a+b$.\n\n**Coefficient de $\\frac1X$.** $\\deg F\\le-3$, donc $\\alpha+\\beta=\\lim XF(X)=0$ et $\\alpha=-(a+b)$.\n\n**Conclusion.** Une primitive rationnelle existe si et seulement si $a+b=0$. Alors $F=\\frac{a(X-1)}{X^3(X-1)}=\\frac a{X^3}$, de primitive $-\\frac a{2X^2}$.\n\n« $a=b=0$ » est suffisant mais pas nécessaire ; « $a=b$ » et « $b=0$ » ne conviennent pas ($a=b=1$, ou $a=1$, $b=0$, donnent $\\beta\\neq0$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elimination-ex1",
+      "carte": "arith-l2-fractions-elimination",
+      "difficulte": 1,
+      "titre": "Éliminer le paramètre d'une courbe polynomiale",
+      "enonce": "Éliminer $t$ entre $x=2t+1$ et $y=t^2-t$, c'est-à-dire trouver une équation cartésienne vérifiée par tous les points $(x,y)$ de la courbe.",
+      "duree_min": 5,
+      "indices": [
+        "Exprimer $t$ en fonction de $x$, puis remplacer dans l'expression de $y$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle équation cartésienne obtient-on ?",
+        "propositions": [
+          "$x^2-4x-4y+3=0$",
+          "$x^2-4x+4y+3=0$",
+          "$x^2-2x-4y+1=0$",
+          "$x^2+4x-4y+3=0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$t=\\frac{x-1}2$, donc\n$$y=\\frac{(x-1)^2}4-\\frac{x-1}2=\\frac{(x-1)(x-3)}4,$$\nsoit $4y=x^2-4x+3$, ou encore $x^2-4x-4y+3=0$. Comme $t$ s'exprime en fonction de $x$, tout point de cette parabole est atteint.",
+      "variantes": [
+        {
+          "enonce": "Éliminer $t$ entre $x=t-2$ et $y=t^2+3t$, c'est-à-dire trouver une équation cartésienne vérifiée par tous les points $(x,y)$ de la courbe.",
+          "indices": [
+            "Exprimer $t$ en fonction de $x$, puis remplacer dans l'expression de $y$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle équation cartésienne obtient-on ?",
+            "propositions": [
+              "$y=x^2+7x+10$",
+              "$y=x^2-x-2$",
+              "$y=x^2+x-2$",
+              "$y=x^2+7x+4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$t=x+2$, donc $y=(x+2)^2+3(x+2)=x^2+7x+10$. Tout point de cette parabole est atteint (avec $t=x+2$)."
+        },
+        {
+          "enonce": "Éliminer $t$ entre $x=3t$ et $y=t^3-t$, c'est-à-dire trouver une équation cartésienne vérifiée par tous les points $(x,y)$ de la courbe.",
+          "indices": [
+            "Exprimer $t$ en fonction de $x$, puis remplacer dans l'expression de $y$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle équation cartésienne obtient-on ?",
+            "propositions": [
+              "$27y=x^3-9x$",
+              "$27y=x^3-3x$",
+              "$3y=x^3-3x$",
+              "$y=x^3-x$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$t=\\frac x3$, donc $y=\\frac{x^3}{27}-\\frac x3$, soit $27y=x^3-9x$. Tout point de cette courbe est atteint (avec $t=\\frac x3$)."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elimination-ex2",
+      "carte": "arith-l2-fractions-elimination",
+      "difficulte": 2,
+      "titre": "Triplets pythagoriciens",
+      "enonce": "On paramètre le cercle $x^2+y^2=1$ par $t\\mapsto\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$. Calculer le point de paramètre $t=\\frac23$, et en déduire trois entiers naturels non nuls $a,b,c$ tels que $a^2+b^2=c^2$.",
+      "duree_min": 8,
+      "indices": [
+        "Pour $t=\\frac pq$, multiplier numérateur et dénominateur par $q^2$ : le point est $\\left(\\frac{q^2-p^2}{q^2+p^2},\\frac{2pq}{q^2+p^2}\\right)$."
+      ],
+      "reponse_finale": {
+        "question": "Quel point du cercle obtient-on pour la valeur demandée du paramètre ?",
+        "propositions": [
+          "$\\left(\\frac5{13},\\frac{12}{13}\\right)$",
+          "$\\left(\\frac{12}{13},\\frac5{13}\\right)$",
+          "$\\left(\\frac5{13},-\\frac{12}{13}\\right)$",
+          "$\\left(\\frac35,\\frac45\\right)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $t=\\frac23$ : $1-t^2=\\frac59$, $1+t^2=\\frac{13}9$ et $2t=\\frac43$. Le point est\n$$\\left(\\frac{5/9}{13/9},\\frac{4/3}{13/9}\\right)=\\left(\\frac5{13},\\frac{12}{13}\\right).$$\nIl est sur le cercle : $\\frac{25}{169}+\\frac{144}{169}=1$, d'où, en multipliant par $13^2$, le triplet $5^2+12^2=13^2$.",
+      "variantes": [
+        {
+          "enonce": "On paramètre le cercle $x^2+y^2=1$ par $t\\mapsto\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$. Calculer le point de paramètre $t=\\frac14$, et en déduire trois entiers naturels non nuls $a,b,c$ tels que $a^2+b^2=c^2$.",
+          "indices": [
+            "Pour $t=\\frac pq$, multiplier numérateur et dénominateur par $q^2$ : le point est $\\left(\\frac{q^2-p^2}{q^2+p^2},\\frac{2pq}{q^2+p^2}\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel point du cercle obtient-on pour la valeur demandée du paramètre ?",
+            "propositions": [
+              "$\\left(\\frac{15}{17},\\frac8{17}\\right)$",
+              "$\\left(\\frac8{17},\\frac{15}{17}\\right)$",
+              "$\\left(\\frac{15}{17},-\\frac8{17}\\right)$",
+              "$\\left(\\frac35,\\frac45\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $t=\\frac14$ : $1-t^2=\\frac{15}{16}$, $1+t^2=\\frac{17}{16}$ et $2t=\\frac12$. Le point est\n$$\\left(\\frac{15}{17},\\frac{1/2}{17/16}\\right)=\\left(\\frac{15}{17},\\frac8{17}\\right),$$\net $225+64=289$ donne le triplet $15^2+8^2=17^2$."
+        },
+        {
+          "enonce": "On paramètre le cercle $x^2+y^2=1$ par $t\\mapsto\\left(\\frac{1-t^2}{1+t^2},\\frac{2t}{1+t^2}\\right)$. Calculer le point de paramètre $t=\\frac37$, et en déduire trois entiers naturels non nuls $a,b,c$ tels que $a^2+b^2=c^2$.",
+          "indices": [
+            "Pour $t=\\frac pq$, multiplier numérateur et dénominateur par $q^2$ : le point est $\\left(\\frac{q^2-p^2}{q^2+p^2},\\frac{2pq}{q^2+p^2}\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Quel point du cercle obtient-on pour la valeur demandée du paramètre ?",
+            "propositions": [
+              "$\\left(\\frac{20}{29},\\frac{21}{29}\\right)$",
+              "$\\left(\\frac{21}{29},\\frac{20}{29}\\right)$",
+              "$\\left(\\frac{20}{29},-\\frac{21}{29}\\right)$",
+              "$\\left(\\frac7{25},\\frac{24}{25}\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $t=\\frac37$ : avec $p=3$, $q=7$, le point est $\\left(\\frac{49-9}{49+9},\\frac{42}{58}\\right)=\\left(\\frac{40}{58},\\frac{42}{58}\\right)=\\left(\\frac{20}{29},\\frac{21}{29}\\right)$. Comme $400+441=841$, on obtient le triplet $20^2+21^2=29^2$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elimination-ex3",
+      "carte": "arith-l2-fractions-elimination",
+      "difficulte": 3,
+      "titre": "Éliminer le paramètre d'une courbe rationnelle",
+      "enonce": "On considère la courbe paramétrée par $x=\\frac t{1+t^3}$, $y=\\frac{t^2}{1+t^3}$, pour $t$ réel différent de $-1$.\n\n**1.** Pour $t\\neq0$, calculer $\\frac yx$.\n\n**2.** En déduire une équation cartésienne vérifiée par tous les points de la courbe.\n\n**3.** Montrer que tout point du plan vérifiant cette équation est un point de la courbe.",
+      "duree_min": 15,
+      "indices": [
+        "Ici $\\frac yx=t$ : on peut exprimer le paramètre en fonction du point.",
+        "Calculer $x^3+y^3$ et $xy$ en fonction de $t$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle équation cartésienne obtient-on ?",
+        "propositions": [
+          "$x^3+y^3=xy$",
+          "$x^3+y^3=3xy$",
+          "$x^2+y^2=xy$",
+          "$x^3-y^3=xy$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $t\\neq0$, $x\\neq0$ et $\\frac yx=t$.\n\n**2.** $x^3+y^3=\\frac{t^3+t^6}{(1+t^3)^3}=\\frac{t^3}{(1+t^3)^2}$ et $xy=\\frac{t^3}{(1+t^3)^2}$ : tous les points vérifient $x^3+y^3=xy$ (y compris l'origine, obtenue pour $t=0$).\n\n**3.** Soit $(x,y)$ tel que $x^3+y^3=xy$. Si $x=0$, alors $y^3=0$ : c'est l'origine, point de paramètre $0$. Si $x\\neq0$, posons $t=\\frac yx$ ; l'équation devient $x^3(1+t^3)=x^2t$. Si $t=-1$, on obtiendrait $0=-x^2$, impossible ; donc $t\\neq-1$ et $x=\\frac t{1+t^3}$, puis $y=tx=\\frac{t^2}{1+t^3}$. La courbe est donc exactement l'ensemble des points vérifiant $x^3+y^3=xy$.",
+      "variantes": [
+        {
+          "enonce": "On considère la courbe paramétrée par $x=\\frac{3t}{1+t^3}$, $y=\\frac{3t^2}{1+t^3}$, pour $t$ réel différent de $-1$.\n\n**1.** Pour $t\\neq0$, calculer $\\frac yx$.\n\n**2.** En déduire une équation cartésienne vérifiée par tous les points de la courbe.\n\n**3.** Montrer que tout point du plan vérifiant cette équation est un point de la courbe.",
+          "indices": [
+            "Ici $\\frac yx=t$ : on peut exprimer le paramètre en fonction du point.",
+            "Calculer $x^3+y^3$ et $xy$ en fonction de $t$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle équation cartésienne obtient-on ?",
+            "propositions": [
+              "$x^3+y^3=3xy$",
+              "$x^3+y^3=xy$",
+              "$x^3+y^3=9xy$",
+              "$x^2+y^2=3xy$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t\\neq0$, $\\frac yx=t$.\n\n**2.** $x^3+y^3=\\frac{27(t^3+t^6)}{(1+t^3)^3}=\\frac{27t^3}{(1+t^3)^2}$ et $3xy=\\frac{27t^3}{(1+t^3)^2}$ : les points vérifient $x^3+y^3=3xy$ (folium de Descartes).\n\n**3.** Soit $(x,y)$ tel que $x^3+y^3=3xy$. Si $x=0$, $y=0$ : origine, de paramètre $0$. Sinon, avec $t=\\frac yx$, $x^3(1+t^3)=3x^2t$ ; $t=-1$ donnerait $0=-3x^2$, impossible, donc $x=\\frac{3t}{1+t^3}$ et $y=tx=\\frac{3t^2}{1+t^3}$. La courbe est exactement l'ensemble des solutions."
+        },
+        {
+          "enonce": "On considère la courbe paramétrée par $x=\\frac{t^2}{1+t^2}$, $y=\\frac{t^3}{1+t^2}$, pour $t$ réel quelconque.\n\n**1.** Pour $t\\neq0$, calculer $\\frac yx$.\n\n**2.** En déduire une équation cartésienne vérifiée par tous les points de la courbe.\n\n**3.** Montrer que tout point du plan vérifiant cette équation est un point de la courbe.",
+          "indices": [
+            "Ici $\\frac yx=t$ : on peut exprimer le paramètre en fonction du point.",
+            "Remplacer $t$ par $\\frac yx$ dans la relation $x(1+t^2)=t^2$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle équation cartésienne obtient-on ?",
+            "propositions": [
+              "$x^3=y^2(1-x)$",
+              "$y^3=x^2(1-y)$",
+              "$x^3=y^2(1+x)$",
+              "$x^2=y^2(1-x)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t\\neq0$, $x\\neq0$ et $\\frac yx=t$.\n\n**2.** De $x(1+t^2)=t^2$ et $t=\\frac yx$ : $x\\left(1+\\frac{y^2}{x^2}\\right)=\\frac{y^2}{x^2}$, soit $x^3+xy^2=y^2$, c'est-à-dire $x^3=y^2(1-x)$ (cissoïde de Dioclès). Vérification directe : $y^2(1-x)=\\frac{t^6}{(1+t^2)^2}\\cdot\\frac1{1+t^2}=x^3$ ; l'origine ($t=0$) convient aussi.\n\n**3.** Soit $(x,y)$ tel que $x^3=y^2(1-x)$. Si $x=0$, alors $y=0$ : origine. Sinon, avec $t=\\frac yx$, l'équation devient $x^3=t^2x^2(1-x)$, soit $x=t^2(1-x)$, d'où $x=\\frac{t^2}{1+t^2}$ et $y=tx=\\frac{t^3}{1+t^2}$. La courbe est exactement l'ensemble des solutions."
+        }
+      ]
+    },
+    {
+      "id": "arith-l2-fractions-elimination-ex4",
+      "carte": "arith-l2-fractions-elimination",
+      "difficulte": 4,
+      "titre": "Paramétrage rationnel de l'hyperbole",
+      "enonce": "Soit $\\mathcal{H}$ l'hyperbole d'équation $x^2-y^2=1$.\n\n**1.** Pour $t$ réel différent de $\\pm1$, montrer que la droite de pente $t$ passant par $(-1,0)$ recoupe $\\mathcal{H}$ en un unique autre point $M(t)=\\left(\\frac{1+t^2}{1-t^2},\\frac{2t}{1-t^2}\\right)$.\n\n**2.** Montrer que $t\\mapsto M(t)$ est une bijection de $\\mathbb{R}\\setminus\\{-1,1\\}$ sur $\\mathcal{H}\\setminus\\{(-1,0)\\}$, de réciproque $(x,y)\\mapsto\\frac y{1+x}$.\n\n**3.** Quel est le paramètre $t$ du point $\\left(\\frac53,\\frac43\\right)$ de $\\mathcal{H}$ ?",
+      "duree_min": 20,
+      "indices": [
+        "Substituer $y=t(x+1)$ dans l'équation et mettre $x+1$ en facteur.",
+        "Pour la réciproque, calculer $1-t^2$ lorsque $t=\\frac y{1+x}$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le paramètre $t$ du point donné ?",
+        "propositions": [
+          "$\\frac12$",
+          "$2$",
+          "$\\frac43$",
+          "$\\frac34$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** La droite a pour équation $y=t(x+1)$. En reportant : $x^2-t^2(x+1)^2=1$, soit $(x+1)(x-1)-t^2(x+1)^2=0$, c'est-à-dire $(x+1)\\big((1-t^2)x-(1+t^2)\\big)=0$. Pour $t\\neq\\pm1$, l'autre solution est $x=\\frac{1+t^2}{1-t^2}$, et $y=t(x+1)=\\frac{2t}{1-t^2}$. Ce point diffère de $(-1,0)$, car $\\frac{1+t^2}{1-t^2}=-1$ équivaudrait à $1+t^2=t^2-1$.\n\n**2.** Soit $(x,y)\\in\\mathcal{H}$ avec $x\\neq-1$, et $t=\\frac y{1+x}$. On a $t\\neq\\pm1$ : sinon $y^2=(1+x)^2$ et $x^2-(1+x)^2=1$ donnerait $x=-1$. Puis\n$$1-t^2=\\frac{(1+x)^2-y^2}{(1+x)^2}=\\frac{(1+x)^2-x^2+1}{(1+x)^2}=\\frac2{1+x},$$\ndonc $\\frac{2t}{1-t^2}=y$ et $\\frac{1+t^2}{1-t^2}=\\frac2{1-t^2}-1=x$ : $M(t)=(x,y)$. Réciproquement, pour $t\\neq\\pm1$, $1+x=\\frac2{1-t^2}$ et $\\frac y{1+x}=t$. Les deux applications sont réciproques l'une de l'autre.\n\n**3.** Le point $\\left(\\frac53,\\frac43\\right)$ est sur $\\mathcal{H}$ ($\\frac{25-16}9=1$), et $t=\\frac{4/3}{1+5/3}=\\frac{4/3}{8/3}=\\frac12$. Vérification : $M\\left(\\frac12\\right)=\\left(\\frac{5/4}{3/4},\\frac1{3/4}\\right)=\\left(\\frac53,\\frac43\\right)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $\\mathcal{H}$ l'hyperbole d'équation $x^2-y^2=1$.\n\n**1.** Pour $t$ réel différent de $\\pm1$, montrer que la droite de pente $t$ passant par $(-1,0)$ recoupe $\\mathcal{H}$ en un unique autre point $M(t)=\\left(\\frac{1+t^2}{1-t^2},\\frac{2t}{1-t^2}\\right)$.\n\n**2.** Montrer que $t\\mapsto M(t)$ est une bijection de $\\mathbb{R}\\setminus\\{-1,1\\}$ sur $\\mathcal{H}\\setminus\\{(-1,0)\\}$, de réciproque $(x,y)\\mapsto\\frac y{1+x}$.\n\n**3.** Quel est le paramètre $t$ du point $\\left(\\frac54,\\frac34\\right)$ de $\\mathcal{H}$ ?",
+          "indices": [
+            "Substituer $y=t(x+1)$ dans l'équation et mettre $x+1$ en facteur.",
+            "Pour la réciproque, calculer $1-t^2$ lorsque $t=\\frac y{1+x}$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le paramètre $t$ du point donné ?",
+            "propositions": [
+              "$\\frac13$",
+              "$3$",
+              "$\\frac35$",
+              "$\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** La droite a pour équation $y=t(x+1)$. En reportant : $x^2-t^2(x+1)^2=1$, soit $(x+1)(x-1)-t^2(x+1)^2=0$, c'est-à-dire $(x+1)\\big((1-t^2)x-(1+t^2)\\big)=0$. Pour $t\\neq\\pm1$, l'autre solution est $x=\\frac{1+t^2}{1-t^2}$, et $y=t(x+1)=\\frac{2t}{1-t^2}$. Ce point diffère de $(-1,0)$, car $\\frac{1+t^2}{1-t^2}=-1$ équivaudrait à $1+t^2=t^2-1$.\n\n**2.** Soit $(x,y)\\in\\mathcal{H}$ avec $x\\neq-1$, et $t=\\frac y{1+x}$. On a $t\\neq\\pm1$ : sinon $y^2=(1+x)^2$ et $x^2-(1+x)^2=1$ donnerait $x=-1$. Puis\n$$1-t^2=\\frac{(1+x)^2-y^2}{(1+x)^2}=\\frac{(1+x)^2-x^2+1}{(1+x)^2}=\\frac2{1+x},$$\ndonc $\\frac{2t}{1-t^2}=y$ et $\\frac{1+t^2}{1-t^2}=\\frac2{1-t^2}-1=x$ : $M(t)=(x,y)$. Réciproquement, pour $t\\neq\\pm1$, $1+x=\\frac2{1-t^2}$ et $\\frac y{1+x}=t$. Les deux applications sont réciproques l'une de l'autre.\n\n**3.** Le point $\\left(\\frac54,\\frac34\\right)$ est sur $\\mathcal{H}$ ($\\frac{25-9}{16}=1$), et $t=\\frac{3/4}{9/4}=\\frac13$. Vérification : $M\\left(\\frac13\\right)=\\left(\\frac{10/9}{8/9},\\frac{2/3}{8/9}\\right)=\\left(\\frac54,\\frac34\\right)$."
+        },
+        {
+          "enonce": "Soit $\\mathcal{H}$ l'hyperbole d'équation $x^2-y^2=1$.\n\n**1.** Pour $t$ réel différent de $\\pm1$, montrer que la droite de pente $t$ passant par $(-1,0)$ recoupe $\\mathcal{H}$ en un unique autre point $M(t)=\\left(\\frac{1+t^2}{1-t^2},\\frac{2t}{1-t^2}\\right)$.\n\n**2.** Montrer que $t\\mapsto M(t)$ est une bijection de $\\mathbb{R}\\setminus\\{-1,1\\}$ sur $\\mathcal{H}\\setminus\\{(-1,0)\\}$, de réciproque $(x,y)\\mapsto\\frac y{1+x}$.\n\n**3.** Quel est le paramètre $t$ du point $\\left(\\frac{13}5,-\\frac{12}5\\right)$ de $\\mathcal{H}$ ?",
+          "indices": [
+            "Substituer $y=t(x+1)$ dans l'équation et mettre $x+1$ en facteur.",
+            "Pour la réciproque, calculer $1-t^2$ lorsque $t=\\frac y{1+x}$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le paramètre $t$ du point donné ?",
+            "propositions": [
+              "$-\\frac23$",
+              "$\\frac23$",
+              "$-\\frac32$",
+              "$-\\frac{12}{13}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** La droite a pour équation $y=t(x+1)$. En reportant : $x^2-t^2(x+1)^2=1$, soit $(x+1)(x-1)-t^2(x+1)^2=0$, c'est-à-dire $(x+1)\\big((1-t^2)x-(1+t^2)\\big)=0$. Pour $t\\neq\\pm1$, l'autre solution est $x=\\frac{1+t^2}{1-t^2}$, et $y=t(x+1)=\\frac{2t}{1-t^2}$. Ce point diffère de $(-1,0)$, car $\\frac{1+t^2}{1-t^2}=-1$ équivaudrait à $1+t^2=t^2-1$.\n\n**2.** Soit $(x,y)\\in\\mathcal{H}$ avec $x\\neq-1$, et $t=\\frac y{1+x}$. On a $t\\neq\\pm1$ : sinon $y^2=(1+x)^2$ et $x^2-(1+x)^2=1$ donnerait $x=-1$. Puis\n$$1-t^2=\\frac{(1+x)^2-y^2}{(1+x)^2}=\\frac{(1+x)^2-x^2+1}{(1+x)^2}=\\frac2{1+x},$$\ndonc $\\frac{2t}{1-t^2}=y$ et $\\frac{1+t^2}{1-t^2}=\\frac2{1-t^2}-1=x$ : $M(t)=(x,y)$. Réciproquement, pour $t\\neq\\pm1$, $1+x=\\frac2{1-t^2}$ et $\\frac y{1+x}=t$. Les deux applications sont réciproques l'une de l'autre.\n\n**3.** Le point $\\left(\\frac{13}5,-\\frac{12}5\\right)$ est sur $\\mathcal{H}$ ($\\frac{169-144}{25}=1$), et $t=\\frac{-12/5}{18/5}=-\\frac23$. Vérification : $M\\left(-\\frac23\\right)=\\left(\\frac{13/9}{5/9},\\frac{-4/3}{5/9}\\right)=\\left(\\frac{13}5,-\\frac{12}5\\right)$."
+        }
+      ]
+    }
+  ]
+}

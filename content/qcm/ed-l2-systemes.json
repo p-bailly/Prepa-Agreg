@@ -1,0 +1,93 @@
+{
+  "chapitre": "ed-l2-systemes",
+  "questions": [
+    {
+      "id": "ed-l2-systemes-q1",
+      "carte": "ed-l2-systemes-cauchy",
+      "genre": "choix",
+      "enonce": "On considère le système $(t^2-4)x'=tx+y$, $y'=x+\\frac y{t+1}$. Quel est le plus grand intervalle contenant $0$ sur lequel le théorème de Cauchy linéaire s'applique ?",
+      "propositions": [
+        "$\\left]-1,2\\right[$",
+        "$\\left]-2,2\\right[$",
+        "$\\left]-1,+\\infty\\right[$",
+        "$\\mathbb{R}$"
+      ],
+      "bonne": 0,
+      "explication": "Normalisé, le système a des coefficients $\\frac t{t^2-4}$, $\\frac1{t^2-4}$ et $\\frac1{t+1}$, continus pour $t\\notin\\{-2,-1,2\\}$. Le plus grand intervalle contenant $0$ qui évite ces points est $\\left]-1,2\\right[$ ; $\\left]-2,2\\right[$ contient $-1$, où $\\frac1{t+1}$ n'est pas défini."
+    },
+    {
+      "id": "ed-l2-systemes-q2",
+      "carte": "ed-l2-systemes-dimension",
+      "genre": "vrai-faux",
+      "enonce": "Si $A:\\mathbb{R}\\to\\mathcal{M}_n(\\mathbb{R})$ est continue et vérifie $\\operatorname{tr}A(t)=1$ pour tout $t$, le wronskien $W$ de $n$ solutions de $X'=A(t)X$ vérifie $W(1)=eW(0)$.",
+      "vrai": true,
+      "explication": "Formule de Liouville : $W(1)=W(0)\\exp\\left(\\int_0^1\\operatorname{tr}A(s)\\,ds\\right)=W(0)e$. Cela vaut pour toute famille de $n$ solutions, même liée (alors $W=0$)."
+    },
+    {
+      "id": "ed-l2-systemes-q3",
+      "carte": "ed-l2-systemes-exponentielle",
+      "genre": "choix",
+      "enonce": "Que vaut $e^{tA}$ pour $A=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$ ?",
+      "propositions": [
+        "$\\begin{pmatrix}\\cos t&\\sin t\\\\-\\sin t&\\cos t\\end{pmatrix}$",
+        "$\\begin{pmatrix}\\cos t&-\\sin t\\\\\\sin t&\\cos t\\end{pmatrix}$",
+        "$\\begin{pmatrix}\\operatorname{ch}t&\\operatorname{sh}t\\\\-\\operatorname{sh}t&\\operatorname{ch}t\\end{pmatrix}$",
+        "$\\begin{pmatrix}1&t\\\\-t&1\\end{pmatrix}$"
+      ],
+      "bonne": 0,
+      "explication": "$A^2=-I_2$ ; en séparant les termes pairs et impairs de la série, $e^{tA}=\\cos t\\,I_2+\\sin t\\,A=\\begin{pmatrix}\\cos t&\\sin t\\\\-\\sin t&\\cos t\\end{pmatrix}$. Vérification : la première colonne $\\begin{pmatrix}\\cos t\\\\-\\sin t\\end{pmatrix}$ vérifie $x'=y$, $y'=-x$. La matrice $\\begin{pmatrix}\\cos t&-\\sin t\\\\\\sin t&\\cos t\\end{pmatrix}$ est l'exponentielle de $-tA$."
+    },
+    {
+      "id": "ed-l2-systemes-q4",
+      "carte": "ed-l2-systemes-exponentielle",
+      "genre": "vrai-faux",
+      "enonce": "Pour toutes matrices $A,B\\in\\mathcal{M}_n(\\mathbb{K})$ telles que $AB=BA$, on a $e^Ae^B=e^Be^A$.",
+      "vrai": true,
+      "explication": "Si $AB=BA$, alors $e^Ae^B=e^{A+B}=e^{B+A}=e^Be^A$. Sans l'hypothèse de commutation, c'est faux : pour $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, $e^Ae^B=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$ et $e^Be^A=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$."
+    },
+    {
+      "id": "ed-l2-systemes-q5",
+      "carte": "ed-l2-systemes-reduction",
+      "genre": "choix",
+      "enonce": "Pour $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, laquelle de ces fonctions est solution de $X'=AX$ ?",
+      "propositions": [
+        "$t\\mapsto\\begin{pmatrix}te^t\\\\e^t\\end{pmatrix}$",
+        "$t\\mapsto\\begin{pmatrix}e^t\\\\te^t\\end{pmatrix}$",
+        "$t\\mapsto\\begin{pmatrix}te^t\\\\0\\end{pmatrix}$",
+        "$t\\mapsto\\begin{pmatrix}e^t\\\\e^t\\end{pmatrix}$"
+      ],
+      "bonne": 0,
+      "explication": "Le système est $x'=x+y$, $y'=y$. Pour $\\begin{pmatrix}te^t\\\\e^t\\end{pmatrix}$ : $x'=(1+t)e^t=x+y$ et $y'=e^t=y$. Les autres ne conviennent pas : pour $\\begin{pmatrix}e^t\\\\te^t\\end{pmatrix}$, $y'=(1+t)e^t\\neq y$ ; pour $\\begin{pmatrix}te^t\\\\0\\end{pmatrix}$, $x'=(1+t)e^t\\neq x+y$ ; pour $\\begin{pmatrix}e^t\\\\e^t\\end{pmatrix}$, $x'=e^t\\neq x+y$. Le terme $te^t$ vient de la valeur propre double non diagonalisable."
+    },
+    {
+      "id": "ed-l2-systemes-q6",
+      "carte": "ed-l2-systemes-reduction",
+      "genre": "vrai-faux",
+      "enonce": "Toutes les solutions de $X'=AX$, avec $A=\\begin{pmatrix}-1&5\\\\0&-2\\end{pmatrix}$, tendent vers $0$ en $+\\infty$.",
+      "vrai": true,
+      "explication": "$A$ est triangulaire, de valeurs propres $-1$ et $-2$, distinctes et de partie réelle strictement négative : les solutions sont des combinaisons de $e^{-t}$ et $e^{-2t}$, qui tendent vers $0$. En cascade : $y=be^{-2t}$, puis $x=ae^{-t}-5be^{-2t}$."
+    },
+    {
+      "id": "ed-l2-systemes-q7",
+      "carte": "ed-l2-systemes-ordre2",
+      "genre": "choix",
+      "enonce": "Sur $\\left]0,+\\infty\\right[$, deux solutions de $tx''+2x'+tx=0$ ont un wronskien $w=x_1x_2'-x_1'x_2$ égal à $1$ en $t=1$. Que vaut $w(t)$ ?",
+      "propositions": [
+        "$\\frac1{t^2}$",
+        "$t^2$",
+        "$\\frac1t$",
+        "$e^{1-t^2}$"
+      ],
+      "bonne": 0,
+      "explication": "Normalisée, l'équation s'écrit $x''+\\frac2tx'+x=0$. Formule d'Abel : $w'=-\\frac2tw$, donc $w(t)=w(1)\\exp\\left(-\\int_1^t\\frac2s\\,ds\\right)=\\frac1{t^2}$. Oublier de normaliser ou le signe donne les autres propositions."
+    },
+    {
+      "id": "ed-l2-systemes-q8",
+      "carte": "ed-l2-systemes-variation-constantes",
+      "genre": "vrai-faux",
+      "enonce": "Si $R$ est une matrice fondamentale de $X'=A(t)X$, la solution de $X'=A(t)X+B(t)$ telle que $X(t_0)=X_0$ est $t\\mapsto R(t)\\left(X_0+\\int_{t_0}^tR(s)^{-1}B(s)\\,ds\\right)$.",
+      "vrai": false,
+      "explication": "Faux en général : cette fonction vaut $R(t_0)X_0$ en $t_0$. Il faut $R(t_0)^{-1}X_0$ à la place de $X_0$. Contre-exemple : $x'=x+1$, $x(0)=1$, $R(t)=2e^t$ ; la formule proposée vaut $2$ en $0$. Elle est juste lorsque $R(t_0)=I_n$, par exemple pour $R(t)=e^{(t-t_0)A}$."
+    }
+  ]
+}

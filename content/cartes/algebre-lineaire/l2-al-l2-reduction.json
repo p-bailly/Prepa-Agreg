@@ -1,0 +1,630 @@
+{
+  "cartes": [
+    {
+      "id": "al-l2-reduction-valeurs-propres",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Sous-espaces stables, valeurs et vecteurs propres",
+      "recto": "Définir sous-espace stable, valeur propre, vecteur propre et sous-espace propre, puis énoncer l'indépendance des vecteurs propres associés à des valeurs propres distinctes.",
+      "cours": "Un sous-espace $F$ est **stable** par $u$ quand $u(F)\\subset F$ : $u$ induit alors un endomorphisme $u_F$ de $F$, et dans une base de $E$ qui commence par une base de $F$, la matrice de $u$ est triangulaire par blocs $\\begin{pmatrix}A&B\\\\0&C\\end{pmatrix}$, où $A$ est la matrice de $u_F$. Réduire $u$, c'est chercher des sous-espaces stables qui découpent $E$ en morceaux simples.\n\nLes plus simples sont les droites stables : $\\mathrm{Vect}(x)$, avec $x\\neq0$, est stable si et seulement si $u(x)=\\lambda x$ pour un scalaire $\\lambda$. On dit que $x$ est un **vecteur propre** et $\\lambda$ une **valeur propre** ; le **sous-espace propre** $E_\\lambda(u)=\\mathrm{Ker}(u-\\lambda\\,\\mathrm{id}_E)$ est formé des vecteurs propres associés à $\\lambda$ et du vecteur nul. Ainsi $\\lambda$ est valeur propre si et seulement si $u-\\lambda\\,\\mathrm{id}_E$ n'est pas injectif, c'est-à-dire, en dimension finie, pas inversible.\n\nLe résultat clé : des vecteurs propres associés à des valeurs propres deux à deux distinctes forment une famille libre ; autrement dit, les sous-espaces propres sont en somme directe. En dimension $n$, il y a donc au plus $n$ valeurs propres. Autre outil très utilisé : si $v$ commute avec $u$, le noyau et l'image de $v$, et chaque sous-espace propre de $v$, sont stables par $u$.\n\nMéthode : pour vérifier qu'un vecteur $x$ est propre, calculer $u(x)$ et le comparer à $x$ ; pour trouver les vecteurs propres associés à $\\lambda$, résoudre le système $(A-\\lambda I_n)X=0$.\n\nPièges : un vecteur propre est **non nul** par définition (sinon tout scalaire serait valeur propre) ; la somme de deux vecteurs propres n'est en général pas un vecteur propre ; un endomorphisme d'un espace réel peut n'avoir aucune valeur propre (la rotation d'angle $\\frac\\pi2$ du plan n'a aucune droite stable) ; en dimension infinie, « non injectif » et « non inversible » ne coïncident plus.",
+      "hypotheses": [
+        "$u$ est un endomorphisme de $E$.",
+        "$x_1,\\dots,x_p$ sont des vecteurs propres de $u$, donc non nuls.",
+        "Les valeurs propres associées $\\lambda_1,\\dots,\\lambda_p$ sont deux à deux distinctes."
+      ],
+      "hypotheses_pieges": [
+        "$x_1,\\dots,x_p$ appartiennent à des sous-espaces propres de $u$, sans être forcément non nuls (à la place de : vecteurs propres).",
+        "Les valeurs propres associées ne sont pas toutes égales (à la place de : deux à deux distinctes).",
+        "$x_1,\\dots,x_p$ sont deux à deux non colinéaires (à la place de : valeurs propres deux à deux distinctes)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel ($\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$) et $u$ un endomorphisme de $E$.\n- Un sous-espace $F$ de $E$ est **stable** par $u$ si $u(F)\\subset F$.\n- Un scalaire $\\lambda$ est une **valeur propre** de $u$ s'il existe $x\\neq0$ tel que $u(x)=\\lambda x$ ; un tel $x$ est un **vecteur propre** associé à $\\lambda$, et $E_\\lambda(u)=\\mathrm{Ker}(u-\\lambda\\,\\mathrm{id}_E)$ est le **sous-espace propre** associé. Si $E$ est de dimension finie, $\\lambda$ est valeur propre si et seulement si $u-\\lambda\\,\\mathrm{id}_E$ n'est pas inversible.\n\n**Théorème.** Si $x_1,\\dots,x_p$ sont des vecteurs propres de $u$ associés à des valeurs propres $\\lambda_1,\\dots,\\lambda_p$ deux à deux distinctes, la famille $(x_1,\\dots,x_p)$ est libre. De façon équivalente, la somme $E_{\\lambda_1}(u)+\\cdots+E_{\\lambda_p}(u)$ est directe ; si $\\dim E=n$, $u$ a au plus $n$ valeurs propres.\n\n**Commutation.** Si $v$ est un endomorphisme de $E$ tel que $u\\circ v=v\\circ u$, alors $\\mathrm{Ker}\\,v$, $\\mathrm{Im}\\,v$ et chaque sous-espace propre de $v$ sont stables par $u$.",
+      "enonce_trous": "Des vecteurs propres de $u$ associés à des valeurs propres {{1}} forment une famille {{2}}. Si $E$ est de dimension finie, un scalaire $\\lambda$ est valeur propre de $u$ si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "deux à deux distinctes",
+          "leurres": [
+            "non nulles",
+            "toutes égales",
+            "quelconques"
+          ]
+        },
+        {
+          "reponse": "libre",
+          "leurres": [
+            "génératrice de $E$",
+            "orthogonale",
+            "liée"
+          ]
+        },
+        {
+          "reponse": "$u-\\lambda\\,\\mathrm{id}_E$ n'est pas inversible",
+          "leurres": [
+            "$u-\\lambda\\,\\mathrm{id}_E$ est inversible",
+            "$u=\\lambda\\,\\mathrm{id}_E$",
+            "$\\det u=\\lambda$"
+          ]
+        }
+      ],
+      "demo": "**Famille libre**, par récurrence sur $p$. Pour $p=1$, $x_1\\neq0$ forme une famille libre. Supposons le résultat vrai pour $p-1$ vecteurs, et soit $\\alpha_1x_1+\\cdots+\\alpha_px_p=0$. En appliquant $u$, puis en retranchant $\\lambda_p$ fois la relation de départ : $$\\alpha_1(\\lambda_1-\\lambda_p)x_1+\\cdots+\\alpha_{p-1}(\\lambda_{p-1}-\\lambda_p)x_{p-1}=0.$$ Par hypothèse de récurrence, $\\alpha_i(\\lambda_i-\\lambda_p)=0$ pour $i<p$, donc $\\alpha_i=0$ puisque $\\lambda_i\\neq\\lambda_p$. Il reste $\\alpha_px_p=0$, d'où $\\alpha_p=0$ car $x_p\\neq0$.\n\n**Somme directe.** Si $y_1+\\cdots+y_p=0$ avec $y_i\\in E_{\\lambda_i}(u)$, les $y_i$ non nuls seraient des vecteurs propres associés à des valeurs propres distinctes, de somme nulle, ce qui contredit la liberté ; donc tous les $y_i$ sont nuls. Une famille libre de $E$ a au plus $n$ vecteurs : $u$ a au plus $n$ valeurs propres.\n\n**Dimension finie.** $\\lambda$ est valeur propre si et seulement si $\\mathrm{Ker}(u-\\lambda\\,\\mathrm{id}_E)\\neq\\{0\\}$, c'est-à-dire si $u-\\lambda\\,\\mathrm{id}_E$ n'est pas injectif ; en dimension finie, un endomorphisme est injectif si et seulement s'il est bijectif.\n\n**Commutation.** Si $v(x)=0$, alors $v(u(x))=u(v(x))=0$ : $\\mathrm{Ker}\\,v$ est stable par $u$. Si $y=v(x)$, alors $u(y)=v(u(x))\\in\\mathrm{Im}\\,v$. Enfin $u$ commute avec $v-\\mu\\,\\mathrm{id}_E$, dont le noyau est $E_\\mu(v)$.",
+      "exemple": "Soit $A=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$. On a $A\\begin{pmatrix}1\\\\1\\end{pmatrix}=3\\begin{pmatrix}1\\\\1\\end{pmatrix}$ et $A\\begin{pmatrix}1\\\\-1\\end{pmatrix}=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$ : $3$ et $1$ sont valeurs propres, de vecteurs propres $(1,1)$ et $(1,-1)$, qui forment une base de $\\mathbb{R}^2$ (valeurs propres distinctes). Comme $\\dim\\mathbb{R}^2=2$, il n'y a pas d'autre valeur propre, et chaque sous-espace propre est une droite : $E_3=\\mathrm{Vect}((1,1))$, $E_1=\\mathrm{Vect}((1,-1))$. Les sous-espaces stables par $A$ sont $\\{0\\}$, ces deux droites et $\\mathbb{R}^2$.",
+      "contre_exemple": "- **Aucune valeur propre réelle** : $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ envoie $(x,y)$ sur $(-y,x)$ ; si $R(x,y)=\\lambda(x,y)$, alors $-y=\\lambda x$ et $x=\\lambda y$, d'où $x=-\\lambda^2x$ et $y=-\\lambda^2y$, donc $x=y=0$ puisque $1+\\lambda^2\\neq0$. Aucune droite de $\\mathbb{R}^2$ n'est stable.\n- **Valeurs propres seulement non toutes égales** : pour $u=\\mathrm{diag}(1,2)$, les vecteurs propres $e_1$, $2e_1$, $e_2$ ont pour valeurs propres $1$, $1$, $2$, et la famille $(e_1,2e_1,e_2)$ est liée.\n- **Dimension infinie** : sur $\\mathbb{R}[X]$, $u:P\\mapsto XP$ est injectif, donc $0$ n'est pas valeur propre, mais pas surjectif (le polynôme $1$ n'est pas atteint) : $u$ n'est pas inversible bien que $0$ ne soit pas valeur propre.",
+      "affirmations": [
+        {
+          "texte": "Tout endomorphisme d'un $\\mathbb{R}$-espace vectoriel de dimension finie non nulle admet au moins une valeur propre.",
+          "vrai": false,
+          "contre_exemple": "La rotation $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ de $\\mathbb{R}^2$ n'a aucune valeur propre réelle : $R(x,y)=\\lambda(x,y)$ impose $(1+\\lambda^2)x=(1+\\lambda^2)y=0$, donc $x=y=0$."
+        },
+        {
+          "texte": "Si $x$ et $y$ sont deux vecteurs propres de $u$, alors $x+y$ est un vecteur propre de $u$.",
+          "vrai": false,
+          "contre_exemple": "Pour $u=\\mathrm{diag}(1,2)$, $e_1$ et $e_2$ sont propres, mais $u(e_1+e_2)=(1,2)$ n'est pas colinéaire à $e_1+e_2=(1,1)$. (Et $x+(-x)=0$ n'est jamais propre.)"
+        },
+        {
+          "texte": "Un endomorphisme d'un espace vectoriel de dimension $n$ a au plus $n$ valeurs propres.",
+          "vrai": true,
+          "justification": "Des vecteurs propres associés à des valeurs propres distinctes forment une famille libre, qui a au plus $n$ éléments."
+        },
+        {
+          "texte": "Si $u\\circ v=v\\circ u$, tout sous-espace propre de $u$ est stable par $v$.",
+          "vrai": true,
+          "justification": "Si $u(x)=\\lambda x$, alors $u(v(x))=v(u(x))=\\lambda v(x)$, donc $v(x)\\in E_\\lambda(u)$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-applications-noyau",
+        "al-l1-applications-isomorphismes",
+        "al-l1-espaces-somme-directe"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-polynome-caracteristique",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Polynôme caractéristique",
+      "recto": "Définir le polynôme caractéristique d'un endomorphisme en dimension finie, donner son degré, deux de ses coefficients et son lien avec les valeurs propres.",
+      "cours": "En dimension finie, $\\lambda$ est valeur propre de $u$ si et seulement si $\\det(\\lambda\\,\\mathrm{id}_E-u)=0$. L'idée est de remplacer $\\lambda$ par une indéterminée : $\\chi_u=\\det(X\\,\\mathrm{id}_E-u)$, calculé sur une matrice $A$ de $u$ comme $\\det(XI_n-A)$, est un polynôme dont les racines dans $\\mathbb{K}$ sont exactement les valeurs propres. Il ne dépend pas de la base choisie, car deux matrices semblables ont le même polynôme caractéristique.\n\nOn retient sa forme : $\\chi_A=X^n-(\\mathrm{tr}\\,A)X^{n-1}+\\cdots+(-1)^n\\det A$. En taille $2$, c'est tout : $\\chi_A=X^2-(\\mathrm{tr}\\,A)X+\\det A$. Pour une matrice triangulaire (ou triangulaire par blocs), $\\chi_A$ est le produit des $X-a_{ii}$ (ou des polynômes caractéristiques des blocs diagonaux). Quand $\\chi_A$ est scindé, de racines $\\lambda_1,\\dots,\\lambda_n$ répétées selon leur multiplicité, les relations entre coefficients et racines donnent $\\mathrm{tr}\\,A=\\lambda_1+\\cdots+\\lambda_n$ et $\\det A=\\lambda_1\\cdots\\lambda_n$. La **multiplicité** d'une valeur propre est sa multiplicité comme racine de $\\chi_u$.\n\nMéthode : développer $\\det(XI_n-A)$ après des opérations sur les lignes ou les colonnes qui font apparaître un facteur commun, plutôt que de développer brutalement ; contrôler le résultat avec la trace et le déterminant.\n\nPièges : certains ouvrages définissent $\\chi_A=\\det(A-XI_n)$, qui vaut $(-1)^n\\det(XI_n-A)$ (mêmes racines) ; sur $\\mathbb{R}$, une racine complexe non réelle de $\\chi_A$ n'est pas une valeur propre ; deux matrices de même polynôme caractéristique ne sont pas forcément semblables ; les coefficients diagonaux d'une matrice non triangulaire ne sont pas ses valeurs propres.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n\\ge1$ et $u$ est un endomorphisme de $E$.",
+        "$\\lambda$ appartient au corps $\\mathbb{K}$ des scalaires.",
+        "$\\chi_u(\\lambda)=0$, où $\\chi_u=\\det(X\\,\\mathrm{id}_E-u)$."
+      ],
+      "hypotheses_pieges": [
+        "$\\lambda\\in\\mathbb{C}$ alors que $E$ est un $\\mathbb{R}$-espace vectoriel (à la place de : $\\lambda\\in\\mathbb{K}$).",
+        "$\\lambda$ est un coefficient diagonal de la matrice de $u$ dans une base de $E$ (à la place de : $\\chi_u(\\lambda)=0$).",
+        "$\\det u=\\lambda^n$ (à la place de : $\\chi_u(\\lambda)=0$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $n\\ge1$, $u$ un endomorphisme de $E$ et $A\\in\\mathcal{M}_n(\\mathbb{K})$ sa matrice dans une base. Le **polynôme caractéristique** de $u$ est $\\chi_u=\\det(X\\,\\mathrm{id}_E-u)=\\det(XI_n-A)$ ; il ne dépend pas de la base, car deux matrices semblables ont le même polynôme caractéristique.\n- $\\chi_u$ est unitaire de degré $n$ : $\\chi_u=X^n-(\\mathrm{tr}\\,u)X^{n-1}+\\cdots+(-1)^n\\det u$.\n- Un scalaire $\\lambda\\in\\mathbb{K}$ est valeur propre de $u$ si et seulement si $\\chi_u(\\lambda)=0$.\n- Si $A$ est triangulaire, $\\chi_A=\\prod_{i=1}^{n}(X-a_{ii})$ ; si $n=2$, $\\chi_A=X^2-(\\mathrm{tr}\\,A)X+\\det A$.\n\nLa **multiplicité** d'une valeur propre $\\lambda$ est sa multiplicité comme racine de $\\chi_u$.",
+      "enonce_trous": "Le polynôme caractéristique $\\chi_A=\\det(XI_n-A)$ d'une matrice $A\\in\\mathcal{M}_n(\\mathbb{K})$ est {{1}} de degré $n$ ; son coefficient de $X^{n-1}$ est {{2}} et son terme constant est {{3}}. Ses racines dans $\\mathbb{K}$ sont exactement les valeurs propres de $A$.",
+      "trous": [
+        {
+          "reponse": "unitaire",
+          "leurres": [
+            "de coefficient dominant $\\det A$",
+            "de coefficient dominant $(-1)^n$",
+            "scindé"
+          ]
+        },
+        {
+          "reponse": "$-\\mathrm{tr}\\,A$",
+          "leurres": [
+            "$\\mathrm{tr}\\,A$",
+            "$\\det A$",
+            "$-\\det A$"
+          ]
+        },
+        {
+          "reponse": "$(-1)^n\\det A$",
+          "leurres": [
+            "$\\det A$",
+            "$-\\det A$",
+            "$(-1)^n\\mathrm{tr}\\,A$"
+          ]
+        }
+      ],
+      "demo": "**Indépendance vis-à-vis de la base.** Si $B=P^{-1}AP$, alors $XI_n-B=P^{-1}(XI_n-A)P$, et le déterminant d'un produit donne $\\det(XI_n-B)=\\det(XI_n-A)$. (Les déterminants de matrices à coefficients dans $\\mathbb{K}[X]$ se calculent par la même formule et ont les mêmes propriétés, par exemple en travaillant dans le corps des fractions rationnelles $\\mathbb{K}(X)$.)\n\n**Degré et coefficients.** Par la formule $\\det M=\\sum_{\\sigma}\\varepsilon(\\sigma)\\prod_{i}m_{\\sigma(i)i}$ appliquée à $M=XI_n-A$ : le terme de l'identité est $\\prod_{i=1}^n(X-a_{ii})=X^n-(a_{11}+\\cdots+a_{nn})X^{n-1}+\\cdots$. Une permutation $\\sigma\\neq\\mathrm{id}$ déplace au moins deux indices, donc son produit contient au plus $n-2$ coefficients diagonaux, les seuls où figure $X$ : il est de degré au plus $n-2$. Donc $\\chi_A$ est unitaire de degré $n$, de coefficient de $X^{n-1}$ égal à $-\\mathrm{tr}\\,A$. Le terme constant est $\\chi_A(0)=\\det(-A)=(-1)^n\\det A$.\n\n**Racines.** Pour $\\lambda\\in\\mathbb{K}$, $\\chi_u(\\lambda)=\\det(\\lambda\\,\\mathrm{id}_E-u)$ est nul si et seulement si $\\lambda\\,\\mathrm{id}_E-u$ n'est pas inversible, c'est-à-dire si $\\lambda$ est valeur propre.\n\n**Cas particuliers.** Si $A$ est triangulaire, $XI_n-A$ l'est aussi, et son déterminant est le produit des coefficients diagonaux $X-a_{ii}$. Si $n=2$, $\\det\\begin{pmatrix}X-a&-b\\\\-c&X-d\\end{pmatrix}=X^2-(a+d)X+ad-bc$.",
+      "exemple": "Pour $A=\\begin{pmatrix}4&-2\\\\1&1\\end{pmatrix}$ : $\\mathrm{tr}\\,A=5$ et $\\det A=6$, donc $\\chi_A=X^2-5X+6=(X-2)(X-3)$ ; les valeurs propres sont $2$ et $3$. Pour la matrice triangulaire $B=\\begin{pmatrix}1&2&3\\\\0&-1&4\\\\0&0&1\\end{pmatrix}$, $\\chi_B=(X-1)^2(X+1)$ : la valeur propre $1$ est double, la valeur propre $-1$ simple ; contrôle : $\\mathrm{tr}\\,B=1=1+1-1$ et $\\det B=-1=1\\cdot1\\cdot(-1)$.",
+      "contre_exemple": "- **Racine complexe sur $\\mathbb{R}$** : $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ a pour polynôme caractéristique $X^2+1$, sans racine réelle : $R$ n'a aucune valeur propre réelle, bien que $\\mathrm{i}$ et $-\\mathrm{i}$ soient racines de $\\chi_R$ dans $\\mathbb{C}$.\n- **Coefficients diagonaux** : $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ a ses coefficients diagonaux nuls, mais son polynôme caractéristique est $X^2-1$ : ses valeurs propres sont $1$ et $-1$, et $0$ n'en est pas une.\n- **Même polynôme, pas semblables** : $I_2$ et $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ ont toutes deux $(X-1)^2$ pour polynôme caractéristique, mais la seule matrice semblable à $I_2$ est $I_2$, car $P^{-1}I_2P=I_2$.\n- **$\\det u=\\lambda^n$ ne suffit pas** : $\\mathrm{diag}(4,1)$ a pour déterminant $4=2^2$, mais $2$ n'est pas valeur propre.",
+      "affirmations": [
+        {
+          "texte": "Deux matrices semblables ont le même polynôme caractéristique.",
+          "vrai": true,
+          "justification": "Si $B=P^{-1}AP$, alors $XI_n-B=P^{-1}(XI_n-A)P$ a le même déterminant que $XI_n-A$."
+        },
+        {
+          "texte": "Deux matrices qui ont le même polynôme caractéristique sont semblables.",
+          "vrai": false,
+          "contre_exemple": "$I_2$ et $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ ont le même polynôme caractéristique $(X-1)^2$, mais toute matrice semblable à $I_2$ est égale à $I_2$."
+        },
+        {
+          "texte": "$A$ et ${}^tA$ ont le même polynôme caractéristique.",
+          "vrai": true,
+          "justification": "$XI_n-{}^tA={}^t(XI_n-A)$, et une matrice a le même déterminant que sa transposée."
+        },
+        {
+          "texte": "Les valeurs propres de $A+B$ sont les sommes d'une valeur propre de $A$ et d'une valeur propre de $B$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ n'ont que la valeur propre $0$, mais $A+B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ a pour valeurs propres $1$ et $-1$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-valeurs-propres",
+        "al-l1-determinant-inversibilite",
+        "al-l1-determinant-produit",
+        "al-l1-applications-matrice",
+        "arith-l1-polynomes-viete"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-diagonalisabilite",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Diagonalisabilité et dimension des sous-espaces propres",
+      "recto": "Énoncer l'encadrement de la dimension d'un sous-espace propre et la caractérisation des endomorphismes diagonalisables par les sous-espaces propres.",
+      "cours": "Un endomorphisme $u$ est **diagonalisable** s'il existe une base de $E$ formée de vecteurs propres de $u$, c'est-à-dire une base où sa matrice est diagonale ; une matrice $A$ est diagonalisable si elle est semblable à une matrice diagonale : $A=PDP^{-1}$, les colonnes de $P$ étant des vecteurs propres et les coefficients de $D$ les valeurs propres associées, dans le même ordre.\n\nComme les sous-espaces propres sont toujours en somme directe, $u$ est diagonalisable exactement quand ils remplissent $E$, c'est-à-dire quand la somme de leurs dimensions vaut $n$. Or chaque $E_\\lambda(u)$ a une dimension comprise entre $1$ et la multiplicité $m_\\lambda$ de $\\lambda$ dans $\\chi_u$. D'où le critère : $u$ est diagonalisable si et seulement si $\\chi_u$ est scindé et $\\dim E_\\lambda(u)=m_\\lambda$ pour chaque valeur propre. Pour une valeur propre simple, l'égalité est automatique ; en particulier, un polynôme caractéristique scindé à racines simples ($n$ valeurs propres distinctes) suffit.\n\nMéthode : calculer et factoriser $\\chi_A$ ; s'il n'est pas scindé, $A$ n'est pas diagonalisable sur $\\mathbb{K}$. Sinon, pour chaque valeur propre multiple, calculer $\\dim E_\\lambda=n-\\mathrm{rg}(A-\\lambda I_n)$ et la comparer à $m_\\lambda$. Pour diagonaliser, juxtaposer des bases des sous-espaces propres pour former $P$.\n\nPièges : la diagonalisabilité dépend du corps ($R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ l'est sur $\\mathbb{C}$, pas sur $\\mathbb{R}$) ; « valeurs propres distinctes » est suffisant, pas nécessaire ($I_n$) ; une matrice triangulaire à diagonale constante n'est diagonalisable que si elle est scalaire ; inversible et diagonalisable sont deux notions indépendantes.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n\\ge1$ et $u$ est un endomorphisme de $E$.",
+        "$\\chi_u$ est scindé sur $\\mathbb{K}$.",
+        "Pour chaque valeur propre $\\lambda$ de $u$, $\\dim E_\\lambda(u)$ est égale à la multiplicité de $\\lambda$ dans $\\chi_u$."
+      ],
+      "hypotheses_pieges": [
+        "$\\chi_u$ admet au moins une racine dans $\\mathbb{K}$ (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$).",
+        "Pour chaque valeur propre $\\lambda$, $\\dim E_\\lambda(u)=1$ (à la place de : égale à la multiplicité).",
+        "Pour chaque valeur propre $\\lambda$, $\\dim E_\\lambda(u)$ est au plus la multiplicité de $\\lambda$ (à la place de : égale à la multiplicité)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $n\\ge1$ et $u$ un endomorphisme de $E$. On dit que $u$ est **diagonalisable** s'il existe une base de $E$ formée de vecteurs propres de $u$, c'est-à-dire dans laquelle sa matrice est diagonale.\n- Pour toute valeur propre $\\lambda$, de multiplicité $m_\\lambda$ dans $\\chi_u$ : $1\\le\\dim E_\\lambda(u)\\le m_\\lambda$.\n- $u$ est diagonalisable si et seulement si $E=\\bigoplus_{\\lambda}E_\\lambda(u)$, la somme portant sur les valeurs propres, si et seulement si $\\sum_\\lambda\\dim E_\\lambda(u)=n$.\n- $u$ est diagonalisable si et seulement si $\\chi_u$ est scindé sur $\\mathbb{K}$ et $\\dim E_\\lambda(u)=m_\\lambda$ pour toute valeur propre $\\lambda$.\n- En particulier, si $\\chi_u$ est scindé à racines simples, $u$ est diagonalisable.",
+      "enonce_trous": "L'endomorphisme $u$ est diagonalisable si et seulement si {{1}} et, pour toute valeur propre $\\lambda$, {{2}}. En particulier, si $\\chi_u$ est scindé à racines {{3}}, $u$ est diagonalisable.",
+      "trous": [
+        {
+          "reponse": "$\\chi_u$ est scindé sur $\\mathbb{K}$",
+          "leurres": [
+            "$u$ est inversible",
+            "$\\chi_u$ admet au moins une racine dans $\\mathbb{K}$",
+            "$\\mathrm{tr}\\,u\\neq0$"
+          ]
+        },
+        {
+          "reponse": "$\\dim E_\\lambda(u)$ est égale à la multiplicité de $\\lambda$ dans $\\chi_u$",
+          "leurres": [
+            "$\\dim E_\\lambda(u)=1$",
+            "$\\dim E_\\lambda(u)$ est au plus la multiplicité de $\\lambda$ dans $\\chi_u$",
+            "$\\dim E_\\lambda(u)\\ge1$"
+          ]
+        },
+        {
+          "reponse": "simples",
+          "leurres": [
+            "doubles",
+            "non nulles",
+            "réelles"
+          ]
+        }
+      ],
+      "demo": "**Encadrement.** $E_\\lambda(u)\\neq\\{0\\}$ car $\\lambda$ est valeur propre. Soit $d=\\dim E_\\lambda(u)$ et $(e_1,\\dots,e_d)$ une base de $E_\\lambda(u)$, complétée en une base de $E$. La matrice de $u$ dans cette base est $\\begin{pmatrix}\\lambda I_d&B\\\\0&C\\end{pmatrix}$, donc $\\chi_u=(X-\\lambda)^d\\chi_C$ (déterminant triangulaire par blocs) : $(X-\\lambda)^d$ divise $\\chi_u$, et $d\\le m_\\lambda$.\n\n**Première caractérisation.** Les sous-espaces propres sont en somme directe ; notons $F$ leur somme, de dimension $\\sum_\\lambda\\dim E_\\lambda(u)$. Si $F=E$, on juxtapose des bases des $E_\\lambda(u)$ : c'est une base de $E$ formée de vecteurs propres. Réciproquement, si $(e_1,\\dots,e_n)$ est une base de vecteurs propres, chaque $e_i$ est dans un sous-espace propre, donc $E=\\mathrm{Vect}(e_1,\\dots,e_n)\\subset F$.\n\n**Critère.** Si $u$ est diagonalisable, sa matrice dans une base de vecteurs propres est diagonale, de coefficients $\\mu_1,\\dots,\\mu_n$, donc $\\chi_u=\\prod_i(X-\\mu_i)$ est scindé, et $m_\\lambda$ est le nombre d'indices $i$ tels que $\\mu_i=\\lambda$, c'est-à-dire le nombre de vecteurs de la base situés dans $E_\\lambda(u)$ : ces vecteurs sont libres, donc $m_\\lambda\\le\\dim E_\\lambda(u)$, et l'encadrement donne l'égalité. Réciproquement, si $\\chi_u$ est scindé, $\\sum_\\lambda m_\\lambda=\\deg\\chi_u=n$ ; si de plus $\\dim E_\\lambda(u)=m_\\lambda$ pour tout $\\lambda$, alors $\\sum_\\lambda\\dim E_\\lambda(u)=n$ et $u$ est diagonalisable.\n\n**Racines simples.** Si $\\chi_u$ est scindé à racines simples, chaque $m_\\lambda$ vaut $1$, et $1\\le\\dim E_\\lambda(u)\\le1$.",
+      "exemple": "Les matrices $A=\\begin{pmatrix}1&0&1\\\\0&1&0\\\\0&0&2\\end{pmatrix}$ et $B=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&2\\end{pmatrix}$ ont le même polynôme caractéristique $(X-1)^2(X-2)$. Pour $A$ : $A-I_3=\\begin{pmatrix}0&0&1\\\\0&0&0\\\\0&0&1\\end{pmatrix}$ est de rang $1$, donc $\\dim E_1(A)=2=m_1$ : $A$ est diagonalisable, par exemple avec $P=\\begin{pmatrix}1&0&1\\\\0&1&0\\\\0&0&1\\end{pmatrix}$ (vecteurs propres $e_1$, $e_2$ pour $1$ et $(1,0,1)$ pour $2$) et $D=\\mathrm{diag}(1,1,2)$. Pour $B$ : $B-I_3$ est de rang $2$, donc $\\dim E_1(B)=1<2$ : $B$ n'est pas diagonalisable.",
+      "contre_exemple": "- **$\\chi_u$ scindé ne suffit pas** : $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour polynôme caractéristique $(X-1)^2$, mais $E_1(J)=\\mathrm{Ker}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=\\mathrm{Vect}(e_1)$ est de dimension $1<2$.\n- **Une racine ne suffit pas** : la matrice $\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$ de $\\mathcal{M}_3(\\mathbb{R})$ a pour polynôme caractéristique $(X-1)(X^2+1)$ ; la seule valeur propre réelle, $1$, est simple et $\\dim E_1=1$, mais la somme des dimensions des sous-espaces propres vaut $1<3$ : elle n'est pas diagonalisable sur $\\mathbb{R}$.\n- **Valeurs propres distinctes non nécessaires** : $I_n$ est diagonale, avec la seule valeur propre $1$, de multiplicité $n$.",
+      "affirmations": [
+        {
+          "texte": "Une matrice de $\\mathcal{M}_n(\\mathbb{R})$ qui a $n$ valeurs propres réelles distinctes est diagonalisable dans $\\mathcal{M}_n(\\mathbb{R})$.",
+          "vrai": true,
+          "justification": "Son polynôme caractéristique, de degré $n$, a $n$ racines réelles distinctes : il est scindé à racines simples."
+        },
+        {
+          "texte": "Si $A$ est diagonalisable, son polynôme caractéristique est à racines simples.",
+          "vrai": false,
+          "contre_exemple": "$I_2$ est diagonale, et $\\chi_{I_2}=(X-1)^2$ a une racine double."
+        },
+        {
+          "texte": "Une matrice nilpotente non nulle n'est pas diagonalisable.",
+          "vrai": true,
+          "justification": "Si $N^k=0$ et $Nx=\\lambda x$ avec $x\\neq0$, alors $\\lambda^kx=0$, donc $\\lambda=0$ ; diagonalisable, $N$ serait semblable à la matrice nulle, donc nulle."
+        },
+        {
+          "texte": "Si $A^2$ est diagonalisable, alors $A$ est diagonalisable.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ vérifie $A^2=0$, diagonale, mais $A$ est nilpotente non nulle, donc pas diagonalisable."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-polynome-caracteristique",
+        "al-l2-reduction-valeurs-propres",
+        "al-l1-espaces-dimension",
+        "arith-l1-polynomes-multiplicite"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-lemme-noyaux",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Polynômes annulateurs, polynôme minimal, lemme des noyaux",
+      "recto": "Définir polynôme annulateur et polynôme minimal, énoncer le lemme des noyaux et le critère de diagonalisabilité par un polynôme annulateur.",
+      "cours": "Pour $P=\\sum a_kX^k\\in\\mathbb{K}[X]$, on pose $P(u)=\\sum a_ku^k$ (avec $u^0=\\mathrm{id}_E$). L'application $P\\mapsto P(u)$ respecte sommes et produits : $(PQ)(u)=P(u)\\circ Q(u)$, et deux polynômes en $u$ commutent. Son image est l'algèbre commutative $\\mathbb{K}[u]$. Un **polynôme annulateur** de $u$ est un $P$ tel que $P(u)=0$. En dimension finie $n$, il en existe un non nul, puisque les $n^2+1$ endomorphismes $\\mathrm{id}_E,u,\\dots,u^{n^2}$ sont liés dans $\\mathcal{L}(E)$, de dimension $n^2$. Les polynômes annulateurs sont exactement les multiples d'un unique polynôme unitaire $\\pi_u$, le **polynôme minimal**.\n\nUn polynôme annulateur renseigne sur les valeurs propres : si $u(x)=\\lambda x$, alors $P(u)(x)=P(\\lambda)x$, donc toute valeur propre est racine de tout polynôme annulateur (mais une racine d'un polynôme annulateur n'est pas forcément valeur propre). Les racines de $\\pi_u$ sont exactement les valeurs propres.\n\nLe **lemme des noyaux** découpe l'espace : si $P=P_1\\cdots P_k$ avec des facteurs deux à deux premiers entre eux, $\\mathrm{Ker}\\,P(u)$ est la somme directe des $\\mathrm{Ker}\\,P_i(u)$, et les projecteurs associés sont des polynômes en $u$, obtenus par une relation de Bézout. Appliqué à un polynôme annulateur scindé à racines simples, il donne $E=\\bigoplus_i\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)$ : d'où le critère, souvent le plus rapide, « $u$ est diagonalisable si et seulement s'il annule un polynôme scindé à racines simples », ou encore si et seulement si $\\pi_u$ est scindé à racines simples.\n\nExemples typiques : un projecteur ($p^2=p$, polynôme $X(X-1)$), une symétrie ($s^2=\\mathrm{id}_E$, polynôme $(X-1)(X+1)$), une matrice telle que $A^3=A$ sont diagonalisables ; une matrice nilpotente non nulle ne l'est pas.\n\nPièges : le lemme exige des facteurs **deux à deux** premiers entre eux, et il est faux pour $X\\cdot X$ ; sur $\\mathbb{R}$, « racines simples » ne suffit pas sans « scindé » ($X^2+1$ annule la rotation d'angle $\\frac\\pi2$) ; le critère porte sur l'existence d'**un** polynôme annulateur scindé à racines simples, pas sur le polynôme caractéristique, qui peut avoir des racines multiples pour une matrice diagonalisable.",
+      "hypotheses": [
+        "$u$ est un endomorphisme de $E$.",
+        "$P=P_1P_2\\cdots P_k$, avec $P_1,\\dots,P_k\\in\\mathbb{K}[X]$.",
+        "$P_1,\\dots,P_k$ sont deux à deux premiers entre eux."
+      ],
+      "hypotheses_pieges": [
+        "$P_1,\\dots,P_k$ sont deux à deux distincts (à la place de : deux à deux premiers entre eux).",
+        "$P_1,\\dots,P_k$ sont premiers entre eux dans leur ensemble (à la place de : deux à deux premiers entre eux).",
+        "$P_1,\\dots,P_k$ sont irréductibles (à la place de : deux à deux premiers entre eux)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel et $u$ un endomorphisme de $E$. Pour $P=\\sum_k a_kX^k\\in\\mathbb{K}[X]$, on note $P(u)=\\sum_k a_ku^k$ ; on a $(PQ)(u)=P(u)\\circ Q(u)$. On dit que $P$ est un **polynôme annulateur** de $u$ si $P(u)=0$.\n- **Lemme des noyaux.** Si $P=P_1\\cdots P_k$ où $P_1,\\dots,P_k$ sont deux à deux premiers entre eux, alors $\\mathrm{Ker}\\,P(u)=\\mathrm{Ker}\\,P_1(u)\\oplus\\cdots\\oplus\\mathrm{Ker}\\,P_k(u)$.\n- Si $P(u)=0$, toute valeur propre de $u$ est racine de $P$.\n\nSi $E$ est de dimension finie $n\\ge1$, $u$ admet un polynôme annulateur non nul, et il existe un unique polynôme unitaire $\\pi_u$, le **polynôme minimal** de $u$, tel que les polynômes annulateurs de $u$ soient exactement les multiples de $\\pi_u$. Les racines de $\\pi_u$ dans $\\mathbb{K}$ sont exactement les valeurs propres de $u$.\n\n**Critère.** En dimension finie, $u$ est diagonalisable si et seulement s'il admet un polynôme annulateur scindé à racines simples, si et seulement si $\\pi_u$ est scindé à racines simples.",
+      "enonce_trous": "Si $P=P_1\\cdots P_k$ où les $P_i$ sont {{1}}, alors {{2}}. Conséquence : en dimension finie, $u$ est diagonalisable si et seulement s'il annule un polynôme {{3}}.",
+      "trous": [
+        {
+          "reponse": "deux à deux premiers entre eux",
+          "leurres": [
+            "deux à deux distincts",
+            "unitaires",
+            "irréductibles"
+          ]
+        },
+        {
+          "reponse": "$\\mathrm{Ker}\\,P(u)=\\mathrm{Ker}\\,P_1(u)\\oplus\\cdots\\oplus\\mathrm{Ker}\\,P_k(u)$",
+          "leurres": [
+            "$\\mathrm{Im}\\,P(u)=\\mathrm{Im}\\,P_1(u)\\oplus\\cdots\\oplus\\mathrm{Im}\\,P_k(u)$",
+            "$\\mathrm{Ker}\\,P(u)=\\mathrm{Ker}\\,P_1(u)\\cap\\cdots\\cap\\mathrm{Ker}\\,P_k(u)$",
+            "$E=\\mathrm{Ker}\\,P_1(u)\\oplus\\cdots\\oplus\\mathrm{Ker}\\,P_k(u)$"
+          ]
+        },
+        {
+          "reponse": "scindé à racines simples",
+          "leurres": [
+            "scindé",
+            "à racines simples dans $\\mathbb{C}$",
+            "de degré $\\dim E$"
+          ]
+        }
+      ],
+      "demo": "**Morphisme.** $P\\mapsto P(u)$ est linéaire, et $(X^iX^j)(u)=u^{i+j}=u^i\\circ u^j$ ; par bilinéarité, $(PQ)(u)=P(u)\\circ Q(u)$. Comme $PQ=QP$, deux polynômes en $u$ commutent.\n\n**Lemme des noyaux, pour $k=2$.** Par Bézout, il existe $U,V$ avec $UP_1+VP_2=1$, d'où $\\mathrm{id}_E=U(u)P_1(u)+V(u)P_2(u)$ (les composées sont écrites comme des produits). Chaque $\\mathrm{Ker}\\,P_i(u)$ est inclus dans $\\mathrm{Ker}\\,P(u)$, car $P(u)=P_j(u)P_i(u)$. Soit $x\\in\\mathrm{Ker}\\,P(u)$ ; posons $x_1=V(u)P_2(u)x$ et $x_2=U(u)P_1(u)x$, de sorte que $x=x_1+x_2$. Alors $P_1(u)x_1=V(u)P(u)x=0$ et $P_2(u)x_2=U(u)P(u)x=0$. Enfin, si $x\\in\\mathrm{Ker}\\,P_1(u)\\cap\\mathrm{Ker}\\,P_2(u)$, alors $x=U(u)P_1(u)x+V(u)P_2(u)x=0$.\n\n**Cas général**, par récurrence sur $k$ : $P_1$ est premier avec $P_2\\cdots P_k$ (un facteur irréductible commun diviserait l'un des $P_j$, $j\\ge2$). Donc $\\mathrm{Ker}\\,P(u)=\\mathrm{Ker}\\,P_1(u)\\oplus\\mathrm{Ker}\\,(P_2\\cdots P_k)(u)$, et l'hypothèse de récurrence découpe le second terme.\n\n**Valeurs propres.** Si $u(x)=\\lambda x$ avec $x\\neq0$, alors $u^k(x)=\\lambda^kx$, donc $P(u)(x)=P(\\lambda)x$ ; si $P(u)=0$, $P(\\lambda)=0$.\n\n**Polynôme minimal.** $\\mathcal{L}(E)$ est de dimension $n^2$, donc $\\mathrm{id}_E,u,\\dots,u^{n^2}$ sont liés : il existe un annulateur non nul. Soit $\\pi_u$ un annulateur non nul, unitaire, de degré minimal. Si $P(u)=0$, la division euclidienne $P=Q\\pi_u+R$ donne $R(u)=0$ avec $\\deg R<\\deg\\pi_u$, donc $R=0$. L'unicité vient de ce que deux tels polynômes unitaires se divisent mutuellement. Les valeurs propres sont racines de $\\pi_u$ ; réciproquement, si $\\pi_u(\\lambda)=0$, écrivons $\\pi_u=(X-\\lambda)Q$ : $Q(u)\\neq0$ par minimalité, donc il existe $y=Q(u)z\\neq0$, et $(u-\\lambda\\,\\mathrm{id}_E)(y)=\\pi_u(u)z=0$ : $\\lambda$ est valeur propre.\n\n**Critère.** Si $P=\\prod_{i=1}^{p}(X-\\lambda_i)$, à racines distinctes, annule $u$, le lemme des noyaux donne $E=\\mathrm{Ker}\\,P(u)=\\bigoplus_i\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)$ : $u$ est diagonalisable. Réciproquement, si $u$ est diagonalisable de valeurs propres distinctes $\\lambda_1,\\dots,\\lambda_p$, le polynôme $\\prod_i(X-\\lambda_i)$ annule chaque vecteur d'une base de vecteurs propres (le facteur correspondant à sa valeur propre l'annule, et les facteurs commutent), donc annule $u$. Enfin $\\pi_u$ divise tout annulateur : il est scindé à racines simples dès qu'un annulateur l'est, et c'est lui-même un annulateur.",
+      "exemple": "Soit $A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$. On calcule $A^2=I_2$ : le polynôme $X^2-1=(X-1)(X+1)$, scindé à racines simples, annule $A$, donc $A$ est diagonalisable, et $\\mathbb{R}^2=\\mathrm{Ker}(A-I_2)\\oplus\\mathrm{Ker}(A+I_2)=\\mathrm{Vect}((1,0))\\oplus\\mathrm{Vect}((1,-1))$. Comme $A\\neq\\pm I_2$, aucun polynôme de degré $1$ ne l'annule : $\\pi_A=X^2-1$. La relation de Bézout $\\frac12(X+1)-\\frac12(X-1)=1$ fournit les projecteurs : $\\frac12(A+I_2)=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$ projette sur $\\mathrm{Ker}(A-I_2)$ parallèlement à $\\mathrm{Ker}(A+I_2)$.",
+      "contre_exemple": "- **Facteurs seulement distincts** : pour $u=0$ sur $\\mathbb{K}$, $P_1=X$ et $P_2=X^2$, on a $\\mathrm{Ker}\\,P_1(u)=\\mathrm{Ker}\\,P_2(u)=\\mathbb{K}$ : la somme n'est pas directe.\n- **Racine d'un annulateur qui n'est pas valeur propre** : $(X-1)(X-2)$ annule $\\mathrm{id}_E$, mais $2$ n'est pas valeur propre de $\\mathrm{id}_E$.\n- **Scindé sans racines simples** : $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ vérifie $(J-I_2)^2=0$, et $\\pi_J=(X-1)^2$ car $J-I_2\\neq0$ : $J$ n'est pas diagonalisable.\n- **Racines simples sans être scindé** : $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ vérifie $R^2+I_2=0$, mais $X^2+1$ n'est pas scindé sur $\\mathbb{R}$, et $R$ n'est pas diagonalisable sur $\\mathbb{R}$ (elle l'est sur $\\mathbb{C}$).",
+      "affirmations": [
+        {
+          "texte": "Si $P$ annule $u$, toute racine de $P$ dans $\\mathbb{K}$ est valeur propre de $u$.",
+          "vrai": false,
+          "contre_exemple": "$(X-1)(X-2)$ annule $\\mathrm{id}_E$, dont la seule valeur propre est $1$."
+        },
+        {
+          "texte": "Le polynôme minimal de $u$ divise tout polynôme annulateur de $u$.",
+          "vrai": true,
+          "justification": "Le reste de la division d'un annulateur par $\\pi_u$ est un annulateur de degré $<\\deg\\pi_u$, donc nul."
+        },
+        {
+          "texte": "Si $u$ est diagonalisable et si $F$ est un sous-espace stable par $u$, l'endomorphisme induit par $u$ sur $F$ est diagonalisable.",
+          "vrai": true,
+          "justification": "Un polynôme scindé à racines simples qui annule $u$ annule aussi l'endomorphisme induit sur $F$."
+        },
+        {
+          "texte": "Toute matrice $A\\in\\mathcal{M}_2(\\mathbb{R})$ telle que $A^3=I_2$ est diagonalisable dans $\\mathcal{M}_2(\\mathbb{R})$.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}0&-1\\\\1&-1\\end{pmatrix}$ a pour polynôme caractéristique $X^2+X+1$ ; on calcule $A^2=\\begin{pmatrix}-1&1\\\\-1&0\\end{pmatrix}$ et $A^3=I_2$, mais $X^2+X+1$ n'a pas de racine réelle : $A$ n'a pas de valeur propre réelle."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-diagonalisabilite",
+        "arith-l1-polynomes-bezout",
+        "arith-l1-polynomes-division"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-cayley-hamilton",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Théorème de Cayley-Hamilton",
+      "recto": "Énoncer le théorème de Cayley-Hamilton et ses conséquences sur le polynôme minimal.",
+      "cours": "Le théorème affirme qu'un endomorphisme annule son propre polynôme caractéristique : $\\chi_u(u)=0$. On en déduit aussitôt que $\\pi_u$ divise $\\chi_u$, donc que $\\deg\\pi_u\\le n$ (bien mieux que la borne $n^2$ donnée par la dimension de $\\mathcal{L}(E)$), et que $\\pi_u$ et $\\chi_u$ ont les mêmes racines, à savoir les valeurs propres.\n\nPour une matrice diagonale, c'est évident, car $\\chi_D(D)$ est diagonale de coefficients $\\chi_D(\\lambda_i)=0$ ; par similitude, c'est vrai pour toute matrice diagonalisable. Mais le théorème vaut pour **toute** matrice, sur tout corps : la démonstration classique passe par les sous-espaces cycliques $\\mathrm{Vect}(x,u(x),u^2(x),\\dots)$ et les matrices compagnons.\n\nUsages : réduire une puissance $A^k$ à une combinaison de $I_n,A,\\dots,A^{n-1}$ (division euclidienne de $X^k$ par $\\chi_A$) ; exprimer $A^{-1}$ comme polynôme en $A$ quand $\\det A\\neq0$, puisque le terme constant de $\\chi_A$ est $(-1)^n\\det A$ ; trouver $\\pi_A$ parmi les diviseurs unitaires de $\\chi_A$ qui ont toutes ses racines. En taille $2$ : $A^2-(\\mathrm{tr}\\,A)A+(\\det A)I_2=0$.\n\nPièges : la « preuve » qui remplace $X$ par $A$ dans $\\det(XI_n-A)$ est fausse, car $\\det(AI_n-A)=0$ est un scalaire alors que $\\chi_A(A)$ est une matrice ; le polynôme minimal n'est pas toujours égal au polynôme caractéristique ($\\pi_{I_n}=X-1$) ; $\\chi_A(B)=0$ ne dit pas que $A$ et $B$ ont le même polynôme caractéristique.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n\\ge1$.",
+        "$u$ est un endomorphisme de $E$, et $\\chi_u=\\det(X\\,\\mathrm{id}_E-u)$."
+      ],
+      "hypotheses_pieges": [
+        "$u$ est diagonalisable.",
+        "$\\chi_u$ est scindé sur $\\mathbb{K}$.",
+        "$u$ est inversible."
+      ],
+      "enonce": "**Théorème de Cayley-Hamilton.** Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $n\\ge1$ et $u$ un endomorphisme de $E$. Alors $\\chi_u(u)=0$. De même, $\\chi_A(A)=0$ pour toute matrice $A\\in\\mathcal{M}_n(\\mathbb{K})$.\n\nConséquences : le polynôme minimal $\\pi_u$ divise $\\chi_u$, donc $\\deg\\pi_u\\le n$ ; $\\pi_u$ et $\\chi_u$ ont les mêmes racines dans $\\mathbb{K}$, les valeurs propres de $u$. En taille $2$ : $A^2-(\\mathrm{tr}\\,A)A+(\\det A)I_2=0$.",
+      "enonce_trous": "Pour tout endomorphisme $u$ d'un espace de dimension finie $n\\ge1$, {{1}}. Par conséquent, le polynôme minimal $\\pi_u$ {{2}}, et son degré est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\chi_u(u)=0$",
+          "leurres": [
+            "$\\chi_u(u)=\\mathrm{id}_E$",
+            "$\\chi_u(0)=0$",
+            "$\\chi_u(\\mathrm{tr}\\,u)=0$"
+          ]
+        },
+        {
+          "reponse": "divise $\\chi_u$",
+          "leurres": [
+            "est égal à $\\chi_u$",
+            "est un multiple de $\\chi_u$",
+            "est premier avec $\\chi_u$"
+          ]
+        },
+        {
+          "reponse": "au plus $n$",
+          "leurres": [
+            "exactement $n$",
+            "au moins $n$",
+            "au plus $n-1$"
+          ]
+        }
+      ],
+      "demo": "**Matrices compagnons.** Pour $a_0,\\dots,a_{p-1}\\in\\mathbb{K}$, la matrice $C\\in\\mathcal{M}_p(\\mathbb{K})$ dont les colonnes sont $e_2,e_3,\\dots,e_p$ puis $-(a_0e_1+\\cdots+a_{p-1}e_p)$ a pour polynôme caractéristique $X^p+a_{p-1}X^{p-1}+\\cdots+a_0$ : on le vérifie par récurrence sur $p$, en développant $\\det(XI_p-C)$ par rapport à la première ligne.\n\n**Sous-espace cyclique.** Soit $x\\in E$ non nul, et $p$ le plus grand entier tel que $(x,u(x),\\dots,u^{p-1}(x))$ soit libre ($1\\le p\\le n$). Alors $u^p(x)$ est combinaison linéaire de ces vecteurs : $u^p(x)=-(a_0x+a_1u(x)+\\cdots+a_{p-1}u^{p-1}(x))$. Le sous-espace $F=\\mathrm{Vect}(x,\\dots,u^{p-1}(x))$ est stable par $u$, et la matrice de $u_F$ dans cette base est la matrice compagnon $C$ ci-dessus, donc $\\chi_{u_F}=X^p+a_{p-1}X^{p-1}+\\cdots+a_0$, et $\\chi_{u_F}(u)(x)=u^p(x)+a_{p-1}u^{p-1}(x)+\\cdots+a_0x=0$.\n\n**Conclusion.** En complétant la base de $F$ en une base de $E$, la matrice de $u$ est triangulaire par blocs $\\begin{pmatrix}C&B\\\\0&D\\end{pmatrix}$, donc $\\chi_u=\\chi_{u_F}\\,\\chi_D$. Les polynômes en $u$ commutent : $\\chi_u(u)(x)=\\chi_D(u)\\big(\\chi_{u_F}(u)(x)\\big)=0$. C'est vrai pour tout $x\\neq0$, et pour $x=0$ : $\\chi_u(u)=0$.\n\n**Conséquences.** $\\chi_u$ est un annulateur, donc un multiple de $\\pi_u$. Les racines de $\\pi_u$ sont les valeurs propres, comme celles de $\\chi_u$. En taille $2$, $\\chi_A=X^2-(\\mathrm{tr}\\,A)X+\\det A$.",
+      "exemple": "Pour $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ : $\\mathrm{tr}\\,A=5$, $\\det A=-2$, donc $A^2-5A-2I_2=0$. On en tire $A(A-5I_2)=2I_2$, d'où $A^{-1}=\\frac12(A-5I_2)=\\begin{pmatrix}-2&1\\\\\\frac32&-\\frac12\\end{pmatrix}$. Comme $A$ n'est pas scalaire, $\\pi_A=\\chi_A=X^2-5X-2$.",
+      "contre_exemple": "- **La fausse preuve** : le même raisonnement appliqué à la trace « démontrerait » que $\\mathrm{tr}(XI_n-A)=nX-\\mathrm{tr}\\,A$ s'annule en $A$, c'est-à-dire $nA-(\\mathrm{tr}\\,A)I_n=0$ ; c'est faux pour $A=\\mathrm{diag}(1,0)$, où $2A-I_2=\\mathrm{diag}(1,-1)$.\n- **$\\pi_u\\neq\\chi_u$ en général** : $\\chi_{I_2}=(X-1)^2$ mais $\\pi_{I_2}=X-1$.\n- **$\\chi_A(B)=0$ ne suffit pas** : pour $A=\\mathrm{diag}(1,2)$ et $B=I_2$, $\\chi_A(B)=(B-I_2)(B-2I_2)=0$, mais $\\chi_B=(X-1)^2\\neq\\chi_A$.",
+      "affirmations": [
+        {
+          "texte": "Toute matrice $A\\in\\mathcal{M}_2(\\mathbb{K})$ vérifie $A^2-(\\mathrm{tr}\\,A)A+(\\det A)I_2=0$.",
+          "vrai": true,
+          "justification": "C'est le théorème de Cayley-Hamilton, avec $\\chi_A=X^2-(\\mathrm{tr}\\,A)X+\\det A$."
+        },
+        {
+          "texte": "Le polynôme minimal d'une matrice de $\\mathcal{M}_n(\\mathbb{K})$ est toujours de degré $n$.",
+          "vrai": false,
+          "contre_exemple": "$\\pi_{I_2}=X-1$ est de degré $1$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{M}_n(\\mathbb{K})$ est inversible, $A^{-1}$ est un polynôme en $A$.",
+          "vrai": true,
+          "justification": "Écrivons $\\chi_A=X^n+c_{n-1}X^{n-1}+\\cdots+c_1X+c_0$ avec $c_0=(-1)^n\\det A\\neq0$ ; Cayley-Hamilton donne $A(A^{n-1}+\\cdots+c_1I_n)=-c_0I_n$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{M}_n(\\mathbb{C})$ vérifie $A^k=0$ pour un entier $k\\ge1$, alors $A^n=0$.",
+          "vrai": true,
+          "justification": "Toute valeur propre $\\lambda$ vérifie $\\lambda^k=0$, donc $\\chi_A$, scindé sur $\\mathbb{C}$, vaut $X^n$, et Cayley-Hamilton donne $A^n=0$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-polynome-caracteristique",
+        "al-l2-reduction-lemme-noyaux",
+        "al-l1-determinant-developpement"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-trigonalisation",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Trigonalisation",
+      "recto": "Énoncer la caractérisation des endomorphismes trigonalisables et ses conséquences sur la trace et le déterminant.",
+      "cours": "Un endomorphisme est **trigonalisable** s'il existe une base où sa matrice est triangulaire supérieure ; une matrice $A$ l'est si elle est semblable à une matrice triangulaire : $A=PTP^{-1}$. C'est le substitut de la diagonalisation quand celle-ci échoue : dans une base $(e_1,\\dots,e_n)$ qui trigonalise $u$, chaque $\\mathrm{Vect}(e_1,\\dots,e_k)$ est stable, et les coefficients diagonaux de $T$ sont les valeurs propres, répétées selon leur multiplicité.\n\nLe critère est simple : $u$ est trigonalisable si et seulement si $\\chi_u$ est scindé. Sur $\\mathbb{C}$, c'est toujours le cas (théorème de d'Alembert-Gauss) : toute matrice complexe est trigonalisable. On en tire des conséquences valables pour toute matrice complexe, ou réelle vue comme complexe : $\\mathrm{tr}\\,A$ est la somme des valeurs propres et $\\det A$ leur produit (comptées avec multiplicité) ; les valeurs propres de $A^k$, ou plus généralement de $Q(A)$ pour un polynôme $Q$, sont les $Q(\\lambda_i)$ ; une matrice dont la seule valeur propre est $0$ est nilpotente.\n\nMéthode en taille $2$ ou $3$ : trouver un vecteur propre $v_1$, le compléter en une base, écrire la matrice dans cette base (première colonne $(\\lambda_1,0,\\dots,0)$) et recommencer sur le bloc restant. En taille $2$, avec une seule valeur propre double $\\lambda$ et $A\\neq\\lambda I_2$, tout $v_2$ hors de la droite propre donne $T=\\begin{pmatrix}\\lambda&c\\\\0&\\lambda\\end{pmatrix}$ avec $c\\neq0$.\n\nPièges : trigonalisable ne veut pas dire diagonalisable ($J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$) ; sur $\\mathbb{R}$, avoir une valeur propre ne suffit pas, ni être de dimension impaire ; la matrice $T$ n'est pas unique, seuls ses coefficients diagonaux le sont, à l'ordre près.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n\\ge1$ et $u$ est un endomorphisme de $E$.",
+        "$\\chi_u$ est scindé sur $\\mathbb{K}$."
+      ],
+      "hypotheses_pieges": [
+        "$u$ admet au moins une valeur propre (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$).",
+        "$u$ est inversible (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$).",
+        "$\\mathbb{K}=\\mathbb{R}$ et $n$ est impair (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $n\\ge1$ et $u$ un endomorphisme de $E$. On dit que $u$ est **trigonalisable** s'il existe une base de $E$ dans laquelle sa matrice est triangulaire supérieure.\n- $u$ est trigonalisable si et seulement si $\\chi_u$ est scindé sur $\\mathbb{K}$. En particulier, si $\\mathbb{K}=\\mathbb{C}$, tout endomorphisme est trigonalisable, et toute matrice de $\\mathcal{M}_n(\\mathbb{C})$ est semblable à une matrice triangulaire supérieure.\n- Dans ce cas, les coefficients diagonaux d'une matrice triangulaire de $u$ sont ses valeurs propres $\\lambda_1,\\dots,\\lambda_n$, répétées selon leur multiplicité, et $\\mathrm{tr}\\,u=\\lambda_1+\\cdots+\\lambda_n$, $\\det u=\\lambda_1\\cdots\\lambda_n$.",
+      "enonce_trous": "L'endomorphisme $u$ est trigonalisable si et seulement si {{1}}. C'est toujours le cas lorsque {{2}}. Si $u$ est trigonalisable, de valeurs propres $\\lambda_1,\\dots,\\lambda_n$ répétées selon leur multiplicité, alors $\\mathrm{tr}\\,u=\\lambda_1+\\cdots+\\lambda_n$ et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\chi_u$ est scindé sur $\\mathbb{K}$",
+          "leurres": [
+            "$u$ admet au moins une valeur propre",
+            "$u$ est inversible",
+            "$\\chi_u$ est à racines simples"
+          ]
+        },
+        {
+          "reponse": "$\\mathbb{K}=\\mathbb{C}$",
+          "leurres": [
+            "$\\mathbb{K}=\\mathbb{R}$",
+            "$u$ est inversible",
+            "$\\dim E$ est impaire"
+          ]
+        },
+        {
+          "reponse": "$\\det u=\\lambda_1\\cdots\\lambda_n$",
+          "leurres": [
+            "$\\det u=\\lambda_1+\\cdots+\\lambda_n$",
+            "$\\det u=(-1)^n\\lambda_1\\cdots\\lambda_n$",
+            "$\\det u=\\lambda_1^2+\\cdots+\\lambda_n^2$"
+          ]
+        }
+      ],
+      "demo": "**Condition nécessaire.** Si la matrice $T$ de $u$ dans une base est triangulaire, $\\chi_u=\\det(XI_n-T)=\\prod_{i=1}^n(X-t_{ii})$ est scindé, et ses racines comptées avec multiplicité sont les $t_{ii}$.\n\n**Condition suffisante**, par récurrence sur $n$, en version matricielle : toute $A\\in\\mathcal{M}_n(\\mathbb{K})$ de polynôme caractéristique scindé est semblable à une matrice triangulaire supérieure. Pour $n=1$, c'est clair. Si $n\\ge2$, $\\chi_A$ scindé a une racine $\\lambda$, valeur propre de $A$ ; soit $v_1$ un vecteur propre, complété en une base $(v_1,\\dots,v_n)$ de $\\mathbb{K}^n$, et $P_1$ la matrice de passage. Alors $P_1^{-1}AP_1=\\begin{pmatrix}\\lambda&L\\\\0&B\\end{pmatrix}$ avec $B\\in\\mathcal{M}_{n-1}(\\mathbb{K})$, et $\\chi_A=(X-\\lambda)\\chi_B$ : $\\chi_B$ est scindé. Par hypothèse de récurrence, $B=QT'Q^{-1}$ avec $T'$ triangulaire supérieure. Avec $P_2=\\begin{pmatrix}1&0\\\\0&Q\\end{pmatrix}$, on obtient $P_2^{-1}P_1^{-1}AP_1P_2=\\begin{pmatrix}\\lambda&LQ\\\\0&T'\\end{pmatrix}$, triangulaire supérieure.\n\n**Cas complexe.** Sur $\\mathbb{C}$, tout polynôme non constant est scindé (d'Alembert-Gauss).\n\n**Trace et déterminant.** Des matrices semblables ont même trace et même déterminant ; pour $T$ triangulaire, $\\mathrm{tr}\\,T=\\sum_i t_{ii}$ et $\\det T=\\prod_i t_{ii}$.",
+      "exemple": "Soit $A=\\begin{pmatrix}3&1\\\\-1&1\\end{pmatrix}$ : $\\chi_A=X^2-4X+4=(X-2)^2$ est scindé, donc $A$ est trigonalisable. $A-2I_2=\\begin{pmatrix}1&1\\\\-1&-1\\end{pmatrix}$ est de rang $1$ : $E_2=\\mathrm{Vect}(v_1)$ avec $v_1=(1,-1)$, et $A$ n'est pas diagonalisable. Avec $v_2=e_2=(0,1)$ : $Av_2=(1,1)=v_1+2v_2$. Donc $P^{-1}AP=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$ pour $P=\\begin{pmatrix}1&0\\\\-1&1\\end{pmatrix}$.",
+      "contre_exemple": "- **Sur $\\mathbb{R}$** : $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ n'est pas trigonalisable dans $\\mathcal{M}_2(\\mathbb{R})$, car $\\chi_R=X^2+1$ n'est pas scindé sur $\\mathbb{R}$ ; elle est pourtant inversible.\n- **Une valeur propre, dimension impaire** : $\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$ a la valeur propre $1$, mais son polynôme caractéristique $(X-1)(X^2+1)$ n'est pas scindé sur $\\mathbb{R}$ : elle n'est pas trigonalisable dans $\\mathcal{M}_3(\\mathbb{R})$.\n- **Trigonalisable mais pas diagonalisable** : $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ est triangulaire, de polynôme caractéristique $(X-1)^2$, mais n'est pas diagonalisable.",
+      "affirmations": [
+        {
+          "texte": "Toute matrice de $\\mathcal{M}_n(\\mathbb{C})$ est trigonalisable.",
+          "vrai": true,
+          "justification": "Son polynôme caractéristique est scindé sur $\\mathbb{C}$ (d'Alembert-Gauss)."
+        },
+        {
+          "texte": "Toute matrice de $\\mathcal{M}_3(\\mathbb{R})$ est trigonalisable dans $\\mathcal{M}_3(\\mathbb{R})$.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$ a pour polynôme caractéristique $(X-1)(X^2+1)$, non scindé sur $\\mathbb{R}$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{M}_n(\\mathbb{C})$ a pour valeurs propres $\\lambda_1,\\dots,\\lambda_n$, répétées selon leur multiplicité, alors $\\mathrm{tr}(A^k)=\\lambda_1^k+\\cdots+\\lambda_n^k$ pour tout $k\\in\\mathbb{N}$.",
+          "vrai": true,
+          "justification": "Si $A=PTP^{-1}$ avec $T$ triangulaire de diagonale $(\\lambda_1,\\dots,\\lambda_n)$, alors $A^k=PT^kP^{-1}$ et $T^k$ est triangulaire de diagonale $(\\lambda_1^k,\\dots,\\lambda_n^k)$."
+        },
+        {
+          "texte": "Une matrice trigonalisable est diagonalisable.",
+          "vrai": false,
+          "contre_exemple": "$J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ est triangulaire mais pas diagonalisable : $\\dim E_1(J)=1<2$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-polynome-caracteristique",
+        "al-l2-reduction-valeurs-propres",
+        "arith-l1-polynomes-irreductibles"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-sous-espaces-caracteristiques",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "theoreme",
+      "titre": "Sous-espaces caractéristiques",
+      "recto": "Définir les sous-espaces caractéristiques d'un endomorphisme de polynôme caractéristique scindé et énoncer la décomposition de l'espace qu'ils fournissent.",
+      "cours": "Quand $u$ n'est pas diagonalisable, ses sous-espaces propres sont trop petits pour remplir $E$. On les agrandit : pour une valeur propre $\\lambda_i$ de multiplicité $m_i$, le **sous-espace caractéristique** $N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$ contient $E_{\\lambda_i}(u)$, et ces sous-espaces remplissent toujours $E$ dès que $\\chi_u$ est scindé : $E=N_1\\oplus\\cdots\\oplus N_p$, avec $\\dim N_i=m_i$.\n\nC'est le lemme des noyaux appliqué à $\\chi_u=\\prod_i(X-\\lambda_i)^{m_i}$, qui annule $u$ par Cayley-Hamilton. Chaque $N_i$ est stable par $u$, et sur $N_i$, $u$ s'écrit $\\lambda_i\\,\\mathrm{id}+n_i$ avec $n_i$ nilpotent. Dans une base adaptée à la décomposition, la matrice de $u$ est diagonale par blocs, chaque bloc étant de la forme $\\lambda_iI_{m_i}+N'_i$ avec $N'_i$ nilpotente, que l'on peut de plus choisir triangulaire supérieure. C'est le point de départ de la **décomposition de Dunford** $u=d+n$ ($d$ diagonalisable, $n$ nilpotent, $d\\circ n=n\\circ d$) : $d$ vaut $\\lambda_i\\,\\mathrm{id}$ sur chaque $N_i$, et c'est un polynôme en $u$.\n\nMéthode : pour chaque valeur propre, calculer $\\mathrm{Ker}(A-\\lambda_iI_n)^{m_i}$ et contrôler que sa dimension est $m_i$. On a $E_{\\lambda_i}(u)=N_i$ pour tout $i$ si et seulement si $u$ est diagonalisable. Les projecteurs sur les $N_i$ sont des polynômes en $u$, obtenus par une relation de Bézout entre les $(X-\\lambda_i)^{m_i}$.\n\nPièges : l'exposant est la multiplicité $m_i$ dans $\\chi_u$, pas $1$ (on peut prendre un exposant plus grand : la suite des noyaux $\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^k$ est croissante et stationnaire à partir d'un rang au plus égal à $m_i$) ; sur $N_i$, $u$ n'est pas $\\lambda_i\\,\\mathrm{id}$ en général ; sans polynôme caractéristique scindé, ces sous-espaces ne remplissent pas $E$.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n\\ge1$ et $u$ est un endomorphisme de $E$.",
+        "$\\chi_u=\\prod_{i=1}^{p}(X-\\lambda_i)^{m_i}$ est scindé, avec $\\lambda_1,\\dots,\\lambda_p$ deux à deux distincts.",
+        "$N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$ pour chaque $i$."
+      ],
+      "hypotheses_pieges": [
+        "$N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)$ (à la place de : avec l'exposant $m_i$).",
+        "$N_i=\\mathrm{Im}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$ (à la place de : le noyau).",
+        "$u$ est inversible (à la place de : $\\chi_u$ scindé)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $n\\ge1$ et $u$ un endomorphisme de $E$ dont le polynôme caractéristique est scindé : $\\chi_u=\\prod_{i=1}^{p}(X-\\lambda_i)^{m_i}$, avec $\\lambda_1,\\dots,\\lambda_p$ deux à deux distincts. Le **sous-espace caractéristique** associé à $\\lambda_i$ est $N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$.\n- $E=N_1\\oplus\\cdots\\oplus N_p$ ; chaque $N_i$ est stable par $u$, contient $E_{\\lambda_i}(u)$, et $\\dim N_i=m_i$.\n- L'endomorphisme induit par $u$ sur $N_i$ est $\\lambda_i\\,\\mathrm{id}_{N_i}+n_i$, avec $n_i$ nilpotent.\n- Dans une base adaptée à cette décomposition, la matrice de $u$ est diagonale par blocs, le $i$-ème bloc étant de taille $m_i$ et de seule valeur propre $\\lambda_i$.\n- $u$ est diagonalisable si et seulement si $N_i=E_{\\lambda_i}(u)$ pour tout $i$.",
+      "enonce_trous": "Si $\\chi_u=\\prod_{i=1}^{p}(X-\\lambda_i)^{m_i}$ avec les $\\lambda_i$ deux à deux distincts, les sous-espaces caractéristiques, définis par {{1}}, vérifient {{2}}, et la dimension de chacun d'eux est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$",
+          "leurres": [
+            "$N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)$",
+            "$N_i=\\mathrm{Im}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$",
+            "$N_i=\\mathrm{Ker}(u^{m_i}-\\lambda_i\\,\\mathrm{id}_E)$"
+          ]
+        },
+        {
+          "reponse": "$E=N_1\\oplus\\cdots\\oplus N_p$",
+          "leurres": [
+            "$N_1\\oplus\\cdots\\oplus N_p=\\mathrm{Ker}\\,u$",
+            "$N_i\\subset E_{\\lambda_i}(u)$ pour tout $i$",
+            "$E=E_{\\lambda_1}(u)\\oplus\\cdots\\oplus E_{\\lambda_p}(u)$"
+          ]
+        },
+        {
+          "reponse": "$m_i$",
+          "leurres": [
+            "$\\dim E_{\\lambda_i}(u)$",
+            "$1$",
+            "$m_i-1$"
+          ]
+        }
+      ],
+      "demo": "**Décomposition.** Par Cayley-Hamilton, $\\chi_u(u)=0$, donc $E=\\mathrm{Ker}\\,\\chi_u(u)$. Les polynômes $(X-\\lambda_i)^{m_i}$ sont deux à deux premiers entre eux (racines distinctes), et le lemme des noyaux donne $E=N_1\\oplus\\cdots\\oplus N_p$.\n\n**Stabilité.** $u$ commute avec $(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$, donc laisse stable son noyau $N_i$. Et $E_{\\lambda_i}(u)=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)\\subset N_i$ puisque $m_i\\ge1$.\n\n**Dimension.** Soit $u_i$ l'endomorphisme induit sur $N_i$, de dimension $d_i$. Par construction, $(u_i-\\lambda_i\\,\\mathrm{id}_{N_i})^{m_i}=0$ : $n_i=u_i-\\lambda_i\\,\\mathrm{id}_{N_i}$ est nilpotent, et la seule valeur propre possible de $u_i$ est $\\lambda_i$. Dans une base adaptée à la décomposition, la matrice de $u$ est diagonale par blocs, donc $\\chi_u=\\prod_i\\chi_{u_i}$ ; chaque $\\chi_{u_i}$ divise $\\chi_u$, donc est scindé, et ses racines sont des valeurs propres de $u_i$, donc égales à $\\lambda_i$ : $\\chi_{u_i}=(X-\\lambda_i)^{d_i}$. Alors $\\prod_i(X-\\lambda_i)^{d_i}=\\prod_i(X-\\lambda_i)^{m_i}$, et l'unicité de la décomposition en facteurs irréductibles donne $d_i=m_i$.\n\n**Diagonalisabilité.** $E_{\\lambda_i}(u)\\subset N_i$ et $\\dim N_i=m_i$ : l'égalité $E_{\\lambda_i}(u)=N_i$ équivaut à $\\dim E_{\\lambda_i}(u)=m_i$, et le critère de diagonalisabilité conclut.",
+      "exemple": "Soit $A=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&2\\end{pmatrix}$, de polynôme caractéristique $(X-1)^2(X-2)$. On a $A-I_3=\\begin{pmatrix}0&1&1\\\\0&0&1\\\\0&0&1\\end{pmatrix}$, de rang $2$, donc $E_1=\\mathrm{Vect}(e_1)$, et $(A-I_3)^2=\\begin{pmatrix}0&0&2\\\\0&0&1\\\\0&0&1\\end{pmatrix}$, donc $N_1=\\mathrm{Vect}(e_1,e_2)$, de dimension $2$. La valeur propre $2$ est simple : $N_2=E_2=\\mathrm{Vect}((2,1,1))$. Dans la base $(e_1,e_2,(2,1,1))$, la matrice de $A$ est $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&2\\end{pmatrix}$, diagonale par blocs.",
+      "contre_exemple": "- **Exposant $1$ insuffisant** : pour $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $\\mathrm{Ker}(J-I_2)=\\mathrm{Vect}(e_1)$ ne remplit pas $\\mathbb{K}^2$, alors que $\\mathrm{Ker}(J-I_2)^2=\\mathbb{K}^2$.\n- **Sur $N_i$, $u$ n'est pas scalaire** : sur $N_1=\\mathbb{K}^2$, $J$ n'est pas $I_2$ ; seul $J-I_2$ est nilpotent.\n- **Sans polynôme scindé** : la matrice $A=$ $\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$ de $\\mathcal{M}_3(\\mathbb{R})$ n'a qu'une valeur propre réelle, $1$, simple, et $\\mathrm{Ker}(A-I_3)=\\mathrm{Vect}(e_1)$ est une droite : elle ne remplit pas $\\mathbb{R}^3$.",
+      "affirmations": [
+        {
+          "texte": "Chaque sous-espace caractéristique $N_i$ est stable par $u$.",
+          "vrai": true,
+          "justification": "$N_i$ est le noyau de $(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$, qui commute avec $u$."
+        },
+        {
+          "texte": "Sur $N_i$, l'endomorphisme $u$ coïncide avec $\\lambda_i\\,\\mathrm{id}_{N_i}$.",
+          "vrai": false,
+          "contre_exemple": "$J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour seul sous-espace caractéristique $N_1=\\mathbb{K}^2$, et $J\\neq I_2$."
+        },
+        {
+          "texte": "$\\dim N_i=\\dim E_{\\lambda_i}(u)$ pour tout $i$.",
+          "vrai": false,
+          "contre_exemple": "Pour $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $\\dim N_1=2$ mais $\\dim E_1(J)=1$."
+        },
+        {
+          "texte": "$u$ est diagonalisable si et seulement si $N_i=E_{\\lambda_i}(u)$ pour tout $i$.",
+          "vrai": true,
+          "justification": "Comme $E_{\\lambda_i}(u)\\subset N_i$ et $\\dim N_i=m_i$, l'égalité équivaut à $\\dim E_{\\lambda_i}(u)=m_i$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-cayley-hamilton",
+        "al-l2-reduction-lemme-noyaux",
+        "al-l2-reduction-diagonalisabilite"
+      ]
+    },
+    {
+      "id": "al-l2-reduction-puissances",
+      "theme": "algebre-lineaire",
+      "niveau": "l2",
+      "chapitre": "al-l2-reduction",
+      "type": "methode",
+      "titre": "Applications : puissances, suites récurrentes linéaires",
+      "recto": "Expliquer comment la réduction permet de calculer les puissances d'une matrice, et énoncer la forme des suites récurrentes linéaires d'ordre $p$ à coefficients constants.",
+      "cours": "Calculer $A^k$ est le premier usage de la réduction, car les suites récurrentes vectorielles $X_{k+1}=AX_k$ ont pour solution $X_k=A^kX_0$.\n- **Si $A$ est diagonalisable**, $A=PDP^{-1}$ et $A^k=PD^kP^{-1}$, où $D^k$ s'obtient en élevant les coefficients diagonaux à la puissance $k$.\n- **Si $A=\\lambda I_n+N$ avec $N$ nilpotent**, $\\lambda I_n$ et $N$ commutent, et la formule du binôme s'arrête : si $N^q=0$, $A^k=\\sum_{j=0}^{\\min(k,q-1)}\\binom kj\\lambda^{k-j}N^j$. Les sous-espaces caractéristiques ramènent le cas d'un polynôme caractéristique scindé à cette situation, bloc par bloc.\n- **Par un polynôme annulateur** $\\Phi$ de degré $d$ : la division euclidienne $X^k=Q_k\\Phi+R_k$ donne $A^k=R_k(A)$, avec $\\deg R_k<d$ ; les coefficients de $R_k$ s'obtiennent en évaluant aux racines de $\\Phi$ (et en dérivant pour une racine multiple).\n\nUne suite scalaire vérifiant $u_{k+p}=a_{p-1}u_{k+p-1}+\\cdots+a_0u_k$ se ramène à $X_{k+1}=CX_k$ avec $X_k={}^t(u_k,\\dots,u_{k+p-1})$ et $C$ une matrice compagnon, de polynôme caractéristique $\\chi=X^p-a_{p-1}X^{p-1}-\\cdots-a_0$. Le résultat à connaître : si $a_0\\neq0$ et $\\chi=\\prod_j(X-r_j)^{m_j}$ dans $\\mathbb{C}[X]$, les solutions sont les suites $u_k=\\sum_jQ_j(k)r_j^k$ avec $\\deg Q_j\\le m_j-1$ ; on trouve les $Q_j$ par les conditions initiales. C'est la généralisation de l'ordre $2$ : deux racines distinctes $r_1,r_2$ donnent $\\alpha r_1^k+\\beta r_2^k$, une racine double $r$ donne $(\\alpha+\\beta k)r^k$.\n\nPièges : $(A+B)^k$ ne se développe par le binôme que si $AB=BA$ ; l'écriture $A^k=PD^kP^{-1}$ demande $P^{-1}$, ce qu'on évite parfois en écrivant $X_0$ dans la base de vecteurs propres ; pour une suite réelle, deux racines complexes conjuguées $\\rho e^{\\pm\\mathrm{i}\\theta}$ donnent des termes $\\rho^k(\\alpha\\cos k\\theta+\\beta\\sin k\\theta)$.",
+      "hypotheses": [
+        "$(u_k)$ est une suite complexe telle que $u_{k+p}=a_{p-1}u_{k+p-1}+\\cdots+a_0u_k$ pour tout $k\\in\\mathbb{N}$.",
+        "$a_0\\neq0$.",
+        "$\\chi=X^p-a_{p-1}X^{p-1}-\\cdots-a_0=\\prod_{j=1}^{s}(X-r_j)^{m_j}$ dans $\\mathbb{C}[X]$, avec $r_1,\\dots,r_s$ deux à deux distincts."
+      ],
+      "hypotheses_pieges": [
+        "$a_0,\\dots,a_{p-1}$ sont des complexes quelconques (à la place de : $a_0\\neq0$).",
+        "$\\chi=X^p+a_{p-1}X^{p-1}+\\cdots+a_0$ (à la place de : $X^p-a_{p-1}X^{p-1}-\\cdots-a_0$).",
+        "La relation de récurrence n'est vérifiée qu'à partir du rang $k=1$ (à la place de : pour tout $k\\in\\mathbb{N}$)."
+      ],
+      "enonce": "**Puissances.** Si $A=PDP^{-1}$ avec $D$ diagonale, alors $A^k=PD^kP^{-1}$ pour tout $k\\in\\mathbb{N}$. Si $A=\\lambda I_n+N$ avec $N^q=0$, alors $A^k=\\sum_{j=0}^{\\min(k,q-1)}\\binom kj\\lambda^{k-j}N^j$ pour tout $k\\in\\mathbb{N}$. Si un polynôme $\\Phi$ annule $A$ et si $R_k$ est le reste de la division euclidienne de $X^k$ par $\\Phi$, alors $A^k=R_k(A)$.\n\n**Suites récurrentes linéaires.** Soient $p\\ge1$ et $a_0,\\dots,a_{p-1}\\in\\mathbb{C}$ avec $a_0\\neq0$, et $\\chi=X^p-a_{p-1}X^{p-1}-\\cdots-a_1X-a_0=\\prod_{j=1}^{s}(X-r_j)^{m_j}$, avec $r_1,\\dots,r_s$ deux à deux distincts. Les suites complexes vérifiant $u_{k+p}=a_{p-1}u_{k+p-1}+\\cdots+a_0u_k$ pour tout $k\\in\\mathbb{N}$ forment un espace vectoriel de dimension $p$ : ce sont exactement les suites $$u_k=\\sum_{j=1}^{s}Q_j(k)\\,r_j^k,\\qquad Q_j\\in\\mathbb{C}[X],\\ \\deg Q_j\\le m_j-1.$$",
+      "enonce_trous": "Si $a_0\\neq0$ et $\\chi=X^p-a_{p-1}X^{p-1}-\\cdots-a_0=\\prod_{j}(X-r_j)^{m_j}$ dans $\\mathbb{C}[X]$, les suites complexes vérifiant $u_{k+p}=a_{p-1}u_{k+p-1}+\\cdots+a_0u_k$ forment un espace vectoriel de dimension {{1}} ; ce sont les suites $u_k=\\sum_jQ_j(k)\\,r_j^k$ où chaque $Q_j$ est un polynôme de degré {{2}}. Pour une matrice diagonalisable $A=PDP^{-1}$, on a {{3}}.",
+      "trous": [
+        {
+          "reponse": "$p$",
+          "leurres": [
+            "$s$",
+            "$p+1$",
+            "infinie"
+          ]
+        },
+        {
+          "reponse": "au plus $m_j-1$",
+          "leurres": [
+            "au plus $m_j$",
+            "exactement $m_j-1$",
+            "au plus $p-1$"
+          ]
+        },
+        {
+          "reponse": "$A^k=PD^kP^{-1}$ pour tout $k\\in\\mathbb{N}$",
+          "leurres": [
+            "$A^k=P^kDP^{-k}$ pour tout $k\\in\\mathbb{N}$",
+            "$A^k=P^{-1}D^kP$ pour tout $k\\in\\mathbb{N}$",
+            "$A^k=D^k$ pour tout $k\\in\\mathbb{N}$"
+          ]
+        }
+      ],
+      "demo": "**Puissances.** $A^k=(PDP^{-1})(PDP^{-1})\\cdots(PDP^{-1})=PD^kP^{-1}$, les produits $P^{-1}P$ intermédiaires se simplifiant (récurrence sur $k$). Comme $\\lambda I_n$ commute avec $N$, la formule du binôme s'applique, et $N^j=0$ pour $j\\ge q$. Enfin $X^k=Q_k\\Phi+R_k$ donne $A^k=Q_k(A)\\Phi(A)+R_k(A)=R_k(A)$.\n\n**Suites : réduction au lemme des noyaux.** Sur l'espace $\\mathbb{C}^{\\mathbb{N}}$ des suites complexes, soit $\\tau$ le décalage $(u_k)_k\\mapsto(u_{k+1})_k$, linéaire. La suite $\\chi(\\tau)(u)$ a pour terme général $u_{k+p}-a_{p-1}u_{k+p-1}-\\cdots-a_0u_k$ : l'ensemble $S$ des solutions est $\\mathrm{Ker}\\,\\chi(\\tau)$, un sous-espace vectoriel. Les $(X-r_j)^{m_j}$ sont deux à deux premiers entre eux, et le lemme des noyaux, valable en dimension quelconque, donne $S=\\bigoplus_j\\mathrm{Ker}(\\tau-r_j\\,\\mathrm{id})^{m_j}$.\n\n**Calcul de $\\mathrm{Ker}(\\tau-r\\,\\mathrm{id})^m$ pour $r\\neq0$.** Les $r_j$ sont non nuls car $\\chi(0)=-a_0\\neq0$. Écrivons $u_k=r^kv_k$ ; alors $((\\tau-r\\,\\mathrm{id})u)_k=r^{k+1}(v_{k+1}-v_k)$, et par récurrence $((\\tau-r\\,\\mathrm{id})^mu)_k=r^{k+m}(\\Delta^mv)_k$, où $\\Delta v=(v_{k+1}-v_k)_k$. Or $\\Delta^mv=0$ si et seulement si $v_k=Q(k)$ pour un polynôme $Q$ de degré au plus $m-1$ : par récurrence sur $m$, en utilisant que $Q\\mapsto Q(X+1)-Q(X)$ envoie $\\mathbb{C}_{m-1}[X]$ sur $\\mathbb{C}_{m-2}[X]$ (son noyau est formé des constantes, et le théorème du rang conclut). Donc $\\mathrm{Ker}(\\tau-r\\,\\mathrm{id})^m=\\{(Q(k)r^k)_k : \\deg Q\\le m-1\\}$, de dimension $m$.\n\n**Conclusion.** $S$ est la somme directe de ces sous-espaces, de dimension $\\sum_jm_j=p$, ce qui donne la forme annoncée.",
+      "exemple": "- $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ a pour valeurs propres $3$ et $-1$, de vecteurs propres $(1,1)$ et $(1,-1)$ ; avec $P=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$, $P^{-1}=\\frac12P$, et $$A^k=\\frac12\\begin{pmatrix}3^k+(-1)^k&3^k-(-1)^k\\\\3^k-(-1)^k&3^k+(-1)^k\\end{pmatrix}.$$\n- La suite $u_{k+3}=3u_{k+2}-3u_{k+1}+u_k$ a pour polynôme $\\chi=X^3-3X^2+3X-1=(X-1)^3$ : ses solutions sont les suites $u_k=\\alpha+\\beta k+\\gamma k^2$. Avec $u_0=1$, $u_1=2$, $u_2=5$, on trouve $u_k=k^2+1$.",
+      "contre_exemple": "- **Binôme sans commutation** : $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ vérifient $(A+B)^2=I_2$, mais $A^2+2AB+B^2=2AB=\\begin{pmatrix}2&0\\\\0&0\\end{pmatrix}$.\n- **Si $a_0=0$** : pour $u_{k+2}=0$ (donc $p=2$, $a_1=a_0=0$, $\\chi=X^2$), la suite $(0,1,0,0,\\dots)$ est solution, mais n'est pas de la forme $Q(k)\\,0^k$ : avec la convention $0^0=1$, seul le terme de rang $0$ d'une telle suite peut être non nul.\n- **Degré $m_j$ au lieu de $m_j-1$** : pour $u_{k+1}=2u_k$ ($\\chi=X-2$), la suite $(k2^k)$ n'est pas solution, car $(k+1)2^{k+1}\\neq2\\cdot k2^k$.",
+      "affirmations": [
+        {
+          "texte": "Si $A=\\lambda I_n+N$ avec $N^2=0$, alors $A^k=\\lambda^kI_n+k\\lambda^{k-1}N$ pour tout $k\\ge1$.",
+          "vrai": true,
+          "justification": "$\\lambda I_n$ et $N$ commutent : la formule du binôme s'arrête au terme en $N$."
+        },
+        {
+          "texte": "Pour toutes matrices $A,B\\in\\mathcal{M}_n(\\mathbb{K})$ et tout $k\\in\\mathbb{N}$, $(A+B)^k=\\sum_{j=0}^{k}\\binom kjA^jB^{k-j}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ et $k=2$ : $(A+B)^2=I_2$, alors que $A^2+2AB+B^2=\\begin{pmatrix}2&0\\\\0&0\\end{pmatrix}$."
+        },
+        {
+          "texte": "Les suites complexes vérifiant $u_{k+2}=4u_{k+1}-4u_k$ sont les suites $u_k=(\\alpha+\\beta k)2^k$.",
+          "vrai": true,
+          "justification": "$\\chi=X^2-4X+4=(X-2)^2$ : racine double $2$, et $a_0=-4\\neq0$."
+        },
+        {
+          "texte": "Toute suite vérifiant $u_{k+2}=u_k$ pour tout $k$ est constante.",
+          "vrai": false,
+          "contre_exemple": "$u_k=(-1)^k$ vérifie $u_{k+2}=u_k$ ; ici $\\chi=X^2-1=(X-1)(X+1)$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-diagonalisabilite",
+        "al-l2-reduction-lemme-noyaux",
+        "ar-l1-suites-recurrence-lineaire",
+        "al-t-matrices-suites"
+      ]
+    }
+  ]
+}

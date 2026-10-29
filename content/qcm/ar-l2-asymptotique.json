@@ -1,0 +1,99 @@
+{
+  "chapitre": "ar-l2-asymptotique",
+  "questions": [
+    {
+      "id": "ar-l2-asymptotique-q1",
+      "carte": "ar-l2-asymptotique-comparaison",
+      "genre": "choix",
+      "enonce": "Quel est un équivalent de $\\ln\\left(1+\\frac1n\\right)-\\frac1n$ quand $n\\to+\\infty$ ?",
+      "propositions": [
+        "$-\\frac{1}{2n^2}$",
+        "$\\frac{1}{2n^2}$",
+        "$-\\frac{1}{n^2}$",
+        "$-\\frac{1}{3n^3}$"
+      ],
+      "bonne": 0,
+      "explication": "On ne peut pas soustraire les équivalents $\\ln\\left(1+\\frac1n\\right)\\sim\\frac1n$ et $\\frac1n\\sim\\frac1n$ (cela donnerait « $0$ »). Le développement limité $\\ln(1+x)=x-\\frac{x^2}2+o(x^2)$, avec $x=\\frac1n\\to0$, donne $\\ln\\left(1+\\frac1n\\right)-\\frac1n=-\\frac1{2n^2}+o\\left(\\frac1{n^2}\\right)\\sim-\\frac1{2n^2}$."
+    },
+    {
+      "id": "ar-l2-asymptotique-q2",
+      "carte": "ar-l2-asymptotique-comparaison",
+      "genre": "vrai-faux",
+      "enonce": "Si $u_n\\sim v_n$, alors $u_n^2-v_n^2=o(v_n^2)$.",
+      "vrai": true,
+      "explication": "$\\frac{u_n^2-v_n^2}{v_n^2}=\\left(\\frac{u_n}{v_n}\\right)^2-1\\to1-1=0$. Autrement dit $u_n^2\\sim v_n^2$, ce qui découle aussi du produit des équivalents."
+    },
+    {
+      "id": "ar-l2-asymptotique-q3",
+      "carte": "ar-l2-asymptotique-recurrente",
+      "genre": "vrai-faux",
+      "enonce": "Si $f:I\\to I$ est décroissante, les suites $(u_{2n})$ et $(u_{2n+1})$ extraites de $u_{n+1}=f(u_n)$ sont monotones de même sens.",
+      "vrai": false,
+      "explication": "Elles sont monotones, mais de sens **contraires**. Contre-exemple : $f(x)=\\frac1{1+x}$ sur $\\left[0,+\\infty\\right[$ et $u_0=0$ donnent $u_0=0$, $u_1=1$, $u_2=\\frac12$, $u_3=\\frac23$ : $(u_{2n})$ est croissante ($u_2>u_0$ et $f\\circ f:x\\mapsto\\frac{1+x}{2+x}$ est strictement croissante) et $(u_{2n+1})$ est décroissante."
+    },
+    {
+      "id": "ar-l2-asymptotique-q4",
+      "carte": "ar-l2-asymptotique-recurrente",
+      "genre": "choix",
+      "enonce": "Soit $u_0\\in[0,1]$ et $u_{n+1}=\\frac{u_n^2+1}{2}$. Quelle est la limite de $(u_n)$ ?",
+      "propositions": [
+        "$1$",
+        "$0$",
+        "$\\frac12$",
+        "elle dépend de $u_0$"
+      ],
+      "bonne": 0,
+      "explication": "$f(x)=\\frac{x^2+1}2$ est croissante sur $[0,1]$, avec $f(0)=\\frac12$ et $f(1)=1$ : $[0,1]$ est stable. De plus $f(x)-x=\\frac{(x-1)^2}2\\ge0$, donc $(u_n)$ est croissante et majorée par $1$ ; elle converge vers un point fixe de $f$, et le seul est $1$. (Comme $f'(1)=1$, la convergence est lente.)"
+    },
+    {
+      "id": "ar-l2-asymptotique-q5",
+      "carte": "ar-l2-asymptotique-homographique",
+      "genre": "choix",
+      "enonce": "Soit $u_0=0$ et $u_{n+1}=\\frac{2u_n+1}{u_n+2}$. Quelle est la limite de $(u_n)$ ?",
+      "propositions": [
+        "$1$",
+        "$-1$",
+        "$\\frac13$",
+        "$2$"
+      ],
+      "bonne": 0,
+      "explication": "Les termes restent positifs, donc la suite est bien définie. Les points fixes vérifient $x^2+2x=2x+1$ : ce sont $1$ et $-1$. Avec $\\alpha=1$, $\\beta=-1$, la suite $v_n=\\frac{u_n-1}{u_n+1}$ est géométrique de raison $\\frac{2-1}{2+1}=\\frac13$, donc $v_n\\to0$ et $u_n\\to1$."
+    },
+    {
+      "id": "ar-l2-asymptotique-q6",
+      "carte": "ar-l2-asymptotique-homographique",
+      "genre": "vrai-faux",
+      "enonce": "Pour $u_0=0$ et $u_{n+1}=\\frac{1}{2-u_n}$, on a $u_n=\\frac{n}{n+1}$ pour tout $n$.",
+      "vrai": true,
+      "explication": "Par récurrence : $u_0=0$, et si $u_n=\\frac n{n+1}$, alors $u_{n+1}=\\frac{1}{2-\\frac n{n+1}}=\\frac{n+1}{n+2}$. C'est le cas d'un point fixe double ($\\alpha=1$) : $\\frac1{u_n-1}=-(n+1)$ est arithmétique de raison $-1$."
+    },
+    {
+      "id": "ar-l2-asymptotique-q7",
+      "carte": "ar-l2-asymptotique-vitesse",
+      "genre": "choix",
+      "enonce": "La suite $u_0=0$, $u_{n+1}=\\cos u_n$ converge vers l'unique solution $\\ell$ de $\\cos x=x$ sans jamais l'atteindre. Vers quoi tend $\\frac{u_{n+1}-\\ell}{u_n-\\ell}$ ?",
+      "propositions": [
+        "$-\\sin\\ell$",
+        "$\\sin\\ell$",
+        "$\\cos\\ell$",
+        "$0$"
+      ],
+      "bonne": 0,
+      "explication": "Par les accroissements finis, $u_{n+1}-\\ell=\\cos u_n-\\cos\\ell=-\\sin(c_n)(u_n-\\ell)$ avec $c_n$ entre $u_n$ et $\\ell$, donc le rapport tend vers $f'(\\ell)=-\\sin\\ell\\approx-0{,}674$. Il est négatif : les termes oscillent autour de $\\ell$."
+    },
+    {
+      "id": "ar-l2-asymptotique-q8",
+      "carte": "ar-l2-asymptotique-implicite",
+      "genre": "choix",
+      "enonce": "Pour $n\\ge1$, soit $x_n$ la solution positive de $x^2+nx-1=0$. Quel développement est correct ?",
+      "propositions": [
+        "$x_n=\\frac1n-\\frac1{n^3}+o\\left(\\frac1{n^3}\\right)$",
+        "$x_n=\\frac1n+\\frac1{n^3}+o\\left(\\frac1{n^3}\\right)$",
+        "$x_n=\\frac1n-\\frac1{n^2}+o\\left(\\frac1{n^2}\\right)$",
+        "$x_n=\\frac1n-\\frac2{n^3}+o\\left(\\frac1{n^3}\\right)$"
+      ],
+      "bonne": 0,
+      "explication": "On a $0<x_n<\\frac1n$ (le polynôme vaut $-1$ en $0$ et $\\frac1{n^2}$ en $\\frac1n$), et $x_n=\\frac{1-x_n^2}{n}$. Comme $x_n^2=\\frac1{n^2}+o\\left(\\frac1{n^2}\\right)$, on obtient $x_n=\\frac1n-\\frac1{n^3}+o\\left(\\frac1{n^3}\\right)$. On le retrouve sur la formule $x_n=\\frac{2}{n+\\sqrt{n^2+4}}$."
+    }
+  ]
+}
