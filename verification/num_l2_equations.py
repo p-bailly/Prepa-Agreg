@@ -15,6 +15,11 @@ mpmath.mp.dps = 50
 x = symbols("x")
 
 
+def M(q):
+    """Fraction -> mpf."""
+    return mpmath.mpf(q.numerator) / q.denominator if isinstance(q, F) else mpmath.mpf(q)
+
+
 def dicho(f, a, b, n):
     """Segments [a_k, b_k], k = 1..n, de la dichotomie (on garde [a, c] si f(a) f(c) <= 0)."""
     a, b = F(a), F(b)
@@ -182,7 +187,7 @@ assert abs(ell_c + 1.769) < 1e-3 and 3 * ell_c**2 - 2 > 0
 # Trou 4, leurres : (x_n - l)^3 (x^2 - 2, n = 1) ; m/(2M) (x^3 - 2, n = 0) ; M/(4m) (x^2 - 2 sur [1,4 ; 1,5], x_0 = 1,5).
 assert errs[2] > errs[1] ** 3 / 2
 e0 = 2 - mpmath.cbrt(2)
-assert F(3, 2) - mpmath.cbrt(2) > F(3, 24) * e0**2
+assert M(F(3, 2)) - mpmath.cbrt(2) > M(F(3, 24)) * e0**2
 e0 = mpmath.mpf(1.5) - mpmath.sqrt(2)
 e1 = mpmath.mpf(17) / 12 - mpmath.sqrt(2)
 assert e1 > 2 / (4 * 2.8) * e0**2 and 1.4**2 < 2 < 1.5**2
@@ -215,13 +220,13 @@ for f, fp, l, x1, adm, C, rep in [
     (lambda t: t**2 - 3, lambda t: 2 * t, mpmath.sqrt(3), F(7, 4), F(1, 50), F(1, 2), F(2, 10**16)),
 ]:
     xs = newton(f, fp, 2, 4)
-    assert xs[1] == x1 and 0 <= x1 - l <= adm
+    assert xs[1] == x1 and 0 <= M(x1) - l <= M(adm)
     d = C * adm
     for _ in range(3):
         d = d * d
     assert d / C == rep
-    assert all(0 <= (xs[k + 1] - l) <= C * (xs[k] - l) ** 2 for k in range(4))
-    assert mpmath.mpf(xs[4].numerator) / xs[4].denominator - l <= rep
+    assert all(0 <= (M(xs[k + 1]) - l) <= M(C) * (M(xs[k]) - l) ** 2 for k in range(4))
+    assert M(xs[4]) - l <= M(rep)
 assert F(5, 4) ** 3 < 2 and F(17, 10) ** 3 < 5 and F(173, 100) ** 2 < 3
 # Vraies erreurs citées : 8,1e-7 ; 1,4e-13 ; 1,7e-18.
 for f, fp, l, v in [(lambda t: t**3 - 2, lambda t: 3 * t * t, mpmath.cbrt(2), 8.1e-7),
@@ -267,7 +272,7 @@ for a, prec, n, lq, lc in [(2, 100, 8, -0.7656, 0.4515), (3, 100, 7, -1.1439, 0.
     mpmath.mp.dps = 50
     assert errs[n] <= mpmath.mpf(10) ** (-prec) < errs[n - 1]
     q = (2 - mpmath.sqrt(a)) / (2 + mpmath.sqrt(a))
-    assert q**2 < (F(1, 30) if a == 2 else F(1, 10))
+    assert q**2 < (mpmath.mpf(1) / 30 if a == 2 else mpmath.mpf(1) / 10)
 
 # ---------------------------------------------------------------------------------------------------------------
 # num-l2-equations-ordre (carte)
@@ -308,7 +313,7 @@ for num, den, a, b, lim in [(2, 3, 1, 2, F(2, 3)), (4, 5, 1, 4, F(2, 5)), (6, 5,
         assert u < v < a
         u = v
     w = mpmath.mpf(0)
-    for _ in range(200):
+    while abs(w - a) > 1e-15:
         w = (w * w + num) / den
     w1 = (w * w + num) / den
     assert abs((w1 - a) / (w - a) - lim) < 1e-6
@@ -386,7 +391,7 @@ for c3, k, g12, rep, leurres, apriori in [
     assert k / (1 - k) * d == rep and rep not in leurres
     assert leurres == [d, k * d, d / (1 - k)] and k**2 / 2 == apriori
     ell = mpmath.findroot(lambda t: t**3 - c3 * t + 1, 0.3)
-    assert 0 < ell < 0.5 and abs(mpmath.mpf(u2.numerator) / u2.denominator - ell) <= rep
+    assert 0 < ell < 0.5 and abs(M(u2) - ell) <= M(rep)
 assert F(28, 81) == (F(1, 27) + 1) / 3 and F(65, 256) == (F(1, 64) + 1) / 4 and F(126, 625) == (F(1, 125) + 1) / 5
 
 # num-l2-equations-erreur-ex4 (+ v1, v2) : résidu de x_3 pour Héron.
@@ -397,11 +402,11 @@ for a, x3, m, rep, leurres in [
 ]:
     assert heron(a, 3)[3] == x3 and (x3 * x3 - a) / m == rep
     err = mpmath.mpf(x3.numerator) / x3.denominator - mpmath.sqrt(a)
-    assert 0 < err <= rep
-    assert err > (leurres[2] if a == 5 else leurres[1])  # diviser par f'(2) (ou f'(3)) donne un majorant faux
+    assert 0 < err <= M(rep)
+    assert err > M(leurres[2] if a == 5 else leurres[1])  # diviser par f'(2) (ou f'(3)) donne un majorant faux
 assert 577**2 == 332929 and 408**2 == 166464 and 18817**2 == 354079489 and 10864**2 == 118026496
 assert 51841**2 == 2687489281 and 23184**2 == 537497856 and 2 <= 51841 / 23184 <= 3
-assert mpmath.mpf(577) / 408 - mpmath.sqrt(2) < F(1, 166464 * 28 // 10) < F(215, 10**8)  # minorant 2,8 sur [1,4 ; 1,5]
+assert mpmath.mpf(577) / 408 - mpmath.sqrt(2) < M(F(10, 166464 * 28)) < M(F(215, 10**8))  # minorant 2,8 sur [1,4 ; 1,5]
 
 # num-l2-equations-erreur-ex5 (+ v1, v2) : test |f(x_n)| <= 1e-6 pour x^p, x_n = ((p-1)/p)^n.
 for p, q, n, err, resid, prev in [(3, F(2, 3), 12, 7.7e-3, 4.6e-7, 1.2e-2), (2, F(1, 2), 10, 9.8e-4, 9.5e-7, 2.0e-3),
