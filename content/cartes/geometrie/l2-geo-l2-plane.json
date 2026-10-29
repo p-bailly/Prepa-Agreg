@@ -1,0 +1,466 @@
+{
+  "cartes": [
+    {
+      "id": "geo-l2-plane-angles-inscrits",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Angle au centre, angle inscrit, cocyclicité",
+      "recto": "Énoncer le théorème de l'angle au centre et de l'angle inscrit (en angles orientés) et le critère de cocyclicité de quatre points.",
+      "cours": "Un cercle « voit » une corde $[AB]$ toujours sous le même angle depuis un point qui le parcourt : c'est le théorème de l'angle inscrit, outil de base de la géométrie du cercle. Sa forme élémentaire porte sur les angles géométriques : si $M$ est sur le cercle, du même côté de $(AB)$ que le centre $O$, alors $\\widehat{AMB}=\\frac12\\widehat{AOB}$ ; deux points du même arc voient $[AB]$ sous le même angle, deux points d'arcs opposés sous des angles supplémentaires ; un diamètre est vu sous un angle droit (cercle de Thalès).\n\nPour éviter de distinguer les arcs, on travaille avec les **angles orientés de droites**, définis modulo $\\pi$ : l'égalité $(MA,MB)=(NA,NB)\\pmod\\pi$ vaut pour tous les points $M$, $N$ du cercle autres que $A$ et $B$, et le double $2(\\overrightarrow{MA},\\overrightarrow{MB})$, bien défini modulo $2\\pi$, est l'angle au centre $(\\overrightarrow{OA},\\overrightarrow{OB})$. Cas limite : si $T$ est la tangente en $A$, $(T,AB)=(MA,MB)\\pmod\\pi$ (angle tangentiel).\n\nMéthode : pour montrer que quatre points sont cocycliques, on établit une égalité d'angles orientés de droites $(CA,CB)=(DA,DB)$, souvent par une chasse aux angles (angles droits, parallèles, angles d'un triangle) ; réciproquement, quatre points cocycliques fournissent des égalités d'angles. Exemples classiques : les pieds des hauteurs, le symétrique de l'orthocentre par rapport à un côté, le théorème de Miquel.\n\nPièges : l'égalité d'angles géométriques $\\widehat{ACB}=\\widehat{ADB}$ ne suffit pas (deux points $C$, $D$ symétriques par rapport à $(AB)$ la vérifient, alors qu'en général ils ne sont pas cocycliques avec $A$ et $B$) ; la conclusion du critère est « cocycliques **ou alignés** » ; enfin un quadrilatère convexe est inscriptible si et seulement si ses angles opposés sont supplémentaires, ce qui exclut les parallélogrammes autres que les rectangles.",
+      "hypotheses": [
+        "$A$, $B$, $C$, $D$ sont quatre points deux à deux distincts.",
+        "$(CA,CB)=(DA,DB)\\pmod{\\pi}$, égalité d'angles orientés de droites."
+      ],
+      "hypotheses_pieges": [
+        "$\\widehat{ACB}=\\widehat{ADB}$, égalité d'angles géométriques (à la place de l'égalité d'angles orientés de droites).",
+        "$(CA,CB)=(DB,DA)\\pmod{\\pi}$ (à la place de $(CA,CB)=(DA,DB)$).",
+        "$CA\\times CB=DA\\times DB$, égalité de produits de longueurs (à la place de l'égalité d'angles)."
+      ],
+      "enonce": "Soit $\\mathcal C$ un cercle de centre $O$ et $A$, $B$ deux points distincts de $\\mathcal C$. On note $(MA,MB)$ l'angle orienté des droites $(MA)$ et $(MB)$, défini modulo $\\pi$.\n\n- **Angle au centre.** Pour tout point $M$ de $\\mathcal C$ distinct de $A$ et de $B$ : $(\\overrightarrow{OA},\\overrightarrow{OB})=2(\\overrightarrow{MA},\\overrightarrow{MB})\\pmod{2\\pi}$.\n- **Angle inscrit.** Pour tous points $M$, $N$ de $\\mathcal C$ distincts de $A$ et de $B$ : $(MA,MB)=(NA,NB)\\pmod{\\pi}$.\n- **Cocyclicité.** Quatre points $P$, $Q$, $R$, $S$ du plan, deux à deux distincts, sont cocycliques ou alignés si et seulement si $(RP,RQ)=(SP,SQ)\\pmod{\\pi}$.",
+      "enonce_trous": "Soient $A$, $B$ deux points distincts d'un cercle $\\mathcal C$ de centre $O$. Pour tout point $M$ de $\\mathcal C$ distinct de $A$ et de $B$, l'angle $(\\overrightarrow{OA},\\overrightarrow{OB})$ est égal, modulo $2\\pi$, à {{1}}. Quatre points $A$, $B$, $C$, $D$ deux à deux distincts sont {{2}} si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$2(\\overrightarrow{MA},\\overrightarrow{MB})$",
+          "leurres": [
+            "$(\\overrightarrow{MA},\\overrightarrow{MB})$",
+            "$\\pi-(\\overrightarrow{MA},\\overrightarrow{MB})$",
+            "$(\\overrightarrow{MA},\\overrightarrow{MB})+\\frac{\\pi}{2}$"
+          ]
+        },
+        {
+          "reponse": "cocycliques ou alignés",
+          "leurres": [
+            "cocycliques",
+            "alignés",
+            "les sommets d'un rectangle"
+          ]
+        },
+        {
+          "reponse": "$(CA,CB)=(DA,DB)\\pmod{\\pi}$",
+          "leurres": [
+            "$\\widehat{ACB}=\\widehat{ADB}$",
+            "$(CA,CB)=(DB,DA)\\pmod{\\pi}$",
+            "$(CA,CB)=2(DA,DB)\\pmod{\\pi}$"
+          ]
+        }
+      ],
+      "demo": "On place l'origine en $O$ et on note $r$ le rayon : $a=re^{i\\alpha}$, $b=re^{i\\beta}$, $m=re^{i\\mu}$ les affixes de $A$, $B$, $M$, avec $e^{i\\mu}\\neq e^{i\\alpha}$ et $e^{i\\mu}\\neq e^{i\\beta}$.\n\n**Angle au centre et angle inscrit.** Par la factorisation de l'angle moitié, $e^{i\\beta}-e^{i\\mu}=2i\\sin\\frac{\\beta-\\mu}{2}\\,e^{i\\frac{\\beta+\\mu}{2}}$, et de même pour $e^{i\\alpha}-e^{i\\mu}$. Donc\n$$\\frac{b-m}{a-m}=\\lambda\\,e^{i\\frac{\\beta-\\alpha}{2}},\\qquad\\lambda=\\frac{\\sin\\frac{\\beta-\\mu}{2}}{\\sin\\frac{\\alpha-\\mu}{2}},$$\noù $\\lambda$ est un réel non nul (les deux sinus sont non nuls car $m\\neq a$ et $m\\neq b$). Une mesure de $(\\overrightarrow{MA},\\overrightarrow{MB})$ est un argument de $\\frac{b-m}{a-m}$ : elle vaut $\\frac{\\beta-\\alpha}{2}$ si $\\lambda>0$ et $\\frac{\\beta-\\alpha}{2}+\\pi$ si $\\lambda<0$. Dans les deux cas, $2(\\overrightarrow{MA},\\overrightarrow{MB})=\\beta-\\alpha=(\\overrightarrow{OA},\\overrightarrow{OB})\\pmod{2\\pi}$, et $(MA,MB)=\\frac{\\beta-\\alpha}{2}\\pmod{\\pi}$, valeur qui ne dépend pas de $M$ : d'où l'égalité des angles inscrits.\n\n**Cocyclicité, sens direct.** Si $P$, $Q$, $R$, $S$ sont sur un même cercle, c'est le point précédent appliqué à la corde $[PQ]$ et aux points $R$, $S$. S'ils sont alignés, les deux angles sont nuls modulo $\\pi$.\n\n**Réciproque.** Supposons $(RP,RQ)=(SP,SQ)=\\theta\\pmod\\pi$. Si $\\theta=0$, $R$ et $S$ sont sur la droite $(PQ)$ : les quatre points sont alignés. Sinon, ni $P$, $Q$, $R$ ni $P$, $Q$, $S$ ne sont alignés ; soient $\\Omega$ et $\\Omega'$ les centres des cercles circonscrits à $PQR$ et à $PQS$. Par l'angle au centre, $(\\overrightarrow{\\Omega P},\\overrightarrow{\\Omega Q})=2\\theta=(\\overrightarrow{\\Omega' P},\\overrightarrow{\\Omega' Q})\\pmod{2\\pi}$. Or $\\Omega$ et $\\Omega'$ sont sur la médiatrice $\\Delta$ de $[PQ]$, et $X\\mapsto(\\overrightarrow{XP},\\overrightarrow{XQ})$ est injective sur $\\Delta$ : dans un repère orthonormé direct où $P$ et $Q$ ont pour affixes $-1$ et $1$, le point $X$ d'affixe $iy$ donne $\\frac{1-iy}{-1-iy}=-e^{-2i\\arctan y}$, de mesure $\\pi-2\\arctan y\\in\\left]0,2\\pi\\right[$, fonction strictement décroissante de $y$. Donc $\\Omega=\\Omega'$ : les deux cercles ont même centre et passent par $P$, ils sont égaux, et $S$ est sur le cercle circonscrit à $PQR$.",
+      "exemple": "Sur le cercle unité, avec $A(1,0)$, $B(0,1)$ et $M(-1,0)$ : $\\widehat{AOB}=\\frac{\\pi}{2}$ et $\\widehat{AMB}=\\frac{\\pi}{4}$.\n\nDans un triangle $ABC$ non rectangle, soient $B'$ et $C'$ les pieds des hauteurs issues de $B$ et de $C$. Les angles $\\widehat{BB'C}$ et $\\widehat{BC'C}$ sont droits, donc $B'$ et $C'$ sont sur le cercle de diamètre $[BC]$ : les points $B$, $C$, $B'$, $C'$ sont cocycliques, et l'angle inscrit donne par exemple $(B'B,B'C')=(CB,CC')\\pmod{\\pi}$.",
+      "contre_exemple": "- **Angles géométriques.** Avec $A(-1,0)$, $B(1,0)$, $C(0,2)$, $D(0,-2)$ : par symétrie, $\\widehat{ACB}=\\widehat{ADB}$ et $CA\\times CB=DA\\times DB$, mais le cercle passant par $A$, $B$, $C$ a pour centre $\\left(0,\\frac34\\right)$ et pour rayon $\\frac54$, et $D$ est à la distance $\\frac{11}{4}$ de ce centre : les quatre points ne sont ni cocycliques ni alignés. En angles orientés, $(CA,CB)=\\arctan\\frac43$ et $(DA,DB)=-\\arctan\\frac43\\pmod{\\pi}$, qui diffèrent.\n- **« Ou alignés » est nécessaire.** Quatre points distincts d'une même droite vérifient $(CA,CB)=(DA,DB)=0\\pmod{\\pi}$ sans être cocycliques.",
+      "affirmations": [
+        {
+          "texte": "Si $[AB]$ est un diamètre d'un cercle et $M$ un point de ce cercle distinct de $A$ et de $B$, le triangle $AMB$ est rectangle en $M$.",
+          "vrai": true,
+          "justification": "Angle au centre : $2(\\overrightarrow{MA},\\overrightarrow{MB})=(\\overrightarrow{OA},\\overrightarrow{OB})=\\pi\\pmod{2\\pi}$, donc $(\\overrightarrow{MA},\\overrightarrow{MB})=\\pm\\frac{\\pi}{2}\\pmod{2\\pi}$."
+        },
+        {
+          "texte": "Si $A$, $B$, $M$, $N$ sont quatre points distincts d'un même cercle, alors $\\widehat{AMB}=\\widehat{ANB}$.",
+          "vrai": false,
+          "contre_exemple": "Sur le cercle unité, avec $A(1,0)$, $B(0,1)$, $M(-1,0)$ et $N\\left(\\frac{\\sqrt2}{2},\\frac{\\sqrt2}{2}\\right)$ : $\\widehat{AMB}=\\frac{\\pi}{4}$ mais $\\widehat{ANB}=\\frac{3\\pi}{4}$. Les points $M$ et $N$ sont sur des arcs opposés : les angles sont supplémentaires (seuls les angles orientés de droites sont égaux)."
+        },
+        {
+          "texte": "Un quadrilatère convexe $ABCD$ est inscriptible dans un cercle si et seulement si ses angles opposés $\\widehat{A}$ et $\\widehat{C}$ sont supplémentaires.",
+          "vrai": true,
+          "justification": "$A$ et $C$ sont de part et d'autre de la diagonale $(BD)$ ; ils sont sur un même cercle passant par $B$ et $D$ si et seulement si ils voient $[BD]$ sous des angles supplémentaires (angles inscrits sur des arcs opposés), ce qui est l'égalité $(AB,AD)=(CB,CD)\\pmod{\\pi}$ du critère."
+        },
+        {
+          "texte": "Tout parallélogramme est inscriptible dans un cercle.",
+          "vrai": false,
+          "contre_exemple": "Le parallélogramme $A(0,0)$, $B(2,0)$, $C(3,1)$, $D(1,1)$ a deux angles opposés égaux à $\\frac{\\pi}{4}$, de somme $\\frac{\\pi}{2}\\neq\\pi$ : il n'est pas inscriptible. Un parallélogramme est inscriptible si et seulement si c'est un rectangle."
+        }
+      ],
+      "prerequis": [
+        "geo-t-complexes-geometrie",
+        "geo-l1-complexes-euler"
+      ]
+    },
+    {
+      "id": "geo-l2-plane-remarquables",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Éléments remarquables du triangle et relation d'Euler",
+      "recto": "Énoncer la concurrence des médiatrices, des médianes, des hauteurs et des bissectrices d'un triangle, et la relation d'Euler entre le centre du cercle circonscrit, le centre de gravité et l'orthocentre.",
+      "cours": "Quatre familles de droites remarquables d'un triangle $ABC$ sont concourantes : les médiatrices (en $O$, centre du cercle circonscrit), les médianes (en $G$, centre de gravité), les hauteurs (en $H$, orthocentre) et les bissectrices intérieures (en $I$, centre du cercle inscrit). Les preuves les plus efficaces sont vectorielles ou barycentriques : $G$ est l'isobarycentre de $A$, $B$, $C$, et $I$ le barycentre de $(A,a)$, $(B,b)$, $(C,c)$ avec $a=BC$, $b=CA$, $c=AB$.\n\nLa relation d'Euler $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}=3\\overrightarrow{OG}$ est le résultat central : elle donne l'orthocentre sans calcul d'intersection (on vérifie $\\overrightarrow{AH}\\cdot\\overrightarrow{BC}=OC^2-OB^2=0$), et elle montre que $O$, $G$, $H$ sont alignés sur la droite d'Euler, avec $\\overrightarrow{GH}=-2\\overrightarrow{GO}$. Elle se prolonge par le cercle d'Euler, de centre le milieu de $[OH]$ et de rayon $\\frac R2$, qui passe par les milieux des côtés, les pieds des hauteurs et les milieux de $[AH]$, $[BH]$, $[CH]$.\n\nMéthode : placer l'origine en $O$ simplifie les calculs ; en coordonnées, on calcule $O$ par deux médiatrices, puis $H$ par $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}$. Dans un triangle rectangle en $A$ : $H=A$ et $O$ est le milieu de l'hypoténuse.\n\nPièges : la relation $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}$ n'est vraie que si $O$ est le centre du cercle circonscrit (pour un point $P$ quelconque, c'est $\\overrightarrow{PG}$ qui vaut $\\frac13(\\overrightarrow{PA}+\\overrightarrow{PB}+\\overrightarrow{PC})$) ; $O$ et $H$ peuvent être extérieurs au triangle (triangle ayant un angle obtus) ; le centre $I$ du cercle inscrit n'est en général pas sur la droite d'Euler ; et la droite d'Euler n'est définie que si le triangle n'est pas équilatéral (sinon $O=G=H$).",
+      "hypotheses": [
+        "$ABC$ est un triangle non aplati.",
+        "$O$ est le centre du cercle circonscrit à $ABC$.",
+        "$H$ est le point défini par $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}$."
+      ],
+      "hypotheses_pieges": [
+        "$O$ est le centre de gravité de $ABC$ (à la place du centre du cercle circonscrit).",
+        "$O$ est le centre du cercle inscrit dans $ABC$ (à la place du centre du cercle circonscrit).",
+        "$H$ est le point défini par $\\overrightarrow{OH}=\\frac13\\left(\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}\\right)$ (à la place de la somme sans le facteur $\\frac13$)."
+      ],
+      "enonce": "Soit $ABC$ un triangle non aplati, $a=BC$, $b=CA$, $c=AB$, et $A'$ le milieu de $[BC]$.\n\n- Les médiatrices des côtés sont concourantes en le centre $O$ du cercle circonscrit, seul cercle passant par $A$, $B$, $C$.\n- Les médianes sont concourantes en le centre de gravité $G$, isobarycentre de $A$, $B$, $C$, et $\\overrightarrow{AG}=\\frac23\\overrightarrow{AA'}$ (de même pour les autres médianes).\n- Le point $H$ défini par $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}$ appartient aux trois hauteurs : elles sont concourantes en $H$, l'orthocentre.\n- **Relation d'Euler** : $\\overrightarrow{OH}=3\\overrightarrow{OG}$. Si le triangle n'est pas équilatéral, $O\\neq G$ et la droite $(OG)$, qui contient $H$, est la droite d'Euler ; si le triangle est équilatéral, $O=G=H$.\n- Les bissectrices intérieures sont concourantes en le centre $I$ du cercle inscrit, barycentre de $(A,a)$, $(B,b)$, $(C,c)$.",
+      "enonce_trous": "Dans un triangle non aplati $ABC$, de centre du cercle circonscrit $O$, de centre de gravité $G$ et d'orthocentre $H$, on a {{1}}. Le centre de gravité est situé {{2}} de chaque médiane à partir du sommet, et $O$ est le point de concours des {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\overrightarrow{OH}=3\\overrightarrow{OG}$",
+          "leurres": [
+            "$\\overrightarrow{OH}=2\\overrightarrow{OG}$",
+            "$\\overrightarrow{OG}=3\\overrightarrow{OH}$",
+            "$\\overrightarrow{GH}=3\\overrightarrow{GO}$"
+          ]
+        },
+        {
+          "reponse": "aux deux tiers",
+          "leurres": [
+            "à la moitié",
+            "au tiers",
+            "aux trois quarts"
+          ]
+        },
+        {
+          "reponse": "médiatrices",
+          "leurres": [
+            "médianes",
+            "hauteurs",
+            "bissectrices"
+          ]
+        }
+      ],
+      "demo": "**Médiatrices.** Les médiatrices de $[AB]$ et de $[AC]$ se coupent (elles sont perpendiculaires à deux droites non parallèles) en un point $O$ tel que $OA=OB$ et $OA=OC$ ; donc $OB=OC$ : $O$ est sur la médiatrice de $[BC]$, et c'est le centre du seul cercle passant par $A$, $B$, $C$.\n\n**Médianes.** Par associativité du barycentre, l'isobarycentre $G$ de $A$, $B$, $C$ est le barycentre de $(A,1)$ et $(A',2)$, soit $\\overrightarrow{AG}=\\frac23\\overrightarrow{AA'}$ : $G$ est sur la médiane issue de $A$, et de même sur les deux autres.\n\n**Hauteurs.** Avec $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}$, on a $\\overrightarrow{AH}=\\overrightarrow{OB}+\\overrightarrow{OC}$, donc\n$$\\overrightarrow{AH}\\cdot\\overrightarrow{BC}=(\\overrightarrow{OC}+\\overrightarrow{OB})\\cdot(\\overrightarrow{OC}-\\overrightarrow{OB})=OC^2-OB^2=0.$$\nLe vecteur $\\overrightarrow{AH}$ est nul ou orthogonal à $(BC)$ : $H$ est sur la hauteur issue de $A$, et, par symétrie des rôles, sur les trois hauteurs.\n\n**Euler.** Pour tout point $P$, $\\overrightarrow{PG}=\\frac13(\\overrightarrow{PA}+\\overrightarrow{PB}+\\overrightarrow{PC})$ ; avec $P=O$, $\\overrightarrow{OG}=\\frac13\\overrightarrow{OH}$. Si $O=G$, la médiane issue de $A$ contient $G$ et $A'$, deux points distincts ($\\overrightarrow{A'G}=\\frac13\\overrightarrow{A'A}$) de la médiatrice de $[BC]$ : elle est cette médiatrice, donc $AB=AC$ ; de même $BA=BC$, et le triangle est équilatéral. Réciproquement, dans un triangle équilatéral, chaque médiane est une médiatrice, donc $G=O$, puis $H=O$.\n\n**Bissectrices.** Soit $D$ le point où la bissectrice intérieure issue de $A$ coupe $[BC]$. Les triangles $ABD$ et $ADC$ ont même hauteur issue de $A$, donc le rapport de leurs aires vaut $\\frac{BD}{DC}$ ; il vaut aussi $\\frac{\\frac12\\,c\\cdot AD\\,\\sin\\frac{\\widehat A}2}{\\frac12\\,b\\cdot AD\\,\\sin\\frac{\\widehat A}2}=\\frac cb$. Ainsi $D$ est le barycentre de $(B,b)$ et $(C,c)$, et, par associativité, le barycentre $I$ de $(A,a)$, $(B,b)$, $(C,c)$ est sur $[AD]$ ; de même sur les deux autres bissectrices. Un point des bissectrices est équidistant des trois côtés : $I$ est le centre du cercle inscrit.",
+      "exemple": "Pour $A(0,0)$, $B(6,0)$, $C(2,4)$ : $O$ est sur la médiatrice $x=3$ de $[AB]$, et $OA=OC$ donne $O(3,1)$. Alors $\\overrightarrow{OH}=\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}=(-3,-1)+(3,-1)+(-1,3)=(-1,1)$, donc $H(2,2)$, et $G\\left(\\frac83,\\frac43\\right)$ vérifie bien $\\overrightarrow{OG}=\\left(-\\frac13,\\frac13\\right)=\\frac13\\overrightarrow{OH}$. Vérification : $\\overrightarrow{AH}=(2,2)$ est orthogonal à $\\overrightarrow{BC}=(-4,4)$, et $H$ a même abscisse que $C$.",
+      "contre_exemple": "- **$O$ doit être le centre du cercle circonscrit.** Pour $A(0,0)$, $B(4,0)$, $C(0,3)$, rectangle en $A$, le centre du cercle inscrit est $I(1,1)$, et le point $P$ tel que $\\overrightarrow{IP}=\\overrightarrow{IA}+\\overrightarrow{IB}+\\overrightarrow{IC}$ est $(2,1)$, alors que l'orthocentre est $A$.\n- **Le centre du cercle inscrit n'est pas sur la droite d'Euler en général.** Pour $A(0,0)$, $B(6,0)$, $C(2,4)$, la droite d'Euler $(OH)$ a pour équation $x+y=4$, et la somme des coordonnées de $I$ vaut $\\frac{12\\sqrt5+36}{4\\sqrt2+2\\sqrt5+6}\\approx3{,}90\\neq4$.\n- **L'orthocentre peut être extérieur au triangle.** Pour $A(0,0)$, $B(4,0)$, $C(1,1)$ (angle obtus en $C$), $H=(1,3)$.",
+      "affirmations": [
+        {
+          "texte": "Dans un triangle rectangle en $A$, l'orthocentre est $A$ et le centre du cercle circonscrit est le milieu de l'hypoténuse.",
+          "vrai": true,
+          "justification": "Les côtés $(AB)$ et $(AC)$ sont deux hauteurs, qui se coupent en $A$ ; et $A$ voit $[BC]$ sous un angle droit, donc est sur le cercle de diamètre $[BC]$."
+        },
+        {
+          "texte": "L'orthocentre d'un triangle est toujours intérieur au triangle.",
+          "vrai": false,
+          "contre_exemple": "Pour $A(0,0)$, $B(4,0)$, $C(1,1)$, la hauteur issue de $C$ est $x=1$ et celle issue de $A$ est $y=3x$ : $H=(1,3)$, alors que tous les points du triangle ont une ordonnée au plus $1$."
+        },
+        {
+          "texte": "Si le centre du cercle circonscrit et le centre de gravité d'un triangle sont confondus, le triangle est équilatéral.",
+          "vrai": true,
+          "justification": "La médiane issue de $A$ contient alors deux points distincts, $G$ et $A'$, de la médiatrice de $[BC]$ : elle est cette médiatrice, donc $AB=AC$ ; de même $BA=BC$."
+        },
+        {
+          "texte": "Le centre du cercle inscrit d'un triangle non équilatéral est toujours sur sa droite d'Euler.",
+          "vrai": false,
+          "contre_exemple": "Pour $A(0,0)$, $B(6,0)$, $C(2,4)$, la droite d'Euler est $x+y=4$, et le centre du cercle inscrit $I=\\frac{aA+bB+cC}{a+b+c}$, avec $a=4\\sqrt2$, $b=2\\sqrt5$, $c=6$, a une somme de coordonnées environ égale à $3{,}90$."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "geo-l2-plane-relations-metriques",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Loi des cosinus, loi des sinus et aire d'un triangle",
+      "recto": "Énoncer la loi des cosinus, la loi des sinus (avec le rayon du cercle circonscrit), la formule d'aire $\\frac12bc\\sin\\widehat A$ et la formule de Héron.",
+      "cours": "Ces formules relient côtés et angles d'un triangle $ABC$ (notations : $a=BC$, $b=CA$, $c=AB$, angles géométriques $\\widehat A$, $\\widehat B$, $\\widehat C$ dans $\\left]0,\\pi\\right[$, de somme $\\pi$). La **loi des cosinus** (formule d'Al-Kashi) $a^2=b^2+c^2-2bc\\cos\\widehat A$ généralise le théorème de Pythagore : c'est le développement de $\\|\\overrightarrow{AC}-\\overrightarrow{AB}\\|^2$. La formule d'**aire** $\\mathcal S=\\frac12bc\\sin\\widehat A$ vient de la hauteur $b\\sin\\widehat A$. La **loi des sinus** $\\frac a{\\sin\\widehat A}=\\frac b{\\sin\\widehat B}=\\frac c{\\sin\\widehat C}=2R$ relie le triangle à son cercle circonscrit, par l'angle inscrit. La formule de **Héron** donne l'aire à partir des seuls côtés.\n\nMéthode : deux côtés et l'angle compris donnent le troisième côté par la loi des cosinus ; trois côtés donnent les cosinus des angles (le signe de $b^2+c^2-a^2$ dit si $\\widehat A$ est aigu, droit ou obtus) et l'aire par Héron ; deux angles et un côté donnent le reste par la loi des sinus. Le rayon du cercle circonscrit vaut $R=\\frac{abc}{4\\mathcal S}$, celui du cercle inscrit $r=\\frac{\\mathcal S}p$, où $p$ est le demi-périmètre.\n\nPièges : dans $\\frac12bc\\sin\\widehat A$, l'angle est celui **compris** entre les côtés de longueurs $b$ et $c$ ; la loi des sinus fait intervenir $2R$ et non $R$ ; et deux côtés avec un angle non compris ne déterminent pas toujours le triangle (cas ambigu : connaître $\\sin\\widehat B$ laisse deux valeurs possibles de $\\widehat B$).",
+      "hypotheses": [
+        "$ABC$ est un triangle non aplati.",
+        "$a=BC$ est la longueur du côté opposé au sommet $A$.",
+        "$\\widehat A\\in\\left]0,\\pi\\right[$ est l'angle géométrique au sommet $A$.",
+        "$R$ est le rayon du cercle circonscrit à $ABC$."
+      ],
+      "hypotheses_pieges": [
+        "$a=AB$, longueur d'un côté issu de $A$ (à la place du côté opposé $BC$).",
+        "$R$ est le rayon du cercle inscrit dans $ABC$ (à la place du cercle circonscrit).",
+        "$\\widehat A$ est la mesure dans $\\left]-\\pi,\\pi\\right]$ de l'angle orienté $(\\overrightarrow{AB},\\overrightarrow{AC})$ (à la place de l'angle géométrique)."
+      ],
+      "enonce": "Soit $ABC$ un triangle non aplati, $a=BC$, $b=CA$, $c=AB$, $\\widehat A$, $\\widehat B$, $\\widehat C\\in\\left]0,\\pi\\right[$ ses angles géométriques, $\\mathcal S$ son aire, $R$ le rayon de son cercle circonscrit et $p=\\frac{a+b+c}2$.\n\n- **Loi des cosinus (Al-Kashi)** : $a^2=b^2+c^2-2bc\\cos\\widehat A$, et de même pour $b^2$ et $c^2$.\n- **Aire** : $\\mathcal S=\\frac12bc\\sin\\widehat A=\\frac12ca\\sin\\widehat B=\\frac12ab\\sin\\widehat C$.\n- **Loi des sinus** : $\\frac{a}{\\sin\\widehat A}=\\frac{b}{\\sin\\widehat B}=\\frac{c}{\\sin\\widehat C}=2R=\\frac{abc}{2\\mathcal S}$.\n- **Formule de Héron** : $\\mathcal S=\\sqrt{p(p-a)(p-b)(p-c)}$.",
+      "enonce_trous": "Dans un triangle non aplati $ABC$, avec $a=BC$, $b=CA$, $c=AB$ et $R$ le rayon du cercle circonscrit, on a $a^2=$ {{1}} et $\\frac{a}{\\sin\\widehat A}=$ {{2}} ; l'aire du triangle vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$b^2+c^2-2bc\\cos\\widehat A$",
+          "leurres": [
+            "$b^2+c^2+2bc\\cos\\widehat A$",
+            "$b^2+c^2-bc\\cos\\widehat A$",
+            "$b^2+c^2-2bc\\sin\\widehat A$"
+          ]
+        },
+        {
+          "reponse": "$2R$",
+          "leurres": [
+            "$R$",
+            "$\\frac{R}{2}$",
+            "$\\pi R$"
+          ]
+        },
+        {
+          "reponse": "$\\frac12bc\\sin\\widehat A$",
+          "leurres": [
+            "$bc\\sin\\widehat A$",
+            "$\\frac12bc\\cos\\widehat A$",
+            "$\\frac12ab\\sin\\widehat A$"
+          ]
+        }
+      ],
+      "demo": "**Loi des cosinus.** $\\overrightarrow{BC}=\\overrightarrow{AC}-\\overrightarrow{AB}$, donc $a^2=\\|\\overrightarrow{AC}\\|^2+\\|\\overrightarrow{AB}\\|^2-2\\,\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=b^2+c^2-2bc\\cos\\widehat A$.\n\n**Aire.** La distance de $C$ à la droite $(AB)$ vaut $h=b\\sin\\widehat A$ (avec $\\sin\\widehat A>0$, que l'angle soit aigu ou obtus), donc $\\mathcal S=\\frac12ch=\\frac12bc\\sin\\widehat A$ ; de même pour les autres sommets.\n\n**Loi des sinus.** De $2\\mathcal S=bc\\sin\\widehat A$ on tire $\\frac a{\\sin\\widehat A}=\\frac{abc}{2\\mathcal S}$, expression symétrique en $a$, $b$, $c$ : les trois quotients sont égaux. Pour la valeur $2R$, plaçons l'origine au centre $O$ du cercle circonscrit, et notons $z_B=Re^{i\\beta}$, $z_C=Re^{i\\gamma}$ les affixes de $B$ et $C$. Par l'angle moitié, $a=|z_C-z_B|=R\\,|e^{i\\gamma}-e^{i\\beta}|=2R\\left|\\sin\\frac{\\gamma-\\beta}2\\right|$. Par l'angle au centre, $\\gamma-\\beta=2\\theta\\pmod{2\\pi}$, où $\\theta$ est une mesure de $(\\overrightarrow{AB},\\overrightarrow{AC})$, égale à $\\widehat A$ ou à $-\\widehat A$ modulo $2\\pi$. Donc $\\frac{\\gamma-\\beta}2=\\theta\\pmod\\pi$ et $\\left|\\sin\\frac{\\gamma-\\beta}2\\right|=|\\sin\\theta|=\\sin\\widehat A$ : $a=2R\\sin\\widehat A$.\n\n**Héron.** $16\\mathcal S^2=4b^2c^2\\sin^2\\widehat A=(2bc)^2-(2bc\\cos\\widehat A)^2=(2bc)^2-(b^2+c^2-a^2)^2$, qui se factorise en $\\big(a^2-(b-c)^2\\big)\\big((b+c)^2-a^2\\big)=(a-b+c)(a+b-c)(b+c-a)(a+b+c)=16\\,p(p-a)(p-b)(p-c)$.",
+      "exemple": "Pour $b=5$, $c=8$ et $\\widehat A=\\frac{\\pi}{3}$ : $a^2=25+64-40=49$, donc $a=7$ ; $\\mathcal S=\\frac12\\times40\\times\\frac{\\sqrt3}2=10\\sqrt3$ ; $R=\\frac{a}{2\\sin\\widehat A}=\\frac7{\\sqrt3}=\\frac{7\\sqrt3}3$. Héron, avec $p=10$ : $\\sqrt{10\\times3\\times5\\times2}=\\sqrt{300}=10\\sqrt3$.",
+      "contre_exemple": "- **Cas ambigu.** Avec $\\widehat A=\\frac{\\pi}{6}$, $b=CA=2$ et $a=BC=\\sqrt2$, la loi des sinus donne $\\sin\\widehat B=\\frac{b\\sin\\widehat A}{a}=\\frac{\\sqrt2}2$, donc $\\widehat B=\\frac{\\pi}{4}$ ou $\\widehat B=\\frac{3\\pi}{4}$, et les deux triangles existent ($\\widehat A+\\widehat B<\\pi$), avec $c=\\sqrt3+1$ ou $c=\\sqrt3-1$ : deux côtés et un angle égaux, sans que les triangles soient isométriques.\n- **Angle non compris.** Dans le triangle rectangle en $A$ de côtés $b=4$, $c=3$, $a=5$, l'aire vaut $6$, alors que $\\frac12ab\\sin\\widehat A=10$.",
+      "affirmations": [
+        {
+          "texte": "Dans tout triangle non aplati, $a<b+c$.",
+          "vrai": true,
+          "justification": "Loi des cosinus : $a^2=b^2+c^2-2bc\\cos\\widehat A<b^2+c^2+2bc=(b+c)^2$, car $\\cos\\widehat A>-1$."
+        },
+        {
+          "texte": "Si $a^2>b^2+c^2$, l'angle $\\widehat A$ est obtus.",
+          "vrai": true,
+          "justification": "$\\cos\\widehat A=\\frac{b^2+c^2-a^2}{2bc}<0$."
+        },
+        {
+          "texte": "Si $a^2<b^2+c^2$, les trois angles du triangle sont aigus.",
+          "vrai": false,
+          "contre_exemple": "Pour $a=2$, $b=4$, $c=3$ : $a^2=4<25$, donc $\\widehat A$ est aigu, mais $b^2=16>a^2+c^2=13$, donc $\\widehat B$ est obtus."
+        },
+        {
+          "texte": "Deux triangles ayant deux côtés de mêmes longueurs et un angle de même mesure sont isométriques.",
+          "vrai": false,
+          "contre_exemple": "Cas ambigu : $\\widehat A=\\frac{\\pi}{6}$, $b=2$, $a=\\sqrt2$ donnent deux triangles, avec $c=\\sqrt3+1$ ou $c=\\sqrt3-1$. (Le résultat est vrai si l'angle est compris entre les deux côtés.)"
+        },
+        {
+          "texte": "Si $\\sin\\widehat B=\\sin\\widehat C$, alors $b=c$.",
+          "vrai": true,
+          "justification": "Loi des sinus : $b=2R\\sin\\widehat B=2R\\sin\\widehat C=c$."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-plane-angles-inscrits",
+        "ar-t-fonctions-usuelles-trigo"
+      ]
+    },
+    {
+      "id": "geo-l2-plane-complexes-cercles",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Équation complexe d'un cercle et cocyclicité par le birapport",
+      "recto": "Donner l'équation complexe d'un cercle, reconnaître l'ensemble $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$, et énoncer le critère de cocyclicité par le birapport.",
+      "cours": "Dans le plan identifié à $\\mathbb{C}$ (repère orthonormé direct), le cercle de centre $\\omega$ et de rayon $r$ s'écrit $|z-\\omega|=r$, soit, en développant $|z-\\omega|^2=(z-\\omega)(\\overline z-\\overline\\omega)$, une équation $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$ avec $\\beta=-\\omega$ et $\\gamma=|\\omega|^2-r^2$ réel. Réciproquement, une telle équation se met sous la forme $|z+\\beta|^2=|\\beta|^2-\\gamma$, comme on complète un carré. Sans terme en $z\\overline z$, l'équation $\\overline\\beta z+\\beta\\overline z+\\gamma=0$ ($\\beta\\neq0$, $\\gamma$ réel) décrit une droite : droites et cercles relèvent du même calcul.\n\nLe birapport $\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ traduit l'angle inscrit : son argument est la différence des angles $(\\overrightarrow{CB},\\overrightarrow{CA})$ et $(\\overrightarrow{DB},\\overrightarrow{DA})$, si bien qu'il est réel exactement quand ces angles sont égaux modulo $\\pi$, c'est-à-dire quand les quatre points sont cocycliques ou alignés.\n\nMéthode : pour reconnaître un cercle, se ramener à $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$ (diviser par le coefficient de $z\\overline z$, vérifier que les coefficients de $z$ et de $\\overline z$ sont conjugués et que $\\gamma$ est réel), puis lire le centre $-\\beta$ et le rayon $\\sqrt{|\\beta|^2-\\gamma}$. Les ensembles $|z-a|=k|z-b|$, pour $a\\neq b$, $k>0$ et $k\\neq1$, sont des cercles (cercles d'Apollonius), et $|z-a|=|z-b|$ est la médiatrice. Pour la cocyclicité, calculer le birapport, tester s'il est réel, puis exclure l'alignement.\n\nPièges : le centre est $-\\beta$ et non $\\beta$ ; si $|\\beta|^2\\le\\gamma$, l'ensemble est un point ou vide ; si les coefficients de $z$ et de $\\overline z$ ne sont pas conjugués, ce n'est en général pas un cercle ; un birapport réel donne « cocycliques ou alignés ».",
+      "hypotheses": [
+        "$A$, $B$, $C$, $D$ sont deux à deux distincts.",
+        "$\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est réel."
+      ],
+      "hypotheses_pieges": [
+        "$\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est imaginaire pur (à la place de réel).",
+        "$\\frac{c-a}{c-b}\\cdot\\frac{d-a}{d-b}$ est réel (à la place de $\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$).",
+        "$\\left|\\frac{c-a}{c-b}\\right|=\\left|\\frac{d-a}{d-b}\\right|$, égalité de modules (à la place de : birapport réel)."
+      ],
+      "enonce": "Le plan est identifié à $\\mathbb{C}$ par un repère orthonormé direct.\n\n- Le cercle de centre $\\omega$ et de rayon $r>0$ a pour équation $|z-\\omega|=r$, c'est-à-dire $z\\overline z-\\overline\\omega z-\\omega\\overline z+|\\omega|^2-r^2=0$.\n- Réciproquement, soient $\\beta\\in\\mathbb{C}$ et $\\gamma\\in\\mathbb{R}$. L'ensemble des $z$ tels que $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$ est le cercle de centre $-\\beta$ et de rayon $\\sqrt{|\\beta|^2-\\gamma}$ si $|\\beta|^2>\\gamma$, le point $-\\beta$ si $|\\beta|^2=\\gamma$, et l'ensemble vide si $|\\beta|^2<\\gamma$.\n- **Cocyclicité.** Quatre points deux à deux distincts $A$, $B$, $C$, $D$ d'affixes $a$, $b$, $c$, $d$ sont cocycliques ou alignés si et seulement si leur birapport $\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est réel.",
+      "enonce_trous": "L'ensemble des $z\\in\\mathbb{C}$ tels que $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$, où $\\beta\\in\\mathbb{C}$ et $\\gamma\\in\\mathbb{R}$ vérifient $|\\beta|^2>\\gamma$, est le cercle de centre {{1}} et de rayon {{2}}. Quatre points deux à deux distincts d'affixes $a$, $b$, $c$, $d$ sont cocycliques ou alignés si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$-\\beta$",
+          "leurres": [
+            "$\\beta$",
+            "$\\overline\\beta$",
+            "$-\\overline\\beta$"
+          ]
+        },
+        {
+          "reponse": "$\\sqrt{|\\beta|^2-\\gamma}$",
+          "leurres": [
+            "$|\\beta|^2-\\gamma$",
+            "$\\sqrt{\\gamma-|\\beta|^2}$",
+            "$\\sqrt{|\\beta|^2+\\gamma}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est réel",
+          "leurres": [
+            "$\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est imaginaire pur",
+            "$\\frac{c-a}{c-b}\\cdot\\frac{d-a}{d-b}$ est réel",
+            "$\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$ est de module $1$"
+          ]
+        }
+      ],
+      "demo": "**Équation d'un cercle.** $|z-\\omega|^2=(z-\\omega)(\\overline z-\\overline\\omega)=z\\overline z-\\overline\\omega z-\\omega\\overline z+|\\omega|^2$, d'où l'équation annoncée (les deux membres de $|z-\\omega|=r$ étant positifs, on peut élever au carré).\n\n**Réciproque.** $(z+\\beta)(\\overline z+\\overline\\beta)=z\\overline z+\\overline\\beta z+\\beta\\overline z+|\\beta|^2$, donc l'équation équivaut à $|z+\\beta|^2=|\\beta|^2-\\gamma$, dont le second membre est réel. S'il est strictement positif, c'est le cercle de centre $-\\beta$ et de rayon $\\sqrt{|\\beta|^2-\\gamma}$ ; s'il est nul, $z=-\\beta$ ; s'il est strictement négatif, il n'y a pas de solution.\n\n**Cocyclicité.** Une mesure de $(\\overrightarrow{CA},\\overrightarrow{CB})$ est un argument de $\\frac{b-c}{a-c}$, et une mesure de $(\\overrightarrow{DA},\\overrightarrow{DB})$ un argument de $\\frac{b-d}{a-d}$. Le quotient\n$$\\frac{b-d}{a-d}\\cdot\\frac{a-c}{b-c}=\\frac{c-a}{c-b}\\cdot\\frac{d-b}{d-a}$$\na donc pour argument $(\\overrightarrow{DA},\\overrightarrow{DB})-(\\overrightarrow{CA},\\overrightarrow{CB})$. Il est réel (et non nul, les points étant distincts) si et seulement si cette différence est nulle modulo $\\pi$, c'est-à-dire si et seulement si $(CA,CB)=(DA,DB)\\pmod\\pi$ ; d'après le critère de cocyclicité par les angles inscrits, cela équivaut à : $A$, $B$, $C$, $D$ cocycliques ou alignés.",
+      "exemple": "L'équation $z\\overline z-(2-i)z-(2+i)\\overline z+1=0$ est de la forme $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$ avec $\\beta=-2-i$ et $\\gamma=1$ : $|\\beta|^2-\\gamma=4$, c'est le cercle de centre $2+i$ et de rayon $2$.\n\nLes points d'affixes $1$, $3$, $2+i$, $2-i$ ont pour birapport $\\frac{1+i}{-1+i}\\cdot\\frac{-1-i}{1-i}=(-i)(-i)=-1$, réel : ils sont cocycliques (sur le cercle de centre $2$ et de rayon $1$).",
+      "contre_exemple": "- **Coefficients non conjugués.** $z\\overline z+z+2\\overline z=0$ : avec $z=x+iy$, cela donne $x^2+y^2+3x=0$ et $-y=0$, soit les deux points $0$ et $-3$, et non un cercle.\n- **Alignement.** Les points d'affixes $0$, $1$, $2$, $3$ ont pour birapport $\\frac{2-0}{2-1}\\cdot\\frac{3-1}{3-0}=\\frac43$, réel, mais ils sont alignés, non cocycliques.\n- **Second membre négatif.** L'équation $z\\overline z+1=0$ n'a pas de solution.",
+      "affirmations": [
+        {
+          "texte": "L'ensemble des points d'affixe $z$ tels que $|z-1|=2|z+1|$ est un cercle.",
+          "vrai": true,
+          "justification": "En élevant au carré : $z\\overline z-z-\\overline z+1=4(z\\overline z+z+\\overline z+1)$, soit $z\\overline z+\\frac53(z+\\overline z)+1=0$ : cercle de centre $-\\frac53$ et de rayon $\\sqrt{\\frac{25}9-1}=\\frac43$."
+        },
+        {
+          "texte": "Les points d'affixes $1$, $i$, $-1$ et $1+i$ sont cocycliques.",
+          "vrai": false,
+          "contre_exemple": "Le seul cercle passant par $1$, $i$, $-1$ est le cercle unité, et $|1+i|=\\sqrt2\\neq1$ ; les points ne sont pas non plus alignés."
+        },
+        {
+          "texte": "Si $|\\beta|^2=\\gamma$, l'ensemble des $z$ tels que $z\\overline z+\\overline\\beta z+\\beta\\overline z+\\gamma=0$ est réduit à un point.",
+          "vrai": true,
+          "justification": "L'équation équivaut à $|z+\\beta|^2=0$, soit $z=-\\beta$."
+        },
+        {
+          "texte": "Pour tous points distincts $A$, $B$ et tout réel $k>0$, l'ensemble des points $M$ tels que $MA=k\\,MB$ est un cercle.",
+          "vrai": false,
+          "contre_exemple": "Pour $k=1$, c'est la médiatrice de $[AB]$, une droite."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-plane-angles-inscrits",
+        "geo-t-complexes-geometrie"
+      ]
+    },
+    {
+      "id": "geo-l2-plane-puissance",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Puissance d'un point par rapport à un cercle, axe radical",
+      "recto": "Définir la puissance d'un point par rapport à un cercle, énoncer le théorème des sécantes et décrire l'axe radical de deux cercles.",
+      "cours": "La puissance $p_{\\mathcal C}(M)=MO^2-R^2$ mesure la position de $M$ par rapport au cercle $\\mathcal C$ de centre $O$ et de rayon $R$ : strictement négative à l'intérieur, nulle sur le cercle, strictement positive à l'extérieur. Son intérêt est le théorème des sécantes : pour **toute** droite passant par $M$ et coupant le cercle en $A$ et $B$, le produit scalaire $\\overrightarrow{MA}\\cdot\\overrightarrow{MB}$ vaut $p_{\\mathcal C}(M)$, indépendamment de la droite. Pour une tangente, $A=B=T$ et $MT^2=p_{\\mathcal C}(M)$. En longueurs : $MA\\times MB=|p_{\\mathcal C}(M)|$.\n\nEn repère orthonormé, si $\\mathcal C$ a pour équation $x^2+y^2+2\\alpha x+2\\beta y+\\gamma=0$, la puissance de $M(x_0,y_0)$ s'obtient en substituant : $p_{\\mathcal C}(M)=x_0^2+y_0^2+2\\alpha x_0+2\\beta y_0+\\gamma$. L'**axe radical** de deux cercles non concentriques, ensemble des points de même puissance, s'obtient donc en soustrayant les deux équations : c'est une droite, perpendiculaire à la droite des centres. Pour des cercles sécants, c'est la droite qui joint leurs points communs.\n\nMéthode : quatre points $A$, $B$, $C$, $D$ distincts de $M$, avec $(AB)$ et $(CD)$ deux droites distinctes sécantes en $M$, sont cocycliques si et seulement si $\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=\\overrightarrow{MC}\\cdot\\overrightarrow{MD}$ ; trois cercles de centres non alignés ont leurs trois axes radicaux concourants en un point, le **centre radical**.\n\nPièges : le produit des longueurs $MA\\times MB$ vaut $p_{\\mathcal C}(M)$ seulement si $M$ est extérieur ou sur le cercle (sinon c'est $-p_{\\mathcal C}(M)$) ; deux cercles concentriques distincts n'ont pas d'axe radical ; l'axe radical n'est la médiatrice des centres que si les rayons sont égaux.",
+      "hypotheses": [
+        "$\\mathcal C$ est un cercle de centre $O$ et de rayon $R$.",
+        "$A$ et $B$ sont les points d'intersection de $\\mathcal C$ avec une droite passant par $M$ ($A=B$ si elle est tangente)."
+      ],
+      "hypotheses_pieges": [
+        "$A$ et $B$ sont deux points quelconques de $\\mathcal C$ (à la place des points d'intersection de $\\mathcal C$ avec une droite passant par $M$).",
+        "$O$ est un point quelconque intérieur au cercle (à la place de son centre).",
+        "$A$ est un point de $\\mathcal C$ et $B$ le symétrique de $A$ par rapport à $M$ (à la place des points d'intersection avec une droite passant par $M$)."
+      ],
+      "enonce": "Soit $\\mathcal C$ un cercle de centre $O$ et de rayon $R$. La **puissance** d'un point $M$ par rapport à $\\mathcal C$ est le réel $p_{\\mathcal C}(M)=MO^2-R^2$ ; elle est strictement négative, nulle ou strictement positive selon que $M$ est intérieur au cercle, sur le cercle ou extérieur.\n\n- **Sécantes.** Si une droite passant par $M$ coupe $\\mathcal C$ en $A$ et $B$ (avec $A=B$ si elle est tangente), alors $\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=p_{\\mathcal C}(M)$. En particulier, si $T$ est le point de contact d'une tangente issue de $M$, $MT^2=p_{\\mathcal C}(M)$.\n- **Axe radical.** Soient $\\mathcal C$ et $\\mathcal C'$ deux cercles de centres $O\\neq O'$. L'ensemble des points ayant même puissance par rapport à $\\mathcal C$ et à $\\mathcal C'$ est une droite perpendiculaire à $(OO')$, l'axe radical. Si les cercles se coupent en deux points, c'est la droite qui les joint ; s'ils sont tangents en $T$, c'est leur tangente commune en $T$.",
+      "enonce_trous": "La puissance d'un point $M$ par rapport au cercle $\\mathcal C$ de centre $O$ et de rayon $R$ est $p_{\\mathcal C}(M)=$ {{1}}. Si une droite passant par $M$ coupe $\\mathcal C$ en $A$ et $B$, alors {{2}}. Pour deux cercles de centres distincts, l'ensemble des points de même puissance par rapport aux deux cercles est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$MO^2-R^2$",
+          "leurres": [
+            "$MO-R$",
+            "$R^2-MO^2$",
+            "$MO^2+R^2$"
+          ]
+        },
+        {
+          "reponse": "$\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=p_{\\mathcal C}(M)$",
+          "leurres": [
+            "$MA\\times MB=p_{\\mathcal C}(M)$",
+            "$\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=-p_{\\mathcal C}(M)$",
+            "$MA+MB=p_{\\mathcal C}(M)$"
+          ]
+        },
+        {
+          "reponse": "une droite perpendiculaire à la droite des centres",
+          "leurres": [
+            "une droite parallèle à la droite des centres",
+            "la médiatrice du segment joignant les centres",
+            "un cercle centré au milieu des deux centres"
+          ]
+        }
+      ],
+      "demo": "**Sécantes.** Soit $I$ le projeté orthogonal de $O$ sur la droite $(AB)$. Comme $OA=OB$, $I$ est le milieu de $[AB]$ (si $A=B$, la droite est tangente, donc perpendiculaire à $(OA)$, et $I=A$). Alors $\\overrightarrow{IB}=-\\overrightarrow{IA}$ et\n$$\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=(\\overrightarrow{MI}+\\overrightarrow{IA})\\cdot(\\overrightarrow{MI}-\\overrightarrow{IA})=MI^2-IA^2.$$\nPar Pythagore, $(OI)$ étant perpendiculaire à la droite : $MO^2=MI^2+IO^2$ et $R^2=OA^2=OI^2+IA^2$. Donc $MI^2-IA^2=MO^2-R^2$. Pour une tangente, $A=B=T$ donne $MT^2=p_{\\mathcal C}(M)$. Le signe de $MO^2-R^2$ donne la position de $M$.\n\n**Axe radical.** Soit $K$ le milieu de $[OO']$. Pour tout point $M$,\n$$MO^2-MO'^2=(\\overrightarrow{MO}-\\overrightarrow{MO'})\\cdot(\\overrightarrow{MO}+\\overrightarrow{MO'})=\\overrightarrow{O'O}\\cdot2\\overrightarrow{MK}=2\\,\\overrightarrow{KM}\\cdot\\overrightarrow{OO'}.$$\nAinsi $p_{\\mathcal C}(M)=p_{\\mathcal C'}(M)$ équivaut à $\\overrightarrow{KM}\\cdot\\overrightarrow{OO'}=\\frac{R^2-R'^2}2$. Comme $\\overrightarrow{OO'}\\neq\\vec0$, c'est l'équation d'une droite perpendiculaire à $(OO')$ (elle contient le point $P$ tel que $\\overrightarrow{KP}=t\\,\\overrightarrow{OO'}$, avec $t=\\frac{R^2-R'^2}{2\\,OO'^2}$). Un point commun aux deux cercles a deux puissances nulles, donc est sur l'axe : deux points communs déterminent l'axe ; s'il n'y en a qu'un, $T$, l'axe est la perpendiculaire à $(OO')$ en $T$, c'est-à-dire la tangente commune ($O$, $O'$, $T$ étant alignés).",
+      "exemple": "Pour le cercle de centre $O(0,0)$ et de rayon $5$, et $M(13,0)$ : $p_{\\mathcal C}(M)=169-25=144$, donc les tangentes issues de $M$ ont pour longueur $12$. L'axe des abscisses coupe le cercle en $A(5,0)$ et $B(-5,0)$, et $\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=(-8)\\times(-18)=144$.\n\nLes cercles $x^2+y^2-1=0$ et $x^2+y^2-6x=0$ (centre $(3,0)$, rayon $3$) ont pour axe radical la droite $6x-1=0$, obtenue par soustraction ; elle passe par leurs points communs $\\left(\\frac16,\\pm\\frac{\\sqrt{35}}6\\right)$.",
+      "contre_exemple": "- **Produit des longueurs.** Pour $M=O$ et un diamètre $[AB]$ : $MA\\times MB=R^2$, alors que $p_{\\mathcal C}(O)=-R^2=\\overrightarrow{OA}\\cdot\\overrightarrow{OB}$.\n- **Cercles concentriques.** Pour $x^2+y^2=1$ et $x^2+y^2=4$, la différence des puissances vaut $3$ en tout point : aucun point n'a même puissance par rapport aux deux cercles.\n- **Rayons différents.** Pour $x^2+y^2=1$ et $(x-4)^2+y^2=9$, l'axe radical est la droite $x=1$ (tangente commune en $(1,0)$), et non la médiatrice $x=2$ des centres.",
+      "affirmations": [
+        {
+          "texte": "Si $[AB]$ est un diamètre de $\\mathcal C$, alors $\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=p_{\\mathcal C}(M)$ pour tout point $M$ du plan.",
+          "vrai": true,
+          "justification": "$\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=(\\overrightarrow{MO}+\\overrightarrow{OA})\\cdot(\\overrightarrow{MO}-\\overrightarrow{OA})=MO^2-R^2$, car $\\overrightarrow{OB}=-\\overrightarrow{OA}$."
+        },
+        {
+          "texte": "Deux cercles sécants en deux points ont pour axe radical la droite qui joint ces deux points.",
+          "vrai": true,
+          "justification": "Les deux points communs ont une puissance nulle par rapport à chaque cercle, donc sont sur l'axe radical, qui est une droite."
+        },
+        {
+          "texte": "Deux cercles disjoints n'ont pas d'axe radical.",
+          "vrai": false,
+          "contre_exemple": "Les cercles $x^2+y^2=1$ et $(x-5)^2+y^2=1$ sont disjoints, et leur axe radical est la droite $x=\\frac52$ (seuls les cercles concentriques n'en ont pas)."
+        },
+        {
+          "texte": "Les trois axes radicaux de trois cercles de centres non alignés, pris deux à deux, sont concourants.",
+          "vrai": true,
+          "justification": "Deux de ces axes sont perpendiculaires à deux droites non parallèles, donc se coupent en un point qui a même puissance par rapport aux trois cercles : il est sur le troisième axe."
+        },
+        {
+          "texte": "Si $M$ est intérieur au cercle $\\mathcal C$ et si $[AB]$ est une corde passant par $M$, alors $MA\\times MB=p_{\\mathcal C}(M)$.",
+          "vrai": false,
+          "contre_exemple": "Pour $M=O$ et un diamètre $[AB]$ : $MA\\times MB=R^2>0$, alors que $p_{\\mathcal C}(O)=-R^2$. On a $MA\\times MB=-p_{\\mathcal C}(M)$ pour $M$ intérieur."
+        }
+      ],
+      "prerequis": []
+    },
+    {
+      "id": "geo-l2-plane-orthogonaux",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-plane",
+      "type": "theoreme",
+      "titre": "Cercles orthogonaux",
+      "recto": "Définir deux cercles orthogonaux et donner leurs caractérisations par la distance des centres et par la puissance.",
+      "cours": "Deux cercles sécants se coupent sous un angle : celui de leurs tangentes en un point commun, qui est aussi celui des rayons $(OA)$ et $(O'A)$. Ils sont **orthogonaux** quand cet angle est droit. Par Pythagore, cela se traduit par $OO'^2=R^2+R'^2$, c'est-à-dire $p_{\\mathcal C'}(O)=R^2$ : la puissance du centre de l'un par rapport à l'autre est le carré de son rayon, et les tangentes menées de $O$ à $\\mathcal C'$ ont pour longueur $R$.\n\nEn coordonnées, les cercles $x^2+y^2+2ax+2by+c=0$ et $x^2+y^2+2a'x+2b'y+c'=0$ sont orthogonaux si et seulement si $2aa'+2bb'=c+c'$. Un cercle orthogonal à deux cercles a son centre sur leur axe radical (sa puissance par rapport à chacun est le carré de son rayon).\n\nLien avec l'inversion : si $\\mathcal C'$ est orthogonal à $\\mathcal C$, toute droite passant par $O$ et coupant $\\mathcal C'$ en $M$ et $M'$ vérifie $\\overrightarrow{OM}\\cdot\\overrightarrow{OM'}=R^2$ : $M$ et $M'$ sont inverses par rapport à $\\mathcal C$. Réciproquement, un cercle passant par un point $M\\neq O$ non situé sur $\\mathcal C$ et par son inverse est orthogonal à $\\mathcal C$.\n\nPièges : deux cercles tangents ne sont pas orthogonaux ; la condition porte sur les **carrés** ($OO'^2=R^2+R'^2$, et non $OO'=R+R'$) ; l'orthogonalité n'est pas transitive : deux cercles orthogonaux à un même troisième ne sont en général pas orthogonaux entre eux.",
+      "hypotheses": [
+        "$\\mathcal C$ et $\\mathcal C'$ sont des cercles de centres $O$, $O'$ et de rayons $R$, $R'$ strictement positifs.",
+        "$OO'^2=R^2+R'^2$."
+      ],
+      "hypotheses_pieges": [
+        "$OO'=R+R'$ (à la place de $OO'^2=R^2+R'^2$).",
+        "$OO'^2=R^2-R'^2$, avec $R>R'$ (à la place de $OO'^2=R^2+R'^2$).",
+        "$p_{\\mathcal C'}(O)=R'^2$ (à la place de $p_{\\mathcal C'}(O)=R^2$)."
+      ],
+      "enonce": "Soient $\\mathcal C$ et $\\mathcal C'$ deux cercles de centres $O$, $O'$ et de rayons $R$, $R'$ strictement positifs. Ils sont dits **orthogonaux** s'ils sont sécants et si, en un point commun $A$, leurs tangentes sont perpendiculaires, c'est-à-dire si les droites $(OA)$ et $(O'A)$ sont perpendiculaires (la propriété vaut alors aux deux points communs, symétriques par rapport à $(OO')$).\n\n**Théorème.** Les propriétés suivantes sont équivalentes :\n- $\\mathcal C$ et $\\mathcal C'$ sont orthogonaux ;\n- $OO'^2=R^2+R'^2$ ;\n- $p_{\\mathcal C'}(O)=R^2$ ;\n- $p_{\\mathcal C}(O')=R'^2$.\n\nDans ce cas, toute droite passant par $O$ et coupant $\\mathcal C'$ en $M$ et $M'$ vérifie $\\overrightarrow{OM}\\cdot\\overrightarrow{OM'}=R^2$.",
+      "enonce_trous": "Deux cercles de centres $O$, $O'$ et de rayons $R$, $R'$ sont orthogonaux si et seulement si {{1}}, c'est-à-dire si et seulement si la puissance de $O$ par rapport au second cercle vaut {{2}}. Dans ce cas, en chaque point commun $A$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$OO'^2=R^2+R'^2$",
+          "leurres": [
+            "$OO'=R+R'$",
+            "$OO'^2=R^2-R'^2$",
+            "$OO'^2=RR'$"
+          ]
+        },
+        {
+          "reponse": "$R^2$",
+          "leurres": [
+            "$R'^2$",
+            "$0$",
+            "$-R^2$"
+          ]
+        },
+        {
+          "reponse": "les droites $(OA)$ et $(O'A)$ sont perpendiculaires",
+          "leurres": [
+            "les points $O$, $A$ et $O'$ sont alignés",
+            "$A$ est le milieu de $[OO']$",
+            "les droites $(OA)$ et $(OO')$ sont perpendiculaires"
+          ]
+        }
+      ],
+      "demo": "**Les trois relations sont équivalentes.** $p_{\\mathcal C'}(O)=OO'^2-R'^2$ et $p_{\\mathcal C}(O')=OO'^2-R^2$ : chacune des égalités $p_{\\mathcal C'}(O)=R^2$ et $p_{\\mathcal C}(O')=R'^2$ équivaut à $OO'^2=R^2+R'^2$.\n\n**Si les cercles sont orthogonaux.** En un point commun $A$ avec $(OA)\\perp(O'A)$, le théorème de Pythagore dans le triangle $OAO'$ rectangle en $A$ donne $OO'^2=OA^2+O'A^2=R^2+R'^2$.\n\n**Si $OO'^2=R^2+R'^2$.** Posons $d=OO'$. Comme $R,R'>0$ : $(R-R')^2<R^2+R'^2<(R+R')^2$, donc $|R-R'|<d<R+R'$, ce qui assure que les cercles se coupent en deux points. En un point commun $A$, $OA^2+O'A^2=R^2+R'^2=OO'^2$ : par la réciproque du théorème de Pythagore, le triangle $OAO'$ est rectangle en $A$.\n\n**Points inverses.** $O$ est extérieur à $\\mathcal C'$ car $p_{\\mathcal C'}(O)=R^2>0$ ; pour une droite passant par $O$ qui coupe $\\mathcal C'$ en $M$ et $M'$, le théorème des sécantes donne $\\overrightarrow{OM}\\cdot\\overrightarrow{OM'}=p_{\\mathcal C'}(O)=R^2$.",
+      "exemple": "Le cercle unité (centre $O(0,0)$, rayon $1$) et le cercle de centre $O'(2,0)$ et de rayon $\\sqrt3$ vérifient $OO'^2=4=1+3$ : ils sont orthogonaux. Ils se coupent en $A\\left(\\frac12,\\frac{\\sqrt3}2\\right)$ et en son symétrique par rapport à l'axe des abscisses, et $\\overrightarrow{AO}\\cdot\\overrightarrow{AO'}=\\left(-\\frac12\\right)\\times\\frac32+\\left(-\\frac{\\sqrt3}2\\right)^2=0$.",
+      "contre_exemple": "- **Cercles tangents.** $x^2+y^2=1$ et $(x-2)^2+y^2=1$ : $OO'=2=R+R'$, les cercles sont tangents en $(1,0)$, pas orthogonaux ($OO'^2=4\\neq2$).\n- **Sécants sans être orthogonaux.** $x^2+y^2=1$ et $(x-1)^2+y^2=1$ se coupent en $\\left(\\frac12,\\pm\\frac{\\sqrt3}2\\right)$, mais $OO'^2=1\\neq2$ : en ces points, les rayons font un angle de $\\frac{\\pi}{3}$.\n- **Non-transitivité.** Le cercle unité est orthogonal aux cercles de centres $(2,0)$ et $(-2,0)$ et de rayon $\\sqrt3$, mais ceux-ci ne sont pas orthogonaux entre eux : $4^2=16\\neq3+3$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\mathcal C'$ est orthogonal à $\\mathcal C$, le centre $O$ de $\\mathcal C$ est extérieur à $\\mathcal C'$.",
+          "vrai": true,
+          "justification": "$p_{\\mathcal C'}(O)=R^2>0$."
+        },
+        {
+          "texte": "Deux cercles de même rayon $R$ dont les centres sont à la distance $R\\sqrt2$ sont orthogonaux.",
+          "vrai": true,
+          "justification": "$OO'^2=2R^2=R^2+R^2$."
+        },
+        {
+          "texte": "Deux cercles orthogonaux à un même troisième sont orthogonaux entre eux.",
+          "vrai": false,
+          "contre_exemple": "Le cercle unité est orthogonal aux cercles de centres $(2,0)$ et $(-2,0)$ et de rayon $\\sqrt3$ ($4=1+3$), mais ces deux cercles ne sont pas orthogonaux : $16\\neq3+3$."
+        },
+        {
+          "texte": "Deux cercles tangents extérieurement sont orthogonaux.",
+          "vrai": false,
+          "contre_exemple": "$x^2+y^2=1$ et $(x-2)^2+y^2=1$ sont tangents en $(1,0)$ et ne se coupent pas en deux points ; d'ailleurs $OO'^2=4\\neq1+1$."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-plane-puissance"
+      ]
+    }
+  ]
+}
