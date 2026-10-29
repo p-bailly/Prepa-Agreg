@@ -467,4 +467,20 @@ assert chiffres(1, 41, 10) == [0, 2, 4, 3, 9] * 2 and chiffres(1, 101, 8) == [0,
 assert (10 ** 40 - 1) % 41 == 0 and (10 ** 10 - 1) % 41 == 0 and (10 ** 8 - 1) % 41 != 0
 assert all((10 ** T - 1) % 37 == 0 for T in (36, 6, 9)) and (10 ** 2 - 1) % 101 != 0 and (10 ** 100 - 1) % 101 == 0
 
+# ===========================================================================
+# Compléments de la relecture indépendante
+# ===========================================================================
+# QCM q1 : x^sqrt(x) = e^(sqrt(x) ln x) -> 1 en 0+ (leurres 0, +oo, e faux).
+assert limit(sqrt(xp) * log(xp), xp, 0, "+") == 0 and limit(xp ** sqrt(xp), xp, 0, "+") == 1
+# ar-l1-fonctions-usuelles-hyperboliques-ex4 : (x^2-1)/(x^2+1) vaut -1 en x = 0 (exclu) et reste dans ]-1,1[ ailleurs.
+assert ((x ** 2 - 1) / (x ** 2 + 1)).subs(x, 0) == -1
+assert simplify(1 + (x ** 2 - 1) / (x ** 2 + 1) - 2 * x ** 2 / (x ** 2 + 1)) == 0
+assert simplify(1 - (x ** 2 - 1) / (x ** 2 + 1) - 2 / (x ** 2 + 1)) == 0
+# ar-l1-fonctions-usuelles-hyperboliques-ex4 v2 : u + sqrt(u^2 + 1) = x pour x > 0, avec u = (x^2 - 1)/(2x).
+u_ = (xp ** 2 - 1) / (2 * xp)
+assert simplify(u_ ** 2 + 1 - ((xp ** 2 + 1) / (2 * xp)) ** 2) == 0 and simplify(u_ + (xp ** 2 + 1) / (2 * xp) - xp) == 0
+# ar-l1-fonctions-usuelles-circulaires-ex5 v2 : télescopage à deux rangs, S_n = arctan(n+1) + arctan n - pi/4 (n <= 30).
+for n_ in range(1, 31):
+    assert proche(mp.fsum(mp.atan(mp.mpf(2) / k ** 2) for k in range(1, n_ + 1)), mp.atan(n_ + 1) + mp.atan(n_) - P / 4)
+
 print("ar_l1_fonctions_usuelles : tout est vérifié.")
