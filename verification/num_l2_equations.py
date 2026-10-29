@@ -413,7 +413,7 @@ for p, q, n, err, resid, prev in [(3, F(2, 3), 12, 7.7e-3, 4.6e-7, 1.2e-2), (2, 
                                    (5, F(4, 5), 13, 5.5e-2, 5.0e-7, 6.9e-2)]:
     assert newton(lambda t: t**p, lambda t: p * t ** (p - 1), 1, 3) == [1, q, q**2, q**3]
     assert min(k for k in range(100) if q ** (p * k) <= F(1, 10**6)) == n
-    assert abs(float(q**n) / err - 1) < 0.02 and abs(float(q ** (p * n)) / resid - 1) < 0.02 and abs(float(q ** (n - 1)) / prev - 1) < 0.03
+    assert abs(float(q**n) / err - 1) < 0.02 and abs(float(q ** (p * n)) / resid - 1) < 0.02 and abs(float(q ** (n - 1)) / prev - 1) < 0.05  # arrondis à deux chiffres
 assert float(F(2, 3) ** 12) * 1e6 > 7000 and float(F(1, 2) ** 10) * 1e6 > 970 and float(F(4, 5) ** 13) * 1e6 > 50000
 assert abs(2 / math.log10(1.5) - 11.36) < 0.01 and abs(3 / math.log10(2) - 9.97) < 0.01 and abs(1.2 / math.log10(1.25) - 12.38) < 0.01
 
@@ -427,8 +427,8 @@ for g in [lambda t: 1 + 1 / t, lambda t: t * t - 1, lambda t: 1 / (t - 1), lambd
     assert abs(g(phi) - phi) < 1e-12
 assert 1 + 1 / F(3, 2) == F(5, 3) and 1 + F(1, 2) == F(3, 2) and F(4, 9) < 1
 assert F(3, 2) ** 2 - 1 == F(5, 4) and 1 / (F(2) - 1) == 1 and -4 + 4 + 1 == 1
-assert newton(lambda t: t**3 - 8, lambda t: 3 * t * t, 2, 2) == [2, 2, 2]  # q4
-assert (F(2) + F(8, 2)) / 2 != 2 and (2 * F(2) + F(8, 2)) / 3 != 2 and (F(2) + 2 * F(8, 4)) / 3 != 2
+assert newton(lambda t: t**3 - 1, lambda t: 3 * t * t, 2, 1)[1] == F(17, 12)  # q4 (a = 1, x_n = 2)
+assert [(F(2) + F(1, 4)) / 2, (F(2) + F(2, 4)) / 3, (2 * F(2) + F(1, 2)) / 3] == [F(9, 8), F(5, 6), F(3, 2)]
 X_ = symbols("X", positive=True)
 assert simplify(X_ - (X_**3 - a_) / (3 * X_**2) - (2 * X_ + a_ / X_**2) / 3) == 0
 assert newton(lambda t: t * t - 2, lambda t: 2 * t, 1, 2)[1:] == [F(3, 2), F(17, 12)]  # q5
