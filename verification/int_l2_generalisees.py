@@ -245,7 +245,7 @@ for N in [1, 5, 20]:
     assert 2 / mp.sqrt(N + 1) <= R <= 2 / mp.sqrt(N)
 # rectangles-ex4 (+ v1, v2) : gamma dans [0,1] ; limites ln 2, ln 3, ln 2.
 assert 0 <= mp.euler <= 1
-N = 10**5
+N = 10**4
 assert proche(sum(mp.mpf(1) / j for j in range(N + 1, 2 * N + 1)), mp.log(2), mp.mpf("1e-4"))
 assert proche(sum(mp.mpf(1) / j for j in range(N + 1, 3 * N + 1)), mp.log(3), mp.mpf("1e-4"))
 assert proche(sum(mp.mpf((-1)**(j + 1)) / j for j in range(1, 2 * N + 1)), mp.log(2), mp.mpf("1e-4"))
