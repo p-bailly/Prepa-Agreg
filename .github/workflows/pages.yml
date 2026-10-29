@@ -1,0 +1,40 @@
+# Construit la version web et la publie sur GitHub Pages : https://p-bailly.github.io/Prepa-Agreg/
+# (À activer une fois dans le dépôt : Settings → Pages → Source « GitHub Actions ».)
+# Chemins relatifs (base './' dans vite.config.ts) : la même construction sert l'APK et le sous-dossier /Prepa-Agreg/.
+name: Site web
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  site:
+    # Uniquement sur la branche par défaut du dépôt.
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deploiement
+        uses: actions/deploy-pages@v4

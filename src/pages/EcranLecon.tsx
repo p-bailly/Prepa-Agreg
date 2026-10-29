@@ -58,7 +58,9 @@ export function EcranLecon({ chapitre, cartes, surExercice, surFin }: Props) {
             {fin ? 'Leçon terminée' : carte ? `Leçon · notion ${page + 1}` : 'Leçon'} · {theme?.titre} ·{' '}
             {NOMS_NIVEAUX[chapitre.niveau]}
           </span>
-          <h1 className="titre-carte">{carte ? carte.titre : chapitre.titre}</h1>
+          <h1 className="titre-carte">
+            <Texte texte={carte ? carte.titre : chapitre.titre} enLigne />
+          </h1>
         </header>
 
         {!carte && !fin && (
@@ -69,7 +71,9 @@ export function EcranLecon({ chapitre, cartes, surExercice, surFin }: Props) {
               <span className="etiquette">Au programme de cette leçon</span>
               <ol style={{ margin: 0, paddingLeft: '1.3em' }}>
                 {cartes.map((c) => (
-                  <li key={c.id}>{c.titre}</li>
+                  <li key={c.id}>
+                    <Texte texte={c.titre} enLigne />
+                  </li>
                 ))}
               </ol>
             </div>

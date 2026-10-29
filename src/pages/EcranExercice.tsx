@@ -94,7 +94,7 @@ function Deroule({
           <h1 className="titre-carte">
             <Texte texte={exercice.titre} enLigne />
           </h1>
-          <p className="petit">Notion : {carte?.titre}</p>
+          <p className="petit">Notion : <Texte texte={carte?.titre ?? ''} enLigne /></p>
         </header>
         <BandeauDoute doute={exercice.doute} />
         <div className="bloc">

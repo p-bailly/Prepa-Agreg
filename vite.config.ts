@@ -8,7 +8,8 @@ import react from '@vitejs/plugin-react'
 const [majeur, mineur] = (JSON.parse(readFileSync('package.json', 'utf8')) as { version: string }).version.split('.')
 const version = `${majeur}.${mineur}.${process.env.GITHUB_RUN_NUMBER ?? 0}`
 
-// Chemins relatifs : l'appli est servie depuis les fichiers de l'APK (Capacitor), sans serveur.
+// Chemins relatifs : l'appli est servie depuis les fichiers de l'APK (Capacitor), sans serveur, et la même construction
+// marche dans le sous-dossier de GitHub Pages (/Prepa-Agreg/).
 export default defineConfig({
   base: './',
   plugins: [react()],

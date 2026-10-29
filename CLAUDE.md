@@ -2,17 +2,19 @@
 
 Prépa Agreg : appli Android perso (Capacitor + React 19 + Vite + TypeScript + KaTeX) pour monter de la Terminale jusqu'aux
 attendus de l'écrit de l'agrégation externe de mathématiques : cartes de révision à répétition espacée, exercices de difficulté
-croissante par notion, tableau de bord. Pas de version web publiée, pas de compte, pas de serveur. Code, commentaires, textes,
+croissante par notion, tableau de bord. Version web sur GitHub Pages (`https://p-bailly.github.io/Prepa-Agreg/`, même construction que l'APK) ;
+pas de compte, pas de serveur. Code, commentaires, textes,
 commits : en français. Les commentaires qui renvoient à une rubrique de ce fichier citent son titre : le garder en cas de renommage.
 
 ## Commandes
-- `npm run dev` (5173, pour développer dans un navigateur ; l'appli n'est pas publiée en web), `npm test` (Vitest),
+- `npm run dev` (5173, pour développer dans un navigateur), `npm test` (Vitest),
   `npm run typecheck`, `npm run build` (tsc + vite). Node 22.
 - `python3 verification/tout.py` : vérifications calculatoires du contenu (SymPy, hors APK ; voir « Contrôle de l'exactitude »).
 - APK en local : Android SDK (plateforme 36) + Java 21, `npm run android` → `android/app/build/outputs/apk/release/app-release.apk`.
   Sans Android Studio : `sdkmanager "platforms;android-36" "build-tools;36.0.0"` puis `sdk.dir=…` dans `android/local.properties`.
 - CI : `verification.yml` (PR : typecheck, tests, SymPy, build, APK + contrôle du `versionName`) et `android.yml` (push sur la
-  branche par défaut : tests, SymPy, build, APK publié dans la release « apk »).
+  branche par défaut : tests, SymPy, build, APK publié dans la release « apk ») et `pages.yml` (push sur la branche par
+  défaut : tests, build, `dist/` publié sur GitHub Pages ; source Pages « GitHub Actions » à activer dans les réglages).
 - Logo : `npm run logo` (= `node design/logo/generer.mjs` puis `node design/logo/png.cjs`, qui pilote Chrome ; chemin dans
   `CHROME_PATH` au besoin). Les fichiers produits (SVG, calques adaptatifs, PNG) ne s'éditent jamais à la main.
 
@@ -42,13 +44,15 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
   - `src/lib/` : stockage local, réglages, progression (fonctions pures), sauvegarde JSON, notifications, partage de fichier.
 - Écrans React dans `src/pages/` (Accueil, Parcours, Chapitre, Stats, Réglages, Séance, EcranCarte, EcranExercice) ; données
   partagées par `src/etat/Donnees.tsx` (contexte : contenu, réglages, progression, horloge) ; navigation dans `App.tsx`
-  (quatre onglets + pile d'écrans, bouton retour Android). Dossiers prévus pour plus tard (pas de code en v1) :
+  (quatre onglets + pile d'écrans, bouton retour Android ; sur le web, retour du navigateur par une entrée d'historique). Dossiers prévus pour plus tard (pas de code en v1) :
   `src/sujets/`, `src/seance/` (sujets chronométrés, séances longues) et `content/sujets/`.
 - Persistance locale versionnée : `reglages-v1`, `progression-v1` (localStorage de la WebView) ; changer un format = changer le
   suffixe ; la lecture fusionne avec les valeurs par défaut et répare les champs invalides (`normaliser…`). La progression est
   indexée par identifiant de carte (`idCarte#enonce`, `#demo`, `#contre`) et d'exercice : **renommer un identifiant perd son
   historique**, ne jamais le faire sans migration.
 - Tout est embarqué dans l'APK (contenu, KaTeX et ses polices, Latin Modern) : hors ligne par construction, aucun CDN.
+- Version web : la progression reste dans le navigateur (localStorage de `p-bailly.github.io`), sans lien avec l'APK ;
+  l'export / import JSON permet de passer de l'un à l'autre. Pas de rappel quotidien dans un navigateur.
 
 ## Allure visuelle
 Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme de jetons (`--fond`, `--surface`, `--primaire`,
@@ -152,6 +156,8 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 - Intervalles à la française : `\left]a,b\right[`, `\left[a,b\right[`. Ensembles `\mathbb{R}`, `\mathbb{N}`. Pas de `\dfrac` dans
   les formules en ligne trop hautes ; `\displaystyle` à éviter.
 - Toute formule doit passer `katex.renderToString(…, { throwOnError: true })` (contrôlé par le test).
+- Hors de `$…$`, ni `\`, ni `^`, ni `_`, ni accolades (« X^a − 1 » s'afficherait tel quel ; contrôlé par le test). Les titres
+  peuvent contenir des formules : l'appli les affiche avec `Texte`.
 
 ## Contrôle de l'exactitude (personne ne relit le contenu)
 Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu de contenu sûr que beaucoup de contenu douteux.

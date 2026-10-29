@@ -1,6 +1,7 @@
 // Cartes d'un chapitre, avec leur état ; toucher une carte l'ouvre en révision libre.
 import { NOMS_NIVEAUX } from '../contenu/types'
 import { Pastille } from '../composants/Icones'
+import { Texte } from '../composants/Texte'
 import { useDonnees } from '../etat/Donnees'
 import { etatAffiche, prerequisManquants, sousLeDepart } from '../repetition/etat'
 
@@ -45,10 +46,15 @@ export function Chapitre({
               <button className="bouton" style={{ justifyContent: 'flex-start', textAlign: 'left' }} onClick={() => surCarte(k.id)}>
                 <Pastille etat={SYMBOLES[e]} />
                 <span>
-                  {k.titre}
+                  <Texte texte={k.titre} enLigne />
                   <span className="petit doux" style={{ display: 'block' }}>
                     {NOMS[e]}
-                    {manquants.length > 0 && ` · d’abord : ${manquants.map((m) => cartesParId.get(m)?.titre ?? m).join(', ')}`}
+                    {manquants.length > 0 && (
+                      <>
+                        {' · d’abord : '}
+                        <Texte texte={manquants.map((m) => cartesParId.get(m)?.titre ?? m).join(', ')} enLigne />
+                      </>
+                    )}
                   </span>
                 </span>
               </button>

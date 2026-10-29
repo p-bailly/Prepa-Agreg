@@ -1,5 +1,5 @@
 // Rappel quotidien par notification locale (facultatif). Programmé par le système Android : il part même appli fermée.
-// Dans un navigateur (développement), il n'y a pas de rappel.
+// Dans un navigateur (version web, développement), il n'y a pas de rappel.
 import { Capacitor } from '@capacitor/core'
 import { LocalNotifications } from '@capacitor/local-notifications'
 

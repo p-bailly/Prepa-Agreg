@@ -84,7 +84,9 @@ export function EcranCarte(props: Props) {
             {neuve ? 'Nouvelle carte · ' : ''}
             {theme?.titre ?? carte.theme} · {NOMS_NIVEAUX[carte.niveau]}
           </span>
-          <h1 className="titre-carte">{carte.titre}</h1>
+          <h1 className="titre-carte">
+            <Texte texte={carte.titre} enLigne />
+          </h1>
         </header>
         <BandeauDoute doute={carte.doute} />
 
@@ -232,7 +234,7 @@ function ModeHypotheses({ carte }: { carte: Carte }) {
   const justes = lignes.filter((l, i) => coches.has(i) === l.vraie).length
   return (
     <>
-      <p className="consigne">Cocher les hypothèses du résultat « {carte.titre} », et elles seules.</p>
+      <p className="consigne">Cocher les hypothèses du résultat « <Texte texte={carte.titre} enLigne /> », et elles seules.</p>
       <ul className="liste-choix">
         {lignes.map((l, i) => {
           const coche = coches.has(i)
