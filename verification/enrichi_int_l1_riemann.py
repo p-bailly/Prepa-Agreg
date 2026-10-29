@@ -57,7 +57,6 @@ for k in range(0, 5):
 # int-l1-riemann-cpm-ex5 : ∫_0^2 ⌊x²⌋ = 5 - √2 - √3.
 I = 1*(sqrt(2) - 1) + 2*(sqrt(3) - sqrt(2)) + 3*(2 - sqrt(3))
 assert simplify(I - (5 - sqrt(2) - sqrt(3))) == 0
-assert abs(N(Integral(floor(x**2), (x, 0, 2)), 15) - N(I)) < 1e-8 or True
 # contrôle par une somme de Riemann fine (la fonction est en escalier)
 mm = 200000
 approx = sum(int((2*k/mm)**2) for k in range(mm))*2/mm

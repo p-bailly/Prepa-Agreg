@@ -850,6 +850,192 @@
           "correction": "1. L'inverse d'un élément de $G$ est dans $G$, et $(x^{-1})^{-1} = x$. Si $x \\notin E$, alors $x^{-1} \\notin E$, car $(x^{-1})^2 = (x^2)^{-1}$ ; donc $x \\mapsto x^{-1}$ envoie $G \\setminus E$ dans lui-même. C'est une involution, donc une bijection. Elle n'a pas de point fixe sur $G \\setminus E$ : $x = x^{-1}$ équivaut à $x^2 = \\overline{1}$. Les éléments de $G \\setminus E$ se regroupent donc en paires disjointes $\\{x, x^{-1}\\}$, de produit $\\overline{1}$, et, la multiplication étant commutative, $P = \\prod_{x \\in E} x \\times \\prod_{x \\in G \\setminus E} x = \\prod_{x \\in E} x$.\n\n2. $\\overline{1}$ et $\\overline{-1}$ sont inversibles et de carré $\\overline{1}$ ; ils sont distincts car $n$ ne divise pas $2$ lorsque $n \\geq 3$. Si $E = \\{\\overline{1}, \\overline{-1}\\}$, alors $P = \\overline{1} \\times \\overline{-1} = \\overline{-1}$. Pour $n = p$ premier impair, $G = \\{\\overline{1}, \\dots, \\overline{p - 1}\\}$, et $\\overline{k}^2 = \\overline{1}$ équivaut à $p \\mid (k - 1)(k + 1)$, donc (lemme d'Euclide) à $\\overline{k} = \\pm\\overline{1}$ : $E = \\{\\overline{1}, \\overline{-1}\\}$ et $\\overline{(p - 1)!} = P = \\overline{-1}$, ce qui est le théorème de Wilson (le cas $p = 2$ se vérifie directement : $1! = 1 \\equiv -1 \\pmod{2}$).\n\n3. Les éléments de $G$ sont les classes de $1, 2, 4, 5, 7, 8$ (les entiers non multiples de $3$). Carrés modulo $9$ : $1^2 = 1$, $2^2 = 4$, $4^2 = 16 \\equiv 7$, $5^2 = 25 \\equiv 7$, $7^2 = 49 \\equiv 4$, $8^2 = 64 \\equiv 1$. Donc $E = \\{\\overline{1}, \\overline{8}\\} = \\{\\overline{1}, \\overline{-1}\\}$, et la question 2 donne $P = \\overline{-1} = \\overline{8}$. Vérification directe : $1 \\times 2 \\times 4 \\times 5 \\times 7 \\times 8 = 2\\,240 = 248 \\times 9 + 8$. Le représentant est $8$."
         }
       ]
+    },
+    {
+      "id": "arith-l1-congruences-euler-ex6",
+      "carte": "arith-l1-congruences-euler",
+      "difficulte": 4,
+      "titre": "Un chiffrement RSA en miniature",
+      "enonce": "On choisit les nombres premiers $p = 11$ et $q = 17$, et on pose $n = pq = 187$. Un message est un entier $x \\in \\{0, 1, \\dots, n - 1\\}$ ; on le chiffre en le remplaçant par le reste $c$ de la division euclidienne de $x^7$ par $n$.\n\n1. Calculer $\\varphi(n)$.\n\n2. Justifier que $\\overline{7}$ est inversible dans $\\mathbb{Z}/\\varphi(n)\\mathbb{Z}$, et déterminer l'entier $d \\in \\{1, \\dots, \\varphi(n) - 1\\}$ tel que $7d \\equiv 1 \\pmod{\\varphi(n)}$.\n\n3. Soit $x \\in \\mathbb{Z}$ premier avec $n$. À l'aide du théorème d'Euler, montrer que $x^{7d} \\equiv x \\pmod{n}$.\n\n4. Soit $x \\in \\mathbb{Z}$ quelconque. Montrer que $x^{7d} \\equiv x \\pmod{p}$ et $x^{7d} \\equiv x \\pmod{q}$ (on distinguera selon que le nombre premier considéré divise $x$ ou non), puis que $x^{7d} \\equiv x \\pmod{n}$.\n\n5. En déduire que le chiffré $c$ d'un message $x$ vérifie $c^d \\equiv x \\pmod{n}$, puis retrouver le message dont le chiffré est $c = 175$.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 2, appliquer l'algorithme d'Euclide à $160$ et $7$, puis remonter les calculs.",
+        "Pour la question 4, remarquer que $7d - 1$ est un multiple de $p - 1$ et de $q - 1$, et appliquer le petit théorème de Fermat.",
+        "Pour la dernière question, calculer $c^d$ modulo $11$ puis modulo $17$ séparément, et conclure avec le lemme chinois."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le message $x$ dont le chiffré est $175$ ?",
+        "propositions": [
+          "$10$",
+          "$175$",
+          "$43$",
+          "$98$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $p$ et $q$ sont des nombres premiers distincts, donc premiers entre eux, et $\\varphi(n) = \\varphi(11)\\varphi(17) = 10 \\times 16 = 160$.\n\n2. $160 = 7 \\times 22 + 6$ et $7 = 6 \\times 1 + 1$ : $7 \\wedge 160 = 1$, donc $\\overline{7}$ est inversible dans $\\mathbb{Z}/160\\mathbb{Z}$. En remontant : $1 = 7 - 6 = 7 - (160 - 22 \\times 7) = 23 \\times 7 - 160$. Ainsi $7 \\times 23 \\equiv 1 \\pmod{160}$, et $d = 23$ (l'inverse est unique modulo $160$).\n\n3. On a $7d = 161 = 1 \\times 160 + 1$. Si $x \\wedge n = 1$, le théorème d'Euler donne $x^{160} \\equiv 1 \\pmod{n}$, donc $x^{7d} = x \\times x^{160} \\equiv x \\pmod{n}$.\n\n4. Modulo $p = 11$ : si $11 \\mid x$, alors $x^{7d} \\equiv 0 \\equiv x$. Sinon, $x^{10} \\equiv 1 \\pmod{11}$ par le petit théorème de Fermat et, comme $7d - 1 = 160 = 10 \\times 16$, $x^{7d} = x \\times \\left(x^{10}\\right)^{16} \\equiv x \\pmod{11}$. De même modulo $q = 17$, avec $160 = 16 \\times 10$ : $x^{7d} \\equiv x \\pmod{17}$. Ainsi $11$ et $17$ divisent $x^{7d} - x$ ; comme ils sont premiers entre eux, leur produit $n = 187$ divise $x^{7d} - x$ (lemme chinois).\n\n5. Si $c \\equiv x^7 \\pmod{n}$, alors $c^d \\equiv x^{7d} \\equiv x \\pmod{n}$ d'après la question 4 ; comme $0 \\leq x < n$, $x$ est le reste de la division euclidienne de $c^d$ par $n$. Pour $c = 175$ et $d = 23$ : modulo $11$, $175 = 15 \\times 11 + 10 \\equiv -1$, donc $175^{23} \\equiv (-1)^{23} \\equiv 10 \\pmod{11}$. Modulo $17$, $175 = 10 \\times 17 + 5 \\equiv 5$ ; $5^2 \\equiv 8$, $5^4 \\equiv 64 \\equiv 13$, $5^6 \\equiv 13 \\times 8 = 104 \\equiv 2$ et $5^{16} \\equiv 1$ (Fermat), donc $5^{23} = 5^{16} \\times 5^6 \\times 5 \\equiv 2 \\times 5 = 10 \\pmod{17}$. Ainsi $x \\equiv 10$ modulo $11$ et modulo $17$. Par le lemme chinois, $x \\equiv 10 \\pmod{187}$ : le message est $x = 10$. Vérification : $10^7 = 10\\,000\\,000 = 187 \\times 53\\,475 + 175$.",
+      "variantes": [
+        {
+          "enonce": "On choisit les nombres premiers $p = 5$ et $q = 23$, et on pose $n = pq = 115$. Un message est un entier $x \\in \\{0, 1, \\dots, n - 1\\}$ ; on le chiffre en le remplaçant par le reste $c$ de la division euclidienne de $x^3$ par $n$.\n\n1. Calculer $\\varphi(n)$.\n\n2. Justifier que $\\overline{3}$ est inversible dans $\\mathbb{Z}/\\varphi(n)\\mathbb{Z}$, et déterminer l'entier $d \\in \\{1, \\dots, \\varphi(n) - 1\\}$ tel que $3d \\equiv 1 \\pmod{\\varphi(n)}$.\n\n3. Soit $x \\in \\mathbb{Z}$ premier avec $n$. À l'aide du théorème d'Euler, montrer que $x^{3d} \\equiv x \\pmod{n}$.\n\n4. Soit $x \\in \\mathbb{Z}$ quelconque. Montrer que $x^{3d} \\equiv x \\pmod{p}$ et $x^{3d} \\equiv x \\pmod{q}$ (on distinguera selon que le nombre premier considéré divise $x$ ou non), puis que $x^{3d} \\equiv x \\pmod{n}$.\n\n5. En déduire que le chiffré $c$ d'un message $x$ vérifie $c^d \\equiv x \\pmod{n}$, puis retrouver le message dont le chiffré est $c = 52$.",
+          "indices": [
+            "Pour la question 2, appliquer l'algorithme d'Euclide à $88$ et $3$, puis remonter les calculs.",
+            "Pour la question 4, remarquer que $3d - 1$ est un multiple de $p - 1$ et de $q - 1$, et appliquer le petit théorème de Fermat.",
+            "Pour la dernière question, calculer $c^d$ modulo $5$ puis modulo $23$ séparément, et conclure avec le lemme chinois."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le message $x$ dont le chiffré est $52$ ?",
+            "propositions": [
+              "$8$",
+              "$52$",
+              "$23$",
+              "$37$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $p$ et $q$ sont des nombres premiers distincts, donc premiers entre eux, et $\\varphi(n) = \\varphi(5)\\varphi(23) = 4 \\times 22 = 88$.\n\n2. $88 = 3 \\times 29 + 1$ : $3 \\wedge 88 = 1$, donc $\\overline{3}$ est inversible dans $\\mathbb{Z}/88\\mathbb{Z}$. En remontant : $1 = 88 - 29 \\times 3$, donc $3 \\times (-29) \\equiv 1 \\pmod{88}$, et $-29 \\equiv 59 \\pmod{88}$. Ainsi $3 \\times 59 \\equiv 1 \\pmod{88}$, et $d = 59$ (l'inverse est unique modulo $88$).\n\n3. On a $3d = 177 = 2 \\times 88 + 1$. Si $x \\wedge n = 1$, le théorème d'Euler donne $x^{88} \\equiv 1 \\pmod{n}$, donc $x^{3d} = x \\times \\left(x^{88}\\right)^{2} \\equiv x \\pmod{n}$.\n\n4. Modulo $p = 5$ : si $5 \\mid x$, alors $x^{3d} \\equiv 0 \\equiv x$. Sinon, $x^{4} \\equiv 1 \\pmod{5}$ par le petit théorème de Fermat et, comme $3d - 1 = 176 = 4 \\times 44$, $x^{3d} = x \\times \\left(x^{4}\\right)^{44} \\equiv x \\pmod{5}$. De même modulo $q = 23$, avec $176 = 22 \\times 8$ : $x^{3d} \\equiv x \\pmod{23}$. Ainsi $5$ et $23$ divisent $x^{3d} - x$ ; comme ils sont premiers entre eux, leur produit $n = 115$ divise $x^{3d} - x$ (lemme chinois).\n\n5. Si $c \\equiv x^3 \\pmod{n}$, alors $c^d \\equiv x^{3d} \\equiv x \\pmod{n}$ d'après la question 4 ; comme $0 \\leq x < n$, $x$ est le reste de la division euclidienne de $c^d$ par $n$. Pour $c = 52$ et $d = 59$ : modulo $5$, $52 \\equiv 2$ et $2^4 \\equiv 1$ (Fermat) ; comme $59 = 4 \\times 14 + 3$, $52^{59} \\equiv 2^3 = 8 \\equiv 3 \\pmod{5}$. Modulo $23$, $52 \\equiv 6$ et $6^{22} \\equiv 1$ (Fermat) ; comme $59 = 2 \\times 22 + 15$, $52^{59} \\equiv 6^{15} \\pmod{23}$. Or $6^2 = 36 \\equiv 13$, $6^4 \\equiv 169 \\equiv 8$, $6^8 \\equiv 64 \\equiv 18$, donc $6^{15} = 6^8 \\times 6^4 \\times 6^2 \\times 6 \\equiv 18 \\times 8 \\times 13 \\times 6$ ; $18 \\times 8 = 144 \\equiv 6$, $6 \\times 13 = 78 \\equiv 9$ et $9 \\times 6 = 54 \\equiv 8$. Ainsi $x \\equiv 3 \\pmod{5}$ et $x \\equiv 8 \\pmod{23}$, et $8$ vérifie ces deux congruences. Par le lemme chinois, $x \\equiv 8 \\pmod{115}$ : le message est $x = 8$. Vérification : $8^3 = 512 = 4 \\times 115 + 52$."
+        },
+        {
+          "enonce": "On choisit les nombres premiers $p = 7$ et $q = 13$, et on pose $n = pq = 91$. Un message est un entier $x \\in \\{0, 1, \\dots, n - 1\\}$ ; on le chiffre en le remplaçant par le reste $c$ de la division euclidienne de $x^5$ par $n$.\n\n1. Calculer $\\varphi(n)$.\n\n2. Justifier que $\\overline{5}$ est inversible dans $\\mathbb{Z}/\\varphi(n)\\mathbb{Z}$, et déterminer l'entier $d \\in \\{1, \\dots, \\varphi(n) - 1\\}$ tel que $5d \\equiv 1 \\pmod{\\varphi(n)}$.\n\n3. Soit $x \\in \\mathbb{Z}$ premier avec $n$. À l'aide du théorème d'Euler, montrer que $x^{5d} \\equiv x \\pmod{n}$.\n\n4. Soit $x \\in \\mathbb{Z}$ quelconque. Montrer que $x^{5d} \\equiv x \\pmod{p}$ et $x^{5d} \\equiv x \\pmod{q}$ (on distinguera selon que le nombre premier considéré divise $x$ ou non), puis que $x^{5d} \\equiv x \\pmod{n}$.\n\n5. En déduire que le chiffré $c$ d'un message $x$ vérifie $c^d \\equiv x \\pmod{n}$, puis retrouver le message dont le chiffré est $c = 23$.",
+          "indices": [
+            "Pour la question 2, appliquer l'algorithme d'Euclide à $72$ et $5$, puis remonter les calculs.",
+            "Pour la question 4, remarquer que $5d - 1$ est un multiple de $p - 1$ et de $q - 1$, et appliquer le petit théorème de Fermat.",
+            "Pour la dernière question, calculer $c^d$ modulo $7$ puis modulo $13$ séparément, et conclure avec le lemme chinois."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le message $x$ dont le chiffré est $23$ ?",
+            "propositions": [
+              "$4$",
+              "$23$",
+              "$10$",
+              "$17$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $p$ et $q$ sont des nombres premiers distincts, donc premiers entre eux, et $\\varphi(n) = \\varphi(7)\\varphi(13) = 6 \\times 12 = 72$.\n\n2. $72 = 5 \\times 14 + 2$ et $5 = 2 \\times 2 + 1$ : $5 \\wedge 72 = 1$, donc $\\overline{5}$ est inversible dans $\\mathbb{Z}/72\\mathbb{Z}$. En remontant : $1 = 5 - 2 \\times 2 = 5 - 2(72 - 14 \\times 5) = 29 \\times 5 - 2 \\times 72$. Ainsi $5 \\times 29 \\equiv 1 \\pmod{72}$, et $d = 29$ (l'inverse est unique modulo $72$).\n\n3. On a $5d = 145 = 2 \\times 72 + 1$. Si $x \\wedge n = 1$, le théorème d'Euler donne $x^{72} \\equiv 1 \\pmod{n}$, donc $x^{5d} = x \\times \\left(x^{72}\\right)^{2} \\equiv x \\pmod{n}$.\n\n4. Modulo $p = 7$ : si $7 \\mid x$, alors $x^{5d} \\equiv 0 \\equiv x$. Sinon, $x^{6} \\equiv 1 \\pmod{7}$ par le petit théorème de Fermat et, comme $5d - 1 = 144 = 6 \\times 24$, $x^{5d} = x \\times \\left(x^{6}\\right)^{24} \\equiv x \\pmod{7}$. De même modulo $q = 13$, avec $144 = 12 \\times 12$ : $x^{5d} \\equiv x \\pmod{13}$. Ainsi $7$ et $13$ divisent $x^{5d} - x$ ; comme ils sont premiers entre eux, leur produit $n = 91$ divise $x^{5d} - x$ (lemme chinois).\n\n5. Si $c \\equiv x^5 \\pmod{n}$, alors $c^d \\equiv x^{5d} \\equiv x \\pmod{n}$ d'après la question 4 ; comme $0 \\leq x < n$, $x$ est le reste de la division euclidienne de $c^d$ par $n$. Pour $c = 23$ et $d = 29$ : modulo $7$, $23 \\equiv 2$ et $2^6 \\equiv 1$ (Fermat) ; comme $29 = 6 \\times 4 + 5$, $23^{29} \\equiv 2^5 = 32 \\equiv 4 \\pmod{7}$. Modulo $13$, $23 \\equiv -3$ et $(-3)^{12} \\equiv 1$ (Fermat) ; comme $29 = 2 \\times 12 + 5$, $23^{29} \\equiv (-3)^5 = -243 \\pmod{13}$, et $243 = 18 \\times 13 + 9$, donc $23^{29} \\equiv -9 \\equiv 4 \\pmod{13}$. Ainsi $x \\equiv 4$ modulo $7$ et modulo $13$. Par le lemme chinois, $x \\equiv 4 \\pmod{91}$ : le message est $x = 4$. Vérification : $4^5 = 1024 = 11 \\times 91 + 23$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-chinois-ex5",
+      "carte": "arith-l1-chinois",
+      "difficulte": 3,
+      "titre": "Trois congruences simultanées",
+      "enonce": "Un professeur compte les élèves inscrits à une option ; leur nombre $N$ est compris entre $100$ et $300$. S'il les répartit en groupes de $4$, il en reste $3$ ; en groupes de $5$, il en reste $2$ ; en groupes de $7$, il en reste $4$.\n\n1. Traduire l'énoncé par un système de trois congruences.\n\n2. Résoudre dans $\\mathbb{Z}$ le système formé par les deux premières congruences.\n\n3. En déduire l'ensemble des entiers relatifs solutions du système complet, puis la valeur de $N$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, d'après le lemme chinois, les solutions forment une classe modulo $20$ : chercher un représentant parmi les entiers de $\\{0, \\dots, 19\\}$.",
+        "Pour la question 3, écrire $N = 7 + 20k$ et traduire la troisième congruence en une congruence sur $k$ modulo $7$."
+      ],
+      "reponse_finale": {
+        "question": "Combien d'élèves sont inscrits ?",
+        "propositions": [
+          "$207$",
+          "$67$",
+          "$247$",
+          "$187$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $N \\equiv 3 \\pmod{4}$, $N \\equiv 2 \\pmod{5}$ et $N \\equiv 4 \\pmod{7}$.\n\n2. $4 \\wedge 5 = 1$ : d'après le lemme chinois, les solutions forment une classe modulo $20$. Parmi $2, 7, 12, 17$, qui sont les entiers de $\\{0, \\dots, 19\\}$ congrus à $2$ modulo $5$, seul $7$ est congru à $3$ modulo $4$. Les solutions sont les entiers $7 + 20k$, $k \\in \\mathbb{Z}$.\n\n3. $20 \\wedge 7 = 1$. On cherche $k$ tel que $7 + 20k \\equiv 4 \\pmod{7}$. Comme $7 + 20k \\equiv 20k \\equiv -k \\pmod{7}$, cela équivaut à $-k \\equiv 4$, soit $k \\equiv 3 \\pmod{7}$ ; on prend $k = 3$. Pour $k$ ainsi choisi, on obtient $67$, et l'on vérifie : $67 = 16 \\times 4 + 3 = 13 \\times 5 + 2 = 9 \\times 7 + 4$. D'après le lemme chinois, les solutions du système sont les entiers $67 + 140m$, $m \\in \\mathbb{Z}$. Entre $100$ et $300$, seul $207$ convient : $N = 207$.",
+      "variantes": [
+        {
+          "enonce": "Un professeur compte les élèves inscrits à une option ; leur nombre $N$ est compris entre $200$ et $300$. S'il les répartit en groupes de $3$, il en reste $2$ ; en groupes de $5$, il en reste $4$ ; en groupes de $8$, il en reste $5$.\n\n1. Traduire l'énoncé par un système de trois congruences.\n\n2. Résoudre dans $\\mathbb{Z}$ le système formé par les deux premières congruences.\n\n3. En déduire l'ensemble des entiers relatifs solutions du système complet, puis la valeur de $N$.",
+          "indices": [
+            "Pour la question 2, d'après le lemme chinois, les solutions forment une classe modulo $15$ : chercher un représentant parmi les entiers de $\\{0, \\dots, 14\\}$.",
+            "Pour la question 3, écrire $N = 14 + 15k$ et traduire la troisième congruence en une congruence sur $k$ modulo $8$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'élèves sont inscrits ?",
+            "propositions": [
+              "$269$",
+              "$149$",
+              "$254$",
+              "$239$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $N \\equiv 2 \\pmod{3}$, $N \\equiv 4 \\pmod{5}$ et $N \\equiv 5 \\pmod{8}$.\n\n2. $3 \\wedge 5 = 1$ : d'après le lemme chinois, les solutions forment une classe modulo $15$. Parmi $4, 9, 14$, qui sont les entiers de $\\{0, \\dots, 14\\}$ congrus à $4$ modulo $5$, seul $14$ est congru à $2$ modulo $3$. Les solutions sont les entiers $14 + 15k$, $k \\in \\mathbb{Z}$.\n\n3. $15 \\wedge 8 = 1$. On cherche $k$ tel que $14 + 15k \\equiv 5 \\pmod{8}$. Comme $14 \\equiv 6$ et $15 \\equiv -1 \\pmod{8}$, cela équivaut à $6 - k \\equiv 5$, soit $k \\equiv 1 \\pmod{8}$ ; on prend $k = 1$. Pour $k$ ainsi choisi, on obtient $29$, et l'on vérifie : $29 = 9 \\times 3 + 2 = 5 \\times 5 + 4 = 3 \\times 8 + 5$. D'après le lemme chinois, les solutions du système sont les entiers $29 + 120m$, $m \\in \\mathbb{Z}$. Entre $200$ et $300$, seul $269$ convient : $N = 269$."
+        },
+        {
+          "enonce": "Un professeur compte les élèves inscrits à une option ; leur nombre $N$ est compris entre $200$ et $400$. S'il les répartit en groupes de $5$, il en reste $4$ ; en groupes de $6$, il en reste $1$ ; en groupes de $7$, il en reste $2$.\n\n1. Traduire l'énoncé par un système de trois congruences.\n\n2. Résoudre dans $\\mathbb{Z}$ le système formé par les deux premières congruences.\n\n3. En déduire l'ensemble des entiers relatifs solutions du système complet, puis la valeur de $N$.",
+          "indices": [
+            "Pour la question 2, d'après le lemme chinois, les solutions forment une classe modulo $30$ : chercher un représentant parmi les entiers de $\\{0, \\dots, 29\\}$.",
+            "Pour la question 3, écrire $N = 19 + 30k$ et traduire la troisième congruence en une congruence sur $k$ modulo $7$."
+          ],
+          "reponse_finale": {
+            "question": "Combien d'élèves sont inscrits ?",
+            "propositions": [
+              "$289$",
+              "$79$",
+              "$259$",
+              "$349$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $N \\equiv 4 \\pmod{5}$, $N \\equiv 1 \\pmod{6}$ et $N \\equiv 2 \\pmod{7}$.\n\n2. $5 \\wedge 6 = 1$ : d'après le lemme chinois, les solutions forment une classe modulo $30$. Parmi $1, 7, 13, 19, 25$, qui sont les entiers de $\\{0, \\dots, 29\\}$ congrus à $1$ modulo $6$, seul $19$ est congru à $4$ modulo $5$. Les solutions sont les entiers $19 + 30k$, $k \\in \\mathbb{Z}$.\n\n3. $30 \\wedge 7 = 1$. On cherche $k$ tel que $19 + 30k \\equiv 2 \\pmod{7}$. Comme $19 \\equiv 5$ et $30 \\equiv 2 \\pmod{7}$, cela équivaut à $5 + 2k \\equiv 2$, soit $2k \\equiv -3 \\equiv 4 \\pmod{7}$, puis $k \\equiv 2 \\pmod{7}$ en multipliant par $4$, inverse de $2$ modulo $7$ ; on prend $k = 2$. Pour $k$ ainsi choisi, on obtient $79$, et l'on vérifie : $79 = 15 \\times 5 + 4 = 13 \\times 6 + 1 = 11 \\times 7 + 2$. D'après le lemme chinois, les solutions du système sont les entiers $79 + 210m$, $m \\in \\mathbb{Z}$. Entre $200$ et $400$, seul $289$ convient : $N = 289$."
+        }
+      ]
+    },
+    {
+      "id": "arith-l1-congruences-inversibles-ex6",
+      "carte": "arith-l1-congruences-inversibles",
+      "difficulte": 2,
+      "titre": "Une congruence linéaire à coefficient non inversible",
+      "enonce": "On considère la congruence $(C)$ : $12x \\equiv 18 \\pmod{30}$, d'inconnue $x \\in \\mathbb{Z}$.\n\n1. La classe $\\overline{12}$ est-elle inversible dans $\\mathbb{Z}/30\\mathbb{Z}$ ?\n\n2. Montrer que $(C)$ équivaut à $2x \\equiv 3 \\pmod{5}$.\n\n3. En déduire les solutions de $(C)$ dans $\\{0, 1, \\dots, 29\\}$.",
+      "duree_min": 10,
+      "indices": [
+        "Pour la question 2, écrire $(C)$ sous la forme « $30$ divise $12x - 18$ » et mettre en facteur.",
+        "Pour la question 3, chercher l'inverse de $\\overline{2}$ dans $\\mathbb{Z}/5\\mathbb{Z}$."
+      ],
+      "reponse_finale": {
+        "question": "Combien $(C)$ a-t-elle de solutions dans $\\{0, 1, \\dots, 29\\}$ ?",
+        "propositions": [
+          "$6$",
+          "$0$",
+          "$1$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $12 \\wedge 30 = 6 \\neq 1$ : $\\overline{12}$ n'est pas inversible dans $\\mathbb{Z}/30\\mathbb{Z}$.\n\n2. $(C)$ signifie qu'il existe $k \\in \\mathbb{Z}$ tel que $12x - 18 = 30k$, c'est-à-dire $6(2x - 3) = 6 \\times 5k$, soit $2x - 3 = 5k$ : $(C)$ équivaut à $2x \\equiv 3 \\pmod{5}$.\n\n3. Dans $\\mathbb{Z}/5\\mathbb{Z}$, $\\overline{2} \\times \\overline{3} = \\overline{1}$. En multipliant par $3$, la congruence $2x \\equiv 3 \\pmod{5}$ entraîne $x \\equiv 9 \\equiv 4 \\pmod{5}$ ; réciproquement, en multipliant $x \\equiv 4$ par $2$, on retrouve $2x \\equiv 8 \\equiv 3 \\pmod{5}$. Les solutions de $(C)$ dans $\\{0, \\dots, 29\\}$ sont donc $4, 9, 14, 19, 24, 29$ : il y en a $6$, autant que $12 \\wedge 30$.",
+      "variantes": [
+        {
+          "enonce": "On considère la congruence $(C)$ : $15x \\equiv 21 \\pmod{36}$, d'inconnue $x \\in \\mathbb{Z}$.\n\n1. La classe $\\overline{15}$ est-elle inversible dans $\\mathbb{Z}/36\\mathbb{Z}$ ?\n\n2. Montrer que $(C)$ équivaut à $5x \\equiv 7 \\pmod{12}$.\n\n3. En déduire les solutions de $(C)$ dans $\\{0, 1, \\dots, 35\\}$.",
+          "indices": [
+            "Pour la question 2, écrire $(C)$ sous la forme « $36$ divise $15x - 21$ » et mettre en facteur.",
+            "Pour la question 3, chercher l'inverse de $\\overline{5}$ dans $\\mathbb{Z}/12\\mathbb{Z}$."
+          ],
+          "reponse_finale": {
+            "question": "Combien $(C)$ a-t-elle de solutions dans $\\{0, 1, \\dots, 35\\}$ ?",
+            "propositions": [
+              "$3$",
+              "$0$",
+              "$1$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $15 \\wedge 36 = 3 \\neq 1$ : $\\overline{15}$ n'est pas inversible dans $\\mathbb{Z}/36\\mathbb{Z}$.\n\n2. $(C)$ signifie qu'il existe $k \\in \\mathbb{Z}$ tel que $15x - 21 = 36k$, c'est-à-dire $3(5x - 7) = 3 \\times 12k$, soit $5x - 7 = 12k$ : $(C)$ équivaut à $5x \\equiv 7 \\pmod{12}$.\n\n3. Dans $\\mathbb{Z}/12\\mathbb{Z}$, $\\overline{5} \\times \\overline{5} = \\overline{25} = \\overline{1}$. En multipliant par $5$, la congruence $5x \\equiv 7 \\pmod{12}$ entraîne $x \\equiv 35 \\equiv 11 \\pmod{12}$ ; réciproquement, en multipliant $x \\equiv 11$ par $5$, on retrouve $5x \\equiv 55 \\equiv 7 \\pmod{12}$. Les solutions de $(C)$ dans $\\{0, \\dots, 35\\}$ sont donc $11, 23, 35$ : il y en a $3$, autant que $15 \\wedge 36$."
+        },
+        {
+          "enonce": "On considère la congruence $(C)$ : $14x \\equiv 20 \\pmod{48}$, d'inconnue $x \\in \\mathbb{Z}$.\n\n1. La classe $\\overline{14}$ est-elle inversible dans $\\mathbb{Z}/48\\mathbb{Z}$ ?\n\n2. Montrer que $(C)$ équivaut à $7x \\equiv 10 \\pmod{24}$.\n\n3. En déduire les solutions de $(C)$ dans $\\{0, 1, \\dots, 47\\}$.",
+          "indices": [
+            "Pour la question 2, écrire $(C)$ sous la forme « $48$ divise $14x - 20$ » et mettre en facteur.",
+            "Pour la question 3, chercher l'inverse de $\\overline{7}$ dans $\\mathbb{Z}/24\\mathbb{Z}$."
+          ],
+          "reponse_finale": {
+            "question": "Combien $(C)$ a-t-elle de solutions dans $\\{0, 1, \\dots, 47\\}$ ?",
+            "propositions": [
+              "$2$",
+              "$0$",
+              "$1$",
+              "$24$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $14 \\wedge 48 = 2 \\neq 1$ : $\\overline{14}$ n'est pas inversible dans $\\mathbb{Z}/48\\mathbb{Z}$.\n\n2. $(C)$ signifie qu'il existe $k \\in \\mathbb{Z}$ tel que $14x - 20 = 48k$, c'est-à-dire $2(7x - 10) = 2 \\times 24k$, soit $7x - 10 = 24k$ : $(C)$ équivaut à $7x \\equiv 10 \\pmod{24}$.\n\n3. Dans $\\mathbb{Z}/24\\mathbb{Z}$, $\\overline{7} \\times \\overline{7} = \\overline{49} = \\overline{1}$. En multipliant par $7$, la congruence $7x \\equiv 10 \\pmod{24}$ entraîne $x \\equiv 70 \\equiv 22 \\pmod{24}$ ; réciproquement, en multipliant $x \\equiv 22$ par $7$, on retrouve $7x \\equiv 154 \\equiv 10 \\pmod{24}$. Les solutions de $(C)$ dans $\\{0, \\dots, 47\\}$ sont donc $22$ et $46$ : il y en a $2$, autant que $14 \\wedge 48$."
+        }
+      ]
     }
   ]
 }

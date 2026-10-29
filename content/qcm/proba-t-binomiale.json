@@ -1,0 +1,99 @@
+{
+  "chapitre": "proba-t-binomiale",
+  "questions": [
+    {
+      "id": "proba-t-binomiale-q1",
+      "carte": "proba-t-binomiale",
+      "genre": "choix",
+      "enonce": "Soit $X$ une variable aléatoire de loi $\\mathcal{B}(10\\,;\\,0{,}3)$. Que vaut $P(X = 2)$ ?",
+      "propositions": [
+        "$\\binom{10}{2} \\times 0{,}3^2 \\times 0{,}7^8$",
+        "$0{,}3^2 \\times 0{,}7^8$",
+        "$\\binom{10}{2} \\times 0{,}3^8 \\times 0{,}7^2$",
+        "$\\binom{10}{2} \\times 0{,}3^2$"
+      ],
+      "bonne": 0,
+      "explication": "Pour $X \\sim \\mathcal{B}(n, p)$, $P(X = k) = \\binom{n}{k} p^k (1 - p)^{n-k}$. Ici $P(X = 2) = \\binom{10}{2} \\times 0{,}3^2 \\times 0{,}7^8 \\approx 0{,}2335$. Le produit $0{,}3^2 \\times 0{,}7^8$ seul est la probabilité d'une seule liste de résultats (par exemple deux succès suivis de huit échecs) : il faut le multiplier par le nombre $\\binom{10}{2}$ de positions possibles des deux succès."
+    },
+    {
+      "id": "proba-t-binomiale-q2",
+      "carte": "proba-t-binomiale",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ suit une loi binomiale d'espérance $12$ et de variance $3$. Quels sont ses paramètres ?",
+      "propositions": [
+        "$n = 16$ et $p = \\frac{3}{4}$",
+        "$n = 48$ et $p = \\frac{1}{4}$",
+        "$n = 16$ et $p = \\frac{1}{4}$",
+        "$n = 4$ et $p = \\frac{3}{4}$"
+      ],
+      "bonne": 0,
+      "explication": "On a $np = 12$ et $np(1 - p) = 3$, donc $1 - p = \\frac{3}{12} = \\frac{1}{4}$, soit $p = \\frac{3}{4}$, puis $n = \\frac{12}{p} = 16$. Avec $n = 48$ et $p = \\frac{1}{4}$, l'espérance vaut bien $12$, mais la variance vaut $48 \\times \\frac{1}{4} \\times \\frac{3}{4} = 9$."
+    },
+    {
+      "id": "proba-t-binomiale-q3",
+      "carte": "proba-t-binomiale",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ suit la loi $\\mathcal{B}\\left(20, \\frac{1}{2}\\right)$, alors $P(X \\leq 9) = P(X \\geq 11)$.",
+      "vrai": true,
+      "explication": "**Vrai.** Pour $0 \\leq k \\leq 20$, $P(X = k) = \\binom{20}{k} \\left(\\frac{1}{2}\\right)^{20}$, et $\\binom{20}{k} = \\binom{20}{20 - k}$ : donc $P(X = k) = P(X = 20 - k)$. La somme des $P(X = k)$ pour $k \\leq 9$ est donc égale à la somme des $P(X = j)$ pour $j = 20 - k \\geq 11$."
+    },
+    {
+      "id": "proba-t-binomiale-q4",
+      "carte": "proba-t-binomiale-produit",
+      "genre": "choix",
+      "enonce": "On lance $4$ fois un dé équilibré à $6$ faces, les lancers étant indépendants. Quelle est la probabilité d'obtenir au moins un $6$ ?",
+      "propositions": [
+        "$1 - \\left(\\frac{5}{6}\\right)^4$",
+        "$\\frac{4}{6}$",
+        "$\\left(\\frac{1}{6}\\right)^4$",
+        "$1 - \\left(\\frac{1}{6}\\right)^4$"
+      ],
+      "bonne": 0,
+      "explication": "L'événement contraire est « aucun $6$ en $4$ lancers ». Les lancers étant indépendants, sa probabilité est le produit des probabilités de « pas de $6$ » à chaque lancer : $\\left(\\frac{5}{6}\\right)^4 = \\frac{625}{1296}$. La probabilité cherchée est donc $1 - \\left(\\frac{5}{6}\\right)^4 = \\frac{671}{1296} \\approx 0{,}518$. La réponse $\\frac{4}{6}$ additionne les probabilités d'événements qui ne sont pas incompatibles."
+    },
+    {
+      "id": "proba-t-binomiale-q5",
+      "carte": "proba-t-binomiale-denombrement",
+      "genre": "choix",
+      "enonce": "On tire simultanément $5$ cartes d'un jeu de $32$ cartes, qui contient $8$ cœurs. Combien de mains contiennent exactement $2$ cœurs ?",
+      "propositions": [
+        "$\\binom{8}{2} \\times \\binom{24}{3}$",
+        "$\\binom{8}{2} \\times \\binom{32}{3}$",
+        "$\\binom{8}{2} + \\binom{24}{3}$",
+        "$8 \\times 7 \\times \\binom{24}{3}$"
+      ],
+      "bonne": 0,
+      "explication": "Une telle main est formée de $2$ cœurs, choisis parmi les $8$ ($\\binom{8}{2}$ choix), et de $3$ cartes qui ne sont pas des cœurs, choisies parmi les $24$ autres ($\\binom{24}{3}$ choix) ; chaque couple de choix donne une main différente, d'où $\\binom{8}{2} \\times \\binom{24}{3} = 28 \\times 2024 = 56672$ mains. Le produit $8 \\times 7$ compte les cœurs dans un ordre, donc chaque main deux fois ; $\\binom{32}{3}$ autoriserait d'autres cœurs parmi les trois dernières cartes."
+    },
+    {
+      "id": "proba-t-binomiale-q6",
+      "carte": "proba-t-binomiale-pascal",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout entier $n \\geq 2$, $\\binom{n+1}{2} - \\binom{n}{2} = n$.",
+      "vrai": true,
+      "explication": "**Vrai.** Par la relation de Pascal, $\\binom{n}{1} + \\binom{n}{2} = \\binom{n+1}{2}$, donc $\\binom{n+1}{2} - \\binom{n}{2} = \\binom{n}{1} = n$. Directement : $\\frac{(n+1)n}{2} - \\frac{n(n-1)}{2} = \\frac{n \\times 2}{2} = n$."
+    },
+    {
+      "id": "proba-t-binomiale-q7",
+      "carte": "proba-t-binomiale-denombrement",
+      "genre": "vrai-faux",
+      "enonce": "Le nombre de parties à $3$ éléments de $\\{1, 2, \\dots, 10\\}$ qui contiennent $1$ est $\\binom{9}{3}$.",
+      "vrai": false,
+      "explication": "**Faux.** Une telle partie s'écrit $\\{1\\} \\cup B$, où $B$ est une partie à $2$ éléments de $\\{2, \\dots, 10\\}$, ensemble à $9$ éléments : il y en a $\\binom{9}{2} = 36$. Le nombre $\\binom{9}{3} = 84$ compte au contraire les parties à $3$ éléments qui ne contiennent pas $1$ (et $36 + 84 = 120 = \\binom{10}{3}$)."
+    },
+    {
+      "id": "proba-t-binomiale-q8",
+      "carte": "proba-t-binomiale-pascal",
+      "genre": "choix",
+      "enonce": "On donne $\\binom{20}{8} = 125970$ et $\\binom{20}{9} = 167960$. Que vaut $\\binom{21}{9}$ ?",
+      "propositions": [
+        "$293930$",
+        "$41990$",
+        "$335920$",
+        "$251940$"
+      ],
+      "bonne": 0,
+      "explication": "Par la relation de Pascal, $\\binom{21}{9} = \\binom{20}{8} + \\binom{20}{9} = 125970 + 167960 = 293930$."
+    }
+  ]
+}
