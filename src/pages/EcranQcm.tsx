@@ -1,22 +1,32 @@
-// QCM d'un chapitre : dix questions tirées au hasard (vrai ou faux, énoncé à compléter, question d'exercice), une à la
-// fois ; après chaque réponse, la bonne est montrée avec sa justification. À la fin, le score est enregistré.
+// QCM d'un chapitre (dix questions de tous genres) ou d'un niveau entier (vingt questions à choix, ou vingt vrai-faux,
+// réparties entre ses chapitres), une question à la fois ; après chaque réponse, la bonne est montrée avec sa
+// justification. À la fin, le score est enregistré sous la clé de la cible.
 import { useMemo, useState, type CSSProperties } from 'react'
 import { chapitresNumerotes } from '../chapitres/plan'
-import { CONSIGNES, questionsChapitre, tirerQcm } from '../chapitres/qcm'
+import { CONSIGNES, cleQcm, tirerCible, type CibleQcm } from '../chapitres/qcm'
 import { BandeauDoute, Volet } from '../composants/Blocs'
 import { Texte } from '../composants/Texte'
+import { NOMS_NIVEAUX } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'
 import { enregistrerQcm } from '../lib/progression'
 
-export function EcranQcm({ chapitre, surFin }: { chapitre: string; surFin: () => void }) {
+export function EcranQcm({ cible, surFin }: { cible: CibleQcm; surFin: () => void }) {
   const [tirage, setTirage] = useState(0)
-  return <Deroule key={tirage} chapitre={chapitre} surFin={surFin} recommencer={() => setTirage(tirage + 1)} />
+  return <Deroule key={tirage} cible={cible} surFin={surFin} recommencer={() => setTirage(tirage + 1)} />
 }
 
-function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: () => void; recommencer: () => void }) {
+function Deroule({ cible, surFin, recommencer }: { cible: CibleQcm; surFin: () => void; recommencer: () => void }) {
   const { contenu, cartesParId, changerProgression, horloge, aujourdhui } = useDonnees()
-  const entree = useMemo(() => chapitresNumerotes(contenu).find((x) => x.chapitre.id === chapitre), [contenu, chapitre])
-  const questions = useMemo(() => tirerQcm(questionsChapitre(contenu, chapitre)), [contenu, chapitre])
+  const numeros = useMemo(() => new Map(chapitresNumerotes(contenu).map((x) => [x.chapitre.id, x])), [contenu])
+  const questions = useMemo(() => tirerCible(contenu, cible), [contenu, cible])
+  const parChapitre = 'chapitre' in cible
+  const entree = parChapitre ? numeros.get(cible.chapitre) : undefined
+  const titre = parChapitre
+    ? `QCM · Chapitre ${entree?.numero} · ${entree?.chapitre.titre}`
+    : `${cible.sorte === 'qcm' ? 'QCM' : 'Vrai ou faux'} · ${NOMS_NIVEAUX[cible.niveau]}, tout le niveau`
+  /** Notion d'une question, précédée du numéro de son chapitre pour un QCM de niveau. */
+  const notion = (chapitre: string, carte: string) =>
+    `${parChapitre ? '' : `chapitre ${numeros.get(chapitre)?.numero} · `}notion « ${cartesParId.get(carte)?.titre ?? carte} »`
   const [rang, setRang] = useState(0)
   const [choix, setChoix] = useState<(number | null)[]>(() => questions.map(() => null))
   const fini = rang >= questions.length
@@ -26,7 +36,7 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
 
   const suivante = () => {
     if (rang === questions.length - 1)
-      changerProgression((p) => enregistrerQcm(p, chapitre, { date: horloge(), jour: aujourdhui(), bonnes, total: questions.length }))
+      changerProgression((p) => enregistrerQcm(p, cleQcm(cible), { date: horloge(), jour: aujourdhui(), bonnes, total: questions.length }))
     setRang(rang + 1)
     window.scrollTo(0, 0)
   }
@@ -37,7 +47,7 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
       <main className="ecran">
         <div className="barre-haut">
           <button className="retour" onClick={surFin}>
-            ← {fini ? 'Chapitre' : 'Quitter'}
+            ← {fini ? 'Retour' : 'Quitter'}
           </button>
           <span className="avancement">
             <span className="piste" aria-hidden="true">
@@ -46,14 +56,12 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
             {fini ? 'Résultat' : `${rang + 1} / ${questions.length}`}
           </span>
         </div>
-        <span className="sur-titre-ecran">
-          QCM · Chapitre {entree?.numero} · {entree?.chapitre.titre}
-        </span>
+        <span className="sur-titre-ecran">{titre}</span>
 
         {q && (
           <>
             <span className="etiquette">
-              {CONSIGNES[q.genre]} · notion « <Texte texte={cartesParId.get(q.carte)?.titre ?? ''} enLigne /> »
+              <Texte texte={`${CONSIGNES[q.genre]} · ${notion(q.chapitre, q.carte)}`} enLigne />
             </span>
             <BandeauDoute doute={q.doute} />
             {q.contexte && (
@@ -107,16 +115,16 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
               {bonnes === questions.length
                 ? 'Sans faute.'
                 : bonnes / questions.length >= 0.8
-                  ? 'Très bien : chapitre maîtrisé à ce QCM.'
+                  ? `Très bien : ${parChapitre ? 'chapitre maîtrisé' : 'niveau bien en main'} à ce QCM.`
                   : 'Revoyez les notions concernées, puis retentez : les questions changent à chaque tirage.'}
             </p>
             {questions.some((x, i) => choix[i] !== x.bonne) && (
               <>
                 <span className="etiquette">À revoir</span>
                 <ul className="liste-revoir">
-                  {[...new Set(questions.filter((x, i) => choix[i] !== x.bonne).map((x) => x.carte))].map((id) => (
-                    <li key={id}>
-                      <Texte texte={cartesParId.get(id)?.titre ?? id} enLigne />
+                  {[...new Map(questions.filter((x, i) => choix[i] !== x.bonne).map((x) => [x.carte, x])).values()].map((x) => (
+                    <li key={x.carte}>
+                      <Texte texte={parChapitre ? (cartesParId.get(x.carte)?.titre ?? x.carte) : `Chapitre ${numeros.get(x.chapitre)?.numero} : ${cartesParId.get(x.carte)?.titre ?? x.carte}`} enLigne />
                     </li>
                   ))}
                 </ul>
@@ -133,7 +141,7 @@ function Deroule({ chapitre, surFin, recommencer }: { chapitre: string; surFin: 
                 Nouveau tirage
               </button>
               <button className="bouton" onClick={surFin}>
-                Retour au chapitre
+                {parChapitre ? 'Retour au chapitre' : 'Retour'}
               </button>
             </div>
           ) : (

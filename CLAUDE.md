@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 Prépa Agreg : appli Android perso (Capacitor + React 19 + Vite + TypeScript + KaTeX) pour monter de la Terminale jusqu'aux
-attendus de l'écrit de l'agrégation externe de mathématiques : cartes de révision à répétition espacée, exercices de difficulté
+attendus de l'agrégation interne de mathématiques (le propriétaire prépare l'interne, pas l'externe) : cartes de révision à répétition espacée, exercices de difficulté
 croissante par notion, QCM par chapitre, chapitres numérotés. Version web sur GitHub Pages (`https://p-bailly.github.io/Prepa-Agreg/`, même construction que l'APK) ;
 pas de compte, pas de serveur. Code, commentaires, textes,
 commits : en français. Les commentaires qui renvoient à une rubrique de ce fichier citent son titre : le garder en cas de renommage.
@@ -65,8 +65,10 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
 - Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
   aller avec les formules KaTeX.
 - Accueil : compte à rebours de l'écrit (tuile rose, seulement avec une date), puis **tous les chapitres numérotés de 1 à n**
-  (ordre : niveau, thème, `themes.json`), un volet par niveau, groupés par thème, pastille d'avancement ; un chapitre pas encore
-  rédigé est grisé. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29).
+  (ordre : niveau de la Terminale à l'agrégation interne, thème, `themes.json`), un volet par niveau, groupés par thème, pastille d'avancement ; un chapitre pas encore
+  rédigé est grisé. Série, niveau atteint, bloc « Aujourd’hui », leçon et objectif du jour retirés (2026-10-29). En tête de
+  chaque niveau rédigé, « Tout le niveau » : un **QCM du niveau** (20 questions à choix) et un **Vrai ou faux du niveau**
+  (20 affirmations), pris à tour de rôle dans chacun de ses chapitres (`tirerCible`).
 - Chapitre : trois onglets (`Segments`). **Notions** : introduction (`content/lecons/`), notions numérotées « 17.4 » ;
   **Exercices** : exercices (difficulté 1 à 3) puis problèmes (4 et 5) ; **QCM**. Notion (`EcranNotion`) : onglets **Cours**
   (cours, énoncé encadré, exemple, démonstration, contre-exemples, pièges, « Mémoriser l'énoncé » vers la carte de révision)
@@ -74,7 +76,8 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
 - QCM (`EcranQcm`) : 10 questions tirées en alternant les genres parmi le contenu déjà vérifié du chapitre : affirmations
   (vrai ou faux, justification ou contre-exemple), énoncés à trous (bonne réponse parmi les leurres), questions des exercices
   de difficulté 1 ou 2 (avec l'énoncé et la correction). Score gardé ; chapitre « fait » quand toutes ses notions sont faites
-  (tous leurs exercices réussis) et un QCM à 80 % au moins.
+  (tous leurs exercices réussis) et un QCM à 80 % au moins. Les scores sont gardés dans `progression.qcm`, sous l'identifiant
+  du chapitre ou sous `niveau-<niveau>-qcm` / `niveau-<niveau>-vrai-faux` pour un niveau entier.
   Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
   lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
   son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
@@ -104,12 +107,23 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
 - Exercices : hors répétition espacée ; un exercice est réussi s'il l'a été une fois, tenté sinon.
 
 ## Niveaux (choix, pas une source officielle)
-Plancher : programme de Terminale (spécialité mathématiques et option mathématiques expertes, programmes de 2019 en vigueur en
-2026-2027 ; un nouveau programme de spécialité, BO n° 14 du 2 avril 2026, s'appliquera à la rentrée 2027). Plafond : programme
-de l'écrit de l'agrégation externe (session 2027 : douze titres, de l'algèbre linéaire aux méthodes numériques ; épreuves
-« composition de mathématiques générales » et « composition d'analyse et probabilités », 6 h, coefficient 4 chacune, d'après
-devenirenseignant.gouv.fr consulté le 2026-10-27). **Entre les deux (L1, L2, L3), il n'y a pas de programme officiel** : le
-découpage de `themes.json` est construit à rebours depuis le plafond et c'est un choix, pas une source officielle.
+Le propriétaire prépare l'**agrégation interne** (corrigé le 2026-10-29 : le parcours visait d'abord l'externe). Plafond :
+programme de l'agrégation interne de mathématiques, session 2027 (« le programme de la session 2026 est reconduit »,
+`https://www.devenirenseignant.gouv.fr/media/21306/download`, publié en octobre 2026, lu le 2026-10-29) : **tous les
+programmes du lycée en vigueur, de la seconde à la terminale, dans toutes les sections**, plus un programme complémentaire
+de niveau licence (ensembles, algorithmique, algèbre générale, groupes et géométrie, algèbre linéaire et euclidienne,
+géométrie affine et euclidienne, analyse réelle, intégrale de Riemann et intégrales impropres, analyse numérique, séries
+entières, topologie et espaces de Banach, séries de Fourier, courbes, calcul différentiel, équations différentielles,
+intégrales multiples, probabilités, estimation). **Pas de théorie de la mesure ni d'intégrale de Lebesgue, pas d'analyse
+complexe** ; convergence dominée et monotone, Fubini, Cauchy-Lipschitz, inversion locale, fonctions implicites, loi forte et
+théorème central limite y sont **admis**. Le plan de `themes.json` couvre chaque rubrique de ce programme complémentaire ;
+les chapitres de l'externe (Lebesgue, Lp, holomorphes, résidus, corps finis, Sylow, Jordan, sous-variétés…) ont été retirés.
+- Plancher : la Terminale (programmes de 2019, spécialité et mathématiques expertes, en vigueur en 2026-2027 ; le nouveau
+  programme de terminale s'appliquera à la rentrée 2027). La seconde et la première, bien qu'au programme de l'interne, ne
+  sont **pas** couvertes, par choix du propriétaire (2026-10-29).
+- Entre la terminale et le plafond (L1, L2, L3, « agrégation interne »), **il n'y a pas de programme officiel par niveau** : le
+  découpage est un choix (niveau d'une première, deuxième, troisième année de licence ; le niveau « agrégation interne »
+  regroupe les thèmes de synthèse).
 
 ## Format du contenu
 
@@ -119,14 +133,14 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 
 - `content/themes.json` : la carte du parcours complet. `{ "themes": [ { "id", "titre", "chapitres": [ { "id", "niveau",
   "titre", "notions", "prevues" } ] } ] }`. `notions` = les notions à couvrir, une carte chacune (plan de rédaction, établi
-  d'après les sous-sections du programme de l'agrégation 2027 et des programmes de Terminale) ; `prevues` = leur nombre (le
+  d'après les rubriques du programme de l'agrégation interne 2027 et des programmes de Terminale) ; `prevues` = leur nombre (le
   total prévu ; contrôlé par le test). L'ordre des chapitres d'un thème est l'ordre du parcours, les
   niveaux y sont croissants.
 - `content/cartes/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` (fichier réservé à un chapitre, pour rédiger des
   chapitres en parallèle) : `{ "cartes": [ … ] }`. Ordre d'introduction : chapitres dans l'ordre de `themes.json`, puis ordre
   du fichier.
 - `content/exercices/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` : `{ "exercices": [ … ] }`.
-- Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg`.
+- Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg` (agrégation interne).
 
 ### Question de QCM
 `content/qcm/<chapitre>.json` : `{ "chapitre", "questions": [ { "id", "carte", "genre", "enonce", "propositions", "bonne",
@@ -244,6 +258,7 @@ Un énoncé faux appris par cœur est pire qu'une carte absente : mieux vaut peu
 - 2026-10-29 · `qcm/geo-l1-complexes.json`, `qcm/al-t-matrices.json`, `qcm/al-l1-{espaces,applications}.json` (32 questions), exercices ajoutés à `exercices/geometrie/l1-geo-l1-complexes.json`, `exercices/algebre-lineaire/{terminale-al-t-matrices,l1-al-l1-espaces,l1-al-l1-applications}.json` (12 exercices, 18 variantes), `verification/enrichi_{geo_l1_complexes,al_t_matrices,al_l1_espaces,al_l1_applications}.py` : rédaction inspirée de sources en ligne (énoncés originaux), puis relecture indépendante, 62 éléments résolus à l'aveugle (62 réponses concordantes), leurres vérifiés faux en SymPy et par énumération (chaînes des graphes, puissances 4, Δ des polynômes), explications et corrections re-dérivées ; aucune correction nécessaire ; aucun doute.
 - 2026-10-29 · `qcm/ar-l1-{taylor,convexite}.json`, `qcm/int-t-integrale.json`, `qcm/int-l1-riemann.json` (32 questions), exercices ajoutés à `exercices/analyse-reelle/l1-ar-l1-{taylor,convexite}.json`, `exercices/integration/{terminale-int-t-integrale,l1-int-l1-riemann}.json` (12 exercices, 20 variantes), `verification/enrichi_{ar_l1_taylor,ar_l1_convexite,int_t_integrale,int_l1_riemann}.py` : rédaction inspirée de sources en ligne (énoncés originaux), puis relecture indépendante, 64 éléments résolus à l'aveugle (32 versions d'exercices, 32 QCM), 64 réponses concordantes, leurres vérifiés faux (SymPy, mpmath) ; corrigé : réponse finale de convexite-derivables-ex5 (elle reprenait l'encadrement donné dans l'énoncé, remplacée par celui de nI_n), variante 2 de convexite-pentes-ex5 (simple décalage de l'exercice, nouvelles données), redite dans la correction de moyenne-ex5 v2 ; aucun doute.
 - 2026-10-29 · `qcm/{al-l1-determinant,gr-l1-groupes,fond-l1-ensembles,proba-t-binomiale}.json` et exercices ajoutés (al-l1-determinant-{produit,famille,inversibilite}-ex5, gr-l1-groupes-{noyau,sous-groupes,lagrange}-ex5, fond-l1-ensembles-{tiroirs-ex6,recurrence-forte-ex5,composition-ex6}, proba-t-binomiale-{ex5,pascal-ex5,produit-ex5}), `verification/enrichi_{al_l1_determinant,gr_l1_groupes,fond_l1_ensembles,proba_t_binomiale}.py` (32 questions, 12 exercices, 18 variantes) : rédaction inspirée de sources en ligne (énoncés originaux), puis résolution à l'aveugle des 62 éléments par un relecteur indépendant (62 réponses concordantes, leurres vérifiés faux avec SymPy, en calcul exact ou par énumération) ; corrigé : indice de al-l1-determinant-inversibilite-ex5 et de sa variante 1 qui éliminait un leurre (« factoriser par t »), exemple des « permutations paires » (notion de L2) de gr-l1-groupes-lagrange-ex5 réécrit sans signature, commentaire de vérification (0,9492) ; aucun doute.
+- 2026-10-29 · `themes.json` (plan refait pour l'agrégation interne : 77 chapitres, 32 chapitres rédigés inchangés), `lecons/al-t-matrices.json`, `lecons/arith-l1-congruences.json`, `lecons/arith-t-premiers.json`, `lecons/ar-l1-convexite.json` : chaque rubrique du programme complémentaire de l'interne 2027 confrontée au plan ; phrases d'introduction qui citaient l'externe corrigées d'après le texte officiel (corps finis et rayon spectral, absents du programme de l'interne ; « inégalités de convexité » qu'il ne cite pas explicitement, remplacées par les caractérisations qu'il demande) ; aucun doute.
 
 ## Pièges
 - Formules : `\\` en JSON ; jamais de trou `{{n}}` dans une formule (le test le refuse) ; intervalles `\left]…\right[`.
