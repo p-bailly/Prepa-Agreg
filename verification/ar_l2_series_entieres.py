@@ -338,6 +338,47 @@ assert coefs((1 - sqrt(1 - 4 * x)) / (2 * x), 10) == [binomial(2 * m, m) / (m + 
 assert all(any(cat[m] != v(m) for m in range(8)) for v in [lambda m: math.comb(2 * m, m), lambda m: F(4**m, m + 1), lambda m: F(math.comb(2 * m, m), 2 * m + 1)])
 
 # ---------------------------------------------------------------------------
+# Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, leurres recalculés.
+# ---------------------------------------------------------------------------
+# ar-l2-series-entieres-usuels-ex2 v1 : 1 + x + x^2 + x^3 = (1 + x)(1 + x^2) s'annule en -1 (f définie sur ]-1, +inf[
+# seulement) ; ex et v2 : 1 + x + x^2 et 1 + x + ... + x^4 n'ont pas de racine réelle (f définie sur R).
+assert expand((1 + x) * (1 + x**2)) == 1 + x + x**2 + x**3
+assert Poly(1 + x + x**2, x).count_roots() == 0 and Poly(1 + x + x**2 + x**3 + x**4, x).count_roots() == 0
+for q in (3, 4, 5):   # usuels-ex2 (+ v1, v2) : coefficients de ln(1 + x + ... + x^(q-1)) et leurre (-1)^(n-1)/n
+    c = coefs(log(sum(x**j for j in range(q))), 13)
+    assert all(c[m] == (Rational(1, m) if m % q else Rational(1 - q, m)) for m in range(1, 13))
+    assert c[2] != Rational(-1, 2)
+# ar-l2-series-entieres-dse-ex3 : e^(x^2) int_0^x e^(-t^2) dt = (sqrt(pi)/2) e^(x^2) erf(x) ; coefficients 4^k k!/(2k+1)!,
+# leurres distincts (le leurre 4^k/(2k+1)! coïncide pour k = 0, 1 mais pas pour k = 2).
+c = coefs(sqrt(pi) / 2 * exp(x**2) * erf(x), 12)
+assert all(simplify(c[2 * k + 1] - Rational(4**k * math.factorial(k), math.factorial(2 * k + 1))) == 0 for k in range(5))
+assert all(c[2 * k] == 0 for k in range(6))
+assert Rational(4**2, math.factorial(5)) != Rational(4**2 * 2, math.factorial(5))
+# ar-l2-series-entieres-derivation-ex3 (+ v1, v2) : sum 1/(n(n+1)q^n) = 1 + (q-1) ln(1 - 1/q), à 30 chiffres.
+for q, val in [(2, 1 - mp.log(2)), (3, 1 - 2 * mp.log(mp.mpf(3) / 2)), (4, 1 - 3 * mp.log(mp.mpf(4) / 3))]:
+    assert abs(mp.nsum(lambda k: 1 / (k * (k + 1) * mp.mpf(q) ** k), [1, mp.inf]) - val) < mp.mpf(10) ** -25
+# ar-l2-series-entieres-calcul-rayon-ex4 (+ v1, v2) : a_n R^n -> e^(-1/2), e^(-2), e^(-1/2) (divergence grossière au bord).
+for c0, R, lim in [(1, mp.e ** -1, mp.e ** -0.5), (2, mp.e ** -2, mp.e ** -2), (-1, mp.e, mp.e ** -0.5)]:
+    N = 10**6
+    assert abs((1 + mp.mpf(c0) / N) ** (N * N) * R**N - lim) < mp.mpf(10) ** -5
+# ar-l2-series-entieres-generatrices-ex1 (+ v1, v2) : dénombrement direct des couples.
+assert [sum(1 for a in range(m + 1) for b in range(m + 1) if u * a + w * b == m) for u, w, m in [(1, 2, 10), (1, 3, 10), (2, 3, 12)]] == [6, 4, 3]
+# ar-l2-series-entieres-generatrices-ex3 (+ v1, v2) : récurrences calculées et formules (leurres faux dès n <= 2).
+for k, base, formule, leurres in [
+        (2, 3, lambda m: 3**m - 2**m, [lambda m: 3**m - 1, lambda m: F(m * 3**m, 3), lambda m: F(3**m - 1, 2)]),
+        (4, 2, lambda m: F(4**m - 2**m, 2), [lambda m: 4**m - 2**m, lambda m: F(4**m - 1, 3), lambda m: F(m * 4**m, 4)]),
+        (1, 2, lambda m: 2**m - 1, [lambda m: F(2**m, 2), lambda m: F(m * 2**m, 2), lambda m: 2**m - m])]:
+    suite = [0]
+    for m in range(15):
+        suite.append(k * suite[-1] + base**m)
+    assert all(suite[m] == formule(m) for m in range(16))
+    assert all(any(suite[m] != l(m) for m in range(4)) for l in leurres)
+# ar-l2-series-entieres-exp-complexe-ex4 : le minorant g(x) = 1 - x^2/2 + x^4/24 - x^6/720 vaut 3231/46080 en 3/2.
+assert 1 - F(9, 8) + F(81, 384) - F(729, 46080) == F(3231, 46080)
+# ar-l2-series-entieres-generatrices (carte, cours) : produit de Cauchy des séries alternées (-1)^n/sqrt(n+1), |c_n| >= 1.
+assert all(sum(1 / math.sqrt((j + 1) * (m - j + 1)) for j in range(m + 1)) >= 1 for m in range(200))
+
+# ---------------------------------------------------------------------------
 # QCM ar-l2-series-entieres
 # ---------------------------------------------------------------------------
 assert limit((2 ** (n + 1) + 3 ** (n + 1)) / (2**n + 3**n), n, oo) == 3                # q2 : R = 1/3

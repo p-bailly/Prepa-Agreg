@@ -223,6 +223,10 @@ for M in [Matrix([[1, 1], [1, 1]]), Matrix([[1, 1], [-1, -1]]), Matrix([[1, 2, 3
     assert expand(chi(M) - X ** (n - 1) * (X - M.trace())) == 0
     assert M.is_diagonalizable() == (M.trace() != 0)
 assert Matrix([[1, 1], [-1, -1]]) ** 2 == zeros(2)
+# sous-espaces-caracteristiques-ex2 v2 (relecture) : les deux lignes non nulles de N valent (0,1,0), et (0,1,0)N
+# est la deuxième ligne de N, nulle (justification de N^2 = 0 corrigée).
+Nv2 = Matrix([[0, 1, 0], [0, 0, 0], [0, 1, 0]])
+assert Nv2.row(0) == Nv2.row(2) == Matrix([[0, 1, 0]]) and Matrix([[0, 1, 0]]) * Nv2 == Nv2.row(1) == zeros(1, 3)
 
 # diagonalisabilite-ex4 : transposition, tr T = n, det T = (-1)^(n(n-1)/2), leurres faux.
 for n in range(2, 5):
@@ -284,6 +288,13 @@ for Q, cible in [(1 - X**2, 0), ((X**2 + X) / 2, 1), ((X**2 - X) / 2, -1)]:
     assert pq == diag(*[1 if v == cible else 0 for v in (0, 1, -1, 1)])
 # leurres : u^2 et id - u ne sont pas le projecteur sur Ker u.
 assert u**2 != diag(1, 0, 0, 0) and eye(4) - u != diag(1, 0, 0, 0)
+# Relecture : le leurre (u^2-u)/2 n'est pas non plus le projecteur sur Ker u ; en revanche, si u = 0 ou u = id,
+# id - u coïncide avec id - u^2 : d'où la question posée « lorsque ces trois sous-espaces sont non nuls ».
+assert evalp((X**2 - X) / 2, u) != diag(1, 0, 0, 0)
+assert all(eye(3) - v_ == eye(3) - v_**2 for v_ in (zeros(3), eye(3)))
+# lemme-noyaux-ex2 v2 (relecture) : (A-2I)(A-I) calculé dans la correction.
+A_ = Matrix([[2, 1, 1], [0, 1, 0], [0, -1, 2]])
+assert (A_ - 2 * I3) * (A_ - I3) == Matrix([[0, -1, 1], [0, 0, 0], [0, 0, 0]])
 
 # lemme-noyaux-ex4 : contre-exemple de la question 3.
 A_, B_ = Matrix([[1, 1], [0, 0]]), Matrix([[-1, 0], [0, 0]])
