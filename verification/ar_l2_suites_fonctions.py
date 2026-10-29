@@ -327,4 +327,33 @@ assert simplify(diff(x**(n + 1) / (n + 1), x) - x**n) == 0
 # q8 : max de x^n(1-x) = n^n/(n+1)^{n+1} <= 1/(n+1).
 assert all(F(k**k, (k + 1)**(k + 1)) <= F(1, k + 1) for k in range(1, 40))
 
+# ---------------------------------------------------------------------------
+# Relecture indépendante : leurres et pièges re-vérifiés
+# ---------------------------------------------------------------------------
+# uniforme, piège 2 : sup_{[0,1[} |x^{n+1} - x^n| = sup x^n (1-x) <= 1/(n+1) -> 0, sans convergence uniforme de x^n.
+assert all(sup_num(lambda v: v**k * (1 - v), 0, 1) <= 1 / (k + 1) for k in (1, 5, 20))
+# integration, trou 3 (leurre « (b-a) | ||f_n|| - ||f|| | ») : f_n = x^{1+1/n} -> x uniformément sur [0,1],
+# ||f_n|| = ||f|| = 1 mais int f_n = 1/(2+1/n) != 1/2.
+for k in (1, 3, 10):
+    assert sup_num(lambda v: v - v**(1 + 1 / k), 0, 1) < 1 / k and F(k, 2 * k + 1) != F(1, 2)
+assert limit(x**(1 + 1 / n), x, 1) == 1
+# derivation, trou 2 (leurre « simplement en restant bornée par 1 ») : f_n' = (1-u)/(1+u)^2 avec u = n^2x^2 >= 0,
+# compris entre -1/8 et 1 (derivation-ex3), alors que f = 0 et g(0) = 1.
+assert all(-0.125 - 1e-12 <= (1 - u) / (1 + u)**2 <= 1 for u in grille(0, 100, 100001))
+# normale, trou 1 (leurre « sum sup u_n converge ») : u_n = -x^n sur [0,1[ : sup u_n = 0, mais le reste
+# -x^{n+1}/(1-x) n'est pas borné (pas de convergence uniforme).
+assert all(max(-v**k for v in grille(0, 0.999, 1001)) == 0 for k in (1, 4))
+# cauchy-uniforme, trou 1 (« vers une fonction à valeurs dans ce même ensemble ») : les constantes 1/n,
+# à valeurs dans ]0,1] et dans R*, vérifient le critère de Cauchy uniforme (|1/p - 1/q| <= 1/min(p,q)) mais leur
+# limite 0 n'est ni dans ]0,1] ni dans R* ; pour Q, troncatures décimales de sqrt(2) ci-dessus.
+assert all(abs(F(1, p) - F(1, q)) <= F(1, min(p, q)) for p in range(1, 40) for q in range(1, 40))
+# cauchy-uniforme-ex3, question 3 : |tranche| <= 2M/(p+1) avec M = 1/sin(a/2) sur [a, 2pi-a].
+a = 0.3
+for v in grille(a, 2 * math.pi - a, 301):
+    for p, q in ((3, 10), (10, 50), (40, 41)):
+        tranche = sum(math.sin(k * v) / k for k in range(p + 1, q + 1))
+        assert abs(tranche) <= 2 / math.sin(a / 2) / (p + 1) + 1e-12
+# approximation, trou 2 (leurre « coefficients entiers ») : P(0) entier, donc |P(0) - 1/2| >= 1/2 pour f = 1/2.
+assert all(abs(m - F(1, 2)) >= F(1, 2) for m in range(-5, 6))
+
 print("ar_l2_suites_fonctions : toutes les vérifications passent.")

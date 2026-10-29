@@ -71,7 +71,6 @@ for A, l1, l2, leurres in [
     assert D == diag(l1, l2) and all(D != L for L in leurres)
 
 # valeurs-propres-ex2 (+ v1, v2) : phi(X^k) = c_k X^k sur R_n[X].
-P_ = symbols("P_")
 for phi, n, vals in [(lambda p: X * diff(p, X), 3, [0, 1, 2, 3]),
                      (lambda p: 2 * X * diff(p, X) - p, 3, [-1, 1, 3, 5]),
                      (lambda p: X * diff(p, X) + p, 2, [1, 2, 3])]:
@@ -86,8 +85,8 @@ assert 2**3 == 8 and 2**4 == 16
 
 
 def stables_diag(d):
-    """Sous-espaces stables d'une matrice diagonale à coefficients distincts, par force brute sur F_2 ... (contrôle
-    par dénombrement des parties de la base), vérifié ici sur les sous-espaces engendrés par des e_i."""
+    """Nombre de sous-espaces engendrés par des vecteurs de la base canonique (tous stables, vérifié ici) ;
+    l'exercice montre que ce sont les seuls quand les coefficients diagonaux sont distincts."""
     n = len(d)
     A = diag(*d)
     nb = 0
@@ -495,8 +494,9 @@ assert all((kk + 1) * 2 ** (kk + 1) != 2 * kk * 2**kk for kk in range(10))      
 P, D = Matrix([[1, 1], [0, 1]]), diag(1, 2)
 A = P * D * P.inv()
 assert A**2 == P * D**2 * P.inv() and A**2 not in (P**2 * D * P.inv() ** 2, P.inv() * D**2 * P, D**2)
-# Trou 2, leurres : (k)·1^k non solution de u_{k+2} = 3u_{k+1} - 2u_k ; constante solution pour (X-1)^2.
-assert (2 != 3 * 1 - 2 * 0) and all(1 == 2 * 1 - 1 for _ in range(1))
+# Trou 2, leurres : u_k = k n'est pas solution de u_{k+2} = 3u_{k+1} - 2u_k (« degré au plus p-1 ») ;
+# la suite constante 1 est solution de u_{k+2} = 2u_{k+1} - u_k (« degré exactement m_j - 1 » l'exclurait).
+assert expand((k + 2) - 3 * (k + 1) + 2 * k) != 0 and 1 == 2 * 1 - 1
 # Affirmations : (alpha + beta k) 2^k solution de u_{k+2} = 4u_{k+1} - 4u_k ; (-1)^k solution de u_{k+2} = u_k.
 al, be = symbols("al be")
 uu = lambda m: (al + be * m) * 2**m
