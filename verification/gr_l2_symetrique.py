@@ -677,4 +677,49 @@ assert prodc(5, (1, 2, 3), (3, 4, 5)) == cyc(5, (1, 2, 3, 4, 5))  # q6
 assert ordre(cyc(9, (1, 2, 3), (4, 5), (6, 7, 8, 9))) == 12  # q7
 assert not any(ordre(p) == 6 for p in S(6) if eps(p) == 1) and any(ordre(p) == 6 for p in S(6))  # q8
 
+# ---------------------------------------------------------------------------
+# Relecture indépendante (2026-10-29) : faits des corrections et des cartes non encore contrôlés
+# ---------------------------------------------------------------------------
+# Produits « dans l'autre ordre » cités par les corrections :
+# gr-l2-symetrique-cycles-ex2 (+ v1, v2), gr-l2-symetrique-alterne-ex3 (+ v1, v2).
+for n, gauche, droite in [
+    (5, [(3, 4, 5), (1, 2, 3, 4)], [(1, 2, 4), (3, 5)]),
+    (6, [(2, 3, 4, 6), (1, 3, 5)], [(1, 4, 6, 2, 3, 5)]),
+    (5, [(2, 5, 3, 4), (1, 4, 2)], [(1, 2), (3, 4, 5)]),
+    (7, [(5, 6, 7), (3, 4, 5), (1, 2, 3)], [(1, 2, 4, 6, 7, 5, 3)]),
+    (4, [(2, 3, 4), (1, 2, 3)], [(1, 3), (2, 4)]),
+    (6, [(4, 5, 6), (3, 4, 5), (1, 2, 3)], [(1, 2, 5, 3), (4, 6)]),
+]:
+    assert prodc(n, *gauche) == cyc(n, *droite)
+# gr-l2-symetrique-transpositions-ex4 (remarque) et q4 : t c t^-1 = c^-1 pour t = (1 3), c = (1 2 3 4).
+t13, c4 = transp(4, 1, 3), cyc(4, (1, 2, 3, 4))
+assert comp(t13, c4, inverse(t13)) == inverse(c4) == cyc(4, (3, 2, 1, 4))
+# gr-l2-symetrique-signature (exemple) : la suite 4,7,3,9,2,6,5,1,8 a 19 inversions et 4 orbites.
+ex_sig = (4, 7, 3, 9, 2, 6, 5, 1, 8)
+assert ex_sig == cyc(9, (1, 4, 9, 8), (2, 7, 5)) and inv(ex_sig) == 19 and orbites(ex_sig) == 4
+# gr-l2-symetrique-ordre (cours) : plus grand ordre 4, 6, 6, 12 pour n = 4, 5, 6, 7.
+assert [landau(n) for n in (4, 5, 6, 7)] == [4, 6, 6, 12]
+# gr-l2-symetrique-signature-ex5 (taquin) : un coup (case vide de u vers v voisine) change pi en pi o (u v),
+# change la couleur (parité de i + j) de la case vide ; la position visée (14 15) est impaire.
+def case(c):
+    return (c - 1) // 4 + 1, (c - 1) % 4 + 1
+for u in range(1, 17):
+    for v in range(1, 17):
+        (i, j), (k, l) = case(u), case(v)
+        if abs(i - k) + abs(j - l) == 1:
+            assert (i + j) % 2 != (k + l) % 2
+            pi = tuple(range(1, 17))
+            pi = comp(pi, transp(16, u, 16)) if u != 16 else pi  # une position quelconque où u est vide
+            nouv = list(pi)
+            nouv[u - 1], nouv[v - 1] = pi[v - 1], 16
+            assert pi[u - 1] == 16 and tuple(nouv) == comp(pi, transp(16, u, v))
+assert eps(transp(16, 14, 15)) == -1
+# Trous : chaque leurre rend l'énoncé faux pour au moins un n (énoncés universels).
+# gr-l2-symetrique-signature trou 3 : (-1)^p faux pour n = 3 (id : p = 3).
+assert (-1) ** orbites(ident(3)) != eps(ident(3))
+# gr-l2-symetrique-alterne trou 2 : (n-1)!, 2^(n-1), n(n-1)/2 faux pour n = 4 (|A_4| = 12).
+assert 12 not in (factorial(3), 2 ** 3, 4 * 3 // 2)
+# gr-l2-symetrique-ordre trou 3 : n, 2^n, n(n-1) ne sont pas multiples de l'ordre 6 de (1 2)(3 4 5) dans S_5.
+assert all(x % 6 for x in (5, 2 ** 5, 5 * 4))
+
 print("gr_l2_symetrique : toutes les vérifications passent.")
