@@ -1,0 +1,624 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l2-series-positives",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Séries à termes positifs et comparaison",
+      "recto": "Énoncer la caractérisation de la convergence d'une série à termes positifs, puis les théorèmes de comparaison (inégalité, domination, équivalence) avec leurs hypothèses.",
+      "cours": "Pour une série à termes positifs, la suite des sommes partielles $S_n=\\sum_{k=0}^{n}u_k$ est croissante : par le théorème de la limite monotone, elle converge si elle est majorée et tend vers $+\\infty$ sinon. Il n'y a que ces deux comportements, et l'on écrit $\\sum_{n=0}^{+\\infty}u_n<+\\infty$ pour dire que la série converge.\n\nTout le reste en découle : si $0\\le u_n\\le v_n$, les sommes partielles de $\\sum u_n$ sont majorées par celles de $\\sum v_n$. On compare alors à des séries de référence (géométriques, de Riemann) : en pratique on cherche un **équivalent** simple du terme général, ou une majoration du type $u_n=O\\left(\\frac1{n^2}\\right)$.\n\nMéthode : (1) vérifier que le terme général est positif, au moins à partir d'un certain rang ; (2) chercher un équivalent, par exemple par un développement limité ; (3) conclure par comparaison à une série de référence. Si le terme général ne tend pas vers $0$, la série diverge grossièrement, sans autre calcul.\n\nPièges : le signe est indispensable. Deux termes généraux équivalents ne donnent pas des séries de même nature si le signe varie : $\\frac{(-1)^n}{\\sqrt n}$ et $\\frac{(-1)^n}{\\sqrt n}+\\frac1n$ sont équivalents, la première série converge (série alternée), la seconde diverge. Et $u_n\\to0$ ne suffit jamais à conclure à la convergence : $\\sum\\frac1n$ diverge.",
+      "hypotheses": [
+        "$u_n\\ge0$ à partir d'un certain rang.",
+        "$u_n\\le v_n$ à partir d'un certain rang.",
+        "$\\sum v_n$ converge."
+      ],
+      "hypotheses_pieges": [
+        "$v_n\\to0$ (à la place de : $\\sum v_n$ converge).",
+        "$u_n-v_n\\to0$ (à la place de : $u_n\\le v_n$ à partir d'un certain rang).",
+        "$u_n\\le v_n$ pour une infinité d'entiers $n$ (à la place de : à partir d'un certain rang)."
+      ],
+      "enonce": "Soit $(u_n)$ une suite de réels **positifs** et $S_n=\\sum_{k=0}^{n}u_k$. La suite $(S_n)$ est croissante, et la série $\\sum u_n$ converge si et seulement si $(S_n)$ est majorée ; sinon $S_n\\to+\\infty$.\n\n**Comparaison.** Soient $(u_n)$ et $(v_n)$ deux suites réelles telles que $0\\le u_n\\le v_n$ à partir d'un certain rang. Si $\\sum v_n$ converge, alors $\\sum u_n$ converge ; par contraposée, si $\\sum u_n$ diverge, alors $\\sum v_n$ diverge.\n\n**Domination.** Si $v_n\\ge0$ à partir d'un certain rang, $u_n=O(v_n)$ et $\\sum v_n$ converge, alors $\\sum|u_n|$ converge.\n\n**Équivalence.** Si $v_n\\ge0$ à partir d'un certain rang et $u_n\\sim v_n$, alors $\\sum u_n$ et $\\sum v_n$ sont de même nature (toutes deux convergentes ou toutes deux divergentes).",
+      "enonce_trous": "Soit $(u_n)$ une suite de réels positifs. La série $\\sum u_n$ converge si et seulement si {{1}}. Si $0\\le u_n\\le v_n$ à partir d'un certain rang et si {{2}}, alors $\\sum u_n$ converge. Si $v_n\\ge0$ à partir d'un certain rang et {{3}}, alors $\\sum u_n$ et $\\sum v_n$ sont de même nature.",
+      "trous": [
+        {
+          "reponse": "la suite de ses sommes partielles est majorée",
+          "leurres": [
+            "$u_n\\to0$",
+            "la suite $(u_n)$ est majorée",
+            "la suite $(u_n)$ est décroissante"
+          ]
+        },
+        {
+          "reponse": "$\\sum v_n$ converge",
+          "leurres": [
+            "$v_n\\to0$",
+            "$\\sum v_n$ diverge",
+            "la suite $(v_n)$ est bornée"
+          ]
+        },
+        {
+          "reponse": "$u_n\\sim v_n$",
+          "leurres": [
+            "$u_n-v_n\\to0$",
+            "$u_n=O(v_n)$",
+            "$u_n=o(v_n)$"
+          ]
+        }
+      ],
+      "demo": "**Critère.** Comme $u_n\\ge0$, $S_{n+1}-S_n=u_{n+1}\\ge0$ : $(S_n)$ est croissante. Si elle est majorée, elle converge (théorème de la limite monotone). Sinon, pour tout réel $A$ il existe $N$ avec $S_N>A$, et alors $S_n\\ge S_N>A$ pour $n\\ge N$ : $S_n\\to+\\infty$.\n\n**Comparaison.** Supposons $0\\le u_n\\le v_n$ pour $n\\ge n_0$ et $\\sum v_n$ convergente. Pour $n\\ge n_0$, comme $v_k\\ge0$ pour $k\\ge n_0$,\n$$\\sum_{k=n_0}^{n}u_k\\le\\sum_{k=n_0}^{n}v_k\\le\\sum_{k=n_0}^{+\\infty}v_k.$$\nLes sommes partielles de la série à termes positifs $\\sum_{k\\ge n_0}u_k$ sont majorées : elle converge, donc $\\sum u_n$ aussi (modifier un nombre fini de termes ne change pas la nature d'une série).\n\n**Domination.** Si $|u_n|\\le Mv_n$ pour $n\\ge n_1$, la comparaison appliquée à $|u_n|$ et $Mv_n$ montre que $\\sum|u_n|$ converge.\n\n**Équivalence.** Écrivons $u_n=v_n(1+\\varepsilon_n)$ avec $\\varepsilon_n\\to0$. Il existe $n_2$ tel que $v_n\\ge0$ et $|\\varepsilon_n|\\le\\frac12$ pour $n\\ge n_2$, d'où $0\\le\\frac12v_n\\le u_n\\le\\frac32v_n$. Si $\\sum v_n$ converge, $\\sum u_n$ converge par comparaison à $\\frac32v_n$ ; si $\\sum u_n$ converge, $\\sum v_n$ converge par comparaison à $2u_n$. Les deux séries sont donc de même nature.",
+      "exemple": "$u_n=\\ln\\left(1+\\frac1{n^2}\\right)$ pour $n\\ge1$ : $u_n\\ge0$ et $u_n\\sim\\frac1{n^2}$, terme général d'une série de Riemann convergente, donc $\\sum u_n$ converge. En revanche $\\sin\\frac1n\\sim\\frac1n$, avec $\\sin\\frac1n\\ge0$ pour $n\\ge1$ : la série $\\sum\\sin\\frac1n$ diverge.",
+      "contre_exemple": "- **Le signe est nécessaire pour les équivalents** : $u_n=\\frac{(-1)^n}{\\sqrt n}+\\frac1n$ et $v_n=\\frac{(-1)^n}{\\sqrt n}$ ($n\\ge1$) sont équivalents ($\\frac{u_n}{v_n}=1+\\frac{(-1)^n}{\\sqrt n}\\to1$), la série $\\sum v_n$ converge (critère des séries alternées), mais $\\sum u_n$ diverge (somme d'une série convergente et de la série divergente $\\sum\\frac1n$).\n- **Le signe est nécessaire pour l'inégalité** : $u_n=-1\\le v_n=0$, la série $\\sum v_n$ converge et $\\sum u_n$ diverge.\n- **$u_n\\to0$ ne suffit pas** : $\\frac1n\\to0$, mais $\\sum_{k=1}^{n}\\frac1k\\ge\\ln(n+1)$, donc les sommes partielles ne sont pas majorées.",
+      "affirmations": [
+        {
+          "texte": "Si $u_n\\ge0$ et si $\\sum u_n$ converge, alors $\\sum u_n^2$ converge.",
+          "vrai": true,
+          "justification": "Le terme général tend vers $0$, donc $0\\le u_n\\le1$ à partir d'un certain rang, et alors $u_n^2\\le u_n$ : on conclut par comparaison."
+        },
+        {
+          "texte": "Si $u_n\\ge0$ et si $\\sum u_n$ converge, alors $\\sum\\sqrt{u_n}$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1{n^2}$ ($n\\ge1$) : $\\sum u_n$ converge, mais $\\sqrt{u_n}=\\frac1n$ et $\\sum\\frac1n$ diverge."
+        },
+        {
+          "texte": "Si $u_n>0$ et si $\\sum u_n$ converge, alors $u_n=o\\left(\\frac1n\\right)$.",
+          "vrai": false,
+          "contre_exemple": "Pour $n\\ge1$, $u_n=\\frac1n$ si $n$ est un carré parfait, $u_n=\\frac1{n^2}$ sinon. La série converge : ses sommes partielles sont majorées par $\\sum_{k\\ge1}\\frac1{k^2}+\\sum_{n\\ge1}\\frac1{n^2}$ (les carrés $n=k^2$ donnent $\\frac1{k^2}$). Mais $nu_n=1$ pour tous les $n=k^2$, donc $nu_n$ ne tend pas vers $0$."
+        },
+        {
+          "texte": "Si $(u_n)$ est positive et décroissante et si $\\sum u_n$ converge, alors $nu_n\\to0$.",
+          "vrai": true,
+          "justification": "Par décroissance, $nu_{2n}\\le\\sum_{k=n+1}^{2n}u_k$, qui tend vers $0$ (différence de deux sommes partielles d'une série convergente). Donc $2nu_{2n}\\to0$, et $(2n+1)u_{2n+1}\\le(2n+1)u_{2n}\\to0$."
+        }
+      ],
+      "prerequis": [
+        "ar-t-limite-monotone",
+        "ar-t-suites-comparaison"
+      ]
+    },
+    {
+      "id": "ar-l2-series-riemann",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Séries de Riemann et séries géométriques",
+      "recto": "Énoncer la nature des séries géométriques, avec leur somme, et celle des séries de Riemann.",
+      "cours": "Ce sont les deux familles de référence auxquelles on compare presque toutes les séries à termes positifs. Pour la série géométrique, tout est explicite : pour $q\\neq1$, $\\sum_{k=0}^{n}q^k=\\frac{1-q^{n+1}}{1-q}$, et $q^{n+1}\\to0$ si et seulement si $|q|<1$. Pour $|q|\\ge1$, le terme général ne tend même pas vers $0$ : la divergence est grossière.\n\nPour les séries de Riemann, la frontière $\\alpha=1$ est subtile : le terme général $\\frac1{n^\\alpha}$ tend vers $0$ dès que $\\alpha>0$, mais la série ne converge que pour $\\alpha>1$. Le cas $\\alpha=1$ est la série harmonique, dont les sommes partielles valent $\\ln n+\\gamma+o(1)$. La preuve la plus naturelle compare la somme à l'intégrale $\\int_1^n\\frac{dt}{t^\\alpha}$.\n\nMéthode : pour une série à termes positifs, chercher un exposant $\\alpha$ tel que $u_n\\sim\\frac{c}{n^\\alpha}$ avec $c>0$, ou un exposant $\\alpha>1$ tel que la suite $(n^\\alpha u_n)$ soit bornée (règle « $n^\\alpha u_n$ ») ; pour un terme général qui décroît exponentiellement, comparer à une série géométrique, par exemple par la règle de d'Alembert : si $u_n>0$ et $\\frac{u_{n+1}}{u_n}\\to\\ell<1$, la série converge ; si $\\ell>1$, elle diverge grossièrement.\n\nPiège : la règle de d'Alembert ne conclut pas quand $\\frac{u_{n+1}}{u_n}\\to1$, ce qui est le cas de toutes les séries de Riemann, convergentes ou non.",
+      "hypotheses": [
+        "Pour la série géométrique $\\sum q^n$ : $|q|<1$.",
+        "Pour la série de Riemann $\\sum\\frac1{n^\\alpha}$ : $\\alpha>1$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la série géométrique : $|q|\\le1$ (à la place de $|q|<1$).",
+        "Pour la série géométrique : $q$ réel et $q<1$ (à la place de $|q|<1$).",
+        "Pour la série de Riemann : $\\alpha\\ge1$ (à la place de $\\alpha>1$).",
+        "Pour la série de Riemann : $\\alpha>0$ (à la place de $\\alpha>1$)."
+      ],
+      "enonce": "**Séries géométriques.** Soit $q\\in\\mathbb{C}$. La série $\\sum_{n\\ge0}q^n$ converge si et seulement si $|q|<1$, et alors\n$$\\sum_{n=0}^{+\\infty}q^n=\\frac1{1-q}.$$\n\n**Séries de Riemann.** Soit $\\alpha\\in\\mathbb{R}$. La série $\\sum_{n\\ge1}\\frac1{n^\\alpha}$ converge si et seulement si $\\alpha>1$.",
+      "enonce_trous": "Pour $q\\in\\mathbb{C}$, la série $\\sum_{n\\ge0}q^n$ converge si et seulement si {{1}}, et sa somme vaut alors {{2}}. Pour $\\alpha$ réel, la série $\\sum_{n\\ge1}\\frac1{n^\\alpha}$ converge si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|q|<1$",
+          "leurres": [
+            "$|q|\\le1$",
+            "$\\operatorname{Re}(q)<1$",
+            "$|q|>1$"
+          ]
+        },
+        {
+          "reponse": "$\\frac1{1-q}$",
+          "leurres": [
+            "$\\frac q{1-q}$",
+            "$\\frac1{1+q}$",
+            "$\\frac1{1-|q|}$"
+          ]
+        },
+        {
+          "reponse": "$\\alpha>1$",
+          "leurres": [
+            "$\\alpha\\ge1$",
+            "$\\alpha>0$",
+            "$\\alpha>2$"
+          ]
+        }
+      ],
+      "demo": "**Géométrique.** Si $q=1$, $\\sum_{k=0}^{n}q^k=n+1\\to+\\infty$. Si $q\\neq1$, $\\sum_{k=0}^{n}q^k=\\frac{1-q^{n+1}}{1-q}$. Si $|q|<1$, $|q^{n+1}|=|q|^{n+1}\\to0$ et la somme partielle tend vers $\\frac1{1-q}$. Si $|q|\\ge1$, $|q^n|\\ge1$ : le terme général ne tend pas vers $0$, la série diverge grossièrement.\n\n**Riemann.** Si $\\alpha\\le0$, $\\frac1{n^\\alpha}\\ge1$ ne tend pas vers $0$ : divergence grossière. Soit $\\alpha>0$ ; la fonction $t\\mapsto t^{-\\alpha}$ est décroissante sur $\\left]0,+\\infty\\right[$. Pour $k\\ge1$ et $t\\in[k,k+1]$, $\\frac1{t^\\alpha}\\le\\frac1{k^\\alpha}$, et pour $k\\ge2$ et $t\\in[k-1,k]$, $\\frac1{k^\\alpha}\\le\\frac1{t^\\alpha}$ ; en intégrant,\n$$\\int_k^{k+1}\\frac{dt}{t^\\alpha}\\le\\frac1{k^\\alpha}\\quad(k\\ge1),\\qquad\\frac1{k^\\alpha}\\le\\int_{k-1}^{k}\\frac{dt}{t^\\alpha}\\quad(k\\ge2).$$\nNotons $S_n=\\sum_{k=1}^{n}\\frac1{k^\\alpha}$.\n- Si $\\alpha>1$ : $S_n\\le1+\\int_1^n\\frac{dt}{t^\\alpha}=1+\\frac{1-n^{1-\\alpha}}{\\alpha-1}\\le1+\\frac1{\\alpha-1}$. Les sommes partielles sont majorées, la série converge.\n- Si $0<\\alpha\\le1$ : $S_n\\ge\\int_1^{n+1}\\frac{dt}{t^\\alpha}$, qui vaut $\\ln(n+1)$ si $\\alpha=1$ et $\\frac{(n+1)^{1-\\alpha}-1}{1-\\alpha}$ si $\\alpha<1$ ; dans les deux cas elle tend vers $+\\infty$, donc la série diverge.",
+      "exemple": "La série $\\sum_{n\\ge0}\\left(\\frac{1+i}{2}\\right)^n$ converge, car $\\left|\\frac{1+i}2\\right|=\\frac{\\sqrt2}2<1$, et sa somme vaut $\\frac1{1-\\frac{1+i}2}=\\frac2{1-i}=1+i$. La série $\\sum\\frac1{n\\sqrt n}$ converge ($\\alpha=\\frac32$), la série $\\sum\\frac1{\\sqrt n}$ diverge ($\\alpha=\\frac12$).",
+      "contre_exemple": "- **$|q|=1$ ne suffit pas** : pour $q=-1$, les sommes partielles valent alternativement $1$ et $0$ ; pour $q=i$, le terme général est de module $1$ et ne tend pas vers $0$.\n- **La règle de d'Alembert ne tranche pas** : pour $u_n=\\frac1n$ comme pour $u_n=\\frac1{n^2}$, $\\frac{u_{n+1}}{u_n}\\to1$ ; la première série diverge, la seconde converge.\n- **$\\alpha=1$ est exclu** : $\\sum\\frac1n$ diverge, bien que $\\frac1n\\to0$.",
+      "affirmations": [
+        {
+          "texte": "La série $\\sum_{n\\ge1}\\frac1{n^{1+1/n}}$ converge, car l'exposant $1+\\frac1n$ est strictement supérieur à $1$.",
+          "vrai": false,
+          "contre_exemple": "$n^{1/n}=e^{\\ln n/n}\\to1$, donc $\\frac1{n^{1+1/n}}=\\frac1{n\\cdot n^{1/n}}\\sim\\frac1n$ (termes positifs) : la série diverge. L'exposant dépend de $n$ et tend vers $1$."
+        },
+        {
+          "texte": "Pour $q\\in\\mathbb{C}$ tel que $|q|<1$, $\\sum_{n=1}^{+\\infty}q^n=\\frac q{1-q}$.",
+          "vrai": true,
+          "justification": "$\\sum_{n=1}^{+\\infty}q^n=\\sum_{n=0}^{+\\infty}q^n-1=\\frac1{1-q}-1=\\frac q{1-q}$."
+        },
+        {
+          "texte": "Pour tout $\\alpha>1$, $\\sum_{n=1}^{+\\infty}\\frac1{n^\\alpha}\\le\\frac{\\alpha}{\\alpha-1}$.",
+          "vrai": true,
+          "justification": "La démonstration donne $S_n\\le1+\\frac1{\\alpha-1}=\\frac\\alpha{\\alpha-1}$ pour tout $n$ ; on passe à la limite."
+        },
+        {
+          "texte": "Si $u_n>0$ et $\\frac{u_{n+1}}{u_n}<1$ pour tout $n$, alors $\\sum u_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1n$ ($n\\ge1$) : $\\frac{u_{n+1}}{u_n}=\\frac n{n+1}<1$, mais la série harmonique diverge. Il faut que le rapport tende vers une limite $\\ell<1$ (ou reste sous une constante $<1$)."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-positives",
+        "ar-t-suites-geometrique",
+        "int-t-integrale-proprietes"
+      ]
+    },
+    {
+      "id": "ar-l2-series-sommation-comparaison",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Sommation des relations de comparaison",
+      "recto": "Énoncer les théorèmes de sommation des relations de comparaison (négligeabilité, domination, équivalence), pour les séries convergentes (restes) et pour les séries divergentes (sommes partielles).",
+      "cours": "Ces théorèmes transportent une relation entre termes généraux en une relation entre **restes** (si la série de référence converge) ou entre **sommes partielles** (si elle diverge). Ils servent surtout à obtenir des équivalents : par exemple $\\sum_{k=n+1}^{+\\infty}\\frac1{k^2}\\sim\\frac1n$ et $\\sum_{k=1}^{n}\\frac1{\\sqrt k}\\sim2\\sqrt n$.\n\nMéthode type : on cherche une suite simple $(w_n)$ telle que $u_n\\sim w_{n+1}-w_n$, avec $w_{n+1}-w_n$ de signe constant ; la somme des $w_{k+1}-w_k$ se télescope. Ainsi $\\frac1{k^2}\\sim\\frac1{k-1}-\\frac1k$ donne l'équivalent du reste, et $\\frac1{\\sqrt k}\\sim2\\left(\\sqrt{k+1}-\\sqrt k\\right)$ celui de la somme partielle : $\\sum_{k=1}^{n}\\frac1{\\sqrt k}\\sim2\\left(\\sqrt{n+1}-1\\right)\\sim2\\sqrt n$.\n\nLe lemme de Cesàro en est un cas particulier : si $u_n\\to\\ell$, alors $u_n-\\ell=o(1)$, et la sommation avec $v_n=1$ (série divergente) donne $\\sum_{k=1}^{n}(u_k-\\ell)=o(n)$.\n\nPièges : la positivité de $(v_n)$ (au moins à partir d'un certain rang) est indispensable ; dans le cas convergent, ce sont les restes qui sont comparables, pas les sommes partielles (deux séries convergentes à termes équivalents ont en général des sommes différentes).",
+      "hypotheses": [
+        "$v_n>0$ pour tout $n$.",
+        "La relation ($o$, $O$ ou $\\sim$) porte sur les termes généraux $u_n$ et $v_n$.",
+        "On compare les restes si $\\sum v_n$ converge, les sommes partielles si $\\sum v_n$ diverge."
+      ],
+      "hypotheses_pieges": [
+        "$u_n>0$ pour tout $n$ (à la place de $v_n>0$).",
+        "$v_n\\to0$ (à la place de $v_n>0$).",
+        "On compare les sommes partielles si $\\sum v_n$ converge (à la place des restes)."
+      ],
+      "enonce": "Soient $(u_n)$ une suite réelle et $(v_n)$ une suite de réels **strictement positifs**.\n\n**Cas convergent.** Supposons que $\\sum v_n$ converge.\n- Si $u_n=o(v_n)$, alors $\\sum u_n$ converge et $\\sum_{k=n+1}^{+\\infty}u_k=o\\left(\\sum_{k=n+1}^{+\\infty}v_k\\right)$.\n- Si $u_n=O(v_n)$, alors $\\sum u_n$ converge et $\\sum_{k=n+1}^{+\\infty}u_k=O\\left(\\sum_{k=n+1}^{+\\infty}v_k\\right)$.\n- Si $u_n\\sim v_n$, alors $\\sum u_n$ converge et $\\sum_{k=n+1}^{+\\infty}u_k\\sim\\sum_{k=n+1}^{+\\infty}v_k$.\n\n**Cas divergent.** Supposons que $\\sum v_n$ diverge.\n- Si $u_n=o(v_n)$, alors $\\sum_{k=0}^{n}u_k=o\\left(\\sum_{k=0}^{n}v_k\\right)$.\n- Si $u_n=O(v_n)$, alors $\\sum_{k=0}^{n}u_k=O\\left(\\sum_{k=0}^{n}v_k\\right)$.\n- Si $u_n\\sim v_n$, alors $\\sum u_n$ diverge et $\\sum_{k=0}^{n}u_k\\sim\\sum_{k=0}^{n}v_k$.",
+      "enonce_trous": "Soit $(v_n)$ une suite de réels {{1}}. Si $\\sum v_n$ converge et $u_n\\sim v_n$, alors {{2}}. Si $\\sum v_n$ diverge et $u_n=o(v_n)$, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "strictement positifs",
+          "leurres": [
+            "non nuls",
+            "de limite nulle",
+            "de signe alterné"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{k=n+1}^{+\\infty}u_k\\sim\\sum_{k=n+1}^{+\\infty}v_k$",
+          "leurres": [
+            "$\\sum_{k=0}^{n}u_k\\sim\\sum_{k=0}^{n}v_k$",
+            "$\\sum_{n=0}^{+\\infty}u_n=\\sum_{n=0}^{+\\infty}v_n$",
+            "$\\sum_{k=n+1}^{+\\infty}u_k=o\\left(\\sum_{k=n+1}^{+\\infty}v_k\\right)$"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{k=0}^{n}u_k=o\\left(\\sum_{k=0}^{n}v_k\\right)$",
+          "leurres": [
+            "$\\sum u_n$ converge",
+            "$\\sum u_n$ diverge",
+            "$\\sum_{k=0}^{n}u_k\\sim\\sum_{k=0}^{n}v_k$"
+          ]
+        }
+      ],
+      "demo": "On traite $o$ ; le cas $O$ est identique (remplacer $\\varepsilon$ par une constante $M$ fixe), et $\\sim$ s'en déduit.\n\n**Cas convergent.** Si $u_n=o(v_n)$, alors $|u_n|\\le v_n$ à partir d'un certain rang, et $\\sum u_n$ converge absolument par comparaison. Soit $\\varepsilon>0$ : il existe $N$ tel que $|u_k|\\le\\varepsilon v_k$ pour $k\\ge N$. Pour $n\\ge N$ et $m>n$, $\\left|\\sum_{k=n+1}^{m}u_k\\right|\\le\\varepsilon\\sum_{k=n+1}^{m}v_k$ ; quand $m\\to+\\infty$, $\\left|\\sum_{k=n+1}^{+\\infty}u_k\\right|\\le\\varepsilon\\sum_{k=n+1}^{+\\infty}v_k$. C'est la relation annoncée (les restes de $\\sum v_n$ sont strictement positifs).\n\n**Cas divergent.** Notons $S_n(u)=\\sum_{k=0}^{n}u_k$ et $S_n(v)=\\sum_{k=0}^{n}v_k$, qui tend vers $+\\infty$. Soit $\\varepsilon>0$ et $N$ tel que $|u_k|\\le\\varepsilon v_k$ pour $k>N$. Pour $n>N$,\n$$|S_n(u)|\\le|S_N(u)|+\\varepsilon\\sum_{k=N+1}^{n}v_k\\le|S_N(u)|+\\varepsilon S_n(v).$$\nComme $S_n(v)\\to+\\infty$, il existe $N'\\ge N$ tel que $|S_N(u)|\\le\\varepsilon S_n(v)$ pour $n\\ge N'$ ; alors $|S_n(u)|\\le2\\varepsilon S_n(v)$. Donc $S_n(u)=o(S_n(v))$.\n\n**Équivalence.** Si $u_n\\sim v_n$, alors $u_n-v_n=o(v_n)$. Ce qui précède donne $\\sum_{k>n}(u_k-v_k)=o\\left(\\sum_{k>n}v_k\\right)$ dans le cas convergent, $S_n(u)-S_n(v)=o(S_n(v))$ dans le cas divergent : ce sont les équivalences annoncées. Dans le cas divergent, $S_n(u)\\sim S_n(v)\\to+\\infty$, donc $\\sum u_n$ diverge.",
+      "exemple": "Pour $k\\ge2$, $\\frac1{k^2}\\sim\\frac1{k(k-1)}=\\frac1{k-1}-\\frac1k$, termes strictement positifs d'une série convergente. Donc, pour $n\\ge1$,\n$$\\sum_{k=n+1}^{+\\infty}\\frac1{k^2}\\sim\\sum_{k=n+1}^{+\\infty}\\left(\\frac1{k-1}-\\frac1k\\right)=\\frac1n.$$",
+      "contre_exemple": "- **La positivité de $(v_n)$ est nécessaire** : $v_n=\\frac{(-1)^n}{\\sqrt n}$ et $u_n=\\frac{(-1)^n}{\\sqrt n}+\\frac1n$ ($n\\ge1$) vérifient $u_n\\sim v_n$, la série $\\sum v_n$ converge, mais $\\sum u_n$ diverge.\n- **Dans le cas convergent, les sommes partielles ne sont pas équivalentes** : $u_n=\\frac1{n^2}+\\frac1{n^3}\\sim v_n=\\frac1{n^2}$, mais $\\sum_{k=1}^{n}u_k\\to\\sum_{k\\ge1}\\frac1{k^2}+\\sum_{k\\ge1}\\frac1{k^3}$, limite différente de celle de $\\sum_{k=1}^{n}v_k$ : le rapport des sommes partielles ne tend pas vers $1$.\n- **Pas de réciproque** : $u_n=1+(-1)^n$ et $v_n=1$ ont des sommes partielles équivalentes (toutes deux équivalentes à $n$), mais $u_n$ n'est pas équivalent à $v_n$.",
+      "affirmations": [
+        {
+          "texte": "Le lemme de Cesàro (si $u_n\\to\\ell$ réel, alors $\\frac1n\\sum_{k=1}^{n}u_k\\to\\ell$) se déduit du théorème appliqué avec $v_n=1$.",
+          "vrai": true,
+          "justification": "$u_n-\\ell=o(1)$ et $\\sum1$ diverge, donc $\\sum_{k=1}^{n}(u_k-\\ell)=o(n)$, c'est-à-dire $\\frac1n\\sum_{k=1}^{n}u_k-\\ell\\to0$."
+        },
+        {
+          "texte": "Si $u_n>0$, $v_n>0$, $u_n\\sim v_n$ et si les deux séries convergent, alors $\\sum_{n=0}^{+\\infty}u_n=\\sum_{n=0}^{+\\infty}v_n$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1{(n+1)^2}$ et $v_n=\\frac1{(n+1)(n+2)}$ sont équivalents, mais $\\sum_{n\\ge0}v_n=\\sum_{n\\ge0}\\left(\\frac1{n+1}-\\frac1{n+2}\\right)=1$, alors que $\\sum_{n\\ge0}u_n=\\frac{\\pi^2}6\\neq1$ (ou simplement : $u_0=v_0+\\frac12$ et $u_n>v_n$ pour tout $n$)."
+        },
+        {
+          "texte": "$\\sum_{k=1}^{n}\\frac1k\\sim\\ln n$.",
+          "vrai": true,
+          "justification": "$\\ln(k+1)-\\ln k=\\ln\\left(1+\\frac1k\\right)\\sim\\frac1k$, termes positifs d'une série divergente : $\\sum_{k=1}^{n}\\frac1k\\sim\\sum_{k=1}^{n}(\\ln(k+1)-\\ln k)=\\ln(n+1)\\sim\\ln n$."
+        },
+        {
+          "texte": "Si $u_n=o\\left(\\frac1n\\right)$, alors $\\sum u_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1{n\\ln n}$ ($n\\ge2$) : $nu_n=\\frac1{\\ln n}\\to0$. Mais $\\ln\\ln(n+1)-\\ln\\ln n=\\ln\\left(1+\\frac{\\ln(1+1/n)}{\\ln n}\\right)\\sim\\frac1{n\\ln n}$, et la somme télescopique $\\ln\\ln(n+1)-\\ln\\ln2$ tend vers $+\\infty$ : la série diverge."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-positives",
+        "ar-l1-suites-cesaro"
+      ]
+    },
+    {
+      "id": "ar-l2-series-integrale",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Comparaison série-intégrale",
+      "recto": "Énoncer le théorème de comparaison d'une série et d'une intégrale pour une fonction positive et décroissante, avec l'encadrement des sommes partielles.",
+      "cours": "L'idée est de comparer l'aire sous la courbe d'une fonction décroissante à la somme des aires de rectangles de largeur $1$ (méthode des rectangles) : sur $[k,k+1]$, $f(k+1)\\le f(t)\\le f(k)$. On en tire à la fois un critère de convergence et un **encadrement** des sommes partielles (série divergente) ou des restes (série convergente) : dans le cas convergent, pour tout entier $n\\ge a$,\n$$\\int_{n+1}^{+\\infty}f(t)\\,dt\\le\\sum_{k=n+1}^{+\\infty}f(k)\\le\\int_{n}^{+\\infty}f(t)\\,dt.$$\n\nUsages typiques : les séries de Riemann, les séries de Bertrand $\\sum_{n\\ge2}\\frac1{n(\\ln n)^\\beta}$ (convergentes si et seulement si $\\beta>1$), des équivalents comme $\\sum_{k=1}^{n}\\frac1k\\sim\\ln n$ ou $\\sum_{k=n+1}^{+\\infty}\\frac1{k^2}\\sim\\frac1n$, et l'existence de la constante d'Euler : la série de terme général $f(n)-\\int_n^{n+1}f$ converge, ce qui donne $\\sum_{k=1}^{n}\\frac1k=\\ln n+\\gamma+o(1)$.\n\nMéthode : vérifier la monotonie de $f$ (au moins à partir d'un certain réel, en étudiant $f'$), calculer une primitive, encadrer, puis conclure par les gendarmes pour un équivalent.\n\nPiège : la décroissance est essentielle. Une fonction continue, positive, de limite nulle peut avoir une intégrale divergente alors que $\\sum f(n)$ converge (exemple $\\frac{\\sin^2(\\pi x)}{x}$, nulle aux entiers).",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur $\\left[a,+\\infty\\right[$.",
+        "$f$ est positive.",
+        "$f$ est décroissante."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue, positive et tend vers $0$ en $+\\infty$ (à la place de : $f$ décroissante).",
+        "La suite $(f(n))$ est décroissante (à la place de : la fonction $f$ est décroissante).",
+        "$f$ est croissante (à la place de : décroissante)."
+      ],
+      "enonce": "Soient $a\\in\\mathbb{N}$ et $f:\\left[a,+\\infty\\right[\\to\\mathbb{R}$ une fonction **continue par morceaux, positive et décroissante**. Alors :\n- pour tous entiers $m$ et $n$ tels que $a\\le m\\le n$, $\\int_m^{n+1}f(t)\\,dt\\le\\sum_{k=m}^{n}f(k)\\le f(m)+\\int_m^{n}f(t)\\,dt$ ;\n- la série $\\sum f(n)$ converge si et seulement si la fonction $x\\mapsto\\int_a^xf(t)\\,dt$ est majorée sur $\\left[a,+\\infty\\right[$, c'est-à-dire si et seulement si l'intégrale $\\int_a^{+\\infty}f(t)\\,dt$ converge ;\n- la série de terme général $f(n)-\\int_n^{n+1}f(t)\\,dt$ ($n\\ge a$) est à termes positifs et converge.",
+      "enonce_trous": "Soit $f$ continue par morceaux sur $\\left[1,+\\infty\\right[$, {{1}}. Alors pour tout entier $n\\ge1$, $\\int_1^{n+1}f(t)\\,dt\\le\\sum_{k=1}^{n}f(k)\\le$ {{2}}, et la série $\\sum f(n)$ converge si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "positive et décroissante",
+          "leurres": [
+            "positive et croissante",
+            "positive et de limite nulle en $+\\infty$",
+            "décroissante"
+          ]
+        },
+        {
+          "reponse": "$f(1)+\\int_1^{n}f(t)\\,dt$",
+          "leurres": [
+            "$\\int_1^{n}f(t)\\,dt$",
+            "$\\int_1^{n+1}f(t)\\,dt$",
+            "$f(n)+\\int_1^{n}f(t)\\,dt$"
+          ]
+        },
+        {
+          "reponse": "la fonction $x\\mapsto\\int_1^xf(t)\\,dt$ est majorée",
+          "leurres": [
+            "$f(x)\\to0$ quand $x\\to+\\infty$",
+            "$f$ est bornée",
+            "$\\int_n^{n+1}f(t)\\,dt\\to0$ quand $n\\to+\\infty$"
+          ]
+        }
+      ],
+      "demo": "Pour $k\\ge a$ et $t\\in[k,k+1]$, la décroissance donne $f(k+1)\\le f(t)\\le f(k)$ ; en intégrant sur $[k,k+1]$, de longueur $1$ :\n$$f(k+1)\\le\\int_k^{k+1}f(t)\\,dt\\le f(k).\\qquad(\\ast)$$\n\n**Encadrement.** En sommant l'inégalité de droite de $(\\ast)$ pour $k=m,\\dots,n$ (relation de Chasles) : $\\int_m^{n+1}f\\le\\sum_{k=m}^{n}f(k)$. En sommant celle de gauche pour $k=m,\\dots,n-1$ : $\\sum_{k=m+1}^{n}f(k)\\le\\int_m^{n}f$ ; on ajoute $f(m)$.\n\n**Critère.** La fonction $F(x)=\\int_a^xf$ est croissante, car $f\\ge0$. Si $F$ est majorée par $M$, alors $\\sum_{k=a}^{n}f(k)\\le f(a)+F(n)\\le f(a)+M$ : les sommes partielles de la série à termes positifs $\\sum f(n)$ sont majorées, elle converge. Réciproquement, si $\\sum f(n)$ converge, pour $x\\ge a$ et un entier $n\\ge x$ : $F(x)\\le F(n+1)\\le\\sum_{k=a}^{n}f(k)\\le\\sum_{k=a}^{+\\infty}f(k)$, donc $F$ est majorée. Enfin, $F$ étant croissante, elle est majorée si et seulement si elle a une limite finie en $+\\infty$.\n\n**Série des écarts.** Par $(\\ast)$, $0\\le f(n)-\\int_n^{n+1}f\\le f(n)-f(n+1)$. Les sommes partielles de $\\sum(f(n)-f(n+1))$ valent $f(a)-f(n+1)$ et convergent, car $f$, décroissante et minorée par $0$, a une limite finie en $+\\infty$. Par comparaison, la série des écarts converge.",
+      "exemple": "Pour $f(t)=\\frac1t$ sur $\\left[1,+\\infty\\right[$ : $\\ln(n+1)\\le\\sum_{k=1}^{n}\\frac1k\\le1+\\ln n$, d'où $\\sum_{k=1}^{n}\\frac1k\\sim\\ln n$. La série des écarts $\\frac1n-\\ln\\left(1+\\frac1n\\right)$ converge : $\\sum_{k=1}^{n}\\frac1k-\\ln(n+1)$ a une limite, et comme $\\ln(n+1)-\\ln n\\to0$, la suite $\\sum_{k=1}^{n}\\frac1k-\\ln n$ converge vers le même réel, la constante d'Euler $\\gamma\\approx0{,}5772$.",
+      "contre_exemple": "- **La décroissance est nécessaire** : $f(t)=\\frac{\\sin^2(\\pi t)}{t}$ est continue, positive, de limite nulle, et $f(n)=0$ pour tout entier $n$ : la série converge. Mais $\\int_n^{n+1}f\\ge\\frac1{n+1}\\int_n^{n+1}\\sin^2(\\pi t)\\,dt=\\frac1{2(n+1)}$, donc $\\int_1^xf$ n'est pas majorée.\n- **La positivité est nécessaire** : $f=-1$ est décroissante, $\\int_1^xf=1-x$ est majorée, mais $\\sum f(n)$ diverge.\n- **La décroissance de la seule suite $(f(n))$ ne suffit pas** : $f(t)=\\frac1{t^2}+\\sin^2(\\pi t)$ vérifie $f(n)=\\frac1{n^2}$, la série converge, mais $\\int_n^{n+1}f\\ge\\frac12$.",
+      "affirmations": [
+        {
+          "texte": "La série $\\sum_{n\\ge2}\\frac1{n\\ln n}$ diverge.",
+          "vrai": true,
+          "justification": "$f(t)=\\frac1{t\\ln t}$ est continue, positive et décroissante sur $\\left[2,+\\infty\\right[$, et $\\int_2^x f=\\ln\\ln x-\\ln\\ln2\\to+\\infty$."
+        },
+        {
+          "texte": "Pour tout entier $n\\ge1$, $\\sum_{k=n+1}^{+\\infty}\\frac1{k^2}\\le\\frac1n$.",
+          "vrai": true,
+          "justification": "Pour $k\\ge n+1$, $\\frac1{k^2}\\le\\int_{k-1}^{k}\\frac{dt}{t^2}$ ; en sommant, le reste est majoré par $\\int_n^{+\\infty}\\frac{dt}{t^2}=\\frac1n$."
+        },
+        {
+          "texte": "Si $f$ est continue et positive sur $\\left[1,+\\infty\\right[$ et si $\\sum f(n)$ converge, alors la fonction $x\\mapsto\\int_1^xf(t)\\,dt$ est majorée.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac{\\sin^2(\\pi t)}{t}$ : $f(n)=0$ pour tout entier $n$, mais $\\int_n^{n+1}f\\ge\\frac1{2(n+1)}$ et $\\int_1^xf$ tend vers $+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux, positive et décroissante sur $\\left[1,+\\infty\\right[$ et si $\\sum f(n)$ diverge, alors $\\sum_{k=1}^{n}f(k)\\sim\\int_1^nf(t)\\,dt$.",
+          "vrai": true,
+          "justification": "L'encadrement donne $\\int_1^nf\\le\\int_1^{n+1}f\\le\\sum_{k=1}^{n}f(k)\\le f(1)+\\int_1^nf$, et $\\int_1^nf\\to+\\infty$ puisque la série diverge ; on divise par $\\int_1^nf$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-positives",
+        "ar-l2-series-riemann",
+        "int-t-integrale-proprietes"
+      ]
+    },
+    {
+      "id": "ar-l2-series-cauchy-absolue",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Critère de Cauchy et convergence absolue",
+      "recto": "Énoncer le critère de Cauchy pour les séries, puis le théorème sur les séries absolument convergentes.",
+      "cours": "Le critère de Cauchy pour les séries n'est que le critère de Cauchy pour la suite des sommes partielles : $S_q-S_p=\\sum_{k=p+1}^{q}u_k$. Il permet de prouver la convergence **sans connaître la somme**, et c'est par lui que passe la preuve du résultat central : une série absolument convergente converge, car $\\left|\\sum_{k=p+1}^{q}u_k\\right|\\le\\sum_{k=p+1}^{q}|u_k|$.\n\nL'intérêt pratique est de ramener une série de signe quelconque, ou à termes complexes, à une série à termes positifs, à laquelle s'appliquent les comparaisons : $\\sum\\frac{\\sin n}{n^2}$ converge absolument car $\\left|\\frac{\\sin n}{n^2}\\right|\\le\\frac1{n^2}$.\n\nIl en découle aussi la **condition nécessaire** : si $\\sum u_n$ converge, alors $u_n=S_n-S_{n-1}\\to0$ ; une série dont le terme général ne tend pas vers $0$ diverge grossièrement.\n\nPièges : la réciproque est fausse, une série peut converger sans converger absolument (on la dit **semi-convergente**), comme $\\sum\\frac{(-1)^n}{n}$. Et le critère porte sur des paquets $\\sum_{k=p+1}^{q}u_k$ de longueur arbitraire, pas seulement sur des termes isolés ou des paquets de longueur fixée.",
+      "hypotheses": [
+        "$(u_n)$ est une suite de réels ou de complexes.",
+        "$\\sum|u_n|$ converge."
+      ],
+      "hypotheses_pieges": [
+        "$|u_n|\\to0$ (à la place de : $\\sum|u_n|$ converge).",
+        "$\\sum u_n^2$ converge (à la place de : $\\sum|u_n|$ converge).",
+        "La suite des sommes partielles $\\left(\\sum_{k=0}^{n}u_k\\right)$ est bornée (à la place de : $\\sum|u_n|$ converge)."
+      ],
+      "enonce": "Soit $(u_n)$ une suite de nombres réels ou complexes.\n\n**Critère de Cauchy.** La série $\\sum u_n$ converge si et seulement si\n$$\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N},\\ \\forall q>p\\ge N,\\quad\\left|\\sum_{k=p+1}^{q}u_k\\right|<\\varepsilon.$$\n\n**Convergence absolue.** On dit que $\\sum u_n$ converge absolument si $\\sum|u_n|$ converge. Une série absolument convergente est convergente, et alors\n$$\\left|\\sum_{n=0}^{+\\infty}u_n\\right|\\le\\sum_{n=0}^{+\\infty}|u_n|.$$",
+      "enonce_trous": "La série $\\sum u_n$ converge si et seulement si, pour tout $\\varepsilon>0$, il existe $N$ tel que {{1}}. Si {{2}}, alors $\\sum u_n$ converge et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\left|\\sum_{k=p+1}^{q}u_k\\right|<\\varepsilon$ pour tous $q>p\\ge N$",
+          "leurres": [
+            "$|u_n|<\\varepsilon$ pour tout $n\\ge N$",
+            "$|u_{n+1}-u_n|<\\varepsilon$ pour tout $n\\ge N$",
+            "$\\left|\\sum_{k=0}^{n}u_k\\right|<\\varepsilon$ pour tout $n\\ge N$"
+          ]
+        },
+        {
+          "reponse": "$\\sum|u_n|$ converge",
+          "leurres": [
+            "$\\sum u_n^2$ converge",
+            "$|u_n|\\to0$",
+            "la suite $\\left(\\sum_{k=0}^{n}u_k\\right)$ est bornée"
+          ]
+        },
+        {
+          "reponse": "$\\left|\\sum_{n=0}^{+\\infty}u_n\\right|\\le\\sum_{n=0}^{+\\infty}|u_n|$",
+          "leurres": [
+            "$\\left|\\sum_{n=0}^{+\\infty}u_n\\right|=\\sum_{n=0}^{+\\infty}|u_n|$",
+            "$\\sum_{n=0}^{+\\infty}|u_n|\\le\\left|\\sum_{n=0}^{+\\infty}u_n\\right|$",
+            "$\\left|\\sum_{n=0}^{+\\infty}u_n\\right|\\le\\sup_n|u_n|$"
+          ]
+        }
+      ],
+      "demo": "**Critère de Cauchy.** Avec $S_n=\\sum_{k=0}^{n}u_k$, on a $S_q-S_p=\\sum_{k=p+1}^{q}u_k$ pour $q>p$. La condition dit exactement que $(S_n)$ est une suite de Cauchy, ce qui équivaut à sa convergence : c'est la complétude de $\\mathbb{R}$, et celle de $\\mathbb{C}$ s'en déduit en raisonnant sur les parties réelle et imaginaire (majorées en module par $|S_q-S_p|$).\n\n**Convergence absolue.** Supposons que $\\sum|u_n|$ converge. Soit $\\varepsilon>0$ ; par le critère de Cauchy appliqué à $\\sum|u_n|$, il existe $N$ tel que $\\sum_{k=p+1}^{q}|u_k|<\\varepsilon$ pour $q>p\\ge N$. Par l'inégalité triangulaire, $\\left|\\sum_{k=p+1}^{q}u_k\\right|\\le\\sum_{k=p+1}^{q}|u_k|<\\varepsilon$ : la série $\\sum u_n$ vérifie le critère de Cauchy, elle converge.\n\n**Inégalité.** Pour tout $n$, $\\left|\\sum_{k=0}^{n}u_k\\right|\\le\\sum_{k=0}^{n}|u_k|\\le\\sum_{k=0}^{+\\infty}|u_k|$ ; on passe à la limite quand $n\\to+\\infty$ (le module est continu).",
+      "exemple": "La série $\\sum_{n\\ge1}\\frac{e^{in}}{n^2}$ converge absolument, car $\\left|\\frac{e^{in}}{n^2}\\right|=\\frac1{n^2}$ ; sa somme $z$ vérifie $|z|\\le\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$.",
+      "contre_exemple": "- **La réciproque est fausse** : $\\sum_{n\\ge1}\\frac{(-1)^{n+1}}n$ converge (critère des séries alternées ; sa somme vaut $\\ln2$), mais $\\sum\\frac1n$ diverge.\n- **Des paquets de longueur fixée ne suffisent pas** : pour $u_n=\\frac1n$, à $m$ fixé, $\\sum_{k=p+1}^{p+m}\\frac1k\\le\\frac m{p+1}\\to0$ quand $p\\to+\\infty$ ; mais $\\sum_{k=p+1}^{2p}\\frac1k\\ge p\\cdot\\frac1{2p}=\\frac12$ pour tout $p\\ge1$ : le critère de Cauchy n'est pas vérifié, et la série diverge.",
+      "affirmations": [
+        {
+          "texte": "Si $\\sum u_n$ converge absolument, alors $\\sum u_n^2$ converge absolument.",
+          "vrai": true,
+          "justification": "$|u_n|\\to0$, donc $|u_n|\\le1$ à partir d'un certain rang, et alors $|u_n^2|=|u_n|^2\\le|u_n|$."
+        },
+        {
+          "texte": "Si $\\sum u_n$ converge, alors $\\sum u_n^2$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac{(-1)^n}{\\sqrt n}$ ($n\\ge1$) : la série converge (critère des séries alternées), mais $u_n^2=\\frac1n$."
+        },
+        {
+          "texte": "Une série de complexes $\\sum u_n$ converge si et seulement si les séries $\\sum\\operatorname{Re}(u_n)$ et $\\sum\\operatorname{Im}(u_n)$ convergent.",
+          "vrai": true,
+          "justification": "Les sommes partielles de $\\sum u_n$ ont pour parties réelle et imaginaire celles de $\\sum\\operatorname{Re}(u_n)$ et $\\sum\\operatorname{Im}(u_n)$, et une suite complexe converge si et seulement si ses parties réelle et imaginaire convergent."
+        },
+        {
+          "texte": "Si $u_n\\to0$ et si $\\sum_{k=n+1}^{2n}u_k\\to0$, alors $\\sum u_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1{n\\ln n}$ ($n\\ge2$) : $0\\le\\sum_{k=n+1}^{2n}u_k\\le\\frac n{n\\ln n}=\\frac1{\\ln n}\\to0$, mais la série diverge, car $\\ln\\ln(n+1)-\\ln\\ln n\\sim\\frac1{n\\ln n}$ et la somme télescopique tend vers $+\\infty$. Le critère de Cauchy demande des paquets de longueur quelconque."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-suites-cauchy",
+        "ar-l1-reels-triangulaire",
+        "ar-l2-series-positives"
+      ]
+    },
+    {
+      "id": "ar-l2-series-alternees",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Séries alternées : signe et majoration du reste",
+      "recto": "Énoncer le critère des séries alternées, avec le signe et la majoration du reste.",
+      "cours": "Le critère s'applique aux séries dont le signe alterne et dont le terme général décroît en valeur absolue vers $0$, comme $\\sum\\frac{(-1)^n}{n+1}$ ou $\\sum\\frac{(-1)^n}{\\sqrt{n+1}}$, qui ne convergent pas absolument. Les sommes partielles de rangs pairs et impairs forment deux suites adjacentes : la somme est coincée entre deux sommes partielles consécutives.\n\nSon intérêt principal est la **majoration du reste** : l'erreur commise en remplaçant la somme par $S_n$ est au plus le premier terme négligé, $a_{n+1}$, et elle est du signe de ce terme. C'est ce qui permet de calculer une valeur approchée avec une précision garantie.\n\nMéthode : (1) écrire le terme général sous la forme $(-1)^na_n$ ; (2) vérifier que $a_n\\to0$ et que $(a_n)$ est décroissante (signe de $a_{n+1}-a_n$, ou étude d'une fonction) ; (3) si $(a_n)$ n'est pas décroissante, faire un développement asymptotique du terme général, en séparant une partie alternée qui relève du critère et des termes de signe constant ou absolument convergents.\n\nPièges : la décroissance n'est pas une formalité. Pour $n\\ge2$, $\\frac{(-1)^n}{\\sqrt n+(-1)^n}$ tend vers $0$ en alternant de signe, mais la série diverge, car $\\frac{(-1)^n}{\\sqrt n+(-1)^n}=\\frac{(-1)^n}{\\sqrt n}-\\frac1n+O\\left(\\frac1{n^{3/2}}\\right)$. Et le critère ne s'applique pas à un terme général seulement équivalent à $\\frac{(-1)^n}{\\sqrt n}$.",
+      "hypotheses": [
+        "$(a_n)$ est décroissante.",
+        "$a_n\\to0$."
+      ],
+      "hypotheses_pieges": [
+        "$a_n>0$ pour tout $n$ (à la place de : $(a_n)$ décroissante).",
+        "$(a_n)$ est positive (à la place de : $a_n\\to0$).",
+        "$(|a_n|)$ est décroissante, $(a_n)$ étant de signe quelconque (à la place de : $(a_n)$ décroissante)."
+      ],
+      "enonce": "Soit $(a_n)$ une suite réelle **décroissante** et de limite **nulle** (elle est donc positive). Alors la série $\\sum(-1)^na_n$ converge. De plus, en notant $S$ sa somme, $S_n=\\sum_{k=0}^{n}(-1)^ka_k$ et $R_n=S-S_n=\\sum_{k=n+1}^{+\\infty}(-1)^ka_k$ :\n- $S_{2n+1}\\le S\\le S_{2n}$ pour tout $n$ ;\n- $R_n$ est du signe de $(-1)^{n+1}$, signe de son premier terme ;\n- $|R_n|\\le a_{n+1}$.",
+      "enonce_trous": "Si $(a_n)$ est {{1}} et tend vers $0$, alors $\\sum(-1)^na_n$ converge, son reste $R_n=\\sum_{k=n+1}^{+\\infty}(-1)^ka_k$ est du signe de {{2}}, et {{3}}.",
+      "trous": [
+        {
+          "reponse": "décroissante",
+          "leurres": [
+            "positive",
+            "à termes non nuls",
+            "bornée"
+          ]
+        },
+        {
+          "reponse": "$(-1)^{n+1}$",
+          "leurres": [
+            "$(-1)^n$",
+            "$S_n=\\sum_{k=0}^{n}(-1)^ka_k$",
+            "$a_n-a_{n+1}$"
+          ]
+        },
+        {
+          "reponse": "$|R_n|\\le a_{n+1}$",
+          "leurres": [
+            "$|R_n|\\le a_{n+2}$",
+            "$|R_n|\\le\\frac{a_{n+1}}2$",
+            "$|R_n|\\ge a_{n+1}$"
+          ]
+        }
+      ],
+      "demo": "Comme $(a_n)$ décroît vers $0$, $a_n\\ge0$ pour tout $n$.\n\n**Suites adjacentes.** $S_{2n+2}-S_{2n}=a_{2n+2}-a_{2n+1}\\le0$ et $S_{2n+3}-S_{2n+1}=a_{2n+2}-a_{2n+3}\\ge0$ : $(S_{2n})$ décroît et $(S_{2n+1})$ croît. Enfin $S_{2n}-S_{2n+1}=a_{2n+1}\\to0$. Les suites $(S_{2n})$ et $(S_{2n+1})$ sont adjacentes : elles ont une limite commune $S$, avec $S_{2n+1}\\le S\\le S_{2n}$ pour tout $n$. Les suites extraites de rangs pairs et impairs de $(S_n)$ convergeant vers $S$, la suite $(S_n)$ converge vers $S$.\n\n**Reste.** Si $n=2p$ est pair, $S_{2p+1}\\le S\\le S_{2p}$ et $S_{2p+1}=S_{2p}-a_{2p+1}$ donnent $-a_{2p+1}\\le R_{2p}\\le0$. Si $n=2p+1$ est impair, $S_{2p+1}\\le S\\le S_{2p+2}$ et $S_{2p+2}=S_{2p+1}+a_{2p+2}$ donnent $0\\le R_{2p+1}\\le a_{2p+2}$. Dans les deux cas, $R_n$ est du signe de $(-1)^{n+1}$ et $|R_n|\\le a_{n+1}$.",
+      "exemple": "La série $\\sum_{n\\ge0}\\frac{(-1)^n}{2n+1}$ converge (sa somme vaut $\\frac\\pi4$). Pour en obtenir une valeur approchée à $10^{-2}$ près, il suffit que $a_{n+1}=\\frac1{2n+3}\\le10^{-2}$, soit $n\\ge49$ : la somme partielle $S_{49}$ convient.",
+      "contre_exemple": "- **La décroissance est nécessaire** : pour $n\\ge2$, $a_n=\\frac1{\\sqrt n+(-1)^n}$ est positif et tend vers $0$, mais $\\sum(-1)^na_n$ diverge, car $(-1)^na_n=\\frac{(-1)^n}{\\sqrt n}-\\frac1n+O\\left(\\frac1{n^{3/2}}\\right)$.\n- **La limite nulle est nécessaire** : $a_n=1+\\frac1{n+1}$ décroît, mais vers $1$, et $\\sum(-1)^na_n$ diverge grossièrement.\n- **La majoration ne s'améliore pas en général** : pour $a_0=a_1=1$ et $a_n=0$ si $n\\ge2$, on a $R_0=-1$, donc $|R_0|=a_1$.",
+      "affirmations": [
+        {
+          "texte": "Si $(a_n)$ décroît vers $0$, alors $\\sum(-1)^na_n$ converge absolument.",
+          "vrai": false,
+          "contre_exemple": "$a_n=\\frac1{n+1}$ : la série $\\sum\\frac{(-1)^n}{n+1}$ converge, mais $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "Si $(a_n)$ décroît vers $0$, la somme $S=\\sum_{n=0}^{+\\infty}(-1)^na_n$ vérifie $0\\le S\\le a_0$.",
+          "vrai": true,
+          "justification": "$S_1\\le S\\le S_0$, avec $S_0=a_0$ et $S_1=a_0-a_1\\ge0$."
+        },
+        {
+          "texte": "Si $u_n\\sim\\frac{(-1)^n}{\\sqrt n}$, alors $\\sum u_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac{(-1)^n}{\\sqrt n}+\\frac1n$ ($n\\ge1$) est équivalent à $\\frac{(-1)^n}{\\sqrt n}$, mais $\\sum u_n$ diverge (somme d'une série convergente et d'une série divergente)."
+        },
+        {
+          "texte": "La série $\\sum_{n\\ge2}\\frac{(-1)^n}{\\ln n}$ converge.",
+          "vrai": true,
+          "justification": "$\\left(\\frac1{\\ln n}\\right)_{n\\ge2}$ est décroissante et tend vers $0$ : le critère s'applique (à une série qui ne converge pas absolument, puisque $\\frac1{\\ln n}\\ge\\frac1n$)."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-suites-adjacentes",
+        "ar-l1-suites-pairs-impairs",
+        "ar-l2-series-cauchy-absolue"
+      ]
+    },
+    {
+      "id": "ar-l2-series-abel",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Transformation d'Abel",
+      "recto": "Énoncer la transformation d'Abel (sommation par parties) et le critère de convergence qui en découle, avec ses hypothèses.",
+      "cours": "La transformation d'Abel est l'analogue discret de l'intégration par parties : $b_k=B_k-B_{k-1}$ joue le rôle d'une dérivée, et l'on reporte la « différence » sur la suite $(a_k)$. Elle sert quand les sommes partielles $B_n$ sont contrôlées alors que $\\sum b_n$ ne converge pas, typiquement pour $b_n=e^{in\\theta}$, $\\cos(n\\theta)$, $\\sin(n\\theta)$ ou $(-1)^n$.\n\nDans le critère, la série $\\sum(a_k-a_{k+1})B_k$ converge **absolument**, car $|(a_k-a_{k+1})B_k|\\le M(a_k-a_{k+1})$ et la série télescopique $\\sum(a_k-a_{k+1})$ converge ; et $a_nB_n\\to0$ car $(B_n)$ est bornée. Le critère des séries alternées en est le cas $b_n=(-1)^n$ (sommes partielles bornées par $1$), sans la majoration du reste.\n\nMéthode : (1) repérer un facteur oscillant $b_n$ dont on sait borner les sommes partielles, par une somme géométrique pour $e^{in\\theta}$ ; (2) vérifier que l'autre facteur est réel, décroissant, de limite nulle ; (3) écrire la transformation, ou citer le critère. Exemple : $\\sum_{n\\ge1}\\frac{\\cos(n\\theta)}{n}$ converge pour $\\theta\\notin2\\pi\\mathbb{Z}$ (partie réelle de $\\sum_{n\\ge1}\\frac{e^{in\\theta}}{n}$), sans converger absolument.\n\nPièges : il faut borner les **sommes partielles** $B_n$, pas seulement les termes $b_n$ ; et pour $\\theta\\in2\\pi\\mathbb{Z}$, $e^{in\\theta}=1$ et $\\sum_{n\\ge1}\\frac{e^{in\\theta}}n$ diverge.",
+      "hypotheses": [
+        "$(a_n)$ est réelle et décroissante.",
+        "$a_n\\to0$.",
+        "Les sommes partielles $B_n=\\sum_{k=0}^{n}b_k$ sont bornées."
+      ],
+      "hypotheses_pieges": [
+        "$(b_n)$ est bornée (à la place de : les sommes partielles $B_n$ sont bornées).",
+        "$(a_n)$ est positive (à la place de : $(a_n)$ décroissante).",
+        "$(a_n)$ converge (à la place de : $a_n\\to0$)."
+      ],
+      "enonce": "**Transformation d'Abel.** Soient $(a_n)$ et $(b_n)$ deux suites de complexes, et $B_n=\\sum_{k=0}^{n}b_k$. Pour tout $n\\ge0$,\n$$\\sum_{k=0}^{n}a_kb_k=a_nB_n+\\sum_{k=0}^{n-1}(a_k-a_{k+1})B_k.$$\n\n**Critère d'Abel.** Si $(a_n)$ est une suite **réelle, décroissante et de limite nulle**, et si la suite $(B_n)$ des sommes partielles de $\\sum b_n$ est **bornée**, alors la série $\\sum a_nb_n$ converge.\n\n**Exemple fondamental.** Pour $\\theta\\in\\mathbb{R}\\setminus2\\pi\\mathbb{Z}$ et pour tout $n$, $\\left|\\sum_{k=0}^{n}e^{ik\\theta}\\right|\\le\\frac1{\\left|\\sin\\frac\\theta2\\right|}$ ; donc, si $(a_n)$ est réelle, décroissante et de limite nulle, la série $\\sum a_ne^{in\\theta}$ converge.",
+      "enonce_trous": "Si $(a_n)$ est une suite réelle {{1}} et si {{2}}, alors $\\sum a_nb_n$ converge. La preuve repose sur l'égalité $\\sum_{k=0}^{n}a_kb_k=$ {{3}}, où $B_n=\\sum_{k=0}^{n}b_k$.",
+      "trous": [
+        {
+          "reponse": "décroissante et de limite nulle",
+          "leurres": [
+            "positive et de limite nulle",
+            "décroissante et positive",
+            "de limite nulle"
+          ]
+        },
+        {
+          "reponse": "la suite des sommes partielles de $\\sum b_n$ est bornée",
+          "leurres": [
+            "la suite $(b_n)$ est bornée",
+            "$b_n\\to0$",
+            "$|B_n|\\to+\\infty$"
+          ]
+        },
+        {
+          "reponse": "$a_nB_n+\\sum_{k=0}^{n-1}(a_k-a_{k+1})B_k$",
+          "leurres": [
+            "$a_nB_n-\\sum_{k=0}^{n-1}(a_k-a_{k+1})B_k$",
+            "$\\sum_{k=0}^{n}a_kB_k$",
+            "$a_0B_n+\\sum_{k=0}^{n-1}(a_{k+1}-a_k)B_k$"
+          ]
+        }
+      ],
+      "demo": "**Égalité.** Posons $B_{-1}=0$, de sorte que $b_k=B_k-B_{k-1}$ pour tout $k\\ge0$. Alors\n$$\\sum_{k=0}^{n}a_kb_k=\\sum_{k=0}^{n}a_kB_k-\\sum_{k=0}^{n}a_kB_{k-1}=\\sum_{k=0}^{n}a_kB_k-\\sum_{k=0}^{n-1}a_{k+1}B_k=a_nB_n+\\sum_{k=0}^{n-1}(a_k-a_{k+1})B_k.$$\n\n**Critère.** Soit $M$ tel que $|B_n|\\le M$ pour tout $n$. Comme $(a_n)$ décroît vers $0$, $a_n\\ge0$ et $|a_nB_n|\\le Ma_n\\to0$. D'autre part $a_k-a_{k+1}\\ge0$ et $|(a_k-a_{k+1})B_k|\\le M(a_k-a_{k+1})$ ; la série $\\sum(a_k-a_{k+1})$ converge (ses sommes partielles valent $a_0-a_n\\to a_0$), donc $\\sum(a_k-a_{k+1})B_k$ converge absolument, donc converge. Par l'égalité, $\\sum_{k=0}^{n}a_kb_k$ a une limite finie.\n\n**Exemple.** Pour $\\theta\\notin2\\pi\\mathbb{Z}$, $e^{i\\theta}\\neq1$ et\n$$\\left|\\sum_{k=0}^{n}e^{ik\\theta}\\right|=\\left|\\frac{1-e^{i(n+1)\\theta}}{1-e^{i\\theta}}\\right|\\le\\frac2{|1-e^{i\\theta}|}=\\frac1{\\left|\\sin\\frac\\theta2\\right|},$$\ncar $|1-e^{i\\theta}|=\\left|e^{i\\theta/2}\\right|\\left|e^{-i\\theta/2}-e^{i\\theta/2}\\right|=\\left|-2i\\sin\\frac\\theta2\\right|=2\\left|\\sin\\frac\\theta2\\right|$.",
+      "exemple": "La série $\\sum_{n\\ge1}\\frac{\\sin n}{n}$ converge : $\\left(\\frac1n\\right)$ décroît vers $0$, et les sommes partielles de $\\sum\\sin n$, parties imaginaires de celles de $\\sum e^{in}$, sont bornées par $\\frac1{\\sin\\frac12}$ puisque $1\\notin2\\pi\\mathbb{Z}$. (Sa somme vaut $\\frac{\\pi-1}2$.)",
+      "contre_exemple": "- **Borner les termes ne suffit pas** : $b_n=1$ est bornée, $a_n=\\frac1{n+1}$ décroît vers $0$, et $\\sum a_nb_n$ diverge.\n- **La monotonie de $(a_n)$ est nécessaire** : avec $b_n=(-1)^n$ (sommes partielles bornées par $1$) et $a_n=\\frac1{\\sqrt n+(-1)^n}$ pour $n\\ge2$ (positif, de limite nulle, non monotone), la série $\\sum a_nb_n$ diverge.\n- **$\\theta\\in2\\pi\\mathbb{Z}$ est exclu** : pour $\\theta=0$, $\\sum_{n\\ge1}\\frac{e^{in\\theta}}n=\\sum_{n\\ge1}\\frac1n$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Pour tout réel $\\theta$, la série $\\sum_{n\\ge1}\\frac{e^{in\\theta}}{n}$ converge.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\theta=0$ (ou tout $\\theta\\in2\\pi\\mathbb{Z}$), c'est la série harmonique, qui diverge."
+        },
+        {
+          "texte": "Pour $\\theta\\notin2\\pi\\mathbb{Z}$, la série $\\sum_{n\\ge1}\\frac{\\cos(n\\theta)}{\\sqrt n}$ converge.",
+          "vrai": true,
+          "justification": "$\\left(\\frac1{\\sqrt n}\\right)$ décroît vers $0$, et les sommes partielles de $\\sum\\cos(n\\theta)$, parties réelles de celles de $\\sum e^{in\\theta}$, sont bornées par $\\frac1{|\\sin(\\theta/2)|}$."
+        },
+        {
+          "texte": "Si $(a_n)$ est réelle et décroît vers $0$ et si $(b_n)$ est bornée, alors $\\sum a_nb_n$ converge.",
+          "vrai": false,
+          "contre_exemple": "$a_n=\\frac1{n+1}$ et $b_n=1$ : la série $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "Le critère des séries alternées, sans la majoration du reste, est un cas particulier du critère d'Abel.",
+          "vrai": true,
+          "justification": "Avec $b_n=(-1)^n$, les sommes partielles $B_n$ valent $1$ ou $0$ : elles sont bornées."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-cauchy-absolue",
+        "ar-l2-series-alternees",
+        "geo-t-complexes-exponentielle"
+      ]
+    },
+    {
+      "id": "ar-l2-series-produit-cauchy",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series",
+      "type": "theoreme",
+      "titre": "Produit de Cauchy de séries absolument convergentes",
+      "recto": "Définir le produit de Cauchy de deux séries et énoncer le théorème sur le produit de Cauchy de deux séries absolument convergentes.",
+      "cours": "Le produit de Cauchy est la façon naturelle de multiplier deux séries : il regroupe les produits $a_pb_q$ selon la valeur de $p+q$, exactement comme on développe le produit de deux polynômes $\\left(\\sum a_pX^p\\right)\\left(\\sum b_qX^q\\right)$. Le théorème dit que, sous convergence absolue, on peut développer et regrouper sans précaution.\n\nApplication emblématique : l'exponentielle. Pour des réels $x$ et $y$, les séries $\\sum\\frac{x^n}{n!}$ et $\\sum\\frac{y^n}{n!}$ convergent absolument, de sommes $e^x$ et $e^y$ (inégalité de Taylor-Lagrange), et le terme général de leur produit de Cauchy est $\\sum_{k=0}^{n}\\frac{x^ky^{n-k}}{k!(n-k)!}=\\frac{(x+y)^n}{n!}$ (formule du binôme) : on retrouve $e^xe^y=e^{x+y}$. Autre exemple : pour $|q|<1$, $\\sum_{n\\ge0}(n+1)q^n=\\frac1{(1-q)^2}$, carré de la série géométrique.\n\nMéthode : vérifier la convergence absolue des deux séries, écrire $c_n$, le simplifier (binôme, somme géométrique), conclure.\n\nPièges : la convergence simple ne suffit pas : pour $a_n=b_n=\\frac{(-1)^n}{\\sqrt{n+1}}$, les deux séries convergent mais $|c_n|\\ge1$, et le produit de Cauchy diverge grossièrement. Et $c_n$ n'est pas $a_nb_n$.",
+      "hypotheses": [
+        "$\\sum a_n$ converge absolument.",
+        "$\\sum b_n$ converge absolument."
+      ],
+      "hypotheses_pieges": [
+        "$\\sum a_n$ et $\\sum b_n$ convergent (à la place de : convergent absolument).",
+        "$a_n\\to0$ et $b_n\\to0$ (à la place de : les deux séries convergent absolument).",
+        "$\\sum a_nb_n$ converge absolument (à la place de : $\\sum a_n$ et $\\sum b_n$ convergent absolument)."
+      ],
+      "enonce": "Le **produit de Cauchy** des séries $\\sum_{n\\ge0}a_n$ et $\\sum_{n\\ge0}b_n$, à termes réels ou complexes, est la série $\\sum_{n\\ge0}c_n$, où\n$$c_n=\\sum_{k=0}^{n}a_kb_{n-k}=\\sum_{p+q=n}a_pb_q.$$\n\n**Théorème.** Si $\\sum a_n$ et $\\sum b_n$ convergent **absolument**, alors $\\sum c_n$ converge absolument et\n$$\\sum_{n=0}^{+\\infty}c_n=\\left(\\sum_{n=0}^{+\\infty}a_n\\right)\\left(\\sum_{n=0}^{+\\infty}b_n\\right).$$",
+      "enonce_trous": "Le produit de Cauchy de $\\sum a_n$ et $\\sum b_n$ est la série de terme général $c_n=$ {{1}}. Si {{2}}, alors $\\sum c_n$ converge absolument et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{k=0}^{n}a_kb_{n-k}$",
+          "leurres": [
+            "$a_nb_n$",
+            "$\\sum_{k=0}^{n}a_kb_k$",
+            "$\\sum_{k=0}^{n}a_kb_{n+k}$"
+          ]
+        },
+        {
+          "reponse": "$\\sum a_n$ et $\\sum b_n$ convergent absolument",
+          "leurres": [
+            "$\\sum a_n$ et $\\sum b_n$ convergent",
+            "$a_n\\to0$ et $b_n\\to0$",
+            "$\\sum a_nb_n$ converge absolument"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{n=0}^{+\\infty}c_n=\\left(\\sum_{n=0}^{+\\infty}a_n\\right)\\left(\\sum_{n=0}^{+\\infty}b_n\\right)$",
+          "leurres": [
+            "$\\sum_{n=0}^{+\\infty}c_n=\\sum_{n=0}^{+\\infty}a_n+\\sum_{n=0}^{+\\infty}b_n$",
+            "$\\sum_{n=0}^{+\\infty}c_n=\\sum_{n=0}^{+\\infty}a_nb_n$",
+            "$\\sum_{n=0}^{+\\infty}|c_n|=\\left(\\sum_{n=0}^{+\\infty}|a_n|\\right)\\left(\\sum_{n=0}^{+\\infty}|b_n|\\right)$"
+          ]
+        }
+      ],
+      "demo": "Notons $A=\\sum a_n$, $B=\\sum b_n$, $A'=\\sum|a_n|$, $B'=\\sum|b_n|$, et $A_N$, $B_N$, $C_N$ les sommes partielles de rang $N$ de $\\sum a_n$, $\\sum b_n$, $\\sum c_n$.\n\n**Convergence absolue.** Pour tout $N$,\n$$\\sum_{n=0}^{N}|c_n|\\le\\sum_{n=0}^{N}\\sum_{p+q=n}|a_p||b_q|\\le\\left(\\sum_{p=0}^{N}|a_p|\\right)\\left(\\sum_{q=0}^{N}|b_q|\\right)\\le A'B',$$\ncar les couples $(p,q)$ tels que $p+q\\le N$ vérifient $p\\le N$ et $q\\le N$. Les sommes partielles de $\\sum|c_n|$ sont majorées.\n\n**Valeur de la somme.** $A_NB_N=\\sum_{p\\le N,\\ q\\le N}a_pb_q$ et $C_N=\\sum_{p+q\\le N}a_pb_q$. La différence porte sur les couples tels que $p\\le N$, $q\\le N$ et $p+q>N$ ; pour eux, $p>\\frac N2$ ou $q>\\frac N2$, donc $p>M$ ou $q>M$ avec $M=\\left\\lfloor\\frac N2\\right\\rfloor$. Ainsi\n$$|A_NB_N-C_N|\\le\\left(\\sum_{p>M}|a_p|\\right)B'+A'\\left(\\sum_{q>M}|b_q|\\right),$$\nqui tend vers $0$ quand $N\\to+\\infty$ (restes de séries convergentes). Comme $A_NB_N\\to AB$, on obtient $C_N\\to AB$.",
+      "exemple": "Pour $|q|<1$, le produit de Cauchy de $\\sum q^n$ par elle-même a pour terme général $c_n=\\sum_{k=0}^{n}q^kq^{n-k}=(n+1)q^n$, donc $\\sum_{n=0}^{+\\infty}(n+1)q^n=\\frac1{(1-q)^2}$. Pour $q=\\frac12$ : $\\sum_{n\\ge0}\\frac{n+1}{2^n}=4$.",
+      "contre_exemple": "- **La convergence absolue est nécessaire** : $a_n=b_n=\\frac{(-1)^n}{\\sqrt{n+1}}$ définissent des séries convergentes (critère des séries alternées). Mais $c_n=(-1)^n\\sum_{k=0}^{n}\\frac1{\\sqrt{(k+1)(n-k+1)}}$, et $(k+1)(n-k+1)\\le\\left(\\frac{n+2}2\\right)^2$, donc $|c_n|\\ge\\frac{2(n+1)}{n+2}\\ge1$ : le produit de Cauchy diverge grossièrement.\n- **Le produit de Cauchy n'est pas le produit terme à terme** : pour $a_n=b_n=\\frac1{2^n}$, $\\sum a_nb_n=\\sum\\frac1{4^n}=\\frac43$, alors que $\\left(\\sum a_n\\right)\\left(\\sum b_n\\right)=4$.",
+      "affirmations": [
+        {
+          "texte": "Si $\\sum a_n$ et $\\sum b_n$ convergent, leur produit de Cauchy converge.",
+          "vrai": false,
+          "contre_exemple": "$a_n=b_n=\\frac{(-1)^n}{\\sqrt{n+1}}$ : les deux séries convergent, mais $|c_n|\\ge1$ pour tout $n$."
+        },
+        {
+          "texte": "Pour tous réels $x$ et $y$, le produit de Cauchy de $\\sum\\frac{x^n}{n!}$ et $\\sum\\frac{y^n}{n!}$ a pour terme général $\\frac{(x+y)^n}{n!}$.",
+          "vrai": true,
+          "justification": "$\\sum_{k=0}^{n}\\frac{x^k}{k!}\\frac{y^{n-k}}{(n-k)!}=\\frac1{n!}\\sum_{k=0}^{n}\\binom nkx^ky^{n-k}=\\frac{(x+y)^n}{n!}$ (formule du binôme)."
+        },
+        {
+          "texte": "Le produit de Cauchy de deux séries divergentes est toujours divergent.",
+          "vrai": false,
+          "contre_exemple": "$a_0=2$, $a_n=2^n$ pour $n\\ge1$, et $b_0=-1$, $b_n=1$ pour $n\\ge1$ : les deux séries divergent grossièrement, mais $c_0=-2$ et $c_n=0$ pour tout $n\\ge1$ (pour $n\\ge1$, $c_n=-2^n+2+\\sum_{k=1}^{n-1}2^k=-2^n+2+(2^n-2)=0$), donc $\\sum c_n$ converge."
+        },
+        {
+          "texte": "Si $\\sum a_n$ et $\\sum b_n$ convergent absolument, alors $\\sum_{n=0}^{+\\infty}|c_n|\\le\\left(\\sum_{n=0}^{+\\infty}|a_n|\\right)\\left(\\sum_{n=0}^{+\\infty}|b_n|\\right)$.",
+          "vrai": true,
+          "justification": "C'est la majoration de la démonstration : $\\sum_{n=0}^{N}|c_n|\\le\\left(\\sum_{p=0}^{N}|a_p|\\right)\\left(\\sum_{q=0}^{N}|b_q|\\right)$ pour tout $N$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-cauchy-absolue",
+        "ar-l2-series-riemann",
+        "ar-l1-taylor-lagrange",
+        "proba-t-binomiale-pascal"
+      ]
+    }
+  ]
+}

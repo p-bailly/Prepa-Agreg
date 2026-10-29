@@ -562,4 +562,26 @@ assert leibniz([(0, 0), (4, 0), (0, 4)], [2, 1, 1], (F(4, 3), F(4, 3))) == F(224
 # QCM q8 : 2x - y aux sommets du carré : 0, 2, 1, -1.
 assert [2 * p[0] - p[1] for p in [(0, 0), (1, 0), (1, 1), (0, 1)]] == [0, 2, 1, -1]
 
+# ===========================================================================
+# Ajouts de la relecture indépendante
+# ===========================================================================
+# geo-l2-affine-barycentres-ex1 v1 : A(0,1), B(2,3), C(-1,0) sont alignés sur y = x+1, et G = (4,5) aussi
+# (la correction ne dit plus « hors du triangle »).
+assert cr((0, 1), (2, 3), (-1, 0)) == 0 and all(p[1] == p[0] + 1 for p in [(0, 1), (2, 3), (-1, 0), (4, 5)])
+# geo-l2-affine-optimisation-ex1 v1 : l'intersection (0,8) de x=0 et 2x+y=8 viole y <= 3.
+assert 2 * 0 + 8 == 8 and 8 > 3
+# geo-l2-affine-convexite-ex3 (+ v1, v2) : déterminants de deux côtés consécutifs cités dans les corrections.
+def tours(poly):
+    n = len(poly)
+    # det(P_{i-1}P_i, P_iP_{i+1}) = det(P_{i-1}P_i, P_{i-1}P_{i+1})
+    return [cr(poly[i - 1], poly[i % n], poly[(i + 1) % n]) for i in range(1, n + 1)]
+assert tours([(0, 0), (6, 0), (5, 4), (3, 6), (1, 5)]) == [24, 6, 6, 9, 30]
+assert tours([(0, 0), (4, 0), (6, 3), (2, 5), (0, 3)]) == [12, 16, 12, 6, 12]
+assert tours([(1, 0), (5, 1), (4, 5), (0, 4)]) == [17, 17, 17, 17]
+# geo-l2-affine-applications-ex3 v2 : k1 k2 = 1, translation de vecteur (k1 - 1) O1O2 = (1,1).
+assert (2 - 1) * (1 - 0) == 1 and 2 * R(1, 2) == 1
+# geo-l2-affine-volume (cours) : deux bases de même orientation non orthonormées peuvent donner le même volume :
+# B' = (2e1, e2/2) a pour déterminant 1 dans la base canonique.
+assert det((2, 0), (0, R(1, 2))) == 1
+
 print("geo_l2_affine : toutes les vérifications passent.")

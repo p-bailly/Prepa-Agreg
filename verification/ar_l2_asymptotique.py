@@ -120,9 +120,9 @@ for cc, pa, pb in [(F(3, 16), F(1, 4), F(3, 4)), (F(2, 9), F(1, 3), F(2, 3)), (F
             v = v * v + mp.mpf(cc.numerator) / cc.denominator
         assert abs(v - mp.mpf(pa.numerator) / pa.denominator) < 1e-20
     assert f(pb) == pb
-    t = pb + F(1, 100)
-    for _ in range(40):
-        t = f(t)
+    t = mp.mpf(pb.numerator) / pb.denominator + mp.mpf(1) / 100
+    for _ in range(60):
+        t = t * t + mp.mpf(cc.numerator) / cc.denominator
         if t > 10**6:
             break
     assert t > 10**6  # u_0 > b : divergence vers +oo
