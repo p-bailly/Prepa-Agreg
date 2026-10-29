@@ -448,6 +448,40 @@ for P0, tv, leurres in [((Rational(5, 3), Rational(4, 3)), Rational(1, 2), [2, R
     assert all((hx.subs(t, l), hy.subs(t, l)) != P0 for l in leurres)
 
 # ---------------------------------------------------------------------------
+# Compléments de la relecture indépendante
+# ---------------------------------------------------------------------------
+# arith-l2-fractions-poles (énoncé, démonstration) : F = (X+2)/((X-1)^2 (X+3)) ; F' a un pôle d'ordre 3 en 1 et 2 en -3.
+Fp = diff((X + 2) / ((X - 1) ** 2 * (X + 3)), X)
+nump, denp = cancel(Fp).as_numer_denom()
+assert gcd(nump, denp) == 1 and roots(Poly(denp, X)) == {1: 3, -3: 2}
+# arith-l2-fractions-elements-simples (affirmation 3) : coefficient de 1/(X-a)^m = m! P(a)/Q^(m)(a), ici m = 3, a = 1.
+Pm, Qm = X + 2, (X - 1) ** 3 * (X + 1)
+coef3 = cancel((X - 1) ** 3 * Pm / Qm).subs(X, 1)
+assert coef3 == Rational(3, 2) and coef3 == factorial(3) * Pm.subs(X, 1) / diff(Qm, X, 3).subs(X, 1)
+assert coef3 != Pm.subs(X, 1) / diff(Qm, X, 3).subs(X, 1)
+# arith-l2-fractions-applications (cours) et -ex2 : pour F réelle et G' = F dans C(X), (G + conj(G))/2 est réelle et
+# vérifie encore la même dérivée. Exemple : F = 2(X^2-1)/(X^2+1)^2, G = -1/(X-i) - 1/(X+i) + 3i.
+Fr_ = 2 * (X**2 - 1) / (X**2 + 1) ** 2
+Gc = -1 / (X - I) - 1 / (X + I) + 3 * I
+Gbar = -1 / (X + I) - 1 / (X - I) - 3 * I
+assert egal(diff(Gc, X), Fr_) and egal((Gc + Gbar) / 2, -2 * X / (X**2 + 1)) and egal(diff((Gc + Gbar) / 2, X), Fr_)
+# arith-l2-fractions-elimination (énoncé) : pour d = 2, f = (T^2+1)/(T-2), g = T/(T^2+1), les 25 produits f^i g^j
+# (i, j <= 4) sont liés : la matrice de leurs numérateurs sur le dénominateur commun est de rang < 25.
+from sympy import Matrix
+A1, B1, A2, B2 = X**2 + 1, X - 2, X, X**2 + 1
+lignes = []
+for i in range(5):
+    for j in range(5):
+        p = Poly(expand(A1**i * B1 ** (4 - i) * A2**j * B2 ** (4 - j)), X)
+        assert p.degree() <= 16
+        c = p.all_coeffs()[::-1]
+        lignes.append(c + [0] * (17 - len(c)))
+assert Matrix(lignes).rank() < 25
+# arith-l2-fractions-forme-irreductible (trou 3, leurres) : X P / (X Q) est une écriture de F avec D = X non constant
+# (contre « D dans K » ; ici D = Q = X, donc aussi contre « D premier avec Q »), 2P/(2Q) avec D = 2 non unitaire (contre « D unitaire »).
+assert egal((X * (X + 1)) / (X * X), (X + 1) / X) and egal((2 * (X + 1)) / (2 * X), (X + 1) / X)
+
+# ---------------------------------------------------------------------------
 # QCM arith-l2-fractions-q1..q8
 # ---------------------------------------------------------------------------
 assert egal((X**2 - 1) / (X**3 - X**2), (X + 1) / X**2)  # q1
