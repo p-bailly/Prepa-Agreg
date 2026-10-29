@@ -54,15 +54,6 @@ export function IconeOnglet({ onglet, taille = 22 }: { onglet: 'accueil' | 'parc
   )
 }
 
-/** Triangle « lecture » du bouton Réviser. */
-export function Lecture({ taille = 18 }: { taille?: number }) {
-  return (
-    <svg width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  )
-}
-
 /** Chevron des volets (pointe vers le bas ; le CSS le retourne quand le volet est ouvert). */
 export function Chevron({ taille = 18 }: { taille?: number }) {
   return (

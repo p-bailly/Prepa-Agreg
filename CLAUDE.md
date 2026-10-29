@@ -40,7 +40,8 @@ commits : en français. Les commentaires qui renvoient à une rubrique de ce fic
     `seance.ts` (cartes à revoir, cartes neuves, plafond quotidien, filtres, ordre d'introduction), `modes.ts` (quatre modes),
     `deroulement.ts` (séance courte : reprises, arrêt au temps).
   - `src/exercices/niveaux.ts` : cases des cinq niveaux, exercice suggéré. `src/stats/tableau.ts` : tableau de bord.
-  - `src/contenu/` : types, chargement (`import.meta.glob` de `content/`), découpage du texte (`texte.ts`), validation.
+  - `src/contenu/` : types, chargement (`import.meta.glob` de `content/`), découpage du texte (`texte.ts`), validation,
+    graphe des chapitres et sa disposition en pyramide (`graphe.ts`).
   - `src/lib/` : stockage local, réglages, progression (fonctions pures), sauvegarde JSON, notifications, partage de fichier.
 - Écrans React dans `src/pages/` (Accueil, Parcours, Chapitre, Stats, Réglages, Séance, EcranCarte, EcranExercice) ; données
   partagées par `src/etat/Donnees.tsx` (contexte : contenu, réglages, progression, horloge) ; navigation dans `App.tsx`
@@ -61,7 +62,11 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   ombre ni dégradé. Sombre : fond `#111418`, mêmes rôles (`index.html` et `capacitor.config.json` reprennent les fonds).
 - Interface en Plus Jakarta Sans ; textes du contenu (`.texte` : énoncés, démonstrations, corrections) en Latin Modern, pour
   aller avec les formules KaTeX.
-- Accueil : bloc « Aujourd’hui » bleu qui contient le bouton Réviser, tuiles sable / menthe / rose, objectif du jour.
+- Accueil : tuiles sable / menthe / rose (série, niveau atteint, écrit), puis la **pyramide des chapitres** (`Pyramide.tsx`,
+  SVG zoomable) : Terminale à la base, agrégation au sommet, un trait par prérequis ; nœuds teintés selon l'avancement
+  (une seule teinte, du conteneur au primaire, « à venir » en pointillés) ; toucher un chapitre fait ressortir ce sur quoi il
+  s'appuie (bleu) et ce vers quoi il ouvre (vert) et ouvre sa fiche. Plus de bloc « Aujourd’hui », de leçon du jour ni
+  d'objectif du jour (retirés à la demande du propriétaire le 2026-10-29).
   Carte : bandeau tonal (thème, niveau, titre), encadrés en aplat selon le type (théorème bleu, définition menthe, exemple
   lilas, méthode sable, remarque neutre). Notation : quatre aplats collés en pilule (rose, sable, bleu, menthe), chacun avec
   son nom et son délai (jamais la couleur seule). Onglets : icône dans une pilule pour l'onglet actif.
@@ -79,10 +84,11 @@ Thème « Tonal ardoise » (maquette 7b), tout dans `src/styles.css` sous forme 
   Une carte n'entre en révision qu'apprise, et jamais le jour même : tous ses volets deviennent dus le lendemain.
 - Leçon du jour : les prochaines notions à apprendre (prérequis au moins appris, ou sous le niveau de départ ; ordre :
   niveau le plus bas, thèmes alternés, chapitres de `themes.json`, ordre du fichier), dans la limite du plafond quotidien
-  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Accueil : « Apprendre » est le bouton principal quand
-  rien n'est à revoir. Parcours → chapitre → « Apprendre / Relire la leçon » à tout moment.
+  (`plafondNeuves`, compté par jour civil), regroupées par chapitre. Calcul gardé (`resumeDuJour`), mais plus affiché :
+  on passe par la pyramide de l'accueil ou Parcours → chapitre → « Apprendre / Relire la leçon ».
 - Séance de révision : cartes apprises dues, les plus en retard en premier ; au plus `seanceCartes` cartes et
-  `seanceMinutes` minutes (la carte en cours est finie).
+  `seanceMinutes` minutes (la carte en cours est finie). Plus de bouton qui la lance depuis le 2026-10-29 (le bouton Réviser
+  était sur l'accueil) ; ses réglages et l'objectif quotidien restent dans `reglages-v1` mais ne sont plus affichés.
 - Modes : une carte neuve se découvre toujours en « énoncer de tête » ; sinon on prend le mode possible et actif qui suit le
   dernier utilisé (`progression.dernierMode`). Volet principal = premier volet dû (énoncé, démonstration, contre-exemple), noté
   par le pied ; les autres volets dus ont leurs boutons dans le volet ouvert.
@@ -115,6 +121,11 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
   du fichier.
 - `content/exercices/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` : `{ "exercices": [ … ] }`.
 - Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg`.
+- `content/graphe.json` : `{ "courts": { <chapitre>: nom court }, "liens": [[prérequis, chapitre], …] }`, liens entre
+  chapitres de la pyramide de l'accueil (complétés par les prérequis des cartes d'un chapitre à l'autre). Un nom court par
+  chapitre (deux lignes de 11 caractères environ), liens qui ne descendent jamais de niveau, chaque chapitre relié, aucun
+  cycle (contrôlé par `graphe.test.ts`). Comme le découpage de `themes.json`, ces liens sont un choix, pas une source
+  officielle ; un chapitre ajouté à `themes.json` doit y recevoir son nom court et ses liens.
 
 ### Carte
 `{ "id", "theme", "niveau", "chapitre", "type", "titre", "recto", "hypotheses", "hypotheses_pieges", "enonce", "enonce_trous",

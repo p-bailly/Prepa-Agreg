@@ -17,25 +17,6 @@ function Interrupteur({ actif, surChange, children }: { actif: boolean; surChang
   )
 }
 
-function Nombre({ libelle, valeur, min, max, surChange }: { libelle: string; valeur: number; min: number; max: number; surChange: (n: number) => void }) {
-  return (
-    <label className="champ">
-      <span>{libelle}</span>
-      <input
-        type="number"
-        inputMode="numeric"
-        min={min}
-        max={max}
-        value={valeur}
-        onChange={(e) => {
-          const n = Number(e.target.value)
-          if (Number.isFinite(n)) surChange(Math.min(max, Math.max(min, Math.round(n))))
-        }}
-      />
-    </label>
-  )
-}
-
 export function Reglages() {
   const { reglages: r, changerReglages, progression, remplacer, horloge, aujourdhui, contenu } = useDonnees()
   const [message, setMessage] = useState<string | null>(null)
@@ -140,14 +121,6 @@ export function Reglages() {
         <p className="petit doux" style={{ marginTop: 8 }}>
           Un mode n’est proposé que pour les cartes qui ont ce qu’il faut ; les modes alternent d’une carte à l’autre.
         </p>
-      </div>
-
-      <span className="etiquette">Séance</span>
-      <div className="bloc">
-        <Nombre libelle="Cartes par séance (au plus)" valeur={r.seanceCartes} min={1} max={100} surChange={(n) => maj({ seanceCartes: n })} />
-        <Nombre libelle="Durée d’une séance (minutes, au plus)" valeur={r.seanceMinutes} min={1} max={120} surChange={(n) => maj({ seanceMinutes: n })} />
-        <Nombre libelle="Cartes neuves par jour (plafond)" valeur={r.plafondNeuves} min={0} max={100} surChange={(n) => maj({ plafondNeuves: n })} />
-        <Nombre libelle="Objectif quotidien (cartes revues)" valeur={r.objectifQuotidien} min={1} max={500} surChange={(n) => maj({ objectifQuotidien: n })} />
       </div>
 
       <span className="etiquette">Écrit</span>

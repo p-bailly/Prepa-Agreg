@@ -45,12 +45,6 @@
   --sur-primaire: #ffffff;
   --conteneur: #d8e3f3;
   --sur-conteneur: #10233e;
-  /* Bloc « Aujourd’hui » de l'accueil. */
-  --hero: #3e5f8a;
-  --sur-hero: #ffffff;
-  --hero-doux: #dbe6f5;
-  --hero-bouton: #ffffff;
-  --sur-hero-bouton: #3e5f8a;
   --onglets: #ebeff5;
   --indicateur: #d0dcee;
   --sable: #f3e6d3;
@@ -84,11 +78,6 @@
   --sur-primaire: #0f2440;
   --conteneur: #243650;
   --sur-conteneur: #d6e4f8;
-  --hero: #2b4468;
-  --sur-hero: #eef3fb;
-  --hero-doux: #bccde6;
-  --hero-bouton: #a9c7f0;
-  --sur-hero-bouton: #0f2440;
   --onglets: #181c22;
   --indicateur: #2e4366;
   --sable: #3a2f20;
@@ -348,92 +337,6 @@ p {
 
 .entete-accueil .titre-ecran {
   margin: 0;
-}
-
-.hero {
-  background: var(--hero);
-  color: var(--sur-hero);
-  border-radius: 32px;
-  padding: 22px;
-  margin: 0 0 12px;
-}
-
-.hero-etiquette {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--hero-doux);
-}
-
-.hero-compte {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.hero-compte strong {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-}
-
-.hero-compte span {
-  font-size: 17px;
-  line-height: 1.25;
-  padding-bottom: 4px;
-}
-
-.hero-doux {
-  color: var(--hero-doux);
-}
-
-.bouton-hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  min-height: 56px;
-  margin-top: 18px;
-  padding: 0 8px 0 22px;
-  border: none;
-  border-radius: 28px;
-  background: var(--hero-bouton);
-  color: var(--sur-hero-bouton);
-  font-size: 18px;
-  font-weight: 800;
-  text-align: left;
-}
-
-.bouton-hero .duree {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--doux);
-}
-
-:root[data-theme='dark'] .bouton-hero .duree {
-  color: var(--sur-hero-bouton);
-}
-
-.bouton-hero .rond {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--hero);
-  color: var(--sur-hero);
-}
-
-.bouton-hero:disabled {
-  opacity: 0.6;
-  cursor: default;
 }
 
 /* Tuiles de l'accueil : deux ou trois, de largeurs égales. */
@@ -1276,4 +1179,183 @@ textarea {
 
 .liste-cartes li + li {
   margin-top: 8px;
+}
+
+/* ---------- Pyramide des chapitres (accueil) ---------- */
+
+.pyramide-cadre {
+  overflow: auto;
+  max-height: 72vh;
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  border-radius: 24px;
+  margin: 0 0 10px;
+  overscroll-behavior: contain;
+}
+
+.pyramide {
+  display: block;
+  height: auto;
+  cursor: pointer;
+  font-family: var(--police);
+}
+
+.pyramide .bande {
+  fill: color-mix(in srgb, var(--fond) 40%, var(--surface));
+}
+
+.pyramide .bande.paire {
+  fill: var(--fond);
+}
+
+.pyramide .niveau {
+  fill: var(--doux);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pyramide .liens path,
+.pyramide .liens-choisis path {
+  fill: none;
+}
+
+.pyramide .liens path {
+  stroke: var(--contour);
+  stroke-width: 1;
+}
+
+.pyramide .liens.estompes path {
+  opacity: 0.25;
+}
+
+.pyramide .liens-choisis path,
+.trait-legende line {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.avant {
+  stroke: var(--primaire);
+}
+
+.apres {
+  stroke: var(--seconde);
+}
+
+.pyramide .noeud-graphe text {
+  fill: var(--texte);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.noeud-graphe circle {
+  stroke: var(--primaire);
+  stroke-width: 1.5;
+}
+
+.noeud-graphe.a-venir circle {
+  fill: var(--surface);
+  stroke: var(--desactive);
+  stroke-dasharray: 3 2;
+}
+
+.noeud-graphe.a-decouvrir circle {
+  fill: var(--conteneur);
+}
+
+.noeud-graphe.en-cours circle {
+  fill: color-mix(in srgb, var(--primaire) 55%, var(--conteneur));
+}
+
+.noeud-graphe.acquis circle {
+  fill: var(--primaire);
+}
+
+.pyramide .noeud-graphe .halo {
+  fill: none;
+  stroke: var(--texte);
+  stroke-width: 2;
+  stroke-dasharray: none;
+}
+
+.pyramide .noeud-graphe.loin {
+  opacity: 0.3;
+}
+
+.pyramide .noeud-graphe:focus {
+  outline: none;
+}
+
+.pyramide .noeud-graphe:focus-visible circle {
+  stroke: var(--texte);
+  stroke-width: 3;
+}
+
+.pyramide-outils {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.legende-pyramide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 0;
+  padding: 0 0 0 4px;
+  list-style: none;
+  font-size: 13px;
+  color: var(--doux);
+}
+
+.legende-pyramide li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.zoom {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+.zoom .bouton.compact {
+  min-width: 44px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.zoom .bouton + .bouton {
+  margin-top: 0;
+}
+
+.fiche-chapitre .titre-fiche {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.fiche-chapitre .etiquette {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.fiche-chapitre .etiquette:first-child {
+  margin-top: 0;
+}
+
+.notions-fiche {
+  margin: 0 0 14px;
+  padding-left: 1.3em;
+  font-size: 15px;
 }
