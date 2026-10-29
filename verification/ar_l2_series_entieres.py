@@ -314,7 +314,7 @@ for c_, b_, form, leurres in [
         a.append(c_ * a[-1] + b_**m)
     assert all(a[m] == form(m) for m in range(21))
     assert all(any(a[m] != lf(m) for m in range(21)) for lf in leurres)
-assert all(math.prod([1]) * 0 <= 3**m - 2**m <= 3**m for m in range(20))
+assert all(0 <= 3**m - 2**m <= 3**m for m in range(20))
 assert simplify(x / ((1 - 2 * x) * (1 - 3 * x)) - (1 / (1 - 3 * x) - 1 / (1 - 2 * x))) == 0
 assert simplify(x / ((1 - 4 * x) * (1 - 2 * x)) - (1 / (1 - 4 * x) - 1 / (1 - 2 * x)) / 2) == 0
 assert simplify(x / ((1 - x) * (1 - 2 * x)) - (1 / (1 - 2 * x) - 1 / (1 - x))) == 0
