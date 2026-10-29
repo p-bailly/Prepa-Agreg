@@ -1,0 +1,93 @@
+{
+  "chapitre": "proba-l1-variables-finies",
+  "questions": [
+    {
+      "id": "proba-l1-variables-finies-q1",
+      "carte": "proba-l1-variables-finies-transfert",
+      "genre": "choix",
+      "enonce": "Soit $X$ une variable aléatoire de loi uniforme sur $\\{-2,-1,0,1,2\\}$. Que vaut $E(X^2)$ ?",
+      "propositions": [
+        "$2$",
+        "$0$",
+        "$1$",
+        "$10$"
+      ],
+      "bonne": 0,
+      "explication": "Par la formule de transfert, $E(X^2)=\\frac{1}{5}\\left((-2)^2+(-1)^2+0^2+1^2+2^2\\right)=\\frac{10}{5}=2$. La valeur $0$ est $E(X)^2$, différente de $E(X^2)$ en général (leur différence est $V(X)$), et $10$ oublie les probabilités $\\frac{1}{5}$."
+    },
+    {
+      "id": "proba-l1-variables-finies-q2",
+      "carte": "proba-l1-variables-finies-variance",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ prend les valeurs $-1$, $0$ et $2$ avec les probabilités respectives $\\frac{1}{4}$, $\\frac{1}{4}$ et $\\frac{1}{2}$. Que vaut $V(X)$ ?",
+      "propositions": [
+        "$\\frac{27}{16}$",
+        "$\\frac{9}{4}$",
+        "$\\frac{45}{16}$",
+        "$\\frac{3}{2}$"
+      ],
+      "bonne": 0,
+      "explication": "$E(X)=-\\frac{1}{4}+0+2\\times\\frac{1}{2}=\\frac{3}{4}$ et $E(X^2)=\\frac{1}{4}+0+4\\times\\frac{1}{2}=\\frac{9}{4}$, donc, par la formule de König-Huygens, $V(X)=E(X^2)-E(X)^2=\\frac{9}{4}-\\frac{9}{16}=\\frac{27}{16}$. La valeur $\\frac{9}{4}$ est $E(X^2)$, et $\\frac{3}{2}=\\frac{9}{4}-\\frac{3}{4}$ retranche $E(X)$ au lieu de $E(X)^2$."
+    },
+    {
+      "id": "proba-l1-variables-finies-q3",
+      "carte": "proba-l1-variables-finies-independance",
+      "genre": "vrai-faux",
+      "enonce": "On lance deux dés équilibrés à $6$ faces, indépendamment. Soit $X$ le résultat du premier dé et $Y$ la variable qui vaut $1$ si la somme des deux dés vaut $7$, et $0$ sinon. Les variables $X$ et $Y$ sont indépendantes.",
+      "vrai": true,
+      "explication": "Vrai. $P(Y=1)=\\frac{6}{36}=\\frac{1}{6}$ et, pour tout $x\\in\\{1,\\dots,6\\}$, l'événement $\\{X=x,Y=1\\}$ signifie que le premier dé donne $x$ et le second $7-x$, qui est bien une face du dé : $P(X=x,Y=1)=\\frac{1}{36}=P(X=x)P(Y=1)$. Par différence, $P(X=x,Y=0)=\\frac{1}{6}-\\frac{1}{36}=\\frac{5}{36}=P(X=x)P(Y=0)$. Avec la somme $8$ à la place de $7$, ce serait faux : si le premier dé donne $1$, la somme ne peut pas valoir $8$."
+    },
+    {
+      "id": "proba-l1-variables-finies-q4",
+      "carte": "proba-l1-variables-finies-covariance",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ sont deux variables aléatoires réelles telles que $V(X)=V(Y)=1$ et $V(X+Y)=3$, alors $\\mathrm{Cov}(X,Y)=\\frac{1}{2}$.",
+      "vrai": true,
+      "explication": "Vrai. $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$, donc $3=2+2\\,\\mathrm{Cov}(X,Y)$ et $\\mathrm{Cov}(X,Y)=\\frac{1}{2}$. En particulier, $X$ et $Y$ ne sont pas indépendantes, puisque leur covariance n'est pas nulle."
+    },
+    {
+      "id": "proba-l1-variables-finies-q5",
+      "carte": "proba-l1-variables-finies-couples",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ suivent toutes deux la loi de Bernoulli de paramètre $\\frac{1}{2}$, la loi conjointe du couple $(X,Y)$ est entièrement déterminée par le nombre $c=P(X=1,Y=1)$.",
+      "vrai": true,
+      "explication": "Vrai. Les lois marginales donnent $P(X=1,Y=0)=P(X=1)-c=\\frac{1}{2}-c$, de même $P(X=0,Y=1)=\\frac{1}{2}-c$, et enfin $P(X=0,Y=0)=1-c-2\\left(\\frac{1}{2}-c\\right)=c$. En revanche, $c$ peut prendre n'importe quelle valeur de $\\left[0,\\frac{1}{2}\\right]$ : les lois marginales seules ne déterminent pas la loi conjointe."
+    },
+    {
+      "id": "proba-l1-variables-finies-q6",
+      "carte": "proba-l1-variables-finies-uniforme-bernoulli",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ sont indépendantes et suivent toutes deux la loi uniforme sur $\\{1,\\dots,6\\}$, alors $X+Y$ suit la loi uniforme sur $\\{2,\\dots,12\\}$.",
+      "vrai": false,
+      "explication": "Faux : $P(X+Y=2)=P(X=1,Y=1)=\\frac{1}{36}$, alors que $P(X+Y=7)=\\frac{6}{36}=\\frac{1}{6}$ ; la loi uniforme sur les $11$ valeurs $2,\\dots,12$ donnerait la probabilité $\\frac{1}{11}$ à chacune."
+    },
+    {
+      "id": "proba-l1-variables-finies-q7",
+      "carte": "proba-l1-variables-finies-covariance",
+      "genre": "choix",
+      "enonce": "Soit $X$ et $Y$ deux variables aléatoires réelles telles que $\\mathrm{Cov}(X,Y)=2$. Que vaut $\\mathrm{Cov}(3X+1,\\,5-Y)$ ?",
+      "propositions": [
+        "$-6$",
+        "$6$",
+        "$-5$",
+        "$-2$"
+      ],
+      "bonne": 0,
+      "explication": "La covariance est bilinéaire et n'est pas modifiée par l'ajout de constantes : $\\mathrm{Cov}(3X+1,5-Y)=3\\times(-1)\\times\\mathrm{Cov}(X,Y)=-6$."
+    },
+    {
+      "id": "proba-l1-variables-finies-q8",
+      "carte": "proba-l1-variables-finies-transfert",
+      "genre": "choix",
+      "enonce": "Une urne contient $5$ jetons numérotés de $1$ à $5$. On en tire deux simultanément, tous les tirages étant équiprobables, et l'on note $X$ le plus petit des deux numéros. Que vaut $E(X)$ ?",
+      "propositions": [
+        "$2$",
+        "$3$",
+        "$\\frac{5}{2}$",
+        "$\\frac{3}{2}$"
+      ],
+      "bonne": 0,
+      "explication": "Il y a $\\binom{5}{2}=10$ tirages équiprobables. Pour $k\\in\\{1,2,3,4\\}$, on a $X=k$ quand le jeton $k$ est tiré avec l'un des $5-k$ jetons de numéro supérieur : $P(X=k)=\\frac{5-k}{10}$. Donc $E(X)=\\frac{1\\times 4+2\\times 3+3\\times 2+4\\times 1}{10}=\\frac{20}{10}=2$."
+    }
+  ]
+}

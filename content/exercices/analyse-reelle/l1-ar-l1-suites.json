@@ -876,6 +876,145 @@
           "correction": "**1.** L'équation $r^2=\\frac32r+1$, soit $2r^2-3r-2=0$, a pour racines $2$ et $-\\frac12$. Donc $u_n=\\lambda2^n+\\mu\\left(-\\frac12\\right)^n$ avec $\\lambda+\\mu=1$ et $2\\lambda-\\frac\\mu2=u_1$, d'où $\\lambda=\\frac{2u_1+1}{5}$ et $\\mu=\\frac{4-2u_1}{5}$.\n\n**2.** Si $\\lambda\\neq0$ : $|u_n|\\ge|\\lambda|2^n-|\\mu|\\to+\\infty$, donc $(u_n)$ n'est pas bornée.\n\n**3.** Si $\\lambda=0$, c'est-à-dire $u_1=-\\frac12$, alors $\\mu=1$ et $u_n=\\left(-\\frac12\\right)^n$, bornée. Donc $(u_n)$ est bornée si et seulement si $u_1=-\\frac12$, et dans ce cas $u_n\\to0$ : la suite converge."
         }
       ]
+    },
+    {
+      "id": "ar-l1-suites-cesaro-ex5",
+      "carte": "ar-l1-suites-cesaro",
+      "difficulte": 4,
+      "titre": "Vitesse de convergence par le lemme de Cesàro",
+      "enonce": "Soit $u_0\\in\\left]0,\\frac\\pi2\\right]$ et $(u_n)$ définie par $u_{n+1}=\\sin u_n$ pour tout $n\\ge0$. On admet que $\\sin x<x$ pour tout $x>0$, et que $\\sin x=x-\\frac{x^3}{6}+x^3\\varepsilon(x)$ avec $\\varepsilon(x)\\to0$ quand $x\\to0$.\n\n**1.** Montrer que $u_n\\in\\left]0,\\frac\\pi2\\right]$ pour tout $n$, que $(u_n)$ est décroissante et qu'elle converge vers $0$.\n\n**2.** Montrer que $\\frac1{\\sin^2x}-\\frac1{x^2}$ tend vers $\\frac13$ quand $x\\to0$, puis que $\\frac1{u_{n+1}^2}-\\frac1{u_n^2}\\to\\frac13$.\n\n**3.** À l'aide du lemme de Cesàro, déterminer la limite de $\\frac1{nu_n^2}$, puis celle de $\\sqrt n\\,u_n$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour la limite de $(u_n)$, passer à la limite dans la relation de récurrence grâce à la continuité de la fonction.",
+        "Écrire $\\frac1{\\sin^2x}-\\frac1{x^2}=\\frac{x^2-\\sin^2x}{x^2\\sin^2x}$ et développer le numérateur.",
+        "Les moyennes de Cesàro de la suite $\\frac1{u_{k+1}^2}-\\frac1{u_k^2}$ se télescopent."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $\\sqrt n\\,u_n$ ?",
+        "propositions": [
+          "$\\sqrt3$",
+          "$3$",
+          "$\\frac1{\\sqrt3}$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Montrons par récurrence que $u_n\\in\\left]0,\\frac\\pi2\\right]$. C'est vrai pour $n=0$. Si $u_n\\in\\left]0,\\frac\\pi2\\right]$, alors $u_{n+1}=\\sin u_n\\in\\left]0,1\\right]\\subset\\left]0,\\frac\\pi2\\right]$ ($\\sin$ est strictement positif sur $\\left]0,\\pi\\right[$ et majoré par $1<\\frac\\pi2$). Ensuite $u_{n+1}=\\sin u_n<u_n$ : la suite est strictement décroissante. Décroissante et minorée par $0$, elle converge vers un réel $\\ell\\in\\left[0,\\frac\\pi2\\right]$. Comme $\\sin$ est continue, en passant à la limite dans $u_{n+1}=\\sin u_n$, on obtient $\\sin\\ell=\\ell$ ; si $\\ell>0$, on aurait $\\sin\\ell<\\ell$. Donc $\\ell=0$.\n\n**2.** Pour $x$ proche de $0$, $\\sin x=x\\left(1+a(x)\\right)$ avec $a(x)=-\\frac{x^2}6+x^2\\varepsilon(x)$, d'où\n$$\\sin^2x=x^2\\left(1+2a(x)+a(x)^2\\right)=x^2\\left(1-\\frac{x^2}3+x^2\\eta(x)\\right),\\quad\\text{avec }\\eta(x)=2\\varepsilon(x)+x^2\\left(\\varepsilon(x)-\\frac16\\right)^2\\to0.$$\nAinsi, pour $x\\neq0$ proche de $0$,\n$$\\frac1{\\sin^2x}-\\frac1{x^2}=\\frac{x^2-\\sin^2x}{x^2\\sin^2x}=\\frac{x^4\\left(\\frac13-\\eta(x)\\right)}{x^4\\left(1-\\frac{x^2}3+x^2\\eta(x)\\right)}\\xrightarrow[x\\to0]{}\\frac13.$$\nComme $u_n\\to0$ avec $u_n>0$, la caractérisation séquentielle de la limite donne $w_n=\\frac1{u_{n+1}^2}-\\frac1{u_n^2}\\to\\frac13$.\n\n**3.** Par le lemme de Cesàro appliqué à $(w_n)$, la moyenne $\\frac1n\\sum_{k=0}^{n-1}w_k$ tend vers $\\frac13$. Cette somme télescopique vaut $\\frac1{u_n^2}-\\frac1{u_0^2}$, donc\n$$\\frac1{nu_n^2}=\\frac1n\\sum_{k=0}^{n-1}w_k+\\frac1{nu_0^2}\\to\\frac13.$$\nAinsi $nu_n^2\\to3$, et comme $u_n>0$ et que la racine carrée est continue, $\\sqrt n\\,u_n\\to\\sqrt3$. La suite tend vers $0$ lentement, comme $\\sqrt{\\frac3n}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $u_0>0$ et $(u_n)$ définie par $u_{n+1}=\\ln(1+u_n)$ pour tout $n\\ge0$. On admet que $\\ln(1+x)<x$ pour tout $x>0$, et que $\\ln(1+x)=x-\\frac{x^2}{2}+x^2\\varepsilon(x)$ avec $\\varepsilon(x)\\to0$ quand $x\\to0$.\n\n**1.** Montrer que $u_n>0$ pour tout $n$, que $(u_n)$ est décroissante et qu'elle converge vers $0$.\n\n**2.** Montrer que $\\frac1{\\ln(1+x)}-\\frac1x$ tend vers $\\frac12$ quand $x\\to0^+$, puis que $\\frac1{u_{n+1}}-\\frac1{u_n}\\to\\frac12$.\n\n**3.** À l'aide du lemme de Cesàro, déterminer la limite de $\\frac1{nu_n}$, puis celle de $nu_n$.",
+          "indices": [
+            "Pour la limite de $(u_n)$, passer à la limite dans la relation de récurrence grâce à la continuité de la fonction.",
+            "Écrire $\\frac1{\\ln(1+x)}-\\frac1x=\\frac{x-\\ln(1+x)}{x\\ln(1+x)}$ et utiliser le développement admis.",
+            "Les moyennes de Cesàro de la suite $\\frac1{u_{k+1}}-\\frac1{u_k}$ se télescopent."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $nu_n$ ?",
+            "propositions": [
+              "$2$",
+              "$\\frac12$",
+              "$1$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par récurrence, si $u_n>0$ alors $u_{n+1}=\\ln(1+u_n)>\\ln1=0$. Ensuite $u_{n+1}=\\ln(1+u_n)<u_n$ : la suite est strictement décroissante et minorée par $0$, donc converge vers $\\ell\\ge0$. Par continuité de $x\\mapsto\\ln(1+x)$ sur $\\left[0,+\\infty\\right[$, $\\ell=\\ln(1+\\ell)$ ; si $\\ell>0$, on aurait $\\ln(1+\\ell)<\\ell$. Donc $\\ell=0$.\n\n**2.** Pour $x>0$ proche de $0$, $x-\\ln(1+x)=x^2\\left(\\frac12-\\varepsilon(x)\\right)$ et $x\\ln(1+x)=x^2\\left(1-\\frac x2+x\\varepsilon(x)\\right)$, donc\n$$\\frac1{\\ln(1+x)}-\\frac1x=\\frac{x-\\ln(1+x)}{x\\ln(1+x)}=\\frac{\\frac12-\\varepsilon(x)}{1-\\frac x2+x\\varepsilon(x)}\\xrightarrow[x\\to0^+]{}\\frac12.$$\nComme $u_n\\to0$ avec $u_n>0$, la caractérisation séquentielle donne $w_n=\\frac1{u_{n+1}}-\\frac1{u_n}\\to\\frac12$.\n\n**3.** Par le lemme de Cesàro, $\\frac1n\\sum_{k=0}^{n-1}w_k=\\frac1n\\left(\\frac1{u_n}-\\frac1{u_0}\\right)\\to\\frac12$, d'où $\\frac1{nu_n}\\to\\frac12$ (car $\\frac1{nu_0}\\to0$), puis $nu_n\\to2$ : $u_n$ se comporte comme $\\frac2n$."
+        },
+        {
+          "enonce": "Soit $u_0>0$ et $(u_n)$ définie par $u_{n+1}=\\frac{u_n}{1+u_n^2}$ pour tout $n\\ge0$.\n\n**1.** Montrer que $u_n>0$ pour tout $n$, que $(u_n)$ est décroissante et qu'elle converge vers $0$.\n\n**2.** Exprimer $\\frac1{u_{n+1}^2}-\\frac1{u_n^2}$ en fonction de $u_n$, et en déduire sa limite.\n\n**3.** À l'aide du lemme de Cesàro, déterminer la limite de $\\frac1{nu_n^2}$, puis celle de $\\sqrt n\\,u_n$.",
+          "indices": [
+            "Pour la limite de $(u_n)$, passer à la limite dans la relation de récurrence grâce à la continuité de la fonction.",
+            "Développer $\\frac{(1+u_n^2)^2}{u_n^2}$.",
+            "Les moyennes de Cesàro de la suite $\\frac1{u_{k+1}^2}-\\frac1{u_k^2}$ se télescopent."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la limite de $\\sqrt n\\,u_n$ ?",
+            "propositions": [
+              "$\\frac{\\sqrt2}2$",
+              "$\\sqrt2$",
+              "$\\frac12$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par récurrence, si $u_n>0$ alors $u_{n+1}=\\frac{u_n}{1+u_n^2}>0$. Ensuite $u_{n+1}=\\frac{u_n}{1+u_n^2}<u_n$ car $1+u_n^2>1$ : la suite est décroissante et minorée par $0$, donc converge vers $\\ell\\ge0$. Par continuité de $x\\mapsto\\frac x{1+x^2}$, $\\ell=\\frac{\\ell}{1+\\ell^2}$, soit $\\ell(1+\\ell^2)=\\ell$, donc $\\ell^3=0$ et $\\ell=0$.\n\n**2.** $\\frac1{u_{n+1}^2}=\\frac{(1+u_n^2)^2}{u_n^2}=\\frac1{u_n^2}+2+u_n^2$, donc $w_n=\\frac1{u_{n+1}^2}-\\frac1{u_n^2}=2+u_n^2\\to2$.\n\n**3.** Par le lemme de Cesàro, $\\frac1n\\sum_{k=0}^{n-1}w_k=\\frac1n\\left(\\frac1{u_n^2}-\\frac1{u_0^2}\\right)\\to2$, d'où $\\frac1{nu_n^2}\\to2$, puis $nu_n^2\\to\\frac12$ et, comme $u_n>0$, $\\sqrt n\\,u_n\\to\\frac1{\\sqrt2}=\\frac{\\sqrt2}2$."
+        }
+      ]
+    },
+    {
+      "id": "ar-l1-suites-recurrence-lineaire-ex5",
+      "carte": "ar-l1-suites-recurrence-lineaire",
+      "difficulte": 3,
+      "titre": "Récurrence linéaire avec un second membre constant",
+      "enonce": "Déterminer l'expression de $u_n$ en fonction de $n$, où $u_0=3$, $u_1=5$ et $u_{n+2}=5u_{n+1}-6u_n+4$ pour tout $n\\ge0$.",
+      "duree_min": 12,
+      "indices": [
+        "Chercher une suite constante $c$ qui vérifie la relation de récurrence, puis poser $v_n=u_n-c$.",
+        "La suite $(v_n)$ vérifie une récurrence linéaire d'ordre 2 sans second membre : résoudre son équation caractéristique, puis utiliser $v_0$ et $v_1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'expression de $u_n$ ?",
+        "propositions": [
+          "$u_n=3^n+2$",
+          "$u_n=2^n+3^n$",
+          "$u_n=2\\times3^n+1$",
+          "$u_n=3^n+2n+2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Solution constante.** Une suite constante égale à $c$ convient si et seulement si $c=5c-6c+4$, soit $2c=4$ : $c=2$.\n\n**Équation homogène.** Posons $v_n=u_n-2$. En soustrayant $2=5\\times2-6\\times2+4$ à la relation, on obtient $v_{n+2}=5v_{n+1}-6v_n$. L'équation caractéristique $r^2-5r+6=0$ a pour racines $2$ et $3$, donc $v_n=\\lambda2^n+\\mu3^n$, avec $v_0=1$ et $v_1=3$ : $\\lambda+\\mu=1$ et $2\\lambda+3\\mu=3$, d'où $\\mu=1$ et $\\lambda=0$.\n\n**Conclusion.** $u_n=3^n+2$. Vérification : $u_2=5\\times5-6\\times3+4=11=9+2$.",
+      "variantes": [
+        {
+          "enonce": "Déterminer l'expression de $u_n$ en fonction de $n$, où $u_0=2$, $u_1=5$ et $u_{n+2}=u_{n+1}+2u_n-4$ pour tout $n\\ge0$.",
+          "indices": [
+            "Chercher une suite constante $c$ qui vérifie la relation de récurrence, puis poser $v_n=u_n-c$.",
+            "La suite $(v_n)$ vérifie une récurrence linéaire d'ordre 2 sans second membre : résoudre son équation caractéristique, puis utiliser $v_0$ et $v_1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=2^n-(-1)^n+2$",
+              "$u_n=2^n+(-1)^n$",
+              "$u_n=2^n-(-1)^n+2n+2$",
+              "$u_n=2^{n+1}-(-1)^n+1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Solution constante.** $c=c+2c-4$ équivaut à $c=2$.\n\n**Équation homogène.** $v_n=u_n-2$ vérifie $v_{n+2}=v_{n+1}+2v_n$, d'équation caractéristique $r^2-r-2=0$, de racines $2$ et $-1$ : $v_n=\\lambda2^n+\\mu(-1)^n$. Avec $v_0=0$ et $v_1=3$ : $\\lambda+\\mu=0$ et $2\\lambda-\\mu=3$, d'où $\\lambda=1$, $\\mu=-1$.\n\n**Conclusion.** $u_n=2^n-(-1)^n+2$. Vérification : $u_2=5+4-4=5=4-1+2$."
+        },
+        {
+          "enonce": "Déterminer l'expression de $u_n$ en fonction de $n$, où $u_0=3$, $u_1=8$ et $u_{n+2}=6u_{n+1}-9u_n+8$ pour tout $n\\ge0$.",
+          "indices": [
+            "Chercher une suite constante $c$ qui vérifie la relation de récurrence, puis poser $v_n=u_n-c$.",
+            "La suite $(v_n)$ vérifie une récurrence linéaire d'ordre 2 sans second membre : son équation caractéristique a une racine double."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $u_n$ ?",
+            "propositions": [
+              "$u_n=(n+1)3^n+2$",
+              "$u_n=3^n+2$",
+              "$u_n=(2n+1)3^n+2$",
+              "$u_n=(n+1)3^n+2n+2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Solution constante.** $c=6c-9c+8$ équivaut à $4c=8$, soit $c=2$.\n\n**Équation homogène.** $v_n=u_n-2$ vérifie $v_{n+2}=6v_{n+1}-9v_n$, d'équation caractéristique $r^2-6r+9=(r-3)^2=0$ : racine double $3$, donc $v_n=(\\lambda+\\mu n)3^n$. Avec $v_0=1$ et $v_1=6$ : $\\lambda=1$ et $3(1+\\mu)=6$, d'où $\\mu=1$.\n\n**Conclusion.** $u_n=(n+1)3^n+2$. Vérification : $u_2=48-27+8=29=3\\times9+2$."
+        }
+      ]
+    },
+    {
+      "id": "ar-l1-bolzano-weierstrass-ex4",
+      "carte": "ar-l1-bolzano-weierstrass",
+      "difficulte": 4,
+      "titre": "Le lemme des pics",
+      "enonce": "Soit $(u_n)$ une suite réelle. On dit qu'un entier $p$ est un **pic** de la suite si $u_p\\ge u_m$ pour tout entier $m>p$.\n\n**1.** On suppose que la suite a une infinité de pics. Montrer qu'elle admet une sous-suite décroissante.\n\n**2.** On suppose qu'elle n'a qu'un nombre fini de pics (éventuellement aucun), et l'on fixe un entier $N$ strictement supérieur à tous ses pics. Montrer qu'elle admet une sous-suite strictement croissante.\n\n**3.** En déduire que toute suite réelle admet une sous-suite monotone, puis démontrer le théorème de Bolzano-Weierstrass.\n\n**4.** Montrer qu'une suite réelle non majorée admet une sous-suite qui tend vers $+\\infty$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : ranger les pics par ordre croissant.",
+        "Question 2 : un entier $n\\ge N$ n'est pas un pic ; traduire cette négation, puis construire les indices un par un.",
+        "Question 4 : montrer que, pour tout réel $A$, l'ensemble des entiers $n$ tels que $u_n>A$ est infini."
+      ],
+      "correction": "**1.** L'ensemble des pics est une partie infinie de $\\mathbb{N}$ : on peut ranger ses éléments en une suite strictement croissante $p_0<p_1<p_2<\\cdots$. Posons $\\varphi(k)=p_k$ : $\\varphi$ est strictement croissante. Comme $p_k$ est un pic et $p_{k+1}>p_k$, on a $u_{p_k}\\ge u_{p_{k+1}}$ : la sous-suite $(u_{\\varphi(k)})$ est décroissante.\n\n**2.** Tout entier $n\\ge N$ n'est pas un pic : il existe $m>n$ tel que $u_m>u_n$. Posons $\\varphi(0)=N$ ; si $\\varphi(k)\\ge N$ est construit, ce n'est pas un pic, et l'on choisit $\\varphi(k+1)>\\varphi(k)$ tel que $u_{\\varphi(k+1)}>u_{\\varphi(k)}$ (on a encore $\\varphi(k+1)\\ge N$). On construit ainsi par récurrence une application $\\varphi$ strictement croissante telle que $(u_{\\varphi(k)})$ soit strictement croissante.\n\n**3.** Une suite a soit une infinité de pics, soit un nombre fini de pics : par les questions 1 et 2, elle admet toujours une sous-suite monotone. Si $(u_n)$ est bornée, cette sous-suite monotone est bornée ; par le théorème de la limite monotone (une suite croissante majorée, ou décroissante minorée, converge), elle converge. C'est le théorème de Bolzano-Weierstrass.\n\n**4.** Soit $A$ un réel. Si l'ensemble des $n$ tels que $u_n>A$ était fini, contenu dans $\\{0,\\dots,M\\}$, la suite serait majorée par $\\max(A,u_0,\\dots,u_M)$, ce qui est exclu. Cet ensemble est donc infini. Posons $\\varphi(0)=0$ et, $\\varphi(k)$ étant construit, choisissons $\\varphi(k+1)>\\varphi(k)$ tel que $u_{\\varphi(k+1)}>k+1$ (possible, l'ensemble des $n$ tels que $u_n>k+1$ étant infini). Alors $\\varphi$ est strictement croissante et $u_{\\varphi(k)}>k$ pour tout $k\\ge1$, donc $u_{\\varphi(k)}\\to+\\infty$."
     }
   ]
 }

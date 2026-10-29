@@ -1422,6 +1422,145 @@
           "correction": "1. La suite nulle est dans $\\mathcal{S}$, et si $u, v \\in \\mathcal{S}$ et $\\lambda \\in \\mathbb{R}$, la suite $\\lambda u + v$ vérifie la même relation, par linéarité : $\\mathcal{S}$ est un sous-espace vectoriel.\n\n2. Pour $r = 0$, la suite $(0^n) = (1, 0, 0, \\dots)$ n'est pas dans $\\mathcal{S}$ (la relation en $n = 0$ est fausse). Pour $r \\neq 0$, $(r^n) \\in \\mathcal{S}$ si et seulement si $r^n (r^2 - r - 6) = 0$ pour tout $n$, c'est-à-dire $r^2 - r - 6 = 0$, d'où $r = 3$ ou $r = -2$. Les suites $a = (3^n)$ et $b = ((-2)^n)$ forment une famille libre : si $\\lambda 3^n + \\mu (-2)^n = 0$ pour tout $n$, alors $\\lambda + \\mu = 0$ et $3\\lambda - 2\\mu = 0$, d'où $\\lambda = \\mu = 0$.\n\n3. Si $w \\in \\mathcal{S}$ et $w_0 = w_1 = 0$, la relation $w_{n+2} = w_{n+1} + 6w_n$ donne par récurrence $w_n = 0$ pour tout $n$ (si $w_n = w_{n+1} = 0$, alors $w_{n+2} = 0$). Soient $a, b, c \\in \\mathcal{S}$ : les vecteurs $(a_0, a_1)$, $(b_0, b_1)$, $(c_0, c_1)$ sont trois vecteurs de $\\mathbb{R}^2$, donc liés : il existe $(\\lambda, \\mu, \\nu) \\neq (0, 0, 0)$ tel que $\\lambda (a_0, a_1) + \\mu (b_0, b_1) + \\nu (c_0, c_1) = 0$. La suite $w = \\lambda a + \\mu b + \\nu c$ est dans $\\mathcal{S}$ et vérifie $w_0 = w_1 = 0$, donc $w = 0$ : la famille $(a, b, c)$ est liée. Les familles libres de $\\mathcal{S}$ ont donc au plus $2$ éléments ; une famille libre de $\\mathcal{S}$ de longueur maximale engendre $\\mathcal{S}$ (sinon le résultat d'ajout l'allongerait), donc $\\mathcal{S}$ est de dimension finie, au plus $2$.\n\n4. La famille libre $(a, b)$ montre que $\\dim \\mathcal{S} \\geq 2$, donc $\\dim \\mathcal{S} = 2$, et $(a, b)$, libre à $2$ éléments, est une base de $\\mathcal{S}$. On écrit $u_n = \\lambda 3^n + \\mu (-2)^n$ : $\\lambda + \\mu = 2$ et $3\\lambda - 2\\mu = 1$, d'où $5\\lambda = 5$, $\\lambda = 1$ et $\\mu = 1$. Donc $u_n = 3^n + (-2)^n$ (vérification : $u_0 = 2$, $u_1 = 3 - 2 = 1$)."
         }
       ]
+    },
+    {
+      "id": "al-l1-espaces-familles-ex5",
+      "carte": "al-l1-espaces-familles",
+      "difficulte": 4,
+      "titre": "Une famille libre de fonctions valeur absolue décalées",
+      "enonce": "Soient $n \\geq 1$ et $a_1 < a_2 < \\dots < a_n$ des réels. Pour $k \\in \\{1, \\dots, n\\}$, on note $f_k$ la fonction $x \\mapsto |x - a_k|$, élément du $\\mathbb{R}$-espace vectoriel $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$, et $h$ la fonction constante égale à $1$.\n\n1. Montrer que $f_k$ est dérivable en tout réel $x \\neq a_k$ et qu'elle n'est pas dérivable en $a_k$.\n\n2. Soient $\\lambda_1, \\dots, \\lambda_n$ des réels tels que $\\lambda_1f_1 + \\dots + \\lambda_nf_n = 0$, et $j \\in \\{1, \\dots, n\\}$. En étudiant la dérivabilité en $a_j$, montrer que $\\lambda_j = 0$. Conclure que $(f_1, \\dots, f_n)$ est libre.\n\n3. La famille $(f_1, \\dots, f_n, h)$ est-elle libre ?\n\n4. En déduire que $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$ n'est pas de dimension finie.",
+      "duree_min": 20,
+      "indices": [
+        "En $a_k$, comparer les limites à droite et à gauche du taux d'accroissement de $f_k$.",
+        "Si $\\lambda_j \\neq 0$, isoler $f_j$ : c'est alors une combinaison linéaire des autres $f_k$.",
+        "Pour 4, rappeler le nombre maximal de vecteurs d'une famille libre dans un espace de dimension $d$."
+      ],
+      "correction": "1. Sur $\\left]a_k, +\\infty\\right[$, $f_k(x) = x - a_k$, et sur $\\left]-\\infty, a_k\\right[$, $f_k(x) = a_k - x$ : sur ces intervalles ouverts, $f_k$ est affine, donc dérivable. En $a_k$, le taux d'accroissement $\\frac{f_k(a_k + t) - f_k(a_k)}{t} = \\frac{|t|}{t}$ vaut $1$ pour $t > 0$ et $-1$ pour $t < 0$ : il n'a pas de limite quand $t$ tend vers $0$, donc $f_k$ n'est pas dérivable en $a_k$.\n\n2. Supposons $\\lambda_j \\neq 0$. Alors $f_j = -\\frac{1}{\\lambda_j}\\sum_{k \\neq j}\\lambda_kf_k$. Pour $k \\neq j$, on a $a_k \\neq a_j$, donc $f_k$ est dérivable en $a_j$ d'après 1 ; une combinaison linéaire de fonctions dérivables en $a_j$ est dérivable en $a_j$, donc $f_j$ le serait, ce qui contredit 1. Ainsi $\\lambda_j = 0$, et ce pour tout $j$ : la famille $(f_1, \\dots, f_n)$ est libre.\n\n3. Oui. Soit $\\lambda_1f_1 + \\dots + \\lambda_nf_n + \\mu h = 0$. La fonction $h$ est dérivable partout, donc le raisonnement de 2 s'applique sans changement : si $\\lambda_j \\neq 0$, $f_j$ serait combinaison linéaire de fonctions dérivables en $a_j$. Tous les $\\lambda_j$ sont donc nuls, puis $\\mu h = 0$, et en évaluant en $0$ on obtient $\\mu = 0$.\n\n4. Si $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$ était de dimension finie $d$, toute famille libre aurait au plus $d$ vecteurs. Or, avec $n = d + 1$ et $a_k = k$, la question 2 fournit une famille libre de $d + 1$ vecteurs : c'est impossible. Donc $\\mathcal{F}(\\mathbb{R}, \\mathbb{R})$ n'est pas de dimension finie."
+    },
+    {
+      "id": "al-l1-espaces-dimension-ex6",
+      "carte": "al-l1-espaces-dimension",
+      "difficulte": 2,
+      "titre": "Extraire une base d'une famille génératrice",
+      "enonce": "Dans $\\mathbb{R}^4$, on pose $u_1 = (1, 0, 1, 2)$, $u_2 = (0, 1, 1, 1)$, $u_3 = (1, 1, 2, 3)$ et $u_4 = (2, -1, 1, 3)$, puis $F = \\mathrm{Vect}(u_1, u_2, u_3, u_4)$.\n\nDéterminer la dimension de $F$ et une base de $F$ formée de vecteurs de la famille $(u_1, u_2, u_3, u_4)$.",
+      "duree_min": 10,
+      "indices": [
+        "Une famille génératrice finie contient une base : on peut retirer un vecteur qui est combinaison linéaire des autres sans changer l'espace engendré.",
+        "Repérer d'abord deux vecteurs non colinéaires, puis chercher si chacun des autres est combinaison linéaire de vecteurs déjà retenus, en commençant par les coordonnées où apparaissent des zéros."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la dimension de $F$ ?",
+        "propositions": [
+          "$1$",
+          "$2$",
+          "$3$",
+          "$4$"
+        ],
+        "bonne": 1
+      },
+      "correction": "Les vecteurs $u_1$ et $u_2$ ne sont pas colinéaires : $u_2 \\neq 0$, et un multiple de $u_2$ a une première coordonnée nulle, alors que celle de $u_1$ vaut $1$. La famille $(u_1, u_2)$ est donc libre.\n\nOn cherche $u_3 = \\alpha u_1 + \\beta u_2$ : les deux premières coordonnées imposent $\\alpha = 1$ et $\\beta = 1$, et l'on vérifie que $u_1 + u_2 = (1, 1, 2, 3) = u_3$. De même, pour $u_4$, les deux premières coordonnées imposent $\\alpha = 2$, $\\beta = -1$, et $2u_1 - u_2 = (2, -1, 1, 3) = u_4$.\n\nAinsi $u_3$ et $u_4$ appartiennent à $\\mathrm{Vect}(u_1, u_2)$, et $F = \\mathrm{Vect}(u_1, u_2)$. La famille $(u_1, u_2)$ est libre et engendre $F$ : c'est une base de $F$, et $\\dim F = 2$.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}^4$, on pose $u_1 = (1, 1, 0, 0)$, $u_2 = (0, 1, 1, 0)$, $u_3 = (1, 0, -1, 0)$ et $u_4 = (0, 0, 1, 1)$, puis $F = \\mathrm{Vect}(u_1, u_2, u_3, u_4)$.\n\nDéterminer la dimension de $F$ et une base de $F$ formée de vecteurs de la famille $(u_1, u_2, u_3, u_4)$.",
+          "indices": [
+            "Une famille génératrice finie contient une base : on peut retirer un vecteur qui est combinaison linéaire des autres sans changer l'espace engendré.",
+            "Repérer d'abord deux vecteurs non colinéaires, puis chercher si chacun des autres est combinaison linéaire de vecteurs déjà retenus, en commençant par les coordonnées où apparaissent des zéros."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la dimension de $F$ ?",
+            "propositions": [
+              "$2$",
+              "$4$",
+              "$1$",
+              "$3$"
+            ],
+            "bonne": 3
+          },
+          "correction": "Les vecteurs $u_1$ et $u_2$ ne sont pas colinéaires : $u_2 \\neq 0$, et un multiple de $u_2$ a une première coordonnée nulle, alors que celle de $u_1$ vaut $1$. La famille $(u_1, u_2)$ est donc libre.\n\nPour $u_3 = \\alpha u_1 + \\beta u_2$, la première coordonnée impose $\\alpha = 1$, la deuxième $\\alpha + \\beta = 0$, soit $\\beta = -1$, et l'on vérifie que $u_1 - u_2 = (1, 0, -1, 0) = u_3$. En revanche, toute combinaison linéaire de $u_1$ et $u_2$ a une quatrième coordonnée nulle, alors que celle de $u_4$ vaut $1$ : $u_4 \\notin \\mathrm{Vect}(u_1, u_2)$.\n\nLa famille $(u_1, u_2, u_4)$ est libre : si $\\lambda_1u_1 + \\lambda_2u_2 + \\lambda_4u_4 = 0$, la quatrième coordonnée donne $\\lambda_4 = 0$, puis $\\lambda_1 = \\lambda_2 = 0$ car $(u_1, u_2)$ est libre. Comme $u_3 \\in \\mathrm{Vect}(u_1, u_2)$, $F = \\mathrm{Vect}(u_1, u_2, u_4)$ : la famille $(u_1, u_2, u_4)$ est une base de $F$, et $\\dim F = 3$."
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}^4$, on pose $u_1 = (1, 2, 0, -1)$, $u_2 = (2, 4, 0, -2)$, $u_3 = (0, 1, 1, 1)$ et $u_4 = (1, 3, 1, 0)$, puis $F = \\mathrm{Vect}(u_1, u_2, u_3, u_4)$.\n\nDéterminer la dimension de $F$ et une base de $F$ formée de vecteurs de la famille $(u_1, u_2, u_3, u_4)$.",
+          "indices": [
+            "Une famille génératrice finie contient une base : on peut retirer un vecteur qui est combinaison linéaire des autres sans changer l'espace engendré.",
+            "Repérer d'abord deux vecteurs non colinéaires, puis chercher si chacun des autres est combinaison linéaire de vecteurs déjà retenus, en commençant par les coordonnées où apparaissent des zéros."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la dimension de $F$ ?",
+            "propositions": [
+              "$3$",
+              "$1$",
+              "$2$",
+              "$4$"
+            ],
+            "bonne": 2
+          },
+          "correction": "On remarque que $u_2 = 2u_1$. Les vecteurs $u_1$ et $u_3$ ne sont pas colinéaires : $u_1 \\neq 0$, et un multiple de $u_1$ a une troisième coordonnée nulle, alors que celle de $u_3$ vaut $1$. La famille $(u_1, u_3)$ est donc libre.\n\nPour $u_4 = \\alpha u_1 + \\beta u_3$, la première coordonnée impose $\\alpha = 1$ et la troisième $\\beta = 1$, et l'on vérifie que $u_1 + u_3 = (1, 3, 1, 0) = u_4$.\n\nAinsi $u_2$ et $u_4$ appartiennent à $\\mathrm{Vect}(u_1, u_3)$, et $F = \\mathrm{Vect}(u_1, u_3)$. La famille $(u_1, u_3)$ est libre et engendre $F$ : c'est une base de $F$, et $\\dim F = 2$."
+        }
+      ]
+    },
+    {
+      "id": "al-l1-espaces-inclusion-ex5",
+      "carte": "al-l1-espaces-inclusion",
+      "difficulte": 3,
+      "titre": "Un sous-espace engendré égal à un hyperplan donné",
+      "enonce": "Dans $\\mathbb{R}^4$, on considère $H = \\{(x, y, z, t) : x + 2y - z + t = 0\\}$ et, pour tout réel $a$, $F_a = \\mathrm{Vect}(u_1, u_2, u_3)$ avec $u_1 = (1, 0, 1, 0)$, $u_2 = (0, 1, 2, 0)$ et $u_3 = (1, 1, a, -1)$.\n\n1. Montrer que $H$ est un sous-espace vectoriel de dimension $3$ de $\\mathbb{R}^4$.\n\n2. Montrer que, pour tout réel $a$, la famille $(u_1, u_2, u_3)$ est libre, et en déduire $\\dim F_a$.\n\n3. Déterminer les réels $a$ pour lesquels $F_a = H$.\n\n4. Pour les autres valeurs de $a$, déterminer $\\dim(F_a \\cap H)$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la dimension de $H$, exprimer l'une des coordonnées en fonction des trois autres.",
+        "Pour la liberté, regarder la coordonnée qui n'apparaît que dans un seul des trois vecteurs.",
+        "Un sous-espace contenu dans un autre de même dimension finie lui est égal ; à l'inverse, deux sous-espaces de même dimension ne sont pas égaux pour autant."
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $a$ a-t-on $F_a = H$ ?",
+        "propositions": [
+          "Pour $a = 2$ seulement",
+          "Pour $a = -2$ seulement",
+          "Pour tout réel $a$, car $\\dim F_a = \\dim H$",
+          "Pour aucune valeur de $a$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $H$ contient $0$ et est stable par combinaison linéaire (c'est l'ensemble des solutions d'une équation linéaire homogène). Un vecteur est dans $H$ si et seulement si $z = x + 2y + t$, c'est-à-dire s'il s'écrit $x(1, 0, 1, 0) + y(0, 1, 2, 0) + t(0, 0, 1, 1)$. Ces trois vecteurs engendrent donc $H$, et ils forment une famille libre (regarder les coordonnées $x$, $y$ et $t$). Donc $\\dim H = 3$.\n\n2. La quatrième coordonnée n'est non nulle que pour $u_3$. Si $\\lambda_1u_1 + \\lambda_2u_2 + \\lambda_3u_3 = 0$, la quatrième coordonnée donne $-\\lambda_3 = 0$ ; il reste $\\lambda_1u_1 + \\lambda_2u_2 = 0$, et les deux premières coordonnées donnent $\\lambda_1 = \\lambda_2 = 0$. La famille est libre et engendre $F_a$, donc $\\dim F_a = 3$.\n\n3. Les vecteurs $u_1$ et $u_2$ vérifient l'équation de $H$. Pour $u_3$, l'équation donne $1 + 2 - a - 1 = 2 - a$, nul si et seulement si $a = 2$. Si $a = 2$, les trois vecteurs sont dans $H$, donc $F_a \\subset H$ ; comme $\\dim F_a = \\dim H = 3$, on a $F_a = H$. Si $a \\neq 2$, $u_3 \\in F_a$ mais $u_3 \\notin H$, donc $F_a \\neq H$, bien que les deux sous-espaces aient la même dimension. Ainsi $F_a = H$ si et seulement si $a = 2$.\n\n4. Soit $a \\neq 2$. L'espace $F_a + H$ contient $H$ et le vecteur $u_3 \\notin H$, donc $\\dim(F_a + H) > 3$, soit $\\dim(F_a + H) = 4$. Par la formule de Grassmann, $\\dim(F_a \\cap H) = 3 + 3 - 4 = 2$. (On retrouve que $F_a \\cap H$ contient le plan $\\mathrm{Vect}(u_1, u_2)$, donc lui est égal.)",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}^4$, on considère $H = \\{(x, y, z, t) : x - y + 2z - t = 0\\}$ et, pour tout réel $a$, $F_a = \\mathrm{Vect}(u_1, u_2, u_3)$ avec $u_1 = (1, 1, 0, 0)$, $u_2 = (0, 2, 1, 0)$ et $u_3 = (1, 0, a, 3)$.\n\n1. Montrer que $H$ est un sous-espace vectoriel de dimension $3$ de $\\mathbb{R}^4$.\n\n2. Montrer que, pour tout réel $a$, la famille $(u_1, u_2, u_3)$ est libre, et en déduire $\\dim F_a$.\n\n3. Déterminer les réels $a$ pour lesquels $F_a = H$.\n\n4. Pour les autres valeurs de $a$, déterminer $\\dim(F_a \\cap H)$.",
+          "indices": [
+            "Pour la dimension de $H$, exprimer l'une des coordonnées en fonction des trois autres.",
+            "Pour la liberté, regarder la coordonnée qui n'apparaît que dans un seul des trois vecteurs.",
+            "Un sous-espace contenu dans un autre de même dimension finie lui est égal ; à l'inverse, deux sous-espaces de même dimension ne sont pas égaux pour autant."
+          ],
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ a-t-on $F_a = H$ ?",
+            "propositions": [
+              "Pour $a = -1$ seulement",
+              "Pour $a = 1$ seulement",
+              "Pour tout réel $a$, car $\\dim F_a = \\dim H$",
+              "Pour aucune valeur de $a$"
+            ],
+            "bonne": 1
+          },
+          "correction": "1. $H$ contient $0$ et est stable par combinaison linéaire (c'est l'ensemble des solutions d'une équation linéaire homogène). Un vecteur est dans $H$ si et seulement si $t = x - y + 2z$, c'est-à-dire s'il s'écrit $x(1, 0, 0, 1) + y(0, 1, 0, -1) + z(0, 0, 1, 2)$. Ces trois vecteurs engendrent donc $H$, et ils forment une famille libre (regarder les coordonnées $x$, $y$ et $z$). Donc $\\dim H = 3$.\n\n2. La quatrième coordonnée n'est non nulle que pour $u_3$. Si $\\lambda_1u_1 + \\lambda_2u_2 + \\lambda_3u_3 = 0$, la quatrième coordonnée donne $3\\lambda_3 = 0$ ; il reste $\\lambda_1u_1 + \\lambda_2u_2 = 0$, et les première et troisième coordonnées donnent $\\lambda_1 = \\lambda_2 = 0$. La famille est libre et engendre $F_a$, donc $\\dim F_a = 3$.\n\n3. Les vecteurs $u_1$ et $u_2$ vérifient l'équation de $H$. Pour $u_3$, l'équation donne $1 - 0 + 2a - 3 = 2a - 2$, nul si et seulement si $a = 1$. Si $a = 1$, les trois vecteurs sont dans $H$, donc $F_a \\subset H$ ; comme $\\dim F_a = \\dim H = 3$, on a $F_a = H$. Si $a \\neq 1$, $u_3 \\in F_a$ mais $u_3 \\notin H$, donc $F_a \\neq H$, bien que les deux sous-espaces aient la même dimension. Ainsi $F_a = H$ si et seulement si $a = 1$.\n\n4. Soit $a \\neq 1$. L'espace $F_a + H$ contient $H$ et le vecteur $u_3 \\notin H$, donc $\\dim(F_a + H) > 3$, soit $\\dim(F_a + H) = 4$. Par la formule de Grassmann, $\\dim(F_a \\cap H) = 3 + 3 - 4 = 2$. (On retrouve que $F_a \\cap H$ contient le plan $\\mathrm{Vect}(u_1, u_2)$, donc lui est égal.)"
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}^4$, on considère $H = \\{(x, y, z, t) : 2x + y + z - 3t = 0\\}$ et, pour tout réel $a$, $F_a = \\mathrm{Vect}(u_1, u_2, u_3)$ avec $u_1 = (1, -2, 0, 0)$, $u_2 = (0, 1, -1, 0)$ et $u_3 = (2, 0, a, 1)$.\n\n1. Montrer que $H$ est un sous-espace vectoriel de dimension $3$ de $\\mathbb{R}^4$.\n\n2. Montrer que, pour tout réel $a$, la famille $(u_1, u_2, u_3)$ est libre, et en déduire $\\dim F_a$.\n\n3. Déterminer les réels $a$ pour lesquels $F_a = H$.\n\n4. Pour les autres valeurs de $a$, déterminer $\\dim(F_a \\cap H)$.",
+          "indices": [
+            "Pour la dimension de $H$, exprimer l'une des coordonnées en fonction des trois autres.",
+            "Pour la liberté, regarder la coordonnée qui n'apparaît que dans un seul des trois vecteurs.",
+            "Un sous-espace contenu dans un autre de même dimension finie lui est égal ; à l'inverse, deux sous-espaces de même dimension ne sont pas égaux pour autant."
+          ],
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $a$ a-t-on $F_a = H$ ?",
+            "propositions": [
+              "Pour $a = 1$ seulement",
+              "Pour tout réel $a$, car $\\dim F_a = \\dim H$",
+              "Pour $a = -1$ seulement",
+              "Pour aucune valeur de $a$"
+            ],
+            "bonne": 2
+          },
+          "correction": "1. $H$ contient $0$ et est stable par combinaison linéaire (c'est l'ensemble des solutions d'une équation linéaire homogène). Un vecteur est dans $H$ si et seulement si $y = -2x - z + 3t$, c'est-à-dire s'il s'écrit $x(1, -2, 0, 0) + z(0, -1, 1, 0) + t(0, 3, 0, 1)$. Ces trois vecteurs engendrent donc $H$, et ils forment une famille libre (regarder les coordonnées $x$, $z$ et $t$). Donc $\\dim H = 3$.\n\n2. La quatrième coordonnée n'est non nulle que pour $u_3$. Si $\\lambda_1u_1 + \\lambda_2u_2 + \\lambda_3u_3 = 0$, la quatrième coordonnée donne $\\lambda_3 = 0$ ; il reste $\\lambda_1u_1 + \\lambda_2u_2 = 0$, et les première et troisième coordonnées donnent $\\lambda_1 = \\lambda_2 = 0$. La famille est libre et engendre $F_a$, donc $\\dim F_a = 3$.\n\n3. Les vecteurs $u_1$ et $u_2$ vérifient l'équation de $H$. Pour $u_3$, l'équation donne $4 + 0 + a - 3 = a + 1$, nul si et seulement si $a = -1$. Si $a = -1$, les trois vecteurs sont dans $H$, donc $F_a \\subset H$ ; comme $\\dim F_a = \\dim H = 3$, on a $F_a = H$. Si $a \\neq -1$, $u_3 \\in F_a$ mais $u_3 \\notin H$, donc $F_a \\neq H$, bien que les deux sous-espaces aient la même dimension. Ainsi $F_a = H$ si et seulement si $a = -1$.\n\n4. Soit $a \\neq -1$. L'espace $F_a + H$ contient $H$ et le vecteur $u_3 \\notin H$, donc $\\dim(F_a + H) > 3$, soit $\\dim(F_a + H) = 4$. Par la formule de Grassmann, $\\dim(F_a \\cap H) = 3 + 3 - 4 = 2$. (On retrouve que $F_a \\cap H$ contient le plan $\\mathrm{Vect}(u_1, u_2)$, donc lui est égal.)"
+        }
+      ]
     }
   ]
 }

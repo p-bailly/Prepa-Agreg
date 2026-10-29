@@ -1,0 +1,93 @@
+{
+  "chapitre": "ar-l1-derivabilite",
+  "questions": [
+    {
+      "id": "ar-l1-derivabilite-q1",
+      "carte": "ar-l1-derivabilite-leibniz",
+      "genre": "choix",
+      "enonce": "Soit $f(x)=x^3e^{2x}$. Que vaut $f^{(5)}(0)$ ?",
+      "propositions": [
+        "$240$",
+        "$480$",
+        "$60$",
+        "$120$"
+      ],
+      "bonne": 0,
+      "explication": "Par la formule de Leibniz, $f^{(5)}=\\sum_{k=0}^{5}\\binom5k\\left(x^3\\right)^{(k)}\\left(e^{2x}\\right)^{(5-k)}$. En $0$, seules subsistent les dérivées de $x^3$ non nulles en $0$, c'est-à-dire $k=3$, où $\\left(x^3\\right)'''=6$. Donc $f^{(5)}(0)=\\binom53\\times6\\times2^{2}=10\\times6\\times4=240$."
+    },
+    {
+      "id": "ar-l1-derivabilite-q2",
+      "carte": "ar-l1-derivabilite-reciproque",
+      "genre": "choix",
+      "enonce": "La fonction $f(x)=x+\\sin x$ est une bijection continue strictement croissante de $\\mathbb{R}$ sur $\\mathbb{R}$, et $f(\\pi)=\\pi$. Que peut-on dire de $f^{-1}$ en $\\pi$ ?",
+      "propositions": [
+        "$f^{-1}$ n'est pas dérivable en $\\pi$",
+        "$\\left(f^{-1}\\right)'(\\pi)=\\frac12$",
+        "$\\left(f^{-1}\\right)'(\\pi)=1$",
+        "$\\left(f^{-1}\\right)'(\\pi)=0$"
+      ],
+      "bonne": 0,
+      "explication": "$f'(x)=1+\\cos x$, donc $f'(\\pi)=0$. Si $f^{-1}$ était dérivable en $\\pi$, en dérivant $f\\circ f^{-1}=\\mathrm{id}$ en $\\pi$ on obtiendrait $f'\\left(f^{-1}(\\pi)\\right)\\left(f^{-1}\\right)'(\\pi)=f'(\\pi)\\left(f^{-1}\\right)'(\\pi)=1$, c'est-à-dire $0=1$. Donc $f^{-1}$ n'est pas dérivable en $\\pi$ : sa courbe y a une tangente verticale. La formule $\\left(f^{-1}\\right)'(b)=\\frac1{f'(f^{-1}(b))}$ demande $f'\\left(f^{-1}(b)\\right)\\neq0$."
+    },
+    {
+      "id": "ar-l1-derivabilite-q3",
+      "carte": "ar-l1-derivabilite-limite-derivee",
+      "genre": "vrai-faux",
+      "enonce": "La fonction $g$ définie par $g(x)=\\frac{e^x-1}{x}$ pour $x\\neq0$ et $g(0)=1$ est de classe $C^1$ sur $\\mathbb{R}$.",
+      "vrai": true,
+      "explication": "$g$ est continue en $0$ car $\\frac{e^x-1}{x}\\to1$ (nombre dérivé de $\\exp$ en $0$), et de classe $C^1$ sur $\\mathbb{R}^*$ avec $g'(x)=\\frac{xe^x-e^x+1}{x^2}$. Comme $e^x=1+x+\\frac{x^2}2+x^2\\varepsilon(x)$ avec $\\varepsilon(x)\\to0$, le numérateur vaut $\\frac{x^2}{2}+x^2\\left(\\frac x2+x\\varepsilon(x)-\\varepsilon(x)\\right)$, donc $g'(x)\\to\\frac12$. Par le théorème de la limite de la dérivée, $g$ est dérivable en $0$ avec $g'(0)=\\frac12$, et $g'$ est continue en $0$."
+    },
+    {
+      "id": "ar-l1-derivabilite-q4",
+      "carte": "ar-l1-rolle",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ est dérivable sur $\\mathbb{R}$ et si $f'$ ne s'annule pas sur $\\mathbb{R}$, alors $f$ est injective.",
+      "vrai": true,
+      "explication": "Si l'on avait $f(a)=f(b)$ avec $a<b$, le théorème de Rolle appliqué à $f$ sur $[a,b]$ ($f$ est continue sur $[a,b]$ et dérivable sur $\\left]a,b\\right[$ puisqu'elle est dérivable sur $\\mathbb{R}$) fournirait $c\\in\\left]a,b\\right[$ tel que $f'(c)=0$, ce qui est exclu."
+    },
+    {
+      "id": "ar-l1-derivabilite-q5",
+      "carte": "ar-l1-taf",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ est dérivable sur $\\mathbb{R}$ et si $f'(x)>0$ pour tout réel $x$, alors $f(x)\\to+\\infty$ quand $x\\to+\\infty$.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $f=\\arctan$ : $f'(x)=\\frac1{1+x^2}>0$ pour tout $x$, mais $\\arctan x\\to\\frac\\pi2$ quand $x\\to+\\infty$. Une dérivée strictement positive rend $f$ strictement croissante, mais pas forcément non majorée ; il faudrait par exemple $f'\\ge m>0$ (et alors $f(x)\\ge f(0)+mx$ pour $x\\ge0$, par l'inégalité des accroissements finis)."
+    },
+    {
+      "id": "ar-l1-derivabilite-q6",
+      "carte": "ar-l1-derivabilite-continuite",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ et $g$ ne sont pas dérivables en $a$, alors $f+g$ n'est pas dérivable en $a$.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $f(x)=|x|$ et $g(x)=-|x|$ ne sont pas dérivables en $0$, mais $f+g$ est la fonction nulle, dérivable partout. En revanche, si $f$ est dérivable en $a$ et $g$ ne l'est pas, alors $f+g$ n'est pas dérivable en $a$ (sinon $g=(f+g)-f$ le serait)."
+    },
+    {
+      "id": "ar-l1-derivabilite-q7",
+      "carte": "ar-l1-taf",
+      "genre": "choix",
+      "enonce": "Pour $f(x)=\\sqrt x$ sur $[1,4]$, quel est le réel $c\\in\\left]1,4\\right[$ tel que $f(4)-f(1)=3f'(c)$ ?",
+      "propositions": [
+        "$c=\\frac94$",
+        "$c=\\frac52$",
+        "$c=2$",
+        "$c=\\frac32$"
+      ],
+      "bonne": 0,
+      "explication": "$f(4)-f(1)=2-1=1$ et $f'(c)=\\frac1{2\\sqrt c}$. L'équation $\\frac3{2\\sqrt c}=1$ donne $\\sqrt c=\\frac32$, soit $c=\\frac94$, qui est bien dans $\\left]1,4\\right[$. Le milieu $\\frac52$ de l'intervalle ne convient pas : $\\frac{3}{2\\sqrt{5/2}}\\neq1$."
+    },
+    {
+      "id": "ar-l1-derivabilite-q8",
+      "carte": "ar-l1-derivabilite-limite-derivee",
+      "genre": "choix",
+      "enonce": "Que peut-on dire de la fonction $f(x)=x|x|$ sur $\\mathbb{R}$ ?",
+      "propositions": [
+        "Elle est de classe $C^1$ sur $\\mathbb{R}$, mais pas deux fois dérivable en $0$",
+        "Elle est dérivable sur $\\mathbb{R}$, mais pas de classe $C^1$",
+        "Elle est continue en $0$, mais pas dérivable en $0$",
+        "Elle est deux fois dérivable sur $\\mathbb{R}$"
+      ],
+      "bonne": 0,
+      "explication": "$f(x)=x^2$ pour $x\\ge0$ et $f(x)=-x^2$ pour $x<0$ : $f$ est dérivable sur $\\mathbb{R}^*$ avec $f'(x)=2|x|$, et $\\frac{f(x)-f(0)}{x}=|x|\\to0$, donc $f'(0)=0$. Ainsi $f'(x)=2|x|$ pour tout $x$ : $f'$ est continue, et $f$ est de classe $C^1$. Mais $f'=2|\\cdot|$ n'est pas dérivable en $0$ (taux d'accroissement $\\pm2$ à droite et à gauche), donc $f$ n'est pas deux fois dérivable en $0$."
+    }
+  ]
+}

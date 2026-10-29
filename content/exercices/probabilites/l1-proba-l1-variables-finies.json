@@ -1271,6 +1271,189 @@
         "bonne": 0
       },
       "correction": "**1.** Les permutations qui fixent $i$ sont en bijection avec les permutations des $n-1$ autres éléments : il y en a $(n-1)!$, donc $P(A_i)=\\frac{(n-1)!}{n!}=\\frac{1}{n}$. De même, pour $i\\neq j$, $P(A_i\\cap A_j)=\\frac{(n-2)!}{n!}=\\frac{1}{n(n-1)}$.\n\n**2.** $N=\\sum_{i=1}^{n}\\mathbf{1}_{A_i}$, donc par linéarité $E(N)=\\sum_{i=1}^{n}P(A_i)=1$.\n\n**3.** $\\mathrm{Cov}\\left(\\mathbf{1}_{A_i},\\mathbf{1}_{A_j}\\right)=P(A_i\\cap A_j)-P(A_i)P(A_j)=\\frac{1}{n(n-1)}-\\frac{1}{n^2}=\\frac{1}{n^2(n-1)}$. Cette covariance n'est pas nulle, donc $A_i$ et $A_j$ ne sont pas indépendants.\n\n**4.** $V(\\mathbf{1}_{A_i})=\\frac{1}{n}\\left(1-\\frac{1}{n}\\right)=\\frac{n-1}{n^2}$, donc$$V(N)=n\\cdot\\frac{n-1}{n^2}+2\\binom{n}{2}\\frac{1}{n^2(n-1)}=\\frac{n-1}{n}+\\frac{n(n-1)}{n^2(n-1)}=\\frac{n-1}{n}+\\frac{1}{n}=1.$$Le nombre moyen de points fixes et sa variance valent tous deux $1$, quel que soit $n\\geq 2$ ; oublier les covariances donnerait $\\frac{n-1}{n}$."
+    },
+    {
+      "id": "proba-l1-variables-finies-transfert-ex5",
+      "carte": "proba-l1-variables-finies-transfert",
+      "difficulte": 2,
+      "titre": "Espérance de l'inverse d'une variable aléatoire",
+      "enonce": "Une variable aléatoire $X$ prend les valeurs $1$, $2$, $3$ et $4$, avec $P(X=k)=\\frac{k}{10}$ pour $k\\in\\{1,\\dots,4\\}$.\n1. Vérifier que l'on définit bien ainsi une loi de probabilité, puis calculer $E(X)$.\n2. Calculer $E\\left(\\frac{1}{X}\\right)$ par la formule de transfert et comparer avec $\\frac{1}{E(X)}$.",
+      "duree_min": 6,
+      "indices": [
+        "La formule de transfert donne $E\\left(f(X)\\right)=\\sum_{k}f(k)P(X=k)$, sans qu'il soit nécessaire de déterminer la loi de $f(X)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E\\left(\\frac{1}{X}\\right)$ ?",
+        "propositions": [
+          "$\\frac{2}{5}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{25}{48}$",
+          "$\\frac{1}{10}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les nombres $\\frac{k}{10}$ sont positifs et $\\frac{1+2+3+4}{10}=1$ : c'est bien une loi de probabilité. Alors $E(X)=\\sum_{k=1}^{4}k\\times\\frac{k}{10}=\\frac{1^2+2^2+3^2+4^2}{10}=\\frac{30}{10}=3$.\n\n**2.** Par la formule de transfert,\n$$E\\left(\\frac{1}{X}\\right)=\\sum_{k=1}^{4}\\frac{1}{k}\\times\\frac{k}{10}=\\frac{4}{10}=\\frac{2}{5}.$$\nComme $\\frac{1}{E(X)}=\\frac{1}{3}$, on a $E\\left(\\frac{1}{X}\\right)\\neq\\frac{1}{E(X)}$ (ici $\\frac{2}{5}>\\frac{1}{3}$) : l'espérance ne commute pas avec une fonction qui n'est pas affine.",
+      "variantes": [
+        {
+          "enonce": "Une variable aléatoire $X$ prend les valeurs $1$, $2$, $3$, $4$ et $5$, avec $P(X=k)=\\frac{k}{15}$ pour $k\\in\\{1,\\dots,5\\}$.\n1. Vérifier que l'on définit bien ainsi une loi de probabilité, puis calculer $E(X)$.\n2. Calculer $E\\left(\\frac{1}{X}\\right)$ par la formule de transfert et comparer avec $\\frac{1}{E(X)}$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(\\frac{1}{X}\\right)$ ?",
+            "propositions": [
+              "$\\frac{1}{3}$",
+              "$\\frac{3}{11}$",
+              "$\\frac{137}{300}$",
+              "$\\frac{1}{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les nombres $\\frac{k}{15}$ sont positifs et $\\frac{1+2+3+4+5}{15}=1$ : c'est bien une loi de probabilité. Alors $E(X)=\\sum_{k=1}^{5}k\\times\\frac{k}{15}=\\frac{1^2+2^2+3^2+4^2+5^2}{15}=\\frac{55}{15}=\\frac{11}{3}$.\n\n**2.** Par la formule de transfert,\n$$E\\left(\\frac{1}{X}\\right)=\\sum_{k=1}^{5}\\frac{1}{k}\\times\\frac{k}{15}=\\frac{5}{15}=\\frac{1}{3}.$$\nComme $\\frac{1}{E(X)}=\\frac{3}{11}$, on a $E\\left(\\frac{1}{X}\\right)\\neq\\frac{1}{E(X)}$ (ici $\\frac{1}{3}>\\frac{3}{11}$) : l'espérance ne commute pas avec une fonction qui n'est pas affine.",
+          "indices": [
+            "La formule de transfert donne $E\\left(f(X)\\right)=\\sum_{k}f(k)P(X=k)$, sans qu'il soit nécessaire de déterminer la loi de $f(X)$."
+          ]
+        },
+        {
+          "enonce": "Une variable aléatoire $X$ prend les valeurs $1$, $2$, $3$, $4$, $5$ et $6$, avec $P(X=k)=\\frac{k}{21}$ pour $k\\in\\{1,\\dots,6\\}$.\n1. Vérifier que l'on définit bien ainsi une loi de probabilité, puis calculer $E(X)$.\n2. Calculer $E\\left(\\frac{1}{X}\\right)$ par la formule de transfert et comparer avec $\\frac{1}{E(X)}$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(\\frac{1}{X}\\right)$ ?",
+            "propositions": [
+              "$\\frac{2}{7}$",
+              "$\\frac{3}{13}$",
+              "$\\frac{49}{120}$",
+              "$\\frac{1}{21}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les nombres $\\frac{k}{21}$ sont positifs et $\\frac{1+2+3+4+5+6}{21}=1$ : c'est bien une loi de probabilité. Alors $E(X)=\\sum_{k=1}^{6}k\\times\\frac{k}{21}=\\frac{1^2+2^2+3^2+4^2+5^2+6^2}{21}=\\frac{91}{21}=\\frac{13}{3}$.\n\n**2.** Par la formule de transfert,\n$$E\\left(\\frac{1}{X}\\right)=\\sum_{k=1}^{6}\\frac{1}{k}\\times\\frac{k}{21}=\\frac{6}{21}=\\frac{2}{7}.$$\nComme $\\frac{1}{E(X)}=\\frac{3}{13}$, on a $E\\left(\\frac{1}{X}\\right)\\neq\\frac{1}{E(X)}$ (ici $\\frac{2}{7}>\\frac{3}{13}$) : l'espérance ne commute pas avec une fonction qui n'est pas affine.",
+          "indices": [
+            "La formule de transfert donne $E\\left(f(X)\\right)=\\sum_{k}f(k)P(X=k)$, sans qu'il soit nécessaire de déterminer la loi de $f(X)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-independance-ex5",
+      "carte": "proba-l1-variables-finies-independance",
+      "difficulte": 3,
+      "titre": "Couleur et numéro d'une boule : quand sont-ils indépendants ?",
+      "enonce": "Une urne contient $4$ boules rouges numérotées $1$, $2$, $3$ et $4$, et $n$ boules bleues numérotées de $1$ à $n$, où $n\\geq 1$. On tire une boule au hasard, toutes les boules ayant la même probabilité d'être tirées. On note $X$ la variable qui vaut $1$ si la boule tirée est rouge et $0$ sinon, et $Y$ celle qui vaut $1$ si son numéro est pair et $0$ sinon.\n1. Calculer $P(X=1)$ et $P(X=1,Y=1)$, puis exprimer $P(Y=1)$ à l'aide de la partie entière $\\left\\lfloor\\frac{n}{2}\\right\\rfloor$.\n2. Montrer que $X$ et $Y$ sont indépendantes si et seulement si $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n3. Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+      "duree_min": 12,
+      "indices": [
+        "Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{2}\\right\\rfloor$ nombres pairs.",
+        "Pour la question 2, se souvenir que l'indépendance de deux événements entraîne celle de chacun avec le contraire de l'autre, et celle de leurs contraires."
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+        "propositions": [
+          "Pour $n$ pair",
+          "Pour $n$ impair",
+          "Pour $n$ multiple de $4$",
+          "Pour aucune valeur de $n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** L'urne contient $n+4$ boules équiprobables, donc $P(X=1)=\\frac{4}{n+4}$. Les boules rouges de numéro pair sont les boules $2$ et $4$, donc $P(X=1,Y=1)=\\frac{2}{n+4}$. Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{2}\\right\\rfloor$ nombres pairs, donc $P(Y=1)=\\frac{2+\\left\\lfloor\\frac{n}{2}\\right\\rfloor}{n+4}$.\n\n**2.** Les variables $X$ et $Y$, à valeurs dans $\\{0,1\\}$, sont indépendantes si et seulement si $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour $x$ et $y$ dans $\\{0,1\\}$, c'est-à-dire si et seulement si les événements $\\{X=1\\}$ et $\\{Y=1\\}$ sont indépendants, ainsi que $\\{X=1\\}$ et $\\{Y=0\\}$, $\\{X=0\\}$ et $\\{Y=1\\}$, $\\{X=0\\}$ et $\\{Y=0\\}$. Or, si deux événements sont indépendants, chacun est indépendant du contraire de l'autre et leurs contraires sont indépendants : les quatre conditions se ramènent donc à la première, $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n\n**3.** D'après les questions 1 et 2, $X$ et $Y$ sont indépendantes si et seulement si\n$$\\frac{2}{n+4}=\\frac{4}{n+4}\\times\\frac{2+\\left\\lfloor\\frac{n}{2}\\right\\rfloor}{n+4},$$\nsoit $2(n+4)=4\\left(2+\\left\\lfloor\\frac{n}{2}\\right\\rfloor\\right)$, c'est-à-dire $2n=4\\left\\lfloor\\frac{n}{2}\\right\\rfloor$, ou encore $n=2\\left\\lfloor\\frac{n}{2}\\right\\rfloor$. Or l'égalité $n=2\\left\\lfloor\\frac{n}{2}\\right\\rfloor$ a lieu si et seulement si $n$ est pair : $X$ et $Y$ sont indépendantes exactement quand $n$ est pair. Par exemple, pour $n=1$, $P(X=1,Y=1)=\\frac{2}{5}$ alors que $P(X=1)P(Y=1)=\\frac{4}{5}\\times\\frac{2}{5}=\\frac{8}{25}$. Pour $n$ pair, la proportion de numéros pairs vaut $\\frac{1}{2}$ chez les boules rouges comme chez les bleues.",
+      "variantes": [
+        {
+          "enonce": "Une urne contient $6$ boules rouges numérotées $1$, $2$, $3$, $4$, $5$ et $6$, et $n$ boules bleues numérotées de $1$ à $n$, où $n\\geq 1$. On tire une boule au hasard, toutes les boules ayant la même probabilité d'être tirées. On note $X$ la variable qui vaut $1$ si la boule tirée est rouge et $0$ sinon, et $Y$ celle qui vaut $1$ si son numéro est multiple de $3$ et $0$ sinon.\n1. Calculer $P(X=1)$ et $P(X=1,Y=1)$, puis exprimer $P(Y=1)$ à l'aide de la partie entière $\\left\\lfloor\\frac{n}{3}\\right\\rfloor$.\n2. Montrer que $X$ et $Y$ sont indépendantes si et seulement si $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n3. Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+            "propositions": [
+              "Pour $n$ multiple de $3$",
+              "Pour $n$ multiple de $6$",
+              "Pour $n$ non multiple de $3$",
+              "Pour aucune valeur de $n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** L'urne contient $n+6$ boules équiprobables, donc $P(X=1)=\\frac{6}{n+6}$. Les boules rouges de numéro multiple de $3$ sont les boules $3$ et $6$, donc $P(X=1,Y=1)=\\frac{2}{n+6}$. Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{3}\\right\\rfloor$ nombres multiples de $3$, donc $P(Y=1)=\\frac{2+\\left\\lfloor\\frac{n}{3}\\right\\rfloor}{n+6}$.\n\n**2.** Les variables $X$ et $Y$, à valeurs dans $\\{0,1\\}$, sont indépendantes si et seulement si $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour $x$ et $y$ dans $\\{0,1\\}$, c'est-à-dire si et seulement si les événements $\\{X=1\\}$ et $\\{Y=1\\}$ sont indépendants, ainsi que $\\{X=1\\}$ et $\\{Y=0\\}$, $\\{X=0\\}$ et $\\{Y=1\\}$, $\\{X=0\\}$ et $\\{Y=0\\}$. Or, si deux événements sont indépendants, chacun est indépendant du contraire de l'autre et leurs contraires sont indépendants : les quatre conditions se ramènent donc à la première, $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n\n**3.** D'après les questions 1 et 2, $X$ et $Y$ sont indépendantes si et seulement si\n$$\\frac{2}{n+6}=\\frac{6}{n+6}\\times\\frac{2+\\left\\lfloor\\frac{n}{3}\\right\\rfloor}{n+6},$$\nsoit $2(n+6)=6\\left(2+\\left\\lfloor\\frac{n}{3}\\right\\rfloor\\right)$, c'est-à-dire $2n=6\\left\\lfloor\\frac{n}{3}\\right\\rfloor$, ou encore $n=3\\left\\lfloor\\frac{n}{3}\\right\\rfloor$. Or l'égalité $n=3\\left\\lfloor\\frac{n}{3}\\right\\rfloor$ a lieu si et seulement si $n$ est multiple de $3$ : $X$ et $Y$ sont indépendantes exactement quand $n$ est multiple de $3$. Par exemple, pour $n=1$, $P(X=1,Y=1)=\\frac{2}{7}$ alors que $P(X=1)P(Y=1)=\\frac{6}{7}\\times\\frac{2}{7}=\\frac{12}{49}$. Pour $n$ multiple de $3$, la proportion de multiples de $3$ vaut $\\frac{1}{3}$ chez les boules rouges comme chez les bleues.",
+          "indices": [
+            "Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{3}\\right\\rfloor$ nombres multiples de $3$.",
+            "Pour la question 2, se souvenir que l'indépendance de deux événements entraîne celle de chacun avec le contraire de l'autre, et celle de leurs contraires."
+          ]
+        },
+        {
+          "enonce": "Une urne contient $5$ boules rouges numérotées $1$, $2$, $3$, $4$ et $5$, et $n$ boules bleues numérotées de $1$ à $n$, où $n\\geq 1$. On tire une boule au hasard, toutes les boules ayant la même probabilité d'être tirées. On note $X$ la variable qui vaut $1$ si la boule tirée est rouge et $0$ sinon, et $Y$ celle qui vaut $1$ si son numéro est multiple de $5$ et $0$ sinon.\n1. Calculer $P(X=1)$ et $P(X=1,Y=1)$, puis exprimer $P(Y=1)$ à l'aide de la partie entière $\\left\\lfloor\\frac{n}{5}\\right\\rfloor$.\n2. Montrer que $X$ et $Y$ sont indépendantes si et seulement si $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n3. Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+          "reponse_finale": {
+            "question": "Pour quelles valeurs de $n$ les variables $X$ et $Y$ sont-elles indépendantes ?",
+            "propositions": [
+              "Pour $n$ multiple de $5$",
+              "Pour $n$ multiple de $10$",
+              "Pour $n=5$ seulement",
+              "Pour aucune valeur de $n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** L'urne contient $n+5$ boules équiprobables, donc $P(X=1)=\\frac{5}{n+5}$. La seule boule rouge de numéro multiple de $5$ est la boule $5$, donc $P(X=1,Y=1)=\\frac{1}{n+5}$. Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{5}\\right\\rfloor$ nombres multiples de $5$, donc $P(Y=1)=\\frac{1+\\left\\lfloor\\frac{n}{5}\\right\\rfloor}{n+5}$.\n\n**2.** Les variables $X$ et $Y$, à valeurs dans $\\{0,1\\}$, sont indépendantes si et seulement si $P(X=x,Y=y)=P(X=x)P(Y=y)$ pour $x$ et $y$ dans $\\{0,1\\}$, c'est-à-dire si et seulement si les événements $\\{X=1\\}$ et $\\{Y=1\\}$ sont indépendants, ainsi que $\\{X=1\\}$ et $\\{Y=0\\}$, $\\{X=0\\}$ et $\\{Y=1\\}$, $\\{X=0\\}$ et $\\{Y=0\\}$. Or, si deux événements sont indépendants, chacun est indépendant du contraire de l'autre et leurs contraires sont indépendants : les quatre conditions se ramènent donc à la première, $P(X=1,Y=1)=P(X=1)P(Y=1)$.\n\n**3.** D'après les questions 1 et 2, $X$ et $Y$ sont indépendantes si et seulement si\n$$\\frac{1}{n+5}=\\frac{5}{n+5}\\times\\frac{1+\\left\\lfloor\\frac{n}{5}\\right\\rfloor}{n+5},$$\nsoit $n+5=5\\left(1+\\left\\lfloor\\frac{n}{5}\\right\\rfloor\\right)$, c'est-à-dire $n=5\\left\\lfloor\\frac{n}{5}\\right\\rfloor$. Or l'égalité $n=5\\left\\lfloor\\frac{n}{5}\\right\\rfloor$ a lieu si et seulement si $n$ est multiple de $5$ : $X$ et $Y$ sont indépendantes exactement quand $n$ est multiple de $5$. Par exemple, pour $n=1$, $P(X=1,Y=1)=\\frac{1}{6}$ alors que $P(X=1)P(Y=1)=\\frac{5}{6}\\times\\frac{1}{6}=\\frac{5}{36}$. Pour $n$ multiple de $5$, la proportion de multiples de $5$ vaut $\\frac{1}{5}$ chez les boules rouges comme chez les bleues.",
+          "indices": [
+            "Parmi les entiers de $1$ à $n$, il y a $\\left\\lfloor\\frac{n}{5}\\right\\rfloor$ nombres multiples de $5$.",
+            "Pour la question 2, se souvenir que l'indépendance de deux événements entraîne celle de chacun avec le contraire de l'autre, et celle de leurs contraires."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l1-variables-finies-couples-ex5",
+      "carte": "proba-l1-variables-finies-couples",
+      "difficulte": 4,
+      "titre": "Écart entre deux numéros tirés avec remise",
+      "enonce": "Soit $n\\geq 2$ un entier. On tire successivement et avec remise deux numéros dans $\\{1,\\dots,n\\}$ ; on note $X$ le premier et $Y$ le second. Les variables $X$ et $Y$ sont indépendantes et suivent la loi uniforme sur $\\{1,\\dots,n\\}$. On pose $D=|X-Y|$.\n1. Déterminer la loi conjointe du couple $(X,Y)$, puis calculer $P(X=Y)$.\n2. Montrer que $P(X<Y)=P(X>Y)$ et en déduire $P(X<Y)$.\n3. Montrer que $P(D=0)=\\frac{1}{n}$ et que, pour $1\\leq k\\leq n-1$, $P(D=k)=\\frac{2(n-k)}{n^2}$.\n4. En déduire que $E(D)=\\frac{n^2-1}{3n}$.\n5. Application : on lance deux fois, indépendamment, un dé équilibré à $6$ faces numérotées de $1$ à $6$. Calculer l'espérance de l'écart entre les deux résultats.",
+      "duree_min": 25,
+      "indices": [
+        "La loi conjointe est uniforme sur $\\{1,\\dots,n\\}^2$ : calculer une probabilité revient à compter des couples.",
+        "Pour la question 3, compter les couples $(x,y)$ tels que $y=x+k$, puis ceux tels que $x=y+k$.",
+        "Pour la question 4, utiliser $\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}{2}$ et $\\sum_{k=1}^{n-1}k^2=\\frac{(n-1)n(2n-1)}{6}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'espérance demandée à la question 5 ?",
+        "propositions": [
+          "$\\frac{35}{18}$",
+          "$0$",
+          "$\\frac{5}{2}$",
+          "$\\frac{35}{36}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par indépendance, pour tout $(x,y)\\in\\{1,\\dots,n\\}^2$, $P(X=x,Y=y)=P(X=x)P(Y=y)=\\frac{1}{n^2}$ : la loi conjointe est uniforme sur les $n^2$ couples. L'événement $\\{X=Y\\}$ est formé des $n$ couples $(x,x)$, donc $P(X=Y)=\\frac{n}{n^2}=\\frac{1}{n}$.\n\n**2.** L'application $(x,y)\\mapsto(y,x)$ est une bijection de l'ensemble des couples tels que $x<y$ sur l'ensemble des couples tels que $x>y$ ; ces deux ensembles ont donc le même cardinal et, la loi conjointe étant uniforme, $P(X<Y)=P(X>Y)$. Les événements $\\{X<Y\\}$, $\\{X=Y\\}$ et $\\{X>Y\\}$ forment un système complet, donc $2P(X<Y)+\\frac{1}{n}=1$ et $P(X<Y)=\\frac{n-1}{2n}$.\n\n**3.** $\\{D=0\\}=\\{X=Y\\}$, de probabilité $\\frac{1}{n}$. Pour $1\\leq k\\leq n-1$, $\\{D=k\\}$ est la réunion des événements disjoints $\\{Y=X+k\\}$ et $\\{X=Y+k\\}$. Les couples $(x,x+k)$ de $\\{1,\\dots,n\\}^2$ sont ceux pour lesquels $1\\leq x\\leq n-k$ : il y en a $n-k$, et de même pour les couples $(y+k,y)$. Donc $P(D=k)=\\frac{2(n-k)}{n^2}$. Vérification : $\\frac{1}{n}+\\sum_{k=1}^{n-1}\\frac{2(n-k)}{n^2}=\\frac{1}{n}+\\frac{2}{n^2}\\times\\frac{n(n-1)}{2}=1$.\n\n**4.** Par définition de l'espérance,\n$$E(D)=\\sum_{k=1}^{n-1}k\\,\\frac{2(n-k)}{n^2}=\\frac{2}{n^2}\\left(n\\sum_{k=1}^{n-1}k-\\sum_{k=1}^{n-1}k^2\\right)=\\frac{2}{n^2}\\left(\\frac{n^2(n-1)}{2}-\\frac{(n-1)n(2n-1)}{6}\\right).$$\nEn factorisant par $\\frac{n(n-1)}{6}$, $E(D)=\\frac{2}{n^2}\\times\\frac{n(n-1)}{6}\\left(3n-(2n-1)\\right)=\\frac{(n-1)(n+1)}{3n}=\\frac{n^2-1}{3n}$.\n\n**5.** Les deux résultats sont indépendants et uniformes sur $\\{1,\\dots,6\\}$ : c'est le cas $n=6$, et l'espérance de l'écart vaut $\\frac{6^2-1}{3\\times 6}=\\frac{35}{18}\\approx 1{,}94$.",
+      "variantes": [
+        {
+          "enonce": "Soit $n\\geq 2$ un entier. On tire successivement et avec remise deux numéros dans $\\{1,\\dots,n\\}$ ; on note $X$ le premier et $Y$ le second. Les variables $X$ et $Y$ sont indépendantes et suivent la loi uniforme sur $\\{1,\\dots,n\\}$. On pose $D=|X-Y|$.\n1. Déterminer la loi conjointe du couple $(X,Y)$, puis calculer $P(X=Y)$.\n2. Montrer que $P(X<Y)=P(X>Y)$ et en déduire $P(X<Y)$.\n3. Montrer que $P(D=0)=\\frac{1}{n}$ et que, pour $1\\leq k\\leq n-1$, $P(D=k)=\\frac{2(n-k)}{n^2}$.\n4. En déduire que $E(D)=\\frac{n^2-1}{3n}$.\n5. Application : on lance deux fois, indépendamment, un dé équilibré à $4$ faces numérotées de $1$ à $4$. Calculer l'espérance de l'écart entre les deux résultats.",
+          "reponse_finale": {
+            "question": "Que vaut l'espérance demandée à la question 5 ?",
+            "propositions": [
+              "$\\frac{5}{4}$",
+              "$0$",
+              "$\\frac{3}{2}$",
+              "$\\frac{5}{8}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par indépendance, pour tout $(x,y)\\in\\{1,\\dots,n\\}^2$, $P(X=x,Y=y)=P(X=x)P(Y=y)=\\frac{1}{n^2}$ : la loi conjointe est uniforme sur les $n^2$ couples. L'événement $\\{X=Y\\}$ est formé des $n$ couples $(x,x)$, donc $P(X=Y)=\\frac{n}{n^2}=\\frac{1}{n}$.\n\n**2.** L'application $(x,y)\\mapsto(y,x)$ est une bijection de l'ensemble des couples tels que $x<y$ sur l'ensemble des couples tels que $x>y$ ; ces deux ensembles ont donc le même cardinal et, la loi conjointe étant uniforme, $P(X<Y)=P(X>Y)$. Les événements $\\{X<Y\\}$, $\\{X=Y\\}$ et $\\{X>Y\\}$ forment un système complet, donc $2P(X<Y)+\\frac{1}{n}=1$ et $P(X<Y)=\\frac{n-1}{2n}$.\n\n**3.** $\\{D=0\\}=\\{X=Y\\}$, de probabilité $\\frac{1}{n}$. Pour $1\\leq k\\leq n-1$, $\\{D=k\\}$ est la réunion des événements disjoints $\\{Y=X+k\\}$ et $\\{X=Y+k\\}$. Les couples $(x,x+k)$ de $\\{1,\\dots,n\\}^2$ sont ceux pour lesquels $1\\leq x\\leq n-k$ : il y en a $n-k$, et de même pour les couples $(y+k,y)$. Donc $P(D=k)=\\frac{2(n-k)}{n^2}$. Vérification : $\\frac{1}{n}+\\sum_{k=1}^{n-1}\\frac{2(n-k)}{n^2}=\\frac{1}{n}+\\frac{2}{n^2}\\times\\frac{n(n-1)}{2}=1$.\n\n**4.** Par définition de l'espérance,\n$$E(D)=\\sum_{k=1}^{n-1}k\\,\\frac{2(n-k)}{n^2}=\\frac{2}{n^2}\\left(n\\sum_{k=1}^{n-1}k-\\sum_{k=1}^{n-1}k^2\\right)=\\frac{2}{n^2}\\left(\\frac{n^2(n-1)}{2}-\\frac{(n-1)n(2n-1)}{6}\\right).$$\nEn factorisant par $\\frac{n(n-1)}{6}$, $E(D)=\\frac{2}{n^2}\\times\\frac{n(n-1)}{6}\\left(3n-(2n-1)\\right)=\\frac{(n-1)(n+1)}{3n}=\\frac{n^2-1}{3n}$.\n\n**5.** Les deux résultats sont indépendants et uniformes sur $\\{1,\\dots,4\\}$ : c'est le cas $n=4$, et l'espérance de l'écart vaut $\\frac{4^2-1}{3\\times 4}=\\frac{15}{12}=\\frac{5}{4}$.",
+          "indices": [
+            "La loi conjointe est uniforme sur $\\{1,\\dots,n\\}^2$ : calculer une probabilité revient à compter des couples.",
+            "Pour la question 3, compter les couples $(x,y)$ tels que $y=x+k$, puis ceux tels que $x=y+k$.",
+            "Pour la question 4, utiliser $\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}{2}$ et $\\sum_{k=1}^{n-1}k^2=\\frac{(n-1)n(2n-1)}{6}$."
+          ]
+        },
+        {
+          "enonce": "Soit $n\\geq 2$ un entier. On tire successivement et avec remise deux numéros dans $\\{1,\\dots,n\\}$ ; on note $X$ le premier et $Y$ le second. Les variables $X$ et $Y$ sont indépendantes et suivent la loi uniforme sur $\\{1,\\dots,n\\}$. On pose $D=|X-Y|$.\n1. Déterminer la loi conjointe du couple $(X,Y)$, puis calculer $P(X=Y)$.\n2. Montrer que $P(X<Y)=P(X>Y)$ et en déduire $P(X<Y)$.\n3. Montrer que $P(D=0)=\\frac{1}{n}$ et que, pour $1\\leq k\\leq n-1$, $P(D=k)=\\frac{2(n-k)}{n^2}$.\n4. En déduire que $E(D)=\\frac{n^2-1}{3n}$.\n5. Application : on tire deux fois, avec remise, une carte au hasard parmi $10$ cartes numérotées de $1$ à $10$. Calculer l'espérance de l'écart entre les deux numéros obtenus.",
+          "reponse_finale": {
+            "question": "Que vaut l'espérance demandée à la question 5 ?",
+            "propositions": [
+              "$\\frac{33}{10}$",
+              "$0$",
+              "$\\frac{9}{2}$",
+              "$\\frac{33}{20}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Par indépendance, pour tout $(x,y)\\in\\{1,\\dots,n\\}^2$, $P(X=x,Y=y)=P(X=x)P(Y=y)=\\frac{1}{n^2}$ : la loi conjointe est uniforme sur les $n^2$ couples. L'événement $\\{X=Y\\}$ est formé des $n$ couples $(x,x)$, donc $P(X=Y)=\\frac{n}{n^2}=\\frac{1}{n}$.\n\n**2.** L'application $(x,y)\\mapsto(y,x)$ est une bijection de l'ensemble des couples tels que $x<y$ sur l'ensemble des couples tels que $x>y$ ; ces deux ensembles ont donc le même cardinal et, la loi conjointe étant uniforme, $P(X<Y)=P(X>Y)$. Les événements $\\{X<Y\\}$, $\\{X=Y\\}$ et $\\{X>Y\\}$ forment un système complet, donc $2P(X<Y)+\\frac{1}{n}=1$ et $P(X<Y)=\\frac{n-1}{2n}$.\n\n**3.** $\\{D=0\\}=\\{X=Y\\}$, de probabilité $\\frac{1}{n}$. Pour $1\\leq k\\leq n-1$, $\\{D=k\\}$ est la réunion des événements disjoints $\\{Y=X+k\\}$ et $\\{X=Y+k\\}$. Les couples $(x,x+k)$ de $\\{1,\\dots,n\\}^2$ sont ceux pour lesquels $1\\leq x\\leq n-k$ : il y en a $n-k$, et de même pour les couples $(y+k,y)$. Donc $P(D=k)=\\frac{2(n-k)}{n^2}$. Vérification : $\\frac{1}{n}+\\sum_{k=1}^{n-1}\\frac{2(n-k)}{n^2}=\\frac{1}{n}+\\frac{2}{n^2}\\times\\frac{n(n-1)}{2}=1$.\n\n**4.** Par définition de l'espérance,\n$$E(D)=\\sum_{k=1}^{n-1}k\\,\\frac{2(n-k)}{n^2}=\\frac{2}{n^2}\\left(n\\sum_{k=1}^{n-1}k-\\sum_{k=1}^{n-1}k^2\\right)=\\frac{2}{n^2}\\left(\\frac{n^2(n-1)}{2}-\\frac{(n-1)n(2n-1)}{6}\\right).$$\nEn factorisant par $\\frac{n(n-1)}{6}$, $E(D)=\\frac{2}{n^2}\\times\\frac{n(n-1)}{6}\\left(3n-(2n-1)\\right)=\\frac{(n-1)(n+1)}{3n}=\\frac{n^2-1}{3n}$.\n\n**5.** Les deux numéros sont indépendants et uniformes sur $\\{1,\\dots,10\\}$ : c'est le cas $n=10$, et l'espérance de l'écart vaut $\\frac{10^2-1}{3\\times 10}=\\frac{99}{30}=\\frac{33}{10}$.",
+          "indices": [
+            "La loi conjointe est uniforme sur $\\{1,\\dots,n\\}^2$ : calculer une probabilité revient à compter des couples.",
+            "Pour la question 3, compter les couples $(x,y)$ tels que $y=x+k$, puis ceux tels que $x=y+k$.",
+            "Pour la question 4, utiliser $\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}{2}$ et $\\sum_{k=1}^{n-1}k^2=\\frac{(n-1)n(2n-1)}{6}$."
+          ]
+        }
+      ]
     }
   ]
 }

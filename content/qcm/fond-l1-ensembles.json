@@ -1,0 +1,99 @@
+{
+  "chapitre": "fond-l1-ensembles",
+  "questions": [
+    {
+      "id": "fond-l1-ensembles-q1",
+      "carte": "fond-l1-ensembles-composition",
+      "genre": "choix",
+      "enonce": "On considère l'application $f : \\mathbb{N}^2 \\to \\mathbb{N}$, $(p, q) \\mapsto p + q$. Quelle affirmation est vraie ?",
+      "propositions": [
+        "$f$ est surjective mais pas injective.",
+        "$f$ est injective mais pas surjective.",
+        "$f$ est bijective.",
+        "$f$ n'est ni injective ni surjective."
+      ],
+      "bonne": 0,
+      "explication": "Tout $n \\in \\mathbb{N}$ s'écrit $n = f(n, 0)$ : $f$ est surjective. Mais $f(1, 0) = f(0, 1) = 1$ alors que $(1, 0) \\neq (0, 1)$ : $f$ n'est pas injective."
+    },
+    {
+      "id": "fond-l1-ensembles-q2",
+      "carte": "fond-l1-ensembles-composition",
+      "genre": "choix",
+      "enonce": "On considère $f : \\mathbb{N} \\to \\mathbb{N}$, $n \\mapsto 2n$, et $g : \\mathbb{N} \\to \\mathbb{N}$, $n \\mapsto \\left\\lfloor \\frac{n}{2} \\right\\rfloor$ (partie entière de $\\frac{n}{2}$). Quelle affirmation est vraie ?",
+      "propositions": [
+        "$g \\circ f = \\mathrm{id}_{\\mathbb{N}}$ et $f \\circ g \\neq \\mathrm{id}_{\\mathbb{N}}$",
+        "$f \\circ g = \\mathrm{id}_{\\mathbb{N}}$ et $g \\circ f \\neq \\mathrm{id}_{\\mathbb{N}}$",
+        "$g \\circ f = f \\circ g = \\mathrm{id}_{\\mathbb{N}}$",
+        "Ni $g \\circ f$ ni $f \\circ g$ n'est égale à $\\mathrm{id}_{\\mathbb{N}}$"
+      ],
+      "bonne": 0,
+      "explication": "Pour tout $n$, $g(f(n)) = \\left\\lfloor \\frac{2n}{2} \\right\\rfloor = n$ : $g \\circ f = \\mathrm{id}_{\\mathbb{N}}$, ce qui prouve au passage que $f$ est injective et $g$ surjective. Mais $f(g(1)) = f(0) = 0 \\neq 1$ : $f \\circ g \\neq \\mathrm{id}_{\\mathbb{N}}$. Aucune des deux n'est bijective : $1$ n'a pas d'antécédent par $f$, et $g(0) = g(1)$."
+    },
+    {
+      "id": "fond-l1-ensembles-q3",
+      "carte": "fond-l1-ensembles-equivalence",
+      "genre": "choix",
+      "enonce": "Sur $\\mathbb{R}$, on considère la relation d'équivalence définie par $x \\mathrel{\\mathcal{R}} y \\iff x - y \\in \\mathbb{Z}$. Laquelle de ces parties de $\\mathbb{R}$ contient exactement un élément de chaque classe d'équivalence ?",
+      "propositions": [
+        "$\\left[0, 1\\right[$",
+        "$\\left[0, 1\\right]$",
+        "$\\left]0, 1\\right[$",
+        "$\\mathbb{Z}$"
+      ],
+      "bonne": 0,
+      "explication": "Pour $x \\in \\mathbb{R}$, le réel $x - \\lfloor x \\rfloor$ appartient à $\\left[0, 1\\right[$ et à la classe de $x$. Deux éléments distincts de $\\left[0, 1\\right[$ diffèrent d'un réel de $\\left]-1, 1\\right[$ non nul, qui n'est pas un entier : ils ne sont pas équivalents. Chaque classe a donc exactement un représentant dans $\\left[0, 1\\right[$. En revanche, $\\left[0, 1\\right]$ contient $0$ et $1$, qui sont dans la même classe ; $\\left]0, 1\\right[$ ne rencontre pas la classe de $0$, qui est $\\mathbb{Z}$ ; et $\\mathbb{Z}$ est une seule classe."
+    },
+    {
+      "id": "fond-l1-ensembles-q4",
+      "carte": "fond-l1-ensembles-recurrence-forte",
+      "genre": "vrai-faux",
+      "enonce": "Soit $(u_n)_{n \\in \\mathbb{N}}$ la suite définie par $u_0 = u_1 = 1$ et $u_{n+2} = u_{n+1} + u_n$ pour tout $n \\in \\mathbb{N}$. Alors $u_n \\leq 2^n$ pour tout $n \\in \\mathbb{N}$.",
+      "vrai": true,
+      "explication": "**Vrai**, par récurrence forte. On a $u_0 = 1 \\leq 2^0$ et $u_1 = 1 \\leq 2^1$. Soit $n \\geq 1$ tel que $u_k \\leq 2^k$ pour tout $k \\leq n$ ; alors $u_{n+1} = u_n + u_{n-1} \\leq 2^n + 2^{n-1} \\leq 2^n + 2^n = 2^{n+1}$."
+    },
+    {
+      "id": "fond-l1-ensembles-q5",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "genre": "vrai-faux",
+      "enonce": "Parmi cinq entiers deux à deux distincts quelconques, il y en a toujours deux dont la somme est divisible par $5$.",
+      "vrai": false,
+      "explication": "**Faux.** Contre-exemple : $1, 6, 11, 16, 21$. Ils sont tous congrus à $1$ modulo $5$, donc la somme de deux d'entre eux est congrue à $2$ modulo $5$. Le principe des tiroirs donne en revanche, parmi six entiers quelconques, deux dont la différence est divisible par $5$ ($6$ entiers pour $5$ restes possibles)."
+    },
+    {
+      "id": "fond-l1-ensembles-q6",
+      "carte": "fond-l1-ensembles-tiroirs",
+      "genre": "choix",
+      "enonce": "Un tiroir contient $10$ chaussettes noires, $8$ blanches et $6$ grises. Combien faut-il en tirer au minimum, sans regarder, pour être certain d'en avoir au moins trois de la même couleur ?",
+      "propositions": [
+        "$7$",
+        "$6$",
+        "$9$",
+        "$4$"
+      ],
+      "bonne": 0,
+      "explication": "Avec $7$ chaussettes réparties entre $3$ couleurs, l'une des couleurs en compte au moins $\\lceil 7/3 \\rceil = 3$. Avec $6$ chaussettes, on peut en avoir exactement $2$ de chaque couleur, donc pas trois de la même : $6$ ne suffit pas. Le minimum est $7$ ($4$ assure seulement deux chaussettes de la même couleur)."
+    },
+    {
+      "id": "fond-l1-ensembles-q7",
+      "carte": "fond-l1-ensembles-cantor",
+      "genre": "choix",
+      "enonce": "Lequel de ces ensembles n'est pas dénombrable ?",
+      "propositions": [
+        "L'ensemble des parties infinies de $\\mathbb{N}$",
+        "$\\mathbb{N} \\times \\mathbb{Q}$",
+        "L'ensemble des suites d'entiers naturels nulles à partir d'un certain rang",
+        "L'ensemble des polynômes à coefficients entiers"
+      ],
+      "bonne": 0,
+      "explication": "$\\mathcal{P}(\\mathbb{N})$ n'est pas dénombrable (théorème de Cantor). C'est la réunion de l'ensemble des parties finies de $\\mathbb{N}$, qui est dénombrable, et de l'ensemble $I$ des parties infinies : si $I$ était au plus dénombrable, $\\mathcal{P}(\\mathbb{N})$ le serait aussi, comme réunion de deux ensembles au plus dénombrables. Les trois autres ensembles sont dénombrables : $\\mathbb{N} \\times \\mathbb{Q}$ est un produit de deux ensembles dénombrables ; une suite nulle à partir du rang $k$ s'identifie à un élément de $\\mathbb{N}^k$, et un polynôme de degré au plus $k$ à la liste de ses coefficients, élément de $\\mathbb{Z}^{k+1}$ : ce sont des réunions indexées par $k \\in \\mathbb{N}$ d'ensembles au plus dénombrables, et ces ensembles sont infinis."
+    },
+    {
+      "id": "fond-l1-ensembles-q8",
+      "carte": "fond-l1-ensembles-denombrables",
+      "genre": "vrai-faux",
+      "enonce": "Si $E$ est un ensemble dénombrable et $f : E \\to F$ une application, alors $f(E)$ est dénombrable.",
+      "vrai": false,
+      "explication": "**Faux.** $f(E)$ est seulement au plus dénombrable : c'est l'image de $\\mathbb{N}$ par une surjection (composer une bijection de $\\mathbb{N}$ sur $E$ avec $f$). Contre-exemple : l'application constante $f : \\mathbb{N} \\to \\mathbb{N}$, $n \\mapsto 0$ ; son image $\\{0\\}$ est finie, donc n'est pas en bijection avec $\\mathbb{N}$."
+    }
+  ]
+}

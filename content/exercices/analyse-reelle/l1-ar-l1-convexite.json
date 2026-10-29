@@ -823,6 +823,152 @@
     "Question 2 : sommer les $n$ inégalités de Young ; la somme des $\\left(\\frac{a_i}{A}\\right)^p$ vaut $1$."
    ],
    "correction": "**1.** Si $a=0$ ou $b=0$, le membre de gauche est nul et le membre de droite positif. Sinon, $a^p>0$ et $b^q>0$, et la version pondérée de l'inégalité arithmético-géométrique, avec les poids $\\frac1p,\\frac1q\\ge0$ de somme $1$, donne\n$$\\left(a^p\\right)^{1/p}\\left(b^q\\right)^{1/q}\\le\\frac1pa^p+\\frac1qb^q,\\quad\\text{c'est-à-dire}\\quad ab\\le\\frac{a^p}{p}+\\frac{b^q}{q}.$$\n\n**2.** Pour chaque $i$, la question 1 donne $\\frac{a_i}{A}\\cdot\\frac{b_i}{B}\\le\\frac1p\\cdot\\frac{a_i^p}{A^p}+\\frac1q\\cdot\\frac{b_i^q}{B^q}$. En sommant sur $i$ et comme $\\sum a_i^p=A^p$, $\\sum b_i^q=B^q$ :\n$$\\frac1{AB}\\sum_{i=1}^na_ib_i\\le\\frac1p\\cdot\\frac{A^p}{A^p}+\\frac1q\\cdot\\frac{B^q}{B^q}=\\frac1p+\\frac1q=1,$$\nd'où $\\sum a_ib_i\\le AB$.\n\n**3.** Si $A=0$, tous les $a_i^p$ sont nuls (somme nulle de termes positifs), donc tous les $a_i$ ; alors $\\sum a_ib_i=0=AB$ et l'inégalité reste vraie ; de même si $B=0$. Pour $p=q=2$ (on a bien $\\frac12+\\frac12=1$), on obtient $\\sum a_ib_i\\le\\sqrt{\\sum a_i^2}\\sqrt{\\sum b_i^2}$ : l'inégalité de Cauchy-Schwarz pour des réels positifs (pour des réels quelconques, on l'applique à $|a_i|$ et $|b_i|$, puisque $\\left|\\sum a_ib_i\\right|\\le\\sum|a_i||b_i|$)."
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex5",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 4,
+   "titre": "Inégalité de Jordan et une intégrale",
+   "enonce": "**1.** Montrer que $\\sin$ est concave sur $\\left[0,\\frac\\pi2\\right]$. En déduire que, pour tout $x\\in\\left[0,\\frac\\pi2\\right]$, $\\frac{2}{\\pi}x\\le\\sin x\\le x$.\n\n**2.** Pour $n\\ge1$, on pose $I_n=\\int_0^{\\pi/2}e^{-n\\sin x}\\,\\mathrm{d}x$. Montrer que $\\frac{1-e^{-n\\pi/2}}{n}\\le I_n\\le\\frac{\\pi}{2n}$.\n\n**3.** En déduire la limite de $(I_n)$, puis montrer que la suite $(nI_n)_{n\\ge1}$ est majorée et minorée par un réel strictement positif.",
+   "duree_min": 25,
+   "indices": [
+    "Question 1 : une fonction concave est au-dessous de ses tangentes et au-dessus de ses cordes ; regarder la tangente en $0$ et la corde entre $0$ et $\\frac\\pi2$.",
+    "Question 2 : $t\\mapsto e^{-nt}$ est décroissante ; intégrer les inégalités obtenues après composition.",
+    "Question 3 : minorer $1-e^{-n\\pi/2}$ indépendamment de $n$."
+   ],
+   "reponse_finale": {
+    "question": "Quel encadrement de $\\sin x$, valable pour tout $x\\in\\left[0,\\frac\\pi2\\right]$, la concavité donne-t-elle ?",
+    "propositions": [
+     "$\\frac{2x}{\\pi}\\le\\sin x\\le x$",
+     "$x-\\frac{x^3}{6}\\le\\sin x\\le\\frac{2x}{\\pi}$",
+     "$\\frac{x}{2}\\le\\sin x\\le\\frac{2x}{\\pi}$",
+     "$\\frac{2x}{\\pi}\\le\\sin x\\le1-\\frac{x}{\\pi}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** $\\sin$ est deux fois dérivable et $\\sin''=-\\sin\\le0$ sur $\\left[0,\\frac\\pi2\\right]$, donc $\\sin$ est concave sur cet intervalle. Sa courbe est donc au-dessous de sa tangente en $0$, d'équation $y=x$ : $\\sin x\\le x$. Elle est aussi au-dessus de sa corde entre les points d'abscisses $0$ et $\\frac\\pi2$ : cette corde joint $(0,0)$ à $\\left(\\frac\\pi2,1\\right)$ et a pour équation $y=\\frac{2}{\\pi}x$, d'où, pour $x=(1-t)\\cdot0+t\\frac\\pi2$ avec $t\\in[0,1]$, $\\sin x\\ge(1-t)\\sin0+t\\sin\\frac\\pi2=t=\\frac2\\pi x$.\n\n**2.** La fonction $t\\mapsto e^{-nt}$ est décroissante ($n\\ge1$). Les inégalités $\\frac2\\pi x\\le\\sin x\\le x$ donnent donc $e^{-nx}\\le e^{-n\\sin x}\\le e^{-2nx/\\pi}$ pour $x\\in\\left[0,\\frac\\pi2\\right]$. Par croissance de l'intégrale :\n$$\\int_0^{\\pi/2}e^{-nx}\\,\\mathrm{d}x=\\frac{1-e^{-n\\pi/2}}{n}\\le I_n\\le\\int_0^{\\pi/2}e^{-2nx/\\pi}\\,\\mathrm{d}x=\\frac{\\pi}{2n}\\left(1-e^{-n}\\right)\\le\\frac{\\pi}{2n}.$$\n\n**3.** Par le théorème des gendarmes ($0\\le I_n\\le\\frac{\\pi}{2n}$), $I_n\\to0$. En multipliant l'encadrement par $n>0$ : $1-e^{-n\\pi/2}\\le nI_n\\le\\frac\\pi2$. Comme $n\\ge1$, $e^{-n\\pi/2}\\le e^{-\\pi/2}$, donc $nI_n\\ge1-e^{-\\pi/2}>0$. La suite $(nI_n)$ est majorée par $\\frac\\pi2$ et minorée par $1-e^{-\\pi/2}>0$ : $I_n$ tend vers $0$, mais pas plus vite qu'un multiple de $\\frac1n$."
+  },
+  {
+   "id": "ar-l1-convexite-pentes-ex5",
+   "carte": "ar-l1-convexite-pentes",
+   "difficulte": 3,
+   "titre": "Fonction convexe connue en trois points",
+   "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=2$, $f(2)=0$ et $f(3)=1$.\n\n**1.** Déterminer le meilleur encadrement possible de $f(1)$ : montrer que toute fonction convexe qui prend ces trois valeurs le vérifie, puis que ses deux bornes sont atteintes par de telles fonctions.\n\n**2.** Minorer $f(5)$ et $f(-1)$. Ces minorations sont-elles les meilleures possibles ?",
+   "duree_min": 15,
+   "indices": [
+    "Appliquer l'inégalité des trois pentes aux triplets $0<1<2$ et $1<2<3$ pour encadrer $f(1)$, puis à $2<3<5$ et $-1<0<2$.",
+    "Pour montrer qu'une borne est atteinte, chercher $f$ de la forme $x\\mapsto\\max(\\alpha x+\\beta,\\gamma x+\\delta)$, convexe comme maximum de deux fonctions affines."
+   ],
+   "reponse_finale": {
+    "question": "Quel est le meilleur encadrement de $f(1)$ ?",
+    "propositions": [
+     "$-1\\le f(1)\\le1$",
+     "$0\\le f(1)\\le1$",
+     "$-1\\le f(1)\\le2$",
+     "$-2\\le f(1)\\le1$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** Pour $0<1<2$, l'inégalité des trois pentes donne $\\frac{f(1)-f(0)}{1}\\le\\frac{f(2)-f(0)}{2}=-1$, soit $f(1)\\le1$. Pour $1<2<3$, elle donne $\\frac{f(2)-f(1)}{1}\\le\\frac{f(3)-f(2)}{1}=1$, soit $f(1)\\ge-1$. Donc $-1\\le f(1)\\le1$.\n\nLes bornes sont atteintes. La fonction $x\\mapsto\\max(2-x,x-2)=|x-2|$ est convexe et vaut $2$, $1$, $0$, $1$ en $0$, $1$, $2$, $3$ : elle convient et $f(1)=1$. La fonction $x\\mapsto\\max(2-3x,x-2)$ est convexe et vaut $2$, $-1$, $0$, $1$ en $0$, $1$, $2$, $3$ : elle convient et $f(1)=-1$. L'encadrement $-1\\le f(1)\\le1$ est donc le meilleur possible.\n\n**2.** Pour $2<3<5$ : $\\frac{f(5)-f(3)}{2}\\ge\\frac{f(3)-f(2)}{1}=1$, donc $f(5)\\ge3$. Pour $-1<0<2$ : $\\frac{f(0)-f(-1)}{1}\\le\\frac{f(2)-f(0)}{2}=-1$, donc $f(-1)\\ge3$. Ces minorations sont les meilleures possibles : la fonction $x\\mapsto|x-2|$ convient et vaut exactement $3$ en $5$ et en $-1$. En revanche, $f(5)$ et $f(-1)$ ne sont pas majorés (ajouter à $|x-2|$ la fonction convexe $x\\mapsto\\lambda\\max(0,x-3)$ ou $x\\mapsto\\lambda\\max(0,-x)$, avec $\\lambda>0$ grand).",
+   "variantes": [
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=0$, $f(2)=4$ et $f(3)=7$.\n\n**1.** Déterminer le meilleur encadrement possible de $f(1)$ : montrer que toute fonction convexe qui prend ces trois valeurs le vérifie, puis que ses deux bornes sont atteintes par de telles fonctions.\n\n**2.** Minorer $f(5)$ et $f(-1)$. Ces minorations sont-elles les meilleures possibles ?",
+     "reponse_finale": {
+      "question": "Quel est le meilleur encadrement de $f(1)$ ?",
+      "propositions": [
+       "$1\\le f(1)\\le2$",
+       "$0\\le f(1)\\le2$",
+       "$1\\le f(1)\\le3$",
+       "$2\\le f(1)\\le4$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Pour $0<1<2$ : $f(1)-f(0)\\le\\frac{f(2)-f(0)}{2}=2$, soit $f(1)\\le2$. Pour $1<2<3$ : $f(2)-f(1)\\le f(3)-f(2)=3$, soit $f(1)\\ge1$. Donc $1\\le f(1)\\le2$.\n\nLes bornes sont atteintes : $x\\mapsto\\max(2x,3x-2)$ est convexe, vaut $0$, $2$, $4$, $7$ en $0$, $1$, $2$, $3$ ; $x\\mapsto\\max(x,3x-2)$ est convexe, vaut $0$, $1$, $4$, $7$ en $0$, $1$, $2$, $3$. L'encadrement est donc le meilleur possible.\n\n**2.** Pour $2<3<5$ : $\\frac{f(5)-f(3)}{2}\\ge f(3)-f(2)=3$, donc $f(5)\\ge13$. Pour $-1<0<2$ : $f(0)-f(-1)\\le\\frac{f(2)-f(0)}{2}=2$, donc $f(-1)\\ge-2$. Ces minorations sont les meilleures possibles : $x\\mapsto\\max(2x,3x-2)$ convient et vaut $13$ en $5$ et $-2$ en $-1$.",
+     "indices": [
+      "Appliquer l'inégalité des trois pentes aux triplets $0<1<2$ et $1<2<3$ pour encadrer $f(1)$, puis à $2<3<5$ et $-1<0<2$.",
+      "Pour montrer qu'une borne est atteinte, chercher $f$ de la forme $x\\mapsto\\max(\\alpha x+\\beta,\\gamma x+\\delta)$, convexe comme maximum de deux fonctions affines."
+     ]
+    },
+    {
+     "enonce": "Soit $f$ une fonction convexe sur $\\mathbb{R}$ telle que $f(0)=4$, $f(2)=2$ et $f(3)=3$.\n\n**1.** Déterminer le meilleur encadrement possible de $f(1)$ : montrer que toute fonction convexe qui prend ces trois valeurs le vérifie, puis que ses deux bornes sont atteintes par de telles fonctions.\n\n**2.** Minorer $f(5)$ et $f(-1)$. Ces minorations sont-elles les meilleures possibles ?",
+     "reponse_finale": {
+      "question": "Quel est le meilleur encadrement de $f(1)$ ?",
+      "propositions": [
+       "$1\\le f(1)\\le3$",
+       "$2\\le f(1)\\le3$",
+       "$1\\le f(1)\\le4$",
+       "$0\\le f(1)\\le3$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** Pour $0<1<2$ : $f(1)-f(0)\\le\\frac{f(2)-f(0)}{2}=-1$, soit $f(1)\\le3$. Pour $1<2<3$ : $f(2)-f(1)\\le f(3)-f(2)=1$, soit $f(1)\\ge1$. Donc $1\\le f(1)\\le3$.\n\nLes bornes sont atteintes : $x\\mapsto\\max(4-x,x)$ est convexe, vaut $4$, $3$, $2$, $3$ en $0$, $1$, $2$, $3$ ; $x\\mapsto\\max(4-3x,x)$ est convexe, vaut $4$, $1$, $2$, $3$ en $0$, $1$, $2$, $3$. L'encadrement est donc le meilleur possible.\n\n**2.** Pour $2<3<5$ : $\\frac{f(5)-f(3)}{2}\\ge f(3)-f(2)=1$, donc $f(5)\\ge5$. Pour $-1<0<2$ : $f(0)-f(-1)\\le\\frac{f(2)-f(0)}{2}=-1$, donc $f(-1)\\ge5$. Ces minorations sont les meilleures possibles : $x\\mapsto\\max(4-x,x)$ convient et vaut $5$ en $5$ et en $-1$.",
+     "indices": [
+      "Appliquer l'inégalité des trois pentes aux triplets $0<1<2$ et $1<2<3$ pour encadrer $f(1)$, puis à $2<3<5$ et $-1<0<2$.",
+      "Pour montrer qu'une borne est atteinte, chercher $f$ de la forme $x\\mapsto\\max(\\alpha x+\\beta,\\gamma x+\\delta)$, convexe comme maximum de deux fonctions affines."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ar-l1-convexite-derivables-ex6",
+   "carte": "ar-l1-convexite-derivables",
+   "difficulte": 2,
+   "titre": "Un paramètre qui rend un polynôme convexe",
+   "enonce": "Pour $a\\in\\mathbb{R}$, on pose $f_a(x)=x^4+ax^3+6x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+   "duree_min": 8,
+   "indices": [
+    "$f_a$ est deux fois dérivable : calculer $f_a''$, qui est un trinôme du second degré.",
+    "Un trinôme de coefficient dominant strictement positif est positif sur $\\mathbb{R}$ si et seulement si son discriminant est négatif ou nul."
+   ],
+   "reponse_finale": {
+    "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+    "propositions": [
+     "$a\\in[-4,4]$",
+     "$a\\in\\left]-4,4\\right[$",
+     "$a\\in[-2,2]$",
+     "$a\\in[0,4]$"
+    ],
+    "bonne": 0
+   },
+   "correction": "$f_a$ est deux fois dérivable sur $\\mathbb{R}$, donc convexe sur $\\mathbb{R}$ si et seulement si $f_a''\\ge0$ sur $\\mathbb{R}$. Or $f_a''(x)=12x^2+6ax+12$, trinôme de coefficient dominant $12>0$ et de discriminant $\\Delta=36a^2-576=36(a^2-16)$. Il est positif sur $\\mathbb{R}$ si et seulement si $\\Delta\\le0$, c'est-à-dire $a^2\\le16$, soit $-4\\le a\\le4$. Pour $a=\\pm4$, $f_a''(x)=12(x\\pm1)^2\\ge0$ : les bornes conviennent. Pour $|a|>4$, $f_a''$ prend des valeurs strictement négatives entre ses deux racines, et $f_a$ n'est pas convexe.",
+   "variantes": [
+    {
+     "enonce": "Pour $a\\in\\mathbb{R}$, on pose $f_a(x)=x^4+ax^3+24x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+     "reponse_finale": {
+      "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+      "propositions": [
+       "$a\\in[-8,8]$",
+       "$a\\in\\left]-8,8\\right[$",
+       "$a\\in[-4,4]$",
+       "$a\\in[0,8]$"
+      ],
+      "bonne": 0
+     },
+     "correction": "$f_a$ est convexe sur $\\mathbb{R}$ si et seulement si $f_a''\\ge0$ sur $\\mathbb{R}$. Or $f_a''(x)=12x^2+6ax+48$, de discriminant $\\Delta=36a^2-2304=36(a^2-64)$. Comme le coefficient dominant est positif, $f_a''\\ge0$ sur $\\mathbb{R}$ si et seulement si $\\Delta\\le0$, soit $-8\\le a\\le8$. Pour $a=\\pm8$, $f_a''(x)=12(x\\pm2)^2\\ge0$ ; pour $|a|>8$, $f_a''$ est strictement négative entre ses racines.",
+     "indices": [
+      "$f_a$ est deux fois dérivable : calculer $f_a''$, qui est un trinôme du second degré.",
+      "Un trinôme de coefficient dominant strictement positif est positif sur $\\mathbb{R}$ si et seulement si son discriminant est négatif ou nul."
+     ]
+    },
+    {
+     "enonce": "Pour $a\\in\\mathbb{R}$, on pose $f_a(x)=x^4+ax^3+\\frac32x^2$. Déterminer l'ensemble des réels $a$ pour lesquels $f_a$ est convexe sur $\\mathbb{R}$.",
+     "reponse_finale": {
+      "question": "Pour quels réels $a$ la fonction $f_a$ est-elle convexe sur $\\mathbb{R}$ ?",
+      "propositions": [
+       "$a\\in[-2,2]$",
+       "$a\\in\\left]-2,2\\right[$",
+       "$a\\in[-1,1]$",
+       "$a\\in[0,2]$"
+      ],
+      "bonne": 0
+     },
+     "correction": "$f_a$ est convexe sur $\\mathbb{R}$ si et seulement si $f_a''\\ge0$ sur $\\mathbb{R}$. Or $f_a''(x)=12x^2+6ax+3$, de discriminant $\\Delta=36a^2-144=36(a^2-4)$. Comme le coefficient dominant est positif, $f_a''\\ge0$ sur $\\mathbb{R}$ si et seulement si $\\Delta\\le0$, soit $-2\\le a\\le2$. Pour $a=\\pm2$, $f_a''(x)=12\\left(x\\pm\\frac12\\right)^2\\ge0$ ; pour $|a|>2$, $f_a''$ est strictement négative entre ses racines.",
+     "indices": [
+      "$f_a$ est deux fois dérivable : calculer $f_a''$, qui est un trinôme du second degré.",
+      "Un trinôme de coefficient dominant strictement positif est positif sur $\\mathbb{R}$ si et seulement si son discriminant est négatif ou nul."
+     ]
+    }
+   ]
   }
  ]
 }

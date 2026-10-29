@@ -1,0 +1,99 @@
+{
+  "chapitre": "arith-t-pgcd",
+  "questions": [
+    {
+      "id": "arith-t-pgcd-q1",
+      "carte": "arith-t-pgcd-euclide",
+      "genre": "choix",
+      "enonce": "Quel est le PGCD de $1071$ et $462$ ?",
+      "propositions": [
+        "$21$",
+        "$7$",
+        "$42$",
+        "$63$"
+      ],
+      "bonne": 0,
+      "explication": "Algorithme d'Euclide : $1071 = 462 \\times 2 + 147$ ; $462 = 147 \\times 3 + 21$ ; $147 = 21 \\times 7 + 0$. Le dernier reste non nul est $21$, donc $1071 \\wedge 462 = 21$. Les autres propositions ne conviennent pas : $7$ est un diviseur commun, mais $21$ en est un plus grand ; $42$ est pair et ne divise donc pas $1071$ ; $63$ ne divise pas $462$, puisque $462 = 63 \\times 7 + 21$."
+    },
+    {
+      "id": "arith-t-pgcd-q2",
+      "carte": "arith-t-pgcd-euclide",
+      "genre": "choix",
+      "enonce": "Lorsque $n$ parcourt $\\mathbb{N}$, quelles sont les valeurs prises par $(2n + 1) \\wedge (n + 5)$ ?",
+      "propositions": [
+        "$1$, $3$ et $9$",
+        "$1$ et $9$ seulement",
+        "$1$ et $3$ seulement",
+        "$1$, $3$, $9$ et $27$"
+      ],
+      "bonne": 0,
+      "explication": "Comme $2n + 1 = 2(n + 5) - 9$, le lemme sur lequel repose l'algorithme d'Euclide donne $(2n + 1) \\wedge (n + 5) = (n + 5) \\wedge 9$. Ce PGCD divise donc $9$ : il vaut $1$, $3$ ou $9$, jamais $27$. Les trois valeurs sont atteintes : $n = 0$ donne $1 \\wedge 5 = 1$, $n = 1$ donne $3 \\wedge 6 = 3$ et $n = 4$ donne $9 \\wedge 9 = 9$."
+    },
+    {
+      "id": "arith-t-pgcd-q3",
+      "carte": "arith-t-bezout",
+      "genre": "vrai-faux",
+      "enonce": "Soient $a$, $b$, $c$ des entiers, avec $b \\neq 0$. Si $a \\wedge b = 1$ et $c \\wedge b = 1$, alors $(a + c) \\wedge b = 1$.",
+      "vrai": false,
+      "explication": "Faux. Contre-exemple : $a = c = 1$ et $b = 2$. On a $1 \\wedge 2 = 1$, mais $(1 + 1) \\wedge 2 = 2$. En revanche, le produit $ac$ est toujours premier avec $b$ : en multipliant deux relations de Bézout $au + bv = 1$ et $cu' + bv' = 1$, on obtient $ac(uu') + b(auv' + cu'v + bvv') = 1$."
+    },
+    {
+      "id": "arith-t-pgcd-q4",
+      "carte": "arith-t-bezout",
+      "genre": "vrai-faux",
+      "enonce": "Soient $a$ et $b$ des entiers non nuls. Si $a \\wedge b = 1$, alors $(a + b) \\wedge ab = 1$.",
+      "vrai": true,
+      "explication": "Vrai. Comme $a + b = a \\times 1 + b$, on a $(a + b) \\wedge a = a \\wedge b = 1$, et de même $(a + b) \\wedge b = 1$. Par le théorème de Bézout, il existe des entiers $u, v, u', v'$ tels que $(a + b)u + av = 1$ et $(a + b)u' + bv' = 1$. En multipliant ces deux égalités : $(a + b)\\big((a + b)uu' + buv' + au'v\\big) + ab\\,vv' = 1$, donc $(a + b) \\wedge ab = 1$, à nouveau par le théorème de Bézout."
+    },
+    {
+      "id": "arith-t-pgcd-q5",
+      "carte": "arith-t-bezout",
+      "genre": "choix",
+      "enonce": "Lequel des couples $(u, v)$ suivants vérifie $17u + 5v = 1$ ?",
+      "propositions": [
+        "$(-2, 7)$",
+        "$(2, -7)$",
+        "$(-3, 10)$",
+        "$(1, -3)$"
+      ],
+      "bonne": 0,
+      "explication": "$17 \\times (-2) + 5 \\times 7 = -34 + 35 = 1$. Pour les autres : $34 - 35 = -1$, $-51 + 50 = -1$ et $17 - 15 = 2$. On trouve ce couple en remontant l'algorithme d'Euclide : $17 = 5 \\times 3 + 2$ et $5 = 2 \\times 2 + 1$, donc $1 = 5 - 2 \\times 2 = 5 - 2(17 - 3 \\times 5) = 7 \\times 5 - 2 \\times 17$."
+    },
+    {
+      "id": "arith-t-pgcd-q6",
+      "carte": "arith-t-pgcd-diophantiennes",
+      "genre": "choix",
+      "enonce": "Quel est l'ensemble des couples $(x, y) \\in \\mathbb{Z}^2$ tels que $4x + 6y = 10$ ?",
+      "propositions": [
+        "$\\{(1 + 3k, 1 - 2k) : k \\in \\mathbb{Z}\\}$",
+        "$\\{(1 + 6k, 1 - 4k) : k \\in \\mathbb{Z}\\}$",
+        "$\\{(1 + 3k, 1 + 2k) : k \\in \\mathbb{Z}\\}$",
+        "$\\{(1 - 2k, 1 + 3k) : k \\in \\mathbb{Z}\\}$"
+      ],
+      "bonne": 0,
+      "explication": "On divise par $4 \\wedge 6 = 2$ : l'équation équivaut à $2x + 3y = 5$, dont $(1, 1)$ est solution. Si $2x + 3y = 5$, alors $2(x - 1) = -3(y - 1)$ ; $3$ divise $2(x - 1)$ et $3 \\wedge 2 = 1$, donc $x = 1 + 3k$ avec $k \\in \\mathbb{Z}$ (lemme de Gauss), puis $y = 1 - 2k$ ; réciproquement, ces couples conviennent. Le deuxième ensemble oublie des solutions, par exemple $(4, -1)$ ; le troisième contient $(4, 3)$ et le quatrième $(-1, 4)$, qui ne sont pas solutions ($16 + 18 = 34$ et $-4 + 24 = 20$)."
+    },
+    {
+      "id": "arith-t-pgcd-q7",
+      "carte": "arith-t-pgcd-diophantiennes",
+      "genre": "choix",
+      "enonce": "Combien y a-t-il de couples $(x, y)$ d'entiers naturels tels que $3x + 5y = 47$ ?",
+      "propositions": [
+        "$3$",
+        "$2$",
+        "$4$",
+        "$9$"
+      ],
+      "bonne": 0,
+      "explication": "Le couple $(14, 1)$ est solution. Comme $3 \\wedge 5 = 1$, les solutions dans $\\mathbb{Z}^2$ sont les couples $(14 - 5k, 1 + 3k)$, $k \\in \\mathbb{Z}$. La condition $x \\geq 0$ donne $k \\leq 2$ et la condition $y \\geq 0$ donne $k \\geq 0$ : $k \\in \\{0, 1, 2\\}$, soit les couples $(14, 1)$, $(9, 4)$ et $(4, 7)$. Il y en a $3$."
+    },
+    {
+      "id": "arith-t-pgcd-q8",
+      "carte": "arith-t-gauss",
+      "genre": "vrai-faux",
+      "enonce": "Soit $n \\in \\mathbb{Z}$. Si $4$ divise $6n$, alors $4$ divise $n$.",
+      "vrai": false,
+      "explication": "Faux : pour $n = 2$, $4$ divise $6n = 12$, mais $4$ ne divise pas $2$. Le lemme de Gauss ne s'applique pas, car $4 \\wedge 6 = 2 \\neq 1$. En fait, $4 \\mid 6n$ équivaut à $2 \\mid 3n$, c'est-à-dire à $2 \\mid n$ (cette fois par le lemme de Gauss, avec $2 \\wedge 3 = 1$)."
+    }
+  ]
+}

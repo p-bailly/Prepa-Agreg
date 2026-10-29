@@ -1170,6 +1170,145 @@
         "Pour 4, un polynôme de degré $d$ à coefficients dans le corps $\\mathbb{Z}/p\\mathbb{Z}$ a au plus $d$ racines."
       ],
       "correction": "1. Le sous-groupe $\\langle a \\rangle$ a $d$ éléments, et chacun d'eux, $a^k$, vérifie $(a^k)^d = (a^d)^k = e$. Comme l'équation $x^d = e$ a au plus $d$ solutions, ses solutions sont exactement les $d$ éléments de $\\langle a \\rangle$. Un élément $x$ d'ordre $d$ vérifie $x^d = e$, donc appartient à $\\langle a \\rangle$ : les éléments d'ordre $d$ de $G$ sont les éléments d'ordre $d$ du groupe cyclique $\\langle a \\rangle$, d'ordre $d$, c'est-à-dire ses générateurs. Il y en a $\\varphi(d)$ : $\\psi(d) = \\varphi(d)$.\n\n2. Par 1, $\\psi(d)$ vaut $0$ ou $\\varphi(d)$ ; dans les deux cas, $\\psi(d) \\leq \\varphi(d)$. Par le théorème de Lagrange, l'ordre de chaque élément de $G$ divise $n$ ; en classant les $n$ éléments de $G$ selon leur ordre, on obtient $\\sum_{d \\mid n} \\psi(d) = n$.\n\n3. On a $\\sum_{d \\mid n} (\\varphi(d) - \\psi(d)) = n - n = 0$, somme de termes positifs ou nuls : tous sont nuls, et $\\psi(d) = \\varphi(d)$ pour tout $d \\mid n$. En particulier $\\psi(n) = \\varphi(n) \\geq 1$ (l'entier $1$ est premier avec $n$) : $G$ possède un élément d'ordre $n = |G|$, qui l'engendre. $G$ est cyclique.\n\n4. $G = (\\mathbb{Z}/p\\mathbb{Z})^*$ est un groupe d'ordre $n = p - 1$. Pour $d \\mid n$, les solutions de $x^d = \\bar 1$ dans $G$ sont des racines du polynôme $X^d - \\bar 1$, de degré $d$, à coefficients dans le corps $\\mathbb{Z}/p\\mathbb{Z}$ : il y en a au plus $d$. Par 3, $G$ est cyclique. Par exemple, $\\bar 3$ engendre $(\\mathbb{Z}/7\\mathbb{Z})^*$ : ses puissances successives sont $\\bar 3$, $\\bar 2$, $\\bar 6$, $\\bar 4$, $\\bar 5$, $\\bar 1$."
+    },
+    {
+      "id": "gr-l1-groupes-noyau-ex5",
+      "carte": "gr-l1-groupes-noyau",
+      "difficulte": 4,
+      "titre": "Morphismes entre deux groupes cycliques",
+      "enonce": "Soient $m, n \\geq 1$ des entiers. On cherche tous les morphismes du groupe $(\\mathbb{Z}/m\\mathbb{Z}, +)$ dans le groupe $(\\mathbb{Z}/n\\mathbb{Z}, +)$. Pour éviter les confusions, on note $\\dot{k}$ la classe de l'entier $k$ modulo $m$ et $\\bar k$ sa classe modulo $n$.\n\n1. Soient $f$ un tel morphisme et $a \\in \\mathbb{Z}$ tel que $f(\\dot{1}) = \\bar a$. Montrer que $f(\\dot{k}) = \\overline{ka}$ pour tout $k \\in \\mathbb{Z}$, puis que $n$ divise $ma$.\n\n2. Réciproquement, soit $a \\in \\mathbb{Z}$ tel que $n$ divise $ma$. Montrer que $f_a : \\dot{k} \\mapsto \\overline{ka}$ est bien définie et que c'est un morphisme de groupes.\n\n3. On note $d = m \\wedge n$. Montrer que $n$ divise $ma$ si et seulement si $\\frac{n}{d}$ divise $a$. En déduire qu'il existe exactement $d$ morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$.\n\n4. Montrer que, si $m$ ne divise pas $n$, aucun de ces morphismes n'est injectif.\n\n5. Application : $m = 12$ et $n = 18$. Combien y a-t-il de morphismes, et combien d'entre eux sont injectifs ?",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : écrire $\\dot{k}$ comme une somme de $k$ termes égaux à $\\dot{1}$, et utiliser $\\dot{m} = \\dot{0}$.",
+        "Question 3 : écrire $m = dm'$ et $n = dn'$ avec $m'$ et $n'$ premiers entre eux, puis appliquer le lemme de Gauss.",
+        "Question 4 : l'image d'un morphisme est un sous-groupe ; penser au théorème de Lagrange."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$ pour les valeurs de la question 5, et combien sont injectifs ?",
+        "propositions": [
+          "$6$ morphismes, aucun injectif",
+          "$6$ morphismes, dont $2$ injectifs",
+          "$3$ morphismes, aucun injectif",
+          "$36$ morphismes, aucun injectif"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $k \\geq 1$, $\\dot{k} = \\dot{1} + \\dots + \\dot{1}$ ($k$ termes), donc $f(\\dot{k}) = f(\\dot{1}) + \\dots + f(\\dot{1}) = k \\bar a = \\overline{ka}$. Pour $k = 0$, $f(\\dot{0}) = \\bar 0$, image du neutre. Pour $k < 0$, $\\dot{k}$ est l'opposé de la classe de $-k$, et l'image d'un opposé est l'opposé de l'image : $f(\\dot{k}) = -\\overline{(-k)a} = \\overline{ka}$. Enfin $\\dot{m} = \\dot{0}$, donc $\\overline{ma} = f(\\dot{m}) = f(\\dot{0}) = \\bar 0$ : $n$ divise $ma$.\n\n2. Si $\\dot{k} = \\dot{l}$, alors $k - l = mt$ avec $t \\in \\mathbb{Z}$, et $ka - la = t \\cdot ma$ est divisible par $n$ : $\\overline{ka} = \\overline{la}$. L'image de $\\dot{k}$ ne dépend donc pas du représentant choisi, et $f_a$ est bien définie. C'est un morphisme : $\\dot{k} + \\dot{l}$ est la classe de $k + l$, d'image $\\overline{(k + l)a} = \\overline{ka} + \\overline{la} = f_a(\\dot{k}) + f_a(\\dot{l})$.\n\n3. Écrivons $m = dm'$ et $n = dn'$, avec $m' \\wedge n' = 1$. Alors $n \\mid ma \\iff dn' \\mid dm'a \\iff n' \\mid m'a \\iff n' \\mid a$, la dernière équivalence par le lemme de Gauss ($n'$ est premier avec $m'$).\n\nD'après les questions 1 et 2, les morphismes sont exactement les $f_a$ avec $n' \\mid a$, et un morphisme est déterminé par son image en $\\dot{1}$ : $f_a = f_b$ si et seulement si $\\bar a = \\bar b$. Les classes modulo $n = dn'$ des multiples de $n'$ sont $\\bar 0, \\overline{n'}, \\overline{2n'}, \\dots, \\overline{(d - 1)n'}$ (le reste modulo $dn'$ d'un multiple de $n'$ est encore un multiple de $n'$, compris entre $0$ et $n - 1$), et ces $d$ classes sont distinctes. Il y a donc exactement $d$ morphismes.\n\n4. Si $f$ est un morphisme injectif, c'est une bijection de $\\mathbb{Z}/m\\mathbb{Z}$ sur son image $f(\\mathbb{Z}/m\\mathbb{Z})$, qui est un sous-groupe de $\\mathbb{Z}/n\\mathbb{Z}$ à $m$ éléments ; par le théorème de Lagrange, $m$ divise $n$. Par contraposée, si $m$ ne divise pas $n$, aucun morphisme n'est injectif.\n\n5. Ici $d = 12 \\wedge 18 = 6$ et $\\frac{n}{d} = 3$ : les $6$ morphismes sont les $f_a$ pour $a \\in \\{0, 3, 6, 9, 12, 15\\}$. Comme $12$ ne divise pas $18$, aucun n'est injectif d'après la question 4 ; par exemple, $f_3$ envoie la classe de $6$ sur $\\overline{18} = \\bar 0$.",
+      "variantes": [
+        {
+          "enonce": "Soient $m, n \\geq 1$ des entiers. On cherche tous les morphismes du groupe $(\\mathbb{Z}/m\\mathbb{Z}, +)$ dans le groupe $(\\mathbb{Z}/n\\mathbb{Z}, +)$. Pour éviter les confusions, on note $\\dot{k}$ la classe de l'entier $k$ modulo $m$ et $\\bar k$ sa classe modulo $n$.\n\n1. Soient $f$ un tel morphisme et $a \\in \\mathbb{Z}$ tel que $f(\\dot{1}) = \\bar a$. Montrer que $f(\\dot{k}) = \\overline{ka}$ pour tout $k \\in \\mathbb{Z}$, puis que $n$ divise $ma$.\n\n2. Réciproquement, soit $a \\in \\mathbb{Z}$ tel que $n$ divise $ma$. Montrer que $f_a : \\dot{k} \\mapsto \\overline{ka}$ est bien définie et que c'est un morphisme de groupes.\n\n3. On note $d = m \\wedge n$. Montrer que $n$ divise $ma$ si et seulement si $\\frac{n}{d}$ divise $a$. En déduire qu'il existe exactement $d$ morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$.\n\n4. Montrer que, si $m$ ne divise pas $n$, aucun de ces morphismes n'est injectif.\n\n5. Application : $m = 6$ et $n = 18$. Combien y a-t-il de morphismes, et combien d'entre eux sont injectifs ?",
+          "indices": [
+            "Question 1 : écrire $\\dot{k}$ comme une somme de $k$ termes égaux à $\\dot{1}$, et utiliser $\\dot{m} = \\dot{0}$.",
+            "Question 3 : écrire $m = dm'$ et $n = dn'$ avec $m'$ et $n'$ premiers entre eux, puis appliquer le lemme de Gauss.",
+            "Question 4 : l'image d'un morphisme est un sous-groupe ; penser au théorème de Lagrange."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$ pour les valeurs de la question 5, et combien sont injectifs ?",
+            "propositions": [
+              "$6$ morphismes, dont $2$ injectifs",
+              "$6$ morphismes, aucun injectif",
+              "$3$ morphismes, dont $1$ injectif",
+              "$6$ morphismes, tous injectifs"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $k \\geq 1$, $\\dot{k} = \\dot{1} + \\dots + \\dot{1}$ ($k$ termes), donc $f(\\dot{k}) = f(\\dot{1}) + \\dots + f(\\dot{1}) = k \\bar a = \\overline{ka}$. Pour $k = 0$, $f(\\dot{0}) = \\bar 0$, image du neutre. Pour $k < 0$, $\\dot{k}$ est l'opposé de la classe de $-k$, et l'image d'un opposé est l'opposé de l'image : $f(\\dot{k}) = -\\overline{(-k)a} = \\overline{ka}$. Enfin $\\dot{m} = \\dot{0}$, donc $\\overline{ma} = f(\\dot{m}) = f(\\dot{0}) = \\bar 0$ : $n$ divise $ma$.\n\n2. Si $\\dot{k} = \\dot{l}$, alors $k - l = mt$ avec $t \\in \\mathbb{Z}$, et $ka - la = t \\cdot ma$ est divisible par $n$ : $\\overline{ka} = \\overline{la}$. L'image de $\\dot{k}$ ne dépend donc pas du représentant choisi, et $f_a$ est bien définie. C'est un morphisme : $\\dot{k} + \\dot{l}$ est la classe de $k + l$, d'image $\\overline{(k + l)a} = \\overline{ka} + \\overline{la} = f_a(\\dot{k}) + f_a(\\dot{l})$.\n\n3. Écrivons $m = dm'$ et $n = dn'$, avec $m' \\wedge n' = 1$. Alors $n \\mid ma \\iff dn' \\mid dm'a \\iff n' \\mid m'a \\iff n' \\mid a$, la dernière équivalence par le lemme de Gauss ($n'$ est premier avec $m'$).\n\nD'après les questions 1 et 2, les morphismes sont exactement les $f_a$ avec $n' \\mid a$, et un morphisme est déterminé par son image en $\\dot{1}$ : $f_a = f_b$ si et seulement si $\\bar a = \\bar b$. Les classes modulo $n = dn'$ des multiples de $n'$ sont $\\bar 0, \\overline{n'}, \\overline{2n'}, \\dots, \\overline{(d - 1)n'}$ (le reste modulo $dn'$ d'un multiple de $n'$ est encore un multiple de $n'$, compris entre $0$ et $n - 1$), et ces $d$ classes sont distinctes. Il y a donc exactement $d$ morphismes.\n\n4. Si $f$ est un morphisme injectif, c'est une bijection de $\\mathbb{Z}/m\\mathbb{Z}$ sur son image $f(\\mathbb{Z}/m\\mathbb{Z})$, qui est un sous-groupe de $\\mathbb{Z}/n\\mathbb{Z}$ à $m$ éléments ; par le théorème de Lagrange, $m$ divise $n$. Par contraposée, si $m$ ne divise pas $n$, aucun morphisme n'est injectif.\n\n5. Ici $d = 6 \\wedge 18 = 6$ et $\\frac{n}{d} = 3$ : les $6$ morphismes sont les $f_{3j}$ pour $j \\in \\{0, 1, \\dots, 5\\}$. Comme $6$ divise $18$, la question 4 ne conclut pas : on calcule les noyaux. La classe de $k$ modulo $6$ appartient à $\\ker f_{3j}$ si et seulement si $18 \\mid 3jk$, soit $6 \\mid jk$. Si $j \\wedge 6 = 1$, cela équivaut à $6 \\mid k$ (lemme de Gauss) : le noyau est réduit à la classe nulle et $f_{3j}$ est injectif. Si $g = j \\wedge 6 > 1$, l'entier $k = \\frac{6}{g}$ n'est pas multiple de $6$ mais $6 \\mid jk$ : $f_{3j}$ n'est pas injectif. Les morphismes injectifs correspondent donc à $j \\in \\{1, 5\\}$ : il y a $6$ morphismes, dont $2$ injectifs, $f_3$ et $f_{15}$."
+        },
+        {
+          "enonce": "Soient $m, n \\geq 1$ des entiers. On cherche tous les morphismes du groupe $(\\mathbb{Z}/m\\mathbb{Z}, +)$ dans le groupe $(\\mathbb{Z}/n\\mathbb{Z}, +)$. Pour éviter les confusions, on note $\\dot{k}$ la classe de l'entier $k$ modulo $m$ et $\\bar k$ sa classe modulo $n$.\n\n1. Soient $f$ un tel morphisme et $a \\in \\mathbb{Z}$ tel que $f(\\dot{1}) = \\bar a$. Montrer que $f(\\dot{k}) = \\overline{ka}$ pour tout $k \\in \\mathbb{Z}$, puis que $n$ divise $ma$.\n\n2. Réciproquement, soit $a \\in \\mathbb{Z}$ tel que $n$ divise $ma$. Montrer que $f_a : \\dot{k} \\mapsto \\overline{ka}$ est bien définie et que c'est un morphisme de groupes.\n\n3. On note $d = m \\wedge n$. Montrer que $n$ divise $ma$ si et seulement si $\\frac{n}{d}$ divise $a$. En déduire qu'il existe exactement $d$ morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$.\n\n4. Montrer que, si $m$ ne divise pas $n$, aucun de ces morphismes n'est injectif.\n\n5. Application : $m = 4$ et $n = 10$. Combien y a-t-il de morphismes, et combien d'entre eux sont injectifs ?",
+          "indices": [
+            "Question 1 : écrire $\\dot{k}$ comme une somme de $k$ termes égaux à $\\dot{1}$, et utiliser $\\dot{m} = \\dot{0}$.",
+            "Question 3 : écrire $m = dm'$ et $n = dn'$ avec $m'$ et $n'$ premiers entre eux, puis appliquer le lemme de Gauss.",
+            "Question 4 : l'image d'un morphisme est un sous-groupe ; penser au théorème de Lagrange."
+          ],
+          "reponse_finale": {
+            "question": "Combien y a-t-il de morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans $\\mathbb{Z}/n\\mathbb{Z}$ pour les valeurs de la question 5, et combien sont injectifs ?",
+            "propositions": [
+              "$2$ morphismes, aucun injectif",
+              "$2$ morphismes, dont $1$ injectif",
+              "$4$ morphismes, aucun injectif",
+              "$10$ morphismes, aucun injectif"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $k \\geq 1$, $\\dot{k} = \\dot{1} + \\dots + \\dot{1}$ ($k$ termes), donc $f(\\dot{k}) = f(\\dot{1}) + \\dots + f(\\dot{1}) = k \\bar a = \\overline{ka}$. Pour $k = 0$, $f(\\dot{0}) = \\bar 0$, image du neutre. Pour $k < 0$, $\\dot{k}$ est l'opposé de la classe de $-k$, et l'image d'un opposé est l'opposé de l'image : $f(\\dot{k}) = -\\overline{(-k)a} = \\overline{ka}$. Enfin $\\dot{m} = \\dot{0}$, donc $\\overline{ma} = f(\\dot{m}) = f(\\dot{0}) = \\bar 0$ : $n$ divise $ma$.\n\n2. Si $\\dot{k} = \\dot{l}$, alors $k - l = mt$ avec $t \\in \\mathbb{Z}$, et $ka - la = t \\cdot ma$ est divisible par $n$ : $\\overline{ka} = \\overline{la}$. L'image de $\\dot{k}$ ne dépend donc pas du représentant choisi, et $f_a$ est bien définie. C'est un morphisme : $\\dot{k} + \\dot{l}$ est la classe de $k + l$, d'image $\\overline{(k + l)a} = \\overline{ka} + \\overline{la} = f_a(\\dot{k}) + f_a(\\dot{l})$.\n\n3. Écrivons $m = dm'$ et $n = dn'$, avec $m' \\wedge n' = 1$. Alors $n \\mid ma \\iff dn' \\mid dm'a \\iff n' \\mid m'a \\iff n' \\mid a$, la dernière équivalence par le lemme de Gauss ($n'$ est premier avec $m'$).\n\nD'après les questions 1 et 2, les morphismes sont exactement les $f_a$ avec $n' \\mid a$, et un morphisme est déterminé par son image en $\\dot{1}$ : $f_a = f_b$ si et seulement si $\\bar a = \\bar b$. Les classes modulo $n = dn'$ des multiples de $n'$ sont $\\bar 0, \\overline{n'}, \\overline{2n'}, \\dots, \\overline{(d - 1)n'}$ (le reste modulo $dn'$ d'un multiple de $n'$ est encore un multiple de $n'$, compris entre $0$ et $n - 1$), et ces $d$ classes sont distinctes. Il y a donc exactement $d$ morphismes.\n\n4. Si $f$ est un morphisme injectif, c'est une bijection de $\\mathbb{Z}/m\\mathbb{Z}$ sur son image $f(\\mathbb{Z}/m\\mathbb{Z})$, qui est un sous-groupe de $\\mathbb{Z}/n\\mathbb{Z}$ à $m$ éléments ; par le théorème de Lagrange, $m$ divise $n$. Par contraposée, si $m$ ne divise pas $n$, aucun morphisme n'est injectif.\n\n5. Ici $d = 4 \\wedge 10 = 2$ et $\\frac{n}{d} = 5$ : les $2$ morphismes sont $f_0$, le morphisme nul, et $f_5$. Comme $4$ ne divise pas $10$, aucun n'est injectif d'après la question 4 ; par exemple, $f_5$ envoie la classe de $2$ sur $\\overline{10} = \\bar 0$."
+        }
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-sous-groupes-ex5",
+      "carte": "gr-l1-groupes-sous-groupes",
+      "difficulte": 2,
+      "titre": "Puissances réelles dans $\\mathbb{C}^*$",
+      "enonce": "Soit $H = \\{z \\in \\mathbb{C}^* : z^{12} \\in \\mathbb{R}\\}$.\n\n1. Montrer que $H$ est un sous-groupe de $(\\mathbb{C}^*, \\times)$.\n\n2. On note $\\mathbb{U} = \\{z \\in \\mathbb{C} : |z| = 1\\}$. Déterminer le nombre d'éléments de $H \\cap \\mathbb{U}$.",
+      "duree_min": 10,
+      "indices": [
+        "Utiliser la caractérisation : $H$ est non vide et $zw^{-1} \\in H$ pour tous $z, w \\in H$.",
+        "Pour $z$ de module $1$, $z^{12}$ est aussi de module $1$ : quels sont les réels de module $1$ ?"
+      ],
+      "reponse_finale": {
+        "question": "Combien d'éléments $H \\cap \\mathbb{U}$ possède-t-il ?",
+        "propositions": [
+          "$24$",
+          "$12$",
+          "$2$",
+          "Une infinité"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $1^{12} = 1 \\in \\mathbb{R}$, donc $1 \\in H$ et $H$ est non vide. Soient $z, w \\in H$. Alors $(zw^{-1})^{12} = \\frac{z^{12}}{w^{12}}$ est le quotient de deux réels, le dénominateur étant non nul puisque $w \\neq 0$ : c'est un réel, donc $zw^{-1} \\in H$. Par la caractérisation des sous-groupes, $H$ est un sous-groupe de $\\mathbb{C}^*$.\n\n2. Soit $z \\in \\mathbb{U}$. Alors $|z^{12}| = |z|^{12} = 1$, et les seuls réels de module $1$ sont $1$ et $-1$. Donc $z \\in H$ si et seulement si $z^{12} \\in \\{-1, 1\\}$, c'est-à-dire si et seulement si $\\left(z^{12}\\right)^2 = 1$, soit $z^{24} = 1$. Réciproquement, toute racine $24$-ième de l'unité est de module $1$. Ainsi $H \\cap \\mathbb{U}$ est l'ensemble des racines $24$-ièmes de l'unité, $\\left\\{e^{2ik\\pi/24} : 0 \\leq k \\leq 23\\right\\}$ : il a $24$ éléments.",
+      "variantes": [
+        {
+          "enonce": "Soit $H = \\{z \\in \\mathbb{C}^* : z^{6} \\in \\mathbb{R}\\}$.\n\n1. Montrer que $H$ est un sous-groupe de $(\\mathbb{C}^*, \\times)$.\n\n2. On note $\\mathbb{U} = \\{z \\in \\mathbb{C} : |z| = 1\\}$. Déterminer le nombre d'éléments de $H \\cap \\mathbb{U}$.",
+          "indices": [
+            "Utiliser la caractérisation : $H$ est non vide et $zw^{-1} \\in H$ pour tous $z, w \\in H$.",
+            "Pour $z$ de module $1$, $z^{6}$ est aussi de module $1$ : quels sont les réels de module $1$ ?"
+          ],
+          "reponse_finale": {
+            "question": "Combien d'éléments $H \\cap \\mathbb{U}$ possède-t-il ?",
+            "propositions": [
+              "$12$",
+              "$6$",
+              "$2$",
+              "Une infinité"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $1^{6} = 1 \\in \\mathbb{R}$, donc $1 \\in H$ et $H$ est non vide. Soient $z, w \\in H$. Alors $(zw^{-1})^{6} = \\frac{z^{6}}{w^{6}}$ est le quotient de deux réels, le dénominateur étant non nul puisque $w \\neq 0$ : c'est un réel, donc $zw^{-1} \\in H$. Par la caractérisation des sous-groupes, $H$ est un sous-groupe de $\\mathbb{C}^*$.\n\n2. Soit $z \\in \\mathbb{U}$. Alors $|z^{6}| = |z|^{6} = 1$, et les seuls réels de module $1$ sont $1$ et $-1$. Donc $z \\in H$ si et seulement si $z^{6} \\in \\{-1, 1\\}$, c'est-à-dire si et seulement si $\\left(z^{6}\\right)^2 = 1$, soit $z^{12} = 1$. Réciproquement, toute racine $12$-ième de l'unité est de module $1$. Ainsi $H \\cap \\mathbb{U}$ est l'ensemble des racines $12$-ièmes de l'unité, $\\left\\{e^{2ik\\pi/12} : 0 \\leq k \\leq 11\\right\\}$ : il a $12$ éléments."
+        },
+        {
+          "enonce": "Soit $H = \\{z \\in \\mathbb{C}^* : z^{5} \\in \\mathbb{R}\\}$.\n\n1. Montrer que $H$ est un sous-groupe de $(\\mathbb{C}^*, \\times)$.\n\n2. On note $\\mathbb{U} = \\{z \\in \\mathbb{C} : |z| = 1\\}$. Déterminer le nombre d'éléments de $H \\cap \\mathbb{U}$.",
+          "indices": [
+            "Utiliser la caractérisation : $H$ est non vide et $zw^{-1} \\in H$ pour tous $z, w \\in H$.",
+            "Pour $z$ de module $1$, $z^{5}$ est aussi de module $1$ : quels sont les réels de module $1$ ?"
+          ],
+          "reponse_finale": {
+            "question": "Combien d'éléments $H \\cap \\mathbb{U}$ possède-t-il ?",
+            "propositions": [
+              "$10$",
+              "$5$",
+              "$2$",
+              "Une infinité"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $1^{5} = 1 \\in \\mathbb{R}$, donc $1 \\in H$ et $H$ est non vide. Soient $z, w \\in H$. Alors $(zw^{-1})^{5} = \\frac{z^{5}}{w^{5}}$ est le quotient de deux réels, le dénominateur étant non nul puisque $w \\neq 0$ : c'est un réel, donc $zw^{-1} \\in H$. Par la caractérisation des sous-groupes, $H$ est un sous-groupe de $\\mathbb{C}^*$.\n\n2. Soit $z \\in \\mathbb{U}$. Alors $|z^{5}| = |z|^{5} = 1$, et les seuls réels de module $1$ sont $1$ et $-1$. Donc $z \\in H$ si et seulement si $z^{5} \\in \\{-1, 1\\}$, c'est-à-dire si et seulement si $\\left(z^{5}\\right)^2 = 1$, soit $z^{10} = 1$. Réciproquement, toute racine $10$-ième de l'unité est de module $1$. Ainsi $H \\cap \\mathbb{U}$ est l'ensemble des racines $10$-ièmes de l'unité, $\\left\\{e^{2ik\\pi/10} : 0 \\leq k \\leq 9\\right\\}$ : il a $10$ éléments."
+        }
+      ]
+    },
+    {
+      "id": "gr-l1-groupes-lagrange-ex5",
+      "carte": "gr-l1-groupes-lagrange",
+      "difficulte": 3,
+      "titre": "Sous-groupe d'indice deux",
+      "enonce": "Soient $G$ un groupe fini, de neutre $e$, et $H$ un sous-groupe de $G$ d'indice $2$, c'est-à-dire tel que $|G| = 2|H|$.\n\n1. Soit $x \\in G$ tel que $x \\notin H$. Montrer que les classes à gauche $H$ et $xH$ sont disjointes et que $G = H \\cup xH$.\n\n2. En déduire que $x^2 \\in H$ pour tout $x \\in G$.\n\n3. Soit $x \\in G$ d'ordre impair. Montrer que $x \\in H$.",
+      "duree_min": 15,
+      "indices": [
+        "Les classes à gauche forment une partition de $G$ en parties ayant toutes $|H|$ éléments : combien y en a-t-il ?",
+        "Question 2 : pour $x \\notin H$, supposer $x^2 \\in xH$ et aboutir à une contradiction.",
+        "Question 3 : si $x$ est d'ordre $2k + 1$, écrire $x$ comme le carré d'une puissance de $x$."
+      ],
+      "correction": "1. $H = eH$ est la classe à gauche de $e$, et $x = xe \\in xH$. Comme $x \\in xH$ et $x \\notin H$, les classes $H$ et $xH$ sont distinctes ; les classes à gauche formant une partition de $G$, deux classes distinctes sont disjointes : $H \\cap xH = \\emptyset$. Le nombre de classes est l'indice $[G : H] = \\frac{|G|}{|H|} = 2$ ; $H$ et $xH$ sont deux classes distinctes, ce sont donc les seules, et leur réunion est $G$.\n\n2. Soit $x \\in G$. Si $x \\in H$, alors $x^2 = x \\cdot x \\in H$, car $H$ est stable par produit. Si $x \\notin H$, d'après la question 1, $x^2$ appartient à $H$ ou à $xH$. Supposons $x^2 \\in xH$ : il existe $h \\in H$ tel que $x^2 = xh$ ; en multipliant à gauche par $x^{-1}$, on obtient $x = h \\in H$, ce qui est exclu. Donc $x^2 \\in H$.\n\n3. Soit $x$ d'ordre $2k + 1$, avec $k \\in \\mathbb{N}$. Alors $x^{2k+1} = e$, donc $x = x \\cdot x^{2k+1} = x^{2k+2} = \\left(x^{k+1}\\right)^2$, qui appartient à $H$ d'après la question 2.\n\nPar exemple, dans le groupe des permutations de $\\{1, 2, 3\\}$, les permutations paires forment un sous-groupe d'indice $2$ : il contient le carré de chaque permutation et les deux permutations d'ordre $3$."
     }
   ]
 }

@@ -1160,6 +1160,189 @@
      ]
     }
    ]
+  },
+  {
+   "id": "ed-l1-lineaires-ordre2-ex5",
+   "carte": "ed-l1-lineaires-ordre2",
+   "difficulte": 4,
+   "titre": "Une équation d'Euler par le changement de variable $x=e^t$",
+   "enonce": "On considère sur $I=\\left]0,+\\infty\\right[$ l'équation $(E):\\ x^2y''-2xy'+2y=0$. Pour une fonction $y$ deux fois dérivable sur $I$, on pose $z(t)=y(e^t)$ pour tout $t\\in\\mathbb{R}$.\n\n1. Justifier que $z$ est deux fois dérivable sur $\\mathbb{R}$ et exprimer $z'(t)$ et $z''(t)$ à l'aide de $y'(e^t)$ et $y''(e^t)$.\n\n2. Montrer que $y$ est solution de $(E)$ sur $I$ si et seulement si $z$ est solution sur $\\mathbb{R}$ d'une équation linéaire d'ordre $2$ à coefficients constants $(E')$, à préciser.\n\n3. Résoudre $(E')$, puis $(E)$.\n\n4. Déterminer la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$.",
+   "duree_min": 25,
+   "indices": [
+    "Dériver deux fois la composée $t\\mapsto y(e^t)$.",
+    "En $x=e^t$, on a $xy'(x)=z'(t)$ ; exprimer de même $x^2y''(x)$ à l'aide de $z'$ et $z''$.",
+    "Une fois $z$ connue, revenir à $y$ par $y(x)=z(\\ln x)$."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$ ?",
+    "propositions": [
+     "$x\\mapsto x^2-x$",
+     "$x\\mapsto e^{2(x-1)}-e^{x-1}$",
+     "$x\\mapsto x\\ln x$",
+     "$x\\mapsto x-x^2$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** La fonction $t\\mapsto e^t$ est deux fois dérivable sur $\\mathbb{R}$, à valeurs dans $I$, et $y$ est deux fois dérivable sur $I$ : par composition, $z$ est deux fois dérivable sur $\\mathbb{R}$, avec\n$$z'(t)=e^ty'(e^t),\\qquad z''(t)=e^ty'(e^t)+e^{2t}y''(e^t).$$\n\n**2.** Pour $x=e^t$, on a donc $xy'(x)=z'(t)$ et $x^2y''(x)=z''(t)-z'(t)$.\nAinsi, pour tout réel $t$,\n$$x^2y''(x)-2xy'(x)+2y(x)=z''(t)-3z'(t)+2z(t)\\qquad(x=e^t).$$\nComme $t\\mapsto e^t$ est une bijection de $\\mathbb{R}$ sur $I$, $y$ est solution de $(E)$ sur $I$ si et seulement si $z$ est solution sur $\\mathbb{R}$ de $(E'):\\ z''-3z'+2z=0$.\n\n**3.** L'équation caractéristique $r^2-3r+2=(r-1)(r-2)$ a pour racines $1$ et $2$ : les solutions de $(E')$ sont les $t\\mapsto\\lambda e^t+\\mu e^{2t}$, $\\lambda,\\mu\\in\\mathbb{R}$. Comme $y(x)=z(\\ln x)$, les solutions de $(E)$ sur $I$ sont les fonctions\n$$x\\mapsto\\lambda x+\\mu x^2,\\qquad\\lambda,\\mu\\in\\mathbb{R}.$$\n\n**4.** $y(1)=\\lambda+\\mu=0$ et $y'(1)=\\lambda+2\\mu=1$ donnent $\\mu=1$ et $\\lambda=-1$ : $y(x)=x^2-x$. (Attention à ne pas imposer les conditions à $z$ en $t=1$ : la condition porte sur $y$ en $x=1$, c'est-à-dire sur $z$ en $t=0$.)",
+   "variantes": [
+    {
+     "enonce": "On considère sur $I=\\left]0,+\\infty\\right[$ l'équation $(E):\\ x^2y''+xy'-4y=0$. Pour une fonction $y$ deux fois dérivable sur $I$, on pose $z(t)=y(e^t)$ pour tout $t\\in\\mathbb{R}$.\n\n1. Justifier que $z$ est deux fois dérivable sur $\\mathbb{R}$ et exprimer $z'(t)$ et $z''(t)$ à l'aide de $y'(e^t)$ et $y''(e^t)$.\n\n2. Montrer que $y$ est solution de $(E)$ sur $I$ si et seulement si $z$ est solution sur $\\mathbb{R}$ d'une équation linéaire d'ordre $2$ à coefficients constants $(E')$, à préciser.\n\n3. Résoudre $(E')$, puis $(E)$.\n\n4. Déterminer la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$.",
+     "reponse_finale": {
+      "question": "Quelle est la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$ ?",
+      "propositions": [
+       "$x\\mapsto\\frac{x^2}{4}-\\frac{1}{4x^2}$",
+       "$x\\mapsto\\frac{e^{2(x-1)}-e^{-2(x-1)}}{4}$",
+       "$x\\mapsto x\\ln x$",
+       "$x\\mapsto\\frac{1}{4x^2}-\\frac{x^2}{4}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** La fonction $t\\mapsto e^t$ est deux fois dérivable sur $\\mathbb{R}$, à valeurs dans $I$, et $y$ est deux fois dérivable sur $I$ : par composition, $z$ est deux fois dérivable sur $\\mathbb{R}$, avec\n$$z'(t)=e^ty'(e^t),\\qquad z''(t)=e^ty'(e^t)+e^{2t}y''(e^t).$$\n\n**2.** Pour $x=e^t$, on a donc $xy'(x)=z'(t)$ et $x^2y''(x)=z''(t)-z'(t)$.\nAinsi $x^2y''(x)+xy'(x)-4y(x)=z''(t)-z'(t)+z'(t)-4z(t)=z''(t)-4z(t)$ pour $x=e^t$. Comme $t\\mapsto e^t$ est une bijection de $\\mathbb{R}$ sur $I$, $y$ est solution de $(E)$ si et seulement si $z$ est solution de $(E'):\\ z''-4z=0$.\n\n**3.** Racines $\\pm2$ : les solutions de $(E')$ sont les $t\\mapsto\\lambda e^{2t}+\\mu e^{-2t}$, et celles de $(E)$, par $y(x)=z(\\ln x)$, sont les fonctions $x\\mapsto\\lambda x^2+\\frac{\\mu}{x^2}$, $\\lambda,\\mu\\in\\mathbb{R}$.\n\n**4.** $y(1)=\\lambda+\\mu=0$ et $y'(1)=2\\lambda-2\\mu=1$ donnent $\\lambda=\\frac14$, $\\mu=-\\frac14$ : $y(x)=\\frac{x^2}{4}-\\frac{1}{4x^2}$.",
+     "indices": [
+      "Dériver deux fois la composée $t\\mapsto y(e^t)$.",
+      "En $x=e^t$, on a $xy'(x)=z'(t)$ ; exprimer de même $x^2y''(x)$ à l'aide de $z'$ et $z''$.",
+      "Les solutions de $(E')$ s'expriment avec $e^{2t}$ et $e^{-2t}$ ; revenir à $y$ par $y(x)=z(\\ln x)$."
+     ]
+    },
+    {
+     "enonce": "On considère sur $I=\\left]0,+\\infty\\right[$ l'équation $(E):\\ x^2y''-xy'+y=0$. Pour une fonction $y$ deux fois dérivable sur $I$, on pose $z(t)=y(e^t)$ pour tout $t\\in\\mathbb{R}$.\n\n1. Justifier que $z$ est deux fois dérivable sur $\\mathbb{R}$ et exprimer $z'(t)$ et $z''(t)$ à l'aide de $y'(e^t)$ et $y''(e^t)$.\n\n2. Montrer que $y$ est solution de $(E)$ sur $I$ si et seulement si $z$ est solution sur $\\mathbb{R}$ d'une équation linéaire d'ordre $2$ à coefficients constants $(E')$, à préciser.\n\n3. Résoudre $(E')$, puis $(E)$.\n\n4. Déterminer la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$.",
+     "reponse_finale": {
+      "question": "Quelle est la solution de $(E)$ telle que $y(1)=0$ et $y'(1)=1$ ?",
+      "propositions": [
+       "$x\\mapsto x\\ln x$",
+       "$x\\mapsto(x-1)e^{x-1}$",
+       "$x\\mapsto x^2-x$",
+       "$x\\mapsto-x\\ln x$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** La fonction $t\\mapsto e^t$ est deux fois dérivable sur $\\mathbb{R}$, à valeurs dans $I$, et $y$ est deux fois dérivable sur $I$ : par composition, $z$ est deux fois dérivable sur $\\mathbb{R}$, avec\n$$z'(t)=e^ty'(e^t),\\qquad z''(t)=e^ty'(e^t)+e^{2t}y''(e^t).$$\n\n**2.** Pour $x=e^t$, on a donc $xy'(x)=z'(t)$ et $x^2y''(x)=z''(t)-z'(t)$.\nAinsi $x^2y''(x)-xy'(x)+y(x)=z''(t)-2z'(t)+z(t)$ pour $x=e^t$. Comme $t\\mapsto e^t$ est une bijection de $\\mathbb{R}$ sur $I$, $y$ est solution de $(E)$ si et seulement si $z$ est solution de $(E'):\\ z''-2z'+z=0$.\n\n**3.** $r^2-2r+1=(r-1)^2$ : racine double $1$, donc les solutions de $(E')$ sont les $t\\mapsto(\\lambda+\\mu t)e^t$, et celles de $(E)$, par $y(x)=z(\\ln x)$, sont les fonctions $x\\mapsto(\\lambda+\\mu\\ln x)\\,x$, $\\lambda,\\mu\\in\\mathbb{R}$.\n\n**4.** $y(1)=\\lambda=0$ ; puis $y'(x)=\\lambda+\\mu(\\ln x+1)$ donne $y'(1)=\\lambda+\\mu=1$, soit $\\mu=1$ : $y(x)=x\\ln x$.",
+     "indices": [
+      "Dériver deux fois la composée $t\\mapsto y(e^t)$.",
+      "En $x=e^t$, on a $xy'(x)=z'(t)$ ; exprimer de même $x^2y''(x)$ à l'aide de $z'$ et $z''$.",
+      "L'équation $(E')$ a une racine caractéristique double ; revenir à $y$ par $y(x)=z(\\ln x)$."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-variation-constante-ex5",
+   "carte": "ed-l1-lineaires-variation-constante",
+   "difficulte": 2,
+   "titre": "Variation de la constante avec le facteur $1+x^2$",
+   "enonce": "Déterminer la solution sur $\\mathbb{R}$ de l'équation $(1+x^2)y'+2xy=3x^2+1$ telle que $y(0)=2$.",
+   "duree_min": 10,
+   "indices": [
+    "Diviser par $1+x^2$, qui ne s'annule pas, puis chercher une primitive de $x\\mapsto\\frac{2x}{1+x^2}$."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est cette solution ?",
+    "propositions": [
+     "$x\\mapsto x+\\frac{2}{1+x^2}$",
+     "$x\\mapsto\\frac{x^3+x}{1+x^2}+2$",
+     "$x\\mapsto x+2e^{-x^2}$",
+     "$x\\mapsto(x^3+x+2)(1+x^2)$"
+    ],
+    "bonne": 0
+   },
+   "correction": "Comme $1+x^2\\neq0$, l'équation équivaut sur $\\mathbb{R}$ à $y'+\\frac{2x}{1+x^2}y=\\frac{3x^2+1}{1+x^2}$, à coefficients continus. Une primitive de $a(x)=\\frac{2x}{1+x^2}$ est $A(x)=\\ln(1+x^2)$, donc $e^{-A(x)}=\\frac{1}{1+x^2}$ : les solutions homogènes sont les $x\\mapsto\\frac{C}{1+x^2}$.\n\nOn cherche $y(x)=\\frac{C(x)}{1+x^2}$ avec $C$ dérivable : $y$ est solution si et seulement si $C'(x)=b(x)e^{A(x)}=\\frac{3x^2+1}{1+x^2}(1+x^2)=3x^2+1$, soit $C(x)=x^3+x+K$, $K\\in\\mathbb{R}$. Les solutions sont les\n$$y(x)=\\frac{x^3+x+K}{1+x^2}=x+\\frac{K}{1+x^2}.$$\nLa condition $y(0)=K=2$ donne $y(x)=x+\\frac{2}{1+x^2}$.\n\nRemarque : $(1+x^2)y'+2xy$ est la dérivée de $(1+x^2)y$ ; c'est exactement ce que fait la méthode ici.",
+   "variantes": [
+    {
+     "enonce": "Déterminer la solution sur $\\mathbb{R}$ de l'équation $(1+x^2)y'+2xy=4x^3+2x$ telle que $y(0)=-1$.",
+     "reponse_finale": {
+      "question": "Quelle est cette solution ?",
+      "propositions": [
+       "$x\\mapsto x^2-\\frac{1}{1+x^2}$",
+       "$x\\mapsto x^2-1$",
+       "$x\\mapsto x^2-e^{-x^2}$",
+       "$x\\mapsto\\frac{x^2-1}{1+x^2}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Comme $1+x^2\\neq0$, l'équation équivaut à $y'+\\frac{2x}{1+x^2}y=\\frac{4x^3+2x}{1+x^2}$. Avec $A(x)=\\ln(1+x^2)$, les solutions homogènes sont les $x\\mapsto\\frac{C}{1+x^2}$.\n\nPour $y(x)=\\frac{C(x)}{1+x^2}$ : $C'(x)=4x^3+2x$, soit $C(x)=x^4+x^2+K$. Les solutions sont les\n$$y(x)=\\frac{x^4+x^2+K}{1+x^2}=x^2+\\frac{K}{1+x^2}.$$\nLa condition $y(0)=K=-1$ donne $y(x)=x^2-\\frac{1}{1+x^2}$.",
+     "indices": [
+      "Diviser par $1+x^2$, qui ne s'annule pas, puis chercher une primitive de $x\\mapsto\\frac{2x}{1+x^2}$."
+     ]
+    },
+    {
+     "enonce": "Déterminer la solution sur $\\mathbb{R}$ de l'équation $(1+x^2)y'+2xy=\\cos x$ telle que $y(0)=1$.",
+     "reponse_finale": {
+      "question": "Quelle est cette solution ?",
+      "propositions": [
+       "$x\\mapsto\\frac{1+\\sin x}{1+x^2}$",
+       "$x\\mapsto\\frac{\\cos x}{1+x^2}$",
+       "$x\\mapsto(1+\\sin x)e^{-x^2}$",
+       "$x\\mapsto\\frac{1+\\sin x}{(1+x^2)^2}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "Comme $1+x^2\\neq0$, l'équation équivaut à $y'+\\frac{2x}{1+x^2}y=\\frac{\\cos x}{1+x^2}$. Avec $A(x)=\\ln(1+x^2)$, les solutions homogènes sont les $x\\mapsto\\frac{C}{1+x^2}$.\n\nPour $y(x)=\\frac{C(x)}{1+x^2}$ : $C'(x)=\\cos x$, soit $C(x)=\\sin x+K$. Les solutions sont les $y(x)=\\frac{\\sin x+K}{1+x^2}$, et $y(0)=K=1$ donne $y(x)=\\frac{1+\\sin x}{1+x^2}$.",
+     "indices": [
+      "Diviser par $1+x^2$, qui ne s'annule pas, puis chercher une primitive de $x\\mapsto\\frac{2x}{1+x^2}$."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ed-l1-lineaires-exp-polynome-ex5",
+   "carte": "ed-l1-lineaires-exp-polynome",
+   "difficulte": 3,
+   "titre": "Racine double et résonance",
+   "enonce": "On considère l'équation $(E):\\ y''-2y'+y=6e^{x}$ sur $\\mathbb{R}$.\n\n1. Justifier qu'il existe une solution particulière de la forme $x\\mapsto \\alpha x^2e^{x}$, et déterminer le réel $\\alpha$.\n\n2. Résoudre $(E)$ sur $\\mathbb{R}$.\n\n3. Déterminer la solution telle que $y(0)=1$ et $y'(0)=0$.",
+   "duree_min": 15,
+   "indices": [
+    "Quelle est la multiplicité de $1$ comme racine de l'équation caractéristique ?",
+    "En posant $y=z(x)e^{x}$, calculer $y''-2y'+y$ en fonction de $z$ et de ses dérivées."
+   ],
+   "reponse_finale": {
+    "question": "Quelle est la solution telle que $y(0)=1$ et $y'(0)=0$ ?",
+    "propositions": [
+     "$x\\mapsto(3x^2-x+1)e^{x}$",
+     "$x\\mapsto(3x^2+x+1)e^{x}$",
+     "$x\\mapsto(3x^2+1)e^{x}$",
+     "$x\\mapsto(x^2-x+1)e^{x}$"
+    ],
+    "bonne": 0
+   },
+   "correction": "**1.** L'équation caractéristique est $r^2-2r+1=(r-1)^2$ : $1$ en est racine double ($k=2$), et le second membre est $6e^{x}$, avec un polynôme constant. D'après le théorème, il existe une solution de la forme $x\\mapsto x^2Q(x)e^{x}$ avec $Q$ constant, c'est-à-dire $\\alpha x^2e^{x}$.\n\nPour $y=z(x)e^{x}$ : $y'=(z'+z)e^{x}$, $y''=(z''+2z'+z)e^{x}$, donc $y''-2y'+y=z''e^{x}$. Avec $z=\\alpha x^2$, on obtient $2\\alpha e^{x}=6e^{x}$, soit $\\alpha=3$ : $x\\mapsto3x^2e^{x}$ est solution.\n\n**2.** Les solutions de l'équation homogène sont les $x\\mapsto(\\lambda+\\mu x)e^{x}$. Les solutions de $(E)$ sont donc les\n$$x\\mapsto(3x^2+\\mu x+\\lambda)e^{x},\\qquad\\lambda,\\mu\\in\\mathbb{R}.$$\n\n**3.** $y(0)=\\lambda=1$. Puis $y'(x)=(3x^2+(\\mu+6)x+\\lambda+\\mu)e^{x}$, donc $y'(0)=\\lambda+\\mu=0$ et $\\mu=-1$ : $y(x)=(3x^2-x+1)e^{x}$.",
+   "variantes": [
+    {
+     "enonce": "On considère l'équation $(E):\\ y''+4y'+4y=4e^{-2x}$ sur $\\mathbb{R}$.\n\n1. Justifier qu'il existe une solution particulière de la forme $x\\mapsto \\alpha x^2e^{-2x}$, et déterminer le réel $\\alpha$.\n\n2. Résoudre $(E)$ sur $\\mathbb{R}$.\n\n3. Déterminer la solution telle que $y(0)=0$ et $y'(0)=1$.",
+     "reponse_finale": {
+      "question": "Quelle est la solution telle que $y(0)=0$ et $y'(0)=1$ ?",
+      "propositions": [
+       "$x\\mapsto(2x^2+x)e^{-2x}$",
+       "$x\\mapsto(2x^2-x)e^{-2x}$",
+       "$x\\mapsto(x^2+x)e^{-2x}$",
+       "$x\\mapsto(2x^2+x)e^{2x}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $r^2+4r+4=(r+2)^2$ : $-2$ est racine double ($k=2$) et le second membre $4e^{-2x}$ a un polynôme constant, d'où une solution de la forme $\\alpha x^2e^{-2x}$.\n\nPour $y=z(x)e^{-2x}$ : $y'=(z'-2z)e^{-2x}$, $y''=(z''-4z'+4z)e^{-2x}$, donc $y''+4y'+4y=z''e^{-2x}$. Avec $z=\\alpha x^2$ : $2\\alpha=4$, soit $\\alpha=2$.\n\n**2.** Les solutions de $(E)$ sont les $x\\mapsto(2x^2+\\mu x+\\lambda)e^{-2x}$, $\\lambda,\\mu\\in\\mathbb{R}$.\n\n**3.** $y(0)=\\lambda=0$ ; $y'(x)=(4x+\\mu-2(2x^2+\\mu x+\\lambda))e^{-2x}$, donc $y'(0)=\\mu-2\\lambda=1$ et $\\mu=1$ : $y(x)=(2x^2+x)e^{-2x}$.",
+     "indices": [
+      "Quelle est la multiplicité de $-2$ comme racine de l'équation caractéristique ?",
+      "En posant $y=z(x)e^{-2x}$, calculer $y''+4y'+4y$ en fonction de $z$ et de ses dérivées."
+     ]
+    },
+    {
+     "enonce": "On considère l'équation $(E):\\ y''-6y'+9y=2e^{3x}$ sur $\\mathbb{R}$.\n\n1. Justifier qu'il existe une solution particulière de la forme $x\\mapsto \\alpha x^2e^{3x}$, et déterminer le réel $\\alpha$.\n\n2. Résoudre $(E)$ sur $\\mathbb{R}$.\n\n3. Déterminer la solution telle que $y(0)=2$ et $y'(0)=5$.",
+     "reponse_finale": {
+      "question": "Quelle est la solution telle que $y(0)=2$ et $y'(0)=5$ ?",
+      "propositions": [
+       "$x\\mapsto(x^2-x+2)e^{3x}$",
+       "$x\\mapsto(x^2+5x+2)e^{3x}$",
+       "$x\\mapsto(x^2-x+2)e^{-3x}$",
+       "$x\\mapsto(2x^2-x+2)e^{3x}$"
+      ],
+      "bonne": 0
+     },
+     "correction": "**1.** $r^2-6r+9=(r-3)^2$ : $3$ est racine double ($k=2$) et le second membre $2e^{3x}$ a un polynôme constant, d'où une solution de la forme $\\alpha x^2e^{3x}$.\n\nPour $y=z(x)e^{3x}$ : $y'=(z'+3z)e^{3x}$, $y''=(z''+6z'+9z)e^{3x}$, donc $y''-6y'+9y=z''e^{3x}$. Avec $z=\\alpha x^2$ : $2\\alpha=2$, soit $\\alpha=1$.\n\n**2.** Les solutions de $(E)$ sont les $x\\mapsto(x^2+\\mu x+\\lambda)e^{3x}$, $\\lambda,\\mu\\in\\mathbb{R}$.\n\n**3.** $y(0)=\\lambda=2$ ; $y'(x)=(2x+\\mu+3(x^2+\\mu x+\\lambda))e^{3x}$, donc $y'(0)=\\mu+3\\lambda=5$ et $\\mu=-1$ : $y(x)=(x^2-x+2)e^{3x}$.",
+     "indices": [
+      "Quelle est la multiplicité de $3$ comme racine de l'équation caractéristique ?",
+      "En posant $y=z(x)e^{3x}$, calculer $y''-6y'+9y$ en fonction de $z$ et de ses dérivées."
+     ]
+    }
+   ]
   }
  ]
 }

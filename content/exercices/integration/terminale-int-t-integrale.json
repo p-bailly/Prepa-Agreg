@@ -1384,6 +1384,195 @@
           ]
         }
       ]
+    },
+    {
+      "id": "int-t-integrale-ipp-ex6",
+      "carte": "int-t-integrale-ipp",
+      "difficulte": 4,
+      "titre": "Les intégrales de Wallis",
+      "enonce": "Pour $n\\in\\mathbb{N}$, on pose $W_n=\\int_0^{\\pi/2}\\cos^nx\\,\\mathrm{d}x$ (avec $\\cos^0x=1$).\n\n**1.** Calculer $W_0$ et $W_1$.\n\n**2.** Montrer que la suite $(W_n)$ est positive et décroissante.\n\n**3.** À l'aide d'une intégration par parties appliquée à $W_{n+2}=\\int_0^{\\pi/2}\\cos x\\,\\cos^{n+1}x\\,\\mathrm{d}x$, montrer que $(n+2)W_{n+2}=(n+1)W_n$ pour tout $n\\in\\mathbb{N}$. En déduire $W_2$, $W_3$ et $W_4$.\n\n**4.** Montrer que la suite de terme général $(n+1)W_{n+1}W_n$ est constante, et donner sa valeur.",
+      "duree_min": 30,
+      "indices": [
+        "Question 2 : sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\cos x\\le1$ ; comparer $\\cos^{n+1}x$ et $\\cos^nx$.",
+        "Question 3 : poser $u'(x)=\\cos x$ et $v(x)=\\cos^{n+1}x$, puis remplacer $\\sin^2x$ par $1-\\cos^2x$.",
+        "Question 4 : exprimer $(n+2)W_{n+2}$ à l'aide de la question 3."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $W_4$ ?",
+        "propositions": [
+          "$\\frac{3\\pi}{16}$",
+          "$\\frac{3\\pi}{8}$",
+          "$\\frac{\\pi}{4}$",
+          "$\\frac{8}{15}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $W_0=\\int_0^{\\pi/2}1\\,\\mathrm{d}x=\\frac\\pi2$ et $W_1=\\int_0^{\\pi/2}\\cos x\\,\\mathrm{d}x=\\big[\\sin x\\big]_0^{\\pi/2}=1$.\n\n**2.** Sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\cos x\\le1$, donc $\\cos^nx\\ge0$ et $\\cos^{n+1}x=\\cos x\\cdot\\cos^nx\\le\\cos^nx$. Par positivité et croissance de l'intégrale ($0\\le\\frac\\pi2$), $W_n\\ge0$ et $W_{n+1}\\le W_n$ : la suite est positive et décroissante.\n\n**3.** Posons $u(x)=\\sin x$ (donc $u'(x)=\\cos x$) et $v(x)=\\cos^{n+1}x$, de dérivée $v'(x)=-(n+1)\\sin x\\cos^nx$ ; ces fonctions ont des dérivées continues. Par parties,\n$$W_{n+2}=\\big[\\sin x\\cos^{n+1}x\\big]_0^{\\pi/2}+(n+1)\\int_0^{\\pi/2}\\sin^2x\\cos^nx\\,\\mathrm{d}x.$$\nLe crochet est nul ($\\cos\\frac\\pi2=0$ et $\\sin0=0$ ; $n+1\\ge1$). Avec $\\sin^2x=1-\\cos^2x$ et la linéarité, $W_{n+2}=(n+1)(W_n-W_{n+2})$, d'où $(n+2)W_{n+2}=(n+1)W_n$. On en déduit $W_2=\\frac12W_0=\\frac\\pi4$, $W_3=\\frac23W_1=\\frac23$ et $W_4=\\frac34W_2=\\frac{3\\pi}{16}$.\n\n**4.** Notons $P_n=(n+1)W_{n+1}W_n$. Par la question 3 (au rang $n$), $P_{n+1}=(n+2)W_{n+2}W_{n+1}=(n+1)W_nW_{n+1}=P_n$. La suite est constante, égale à $P_0=W_1W_0=\\frac\\pi2$.",
+      "variantes": [
+        {
+          "enonce": "Pour $n\\in\\mathbb{N}$, on pose $W_n=\\int_0^{\\pi/2}\\sin^nx\\,\\mathrm{d}x$ (avec $\\sin^0x=1$).\n\n**1.** Calculer $W_0$ et $W_1$.\n\n**2.** Montrer que la suite $(W_n)$ est positive et décroissante.\n\n**3.** À l'aide d'une intégration par parties appliquée à $W_{n+2}=\\int_0^{\\pi/2}\\sin x\\,\\sin^{n+1}x\\,\\mathrm{d}x$, montrer que $(n+2)W_{n+2}=(n+1)W_n$ pour tout $n\\in\\mathbb{N}$. En déduire $W_3$ et $W_5$.\n\n**4.** Montrer que la suite de terme général $(n+1)W_{n+1}W_n$ est constante, et donner sa valeur.",
+          "reponse_finale": {
+            "question": "Que vaut $W_5$ ?",
+            "propositions": [
+              "$\\frac{8}{15}$",
+              "$\\frac{4}{15}$",
+              "$\\frac{3\\pi}{16}$",
+              "$\\frac{2}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $W_0=\\frac\\pi2$ et $W_1=\\int_0^{\\pi/2}\\sin x\\,\\mathrm{d}x=\\big[-\\cos x\\big]_0^{\\pi/2}=1$.\n\n**2.** Sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\sin x\\le1$, donc $\\sin^nx\\ge0$ et $\\sin^{n+1}x\\le\\sin^nx$. Par positivité et croissance de l'intégrale, $W_n\\ge0$ et $W_{n+1}\\le W_n$.\n\n**3.** Posons $u(x)=-\\cos x$ (donc $u'(x)=\\sin x$) et $v(x)=\\sin^{n+1}x$, de dérivée $v'(x)=(n+1)\\cos x\\sin^nx$. Par parties,\n$$W_{n+2}=\\big[-\\cos x\\sin^{n+1}x\\big]_0^{\\pi/2}+(n+1)\\int_0^{\\pi/2}\\cos^2x\\sin^nx\\,\\mathrm{d}x.$$\nLe crochet est nul ($\\cos\\frac\\pi2=0$ et $\\sin0=0$). Avec $\\cos^2x=1-\\sin^2x$, $W_{n+2}=(n+1)(W_n-W_{n+2})$, d'où $(n+2)W_{n+2}=(n+1)W_n$. On en déduit $W_3=\\frac23W_1=\\frac23$ et $W_5=\\frac45W_3=\\frac{8}{15}$.\n\n**4.** Notons $P_n=(n+1)W_{n+1}W_n$. Par la question 3 (au rang $n$), $P_{n+1}=(n+2)W_{n+2}W_{n+1}=(n+1)W_nW_{n+1}=P_n$. La suite est constante, égale à $P_0=W_1W_0=\\frac\\pi2$.",
+          "indices": [
+            "Question 2 : sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\sin x\\le1$ ; comparer $\\sin^{n+1}x$ et $\\sin^nx$.",
+            "Question 3 : poser $u'(x)=\\sin x$ et $v(x)=\\sin^{n+1}x$, puis remplacer $\\cos^2x$ par $1-\\sin^2x$.",
+            "Question 4 : exprimer $(n+2)W_{n+2}$ à l'aide de la question 3."
+          ]
+        },
+        {
+          "enonce": "Pour $n\\in\\mathbb{N}$, on pose $W_n=\\int_0^{\\pi/2}\\cos^nx\\,\\mathrm{d}x$ (avec $\\cos^0x=1$).\n\n**1.** Calculer $W_0$ et $W_1$.\n\n**2.** Montrer que la suite $(W_n)$ est positive et décroissante.\n\n**3.** À l'aide d'une intégration par parties appliquée à $W_{n+2}=\\int_0^{\\pi/2}\\cos x\\,\\cos^{n+1}x\\,\\mathrm{d}x$, montrer que $(n+2)W_{n+2}=(n+1)W_n$ pour tout $n\\in\\mathbb{N}$. En déduire $W_2$, $W_4$ et $W_6$.\n\n**4.** Montrer que la suite de terme général $(n+1)W_{n+1}W_n$ est constante, et donner sa valeur.",
+          "reponse_finale": {
+            "question": "Que vaut $W_6$ ?",
+            "propositions": [
+              "$\\frac{5\\pi}{32}$",
+              "$\\frac{3\\pi}{16}$",
+              "$\\frac{5\\pi}{16}$",
+              "$\\frac{16}{35}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $W_0=\\int_0^{\\pi/2}1\\,\\mathrm{d}x=\\frac\\pi2$ et $W_1=\\int_0^{\\pi/2}\\cos x\\,\\mathrm{d}x=\\big[\\sin x\\big]_0^{\\pi/2}=1$.\n\n**2.** Sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\cos x\\le1$, donc $\\cos^nx\\ge0$ et $\\cos^{n+1}x=\\cos x\\cdot\\cos^nx\\le\\cos^nx$. Par positivité et croissance de l'intégrale ($0\\le\\frac\\pi2$), $W_n\\ge0$ et $W_{n+1}\\le W_n$ : la suite est positive et décroissante.\n\n**3.** Posons $u(x)=\\sin x$ (donc $u'(x)=\\cos x$) et $v(x)=\\cos^{n+1}x$, de dérivée $v'(x)=-(n+1)\\sin x\\cos^nx$ ; ces fonctions ont des dérivées continues. Par parties,\n$$W_{n+2}=\\big[\\sin x\\cos^{n+1}x\\big]_0^{\\pi/2}+(n+1)\\int_0^{\\pi/2}\\sin^2x\\cos^nx\\,\\mathrm{d}x.$$\nLe crochet est nul ($\\cos\\frac\\pi2=0$ et $\\sin0=0$ ; $n+1\\ge1$). Avec $\\sin^2x=1-\\cos^2x$ et la linéarité, $W_{n+2}=(n+1)(W_n-W_{n+2})$, d'où $(n+2)W_{n+2}=(n+1)W_n$. On en déduit $W_2=\\frac12W_0=\\frac\\pi4$, $W_4=\\frac34W_2=\\frac{3\\pi}{16}$ et $W_6=\\frac56W_4=\\frac{5\\pi}{32}$.\n\n**4.** Notons $P_n=(n+1)W_{n+1}W_n$. Par la question 3 (au rang $n$), $P_{n+1}=(n+2)W_{n+2}W_{n+1}=(n+1)W_nW_{n+1}=P_n$. La suite est constante, égale à $P_0=W_1W_0=\\frac\\pi2$.",
+          "indices": [
+            "Question 2 : sur $\\left[0,\\frac\\pi2\\right]$, $0\\le\\cos x\\le1$ ; comparer $\\cos^{n+1}x$ et $\\cos^nx$.",
+            "Question 3 : poser $u'(x)=\\cos x$ et $v(x)=\\cos^{n+1}x$, puis remplacer $\\sin^2x$ par $1-\\cos^2x$.",
+            "Question 4 : exprimer $(n+2)W_{n+2}$ à l'aide de la question 3."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-t-integrale-moyenne-ex5",
+      "carte": "int-t-integrale-moyenne",
+      "difficulte": 2,
+      "titre": "Une valeur moyenne qui encadre un logarithme",
+      "enonce": "Soit $f(x)=\\frac{2x}{1+x^2}$ pour $x\\ge0$.\n\n**1.** Calculer la valeur moyenne $\\mu$ de $f$ sur $[0,2]$.\n\n**2.** Montrer que $0\\le f(x)\\le1$ pour tout $x\\ge0$. En déduire, à l'aide de l'inégalité de la moyenne, que $\\ln5\\le2$.",
+      "duree_min": 10,
+      "indices": [
+        "Reconnaître une fonction de la forme $\\frac{u'}{u}$ avec $u(x)=1+x^2>0$.",
+        "Pour la majoration, étudier le signe de $1+x^2-2x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\mu$ ?",
+        "propositions": [
+          "$\\frac{\\ln5}{2}$",
+          "$\\ln5$",
+          "$\\frac25$",
+          "$2\\ln5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Avec $u(x)=1+x^2>0$, $f=\\frac{u'}{u}$ a pour primitive $x\\mapsto\\ln(1+x^2)$. Donc\n$$\\mu=\\frac{1}{2-0}\\int_0^{2}\\frac{2x}{1+x^2}\\,\\mathrm{d}x=\\frac{1}{2}\\big[\\ln(1+x^2)\\big]_0^{2}=\\frac{\\ln5}{2}.$$\n\n**2.** Pour $x\\ge0$, $f(x)\\ge0$, et $1-f(x)=\\frac{1+x^2-2x}{1+x^2}=\\frac{(x-1)^2}{1+x^2}\\ge0$. L'inégalité de la moyenne, avec $0\\le f\\le1$ sur $[0,2]$, donne $0\\le\\mu\\le1$, c'est-à-dire $\\frac{\\ln5}{2}\\le1$, soit $\\ln5\\le2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x)=\\frac{2x}{1+x^2}$ pour $x\\ge0$.\n\n**1.** Calculer la valeur moyenne $\\mu$ de $f$ sur $[0,3]$.\n\n**2.** Montrer que $0\\le f(x)\\le1$ pour tout $x\\ge0$. En déduire, à l'aide de l'inégalité de la moyenne, que $\\ln10\\le3$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\mu$ ?",
+            "propositions": [
+              "$\\frac{\\ln10}{3}$",
+              "$\\ln10$",
+              "$\\frac{3}{10}$",
+              "$3\\ln10$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Avec $u(x)=1+x^2>0$, $f=\\frac{u'}{u}$ a pour primitive $x\\mapsto\\ln(1+x^2)$. Donc\n$$\\mu=\\frac{1}{3-0}\\int_0^{3}\\frac{2x}{1+x^2}\\,\\mathrm{d}x=\\frac{1}{3}\\big[\\ln(1+x^2)\\big]_0^{3}=\\frac{\\ln10}{3}.$$\n\n**2.** Pour $x\\ge0$, $f(x)\\ge0$, et $1-f(x)=\\frac{1+x^2-2x}{1+x^2}=\\frac{(x-1)^2}{1+x^2}\\ge0$. L'inégalité de la moyenne, avec $0\\le f\\le1$ sur $[0,3]$, donne $0\\le\\mu\\le1$, c'est-à-dire $\\frac{\\ln10}{3}\\le1$, soit $\\ln10\\le3$.",
+          "indices": [
+            "Reconnaître une fonction de la forme $\\frac{u'}{u}$ avec $u(x)=1+x^2>0$.",
+            "Pour la majoration, étudier le signe de $1+x^2-2x$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x)=\\frac{2x}{1+x^2}$ pour $x\\ge0$.\n\n**1.** Calculer la valeur moyenne $\\mu$ de $f$ sur $[0,1]$.\n\n**2.** Montrer que $0\\le f(x)\\le1$ pour tout $x\\ge0$. En déduire, à l'aide de l'inégalité de la moyenne, que $\\ln2\\le1$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\mu$ ?",
+            "propositions": [
+              "$\\ln2$",
+              "$\\frac{\\ln2}{2}$",
+              "$\\frac12$",
+              "$2\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Avec $u(x)=1+x^2>0$, $f=\\frac{u'}{u}$ a pour primitive $x\\mapsto\\ln(1+x^2)$. Donc\n$$\\mu=\\frac{1}{1-0}\\int_0^{1}\\frac{2x}{1+x^2}\\,\\mathrm{d}x=\\frac{1}{1}\\big[\\ln(1+x^2)\\big]_0^{1}=\\ln2.$$\n\n**2.** Pour $x\\ge0$, $f(x)\\ge0$, et $1-f(x)=\\frac{1+x^2-2x}{1+x^2}=\\frac{(x-1)^2}{1+x^2}\\ge0$. L'inégalité de la moyenne, avec $0\\le f\\le1$ sur $[0,1]$, donne $0\\le\\mu\\le1$, c'est-à-dire $\\ln2\\le1$, soit $\\ln2\\le1$.",
+          "indices": [
+            "Reconnaître une fonction de la forme $\\frac{u'}{u}$ avec $u(x)=1+x^2>0$.",
+            "Pour la majoration, étudier le signe de $1+x^2-2x$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-t-integrale-proprietes-ex5",
+      "carte": "int-t-integrale-proprietes",
+      "difficulte": 3,
+      "titre": "Encadrer une intégrale que l'on ne sait pas calculer",
+      "enonce": "**1.** Montrer que, pour tout réel $u$, $e^u\\ge1+u$.\n\n**2.** Montrer que, pour tout $x\\in[0,1]$, $1+x^2\\le e^{x^2}\\le e^x$.\n\n**3.** En déduire un encadrement de $I=\\int_0^1e^{x^2}\\,\\mathrm{d}x$.",
+      "duree_min": 15,
+      "indices": [
+        "Question 1 : étudier les variations de $\\varphi(u)=e^u-1-u$ sur $\\mathbb{R}$.",
+        "Question 2 : sur $[0,1]$, comparer $x^2$ et $x$, puis utiliser la croissance de l'exponentielle.",
+        "Question 3 : intégrer les deux inégalités sur $[0,1]$ (croissance de l'intégrale)."
+      ],
+      "reponse_finale": {
+        "question": "Quel encadrement de $I$ obtient-on ?",
+        "propositions": [
+          "$\\frac43\\le I\\le e-1$",
+          "$\\frac53\\le I\\le e$",
+          "$1\\le I\\le\\frac43$",
+          "$e-1\\le I\\le e$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $\\varphi(u)=e^u-1-u$, dérivable sur $\\mathbb{R}$ avec $\\varphi'(u)=e^u-1$, négatif pour $u\\le0$ et positif pour $u\\ge0$. Donc $\\varphi$ admet en $0$ un minimum égal à $\\varphi(0)=0$ : $e^u\\ge1+u$ pour tout réel $u$.\n\n**2.** Soit $x\\in[0,1]$. La question 1 avec $u=x^2$ donne $e^{x^2}\\ge1+x^2$. De plus $x^2\\le x$ (car $0\\le x\\le1$), donc $e^{x^2}\\le e^x$ par croissance de l'exponentielle.\n\n**3.** Les trois fonctions sont continues sur $[0,1]$ et $0\\le1$ ; par croissance de l'intégrale,\n$$\\int_0^1(1+x^2)\\,\\mathrm{d}x=\\frac43\\le I\\le\\int_0^1e^x\\,\\mathrm{d}x=e-1.$$\nAinsi $1{,}33\\le I\\le1{,}72$ environ (la valeur de $I$ est proche de $1{,}46$).",
+      "variantes": [
+        {
+          "enonce": "**1.** Montrer que, pour tout réel $u$, $e^u\\ge1+u$.\n\n**2.** Montrer que, pour tout $x\\in[0,1]$, $1+x^3\\le e^{x^3}\\le e^x$.\n\n**3.** En déduire un encadrement de $I=\\int_0^1e^{x^3}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quel encadrement de $I$ obtient-on ?",
+            "propositions": [
+              "$\\frac54\\le I\\le e-1$",
+              "$1\\le I\\le\\frac54$",
+              "$e-1\\le I\\le e$",
+              "$\\frac32\\le I\\le e$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $\\varphi(u)=e^u-1-u$, dérivable sur $\\mathbb{R}$ avec $\\varphi'(u)=e^u-1$, négatif pour $u\\le0$ et positif pour $u\\ge0$. Donc $\\varphi$ admet en $0$ un minimum égal à $\\varphi(0)=0$ : $e^u\\ge1+u$ pour tout réel $u$.\n\n**2.** Soit $x\\in[0,1]$. La question 1 avec $u=x^3$ donne $e^{x^3}\\ge1+x^3$. De plus $x^3\\le x$ (car $0\\le x\\le1$, donc $x^2\\le1$), d'où $e^{x^3}\\le e^x$.\n\n**3.** Par croissance de l'intégrale sur $[0,1]$,\n$$\\int_0^1(1+x^3)\\,\\mathrm{d}x=\\frac54\\le I\\le\\int_0^1e^x\\,\\mathrm{d}x=e-1.$$\n(La valeur de $I$ est proche de $1{,}34$.)",
+          "indices": [
+            "Question 1 : étudier les variations de $\\varphi(u)=e^u-1-u$ sur $\\mathbb{R}$.",
+            "Question 2 : sur $[0,1]$, comparer $x^3$ et $x$, puis utiliser la croissance de l'exponentielle.",
+            "Question 3 : intégrer les deux inégalités sur $[0,1]$ (croissance de l'intégrale)."
+          ]
+        },
+        {
+          "enonce": "**1.** Montrer que, pour tout réel $u$, $e^u\\ge1+u$.\n\n**2.** Montrer que, pour tout $x\\in[0,1]$, $1+\\frac{x^2}{2}\\le e^{\\frac{x^2}{2}}\\le e^{x/2}$.\n\n**3.** En déduire un encadrement de $I=\\int_0^1e^{x^2/2}\\,\\mathrm{d}x$.",
+          "reponse_finale": {
+            "question": "Quel encadrement de $I$ obtient-on ?",
+            "propositions": [
+              "$\\frac76\\le I\\le2\\left(\\sqrt e-1\\right)$",
+              "$1\\le I\\le\\frac76$",
+              "$2\\left(\\sqrt e-1\\right)\\le I\\le\\sqrt e$",
+              "$\\frac43\\le I\\le2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $\\varphi(u)=e^u-1-u$, dérivable sur $\\mathbb{R}$ avec $\\varphi'(u)=e^u-1$, négatif pour $u\\le0$ et positif pour $u\\ge0$. Donc $\\varphi$ admet en $0$ un minimum égal à $\\varphi(0)=0$ : $e^u\\ge1+u$ pour tout réel $u$.\n\n**2.** Soit $x\\in[0,1]$. La question 1 avec $u=\\frac{x^2}{2}$ donne $e^{x^2/2}\\ge1+\\frac{x^2}{2}$. De plus $\\frac{x^2}{2}\\le\\frac x2$ (car $0\\le x\\le1$), d'où $e^{x^2/2}\\le e^{x/2}$.\n\n**3.** Par croissance de l'intégrale sur $[0,1]$,\n$$\\int_0^1\\left(1+\\frac{x^2}{2}\\right)\\mathrm{d}x=\\frac76\\le I\\le\\int_0^1e^{x/2}\\,\\mathrm{d}x=\\big[2e^{x/2}\\big]_0^1=2\\left(\\sqrt e-1\\right).$$\n(La valeur de $I$ est proche de $1{,}19$.)",
+          "indices": [
+            "Question 1 : étudier les variations de $\\varphi(u)=e^u-1-u$ sur $\\mathbb{R}$.",
+            "Question 2 : sur $[0,1]$, comparer $\\frac{x^2}{2}$ et $\\frac x2$, puis utiliser la croissance de l'exponentielle.",
+            "Question 3 : intégrer les deux inégalités sur $[0,1]$ (croissance de l'intégrale)."
+          ]
+        }
+      ]
     }
   ]
 }

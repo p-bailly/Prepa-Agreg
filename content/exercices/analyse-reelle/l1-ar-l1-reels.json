@@ -500,6 +500,144 @@
         "Question 2 : si $|x-y|=\\sup A-\\inf A$ avec, par exemple, $x\\ge y$, comparer $x$ à $\\sup A$ et $y$ à $\\inf A$."
       ],
       "correction": "**1.** $B$ est non vide (il contient $0=|a-a|$ pour $a\\in A$). Posons $S=\\sup A$ et $I=\\inf A$. Pour $x,y\\in A$, $I\\le x\\le S$ et $I\\le y\\le S$, donc $x-y\\le S-I$ et $y-x\\le S-I$, soit $|x-y|\\le S-I$ : $S-I$ majore $B$, qui admet donc une borne supérieure.\n\nPar la caractérisation séquentielle, il existe des suites $(x_n)$ et $(y_n)$ d'éléments de $A$ telles que $x_n\\to S$ et $y_n\\to I$. Alors $|x_n-y_n|\\in B$ et $|x_n-y_n|\\to|S-I|=S-I$. Donc $\\sup B=S-I$.\n\n**2.** Si $S\\in A$ et $I\\in A$, alors $S-I=|S-I|\\in B$.\n\nRéciproquement, supposons $S-I\\in B$ : il existe $x,y\\in A$ avec $|x-y|=S-I$ ; quitte à les échanger, $x\\ge y$, donc $x-y=S-I$. Or $x\\le S$ et $y\\ge I$, donc $x-y\\le S-I$, avec égalité seulement si $x=S$ et $y=I$. Ainsi $S=x\\in A$ et $I=y\\in A$."
+    },
+    {
+      "id": "ar-l1-borne-sup-ex4",
+      "carte": "ar-l1-borne-sup",
+      "difficulte": 4,
+      "titre": "Les sous-groupes additifs de $\\mathbb{R}$",
+      "enonce": "Soit $G$ un sous-groupe de $(\\mathbb{R},+)$ non réduit à $\\{0\\}$ : $0\\in G$, et pour tous $x,y\\in G$, $x-y\\in G$. On note $G^+=G\\cap\\left]0,+\\infty\\right[$.\n\n**1.** Montrer que $G^+$ est non vide et justifier l'existence de $a=\\inf G^+$.\n\n**2.** On suppose $a>0$.\n- (a) Montrer que $a\\in G$ (on pourra raisonner par l'absurde et trouver deux éléments de $G$ dans $\\left]a,2a\\right[$).\n- (b) En déduire que $G=a\\mathbb{Z}=\\{ka,\\ k\\in\\mathbb{Z}\\}$.\n\n**3.** On suppose $a=0$. Soient $x<y$ deux réels. Montrer qu'il existe $g\\in G$ tel que $0<g<y-x$, puis un entier $n$ tel que $ng\\in\\left]x,y\\right[$. En déduire que $G$ rencontre tout intervalle ouvert non vide (on dit que $G$ est dense dans $\\mathbb{R}$).\n\n**4.** Application : soit $G=\\mathbb{Z}+\\sqrt2\\,\\mathbb{Z}=\\{p+q\\sqrt2,\\ p,q\\in\\mathbb{Z}\\}$. Montrer que $G$ est un sous-groupe de $\\mathbb{R}$, qu'il n'est pas de la forme $a\\mathbb{Z}$ (on admet que $\\sqrt2$ est irrationnel), et en déduire qu'il est dense dans $\\mathbb{R}$.",
+      "duree_min": 35,
+      "indices": [
+        "Question 2(a) : si $a\\notin G$, la caractérisation de la borne inférieure fournit $g_1\\in G^+$ avec $a<g_1<2a$, puis $g_2\\in G^+$ avec $a<g_2<g_1$ ; regarder $g_1-g_2$.",
+        "Question 2(b) : pour $g\\in G$, comparer $g$ et $\\left\\lfloor\\frac ga\\right\\rfloor a$.",
+        "Question 3 : prendre $n=\\left\\lfloor\\frac xg\\right\\rfloor+1$."
+      ],
+      "correction": "**1.** $G$ contient un élément $x\\neq0$ ; comme $0-x=-x\\in G$, l'un des deux réels $x$ et $-x$ est dans $G^+$. Ainsi $G^+$ est une partie non vide de $\\mathbb{R}$, minorée par $0$ : elle admet une borne inférieure $a\\ge0$.\n\n**2.(a)** Supposons $a\\notin G$. Comme $2a>a$, par la caractérisation de la borne inférieure il existe $g_1\\in G^+$ avec $a\\le g_1<2a$, et $g_1\\neq a$ puisque $a\\notin G$ : $a<g_1<2a$. De même, comme $g_1>a$, il existe $g_2\\in G^+$ avec $a<g_2<g_1$. Alors $g_1-g_2\\in G$ et $0<g_1-g_2<2a-a=a$ : c'est un élément de $G^+$ strictement inférieur à $a$, ce qui contredit $a=\\inf G^+$. Donc $a\\in G$.\n\n**(b)** Comme $a\\in G$ et que $G$ est un groupe, $ka\\in G$ pour tout $k\\in\\mathbb{Z}$ (récurrence, et passage à l'opposé) : $a\\mathbb{Z}\\subset G$. Réciproquement, soit $g\\in G$ et $k=\\left\\lfloor\\frac ga\\right\\rfloor$ : $k\\le\\frac ga<k+1$, donc $0\\le g-ka<a$. Or $g-ka\\in G$ ; s'il était $>0$, ce serait un élément de $G^+$ strictement inférieur à $a$, impossible. Donc $g=ka\\in a\\mathbb{Z}$, et $G=a\\mathbb{Z}$.\n\n**3.** Comme $\\inf G^+=0<y-x$, il existe $g\\in G^+$ tel que $0<g<y-x$. Posons $n=\\left\\lfloor\\frac xg\\right\\rfloor+1\\in\\mathbb{Z}$ : $n-1\\le\\frac xg<n$, donc (puisque $g>0$) $x<ng\\le x+g<y$. Ainsi $ng\\in\\left]x,y\\right[$, et $ng\\in G$. Tout intervalle ouvert non vide contient donc un élément de $G$.\n\n**4.** $0=0+0\\sqrt2\\in G$, et $(p+q\\sqrt2)-(p'+q'\\sqrt2)=(p-p')+(q-q')\\sqrt2\\in G$ : $G$ est un sous-groupe de $\\mathbb{R}$, non réduit à $\\{0\\}$ puisqu'il contient $1$. Supposons $G=a\\mathbb{Z}$ avec $a>0$. Comme $1\\in G$ et $\\sqrt2\\in G$, il existe des entiers $p,q$ avec $1=pa$ et $\\sqrt2=qa$ ; $p\\neq0$, donc $\\sqrt2=\\frac qp\\in\\mathbb{Q}$, ce qui est faux. D'après la question 2, on ne peut donc pas avoir $a=\\inf G^+>0$ : $a=0$, et la question 3 montre que $G$ est dense dans $\\mathbb{R}$.\n\nRemarque : on peut voir directement que $G^+$ contient des éléments arbitrairement petits, car $0<\\sqrt2-1<1$ et $(\\sqrt2-1)^k\\in G$ tend vers $0$."
+    },
+    {
+      "id": "ar-l1-reels-densite-ex5",
+      "carte": "ar-l1-reels-densite",
+      "difficulte": 3,
+      "titre": "Partie entière et factorielles",
+      "enonce": "**1.** Soient $n$ et $d$ deux entiers naturels non nuls. Montrer que le nombre de multiples de $d$ appartenant à $\\{1,\\dots,n\\}$ est égal à $\\left\\lfloor\\frac nd\\right\\rfloor$.\n\n**2.** En déduire le nombre de zéros par lesquels se termine l'écriture décimale de $100!$.",
+      "duree_min": 15,
+      "indices": [
+        "Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les $kd$ avec $k\\ge1$ et $kd\\le n$ : traduire cette condition sur $k$ avec la partie entière.",
+        "Le nombre de zéros finaux est l'exposant de $10=2\\times5$ dans $100!$ ; comparer les exposants de $2$ et de $5$, puis compter les facteurs $5$ en distinguant les multiples de $5$, de $25$…"
+      ],
+      "reponse_finale": {
+        "question": "Par combien de zéros se termine l'écriture décimale de $100!$ ?",
+        "propositions": [
+          "$24$",
+          "$20$",
+          "$25$",
+          "$22$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les entiers $kd$ avec $k$ entier, $k\\ge1$ et $kd\\le n$, c'est-à-dire $1\\le k\\le\\frac nd$. Comme $k$ est entier, $k\\le\\frac nd$ équivaut à $k\\le\\left\\lfloor\\frac nd\\right\\rfloor$ (la partie entière est le plus grand entier inférieur ou égal à $\\frac nd$). Il y a donc exactement $\\left\\lfloor\\frac nd\\right\\rfloor$ tels entiers $k$.\n\n**2.** Le nombre de zéros finaux de $100!$ est le plus grand $k$ tel que $10^k$ divise $100!$, c'est-à-dire le plus petit des exposants de $2$ et de $5$ dans la décomposition de $100!$ en facteurs premiers. Chaque entier $j\\le100$ contient le facteur $5$ autant de fois que sa valuation $v_5(j)$, qui est le nombre d'entiers $i\\ge1$ tels que $5^i$ divise $j$. En sommant sur $j$ et en échangeant les sommes, l'exposant de $5$ est\n$$\\sum_{i\\ge1}\\#\\{j\\le100,\\ 5^i\\mid j\\}=\\left\\lfloor\\frac{100}{5}\\right\\rfloor+\\left\\lfloor\\frac{100}{25}\\right\\rfloor+\\left\\lfloor\\frac{100}{125}\\right\\rfloor+\\cdots=20+4+0=24,$$\nd'après la question 1. Le même calcul pour $2$ donne $50+25+12+6+3+1=97\\ge24$. Donc $100!$ se termine par exactement $24$ zéros.\n\nLe leurre $20$ oublie que les multiples de $25$ apportent deux facteurs $5$.",
+      "variantes": [
+        {
+          "titre": "Partie entière et factorielles",
+          "enonce": "**1.** Soient $n$ et $d$ deux entiers naturels non nuls. Montrer que le nombre de multiples de $d$ appartenant à $\\{1,\\dots,n\\}$ est égal à $\\left\\lfloor\\frac nd\\right\\rfloor$.\n\n**2.** En déduire le plus grand entier $k$ tel que $3^k$ divise $100!$.",
+          "indices": [
+            "Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les $kd$ avec $k\\ge1$ et $kd\\le n$ : traduire cette condition sur $k$ avec la partie entière.",
+            "Chaque entier $j\\le100$ apporte autant de facteurs $3$ que sa valuation : compter séparément les multiples de $3$, de $9$, de $27$…"
+          ],
+          "reponse_finale": {
+            "question": "Quel est le plus grand entier $k$ tel que $3^k$ divise $100!$ ?",
+            "propositions": [
+              "$48$",
+              "$33$",
+              "$44$",
+              "$47$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les entiers $kd$ avec $k$ entier et $1\\le k\\le\\frac nd$. Comme $k$ est entier, $k\\le\\frac nd$ équivaut à $k\\le\\left\\lfloor\\frac nd\\right\\rfloor$. Il y a donc exactement $\\left\\lfloor\\frac nd\\right\\rfloor$ tels entiers.\n\n**2.** Chaque entier $j\\le100$ contient le facteur $3$ autant de fois que sa valuation $v_3(j)$, nombre d'entiers $i\\ge1$ tels que $3^i$ divise $j$. En sommant et en échangeant les sommes, l'exposant de $3$ dans $100!$ est\n$$\\left\\lfloor\\frac{100}{3}\\right\\rfloor+\\left\\lfloor\\frac{100}{9}\\right\\rfloor+\\left\\lfloor\\frac{100}{27}\\right\\rfloor+\\left\\lfloor\\frac{100}{81}\\right\\rfloor=33+11+3+1=48,$$\nles termes suivants étant nuls ($243>100$). Le plus grand $k$ cherché est $48$."
+        },
+        {
+          "titre": "Partie entière et factorielles",
+          "enonce": "**1.** Soient $n$ et $d$ deux entiers naturels non nuls. Montrer que le nombre de multiples de $d$ appartenant à $\\{1,\\dots,n\\}$ est égal à $\\left\\lfloor\\frac nd\\right\\rfloor$.\n\n**2.** En déduire le nombre de zéros par lesquels se termine l'écriture décimale de $250!$.",
+          "indices": [
+            "Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les $kd$ avec $k\\ge1$ et $kd\\le n$ : traduire cette condition sur $k$ avec la partie entière.",
+            "Le nombre de zéros finaux est l'exposant de $10=2\\times5$ ; comparer les exposants de $2$ et de $5$, puis compter les facteurs $5$ en distinguant les multiples de $5$, de $25$, de $125$…"
+          ],
+          "reponse_finale": {
+            "question": "Par combien de zéros se termine l'écriture décimale de $250!$ ?",
+            "propositions": [
+              "$62$",
+              "$50$",
+              "$60$",
+              "$63$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les multiples de $d$ dans $\\{1,\\dots,n\\}$ sont les entiers $kd$ avec $k$ entier et $1\\le k\\le\\frac nd$. Comme $k$ est entier, $k\\le\\frac nd$ équivaut à $k\\le\\left\\lfloor\\frac nd\\right\\rfloor$. Il y a donc exactement $\\left\\lfloor\\frac nd\\right\\rfloor$ tels entiers.\n\n**2.** Le nombre de zéros finaux de $250!$ est le plus petit des exposants de $2$ et de $5$ dans $250!$. En comptant, pour chaque $i\\ge1$, les entiers $j\\le250$ divisibles par $5^i$, l'exposant de $5$ est\n$$\\left\\lfloor\\frac{250}{5}\\right\\rfloor+\\left\\lfloor\\frac{250}{25}\\right\\rfloor+\\left\\lfloor\\frac{250}{125}\\right\\rfloor=50+10+2=62$$\n($625>250$). L'exposant de $2$ est plus grand (il vaut déjà au moins $\\left\\lfloor\\frac{250}{2}\\right\\rfloor=125$). Donc $250!$ se termine par $62$ zéros."
+        }
+      ]
+    },
+    {
+      "id": "ar-l1-reels-sup-sequentielle-ex5",
+      "carte": "ar-l1-reels-sup-sequentielle",
+      "difficulte": 3,
+      "titre": "Bornes d'un ensemble indexé par deux entiers",
+      "enonce": "Soit $A=\\left\\{\\frac{mn}{m^2+n^2},\\ m\\in\\mathbb{N}^*,\\ n\\in\\mathbb{N}^*\\right\\}$. Déterminer $\\sup A$ et $\\inf A$, et dire s'ils sont atteints.",
+      "duree_min": 12,
+      "indices": [
+        "Pour la borne supérieure, comparer $2mn$ et $m^2+n^2$.",
+        "Pour la borne inférieure, fixer $m=1$ et faire tendre $n$ vers $+\\infty$."
+      ],
+      "reponse_finale": {
+        "question": "Que peut-on dire des bornes de $A$ ?",
+        "propositions": [
+          "$\\sup A=\\frac12$, atteinte, et $\\inf A=0$, non atteinte",
+          "$\\sup A=\\frac12$ et $\\inf A=0$, aucune n'est atteinte",
+          "$\\sup A=1$, non atteinte, et $\\inf A=0$, non atteinte",
+          "$\\sup A=\\frac12$ et $\\inf A=0$, toutes deux atteintes"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Borne supérieure.** Pour $m,n\\ge1$, $(m-n)^2\\ge0$ donne $2mn\\le m^2+n^2$, donc $\\frac{mn}{m^2+n^2}\\le\\frac12$, avec égalité pour $m=n$ (par exemple $m=n=1$). Ainsi $\\frac12=\\max A$ : $\\sup A=\\frac12$, atteinte.\n\n**Borne inférieure.** Tous les éléments de $A$ sont strictement positifs : $0$ minore $A$ et n'appartient pas à $A$. Pour $m=1$, la suite d'éléments de $A$ de terme général $a_n=\\frac{n}{1+n^2}$ tend vers $0$. Par la caractérisation séquentielle de la borne inférieure, $\\inf A=0$, non atteinte.",
+      "variantes": [
+        {
+          "enonce": "Soit $A=\\left\\{\\frac{(m+n)^2}{m^2+n^2},\\ m\\in\\mathbb{N}^*,\\ n\\in\\mathbb{N}^*\\right\\}$. Déterminer $\\sup A$ et $\\inf A$, et dire s'ils sont atteints.",
+          "indices": [
+            "Développer $(m+n)^2$ et comparer $2mn$ et $m^2+n^2$.",
+            "Pour la borne inférieure, fixer $m=1$ et faire tendre $n$ vers $+\\infty$."
+          ],
+          "reponse_finale": {
+            "question": "Que peut-on dire des bornes de $A$ ?",
+            "propositions": [
+              "$\\sup A=2$, atteinte, et $\\inf A=1$, non atteinte",
+              "$\\sup A=2$ et $\\inf A=1$, aucune n'est atteinte",
+              "$\\sup A=4$, atteinte, et $\\inf A=1$, non atteinte",
+              "$\\sup A=2$, atteinte, et $\\inf A=0$, non atteinte"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $m,n\\ge1$, $\\frac{(m+n)^2}{m^2+n^2}=1+\\frac{2mn}{m^2+n^2}$.\n\n**Borne supérieure.** $(m-n)^2\\ge0$ donne $2mn\\le m^2+n^2$, donc les éléments de $A$ sont $\\le2$, avec égalité pour $m=n$ : $\\sup A=\\max A=2$, atteinte.\n\n**Borne inférieure.** Comme $mn>0$, tous les éléments sont $>1$ : $1$ minore $A$ sans être atteint. Pour $m=1$, $a_n=\\frac{(1+n)^2}{1+n^2}\\to1$. Par la caractérisation séquentielle, $\\inf A=1$, non atteinte."
+        },
+        {
+          "enonce": "Soit $A=\\left\\{\\frac{m-n}{m+n},\\ m\\in\\mathbb{N}^*,\\ n\\in\\mathbb{N}^*\\right\\}$. Déterminer $\\sup A$ et $\\inf A$, et dire s'ils sont atteints.",
+          "indices": [
+            "Comparer $|m-n|$ et $m+n$ pour des entiers $m,n\\ge1$.",
+            "Fixer l'un des deux entiers à $1$ et faire tendre l'autre vers $+\\infty$."
+          ],
+          "reponse_finale": {
+            "question": "Que peut-on dire des bornes de $A$ ?",
+            "propositions": [
+              "$\\sup A=1$ et $\\inf A=-1$, aucune n'est atteinte",
+              "$\\sup A=1$, atteinte, et $\\inf A=-1$, non atteinte",
+              "$\\sup A=1$ et $\\inf A=-1$, toutes deux atteintes",
+              "$\\sup A=1$, non atteinte, et $\\inf A=0$, atteinte"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $m,n\\ge1$, $|m-n|<m+n$ (car $m+n-|m-n|=2\\min(m,n)>0$), donc $-1<\\frac{m-n}{m+n}<1$ : $1$ majore et $-1$ minore $A$, sans être atteints.\n\nPour $n=1$, la suite $\\frac{m-1}{m+1}$ (indexée par $m$) est formée d'éléments de $A$ et tend vers $1$ ; pour $m=1$, la suite $\\frac{1-n}{1+n}$ tend vers $-1$. Par la caractérisation séquentielle, $\\sup A=1$ et $\\inf A=-1$, et aucune des deux bornes n'est atteinte."
+        }
+      ]
     }
   ]
 }

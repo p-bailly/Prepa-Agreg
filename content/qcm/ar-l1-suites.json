@@ -1,0 +1,93 @@
+{
+  "chapitre": "ar-l1-suites",
+  "questions": [
+    {
+      "id": "ar-l1-suites-q1",
+      "carte": "ar-l1-suites-recurrence-lineaire",
+      "genre": "choix",
+      "enonce": "Soit $(u_n)$ la suite définie par $u_0=0$, $u_1=1$ et $u_{n+2}=u_{n+1}+2u_n$ pour tout $n\\ge0$. Quelle est l'expression de $u_n$ ?",
+      "propositions": [
+        "$u_n=\\frac{2^n-(-1)^n}{3}$",
+        "$u_n=\\frac{2^n+(-1)^n}{3}$",
+        "$u_n=\\frac{2^n-(-1)^n}{2}$",
+        "$u_n=2^n-1$"
+      ],
+      "bonne": 0,
+      "explication": "L'équation caractéristique $r^2=r+2$ a pour racines $2$ et $-1$, donc $u_n=\\lambda2^n+\\mu(-1)^n$. Les conditions $\\lambda+\\mu=0$ et $2\\lambda-\\mu=1$ donnent $\\lambda=\\frac13$, $\\mu=-\\frac13$. Vérification : $u_2=1=\\frac{4-1}{3}$, $u_3=3=\\frac{8+1}{3}$. Les autres formules ne donnent pas $u_0=0$ et $u_1=1$ à la fois (sauf $2^n-1$, qui donne $u_2=3\\neq1$)."
+    },
+    {
+      "id": "ar-l1-suites-q2",
+      "carte": "ar-l1-suites-cesaro",
+      "genre": "choix",
+      "enonce": "Quelle est la limite de $v_n=\\frac1n\\sum_{k=1}^{n}\\left(1+\\frac1k\\right)^k$ quand $n\\to+\\infty$ ?",
+      "propositions": [
+        "$e$",
+        "$1$",
+        "$0$",
+        "$+\\infty$"
+      ],
+      "bonne": 0,
+      "explication": "On sait que $\\left(1+\\frac1k\\right)^k=\\exp\\left(k\\ln\\left(1+\\frac1k\\right)\\right)\\to e$, car $k\\ln\\left(1+\\frac1k\\right)\\to1$. Par le lemme de Cesàro, la moyenne $v_n$ des $n$ premiers termes tend aussi vers $e$."
+    },
+    {
+      "id": "ar-l1-suites-q3",
+      "carte": "ar-l1-suites-adjacentes",
+      "genre": "vrai-faux",
+      "enonce": "Les suites définies pour $n\\ge1$ par $u_n=1-\\frac1n$ et $v_n=1+\\frac1{n^2}$ sont adjacentes.",
+      "vrai": true,
+      "explication": "$(u_n)$ est croissante (car $\\frac1n$ décroît), $(v_n)$ est décroissante (car $\\frac1{n^2}$ décroît), et $v_n-u_n=\\frac1{n^2}+\\frac1n\\to0$. Ce sont bien des suites adjacentes, de limite commune $1$ : il n'est pas nécessaire que les écarts à la limite soient du même ordre."
+    },
+    {
+      "id": "ar-l1-suites-q4",
+      "carte": "ar-l1-suites-cauchy",
+      "genre": "vrai-faux",
+      "enonce": "Si $(u_n)$ est une suite réelle de Cauchy, alors la suite $(u_n^2)$ est de Cauchy.",
+      "vrai": true,
+      "explication": "Dans $\\mathbb{R}$, une suite de Cauchy converge, vers un réel $\\ell$. Alors $u_n^2\\to\\ell^2$, et une suite convergente est de Cauchy. On peut aussi le voir directement : une suite de Cauchy est bornée, disons par $M$, et $|u_p^2-u_q^2|=|u_p+u_q|\\,|u_p-u_q|\\le2M|u_p-u_q|$."
+    },
+    {
+      "id": "ar-l1-suites-q5",
+      "carte": "ar-l1-suites-pairs-impairs",
+      "genre": "vrai-faux",
+      "enonce": "Si les suites $(u_{2n})$ et $(u_{3n})$ convergent, alors $(u_n)$ converge.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** Soit $u_n=1$ si $n$ est premier avec $6$ (par exemple $n=1,5,7,11$), et $u_n=0$ sinon. Les entiers $2n$ et $3n$ ne sont jamais premiers avec $6$, donc $u_{2n}=u_{3n}=0$ pour tout $n$ : ces deux suites convergent vers $0$. Mais $u_{6k+1}=1$ pour tout $k$, donc $(u_n)$ a deux sous-suites de limites différentes et diverge. Les rangs pairs et les multiples de $3$ ne recouvrent pas tous les entiers (contrairement aux rangs pairs et impairs)."
+    },
+    {
+      "id": "ar-l1-suites-q6",
+      "carte": "ar-l1-bolzano-weierstrass",
+      "genre": "vrai-faux",
+      "enonce": "Une suite réelle non bornée n'admet aucune sous-suite convergente.",
+      "vrai": false,
+      "explication": "**Contre-exemple.** $u_n=n$ si $n$ est pair, $u_n=0$ si $n$ est impair : la suite n'est pas majorée, mais la sous-suite $(u_{2n+1})$ est constante égale à $0$, donc convergente. Le théorème de Bolzano-Weierstrass donne une sous-suite convergente pour une suite bornée, sans rien dire des suites non bornées."
+    },
+    {
+      "id": "ar-l1-suites-q7",
+      "carte": "ar-l1-suites-pairs-impairs",
+      "genre": "choix",
+      "enonce": "Soit $u_n=\\frac{n+(-1)^nn^2}{n^2+1}$ pour $n\\in\\mathbb{N}$. Que peut-on dire ?",
+      "propositions": [
+        "$(u_{2n})$ tend vers $1$, $(u_{2n+1})$ tend vers $-1$, donc $(u_n)$ diverge",
+        "$(u_n)$ tend vers $0$, car le numérateur est en moyenne d'ordre $n$",
+        "$(u_{2n})$ et $(u_{2n+1})$ tendent vers $1$, donc $(u_n)$ tend vers $1$",
+        "$(u_n)$ n'est pas bornée, donc elle diverge"
+      ],
+      "bonne": 0,
+      "explication": "Pour $n=2p$ : $u_{2p}=\\frac{2p+4p^2}{4p^2+1}\\to1$. Pour $n=2p+1$ : $u_{2p+1}=\\frac{(2p+1)-(2p+1)^2}{(2p+1)^2+1}\\to-1$. Deux sous-suites ont des limites différentes, donc $(u_n)$ diverge. Elle est pourtant bornée : $|u_n|\\le\\frac{n+n^2}{n^2+1}\\le2$."
+    },
+    {
+      "id": "ar-l1-suites-q8",
+      "carte": "ar-l1-suites-adjacentes",
+      "genre": "choix",
+      "enonce": "Pour $n\\ge1$, soit $S_n=\\sum_{k=1}^{n}\\frac{(-1)^{k+1}}{k}$. Les suites $(S_{2n})$ et $(S_{2n+1})$ sont adjacentes ; on note $\\ell$ leur limite commune. Quel encadrement de $\\ell$ donnent les termes $S_4$ et $S_5$ ?",
+      "propositions": [
+        "$\\frac7{12}\\le\\ell\\le\\frac{47}{60}$",
+        "$\\frac12\\le\\ell\\le\\frac7{12}$",
+        "$\\frac{47}{60}\\le\\ell\\le\\frac56$",
+        "$\\frac56\\le\\ell\\le1$"
+      ],
+      "bonne": 0,
+      "explication": "$S_4=1-\\frac12+\\frac13-\\frac14=\\frac7{12}$ et $S_5=S_4+\\frac15=\\frac{47}{60}$. La suite $(S_{2n})$ est croissante et $(S_{2n+1})$ décroissante, donc $S_{2n}\\le\\ell\\le S_{2n+1}$ pour tout $n$ ; avec $n=2$ : $\\frac7{12}\\le\\ell\\le\\frac{47}{60}$. (On peut montrer que $\\ell=\\ln2\\approx0{,}693$, qui n'est dans aucun des trois autres intervalles.)"
+    }
+  ]
+}
