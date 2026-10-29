@@ -409,4 +409,30 @@ assert 2 + 4 * 2 == 10 and [2 + 2 * 2, 2 - 4 * 2, 2 + 4 * 4] == [6, -6, 18]
 # q8 : Markov 3/12 = 1/4, atteint par X ∈ {0, 12}.
 assert F(3, 12) == F(1, 4) and 12 * F(1, 4) == 3
 
+# ---------------------------------------------------------------------------
+# Ajouts de la relecture indépendante
+# ---------------------------------------------------------------------------
+# q7 : Cov(X+Y, X-Y) = V(X) - V(Y) même sans indépendance (loi jointe quelconque, calcul exact).
+joint = {(0, 0): F(1, 10), (0, 1): F(3, 10), (1, 1): F(2, 10), (2, 0): F(4, 10)}
+Ej = lambda f: sum(f(x, y) * v for (x, y), v in joint.items())
+cov = lambda f, g: Ej(lambda x, y: f(x, y) * g(x, y)) - Ej(f) * Ej(g)
+assert cov(lambda x, y: x, lambda x, y: y) != 0  # X et Y non indépendantes
+assert cov(lambda x, y: x + y, lambda x, y: x - y) == cov(lambda x, y: x, lambda x, y: x) - cov(lambda x, y: y, lambda x, y: y)
+# proba-l2-discretes-markov, piège 2 (X à valeurs dans [-1, +∞[) : P(X=-1) = 10/11, P(X=10) = 1/11, E(X) = 0, P(X >= 1) = 1/11 > 0.
+assert -1 * F(10, 11) + 10 * F(1, 11) == 0 and F(1, 11) > 0
+# proba-l2-discretes-markov, trou 1 : X ∈ {-10, 10} est à valeurs entières, admet une variance, et P(X >= 1) = 1/2 > E(X)/1 = 0.
+# proba-l2-discretes-independance, piège 2 : X = Y uniforme sur {-1, 1} : X² = Y² = 1 indépendantes, E(XY) = 1 != E(X)E(Y) = 0.
+assert sum(F(1, 2) * x * x for x in (-1, 1)) == 1 and sum(F(1, 2) * x for x in (-1, 1)) == 0
+# proba-l2-discretes-independance, trou 2, leurre V(X)+V(Y)+2E(X)E(Y) : X, Y indépendantes de Bernoulli 1/2 : 1/2 != 1.
+assert F(1, 4) + F(1, 4) != F(1, 4) + F(1, 4) + 2 * F(1, 2) * F(1, 2)
+# proba-l2-discretes-lois-usuelles, piège 2 : des paramètres p_k non tous égaux ne donnent pas une loi géométrique
+# (P(X > k) = Π (1 - p_j) = q^k pour tout k force p_j = 1 - q pour tout j) ; exemple p_1 = 1/2, p_2 = 1/3 : P(X > 1) = 1/2, P(X > 2) = 1/3 != 1/4.
+assert F(1, 2) * F(2, 3) == F(1, 3) != F(1, 2) ** 2
+# proba-l2-discretes-lois-usuelles, contre-exemple 3 : X ∈ {0, 2} équiprobable, E(X) = 1, E(X²) = 2, V(X) = 1.
+assert F(0 + 2, 2) == 1 and F(0 + 4, 2) - 1 ** 2 == 1
+# proba-l2-discretes-esperance, contre-exemple 3 : seules les valeurs absolues 2^k/k des rangs 1 et 2 coïncident (2), de signes opposés.
+assert [j for j in range(1, 60) for i in range(1, j) if F(2 ** i, i) == F(2 ** j, j)] == [2]
+# proba-l2-discretes-espace-ex2 v1 : leurres 8 (= 2^3, « trois parties »), 16 et 256 = 2^8 différents de 32.
+assert 2 ** 5 == 32 and 32 not in (8, 16, 256)
+
 print("proba_l2_discretes : toutes les vérifications passent.")
