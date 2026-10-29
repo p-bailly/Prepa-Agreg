@@ -482,4 +482,37 @@ assert 41 == 4**2 + 5**2 and not any(somme2(k) for k in (43, 47, 51))
 # q7 : n = 33, e = 3 -> d = 7 ; leurres 11, 3, 13 faux.
 assert pow(3, -1, 20) == 7 and all((3 * dl) % 20 != 1 for dl in (11, 3, 13))
 
+# ---------------------------------------------------------------------------
+# Ajouts de la relecture indépendante
+# ---------------------------------------------------------------------------
+# arith-l2-anneaux-applications (cours) : cycle solaire (28 ans) et cycle lunaire (19 ans), premiers entre eux,
+# combinés en 532 ans ; piège p = q : p^(ed) = 0 modulo p^2 dès que ed >= 2 (et ed = 1 mod (p-1)^2).
+assert gcd(28, 19) == 1 and lcm(28, 19) == 532
+for p in (3, 5, 7):
+    for ed in range(2, 200):
+        if ed % ((p - 1) ** 2) == 1:
+            assert pow(p, ed, p * p) == 0 != p
+# arith-l2-anneaux-applications (cours) : p + q = n - (p-1)(q-1) + 1 et p, q racines de X^2 - (p+q)X + n.
+for p, q in [(5, 11), (17, 19), (101, 103)]:
+    n, m = p * q, (p - 1) * (q - 1)
+    assert sorted(int(r) for r in Poly(X**2 - (n - m + 1) * X + n, X).all_roots()) == [p, q]
+# arith-l2-anneaux-ideaux (trou 1, leurre « partie stable par addition et multiplication ») : N dans Z,
+# 1 = 2 modulo N ? (2 - 1 = 1 dans N) mais 1 - 2 = -1 hors de N : la relation n'est même pas symétrique.
+assert (2 - 1) >= 0 and (1 - 2) < 0
+# arith-l2-anneaux-integres (trou 2, leurres) : Frac(Q) = Q est un corps (« jamais un corps » faux) ; Frac(Z) = Q
+# n'est pas isomorphe à Z (2 inversible) ni fini.
+assert F(1, 2) * 2 == 1
+# arith-l2-anneaux-isomorphisme-ex4 (+ v1, v2) : antécédents de (u, v) donnés dans la correction.
+u, v = symbols("u v")
+for P0, (r1, r2), ant in [(X**2 - 1, (1, -1), (u + v) / 2 + (u - v) / 2 * X),
+                          (X**2 - 3 * X + 2, (1, 2), (2 * u - v) + (v - u) * X),
+                          (X**2 - 4, (2, -2), (u + v) / 2 + (u - v) / 4 * X)]:
+    assert expand(ant.subs(X, r1) - u) == 0 and expand(ant.subs(X, r2) - v) == 0
+# arith-l2-anneaux-principaux-ex3 v2 : X^2 + X + 1 = (X + 2)(X - 1) + 3.
+assert expand((X + 2) * (X - 1) + 3 - (X**2 + X + 1)) == 0
+# arith-l2-anneaux-gauss-ex1 : z/w = (27 + 31i)/13, parties réelle et imaginaire non demi-entières (arrondi sans ambiguïté).
+for z, w in [(11 + 3 * Ii, 3 - 2 * Ii), (8 - 3 * Ii, 1 + 3 * Ii), (13 + Ii, 4 + 3 * Ii)]:
+    for t in expand(z / w).as_real_imag():
+        assert (2 * t).q != 1 or (2 * t).p % 2 == 0
+
 print("arith_l2_anneaux : toutes les vérifications passent.")

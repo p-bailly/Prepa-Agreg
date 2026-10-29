@@ -661,4 +661,31 @@ assert 3**2 + 4**2 == 4 + 21
 # q8 : unité et centre (2,0), rayon sqrt3 : O extérieur.
 assert 2 > math.sqrt(3) and 4 == 1 + 3
 
+# ===========================================================================
+# Compléments du relecteur
+# ===========================================================================
+# geo-l2-plane-orthogonaux (cours) : pour x^2+y^2+2ax+2by+c=0 et x^2+y^2+2a'x+2b'y+c'=0,
+# OO'^2 - R^2 - R'^2 = c + c' - 2aa' - 2bb' (identité symbolique).
+a_, b_, c_, a2_, b2_, c2_ = symbols("a_ b_ c_ a2_ b2_ c2_", real=True)
+assert expand((a_ - a2_)**2 + (b_ - b2_)**2 - (a_**2 + b_**2 - c_) - (a2_**2 + b2_**2 - c2_)
+              - (c_ + c2_ - 2*a_*a2_ - 2*b_*b2_)) == 0
+# geo-l2-plane-remarquables (démonstration, bissectrices) : le pied D de la bissectrice issue de A,
+# barycentre de (B, b) et (C, c), vérifie BD/DC = c/b et voit [AB], [AC] sous des angles égaux.
+for _ in range(50):
+    pa, pb, pc = (complex(random.uniform(-3, 3), random.uniform(-3, 3)) for _ in range(3))
+    if abs(((pb - pa).conjugate() * (pc - pa)).imag) < 0.5:
+        continue
+    la, lb, lc = abs(pc - pb), abs(pc - pa), abs(pb - pa)
+    pd = (lb * pb + lc * pc) / (lb + lc)
+    assert abs(abs(pd - pb) / abs(pc - pd) - lc / lb) < 1e-9
+    assert abs(abs(cmath.phase((pd - pa) / (pb - pa))) - abs(cmath.phase((pc - pa) / (pd - pa)))) < 1e-9
+# geo-l2-plane-complexes-cercles-ex4 (question 3) : pour ABCD convexe inscrit direct, q = (b-a)(d-c)/((d-a)(c-b)) > 0.
+for _ in range(50):
+    ts = sorted(random.uniform(0, 2 * math.pi) for _ in range(4))
+    if min(ts[i + 1] - ts[i] for i in range(3)) < 0.1 or 2 * math.pi - ts[3] + ts[0] < 0.1:
+        continue
+    pa, pb, pc, pd = (cmath.exp(1j * u) for u in ts)
+    q = (pb - pa) * (pd - pc) / ((pd - pa) * (pc - pb))
+    assert abs(q.imag) < 1e-9 and q.real > 0
+
 print("geo_l2_plane : toutes les vérifications passent")
