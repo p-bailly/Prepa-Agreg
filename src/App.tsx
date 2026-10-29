@@ -2,7 +2,8 @@
 // carte, exercice). Tous les écrans de la pile restent montés (seul le dernier est visible) : au retour, chacun est tel
 // qu'on l'a laissé. Le bouton retour d'Android dépile.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { voletsDe } from './contenu/types'
+import { cleQcm, type CibleQcm } from './chapitres/qcm'
+import { voletsDe, type Niveau } from './contenu/types'
 import { FournisseurDonnees, useDonnees } from './etat/Donnees'
 import { noterVolet, retenirMode } from './lib/progression'
 import { natif } from './lib/notifications'
@@ -24,7 +25,7 @@ type Onglet = 'accueil' | 'parcours' | 'reglages'
 type Ecran =
   | { k: 'chapitre'; id: string }
   | { k: 'notion'; id: string }
-  | { k: 'qcm'; chapitre: string }
+  | { k: 'qcm'; cible: CibleQcm }
   | { k: 'carte'; id: string; mode: Mode; neuve: boolean }
   | { k: 'exercice'; id: string }
 
@@ -117,7 +118,7 @@ function Navigation() {
           id={e.id}
           surNotion={(id) => empiler({ k: 'notion', id })}
           surExercice={surExercice}
-          surQcm={() => empiler({ k: 'qcm', chapitre: e.id })}
+          surQcm={() => empiler({ k: 'qcm', cible: { chapitre: e.id } })}
           surRetour={depiler}
         />
       )
@@ -125,7 +126,7 @@ function Navigation() {
       const carte = d.cartesParId.get(e.id)
       return carte && <EcranNotion carte={carte} surExercice={surExercice} surMemoriser={() => ouvrirCarte(carte.id)} surRetour={depiler} />
     }
-    if (e.k === 'qcm') return <EcranQcm chapitre={e.chapitre} surFin={depiler} />
+    if (e.k === 'qcm') return <EcranQcm cible={e.cible} surFin={depiler} />
     if (e.k === 'exercice') {
       const exercice = d.exercicesParId.get(e.id)
       return exercice && <EcranExercice exercice={exercice} surRetour={depiler} />
@@ -154,7 +155,13 @@ function Navigation() {
   const haut = pile[pile.length - 1]
   const onglets = !haut || AVEC_ONGLETS.includes(haut.k)
   let base
-  if (onglet === 'accueil') base = <Accueil surChapitre={surChapitre} />
+  if (onglet === 'accueil')
+    base = (
+      <Accueil
+        surChapitre={surChapitre}
+        surQcmNiveau={(niveau: Niveau, sorte: 'qcm' | 'vrai-faux') => empiler({ k: 'qcm', cible: { niveau, sorte } })}
+      />
+    )
   else if (onglet === 'parcours') base = <Parcours surChapitre={surChapitre} />
   else base = <Reglages />
 
@@ -165,7 +172,7 @@ function Navigation() {
       </div>
       {pile.map((e, i) => (
         <div
-          key={`${i}-${e.k}-${'id' in e ? e.id : e.chapitre}`}
+          key={`${i}-${e.k}-${'id' in e ? e.id : cleQcm(e.cible)}`}
           className={AVEC_ONGLETS.includes(e.k) ? 'appli avec-onglets' : undefined}
           style={i < pile.length - 1 ? { display: 'none' } : undefined}
         >

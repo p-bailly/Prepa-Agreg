@@ -1,5 +1,5 @@
-// Réglages : niveau de départ, niveaux actifs, modes de révision, séance et plafond de cartes neuves, objectif, date de
-// l'écrit (facultative), thème, rappel quotidien, export et import de la progression, signalements.
+// Réglages : niveau de départ, niveaux actifs, modes de révision (carte de révision), date de l'écrit (facultative),
+// thème, rappel quotidien, export et import de la progression, signalements.
 import { useRef, useState, type ReactNode } from 'react'
 import { NIVEAUX, NOMS_NIVEAUX, type Niveau } from '../contenu/types'
 import { useDonnees } from '../etat/Donnees'

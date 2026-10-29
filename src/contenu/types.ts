@@ -8,10 +8,10 @@ export const NOMS_NIVEAUX: Record<Niveau, string> = {
   l1: 'L1',
   l2: 'L2',
   l3: 'L3',
-  agreg: 'Agrégation',
+  agreg: 'Agrégation interne',
 }
 
-/** Rang d'un niveau, du plancher (0, Terminale) au plafond (4, agrégation). */
+/** Rang d'un niveau, du plancher (0, Terminale) au plafond (4, agrégation interne). */
 export const rangNiveau = (n: Niveau): number => NIVEAUX.indexOf(n)
 
 export type TypeCarte = 'theoreme' | 'definition' | 'methode'

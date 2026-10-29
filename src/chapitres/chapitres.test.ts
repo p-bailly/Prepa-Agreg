@@ -5,7 +5,7 @@ import { formulesDe } from '../contenu/texte'
 import { enregistrerQcm, enregistrerTentative, PROGRESSION_VIDE, apprendre } from '../lib/progression'
 import { carte, contenu, exercice } from '../repetition/outils-test'
 import { avancementChapitre, avancementNotion, chapitresNumerotes, meilleurQcm } from './plan'
-import { questionsChapitre, tirerQcm } from './qcm'
+import { cleQcm, questionsChapitre, questionsNiveau, tirerCible, tirerQcm } from './qcm'
 
 const J = '2026-03-10'
 const T = Date.parse(`${J}T09:00:00Z`)
@@ -95,5 +95,26 @@ describe('QCM des chapitres', () => {
       expect(q.propositions[q.bonne]).toBe(origine.propositions[origine.bonne])
     }
     expect(tirerQcm(qs, 10, graine(7)).map((q) => q.id)).toEqual(t.map((q) => q.id))
+  })
+
+  it('tire un QCM et un vrai-faux de niveau qui couvrent ses chapitres', () => {
+    for (const niveau of ['terminale', 'l1'] as const) {
+      const chapitres = new Set(CONTENU.cartes.filter((k) => k.niveau === niveau).map((k) => k.chapitre))
+      const vf = tirerCible(CONTENU, { niveau, sorte: 'vrai-faux' }, graine(3))
+      const qcm = tirerCible(CONTENU, { niveau, sorte: 'qcm' }, graine(5))
+      expect(vf).toHaveLength(20)
+      expect(qcm).toHaveLength(20)
+      expect(vf.every((q) => q.genre === 'vrai-faux')).toBe(true)
+      expect(qcm.every((q) => q.genre !== 'vrai-faux' && q.propositions.length === 4)).toBe(true)
+      // À tour de rôle : 20 questions pour au plus 20 chapitres, donc min(20, nombre de chapitres) chapitres distincts.
+      for (const t of [vf, qcm]) {
+        expect(new Set(t.map((q) => q.id)).size).toBe(20)
+        expect(new Set(t.map((q) => q.chapitre)).size).toBe(Math.min(20, chapitres.size))
+        for (const q of t) expect(chapitres.has(q.chapitre)).toBe(true)
+      }
+    }
+    expect(questionsNiveau(CONTENU, 'l2', 'qcm')).toEqual([])
+    expect(cleQcm({ niveau: 'l1', sorte: 'qcm' })).toBe('niveau-l1-qcm')
+    expect(cleQcm({ chapitre: 'ar-t-suites' })).toBe('ar-t-suites')
   })
 })

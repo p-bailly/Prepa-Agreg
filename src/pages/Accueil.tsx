@@ -1,8 +1,10 @@
 // Accueil : compte à rebours de l'écrit (si une date est choisie), puis la liste de tous les chapitres, numérotés, un
-// volet par niveau (de la Terminale à l'agrégation) et groupés par thème, avec leur avancement. Toucher un chapitre
-// rédigé l'ouvre (notions, exercices et problèmes, QCM).
+// volet par niveau (de la Terminale à l'agrégation interne) et groupés par thème, avec leur avancement. Toucher un chapitre
+// rédigé l'ouvre (notions, exercices et problèmes, QCM). En tête de chaque niveau rédigé : un QCM et un vrai-faux qui
+// portent sur tout le niveau.
 import { useMemo, useState } from 'react'
-import { avancementChapitre, chapitresNumerotes, notionsDe } from '../chapitres/plan'
+import { avancementChapitre, chapitresNumerotes, meilleurQcm, notionsDe } from '../chapitres/plan'
+import { cleQcm, NB_QUESTIONS, questionsNiveau } from '../chapitres/qcm'
 import { Volet } from '../composants/Blocs'
 import { Ligne, NOMS_AVANCEMENT } from '../composants/Lignes'
 import { NIVEAUX, NOMS_NIVEAUX, type Niveau } from '../contenu/types'
@@ -13,7 +15,13 @@ import { joursAvantEcrit } from '../lib/temps'
 const dateCourte = (jour: string) =>
   new Date(`${jour}T12:00:00Z`).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' })
 
-export function Accueil({ surChapitre }: { surChapitre: (id: string) => void }) {
+export function Accueil({
+  surChapitre,
+  surQcmNiveau,
+}: {
+  surChapitre: (id: string) => void
+  surQcmNiveau: (niveau: Niveau, sorte: 'qcm' | 'vrai-faux') => void
+}) {
   const { contenu, progression, reglages, exercicesParCarte, aujourdhui } = useDonnees()
   const jour = aujourdhui()
   const rebours = joursAvantEcrit(reglages.dateEcrit, jour)
@@ -55,6 +63,26 @@ export function Accueil({ surChapitre }: { surChapitre: (id: string) => void }) 
         const marque = rediges ? `ch. ${premier} à ${dernier} · ${rediges}/${duNiveau.length} rédigés` : `ch. ${premier} à ${dernier} · à venir`
         return (
           <Volet key={n} titre={NOMS_NIVEAUX[n]} marque={marque} ouvert={ouverts.has(n)} surBascule={(o) => basculer(n, o)}>
+            {rediges > 0 && (
+              <section className="groupe-chapitres">
+                <span className="etiquette">Tout le niveau</span>
+                <div className="niveau-entier">
+                  {(['qcm', 'vrai-faux'] as const).map((sorte) => {
+                    const total = questionsNiveau(contenu, n, sorte).length
+                    const meilleur = meilleurQcm(progression, cleQcm({ niveau: n, sorte }))
+                    return (
+                      <button key={sorte} className="bouton" disabled={!total} onClick={() => surQcmNiveau(n, sorte)}>
+                        {sorte === 'qcm' ? 'QCM du niveau' : 'Vrai ou faux du niveau'}
+                        <small>
+                          {Math.min(NB_QUESTIONS.niveau, total)} questions parmi {total}
+                          {meilleur ? ` · meilleur ${meilleur.bonnes}/${meilleur.total}` : ''}
+                        </small>
+                      </button>
+                    )
+                  })}
+                </div>
+              </section>
+            )}
             {themes.map((theme) => (
               <section key={theme.id} className="groupe-chapitres">
                 <span className="etiquette">{theme.titre}</span>
