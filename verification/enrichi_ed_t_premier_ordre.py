@@ -136,4 +136,31 @@ assert prim(log(exp(x) + 1) - log(2), f, 0, 0)
 for F in (log(exp(x) + 1), f - R(1, 2), x - log(exp(x) + 1) + log(2)):
     assert not prim(F, f, 0, 0)
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées par dsolve -------------------
+import sympy as sp
+_x = sp.symbols("x", real=True)
+_y = sp.Function("y")
+def _resout(eq, x0, y0):
+    return sp.simplify(sp.dsolve(eq, _y(_x), ics={_y(x0): y0}).rhs)
+# ed-t-premier-ordre-ay-ex6 (et v1, v2) : solutions avec condition initiale, puis sens de variation.
+_f = _resout(sp.Eq(_y(_x).diff(_x) + 2 * _y(_x), 2 * _x * sp.exp(-2 * _x)), 0, 1)
+assert sp.simplify(_f - (_x**2 + 1) * sp.exp(-2 * _x)) == 0
+assert sp.simplify(_f.diff(_x) + 2 * (_x**2 - _x + 1) * sp.exp(-2 * _x)) == 0 and sp.discriminant(_x**2 - _x + 1) < 0
+_f1 = _resout(sp.Eq(_y(_x).diff(_x) + _y(_x), 2 * _x * sp.exp(-_x)), 0, 1)
+assert sp.simplify(_f1 - (_x**2 + 1) * sp.exp(-_x)) == 0 and sp.simplify(_f1.diff(_x) + (_x - 1)**2 * sp.exp(-_x)) == 0
+_f2 = _resout(sp.Eq(_y(_x).diff(_x) + _y(_x), 2 * _x * sp.exp(-_x)), 0, -3)
+assert sp.simplify(_f2 - (_x**2 - 3) * sp.exp(-_x)) == 0
+assert sp.simplify(_f2.diff(_x) + (_x + 1) * (_x - 3) * sp.exp(-_x)) == 0
+assert sp.simplify(_f2.subs(_x, -1) + 2 * sp.E) == 0 and sp.simplify(_f2.subs(_x, 3) - 6 * sp.exp(-3)) == 0
+assert all(sp.limit(g, _x, sp.oo) == 0 for g in (_f, _f1, _f2))
+# ed-t-premier-ordre-ay-b-ex6 (et v1, v2) : f = C e^{ax} − b/a, f(0), f'(0) = a f(0) + b, limite −b/a (a < 0).
+_a, _b = sp.symbols("a b", real=True)
+for f0, fp0, lim, att in ((5, -2, 1, (sp.Rational(-1, 2), sp.Rational(1, 2))), (3, -4, -1, (-1, -1)), (2, 3, 5, (-1, 5))):
+    assert sp.solve([_a * f0 + _b - fp0, -_b - lim * _a], [_a, _b]) == {_a: att[0], _b: att[1]}
+# ed-t-premier-ordre-primitives-ex6 (et v1, v2) : dérivées et conditions.
+for F, f, x0, y0 in ((sp.log(sp.log(_x)) + 1, 1 / (_x * sp.log(_x)), sp.E, 1),
+                     (2 - sp.log(sp.cos(_x)), sp.tan(_x), 0, 2),
+                     (sp.log(sp.exp(_x) + 1) - sp.log(2), sp.exp(_x) / (sp.exp(_x) + 1), 0, 0)):
+    assert sp.simplify(F.diff(_x) - f) == 0 and sp.simplify(F.subs(_x, x0) - y0) == 0
+
 print("enrichi_ed_t_premier_ordre : tout est vérifié.")

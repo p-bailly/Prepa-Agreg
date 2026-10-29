@@ -133,4 +133,52 @@ for _ in range(50):
     pics = [i for i in range(len(L)) if all(L[i] >= L[j] for j in range(i + 1, len(L)))]
     assert all(L[pics[k]] >= L[pics[k + 1]] for k in range(len(pics) - 1))  # les pics forment une suite décroissante
 
+# ===========================================================================
+# Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées autrement.
+# ===========================================================================
+
+
+def _iter(u0, u1, a, b, c, N=30):
+    u = [u0, u1]
+    while len(u) < N:
+        u.append(a * u[-1] + b * u[-2] + c)
+    return u
+
+
+# ar-l1-suites-recurrence-lineaire-ex5 : u_n = 3^n + 2 ; v1 : 2^n - (-1)^n + 2 ; v2 : (n+1)3^n + 2 (30 termes).
+assert _iter(3, 5, 5, -6, 4) == [3**k + 2 for k in range(30)]
+assert _iter(2, 5, 1, 2, -4) == [2**k - (-1) ** k + 2 for k in range(30)]
+assert _iter(3, 8, 6, -9, 8) == [(k + 1) * 3**k + 2 for k in range(30)]
+# leurres faux (premier terme où ils diffèrent)
+assert _iter(3, 5, 5, -6, 4)[:2] != [2**k + 3**k for k in range(2)]
+assert [2 * 3**k + 1 for k in range(2)] != [3, 5] and [3**k + 2 * k + 2 for k in range(2)] != [3, 5]
+assert [2**k + (-1) ** k for k in range(2)] != [2, 5] and [2**k - (-1) ** k + 2 * k + 2 for k in range(2)] != [2, 5]
+assert [2 ** (k + 1) - (-1) ** k + 1 for k in range(2)] != [2, 5]
+assert [3**k + 2 for k in range(2)] != [3, 8] and [(2 * k + 1) * 3**k + 2 for k in range(2)] != [3, 8]
+assert [(k + 1) * 3**k + 2 * k + 2 for k in range(2)] != [3, 8]
+
+# ar-l1-suites-q1 : u_n = (2^n - (-1)^n)/3.
+assert _iter(0, 1, 1, 2, 0) == [(2**k - (-1) ** k) // 3 for k in range(30)]
+
+# ar-l1-suites-cesaro-ex5 : limites des quotients (SymPy) et contrôle numérique de sqrt(n) u_n.
+_x = symbols("_x", positive=True)
+assert limit(1 / sin(_x) ** 2 - 1 / _x**2, _x, 0) == Rational(1, 3)
+assert limit(1 / log(1 + _x) - 1 / _x, _x, 0, "+") == Rational(1, 2)
+assert simplify((1 + _x**2) ** 2 / _x**2 - 1 / _x**2 - (2 + _x**2)) == 0  # v2
+_u, _v, _w = 1.0, 1.0, 1.0
+for _k in range(10**6):
+    _u, _v, _w = math.sin(_u), math.log1p(_v), _w / (1 + _w * _w)
+_N = 10**6
+assert abs(math.sqrt(_N) * _u - math.sqrt(3)) < 1e-2  # principal : sqrt(3)
+assert abs(_N * _v - 2) < 1e-2  # v1 : 2
+assert abs(math.sqrt(_N) * _w - math.sqrt(2) / 2) < 1e-2  # v2 : sqrt(2)/2
+
+# ar-l1-suites-q5 : u_n = 1 si pgcd(n, 6) = 1 ; u_{2n} = u_{3n} = 0 mais u_{6k+1} = 1.
+_c = lambda k: 1 if math.gcd(k, 6) == 1 else 0
+assert all(_c(2 * k) == 0 and _c(3 * k) == 0 and _c(6 * k + 1) == 1 for k in range(500))
+
+# ar-l1-suites-q8 : S_4 = 7/12, S_5 = 47/60, et ln 2 entre les deux.
+_S = [sum(F((-1) ** (k + 1), k) for k in range(1, m + 1)) for m in (4, 5)]
+assert _S == [F(7, 12), F(47, 60)] and F(7, 12) < math.log(2) < F(47, 60)
+
 print("enrichi_ar_l1_suites : toutes les vérifications passent.")

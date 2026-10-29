@@ -140,4 +140,56 @@ assert limit((n_ - 1) / (n_ + 1), n_, oo) == 1 and limit((1 - n_) / (1 + n_), n_
 E2 = [F(a - b, a + b) for a in range(1, 80) for b in range(1, 80)]
 assert max(E2) < 1 and min(E2) > -1
 
+# ===========================================================================
+# Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées autrement.
+# ===========================================================================
+import math as _m
+
+
+def _val(N, p):
+    """Valuation p-adique de N! par factorisation directe (sans la formule de Legendre)."""
+    v, f = 0, _m.factorial(N)
+    while f % p == 0:
+        f //= p
+        v += 1
+    return v
+
+
+# ar-l1-reels-densite-ex5 : 100! finit par 24 zéros (leurres 20, 25, 22) ; v1 : v_3(100!) = 48 (leurres 33, 44, 47) ;
+# v2 : 250! finit par 62 zéros (leurres 50, 60, 63).
+_s = str(_m.factorial(100))
+assert len(_s) - len(_s.rstrip("0")) == 24 and _val(100, 5) == 24 and _val(100, 2) == 97
+assert _val(100, 3) == 48
+_s = str(_m.factorial(250))
+assert len(_s) - len(_s.rstrip("0")) == 62
+# question 1 : nombre de multiples de d dans {1..n} = floor(n/d), par force brute
+assert all(sum(1 for k in range(1, nn + 1) if k % d == 0) == nn // d for nn in range(1, 60) for d in range(1, 60))
+
+# ar-l1-reels-sup-sequentielle-ex5 : mn/(m²+n²) <= 1/2 avec égalité si m = n, > 0 ; v1 : 1 < (m+n)²/(m²+n²) <= 2 ;
+# v2 : -1 < (m-n)/(m+n) < 1 (grille 1..150).
+_g = range(1, 151)
+assert max(F(a * b, a * a + b * b) for a in _g for b in _g) == F(1, 2)
+assert min(F(a * b, a * a + b * b) for a in _g for b in _g) > 0
+assert max(F((a + b) ** 2, a * a + b * b) for a in _g for b in _g) == 2
+assert min(F((a + b) ** 2, a * a + b * b) for a in _g for b in _g) > 1
+
+# ar-l1-borne-sup-ex4, remarque : sqrt2 - 1 dans ]0,1[ et (sqrt2 - 1)^k = p + q sqrt2 avec p, q entiers (stabilité par produit).
+_p, _q = 1, 0
+for _k in range(1, 12):
+    _p, _q = -_p + 2 * _q, _p - _q  # (p + q√2)(-1 + √2) = (-p + 2q) + (p - q)√2
+    assert abs((_p + _q * _m.sqrt(2)) - (_m.sqrt(2) - 1) ** _k) < 1e-9
+assert 0 < _m.sqrt(2) - 1 < 1
+
+# ar-l1-reels-q4 : contre-exemple A = B = {-1, 0} ; aussi A = {-1}, B = {-2, 1} (sup AB = 2, sup A sup B = -1).
+assert max(a * b for a in [-1] for b in [-2, 1]) == 2 and max([-1]) * max([-2, 1]) == -1
+
+# ar-l1-reels-q7 : floor(x²) = 2 sur ]-√3,-√2] ∪ [√2,√3[ (test sur une grille fine).
+for _i in range(-2000, 2001):
+    _t = _i / 1000
+    assert (_m.floor(_t * _t) == 2) == (2 <= _t * _t < 3)
+
+# ar-l1-reels-q8 : max 2 en n = m = 0, éléments > 0.
+_E = [F(1, 2**a) + F(1, 3**b) for a in range(30) for b in range(30)]
+assert max(_E) == 2 and min(_E) > 0
+
 print("enrichi_ar_l1_reels : toutes les vérifications passent.")

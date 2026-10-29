@@ -155,4 +155,26 @@ double(-2, 4, 0, 1, 2, (2 * X**2 + X) * exp(-2 * X),
 double(3, 2, 2, 5, 1, (X**2 - X + 2) * exp(3 * X),
        [(X**2 + 5 * X + 2) * exp(3 * X), (X**2 - X + 2) * exp(-3 * X), (2 * X**2 - X + 2) * exp(3 * X)])
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées par dsolve -------------------
+import sympy as sp
+_x = sp.symbols("x", positive=True)
+_y = sp.Function("y")
+def _ok(expr, eq):
+    return sp.simplify(eq(expr)) == 0
+# ed-l1-lineaires-ordre2-ex5 (et v1, v2) : équations d'Euler, solution avec y(1) = 0, y'(1) = 1.
+for p, q, att in ((-2, 2, _x**2 - _x), (1, -4, (_x**2 - _x**-2) / 4), (-1, 1, _x * sp.log(_x))):
+    eq = lambda u, p=p, q=q: _x**2 * u.diff(_x, 2) + p * _x * u.diff(_x) + q * u
+    assert _ok(att, eq) and att.subs(_x, 1) == 0 and sp.simplify(att.diff(_x).subs(_x, 1) - 1) == 0
+# ed-l1-lineaires-variation-constante-ex5 (et v1, v2) : ((1+x²)y)' = b.
+_X = sp.symbols("X", real=True)
+for bb, y0, att in ((3 * _X**2 + 1, 2, _X + 2 / (1 + _X**2)), (4 * _X**3 + 2 * _X, -1, _X**2 - 1 / (1 + _X**2)),
+                    (sp.cos(_X), 1, (1 + sp.sin(_X)) / (1 + _X**2))):
+    assert sp.simplify((1 + _X**2) * att.diff(_X) + 2 * _X * att - bb) == 0 and att.subs(_X, 0) == y0
+# ed-l1-lineaires-exp-polynome-ex5 (et v1, v2) : racine double, dsolve avec conditions initiales.
+for m, c, y0, yp0, att in ((1, 6, 1, 0, (3 * _X**2 - _X + 1) * sp.exp(_X)), (-2, 4, 0, 1, (2 * _X**2 + _X) * sp.exp(-2 * _X)),
+                           (3, 2, 2, 5, (_X**2 - _X + 2) * sp.exp(3 * _X))):
+    eq = sp.Eq(_y(_X).diff(_X, 2) - 2 * m * _y(_X).diff(_X) + m**2 * _y(_X), c * sp.exp(m * _X))
+    s_ = sp.dsolve(eq, _y(_X), ics={_y(0): y0, _y(_X).diff(_X).subs(_X, 0): yp0}).rhs
+    assert sp.simplify(s_ - att) == 0
+
 print("enrichi_ed_l1_lineaires : tout est vérifié.")

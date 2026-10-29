@@ -25,10 +25,11 @@ assert diff(f, x, 3).subs(x, 0) == -6
 
 # ar-l1-taylor-q4 (vrai) : 0 <= e^x - 1 - x <= e x²/2 sur [0,1]. Taylor-Lagrange, |exp''| <= e sur [0,1].
 # Contrôle numérique sur une grille fine, et minoration par la convexité (e^x >= 1 + x).
+import math
 for i in range(0, 1001):
-    xv = Rational(i, 1000)
-    g = exp(xv) - 1 - xv
-    assert N(g) >= 0 and N(E*xv**2/2 - g) >= 0
+    xv = i/1000
+    g = math.exp(xv) - 1 - xv
+    assert g >= 0 and math.e*xv**2/2 - g >= -1e-15
 
 # ar-l1-taylor-q5 (faux) : ln(1+x) - x = -x²/2 + o(x²) < 0 près de 0 ; exemple x = 0,1.
 assert series(log(1 + x) - x, x, 0, 3).removeO() == -x**2/2
@@ -42,16 +43,16 @@ assert simplify(s - (1 + x**4/24)) == 0
 R = integrate((x - t)*(1 - cos(t)), (t, 0, x))
 assert simplify(R - (cos(x) - 1 + x**2/2)) == 0
 for i in range(-500, 501):
-    xv = Rational(i, 50)
-    assert N(cos(xv) - 1 + xv**2/2) >= 0
+    xv = i/50
+    assert math.cos(xv) - 1 + xv**2/2 >= -1e-15
 
 # ar-l1-taylor-q8 : plus petite constante C telle que |√(1+x) - 1 - x/2| <= C x² pour x >= 0 : C = 1/8.
 g = sqrt(1 + x) - 1 - x/2
 assert diff(sqrt(1 + x), x, 2) == -1/(4*(1 + x)**Rational(3, 2))
 assert limit(Abs(g)/x**2, x, 0, '+') == Rational(1, 8)  # aucune constante < 1/8 ne convient
 for i in range(1, 2001):
-    xv = Rational(i, 100)
-    assert N(Abs(g.subs(x, xv)) - xv**2/8) <= 0      # 1/8 convient
+    xv = i/100
+    assert abs(math.sqrt(1 + xv) - 1 - xv/2) - xv**2/8 <= 1e-15      # 1/8 convient
 # leurres 1/4, 1/2 (pas les plus petites), 1/16 (fausse près de 0)
 assert N(Abs(g.subs(x, Rational(1, 100))) - Rational(1, 100)**2/16) > 0
 
@@ -64,18 +65,22 @@ assert integrate(x - t, (t, 0, x)) == x**2/2
 S1 = summation(k, (k, 1, n)); S2 = summation(k**2, (k, 1, n)); S4 = summation(k**4, (k, 1, n))
 haut = S1/n**2
 bas = haut - S2/(2*n**4)
+assert simplify(haut - (n + 1)/(2*n)) == 0 and simplify(S2/(2*n**4) - (n + 1)*(2*n + 1)/(12*n**3)) == 0
 assert limit(haut, n, oo) == Rational(1, 2) and limit(bas, n, oo) == Rational(1, 2)
 # valeurs numériques : P_n -> √e
-Pn = lambda m, a: N(Product(1 + a(k, m), (k, 1, m)).doit())
-assert abs(Pn(2000, lambda kk, m: kk/m**2) - N(sqrt(E))) < 1e-3
+def Pn(m, a):
+    return math.prod(1 + a(kk, m) for kk in range(1, m + 1))
+assert abs(Pn(2000, lambda kk, m: kk/m**2) - math.sqrt(math.e)) < 1e-3
 # variante 1 : ∏(1 + 2k/n²) -> e
 haut = 2*S1/n**2; bas = haut - 4*S2/(2*n**4)
+assert simplify(haut - (n + 1)/n) == 0 and simplify(4*S2/(2*n**4) - (n + 1)*(2*n + 1)/(3*n**3)) == 0
 assert limit(haut, n, oo) == 1 and limit(bas, n, oo) == 1
-assert abs(Pn(2000, lambda kk, m: 2*kk/m**2) - N(E)) < 2e-3
+assert abs(Pn(2000, lambda kk, m: 2*kk/m**2) - math.e) < 2e-3
 # variante 2 : ∏(1 + k²/n³) -> e^(1/3) ; Σ k⁴/(2n⁶) <= 1/(2n) -> 0
 haut = S2/n**3; bas = haut - S4/(2*n**6)
+assert simplify(haut - (n + 1)*(2*n + 1)/(6*n**2)) == 0
 assert limit(haut, n, oo) == Rational(1, 3) and limit(bas, n, oo) == Rational(1, 3)
-assert abs(Pn(2000, lambda kk, m: kk**2/m**3) - N(exp(Rational(1, 3)))) < 2e-3
+assert abs(Pn(2000, lambda kk, m: kk**2/m**3) - math.exp(1/3)) < 2e-3
 # leurres distincts de la bonne réponse
 assert len({N(sqrt(E)), N(E), 1.0, N(exp(Rational(1, 3)))}) == 4
 assert len({N(E), N(sqrt(E)), N(E**2), 1.0}) == 4

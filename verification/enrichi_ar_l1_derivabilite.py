@@ -130,4 +130,58 @@ P = Poly((x - 1) * (x - 2) * (x - 4) * (x - 7), x)
 rp = [r.evalf() for r in real_roots(P.diff(x))]
 assert len(rp) == 3 and 1 < rp[0] < 2 < rp[1] < 4 < rp[2] < 7
 
+# ===========================================================================
+# Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées autrement.
+# ===========================================================================
+from sympy import Symbol as _Sym
+
+_x = _Sym("_x", real=True)
+
+# ar-l1-derivabilite-leibniz-ex5 : formules vérifiées par dérivation directe pour n = 0..12 ; chaque leurre
+# est faux pour au moins un n.
+_cas = [
+    ((_x**2 + 1) * exp(-_x),
+     lambda k: (-1) ** k * exp(-_x) * (_x**2 - 2 * k * _x + k**2 - k + 1),
+     [lambda k: (-1) ** k * exp(-_x) * (_x**2 + 2 * k * _x + k**2 - k + 1),
+      lambda k: exp(-_x) * (_x**2 - 2 * k * _x + k**2 - k + 1),
+      lambda k: (-1) ** k * exp(-_x) * (_x**2 - 2 * k * _x + k**2 + k + 1)]),
+    ((_x**2 - _x) * exp(2 * _x),
+     lambda k: Rational(2) ** (k - 2) * exp(2 * _x) * (4 * _x**2 + 4 * (k - 1) * _x + k**2 - 3 * k),
+     [lambda k: Rational(2) ** k * exp(2 * _x) * (_x**2 + (k - 1) * _x + k**2 - 3 * k),
+      lambda k: Rational(2) ** (k - 2) * exp(2 * _x) * (4 * _x**2 + 4 * (k - 1) * _x + k**2 - k),
+      lambda k: Rational(2) ** (k - 2) * exp(2 * _x) * (4 * _x**2 - 4 * _x + k**2 - 3 * k)]),
+    ((_x**2 + 2 * _x) * exp(-_x),
+     lambda k: (-1) ** k * exp(-_x) * (_x**2 + 2 * (1 - k) * _x + k**2 - 3 * k),
+     [lambda k: exp(-_x) * (_x**2 + 2 * (1 - k) * _x + k**2 - 3 * k),
+      lambda k: (-1) ** k * exp(-_x) * (_x**2 + 2 * (1 + k) * _x + k**2 + k),
+      lambda k: (-1) ** k * exp(-_x) * (_x**2 + 2 * (1 - k) * _x + k**2 - k)]),
+]
+for _f, _bonne, _leurres in _cas:
+    _d = [diff(_f, _x, k) for k in range(13)]
+    assert all(simplify(_d[k] - _bonne(k)) == 0 for k in range(13))
+    for _l in _leurres:
+        assert any(simplify(_d[k] - _l(k)) != 0 for k in range(13))
+
+# ar-l1-taf-ex5 : limites 1/6, 1/2, 1/3 ; quotients des dérivées utilisés dans la correction.
+assert limit((_x - sin(_x)) / _x**3, _x, 0) == Rational(1, 6)
+assert limit((1 - cos(_x)) / (3 * _x**2), _x, 0) == Rational(1, 6)
+assert limit((exp(_x) - 1 - _x) / _x**2, _x, 0) == Rational(1, 2)
+assert limit((_x - atan(_x)) / _x**3, _x, 0) == Rational(1, 3)
+assert simplify(diff(_x - atan(_x), _x) / diff(_x**3, _x) - 1 / (3 * (1 + _x**2))) == 0
+# question 1 : h(a) = h(b) pour h = (f(b)-f(a)) g - (g(b)-g(a)) f (symbolique)
+_fa, _fb, _ga, _gb = symbols("_fa _fb _ga _gb")
+assert expand(((_fb - _fa) * _ga - (_gb - _ga) * _fa) - ((_fb - _fa) * _gb - (_gb - _ga) * _fb)) == 0
+
+# ar-l1-rolle-ex5 : pour n = 1..8, Q^(k)(±1) = 0 pour k < n et Q^(n) a n racines réelles distinctes dans ]-1,1[.
+for _n in range(1, 9):
+    _Q = Poly((_x**2 - 1) ** _n, _x)
+    assert all(_Q.diff((_x, k)).eval(1) == 0 and _Q.diff((_x, k)).eval(-1) == 0 for k in range(_n))
+    _r = real_roots(_Q.diff((_x, _n)))
+    assert len(_r) == _n and len(set(_r)) == _n and all(-1 < r.evalf() < 1 for r in _r)
+
+# ar-l1-derivabilite-q1 : f^(5)(0) = 240 pour x³ e^{2x}.
+assert diff(_x**3 * exp(2 * _x), _x, 5).subs(_x, 0) == 240
+# ar-l1-derivabilite-q7 : c = 9/4 pour sqrt sur [1,4].
+assert 3 / (2 * sqrt(Rational(9, 4))) == 1
+
 print("enrichi_ar_l1_derivabilite : toutes les vérifications passent.")

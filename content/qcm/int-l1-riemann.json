@@ -1,0 +1,93 @@
+{
+  "chapitre": "int-l1-riemann",
+  "questions": [
+    {
+      "id": "int-l1-riemann-q1",
+      "carte": "int-l1-riemann-sommes",
+      "genre": "choix",
+      "enonce": "Quelle est la limite de $u_n=\\sum_{k=1}^{n}\\frac{k}{n^2+k^2}$ quand $n\\to+\\infty$ ?",
+      "propositions": [
+        "$\\frac{\\ln2}{2}$",
+        "$\\ln2$",
+        "$\\frac\\pi4$",
+        "$\\frac12$"
+      ],
+      "bonne": 0,
+      "explication": "En factorisant $n^2$ au dénominateur, $u_n=\\frac1n\\sum_{k=1}^n\\frac{k/n}{1+(k/n)^2}$ : c'est une somme de Riemann de $f(x)=\\frac{x}{1+x^2}$, continue sur $[0,1]$. Donc $u_n\\to\\int_0^1\\frac{x}{1+x^2}\\,\\mathrm{d}x=\\left[\\frac12\\ln(1+x^2)\\right]_0^1=\\frac{\\ln2}{2}$. La valeur $\\frac\\pi4$ serait la limite de $\\sum_{k=1}^n\\frac{n}{n^2+k^2}$."
+    },
+    {
+      "id": "int-l1-riemann-q2",
+      "carte": "int-l1-riemann-sommes",
+      "genre": "choix",
+      "enonce": "Quelle est la limite de $v_n=\\sum_{k=1}^{n}\\frac{k}{n^2}e^{k/n}$ quand $n\\to+\\infty$ ?",
+      "propositions": [
+        "$1$",
+        "$e-1$",
+        "$e$",
+        "$\\frac12$"
+      ],
+      "bonne": 0,
+      "explication": "$v_n=\\frac1n\\sum_{k=1}^n\\frac kn\\,e^{k/n}$ est une somme de Riemann de $f(x)=xe^x$, continue sur $[0,1]$. Donc $v_n\\to\\int_0^1xe^x\\,\\mathrm{d}x=\\big[(x-1)e^x\\big]_0^1=0-(-1)=1$ (intégration par parties)."
+    },
+    {
+      "id": "int-l1-riemann-q3",
+      "carte": "int-l1-riemann-changement-variable",
+      "genre": "choix",
+      "enonce": "Que vaut $\\int_1^4\\frac{\\mathrm{d}x}{x+\\sqrt x}$ ?",
+      "propositions": [
+        "$2\\ln\\frac32$",
+        "$\\ln\\frac32$",
+        "$2\\ln3$",
+        "$\\ln\\frac52$"
+      ],
+      "bonne": 0,
+      "explication": "On pose $x=\\varphi(t)=t^2$, avec $\\varphi$ de classe $\\mathcal{C}^1$ sur $[1,2]$, $\\varphi(1)=1$, $\\varphi(2)=4$ et $\\varphi'(t)=2t$. Comme $\\sqrt{t^2}=t$ pour $t\\ge0$ :\n$$\\int_1^4\\frac{\\mathrm{d}x}{x+\\sqrt x}=\\int_1^2\\frac{2t}{t^2+t}\\,\\mathrm{d}t=\\int_1^2\\frac{2}{t+1}\\,\\mathrm{d}t=2\\big[\\ln(t+1)\\big]_1^2=2\\ln\\frac32.$$\nOublier le facteur $\\varphi'(t)=2t$ fait perdre le facteur $2$ et modifie l'intégrande."
+    },
+    {
+      "id": "int-l1-riemann-q4",
+      "carte": "int-l1-riemann-changement-variable",
+      "genre": "vrai-faux",
+      "enonce": "$\\int_0^{\\pi/2}\\frac{\\sin t}{\\sin t+\\cos t}\\,\\mathrm{d}t=\\frac\\pi4$.",
+      "vrai": true,
+      "explication": "Notons $I$ cette intégrale et $J=\\int_0^{\\pi/2}\\frac{\\cos t}{\\sin t+\\cos t}\\,\\mathrm{d}t$ (les dénominateurs ne s'annulent pas sur $\\left[0,\\frac\\pi2\\right]$). Le changement de variable $t=\\frac\\pi2-u$ échange $\\sin$ et $\\cos$ et donne $I=J$. Or $I+J=\\int_0^{\\pi/2}1\\,\\mathrm{d}t=\\frac\\pi2$, donc $I=\\frac\\pi4$."
+    },
+    {
+      "id": "int-l1-riemann-q5",
+      "carte": "int-l1-riemann-nulle",
+      "genre": "vrai-faux",
+      "enonce": "Si $f$ est continue sur $[0,1]$ et si $\\int_0^1f(t)^3\\,\\mathrm{d}t=0$, alors $f$ est nulle sur $[0,1]$.",
+      "vrai": false,
+      "explication": "Le théorème demande une fonction **positive** ; $f^3$ ne l'est pas forcément. Contre-exemple : $f(t)=t-\\frac12$, continue et non nulle, avec $\\int_0^1\\left(t-\\frac12\\right)^3\\mathrm{d}t=\\left[\\frac14\\left(t-\\frac12\\right)^4\\right]_0^1=\\frac{1}{64}-\\frac{1}{64}=0$. (Avec un exposant pair, $f^2$ ou $f^4$, la conclusion serait vraie.)"
+    },
+    {
+      "id": "int-l1-riemann-q6",
+      "carte": "int-l1-riemann-cauchy-schwarz",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute fonction $f$ continue sur $[0,1]$, $\\left(\\int_0^1t\\,f(t)\\,\\mathrm{d}t\\right)^2\\le\\frac13\\int_0^1f(t)^2\\,\\mathrm{d}t$.",
+      "vrai": true,
+      "explication": "L'inégalité de Cauchy-Schwarz appliquée à $t\\mapsto t$ et à $f$ donne $\\left(\\int_0^1t\\,f(t)\\,\\mathrm{d}t\\right)^2\\le\\int_0^1t^2\\,\\mathrm{d}t\\int_0^1f(t)^2\\,\\mathrm{d}t=\\frac13\\int_0^1f(t)^2\\,\\mathrm{d}t$. La constante $\\frac13$ est la meilleure possible : il y a égalité pour $f(t)=t$."
+    },
+    {
+      "id": "int-l1-riemann-q7",
+      "carte": "int-l1-riemann-fractions",
+      "genre": "choix",
+      "enonce": "Que vaut $\\int_0^1\\frac{\\mathrm{d}x}{x^2+3x+2}$ ?",
+      "propositions": [
+        "$\\ln\\frac43$",
+        "$\\ln\\frac32$",
+        "$\\ln6$",
+        "$\\ln\\frac23$"
+      ],
+      "bonne": 0,
+      "explication": "$x^2+3x+2=(x+1)(x+2)$ et la décomposition en éléments simples est $\\frac{1}{(x+1)(x+2)}=\\frac{1}{x+1}-\\frac{1}{x+2}$. Donc l'intégrale vaut $\\left[\\ln\\frac{x+1}{x+2}\\right]_0^1=\\ln\\frac23-\\ln\\frac12=\\ln\\frac43$. La proposition $\\ln\\frac23$ est négative, alors que la fonction intégrée est positive."
+    },
+    {
+      "id": "int-l1-riemann-q8",
+      "carte": "int-l1-riemann-cpm",
+      "genre": "vrai-faux",
+      "enonce": "La fonction $f$ définie sur $[0,1]$ par $f(0)=0$ et $f(x)=\\sin\\frac1x$ pour $x>0$ est continue par morceaux sur $[0,1]$.",
+      "vrai": false,
+      "explication": "Pour toute subdivision $0=x_0<x_1<\\dots$, la restriction de $f$ à $\\left]0,x_1\\right[$ devrait avoir une limite finie en $0$. Or $f\\left(\\frac{1}{\\pi/2+2k\\pi}\\right)=1$ et $f\\left(\\frac{1}{3\\pi/2+2k\\pi}\\right)=-1$ pour tout entier $k\\ge0$, avec des points qui tendent vers $0$ : $f$ n'a pas de limite en $0^+$. Elle n'est donc pas continue par morceaux (elle est pourtant intégrable au sens de Riemann, étant bornée et continue sauf en $0$)."
+    }
+  ]
+}

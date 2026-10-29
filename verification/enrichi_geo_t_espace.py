@@ -124,4 +124,31 @@ symetrique(V(3, 4, 5), V(1, 1, 1), -3, -3, V(0, 1, 2), 27, V(-3, -2, -1), [V(0, 
 # v2 : P : x − 2y + 2z + 4 = 0, M(1,−1,1) ⇒ H(0,1,−1), MH = 3, M'(−1,3,−3).
 symetrique(V(1, -1, 1), V(1, -2, 2), 4, -1, V(0, 1, -1), 9, V(-1, 3, -3), [V(0, 1, -1), V(3, -5, 5), V(1, -3, 3)])
 
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ------------------------------
+import sympy as sp
+_t = sp.symbols("t", real=True)
+# geo-t-espace-droite-param-ex5 (et v1, v2) : minimum de BM_t², H, BH, plan orthogonal à D passant par B.
+for A0, u, B, H, d2 in (((1, 0, 2), (1, 1, -1), (2, 4, 1), (3, 2, 0), 6), ((0, 1, -1), (2, -1, 1), (3, 1, -1), (2, 0, 0), 3),
+                        ((2, -1, 0), (1, 2, 2), (3, -4, -2), (1, -3, -2), 5)):
+    M = sp.Matrix(A0) + _t * sp.Matrix(u)
+    D2 = sp.expand((M - sp.Matrix(B)).dot(M - sp.Matrix(B)))
+    t0 = sp.solve(D2.diff(_t), _t)[0]
+    assert tuple(M.subs(_t, t0)) == H and D2.subs(_t, t0) == d2
+    assert all(M.subs(_t, t1) != sp.Matrix(B) for t1 in sp.solve(M[0] - B[0], _t))  # B ∉ D
+    assert (sp.Matrix(H) - sp.Matrix(B)).dot(sp.Matrix(u)) == 0
+# geo-t-espace-equation-plan-ex5 (et v1, v2) : point d'intersection.
+for A0, u, n, d, I_ in (((2, -1, 1), (1, 2, -1), (2, -1, 1), -9, (-1, -7, 4)), ((1, 0, 2), (-1, 3, 1), (1, 2, -1), -7, (-1, 6, 4)),
+                        ((0, 1, -2), (3, -1, 2), (2, 1, -1), -9, (6, -1, 2))):
+    M = sp.Matrix(A0) + _t * sp.Matrix(u)
+    assert sp.Matrix(n).dot(sp.Matrix(u)) != 0
+    assert tuple(M.subs(_t, sp.solve(sp.Matrix(n).dot(M) + d, _t)[0])) == I_
+# geo-t-espace-projete-ex5 (et v1, v2) : projeté H, distance, symétrique M'.
+for Mp, n, d, H, dist, Ms in (((1, -2, 4), (2, -1, 2), -3, (-1, -1, 2), 3, (-3, 0, 0)),
+                              ((3, 4, 5), (1, 1, 1), -3, (0, 1, 2), 3 * sp.sqrt(3), (-3, -2, -1)),
+                              ((1, -1, 1), (1, -2, 2), 4, (0, 1, -1), 3, (-1, 3, -3))):
+    M, N_ = sp.Matrix(Mp), sp.Matrix(n)
+    k = -(N_.dot(M) + d) / N_.dot(N_)
+    assert tuple(M + k * N_) == H and tuple(M + 2 * k * N_) == Ms
+    assert sp.simplify(sp.Abs(N_.dot(M) + d) / sp.sqrt(N_.dot(N_)) - dist) == 0
+
 print("enrichi_geo_t_espace : tout est vérifié.")

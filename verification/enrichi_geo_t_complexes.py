@@ -116,11 +116,48 @@ for r in (exp(I * th), exp(-I * th)):
 P4 = lambda u: u**4 - 2 * u**2 * cos(th) + 1
 for r in (exp(I * th / 2), -exp(I * th / 2), exp(-I * th / 2), -exp(-I * th / 2)):
     assert nul(P4(r))
-# Leurre : e^{iθ} n'est pas solution de l'équation de degré 4 en général (θ = π/2 : 1 + 2·0... P4(i) = 2 ≠ 0).
+# (Ancien leurre, remplacé à la relecture : e^{iθ} n'est pas solution en général, mais l'est pour θ = 2π/3) (θ = π/2 : 1 + 2·0... P4(i) = 2 ≠ 0).
 assert P4(exp(I * pi / 2)).subs(th, pi / 2) == 2
 assert simplify(P4(exp(2 * I * pi / 3)).subs(th, pi / 3)) != 0  # e^{2iθ} pour θ = π/3
 # Les quatre solutions sont distinctes pour θ = π/3 (exemple numérique).
 vals = [complex(N(v.subs(th, pi / 3))) for v in (exp(I * th / 2), -exp(I * th / 2), exp(-I * th / 2), -exp(-I * th / 2))]
 assert all(abs(vals[i] - vals[j]) > 1e-9 for i in range(4) for j in range(i))
+
+# --- Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées ------------------------------
+import sympy as sp
+# geo-t-complexes-exponentielle-ex5 (et v1, v2) : plus petit n avec |z_n| < seuil, rapport (z_n − z_{n+1})/(−z_{n+1}).
+for q, z0, seuil, n_att, rapport in (((1 + sp.I) / 2, 4, sp.Rational(1, 100), 18, sp.I),
+                                     ((1 + sp.I * sp.sqrt(3)) / 4, 2, sp.Rational(1, 1000), 11, sp.I * sp.sqrt(3)),
+                                     ((3 + sp.I * sp.sqrt(3)) / 4, 1, sp.Rational(1, 10), 17, sp.I / sp.sqrt(3))):
+    mod = sp.Abs(q)
+    n = next(k for k in range(200) if z0 * mod**k < seuil)
+    assert n == n_att and sp.simplify(z0 * mod**(n - 1) - seuil) > 0
+    assert sp.simplify(sp.expand_complex((1 - q) / (-q)) - rapport) == 0
+# exponentielle-ex5 v2 : n = 16 ne suffit pas de peu : (3/4)^8 = 6561/65536 > 1/10.
+assert sp.Rational(3, 4)**8 == sp.Rational(6561, 65536) > sp.Rational(1, 10)
+# geo-t-complexes-module-ex5 (et v1, v2) : |z − a|² − k²|z − b|² est proportionnel à l'équation du cercle annoncé.
+_x, _y = sp.symbols("x y", real=True)
+for a_, k, b_, cx, r in ((4, 2, 1, 0, 2), (-3, 2, 0, 1, 2), (9, 3, 1, 0, 3)):
+    e = sp.expand((_x - a_)**2 + _y**2 - k**2 * ((_x - b_)**2 + _y**2))
+    assert sp.simplify(e / ((_x - cx)**2 + _y**2 - r**2)).is_constant()
+# geo-t-complexes-second-degre-ex5 : les propositions comparées comme ensembles sur une grille de θ ∈ ]0,π[ :
+# la bonne réponse donne toujours les 4 racines ; le leurre ±e^{±iθ/4} ne contient jamais de racine ; l'ancien leurre
+# ±e^{±iθ} coïncidait avec la bonne réponse pour θ = 2π/3 (remplacé) ; « seulement deux » et {e^{±2iθ}, e^{±iθ}}
+# ne donnent jamais l'ensemble des quatre racines.
+import cmath, math
+def _racines(th):
+    c = math.cos(th)
+    return [complex(r) for r in sp.Poly(sp.Symbol("z")**4 - 2 * sp.Float(c, 30) * sp.Symbol("z")**2 + 1, sp.Symbol("z")).nroots(n=30)]
+def _meme(A, B):
+    return all(any(abs(a - b) < 1e-9 for b in B) for a in A) and all(any(abs(a - b) < 1e-9 for a in A) for b in B)
+for k in range(1, 180):
+    th = math.pi * k / 180
+    R = _racines(th)
+    e = lambda w: cmath.exp(1j * w)
+    assert _meme(R, [e(th / 2), -e(th / 2), e(-th / 2), -e(-th / 2)])
+    assert not any(abs(v - r) < 1e-9 for v in (e(th / 4), -e(th / 4), e(-th / 4), -e(-th / 4)) for r in R)
+    assert not _meme(R, [e(th / 2), e(-th / 2)])
+    assert not _meme(R, [e(2 * th), e(-2 * th), e(th), e(-th)])
+assert _meme(_racines(2 * math.pi / 3), [cmath.exp(1j * w) * s for w in (2 * math.pi / 3, -2 * math.pi / 3) for s in (1, -1)])
 
 print("enrichi_geo_t_complexes : tout est vérifié.")

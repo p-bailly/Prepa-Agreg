@@ -122,4 +122,48 @@ for eps, eta_ok, leurres in [
     for l in leurres:
         assert l > eps**2 and sqrt(l) > eps  # x = l, y = 0 met en défaut : leurre faux
 
+# ===========================================================================
+# Relecture indépendante (2026-10-29) : réponses retrouvées à l'aveugle, recalculées autrement.
+# ===========================================================================
+_x = symbols("_x", real=True)
+_a = symbols("_a", positive=True)
+
+# ar-l1-continuite-image-intervalle-ex5, question 3 : f(x + 2/5) - f(x) = -2/5 et f(0) = f(1) = 0 ;
+# généralisation de la correction : g(x) = sin²(pi x/a) - x sin²(pi/a) vérifie g(0) = g(1) = 0 et
+# g(x + a) - g(x) = -a sin²(pi/a), non nul si 1/a n'est pas entier.
+_f = sin(5 * pi * _x / 2) ** 2 - _x
+assert _f.subs(_x, 0) == 0 and simplify(_f.subs(_x, 1)) == 0
+assert simplify(_f.subs(_x, _x + Rational(2, 5)) - _f + Rational(2, 5)) == 0
+_g = sin(pi * _x / _a) ** 2 - _x * sin(pi / _a) ** 2
+assert simplify(_g.subs(_x, 1)) == 0
+assert simplify(_g.subs(_x, _x + _a) - _g + _a * sin(pi / _a) ** 2) == 0
+# question 2 : la somme télescopique des g_n(k/n) est nulle (fonction test quelconque avec f(0) = f(1))
+_h = lambda t: math.sin(2 * math.pi * t) + t * (1 - t) * math.exp(t)
+for _n in range(2, 12):
+    assert abs(sum(_h((k + 1) / _n) - _h(k / _n) for k in range(_n))) < 1e-12
+
+# ar-l1-continuite-heine-ex5 : |sqrt x - sqrt y| <= sqrt|x - y| (grille) ; eta = eps² (1/100, 1/25, 9/100).
+for _i in range(0, 200):
+    for _j in range(0, 200):
+        _p, _q = _i / 37, _j / 53
+        assert abs(math.sqrt(_p) - math.sqrt(_q)) <= math.sqrt(abs(_p - _q)) + 1e-12
+assert [Rational(1, 10) ** 2, Rational(1, 5) ** 2, Rational(3, 10) ** 2] == [Rational(1, 100), Rational(1, 25), Rational(9, 100)]
+
+# ar-l1-bornes-atteintes-ex4 : -1/(1+x) < 0 de limite 0 (sup 0 non atteint) ; 1/(1+x) > 0 de limite 0, f(0) = 1.
+assert limit(-1 / (1 + _x), _x, oo) == 0 and limit(1 / (1 + _x), _x, oo) == 0
+
+# ar-l1-continuite-q1 : image de ]-1,2] par x² - 2x : min -1 en 1, f(-1) = 3 exclu, f(2) = 0.
+_F = _x**2 - 2 * _x
+assert _F.subs(_x, 1) == -1 and _F.subs(_x, -1) == 3 and _F.subs(_x, 2) == 0
+assert all(-1 <= (t / 1000) ** 2 - 2 * t / 1000 < 3 for t in range(-999, 2001))
+
+# ar-l1-continuite-q5 : réciproque de x/(1+|x|) : y/(1-|y|).
+for _t in [-0.9, -0.5, -1 / 3, 0, 0.25, 0.5, 0.99]:
+    _y = _t / (1 - abs(_t))
+    assert abs(_y / (1 + abs(_y)) - _t) < 1e-12
+
+# ar-l1-continuite-q7 : maxima atteints (1/4, 1/e, 1) et sup de arctan = pi/2 non atteint.
+assert limit(atan(_x), _x, oo) == pi / 2
+assert solve(diff(_x * exp(-_x), _x), _x) == [1]
+
 print("enrichi_ar_l1_continuite : toutes les vérifications passent.")

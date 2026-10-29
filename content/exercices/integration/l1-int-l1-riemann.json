@@ -1484,6 +1484,104 @@
           ]
         }
       ]
+    },
+    {
+      "id": "int-l1-riemann-sommes-ex5",
+      "carte": "int-l1-riemann-sommes",
+      "difficulte": 4,
+      "titre": "Inégalité de Jensen pour les intégrales",
+      "enonce": "Soient $f$ une fonction continue sur $[0,1]$ et $\\varphi$ une fonction convexe sur $\\mathbb{R}$ ; on admet que $\\varphi$ est alors continue sur $\\mathbb{R}$.\n\n**1.** Pour $n\\ge1$, montrer que $\\varphi\\left(\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)\\right)\\le\\frac1n\\sum_{k=1}^n\\varphi\\left(f\\left(\\frac kn\\right)\\right)$.\n\n**2.** En déduire que $\\varphi\\left(\\int_0^1f(t)\\,\\mathrm{d}t\\right)\\le\\int_0^1\\varphi\\big(f(t)\\big)\\,\\mathrm{d}t$.\n\n**3.** Montrer que, pour toute fonction $f$ continue sur $[0,1]$, $\\left(\\int_0^1f(t)\\,\\mathrm{d}t\\right)^2\\le\\int_0^1f(t)^2\\,\\mathrm{d}t$.\n\n**4.** Montrer que, pour toute fonction $g$ continue et strictement positive sur $[0,1]$, $\\int_0^1\\ln g(t)\\,\\mathrm{d}t\\le\\ln\\left(\\int_0^1g(t)\\,\\mathrm{d}t\\right)$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : c'est l'inégalité de Jensen discrète, avec $n$ poids égaux à $\\frac1n$.",
+        "Question 2 : faire tendre $n$ vers $+\\infty$ dans les deux membres, en reconnaissant deux sommes de Riemann et en utilisant la continuité de $\\varphi$.",
+        "Question 4 : appliquer la question 2 à $\\varphi=\\exp$ et à la fonction $\\ln g$."
+      ],
+      "correction": "**1.** Les réels $x_k=f\\left(\\frac kn\\right)$ ($1\\le k\\le n$) et les poids $\\lambda_k=\\frac1n\\ge0$, de somme $1$, permettent d'appliquer l'inégalité de Jensen à la fonction convexe $\\varphi$ sur l'intervalle $\\mathbb{R}$ : $\\varphi\\left(\\sum_k\\lambda_kx_k\\right)\\le\\sum_k\\lambda_k\\varphi(x_k)$, ce qui est l'inégalité demandée.\n\n**2.** Comme $f$ est continue sur $[0,1]$, la somme de Riemann $s_n=\\frac1n\\sum_{k=1}^nf\\left(\\frac kn\\right)$ tend vers $\\int_0^1f(t)\\,\\mathrm{d}t$ ; par continuité de $\\varphi$, le membre de gauche $\\varphi(s_n)$ tend vers $\\varphi\\left(\\int_0^1f\\right)$. La fonction $\\varphi\\circ f$ est continue sur $[0,1]$ (composée de fonctions continues), donc le membre de droite, qui est une somme de Riemann de $\\varphi\\circ f$, tend vers $\\int_0^1\\varphi\\big(f(t)\\big)\\,\\mathrm{d}t$. Le passage à la limite dans une inégalité large donne le résultat.\n\n**3.** La fonction $\\varphi:x\\mapsto x^2$ est convexe sur $\\mathbb{R}$ ($\\varphi''=2\\ge0$) : la question 2 donne $\\left(\\int_0^1f\\right)^2\\le\\int_0^1f^2$. (On retrouve l'inégalité de Cauchy-Schwarz appliquée à $1$ et à $f$.)\n\n**4.** La fonction $f=\\ln g$ est continue sur $[0,1]$, car $g$ est continue à valeurs strictement positives. La fonction $\\exp$ est convexe sur $\\mathbb{R}$ ; la question 2 donne\n$$\\exp\\left(\\int_0^1\\ln g(t)\\,\\mathrm{d}t\\right)\\le\\int_0^1e^{\\ln g(t)}\\,\\mathrm{d}t=\\int_0^1g(t)\\,\\mathrm{d}t.$$\nLe membre de droite est strictement positif ; en appliquant $\\ln$, croissante sur $\\left]0,+\\infty\\right[$, on obtient $\\int_0^1\\ln g\\le\\ln\\left(\\int_0^1g\\right)$. Par exemple, pour $g(t)=1+t$ : $2\\ln2-1\\approx0{,}386\\le\\ln\\frac32\\approx0{,}405$."
+    },
+    {
+      "id": "int-l1-riemann-cpm-ex5",
+      "carte": "int-l1-riemann-cpm",
+      "difficulte": 2,
+      "titre": "Intégrale de la partie entière d'une fonction",
+      "enonce": "Justifier que la fonction $x\\mapsto\\lfloor x^2\\rfloor$ est continue par morceaux sur $[0,2]$ et calculer $\\int_0^2\\lfloor x^2\\rfloor\\,\\mathrm{d}x$, où $\\lfloor y\\rfloor$ désigne la partie entière du réel $y$.",
+      "duree_min": 10,
+      "indices": [
+        "Repérer les points de l'intervalle où $x^2$ franchit une valeur entière.",
+        "Entre deux de ces points, la fonction est constante : l'intégrale est une somme d'aires de rectangles."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette intégrale ?",
+        "propositions": [
+          "$5-\\sqrt2-\\sqrt3$",
+          "$6-\\sqrt2-\\sqrt3$",
+          "$\\frac83$",
+          "$3-\\sqrt2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Sur $[0,2]$, $x^2$ décrit $[0,4]$ en croissant. On a $\\lfloor x^2\\rfloor=0$ sur $[0,1[$, $1$ sur $\\left[1,\\sqrt2\\right[$, $2$ sur $\\left[\\sqrt2,\\sqrt3\\right[$, $3$ sur $\\left[\\sqrt3,2\\right[$, et $\\lfloor 2^2\\rfloor=4$. La fonction est donc en escalier (constante sur chaque intervalle ouvert de la subdivision $0<1<\\sqrt2<\\sqrt3<2$), en particulier continue par morceaux. La valeur en un point isolé ne change pas l'intégrale :\n$$\\int_0^2\\lfloor x^2\\rfloor\\,\\mathrm{d}x=0\\cdot1+1\\cdot\\left(\\sqrt2-1\\right)+2\\left(\\sqrt3-\\sqrt2\\right)+3\\left(2-\\sqrt3\\right)=5-\\sqrt2-\\sqrt3.$$",
+      "variantes": [
+        {
+          "enonce": "Justifier que la fonction $x\\mapsto\\lfloor e^x\\rfloor$ est continue par morceaux sur $[0,2]$ et calculer $\\int_0^2\\lfloor e^x\\rfloor\\,\\mathrm{d}x$, où $\\lfloor y\\rfloor$ désigne la partie entière du réel $y$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$14-\\ln5040$",
+              "$14-\\ln720$",
+              "$e^2-1$",
+              "$13-\\ln5040$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,2]$, $e^x$ croît de $1$ à $e^2\\approx7{,}39$. Pour $1\\le k\\le6$, $\\lfloor e^x\\rfloor=k$ sur $\\left[\\ln k,\\ln(k+1)\\right[$, et $\\lfloor e^x\\rfloor=7$ sur $[\\ln7,2]$ (car $7<e^2<8$). La fonction est en escalier pour la subdivision $0=\\ln1<\\ln2<\\dots<\\ln7<2$, donc continue par morceaux, et\n$$\\int_0^2\\lfloor e^x\\rfloor\\,\\mathrm{d}x=\\sum_{k=1}^{6}k\\big(\\ln(k+1)-\\ln k\\big)+7(2-\\ln7).$$\nLa somme vaut $6\\ln7-(\\ln2+\\ln3+\\dots+\\ln6)$ (chaque $\\ln j$, $2\\le j\\le6$, apparaît avec les coefficients $j-1$ et $-j$), d'où l'intégrale $14-\\ln7-\\ln(6!)=14-\\ln(7!)=14-\\ln5040$, environ $5{,}47$.",
+          "indices": [
+            "Repérer les points de l'intervalle où $e^x$ franchit une valeur entière.",
+            "Entre deux de ces points, la fonction est constante : l'intégrale est une somme d'aires de rectangles."
+          ]
+        },
+        {
+          "enonce": "Justifier que la fonction $x\\mapsto\\lfloor3x^2\\rfloor$ est continue par morceaux sur $[0,1]$ et calculer $\\int_0^1\\lfloor3x^2\\rfloor\\,\\mathrm{d}x$, où $\\lfloor y\\rfloor$ désigne la partie entière du réel $y$.",
+          "reponse_finale": {
+            "question": "Que vaut cette intégrale ?",
+            "propositions": [
+              "$2-\\frac{\\sqrt6+\\sqrt3}{3}$",
+              "$1$",
+              "$3-\\frac{\\sqrt6+\\sqrt3}{3}$",
+              "$2-\\frac{\\sqrt6}{3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,1]$, $3x^2$ croît de $0$ à $3$. On a $\\lfloor3x^2\\rfloor=0$ sur $\\left[0,\\frac{1}{\\sqrt3}\\right[$, $1$ sur $\\left[\\frac1{\\sqrt3},\\sqrt{\\frac23}\\right[$, $2$ sur $\\left[\\sqrt{\\frac23},1\\right[$, et $3$ en $1$. La fonction est en escalier, donc continue par morceaux, et\n$$\\int_0^1\\lfloor3x^2\\rfloor\\,\\mathrm{d}x=\\left(\\sqrt{\\frac23}-\\frac1{\\sqrt3}\\right)+2\\left(1-\\sqrt{\\frac23}\\right)=2-\\sqrt{\\frac23}-\\frac{1}{\\sqrt3}=2-\\frac{\\sqrt6+\\sqrt3}{3},$$\nenviron $0{,}61$.",
+          "indices": [
+            "Repérer les points de l'intervalle où $3x^2$ franchit une valeur entière.",
+            "Entre deux de ces points, la fonction est constante : l'intégrale est une somme d'aires de rectangles."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "int-l1-riemann-nulle-ex5",
+      "carte": "int-l1-riemann-nulle",
+      "difficulte": 3,
+      "titre": "Cas d'égalité dans l'inégalité triangulaire intégrale",
+      "enonce": "Soient $a<b$ et $f$ une fonction continue sur $[a,b]$ telle que $\\left|\\int_a^bf(t)\\,\\mathrm{d}t\\right|=\\int_a^b|f(t)|\\,\\mathrm{d}t$.\n\n**1.** On suppose $\\int_a^bf(t)\\,\\mathrm{d}t\\ge0$. Montrer que $f(t)=|f(t)|$ pour tout $t\\in[a,b]$.\n\n**2.** En déduire que $f$ est de signe constant sur $[a,b]$.\n\n**3.** Existe-t-il une fonction $f$ continue sur $[0,1]$ telle que $f(0)=-1$, $f(1)=1$ et $\\left|\\int_0^1f(t)\\,\\mathrm{d}t\\right|=\\int_0^1|f(t)|\\,\\mathrm{d}t$ ?",
+      "duree_min": 12,
+      "indices": [
+        "Question 1 : étudier la fonction $|f|-f$ et son intégrale.",
+        "Question 2 : si $\\int_a^bf<0$, appliquer la question 1 à $-f$."
+      ],
+      "reponse_finale": {
+        "question": "Existe-t-il une telle fonction sur $[0,1]$ ?",
+        "propositions": [
+          "Non, aucune",
+          "Oui, exactement une",
+          "Oui, une infinité",
+          "Oui, par exemple $t\\mapsto2t-1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $\\int_a^bf\\ge0$, l'hypothèse s'écrit $\\int_a^bf=\\int_a^b|f|$, soit $\\int_a^b\\big(|f(t)|-f(t)\\big)\\,\\mathrm{d}t=0$ par linéarité. La fonction $|f|-f$ est continue (car $f$ et $|f|$ le sont) et positive sur $[a,b]$, d'intégrale nulle avec $a<b$ : elle est nulle. Donc $f=|f|$, c'est-à-dire $f\\ge0$ sur $[a,b]$.\n\n**2.** Si $\\int_a^bf\\ge0$, la question 1 donne $f\\ge0$. Sinon, $\\int_a^b(-f)>0$, et $-f$ est continue et vérifie la même hypothèse (car $|-f|=|f|$) : la question 1 appliquée à $-f$ donne $-f\\ge0$, soit $f\\le0$. Dans les deux cas, $f$ est de signe constant.\n\n**3.** Non. Une telle fonction serait de signe constant par la question 2, ce qui est incompatible avec $f(0)=-1<0<1=f(1)$. Par exemple, $t\\mapsto2t-1$ ne convient pas : $\\int_0^1(2t-1)\\,\\mathrm{d}t=0$ alors que $\\int_0^1|2t-1|\\,\\mathrm{d}t=\\frac12$."
     }
   ]
 }
