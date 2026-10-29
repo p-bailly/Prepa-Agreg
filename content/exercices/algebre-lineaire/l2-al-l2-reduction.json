@@ -1176,7 +1176,7 @@
       "duree_min": 25,
       "indices": [
         "Pour un vecteur de $N_{1}$ puis de $N_{2}$, regarder quel facteur de chaque projecteur l'annule.",
-        "$D$ vaut $1\\,\\mathrm{id}$ sur $N_{1}$ et $2\\,\\mathrm{id}$ sur $N_{2}$ ; $N=A-D$ est un polynôme en $A$.",
+        "$D$ vaut $\\mathrm{id}$ sur $N_{1}$ et $2\\,\\mathrm{id}$ sur $N_{2}$ ; $N=A-D$ est un polynôme en $A$.",
         "Exprimer $D$ comme un polynôme en $A$ à l'aide de $p_{2}$."
       ],
       "reponse_finale": {
@@ -1189,7 +1189,7 @@
         ],
         "bonne": 0
       },
-      "correction": "**1.** $p_1=-A(A-2I_3)$ et $p_2=(A-I_3)^2$ : $(X-1)^2-X(X-2)=X^2-2X+1-X^2+2X=1$. En remplaçant $X$ par $A$ dans la relation, $p_{1}+p_{2}=I_3$. Pour $x\\in N_{1}$, $p_{2}x=0$, car $p_{2}$ contient le facteur $(A-1I_3)^2$, qui annule $N_{1}$. Pour $x\\in N_{2}$, $p_{1}x=0$, car $p_{1}$ contient le facteur $A-2I_3$ ; donc $p_{2}x=x$. Comme $\\mathbb{R}^3=N_{1}\\oplus N_{2}$ (lemme des noyaux et Cayley-Hamilton), $p_{2}$ est le projecteur sur $N_{2}$ parallèlement à $N_{1}$, et $p_{1}=I_3-p_{2}$ le projecteur associé. Calcul : $A-I_3=\\begin{pmatrix}0&-1&1\\\\0&1&0\\\\0&1&0\\end{pmatrix}$, et $p_{2}=\\begin{pmatrix}0&0&0\\\\0&1&0\\\\0&1&0\\end{pmatrix}$.\n\n**2.** $D=p_1+2p_2=I_3+p_2=\\begin{pmatrix}1&0&0\\\\0&2&0\\\\0&1&1\\end{pmatrix}$ vaut $1\\,\\mathrm{id}$ sur $N_{1}$ et $2\\,\\mathrm{id}$ sur $N_{2}$ : dans une base adaptée à $\\mathbb{R}^3=N_{1}\\oplus N_{2}$, sa matrice est diagonale, donc $D$ est diagonalisable. Puis $$N=A-D=\\begin{pmatrix}0&-1&1\\\\0&0&0\\\\0&0&0\\end{pmatrix},$$ et $N^2=0$ (une seule ligne non nulle, la première, dont le produit par $N$ est nul). Enfin $D$ et $N$ sont des polynômes en $A$, donc commutent.\n\n$A=D+N$ est la **décomposition de Dunford** de $A$ (elle est unique). Erreur fréquente : prendre pour $D$ la partie diagonale de $A$, ici $\\mathrm{diag}(1,2,1)$, qui ne commute pas avec $A-\\mathrm{diag}(1,2,1)$.",
+      "correction": "**1.** $p_1=-A(A-2I_3)$ et $p_2=(A-I_3)^2$ : $(X-1)^2-X(X-2)=X^2-2X+1-X^2+2X=1$. En remplaçant $X$ par $A$ dans la relation, $p_{1}+p_{2}=I_3$. Pour $x\\in N_{1}$, $p_{2}x=0$, car $p_{2}$ contient le facteur $(A-I_3)^2$, qui annule $N_{1}$. Pour $x\\in N_{2}$, $p_{1}x=0$, car $p_{1}$ contient le facteur $A-2I_3$ ; donc $p_{2}x=x$. Comme $\\mathbb{R}^3=N_{1}\\oplus N_{2}$ (lemme des noyaux et Cayley-Hamilton), $p_{2}$ est le projecteur sur $N_{2}$ parallèlement à $N_{1}$, et $p_{1}=I_3-p_{2}$ le projecteur associé. Calcul : $A-I_3=\\begin{pmatrix}0&-1&1\\\\0&1&0\\\\0&1&0\\end{pmatrix}$, et $p_{2}=\\begin{pmatrix}0&0&0\\\\0&1&0\\\\0&1&0\\end{pmatrix}$.\n\n**2.** $D=p_1+2p_2=I_3+p_2=\\begin{pmatrix}1&0&0\\\\0&2&0\\\\0&1&1\\end{pmatrix}$ vaut $\\mathrm{id}$ sur $N_{1}$ et $2\\,\\mathrm{id}$ sur $N_{2}$ : dans une base adaptée à $\\mathbb{R}^3=N_{1}\\oplus N_{2}$, sa matrice est diagonale, donc $D$ est diagonalisable. Puis $$N=A-D=\\begin{pmatrix}0&-1&1\\\\0&0&0\\\\0&0&0\\end{pmatrix},$$ et $N^2=0$ (une seule ligne non nulle, la première, dont le produit par $N$ est nul). Enfin $D$ et $N$ sont des polynômes en $A$, donc commutent.\n\n$A=D+N$ est la **décomposition de Dunford** de $A$ (elle est unique). Erreur fréquente : prendre pour $D$ la partie diagonale de $A$, ici $\\mathrm{diag}(1,2,1)$, qui ne commute pas avec $A-\\mathrm{diag}(1,2,1)$.",
       "variantes": [
         {
           "enonce": "Soit $A=\\begin{pmatrix}2&1&1\\\\0&1&0\\\\0&-1&2\\end{pmatrix}$, de polynôme caractéristique $(X-2)^2(X-1)$, et $N_2=\\mathrm{Ker}(A-2I_3)^2$, $N_1=\\mathrm{Ker}(A-I_3)$ ses sous-espaces caractéristiques.\n\n**1.** Vérifier que $(X-2)^2-(X-1)(X-3)=1$. En déduire que $p_1=(A-2I_3)^2$ est le projecteur sur $N_{1}$ parallèlement à $N_{2}$, et que $p_{2}=I_3-p_{1}$ est le projecteur sur $N_{2}$ parallèlement à $N_{1}$.\n\n**2.** On pose $D=2p_{2}+1p_{1}$ et $N=A-D$. Montrer que $D$ est diagonalisable, que $N$ est nilpotente et que $DN=ND$. Calculer $D$ et $N$.",
@@ -1203,10 +1203,10 @@
             ],
             "bonne": 0
           },
-          "correction": "**1.** $p_2=-(A-I_3)(A-3I_3)$ et $p_1=(A-2I_3)^2$ : $(X-2)^2-(X-1)(X-3)=X^2-4X+4-X^2+4X-3=1$. En remplaçant $X$ par $A$ dans la relation, $p_{2}+p_{1}=I_3$. Pour $x\\in N_{2}$, $p_{1}x=0$, car $p_{1}$ contient le facteur $(A-2I_3)^2$, qui annule $N_{2}$. Pour $x\\in N_{1}$, $p_{2}x=0$, car $p_{2}$ contient le facteur $A-1I_3$ ; donc $p_{1}x=x$. Comme $\\mathbb{R}^3=N_{2}\\oplus N_{1}$ (lemme des noyaux et Cayley-Hamilton), $p_{1}$ est le projecteur sur $N_{1}$ parallèlement à $N_{2}$, et $p_{2}=I_3-p_{1}$ le projecteur associé. Calcul : $A-2I_3=\\begin{pmatrix}0&1&1\\\\0&-1&0\\\\0&-1&0\\end{pmatrix}$, et $p_{1}=\\begin{pmatrix}0&-2&0\\\\0&1&0\\\\0&1&0\\end{pmatrix}$.\n\n**2.** $D=2p_2+p_1=2I_3-p_1=\\begin{pmatrix}2&2&0\\\\0&1&0\\\\0&-1&2\\end{pmatrix}$ vaut $2\\,\\mathrm{id}$ sur $N_{2}$ et $1\\,\\mathrm{id}$ sur $N_{1}$ : dans une base adaptée à $\\mathbb{R}^3=N_{2}\\oplus N_{1}$, sa matrice est diagonale, donc $D$ est diagonalisable. Puis $$N=A-D=\\begin{pmatrix}0&-1&1\\\\0&0&0\\\\0&0&0\\end{pmatrix},$$ et $N^2=0$ (une seule ligne non nulle, la première, dont le produit par $N$ est nul). Enfin $D$ et $N$ sont des polynômes en $A$, donc commutent.\n\n$A=D+N$ est la **décomposition de Dunford** de $A$ (elle est unique). Erreur fréquente : prendre pour $D$ la partie diagonale de $A$, ici $\\mathrm{diag}(2,1,2)$, qui ne commute pas avec $A-\\mathrm{diag}(2,1,2)$.",
+          "correction": "**1.** $p_2=-(A-I_3)(A-3I_3)$ et $p_1=(A-2I_3)^2$ : $(X-2)^2-(X-1)(X-3)=X^2-4X+4-X^2+4X-3=1$. En remplaçant $X$ par $A$ dans la relation, $p_{2}+p_{1}=I_3$. Pour $x\\in N_{2}$, $p_{1}x=0$, car $p_{1}$ contient le facteur $(A-2I_3)^2$, qui annule $N_{2}$. Pour $x\\in N_{1}$, $p_{2}x=0$, car $p_{2}$ contient le facteur $A-I_3$ ; donc $p_{1}x=x$. Comme $\\mathbb{R}^3=N_{2}\\oplus N_{1}$ (lemme des noyaux et Cayley-Hamilton), $p_{1}$ est le projecteur sur $N_{1}$ parallèlement à $N_{2}$, et $p_{2}=I_3-p_{1}$ le projecteur associé. Calcul : $A-2I_3=\\begin{pmatrix}0&1&1\\\\0&-1&0\\\\0&-1&0\\end{pmatrix}$, et $p_{1}=\\begin{pmatrix}0&-2&0\\\\0&1&0\\\\0&1&0\\end{pmatrix}$.\n\n**2.** $D=2p_2+p_1=2I_3-p_1=\\begin{pmatrix}2&2&0\\\\0&1&0\\\\0&-1&2\\end{pmatrix}$ vaut $2\\,\\mathrm{id}$ sur $N_{2}$ et $\\mathrm{id}$ sur $N_{1}$ : dans une base adaptée à $\\mathbb{R}^3=N_{2}\\oplus N_{1}$, sa matrice est diagonale, donc $D$ est diagonalisable. Puis $$N=A-D=\\begin{pmatrix}0&-1&1\\\\0&0&0\\\\0&0&0\\end{pmatrix},$$ et $N^2=0$ (une seule ligne non nulle, la première, dont le produit par $N$ est nul). Enfin $D$ et $N$ sont des polynômes en $A$, donc commutent.\n\n$A=D+N$ est la **décomposition de Dunford** de $A$ (elle est unique). Erreur fréquente : prendre pour $D$ la partie diagonale de $A$, ici $\\mathrm{diag}(2,1,2)$, qui ne commute pas avec $A-\\mathrm{diag}(2,1,2)$.",
           "indices": [
             "Pour un vecteur de $N_{2}$ puis de $N_{1}$, regarder quel facteur de chaque projecteur l'annule.",
-            "$D$ vaut $2\\,\\mathrm{id}$ sur $N_{2}$ et $1\\,\\mathrm{id}$ sur $N_{1}$ ; $N=A-D$ est un polynôme en $A$.",
+            "$D$ vaut $2\\,\\mathrm{id}$ sur $N_{2}$ et $\\mathrm{id}$ sur $N_{1}$ ; $N=A-D$ est un polynôme en $A$.",
             "Exprimer $D$ comme un polynôme en $A$ à l'aide de $p_{1}$."
           ]
         },
@@ -1484,7 +1484,7 @@
           ]
         },
         {
-          "enonce": "Soit $A=\\begin{pmatrix}1&2&1\\\\0&1&1\\\\0&0&1\\end{pmatrix}$.\n\n**1.** Écrire $A=1I_3+N$ et calculer $N^2$ et $N^3$.\n\n**2.** En déduire $A^k$ pour tout $k\\ge2$.",
+          "enonce": "Soit $A=\\begin{pmatrix}1&2&1\\\\0&1&1\\\\0&0&1\\end{pmatrix}$.\n\n**1.** Écrire $A=I_3+N$ et calculer $N^2$ et $N^3$.\n\n**2.** En déduire $A^k$ pour tout $k\\ge2$.",
           "reponse_finale": {
             "question": "Que vaut le coefficient en position $(1,3)$ de $A^k$, pour $k\\ge2$ ?",
             "propositions": [
@@ -1495,10 +1495,10 @@
             ],
             "bonne": 0
           },
-          "correction": "**1.** $N=\\begin{pmatrix}0&2&1\\\\0&0&1\\\\0&0&0\\end{pmatrix}$, $N^2=\\begin{pmatrix}0&0&2\\\\0&0&0\\\\0&0&0\\end{pmatrix}$ et $N^3=0$.\n\n**2.** $1I_3$ et $N$ commutent, donc pour $k\\ge2$, la formule du binôme donne, les termes suivants étant nuls : $$A^k=I_3+kN+\\binom k2N^2=\\begin{pmatrix}1&2k&k^2\\\\0&1&k\\\\0&0&1\\end{pmatrix}.$$\n\nLe coefficient $(1,3)$ vaut $k\\cdot1+\\frac{k(k-1)}2\\cdot2=k+k(k-1)=k^2$. Contrôle : pour $k=2$, on trouve $4$, et le coefficient $(1,3)$ de $A^2$ est $1\\cdot1+2\\cdot1+1\\cdot1=4$.",
+          "correction": "**1.** $N=\\begin{pmatrix}0&2&1\\\\0&0&1\\\\0&0&0\\end{pmatrix}$, $N^2=\\begin{pmatrix}0&0&2\\\\0&0&0\\\\0&0&0\\end{pmatrix}$ et $N^3=0$.\n\n**2.** $I_3$ et $N$ commutent, donc pour $k\\ge2$, la formule du binôme donne, les termes suivants étant nuls : $$A^k=I_3+kN+\\binom k2N^2=\\begin{pmatrix}1&2k&k^2\\\\0&1&k\\\\0&0&1\\end{pmatrix}.$$\n\nLe coefficient $(1,3)$ vaut $k\\cdot1+\\frac{k(k-1)}2\\cdot2=k+k(k-1)=k^2$. Contrôle : pour $k=2$, on trouve $4$, et le coefficient $(1,3)$ de $A^2$ est $1\\cdot1+2\\cdot1+1\\cdot1=4$.",
           "indices": [
             "$N$ est triangulaire supérieure de diagonale nulle.",
-            "$1I_3$ et $N$ commutent : la formule du binôme s'applique et s'arrête au terme en $N^2$.",
+            "$I_3$ et $N$ commutent : la formule du binôme s'applique et s'arrête au terme en $N^2$.",
             "Le coefficient $(1,3)$ reçoit une contribution de $N$ et une de $N^2$."
           ]
         }
