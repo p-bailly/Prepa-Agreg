@@ -1,0 +1,828 @@
+{
+  "exercices": [
+    {
+      "id": "proba-l2-generatrices-caracterisation-ex1",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "difficulte": 1,
+      "titre": "Reconnaître une loi par sa fonction génératrice",
+      "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=\\frac{(1+2t)^3}{27}$ pour $t\\in[-1,1]$. Reconnaître la loi de $X$, puis donner $P(X=2)$.",
+      "duree_min": 5,
+      "indices": [
+        "Écrire $\\frac{1+2t}{3}$ sous la forme $1-p+pt$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la loi de $X$ ?",
+        "propositions": [
+          "$\\mathcal{B}\\left(3,\\frac23\\right)$",
+          "$\\mathcal{B}\\left(3,\\frac13\\right)$",
+          "$\\mathcal{B}\\left(2,\\frac23\\right)$",
+          "la loi uniforme sur $\\{0,1,2,3\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $G_X(t)=\\left(\\frac{1+2t}{3}\\right)^3=\\left(\\frac13+\\frac23t\\right)^3=(1-p+pt)^3$ avec $p=\\frac23$ : c'est la fonction génératrice de la loi $\\mathcal{B}\\left(3,\\frac23\\right)$. Comme la fonction génératrice caractérise la loi, $X\\sim\\mathcal{B}\\left(3,\\frac23\\right)$.\n\nAlors $P(X=2)=\\binom32\\left(\\frac23\\right)^2\\frac13=\\frac49$. On le retrouve en développant : $(1+2t)^3=1+6t+12t^2+8t^3$, et le coefficient de $t^2$ dans $G_X$ est $\\frac{12}{27}=\\frac49$.",
+      "variantes": [
+        {
+          "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=\\frac{(3+t)^4}{256}$ pour $t\\in[-1,1]$. Reconnaître la loi de $X$, puis donner $P(X=2)$.",
+          "indices": [
+            "Écrire $\\frac{3+t}{4}$ sous la forme $1-p+pt$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la loi de $X$ ?",
+            "propositions": [
+              "$\\mathcal{B}\\left(4,\\frac14\\right)$",
+              "$\\mathcal{B}\\left(4,\\frac34\\right)$",
+              "$\\mathcal{B}\\left(3,\\frac14\\right)$",
+              "la loi uniforme sur $\\{0,1,2,3,4\\}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $G_X(t)=\\left(\\frac{3+t}{4}\\right)^4=\\left(\\frac34+\\frac14t\\right)^4=(1-p+pt)^4$ avec $p=\\frac14$ : c'est la fonction génératrice de la loi $\\mathcal{B}\\left(4,\\frac14\\right)$. Comme la fonction génératrice caractérise la loi, $X\\sim\\mathcal{B}\\left(4,\\frac14\\right)$.\n\nAlors $P(X=2)=\\binom42\\left(\\frac14\\right)^2\\left(\\frac34\\right)^2=\\frac{6\\times9}{256}=\\frac{27}{128}$ : c'est bien le coefficient de $t^2$ dans $\\frac{(3+t)^4}{256}$, soit $\\frac{6\\times9}{256}$."
+        },
+        {
+          "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=e^{3t-3}$ pour $t\\in[-1,1]$. Reconnaître la loi de $X$, puis donner $P(X=2)$.",
+          "indices": [
+            "Écrire $e^{3t-3}=e^{-3}e^{3t}$ et développer l'exponentielle en série entière."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la loi de $X$ ?",
+            "propositions": [
+              "$\\mathcal{P}(3)$",
+              "$\\mathcal{P}\\left(\\frac13\\right)$",
+              "$\\mathcal{G}\\left(\\frac13\\right)$",
+              "$\\mathcal{B}\\left(3,\\frac12\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $G_X(t)=e^{3(t-1)}$ : c'est la fonction génératrice de la loi de Poisson $\\mathcal{P}(3)$. En effet $e^{-3}e^{3t}=\\sum_{n\\ge0}e^{-3}\\frac{3^n}{n!}t^n$ pour tout réel $t$, et la fonction génératrice caractérise la loi : $X\\sim\\mathcal{P}(3)$.\n\nAlors $P(X=2)=e^{-3}\\frac{3^2}{2!}=\\frac92e^{-3}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-caracterisation-ex2",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "difficulte": 2,
+      "titre": "Lire une loi sur un développement en série entière",
+      "enonce": "Montrer que $G(t)=\\frac{1}{2-t}$, pour $t\\in[-1,1]$, est la fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$, dont on donnera la loi, puis calculer $P(X=3)$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire $\\frac1{2-t}=\\frac12\\cdot\\frac1{1-\\frac t2}$ et utiliser la série géométrique."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X=3)$ ?",
+        "propositions": [
+          "$\\frac1{16}$",
+          "$\\frac18$",
+          "$\\frac1{32}$",
+          "$\\frac3{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $|t|<2$, $\\frac1{2-t}=\\frac12\\cdot\\frac1{1-\\frac t2}=\\sum_{n\\ge0}\\frac{1}{2^{n+1}}t^n$. Les coefficients $p_n=\\frac1{2^{n+1}}$ sont positifs et $\\sum p_n=G(1)=1$ : ils définissent une loi de probabilité sur $\\mathbb{N}$. Une variable $X$ de loi $P(X=n)=\\frac1{2^{n+1}}$ a pour fonction génératrice $G$ sur $[-1,1]$, et c'est la seule loi possible, puisque la fonction génératrice caractérise la loi.\n\nAinsi $P(X=3)=\\frac1{2^4}=\\frac1{16}$. (Ici $X+1$ suit la loi géométrique $\\mathcal{G}\\left(\\frac12\\right)$ sur $\\mathbb{N}^*$.)",
+      "variantes": [
+        {
+          "enonce": "Montrer que $G(t)=\\frac{2}{3-t}$, pour $t\\in[-1,1]$, est la fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$, dont on donnera la loi, puis calculer $P(X=2)$.",
+          "indices": [
+            "Écrire $\\frac2{3-t}=\\frac23\\cdot\\frac1{1-\\frac t3}$ et utiliser la série géométrique."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X=2)$ ?",
+            "propositions": [
+              "$\\frac2{27}$",
+              "$\\frac29$",
+              "$\\frac19$",
+              "$\\frac2{81}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $|t|<3$, $\\frac2{3-t}=\\frac23\\cdot\\frac1{1-\\frac t3}=\\sum_{n\\ge0}\\frac23\\left(\\frac13\\right)^nt^n$. Les coefficients $p_n=\\frac23\\left(\\frac13\\right)^n$ sont positifs et $\\sum p_n=G(1)=1$ : ils définissent une loi de probabilité sur $\\mathbb{N}$, et c'est la seule loi de fonction génératrice $G$, puisque la fonction génératrice caractérise la loi.\n\nAinsi $P(X=2)=\\frac23\\cdot\\frac19=\\frac2{27}$."
+        },
+        {
+          "enonce": "Montrer que $G(t)=\\frac{t}{2-t}$, pour $t\\in[-1,1]$, est la fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$, dont on donnera la loi, puis calculer $P(X=4)$.",
+          "indices": [
+            "Écrire $\\frac t{2-t}=\\frac t2\\cdot\\frac1{1-\\frac t2}$ et utiliser la série géométrique."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X=4)$ ?",
+            "propositions": [
+              "$\\frac1{16}$",
+              "$\\frac1{32}$",
+              "$\\frac18$",
+              "$\\frac1{64}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $|t|<2$, $\\frac t{2-t}=\\frac t2\\cdot\\frac1{1-\\frac t2}=\\sum_{n\\ge1}\\frac1{2^n}t^n$. Les coefficients ($0$ pour $n=0$, $\\frac1{2^n}$ pour $n\\ge1$) sont positifs et de somme $G(1)=1$ : ils définissent une loi de probabilité sur $\\mathbb{N}$, la loi géométrique $\\mathcal{G}\\left(\\frac12\\right)$ sur $\\mathbb{N}^*$, et c'est la seule loi de fonction génératrice $G$.\n\nAinsi $P(X=4)=\\frac1{2^4}=\\frac1{16}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-caracterisation-ex3",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "difficulte": 3,
+      "titre": "Probabilité qu'une variable soit paire",
+      "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$, de fonction génératrice $G_X$.\n\n**1.** Montrer que la probabilité que $X$ soit pair vaut $\\frac{1+G_X(-1)}{2}$.\n\n**2.** On suppose que $X$ suit la loi de Poisson $\\mathcal{P}(2)$. Calculer la probabilité que $X$ soit pair.",
+      "duree_min": 12,
+      "indices": [
+        "Calculer $G_X(1)+G_X(-1)$ en regroupant les termes d'indice pair et ceux d'indice impair.",
+        "Pour la loi de Poisson de paramètre $\\lambda$, $G_X(t)=e^{\\lambda(t-1)}$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la probabilité que $X$ soit pair ?",
+        "propositions": [
+          "$\\frac{1+e^{-4}}{2}$",
+          "$\\frac{1-e^{-4}}{2}$",
+          "$\\frac{1+e^{-2}}{2}$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les séries $\\sum P(X=n)$ et $\\sum(-1)^nP(X=n)$ convergent absolument, donc\n$$G_X(1)+G_X(-1)=\\sum_{n\\ge0}\\left(1+(-1)^n\\right)P(X=n)=2\\sum_{k\\ge0}P(X=2k).$$\nComme $G_X(1)=1$, la probabilité que $X$ soit pair est $\\sum_kP(X=2k)=\\frac{1+G_X(-1)}{2}$.\n\n**2.** $G_X(t)=e^{2(t-1)}$, donc $G_X(-1)=e^{-4}$ et la probabilité cherchée vaut $\\frac{1+e^{-4}}{2}\\approx0{,}509$. On peut le vérifier : $\\sum_ke^{-2}\\frac{2^{2k}}{(2k)!}=e^{-2}\\operatorname{ch}2=\\frac{1+e^{-4}}2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$, de fonction génératrice $G_X$.\n\n**1.** Montrer que la probabilité que $X$ soit pair vaut $\\frac{1+G_X(-1)}{2}$.\n\n**2.** On suppose que $X$ suit la loi binomiale $\\mathcal{B}\\left(10,\\frac14\\right)$. Calculer la probabilité que $X$ soit pair.",
+          "indices": [
+            "Calculer $G_X(1)+G_X(-1)$ en regroupant les termes d'indice pair et ceux d'indice impair.",
+            "Pour la loi $\\mathcal{B}(n,p)$, $G_X(t)=(1-p+pt)^n$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la probabilité que $X$ soit pair ?",
+            "propositions": [
+              "$\\frac{1025}{2048}$",
+              "$\\frac{1023}{2048}$",
+              "$\\frac12$",
+              "$\\frac{1+\\left(\\frac34\\right)^{10}}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les séries $\\sum P(X=n)$ et $\\sum(-1)^nP(X=n)$ convergent absolument, donc\n$$G_X(1)+G_X(-1)=\\sum_{n\\ge0}\\left(1+(-1)^n\\right)P(X=n)=2\\sum_{k\\ge0}P(X=2k).$$\nComme $G_X(1)=1$, la probabilité que $X$ soit pair est $\\frac{1+G_X(-1)}{2}$.\n\n**2.** $G_X(t)=\\left(\\frac34+\\frac14t\\right)^{10}$, donc $G_X(-1)=\\left(\\frac12\\right)^{10}=\\frac1{1024}$, et la probabilité cherchée vaut $\\frac12\\left(1+\\frac1{1024}\\right)=\\frac{1025}{2048}$."
+        },
+        {
+          "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$, de fonction génératrice $G_X$.\n\n**1.** Montrer que la probabilité que $X$ soit pair vaut $\\frac{1+G_X(-1)}{2}$.\n\n**2.** On suppose que $X$ suit la loi géométrique $\\mathcal{G}\\left(\\frac13\\right)$ sur $\\mathbb{N}^*$. Calculer la probabilité que $X$ soit pair.",
+          "indices": [
+            "Calculer $G_X(1)+G_X(-1)$ en regroupant les termes d'indice pair et ceux d'indice impair.",
+            "Pour la loi $\\mathcal{G}(p)$ sur $\\mathbb{N}^*$, $G_X(t)=\\frac{pt}{1-(1-p)t}$, valable en $t=-1$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est la probabilité que $X$ soit pair ?",
+            "propositions": [
+              "$\\frac25$",
+              "$\\frac35$",
+              "$\\frac12$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les séries $\\sum P(X=n)$ et $\\sum(-1)^nP(X=n)$ convergent absolument, donc\n$$G_X(1)+G_X(-1)=\\sum_{n\\ge0}\\left(1+(-1)^n\\right)P(X=n)=2\\sum_{k\\ge0}P(X=2k).$$\nComme $G_X(1)=1$, la probabilité que $X$ soit pair est $\\frac{1+G_X(-1)}{2}$.\n\n**2.** $G_X(t)=\\frac{\\frac13t}{1-\\frac23t}$, donc $G_X(-1)=\\frac{-\\frac13}{\\frac53}=-\\frac15$, et la probabilité cherchée vaut $\\frac12\\left(1-\\frac15\\right)=\\frac25$. Vérification directe : $\\sum_{k\\ge1}\\frac13\\left(\\frac23\\right)^{2k-1}=\\frac{\\frac29}{1-\\frac49}=\\frac25$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-caracterisation-ex4",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "difficulte": 4,
+      "titre": "Filtrer les multiples de 3 par les racines de l'unité",
+      "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$ et $j=e^{2i\\pi/3}$. On note $3\\mathbb{N}$ l'ensemble des multiples de $3$ et $G_X(z)=\\sum_{n\\ge0}P(X=n)z^n$ pour $z$ complexe.\n\n**1.** Justifier que $G_X(z)$ est défini pour tout complexe $z$ tel que $|z|\\le1$.\n\n**2.** Montrer que, pour $n\\in\\mathbb{N}$, $1+j^n+j^{2n}$ vaut $3$ si $3$ divise $n$ et $0$ sinon. En déduire que $P(X\\in3\\mathbb{N})=\\frac{1+G_X(j)+G_X(j^2)}{3}$.\n\n**3.** On suppose que $X$ suit la loi $\\mathcal{B}\\left(6,\\frac12\\right)$. Calculer $P(X\\in3\\mathbb{N})$ par la question 2, puis vérifier le résultat directement.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, distinguer selon le reste de $n$ modulo $3$, et utiliser $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}$ pour $\\omega\\neq1$.",
+        "Pour la question 3, écrire $1+j$ et $1+j^2$ sous forme exponentielle."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X\\in3\\mathbb{N})$ ?",
+        "propositions": [
+          "$\\frac{11}{32}$",
+          "$\\frac13$",
+          "$\\frac{21}{64}$",
+          "$\\frac5{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $|z|\\le1$, $\\left|P(X=n)z^n\\right|\\le P(X=n)$ : la série converge absolument.\n\n**2.** Si $3$ divise $n$, $j^n=1$ et la somme vaut $3$. Sinon, $\\omega=j^n$ vérifie $\\omega^3=1$ et $\\omega\\neq1$, donc $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}=0$ ; or $j^{2n}=\\omega^2$. Par linéarité (séries convergentes),\n$$\\frac{G_X(1)+G_X(j)+G_X(j^2)}{3}=\\sum_{n\\ge0}\\frac{1+j^n+j^{2n}}{3}P(X=n)=\\sum_{3\\mid n}P(X=n)=P(X\\in3\\mathbb{N}),$$\net $G_X(1)=1$.\n\n**3.** $G_X(z)=\\left(\\frac{1+z}{2}\\right)^{6}$. Or $1+j=e^{i\\pi/3}$ et $1+j^2=e^{-i\\pi/3}$, donc $(1+j)^{6}=(1+j^2)^{6}=e^{\\pm 6i\\pi/3}=1$ et $G_X(j)=G_X(j^2)=\\frac{1}{2^{6}}$. Ainsi $P(X\\in3\\mathbb{N})=\\frac13\\left(1+\\frac{2}{2^{6}}\\right)=\\frac{11}{32}$.\n\nVérification directe : $P(X\\in3\\mathbb{N})=\\frac{\\binom60+\\binom63+\\binom66}{2^6}=\\frac{1+20+1}{64}=\\frac{11}{32}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$ et $j=e^{2i\\pi/3}$. On note $3\\mathbb{N}$ l'ensemble des multiples de $3$ et $G_X(z)=\\sum_{n\\ge0}P(X=n)z^n$ pour $z$ complexe.\n\n**1.** Justifier que $G_X(z)$ est défini pour tout complexe $z$ tel que $|z|\\le1$.\n\n**2.** Montrer que, pour $n\\in\\mathbb{N}$, $1+j^n+j^{2n}$ vaut $3$ si $3$ divise $n$ et $0$ sinon. En déduire que $P(X\\in3\\mathbb{N})=\\frac{1+G_X(j)+G_X(j^2)}{3}$.\n\n**3.** On suppose que $X$ suit la loi $\\mathcal{B}\\left(9,\\frac12\\right)$. Calculer $P(X\\in3\\mathbb{N})$ par la question 2, puis vérifier le résultat directement.",
+          "indices": [
+            "Pour la question 2, distinguer selon le reste de $n$ modulo $3$, et utiliser $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}$ pour $\\omega\\neq1$.",
+            "Pour la question 3, écrire $1+j$ et $1+j^2$ sous forme exponentielle ; attention au signe de $e^{3i\\pi}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X\\in3\\mathbb{N})$ ?",
+            "propositions": [
+              "$\\frac{85}{256}$",
+              "$\\frac13$",
+              "$\\frac{43}{256}$",
+              "$\\frac{257}{768}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $|z|\\le1$, $\\left|P(X=n)z^n\\right|\\le P(X=n)$ : la série converge absolument.\n\n**2.** Si $3$ divise $n$, $j^n=1$ et la somme vaut $3$. Sinon, $\\omega=j^n$ vérifie $\\omega^3=1$ et $\\omega\\neq1$, donc $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}=0$ ; or $j^{2n}=\\omega^2$. Par linéarité (séries convergentes),\n$$\\frac{G_X(1)+G_X(j)+G_X(j^2)}{3}=\\sum_{n\\ge0}\\frac{1+j^n+j^{2n}}{3}P(X=n)=\\sum_{3\\mid n}P(X=n)=P(X\\in3\\mathbb{N}),$$\net $G_X(1)=1$.\n\n**3.** $G_X(z)=\\left(\\frac{1+z}{2}\\right)^{9}$. Or $1+j=e^{i\\pi/3}$ et $1+j^2=e^{-i\\pi/3}$, donc $(1+j)^{9}=(1+j^2)^{9}=e^{\\pm 9i\\pi/3}=-1$ et $G_X(j)=G_X(j^2)=-\\frac{1}{2^{9}}$. Ainsi $P(X\\in3\\mathbb{N})=\\frac13\\left(1-\\frac{2}{2^{9}}\\right)=\\frac{85}{256}$.\n\nVérification directe : $P(X\\in3\\mathbb{N})=\\frac{\\binom90+\\binom93+\\binom96+\\binom99}{2^9}=\\frac{1+84+84+1}{512}=\\frac{85}{256}$."
+        },
+        {
+          "enonce": "Soit $X$ une variable aléatoire à valeurs dans $\\mathbb{N}$ et $j=e^{2i\\pi/3}$. On note $3\\mathbb{N}$ l'ensemble des multiples de $3$ et $G_X(z)=\\sum_{n\\ge0}P(X=n)z^n$ pour $z$ complexe.\n\n**1.** Justifier que $G_X(z)$ est défini pour tout complexe $z$ tel que $|z|\\le1$.\n\n**2.** Montrer que, pour $n\\in\\mathbb{N}$, $1+j^n+j^{2n}$ vaut $3$ si $3$ divise $n$ et $0$ sinon. En déduire que $P(X\\in3\\mathbb{N})=\\frac{1+G_X(j)+G_X(j^2)}{3}$.\n\n**3.** On suppose que $X$ suit la loi $\\mathcal{B}\\left(12,\\frac12\\right)$. Calculer $P(X\\in3\\mathbb{N})$ par la question 2, puis vérifier le résultat directement.",
+          "indices": [
+            "Pour la question 2, distinguer selon le reste de $n$ modulo $3$, et utiliser $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}$ pour $\\omega\\neq1$.",
+            "Pour la question 3, écrire $1+j$ et $1+j^2$ sous forme exponentielle."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X\\in3\\mathbb{N})$ ?",
+            "propositions": [
+              "$\\frac{683}{2048}$",
+              "$\\frac13$",
+              "$\\frac{2047}{6144}$",
+              "$\\frac{231}{1024}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $|z|\\le1$, $\\left|P(X=n)z^n\\right|\\le P(X=n)$ : la série converge absolument.\n\n**2.** Si $3$ divise $n$, $j^n=1$ et la somme vaut $3$. Sinon, $\\omega=j^n$ vérifie $\\omega^3=1$ et $\\omega\\neq1$, donc $1+\\omega+\\omega^2=\\frac{1-\\omega^3}{1-\\omega}=0$ ; or $j^{2n}=\\omega^2$. Par linéarité (séries convergentes),\n$$\\frac{G_X(1)+G_X(j)+G_X(j^2)}{3}=\\sum_{n\\ge0}\\frac{1+j^n+j^{2n}}{3}P(X=n)=\\sum_{3\\mid n}P(X=n)=P(X\\in3\\mathbb{N}),$$\net $G_X(1)=1$.\n\n**3.** $G_X(z)=\\left(\\frac{1+z}{2}\\right)^{12}$. Or $1+j=e^{i\\pi/3}$ et $1+j^2=e^{-i\\pi/3}$, donc $(1+j)^{12}=(1+j^2)^{12}=e^{\\pm 12i\\pi/3}=1$ et $G_X(j)=G_X(j^2)=\\frac{1}{2^{12}}$. Ainsi $P(X\\in3\\mathbb{N})=\\frac13\\left(1+\\frac{2}{2^{12}}\\right)=\\frac{683}{2048}$.\n\nVérification directe : $P(X\\in3\\mathbb{N})=\\frac{1+220+924+220+1}{4096}=\\frac{1366}{4096}=\\frac{683}{2048}$ (coefficients $\\binom{12}{0}$, $\\binom{12}{3}$, $\\binom{12}{6}$, $\\binom{12}{9}$, $\\binom{12}{12}$)."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-caracterisation-ex5",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "difficulte": 4,
+      "titre": "Variables bornées : les moments déterminent la loi",
+      "enonce": "Soit $N\\ge1$ un entier et $X$, $Y$ deux variables aléatoires à valeurs dans $\\{0,1,\\dots,N\\}$.\n\n**1.** Montrer que $G_X$ est un polynôme de degré au plus $N$ et que $G_X(t)=\\sum_{k=0}^{N}\\frac{G_X^{(k)}(1)}{k!}(t-1)^k$ pour tout réel $t$.\n\n**2.** Exprimer $G_X^{(k)}(1)$ comme l'espérance d'un polynôme en $X$. En déduire que si $E\\left(X^k\\right)=E\\left(Y^k\\right)$ pour $k=1,\\dots,N$, alors $X$ et $Y$ ont la même loi.\n\n**3.** On prend $N=3$, $X$ de loi $P(X=0)=P(X=2)=\\frac12$ et $Y$ de loi $P(Y=0)=\\frac13$, $P(Y=1)=\\frac12$, $P(Y=3)=\\frac16$. Comparer $E(X)$ et $E(Y)$, $E(X^2)$ et $E(Y^2)$, les lois de $X$ et de $Y$, puis $E(X^3)$ et $E(Y^3)$. Qu'en conclure ?",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, utiliser la formule de Taylor pour un polynôme, au point $1$.",
+        "Dériver $k$ fois $\\sum_{n=0}^{N}P(X=n)t^n$ et évaluer en $1$ : on obtient $E\\left(X(X-1)\\cdots(X-k+1)\\right)$."
+      ],
+      "correction": "**1.** $G_X(t)=\\sum_{n=0}^{N}P(X=n)t^n$ est un polynôme de degré au plus $N$. La formule de Taylor pour un polynôme de degré au plus $N$ au point $1$ est exacte : $G_X(t)=\\sum_{k=0}^{N}\\frac{G_X^{(k)}(1)}{k!}(t-1)^k$.\n\n**2.** En dérivant $k$ fois, $G_X^{(k)}(t)=\\sum_{n=k}^{N}n(n-1)\\cdots(n-k+1)P(X=n)t^{n-k}$, donc, par transfert,\n$$G_X^{(k)}(1)=\\sum_{n=0}^{N}n(n-1)\\cdots(n-k+1)P(X=n)=E\\left(X(X-1)\\cdots(X-k+1)\\right)$$\n(les termes $n<k$ sont nuls). Le polynôme $x(x-1)\\cdots(x-k+1)$ s'écrit $\\sum_{i=0}^{k}\\alpha_{k,i}x^i$, avec des coefficients qui ne dépendent que de $k$ ; par linéarité, $G_X^{(k)}(1)=\\sum_{i=0}^{k}\\alpha_{k,i}E\\left(X^i\\right)$, avec $E\\left(X^0\\right)=1$. Si $E\\left(X^i\\right)=E\\left(Y^i\\right)$ pour $i\\le N$, alors $G_X^{(k)}(1)=G_Y^{(k)}(1)$ pour $k\\le N$, donc $G_X=G_Y$ par la question 1, et $X$ et $Y$ ont la même loi (la fonction génératrice caractérise la loi ; ici on peut aussi comparer directement les coefficients des deux polynômes).\n\n**3.** $E(X)=1$ et $E(Y)=\\frac12+\\frac36=1$ ; $E(X^2)=\\frac42=2$ et $E(Y^2)=\\frac12+\\frac96=2$. Pourtant les lois diffèrent : $P(X=1)=0\\neq\\frac12=P(Y=1)$. Et $E(X^3)=4\\neq5=\\frac12+\\frac{27}6=E(Y^3)$, en accord avec la question 2. Pour des variables à valeurs dans $\\{0,\\dots,N\\}$, les $N-1$ premiers moments ne suffisent donc pas en général : les $N$ premiers sont nécessaires."
+    },
+    {
+      "id": "proba-l2-generatrices-moments-ex1",
+      "carte": "proba-l2-generatrices-moments",
+      "difficulte": 1,
+      "titre": "Espérance et variance à partir de la fonction génératrice",
+      "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=\\frac{t(1+t)^2}{4}$. Calculer $E(X)$ et $V(X)$ à l'aide de $G_X$.",
+      "duree_min": 6,
+      "indices": [
+        "Utiliser $E(X)=G_X'(1)$ et $V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$."
+      ],
+      "reponse_finale": {
+        "question": "Que valent $E(X)$ et $V(X)$ ?",
+        "propositions": [
+          "$E(X)=2$ et $V(X)=\\frac12$",
+          "$E(X)=2$ et $V(X)=\\frac52$",
+          "$E(X)=2$ et $V(X)=\\frac92$",
+          "$E(X)=1$ et $V(X)=\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$G_X$ est un polynôme : $X$ a des moments de tous ordres. On a $G_X(t)=\\frac{t+2t^2+t^3}{4}$, donc $G_X'(t)=\\frac{1+4t+3t^2}{4}$ et $G_X''(t)=\\frac{4+6t}{4}$. Ainsi $E(X)=G_X'(1)=2$ et $G_X''(1)=\\frac52$, puis\n$$V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2=\\frac52+2-4=\\frac12.$$\n(En effet $X=1+Z$ avec $Z\\sim\\mathcal{B}\\left(2,\\frac12\\right)$, d'espérance $1$ et de variance $\\frac12$.)",
+      "variantes": [
+        {
+          "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=e^{2(t^2-1)}$. Calculer $E(X)$ et $V(X)$ à l'aide de $G_X$.",
+          "indices": [
+            "Utiliser $E(X)=G_X'(1)$ et $V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $E(X)$ et $V(X)$ ?",
+            "propositions": [
+              "$E(X)=4$ et $V(X)=8$",
+              "$E(X)=4$ et $V(X)=20$",
+              "$E(X)=4$ et $V(X)=24$",
+              "$E(X)=2$ et $V(X)=2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$G_X$ est la somme d'une série entière de rayon infini : $X$ a des moments de tous ordres. $G_X'(t)=4te^{2(t^2-1)}$ et $G_X''(t)=(4+16t^2)e^{2(t^2-1)}$, donc $E(X)=G_X'(1)=4$, $G_X''(1)=20$ et\n$$V(X)=20+4-16=8.$$\n(En effet $X=2Y$ avec $Y\\sim\\mathcal{P}(2)$, puisque $G_{2Y}(t)=G_Y(t^2)$ : $E(X)=4$ et $V(X)=4V(Y)=8$.)"
+        },
+        {
+          "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=\\frac{t^2(1+t)}{2}$. Calculer $E(X)$ et $V(X)$ à l'aide de $G_X$.",
+          "indices": [
+            "Utiliser $E(X)=G_X'(1)$ et $V(X)=G_X''(1)+G_X'(1)-G_X'(1)^2$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $E(X)$ et $V(X)$ ?",
+            "propositions": [
+              "$E(X)=\\frac52$ et $V(X)=\\frac14$",
+              "$E(X)=\\frac52$ et $V(X)=4$",
+              "$E(X)=\\frac52$ et $V(X)=\\frac{13}2$",
+              "$E(X)=\\frac32$ et $V(X)=\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$G_X(t)=\\frac{t^2+t^3}{2}$, donc $G_X'(t)=\\frac{2t+3t^2}{2}$ et $G_X''(t)=\\frac{2+6t}{2}$. Ainsi $E(X)=\\frac52$, $G_X''(1)=4$ et\n$$V(X)=4+\\frac52-\\frac{25}4=\\frac14.$$\n(En effet $X$ suit la loi uniforme sur $\\{2,3\\}$.)"
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-moments-ex2",
+      "carte": "proba-l2-generatrices-moments",
+      "difficulte": 2,
+      "titre": "Nombre d'échecs avant le premier succès",
+      "enonce": "Soit $p\\in\\left]0,1\\right[$ et $q=1-p$. On lance une pièce qui donne pile avec probabilité $p$, les lancers étant indépendants, et on note $Y$ le nombre de faces obtenues avant le premier pile.\n\n**1.** Montrer que $P(Y=n)=q^np$ pour tout $n\\in\\mathbb{N}$ et calculer $G_Y$.\n\n**2.** En déduire $E(Y)$ et $V(Y)$.",
+      "duree_min": 10,
+      "indices": [
+        "$Y=n$ signifie : face aux $n$ premiers lancers, puis pile au lancer suivant.",
+        "$G_Y(t)=\\frac{p}{1-qt}$ pour $|t|<\\frac1q$ : dériver deux fois."
+      ],
+      "reponse_finale": {
+        "question": "Que valent $E(Y)$ et $V(Y)$ ?",
+        "propositions": [
+          "$E(Y)=\\frac qp$ et $V(Y)=\\frac q{p^2}$",
+          "$E(Y)=\\frac1p$ et $V(Y)=\\frac q{p^2}$",
+          "$E(Y)=\\frac qp$ et $V(Y)=\\frac{q^2}{p^2}$",
+          "$E(Y)=\\frac qp$ et $V(Y)=\\frac1{p^2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** L'événement $\\{Y=n\\}$ est « face aux lancers $1$ à $n$, pile au lancer $n+1$ » ; par indépendance, $P(Y=n)=q^np$. Ces nombres ont pour somme $\\frac p{1-q}=1$, donc $Y$ est finie presque sûrement. Pour $|t|<\\frac1q$,\n$$G_Y(t)=\\sum_{n\\ge0}pq^nt^n=\\frac{p}{1-qt}.$$\n\n**2.** Le rayon de convergence $\\frac1q$ est strictement supérieur à $1$ : $G_Y$ est de classe $C^\\infty$ au voisinage de $1$, et $Y$ a des moments de tous ordres. $G_Y'(t)=\\frac{pq}{(1-qt)^2}$ et $G_Y''(t)=\\frac{2pq^2}{(1-qt)^3}$, donc $E(Y)=\\frac{pq}{p^2}=\\frac qp$ et $G_Y''(1)=\\frac{2q^2}{p^2}$. Ainsi\n$$V(Y)=\\frac{2q^2}{p^2}+\\frac qp-\\frac{q^2}{p^2}=\\frac{q^2+pq}{p^2}=\\frac{q}{p^2}.$$\nOn retrouve les résultats de la loi géométrique, puisque $Y+1\\sim\\mathcal{G}(p)$ : $E(Y)=\\frac1p-1$ et $V(Y)=V(Y+1)$."
+    },
+    {
+      "id": "proba-l2-generatrices-moments-ex3",
+      "carte": "proba-l2-generatrices-moments",
+      "difficulte": 3,
+      "titre": "Moments factoriels de la loi de Poisson",
+      "enonce": "Soit $X$ une variable aléatoire de loi $\\mathcal{P}(\\lambda)$, avec $\\lambda>0$.\n\n**1.** Montrer que, pour tout entier $k\\ge1$, $X(X-1)\\cdots(X-k+1)$ a une espérance égale à $\\lambda^k$, et que $X$ a des moments de tous ordres.\n\n**2.** En déduire $E(X^2)$, $V(X)$, puis $E(X^3)$.",
+      "duree_min": 15,
+      "indices": [
+        "$G_X(t)=e^{\\lambda(t-1)}$ est la somme d'une série entière de rayon infini : on peut la dériver terme à terme en $t=1$.",
+        "Écrire $x^3=x(x-1)(x-2)+a\\,x(x-1)+b\\,x$ et identifier $a$ et $b$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(X^3)$ ?",
+        "propositions": [
+          "$\\lambda^3+3\\lambda^2+\\lambda$",
+          "$\\lambda^3$",
+          "$\\lambda^3+\\lambda^2+\\lambda$",
+          "$\\lambda^3+3\\lambda^2+3\\lambda$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $G_X(t)=\\sum_{n\\ge0}e^{-\\lambda}\\frac{\\lambda^n}{n!}t^n=e^{\\lambda(t-1)}$ pour tout réel $t$. Une série entière de rayon infini se dérive terme à terme en tout point, en particulier en $1$ :\n$$G_X^{(k)}(1)=\\sum_{n\\ge k}n(n-1)\\cdots(n-k+1)P(X=n),$$\nsérie convergente à termes positifs, égale par transfert à $E\\left(X(X-1)\\cdots(X-k+1)\\right)$. Or $G_X^{(k)}(t)=\\lambda^ke^{\\lambda(t-1)}$, d'où $E\\left(X(X-1)\\cdots(X-k+1)\\right)=\\lambda^k$. Enfin, la série entière $\\sum n^kP(X=n)t^n$ a le même rayon de convergence, infini, que $\\sum P(X=n)t^n$ ; elle converge en $t=1$, donc $\\sum n^kP(X=n)<+\\infty$ : $X$ a des moments de tous ordres.\n\n**2.** $E(X)=\\lambda$ et $E\\left(X(X-1)\\right)=\\lambda^2$, donc $E(X^2)=\\lambda^2+\\lambda$ et $V(X)=\\lambda^2+\\lambda-\\lambda^2=\\lambda$. Ensuite $x^3=x(x-1)(x-2)+3x(x-1)+x$ (en développant : $x^3-3x^2+2x+3x^2-3x+x=x^3$), donc par linéarité\n$$E(X^3)=\\lambda^3+3\\lambda^2+\\lambda.$$"
+    },
+    {
+      "id": "proba-l2-generatrices-moments-ex4",
+      "carte": "proba-l2-generatrices-moments",
+      "difficulte": 4,
+      "titre": "Une variable sans espérance",
+      "enonce": "Pour $n\\ge1$, on pose $p_n=\\frac{1}{n(n+1)}$.\n\n**1.** Vérifier que $(p_n)_{n\\ge1}$ définit une loi de probabilité sur $\\mathbb{N}^*$. Soit $X$ une variable aléatoire de loi $P(X=n)=p_n$ pour $n\\ge1$.\n\n**2.** Montrer que, pour $t\\in\\left]0,1\\right[$, $G_X(t)=1+\\frac{(1-t)\\ln(1-t)}{t}$.\n\n**3.** Étudier la dérivabilité de $G_X$ en $1$ et conclure sur l'existence de $E(X)$. Vérifier directement la conclusion.",
+      "duree_min": 20,
+      "indices": [
+        "Décomposer $\\frac1{n(n+1)}=\\frac1n-\\frac1{n+1}$.",
+        "Utiliser $\\sum_{n\\ge1}\\frac{t^n}{n}=-\\ln(1-t)$ pour $|t|<1$."
+      ],
+      "correction": "**1.** $p_n=\\frac1n-\\frac1{n+1}>0$ et $\\sum_{n=1}^{N}p_n=1-\\frac1{N+1}\\to1$ (somme télescopique) : c'est une loi de probabilité sur $\\mathbb{N}^*$.\n\n**2.** Pour $t\\in\\left]0,1\\right[$, les séries $\\sum\\frac{t^n}n$ et $\\sum\\frac{t^n}{n+1}$ convergent, et\n$$\\sum_{n\\ge1}\\frac{t^n}{n+1}=\\frac1t\\sum_{m\\ge2}\\frac{t^m}{m}=\\frac1t\\left(-\\ln(1-t)-t\\right).$$\nDonc $G_X(t)=\\sum_{n\\ge1}\\frac{t^n}n-\\sum_{n\\ge1}\\frac{t^n}{n+1}=-\\ln(1-t)+\\frac{\\ln(1-t)}{t}+1=1+\\frac{(1-t)\\ln(1-t)}{t}$.\n\n**3.** $G_X(1)=1$ (et l'on retrouve $G_X(t)\\to1$ quand $t\\to1^-$, puisque $(1-t)\\ln(1-t)\\to0$). Pour $t\\in\\left]0,1\\right[$,\n$$\\frac{G_X(1)-G_X(t)}{1-t}=-\\frac{\\ln(1-t)}{t}\\xrightarrow[t\\to1^-]{}+\\infty.$$\n$G_X$ n'est donc pas dérivable à gauche en $1$ : $X$ n'a pas d'espérance. Directement : $\\sum_{n\\ge1}np_n=\\sum_{n\\ge1}\\frac1{n+1}=+\\infty$ (série harmonique)."
+    },
+    {
+      "id": "proba-l2-generatrices-moments-ex5",
+      "carte": "proba-l2-generatrices-moments",
+      "difficulte": 5,
+      "titre": "Attendre deux piles consécutifs",
+      "enonce": "On lance indéfiniment une pièce qui donne pile avec probabilité $p=\\frac12$, les lancers étant indépendants ; on note $q=1-p$. Soit $T$ le rang du lancer où l'on obtient pour la première fois deux piles consécutifs ($T\\ge2$), avec $P(T=1)=0$, et $G(t)=\\sum_{n\\ge1}P(T=n)t^n$ pour $t\\in[-1,1]$.\n\n**1.** En conditionnant par les premiers lancers (face ; pile puis face ; pile puis pile), montrer que $P(T=n)=qP(T=n-1)+pq\\,P(T=n-2)$ pour tout $n\\ge3$.\n\n**2.** En déduire une expression de $G(t)$, puis montrer que $T$ est fini presque sûrement.\n\n**3.** Justifier que $T$ a une espérance et une variance, et les calculer.",
+      "duree_min": 35,
+      "indices": [
+        "Si le premier lancer est face, tout recommence après lui : sachant ce premier résultat, la probabilité que $T=n$ est $P(T=n-1)$.",
+        "Multiplier la relation de la question 1 par $t^n$ et sommer pour $n\\ge3$.",
+        "Le dénominateur de la fraction obtenue ne s'annule pas sur $[-1,1]$ : $G$ est la somme d'une série entière de rayon strictement supérieur à $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que valent $E(T)$ et $V(T)$ ?",
+        "propositions": [
+          "$E(T)=6$ et $V(T)=22$",
+          "$E(T)=6$ et $V(T)=52$",
+          "$E(T)=6$ et $V(T)=58$",
+          "$E(T)=4$ et $V(T)=12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $n\\ge3$. Notons $F_1$ l'événement « face au premier lancer », $PF$ « pile puis face », $PP$ « pile puis pile » : ils forment un système complet, de probabilités $q$, $pq$, $p^2$. Sachant $F_1$, l'attente recommence au lancer $2$ avec des lancers indépendants de même loi : $P(T=n\\mid F_1)=P(T=n-1)$. De même $P(T=n\\mid PF)=P(T=n-2)$, et $P(T=n\\mid PP)=0$ puisque alors $T=2<n$. La formule des probabilités totales donne $P(T=n)=qP(T=n-1)+pqP(T=n-2)$.\n\n**2.** On a $P(T=1)=0$ et $P(T=2)=p^2$. En multipliant par $t^n$ et en sommant pour $n\\ge3$ (séries absolument convergentes pour $|t|\\le1$) :\n$$G(t)-p^2t^2=qt\\sum_{n\\ge3}P(T=n-1)t^{n-1}+pqt^2\\sum_{n\\ge3}P(T=n-2)t^{n-2}=qt\\,G(t)+pqt^2G(t).$$\nDonc $G(t)=\\frac{p^2t^2}{1-qt-pqt^2}$, soit ici $G(t)=\\frac{t^2}{4-2t-t^2}$. En particulier $\\sum_{n\\ge1}P(T=n)=G(1)=\\frac{p^2}{1-q-pq}=\\frac{p^2}{p(1-q)}=1$ : $T$ est fini presque sûrement.\n\n**3.** Le dénominateur $1-qt-pqt^2$ a pour racines $-1\\pm\\sqrt5$, soit environ $1{,}24$ et $-3{,}24$ : la fraction rationnelle est développable en série entière sur un intervalle $\\left]-\\rho,\\rho\\right[$ avec $\\rho>1$, et par unicité des coefficients ce développement est $\\sum P(T=n)t^n$. Donc $G$ est de classe $C^\\infty$ au voisinage de $1$ et $T$ a des moments de tous ordres. Le calcul donne $E(T)=G'(1)=6$ et $G''(1)=52$, d'où\n$$V(T)=G''(1)+G'(1)-G'(1)^2=52+6-36=22.$$",
+      "variantes": [
+        {
+          "enonce": "On lance indéfiniment une pièce qui donne pile avec probabilité $p=\\frac13$, les lancers étant indépendants ; on note $q=1-p$. Soit $T$ le rang du lancer où l'on obtient pour la première fois deux piles consécutifs ($T\\ge2$), avec $P(T=1)=0$, et $G(t)=\\sum_{n\\ge1}P(T=n)t^n$ pour $t\\in[-1,1]$.\n\n**1.** En conditionnant par les premiers lancers (face ; pile puis face ; pile puis pile), montrer que $P(T=n)=qP(T=n-1)+pq\\,P(T=n-2)$ pour tout $n\\ge3$.\n\n**2.** En déduire une expression de $G(t)$, puis montrer que $T$ est fini presque sûrement.\n\n**3.** Justifier que $T$ a une espérance et une variance, et les calculer.",
+          "indices": [
+            "Si le premier lancer est face, tout recommence après lui : sachant ce premier résultat, la probabilité que $T=n$ est $P(T=n-1)$.",
+            "Multiplier la relation de la question 1 par $t^n$ et sommer pour $n\\ge3$.",
+            "Le dénominateur de la fraction obtenue ne s'annule pas sur $[-1,1]$ : $G$ est la somme d'une série entière de rayon strictement supérieur à $1$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $E(T)$ et $V(T)$ ?",
+            "propositions": [
+              "$E(T)=12$ et $V(T)=114$",
+              "$E(T)=12$ et $V(T)=246$",
+              "$E(T)=12$ et $V(T)=258$",
+              "$E(T)=9$ et $V(T)=72$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $n\\ge3$. Notons $F_1$ l'événement « face au premier lancer », $PF$ « pile puis face », $PP$ « pile puis pile » : ils forment un système complet, de probabilités $q$, $pq$, $p^2$. Sachant $F_1$, l'attente recommence au lancer $2$ avec des lancers indépendants de même loi : $P(T=n\\mid F_1)=P(T=n-1)$. De même $P(T=n\\mid PF)=P(T=n-2)$, et $P(T=n\\mid PP)=0$ puisque alors $T=2<n$. La formule des probabilités totales donne $P(T=n)=qP(T=n-1)+pqP(T=n-2)$.\n\n**2.** On a $P(T=1)=0$ et $P(T=2)=p^2$. En multipliant par $t^n$ et en sommant pour $n\\ge3$ (séries absolument convergentes pour $|t|\\le1$) :\n$$G(t)-p^2t^2=qt\\sum_{n\\ge3}P(T=n-1)t^{n-1}+pqt^2\\sum_{n\\ge3}P(T=n-2)t^{n-2}=qt\\,G(t)+pqt^2G(t).$$\nDonc $G(t)=\\frac{p^2t^2}{1-qt-pqt^2}$, soit ici $G(t)=\\frac{t^2}{9-6t-2t^2}$. En particulier $\\sum_{n\\ge1}P(T=n)=G(1)=\\frac{p^2}{1-q-pq}=\\frac{p^2}{p(1-q)}=1$ : $T$ est fini presque sûrement.\n\n**3.** Le dénominateur $1-qt-pqt^2$ a pour racines $\\frac{-3\\pm3\\sqrt3}{2}$, soit environ $1{,}10$ et $-4{,}10$ : la fraction rationnelle est développable en série entière sur un intervalle $\\left]-\\rho,\\rho\\right[$ avec $\\rho>1$, et par unicité des coefficients ce développement est $\\sum P(T=n)t^n$. Donc $G$ est de classe $C^\\infty$ au voisinage de $1$ et $T$ a des moments de tous ordres. Le calcul donne $E(T)=G'(1)=12$ et $G''(1)=246$, d'où\n$$V(T)=G''(1)+G'(1)-G'(1)^2=246+12-144=114.$$"
+        },
+        {
+          "enonce": "On lance indéfiniment une pièce qui donne pile avec probabilité $p=\\frac23$, les lancers étant indépendants ; on note $q=1-p$. Soit $T$ le rang du lancer où l'on obtient pour la première fois deux piles consécutifs ($T\\ge2$), avec $P(T=1)=0$, et $G(t)=\\sum_{n\\ge1}P(T=n)t^n$ pour $t\\in[-1,1]$.\n\n**1.** En conditionnant par les premiers lancers (face ; pile puis face ; pile puis pile), montrer que $P(T=n)=qP(T=n-1)+pq\\,P(T=n-2)$ pour tout $n\\ge3$.\n\n**2.** En déduire une expression de $G(t)$, puis montrer que $T$ est fini presque sûrement.\n\n**3.** Justifier que $T$ a une espérance et une variance, et les calculer.",
+          "indices": [
+            "Si le premier lancer est face, tout recommence après lui : sachant ce premier résultat, la probabilité que $T=n$ est $P(T=n-1)$.",
+            "Multiplier la relation de la question 1 par $t^n$ et sommer pour $n\\ge3$.",
+            "Le dénominateur de la fraction obtenue ne s'annule pas sur $[-1,1]$ : $G$ est la somme d'une série entière de rayon strictement supérieur à $1$."
+          ],
+          "reponse_finale": {
+            "question": "Que valent $E(T)$ et $V(T)$ ?",
+            "propositions": [
+              "$E(T)=\\frac{15}4$ et $V(T)=\\frac{93}{16}$",
+              "$E(T)=\\frac{15}4$ et $V(T)=\\frac{129}8$",
+              "$E(T)=\\frac{15}4$ et $V(T)=\\frac{159}8$",
+              "$E(T)=\\frac94$ et $V(T)=\\frac{45}{16}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Soit $n\\ge3$. Notons $F_1$ l'événement « face au premier lancer », $PF$ « pile puis face », $PP$ « pile puis pile » : ils forment un système complet, de probabilités $q$, $pq$, $p^2$. Sachant $F_1$, l'attente recommence au lancer $2$ avec des lancers indépendants de même loi : $P(T=n\\mid F_1)=P(T=n-1)$. De même $P(T=n\\mid PF)=P(T=n-2)$, et $P(T=n\\mid PP)=0$ puisque alors $T=2<n$. La formule des probabilités totales donne $P(T=n)=qP(T=n-1)+pqP(T=n-2)$.\n\n**2.** On a $P(T=1)=0$ et $P(T=2)=p^2$. En multipliant par $t^n$ et en sommant pour $n\\ge3$ (séries absolument convergentes pour $|t|\\le1$) :\n$$G(t)-p^2t^2=qt\\sum_{n\\ge3}P(T=n-1)t^{n-1}+pqt^2\\sum_{n\\ge3}P(T=n-2)t^{n-2}=qt\\,G(t)+pqt^2G(t).$$\nDonc $G(t)=\\frac{p^2t^2}{1-qt-pqt^2}$, soit ici $G(t)=\\frac{4t^2}{9-3t-2t^2}$. En particulier $\\sum_{n\\ge1}P(T=n)=G(1)=\\frac{p^2}{1-q-pq}=\\frac{p^2}{p(1-q)}=1$ : $T$ est fini presque sûrement.\n\n**3.** Le dénominateur $1-qt-pqt^2$ a pour racines $\\frac32$ et $-3$ : la fraction rationnelle est développable en série entière sur un intervalle $\\left]-\\rho,\\rho\\right[$ avec $\\rho>1$, et par unicité des coefficients ce développement est $\\sum P(T=n)t^n$. Donc $G$ est de classe $C^\\infty$ au voisinage de $1$ et $T$ a des moments de tous ordres. Le calcul donne $E(T)=G'(1)=\\frac{15}4$ et $G''(1)=\\frac{129}8$, d'où\n$$V(T)=G''(1)+G'(1)-G'(1)^2=\\frac{129}8+\\frac{15}4-\\frac{225}{16}=\\frac{93}{16}.$$"
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-somme-ex1",
+      "carte": "proba-l2-generatrices-somme",
+      "difficulte": 1,
+      "titre": "Loi de la somme de deux variables indépendantes",
+      "enonce": "Soient $X\\sim\\mathcal{B}\\left(3,\\frac12\\right)$ et $Y\\sim\\mathcal{B}\\left(2,\\frac12\\right)$ deux variables aléatoires indépendantes. Déterminer la loi de $X+Y$ à l'aide des fonctions génératrices, puis calculer $P(X+Y=2)$.",
+      "duree_min": 6,
+      "indices": [
+        "Multiplier les fonctions génératrices et reconnaître une loi usuelle."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X+Y=2)$ ?",
+        "propositions": [
+          "$\\frac5{16}$",
+          "$\\frac38$",
+          "$\\frac14$",
+          "$\\frac3{32}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par indépendance, $G_{X+Y}(t)=G_X(t)G_Y(t)=\\left(\\frac{1+t}2\\right)^3\\left(\\frac{1+t}2\\right)^2=\\left(\\frac{1+t}2\\right)^5$ : c'est la fonction génératrice de $\\mathcal{B}\\left(5,\\frac12\\right)$, donc $X+Y\\sim\\mathcal{B}\\left(5,\\frac12\\right)$. Ainsi $P(X+Y=2)=\\binom52\\frac1{2^5}=\\frac{10}{32}=\\frac5{16}$.",
+      "variantes": [
+        {
+          "enonce": "Soient $X\\sim\\mathcal{P}(1)$ et $Y\\sim\\mathcal{P}(2)$ deux variables aléatoires indépendantes. Déterminer la loi de $X+Y$ à l'aide des fonctions génératrices, puis calculer $P(X+Y=2)$.",
+          "indices": [
+            "Multiplier les fonctions génératrices $e^{\\lambda(t-1)}$ et reconnaître une loi usuelle."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y=2)$ ?",
+            "propositions": [
+              "$\\frac92e^{-3}$",
+              "$2e^{-3}$",
+              "$\\frac52e^{-3}$",
+              "$3e^{-3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par indépendance, $G_{X+Y}(t)=e^{t-1}e^{2(t-1)}=e^{3(t-1)}$ : c'est la fonction génératrice de $\\mathcal{P}(3)$, donc $X+Y\\sim\\mathcal{P}(3)$. Ainsi $P(X+Y=2)=e^{-3}\\frac{3^2}{2!}=\\frac92e^{-3}$."
+        },
+        {
+          "enonce": "Soient $X\\sim\\mathcal{B}\\left(2,\\frac13\\right)$ et $Y\\sim\\mathcal{B}\\left(4,\\frac13\\right)$ deux variables aléatoires indépendantes. Déterminer la loi de $X+Y$ à l'aide des fonctions génératrices, puis calculer $P(X+Y=1)$.",
+          "indices": [
+            "Multiplier les fonctions génératrices $(1-p+pt)^n$ et reconnaître une loi usuelle."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y=1)$ ?",
+            "propositions": [
+              "$\\frac{64}{243}$",
+              "$\\frac{32}{243}$",
+              "$\\frac49$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par indépendance, $G_{X+Y}(t)=\\left(\\frac23+\\frac13t\\right)^2\\left(\\frac23+\\frac13t\\right)^4=\\left(\\frac23+\\frac13t\\right)^6$ : c'est la fonction génératrice de $\\mathcal{B}\\left(6,\\frac13\\right)$, donc $X+Y\\sim\\mathcal{B}\\left(6,\\frac13\\right)$. Ainsi $P(X+Y=1)=6\\cdot\\frac13\\left(\\frac23\\right)^5=\\frac{6\\times32}{729}=\\frac{64}{243}$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-somme-ex2",
+      "carte": "proba-l2-generatrices-somme",
+      "difficulte": 2,
+      "titre": "Somme des points de dés",
+      "enonce": "On lance deux dés équilibrés à six faces, indépendants, et on note $S$ la somme des points obtenus. Écrire $G_S$ comme un produit, puis calculer $P(S=8)$ en développant.",
+      "duree_min": 10,
+      "indices": [
+        "La fonction génératrice du point d'un dé est $\\frac{t+t^2+\\dots+t^6}{6}$ ; compter les façons d'obtenir $t^8$ dans le produit."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(S=8)$ ?",
+        "propositions": [
+          "$\\frac5{36}$",
+          "$\\frac16$",
+          "$\\frac19$",
+          "$\\frac1{12}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les points $X$ et $Y$ des deux dés sont indépendants, de fonction génératrice $\\frac{t+\\dots+t^6}{6}$, donc\n$$G_S(t)=\\left(\\frac{t+t^2+\\dots+t^6}{6}\\right)^2=\\frac1{36}\\sum_{a=1}^{6}\\sum_{b=1}^{6}t^{a+b}.$$\nLe coefficient de $t^8$ est le nombre de couples $(a,b)\\in\\{1,\\dots,6\\}^2$ tels que $a+b=8$ : $(2,6)$, $(3,5)$, $(4,4)$, $(5,3)$, $(6,2)$, soit $5$. Donc $P(S=8)=\\frac5{36}$.",
+      "variantes": [
+        {
+          "enonce": "On lance trois dés équilibrés à six faces, indépendants, et on note $S$ la somme des points obtenus. Écrire $G_S$ comme un produit, puis calculer $P(S=10)$ en développant.",
+          "indices": [
+            "La fonction génératrice du point d'un dé est $\\frac{t+t^2+\\dots+t^6}{6}$ ; compter les triplets $(a,b,c)$ de somme $10$, par exemple selon la valeur de $a$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(S=10)$ ?",
+            "propositions": [
+              "$\\frac18$",
+              "$\\frac{25}{216}$",
+              "$\\frac7{72}$",
+              "$\\frac16$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les trois points sont indépendants, donc $G_S(t)=\\left(\\frac{t+\\dots+t^6}{6}\\right)^3=\\frac1{216}\\sum_{a,b,c}t^{a+b+c}$. Le coefficient de $t^{10}$ est le nombre de triplets $(a,b,c)\\in\\{1,\\dots,6\\}^3$ de somme $10$. Pour $a$ fixé, $b+c=10-a$ avec $1\\le b,c\\le6$ : il y a $3,4,5,6,5,4$ couples pour $a=1,\\dots,6$ (sommes $9,8,7,6,5,4$), soit $27$ triplets. Donc $P(S=10)=\\frac{27}{216}=\\frac18$."
+        },
+        {
+          "enonce": "On lance deux dés tétraédriques équilibrés, dont les faces portent $1$, $2$, $3$, $4$, indépendants, et on note $S$ la somme des points obtenus. Écrire $G_S$ comme un produit, puis calculer $P(S=5)$ en développant.",
+          "indices": [
+            "La fonction génératrice du point d'un dé tétraédrique est $\\frac{t+t^2+t^3+t^4}{4}$ ; compter les façons d'obtenir $t^5$ dans le produit."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $P(S=5)$ ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac3{16}$",
+              "$\\frac18$",
+              "$\\frac5{16}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les deux points sont indépendants, donc $G_S(t)=\\left(\\frac{t+t^2+t^3+t^4}{4}\\right)^2=\\frac1{16}\\sum_{a=1}^{4}\\sum_{b=1}^{4}t^{a+b}$. Le coefficient de $t^5$ compte les couples $(1,4)$, $(2,3)$, $(3,2)$, $(4,1)$, soit $4$. Donc $P(S=5)=\\frac4{16}=\\frac14$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-somme-ex3",
+      "carte": "proba-l2-generatrices-somme",
+      "difficulte": 3,
+      "titre": "Rang du r-ième succès",
+      "enonce": "Soient $p\\in\\left]0,1\\right[$, $q=1-p$ et $r\\ge1$ un entier. On répète des épreuves de Bernoulli indépendantes de paramètre $p$ et on note $S_r$ le rang du $r$-ième succès. On admet que $S_r=X_1+\\dots+X_r$, où $X_1,\\dots,X_r$ sont des variables indépendantes de loi géométrique $\\mathcal{G}(p)$ sur $\\mathbb{N}^*$ (les attentes entre succès successifs).\n\n**1.** Calculer $G_{S_r}(t)$ pour $|t|\\le1$.\n\n**2.** À l'aide du développement $\\frac1{(1-u)^r}=\\sum_{k\\ge0}\\binom{k+r-1}{r-1}u^k$, valable pour $|u|<1$, en déduire $P(S_r=n)$ pour tout entier $n\\ge r$.\n\n**3.** Calculer $E(S_r)$ et $V(S_r)$.",
+      "duree_min": 20,
+      "indices": [
+        "La fonction génératrice de $\\mathcal{G}(p)$ sur $\\mathbb{N}^*$ est $t\\mapsto\\frac{pt}{1-qt}$.",
+        "Écrire $G_{S_r}(t)=p^rt^r\\sum_{k\\ge0}\\binom{k+r-1}{r-1}q^kt^k$, puis poser $n=k+r$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(S_r=n)$ pour $n\\ge r$ ?",
+        "propositions": [
+          "$\\binom{n-1}{r-1}p^rq^{n-r}$",
+          "$\\binom{n}{r}p^rq^{n-r}$",
+          "$\\binom{n-1}{r}p^rq^{n-r}$",
+          "$\\binom{n-1}{r-1}p^{n-r}q^r$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les $X_i$ sont indépendantes et $G_{X_i}(t)=\\frac{pt}{1-qt}$, donc $G_{S_r}(t)=\\left(\\frac{pt}{1-qt}\\right)^r$.\n\n**2.** Pour $|t|\\le1$, $|qt|<1$, et le développement donné avec $u=qt$ fournit\n$$G_{S_r}(t)=p^rt^r\\sum_{k\\ge0}\\binom{k+r-1}{r-1}q^kt^k=\\sum_{n\\ge r}\\binom{n-1}{r-1}p^rq^{n-r}t^n.$$\nPar unicité des coefficients (la fonction génératrice caractérise la loi), $P(S_r=n)=\\binom{n-1}{r-1}p^rq^{n-r}$ pour $n\\ge r$, et $P(S_r=n)=0$ pour $n<r$. Interprétation : le $r$-ième succès a lieu à l'épreuve $n$, et les $r-1$ autres succès se placent parmi les $n-1$ premières épreuves.\n\n**3.** Par linéarité, $E(S_r)=rE(X_1)=\\frac rp$ ; par indépendance, $V(S_r)=rV(X_1)=\\frac{rq}{p^2}$. On peut aussi dériver $G_{S_r}$ en $1$ : $G_{S_r}=G_{X_1}^r$ donne $G_{S_r}'(1)=rG_{X_1}'(1)=\\frac rp$."
+    },
+    {
+      "id": "proba-l2-generatrices-somme-ex4",
+      "carte": "proba-l2-generatrices-somme",
+      "difficulte": 4,
+      "titre": "Pas de dés truqués à somme uniforme",
+      "enonce": "On se demande s'il existe deux dés à six faces numérotées de $1$ à $6$, éventuellement truqués (chacun avec ses propres probabilités) et lancés indépendamment, tels que la somme $S$ des deux points suive la loi uniforme sur $\\{2,3,\\dots,12\\}$. On note $X$ et $Y$ les points des deux dés.\n\n**1.** Montrer que $G_X(t)=tP(t)$ et $G_Y(t)=tQ(t)$, où $P$ et $Q$ sont des polynômes à coefficients réels de degré au plus $5$.\n\n**2.** On suppose $S$ uniforme sur $\\{2,\\dots,12\\}$. Montrer que $P(t)Q(t)=\\frac{1+t+\\dots+t^{10}}{11}$ pour tout réel $t$, puis que $P$ et $Q$ sont de degré exactement $5$.\n\n**3.** Montrer que le polynôme $1+t+\\dots+t^{10}$ n'a aucune racine réelle, et conclure.",
+      "duree_min": 25,
+      "indices": [
+        "Un polynôme réel de degré impair a au moins une racine réelle.",
+        "Pour $t\\neq1$, $1+t+\\dots+t^{10}=\\frac{t^{11}-1}{t-1}$."
+      ],
+      "correction": "**1.** $G_X(t)=\\sum_{k=1}^{6}P(X=k)t^k=t\\sum_{k=1}^{6}P(X=k)t^{k-1}$ : on pose $P(t)=\\sum_{k=1}^{6}P(X=k)t^{k-1}$, de degré au plus $5$. De même pour $Q$.\n\n**2.** Par indépendance, $G_S=G_XG_Y=t^2PQ$ sur $[-1,1]$. Si $S$ est uniforme sur $\\{2,\\dots,12\\}$, $G_S(t)=\\frac{t^2+t^3+\\dots+t^{12}}{11}=\\frac{t^2\\left(1+t+\\dots+t^{10}\\right)}{11}$. En simplifiant par $t^2$ pour $t\\neq0$, les polynômes $PQ$ et $\\frac{1+\\dots+t^{10}}{11}$ coïncident en une infinité de points : ils sont égaux. Le degré de $PQ$ est donc $10$ ; comme $\\deg P\\le5$ et $\\deg Q\\le5$, on a $\\deg P=\\deg Q=5$.\n\n**3.** En $t=1$, le polynôme vaut $11\\neq0$. Pour $t\\neq1$ réel, $1+t+\\dots+t^{10}=\\frac{t^{11}-1}{t-1}$ s'annule seulement si $t^{11}=1$, c'est-à-dire $t=1$ puisque $t\\mapsto t^{11}$ est injective sur $\\mathbb{R}$ : il n'a donc aucune racine réelle. Or $P$ est un polynôme réel de degré $5$, impair : ses limites en $\\pm\\infty$ sont infinies de signes opposés, donc il s'annule en un réel $t_0$ (théorème des valeurs intermédiaires). Alors $P(t_0)Q(t_0)=0$, alors que $\\frac{1+t_0+\\dots+t_0^{10}}{11}\\neq0$ : contradiction. Il n'existe donc pas de tels dés."
+    },
+    {
+      "id": "proba-l2-generatrices-somme-ex5",
+      "carte": "proba-l2-generatrices-somme",
+      "difficulte": 5,
+      "titre": "Somme d'un nombre aléatoire de variables",
+      "enonce": "Soient $N$ une variable aléatoire à valeurs dans $\\mathbb{N}$ et $(X_k)_{k\\ge1}$ une suite de variables aléatoires à valeurs dans $\\mathbb{N}$, de même loi, telles que, pour tout $n$, les variables $N,X_1,\\dots,X_n$ soient mutuellement indépendantes. On pose $S=\\sum_{k=1}^{N}X_k$, avec $S=0$ si $N=0$.\n\n**1.** Montrer que, pour tout $k\\in\\mathbb{N}$, $P(S=k)=\\sum_{n\\ge0}P(N=n)\\,P(X_1+\\dots+X_n=k)$.\n\n**2.** En déduire que $G_S=G_N\\circ G_{X_1}$ sur $[-1,1]$.\n\n**3.** On suppose que $N$ et $X_1$ ont une espérance. Montrer que $S$ a une espérance et que $E(S)=E(N)E(X_1)$.\n\n**4.** Une poule pond un nombre $N$ d'œufs de loi $\\mathcal{P}(\\lambda)$, avec $\\lambda>0$ ; chaque œuf éclot avec probabilité $p\\in\\left]0,1\\right[$, indépendamment des autres œufs et de $N$. Déterminer la loi du nombre $S$ de poussins.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 2, justifier l'échange des deux sommes : la famille double est sommable, ses termes étant majorés en module par $P(N=n)P(X_1+\\dots+X_n=k)$.",
+        "Pour la question 3, écrire le taux d'accroissement de $G_N\\circ G_{X_1}$ en $1$ comme un produit de deux taux d'accroissement.",
+        "Pour la question 4, $S=\\sum_{k=1}^{N}X_k$ où $X_k$ vaut $1$ si le $k$-ième œuf éclot."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la loi de $S$ dans la question 4 ?",
+        "propositions": [
+          "$\\mathcal{P}(\\lambda p)$",
+          "$\\mathcal{P}(\\lambda)$",
+          "$\\mathcal{P}\\left(\\frac\\lambda p\\right)$",
+          "$\\mathcal{P}(\\lambda+p)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Notons $S_n=X_1+\\dots+X_n$ (et $S_0=0$).\n\n**1.** Les événements $\\{N=n\\}$, $n\\in\\mathbb{N}$, forment un système complet, et sur $\\{N=n\\}$, $S=S_n$. Donc $P(S=k)=\\sum_{n\\ge0}P(N=n,\\,S_n=k)$. Comme $S_n$ est une fonction de $(X_1,\\dots,X_n)$, indépendant de $N$ (lemme des coalitions), $P(N=n,S_n=k)=P(N=n)P(S_n=k)$.\n\n**2.** Soit $t\\in[-1,1]$. La famille $\\left(P(N=n)P(S_n=k)t^k\\right)_{(n,k)\\in\\mathbb{N}^2}$ est sommable : $\\sum_n\\sum_kP(N=n)P(S_n=k)|t|^k\\le\\sum_nP(N=n)=1$. On peut donc échanger les sommes :\n$$G_S(t)=\\sum_{k\\ge0}\\sum_{n\\ge0}P(N=n)P(S_n=k)t^k=\\sum_{n\\ge0}P(N=n)G_{S_n}(t)=\\sum_{n\\ge0}P(N=n)G_{X_1}(t)^n,$$\ncar $G_{S_n}=G_{X_1}^n$ (somme de variables indépendantes de même loi). Comme $|G_{X_1}(t)|\\le1$, la dernière somme vaut $G_N\\left(G_{X_1}(t)\\right)$.\n\n**3.** Si $X_1=0$ presque sûrement, $S=0$ et la formule est vraie. Sinon, $G_{X_1}$ est strictement croissante sur $[0,1]$, donc $u=G_{X_1}(t)<1$ pour $t\\in\\left[0,1\\right[$, et $u\\to1$ quand $t\\to1^-$. Alors\n$$\\frac{G_S(1)-G_S(t)}{1-t}=\\frac{G_N(1)-G_N(u)}{1-u}\\cdot\\frac{G_{X_1}(1)-G_{X_1}(t)}{1-t}\\xrightarrow[t\\to1^-]{}G_N'(1)\\,G_{X_1}'(1)=E(N)E(X_1).$$\n$G_S$ est donc dérivable en $1$ : $S$ a une espérance, et $E(S)=E(N)E(X_1)$.\n\n**4.** Soit $X_k$ l'indicatrice de l'éclosion du $k$-ième œuf : les $X_k$ suivent la loi $\\mathcal{B}(p)$ et les hypothèses d'indépendance sont celles de l'énoncé, avec $S=\\sum_{k=1}^{N}X_k$. Par la question 2, pour $t\\in[-1,1]$,\n$$G_S(t)=G_N(1-p+pt)=e^{\\lambda(1-p+pt-1)}=e^{\\lambda p(t-1)}.$$\nC'est la fonction génératrice de $\\mathcal{P}(\\lambda p)$ : $S\\sim\\mathcal{P}(\\lambda p)$. En particulier $E(S)=\\lambda p=E(N)E(X_1)$."
+    },
+    {
+      "id": "proba-l2-generatrices-applications-ex1",
+      "carte": "proba-l2-generatrices-applications",
+      "difficulte": 2,
+      "titre": "Payer une somme avec deux sortes de pièces",
+      "enonce": "On note $a_n$ le nombre de façons de payer $n$ euros avec des pièces de $1$ et de $2$ euros, l'ordre des pièces ne comptant pas, c'est-à-dire le nombre de couples $(x,y)\\in\\mathbb{N}^2$ tels que $x+2y=n$. Montrer que $\\sum_{n\\ge0}a_nt^n=\\frac{1}{(1-t)(1-t^2)}$ pour $|t|<1$, puis calculer $a_{10}$.",
+      "duree_min": 10,
+      "indices": [
+        "$\\sum_xt^x=\\frac1{1-t}$ et $\\sum_yt^{2y}=\\frac1{1-t^2}$ : le coefficient de $t^n$ dans leur produit compte les couples $(x,y)$ tels que $x+2y=n$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $a_{10}$ ?",
+        "propositions": [
+          "$6$",
+          "$5$",
+          "$11$",
+          "$7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $|t|<1$, les séries $\\sum_{x\\ge0}t^x=\\frac1{1-t}$ et $\\sum_{y\\ge0}t^{2y}=\\frac1{1-t^2}$ convergent absolument. Le produit de Cauchy de la suite $(1,1,1,\\dots)$ et de la suite $(b_m)$, où $b_m=1$ si $m$ est pair et $0$ sinon, a pour coefficient $\\sum_{x+m=n}b_m$, c'est-à-dire le nombre de couples $(x,y)$ avec $x+2y=n$ : c'est $a_n$. Donc $\\sum a_nt^n=\\frac1{(1-t)(1-t^2)}$.\n\nPour $n=10$, $y$ peut valoir $0,1,\\dots,5$, et $x=10-2y$ est alors déterminé : $a_{10}=6$. On retrouve la formule $a_n=\\left\\lfloor\\frac n2\\right\\rfloor+1$, obtenue en décomposant $\\frac1{(1-t)^2(1+t)}$ en éléments simples.",
+      "variantes": [
+        {
+          "enonce": "On note $a_n$ le nombre de façons de payer $n$ euros avec des pièces de $1$ et de $2$ euros, l'ordre des pièces ne comptant pas, c'est-à-dire le nombre de couples $(x,y)\\in\\mathbb{N}^2$ tels que $x+2y=n$. Montrer que $\\sum_{n\\ge0}a_nt^n=\\frac{1}{(1-t)(1-t^2)}$ pour $|t|<1$, puis calculer $a_{15}$.",
+          "indices": [
+            "$\\sum_xt^x=\\frac1{1-t}$ et $\\sum_yt^{2y}=\\frac1{1-t^2}$ : le coefficient de $t^n$ dans leur produit compte les couples $(x,y)$ tels que $x+2y=n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $a_{15}$ ?",
+            "propositions": [
+              "$8$",
+              "$7$",
+              "$16$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $|t|<1$, les séries $\\sum_{x\\ge0}t^x=\\frac1{1-t}$ et $\\sum_{y\\ge0}t^{2y}=\\frac1{1-t^2}$ convergent absolument, et le coefficient de $t^n$ de leur produit de Cauchy est le nombre de couples $(x,y)\\in\\mathbb{N}^2$ avec $x+2y=n$, c'est-à-dire $a_n$. Donc $\\sum a_nt^n=\\frac1{(1-t)(1-t^2)}$.\n\nPour $n=15$, $y$ peut valoir $0,1,\\dots,7$ (car $2y\\le15$), et $x=15-2y$ est alors déterminé : $a_{15}=8$, en accord avec $a_n=\\left\\lfloor\\frac n2\\right\\rfloor+1$."
+        },
+        {
+          "enonce": "On note $a_n$ le nombre de façons de payer $n$ euros avec des pièces de $1$ et de $3$ euros, l'ordre des pièces ne comptant pas, c'est-à-dire le nombre de couples $(x,y)\\in\\mathbb{N}^2$ tels que $x+3y=n$. Montrer que $\\sum_{n\\ge0}a_nt^n=\\frac{1}{(1-t)(1-t^3)}$ pour $|t|<1$, puis calculer $a_{10}$.",
+          "indices": [
+            "$\\sum_xt^x=\\frac1{1-t}$ et $\\sum_yt^{3y}=\\frac1{1-t^3}$ : le coefficient de $t^n$ dans leur produit compte les couples $(x,y)$ tels que $x+3y=n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $a_{10}$ ?",
+            "propositions": [
+              "$4$",
+              "$3$",
+              "$5$",
+              "$11$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $|t|<1$, les séries $\\sum_{x\\ge0}t^x=\\frac1{1-t}$ et $\\sum_{y\\ge0}t^{3y}=\\frac1{1-t^3}$ convergent absolument, et le coefficient de $t^n$ de leur produit de Cauchy est le nombre de couples $(x,y)\\in\\mathbb{N}^2$ avec $x+3y=n$, c'est-à-dire $a_n$. Donc $\\sum a_nt^n=\\frac1{(1-t)(1-t^3)}$.\n\nPour $n=10$, $y$ peut valoir $0,1,2,3$ (car $3y\\le10$), et $x=10-3y$ est alors déterminé : $a_{10}=4$ ; en général $a_n=\\left\\lfloor\\frac n3\\right\\rfloor+1$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-applications-ex2",
+      "carte": "proba-l2-generatrices-applications",
+      "difficulte": 2,
+      "titre": "Identité de Vandermonde",
+      "enonce": "Soient $m$, $p$ et $n$ des entiers naturels. En comparant les coefficients de $t^n$ dans $(1+t)^m(1+t)^p=(1+t)^{m+p}$, montrer que $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}=\\binom{m+p}n$, avec la convention $\\binom ab=0$ si $b>a$. En déduire la valeur de $\\sum_{k=0}^{5}\\binom5k^2$.",
+      "duree_min": 10,
+      "indices": [
+        "Utiliser $\\binom5k=\\binom5{5-k}$ et appliquer l'identité avec $m=p=n=5$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{k=0}^{5}\\binom5k^2$ ?",
+        "propositions": [
+          "$252$",
+          "$32$",
+          "$1024$",
+          "$126$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout réel $t$, $(1+t)^m=\\sum_k\\binom mkt^k$ et $(1+t)^p=\\sum_j\\binom pjt^j$ (sommes finies, avec la convention de l'énoncé). Le coefficient de $t^n$ du produit est $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}$ (produit de Cauchy), celui de $(1+t)^{m+p}$ est $\\binom{m+p}n$ ; deux polynômes égaux ont les mêmes coefficients, d'où l'identité.\n\nComme $\\binom5k=\\binom5{5-k}$, $\\sum_{k=0}^{5}\\binom5k^2=\\sum_{k=0}^{5}\\binom5k\\binom5{5-k}=\\binom{10}5=252$.",
+      "variantes": [
+        {
+          "enonce": "Soient $m$, $p$ et $n$ des entiers naturels. En comparant les coefficients de $t^n$ dans $(1+t)^m(1+t)^p=(1+t)^{m+p}$, montrer que $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}=\\binom{m+p}n$, avec la convention $\\binom ab=0$ si $b>a$. En déduire la valeur de $\\sum_{k=0}^{3}\\binom4k\\binom6{3-k}$.",
+          "indices": [
+            "Appliquer l'identité avec $m=4$, $p=6$ et $n=3$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{k=0}^{3}\\binom4k\\binom6{3-k}$ ?",
+            "propositions": [
+              "$120$",
+              "$210$",
+              "$84$",
+              "$60$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout réel $t$, $(1+t)^m=\\sum_k\\binom mkt^k$ et $(1+t)^p=\\sum_j\\binom pjt^j$ (sommes finies, avec la convention de l'énoncé). Le coefficient de $t^n$ du produit est $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}$ (produit de Cauchy), celui de $(1+t)^{m+p}$ est $\\binom{m+p}n$ ; deux polynômes égaux ont les mêmes coefficients, d'où l'identité.\n\nAvec $m=4$, $p=6$ et $n=3$ : $\\sum_{k=0}^{3}\\binom4k\\binom6{3-k}=\\binom{10}3=120$. Vérification : $20+4\\times15+6\\times6+4\\times1=20+60+36+4=120$."
+        },
+        {
+          "enonce": "Soient $m$, $p$ et $n$ des entiers naturels. En comparant les coefficients de $t^n$ dans $(1+t)^m(1+t)^p=(1+t)^{m+p}$, montrer que $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}=\\binom{m+p}n$, avec la convention $\\binom ab=0$ si $b>a$. En déduire la valeur de $\\sum_{k=0}^{7}\\binom7k^2$.",
+          "indices": [
+            "Utiliser $\\binom7k=\\binom7{7-k}$ et appliquer l'identité avec $m=p=n=7$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{k=0}^{7}\\binom7k^2$ ?",
+            "propositions": [
+              "$3432$",
+              "$128$",
+              "$16384$",
+              "$1716$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour tout réel $t$, $(1+t)^m=\\sum_k\\binom mkt^k$ et $(1+t)^p=\\sum_j\\binom pjt^j$ (sommes finies, avec la convention de l'énoncé). Le coefficient de $t^n$ du produit est $\\sum_{k=0}^{n}\\binom mk\\binom p{n-k}$ (produit de Cauchy), celui de $(1+t)^{m+p}$ est $\\binom{m+p}n$ ; deux polynômes égaux ont les mêmes coefficients, d'où l'identité.\n\nComme $\\binom7k=\\binom7{7-k}$, $\\sum_{k=0}^{7}\\binom7k^2=\\sum_{k=0}^{7}\\binom7k\\binom7{7-k}=\\binom{14}7=3432$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-applications-ex3",
+      "carte": "proba-l2-generatrices-applications",
+      "difficulte": 3,
+      "titre": "Carrelages d'une bande",
+      "enonce": "On carrelle une bande de longueur $n$ avec des carreaux de longueur $1$ et des carreaux de longueur $2$, alignés. On note $c_n$ le nombre de carrelages possibles, avec $c_0=1$ ; par exemple $c_3=3$ ($1+1+1$, $1+2$, $2+1$). On pose $\\varphi=\\frac{1+\\sqrt5}2$ et $\\psi=\\frac{1-\\sqrt5}2$.\n\n**1.** Montrer que $c_{n+2}=c_{n+1}+c_n$ pour tout $n\\ge0$, puis que $c_n\\le2^n$.\n\n**2.** En déduire que $C(t)=\\sum_{n\\ge0}c_nt^n=\\frac{1}{1-t-t^2}$ pour $|t|<\\frac12$.\n\n**3.** Décomposer $\\frac1{1-t-t^2}$ en éléments simples et en déduire une expression de $c_n$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 1, distinguer selon la longueur du premier carreau.",
+        "Pour la question 3, $1-t-t^2=(1-\\varphi t)(1-\\psi t)$, car $\\varphi+\\psi=1$ et $\\varphi\\psi=-1$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est l'expression de $c_n$ ?",
+        "propositions": [
+          "$\\frac1{\\sqrt5}\\left(\\varphi^{n+1}-\\psi^{n+1}\\right)$",
+          "$\\frac1{\\sqrt5}\\left(\\varphi^{n}-\\psi^{n}\\right)$",
+          "$\\varphi^{n+1}-\\psi^{n+1}$",
+          "$\\frac1{\\sqrt5}\\left(\\varphi^{n+1}+\\psi^{n+1}\\right)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Un carrelage de longueur $n+2$ commence par un carreau de longueur $1$, suivi d'un carrelage de longueur $n+1$, ou par un carreau de longueur $2$, suivi d'un carrelage de longueur $n$ : $c_{n+2}=c_{n+1}+c_n$, avec $c_0=c_1=1$. Par récurrence double, $c_n\\le2^n$ : c'est vrai pour $n=0,1$, et $c_{n+2}\\le2^{n+1}+2^n\\le2^{n+2}$. Le rayon de convergence de $\\sum c_nt^n$ est donc au moins $\\frac12$.\n\n**2.** Pour $|t|<\\frac12$, en multipliant la relation par $t^{n+2}$ et en sommant :\n$$C(t)-1-t=t\\left(C(t)-1\\right)+t^2C(t),$$\nd'où $C(t)\\left(1-t-t^2\\right)=1$. Les racines de $1-t-t^2$ sont $\\frac{-1\\pm\\sqrt5}2$, de valeurs absolues $0{,}618\\ldots$ et $1{,}618\\ldots$, supérieures à $\\frac12$ : $C(t)=\\frac1{1-t-t^2}$.\n\n**3.** Comme $\\varphi-\\psi=\\sqrt5$,\n$$\\frac1{(1-\\varphi t)(1-\\psi t)}=\\frac1{\\sqrt5}\\left(\\frac{\\varphi}{1-\\varphi t}-\\frac{\\psi}{1-\\psi t}\\right)=\\sum_{n\\ge0}\\frac{\\varphi^{n+1}-\\psi^{n+1}}{\\sqrt5}t^n$$\npour $|t|<\\frac1\\varphi$, donc en particulier pour $|t|<\\frac12$. Par unicité des coefficients, $c_n=\\frac1{\\sqrt5}\\left(\\varphi^{n+1}-\\psi^{n+1}\\right)$ : c'est le nombre de Fibonacci $F_{n+1}$.",
+      "variantes": [
+        {
+          "titre": "Carrelages d'une bande avec deux couleurs",
+          "enonce": "On carrelle une bande de longueur $n$ avec des carreaux alignés : des carreaux de longueur $1$, tous blancs, et des carreaux de longueur $2$, blancs ou gris. On note $c_n$ le nombre de carrelages possibles, avec $c_0=1$ ; par exemple $c_2=3$.\n\n**1.** Montrer que $c_{n+2}=c_{n+1}+2c_n$ pour tout $n\\ge0$, puis que $c_n\\le2^n$.\n\n**2.** En déduire que $C(t)=\\sum_{n\\ge0}c_nt^n=\\frac{1}{1-t-2t^2}$ pour $|t|<\\frac12$.\n\n**3.** Décomposer $\\frac1{1-t-2t^2}$ en éléments simples et en déduire une expression de $c_n$.",
+          "indices": [
+            "Pour la question 1, distinguer selon la longueur et la couleur du premier carreau.",
+            "Pour la question 3, factoriser $1-t-2t^2=(1-2t)(1+t)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $c_n$ ?",
+            "propositions": [
+              "$\\frac{2^{n+1}+(-1)^n}{3}$",
+              "$\\frac{2^{n}+(-1)^n}{3}$",
+              "$\\frac{2^{n+1}-(-1)^n}{3}$",
+              "$2^n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Un carrelage de longueur $n+2$ commence par un carreau de longueur $1$ (suivi d'un carrelage de longueur $n+1$) ou par un carreau de longueur $2$ de l'une des deux couleurs (suivi d'un carrelage de longueur $n$) : $c_{n+2}=c_{n+1}+2c_n$, avec $c_0=c_1=1$. Par récurrence double, $c_n\\le2^n$ : $c_{n+2}\\le2^{n+1}+2\\cdot2^n=2^{n+2}$. Le rayon de convergence de $\\sum c_nt^n$ est au moins $\\frac12$.\n\n**2.** Pour $|t|<\\frac12$ : $C(t)-1-t=t\\left(C(t)-1\\right)+2t^2C(t)$, donc $C(t)\\left(1-t-2t^2\\right)=1$. Les racines de $1-t-2t^2$ sont $\\frac12$ et $-1$, donc $1-t-2t^2\\neq0$ pour $|t|<\\frac12$ et $C(t)=\\frac1{1-t-2t^2}$.\n\n**3.** $\\frac1{(1-2t)(1+t)}=\\frac{2/3}{1-2t}+\\frac{1/3}{1+t}=\\sum_{n\\ge0}\\frac{2^{n+1}+(-1)^n}{3}t^n$ pour $|t|<\\frac12$. Par unicité des coefficients, $c_n=\\frac{2^{n+1}+(-1)^n}3$ ; vérification : $c_2=\\frac{8+1}3=3$."
+        },
+        {
+          "titre": "Carrelages d'une bande avec plusieurs couleurs",
+          "enonce": "On carrelle une bande de longueur $n$ avec des carreaux alignés : des carreaux de longueur $1$ de deux couleurs possibles et des carreaux de longueur $2$ de trois couleurs possibles. On note $c_n$ le nombre de carrelages possibles, avec $c_0=1$ ; par exemple $c_1=2$ et $c_2=7$.\n\n**1.** Montrer que $c_{n+2}=2c_{n+1}+3c_n$ pour tout $n\\ge0$, puis que $c_n\\le3^n$.\n\n**2.** En déduire que $C(t)=\\sum_{n\\ge0}c_nt^n=\\frac{1}{1-2t-3t^2}$ pour $|t|<\\frac13$.\n\n**3.** Décomposer $\\frac1{1-2t-3t^2}$ en éléments simples et en déduire une expression de $c_n$.",
+          "indices": [
+            "Pour la question 1, distinguer selon la longueur et la couleur du premier carreau.",
+            "Pour la question 3, factoriser $1-2t-3t^2=(1-3t)(1+t)$."
+          ],
+          "reponse_finale": {
+            "question": "Quelle est l'expression de $c_n$ ?",
+            "propositions": [
+              "$\\frac{3^{n+1}+(-1)^n}{4}$",
+              "$\\frac{3^{n+1}-(-1)^n}{4}$",
+              "$3^n$",
+              "$\\frac{3^{n}+(-1)^n}{2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Un carrelage de longueur $n+2$ commence par un carreau de longueur $1$ de l'une des deux couleurs (suivi d'un carrelage de longueur $n+1$) ou par un carreau de longueur $2$ de l'une des trois couleurs (suivi d'un carrelage de longueur $n$) : $c_{n+2}=2c_{n+1}+3c_n$, avec $c_0=1$, $c_1=2$. Par récurrence double, $c_n\\le3^n$ : $c_{n+2}\\le2\\cdot3^{n+1}+3\\cdot3^n=3^{n+2}$. Le rayon de convergence de $\\sum c_nt^n$ est au moins $\\frac13$.\n\n**2.** Pour $|t|<\\frac13$ : $C(t)-1-2t=2t\\left(C(t)-1\\right)+3t^2C(t)$, donc $C(t)\\left(1-2t-3t^2\\right)=1$. Les racines de $1-2t-3t^2$ sont $\\frac13$ et $-1$, donc $C(t)=\\frac1{1-2t-3t^2}$ pour $|t|<\\frac13$.\n\n**3.** $\\frac1{(1-3t)(1+t)}=\\frac{3/4}{1-3t}+\\frac{1/4}{1+t}=\\sum_{n\\ge0}\\frac{3^{n+1}+(-1)^n}{4}t^n$ pour $|t|<\\frac13$. Par unicité des coefficients, $c_n=\\frac{3^{n+1}+(-1)^n}4$ ; vérification : $c_2=\\frac{27+1}4=7$."
+        }
+      ]
+    },
+    {
+      "id": "proba-l2-generatrices-applications-ex4",
+      "carte": "proba-l2-generatrices-applications",
+      "difficulte": 4,
+      "titre": "Les dés de Sicherman",
+      "enonce": "Un dé ordinaire porte les faces $1,2,3,4,5,6$. Les dés de Sicherman portent les faces $1,2,2,3,3,4$ pour le premier et $1,3,4,5,6,8$ pour le second ; tous les dés sont équilibrés (chaque face a la probabilité $\\frac16$).\n\n**1.** Vérifier que $t+t^2+\\dots+t^6=t(1+t)(1+t+t^2)(1-t+t^2)$.\n\n**2.** Écrire les fonctions génératrices $A$ et $B$ des points des deux dés de Sicherman, et les factoriser à l'aide de la question 1.\n\n**3.** En déduire que la somme des points de deux dés de Sicherman lancés indépendamment a la même loi que la somme des points de deux dés ordinaires lancés indépendamment.",
+      "duree_min": 25,
+      "indices": [
+        "$1+t+\\dots+t^5=(1+t)\\left(1+t^2+t^4\\right)$ et $1+t^2+t^4=(1+t+t^2)(1-t+t^2)$.",
+        "Le produit $AB$ doit contenir chacun des facteurs $t$, $1+t$, $1+t+t^2$ et $1-t+t^2$ exactement deux fois."
+      ],
+      "correction": "**1.** $t+\\dots+t^6=t\\left(1+t+\\dots+t^5\\right)=t(1+t)\\left(1+t^2+t^4\\right)$, et $(1+t+t^2)(1-t+t^2)=(1+t^2)^2-t^2=1+t^2+t^4$.\n\n**2.** $A(t)=\\frac{t+2t^2+2t^3+t^4}{6}$ et $B(t)=\\frac{t+t^3+t^4+t^5+t^6+t^8}{6}$. On vérifie en développant que $(1+t)(1+t+t^2)=1+2t+2t^2+t^3$, donc\n$$A(t)=\\frac{t(1+t)(1+t+t^2)}{6},$$\net que $(1+t)(1+t+t^2)(1-t+t^2)^2=(1+t+t^2+t^3+t^4+t^5)(1-t+t^2)=1+t^2+t^3+t^4+t^5+t^7$, donc\n$$B(t)=\\frac{t(1+t)(1+t+t^2)(1-t+t^2)^2}{6}.$$\n\n**3.** Par indépendance, la somme $S'$ des deux dés de Sicherman a pour fonction génératrice\n$$A(t)B(t)=\\frac{t^2(1+t)^2(1+t+t^2)^2(1-t+t^2)^2}{36}=\\left(\\frac{t+\\dots+t^6}{6}\\right)^2,$$\nqui est la fonction génératrice de la somme $S$ de deux dés ordinaires indépendants. La fonction génératrice caractérisant la loi, $S'$ et $S$ ont la même loi."
+    },
+    {
+      "id": "proba-l2-generatrices-applications-ex5",
+      "carte": "proba-l2-generatrices-applications",
+      "difficulte": 5,
+      "titre": "Nombres de Catalan",
+      "enonce": "On définit la suite $(c_n)$ par $c_0=1$ et $c_{n+1}=\\sum_{k=0}^{n}c_kc_{n-k}$ pour $n\\ge0$ (nombres de Catalan : $c_n$ compte, par exemple, les façons de parenthéser un produit de $n+1$ facteurs).\n\n**1.** À l'aide du développement en série entière de $\\sqrt{1-u}$ pour $|u|<1$, montrer que, pour $|t|<\\frac14$,\n$$\\sqrt{1-4t}=1-\\sum_{n\\ge1}\\frac{1}{2n-1}\\binom{2n}{n}t^n.$$\n\n**2.** On pose $f(t)=\\frac{1-\\sqrt{1-4t}}{2t}$ pour $0<|t|<\\frac14$ et $f(0)=1$. Montrer que $f$ est la somme d'une série entière $\\sum d_nt^n$ de rayon au moins $\\frac14$, dont on calculera les coefficients, et que $tf(t)^2-f(t)+1=0$ pour $|t|<\\frac14$.\n\n**3.** En déduire $c_n$ pour tout $n$.",
+      "duree_min": 40,
+      "indices": [
+        "$\\sqrt{1-u}=\\sum_{k\\ge0}\\binom{1/2}{k}(-u)^k$, avec $\\binom{1/2}{k}=\\frac{\\frac12\\left(\\frac12-1\\right)\\cdots\\left(\\frac12-k+1\\right)}{k!}$ ; simplifier le coefficient.",
+        "Élever au carré l'égalité $2tf(t)-1=-\\sqrt{1-4t}$.",
+        "Identifier les coefficients de $t^{n+1}$ dans $tf(t)^2=f(t)-1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $c_n$ ?",
+        "propositions": [
+          "$\\frac1{n+1}\\binom{2n}n$",
+          "$\\binom{2n}n$",
+          "$\\frac1{n+1}\\binom{2n+2}{n+1}$",
+          "$\\frac1{2n+1}\\binom{2n}n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $k\\ge1$, $\\binom{1/2}{k}(-1)^k=\\frac{(-1)^k}{k!}\\cdot\\frac12\\cdot\\left(-\\frac12\\right)\\cdots\\left(-\\frac{2k-3}{2}\\right)=-\\frac{1\\cdot3\\cdots(2k-3)}{2^kk!}$. Comme $1\\cdot3\\cdots(2k-3)=\\frac{(2k-2)!}{2^{k-1}(k-1)!}$, ce coefficient vaut $-\\frac{(2k-2)!}{2^{2k-1}k!(k-1)!}=-\\frac{1}{2k-1}\\binom{2k}{k}\\frac1{4^k}$, puisque $\\binom{2k}{k}=\\frac{(2k)(2k-1)}{k^2}\\cdot\\frac{(2k-2)!}{(k-1)!^2}$. Le développement $\\sqrt{1-u}=1-\\sum_{k\\ge1}\\frac{1}{2k-1}\\binom{2k}k\\frac{u^k}{4^k}$ vaut pour $|u|<1$ ; avec $u=4t$, on obtient la formule pour $|t|<\\frac14$.\n\n**2.** Pour $0<|t|<\\frac14$, $f(t)=\\frac1{2t}\\sum_{n\\ge1}\\frac1{2n-1}\\binom{2n}nt^n=\\sum_{m\\ge0}d_mt^m$ avec $d_m=\\frac{1}{2(2m+1)}\\binom{2m+2}{m+1}$. Or $\\binom{2m+2}{m+1}=\\frac{(2m+2)(2m+1)}{(m+1)^2}\\binom{2m}m$, donc $d_m=\\frac1{m+1}\\binom{2m}m$. Comme $d_0=1=f(0)$, l'égalité vaut aussi en $0$ : $f$ est la somme de la série entière $\\sum d_nt^n$, de rayon au moins $\\frac14$. Ensuite $2tf(t)-1=-\\sqrt{1-4t}$, donc $4t^2f(t)^2-4tf(t)+1=1-4t$, soit $4t\\left(tf(t)^2-f(t)+1\\right)=0$ ; d'où $tf(t)^2-f(t)+1=0$ pour $t\\neq0$, et aussi pour $t=0$ puisque $f(0)=1$.\n\n**3.** Pour $|t|<\\frac14$, le produit de Cauchy donne $tf(t)^2=\\sum_{n\\ge0}\\left(\\sum_{k=0}^{n}d_kd_{n-k}\\right)t^{n+1}$, et $f(t)-1=\\sum_{n\\ge0}d_{n+1}t^{n+1}$. Par unicité des coefficients, $d_{n+1}=\\sum_{k=0}^{n}d_kd_{n-k}$ pour tout $n$, avec $d_0=1$. Les suites $(c_n)$ et $(d_n)$ vérifient la même relation et ont le même premier terme ; par récurrence forte, $c_n=d_n$ pour tout $n$ :\n$$c_n=\\frac1{n+1}\\binom{2n}n.$$\nPar exemple $c_1=1$, $c_2=2$, $c_3=5$, $c_4=14$."
+    }
+  ]
+}

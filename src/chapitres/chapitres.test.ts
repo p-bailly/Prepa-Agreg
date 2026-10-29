@@ -113,7 +113,7 @@ describe('QCM des chapitres', () => {
         for (const q of t) expect(chapitres.has(q.chapitre)).toBe(true)
       }
     }
-    expect(questionsNiveau(CONTENU, 'l2', 'qcm')).toEqual([])
+    expect(questionsNiveau(CONTENU, 'agreg', 'qcm')).toEqual([])
     expect(cleQcm({ niveau: 'l1', sorte: 'qcm' })).toBe('niveau-l1-qcm')
     expect(cleQcm({ chapitre: 'ar-t-suites' })).toBe('ar-t-suites')
   })

@@ -1,0 +1,93 @@
+{
+  "chapitre": "proba-l2-discretes",
+  "questions": [
+    {
+      "id": "proba-l2-discretes-q1",
+      "carte": "proba-l2-discretes-espace",
+      "genre": "vrai-faux",
+      "enonce": "Il existe une probabilité $P$ sur $\\left(\\mathbb{N},\\mathcal{P}(\\mathbb{N})\\right)$ telle que $P(\\{k\\})=P(\\{0\\})$ pour tout $k\\in\\mathbb{N}$.",
+      "vrai": false,
+      "explication": "**Faux.** Si $P(\\{k\\})=c$ pour tout $k$, la $\\sigma$-additivité donne $1=P(\\mathbb{N})=\\sum_{k\\geq0}c$, qui vaut $0$ si $c=0$ et $+\\infty$ si $c>0$. Il n'existe pas de loi uniforme sur un ensemble dénombrable infini."
+    },
+    {
+      "id": "proba-l2-discretes-q2",
+      "carte": "proba-l2-discretes-repartition",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}^*$ vérifie $P(X\\leq n)=\\frac{n}{n+1}$ pour tout entier $n\\geq1$. Que vaut $P(X=3)$ ?",
+      "propositions": [
+        "$\\frac1{12}$",
+        "$\\frac34$",
+        "$\\frac14$",
+        "$\\frac16$"
+      ],
+      "bonne": 0,
+      "explication": "$P(X=3)=F_X(3)-F_X(2)=\\frac34-\\frac23=\\frac1{12}$. La valeur $\\frac34$ est $F_X(3)=P(X\\leq3)$, $\\frac14$ est $P(X>3)$ et $\\frac16$ est $P(X=2)=\\frac23-\\frac12$."
+    },
+    {
+      "id": "proba-l2-discretes-q3",
+      "carte": "proba-l2-discretes-lois-usuelles",
+      "genre": "choix",
+      "enonce": "Soit $X$ de loi géométrique $\\mathcal{G}\\left(\\frac13\\right)$. Que vaut $P(X>4)$ ?",
+      "propositions": [
+        "$\\frac{16}{81}$",
+        "$\\frac8{27}$",
+        "$\\frac1{81}$",
+        "$\\frac{65}{81}$"
+      ],
+      "bonne": 0,
+      "explication": "$\\{X>4\\}$ est l'événement « échec aux $4$ premières épreuves », de probabilité $\\left(\\frac23\\right)^4=\\frac{16}{81}$. La valeur $\\frac8{27}=\\left(\\frac23\\right)^3$ est $P(X\\geq4)$, $\\frac{65}{81}$ est $P(X\\leq4)$, et $\\frac1{81}$ confond succès et échec."
+    },
+    {
+      "id": "proba-l2-discretes-q4",
+      "carte": "proba-l2-discretes-lois-usuelles",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ suit la loi de Poisson de paramètre $\\lambda>0$, alors $P(X\\text{ est pair})>\\frac12$.",
+      "vrai": true,
+      "explication": "**Vrai.** $P(X\\text{ pair})=e^{-\\lambda}\\sum_{j\\geq0}\\frac{\\lambda^{2j}}{(2j)!}=e^{-\\lambda}\\cosh\\lambda=\\frac{1+e^{-2\\lambda}}2$, qui est strictement supérieur à $\\frac12$ car $e^{-2\\lambda}>0$."
+    },
+    {
+      "id": "proba-l2-discretes-q5",
+      "carte": "proba-l2-discretes-esperance",
+      "genre": "vrai-faux",
+      "enonce": "Si une variable aléatoire discrète $X$ admet une espérance, alors $X^2$ admet une espérance.",
+      "vrai": false,
+      "explication": "**Faux.** Avec $P(X=k)=\\frac4{k(k+1)(k+2)}$ pour $k\\geq1$ (loi de somme $1$), $E(X)=\\sum\\frac4{(k+1)(k+2)}=2$, mais $\\sum k^2P(X=k)=\\sum\\frac{4k}{(k+1)(k+2)}$ diverge, car son terme général est équivalent à $\\frac4k$."
+    },
+    {
+      "id": "proba-l2-discretes-q6",
+      "carte": "proba-l2-discretes-independance",
+      "genre": "choix",
+      "enonce": "$X$ et $Y$ sont indépendantes, $X$ de loi $\\mathcal{P}(2)$ et $Y$ de loi $\\mathcal{G}\\left(\\frac12\\right)$. Que vaut $V(X-2Y)$ ?",
+      "propositions": [
+        "$10$",
+        "$6$",
+        "$-6$",
+        "$18$"
+      ],
+      "bonne": 0,
+      "explication": "Par indépendance, $V(X-2Y)=V(X)+(-2)^2V(Y)=2+4\\times\\frac{1/2}{(1/2)^2}=2+8=10$. On obtient $6$ en oubliant le carré du coefficient ($2+2\\times2$), $-6$ en soustrayant ($2-4\\times2$), et $18$ en prenant à tort $V(Y)=E(Y)^2=4$."
+    },
+    {
+      "id": "proba-l2-discretes-q7",
+      "carte": "proba-l2-discretes-independance",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ sont des variables discrètes indépendantes admettant un moment d'ordre $2$, alors $\\mathrm{Cov}(X+Y,X-Y)=V(X)-V(Y)$.",
+      "vrai": true,
+      "explication": "**Vrai**, et même sans l'indépendance : par bilinéarité et symétrie, $\\mathrm{Cov}(X+Y,X-Y)=\\mathrm{Cov}(X,X)-\\mathrm{Cov}(X,Y)+\\mathrm{Cov}(Y,X)-\\mathrm{Cov}(Y,Y)=V(X)-V(Y)$."
+    },
+    {
+      "id": "proba-l2-discretes-q8",
+      "carte": "proba-l2-discretes-markov",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire discrète $X$ est positive et $E(X)=3$. Quelle est la plus petite majoration de $P(X\\geq12)$ valable pour toutes les variables vérifiant ces conditions ?",
+      "propositions": [
+        "$\\frac14$",
+        "$\\frac1{16}$",
+        "$\\frac34$",
+        "$\\frac1{48}$"
+      ],
+      "bonne": 0,
+      "explication": "Markov donne $P(X\\geq12)\\leq\\frac3{12}=\\frac14$, et cette borne est atteinte : la variable qui vaut $12$ avec probabilité $\\frac14$ et $0$ sinon est positive, d'espérance $3$, et $P(X\\geq12)=\\frac14$. Les valeurs $\\frac1{16}$ et $\\frac1{48}$ ne sont pas des majorations valables (elles sont dépassées par cet exemple), et $\\frac34$ est trop grand."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "chapitre": "proba-l2-generatrices",
+  "questions": [
+    {
+      "id": "proba-l2-generatrices-q1",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ à valeurs dans $\\mathbb{N}$ a pour fonction génératrice $G_X(t)=\\frac{(1+t)^2}{4}$. Quelle est sa loi ?",
+      "propositions": [
+        "$\\mathcal{B}\\left(2,\\frac12\\right)$",
+        "$\\mathcal{B}\\left(2,\\frac14\\right)$",
+        "la loi uniforme sur $\\{0,1,2\\}$",
+        "$\\mathcal{P}(1)$"
+      ],
+      "bonne": 0,
+      "explication": "$\\frac{(1+t)^2}4=\\left(\\frac12+\\frac12t\\right)^2$ est la fonction génératrice de $\\mathcal{B}\\left(2,\\frac12\\right)$, et la fonction génératrice caractérise la loi. Les autres lois ont pour fonctions génératrices $\\left(\\frac34+\\frac14t\\right)^2$, $\\frac{1+t+t^2}3$ et $e^{t-1}$ : par exemple, la loi uniforme donne $P(X=1)=\\frac13$, alors qu'ici $P(X=1)=\\frac12$."
+    },
+    {
+      "id": "proba-l2-generatrices-q2",
+      "carte": "proba-l2-generatrices-caracterisation",
+      "genre": "vrai-faux",
+      "enonce": "Deux variables aléatoires à valeurs dans $\\mathbb{N}$ qui ont la même espérance et la même variance ont la même fonction génératrice.",
+      "vrai": false,
+      "explication": "$X$ de loi $\\mathcal{P}(1)$ et $Y$ de loi $P(Y=0)=P(Y=2)=\\frac12$ ont toutes deux pour espérance $1$ et pour variance $1$, mais $G_X(t)=e^{t-1}$ et $G_Y(t)=\\frac{1+t^2}2$ diffèrent : $G_X(0)=e^{-1}$ et $G_Y(0)=\\frac12$. Deux moments ne déterminent pas la loi."
+    },
+    {
+      "id": "proba-l2-generatrices-q3",
+      "carte": "proba-l2-generatrices-moments",
+      "genre": "choix",
+      "enonce": "Une variable aléatoire $X$ a pour fonction génératrice $G_X(t)=\\frac{t}{3-2t}$. Que vaut $V(X)$ ?",
+      "propositions": [
+        "$6$",
+        "$3$",
+        "$9$",
+        "$2$"
+      ],
+      "bonne": 0,
+      "explication": "$G_X(t)=\\frac{\\frac13t}{1-\\frac23t}$ : $X$ suit la loi géométrique $\\mathcal{G}\\left(\\frac13\\right)$ sur $\\mathbb{N}^*$. Par le calcul : $G_X'(t)=\\frac{3}{(3-2t)^2}$, $G_X''(t)=\\frac{12}{(3-2t)^3}$, donc $G_X'(1)=3$, $G_X''(1)=12$ et $V(X)=12+3-9=6=\\frac{q}{p^2}$. La valeur $3$ est l'espérance, $9$ est $\\frac1{p^2}$."
+    },
+    {
+      "id": "proba-l2-generatrices-q4",
+      "carte": "proba-l2-generatrices-moments",
+      "genre": "vrai-faux",
+      "enonce": "Si la fonction génératrice $G_X$ d'une variable $X$ à valeurs dans $\\mathbb{N}$ est dérivable à gauche en $1$, alors $X$ admet une variance.",
+      "vrai": false,
+      "explication": "La dérivabilité en $1$ donne seulement l'espérance. Pour $P(X=n)=\\frac{c}{n^3}$ ($n\\ge1$, $c$ constante de normalisation), $\\sum nP(X=n)=c\\sum\\frac1{n^2}<+\\infty$, donc $G_X$ est dérivable en $1$ ; mais $\\sum n^2P(X=n)=c\\sum\\frac1n=+\\infty$ : $X$ n'a pas de moment d'ordre $2$, et $G_X$ n'est pas deux fois dérivable en $1$."
+    },
+    {
+      "id": "proba-l2-generatrices-q5",
+      "carte": "proba-l2-generatrices-somme",
+      "genre": "choix",
+      "enonce": "$X\\sim\\mathcal{P}(2)$ et $Y\\sim\\mathcal{P}(3)$ sont indépendantes. Que vaut $P(X+Y=0)$ ?",
+      "propositions": [
+        "$e^{-5}$",
+        "$e^{-6}$",
+        "$e^{-2}+e^{-3}$",
+        "$5e^{-5}$"
+      ],
+      "bonne": 0,
+      "explication": "$G_{X+Y}(t)=e^{2(t-1)}e^{3(t-1)}=e^{5(t-1)}$, donc $X+Y\\sim\\mathcal{P}(5)$ et $P(X+Y=0)=G_{X+Y}(0)=e^{-5}$ ; directement, $P(X=0)P(Y=0)=e^{-2}e^{-3}$. La valeur $5e^{-5}$ est $P(X+Y=1)$."
+    },
+    {
+      "id": "proba-l2-generatrices-q6",
+      "carte": "proba-l2-generatrices-somme",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ et $Y$ sont des variables aléatoires indépendantes à valeurs dans $\\mathbb{N}$, alors $G_{2X+Y}(t)=G_X(t^2)G_Y(t)$ pour tout $t\\in[-1,1]$.",
+      "vrai": true,
+      "explication": "$2X$ et $Y$ sont indépendantes (fonctions de variables indépendantes), donc $G_{2X+Y}=G_{2X}G_Y$ ; et $G_{2X}(t)=E\\left(t^{2X}\\right)=E\\left((t^2)^X\\right)=G_X(t^2)$, avec $t^2\\in[0,1]$."
+    },
+    {
+      "id": "proba-l2-generatrices-q7",
+      "carte": "proba-l2-generatrices-applications",
+      "genre": "choix",
+      "enonce": "Combien y a-t-il de triplets $(x,y,z)\\in\\mathbb{N}^3$ tels que $x+y+z=5$ ?",
+      "propositions": [
+        "$21$",
+        "$15$",
+        "$35$",
+        "$10$"
+      ],
+      "bonne": 0,
+      "explication": "C'est le coefficient de $t^5$ dans $\\left(\\frac1{1-t}\\right)^3=\\sum_{n\\ge0}\\binom{n+2}2t^n$ (produit de trois séries géométriques), soit $\\binom72=21$. La valeur $15=\\binom62$ correspond à $x+y+z=4$, et $10=\\binom52$ à $x+y+z=3$."
+    },
+    {
+      "id": "proba-l2-generatrices-q8",
+      "carte": "proba-l2-generatrices-applications",
+      "genre": "vrai-faux",
+      "enonce": "Le nombre de couples $(x,y)\\in\\mathbb{N}^2$ tels que $x+3y=9$ est le coefficient de $t^9$ dans $\\frac{1}{(1-t)(1-t^3)}$, et il vaut $4$.",
+      "vrai": true,
+      "explication": "$\\frac1{1-t}\\cdot\\frac1{1-t^3}=\\left(\\sum_xt^x\\right)\\left(\\sum_yt^{3y}\\right)$, et le coefficient de $t^9$ du produit compte les couples $(x,y)$ avec $x+3y=9$ : $(9,0)$, $(6,1)$, $(3,2)$, $(0,3)$, soit $4$."
+    }
+  ]
+}
