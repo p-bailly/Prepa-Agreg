@@ -138,10 +138,33 @@ export interface IntroLecon {
   doute?: string
 }
 
+/** Question de QCM écrite pour un chapitre (content/qcm/<chapitre>.json), rattachée à une notion du chapitre. */
+export interface QuestionEcrite {
+  id: string
+  carte: string
+  genre: 'vrai-faux' | 'choix'
+  enonce: string
+  /** Choix : 4 propositions distinctes, la bonne d'indice `bonne`. */
+  propositions?: string[]
+  bonne?: number
+  /** Vrai-faux : la valeur de l'affirmation. */
+  vrai?: boolean
+  /** Justification montrée après la réponse (obligatoire). */
+  explication: string
+  doute?: string
+}
+
+export interface FichierQcm {
+  chapitre: string
+  questions: QuestionEcrite[]
+}
+
 export interface Contenu {
   themes: Theme[]
   cartes: Carte[]
   exercices: Exercice[]
   /** Introductions de leçon, par identifiant de chapitre (facultatives). */
   lecons?: IntroLecon[]
+  /** Questions de QCM écrites, par chapitre (facultatives). */
+  qcm?: FichierQcm[]
 }

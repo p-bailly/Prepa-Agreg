@@ -1,11 +1,12 @@
-// QCM d'un chapitre, construit à partir du contenu déjà vérifié (voir CLAUDE.md, « Contrôle de l'exactitude ») :
-// affirmations des cartes (vrai ou faux, avec justification ou contre-exemple), énoncés à trous (le bon morceau parmi
-// quatre, les leurres rendant l'énoncé faux) et questions des exercices de difficulté 1 ou 2 (avec leur énoncé).
+// QCM d'un chapitre, construit à partir du contenu vérifié (voir CLAUDE.md, « Contrôle de l'exactitude ») : affirmations
+// des cartes (vrai ou faux, avec justification ou contre-exemple), énoncés à trous (le bon morceau parmi quatre, les
+// leurres rendant l'énoncé faux), questions des exercices de difficulté 1 ou 2 (avec leur énoncé) et questions écrites
+// pour le chapitre (content/qcm/<chapitre>.json, vrai-faux ou choix parmi quatre).
 
 import type { Contenu } from '../contenu/types'
 import { melanger } from '../lib/hasard'
 
-export type GenreQuestion = 'vrai-faux' | 'completer' | 'calcul'
+export type GenreQuestion = 'vrai-faux' | 'completer' | 'calcul' | 'question'
 
 export interface QuestionQcm {
   id: string
@@ -19,12 +20,14 @@ export interface QuestionQcm {
   bonne: number
   /** Justification, contre-exemple ou correction, montrés après la réponse. */
   explication?: string
+  doute?: string
 }
 
 export const CONSIGNES: Record<GenreQuestion, string> = {
   'vrai-faux': 'Vrai ou faux ?',
   completer: 'Compléter l’énoncé',
   calcul: 'Question d’exercice',
+  question: 'Question',
 }
 
 /** Toutes les questions possibles d'un chapitre. */
@@ -72,6 +75,17 @@ export function questionsChapitre(c: Contenu, chapitre: string): QuestionQcm[] {
         bonne: e.reponse_finale.bonne,
         explication: e.correction,
       })
+  for (const q of (c.qcm ?? []).filter((fq) => fq.chapitre === chapitre).flatMap((fq) => fq.questions))
+    sortie.push({
+      id: q.id,
+      genre: q.genre === 'vrai-faux' ? 'vrai-faux' : 'question',
+      carte: q.carte,
+      enonce: q.enonce,
+      propositions: q.genre === 'vrai-faux' ? ['Vrai', 'Faux'] : q.propositions!,
+      bonne: q.genre === 'vrai-faux' ? (q.vrai ? 0 : 1) : q.bonne!,
+      explication: q.explication,
+      doute: q.doute,
+    })
   return sortie
 }
 
@@ -80,7 +94,7 @@ export function questionsChapitre(c: Contenu, chapitre: string): QuestionQcm[] {
  * mélangées sauf « Vrai / Faux » qui garde son ordre.
  */
 export function tirerQcm(questions: QuestionQcm[], n = 10, alea: () => number = Math.random): QuestionQcm[] {
-  const parGenre = (['vrai-faux', 'completer', 'calcul'] as GenreQuestion[]).map((g) => melanger(questions.filter((q) => q.genre === g), alea))
+  const parGenre = (['vrai-faux', 'completer', 'calcul', 'question'] as GenreQuestion[]).map((g) => melanger(questions.filter((q) => q.genre === g), alea))
   const choisies: QuestionQcm[] = []
   for (let tour = 0; choisies.length < n && parGenre.some((l) => l.length > tour); tour++)
     for (const l of parGenre) if (l[tour] && choisies.length < n) choisies.push(l[tour])

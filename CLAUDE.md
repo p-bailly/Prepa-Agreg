@@ -128,6 +128,14 @@ fichiers de `content/` sont chargés par `src/contenu/chargement.ts` (`import.me
 - `content/exercices/<theme>/<niveau>.json` ou `<niveau>-<chapitre>.json` : `{ "exercices": [ … ] }`.
 - Niveaux, du plancher au plafond : `terminale`, `l1`, `l2`, `l3`, `agreg`.
 
+### Question de QCM
+`content/qcm/<chapitre>.json` : `{ "chapitre", "questions": [ { "id", "carte", "genre", "enonce", "propositions", "bonne",
+"vrai", "explication", "doute" } ] }`. `id` = `<chapitre>-qN` (jamais renommé), `carte` = une notion du chapitre ; `genre`
+`vrai-faux` (champ `vrai`, booléen) ou `choix` (`propositions` : 4 textes distincts, `bonne` : indice 0..3) ; `explication`
+obligatoire (justification, contre-exemple ou calcul, montrée après la réponse). Le QCM d'un chapitre tire aussi ses
+questions des affirmations, des énoncés à trous et des exercices de difficulté 1 ou 2 (`src/chapitres/qcm.ts`).
+Contrôle : comme les exercices (résolution à l'aveugle par un sous-agent indépendant, leurres vérifiés faux).
+
 ### Carte
 `{ "id", "theme", "niveau", "chapitre", "type", "titre", "recto", "hypotheses", "hypotheses_pieges", "enonce", "enonce_trous",
 "trous", "demo", "exemple", "contre_exemple", "affirmations", "prerequis", "doute" }`

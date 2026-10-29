@@ -125,6 +125,34 @@ export function validerContenu(c: Contenu): string[] {
     d.add(e.difficulte)
     difficultes.set(e.carte, d)
   }
+  // Questions de QCM écrites : rattachées à une notion du chapitre du fichier, bien formées, avec une explication.
+  const idsQcm = new Set<string>()
+  for (const fq of c.qcm ?? []) {
+    if (!chapitres.has(fq.chapitre)) err.push(`qcm ${fq.chapitre} : chapitre inconnu`)
+    if (!Array.isArray(fq.questions) || !fq.questions.length) err.push(`qcm ${fq.chapitre} : « questions » doit être une liste non vide`)
+    for (const q of fq.questions ?? []) {
+      const ou = `question ${q.id}`
+      if (!texteNonVide(q.id) || !ID.test(q.id) || !q.id.startsWith(`${fq.chapitre}-q`)) err.push(`${ou} : identifiant attendu « ${fq.chapitre}-qN »`)
+      if (idsQcm.has(q.id)) err.push(`${ou} : identifiant en double`)
+      idsQcm.add(q.id)
+      const k = cartes.get(q.carte)
+      if (!k || k.chapitre !== fq.chapitre) err.push(`${ou} : carte ${q.carte} absente du chapitre ${fq.chapitre}`)
+      if (!texteNonVide(q.enonce) || !texteNonVide(q.explication)) err.push(`${ou} : « enonce » et « explication » obligatoires`)
+      if (q.genre === 'vrai-faux') {
+        if (typeof q.vrai !== 'boolean' || q.propositions !== undefined || q.bonne !== undefined)
+          err.push(`${ou} : un vrai-faux a « vrai » (booléen) et ni « propositions » ni « bonne »`)
+      } else if (q.genre === 'choix') {
+        if (!listeDeTextes(q.propositions) || q.propositions.length !== 4) err.push(`${ou} : 4 propositions`)
+        else if (new Set(q.propositions.map((x) => x.trim())).size !== 4) err.push(`${ou} : propositions non distinctes`)
+        if (!(Number.isInteger(q.bonne) && q.bonne! >= 0 && q.bonne! < 4)) err.push(`${ou} : « bonne » invalide`)
+        if (q.vrai !== undefined) err.push(`${ou} : « vrai » réservé aux vrai-faux`)
+      } else err.push(`${ou} : genre inconnu (vrai-faux ou choix)`)
+      if (q.doute !== undefined && !texteNonVide(q.doute)) err.push(`${ou} : « doute » vide`)
+    }
+  }
+  for (const [ch, n] of [...new Set((c.qcm ?? []).map((fq) => fq.chapitre))].map((ch) => [ch, (c.qcm ?? []).filter((fq) => fq.chapitre === ch).length] as const))
+    if (n > 1) err.push(`qcm ${ch} : plusieurs fichiers`)
+
   // Par carte : de l'application directe (difficulté 1 ou 2) jusqu'à la question d'écrit (4 ou 5), 3 à 6 exercices.
   for (const k of c.cartes) {
     const d = [...(difficultes.get(k.id) ?? [])]
@@ -210,6 +238,11 @@ export function textesDe(c: Contenu): { ou: string; texte: string }[] {
       ajouter(`${k.id}.affirmations[${i}].justification`, a.justification)
     })
   }
+  for (const fq of c.qcm ?? [])
+    for (const q of fq.questions ?? []) {
+      for (const champ of ['enonce', 'explication', 'doute'] as const) ajouter(`${q.id}.${champ}`, q[champ])
+      q.propositions?.forEach((x, i) => ajouter(`${q.id}.propositions[${i}]`, x))
+    }
   for (const l of c.lecons ?? []) {
     ajouter(`leçon ${l.chapitre}.introduction`, l.introduction)
     ajouter(`leçon ${l.chapitre}.doute`, l.doute)
