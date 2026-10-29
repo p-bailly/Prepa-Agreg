@@ -392,4 +392,40 @@ assert gamma(Rational(3, 2)) == sqrt(pi) / 2                                    
 assert abs(TF(lambda s: mp.e ** -abs(s), 0) - 2) < EPS                                                # q6
 assert simplify(integrate(exp(-t**2 / 2), (t, -oo, oo)) - sqrt(2 * pi)) == 0                          # q7
 
+# ===========================================================================
+# Relecture indépendante (2026-10-29) : faits re-vérifiés qui n'étaient pas encore couverts
+# ===========================================================================
+# int-l2-parametre-gamma-ex4 (nouvelle question du QCM) : Γ'(2) = 1 + Γ'(1) ; leurres Γ'(1), 2Γ'(1), 1 - Γ'(1) faux.
+g1 = mp.diff(mp.gamma, 1)
+distincts_et_faux(mp.diff(mp.gamma, 2), [g1, 2 * g1, 1 - g1])
+assert proche(mp.diff(mp.gamma, 2), 1 + g1, mp.mpf(10) ** -12)
+# int-l2-parametre-continuite, trou 2, leurre « |f|² ≤ g » : f = x e^{-xt}, x ∈ [0,1] : |f|² ≤ min(1, 1/(e²t²)), intégrable,
+# alors que F vaut 1 pour x > 0 et 0 en x = 0.
+assert all((xv * mp.e ** (-xv * tv)) ** 2 <= min(1, 1 / (mp.e**2 * tv**2)) + mp.mpf(10) ** -15
+           for xv in mp.linspace(0, 1, 21) for tv in mp.linspace(0.05, 30, 60))
+assert integrate(1 / (exp(2) * T**2), (T, 1, oo)) < oo
+# int-l2-parametre-continuite, trou 3 : f = √x e^{-t} sur [0,1] (F = √x non lipschitzienne : √x / x non bornée) ;
+# f = sin(x²) e^{-t} sur ℝ (F = sin(x²) non uniformément continue : écarts √(nπ+π/2) - √(nπ) → 0, |ΔF| = 1).
+assert limit(sqrt(X) / X, X, 0, "+") == oo
+n_ = 10**6
+assert mp.sqrt(n_ * mp.pi + mp.pi / 2) - mp.sqrt(n_ * mp.pi) < 1e-3 and proche(abs(mp.sin(n_ * mp.pi + mp.pi / 2) - mp.sin(n_ * mp.pi)), 1, 1e-9)
+# int-l2-parametre-derivation, trou 2 : f = x|x| e^{-t} sur ]-1,1[ × ]0,+∞[ : |∂f/∂x| = 2|x|e^{-t} ≤ 2e^{-t},
+# F(x) = x|x| est C¹ mais ni C², ni C^∞, ni convexe (F'' = 2 à droite de 0, -2 à gauche : F concave sur ]-1,0]).
+Yr = symbols("Yr", real=True)
+Fx = Yr * abs(Yr)
+assert diff(Fx, Yr).subs(Yr, Rational(1, 3)) == Rational(2, 3) and diff(Fx, Yr).subs(Yr, -Rational(1, 3)) == Rational(2, 3)
+assert diff(Fx, Yr, 2).subs(Yr, Rational(1, 3)) == 2 and diff(Fx, Yr, 2).subs(Yr, -Rational(1, 3)) == -2
+# int-l2-parametre-fourier, trou 3, leurre « t² f(t) bornée » : f = 1/(1+t²), t² f ≤ 1 mais t f non intégrable.
+assert integrate(T / (1 + T**2), (T, 0, oo)) == oo
+# int-l2-parametre-laplace (cours) : L(f') = p Lf - f(0), contrôlé avec f = cos : L(-sin) = -1/(p²+1).
+P_ = symbols("P_", positive=True)
+assert simplify(integrate(-sin(T) * exp(-P_ * T), (T, 0, oo)) - (P_ * P_ / (P_**2 + 1) - 1)) == 0
+# int-l2-parametre-laplace-ex2 v1, v2 (corrections réécrites) : L(sin) = 1/(p²+1), L(cos) = p/(p²+1).
+assert simplify(integrate(sin(T) * exp(-P_ * T), (T, 0, oo)) - 1 / (P_**2 + 1)) == 0
+assert simplify(integrate(cos(T) * exp(-P_ * T), (T, 0, oo)) - P_ / (P_**2 + 1)) == 0
+# int-l2-parametre-fourier-ex1 v2, ex2 v2, ex3 : avec la convention e^{-iξt} rappelée dans les énoncés,
+# la réponse et son conjugué (convention e^{+iξt}) diffèrent : la convention lève l'ambiguïté.
+assert abs(TF(lambda s: 1, mp.pi, 0, 1, [0, 1]) - (-2j / mp.pi)) < EPS
+assert abs(TF(lambda s: s * mp.e ** -abs(s), z) - (-4j * z / (1 + z**2) ** 2)) < EPS
+
 print("int_l2_parametre : toutes les vérifications passent.")

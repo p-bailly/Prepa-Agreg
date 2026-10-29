@@ -1,0 +1,618 @@
+{
+  "cartes": [
+    {
+      "id": "ar-l2-series-entieres-abel",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Lemme d'Abel et rayon de convergence",
+      "recto": "Énoncer le lemme d'Abel et définir le rayon de convergence d'une série entière.",
+      "cours": "Une série entière est une série de fonctions $\\sum a_nz^n$, où $(a_n)$ est une suite de nombres complexes et $z$ une variable complexe (ou réelle). Le lemme d'Abel dit que la convergence « se propage vers l'intérieur » : il suffit que les termes $a_nz_0^n$ restent bornés en un point $z_0$ pour que la série converge absolument en tout point strictement plus proche de $0$. L'idée est une comparaison avec une série géométrique : $|a_nz^n|=|a_nz_0^n|\\left|\\frac z{z_0}\\right|^n\\le Mq^n$ avec $q<1$.\n\nOn en déduit la notion centrale du chapitre : le **rayon de convergence** $R\\in[0,+\\infty]$, borne supérieure des $r\\ge0$ pour lesquels $(a_nr^n)$ est bornée. Il sépare deux régions : sur le disque ouvert $|z|<R$, la série converge absolument ; hors du disque fermé, $|z|>R$, son terme général n'est même pas borné, donc la série diverge grossièrement. Sur le cercle $|z|=R$, tout peut arriver, et il faut étudier chaque point à part.\n\nEn pratique, pour encadrer $R$ : si la série converge (même non absolument) en $z_0$, ou si $(a_nz_0^n)$ est bornée, alors $R\\ge|z_0|$ ; si elle diverge en $z_0$, ou si $(a_nz_0^n)$ n'est pas bornée, alors $R\\le|z_0|$. Exemples de base : $\\sum z^n$ a pour rayon $1$, $\\sum\\frac{z^n}{n!}$ a pour rayon $+\\infty$, $\\sum n!\\,z^n$ a pour rayon $0$.\n\nPièges : l'inégalité stricte $|z|<|z_0|$ est indispensable ($\\sum z^n$ diverge en $z=1$ bien que $(1^n)$ soit bornée) ; et le comportement sur le cercle n'est pas uniforme : $\\sum\\frac{z^n}{n}$ converge en $z=-1$ et diverge en $z=1$.",
+      "hypotheses": [
+        "La suite $(a_nz_0^n)$ est bornée.",
+        "$|z|<|z_0|$."
+      ],
+      "hypotheses_pieges": [
+        "La suite $(a_nz_0^n)$ est bornée et $|z|\\le|z_0|$ (à la place de $|z|<|z_0|$).",
+        "La suite $(a_n)$ est bornée (à la place de : $(a_nz_0^n)$ est bornée), avec $|z|<|z_0|$.",
+        "La suite $(a_nz^n)$ est bornée (à la place de : $(a_nz_0^n)$ bornée et $|z|<|z_0|$)."
+      ],
+      "enonce": "Soit $(a_n)$ une suite de nombres complexes.\n\n**Lemme d'Abel.** S'il existe $z_0\\in\\mathbb{C}$ tel que la suite $(a_nz_0^n)$ soit bornée, alors pour tout $z\\in\\mathbb{C}$ tel que $|z|<|z_0|$, la série $\\sum a_nz^n$ converge absolument.\n\n**Rayon de convergence.** On pose $R=\\sup\\{r\\ge0 : (a_nr^n)\\text{ est bornée}\\}\\in[0,+\\infty]$. Alors la série $\\sum a_nz^n$ converge absolument si $|z|<R$, et diverge grossièrement si $|z|>R$ (la suite $(a_nz^n)$ n'est pas bornée). Le disque $D(0,R)=\\{z\\in\\mathbb{C} : |z|<R\\}$ est le **disque ouvert de convergence** ; pour $|z|=R$, on ne peut rien dire en général.",
+      "enonce_trous": "S'il existe $z_0\\in\\mathbb{C}$ tel que {{1}}, alors pour tout $z\\in\\mathbb{C}$ tel que {{2}}, la série $\\sum a_nz^n$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "la suite $(a_nz_0^n)$ soit bornée",
+          "leurres": [
+            "la suite $(a_n)$ soit bornée",
+            "la série $\\sum a_nz_0^n$ diverge",
+            "$a_nz_0^n\\neq0$ pour tout $n$"
+          ]
+        },
+        {
+          "reponse": "$|z|<|z_0|$",
+          "leurres": [
+            "$|z|\\le|z_0|$",
+            "$|z|>|z_0|$",
+            "$|z|<2|z_0|$"
+          ]
+        },
+        {
+          "reponse": "converge absolument",
+          "leurres": [
+            "diverge grossièrement",
+            "a pour somme $0$",
+            "converge vers $\\sum_{n=0}^{+\\infty}a_nz_0^n$"
+          ]
+        }
+      ],
+      "demo": "**Lemme d'Abel.** Soit $M$ tel que $|a_nz_0^n|\\le M$ pour tout $n$. Comme $|z|<|z_0|$, on a $z_0\\neq0$ ; posons $q=\\frac{|z|}{|z_0|}\\in\\left[0,1\\right[$. Alors\n$$|a_nz^n|=|a_nz_0^n|\\left|\\frac z{z_0}\\right|^n\\le Mq^n.$$\nLa série géométrique $\\sum Mq^n$ converge, donc, par comparaison de séries à termes positifs, $\\sum|a_nz^n|$ converge : la série $\\sum a_nz^n$ converge absolument (et donc converge, $\\mathbb{C}$ étant complet).\n\n**Rayon.** Soit $I=\\{r\\ge0 : (a_nr^n)\\text{ bornée}\\}$ ; $0\\in I$, donc $R=\\sup I$ existe dans $[0,+\\infty]$, et si $r\\in I$ et $0\\le r'\\le r$, alors $r'\\in I$.\n\n- Si $|z|<R$, par définition de la borne supérieure, il existe $r\\in I$ avec $|z|<r$. Le lemme d'Abel appliqué à $z_0=r$ donne la convergence absolue de $\\sum a_nz^n$.\n- Si $|z|>R$, alors $|z|\\notin I$ : la suite $(|a_nz^n|)=(|a_n||z|^n)$ n'est pas bornée, donc $a_nz^n$ ne tend pas vers $0$ et la série diverge grossièrement.",
+      "exemple": "- $\\sum z^n$ : $(r^n)$ est bornée si et seulement si $r\\le1$, donc $R=1$. En tout point du cercle $|z|=1$, $|z^n|=1$ ne tend pas vers $0$ : la série diverge.\n- $\\sum_{n\\ge1}\\frac{z^n}{n^2}$ : $R=1$ aussi, mais la série converge absolument en tout point du cercle $|z|=1$, puisque $\\left|\\frac{z^n}{n^2}\\right|=\\frac1{n^2}$.\n- $\\sum\\frac{z^n}{n!}$ : pour tout $r\\ge0$, $\\frac{r^n}{n!}\\to0$, donc $R=+\\infty$. Et $\\sum n!\\,z^n$ : pour tout $r>0$, $n!\\,r^n\\to+\\infty$, donc $R=0$.",
+      "contre_exemple": "- **L'inégalité stricte est nécessaire** : pour $a_n=1$ et $z_0=1$, la suite $(a_nz_0^n)$ est bornée, mais la série $\\sum z^n$ diverge en $z=1$ (et en tout point du cercle unité).\n- **Sur le cercle, tout peut arriver** : $\\sum_{n\\ge1}\\frac{z^n}n$ a pour rayon $1$ ; elle converge en $z=-1$ (série alternée $\\sum\\frac{(-1)^n}n$) et diverge en $z=1$ (série harmonique).\n- **Borné ne veut pas dire convergent** : $(a_nz_0^n)$ bornée n'entraîne pas la convergence de $\\sum a_nz_0^n$ (exemple $a_n=1$, $z_0=1$).",
+      "affirmations": [
+        {
+          "texte": "Si la série $\\sum a_nz_0^n$ converge, alors le rayon $R$ de $\\sum a_nz^n$ vérifie $R\\ge|z_0|$.",
+          "vrai": true,
+          "justification": "Le terme général d'une série convergente tend vers $0$, donc $(a_nz_0^n)$ est bornée : $|z_0|$ appartient à l'ensemble dont $R$ est la borne supérieure."
+        },
+        {
+          "texte": "Si la série $\\sum a_nz_0^n$ diverge, alors $R\\le|z_0|$.",
+          "vrai": true,
+          "justification": "Si l'on avait $R>|z_0|$, la série convergerait absolument en $z_0$."
+        },
+        {
+          "texte": "Si $R=1$, la série $\\sum a_nz^n$ diverge en tout point du cercle $|z|=1$.",
+          "vrai": false,
+          "contre_exemple": "$\\sum_{n\\ge1}\\frac{z^n}{n^2}$ a pour rayon $1$ et converge absolument en tout point du cercle unité."
+        },
+        {
+          "texte": "Si la série $\\sum a_nz^n$ converge en $z=1$, alors elle converge absolument en $z=-1$.",
+          "vrai": false,
+          "contre_exemple": "Pour $a_n=\\frac{(-1)^n}n$ ($n\\ge1$), la série converge en $z=1$ (série alternée), mais en $z=-1$ elle devient $\\sum\\frac1n$, qui diverge."
+        }
+      ],
+      "prerequis": [
+        "ar-t-suites-geometrique",
+        "ar-l1-borne-sup"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-calcul-rayon",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "methode",
+      "titre": "Calcul du rayon de convergence",
+      "recto": "Donner les méthodes de calcul du rayon de convergence : règle de d'Alembert, comparaison, série dérivée.",
+      "cours": "Calculer un rayon, c'est trouver la frontière entre les $r$ pour lesquels $(a_nr^n)$ est bornée et ceux pour lesquels elle ne l'est pas. Trois outils couvrent presque tous les cas.\n\n- **Règle de d'Alembert.** Si $a_n\\neq0$ à partir d'un certain rang et $\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell$, alors $R=\\frac1\\ell$. C'est la règle de d'Alembert des séries numériques appliquée à $\\sum|a_nz^n|$ : le quotient de deux termes consécutifs tend vers $\\ell|z|$.\n- **Comparaison.** Si $a_n=O(b_n)$, alors $R_a\\ge R_b$ ; si $a_n\\sim b_n$, les rayons sont égaux. On remplace ainsi $a_n$ par un équivalent simple.\n- **Série dérivée.** Multiplier $a_n$ par $n$, ou par $n^\\alpha$, ne change pas le rayon : $\\sum a_nz^n$, $\\sum na_nz^{n-1}$ et $\\sum\\frac{a_n}{n+1}z^{n+1}$ ont le même rayon. Ainsi $\\sum n^2\\frac{z^n}{3^n}$ a le rayon de $\\sum\\frac{z^n}{3^n}$, soit $3$.\n\nPour une série **lacunaire** (une infinité de coefficients nuls, comme $\\sum\\frac{z^{2n}}{4^n}$), la règle de d'Alembert sur $(a_n)$ ne s'applique pas : on l'applique directement aux termes non nuls $u_n(z)=\\frac{z^{2n}}{4^n}$ à $z$ fixé, ou l'on pose $w=z^2$. Ici $\\sum\\frac{w^n}{4^n}$ a pour rayon $4$, donc la série en $z$ a pour rayon $2$.\n\nPièges : la règle de d'Alembert demande une **limite** du quotient ; s'il n'en a pas, le rayon existe quand même et se trouve autrement (par exemple $a_n=2+(-1)^n$, encadré entre $1$ et $3$, a le rayon de $\\sum z^n$, soit $1$). Et elle ne dit rien sur le comportement au bord $|z|=R$.",
+      "hypotheses": [
+        "$a_n\\neq0$ à partir d'un certain rang.",
+        "$\\left|\\frac{a_{n+1}}{a_n}\\right|$ a une limite $\\ell\\in[0,+\\infty]$."
+      ],
+      "hypotheses_pieges": [
+        "$\\left|\\frac{a_{n+1}}{a_n}\\right|\\le\\ell$ pour tout $n$ (à la place de : $\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell$).",
+        "$\\left|\\frac{a_{2n+1}}{a_{2n}}\\right|\\to\\ell$, limite le long des seuls rangs pairs (à la place de : $\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell$).",
+        "$|a_{n+1}|-\\ell|a_n|\\to0$ (à la place de : $\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell$)."
+      ],
+      "enonce": "Soit $\\sum a_nz^n$ une série entière, de rayon $R$ ; on note $R_a$, $R_b$ les rayons de $\\sum a_nz^n$ et $\\sum b_nz^n$.\n\n- **Règle de d'Alembert.** Si $a_n\\neq0$ à partir d'un certain rang et si $\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell\\in[0,+\\infty]$, alors $R=\\frac1\\ell$ (avec $\\frac10=+\\infty$ et $\\frac1{+\\infty}=0$).\n- **Comparaison.** Si $a_n=O(b_n)$, alors $R_a\\ge R_b$ ; si $a_n\\sim b_n$, alors $R_a=R_b$.\n- **Série dérivée.** Les séries $\\sum a_nz^n$ et $\\sum_{n\\ge1}na_nz^{n-1}$ ont le même rayon ; plus généralement, pour tout réel $\\alpha$, $\\sum_{n\\ge1}n^\\alpha a_nz^n$ a pour rayon $R$.",
+      "enonce_trous": "Si $a_n\\neq0$ à partir d'un certain rang et si {{1}}, alors le rayon de $\\sum a_nz^n$ vaut {{2}}. Si $a_n=O(b_n)$, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\left|\\frac{a_{n+1}}{a_n}\\right|\\to\\ell$",
+          "leurres": [
+            "$\\left|\\frac{a_{n+1}}{a_n}\\right|\\le\\ell$ pour tout $n$",
+            "$\\left|\\frac{a_n}{a_{n+1}}\\right|\\to\\ell$",
+            "$|a_n|\\to\\ell$"
+          ]
+        },
+        {
+          "reponse": "$\\frac1\\ell$",
+          "leurres": [
+            "$\\ell$",
+            "$\\sqrt\\ell$",
+            "$\\frac1{\\ell^2}$"
+          ]
+        },
+        {
+          "reponse": "$R_a\\ge R_b$",
+          "leurres": [
+            "$R_a\\le R_b$",
+            "$R_a=R_b$",
+            "$R_a\\ge2R_b$"
+          ]
+        }
+      ],
+      "demo": "**D'Alembert.** Soit $z\\neq0$. Pour $n$ assez grand, $\\frac{|a_{n+1}z^{n+1}|}{|a_nz^n|}=\\left|\\frac{a_{n+1}}{a_n}\\right||z|\\to\\ell|z|$.\n\n- Si $\\ell|z|<1$, la règle de d'Alembert des séries à termes positifs donne la convergence de $\\sum|a_nz^n|$ : la suite $(a_nz^n)$ est bornée, donc $|z|\\le R$.\n- Si $\\ell|z|>1$, à partir d'un certain rang $|a_{n+1}z^{n+1}|\\ge|a_nz^n|>0$ : le terme général ne tend pas vers $0$, la série diverge, donc $|z|\\ge R$.\n\nAinsi tout $|z|<\\frac1\\ell$ vérifie $|z|\\le R$ et tout $|z|>\\frac1\\ell$ vérifie $|z|\\ge R$ : $R=\\frac1\\ell$ (les cas $\\ell=0$ et $\\ell=+\\infty$ se lisent de même).\n\n**Comparaison.** Si $|a_n|\\le C|b_n|$ pour $n\\ge N$, et si $(b_nr^n)$ est bornée, alors $(a_nr^n)$ est bornée : tout $r<R_b$ vérifie $r\\le R_a$, d'où $R_b\\le R_a$. Si $a_n\\sim b_n$, on a $a_n=O(b_n)$ et $b_n=O(a_n)$, d'où l'égalité.\n\n**Série dérivée.** Notons $R'$ le rayon de $\\sum na_nz^n$, qui est aussi celui de $\\sum na_nz^{n-1}$ (pour $z\\neq0$, on divise chaque terme par $z$). Comme $|a_n|\\le n|a_n|$ pour $n\\ge1$, la comparaison donne $R\\ge R'$. Inversement, soit $0<r<r'<R$ : $(a_nr'^n)$ est bornée par un $M$, et $n|a_n|r^n\\le M\\,n\\left(\\frac r{r'}\\right)^n\\to0$ (croissances comparées), donc $r\\le R'$ ; d'où $R\\le R'$. Pour $n^\\alpha$ avec $\\alpha\\ge0$, même raisonnement avec $n^\\alpha\\left(\\frac r{r'}\\right)^n\\to0$ ; pour $\\alpha<0$, on échange les rôles de $a_n$ et de $n^\\alpha a_n$.",
+      "exemple": "- $\\sum\\frac{n^2}{3^n}z^n$ : $\\left|\\frac{a_{n+1}}{a_n}\\right|=\\frac{(n+1)^2}{3n^2}\\to\\frac13$, donc $R=3$.\n- $\\sum\\frac{(2n)!}{(n!)^2}z^n$ : $\\frac{a_{n+1}}{a_n}=\\frac{(2n+2)(2n+1)}{(n+1)^2}\\to4$, donc $R=\\frac14$.\n- $\\sum\\frac{n+1}{n^3+2}z^n$ : $a_n\\sim\\frac1{n^2}$, donc $R$ est celui de $\\sum\\frac{z^n}{n^2}$, soit $1$.",
+      "contre_exemple": "- **Quotient sans limite** : pour $a_n=2+(-1)^n$, le quotient $\\frac{a_{n+1}}{a_n}$ vaut alternativement $\\frac13$ et $3$ ; la règle ne s'applique pas, mais $1\\le a_n\\le3$ donne $R=1$ par comparaison avec $\\sum z^n$.\n- **Série lacunaire** : $\\sum\\frac{z^{2n}}{4^n}$ a une infinité de coefficients nuls ; le quotient $\\frac{a_{n+1}}{a_n}$ n'est pas défini. En posant $w=z^2$, on trouve $|z|^2<4$, soit $R=2$.\n- **Une majoration du quotient ne suffit pas** : pour $a_n=2^{-n}$, on a $\\left|\\frac{a_{n+1}}{a_n}\\right|=\\frac12\\le1$ pour tout $n$, mais $R=2$ et non $1$.",
+      "affirmations": [
+        {
+          "texte": "Les séries $\\sum a_nz^n$ et $\\sum\\frac{a_n}{n+1}z^{n+1}$ ont le même rayon de convergence.",
+          "vrai": true,
+          "justification": "La série $\\sum a_nz^n$ est la série dérivée de $\\sum\\frac{a_n}{n+1}z^{n+1}$, et une série entière et sa série dérivée ont le même rayon."
+        },
+        {
+          "texte": "Si $\\left|\\frac{a_{n+1}}{a_n}\\right|$ n'a pas de limite, alors le rayon de $\\sum a_nz^n$ est nul.",
+          "vrai": false,
+          "contre_exemple": "Pour $a_n=2+(-1)^n$, le quotient vaut alternativement $\\frac13$ et $3$, sans limite, et pourtant $R=1$ (car $1\\le a_n\\le3$)."
+        },
+        {
+          "texte": "Les séries $\\sum a_nz^n$ et $\\sum a_n^2z^n$ ont toujours le même rayon de convergence.",
+          "vrai": false,
+          "contre_exemple": "Pour $a_n=2^n$ : $\\sum2^nz^n$ a pour rayon $\\frac12$, et $\\sum4^nz^n$ a pour rayon $\\frac14$."
+        },
+        {
+          "texte": "Si $\\sum a_nz^n$ a pour rayon $R\\in\\left]0,+\\infty\\right[$, alors $\\sum a_nz^{2n}$ a pour rayon $\\sqrt R$.",
+          "vrai": true,
+          "justification": "La série $\\sum a_n(z^2)^n$ converge absolument si $|z|^2<R$ et diverge grossièrement si $|z|^2>R$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-abel",
+        "ar-t-fonctions-usuelles-croissances"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-convergence-normale",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Convergence normale sur un disque fermé intérieur",
+      "recto": "Énoncer le résultat de convergence normale d'une série entière à l'intérieur de son disque de convergence.",
+      "cours": "Sur le disque ouvert de convergence, une série entière converge absolument en chaque point ; mais pour échanger limite et somme (continuité, dérivation, intégration), il faut une convergence **uniforme**. Le bon énoncé est intermédiaire : la convergence est normale sur tout disque fermé $\\overline D(0,r)$ de rayon $r<R$, donc sur tout compact du disque ouvert. La preuve tient en une ligne : pour $|z|\\le r$, $|a_nz^n|\\le|a_n|r^n$, et $\\sum|a_n|r^n$ converge puisque $r<R$.\n\nUn compact $K$ contenu dans $D(0,R)$ est toujours contenu dans un tel disque fermé : la fonction continue $z\\mapsto|z|$ atteint son maximum $r$ sur $K$, en un point de $K$, donc $r<R$.\n\nMéthode : pour justifier une interversion sur $\\left]-R,R\\right[$ (ou sur $D(0,R)$), on se place sur $[-r,r]$ (ou $\\overline D(0,r)$) avec $r<R$ quelconque, on y utilise la convergence normale, puis on conclut point par point, car tout point du disque ouvert est dans un tel disque fermé.\n\nPiège : la convergence n'est pas uniforme sur le disque ouvert tout entier en général. Pour $\\sum z^n$ ($R=1$), $\\sup_{|z|<1}|z^n|=1$ ne tend pas vers $0$. Elle peut l'être dans certains cas, comme $\\sum\\frac{z^n}{n^2}$, normalement convergente sur le disque fermé $\\overline D(0,1)$ car $\\sum\\frac1{n^2}$ converge.",
+      "hypotheses": [
+        "$K$ est une partie compacte de $\\mathbb{C}$.",
+        "$K$ est contenue dans le disque ouvert de convergence $D(0,R)$."
+      ],
+      "hypotheses_pieges": [
+        "$K$ est une partie bornée contenue dans $D(0,R)$ (à la place de : compacte).",
+        "$K$ est une partie compacte contenue dans le disque fermé $\\overline D(0,R)$ (à la place du disque ouvert).",
+        "$K$ est une partie compacte qui rencontre $D(0,R)$ (à la place de : contenue dans $D(0,R)$)."
+      ],
+      "enonce": "Soit $\\sum a_nz^n$ une série entière de rayon $R>0$.\n\n- Pour tout réel $r$ tel que $0\\le r<R$, la série de fonctions $\\sum a_nz^n$ converge **normalement** sur le disque fermé $\\overline D(0,r)=\\{z\\in\\mathbb{C} : |z|\\le r\\}$ : $\\sum\\sup_{|z|\\le r}|a_nz^n|=\\sum|a_n|r^n<+\\infty$.\n- Par conséquent, elle converge normalement, donc uniformément, sur toute partie compacte $K$ contenue dans le disque ouvert $D(0,R)$.\n\nEn général, la convergence n'est pas uniforme sur $D(0,R)$ tout entier.",
+      "enonce_trous": "Si $0\\le r<R$, la série $\\sum a_nz^n$ converge normalement sur {{1}}, car {{2}} ; en revanche, sur le disque ouvert $D(0,R)$, elle {{3}}.",
+      "trous": [
+        {
+          "reponse": "le disque fermé $\\overline D(0,r)$",
+          "leurres": [
+            "le disque ouvert $D(0,R)$",
+            "le disque fermé $\\overline D(0,R)$",
+            "le plan $\\mathbb{C}$ tout entier"
+          ]
+        },
+        {
+          "reponse": "la série $\\sum|a_n|r^n$ converge",
+          "leurres": [
+            "la série $\\sum|a_n|R^n$ converge",
+            "la série $\\sum|a_n|$ converge",
+            "$|a_n|r^n\\le1$ pour tout $n$"
+          ]
+        },
+        {
+          "reponse": "peut ne pas converger uniformément",
+          "leurres": [
+            "converge toujours uniformément",
+            "ne converge jamais uniformément",
+            "ne converge jamais simplement"
+          ]
+        }
+      ],
+      "demo": "**Disque fermé.** Soit $0\\le r<R$. Comme $r<R$, la série $\\sum a_nr^n$ converge absolument (définition du rayon) : $\\sum|a_n|r^n<+\\infty$. Pour $|z|\\le r$, $|a_nz^n|\\le|a_n|r^n$, avec égalité en $z=r$ ; donc $\\sup_{|z|\\le r}|a_nz^n|=|a_n|r^n$ est le terme général d'une série convergente : la convergence est normale sur $\\overline D(0,r)$, donc uniforme.\n\n**Compact.** Soit $K$ un compact non vide contenu dans $D(0,R)$. La fonction continue $z\\mapsto|z|$ atteint sur $K$ son maximum $r=|z_1|$ en un point $z_1\\in K$ ; comme $z_1\\in D(0,R)$, on a $r<R$, et $K\\subset\\overline D(0,r)$. La convergence normale sur $\\overline D(0,r)$ entraîne la convergence normale sur $K$.\n\n**Pas uniforme en général.** Pour $\\sum z^n$ ($R=1$), si la convergence était uniforme sur $D(0,1)$, le terme général tendrait uniformément vers $0$ (différence de deux sommes partielles consécutives) ; or $\\sup_{|z|<1}|z^n|=1$ pour tout $n$.",
+      "exemple": "- Sur $\\left[-\\frac12,\\frac12\\right]$, la série $\\sum x^n$ converge normalement : $\\sup_{|x|\\le1/2}|x^n|=\\frac1{2^n}$, terme général d'une série convergente.\n- La série exponentielle $\\sum\\frac{z^n}{n!}$ ($R=+\\infty$) converge normalement sur tout disque $\\overline D(0,r)$, avec $\\sum\\frac{r^n}{n!}=e^r$.",
+      "contre_exemple": "- **Disque ouvert** : $\\sum z^n$ ne converge pas uniformément sur $D(0,1)$, car $\\sup_{|z|<1}|z^n|=1$ pour tout $n$ ; ni sur $\\left[0,1\\right[$, pour la même raison.\n- **Rayon infini** : $\\sum\\frac{z^n}{n!}$ ne converge pas uniformément sur $\\mathbb{C}$, car $\\sup_{z\\in\\mathbb{C}}\\left|\\frac{z^n}{n!}\\right|=+\\infty$ pour $n\\ge1$.\n- **Partie bornée non compacte** : $D(0,1)$ lui-même est borné, contenu dans le disque ouvert de convergence de $\\sum z^n$, et la convergence n'y est pas uniforme.",
+      "affirmations": [
+        {
+          "texte": "La série $\\sum_{n\\ge1}\\frac{z^n}{n^2}$ converge normalement sur le disque fermé $\\overline D(0,1)$.",
+          "vrai": true,
+          "justification": "$\\sup_{|z|\\le1}\\left|\\frac{z^n}{n^2}\\right|=\\frac1{n^2}$, et $\\sum\\frac1{n^2}$ converge."
+        },
+        {
+          "texte": "Une série entière de rayon $R\\in\\left]0,+\\infty\\right[$ converge toujours uniformément sur son disque ouvert de convergence.",
+          "vrai": false,
+          "contre_exemple": "$\\sum z^n$ ($R=1$) : $\\sup_{|z|<1}|z^n|=1$ ne tend pas vers $0$, donc la convergence n'est pas uniforme sur $D(0,1)$."
+        },
+        {
+          "texte": "Une série entière de rayon $+\\infty$ converge uniformément sur $\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "$\\sum\\frac{z^n}{n!}$ : pour $n\\ge1$, $\\left|\\frac{z^n}{n!}\\right|$ n'est pas borné sur $\\mathbb{C}$, donc le terme général ne tend pas uniformément vers $0$."
+        },
+        {
+          "texte": "Pour tout $a\\in\\left[0,1\\right[$, la série $\\sum x^n$ converge uniformément sur $[-a,a]$.",
+          "vrai": true,
+          "justification": "$\\sup_{|x|\\le a}|x^n|=a^n$ et $\\sum a^n$ converge : la convergence est normale sur $[-a,a]$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-abel",
+        "ar-l1-bornes-atteintes"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-derivation",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Continuité et dérivation terme à terme",
+      "recto": "Énoncer les résultats de continuité, de dérivation et d'intégration terme à terme de la somme d'une série entière.",
+      "cours": "La somme d'une série entière se comporte comme un « polynôme de degré infini » à l'intérieur du disque ouvert de convergence : elle est continue, et on la dérive (ou on l'intègre) terme à terme, sans perte de rayon. Ces trois résultats découlent de la convergence normale sur les disques fermés $\\overline D(0,r)$, $r<R$, et du fait que la série dérivée a le même rayon.\n\nEn variable complexe, le programme demande la version « taux d'accroissement » : pour $z_0$ dans le disque ouvert, $\\frac{S(z)-S(z_0)}{z-z_0}$ tend vers la somme de la série dérivée en $z_0$. En variable réelle, on obtient que $S$ est de classe $C^\\infty$ sur $\\left]-R,R\\right[$, avec $S^{(k)}(x)=\\sum_{n\\ge k}\\frac{n!}{(n-k)!}a_nx^{n-k}$, et surtout $a_n=\\frac{S^{(n)}(0)}{n!}$ : les coefficients sont déterminés par la somme.\n\nMéthode : on part d'une somme connue (souvent $\\frac1{1-x}=\\sum x^n$), on dérive ou on intègre terme à terme pour obtenir d'autres sommes : $\\sum_{n\\ge1}nx^{n-1}=\\frac1{(1-x)^2}$, $\\sum_{n\\ge1}\\frac{x^n}n=-\\ln(1-x)$, d'où des valeurs comme $\\sum_{n\\ge1}\\frac n{2^n}=2$ ou $\\sum_{n\\ge1}\\frac1{n2^n}=\\ln2$.\n\nPièges : tout se passe sur l'intervalle **ouvert** $\\left]-R,R\\right[$ ; au bord, la série peut converger sans que la série dérivée converge ($\\sum\\frac{x^n}n$ en $x=-1$). Et ces résultats sont propres aux séries entières : pour une série de fonctions quelconque, la convergence normale ne permet pas de dériver terme à terme.",
+      "hypotheses": [
+        "$R>0$ est le rayon de convergence de $\\sum a_nx^n$.",
+        "$x\\in\\left]-R,R\\right[$ (intervalle ouvert)."
+      ],
+      "hypotheses_pieges": [
+        "$x\\in\\left[-R,R\\right]$ et la série $\\sum a_nx^n$ converge en $x$ (à la place de l'intervalle ouvert).",
+        "La série $\\sum a_nx^n$ converge au point $x$ (à la place de : $|x|<R$)."
+      ],
+      "enonce": "Soit $\\sum a_nz^n$ une série entière de rayon $R>0$ et $S(z)=\\sum_{n=0}^{+\\infty}a_nz^n$ sa somme sur le disque ouvert $D(0,R)$.\n\n- **Continuité.** $S$ est continue sur $D(0,R)$.\n- **Dérivation complexe.** La série dérivée $\\sum_{n\\ge1}na_nz^{n-1}$ a le même rayon $R$, et pour tout $z_0\\in D(0,R)$ : $\\frac{S(z)-S(z_0)}{z-z_0}\\to\\sum_{n=1}^{+\\infty}na_nz_0^{n-1}$ quand $z\\to z_0$, $z\\neq z_0$.\n- **Variable réelle.** La fonction $x\\mapsto S(x)$ est de classe $C^\\infty$ sur $\\left]-R,R\\right[$, et pour tout $k\\in\\mathbb{N}$ et tout $x\\in\\left]-R,R\\right[$ : $S^{(k)}(x)=\\sum_{n=k}^{+\\infty}\\frac{n!}{(n-k)!}a_nx^{n-k}$. En particulier $a_n=\\frac{S^{(n)}(0)}{n!}$ pour tout $n$.\n- **Intégration.** Pour tout $x\\in\\left]-R,R\\right[$ : $\\int_0^xS(t)\\,\\mathrm{d}t=\\sum_{n=0}^{+\\infty}\\frac{a_n}{n+1}x^{n+1}$.",
+      "enonce_trous": "Si $R>0$ est le rayon de $\\sum a_nx^n$, la série dérivée $\\sum na_nx^{n-1}$ a pour rayon {{1}}, et la somme $S$ est {{2}} sur {{3}}, avec $S'(x)=\\sum_{n\\ge1}na_nx^{n-1}$.",
+      "trous": [
+        {
+          "reponse": "$R$",
+          "leurres": [
+            "$\\frac R2$",
+            "$R+1$",
+            "$2R$"
+          ]
+        },
+        {
+          "reponse": "de classe $C^\\infty$",
+          "leurres": [
+            "de classe $C^1$ mais pas toujours $C^2$",
+            "dérivable mais pas toujours de classe $C^1$",
+            "lipschitzienne mais pas toujours dérivable"
+          ]
+        },
+        {
+          "reponse": "$\\left]-R,R\\right[$",
+          "leurres": [
+            "$\\left[-R,R\\right]$",
+            "$\\left[0,R\\right]$",
+            "$\\mathbb{R}$"
+          ]
+        }
+      ],
+      "demo": "**Continuité.** Pour $0<r<R$, les fonctions $z\\mapsto a_nz^n$ sont continues et la série converge normalement, donc uniformément, sur $\\overline D(0,r)$ : sa somme $S$ y est continue. Tout $z_0\\in D(0,R)$ est intérieur à un tel disque (prendre $|z_0|<r<R$), et la continuité est locale.\n\n**Dérivation complexe.** Fixons $z_0$ et $r$ avec $|z_0|<r<R$. Pour $n\\ge1$, posons $q_n(z)=\\sum_{k=0}^{n-1}z^kz_0^{n-1-k}$ : c'est un polynôme, $q_n(z)=\\frac{z^n-z_0^n}{z-z_0}$ si $z\\neq z_0$, $q_n(z_0)=nz_0^{n-1}$, et $|q_n(z)|\\le nr^{n-1}$ pour $|z|\\le r$. La série dérivée a le même rayon $R$ (carte « calcul du rayon »), donc $\\sum n|a_n|r^{n-1}$ converge : la série $\\sum a_nq_n$ converge normalement sur $\\overline D(0,r)$, et sa somme $T$ y est continue. Pour $z\\neq z_0$ dans ce disque, $T(z)=\\frac{S(z)-S(z_0)}{z-z_0}$ ; et $T(z_0)=\\sum na_nz_0^{n-1}$. La continuité de $T$ en $z_0$ donne la limite annoncée.\n\n**Variable réelle.** Pour $z=x$ réel, on obtient $S'(x)=\\sum_{n\\ge1}na_nx^{n-1}$ : $S'$ est la somme d'une série entière de rayon $R$. Par récurrence sur $k$, $S$ est $k$ fois dérivable avec la formule annoncée, donc de classe $C^\\infty$. En $x=0$, seul le terme $n=k$ subsiste : $S^{(k)}(0)=k!\\,a_k$.\n\n**Intégration.** La série $\\sum\\frac{a_n}{n+1}x^{n+1}$ a le rayon $R$ ; sa somme $F$ vérifie $F'=S$ sur $\\left]-R,R\\right[$ et $F(0)=0$, donc $F(x)=\\int_0^xS(t)\\,\\mathrm{d}t$ ($S$ est continue).",
+      "exemple": "Pour $x\\in\\left]-1,1\\right[$, $\\frac1{1-x}=\\sum_{n\\ge0}x^n$. En dérivant : $\\sum_{n\\ge1}nx^{n-1}=\\frac1{(1-x)^2}$, donc $\\sum_{n\\ge1}nx^n=\\frac x{(1-x)^2}$ ; en $x=\\frac12$ : $\\sum_{n\\ge1}\\frac n{2^n}=2$. En intégrant sur $[0,x]$ : $\\sum_{n\\ge1}\\frac{x^n}n=-\\ln(1-x)$ ; en $x=\\frac12$ : $\\sum_{n\\ge1}\\frac1{n2^n}=\\ln2$.",
+      "contre_exemple": "- **Au bord** : $\\sum_{n\\ge1}\\frac{x^n}n$ ($R=1$) converge en $x=-1$, mais la série dérivée $\\sum_{n\\ge1}x^{n-1}$ diverge en $x=-1$ (terme général $(-1)^{n-1}$).\n- **Hors des séries entières** : $\\sum_{n\\ge1}\\frac{\\sin(n^2x)}{n^2}$ converge normalement sur $\\mathbb{R}$, mais la série dérivée terme à terme $\\sum\\cos(n^2x)$ diverge en $x=0$ (terme général $1$).",
+      "affirmations": [
+        {
+          "texte": "Pour tout $x\\in\\left]-1,1\\right[$, $\\sum_{n\\ge1}nx^{n-1}=\\frac1{(1-x)^2}$.",
+          "vrai": true,
+          "justification": "On dérive terme à terme $\\frac1{1-x}=\\sum_{n\\ge0}x^n$ sur $\\left]-1,1\\right[$."
+        },
+        {
+          "texte": "Si $\\sum a_nx^n$ a pour rayon $1$ et converge en $x=1$, alors sa somme, restreinte à $[0,1]$, est dérivable à gauche en $1$.",
+          "vrai": false,
+          "contre_exemple": "$S(x)=\\sum_{n\\ge1}\\frac{x^n}{n^2}$ est continue sur $[0,1]$ (convergence normale), et $S'(x)=\\sum_{n\\ge1}\\frac{x^{n-1}}n=\\frac{-\\ln(1-x)}x\\to+\\infty$ quand $x\\to1^-$ ; par l'égalité des accroissements finis, $\\frac{S(1)-S(x)}{1-x}=S'(c)$ avec $c\\in\\left]x,1\\right[$, qui tend vers $+\\infty$."
+        },
+        {
+          "texte": "La somme d'une série entière de rayon $R>0$ est de classe $C^\\infty$ sur $\\left]-R,R\\right[$.",
+          "vrai": true,
+          "justification": "Dérivation terme à terme : chaque dérivée est la somme d'une série entière de même rayon $R$."
+        },
+        {
+          "texte": "Les séries $\\sum a_nx^n$ et $\\sum na_nx^{n-1}$ convergent exactement aux mêmes points de $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$\\sum_{n\\ge1}\\frac{x^n}n$ converge en $x=-1$, alors que sa série dérivée $\\sum x^{n-1}$ y diverge."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-calcul-rayon",
+        "ar-l2-series-entieres-convergence-normale",
+        "int-t-integrale-fondamental"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-dse",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Fonctions développables en série entière, série de Taylor",
+      "recto": "Définir une fonction développable en série entière, relier son développement à sa série de Taylor, et donner un critère suffisant.",
+      "cours": "Une fonction $f$ est développable en série entière (DSE) sur $\\left]-r,r\\right[$ si elle y coïncide avec la somme d'une série entière de rayon au moins $r$. Le théorème de dérivation terme à terme impose alors tout : $f$ est de classe $C^\\infty$ et $a_n=\\frac{f^{(n)}(0)}{n!}$. Le développement, s'il existe, est donc **unique** : c'est la série de Taylor de $f$ en $0$.\n\nLa réciproque est fausse, et c'est le point important du chapitre : une fonction de classe $C^\\infty$ a toujours une série de Taylor, mais celle-ci peut avoir un rayon nul, ou converger vers une autre fonction. L'exemple classique est $f(x)=e^{-1/x^2}$ (prolongée par $f(0)=0$) : toutes ses dérivées en $0$ sont nulles, sa série de Taylor est nulle, et pourtant $f(x)>0$ pour $x\\neq0$.\n\nMéthodes pour montrer qu'une fonction est DSE :\n- majorer le reste de Taylor (inégalité de Taylor-Lagrange, ou reste intégral) et montrer qu'il tend vers $0$ ; c'est le cas si toutes les dérivées sont bornées par une même constante $M$ sur $\\left]-r,r\\right[$ ;\n- partir de développements connus et utiliser les opérations : somme, produit, dérivation, intégration terme à terme ;\n- montrer que $f$ est solution d'une équation différentielle linéaire, chercher une solution DSE $\\sum a_nx^n$ (relation de récurrence sur les $a_n$), calculer son rayon et conclure par unicité de la solution d'un problème de Cauchy.\n\nPièges : borner chaque dérivée séparément (par une constante qui dépend de $n$) ne suffit pas ; et une série de Taylor de rayon $R>0$ ne converge pas forcément vers $f$.",
+      "hypotheses": [
+        "$f$ est de classe $C^\\infty$ sur $\\left]-r,r\\right[$.",
+        "Il existe $M\\ge0$ tel que $|f^{(n)}(x)|\\le M$ pour tout $n\\in\\mathbb{N}$ et tout $x\\in\\left]-r,r\\right[$."
+      ],
+      "hypotheses_pieges": [
+        "Pour tout $n$, $f^{(n)}$ est bornée sur $\\left]-r,r\\right[$ (à la place d'une borne $M$ indépendante de $n$).",
+        "$|f^{(n)}(0)|\\le M$ pour tout $n$ (à la place de : pour tout $x\\in\\left]-r,r\\right[$).",
+        "La série de Taylor de $f$ en $0$ a un rayon au moins égal à $r$ (à la place de la majoration des dérivées)."
+      ],
+      "enonce": "Soit $r>0$ et $f:\\left]-r,r\\right[\\to\\mathbb{C}$. On dit que $f$ est **développable en série entière** sur $\\left]-r,r\\right[$ s'il existe une série entière $\\sum a_nx^n$ de rayon $R\\ge r$ telle que $f(x)=\\sum_{n=0}^{+\\infty}a_nx^n$ pour tout $x\\in\\left]-r,r\\right[$. (Même définition pour une fonction d'une variable complexe sur le disque $D(0,r)$.)\n\n- Si $f$ est développable en série entière sur $\\left]-r,r\\right[$, alors $f$ est de classe $C^\\infty$ et $a_n=\\frac{f^{(n)}(0)}{n!}$ pour tout $n$ : le développement est unique, c'est la **série de Taylor** $\\sum\\frac{f^{(n)}(0)}{n!}x^n$ de $f$ en $0$.\n- Une fonction de classe $C^\\infty$ n'est pas toujours développable en série entière : sa série de Taylor peut avoir un rayon nul, ou converger vers une autre fonction que $f$.\n- **Critère.** Si $f$ est de classe $C^\\infty$ sur $\\left]-r,r\\right[$ et s'il existe $M\\ge0$ tel que $|f^{(n)}(x)|\\le M$ pour tout $n\\in\\mathbb{N}$ et tout $x\\in\\left]-r,r\\right[$, alors $f$ est développable en série entière sur $\\left]-r,r\\right[$.",
+      "enonce_trous": "Si $f$ est de classe $C^\\infty$ sur $\\left]-r,r\\right[$ et s'il existe $M$ tel que {{1}}, alors $f$ est {{2}} sur $\\left]-r,r\\right[$, et les coefficients de son développement sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "$|f^{(n)}(x)|\\le M$ pour tout $n$ et tout $x\\in\\left]-r,r\\right[$",
+          "leurres": [
+            "$|f^{(n)}(0)|\\le M$ pour tout $n$",
+            "$|f(x)|\\le M$ pour tout $x\\in\\left]-r,r\\right[$",
+            "$|f'(x)|\\le M$ pour tout $x\\in\\left]-r,r\\right[$"
+          ]
+        },
+        {
+          "reponse": "développable en série entière",
+          "leurres": [
+            "polynomiale",
+            "constante",
+            "périodique"
+          ]
+        },
+        {
+          "reponse": "les $\\frac{f^{(n)}(0)}{n!}$",
+          "leurres": [
+            "les $f^{(n)}(0)$",
+            "les $\\frac{f^{(n)}(0)}{n+1}$",
+            "les $n!\\,f^{(n)}(0)$"
+          ]
+        }
+      ],
+      "demo": "**Coefficients.** Si $f(x)=\\sum a_nx^n$ sur $\\left]-r,r\\right[$ avec un rayon $R\\ge r$, le théorème de dérivation terme à terme montre que $f$ est de classe $C^\\infty$ sur $\\left]-r,r\\right[$ et que $f^{(n)}(0)=n!\\,a_n$.\n\n**Une fonction $C^\\infty$ non développable.** Soit $f(x)=e^{-1/x^2}$ pour $x\\neq0$ et $f(0)=0$. Par récurrence, pour $x\\neq0$, $f^{(n)}(x)=P_n\\left(\\frac1x\\right)e^{-1/x^2}$ avec $P_n$ polynôme ; par croissances comparées, $f^{(n)}(x)\\to0$ quand $x\\to0$, et le théorème de la limite de la dérivée donne, par récurrence, $f^{(n)}(0)=0$ pour tout $n$. La série de Taylor de $f$ est nulle (de rayon $+\\infty$), mais $f(x)>0$ pour $x\\neq0$ : $f$ n'est développable en série entière sur aucun intervalle $\\left]-r,r\\right[$.\n\n**Critère.** Soit $x\\in\\left]-r,r\\right[$. L'inégalité de Taylor-Lagrange à l'ordre $n$ entre $0$ et $x$ donne\n$$\\left|f(x)-\\sum_{k=0}^n\\frac{f^{(k)}(0)}{k!}x^k\\right|\\le M\\frac{|x|^{n+1}}{(n+1)!}\\xrightarrow[n\\to+\\infty]{}0.$$\nLa série de Taylor converge donc en tout $x\\in\\left]-r,r\\right[$, vers $f(x)$ ; elle converge en des points de module arbitrairement proche de $r$, donc son rayon est au moins $r$, et $f$ est développable en série entière sur $\\left]-r,r\\right[$.",
+      "exemple": "- Sur $\\left]-r,r\\right[$, toutes les dérivées de $\\exp$ sont majorées par $e^r$ : $\\exp$ est développable en série entière sur $\\left]-r,r\\right[$ pour tout $r$, donc sur $\\mathbb{R}$, avec $e^x=\\sum\\frac{x^n}{n!}$.\n- Les dérivées de $\\cos$ et $\\sin$ sont toutes majorées par $1$ : ces fonctions sont développables en série entière sur $\\mathbb{R}$.\n- $x\\mapsto\\frac1{1+x^2}$ est développable sur $\\left]-1,1\\right[$ : $\\frac1{1+x^2}=\\sum(-1)^nx^{2n}$.",
+      "contre_exemple": "- **Série de Taylor qui converge vers une autre fonction** : $f(x)=e^{-1/x^2}$, $f(0)=0$, est de classe $C^\\infty$ sur $\\mathbb{R}$, toutes ses dérivées en $0$ sont nulles, et $f$ n'est pas la fonction nulle. Chaque dérivée $f^{(n)}$ est bornée sur $\\left]-1,1\\right[$ (fonction continue sur $[-1,1]$), mais pas par une constante indépendante de $n$.\n- **Série de Taylor de rayon nul** : $g(x)=\\sum_{k\\ge0}e^{-k}\\cos(k^2x)$ est de classe $C^\\infty$ sur $\\mathbb{R}$ (dérivation terme à terme d'une série normalement convergente ainsi que toutes ses dérivées), et $|g^{(2n)}(0)|=\\sum_ke^{-k}k^{4n}\\ge e^{-2n}(2n)^{4n}$ ; le terme $\\frac{|g^{(2n)}(0)|}{(2n)!}|x|^{2n}\\ge\\left(\\frac{2n|x|}{e}\\right)^{2n}$ ne tend pas vers $0$ pour $x\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est développable en série entière sur $\\left]-r,r\\right[$ et paire, alors les coefficients d'indice impair de son développement sont nuls.",
+          "vrai": true,
+          "justification": "$f(x)=f(-x)$ donne $\\sum a_nx^n=\\sum(-1)^na_nx^n$ sur $\\left]-r,r\\right[$ ; par unicité du développement, $a_n=(-1)^na_n$, donc $a_n=0$ pour $n$ impair."
+        },
+        {
+          "texte": "Toute fonction de classe $C^\\infty$ sur $\\mathbb{R}$ est égale à la somme de sa série de Taylor en $0$ sur un voisinage de $0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=e^{-1/x^2}$, $f(0)=0$ : sa série de Taylor en $0$ est nulle, et $f(x)>0$ pour tout $x\\neq0$."
+        },
+        {
+          "texte": "Si la série de Taylor en $0$ d'une fonction $f$ de classe $C^\\infty$ a un rayon $R>0$, elle converge vers $f$ sur $\\left]-R,R\\right[$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x)=e^{-1/x^2}$, $f(0)=0$, la série de Taylor est nulle, de rayon $+\\infty$, et ne converge pas vers $f$."
+        },
+        {
+          "texte": "La fonction $x\\mapsto\\frac1{1+x^2}$ est développable en série entière sur $\\left]-1,1\\right[$, mais pas sur $\\left]-2,2\\right[$.",
+          "vrai": true,
+          "justification": "Sur $\\left]-1,1\\right[$, $\\frac1{1+x^2}=\\sum(-1)^nx^{2n}$, série de rayon $1$. Un développement sur $\\left]-2,2\\right[$ coïnciderait, par unicité, avec cette série, dont le rayon est $1<2$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-derivation",
+        "ar-l1-taylor-lagrange",
+        "ar-l1-derivabilite-limite-derivee"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-usuels",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Développements usuels",
+      "recto": "Donner les développements en série entière usuels, avec leur rayon et leur intervalle de validité.",
+      "cours": "Les développements usuels sont la boîte à outils du chapitre : presque tout développement se ramène à eux par somme, produit, dérivation, intégration ou substitution ($x\\mapsto-x$, $x\\mapsto x^2$, $x\\mapsto ax$).\n\nDeux familles, à retenir avec leur rayon :\n- **rayon infini** : $e^x$, $\\cos x$, $\\sin x$, $\\operatorname{ch}x$, $\\operatorname{sh}x$, valables sur $\\mathbb{R}$. On les obtient par le critère des dérivées uniformément bornées sur tout $\\left]-r,r\\right[$ (Taylor-Lagrange) ; $\\operatorname{ch}$ et $\\operatorname{sh}$ sont les parties paire et impaire de $\\exp$.\n- **rayon $1$** : $\\frac1{1-x}$ (série géométrique), puis par intégration terme à terme $\\ln(1+x)$ et $\\arctan x$, et enfin $(1+x)^\\alpha$, obtenu grâce à l'équation différentielle $(1+x)y'=\\alpha y$.\n\nPour $(1+x)^\\alpha$, le coefficient de $x^n$ est $\\binom\\alpha n=\\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-n+1)}{n!}$, qui généralise le coefficient binomial ; si $\\alpha\\in\\mathbb{N}$, la série s'arrête (formule du binôme). Cas utiles : $\\alpha=-1$ redonne $\\frac1{1+x}=\\sum(-1)^nx^n$ ; $\\alpha=\\frac12$ donne $\\sqrt{1+x}=1+\\frac x2-\\frac{x^2}8+\\frac{x^3}{16}-\\cdots$ ; $\\alpha=-\\frac12$ donne $\\frac1{\\sqrt{1+x}}$, d'où $\\arcsin$ par substitution et intégration.\n\nPiège : l'intervalle de validité n'est pas le domaine de définition de la fonction. $\\ln(1+x)$ est définie sur $\\left]-1,+\\infty\\right[$, $\\arctan$ et $\\frac1{1+x^2}$ sur $\\mathbb{R}$, mais leurs séries ont pour rayon $1$ et divergent pour $|x|>1$.",
+      "hypotheses": [
+        "$\\alpha\\in\\mathbb{R}$.",
+        "$x\\in\\left]-1,1\\right[$."
+      ],
+      "hypotheses_pieges": [
+        "$x\\in\\left]-1,+\\infty\\right[$, là où $(1+x)^\\alpha$ est défini (à la place de $x\\in\\left]-1,1\\right[$).",
+        "$x\\in\\left[-1,1\\right]$ (à la place de l'intervalle ouvert).",
+        "$|x|<2$ (à la place de $|x|<1$)."
+      ],
+      "enonce": "- **Rayon $+\\infty$** (développements valables pour tout $x\\in\\mathbb{R}$) :\n$$e^x=\\sum_{n=0}^{+\\infty}\\frac{x^n}{n!},\\quad\\cos x=\\sum_{n=0}^{+\\infty}(-1)^n\\frac{x^{2n}}{(2n)!},\\quad\\sin x=\\sum_{n=0}^{+\\infty}(-1)^n\\frac{x^{2n+1}}{(2n+1)!},$$\n$$\\operatorname{ch}x=\\sum_{n=0}^{+\\infty}\\frac{x^{2n}}{(2n)!},\\quad\\operatorname{sh}x=\\sum_{n=0}^{+\\infty}\\frac{x^{2n+1}}{(2n+1)!}.$$\n- **Rayon $1$** (développements valables pour $x\\in\\left]-1,1\\right[$) :\n$$\\frac1{1-x}=\\sum_{n=0}^{+\\infty}x^n,\\quad\\ln(1+x)=\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n-1}}nx^n,\\quad\\arctan x=\\sum_{n=0}^{+\\infty}\\frac{(-1)^n}{2n+1}x^{2n+1}.$$\n- **Pour tout réel $\\alpha$ et tout $x\\in\\left]-1,1\\right[$** :\n$$(1+x)^\\alpha=1+\\sum_{n=1}^{+\\infty}\\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-n+1)}{n!}x^n,$$\nsérie de rayon $1$ si $\\alpha\\notin\\mathbb{N}$ (si $\\alpha\\in\\mathbb{N}$, c'est un polynôme : la formule du binôme).",
+      "enonce_trous": "Pour tout $x\\in\\left]-1,1\\right[$, $\\ln(1+x)$ est égal à {{1}} et $\\arctan x$ est égal à {{2}} ; le rayon de convergence de ces deux séries vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{n\\ge1}\\frac{(-1)^{n-1}}nx^n$",
+          "leurres": [
+            "$\\sum_{n\\ge1}\\frac{(-1)^n}nx^n$",
+            "$\\sum_{n\\ge1}\\frac{x^n}n$",
+            "$\\sum_{n\\ge0}\\frac{(-1)^n}{n!}x^n$"
+          ]
+        },
+        {
+          "reponse": "$\\sum_{n\\ge0}\\frac{(-1)^n}{2n+1}x^{2n+1}$",
+          "leurres": [
+            "$\\sum_{n\\ge0}\\frac{(-1)^n}{(2n+1)!}x^{2n+1}$",
+            "$\\sum_{n\\ge0}\\frac{x^{2n+1}}{2n+1}$",
+            "$\\sum_{n\\ge0}(-1)^nx^{2n}$"
+          ]
+        },
+        {
+          "reponse": "$1$",
+          "leurres": [
+            "$+\\infty$",
+            "$2$",
+            "$\\frac12$"
+          ]
+        }
+      ],
+      "demo": "**Rayon infini.** Sur $\\left]-r,r\\right[$, toutes les dérivées de $\\exp$ sont majorées par $e^r$, celles de $\\cos$ et $\\sin$ par $1$ : par le critère des dérivées uniformément bornées, ces fonctions sont développables sur $\\left]-r,r\\right[$ pour tout $r>0$, avec pour coefficients $\\frac{f^{(n)}(0)}{n!}$ ; pour $\\cos$, $\\cos^{(2n)}(0)=(-1)^n$ et $\\cos^{(2n+1)}(0)=0$, et de même pour $\\sin$. Enfin $\\operatorname{ch}x=\\frac{e^x+e^{-x}}2$ et $\\operatorname{sh}x=\\frac{e^x-e^{-x}}2$ : on garde les termes pairs, resp. impairs.\n\n**Rayon $1$.** Pour $|x|<1$, $\\sum_{k=0}^nx^k=\\frac{1-x^{n+1}}{1-x}\\to\\frac1{1-x}$. En remplaçant $x$ par $-t$, resp. par $-t^2$, on obtient $\\frac1{1+t}=\\sum(-1)^nt^n$ et $\\frac1{1+t^2}=\\sum(-1)^nt^{2n}$ pour $|t|<1$ ; l'intégration terme à terme sur $[0,x]$ donne $\\ln(1+x)$ et $\\arctan x$, avec le même rayon $1$.\n\n**$(1+x)^\\alpha$, $\\alpha\\notin\\mathbb{N}$.** Soit $c_0=1$ et $c_n=\\frac{\\alpha(\\alpha-1)\\cdots(\\alpha-n+1)}{n!}$ : $c_n\\neq0$ et $\\left|\\frac{c_{n+1}}{c_n}\\right|=\\frac{|\\alpha-n|}{n+1}\\to1$, donc le rayon vaut $1$. La somme $S$ vérifie, sur $\\left]-1,1\\right[$, grâce à $(n+1)c_{n+1}=(\\alpha-n)c_n$ :\n$$(1+x)S'(x)=\\sum_{n\\ge0}\\big((n+1)c_{n+1}+nc_n\\big)x^n=\\alpha S(x).$$\nAlors $g(x)=S(x)(1+x)^{-\\alpha}$ a pour dérivée $\\big((1+x)S'(x)-\\alpha S(x)\\big)(1+x)^{-\\alpha-1}=0$ : $g$ est constante, égale à $g(0)=1$, donc $S(x)=(1+x)^\\alpha$. Si $\\alpha\\in\\mathbb{N}$, $c_n=0$ pour $n>\\alpha$ et l'on retrouve la formule du binôme.",
+      "exemple": "- Avec $\\alpha=\\frac12$ : $c_1=\\frac12$, $c_2=\\frac{\\frac12\\cdot\\left(-\\frac12\\right)}{2}=-\\frac18$, $c_3=\\frac{\\frac12\\cdot\\left(-\\frac12\\right)\\cdot\\left(-\\frac32\\right)}{6}=\\frac1{16}$, donc $\\sqrt{1+x}=1+\\frac x2-\\frac{x^2}8+\\frac{x^3}{16}+\\cdots$ pour $|x|<1$.\n- En substituant $x^2$ à $x$ : $e^{x^2}=\\sum\\frac{x^{2n}}{n!}$ sur $\\mathbb{R}$ ; en substituant $-x$ : $\\ln(1-x)=-\\sum_{n\\ge1}\\frac{x^n}n$ sur $\\left]-1,1\\right[$.",
+      "contre_exemple": "- **Domaine de définition et intervalle de validité diffèrent** : $\\ln(1+x)$ est définie en $x=2$, mais la série $\\sum\\frac{(-1)^{n-1}}n2^n$ diverge grossièrement ($\\frac{2^n}n\\to+\\infty$). De même, $\\frac1{1+x^2}$ est définie sur $\\mathbb{R}$ mais $\\sum(-1)^nx^{2n}$ diverge pour $|x|\\ge1$.\n- **Au bord** : le développement de $(1+x)^{-1}$ ne vaut pas en $x=1$, puisque $\\sum(-1)^n$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $x\\in\\left]-1,1\\right[$, $\\frac1{1+x}=\\sum_{n\\ge0}(-1)^nx^n$.",
+          "vrai": true,
+          "justification": "C'est la série géométrique de raison $-x$, avec $|-x|<1$."
+        },
+        {
+          "texte": "Pour tout réel $x>-1$, $\\ln(1+x)=\\sum_{n\\ge1}\\frac{(-1)^{n-1}}nx^n$.",
+          "vrai": false,
+          "contre_exemple": "En $x=2$, le terme général $\\frac{(-1)^{n-1}2^n}n$ ne tend pas vers $0$ : la série diverge, alors que $\\ln3$ est défini."
+        },
+        {
+          "texte": "Le développement en série entière de $\\sqrt{1+x}$ commence par $1+\\frac x2-\\frac{x^2}8$.",
+          "vrai": true,
+          "justification": "Avec $\\alpha=\\frac12$ : $c_1=\\frac12$ et $c_2=\\frac{\\alpha(\\alpha-1)}2=-\\frac18$."
+        },
+        {
+          "texte": "La série $\\sum\\frac{(-1)^n}{2n+1}x^{2n+1}$ a pour rayon $+\\infty$, puisque $\\arctan$ est définie sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "En $x=2$, le terme général $\\frac{2^{2n+1}}{2n+1}$ tend vers $+\\infty$ en valeur absolue : la série diverge, et son rayon est $1$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-dse",
+        "ar-l1-taylor-dl-usuels",
+        "ar-t-fonctions-usuelles-ln"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-exp-complexe",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "theoreme",
+      "titre": "Exponentielle complexe, nombre π, cosinus et sinus",
+      "recto": "Définir l'exponentielle complexe par une série entière, énoncer sa propriété de morphisme, et en déduire cosinus, sinus et le nombre π.",
+      "cours": "Au lycée, $\\exp$, $\\cos$, $\\sin$ et $\\pi$ sont admis (ou définis géométriquement). Les séries entières permettent de tout reconstruire à partir de rien : on **définit** $\\exp(z)=\\sum\\frac{z^n}{n!}$ pour $z\\in\\mathbb{C}$ (rayon infini), puis $\\cos x=\\operatorname{Re}\\exp(ix)$ et $\\sin x=\\operatorname{Im}\\exp(ix)$ pour $x$ réel, et enfin $\\pi$ comme le double du premier zéro positif de $\\cos$.\n\nLes étapes clés :\n- $\\exp(a+b)=\\exp(a)\\exp(b)$, par le produit de Cauchy de deux séries absolument convergentes et la formule du binôme ;\n- $\\overline{\\exp(z)}=\\exp(\\overline z)$, d'où $|\\exp(ix)|=1$ et $\\cos^2+\\sin^2=1$ ; la dérivation terme à terme donne $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\exp(ix)=i\\exp(ix)$, soit $\\cos'=-\\sin$ et $\\sin'=\\cos$ ;\n- $\\cos2<0$, par un encadrement de série alternée : $\\cos2\\le1-2+\\frac23=-\\frac13$ ; le théorème des valeurs intermédiaires fournit un zéro de $\\cos$ dans $\\left]0,2\\right[$ ;\n- $\\exp\\left(i\\frac\\pi2\\right)=i$, d'où la $2\\pi$-périodicité, puis le noyau $2\\pi\\mathbb{Z}$ et la surjectivité de $t\\mapsto e^{it}$ sur le cercle unité $\\mathbb{U}$.\n\n**Lien avec la mesure des angles.** La courbe $t\\mapsto e^{it}$ parcourt le cercle unité à vitesse $\\left|\\frac{\\mathrm{d}}{\\mathrm{d}t}e^{it}\\right|=1$ : la longueur de l'arc de $1$ à $e^{i\\theta}$, pour $\\theta\\in[0,2\\pi]$, vaut $\\theta$. Le réel $\\theta$ est la mesure en radians de l'angle, et $2\\pi$ est le périmètre du cercle unité.\n\nPièges : l'exponentielle complexe n'est pas injective ($\\exp(2i\\pi)=\\exp(0)$), ses valeurs ne sont pas toutes réelles positives ($\\exp(i\\pi)=-1$), et $|\\exp(z)|=e^{\\operatorname{Re}z}$ n'est égal à $1$ que si $z$ est imaginaire pur.",
+      "hypotheses": [
+        "$t$ est un nombre réel.",
+        "$\\exp(it)=1$."
+      ],
+      "hypotheses_pieges": [
+        "$t$ est réel et $\\sin t=0$ (à la place de $\\exp(it)=1$).",
+        "$t$ est réel et $|\\exp(it)|=1$ (à la place de $\\exp(it)=1$).",
+        "$t$ est réel et $\\exp(2it)=1$ (à la place de $\\exp(it)=1$)."
+      ],
+      "enonce": "Pour $z\\in\\mathbb{C}$, on pose $\\exp(z)=\\sum_{n=0}^{+\\infty}\\frac{z^n}{n!}$ (série de rayon $+\\infty$).\n\n- Pour tous $a,b\\in\\mathbb{C}$ : $\\exp(a+b)=\\exp(a)\\exp(b)$ ; en particulier $\\exp(z)\\neq0$ et $\\exp(-z)=\\frac1{\\exp(z)}$.\n- Pour $x$ réel, on pose $\\cos x=\\operatorname{Re}\\exp(ix)$ et $\\sin x=\\operatorname{Im}\\exp(ix)$. Alors $|\\exp(ix)|=1$, $\\cos^2x+\\sin^2x=1$, $\\cos'=-\\sin$ et $\\sin'=\\cos$.\n- La fonction $\\cos$ s'annule sur $\\left]0,2\\right[$ ; on note $\\frac\\pi2$ son plus petit zéro strictement positif.\n- L'application $t\\mapsto\\exp(it)$ est un morphisme surjectif du groupe $(\\mathbb{R},+)$ sur le groupe $(\\mathbb{U},\\times)$ des complexes de module $1$, de noyau $2\\pi\\mathbb{Z}$ : pour $t$ réel, $\\exp(it)=1$ si et seulement si $t\\in2\\pi\\mathbb{Z}$.",
+      "enonce_trous": "Pour tous $a,b\\in\\mathbb{C}$, {{1}}. Le nombre $\\pi$ est défini comme {{2}}, et pour $t$ réel, $\\exp(it)=1$ si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\exp(a+b)=\\exp(a)\\exp(b)$",
+          "leurres": [
+            "$\\exp(ab)=\\exp(a)\\exp(b)$",
+            "$\\exp(a+b)=\\exp(a)+\\exp(b)$",
+            "$|\\exp(a)|=1$"
+          ]
+        },
+        {
+          "reponse": "le double du plus petit zéro strictement positif de $\\cos$",
+          "leurres": [
+            "le plus petit zéro strictement positif de $\\cos$",
+            "la moitié du plus petit zéro strictement positif de $\\sin$",
+            "le double du plus petit zéro strictement positif de $\\sin$"
+          ]
+        },
+        {
+          "reponse": "$t\\in2\\pi\\mathbb{Z}$",
+          "leurres": [
+            "$t\\in\\pi\\mathbb{Z}$",
+            "$t=0$",
+            "$t\\in\\frac\\pi2\\mathbb{Z}$"
+          ]
+        }
+      ],
+      "demo": "**Morphisme.** Les séries $\\sum\\frac{a^n}{n!}$ et $\\sum\\frac{b^n}{n!}$ convergent absolument ; leur produit de Cauchy converge donc vers $\\exp(a)\\exp(b)$, et son terme général est\n$$\\sum_{k=0}^n\\frac{a^k}{k!}\\frac{b^{n-k}}{(n-k)!}=\\frac1{n!}\\sum_{k=0}^n\\binom nka^kb^{n-k}=\\frac{(a+b)^n}{n!}.$$\nD'où $\\exp(a+b)=\\exp(a)\\exp(b)$, puis $\\exp(z)\\exp(-z)=\\exp(0)=1$.\n\n**Cosinus et sinus.** En conjuguant les sommes partielles, $\\overline{\\exp(z)}=\\exp(\\overline z)$, donc $|\\exp(ix)|^2=\\exp(ix)\\exp(-ix)=1$, soit $\\cos^2x+\\sin^2x=1$. La fonction $x\\mapsto\\exp(ix)=\\sum\\frac{i^n}{n!}x^n$ se dérive terme à terme : sa dérivée est $\\sum_{n\\ge1}\\frac{i^n}{(n-1)!}x^{n-1}=i\\exp(ix)$. En séparant parties réelle et imaginaire : $\\cos'+i\\sin'=i(\\cos+i\\sin)$, d'où $\\cos'=-\\sin$ et $\\sin'=\\cos$.\n\n**Le nombre $\\pi$.** $\\cos2=\\sum(-1)^n\\frac{4^n}{(2n)!}$ ; pour $n\\ge1$, $u_n=\\frac{4^n}{(2n)!}$ décroît ($\\frac{u_{n+1}}{u_n}=\\frac4{(2n+1)(2n+2)}<1$) vers $0$, donc le reste alterné $\\sum_{n\\ge3}(-1)^nu_n$ est du signe de son premier terme, négatif : $\\cos2\\le1-2+\\frac23=-\\frac13<0$. Comme $\\cos0=1$, le théorème des valeurs intermédiaires donne un zéro dans $\\left]0,2\\right[$. L'ensemble des zéros de $\\cos$ dans $[0,2]$ est fermé, non vide, et ne contient pas $0$ ; sa borne inférieure est un zéro strictement positif, noté $\\frac\\pi2$.\n\n**Valeurs et périodicité.** Sur $\\left[0,\\frac\\pi2\\right[$, $\\cos>0$, donc $\\sin$ est strictement croissante sur $\\left[0,\\frac\\pi2\\right]$ et $\\sin\\frac\\pi2>\\sin0=0$ ; avec $\\cos\\frac\\pi2=0$ et $\\cos^2+\\sin^2=1$, $\\sin\\frac\\pi2=1$ : $\\exp\\left(i\\frac\\pi2\\right)=i$. Donc $\\exp(i\\pi)=i^2=-1$ et $\\exp(2i\\pi)=1$ : $2\\pi\\mathbb{Z}$ est contenu dans le noyau.\n\n**Noyau.** Soit $s\\in\\left]0,2\\pi\\right[$ ; écrivons $s=m\\frac\\pi2+u$ avec $m\\in\\{0,1,2,3\\}$ et $u\\in\\left[0,\\frac\\pi2\\right[$, $(m,u)\\neq(0,0)$. Alors $\\exp(is)=i^m(c+i\\sigma)$ avec $c=\\cos u>0$ et $\\sigma=\\sin u\\ge0$, $\\sigma>0$ si $u>0$. Pour $m=0$, $\\exp(is)=c+i\\sigma$ avec $\\sigma>0$ ; pour $m=1,2,3$, $\\exp(is)$ vaut $-\\sigma+ic$, $-c-i\\sigma$ ou $\\sigma-ic$, dont la partie imaginaire ($c$ ou $-c$) est non nulle, ou dont la partie réelle $-c$ est négative : jamais $1$. Donc si $\\exp(it)=1$, en écrivant $t=2k\\pi+s$ avec $s\\in[0,2\\pi[$, on obtient $\\exp(is)=1$, d'où $s=0$.\n\n**Surjectivité.** Soit $w=a+ib\\in\\mathbb{U}$ avec $a,b\\ge0$. Sur $\\left[0,\\frac\\pi2\\right]$, $\\cos$ est continue et passe de $1$ à $0$ : il existe $u$ avec $\\cos u=a$, puis $\\sin u\\ge0$ et $\\sin^2u=1-a^2=b^2$, donc $\\sin u=b$ et $\\exp(iu)=w$. Un élément quelconque de $\\mathbb{U}$ s'écrit $i^mw$ avec $w$ de ce type, image de $u+m\\frac\\pi2$.",
+      "exemple": "- $\\exp(i\\pi)=-1$ et $\\exp\\left(i\\frac\\pi3\\right)=\\frac12+i\\frac{\\sqrt3}2$.\n- $\\exp\\left(\\ln2+i\\frac\\pi2\\right)=\\exp(\\ln2)\\exp\\left(i\\frac\\pi2\\right)=2i$ : l'exponentielle complexe atteint des valeurs non réelles de module différent de $1$.\n- Les solutions de $\\exp(z)=1$ dans $\\mathbb{C}$ sont les $z=2ik\\pi$, $k\\in\\mathbb{Z}$.",
+      "contre_exemple": "- **Pas injective** : $\\exp(2i\\pi)=\\exp(0)=1$, alors que $2i\\pi\\neq0$.\n- **Pas toujours réelle positive** : $\\exp(i\\pi)=-1<0$ ; $\\exp(z)$ est un réel strictement positif seulement si $z\\in\\mathbb{R}+2i\\pi\\mathbb{Z}$.\n- **Module** : $|\\exp(1+i)|=e\\neq1$ ; seule la restriction aux imaginaires purs est à valeurs dans $\\mathbb{U}$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $z\\in\\mathbb{C}$, $|\\exp(z)|=\\exp(\\operatorname{Re}z)$.",
+          "vrai": true,
+          "justification": "Avec $z=x+iy$, $\\exp(z)=\\exp(x)\\exp(iy)$, et $|\\exp(iy)|=1$, $\\exp(x)>0$."
+        },
+        {
+          "texte": "L'exponentielle complexe est injective sur $\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "$\\exp(2i\\pi)=\\exp(0)=1$."
+        },
+        {
+          "texte": "Pour tous $a,b\\in\\mathbb{C}$, $\\exp(a)=\\exp(b)$ si et seulement si $a-b\\in2i\\pi\\mathbb{Z}$.",
+          "vrai": true,
+          "justification": "$\\exp(a)=\\exp(b)$ équivaut à $\\exp(a-b)=1$. Avec $a-b=x+iy$ : le module donne $e^x=1$, donc $x=0$, puis $\\exp(iy)=1$ donne $y\\in2\\pi\\mathbb{Z}$."
+        },
+        {
+          "texte": "Toute valeur prise par l'exponentielle complexe est un réel strictement positif ou un complexe de module $1$.",
+          "vrai": false,
+          "contre_exemple": "$\\exp\\left(1+i\\frac\\pi2\\right)=ie$ : ni réel, ni de module $1$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-derivation",
+        "ar-t-fonctions-usuelles-exp",
+        "geo-t-complexes-exponentielle",
+        "ar-t-tvi",
+        "proba-t-binomiale-pascal"
+      ]
+    },
+    {
+      "id": "ar-l2-series-entieres-generatrices",
+      "theme": "analyse-reelle",
+      "niveau": "l2",
+      "chapitre": "ar-l2-series-entieres",
+      "type": "methode",
+      "titre": "Séries génératrices et dénombrement",
+      "recto": "Définir la série génératrice d'une suite et la fonction génératrice d'une variable aléatoire à valeurs entières ; énoncer unicité et produit, et expliquer leur usage en dénombrement.",
+      "cours": "L'idée des séries génératrices : coder une suite $(a_n)$ par une seule fonction $A(x)=\\sum a_nx^n$. Les opérations sur les suites deviennent des opérations sur les fonctions : décaler les indices revient à multiplier par $x$, une relation de récurrence linéaire devient une équation algébrique, et surtout la **convolution** $c_n=\\sum_{k=0}^na_kb_{n-k}$ devient le **produit** $C=AB$.\n\nMéthode en dénombrement :\n- décomposer les objets de taille $n$ (une somme de deux tailles, un premier choix suivi d'un reste…) pour obtenir une relation sur les $a_n$ ;\n- la traduire en une équation sur $A(x)$, valable là où les séries convergent (après avoir minoré le rayon, souvent en majorant $|a_n|$ par une suite géométrique) ;\n- résoudre, puis développer $A$ en série entière (fractions rationnelles décomposées en éléments simples, développements usuels) et identifier les coefficients grâce à l'**unicité** du développement.\n\nExemples typiques : nombre de façons de payer $n$ euros avec des pièces de $1$ et $2$ euros, de série génératrice $\\frac1{(1-x)(1-x^2)}$ ; suite de Fibonacci, $\\sum F_nx^n=\\frac x{1-x-x^2}$ ; nombres de Catalan, $C(x)=1+xC(x)^2$.\n\nEn probabilités, pour $X$ à valeurs dans $\\mathbb{N}$, $G_X(t)=E(t^X)$ joue le même rôle : elle caractérise la loi, et la loi d'une somme de variables indépendantes s'obtient par produit. Si le rayon de $G_X$ est strictement supérieur à $1$, $E(X)=G_X'(1)$.\n\nPièges : le produit n'est pas terme à terme ($c_n\\neq a_nb_n$) ; l'égalité $C=AB$ ne vaut que sur le disque où les deux séries convergent **absolument** (minimum des rayons).",
+      "hypotheses": [
+        "$c_n=\\sum_{k=0}^na_kb_{n-k}$ pour tout $n$.",
+        "$|x|<\\min(R_a,R_b)$, où $R_a$ et $R_b$ sont les rayons de $\\sum a_nx^n$ et $\\sum b_nx^n$."
+      ],
+      "hypotheses_pieges": [
+        "$c_n=a_nb_n$ pour tout $n$ (à la place de $c_n=\\sum_{k=0}^na_kb_{n-k}$).",
+        "$|x|<\\max(R_a,R_b)$ (à la place du minimum des rayons).",
+        "Les séries $\\sum a_nx^n$ et $\\sum b_nx^n$ convergent au point $x$ (à la place de $|x|<\\min(R_a,R_b)$)."
+      ],
+      "enonce": "La **série génératrice** d'une suite $(a_n)_{n\\in\\mathbb{N}}$ de nombres complexes est la série entière $\\sum a_nx^n$.\n\n- **Unicité.** Si $\\sum a_nx^n$ et $\\sum b_nx^n$ ont un rayon strictement positif et des sommes égales sur un intervalle $\\left]-r,r\\right[$, $r>0$, alors $a_n=b_n$ pour tout $n$.\n- **Produit.** Soient $R_a$, $R_b$ les rayons de $\\sum a_nx^n$ et $\\sum b_nx^n$, et $c_n=\\sum_{k=0}^na_kb_{n-k}$. Alors $\\sum c_nx^n$ a un rayon au moins égal à $\\min(R_a,R_b)$ et, pour $|x|<\\min(R_a,R_b)$ :\n$$\\sum_{n=0}^{+\\infty}c_nx^n=\\left(\\sum_{n=0}^{+\\infty}a_nx^n\\right)\\left(\\sum_{n=0}^{+\\infty}b_nx^n\\right).$$\n- **Probabilités.** Si $X$ est une variable aléatoire à valeurs dans $\\mathbb{N}$, sa **fonction génératrice** $G_X(t)=E(t^X)=\\sum_{n=0}^{+\\infty}P(X=n)t^n$ est une série entière de rayon au moins $1$, normalement convergente sur $[-1,1]$, et elle détermine la loi de $X$ : $P(X=n)=\\frac{G_X^{(n)}(0)}{n!}$. Si $X$ et $Y$ sont indépendantes, $G_{X+Y}=G_XG_Y$ sur $[-1,1]$.",
+      "enonce_trous": "Si $c_n$ est égal à {{1}} pour tout $n$, alors pour $|x|$ strictement inférieur à {{2}}, la somme $\\sum_{n=0}^{+\\infty}c_nx^n$ est égale à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{k=0}^na_kb_{n-k}$",
+          "leurres": [
+            "$a_nb_n$",
+            "$\\sum_{k=0}^na_kb_k$",
+            "$a_n+b_n$"
+          ]
+        },
+        {
+          "reponse": "$\\min(R_a,R_b)$",
+          "leurres": [
+            "$\\max(R_a,R_b)$",
+            "$R_a+R_b$",
+            "$R_aR_b$"
+          ]
+        },
+        {
+          "reponse": "$\\left(\\sum a_nx^n\\right)\\left(\\sum b_nx^n\\right)$",
+          "leurres": [
+            "$\\sum a_nx^n+\\sum b_nx^n$",
+            "$\\left(\\sum a_nx^n\\right)^2$",
+            "$\\sum a_nb_nx^n$"
+          ]
+        }
+      ],
+      "demo": "**Unicité.** La série $\\sum(a_n-b_n)x^n$ a un rayon strictement positif et une somme $D$ nulle au voisinage de $0$ ; par dérivation terme à terme, $a_n-b_n=\\frac{D^{(n)}(0)}{n!}=0$.\n\n**Produit.** Pour $|x|<\\min(R_a,R_b)$, les séries $\\sum a_nx^n$ et $\\sum b_nx^n$ convergent absolument. Le produit de Cauchy de deux séries absolument convergentes converge (absolument) vers le produit des sommes ; son terme général est $\\sum_{k=0}^na_kx^kb_{n-k}x^{n-k}=c_nx^n$. La série $\\sum c_nx^n$ converge donc en tout point de module $<\\min(R_a,R_b)$, d'où la minoration du rayon et l'égalité.\n\n**Probabilités.** Pour $|t|\\le1$, $|P(X=n)t^n|\\le P(X=n)$ et $\\sum P(X=n)=1$ : la série converge normalement sur $[-1,1]$, et le rayon est au moins $1$. Comme ce rayon est $>0$, $P(X=n)=\\frac{G_X^{(n)}(0)}{n!}$ (dérivation terme à terme) : deux variables de même fonction génératrice ont la même loi. Si $X$ et $Y$ sont indépendantes, $P(X+Y=n)=\\sum_{k=0}^nP(X=k)P(Y=n-k)$ ; les séries $\\sum P(X=n)t^n$ et $\\sum P(Y=n)t^n$ convergent absolument pour $|t|\\le1$, et leur produit de Cauchy donne $G_{X+Y}(t)=G_X(t)G_Y(t)$.",
+      "exemple": "**Fibonacci.** Soit $F_0=0$, $F_1=1$, $F_{n+2}=F_{n+1}+F_n$. Par récurrence $0\\le F_n\\le2^n$, donc le rayon de $F(x)=\\sum F_nx^n$ est au moins $\\frac12$. Pour $|x|<\\frac12$, la relation de récurrence donne $F(x)-x=xF(x)+x^2F(x)$, soit $F(x)=\\frac x{1-x-x^2}$. En décomposant en éléments simples, avec $\\varphi=\\frac{1+\\sqrt5}2$ et $\\psi=\\frac{1-\\sqrt5}2$ : $F(x)=\\frac1{\\sqrt5}\\left(\\frac1{1-\\varphi x}-\\frac1{1-\\psi x}\\right)$, d'où, par unicité, $F_n=\\frac{\\varphi^n-\\psi^n}{\\sqrt5}$.",
+      "contre_exemple": "- **Produit terme à terme** : pour $a_n=b_n=1$, $\\sum a_nb_nx^n=\\frac1{1-x}$, alors que le produit des sommes vaut $\\frac1{(1-x)^2}=\\sum(n+1)x^n$.\n- **Convergence non absolue** : pour $a_n=b_n=\\frac{(-1)^n}{\\sqrt{n+1}}$, les deux séries convergent en $x=1$ (séries alternées), mais $|c_n|=\\sum_{k=0}^n\\frac1{\\sqrt{(k+1)(n-k+1)}}\\ge\\sum_{k=0}^n\\frac2{n+2}=\\frac{2(n+1)}{n+2}\\ge1$ : la série $\\sum c_n$ diverge.\n- **Rayon exactement $1$** : si $P(X=n)=\\frac1{n(n+1)}$ pour $n\\ge1$ (ces nombres somment à $1$), $G_X$ a pour rayon $1$, car $\\frac{t^n}{n(n+1)}\\to+\\infty$ pour $t>1$ ; et $E(X)=\\sum\\frac1{n+1}=+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ suit la loi de Bernoulli de paramètre $p$, alors $G_X(t)=1-p+pt$.",
+          "vrai": true,
+          "justification": "$G_X(t)=P(X=0)+P(X=1)t=(1-p)+pt$."
+        },
+        {
+          "texte": "La fonction génératrice d'une variable aléatoire à valeurs dans $\\mathbb{N}$ a toujours un rayon strictement supérieur à $1$.",
+          "vrai": false,
+          "contre_exemple": "Pour $P(X=n)=\\frac1{n(n+1)}$ ($n\\ge1$), le rayon vaut $1$ : pour $t>1$, $\\frac{t^n}{n(n+1)}\\to+\\infty$."
+        },
+        {
+          "texte": "Deux variables aléatoires à valeurs dans $\\mathbb{N}$ qui ont la même fonction génératrice sur $[-1,1]$ ont la même loi.",
+          "vrai": true,
+          "justification": "Par unicité du développement en série entière (rayon au moins $1$), $P(X=n)=\\frac{G_X^{(n)}(0)}{n!}$ pour tout $n$."
+        },
+        {
+          "texte": "Le nombre de couples $(a,b)\\in\\mathbb{N}^2$ tels que $a+b=n$ a pour série génératrice $\\frac1{1-x^2}$.",
+          "vrai": false,
+          "contre_exemple": "Ce nombre vaut $n+1$, et $\\sum(n+1)x^n=\\frac1{(1-x)^2}$ (produit de $\\frac1{1-x}$ par lui-même). Par exemple pour $n=1$ : deux couples, alors que le coefficient de $x$ dans $\\frac1{1-x^2}$ est $0$."
+        }
+      ],
+      "prerequis": [
+        "ar-l2-series-entieres-derivation",
+        "proba-l1-variables-finies-independance",
+        "ar-l1-suites-recurrence-lineaire"
+      ]
+    }
+  ]
+}

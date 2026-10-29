@@ -327,4 +327,39 @@ assert limit(t**2 / (t**2 + sin(t)), t, oo) == 1                           # q5
 assert integrate(t**Rational(-1, 3), (t, 1, x)) == Rational(3, 2) * (x**Rational(2, 3) - 1)   # q6
 assert proche(mp.nsum(lambda j: (-1)**j / (j + 1), [0, mp.inf]), mp.log(2))  # q8
 
+# ---------------------------------------------------------------------------
+# Compléments du relecteur indépendant
+# ---------------------------------------------------------------------------
+# cauchy-ex3 (v0, v1) : n = 1 suffit à réfuter les leurres 2/pi et 8/(3pi) ; la borne 1/pi (resp. 4/(3pi)) tient
+# pour n = 1..6, et la limite (2/pi) ln 2 (resp. (2/pi) ln 3) la dépasse.
+assert I_arches(1, 2, 1) < 2 / mp.pi and I_arches(1, 3, 1) < 8 / (3 * mp.pi)
+assert all(I_arches(1, 2, N) >= 1 / mp.pi and I_arches(1, 3, N) >= 4 / (3 * mp.pi) for N in range(1, 7))
+assert 2 / mp.pi * mp.log(2) > 1 / mp.pi and 2 / mp.pi * mp.log(3) > 4 / (3 * mp.pi)
+# cauchy-ex3 v2 : le minorant sqrt(2n/pi) dépasse 1 dès n = 2.
+assert mp.sqrt(4 / mp.pi) > 1 > mp.sqrt(2 / mp.pi)
+# positive-ex4 v1, v2 : intervalles disjoints (4^-n + 4^-(n+1) < 1, idem pour 3).
+assert all(F(1, 4**k) + F(1, 4**(k + 1)) < 1 and F(1, 3**k) + F(1, 3**(k + 1)) < 1 for k in range(1, 50))
+# dominee-ex2 : forme exacte n/(n+1) pour n symbolique.
+assert simplify(n * integrate(u**n, (u, 0, 1)) - n / (n + 1)) == 0
+# QCM q7 : avec 1/t <= n < 1/t + 1, n/(1 + n^2 t^2) >= 1/(5t) sur ]0,1].
+for tt in [mp.mpf(j) / 97 for j in range(1, 98)]:
+    m = int(mp.ceil(1 / tt))
+    assert m / (1 + (m * tt)**2) >= 1 / (5 * tt)
+# QCM q3 : pics de hauteur n sur [n - 4^-n, n + 4^-n], disjoints, aire n 4^-n, total 4/9 (déjà vérifié plus haut).
+# terme-a-terme-ex4 (v0, v1) : valeurs approchées citées dans les corrections.
+assert abs(mp.nsum(lambda j: j**-j, [1, mp.inf]) - mp.mpf("1.2913")) < 1e-4
+assert abs(mp.nsum(lambda j: (-1)**(j + 1) * j**-j, [1, mp.inf]) - mp.mpf("0.7834")) < 1e-4
+# relations-ex4 v1 : h(t) = (ln t)^2 / t a pour dérivée ln t (2 - ln t) / t^2.
+assert simplify(diff(log(t)**2 / t, t) - log(t) * (2 - log(t)) / t**2) == 0
+# rectangles-ex2 v0, v2 : encadrements des sommes partielles (n = 2..300).
+f1 = lambda v: 1 / (v * mp.log(v))
+f2 = lambda v: 1 / (v * mp.sqrt(mp.log(v)))
+s1 = s2 = mp.mpf(0)
+for N in range(2, 301):
+    s1 += f1(N); s2 += f2(N)
+    l2 = mp.log(2)
+    eps = mp.mpf("1e-25")    # égalité à droite pour N = 2
+    assert mp.log(mp.log(N + 1)) - mp.log(l2) <= s1 <= 1 / (2 * l2) + mp.log(mp.log(N)) - mp.log(l2) + eps
+    assert 2 * mp.sqrt(mp.log(N + 1)) - 2 * mp.sqrt(l2) <= s2 <= 1 / (2 * mp.sqrt(l2)) + 2 * mp.sqrt(mp.log(N)) - 2 * mp.sqrt(l2) + eps
+
 print("int_l2_generalisees : toutes les vérifications passent.")

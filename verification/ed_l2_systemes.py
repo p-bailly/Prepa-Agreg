@@ -584,4 +584,32 @@ assert nul(f1 * diff(f2, t) - diff(f1, t) * f2 + 1 / t**2)
 # q8 : formule sans R(t0)^{-1} : vaut 2 en 0 pour R = 2e^t, x' = x + 1, x(0) = 1.
 assert (2 * exp(t) * (1 + integrate(exp(-s) / 2, (s, 0, t)))).subs(t, 0) == 2
 
+# ---------------------------------------------------------------------------
+# Relecture indépendante (2026-10-29) : faits re-dérivés qui n'étaient pas encore contrôlés.
+# ---------------------------------------------------------------------------
+# ed-l2-systemes-cauchy, trou 3 : le leurre « au moins une solution non nulle » est faux (B = 0, X0 = 0 :
+# la solution nulle est la seule, car toute solution s'écrit e^{(t - t0)A} X0 à coefficients constants).
+assert mat_nul((Matrix([[0, 1], [-1, 0]]) * t).exp() * zeros(2, 1))
+# ed-l2-systemes-dimension, piège 2 : solutions t et t + 1 de x' = 1 (n = 1) ; « wronskien » t, nul en 0 seulement.
+assert nul(diff(t, t) - 1) and t.subs(t, 0) == 0 and t.subs(t, 1) != 0
+# ed-l2-systemes-ordre2, trou 1 : le leurre « x'(t0) = α et x''(t0) = β » est faux (x'' = 0, β = 1 : x'' est nulle).
+assert diff(a_ + b_ * t, t, 2) == 0  # solutions a + b t : x''(0) = 1 est impossible
+# ed-l2-systemes-ordre2, contre-exemple : raccord de λ1 t + μ1 t^2 (t > 0) et λ2 t + μ2 t^2 (t < 0) en 0 ;
+# x'(0) impose λ1 = λ2, x''(0) impose μ1 = μ2.
+l1_, l2_, m1_, m2_ = symbols("l1 l2 m1 m2")
+assert diff(l1_ * t + m1_ * t**2, t).subs(t, 0) == l1_ and diff(l2_ * t + m2_ * t**2, t, 2) == 2 * m2_
+# ed-l2-systemes-reduction, contre-exemple : parties réelle et imaginaire de e^{it}(1, -i) pour J, wronskien -1.
+Re_, Im_ = Matrix([cos(t), sin(t)]), Matrix([sin(t), -cos(t)])
+assert est_solution(Re_, J) and est_solution(Im_, J) and nul(Matrix.hstack(Re_, Im_).det() + 1)
+# ed-l2-systemes-reduction-ex5 (+ v1) : solutions qui ne tendent pas vers 0 aux valeurs limites a = 0 et a = 1.
+assert est_solution(Matrix([cos(t), -sin(t)]), Matrix([[0, 1], [-1, 0]]))
+assert Matrix([[-1, 1], [1, -1]]) * Matrix([1, 1]) == zeros(2, 1)
+# q7 : leurres t^2, 1/t, e^{1 - t^2} ne vérifient pas w' = -(2/t) w.
+for L in [t**2, 1 / t, exp(1 - t**2)]:
+    assert not nul(diff(L, t) + 2 / t * L)
+# ed-l2-systemes-cauchy-ex4 : base de l'espace des solutions sur R pour k = 2 : max(t,0)^2, min(t,0)^2,
+# dérivables en 0 (dérivées à gauche et à droite nulles) et solutions de t x' = 2x de chaque côté.
+for f in [t**2, 0 * t]:
+    assert nul(t * diff(f, t) - 2 * f) and diff(f, t).subs(t, 0) == 0
+
 print("ed_l2_systemes : toutes les vérifications passent.")

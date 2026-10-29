@@ -134,17 +134,17 @@ for g, k, u1, coef, n, leurres, l in [
 
 # num-l2-equations-point-fixe-ex3 (+ v1, v2) : (x^2 + ab)/(a+b) converge vers a ssi u_0 dans ]-b, b[.
 for a, b in [(1, 3), (2, 4), (1, 5)]:
-    g = lambda t: (t * t + a * b) / F(a + b)
+    g = lambda t: (t * t + a * b) / mpmath.mpf(a + b)
     assert factor(x**2 - (a + b) * x + a * b) == (x - a) * (x - b)
     assert F(2 * a, a + b) < 1 < F(2 * b, a + b)
-    for u0 in [F(-b) + F(1, 100), F(-a), F(0), F(a) + F(1, 3), F(b) - F(1, 100), F(b), F(-b), F(b) + F(1, 100)]:
+    for u0 in [mpmath.mpf(t) for t in [-b + 0.01, -a, 0, a + 0.3, b - 0.01, b, -b, b + 0.01]]:
         u = u0
         for _ in range(3000):
             u = g(u)
             if u > 10**6:
                 break
         if abs(u0) < b:
-            assert abs(u - a) < F(1, 10**6), (a, b, u0)
+            assert abs(u - a) < 1e-6, (a, b, u0)
         elif abs(u0) == b:
             assert u == b
         else:
@@ -303,7 +303,7 @@ for num, den, a, b, lim in [(2, 3, 1, 2, F(2, 3)), (4, 5, 1, 4, F(2, 5)), (6, 5,
     g = lambda t: (t * t + num) / F(den)
     assert g(F(a)) == a and g(F(b)) == b and F(2 * a, den) == lim
     u = F(0)
-    for _ in range(40):
+    for _ in range(10):
         v = g(u)
         assert u < v < a
         u = v

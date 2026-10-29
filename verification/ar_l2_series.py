@@ -10,7 +10,7 @@ import math
 from fractions import Fraction as F
 
 import mpmath as mp
-from sympy import (E, Rational, asymptotic, binomial, cos, exp, factorial, integrate, limit, log, oo, pi, series,
+from sympy import (Rational, binomial, cos, exp, integrate, limit, log, oo, pi,
                    simplify, sin, sqrt, symbols, zeta)
 
 mp.mp.dps = 30
@@ -58,7 +58,6 @@ assert eq_lim(cos(1 / sqrt(n)) - 1, -1 / (2 * n))
 # ar-l2-series-positives-ex4 : Bertrand, primitives -1/ln t et ln ln t ; sqrt(u_n/n) = 1/(n ln n).
 assert simplify(integrate(1 / (t * log(t) ** 2), t) + 1 / log(t)) == 0
 assert simplify(integrate(1 / (t * log(t)), t) - log(log(t))) == 0
-assert simplify(sqrt(1 / (x * log(x) ** 2) / x) * x * log(x).subs(x, 5) - 1).subs(x, 5) == 0 or True
 assert abs(math.sqrt((1 / (7 * math.log(7) ** 2)) / 7) - 1 / (7 * math.log(7))) < 1e-15
 
 # ---------------------------------------------------------------------------
@@ -86,7 +85,8 @@ assert geom(3, F(1, 4), 2) == F(1, 4) and [geom(3, F(1, 4), 0), geom(3, F(1, 4),
 assert geom(2, F(-1, 3), 1) == F(-1, 2) and geom(2, F(-1, 3), 0) == F(3, 2) and geom(2, F(1, 3), 1) == 1
 assert geom(1, F(2, 3), 3) == F(8, 9) and [geom(1, F(2, 3), m) for m in (0, 1, 2)] == [3, 2, F(4, 3)]
 # ar-l2-series-riemann-ex2 (+ v1, v2) : exposants.
-assert eq_lim(x**0 * n ** Rational(1, 3) / sqrt(n**3 + 1), n ** (Rational(1, 3) - Rational(3, 2)))
+assert eq_lim(n ** Rational(1, 3) / sqrt(n**3 + 1), n ** (Rational(1, 3) - Rational(3, 2)))
+assert eq_lim(n ** 2 / (n**3 + n + 1), n ** (2 - 3))
 assert eq_lim(n / (n**2 + n) ** Rational(1, 3), n ** (1 - Rational(2, 3)))
 for a, beta in [(Rational(1, 2), Rational(3, 2) - Rational(1, 2)), (Rational(-1, 3), Rational(2, 3) + Rational(1, 3)),
                 (1, 3 - 2)]:
@@ -137,7 +137,7 @@ assert eq_lim(1 / (n - 1) ** 3 - 1 / n**3, 3 / n**4)
 assert eq_lim(1 / sqrt(n - 1) - 1 / sqrt(n), 1 / (2 * n ** Rational(3, 2)))
 for p, cible in [(3, lambda m: 1 / (2 * m * m)), (4, lambda m: 1 / (3 * m**3)), (1.5, lambda m: 2 / math.sqrt(m))]:
     m0 = 2000
-    reste = float(mp.nsum(lambda j: 1 / j**p, [m0 + 1, mp.inf]))
+    reste = float(mp.zeta(p, m0 + 1))  # zêta de Hurwitz : somme des 1/j^p pour j > m0
     assert abs(reste / cible(m0) - 1) < 1e-2
 # ar-l2-series-sommation-comparaison-ex2 (+ v1, v2) : sommes partielles.
 for f, cible in [(math.sqrt, lambda m: 2 / 3 * m**1.5), (lambda j: 1 / math.sqrt(j), lambda m: 2 * math.sqrt(m))]:
@@ -190,18 +190,21 @@ assert simplify(integrate(t ** Rational(-1, 3), t) - Rational(3, 2) * t ** Ratio
 assert simplify(integrate(log(t) / t, t) - log(t) ** 2 / 2) == 0
 assert simplify((1 - log(t)) / t**2 - (log(t) / t).diff(t)) == 0
 m0 = 10**6
-assert abs(math.fsum(1 / (j * math.log(j)) for j in range(2, m0 + 1)) / math.log(math.log(m0)) - 1) < 0.2
+S_b = math.fsum(1 / (j * math.log(j)) for j in range(2, m0 + 1))  # encadrement de la correction (convergence lente)
+L2 = math.log(math.log(2))
+assert math.log(math.log(m0 + 1)) - L2 <= S_b <= 1 / (2 * math.log(2)) + math.log(math.log(m0)) - L2
 assert abs(math.fsum(j ** (-1 / 3) for j in range(1, m0 + 1)) / (1.5 * m0 ** (2 / 3)) - 1) < 1e-3
 assert abs(math.fsum(math.log(j) / j for j in range(1, m0 + 1)) / (math.log(m0) ** 2 / 2) - 1) < 0.02
 # ar-l2-series-integrale-ex4 (+ v1, v2) : primitives et encadrements des restes.
 assert simplify(integrate(log(t) / t**2, t) + (log(t) + 1) / t) == 0
 assert simplify((1 - 2 * log(t)) / t**3 - (log(t) / t**2).diff(t)) == 0 and 2 > math.sqrt(math.e)
-for f, F_inf in [(lambda u: 1 / (u * mp.log(u) ** 2), lambda u: 1 / mp.log(u)),
-                 (lambda u: mp.log(u) / u**2, lambda u: (mp.log(u) + 1) / u),
-                 (lambda u: 1 / (u * mp.log(u) ** 3), lambda u: 1 / (2 * mp.log(u) ** 2))]:
-    m0 = 50
-    reste = mp.nsum(f, [m0 + 1, mp.inf])
-    assert F_inf(m0 + 1) <= reste <= F_inf(m0)
+# Encadrement sur une tranche finie [m0+1, M] : int_{m0+1}^{M+1} f <= somme <= int_{m0}^{M} f (F = primitive tendant vers 0).
+for f, Fp in [(lambda u: 1 / (u * math.log(u) ** 2), lambda u: -1 / math.log(u)),
+              (lambda u: math.log(u) / u**2, lambda u: -(math.log(u) + 1) / u),
+              (lambda u: 1 / (u * math.log(u) ** 3), lambda u: -1 / (2 * math.log(u) ** 2))]:
+    m0, M = 50, 10**5
+    tranche = math.fsum(f(j) for j in range(m0 + 1, M + 1))
+    assert Fp(M + 1) - Fp(m0 + 1) <= tranche <= Fp(M) - Fp(m0)
 
 # ---------------------------------------------------------------------------
 # ar-l2-series-cauchy-absolue (carte)
@@ -229,7 +232,7 @@ for sgn in (1, -1):
     d = sgn / (sqrt(x) + sgn) - (sgn / sqrt(x) - 1 / x)
     assert limit(d * x ** Rational(3, 2), x, oo) == sgn  # reste en n^{-3/2}
 # Exemple : 1/(2n+3) <= 1/100 <=> n >= 49 (48,5).
-assert plus_petit(lambda m: F(1, 2 * m + 3), F(1, 100)) == 49 if True else None
+assert plus_petit(lambda m: F(1, 2 * m + 3), F(1, 100)) == 49
 # Trous : a = 1/(n+1) donne R_0 = ln 2 - 1 < 0 ; |R_0| = 1 - ln 2 < 1/2 (leurre |R_n| >= a_{n+1}).
 assert math.log(2) - 1 < 0 and 1 - math.log(2) < 0.5
 # Leurres |R_n| <= a_{n+2} et <= a_{n+1}/2 : a = (1, 1, 0, 0, ...), R_0 = -1.
@@ -291,8 +294,8 @@ for th in [0.3, 1, 2, 3, 5]:
         s += cmath.exp(1j * m * th)
         assert abs(s) <= 1 / abs(math.sin(th / 2)) + 1e-9
 # Exemple : sum sin n / n = (pi - 1)/2.
-assert abs(mp.nsum(lambda j: mp.sin(j) / j, [1, mp.inf], method="direct", steps=[10**5]) - (mp.pi - 1) / 2) < 1e-4 \
-    if False else abs(float(mp.im(-mp.log(1 - mp.exp(1j)))) - (math.pi - 1) / 2) < 1e-15
+# (somme de -log(1 - e^{i}) = sum e^{in}/n, partie imaginaire)
+assert abs(float(mp.im(-mp.log(1 - mp.exp(1j)))) - (math.pi - 1) / 2) < 1e-15
 
 # ar-l2-series-abel-ex1 (+ v1, v2) : plus petites constantes 2, sqrt 2, 1.
 for th, rep, leurres in [(math.pi / 3, 2, [1, math.sqrt(3), 2 / math.sqrt(3)]),
