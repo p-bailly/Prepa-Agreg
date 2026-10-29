@@ -1,0 +1,440 @@
+{
+  "cartes": [
+    {
+      "id": "geo-l2-affine-sous-espaces",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "theoreme",
+      "titre": "Sous-espaces affines et intersection",
+      "recto": "Définir un sous-espace affine et sa direction, puis énoncer le critère d'intersection de deux sous-espaces affines.",
+      "cours": "Un espace affine est un ensemble de points $E$ sur lequel agit un espace vectoriel $\\vec E$ : à deux points $A,B$ correspond un vecteur $\\overrightarrow{AB}$, et à un point $A$ et un vecteur $\\vec u$ correspond le point $A+\\vec u$, avec la relation de Chasles. Un sous-espace affine est un « sous-espace vectoriel décalé » : $F=A+\\vec F$. Sa direction $\\vec F$ est l'ensemble des vecteurs $\\overrightarrow{MN}$ joignant deux de ses points ; deux sous-espaces affines sont parallèles s'ils ont la même direction. Exemples : l'ensemble des solutions d'un système linéaire $AX=B$, s'il est non vide, est un sous-espace affine de direction $\\mathrm{Ker}\\,A$ ; de même pour les solutions d'une équation différentielle linéaire avec second membre.\n\nLe critère d'intersection ramène une question de points à une question de vecteurs : $F$ et $G$ se coupent exactement quand le vecteur $\\overrightarrow{AB}$ qui joint un point de l'un à un point de l'autre se décompose sur $\\vec F+\\vec G$. L'intersection, quand elle est non vide, a pour direction $\\vec F\\cap\\vec G$, et sa dimension se calcule par la formule de Grassmann.\n\nMéthode : pour deux droites de l'espace de dimension $3$, $D_1=A+\\mathbb{R}\\vec u$ et $D_2=B+\\mathbb{R}\\vec v$ non parallèles, elles se coupent si et seulement si $\\overrightarrow{AB}\\in\\mathrm{Vect}(\\vec u,\\vec v)$, c'est-à-dire $\\det(\\overrightarrow{AB},\\vec u,\\vec v)=0$. Pour une droite non parallèle à un hyperplan (direction non contenue dans celle de l'hyperplan), ou plus généralement pour deux sous-espaces de directions supplémentaires, l'intersection est un point.\n\nPièges : une condition de dimension ($\\dim F+\\dim G\\ge\\dim E$) ne suffit pas, il faut que les **directions** engendrent $\\vec E$ ; deux droites non parallèles de l'espace peuvent ne pas se couper (droites non coplanaires) ; l'intersection de deux sous-espaces affines peut être vide.",
+      "hypotheses": [
+        "$F$ et $G$ sont des sous-espaces affines (non vides) de $E$.",
+        "$\\vec F+\\vec G=\\vec E$.",
+        "$\\vec F\\cap\\vec G=\\{\\vec 0\\}$ (pour l'unicité du point commun)."
+      ],
+      "hypotheses_pieges": [
+        "$\\dim F+\\dim G\\ge\\dim E$ (à la place de $\\vec F+\\vec G=\\vec E$).",
+        "$F$ et $G$ ne sont pas parallèles, c'est-à-dire qu'on n'a ni $\\vec F\\subset\\vec G$ ni $\\vec G\\subset\\vec F$ (à la place de $\\vec F+\\vec G=\\vec E$).",
+        "$\\vec F$ et $\\vec G$ sont supplémentaires dans un sous-espace vectoriel $\\vec H$ de $\\vec E$ (à la place de $\\vec F+\\vec G=\\vec E$)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel de direction $\\vec E$. Une partie non vide $F$ de $E$ est un **sous-espace affine** s'il existe un point $A\\in F$ et un sous-espace vectoriel $\\vec F$ de $\\vec E$ tels que $F=A+\\vec F=\\{A+\\vec u:\\vec u\\in\\vec F\\}$. Alors $\\vec F=\\{\\overrightarrow{MN}:M,N\\in F\\}$ ne dépend que de $F$ (c'est sa **direction**), et $F=M+\\vec F$ pour tout $M\\in F$.\n\n**Théorème.** Soient $F=A+\\vec F$ et $G=B+\\vec G$ deux sous-espaces affines de $E$. Alors $F\\cap G\\neq\\emptyset$ si et seulement si $\\overrightarrow{AB}\\in\\vec F+\\vec G$ ; dans ce cas, $F\\cap G$ est un sous-espace affine de direction $\\vec F\\cap\\vec G$. En particulier, si $\\vec F+\\vec G=\\vec E$, alors $F$ et $G$ se coupent ; si de plus $\\vec F\\cap\\vec G=\\{\\vec 0\\}$, ils se coupent en un seul point.",
+      "enonce_trous": "Soient $F=A+\\vec F$ et $G=B+\\vec G$ deux sous-espaces affines de $E$. Alors $F\\cap G\\neq\\emptyset$ si et seulement si {{1}} ; dans ce cas, $F\\cap G$ est un sous-espace affine de direction {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\overrightarrow{AB}\\in\\vec F+\\vec G$",
+          "leurres": [
+            "$\\overrightarrow{AB}\\in\\vec F\\cap\\vec G$",
+            "$\\overrightarrow{AB}\\in\\vec F\\cup\\vec G$",
+            "$\\vec F+\\vec G=\\vec E$"
+          ]
+        },
+        {
+          "reponse": "$\\vec F\\cap\\vec G$",
+          "leurres": [
+            "$\\vec F+\\vec G$",
+            "$\\vec F\\cup\\vec G$",
+            "$\\vec F$"
+          ]
+        }
+      ],
+      "demo": "**Direction bien définie.** Si $F=A+\\vec F$, pour $M=A+\\vec u$ et $N=A+\\vec v$ dans $F$, on a $\\overrightarrow{MN}=\\vec v-\\vec u\\in\\vec F$ ; réciproquement, tout $\\vec u\\in\\vec F$ s'écrit $\\overrightarrow{AM}$ avec $M=A+\\vec u\\in F$. Donc $\\vec F=\\{\\overrightarrow{MN}:M,N\\in F\\}$, qui ne dépend que de $F$. Pour $M\\in F$, on a $M+\\vec w=A+(\\overrightarrow{AM}+\\vec w)$, et $\\vec w\\mapsto\\overrightarrow{AM}+\\vec w$ est une bijection de $\\vec F$ sur lui-même : $M+\\vec F=F$.\n\n**Critère.** Si $M\\in F\\cap G$, alors $\\overrightarrow{AB}=\\overrightarrow{AM}+\\overrightarrow{MB}$ avec $\\overrightarrow{AM}\\in\\vec F$ et $\\overrightarrow{MB}\\in\\vec G$. Réciproquement, si $\\overrightarrow{AB}=\\vec u+\\vec v$ avec $\\vec u\\in\\vec F$ et $\\vec v\\in\\vec G$, le point $M=A+\\vec u$ est dans $F$, et $M=B-\\vec v$ est dans $G$.\n\n**Direction de l'intersection.** Si $M\\in F\\cap G$, alors $F=M+\\vec F$ et $G=M+\\vec G$, donc un point $N$ est dans $F\\cap G$ si et seulement si $\\overrightarrow{MN}\\in\\vec F\\cap\\vec G$ : $F\\cap G=M+(\\vec F\\cap\\vec G)$.\n\n**Cas particuliers.** Si $\\vec F+\\vec G=\\vec E$, la condition $\\overrightarrow{AB}\\in\\vec F+\\vec G$ est toujours remplie. Si de plus $\\vec F\\cap\\vec G=\\{\\vec 0\\}$, l'intersection est un sous-espace affine de direction $\\{\\vec 0\\}$, c'est-à-dire un point.",
+      "exemple": "Dans $\\mathbb{R}^3$, le plan $P$ d'équation $x+y+z=1$ a pour direction le plan vectoriel $\\vec P$ d'équation $x+y+z=0$. La droite $D=B+\\mathbb{R}\\vec w$, avec $\\vec w=(1,0,0)$, vérifie $\\vec w\\notin\\vec P$, donc $\\vec P\\oplus\\mathbb{R}\\vec w=\\mathbb{R}^3$ : $D$ et $P$ se coupent en un seul point, quel que soit $B$. Pour $B=(0,2,3)$, le point commun $(x,2,3)$ vérifie $x+5=1$ : c'est $(-4,2,3)$.",
+      "contre_exemple": "- **Une condition de dimension ne suffit pas** : dans $\\mathbb{R}^3$, les plans d'équations $z=0$ et $z=1$ vérifient $2+2\\ge3$, mais ne se coupent pas ; leurs directions sont égales et leur somme est le plan $z=0$, différent de $\\mathbb{R}^3$.\n- **Non parallèles ne suffit pas** : dans $\\mathbb{R}^3$, les droites $D_1=\\{(t,0,0):t\\in\\mathbb{R}\\}$ et $D_2=\\{(0,t,1):t\\in\\mathbb{R}\\}$ ne sont pas parallèles et ne se coupent pas : avec $A=(0,0,0)$ et $B=(0,0,1)$, le vecteur $\\overrightarrow{AB}=(0,0,1)$ n'est pas dans $\\vec D_1+\\vec D_2$, le plan $z=0$. Pourtant $\\vec D_1$ et $\\vec D_2$ sont supplémentaires dans ce plan.",
+      "affirmations": [
+        {
+          "texte": "Deux droites distinctes d'un plan affine sont parallèles ou se coupent en un seul point.",
+          "vrai": true,
+          "justification": "Si elles ne sont pas parallèles, leurs directions sont deux droites vectorielles distinctes du plan vectoriel $\\vec E$ : leur intersection est $\\{\\vec 0\\}$ et, par la formule de Grassmann, leur somme est de dimension $2$, donc égale à $\\vec E$. Le théorème donne un unique point commun."
+        },
+        {
+          "texte": "Deux plans d'un espace affine de dimension $4$ dont les directions sont distinctes se coupent toujours.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^4$, soient $P_1=\\{(x,y,0,0)\\}$, de direction $\\mathrm{Vect}(\\vec e_1,\\vec e_2)$, et $P_2=\\{(x,0,z,1)\\}$, de direction $\\mathrm{Vect}(\\vec e_1,\\vec e_3)$. Les directions sont distinctes, mais les points de $P_1$ ont une quatrième coordonnée nulle et ceux de $P_2$ une quatrième coordonnée égale à $1$ : $P_1\\cap P_2=\\emptyset$. En effet $(0,0,0,1)\\notin\\mathrm{Vect}(\\vec e_1,\\vec e_2,\\vec e_3)$."
+        },
+        {
+          "texte": "Si $F$ et $G$ sont deux sous-espaces affines tels que $\\vec F\\subset\\vec G$, alors $F\\subset G$ ou $F\\cap G=\\emptyset$.",
+          "vrai": true,
+          "justification": "Si $M\\in F\\cap G$, alors $F=M+\\vec F\\subset M+\\vec G=G$."
+        },
+        {
+          "texte": "L'intersection de deux sous-espaces affines est toujours un sous-espace affine.",
+          "vrai": false,
+          "contre_exemple": "Deux droites parallèles distinctes d'un plan ont une intersection vide, qui n'est pas un sous-espace affine (ceux-ci sont non vides par définition)."
+        }
+      ],
+      "prerequis": [
+        "al-l1-espaces-sev",
+        "al-l1-espaces-grassmann"
+      ]
+    },
+    {
+      "id": "geo-l2-affine-volume",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "theoreme",
+      "titre": "Repères, orientation et volume algébrique",
+      "recto": "Définir l'orientation d'un espace affine réel et le volume algébrique d'un parallélépipède, et dire comment ce volume dépend de la base choisie.",
+      "cours": "Un repère $(O;\\mathcal B)$ permet de repérer chaque point $M$ par les coordonnées du vecteur $\\overrightarrow{OM}$ dans la base $\\mathcal B$. Orienter, c'est séparer les bases en deux familles : celles qui se déduisent de la base de référence par une matrice de passage de déterminant positif (même orientation) et les autres. Dans le plan, cela distingue le sens trigonométrique du sens horaire ; dans l'espace, la règle de la main droite de la main gauche.\n\nLe volume algébrique du parallélépipède construit sur des vecteurs $\\vec u_1,\\dots,\\vec u_n$ est leur déterminant dans une base. Sa valeur absolue est le volume au sens usuel (aire en dimension $2$) quand la base est orthonormée ; son signe dit si la famille est directe. Sans structure euclidienne, le volume dépend de la base, mais seulement par un facteur constant $\\det_{\\mathcal B'}(\\mathcal B)$ : les **rapports** de volumes et, l'orientation une fois fixée, les **signes** ont un sens intrinsèque.\n\nMéthode : pour une aire ou un volume dans un repère orthonormé, on calcule un déterminant ; l'aire d'un triangle $ABC$ est $\\frac12\\left|\\det(\\overrightarrow{AB},\\overrightarrow{AC})\\right|$, le volume d'un tétraèdre $ABCD$ est $\\frac16\\left|\\det(\\overrightarrow{AB},\\overrightarrow{AC},\\overrightarrow{AD})\\right|$. Pour comparer deux bases, on calcule le déterminant de la matrice de passage. Permuter deux vecteurs change l'orientation ; une permutation circulaire de $n$ vecteurs la change si et seulement si $n$ est pair.\n\nPièges : deux bases orthonormées peuvent donner des volumes opposés (orientation) ; deux bases de même orientation non orthonormées donnent des volumes différents ; le déterminant de la matrice de passage entre deux bases de même orientation est positif, pas forcément égal à $1$.",
+      "hypotheses": [
+        "$\\mathcal B$ et $\\mathcal B'$ sont orthonormées.",
+        "$\\mathcal B$ et $\\mathcal B'$ ont même orientation."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathcal B$ et $\\mathcal B'$ sont formées de vecteurs deux à deux orthogonaux, sans être forcément unitaires (à la place d'orthonormées).",
+        "$\\mathcal B$ et $\\mathcal B'$ ont le même premier vecteur (à la place de : même orientation).",
+        "$\\det_{\\mathcal B}(\\mathcal B')\\neq0$ (à la place de : même orientation)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel de dimension $n\\ge1$, de direction $\\vec E$. Un **repère** de $E$ est la donnée $(O;\\mathcal B)$ d'un point $O$ et d'une base $\\mathcal B$ de $\\vec E$.\n\n**Orientation.** Deux bases $\\mathcal B$ et $\\mathcal B'$ de $\\vec E$ ont **même orientation** si $\\det_{\\mathcal B}(\\mathcal B')>0$. C'est une relation d'équivalence, qui a exactement deux classes ; orienter $E$, c'est choisir l'une d'elles, dont les bases sont dites **directes**.\n\n**Volume algébrique.** Le volume algébrique, relatif à la base $\\mathcal B$, du parallélépipède construit sur un point $A$ et des vecteurs $\\vec u_1,\\dots,\\vec u_n$ est $\\det_{\\mathcal B}(\\vec u_1,\\dots,\\vec u_n)$. Pour toute autre base $\\mathcal B'$ :\n$$\\det_{\\mathcal B'}(\\vec u_1,\\dots,\\vec u_n)=\\det_{\\mathcal B'}(\\mathcal B)\\,\\det_{\\mathcal B}(\\vec u_1,\\dots,\\vec u_n).$$\nEn particulier, si $\\vec E$ est euclidien et orienté, ce volume est le même dans toutes les bases orthonormées directes.",
+      "enonce_trous": "Deux bases $\\mathcal B$ et $\\mathcal B'$ de $\\vec E$ ont même orientation si {{1}} ; cette relation d'équivalence a exactement deux classes. Pour tous vecteurs $\\vec u_1,\\dots,\\vec u_n$, le déterminant $\\det_{\\mathcal B'}(\\vec u_1,\\dots,\\vec u_n)$ est égal au produit de $\\det_{\\mathcal B}(\\vec u_1,\\dots,\\vec u_n)$ par {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\det_{\\mathcal B}(\\mathcal B')>0$",
+          "leurres": [
+            "$\\det_{\\mathcal B}(\\mathcal B')\\neq0$",
+            "$\\det_{\\mathcal B}(\\mathcal B')=1$",
+            "$\\det_{\\mathcal B}(\\mathcal B')<0$"
+          ]
+        },
+        {
+          "reponse": "$\\det_{\\mathcal B'}(\\mathcal B)$",
+          "leurres": [
+            "$\\det_{\\mathcal B}(\\mathcal B')$",
+            "$\\left|\\det_{\\mathcal B'}(\\mathcal B)\\right|$",
+            "$1$"
+          ]
+        }
+      ],
+      "demo": "**Changement de base.** L'application $(\\vec u_1,\\dots,\\vec u_n)\\mapsto\\det_{\\mathcal B'}(\\vec u_1,\\dots,\\vec u_n)$ est $n$-linéaire alternée ; toute forme $n$-linéaire alternée est égale à sa valeur en $\\mathcal B$ multipliée par $\\det_{\\mathcal B}$, d'où la formule, avec le facteur $\\det_{\\mathcal B'}(\\mathcal B)$.\n\n**Relation d'équivalence.** La formule, appliquée aux vecteurs d'une troisième base $\\mathcal B''$, donne $\\det_{\\mathcal B}(\\mathcal B'')=\\det_{\\mathcal B}(\\mathcal B')\\det_{\\mathcal B'}(\\mathcal B'')$. Réflexivité : $\\det_{\\mathcal B}(\\mathcal B)=1>0$. Symétrie : avec $\\mathcal B''=\\mathcal B$, on obtient $\\det_{\\mathcal B}(\\mathcal B')\\det_{\\mathcal B'}(\\mathcal B)=1$, donc ces deux réels ont le même signe. Transitivité : un produit de deux réels strictement positifs est strictement positif.\n\n**Exactement deux classes.** Si $\\mathcal B=(\\vec e_1,\\dots,\\vec e_n)$, la base $\\mathcal B^-=(-\\vec e_1,\\vec e_2,\\dots,\\vec e_n)$ vérifie $\\det_{\\mathcal B}(\\mathcal B^-)=-1<0$ : il y a au moins deux classes. Pour toute base $\\mathcal B'$, le réel $\\det_{\\mathcal B}(\\mathcal B')$ est non nul ; s'il est négatif, alors $\\det_{\\mathcal B^-}(\\mathcal B')=\\det_{\\mathcal B^-}(\\mathcal B)\\det_{\\mathcal B}(\\mathcal B')=-\\det_{\\mathcal B}(\\mathcal B')>0$. Toute base est donc dans la classe de $\\mathcal B$ ou dans celle de $\\mathcal B^-$.\n\n**Bases orthonormées directes.** Si $\\mathcal B$ et $\\mathcal B'$ sont orthonormées, la matrice de passage $P$ de $\\mathcal B$ à $\\mathcal B'$ est orthogonale, donc $\\det P=\\pm1$, et $\\det_{\\mathcal B}(\\mathcal B')=\\det P$. Si de plus elles ont même orientation, $\\det P=1$, puis $\\det_{\\mathcal B'}(\\mathcal B)=\\frac1{\\det P}=1$ : les deux volumes sont égaux.",
+      "exemple": "Dans $\\mathbb{R}^2$ muni de la base canonique $\\mathcal B=(\\vec e_1,\\vec e_2)$, le parallélogramme construit sur $\\vec u=(3,1)$ et $\\vec v=(1,2)$ a pour aire algébrique $\\det_{\\mathcal B}(\\vec u,\\vec v)=3\\times2-1\\times1=5$ ; celui construit sur $(\\vec v,\\vec u)$ a pour aire algébrique $-5$. Dans la base $\\mathcal B'=(2\\vec e_1,\\vec e_2)$, de même orientation, on a $\\det_{\\mathcal B'}(\\mathcal B)=\\frac12$, et l'aire algébrique devient $\\frac52$ : en effet $\\vec u=\\frac32(2\\vec e_1)+\\vec e_2$ et $\\vec v=\\frac12(2\\vec e_1)+2\\vec e_2$, et $\\frac32\\times2-\\frac12\\times1=\\frac52$.",
+      "contre_exemple": "- **L'orientation compte** : les bases orthonormées $\\mathcal B=(\\vec e_1,\\vec e_2)$ et $\\mathcal B'=(\\vec e_1,-\\vec e_2)$ de $\\mathbb{R}^2$ ont le même premier vecteur, mais $\\det_{\\mathcal B}(\\vec e_1,\\vec e_2)=1$ et $\\det_{\\mathcal B'}(\\vec e_1,\\vec e_2)=-1$.\n- **Orthonormée compte** : $\\mathcal B'=(2\\vec e_1,\\vec e_2)$ a même orientation que $\\mathcal B$ et ses vecteurs sont orthogonaux, mais $\\det_{\\mathcal B'}(\\vec e_1,\\vec e_2)=\\frac12\\neq1$.\n- **Sans structure euclidienne**, le volume n'est défini qu'à un facteur près : seuls le rapport de deux volumes algébriques et, l'orientation une fois choisie, leur signe ne dépendent pas de la base.",
+      "affirmations": [
+        {
+          "texte": "Dans $\\mathbb{R}^3$, la base $(\\vec e_2,\\vec e_3,\\vec e_1)$ a la même orientation que la base canonique $(\\vec e_1,\\vec e_2,\\vec e_3)$.",
+          "vrai": true,
+          "justification": "Le déterminant de $(\\vec e_2,\\vec e_3,\\vec e_1)$ dans la base canonique vaut $1$ : on revient à $(\\vec e_1,\\vec e_2,\\vec e_3)$ par deux échanges de vecteurs, qui changent chacun le signe."
+        },
+        {
+          "texte": "Dans $\\mathbb{R}^n$, la base $(-\\vec e_1,\\dots,-\\vec e_n)$ a toujours l'orientation opposée à celle de la base canonique.",
+          "vrai": false,
+          "contre_exemple": "Son déterminant dans la base canonique est $(-1)^n$ ; pour $n=2$, il vaut $1$ : la base $(-\\vec e_1,-\\vec e_2)$ est directe (c'est l'image de la base canonique par la rotation d'angle $\\pi$)."
+        },
+        {
+          "texte": "Le rapport $\\frac{\\det_{\\mathcal B}(\\vec u_1,\\dots,\\vec u_n)}{\\det_{\\mathcal B}(\\vec v_1,\\dots,\\vec v_n)}$ (dénominateur non nul) ne dépend pas de la base $\\mathcal B$.",
+          "vrai": true,
+          "justification": "Changer de base multiplie le numérateur et le dénominateur par le même réel non nul $\\det_{\\mathcal B'}(\\mathcal B)$."
+        },
+        {
+          "texte": "Si deux bases ont même orientation, la matrice de passage de l'une à l'autre est de déterminant $1$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, les bases $(\\vec e_1,\\vec e_2)$ et $(2\\vec e_1,\\vec e_2)$ ont même orientation, et la matrice de passage $\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$ a pour déterminant $2$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-determinant-famille",
+        "al-l1-determinant-produit",
+        "geo-l2-affine-sous-espaces"
+      ]
+    },
+    {
+      "id": "geo-l2-affine-applications",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "theoreme",
+      "titre": "Applications affines et groupe affine",
+      "recto": "Définir une application affine et sa partie linéaire, puis énoncer les propriétés du groupe affine : morphisme vers $\\mathrm{GL}(\\vec E)$, stabilisateur d'un point, point fixe, effet sur les volumes.",
+      "cours": "Une application affine est une application linéaire « vue depuis un point » : une fois choisis un point $A$ et son image, $f$ agit sur les vecteurs $\\overrightarrow{AM}$ par sa partie linéaire $\\vec f$. En coordonnées, $f(X)=MX+C$, où $M$ est la matrice de $\\vec f$ et $C$ un vecteur constant. Exemples : translations ($\\vec f=\\mathrm{id}$), homothéties $M\\mapsto\\Omega+k\\overrightarrow{\\Omega M}$ ($\\vec f=k\\,\\mathrm{id}$), projections et symétries affines (sur un sous-espace affine, parallèlement à une direction supplémentaire).\n\nLe morphisme $f\\mapsto\\vec f$ sépare la partie « translation » de la partie « linéaire » : son noyau est le groupe des translations, et en fixant un point $O$ on retrouve exactement $\\mathrm{GL}(\\vec E)$. Toute bijection affine s'écrit donc de façon unique $f=t\\circ g$, avec $t$ une translation et $g$ une bijection affine fixant $O$. Les homothéties et les translations forment un sous-groupe, celui des $f$ dont la partie linéaire est de la forme $k\\,\\mathrm{id}$, $k\\neq0$.\n\nMéthode : pour trouver les points fixes, on résout $f(M)=M$, c'est-à-dire un système linéaire de matrice $\\vec f-\\mathrm{id}$ ; si $1$ n'est pas valeur propre de $\\vec f$, il y a un unique point fixe $\\Omega$, et dans un repère d'origine $\\Omega$, $f$ est linéaire. Pour l'effet sur les aires et les volumes, on calcule $\\det\\vec f$ : une application affine multiplie tous les volumes algébriques par ce même facteur, et conserve donc les rapports de volumes.\n\nPièges : une partie linéaire différente de l'identité ne garantit pas de point fixe ($(x,y)\\mapsto(x+1,2y)$ n'en a aucun) ; la composée de deux homothéties peut être une translation ; une application affine conservant les volumes n'est pas forcément une isométrie.",
+      "hypotheses": [
+        "$E$ est de dimension finie.",
+        "$f$ est affine.",
+        "$1$ n'est pas valeur propre de $\\vec f$."
+      ],
+      "hypotheses_pieges": [
+        "$\\vec f\\neq\\mathrm{id}_{\\vec E}$ (à la place de : $1$ n'est pas valeur propre de $\\vec f$).",
+        "$f$ est bijective (à la place de : $1$ n'est pas valeur propre de $\\vec f$).",
+        "$\\det\\vec f\\neq1$ (à la place de : $1$ n'est pas valeur propre de $\\vec f$)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel de dimension finie $n\\ge1$, de direction $\\vec E$. Une application $f:E\\to E$ est **affine** s'il existe une application linéaire $\\vec f:\\vec E\\to\\vec E$ (sa **partie linéaire**, alors unique) telle que $f(M)=f(A)+\\vec f\\left(\\overrightarrow{AM}\\right)$ pour tous $A,M\\in E$.\n- $f$ est bijective si et seulement si $\\vec f$ l'est. Les bijections affines forment un groupe $\\mathrm{GA}(E)$ pour la composition, et $f\\mapsto\\vec f$ est un morphisme surjectif de $\\mathrm{GA}(E)$ sur $\\mathrm{GL}(\\vec E)$, de noyau le groupe des translations.\n- Pour tout point $O$, ce morphisme, restreint au stabilisateur $\\{f\\in\\mathrm{GA}(E):f(O)=O\\}$, est un isomorphisme sur $\\mathrm{GL}(\\vec E)$.\n- Si $1$ n'est pas valeur propre de $\\vec f$, alors $f$ admet un unique point fixe.\n- $f$ multiplie les volumes algébriques par $\\det\\vec f$ : pour toute base $\\mathcal B$ de $\\vec E$ et tous vecteurs $\\vec u_1,\\dots,\\vec u_n$, $\\det_{\\mathcal B}\\left(\\vec f(\\vec u_1),\\dots,\\vec f(\\vec u_n)\\right)=\\det\\vec f\\cdot\\det_{\\mathcal B}(\\vec u_1,\\dots,\\vec u_n)$.",
+      "enonce_trous": "L'application $f\\mapsto\\vec f$ est un morphisme surjectif de $\\mathrm{GA}(E)$ sur $\\mathrm{GL}(\\vec E)$, de noyau {{1}}. Si {{2}}, alors $f$ admet un unique point fixe. Pour toute base $\\mathcal B$, l'application affine $f$ multiplie les volumes algébriques relatifs à $\\mathcal B$ par {{3}}.",
+      "trous": [
+        {
+          "reponse": "le groupe des translations",
+          "leurres": [
+            "le groupe des homothéties",
+            "le stabilisateur d'un point",
+            "le groupe réduit à l'identité"
+          ]
+        },
+        {
+          "reponse": "$1$ n'est pas valeur propre de $\\vec f$",
+          "leurres": [
+            "$\\vec f\\neq\\mathrm{id}_{\\vec E}$",
+            "$f$ est bijective",
+            "$\\det\\vec f\\neq1$"
+          ]
+        },
+        {
+          "reponse": "$\\det\\vec f$",
+          "leurres": [
+            "$\\left|\\det\\vec f\\right|$",
+            "$\\frac1{\\det\\vec f}$",
+            "le rang de $\\vec f$"
+          ]
+        }
+      ],
+      "demo": "**Bijectivité.** Fixons $O$. L'application $f$ s'écrit $M\\mapsto f(O)+\\vec f(\\overrightarrow{OM})$ ; comme $M\\mapsto\\overrightarrow{OM}$ et $\\vec u\\mapsto f(O)+\\vec u$ sont des bijections, $f$ est bijective si et seulement si $\\vec f$ l'est.\n\n**Morphisme.** Pour $f$ et $g$ affines, $g\\circ f(M)=g(f(A))+\\vec g\\left(\\overrightarrow{f(A)f(M)}\\right)=g\\circ f(A)+\\vec g\\circ\\vec f\\left(\\overrightarrow{AM}\\right)$ : $g\\circ f$ est affine, de partie linéaire $\\vec g\\circ\\vec f$. Si $f$ est une bijection affine, en posant $M=f^{-1}(P)$ et $A=f^{-1}(Q)$, l'égalité $\\overrightarrow{QP}=\\vec f(\\overrightarrow{AM})$ donne $f^{-1}(P)=f^{-1}(Q)+\\vec f^{-1}(\\overrightarrow{QP})$ : $f^{-1}$ est affine. Ainsi $\\mathrm{GA}(E)$ est un groupe et $f\\mapsto\\vec f$ un morphisme. Son noyau : $\\vec f=\\mathrm{id}$ équivaut à $f(M)=f(A)+\\overrightarrow{AM}$, soit $\\overrightarrow{Mf(M)}=\\overrightarrow{Af(A)}$ pour tout $M$ : $f$ est la translation de vecteur $\\overrightarrow{Af(A)}$.\n\n**Stabilisateur.** Pour $\\varphi\\in\\mathrm{GL}(\\vec E)$, l'application $M\\mapsto O+\\varphi(\\overrightarrow{OM})$ est une bijection affine qui fixe $O$, de partie linéaire $\\varphi$ : la restriction est surjective. Une bijection affine qui fixe $O$ s'écrit $M\\mapsto O+\\vec f(\\overrightarrow{OM})$, elle est donc déterminée par $\\vec f$ : la restriction est injective.\n\n**Point fixe.** $f(M)=M$ équivaut à $f(O)+\\vec f(\\overrightarrow{OM})=O+\\overrightarrow{OM}$, soit $(\\vec f-\\mathrm{id})(\\overrightarrow{OM})=\\overrightarrow{f(O)O}$. Si $1$ n'est pas valeur propre de $\\vec f$, l'endomorphisme $\\vec f-\\mathrm{id}$ est injectif, donc bijectif en dimension finie : cette équation a une et une seule solution $\\overrightarrow{OM}$.\n\n**Volumes.** L'application $(\\vec u_1,\\dots,\\vec u_n)\\mapsto\\det_{\\mathcal B}(\\vec f(\\vec u_1),\\dots,\\vec f(\\vec u_n))$ est $n$-linéaire alternée, donc égale à $c\\det_{\\mathcal B}$, avec $c=\\det_{\\mathcal B}(\\vec f(\\mathcal B))=\\det\\vec f$.",
+      "exemple": "Dans $\\mathbb{R}^2$, l'application $f(x,y)=(x+2y,\\,3x+y+4)$ est affine, de partie linéaire de matrice $\\begin{pmatrix}1&2\\\\3&1\\end{pmatrix}$, de déterminant $-5$ : $f$ est bijective, multiplie les aires algébriques par $-5$ et change l'orientation. La matrice de $\\vec f-\\mathrm{id}$, $\\begin{pmatrix}0&2\\\\3&0\\end{pmatrix}$, est de déterminant $-6\\neq0$ : $1$ n'est pas valeur propre, et l'unique point fixe s'obtient par $x+2y=x$ et $3x+y+4=y$, soit $y=0$ et $x=-\\frac43$.",
+      "contre_exemple": "- **$\\vec f\\neq\\mathrm{id}$ ne suffit pas pour un point fixe** : $f(x,y)=(x+1,\\,2y)$ a pour partie linéaire $\\mathrm{diag}(1,2)$, différente de l'identité, de déterminant $2\\neq1$, et $f$ est bijective ; pourtant $f$ n'a aucun point fixe, car $x=x+1$ est impossible. Ici $1$ est valeur propre de $\\vec f$.\n- **Quand $1$ est valeur propre, tout peut arriver** : la projection $(x,y)\\mapsto(x,0)$ a une droite de points fixes, la translation $(x,y)\\mapsto(x+1,y)$ n'en a aucun.\n- **La dimension finie sert** : dans l'espace $\\mathbb{R}[X]$, l'application $P\\mapsto XP+1$ est affine, de partie linéaire $P\\mapsto XP$, qui n'a pas la valeur propre $1$ ; mais $XP+1=P$ donnerait $(1-X)P=1$, impossible pour des raisons de degré.",
+      "affirmations": [
+        {
+          "texte": "Une application affine est déterminée par l'image d'un point et par sa partie linéaire.",
+          "vrai": true,
+          "justification": "$f(M)=f(A)+\\vec f(\\overrightarrow{AM})$ pour tout $M$."
+        },
+        {
+          "texte": "Une application affine dont la partie linéaire est $k\\,\\mathrm{id}$, avec $k\\neq1$, admet un unique point fixe.",
+          "vrai": true,
+          "justification": "$1$ n'est pas valeur propre de $k\\,\\mathrm{id}$, puisque $k\\neq1$. Pour $k\\neq0$, c'est une homothétie de rapport $k$, de centre ce point fixe ; pour $k=0$, c'est une application constante."
+        },
+        {
+          "texte": "La composée de deux homothéties est une homothétie.",
+          "vrai": false,
+          "contre_exemple": "Si $h_1$ est l'homothétie de centre $O_1$ et de rapport $2$ et $h_2$ celle de centre $O_2\\neq O_1$ et de rapport $\\frac12$, alors $h_1\\circ h_2$ a pour partie linéaire $\\mathrm{id}$ : c'est la translation de vecteur $\\overrightarrow{O_1O_2}$, non nul. En effet $h_1\\circ h_2(M)=O_1+2\\left(\\overrightarrow{O_1O_2}+\\frac12\\overrightarrow{O_2M}\\right)=M+\\overrightarrow{O_1O_2}$."
+        },
+        {
+          "texte": "Une bijection affine qui conserve les volumes algébriques est une translation.",
+          "vrai": false,
+          "contre_exemple": "La transvection $(x,y)\\mapsto(x+y,\\,y)$ a pour déterminant $1$ et conserve donc les aires algébriques, mais sa partie linéaire n'est pas l'identité."
+        }
+      ],
+      "prerequis": [
+        "al-l1-applications-isomorphismes",
+        "al-l1-determinant-produit",
+        "gr-l1-groupes-noyau",
+        "geo-l2-affine-volume"
+      ]
+    },
+    {
+      "id": "geo-l2-affine-barycentres",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "theoreme",
+      "titre": "Barycentres et coordonnées barycentriques",
+      "recto": "Énoncer l'existence et les propriétés du barycentre d'une famille de points pondérés, et définir les coordonnées barycentriques dans un repère affine.",
+      "cours": "Le barycentre est le « centre de masse » de points affectés de poids, éventuellement négatifs. On ne peut pas additionner des points, mais on peut écrire $\\overrightarrow{OG}=\\frac1\\Lambda\\sum\\lambda_i\\overrightarrow{OA_i}$, et le résultat ne dépend pas de l'origine $O$ : c'est la seule combinaison de points qui ait un sens intrinsèque, à condition que la somme des poids soit non nulle. On note souvent $G=\\frac1\\Lambda\\sum\\lambda_iA_i$.\n\nTrois outils dominent : l'**associativité** (on regroupe des points en remplaçant un groupe par son barycentre partiel, affecté du poids total), la **conservation par les applications affines**, qui caractérise d'ailleurs ces applications, et les **coordonnées barycentriques** dans un repère affine $(A_0,\\dots,A_n)$, qui repèrent un point par des poids de somme $1$. Les sous-espaces affines sont exactement les parties non vides stables par barycentre, et les segments sont les ensembles de barycentres à poids positifs de deux points.\n\nMéthode : pour montrer que des droites sont concourantes ou que des points sont alignés, on écrit un point bien choisi comme barycentre et on regroupe les poids de deux façons (médianes d'un triangle, théorème de Ceva). Pour calculer des coordonnées barycentriques dans le plan, on résout $\\overrightarrow{A_0M}=\\lambda_1\\overrightarrow{A_0A_1}+\\lambda_2\\overrightarrow{A_0A_2}$, puis $\\lambda_0=1-\\lambda_1-\\lambda_2$.\n\nPièges : des poids tous non nuls ne garantissent pas l'existence du barycentre, seule compte la **somme** ; un barycentre à poids de signes différents sort du segment ; trois points distincts ne forment un repère affine du plan que s'ils ne sont pas alignés.",
+      "hypotheses": [
+        "$\\lambda_1+\\dots+\\lambda_p\\neq0$ (pour l'existence et l'unicité du barycentre).",
+        "$(\\overrightarrow{A_0A_1},\\dots,\\overrightarrow{A_0A_n})$ est une base de $\\vec E$ (pour les coordonnées barycentriques)."
+      ],
+      "hypotheses_pieges": [
+        "Les $\\lambda_i$ sont tous non nuls (à la place de : $\\lambda_1+\\dots+\\lambda_p\\neq0$).",
+        "Les $\\lambda_i$ ne sont pas tous nuls (à la place de : $\\lambda_1+\\dots+\\lambda_p\\neq0$).",
+        "Les points $A_0,\\dots,A_n$ sont deux à deux distincts (à la place de : $(\\overrightarrow{A_0A_1},\\dots,\\overrightarrow{A_0A_n})$ est une base de $\\vec E$)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel de direction $\\vec E$, $A_1,\\dots,A_p$ des points de $E$ et $\\lambda_1,\\dots,\\lambda_p$ des réels de somme $\\Lambda=\\lambda_1+\\dots+\\lambda_p\\neq0$.\n- Il existe un unique point $G$, le **barycentre** de $(A_i,\\lambda_i)_{1\\le i\\le p}$, tel que $\\sum_{i=1}^p\\lambda_i\\overrightarrow{GA_i}=\\vec0$. Pour tout point $O$, $\\overrightarrow{OG}=\\frac1\\Lambda\\sum_{i=1}^p\\lambda_i\\overrightarrow{OA_i}$. Il ne change pas si l'on multiplie tous les poids par un même réel non nul.\n- **Associativité** : si l'on partage les indices en groupes de poids total non nul, on peut remplacer chaque groupe par son barycentre, affecté du poids total du groupe.\n- Une application affine $f$ conserve les barycentres : $f(G)$ est le barycentre des $(f(A_i),\\lambda_i)$.\n- Si $(A_0,\\dots,A_n)$ est un **repère affine** de $E$, c'est-à-dire si $(\\overrightarrow{A_0A_1},\\dots,\\overrightarrow{A_0A_n})$ est une base de $\\vec E$, tout point $M$ est le barycentre des $(A_i,\\lambda_i)_{0\\le i\\le n}$ pour un unique $(\\lambda_0,\\dots,\\lambda_n)$ de somme $1$ : ce sont les **coordonnées barycentriques** de $M$.",
+      "enonce_trous": "Si {{1}}, il existe un unique point $G$ tel que $\\sum_{i=1}^p\\lambda_i\\overrightarrow{GA_i}=\\vec0$, et pour tout point $O$ : {{2}}. Si $(A_0,\\dots,A_n)$ est un repère affine, tout point est barycentre des $A_i$ pour un unique système de poids {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\lambda_1+\\dots+\\lambda_p\\neq0$",
+          "leurres": [
+            "les $\\lambda_i$ sont tous non nuls",
+            "les $\\lambda_i$ ne sont pas tous nuls",
+            "les $\\lambda_i$ sont positifs ou nuls"
+          ]
+        },
+        {
+          "reponse": "$\\overrightarrow{OG}=\\frac{\\sum_i\\lambda_i\\overrightarrow{OA_i}}{\\sum_i\\lambda_i}$",
+          "leurres": [
+            "$\\overrightarrow{OG}=\\sum_i\\lambda_i\\overrightarrow{OA_i}$",
+            "$\\overrightarrow{OG}=\\frac1p\\sum_i\\lambda_i\\overrightarrow{OA_i}$",
+            "$\\overrightarrow{GO}=\\frac{\\sum_i\\lambda_i\\overrightarrow{OA_i}}{\\sum_i\\lambda_i}$"
+          ]
+        },
+        {
+          "reponse": "de somme $1$",
+          "leurres": [
+            "positifs ou nuls",
+            "tous non nuls",
+            "de somme non nulle"
+          ]
+        }
+      ],
+      "demo": "**Existence et unicité.** Fixons $O$. Par la relation de Chasles, $\\sum_i\\lambda_i\\overrightarrow{GA_i}=\\sum_i\\lambda_i\\left(\\overrightarrow{GO}+\\overrightarrow{OA_i}\\right)=\\Lambda\\overrightarrow{GO}+\\sum_i\\lambda_i\\overrightarrow{OA_i}$. Ce vecteur est nul si et seulement si $\\overrightarrow{OG}=\\frac1\\Lambda\\sum_i\\lambda_i\\overrightarrow{OA_i}$, ce qui définit un unique point $G$, puisque $\\Lambda\\neq0$. Multiplier tous les poids par $c\\neq0$ multiplie l'égalité définissant $G$ par $c$.\n\n**Associativité.** Si $I$ est un groupe d'indices de poids total $\\Lambda_I=\\sum_{i\\in I}\\lambda_i\\neq0$ et de barycentre $G_I$, alors $\\sum_{i\\in I}\\lambda_i\\overrightarrow{OA_i}=\\Lambda_I\\overrightarrow{OG_I}$ ; on remplace cette somme partielle dans la formule donnant $\\overrightarrow{OG}$.\n\n**Applications affines.** $\\overrightarrow{f(G)f(A_i)}=\\vec f(\\overrightarrow{GA_i})$, donc $\\sum_i\\lambda_i\\overrightarrow{f(G)f(A_i)}=\\vec f\\left(\\sum_i\\lambda_i\\overrightarrow{GA_i}\\right)=\\vec0$.\n\n**Coordonnées barycentriques.** Avec $O=A_0$, le point $M$ est le barycentre des $(A_i,\\lambda_i)$, avec $\\sum_i\\lambda_i=1$, si et seulement si $\\overrightarrow{A_0M}=\\sum_{i=1}^n\\lambda_i\\overrightarrow{A_0A_i}$ et $\\lambda_0=1-\\sum_{i=1}^n\\lambda_i$. Comme $(\\overrightarrow{A_0A_i})_{1\\le i\\le n}$ est une base, $(\\lambda_1,\\dots,\\lambda_n)$ existe et est unique, puis $\\lambda_0$ aussi.",
+      "exemple": "Dans le plan, l'isobarycentre $G$ de $A$, $B$, $C$ (poids $1$, $1$, $1$) est le centre de gravité du triangle : en regroupant $(B,1)$ et $(C,1)$ en $(A',2)$, où $A'$ est le milieu de $[BC]$, $G$ est le barycentre de $(A,1)$ et $(A',2)$, donc $\\overrightarrow{AG}=\\frac23\\overrightarrow{AA'}$. Comme on peut regrouper de même à partir de $B$ ou de $C$, les trois médianes concourent en $G$. Dans le repère affine $(A,B,C)$, $G$ a pour coordonnées barycentriques $\\left(\\frac13,\\frac13,\\frac13\\right)$ et $A'$ a pour coordonnées $\\left(0,\\frac12,\\frac12\\right)$.",
+      "contre_exemple": "- **La somme des poids doit être non nulle** : pour $A\\neq B$ et les poids $1$ et $-1$, tous deux non nuls, $\\overrightarrow{GA}-\\overrightarrow{GB}=\\overrightarrow{BA}\\neq\\vec0$ pour tout point $G$ : il n'y a pas de barycentre.\n- **Repère affine** : trois points distincts alignés $A_0$, $A_1$, $A_2$ d'un plan ne forment pas un repère affine ; leurs barycentres restent sur la droite qui les porte, et un point hors de cette droite n'est barycentre d'aucune famille $(A_i,\\lambda_i)$.\n- **Une application non affine ne conserve pas les barycentres** : $x\\mapsto x^2$ envoie $0$, $2$ et leur milieu $1$ sur $0$, $4$ et $1$, alors que le milieu de $0$ et $4$ est $2$.",
+      "affirmations": [
+        {
+          "texte": "Le barycentre de $(A,2)$ et $(B,-1)$, pour $A\\neq B$, appartient au segment $[AB]$.",
+          "vrai": false,
+          "contre_exemple": "Sur la droite réelle, avec $A=0$ et $B=1$ : $G=\\frac{2\\times0-1\\times1}{2-1}=-1$, qui n'est pas dans $[0,1]$. En général, $\\overrightarrow{AG}=-\\overrightarrow{AB}$."
+        },
+        {
+          "texte": "Si $f$ est affine et $G$ est l'isobarycentre de $A_1,\\dots,A_p$, alors $f(G)$ est l'isobarycentre de $f(A_1),\\dots,f(A_p)$.",
+          "vrai": true,
+          "justification": "Une application affine conserve les barycentres, avec les mêmes poids."
+        },
+        {
+          "texte": "Si $G$ est le barycentre de $(A,\\alpha)$, $(B,\\beta)$, $(C,\\gamma)$, avec $\\alpha+\\beta+\\gamma\\neq0$ et $\\beta+\\gamma\\neq0$, alors $G$ est le barycentre de $(A,\\alpha)$ et $(I,\\beta+\\gamma)$, où $I$ est le milieu de $[BC]$.",
+          "vrai": false,
+          "contre_exemple": "Sur la droite réelle, avec $A=0$, $B=1$, $C=3$ et les poids $1$, $1$, $2$ : $G=\\frac{0+1+6}{4}=\\frac74$, alors que $I=2$ et le barycentre de $(0,1)$ et $(2,3)$ est $\\frac{6}{4}=\\frac32$. Il faut remplacer $I$ par le barycentre de $(B,\\beta)$ et $(C,\\gamma)$, qui n'est le milieu que si $\\beta=\\gamma$."
+        },
+        {
+          "texte": "Une partie non vide de $E$ qui contient le barycentre de deux quelconques de ses points, pour tous poids de somme non nulle, est un sous-espace affine.",
+          "vrai": true,
+          "justification": "Si $A\\in F$, l'ensemble $\\vec F=\\{\\overrightarrow{AM}:M\\in F\\}$ est stable par multiplication par un réel $t$ (barycentre de $(A,1-t)$ et $(M,t)$) et par addition : si $M,N\\in F$, le milieu $I$ de $[MN]$ est dans $F$ et $\\overrightarrow{AM}+\\overrightarrow{AN}=2\\overrightarrow{AI}$. Donc $\\vec F$ est un sous-espace vectoriel et $F=A+\\vec F$."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-affine-applications"
+      ]
+    },
+    {
+      "id": "geo-l2-affine-convexite",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "theoreme",
+      "titre": "Parties convexes et enveloppe convexe",
+      "recto": "Définir une partie convexe et l'enveloppe convexe d'une partie, et énoncer leurs propriétés : barycentres à poids positifs, intersection, images par une application affine.",
+      "cours": "Une partie est convexe quand elle contient tout segment joignant deux de ses points : pas de trou, pas de creux. Les sous-espaces affines, les demi-espaces $\\{\\varphi\\le c\\}$ ($\\varphi$ affine), les boules d'un espace normé, les triangles et polygones « pleins » sans angle rentrant sont convexes ; une couronne, un croissant, la réunion de deux droites ne le sont pas.\n\nLa convexité se transmet bien : par intersection (un polygone défini par des inégalités affines est convexe comme intersection de demi-plans), par image réciproque et par image directe par une application affine (l'intérieur d'une ellipse est l'image d'un disque). L'enveloppe convexe d'une partie $A$ est le plus petit convexe qui la contient ; elle se décrit « de l'intérieur » par les barycentres à poids positifs de points de $A$. Pour un nombre fini de points, c'est un polygone (ou un polyèdre), et en dimension $n$ il suffit de barycentres de $n+1$ points (théorème de Carathéodory).\n\nMéthode : pour montrer qu'une partie est convexe, on l'écrit comme intersection de convexes connus, ou comme image directe ou réciproque d'un convexe par une application affine ; à défaut, on revient à la définition avec deux points et un paramètre $t\\in[0,1]$. Pour savoir si un point est dans le triangle $ABC$, on calcule ses coordonnées barycentriques : il y est si et seulement si elles sont toutes positives ou nulles.\n\nPièges : une réunion de convexes n'est en général pas convexe ; une application continue non affine ne conserve pas la convexité ; les barycentres à poids de signes quelconques donnent le sous-espace affine engendré, pas l'enveloppe convexe.",
+      "hypotheses": [
+        "Les poids $\\lambda_i$ sont positifs ou nuls.",
+        "La somme des poids est non nulle.",
+        "On utilise un nombre fini, mais quelconque, de points de $A$."
+      ],
+      "hypotheses_pieges": [
+        "Les poids sont de somme $1$, sans condition de signe (à la place de : poids positifs ou nuls).",
+        "On n'utilise que des barycentres de deux points de $A$ (à la place d'un nombre fini quelconque de points).",
+        "Les poids sont strictement positifs et tous égaux (à la place de : poids positifs ou nuls)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel. Une partie $C$ de $E$ est **convexe** si, pour tous $M,N\\in C$, le segment $[MN]$, ensemble des barycentres de $(M,1-t)$ et $(N,t)$ pour $t\\in[0,1]$, est contenu dans $C$.\n- Une partie $C$ est convexe si et seulement si elle contient tous les barycentres à poids positifs ou nuls (de somme non nulle) d'un nombre fini de ses points.\n- Toute intersection de parties convexes est convexe. Si $f:E\\to E'$ est affine, l'image $f(C)$ d'un convexe $C$ de $E$ et l'image réciproque $f^{-1}(D)$ d'un convexe $D$ de $E'$ sont convexes.\n- L'**enveloppe convexe** $\\mathrm{conv}(A)$ d'une partie $A$, intersection de tous les convexes contenant $A$, est le plus petit convexe contenant $A$ ; c'est l'ensemble des barycentres à poids positifs ou nuls (de somme non nulle) d'un nombre fini de points de $A$.",
+      "enonce_trous": "Une partie $C$ est convexe si et seulement si elle contient {{1}} de ses points. L'enveloppe convexe d'une partie $A$ est {{2}} contenant $A$ ; c'est l'ensemble des barycentres à poids {{3}} d'un nombre fini de points de $A$.",
+      "trous": [
+        {
+          "reponse": "tous les barycentres à poids positifs ou nuls (de somme non nulle) d'un nombre fini",
+          "leurres": [
+            "tous les barycentres (à poids de somme non nulle) d'un nombre fini",
+            "tous les isobarycentres d'un nombre fini",
+            "le milieu de deux quelconques"
+          ]
+        },
+        {
+          "reponse": "le plus petit convexe",
+          "leurres": [
+            "le plus grand convexe",
+            "le plus petit sous-espace affine",
+            "la plus petite partie fermée"
+          ]
+        },
+        {
+          "reponse": "positifs ou nuls (de somme non nulle)",
+          "leurres": [
+            "de somme $1$",
+            "strictement positifs et tous égaux",
+            "entiers (de somme non nulle)"
+          ]
+        }
+      ],
+      "demo": "**Caractérisation par les barycentres.** Le sens indirect est immédiat (barycentres de deux points). Pour le sens direct, on raisonne par récurrence sur le nombre $p$ de points ; pour $p=1$, le barycentre est le point lui-même. Soit $G$ le barycentre de $(A_i,\\lambda_i)_{1\\le i\\le p+1}$, avec des $A_i\\in C$, des $\\lambda_i\\ge0$ et $\\Lambda=\\sum_i\\lambda_i>0$. Si $\\lambda_{p+1}=\\Lambda$, les autres poids sont nuls et $G=A_{p+1}\\in C$. Sinon, $\\Lambda'=\\Lambda-\\lambda_{p+1}>0$ et, par associativité, $G$ est le barycentre de $(G',\\Lambda')$ et $(A_{p+1},\\lambda_{p+1})$, où $G'$, barycentre des $p$ premiers points, est dans $C$ par hypothèse de récurrence. Les poids $\\Lambda'$ et $\\lambda_{p+1}$ étant positifs, $G\\in[G'A_{p+1}]\\subset C$.\n\n**Intersection.** Si $M$ et $N$ sont dans chacun des convexes $C_j$, le segment $[MN]$ aussi.\n\n**Images.** Une application affine conserve les barycentres, donc $f([MN])=[f(M)f(N)]$. Si $M,N\\in C$, le segment $[f(M)f(N)]=f([MN])$ est contenu dans $f(C)$. Si $M,N\\in f^{-1}(D)$, l'image du barycentre de $(M,1-t)$ et $(N,t)$ est le barycentre de $(f(M),1-t)$ et $(f(N),t)$, qui est dans $D$.\n\n**Enveloppe convexe.** L'intersection des convexes contenant $A$ est convexe et contient $A$ : c'est le plus petit d'entre eux. Soit $B$ l'ensemble des barycentres à poids positifs ou nuls d'un nombre fini de points de $A$. Tout convexe contenant $A$ contient $B$, par le premier point. Réciproquement, $B$ contient $A$ et il est convexe : par associativité, le barycentre de $(G,1-t)$ et $(H,t)$, où $G$ et $H$ sont des barycentres à poids positifs $\\lambda_i$ et $\\mu_j$ (de sommes $\\Lambda$ et $\\Lambda'$) de points de $A$, est le barycentre de tous ces points avec les poids positifs $(1-t)\\frac{\\lambda_i}{\\Lambda}$ et $t\\frac{\\mu_j}{\\Lambda'}$. Donc $B=\\mathrm{conv}(A)$.",
+      "exemple": "Dans le plan, l'enveloppe convexe de trois points non alignés $A$, $B$, $C$ est le triangle plein $ABC$ : l'ensemble des points dont les coordonnées barycentriques $(\\alpha,\\beta,\\gamma)$ dans le repère affine $(A,B,C)$ sont toutes positives ou nulles. Le point de coordonnées $\\left(\\frac12,\\frac14,\\frac14\\right)$ est dans le triangle ; celui de coordonnées $\\left(-\\frac12,1,\\frac12\\right)$ n'y est pas, par unicité des coordonnées barycentriques. Le demi-plan d'équation $2x-y\\le3$ est convexe, comme image réciproque de l'intervalle $\\left]-\\infty,3\\right]$ par l'application affine $(x,y)\\mapsto2x-y$.",
+      "contre_exemple": "- **Une réunion de convexes n'est pas convexe** : dans $\\mathbb{R}$, $[0,1]\\cup[2,3]$ contient $1$ et $2$ mais pas $\\frac32$.\n- **Les poids doivent être positifs** : les barycentres de $0$ et $1$ pour des poids de somme non nulle, de signes quelconques, forment tout $\\mathbb{R}$, qui n'est pas l'enveloppe convexe $[0,1]$ de $\\{0,1\\}$.\n- **Deux points ne suffisent pas en dimension 2** : pour trois points non alignés $A$, $B$, $C$, la réunion des segments $[AB]$, $[BC]$ et $[CA]$ n'est pas convexe, puisqu'elle ne contient pas le centre de gravité.\n- **Une application non affine ne conserve pas la convexité** : l'image du segment $[-1,1]$ par $t\\mapsto(t,t^2)$ est un arc de parabole, qui ne contient pas le milieu $(0,1)$ de ses extrémités $(-1,1)$ et $(1,1)$.",
+      "affirmations": [
+        {
+          "texte": "L'image réciproque d'un convexe par une application affine est convexe.",
+          "vrai": true,
+          "justification": "Une application affine conserve les barycentres : si $f(M)$ et $f(N)$ sont dans le convexe $D$, l'image de tout point de $[MN]$ est dans $[f(M)f(N)]\\subset D$."
+        },
+        {
+          "texte": "L'image d'un convexe par une application continue de $\\mathbb{R}^2$ dans $\\mathbb{R}^2$ est convexe.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=(x,x^2)$ est continue, et l'image du segment $[-1,1]\\times\\{0\\}$ est l'arc de parabole $\\{(x,x^2):x\\in[-1,1]\\}$, qui contient $(-1,1)$ et $(1,1)$ mais pas leur milieu $(0,1)$."
+        },
+        {
+          "texte": "Si $A\\subset B$, alors $\\mathrm{conv}(A)\\subset\\mathrm{conv}(B)$.",
+          "vrai": true,
+          "justification": "$\\mathrm{conv}(B)$ est un convexe qui contient $B$, donc $A$ : il contient le plus petit convexe contenant $A$."
+        },
+        {
+          "texte": "Pour toutes parties $A$ et $B$, $\\mathrm{conv}(A\\cap B)=\\mathrm{conv}(A)\\cap\\mathrm{conv}(B)$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, $A=\\{0,2\\}$ et $B=\\{1\\}$ : $A\\cap B=\\emptyset$, d'enveloppe convexe vide, alors que $\\mathrm{conv}(A)\\cap\\mathrm{conv}(B)=[0,2]\\cap\\{1\\}=\\{1\\}$."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-affine-barycentres"
+      ]
+    },
+    {
+      "id": "geo-l2-affine-optimisation",
+      "theme": "geometrie",
+      "niveau": "l2",
+      "chapitre": "geo-l2-affine",
+      "type": "methode",
+      "titre": "Optimiser sur une enveloppe convexe",
+      "recto": "Énoncer le principe du maximum d'une fonction convexe sur l'enveloppe convexe d'un nombre fini de points, et en déduire une méthode pour optimiser une fonction affine sur un polygone convexe.",
+      "cours": "Une fonction convexe est « en dessous de ses cordes » ; sur un segment, son maximum est donc atteint à une extrémité. Le principe s'étend à l'enveloppe convexe d'un nombre fini de points : le maximum d'une fonction convexe y est atteint en l'un des points de départ, ce qui ramène une optimisation sur une infinité de points à un nombre fini d'évaluations. Pour une fonction affine, à la fois convexe et concave, le minimum aussi est atteint en un sommet.\n\nC'est le principe de la **programmation linéaire** : maximiser un bénéfice, minimiser un coût, sous des contraintes affines (stocks, heures de travail). Le domaine admissible, intersection de demi-plans, est un polygone convexe ; s'il est borné, c'est l'enveloppe convexe de ses sommets (fait géométrique que l'on admet ici). Les lignes de niveau $\\{f=c\\}$ d'une fonction affine sont des droites parallèles : on « pousse » la droite tant qu'elle rencontre le domaine, et le dernier contact a lieu en un sommet, ou le long d'un côté entier.\n\nMéthode : déterminer le domaine, calculer ses sommets (intersections de deux droites frontières qui vérifient toutes les autres contraintes), évaluer $f$ en chacun et garder la plus grande valeur. Pour le **minimum** d'une fonction convexe non affine, le principe ne s'applique pas : on cherche un point critique (gradient nul) ou on met la fonction sous forme canonique, comme pour la fonction de Leibniz $M\\mapsto\\sum\\lambda_iMA_i^2$, minimale au barycentre.\n\nPièges : pour une fonction concave ou seulement continue, le maximum peut être atteint à l'intérieur ; le minimum d'une fonction convexe n'est en général pas en un sommet ; sur l'enveloppe convexe d'une partie infinie (un disque ouvert, par exemple), le maximum peut ne pas être atteint.",
+      "hypotheses": [
+        "$f$ est convexe sur $E$.",
+        "$K$ est l'enveloppe convexe d'un nombre fini de points $A_1,\\dots,A_p$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est concave (à la place de convexe).",
+        "$f$ est continue (à la place de convexe).",
+        "$K$ est l'enveloppe convexe d'une partie infinie $A$, les points $A_i$ étant remplacés par les points de $A$ (à la place d'un nombre fini de points)."
+      ],
+      "enonce": "Soit $E$ un espace affine réel, $A_1,\\dots,A_p$ des points de $E$ ($p\\ge1$) et $K=\\mathrm{conv}(A_1,\\dots,A_p)$. Une fonction $f:E\\to\\mathbb{R}$ est **convexe** si, pour tous $M,N\\in E$ et tout $t\\in[0,1]$, $f(P_t)\\le(1-t)f(M)+tf(N)$, où $P_t$ est le barycentre de $(M,1-t)$ et $(N,t)$.\n\n**Théorème.** Si $f$ est convexe, $f$ atteint sur $K$ un maximum, et $\\max_Kf=\\max_{1\\le i\\le p}f(A_i)$. Si $f$ est affine, $f$ atteint aussi sur $K$ un minimum, et $\\min_Kf=\\min_{1\\le i\\le p}f(A_i)$.\n\n**Méthode (programmation linéaire).** Pour optimiser une fonction affine sur un polygone convexe borné défini par des inégalités affines, qui est l'enveloppe convexe de ses sommets : on calcule les sommets, on évalue $f$ en chacun, et on garde la plus grande (ou la plus petite) valeur.",
+      "enonce_trous": "Si $f$ est {{1}}, alors $\\max_Kf=\\max_{1\\le i\\le p}f(A_i)$. Si $f$ est {{2}}, on a de plus $\\min_Kf=\\min_{1\\le i\\le p}f(A_i)$.",
+      "trous": [
+        {
+          "reponse": "convexe",
+          "leurres": [
+            "concave",
+            "continue",
+            "positive"
+          ]
+        },
+        {
+          "reponse": "affine",
+          "leurres": [
+            "convexe",
+            "continue",
+            "polynomiale"
+          ]
+        }
+      ],
+      "demo": "**Inégalité de Jensen.** Si $G$ est le barycentre des $A_i$ affectés de poids $\\lambda_i\\ge0$ de somme $1$, alors $f(G)\\le\\sum_i\\lambda_if(A_i)$. Récurrence sur $p$ : pour $p=1$, $G=A_1$. Pour l'hérédité, si $\\lambda_{p+1}=1$, alors $G=A_{p+1}$ ; sinon $G$ est le barycentre de $(G',1-\\lambda_{p+1})$ et $(A_{p+1},\\lambda_{p+1})$, où $G'$ est le barycentre des $A_i$, $i\\le p$, avec les poids $\\frac{\\lambda_i}{1-\\lambda_{p+1}}$, positifs de somme $1$. La convexité puis l'hypothèse de récurrence donnent $f(G)\\le(1-\\lambda_{p+1})f(G')+\\lambda_{p+1}f(A_{p+1})\\le\\sum_{i=1}^{p+1}\\lambda_if(A_i)$.\n\n**Maximum.** Soit $m=\\max_if(A_i)$, atteint en un point $A_{i_0}$, qui est dans $K$. Tout point $G$ de $K$ est un barycentre des $A_i$ à poids positifs, que l'on peut normaliser en poids de somme $1$, donc $f(G)\\le\\sum_i\\lambda_im=m$. Ainsi $m$ est le maximum de $f$ sur $K$, atteint en $A_{i_0}$.\n\n**Minimum pour $f$ affine.** Une fonction affine conserve les barycentres, donc elle est convexe, et $-f$ aussi : $\\max_K(-f)=\\max_i\\left(-f(A_i)\\right)$, soit $\\min_Kf=\\min_if(A_i)$.",
+      "exemple": "Maximiser $f(x,y)=x+2y$ sur le quadrilatère $K$ de sommets $(0,0)$, $(3,0)$, $(2,2)$, $(0,3)$ : $f$ vaut $0$, $3$, $6$ et $6$ en ces sommets, donc $\\max_Kf=6$ et $\\min_Kf=0$. Le maximum est atteint en tout point du côté joignant $(2,2)$ et $(0,3)$, sur lequel $f$, affine, vaut constamment $6$.",
+      "contre_exemple": "- **La convexité est nécessaire** : $f(x)=-x^2$, concave et continue, vaut $-1$ aux extrémités de $K=[-1,1]=\\mathrm{conv}(-1,1)$, mais $0$ en $0$.\n- **Le minimum d'une fonction convexe n'est pas forcément en un sommet** : $f(x)=x^2$ sur $[-1,1]$ est minimale en $0$.\n- **Il faut un nombre fini de points** : le disque ouvert unité $D$ de $\\mathbb{R}^2$ est convexe, égal à $\\mathrm{conv}(D)$, et la fonction affine $(x,y)\\mapsto x$ n'y atteint pas sa borne supérieure $1$.",
+      "affirmations": [
+        {
+          "texte": "Une fonction affine non constante sur un triangle plein atteint son maximum en un seul point.",
+          "vrai": false,
+          "contre_exemple": "Sur le triangle de sommets $(0,0)$, $(1,1)$, $(-1,1)$, la fonction $(x,y)\\mapsto y$ atteint son maximum $1$ en tout point du côté joignant $(-1,1)$ et $(1,1)$."
+        },
+        {
+          "texte": "Le maximum d'une fonction convexe sur un segment $[MN]$ est atteint en $M$ ou en $N$.",
+          "vrai": true,
+          "justification": "C'est le théorème avec $K=\\mathrm{conv}(M,N)=[MN]$ : $f(P_t)\\le(1-t)f(M)+tf(N)\\le\\max\\left(f(M),f(N)\\right)$."
+        },
+        {
+          "texte": "Une fonction convexe sur un triangle plein atteint son minimum en un sommet.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\left(x-\\frac13\\right)^2+\\left(y-\\frac13\\right)^2$ est convexe ; sur le triangle de sommets $(0,0)$, $(1,0)$, $(0,1)$, elle est minimale, égale à $0$, au centre de gravité $\\left(\\frac13,\\frac13\\right)$, alors qu'elle vaut $\\frac29$, $\\frac59$, $\\frac59$ aux sommets."
+        },
+        {
+          "texte": "Si $E$ est de dimension finie, $f:E\\to\\mathbb{R}$ affine et $K$ un convexe compact non vide, l'ensemble des points de $K$ où $f$ atteint son maximum est convexe.",
+          "vrai": true,
+          "justification": "$f$ est continue (dimension finie), donc atteint sur le compact $K$ un maximum $m$ ; l'ensemble cherché est $K\\cap f^{-1}(\\{m\\})$, intersection de $K$ et d'un sous-espace affine, donc convexe."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-affine-convexite",
+        "ar-l1-convexite-jensen"
+      ]
+    }
+  ]
+}

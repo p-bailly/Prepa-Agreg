@@ -1,0 +1,602 @@
+{
+  "cartes": [
+    {
+      "id": "int-l2-generalisees-positive",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Intégrale d'une fonction positive sur un intervalle",
+      "recto": "Définir l'intégrale d'une fonction continue par morceaux positive sur un intervalle quelconque, et énoncer sa caractérisation par les intégrales partielles.",
+      "cours": "Sur un segment, l'intégrale d'une fonction continue par morceaux est un nombre réel. Sur un intervalle quelconque (une demi-droite, un intervalle ouvert en une borne où la fonction explose), on commence par les fonctions **positives** : leur intégrale est la borne supérieure des intégrales sur les segments contenus dans l'intervalle. C'est un élément de $[0,+\\infty]$, et la fonction est dite intégrable quand il est fini. L'image est celle d'une aire sous la courbe, éventuellement infinie, approchée par les aires sur des morceaux bornés.\n\nEn pratique, on ne manipule pas cette borne supérieure : comme $f\\ge0$, l'intégrale partielle $F(x)=\\int_a^xf$ croît avec $x$, et le théorème de la limite monotone ramène tout à sa limite. Méthode : calculer ou majorer $F(x)$, puis faire tendre $x$ vers la borne ouverte. Les intégrales de Riemann en sont l'exemple fondamental : $\\int_1^{+\\infty}\\frac{\\mathrm{d}t}{t^\\alpha}$ est finie si et seulement si $\\alpha>1$, et $\\int_0^1\\frac{\\mathrm{d}t}{t^\\alpha}$ si et seulement si $\\alpha<1$. Sur un intervalle ouvert aux deux bornes, on coupe en un point $c$ : $f$ est intégrable sur $\\left]a,b\\right[$ si et seulement si elle l'est sur $\\left]a,c\\right]$ et sur $\\left[c,b\\right[$, et l'intégrale est la somme des deux.\n\nPièges : l'équivalence « intégrable si et seulement si $F$ majorée » repose sur la positivité ($F(x)=\\sin x$ est bornée alors que $\\cos$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$) ; une fonction qui tend vers $0$ n'est pas forcément intégrable ($\\frac1t$ sur $\\left[1,+\\infty\\right[$) ; et une fonction positive intégrable ne tend pas forcément vers $0$ (des pics de plus en plus étroits suffisent).",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur tout segment inclus dans $\\left[a,b\\right[$.",
+        "$f$ est positive sur $\\left[a,b\\right[$.",
+        "$x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ est majorée sur $\\left[a,b\\right[$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est bornée sur $\\left[a,b\\right[$ (à la place de : $x\\mapsto\\int_a^xf$ majorée).",
+        "$f(x)\\to0$ quand $x\\to b$ (à la place de : $x\\mapsto\\int_a^xf$ majorée).",
+        "$x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ admet une limite finie en $b$, sans hypothèse de signe sur $f$ (à la place de : $f$ positive et $x\\mapsto\\int_a^xf$ majorée)."
+      ],
+      "enonce": "Soient $I$ un intervalle de $\\mathbb{R}$ et $f:I\\to\\mathbb{R}$ continue par morceaux sur tout segment inclus dans $I$ et **positive**. On pose\n$$\\int_If=\\sup\\left\\{\\int_c^df(t)\\,\\mathrm{d}t\\ :\\ [c,d]\\subset I\\right\\}\\in[0,+\\infty].$$\nOn dit que $f$ est **intégrable** sur $I$ si cette borne supérieure est finie.\n\n**Théorème.** Soient $a<b\\le+\\infty$, $I=\\left[a,b\\right[$ et $F(x)=\\int_a^xf(t)\\,\\mathrm{d}t$ pour $x\\in I$. Alors $F$ est croissante, $f$ est intégrable sur $I$ si et seulement si $F$ est majorée, et dans tous les cas $\\int_If=\\lim_{x\\to b}F(x)$ (limite finie ou égale à $+\\infty$).\n\nDe même sur $\\left]a,b\\right]$ ($-\\infty\\le a<b$), avec $F(x)=\\int_x^bf(t)\\,\\mathrm{d}t$ et la limite en $a$.",
+      "enonce_trous": "Soient $a<b\\le+\\infty$, $f$ continue par morceaux et {{1}} sur $\\left[a,b\\right[$, et $F(x)=\\int_a^xf(t)\\,\\mathrm{d}t$. Alors $f$ est intégrable sur $\\left[a,b\\right[$ si et seulement si {{2}}, et dans ce cas $\\int_{\\left[a,b\\right[}f$ est égale à {{3}}.",
+      "trous": [
+        {
+          "reponse": "positive",
+          "leurres": [
+            "bornée",
+            "continue",
+            "de limite nulle en $b$"
+          ]
+        },
+        {
+          "reponse": "$F$ est majorée sur $\\left[a,b\\right[$",
+          "leurres": [
+            "$f$ est bornée sur $\\left[a,b\\right[$",
+            "$f(x)\\to0$ quand $x\\to b$",
+            "$F$ est croissante sur $\\left[a,b\\right[$"
+          ]
+        },
+        {
+          "reponse": "la limite de $F$ en $b$",
+          "leurres": [
+            "la limite de $f$ en $b$",
+            "la borne inférieure de $F$ sur $\\left[a,b\\right[$",
+            "la borne supérieure de $f$ sur $\\left[a,b\\right["
+          ]
+        }
+      ],
+      "demo": "**$F$ est croissante.** Pour $a\\le x\\le y<b$, $F(y)-F(x)=\\int_x^yf\\ge0$ par positivité de l'intégrale sur un segment.\n\n**$\\int_If=\\sup_{x\\in I}F(x)$.** D'une part, $F(x)=\\int_a^xf$ est l'intégrale de $f$ sur le segment $[a,x]\\subset I$, donc $F(x)\\le\\int_If$. D'autre part, tout segment $[c,d]\\subset I$ vérifie $a\\le c\\le d<b$, et comme $f\\ge0$, $\\int_c^df\\le\\int_a^cf+\\int_c^df=F(d)\\le\\sup F$. En passant à la borne supérieure sur les segments, $\\int_If\\le\\sup F$.\n\n**Limite.** Une fonction croissante sur $\\left[a,b\\right[$ admet en $b$ une limite égale à sa borne supérieure (finie ou $+\\infty$) : si $M<\\sup F$, il existe $x_0$ avec $F(x_0)>M$, et pour $x\\in\\left[x_0,b\\right[$, $M<F(x_0)\\le F(x)\\le\\sup F$. Donc $\\lim_{x\\to b}F(x)=\\sup F=\\int_If$.\n\n**Conclusion.** $f$ est intégrable si et seulement si $\\int_If=\\sup F$ est fini, c'est-à-dire si et seulement si $F$ est majorée. Le cas de $\\left]a,b\\right]$ est symétrique, avec $F$ décroissante.",
+      "exemple": "**Intégrales de Riemann.** Sur $\\left[1,+\\infty\\right[$, pour $\\alpha\\ne1$, $F(x)=\\int_1^x\\frac{\\mathrm{d}t}{t^\\alpha}=\\frac{x^{1-\\alpha}-1}{1-\\alpha}$, et $F(x)=\\ln x$ pour $\\alpha=1$. Donc $t\\mapsto\\frac1{t^\\alpha}$ est intégrable sur $\\left[1,+\\infty\\right[$ si et seulement si $\\alpha>1$, et alors $\\int_1^{+\\infty}\\frac{\\mathrm{d}t}{t^\\alpha}=\\frac1{\\alpha-1}$. Sur $\\left]0,1\\right]$, $\\int_x^1\\frac{\\mathrm{d}t}{t^\\alpha}=\\frac{1-x^{1-\\alpha}}{1-\\alpha}$ ($\\alpha\\ne1$) : intégrable si et seulement si $\\alpha<1$, d'intégrale $\\frac1{1-\\alpha}$.\n\n**Exponentielle.** Pour $\\lambda>0$, $\\int_0^xe^{-\\lambda t}\\,\\mathrm{d}t=\\frac{1-e^{-\\lambda x}}\\lambda\\to\\frac1\\lambda$ : $\\int_0^{+\\infty}e^{-\\lambda t}\\,\\mathrm{d}t=\\frac1\\lambda$.",
+      "contre_exemple": "- **La positivité est nécessaire.** Sur $\\left[0,+\\infty\\right[$, $f=\\cos$ est continue, $F(x)=\\sin x$ est majorée, mais $|\\cos|$ n'est pas intégrable : $\\int_0^{n\\pi}|\\cos t|\\,\\mathrm{d}t=2n\\to+\\infty$.\n- **Tendre vers $0$ ne suffit pas.** $t\\mapsto\\frac1t$ tend vers $0$ en $+\\infty$, mais $\\int_1^x\\frac{\\mathrm{d}t}t=\\ln x\\to+\\infty$.\n- **Être bornée ne suffit pas.** La constante $1$ est bornée sur $\\left[0,+\\infty\\right[$, et $\\int_0^x1\\,\\mathrm{d}t=x\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue, positive et intégrable sur $\\left[0,+\\infty\\right[$, alors $f(x)\\to0$ quand $x\\to+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "Soit $f$ continue, affine par morceaux, nulle hors des intervalles $\\left[n-2^{-n},n+2^{-n}\\right]$ ($n\\ge1$), sur chacun desquels son graphe est un triangle de hauteur $1$ centré en $n$. Ces intervalles sont disjoints, l'aire du $n$-ième triangle est $2^{-n}$, donc $\\int_0^xf\\le\\sum_{n\\ge1}2^{-n}=1$ : $f$ est intégrable, mais $f(n)=1$ pour tout $n\\ge1$."
+        },
+        {
+          "texte": "Si $f\\ge0$ est continue par morceaux sur $\\left[1,+\\infty\\right[$ et si la suite $\\left(\\int_1^nf(t)\\,\\mathrm{d}t\\right)_{n\\ge1}$ est majorée, alors $f$ est intégrable sur $\\left[1,+\\infty\\right[$.",
+          "vrai": true,
+          "justification": "$F$ est croissante, et tout $x\\ge1$ est majoré par un entier $n$ : $F(x)\\le F(n)\\le M$. Donc $F$ est majorée."
+        },
+        {
+          "texte": "Si $0\\le f\\le g$ sur $I$ (fonctions continues par morceaux) et si $f$ est intégrable sur $I$, alors $g$ est intégrable sur $I$.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\left[0,+\\infty\\right[$, $f=0$ est intégrable et $g=1$ ne l'est pas. C'est l'implication inverse qui est vraie : $g$ intégrable entraîne $f$ intégrable."
+        },
+        {
+          "texte": "Si $f$ est positive et intégrable sur $\\left[0,+\\infty\\right[$, alors $\\int_0^{+\\infty}f=\\lim_{n\\to+\\infty}\\int_0^nf(t)\\,\\mathrm{d}t$ ($n$ entier).",
+          "vrai": true,
+          "justification": "$F(x)$ tend vers $\\int_0^{+\\infty}f$ quand $x\\to+\\infty$, donc en particulier le long de la suite des entiers."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-cpm",
+        "ar-t-limite-monotone"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-comparaison",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Fonctions intégrables et relations de comparaison",
+      "recto": "Définir une fonction intégrable sur un intervalle et énoncer le théorème de comparaison (domination, équivalence), avec les intégrales de Riemann de référence.",
+      "cours": "Une fonction de signe quelconque, ou à valeurs complexes, est dite intégrable quand son module l'est : on contrôle d'abord la « taille » de $f$, sans compter sur des compensations entre valeurs positives et négatives. Tout se ramène donc à des fonctions positives, pour lesquelles la comparaison est naturelle : une fonction plus petite qu'une fonction intégrable est intégrable.\n\nLe théorème de comparaison dit que seul compte le comportement **au voisinage de la borne ouverte** : sur $\\left[a,c\\right]$, une fonction continue par morceaux est intégrable de toute façon. Méthode type : repérer chaque borne « à problème », trouver un équivalent ou une domination simple au voisinage de cette borne, et comparer à une intégrale de référence. Les références sont les fonctions de Riemann ($\\frac1{t^\\alpha}$, intégrable en $+\\infty$ si et seulement si $\\alpha>1$, en $0$ si et seulement si $\\alpha<1$) et les exponentielles. Pour $t^2e^{-t}$, on écrit $t^2e^{-t}=o\\left(\\frac1{t^2}\\right)$ en $+\\infty$ ; pour $\\frac{\\ln t}{t^2}$, qui n'est pas $o\\left(\\frac1{t^2}\\right)$, on intercale un exposant : $\\frac{\\ln t}{t^2}=o\\left(\\frac1{t^{3/2}}\\right)$, avec $\\frac32>1$.\n\nPièges : la relation doit être écrite **au bon bout** et **dans le bon sens** ($f=O(g)$ avec $g$ intégrable ; $g=O(f)$ ne dit rien) ; l'équivalence se teste avec une fonction de référence **positive** ; et « $f-g\\to0$ » n'est pas une relation de comparaison ($\\frac1t-\\frac1{t^2}\\to0$ alors que seule $\\frac1{t^2}$ est intégrable sur $\\left[1,+\\infty\\right[$).",
+      "hypotheses": [
+        "$f$ et $g$ sont continues par morceaux sur $\\left[a,b\\right[$.",
+        "$g$ est positive et intégrable sur $\\left[a,b\\right[$.",
+        "$f(t)=O(g(t))$ quand $t\\to b$."
+      ],
+      "hypotheses_pieges": [
+        "$g(t)=O(f(t))$ quand $t\\to b$ (à la place de $f(t)=O(g(t))$).",
+        "$f(t)=O(g(t))$ quand $t\\to a$ (à la place de : quand $t\\to b$).",
+        "$\\int_a^bg(t)\\,\\mathrm{d}t$ converge, sans hypothèse de signe sur $g$ (à la place de : $g$ positive et intégrable)."
+      ],
+      "enonce": "Une fonction $f:I\\to\\mathbb{C}$ continue par morceaux est **intégrable** sur $I$ si $|f|$ l'est, c'est-à-dire si $\\int_I|f|<+\\infty$.\n\n**Théorème de comparaison.** Soient $a<b\\le+\\infty$, $f:\\left[a,b\\right[\\to\\mathbb{C}$ et $g:\\left[a,b\\right[\\to\\mathbb{R}_+$ continues par morceaux.\n- Si $f(t)=O(g(t))$ quand $t\\to b$ (en particulier si $|f|\\le g$ au voisinage de $b$) et si $g$ est intégrable sur $\\left[a,b\\right[$, alors $f$ est intégrable sur $\\left[a,b\\right[$.\n- Si $f(t)\\sim g(t)$ quand $t\\to b$, alors $f$ est intégrable sur $\\left[a,b\\right[$ si et seulement si $g$ l'est.\n\n**Références (Riemann).** $t\\mapsto\\frac1{t^\\alpha}$ est intégrable sur $\\left[1,+\\infty\\right[$ si et seulement si $\\alpha>1$, et sur $\\left]0,1\\right]$ si et seulement si $\\alpha<1$.",
+      "enonce_trous": "Soient $f$ et $g$ continues par morceaux sur $\\left[a,b\\right[$, avec $g$ positive. Si {{1}} quand $t\\to b$ et si {{2}}, alors $f$ est intégrable sur $\\left[a,b\\right[$. Par exemple, $t\\mapsto\\frac1{t^\\alpha}$ est intégrable sur $\\left[1,+\\infty\\right[$ si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$f(t)=O(g(t))$",
+          "leurres": [
+            "$g(t)=O(f(t))$",
+            "$f(t)-g(t)\\to0$",
+            "$f(t)=O(1)$"
+          ]
+        },
+        {
+          "reponse": "$g$ est intégrable sur $\\left[a,b\\right[$",
+          "leurres": [
+            "$g$ tend vers $0$ en $b$",
+            "$g$ est bornée sur $\\left[a,b\\right[$",
+            "$g$ est intégrable sur un segment $[a,c]\\subset\\left[a,b\\right["
+          ]
+        },
+        {
+          "reponse": "$\\alpha>1$",
+          "leurres": [
+            "$\\alpha\\ge1$",
+            "$\\alpha<1$",
+            "$\\alpha>0$"
+          ]
+        }
+      ],
+      "demo": "**Références.** Elles découlent du calcul explicite de $\\int_1^x\\frac{\\mathrm{d}t}{t^\\alpha}$ et de $\\int_x^1\\frac{\\mathrm{d}t}{t^\\alpha}$ (carte de l'intégrale d'une fonction positive).\n\n**Domination.** Si $f=O(g)$ en $b$, il existe $c\\in\\left[a,b\\right[$ et $C\\ge0$ tels que $|f|\\le Cg$ sur $\\left[c,b\\right[$. Pour $x\\in\\left[c,b\\right[$, par positivité de l'intégrale sur un segment,\n$$\\int_a^x|f|=\\int_a^c|f|+\\int_c^x|f|\\le\\int_a^c|f|+C\\int_c^xg\\le\\int_a^c|f|+C\\int_{\\left[a,b\\right[}g.$$\nLa fonction positive $x\\mapsto\\int_a^x|f|$ est donc majorée (elle est croissante, et majorée aussi sur $[a,c]$ par sa valeur en $c$) : $|f|$ est intégrable, donc $f$ aussi.\n\n**Équivalence.** Si $f\\sim g$ en $b$, alors $f-g=o(g)$ : il existe $c$ tel que $|f-g|\\le\\frac g2$ sur $\\left[c,b\\right[$, d'où $\\frac g2\\le|f|\\le\\frac{3g}2$ sur $\\left[c,b\\right[$. Ainsi $|f|=O(g)$ et $g=O(|f|)$, et la domination, appliquée dans les deux sens (avec $|f|$ positive), donne l'équivalence.",
+      "exemple": "- $t\\mapsto t^2e^{-t}$ est intégrable sur $\\left[0,+\\infty\\right[$ : elle est continue, et $t^2\\cdot t^2e^{-t}\\to0$, donc $t^2e^{-t}=o\\left(\\frac1{t^2}\\right)$ en $+\\infty$, avec $\\frac1{t^2}$ intégrable sur $\\left[1,+\\infty\\right[$.\n- $t\\mapsto\\ln t$ est intégrable sur $\\left]0,1\\right]$ : $\\sqrt t\\,|\\ln t|\\to0$, donc $\\ln t=o\\left(\\frac1{\\sqrt t}\\right)$ en $0$, et $\\frac12<1$.\n- $t\\mapsto\\frac{1}{\\sqrt{t}\\,(1+t)}$ est intégrable sur $\\left]0,+\\infty\\right[$ : équivalente à $\\frac1{t^{1/2}}$ en $0$ et à $\\frac1{t^{3/2}}$ en $+\\infty$.",
+      "contre_exemple": "- **Le bon sens de la domination.** Sur $\\left[1,+\\infty\\right[$, $g(t)=\\frac1{t^2}$ est intégrable et $g=O(1)$, mais la constante $1$ n'est pas intégrable.\n- **Le bon bout.** Sur $\\left[0,+\\infty\\right[$, $f=1$ et $g(t)=\\frac1{(1+t)^2}$ : $f=O(g)$ quand $t\\to0$ et $g$ est intégrable, mais $f$ ne l'est pas.\n- **$f-g\\to0$ ne suffit pas.** $\\frac1t-\\frac1{t^2}\\to0$ en $+\\infty$ ; $\\frac1{t^2}$ est intégrable sur $\\left[1,+\\infty\\right[$, $\\frac1t$ ne l'est pas.\n- **Le signe de $g$.** Avec $f=g=\\frac{\\sin t}t$ sur $\\left[1,+\\infty\\right[$ : $f=O(g)$ et $\\int_1^{+\\infty}g$ converge (carte de la convergence absolue), mais $f$ n'est pas intégrable.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $\\left[0,+\\infty\\right[$ et $f(t)=o\\left(\\frac1t\\right)$ quand $t\\to+\\infty$, alors $f$ est intégrable sur $\\left[0,+\\infty\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac1{(t+2)\\ln(t+2)}$ : $tf(t)\\to0$, mais $\\int_0^x f=\\ln\\ln(x+2)-\\ln\\ln2\\to+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux sur $\\left[1,+\\infty\\right[$ et $f(t)=o\\left(\\frac1{t^2}\\right)$ en $+\\infty$, alors $f$ est intégrable sur $\\left[1,+\\infty\\right[$.",
+          "vrai": true,
+          "justification": "$f=O\\left(\\frac1{t^2}\\right)$ et $\\frac1{t^2}$ est intégrable sur $\\left[1,+\\infty\\right[$ ($2>1$)."
+        },
+        {
+          "texte": "La fonction $t\\mapsto\\frac{\\ln t}{t^2}$ est intégrable sur $\\left[1,+\\infty\\right[$.",
+          "vrai": true,
+          "justification": "$t^{3/2}\\cdot\\frac{\\ln t}{t^2}=\\frac{\\ln t}{\\sqrt t}\\to0$, donc $\\frac{\\ln t}{t^2}=o\\left(\\frac1{t^{3/2}}\\right)$, et $\\frac32>1$."
+        },
+        {
+          "texte": "Si $f$ et $g$ sont continues, positives et intégrables sur $\\left[0,+\\infty\\right[$, et $f\\sim g$ en $+\\infty$, alors $\\int_0^{+\\infty}f=\\int_0^{+\\infty}g$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=e^{-t}$ et $g(t)=e^{-t}+e^{-2t}$ : $f\\sim g$, mais $\\int_0^{+\\infty}f=1$ et $\\int_0^{+\\infty}g=\\frac32$. L'équivalence ne renseigne que sur la nature."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-positive"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-cauchy",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Intégrales impropres : convergence, critère de Cauchy",
+      "recto": "Définir la convergence d'une intégrale impropre sur $\\left[a,b\\right[$ et énoncer le critère de Cauchy.",
+      "cours": "Une intégrale impropre $\\int_a^bf$ converge quand l'intégrale partielle $\\int_a^xf$ a une limite finie au bord ouvert. Contrairement à l'intégrabilité, cette définition autorise les compensations : $\\int_1^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ converge alors que $\\frac{\\sin t}t$ n'est pas intégrable. Pour une fonction positive, les deux notions coïncident.\n\nLe critère de Cauchy caractérise la convergence sans connaître la limite : les « queues » $\\int_x^yf$, pour $x$ et $y$ proches de $b$, doivent être aussi petites qu'on veut. C'est l'analogue du critère de Cauchy pour les suites, dont il découle par la caractérisation séquentielle des limites. Il sert surtout à **prouver une divergence** : il suffit d'exhiber des $x_n<y_n$ tendant vers $b$ avec $\\left|\\int_{x_n}^{y_n}f\\right|$ minoré par une constante $>0$ (par exemple $\\int_{n\\pi}^{2n\\pi}\\frac{|\\sin t|}t\\,\\mathrm{d}t\\ge\\frac1\\pi$). Il donne aussi la convergence absolue implique la convergence, et des propriétés comme : si $\\int_a^{+\\infty}f$ converge et $f$ a une limite en $+\\infty$, cette limite est nulle.\n\nPièges : la convergence de $\\int_a^{+\\infty}f$ n'entraîne **pas** que $f$ tende vers $0$ ($\\sin(t^2)$), ni même que $f$ soit bornée ; il ne suffit pas que $\\int_x^{x+1}f\\to0$ (cas de $\\frac1t$) ; une intégrale partielle bornée peut ne pas converger ($\\int_0^x\\cos t\\,\\mathrm{d}t=\\sin x$) ; et sur $\\left]a,b\\right[$, il faut la convergence aux **deux** bornes, séparément.",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur $\\left[a,b\\right[$.",
+        "Pour tout $\\varepsilon>0$, il existe $c\\in\\left[a,b\\right[$ tel que $\\left|\\int_x^yf(t)\\,\\mathrm{d}t\\right|\\le\\varepsilon$ pour tous $x,y\\in\\left[c,b\\right[$."
+      ],
+      "hypotheses_pieges": [
+        "Ici $b=+\\infty$ : pour tout $\\varepsilon>0$, il existe $c$ tel que $\\left|\\int_x^{x+1}f(t)\\,\\mathrm{d}t\\right|\\le\\varepsilon$ pour tout $x\\ge c$ (à la place de : pour tous $x,y\\ge c$).",
+        "$f(t)\\to0$ quand $t\\to b$ (à la place du critère de Cauchy).",
+        "$x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ est bornée sur $\\left[a,b\\right[$ (à la place du critère de Cauchy)."
+      ],
+      "enonce": "Soient $a<b\\le+\\infty$ et $f:\\left[a,b\\right[\\to\\mathbb{C}$ continue par morceaux. L'intégrale $\\int_a^bf(t)\\,\\mathrm{d}t$ est dite **convergente** si $x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ admet une limite finie quand $x\\to b$ ; on note alors $\\int_a^bf(t)\\,\\mathrm{d}t$ cette limite. Sinon, elle est dite **divergente**. (Même définition sur $\\left]a,b\\right]$ ; sur $\\left]a,b\\right[$, on demande la convergence sur $\\left]a,c\\right]$ et sur $\\left[c,b\\right[$ pour un $c\\in\\left]a,b\\right[$, ce qui ne dépend pas de $c$.)\n\n**Critère de Cauchy.** $\\int_a^bf(t)\\,\\mathrm{d}t$ converge si et seulement si, pour tout $\\varepsilon>0$, il existe $c\\in\\left[a,b\\right[$ tel que, pour tous $x,y\\in\\left[c,b\\right[$, $\\left|\\int_x^yf(t)\\,\\mathrm{d}t\\right|\\le\\varepsilon$.",
+      "enonce_trous": "Soit $f$ continue par morceaux sur $\\left[a,b\\right[$. L'intégrale $\\int_a^bf$ est dite convergente si $x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ {{1}} quand $x\\to b$. Critère de Cauchy : elle converge si et seulement si, pour tout $\\varepsilon>0$, il existe $c\\in\\left[a,b\\right[$ tel que {{2}}.",
+      "trous": [
+        {
+          "reponse": "admet une limite finie",
+          "leurres": [
+            "est bornée",
+            "admet une limite, finie ou infinie",
+            "tend vers $0$"
+          ]
+        },
+        {
+          "reponse": "$\\left|\\int_x^yf(t)\\,\\mathrm{d}t\\right|\\le\\varepsilon$ pour tous $x,y\\in\\left[c,b\\right[$",
+          "leurres": [
+            "$|f(t)|\\le\\varepsilon$ pour tout $t\\in\\left[c,b\\right[$",
+            "$\\left|\\int_a^xf(t)\\,\\mathrm{d}t\\right|\\le\\varepsilon$ pour tout $x\\in\\left[c,b\\right[$",
+            "$\\int_c^b|f(t)|\\,\\mathrm{d}t$ converge et vaut au plus $\\varepsilon$"
+          ]
+        }
+      ],
+      "demo": "Notons $F(x)=\\int_a^xf(t)\\,\\mathrm{d}t$, de sorte que $\\int_x^yf=F(y)-F(x)$. En séparant parties réelle et imaginaire, on peut supposer $f$ réelle.\n\n**Condition nécessaire.** Si $F(x)\\to\\ell$ quand $x\\to b$, soit $\\varepsilon>0$ : il existe $c$ tel que $|F(x)-\\ell|\\le\\frac\\varepsilon2$ pour $x\\in\\left[c,b\\right[$, et alors $|F(y)-F(x)|\\le|F(y)-\\ell|+|\\ell-F(x)|\\le\\varepsilon$ pour $x,y\\in\\left[c,b\\right[$.\n\n**Condition suffisante.** Supposons le critère vérifié. Soit $(x_n)$ une suite de $\\left[a,b\\right[$ de limite $b$. Pour $\\varepsilon>0$, prenons $c$ donné par le critère ; il existe $N$ tel que $x_n\\ge c$ pour $n\\ge N$, d'où $|F(x_p)-F(x_q)|\\le\\varepsilon$ pour $p,q\\ge N$ : la suite $(F(x_n))$ est de Cauchy, donc converge vers un réel $\\ell_{(x_n)}$ (complétude de $\\mathbb{R}$).\n\nCette limite ne dépend pas de la suite : si $(y_n)$ est une autre suite de limite $b$, la suite $x_0,y_0,x_1,y_1,\\dots$ tend aussi vers $b$, donc ses images par $F$ convergent ; les deux suites extraites $(F(x_n))$ et $(F(y_n))$ ont alors la même limite. Notons $\\ell$ cette limite commune : pour toute suite $(x_n)$ de limite $b$, $F(x_n)\\to\\ell$, donc $F(x)\\to\\ell$ quand $x\\to b$ (caractérisation séquentielle de la limite), et l'intégrale converge.",
+      "exemple": "- $\\int_0^1\\frac{\\mathrm{d}t}{\\sqrt{1-t}}$ converge : $\\int_0^x\\frac{\\mathrm{d}t}{\\sqrt{1-t}}=2-2\\sqrt{1-x}\\to2$ quand $x\\to1$.\n- $\\int_0^{+\\infty}\\cos t\\,\\mathrm{d}t$ diverge : $\\int_0^x\\cos t\\,\\mathrm{d}t=\\sin x$ n'a pas de limite en $+\\infty$ (bien qu'elle soit bornée).\n- $\\int_1^{+\\infty}\\frac{\\sin t}{t^2}\\,\\mathrm{d}t$ converge par le critère de Cauchy : pour $1\\le x\\le y$, $\\left|\\int_x^y\\frac{\\sin t}{t^2}\\,\\mathrm{d}t\\right|\\le\\int_x^y\\frac{\\mathrm{d}t}{t^2}\\le\\frac1x$, qui est $\\le\\varepsilon$ dès que $x\\ge\\frac1\\varepsilon$.",
+      "contre_exemple": "- **Une intégrale partielle bornée ne suffit pas** : $\\int_0^x\\cos t\\,\\mathrm{d}t=\\sin x$.\n- **$f\\to0$ ne suffit pas, ni $\\int_x^{x+1}f\\to0$** : pour $f(t)=\\frac1t$ sur $\\left[1,+\\infty\\right[$, $\\int_x^{x+1}\\frac{\\mathrm{d}t}t=\\ln\\left(1+\\frac1x\\right)\\to0$, mais $\\int_1^x\\frac{\\mathrm{d}t}t=\\ln x\\to+\\infty$ (et en effet $\\int_x^{2x}\\frac{\\mathrm{d}t}{t}=\\ln2$ pour tout $x$ : le critère de Cauchy n'est pas vérifié).\n- **La convergence n'impose pas $f\\to0$** : $\\int_1^{+\\infty}\\sin(t^2)\\,\\mathrm{d}t$ converge (le changement de variable $u=t^2$ donne $\\int_1^{x^2}\\frac{\\sin u}{2\\sqrt u}\\,\\mathrm{d}u$, qui converge par intégration par parties), alors que $\\sin(t^2)$ n'a pas de limite en $+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $\\left[0,+\\infty\\right[$ et si $\\int_0^{+\\infty}f$ converge, alors $f(t)\\to0$ quand $t\\to+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\sin(t^2)$ : $\\int_0^{+\\infty}\\sin(t^2)\\,\\mathrm{d}t$ converge (changement de variable $u=t^2$ sur $\\left[1,x\\right]$, puis intégration par parties de $\\frac{\\sin u}{2\\sqrt u}$), mais $\\sin(t^2)$ vaut $1$ en $t=\\sqrt{\\frac\\pi2+2k\\pi}$ et $0$ en $t=\\sqrt{k\\pi}$."
+        },
+        {
+          "texte": "Si $\\int_0^{+\\infty}f$ converge et si $f$ admet une limite $\\ell\\in\\mathbb{R}$ en $+\\infty$, alors $\\ell=0$.",
+          "vrai": true,
+          "justification": "Si $\\ell>0$, $f\\ge\\frac\\ell2$ sur un $\\left[c,+\\infty\\right[$, et $\\int_x^{2x}f\\ge\\frac{x\\ell}2$ pour $x\\ge c$ : le critère de Cauchy est contredit. De même si $\\ell<0$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\left[0,1\\right[$ et si $\\int_0^1f$ converge, alors $f$ est bornée sur $\\left[0,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac1{\\sqrt{1-t}}$ n'est pas bornée sur $\\left[0,1\\right[$, et $\\int_0^1f=2$."
+        },
+        {
+          "texte": "Si $\\int_0^{+\\infty}(f+g)$ converge, alors $\\int_0^{+\\infty}f$ et $\\int_0^{+\\infty}g$ convergent.",
+          "vrai": false,
+          "contre_exemple": "$f=1$ et $g=-1$ : $\\int_0^{+\\infty}(f+g)=0$ converge, mais $\\int_0^xf=x\\to+\\infty$."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-suites-cauchy",
+        "ar-l1-continuite-sequentielle",
+        "int-t-integrale-proprietes"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-absolue",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Convergence absolue et semi-convergence",
+      "recto": "Énoncer le lien entre convergence absolue, intégrabilité et convergence d'une intégrale impropre, et l'illustrer par l'intégrale de $\\frac{\\sin t}t$ sur $\\left[0,+\\infty\\right[$.",
+      "cours": "Une intégrale **absolument convergente** converge : c'est le critère de Cauchy, puisque $\\left|\\int_x^yf\\right|\\le\\int_x^y|f|$. Et pour une fonction continue par morceaux, « $\\int_a^b|f|$ converge » signifie exactement « $f$ est intégrable ». Les outils de comparaison (domination, équivalents, Riemann) établissent donc la convergence absolue, et par là la convergence.\n\nLa réciproque est fausse, et l'exemple à connaître est $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ (intégrale de Dirichlet, qui vaut $\\frac\\pi2$) : elle converge, grâce aux compensations entre arches positives et négatives, mais $\\int_0^{+\\infty}\\frac{|\\sin t|}t\\,\\mathrm{d}t=+\\infty$. Une telle intégrale est dite **semi-convergente**. L'outil type pour la convergence est l'**intégration par parties** sur un segment $[1,x]$, qui fait apparaître un terme tout intégré qui a une limite et une intégrale absolument convergente ($\\frac{\\cos t}{t^2}$). Pour la divergence de la valeur absolue, on minore $|\\sin t|\\ge\\sin^2t=\\frac{1-\\cos(2t)}2$, ou l'on utilise le critère de Cauchy sur des arches.\n\nPièges : pour une intégrale semi-convergente, les théorèmes de comparaison **ne s'appliquent pas** (deux fonctions équivalentes de signe variable peuvent donner des intégrales de natures différentes) ; on ne peut pas « majorer par la valeur absolue » pour conclure à la convergence d'une intégrale semi-convergente ; et la convergence de $\\int f$ ne donne ni celle de $\\int f^2$, ni celle de $\\int fg$ pour $g$ bornée.",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur $\\left[a,b\\right[$.",
+        "$\\int_a^b|f(t)|\\,\\mathrm{d}t$ converge."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est bornée sur $\\left[a,b\\right[$ et $f(t)\\to0$ quand $t\\to b$ (à la place de : $\\int_a^b|f|$ converge).",
+        "$\\int_a^bf(t)^2\\,\\mathrm{d}t$ converge (à la place de : $\\int_a^b|f|$ converge).",
+        "$x\\mapsto\\int_a^xf(t)\\,\\mathrm{d}t$ est bornée sur $\\left[a,b\\right[$ (à la place de : $\\int_a^b|f|$ converge)."
+      ],
+      "enonce": "Soient $a<b\\le+\\infty$ et $f:\\left[a,b\\right[\\to\\mathbb{C}$ continue par morceaux. L'intégrale $\\int_a^bf$ est dite **absolument convergente** si $\\int_a^b|f|$ converge ; cela équivaut à : $f$ est intégrable sur $\\left[a,b\\right[$.\n\n**Théorème.** Si $\\int_a^bf$ est absolument convergente, alors elle converge, et $\\left|\\int_a^bf\\right|\\le\\int_a^b|f|$. Pour $f$ intégrable, on note $\\int_{\\left[a,b\\right[}f$ cette intégrale convergente.\n\n**La réciproque est fausse.** En prolongeant $\\frac{\\sin t}t$ par $1$ en $0$, l'intégrale $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ converge, mais $t\\mapsto\\frac{\\sin t}t$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$. Une intégrale convergente qui n'est pas absolument convergente est dite **semi-convergente**.",
+      "enonce_trous": "Si $f$ est continue par morceaux sur $\\left[a,b\\right[$ et si {{1}} converge, alors $\\int_a^bf$ converge et {{2}}. La réciproque est fausse : $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\int_a^b|f(t)|\\,\\mathrm{d}t$",
+          "leurres": [
+            "$\\int_a^bf(t)^2\\,\\mathrm{d}t$",
+            "$\\int_a^b\\mathrm{Re}\\big(f(t)\\big)\\,\\mathrm{d}t$",
+            "$\\int_a^b\\sqrt{|f(t)|}\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "$\\left|\\int_a^bf\\right|\\le\\int_a^b|f|$",
+          "leurres": [
+            "$\\left|\\int_a^bf\\right|=\\int_a^b|f|$",
+            "$\\int_a^b|f|\\le\\left|\\int_a^bf\\right|$",
+            "$\\left|\\int_a^bf\\right|\\le\\sup_{\\left[a,b\\right[}|f|$"
+          ]
+        },
+        {
+          "reponse": "converge sans converger absolument",
+          "leurres": [
+            "converge absolument",
+            "diverge",
+            "diverge vers $+\\infty$"
+          ]
+        }
+      ],
+      "demo": "**Lien avec l'intégrabilité.** $|f|$ est positive, donc $x\\mapsto\\int_a^x|f|$ est croissante : elle a une limite finie si et seulement si elle est majorée, c'est-à-dire si et seulement si $|f|$ est intégrable (carte de l'intégrale d'une fonction positive).\n\n**Convergence absolue entraîne convergence.** Soit $\\varepsilon>0$. Par le critère de Cauchy appliqué à $\\int_a^b|f|$, il existe $c$ tel que $\\left|\\int_x^y|f|\\right|\\le\\varepsilon$ pour $x,y\\in\\left[c,b\\right[$. Comme $\\left|\\int_x^yf\\right|\\le\\left|\\int_x^y|f|\\right|$, le critère de Cauchy est vérifié par $f$ : $\\int_a^bf$ converge. Enfin $\\left|\\int_a^xf\\right|\\le\\int_a^x|f|\\le\\int_a^b|f|$, et l'on fait tendre $x$ vers $b$.\n\n**Convergence de $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$.** Sur $[0,1]$, la fonction prolongée est continue. Pour $x\\ge1$, par intégration par parties,\n$$\\int_1^x\\frac{\\sin t}t\\,\\mathrm{d}t=\\left[-\\frac{\\cos t}t\\right]_1^x-\\int_1^x\\frac{\\cos t}{t^2}\\,\\mathrm{d}t=\\cos1-\\frac{\\cos x}x-\\int_1^x\\frac{\\cos t}{t^2}\\,\\mathrm{d}t.$$\nOr $\\frac{\\cos x}x\\to0$, et $\\left|\\frac{\\cos t}{t^2}\\right|\\le\\frac1{t^2}$, intégrable sur $\\left[1,+\\infty\\right[$ : la dernière intégrale converge (absolument). Donc $\\int_1^x\\frac{\\sin t}t\\,\\mathrm{d}t$ a une limite finie.\n\n**Non-intégrabilité.** Comme $0\\le|\\sin t|\\le1$, $|\\sin t|\\ge\\sin^2t=\\frac{1-\\cos(2t)}2$, d'où, pour $x\\ge1$,\n$$\\int_1^x\\frac{|\\sin t|}t\\,\\mathrm{d}t\\ge\\frac12\\ln x-\\frac12\\int_1^x\\frac{\\cos(2t)}t\\,\\mathrm{d}t.$$\nLa même intégration par parties montre que $\\int_1^x\\frac{\\cos(2t)}t\\,\\mathrm{d}t$ a une limite finie ; comme $\\ln x\\to+\\infty$, $\\int_1^x\\frac{|\\sin t|}t\\,\\mathrm{d}t\\to+\\infty$.",
+      "exemple": "Pour $\\alpha>0$, $\\int_1^{+\\infty}\\frac{\\cos t}{t^\\alpha}\\,\\mathrm{d}t$ converge : l'intégration par parties donne $\\left[\\frac{\\sin t}{t^\\alpha}\\right]_1^x+\\alpha\\int_1^x\\frac{\\sin t}{t^{\\alpha+1}}\\,\\mathrm{d}t$, et $\\left|\\frac{\\sin t}{t^{\\alpha+1}}\\right|\\le\\frac1{t^{\\alpha+1}}$ avec $\\alpha+1>1$. Elle est absolument convergente si $\\alpha>1$ (domination par $\\frac1{t^\\alpha}$), semi-convergente si $0<\\alpha\\le1$ (car $\\frac{|\\cos t|}{t^\\alpha}\\ge\\frac{\\cos^2t}{t}$ pour $t\\ge1$).",
+      "contre_exemple": "- **La réciproque du théorème est fausse** : $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ converge, $\\int_0^{+\\infty}\\frac{|\\sin t|}t\\,\\mathrm{d}t$ diverge.\n- **La convergence de $\\int f^2$ ne suffit pas** : sur $\\left[1,+\\infty\\right[$, $\\int\\frac{\\mathrm{d}t}{t^2}$ converge et $\\int\\frac{\\mathrm{d}t}t$ diverge.\n- **Ni dans l'autre sens** : $\\int_1^{+\\infty}\\frac{\\sin t}{\\sqrt t}\\,\\mathrm{d}t$ converge (même intégration par parties), mais $\\int_1^{+\\infty}\\frac{\\sin^2t}t\\,\\mathrm{d}t$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Si $\\int_1^{+\\infty}f$ converge, alors $\\int_1^{+\\infty}|f|$ converge.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac{\\sin t}t$ : $\\int_1^{+\\infty}f$ converge et $\\int_1^{+\\infty}|f|$ diverge."
+        },
+        {
+          "texte": "Si $f$ est intégrable sur $\\left[1,+\\infty\\right[$ et $g$ continue par morceaux et bornée, alors $fg$ est intégrable sur $\\left[1,+\\infty\\right[$.",
+          "vrai": true,
+          "justification": "$|fg|\\le\\|g\\|_\\infty|f|$, et l'on applique la domination."
+        },
+        {
+          "texte": "Si $\\int_1^{+\\infty}f$ converge et $g$ est continue par morceaux et bornée sur $\\left[1,+\\infty\\right[$, alors $\\int_1^{+\\infty}fg$ converge.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac{\\sin t}t$ et $g$ le signe de $\\sin t$ ($g=1$ sur $\\left[2k\\pi,(2k+1)\\pi\\right[$, $g=-1$ sur $\\left[(2k+1)\\pi,(2k+2)\\pi\\right[$), continue par morceaux et bornée : $fg=\\frac{|\\sin t|}t$, dont l'intégrale diverge."
+        },
+        {
+          "texte": "L'intégrale $\\int_1^{+\\infty}\\frac{\\sin t}{t^2}\\,\\mathrm{d}t$ est absolument convergente.",
+          "vrai": true,
+          "justification": "$\\left|\\frac{\\sin t}{t^2}\\right|\\le\\frac1{t^2}$, intégrable sur $\\left[1,+\\infty\\right[$."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-cauchy",
+        "int-l2-generalisees-comparaison",
+        "int-t-integrale-ipp"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-relations",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Intégration des relations de comparaison",
+      "recto": "Énoncer les théorèmes d'intégration des relations de comparaison (domination, négligeabilité, équivalence), dans le cas intégrable et dans le cas non intégrable.",
+      "cours": "Le théorème de comparaison dit si une intégrale est finie ; celui-ci dit **à quelle vitesse** les restes $\\int_x^bf$ tendent vers $0$, ou les intégrales partielles $\\int_a^xf$ vers l'infini. On intègre une relation $f=o(g)$, $f=O(g)$ ou $f\\sim g$, où $g$ est **positive**, et l'on obtient la même relation entre les intégrales : entre les **restes** si $g$ est intégrable, entre les **intégrales partielles** sinon. C'est l'analogue exact de la sommation des relations de comparaison pour les séries.\n\nUsages typiques : l'équivalent d'un reste, $\\int_x^{+\\infty}\\frac{\\mathrm{d}t}{t^3+t+1}\\sim\\int_x^{+\\infty}\\frac{\\mathrm{d}t}{t^3}=\\frac1{2x^2}$ ; l'équivalent d'une intégrale partielle divergente, $\\int_1^x\\sqrt{1+t^4}\\,\\mathrm{d}t\\sim\\frac{x^3}3$ ; et, combiné à une **intégration par parties**, des équivalents plus fins : $\\int_2^x\\frac{\\mathrm{d}t}{\\ln t}=\\frac x{\\ln x}-\\frac2{\\ln2}+\\int_2^x\\frac{\\mathrm{d}t}{(\\ln t)^2}$, où la dernière intégrale est négligeable devant la première, d'où $\\int_2^x\\frac{\\mathrm{d}t}{\\ln t}\\sim\\frac x{\\ln x}$. Le lemme de Cesàro continu ($f\\to\\ell$ entraîne $\\frac1x\\int_0^xf\\to\\ell$) en est un cas particulier.\n\nPièges : la fonction de référence $g$ doit être **positive** (au moins au voisinage de $b$) ; il faut choisir le bon cas (restes si $g$ est intégrable, intégrales partielles sinon) ; et « $f-g\\to0$ » ne donne aucun équivalent des intégrales.",
+      "hypotheses": [
+        "$f$ et $g$ sont continues par morceaux sur $\\left[a,b\\right[$.",
+        "$g$ est positive sur $\\left[a,b\\right[$.",
+        "$g$ n'est pas intégrable sur $\\left[a,b\\right[$.",
+        "$f(t)\\sim g(t)$ quand $t\\to b$."
+      ],
+      "hypotheses_pieges": [
+        "$g$ est de signe quelconque (à la place de : $g$ positive).",
+        "$f(t)\\sim g(t)$ quand $t\\to a$ (à la place de : quand $t\\to b$).",
+        "$f(t)-g(t)\\to0$ quand $t\\to b$ (à la place de $f(t)\\sim g(t)$)."
+      ],
+      "enonce": "Soient $a<b\\le+\\infty$, $f:\\left[a,b\\right[\\to\\mathbb{C}$ et $g:\\left[a,b\\right[\\to\\mathbb{R}_+$ continues par morceaux (donc $g$ **positive**).\n\n**Cas intégrable.** Si $g$ est intégrable sur $\\left[a,b\\right[$ et si, quand $t\\to b$, $f(t)=O(g(t))$ (resp. $f(t)=o(g(t))$, resp. $f(t)\\sim g(t)$), alors $f$ est intégrable sur $\\left[a,b\\right[$ et, quand $x\\to b$,\n$$\\int_x^bf=O\\left(\\int_x^bg\\right)\\quad\\left(\\text{resp. }\\int_x^bf=o\\left(\\int_x^bg\\right),\\ \\text{resp. }\\int_x^bf\\sim\\int_x^bg\\right).$$\n\n**Cas non intégrable.** Si $g$ n'est pas intégrable sur $\\left[a,b\\right[$ et si, quand $t\\to b$, $f(t)=O(g(t))$ (resp. $f(t)=o(g(t))$, resp. $f(t)\\sim g(t)$), alors, quand $x\\to b$,\n$$\\int_a^xf=O\\left(\\int_a^xg\\right)\\quad\\left(\\text{resp. }\\int_a^xf=o\\left(\\int_a^xg\\right),\\ \\text{resp. }\\int_a^xf\\sim\\int_a^xg\\right).$$",
+      "enonce_trous": "Soient $f$ et $g$ continues par morceaux sur $\\left[a,b\\right[$, avec $g$ {{1}} et non intégrable sur $\\left[a,b\\right[$. Si $f(t)=o(g(t))$ quand $t\\to b$, alors, quand $x\\to b$, {{2}}.",
+      "trous": [
+        {
+          "reponse": "positive",
+          "leurres": [
+            "bornée",
+            "continue",
+            "de limite nulle en $b$"
+          ]
+        },
+        {
+          "reponse": "$\\int_a^xf=o\\left(\\int_a^xg\\right)$",
+          "leurres": [
+            "$\\int_x^bf=o\\left(\\int_x^bg\\right)$",
+            "$f$ est intégrable sur $\\left[a,b\\right[$",
+            "$\\int_a^xf$ admet une limite finie"
+          ]
+        }
+      ],
+      "demo": "**Cas intégrable.** $f$ est intégrable par le théorème de comparaison. Si $f=o(g)$, soit $\\varepsilon>0$ : il existe $c$ tel que $|f|\\le\\varepsilon g$ sur $\\left[c,b\\right[$, donc, pour $x\\in\\left[c,b\\right[$,\n$$\\left|\\int_x^bf\\right|\\le\\int_x^b|f|\\le\\varepsilon\\int_x^bg.$$\nC'est la relation $\\int_x^bf=o\\left(\\int_x^bg\\right)$. Le cas $O$ est identique avec une constante $C$ fixe. Si $f\\sim g$, alors $f-g=o(g)$, donc $\\int_x^bf-\\int_x^bg=o\\left(\\int_x^bg\\right)$, ce qui est l'équivalence.\n\n**Cas non intégrable.** Comme $g\\ge0$ n'est pas intégrable, $G(x)=\\int_a^xg\\to+\\infty$ quand $x\\to b$. Si $f=o(g)$, soit $\\varepsilon>0$ et $c$ tel que $|f|\\le\\varepsilon g$ sur $\\left[c,b\\right[$. Pour $x\\in\\left[c,b\\right[$,\n$$\\left|\\int_a^xf\\right|\\le\\left|\\int_a^cf\\right|+\\varepsilon\\int_c^xg\\le\\left|\\int_a^cf\\right|+\\varepsilon G(x).$$\nComme $G(x)\\to+\\infty$, il existe $c'\\in\\left[c,b\\right[$ tel que $\\left|\\int_a^cf\\right|\\le\\varepsilon G(x)$ pour $x\\in\\left[c',b\\right[$, d'où $\\left|\\int_a^xf\\right|\\le2\\varepsilon G(x)$ : c'est $\\int_a^xf=o(G(x))$. Le cas $O$ se traite de même ($\\left|\\int_a^xf\\right|\\le K+CG(x)\\le(C+1)G(x)$ pour $x$ proche de $b$) et l'équivalence s'en déduit en écrivant $f-g=o(g)$.",
+      "exemple": "- **Reste.** $\\frac1{t^3+t+1}\\sim\\frac1{t^3}$ en $+\\infty$, fonction positive intégrable sur $\\left[1,+\\infty\\right[$ : $\\int_x^{+\\infty}\\frac{\\mathrm{d}t}{t^3+t+1}\\sim\\int_x^{+\\infty}\\frac{\\mathrm{d}t}{t^3}=\\frac1{2x^2}$.\n- **Intégrale partielle.** $\\sqrt{1+t^2}\\sim t$, positive et non intégrable sur $\\left[0,+\\infty\\right[$ : $\\int_0^x\\sqrt{1+t^2}\\,\\mathrm{d}t\\sim\\frac{x^2}2$.\n- **Cesàro continu.** Si $f$ est continue sur $\\left[0,+\\infty\\right[$ et $f(t)\\to\\ell$, alors $f-\\ell=o(1)$ et $1$ n'est pas intégrable : $\\int_0^x(f-\\ell)=o(x)$, soit $\\frac1x\\int_0^xf\\to\\ell$.",
+      "contre_exemple": "- **La positivité de $g$ (cas non intégrable).** Sur $\\left[0,+\\infty\\right[$, $g(t)=(-1)^{\\lfloor t\\rfloor}$ et $f(t)=(-1)^{\\lfloor t\\rfloor}\\left(1+\\frac1{t+1}\\right)$ : $f\\sim g$ et $g$ n'est pas intégrable, mais $\\int_0^{2m}g=0$ alors que $\\int_0^{2m}f=\\sum_{k=0}^{2m-1}(-1)^k\\ln\\frac{k+2}{k+1}>0$ (somme alternée de termes décroissants) : les intégrales partielles ne sont pas équivalentes.\n- **La positivité de $g$ (cas convergent).** $f(t)=\\frac{\\sin t}{\\sqrt t}+\\frac{|\\sin t|}t$ et $g(t)=\\frac{\\sin t}{\\sqrt t}$ sur $\\left[1,+\\infty\\right[$ : $f\\sim g$ (elles s'annulent aux mêmes points et $\\frac fg=1+\\frac{\\pm1}{\\sqrt t}$ ailleurs), $\\int_1^{+\\infty}g$ converge, mais $\\int_1^{+\\infty}f$ diverge, puisque $\\int_1^{+\\infty}\\frac{|\\sin t|}t\\,\\mathrm{d}t=+\\infty$.\n- **$f-g\\to0$ ne suffit pas.** $f(t)=\\frac2{1+t}$ et $g(t)=\\frac1{1+t}$ : $f-g\\to0$, mais $\\int_0^xf=2\\ln(1+x)$ n'est pas équivalente à $\\int_0^xg=\\ln(1+x)$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue par morceaux sur $\\left[1,+\\infty\\right[$ et $f(t)\\sim\\frac1{t^2}$ en $+\\infty$, alors $\\int_x^{+\\infty}f\\sim\\frac1x$ quand $x\\to+\\infty$.",
+          "vrai": true,
+          "justification": "$\\frac1{t^2}$ est positive et intégrable, donc $\\int_x^{+\\infty}f\\sim\\int_x^{+\\infty}\\frac{\\mathrm{d}t}{t^2}=\\frac1x$."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux sur $\\left[1,+\\infty\\right[$ et $f(t)\\sim\\frac1t$ en $+\\infty$, alors $\\int_1^xf\\sim\\ln x$ quand $x\\to+\\infty$.",
+          "vrai": true,
+          "justification": "$\\frac1t$ est positive et non intégrable sur $\\left[1,+\\infty\\right[$, donc $\\int_1^xf\\sim\\int_1^x\\frac{\\mathrm{d}t}t=\\ln x$."
+        },
+        {
+          "texte": "Si $g\\ge0$ n'est pas intégrable sur $\\left[0,+\\infty\\right[$ et $f(t)-g(t)\\to0$ en $+\\infty$, alors $\\int_0^xf-\\int_0^xg$ est bornée.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=\\frac2{1+t}$ et $g(t)=\\frac1{1+t}$ : la différence des intégrales vaut $\\ln(1+x)$, non bornée."
+        },
+        {
+          "texte": "Si $\\int_1^{+\\infty}g$ converge et $f\\sim g$ en $+\\infty$, avec $g$ de signe quelconque, alors $\\int_1^{+\\infty}f$ converge.",
+          "vrai": false,
+          "contre_exemple": "$g(t)=\\frac{\\sin t}{\\sqrt t}$ et $f(t)=\\frac{\\sin t}{\\sqrt t}+\\frac{|\\sin t|}t$ : $f\\sim g$, $\\int_1^{+\\infty}g$ converge et $\\int_1^{+\\infty}f$ diverge."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-comparaison",
+        "int-l2-generalisees-absolue"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-rectangles",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Séries et intégrales : méthode des rectangles",
+      "recto": "Énoncer la comparaison entre la série $\\sum f(n)$ et l'intégrale de $f$ pour une fonction positive décroissante (méthode des rectangles), avec ses hypothèses.",
+      "cours": "Quand $f$ est positive et décroissante, $f(k)$ est l'aire d'un rectangle de base $[k,k+1]$ qui contient l'aire sous la courbe sur $[k,k+1]$, et le rectangle de base $[k-1,k]$ de même hauteur est contenu dans l'aire sous la courbe sur $[k-1,k]$. D'où l'encadrement $\\int_k^{k+1}f\\le f(k)\\le\\int_{k-1}^kf$, qui se somme. La série $\\sum f(n)$ et l'intégrale de $f$ ont donc la même nature, et l'on obtient des encadrements des sommes partielles (série divergente) ou des restes (série convergente). Rappel utile : une série à termes positifs converge si et seulement si ses sommes partielles sont majorées.\n\nApplications types : la nature des séries de Riemann $\\sum\\frac1{n^\\alpha}$ (convergente si et seulement si $\\alpha>1$) et de Bertrand $\\sum\\frac1{n(\\ln n)^\\beta}$ ; des équivalents, $\\sum_{k=1}^n\\frac1k\\sim\\ln n$, $\\sum_{k>n}\\frac1{k^2}\\sim\\frac1n$ ; et la convergence de $\\sum\\left(f(n)-\\int_n^{n+1}f\\right)$, qui donne par exemple la constante d'Euler, $\\sum_{k=1}^n\\frac1k=\\ln n+\\gamma+o(1)$. Méthode : écrire l'encadrement d'un terme, sommer en faisant attention aux bornes, puis comparer les deux intégrales obtenues.\n\nPièges : la **décroissance** est indispensable (pour $f(t)=|\\sin(\\pi t)|$, la série $\\sum f(n)$ est nulle alors que $f$ n'est pas intégrable) ; décaler les bornes sans soin fausse les encadrements ; et il faut vérifier la décroissance sur tout $\\left[n_0,+\\infty\\right[$, quitte à augmenter $n_0$.",
+      "hypotheses": [
+        "$f$ est continue par morceaux sur $\\left[n_0,+\\infty\\right[$.",
+        "$f$ est positive.",
+        "$f$ est décroissante."
+      ],
+      "hypotheses_pieges": [
+        "La suite $(f(n))_{n\\ge n_0}$ est décroissante (à la place de : $f$ décroissante).",
+        "$f(t)\\to0$ quand $t\\to+\\infty$ (à la place de : $f$ décroissante).",
+        "$f$ est lipschitzienne (à la place de : $f$ décroissante)."
+      ],
+      "enonce": "Soient $n_0\\in\\mathbb{N}$ et $f:\\left[n_0,+\\infty\\right[\\to\\mathbb{R}$ continue par morceaux, **positive** et **décroissante**. Alors :\n- pour tout entier $k\\ge n_0+1$, $\\int_k^{k+1}f(t)\\,\\mathrm{d}t\\le f(k)\\le\\int_{k-1}^kf(t)\\,\\mathrm{d}t$, et donc, pour tout entier $N\\ge n_0+1$,\n$$\\int_{n_0+1}^{N+1}f(t)\\,\\mathrm{d}t\\le\\sum_{k=n_0+1}^{N}f(k)\\le\\int_{n_0}^{N}f(t)\\,\\mathrm{d}t\\ ;$$\n- la série $\\sum f(n)$ converge si et seulement si $f$ est intégrable sur $\\left[n_0,+\\infty\\right[$ ;\n- la série de terme général $w_n=f(n)-\\int_n^{n+1}f(t)\\,\\mathrm{d}t$ ($n\\ge n_0$) est à termes positifs et converge.",
+      "enonce_trous": "Soit $f$ continue par morceaux, {{1}} et {{2}} sur $\\left[n_0,+\\infty\\right[$. Alors la série $\\sum f(n)$ converge si et seulement si {{3}}, et la série de terme général $f(n)-\\int_n^{n+1}f(t)\\,\\mathrm{d}t$ {{4}}.",
+      "trous": [
+        {
+          "reponse": "positive",
+          "leurres": [
+            "continue",
+            "dérivable",
+            "majorée"
+          ]
+        },
+        {
+          "reponse": "décroissante",
+          "leurres": [
+            "croissante",
+            "de limite nulle en $+\\infty$",
+            "intégrable sur tout segment"
+          ]
+        },
+        {
+          "reponse": "$f$ est intégrable sur $\\left[n_0,+\\infty\\right[$",
+          "leurres": [
+            "$f(t)\\to0$ quand $t\\to+\\infty$",
+            "$f(t)=o\\left(\\frac1t\\right)$ quand $t\\to+\\infty$",
+            "$\\int_n^{n+1}f(t)\\,\\mathrm{d}t\\to0$"
+          ]
+        },
+        {
+          "reponse": "converge",
+          "leurres": [
+            "diverge",
+            "a pour somme $0$",
+            "converge si et seulement si $\\sum f(n)$ converge"
+          ]
+        }
+      ],
+      "demo": "**Encadrement.** Pour $k\\ge n_0$ et $t\\in[k,k+1]$, la décroissance donne $f(k+1)\\le f(t)\\le f(k)$ ; en intégrant sur $[k,k+1]$ : $f(k+1)\\le\\int_k^{k+1}f\\le f(k)$. La seconde inégalité est la minoration de $f(k)$ ; la première, écrite au rang $k-1\\ge n_0$, est $f(k)\\le\\int_{k-1}^kf$. En sommant pour $k$ de $n_0+1$ à $N$ et par la relation de Chasles, on obtient l'encadrement des sommes partielles.\n\n**Même nature.** Les sommes partielles de $\\sum f(n)$ et la fonction $x\\mapsto\\int_{n_0}^xf$ sont croissantes ($f\\ge0$). Si $f$ est intégrable, $\\sum_{k=n_0+1}^Nf(k)\\le\\int_{n_0}^Nf\\le\\int_{\\left[n_0,+\\infty\\right[}f$ : les sommes partielles sont majorées, la série converge. Réciproquement, si la série converge, de somme $S$, alors pour $x\\ge n_0+1$ et $N\\ge x-1$ entier, $\\int_{n_0}^xf\\le\\int_{n_0}^{N+1}f\\le f(n_0)+\\int_{n_0+1}^{N+1}f\\le f(n_0)+\\sum_{k=n_0+1}^Nf(k)\\le S$ (on a utilisé $\\int_{n_0}^{n_0+1}f\\le f(n_0)$) : l'intégrale partielle est majorée, $f$ est intégrable.\n\n**La série $\\sum w_n$.** Par l'encadrement, $0\\le w_n=f(n)-\\int_n^{n+1}f\\le f(n)-f(n+1)$. Les sommes partielles de $\\sum w_n$ sont donc majorées par $\\sum_{n=n_0}^N\\big(f(n)-f(n+1)\\big)=f(n_0)-f(N+1)\\le f(n_0)$ : la série à termes positifs $\\sum w_n$ converge.",
+      "exemple": "- **Riemann.** Pour $\\alpha>0$, $t\\mapsto\\frac1{t^\\alpha}$ est positive et décroissante sur $\\left[1,+\\infty\\right[$ : $\\sum\\frac1{n^\\alpha}$ converge si et seulement si $\\alpha>1$ (pour $\\alpha\\le0$, le terme général ne tend pas vers $0$).\n- **Série harmonique.** Avec $f(t)=\\frac1t$ et $n_0=1$ : $\\ln(N+1)\\le\\sum_{k=1}^N\\frac1k\\le1+\\ln N$, donc $\\sum_{k=1}^N\\frac1k\\sim\\ln N$. Et $\\sum_{n=1}^{N-1}w_n=\\sum_{k=1}^{N-1}\\frac1k-\\ln N$ converge : $\\sum_{k=1}^N\\frac1k-\\ln N$ tend vers une constante $\\gamma$ (constante d'Euler, $\\gamma\\approx0{,}577$).",
+      "contre_exemple": "- **La décroissance est nécessaire.** $f(t)=|\\sin(\\pi t)|$ sur $\\left[0,+\\infty\\right[$ est positive, continue, lipschitzienne, et $f(n)=0$ : la série $\\sum f(n)$ converge, mais $\\int_0^Nf=\\frac{2N}\\pi\\to+\\infty$. De même $\\frac{|\\sin(\\pi t)|}{t}$ sur $\\left[1,+\\infty\\right[$ tend vers $0$ sans être intégrable, alors que $\\sum f(n)=0$.\n- **Une suite $(f(n))$ décroissante ne suffit pas** : $f(t)=\\frac1{t^2}+|\\sin(\\pi t)|$ sur $\\left[1,+\\infty\\right[$ vérifie $f(n)=\\frac1{n^2}$, $\\sum f(n)$ converge, mais $f\\ge|\\sin(\\pi t)|$ n'est pas intégrable.\n- **La positivité, pour $\\sum w_n$.** $f(t)=-t$ est décroissante, et $w_n=-n+\\int_n^{n+1}t\\,\\mathrm{d}t=\\frac12$ : $\\sum w_n$ diverge.",
+      "affirmations": [
+        {
+          "texte": "La série $\\sum_{n\\ge2}\\frac1{n\\ln n}$ converge.",
+          "vrai": false,
+          "contre_exemple": "$t\\mapsto\\frac1{t\\ln t}$ est positive et décroissante sur $\\left[2,+\\infty\\right[$, et $\\int_2^x\\frac{\\mathrm{d}t}{t\\ln t}=\\ln\\ln x-\\ln\\ln2\\to+\\infty$ : la série diverge."
+        },
+        {
+          "texte": "Si $f$ est continue, positive et intégrable sur $\\left[1,+\\infty\\right[$, alors $\\sum f(n)$ converge.",
+          "vrai": false,
+          "contre_exemple": "La fonction « en pics » de hauteur $1$ en chaque entier $n\\ge2$, de base $\\left[n-2^{-n},n+2^{-n}\\right]$ : elle est intégrable (aire totale $\\sum_{n\\ge2}2^{-n}=\\frac12$), mais $f(n)=1$ et $\\sum f(n)$ diverge. Il manque la décroissance."
+        },
+        {
+          "texte": "Si $f$ est continue par morceaux, positive, décroissante et intégrable sur $\\left[1,+\\infty\\right[$, alors pour tout entier $n\\ge1$, $\\sum_{k=n+1}^{+\\infty}f(k)\\le\\int_n^{+\\infty}f\\le\\sum_{k=n}^{+\\infty}f(k)$.",
+          "vrai": true,
+          "justification": "On somme $f(k)\\le\\int_{k-1}^kf$ pour $k\\ge n+1$, et $\\int_k^{k+1}f\\le f(k)$ pour $k\\ge n$."
+        },
+        {
+          "texte": "$\\sum_{k=1}^n\\frac1k\\sim\\ln n$ quand $n\\to+\\infty$.",
+          "vrai": true,
+          "justification": "$\\ln(n+1)\\le\\sum_{k=1}^n\\frac1k\\le1+\\ln n$, et les deux bornes sont équivalentes à $\\ln n$."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-positive"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-dominee",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Théorèmes de convergence monotone et dominée (admis)",
+      "recto": "Énoncer les théorèmes de convergence monotone et de convergence dominée (admis au programme), avec leurs hypothèses.",
+      "cours": "Ces deux théorèmes disent quand on peut écrire $\\lim\\int_If_n=\\int_I\\lim f_n$ sur un intervalle quelconque. Le programme les **admet** ; l'important est de savoir vérifier leurs hypothèses.\n\n**Convergence dominée** : il faut une convergence simple vers une fonction continue par morceaux, et surtout une **domination** $|f_n(t)|\\le g(t)$, valable pour **tous** les $n$ et tous les $t$, par une fonction $g$ **intégrable indépendante de $n$**. Méthode : majorer $|f_n(t)|$ en éliminant $n$ (par des inégalités comme $|\\sin u|\\le|u|$, $\\ln(1+u)\\le u$, $\\left(1-\\frac tn\\right)^n\\le e^{-t}$ sur $[0,n]$), puis vérifier que le majorant est intégrable. Une intégrale sur $[0,n]$ se ramène à une intégrale sur $\\left[0,+\\infty\\right[$ en multipliant par l'indicatrice de $[0,n]$ ; un changement de variable ($u=nt$) fait souvent apparaître la bonne suite de fonctions.\n\n**Convergence monotone** : pour une suite **croissante** de fonctions intégrables, la limite est intégrable si et seulement si les intégrales sont majorées, et l'on peut alors passer à la limite. Utile pour des fonctions positives qu'on approche par en dessous.\n\nPièges : une borne $\\int_I|f_n|\\le M$, ou une domination par une fonction qui dépend de $n$, ne suffit pas (bosse glissante $\\mathbf{1}_{[n,n+1]}$, bosse qui se concentre $n\\,\\mathbf{1}_{\\left]0,\\frac1n\\right]}$) ; la limite simple doit être continue par morceaux ; et la convergence des intégrales n'entraîne pas la convergence uniforme.",
+      "hypotheses": [
+        "Les $f_n$ et $f$ sont continues par morceaux sur $I$.",
+        "$f_n(t)\\to f(t)$ pour tout $t\\in I$.",
+        "Il existe $g$ intégrable sur $I$ telle que $|f_n|\\le g$ sur $I$ pour tout $n$."
+      ],
+      "hypotheses_pieges": [
+        "Chaque $f_n$ est intégrable et $|f_n|\\le1$ sur $I$ (à la place de la domination par $g$ intégrable).",
+        "La suite $\\left(\\int_I|f_n|\\right)$ est majorée (à la place de la domination par $g$ intégrable).",
+        "Pour tout $n$, il existe $g_n$ intégrable sur $I$ telle que $|f_n|\\le g_n$ (à la place de la domination par une même $g$)."
+      ],
+      "enonce": "Soit $I$ un intervalle de $\\mathbb{R}$. Les deux théorèmes suivants sont **admis** par le programme.\n\n**Convergence monotone.** Soit $(f_n)$ une suite **croissante** de fonctions réelles intégrables sur $I$, qui converge simplement sur $I$ vers une fonction $f$ continue par morceaux sur $I$. Alors $f$ est intégrable sur $I$ si et seulement si la suite $\\left(\\int_If_n\\right)$ est majorée ; dans ce cas, $\\int_If=\\lim_{n\\to+\\infty}\\int_If_n$.\n\n**Convergence dominée.** Soit $(f_n)$ une suite de fonctions continues par morceaux sur $I$, à valeurs complexes, qui converge simplement sur $I$ vers une fonction $f$ continue par morceaux sur $I$. S'il existe une fonction $g$ **intégrable** sur $I$ telle que $|f_n(t)|\\le g(t)$ pour tout $n$ et tout $t\\in I$ (hypothèse de **domination**), alors $f$ est intégrable sur $I$ et $\\int_If=\\lim_{n\\to+\\infty}\\int_If_n$.",
+      "enonce_trous": "Soit $(f_n)$ une suite de fonctions continues par morceaux sur $I$, qui converge simplement sur $I$ vers une fonction $f$ continue par morceaux. S'il existe une fonction $g$ {{1}} telle que {{2}} pour tout $n$, alors $f$ est intégrable sur $I$ et {{3}}.",
+      "trous": [
+        {
+          "reponse": "intégrable sur $I$",
+          "leurres": [
+            "bornée sur $I$",
+            "continue par morceaux sur $I$",
+            "intégrable sur tout segment inclus dans $I$"
+          ]
+        },
+        {
+          "reponse": "$|f_n|\\le g$ sur $I$",
+          "leurres": [
+            "$f_n\\le g$ sur $I$",
+            "$\\int_I|f_n|\\le\\int_Ig$",
+            "$|f_n-f|\\le g$ sur $I$"
+          ]
+        },
+        {
+          "reponse": "$\\int_If_n\\to\\int_If$",
+          "leurres": [
+            "$\\int_If_n=\\int_If$ pour tout $n$",
+            "$\\int_If_n\\le\\int_If$ pour tout $n$",
+            "$\\sup_I|f_n-f|\\to0$"
+          ]
+        }
+      ],
+      "demo": "Les deux théorèmes sont **admis** par le programme. Montrons comment la convergence monotone se déduit de la convergence dominée. Soit $(f_n)$ croissante, de limite simple $f$ continue par morceaux ; alors $f_0\\le f_n\\le f$, donc $|f_n|\\le|f_0|+|f|$.\n\n**Si $f$ est intégrable**, $g=|f_0|+|f|$ est intégrable et domine les $f_n$ : par convergence dominée, $\\int_If_n\\to\\int_If$, et la suite $\\left(\\int_If_n\\right)$, convergente, est majorée.\n\n**Si $\\int_If_n\\le M$ pour tout $n$**, soit $[c,d]\\subset I$. Sur ce segment, $|f_0|+|f|$ est continue par morceaux, donc bornée et intégrable : la convergence dominée sur $[c,d]$ donne $\\int_c^df_n\\to\\int_c^df$. Comme $f_n-f_0\\ge0$,\n$$\\int_c^d(f_n-f_0)\\le\\int_I(f_n-f_0)=\\int_If_n-\\int_If_0\\le M-\\int_If_0,$$\net à la limite $\\int_c^d(f-f_0)\\le M-\\int_If_0$. La fonction positive $f-f_0$ a donc des intégrales sur les segments majorées : elle est intégrable, et $f=(f-f_0)+f_0$ aussi. Le premier point donne alors $\\int_If=\\lim\\int_If_n$.",
+      "exemple": "- **Convergence dominée.** Pour $n\\ge1$, posons $f_n(t)=\\left(1-\\frac tn\\right)^n$ si $0\\le t\\le n$ et $f_n(t)=0$ si $t>n$. Comme $\\ln(1-u)\\le-u$, $0\\le f_n(t)\\le e^{-t}$, intégrable sur $\\left[0,+\\infty\\right[$, et $f_n(t)\\to e^{-t}$. Donc $\\int_0^n\\left(1-\\frac tn\\right)^n\\,\\mathrm{d}t\\to\\int_0^{+\\infty}e^{-t}\\,\\mathrm{d}t=1$ (on vérifie : l'intégrale vaut $\\frac n{n+1}$).\n- **Convergence monotone.** $f_n(t)=\\min\\left(n,\\frac1{\\sqrt t}\\right)$ sur $\\left]0,1\\right]$ croît vers $\\frac1{\\sqrt t}$, et $\\int_0^1f_n=\\frac1n+2-\\frac2n=2-\\frac1n\\le2$ : $\\frac1{\\sqrt t}$ est intégrable sur $\\left]0,1\\right]$, d'intégrale $2$.",
+      "contre_exemple": "- **Bosse glissante.** $f_n=\\mathbf{1}_{[n,n+1]}$ sur $\\left[0,+\\infty\\right[$ : continues par morceaux, $|f_n|\\le1$, $\\int f_n=1$, $f_n\\to0$ simplement, mais $\\int f_n\\not\\to0$. Aucune fonction intégrable ne domine toutes les $f_n$ (elle serait $\\ge1$ sur $\\left[0,+\\infty\\right[$).\n- **Bosse qui se concentre.** $f_n=n\\,\\mathbf{1}_{\\left]0,\\frac1n\\right]}$ sur $\\left]0,1\\right]$ : $f_n\\to0$ simplement, $\\int_0^1f_n=1$.\n- **Les $f_n$ doivent être intégrables.** $f_n=\\mathbf{1}_{\\left[n,+\\infty\\right[}$ décroît vers $0$, qui est intégrable, alors qu'aucune $f_n$ ne l'est. Pour une suite décroissante de fonctions positives, il faut que $f_0$ soit intégrable : c'est alors la convergence dominée, avec $g=f_0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f_n\\to f$ simplement sur $\\left[0,+\\infty\\right[$ (fonctions continues par morceaux) et si $\\int_0^{+\\infty}|f_n|\\le1$ pour tout $n$, alors $\\int_0^{+\\infty}f_n\\to\\int_0^{+\\infty}f$.",
+          "vrai": false,
+          "contre_exemple": "$f_n=\\mathbf{1}_{[n,n+1]}$ : $\\int f_n=1$ pour tout $n$ et $f=0$."
+        },
+        {
+          "texte": "$\\lim_{n\\to+\\infty}\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{1+t^n}=1$.",
+          "vrai": true,
+          "justification": "Pour $n\\ge2$, $\\frac1{1+t^n}\\le1$ sur $[0,1]$ et $\\le\\frac1{t^2}$ sur $\\left]1,+\\infty\\right[$ : domination par une fonction intégrable. La limite simple vaut $1$ sur $\\left[0,1\\right[$, $\\frac12$ en $1$, $0$ ensuite (continue par morceaux), d'intégrale $1$."
+        },
+        {
+          "texte": "Sous les hypothèses du théorème de convergence dominée, $(f_n)$ converge uniformément vers $f$ sur $I$.",
+          "vrai": false,
+          "contre_exemple": "$f_n(t)=t^n$ sur $\\left[0,1\\right[$ : $|f_n|\\le1$, intégrable sur cet intervalle borné, $f_n\\to0$ simplement, mais $\\sup_{\\left[0,1\\right[}|f_n|=1$."
+        },
+        {
+          "texte": "Si $(f_n)$ est une suite croissante de fonctions positives intégrables sur $I$, de limite simple $f$ continue par morceaux, et si $\\int_If_n\\to+\\infty$, alors $f$ n'est pas intégrable sur $I$.",
+          "vrai": true,
+          "justification": "Par convergence monotone, $f$ intégrable entraînerait que $\\left(\\int_If_n\\right)$ est majorée."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-comparaison",
+        "int-l2-generalisees-absolue"
+      ]
+    },
+    {
+      "id": "int-l2-generalisees-terme-a-terme",
+      "theme": "integration",
+      "niveau": "l2",
+      "chapitre": "int-l2-generalisees",
+      "type": "theoreme",
+      "titre": "Intégration terme à terme (admis)",
+      "recto": "Énoncer le théorème d'intégration terme à terme d'une série de fonctions sur un intervalle quelconque (admis au programme), avec ses hypothèses.",
+      "cours": "Le théorème permet d'écrire $\\int_I\\sum u_n=\\sum\\int_Iu_n$ sur un intervalle quelconque. L'hypothèse clé n'est pas une convergence uniforme mais la convergence de la série **des intégrales des modules**, $\\sum\\int_I|u_n|$. Le programme l'**admet**.\n\nMéthode type pour calculer une intégrale : développer l'intégrande en série (série géométrique, série de l'exponentielle, série du logarithme), par exemple $\\frac t{e^t-1}=\\sum_{n\\ge1}te^{-nt}$ pour $t>0$ ; calculer $\\int_I|u_n|$ (souvent par intégration par parties ou par la formule $\\int_0^{+\\infty}t^ke^{-at}\\,\\mathrm{d}t=\\frac{k!}{a^{k+1}}$) et vérifier que la série converge ; conclure. On obtient ainsi $\\int_0^{+\\infty}\\frac t{e^t-1}\\,\\mathrm{d}t=\\sum\\frac1{n^2}$, $\\int_0^1\\frac{-\\ln(1-t)}t\\,\\mathrm{d}t=\\sum\\frac1{n^2}$, ou $\\int_0^1t^{-t}\\,\\mathrm{d}t=\\sum_{n\\ge1}n^{-n}$. Quand les $u_n$ sont **positives**, la convergence monotone suffit, et la condition revient à la convergence de $\\sum\\int_Iu_n$.\n\nPièges : la convergence de $\\sum\\int_Iu_n$ (sans les modules) ne suffit pas, à cause des compensations ; la convergence uniforme sur un intervalle non borné ne suffit pas non plus ; et l'on n'oublie pas de vérifier que la somme $S$ est continue par morceaux.",
+      "hypotheses": [
+        "Chaque $u_n$ est continue par morceaux et intégrable sur $I$.",
+        "$\\sum u_n$ converge simplement sur $I$ vers une fonction $S$ continue par morceaux.",
+        "La série $\\sum\\int_I|u_n|$ converge."
+      ],
+      "hypotheses_pieges": [
+        "La série $\\sum\\int_Iu_n$ converge (à la place de $\\sum\\int_I|u_n|$).",
+        "$\\sum u_n$ converge uniformément sur $I$ (à la place de : $\\sum\\int_I|u_n|$ converge).",
+        "Chaque $u_n$ est positive (à la place de : $\\sum\\int_I|u_n|$ converge)."
+      ],
+      "enonce": "Soit $(u_n)$ une suite de fonctions à valeurs complexes, continues par morceaux et **intégrables** sur un intervalle $I$, telle que :\n- la série $\\sum u_n$ converge simplement sur $I$ vers une fonction $S$ continue par morceaux sur $I$ ;\n- la série $\\sum\\int_I|u_n|$ converge.\n\nAlors $S$ est intégrable sur $I$ et\n$$\\int_IS=\\sum_{n=0}^{+\\infty}\\int_Iu_n.$$\nCe théorème est **admis** par le programme.",
+      "enonce_trous": "Soit $(u_n)$ une suite de fonctions continues par morceaux et intégrables sur $I$ telle que $\\sum u_n$ converge simplement sur $I$ vers une fonction $S$ continue par morceaux, et telle que la série {{1}} converge. Alors $S$ est intégrable sur $I$ et {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\sum\\int_I|u_n|$",
+          "leurres": [
+            "$\\sum\\int_Iu_n$",
+            "$\\sum\\left|\\int_Iu_n\\right|$",
+            "$\\sum\\sup_I|u_n|$"
+          ]
+        },
+        {
+          "reponse": "$\\int_IS=\\sum_{n=0}^{+\\infty}\\int_Iu_n$",
+          "leurres": [
+            "$\\int_IS=\\sum_{n=0}^{+\\infty}\\int_I|u_n|$",
+            "$\\sum u_n$ converge uniformément sur $I$",
+            "$\\int_I|S|=\\sum_{n=0}^{+\\infty}\\int_I|u_n|$"
+          ]
+        }
+      ],
+      "demo": "Le théorème est **admis** par le programme. Démontrons-le quand les $u_n$ sont **positives**, à partir du théorème de convergence monotone (lui-même admis).\n\nNotons $S_N=\\sum_{n=0}^Nu_n$. Chaque $S_N$ est intégrable (somme finie de fonctions intégrables), la suite $(S_N)$ est croissante puisque $u_n\\ge0$, et elle converge simplement vers $S$, continue par morceaux. De plus\n$$\\int_IS_N=\\sum_{n=0}^N\\int_Iu_n=\\sum_{n=0}^N\\int_I|u_n|\\le\\sum_{n=0}^{+\\infty}\\int_I|u_n|,$$\ndonc la suite $\\left(\\int_IS_N\\right)$ est majorée. Par convergence monotone, $S$ est intégrable et $\\int_IS=\\lim_N\\int_IS_N=\\sum_{n=0}^{+\\infty}\\int_Iu_n$.",
+      "exemple": "Pour $t>0$, $0<e^{-t}<1$, donc $\\frac t{e^t-1}=\\frac{te^{-t}}{1-e^{-t}}=\\sum_{n\\ge1}te^{-nt}$. Les fonctions $u_n(t)=te^{-nt}$ sont positives, continues et intégrables sur $\\left]0,+\\infty\\right[$, avec $\\int_0^{+\\infty}te^{-nt}\\,\\mathrm{d}t=\\frac1{n^2}$ (intégration par parties), et $\\sum\\frac1{n^2}$ converge. La somme est continue. Donc $\\int_0^{+\\infty}\\frac t{e^t-1}\\,\\mathrm{d}t=\\sum_{n=1}^{+\\infty}\\frac1{n^2}$, qui vaut $\\frac{\\pi^2}6$.",
+      "contre_exemple": "- **$\\sum\\int_Iu_n$ convergente ne suffit pas.** Sur $\\left]0,+\\infty\\right[$, $f_n(t)=ne^{-nt}$ et $u_n=f_{n+1}-f_n$ ($n\\ge1$). Alors $\\sum_{n=1}^Nu_n=f_{N+1}-f_1\\to-e^{-t}$, d'intégrale $-1$, tandis que $\\int u_n=1-1=0$ pour tout $n$ : $\\sum\\int u_n=0\\ne-1$. (Ici $\\sum\\int|u_n|$ diverge.)\n- **La convergence uniforme ne suffit pas.** Sur $\\left[0,+\\infty\\right[$, $u_n=\\frac1{n+1}\\mathbf{1}_{\\left[n,n+1\\right[}$ : la série converge uniformément (le reste est majoré par $\\frac1{N+2}$) vers $S(t)=\\frac1{\\lfloor t\\rfloor+1}$, mais $\\int_0^NS=\\sum_{n=0}^{N-1}\\frac1{n+1}\\to+\\infty$ : $S$ n'est pas intégrable.",
+      "affirmations": [
+        {
+          "texte": "Si les $u_n$ sont positives, continues par morceaux et intégrables sur $I$, si $\\sum u_n$ converge simplement vers $S$ continue par morceaux et si $\\sum\\int_Iu_n$ converge, alors $\\int_IS=\\sum\\int_Iu_n$.",
+          "vrai": true,
+          "justification": "Pour $u_n\\ge0$, $\\int_I|u_n|=\\int_Iu_n$ : c'est le théorème, ou directement la convergence monotone appliquée aux sommes partielles."
+        },
+        {
+          "texte": "Si chaque $u_n$ est intégrable sur $I$ et si $\\sum u_n$ converge uniformément sur $I$ vers une fonction $S$ continue par morceaux, alors $S$ est intégrable sur $I$.",
+          "vrai": false,
+          "contre_exemple": "$u_n=\\frac1{n+1}\\mathbf{1}_{\\left[n,n+1\\right[}$ sur $\\left[0,+\\infty\\right[$ : convergence uniforme vers $S(t)=\\frac1{\\lfloor t\\rfloor+1}$, non intégrable."
+        },
+        {
+          "texte": "Le théorème s'applique à $u_n(t)=t^n$ sur $\\left[0,1\\right[$.",
+          "vrai": false,
+          "contre_exemple": "$\\int_0^1t^n\\,\\mathrm{d}t=\\frac1{n+1}$ et $\\sum\\frac1{n+1}$ diverge ; d'ailleurs la somme $\\frac1{1-t}$ n'est pas intégrable sur $\\left[0,1\\right[$."
+        },
+        {
+          "texte": "Sur un segment $[a,b]$, si les $u_n$ sont continues et si $\\sum u_n$ converge uniformément, alors $\\int_a^b\\sum u_n=\\sum\\int_a^bu_n$.",
+          "vrai": true,
+          "justification": "Sur un segment, $\\left|\\int_a^bS-\\int_a^bS_N\\right|\\le(b-a)\\sup_{[a,b]}|S-S_N|\\to0$ (la somme uniforme de fonctions continues est continue)."
+        }
+      ],
+      "prerequis": [
+        "int-l2-generalisees-dominee"
+      ]
+    }
+  ]
+}
