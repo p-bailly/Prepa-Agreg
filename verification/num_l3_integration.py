@@ -560,6 +560,7 @@ w_, t_ = sp.symbols("w t_", positive=True)
 assert sp.solve([2 * w_ - 2, 2 * w_ * t_ ** 2 - sp.Rational(2, 3)], [w_, t_]) == [(1, 1 / sp.sqrt(3))]
 assert 2 * (1 / sp.sqrt(3)) ** 4 == sp.Rational(2, 9) and sp.integrate(s ** 4, (s, -1, 1)) == sp.Rational(2, 5)
 assert 2 * sp.Rational(1, 2) ** 2 != sp.Rational(2, 3) and 2 * (1 / sp.sqrt(2)) ** 2 != sp.Rational(2, 3)  # leurres t = 1/2, 1/√2
+assert 2 * sp.Rational(1, 3) ** 2 != sp.Rational(2, 3)  # leurre t = 1/3 (ex5 : la question porte sur t seul)
 s0, s1 = sp.symbols("s0 s1", real=True)
 Pq = (s - s0) ** 2 * (s - s1) ** 2
 assert sp.expand(Pq.subs(s, s0)) == 0 and sp.expand(Pq.subs(s, s1)) == 0
@@ -708,6 +709,14 @@ for f in [lambda y: 1 / (1 + y), lambda y: y ** 7 - y ** 2]:
     assert romberg(f, F(0), F(1), 2)[2][2] == sum(wj * f(F(j, 4)) for j, wj in enumerate(w))
 assert degre(lambda g: sum(F(c_, 12) * g(F(j, 4)) for j, c_ in enumerate([1, 4, 2, 4, 1]))) == 3
 assert degre(lambda g: sum(F(c_, 8) * g(F(j, 4)) for j, c_ in enumerate([1, 2, 2, 2, 1]))) == 1
+# ro-ex5 : leurre (16 R_{1,1} - R_{2,1})/15 (ordre inversé) = (1/180)(31, -4, 126, -4, 31), distinct de Boole et de degré
+# d'exactitude 3 seulement (combinaison affine de S_1 et S_2) ; les deux autres leurres sont R_{2,1} = S_2 et T_4.
+w_inv = [F(16, 15 * 6) * b - F(1, 15 * 12) * a for a, b in zip([1, 4, 2, 4, 1], [1, 0, 4, 0, 1])]
+assert w_inv == [F(c_, 180) for c_ in (31, -4, 126, -4, 31)] and w_inv != w and sum(w_inv) == 1
+assert degre(lambda g: sum(wj * g(F(j, 4)) for j, wj in enumerate(w_inv))) == 3
+for f in [lambda y: 1 / (1 + y)]:
+    assert romberg(f, F(0), F(1), 2)[2][1] == sum(F(c_, 12) * f(F(j, 4)) for j, c_ in enumerate([1, 4, 2, 4, 1]))
+    assert romberg(f, F(0), F(1), 2)[2][0] == sum(F(c_, 8) * f(F(j, 4)) for j, c_ in enumerate([1, 2, 2, 2, 1]))
 vv = [F(-1, 2), F(-1, 4), F(0), F(1, 4), F(1, 2)]
 mom = lambda j: sum(wj * v ** j for wj, v in zip(w, vv))  # noqa: E731
 assert mom(2) == F(1, 12) and mom(4) == F(1, 80) and mom(6) == F(1, 384) and 2 * F(1, 2) ** 7 / 7 == F(1, 448)
