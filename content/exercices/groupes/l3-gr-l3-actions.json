@@ -1,0 +1,1162 @@
+{
+  "exercices": [
+    {
+      "id": "gr-l3-actions-orbites-ex1",
+      "carte": "gr-l3-actions-orbites",
+      "difficulte": 1,
+      "titre": "Orbites et stabilisateur pour le groupe engendré par une permutation",
+      "enonce": "On considère la permutation $\\sigma=(1\\ 2\\ 3)(4\\ 5)$ de $\\mathfrak{S}_6$ et le sous-groupe $G=\\langle\\sigma\\rangle$, qui opère sur $\\{1,\\dots,6\\}$ par $g\\cdot x=g(x)$. Déterminer les orbites de cette action et le stabilisateur $G_4$ du point $4$.",
+      "duree_min": 5,
+      "indices": [
+        "L'orbite de $x$ est formée des $\\sigma^k(x)$, $k\\in\\mathbb{Z}$ : ce sont les orbites de la permutation $\\sigma$, points fixes compris.",
+        "Pour le stabilisateur, utiliser la relation $|G\\cdot x|\\times|G_x|=|G|$, où $|G|$ est l'ordre de $\\sigma$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal de $G_4$ ?",
+        "propositions": [
+          "$3$",
+          "$2$",
+          "$6$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'ordre de $\\sigma$ est le ppcm de $3$ et $2$, donc $|G|=6$. Les orbites sont celles de la permutation $\\sigma$ : $\\{1,2,3\\}$, $\\{4,5\\}$ et $\\{6\\}$.\n\nL'orbite de $4$ a $2$ éléments, donc $|G_4|=\\frac{6}{2}=3$. Explicitement, $\\sigma^k$ agit sur $\\{4,5\\}$ comme $(4\\ 5)^k$, donc $\\sigma^k(4)=4$ si et seulement si $k$ est pair : $$G_4=\\{\\mathrm{id},\\sigma^2,\\sigma^4\\}=\\{\\mathrm{id},(1\\ 3\\ 2),(1\\ 2\\ 3)\\}.$$",
+      "variantes": [
+        {
+          "enonce": "On considère la permutation $\\sigma=(1\\ 2\\ 3\\ 4)(5\\ 6\\ 7)$ de $\\mathfrak{S}_8$ et le sous-groupe $G=\\langle\\sigma\\rangle$, qui opère sur $\\{1,\\dots,8\\}$ par $g\\cdot x=g(x)$. Déterminer les orbites de cette action et le stabilisateur $G_5$ du point $5$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $G_5$ ?",
+            "propositions": [
+              "$4$",
+              "$3$",
+              "$12$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'ordre de $\\sigma$ est le ppcm de $4$ et $3$, donc $|G|=12$. Les orbites sont $\\{1,2,3,4\\}$, $\\{5,6,7\\}$ et $\\{8\\}$.\n\nL'orbite de $5$ a $3$ éléments, donc $|G_5|=\\frac{12}{3}=4$. Explicitement, $\\sigma^k(5)=5$ si et seulement si $3$ divise $k$ : $$G_5=\\{\\mathrm{id},\\sigma^3,\\sigma^6,\\sigma^9\\}=\\{\\mathrm{id},(1\\ 4\\ 3\\ 2),(1\\ 3)(2\\ 4),(1\\ 2\\ 3\\ 4)\\}.$$",
+          "indices": [
+            "L'orbite de $x$ est formée des $\\sigma^k(x)$, $k\\in\\mathbb{Z}$ : ce sont les orbites de la permutation $\\sigma$, points fixes compris.",
+            "Pour le stabilisateur de $5$, utiliser la relation $|G\\cdot x|\\times|G_x|=|G|$, où $|G|$ est l'ordre de $\\sigma$."
+          ]
+        },
+        {
+          "enonce": "On considère la permutation $\\sigma=(1\\ 2\\ 3\\ 4\\ 5)(6\\ 7)$ de $\\mathfrak{S}_8$ et le sous-groupe $G=\\langle\\sigma\\rangle$, qui opère sur $\\{1,\\dots,8\\}$ par $g\\cdot x=g(x)$. Déterminer les orbites de cette action et le stabilisateur $G_1$ du point $1$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $G_1$ ?",
+            "propositions": [
+              "$2$",
+              "$5$",
+              "$10$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'ordre de $\\sigma$ est le ppcm de $5$ et $2$, donc $|G|=10$. Les orbites sont $\\{1,2,3,4,5\\}$, $\\{6,7\\}$ et $\\{8\\}$.\n\nL'orbite de $1$ a $5$ éléments, donc $|G_1|=\\frac{10}{5}=2$. Explicitement, $\\sigma^k(1)=1$ si et seulement si $5$ divise $k$ : $$G_1=\\{\\mathrm{id},\\sigma^5\\}=\\{\\mathrm{id},(6\\ 7)\\}.$$",
+          "indices": [
+            "L'orbite de $x$ est formée des $\\sigma^k(x)$, $k\\in\\mathbb{Z}$ : ce sont les orbites de la permutation $\\sigma$, points fixes compris.",
+            "Pour le stabilisateur de $1$, utiliser la relation $|G\\cdot x|\\times|G_x|=|G|$, où $|G|$ est l'ordre de $\\sigma$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-orbites-ex2",
+      "carte": "gr-l3-actions-orbites",
+      "difficulte": 2,
+      "titre": "Le groupe symétrique opérant sur les paires",
+      "enonce": "Le groupe $\\mathfrak{S}_5$ opère sur l'ensemble $P$ des parties à deux éléments de $\\{1,\\dots,5\\}$ par $\\sigma\\cdot\\{a,b\\}=\\{\\sigma(a),\\sigma(b)\\}$. Vérifier qu'il s'agit d'une action, puis déterminer l'orbite et le cardinal du stabilisateur de $\\{1,2\\}$.",
+      "duree_min": 10,
+      "indices": [
+        "Pour l'orbite, construire une permutation qui envoie $1$ sur $a$ et $2$ sur $b$.",
+        "Pour le stabilisateur, utiliser la relation orbite-stabilisateur, puis contrôler par une description directe."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal du stabilisateur de $\\{1,2\\}$ ?",
+        "propositions": [
+          "$12$",
+          "$6$",
+          "$10$",
+          "$60$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $\\sigma$ est injective, $\\{\\sigma(a),\\sigma(b)\\}$ a deux éléments : c'est un élément de $P$. On a $\\mathrm{id}\\cdot\\{a,b\\}=\\{a,b\\}$ et $\\sigma\\cdot(\\tau\\cdot\\{a,b\\})=\\{\\sigma(\\tau(a)),\\sigma(\\tau(b))\\}=(\\sigma\\tau)\\cdot\\{a,b\\}$ : c'est une action.\n\nSoit $\\{a,b\\}\\in P$. Une bijection de $\\{3,4,5\\}$ sur $\\{1,\\dots,5\\}\\setminus\\{a,b\\}$, prolongée par $1\\mapsto a$, $2\\mapsto b$, est une permutation $\\sigma$ telle que $\\sigma\\cdot\\{1,2\\}=\\{a,b\\}$. L'orbite de $\\{1,2\\}$ est donc $P$ tout entier, qui a $\\binom52=10$ éléments, et le stabilisateur a $\\frac{120}{10}=12$ éléments.\n\nContrôle : $\\sigma$ stabilise $\\{1,2\\}$ si et seulement si elle permute $\\{1,2\\}$ et $\\{3,4,5\\}$, d'où $2!\\times3!=12$ permutations. Erreur fréquente : $(5-2)!=6$ compte seulement les permutations qui fixent $1$ et $2$.",
+      "variantes": [
+        {
+          "enonce": "Le groupe $\\mathfrak{S}_6$ opère sur l'ensemble $P$ des parties à deux éléments de $\\{1,\\dots,6\\}$ par $\\sigma\\cdot\\{a,b\\}=\\{\\sigma(a),\\sigma(b)\\}$. Vérifier qu'il s'agit d'une action, puis déterminer l'orbite et le cardinal du stabilisateur de $\\{1,2\\}$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal du stabilisateur de $\\{1,2\\}$ ?",
+            "propositions": [
+              "$48$",
+              "$24$",
+              "$15$",
+              "$360$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\sigma$ est injective, $\\{\\sigma(a),\\sigma(b)\\}\\in P$ ; $\\mathrm{id}\\cdot\\{a,b\\}=\\{a,b\\}$ et $\\sigma\\cdot(\\tau\\cdot\\{a,b\\})=(\\sigma\\tau)\\cdot\\{a,b\\}$ : c'est une action.\n\nPour $\\{a,b\\}\\in P$, une permutation qui envoie $1$ sur $a$, $2$ sur $b$ et $\\{3,4,5,6\\}$ bijectivement sur les quatre autres entiers envoie $\\{1,2\\}$ sur $\\{a,b\\}$. L'orbite de $\\{1,2\\}$ est $P$, qui a $\\binom62=15$ éléments, et le stabilisateur a $\\frac{720}{15}=48$ éléments.\n\nContrôle : ce sont les permutations qui permutent $\\{1,2\\}$ et $\\{3,4,5,6\\}$, au nombre de $2!\\times4!=48$. Erreur fréquente : $4!=24$ compte seulement celles qui fixent $1$ et $2$.",
+          "indices": [
+            "Pour l'orbite de $\\{1,2\\}$, construire une permutation de $\\{1,\\dots,6\\}$ qui envoie $1$ sur $a$ et $2$ sur $b$.",
+            "Pour le stabilisateur, utiliser la relation orbite-stabilisateur dans $\\mathfrak{S}_6$, puis contrôler par une description directe."
+          ]
+        },
+        {
+          "enonce": "Le groupe $\\mathfrak{S}_7$ opère sur l'ensemble $P$ des parties à deux éléments de $\\{1,\\dots,7\\}$ par $\\sigma\\cdot\\{a,b\\}=\\{\\sigma(a),\\sigma(b)\\}$. Vérifier qu'il s'agit d'une action, puis déterminer l'orbite et le cardinal du stabilisateur de $\\{1,2\\}$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal du stabilisateur de $\\{1,2\\}$ ?",
+            "propositions": [
+              "$240$",
+              "$120$",
+              "$21$",
+              "$2520$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\sigma$ est injective, $\\{\\sigma(a),\\sigma(b)\\}\\in P$ ; $\\mathrm{id}\\cdot\\{a,b\\}=\\{a,b\\}$ et $\\sigma\\cdot(\\tau\\cdot\\{a,b\\})=(\\sigma\\tau)\\cdot\\{a,b\\}$ : c'est une action.\n\nPour $\\{a,b\\}\\in P$, une permutation qui envoie $1$ sur $a$, $2$ sur $b$ et $\\{3,\\dots,7\\}$ bijectivement sur les cinq autres entiers envoie $\\{1,2\\}$ sur $\\{a,b\\}$. L'orbite de $\\{1,2\\}$ est $P$, qui a $\\binom72=21$ éléments, et le stabilisateur a $\\frac{5040}{21}=240$ éléments.\n\nContrôle : ce sont les permutations qui permutent $\\{1,2\\}$ et $\\{3,\\dots,7\\}$, au nombre de $2!\\times5!=240$. Erreur fréquente : $5!=120$ compte seulement celles qui fixent $1$ et $2$.",
+          "indices": [
+            "Pour l'orbite de $\\{1,2\\}$, construire une permutation de $\\{1,\\dots,7\\}$ qui envoie $1$ sur $a$ et $2$ sur $b$.",
+            "Pour le stabilisateur, utiliser la relation orbite-stabilisateur dans $\\mathfrak{S}_7$, puis contrôler par une description directe."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-orbites-ex3",
+      "carte": "gr-l3-actions-orbites",
+      "difficulte": 3,
+      "titre": "Cardinal d'un groupe linéaire sur un corps fini",
+      "enonce": "On note $\\mathbb{F}=\\mathbb{Z}/3\\mathbb{Z}$, qui est un corps, et $G=\\mathrm{GL}_2(\\mathbb{F})$ le groupe des matrices $2\\times2$ inversibles (de déterminant non nul) à coefficients dans $\\mathbb{F}$. Il opère sur $X=\\mathbb{F}^2\\setminus\\{0\\}$ par $A\\cdot v=Av$. Montrer que cette action est transitive, déterminer le stabilisateur de $e_1=\\begin{pmatrix}1\\\\0\\end{pmatrix}$ et en déduire le cardinal de $G$.",
+      "duree_min": 15,
+      "indices": [
+        "Tout vecteur non nul $v$ se complète en une base $(v,w)$ de $\\mathbb{F}^2$ : considérer la matrice de colonnes $v$ et $w$.",
+        "Une matrice fixe $e_1$ si et seulement si sa première colonne est $e_1$ ; compter alors les secondes colonnes qui donnent une matrice inversible."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal de $\\mathrm{GL}_2(\\mathbb{Z}/3\\mathbb{Z})$ ?",
+        "propositions": [
+          "$48$",
+          "$80$",
+          "$64$",
+          "$72$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Transitivité.** Soit $v\\in X$. La droite $\\mathbb{F}v$ a $3$ éléments, et $\\mathbb{F}^2$ en a $9$ : on peut choisir $w\\notin\\mathbb{F}v$, et $(v,w)$ est une base. La matrice $A$ de colonnes $v$ et $w$ est inversible et $Ae_1=v$. L'orbite de $e_1$ est donc $X$, qui a $3^2-1=8$ éléments.\n\n**Stabilisateur.** $Ae_1$ est la première colonne de $A$, donc $A\\in G_{e_1}$ si et seulement si $A=\\begin{pmatrix}1&b\\\\0&d\\end{pmatrix}$, matrice inversible si et seulement si $d\\neq0$ : $3$ choix pour $b$, $2$ pour $d$, donc $|G_{e_1}|=6$.\n\n**Cardinal.** $|G|=|X|\\times|G_{e_1}|=8\\times6=48$. Plus généralement, $|\\mathrm{GL}_2(\\mathbb{Z}/p\\mathbb{Z})|=(p^2-1)(p^2-p)$. Erreur fréquente : $(p^2-1)^2=64$ compte les couples de colonnes non nulles sans exiger qu'elles soient indépendantes.",
+      "variantes": [
+        {
+          "enonce": "On note $\\mathbb{F}=\\mathbb{Z}/5\\mathbb{Z}$, qui est un corps, et $G=\\mathrm{GL}_2(\\mathbb{F})$ le groupe des matrices $2\\times2$ inversibles (de déterminant non nul) à coefficients dans $\\mathbb{F}$. Il opère sur $X=\\mathbb{F}^2\\setminus\\{0\\}$ par $A\\cdot v=Av$. Montrer que cette action est transitive, déterminer le stabilisateur de $e_1=\\begin{pmatrix}1\\\\0\\end{pmatrix}$ et en déduire le cardinal de $G$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $\\mathrm{GL}_2(\\mathbb{Z}/5\\mathbb{Z})$ ?",
+            "propositions": [
+              "$480$",
+              "$624$",
+              "$576$",
+              "$600$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Transitivité.** Soit $v\\in X$. La droite $\\mathbb{F}v$ a $5$ éléments et $\\mathbb{F}^2$ en a $25$ : on choisit $w\\notin\\mathbb{F}v$, et la matrice $A$ de colonnes $v$ et $w$ est inversible, avec $Ae_1=v$. L'orbite de $e_1$ est $X$, qui a $5^2-1=24$ éléments.\n\n**Stabilisateur.** $A\\in G_{e_1}$ si et seulement si $A=\\begin{pmatrix}1&b\\\\0&d\\end{pmatrix}$ avec $d\\neq0$ : $5\\times4=20$ matrices.\n\n**Cardinal.** $|G|=24\\times20=480=(5^2-1)(5^2-5)$. Erreur fréquente : $(5^2-1)^2=576$ compte les couples de colonnes non nulles sans exiger qu'elles soient indépendantes.",
+          "indices": [
+            "Tout vecteur non nul $v$ de $(\\mathbb{Z}/5\\mathbb{Z})^2$ se complète en une base $(v,w)$ : considérer la matrice de colonnes $v$ et $w$.",
+            "Une matrice fixe $e_1$ si et seulement si sa première colonne est $e_1$ ; compter alors les secondes colonnes qui donnent une matrice inversible."
+          ]
+        },
+        {
+          "enonce": "On note $\\mathbb{F}=\\mathbb{Z}/2\\mathbb{Z}$, qui est un corps, et $G=\\mathrm{GL}_2(\\mathbb{F})$ le groupe des matrices $2\\times2$ inversibles (de déterminant non nul) à coefficients dans $\\mathbb{F}$. Il opère sur $X=\\mathbb{F}^2\\setminus\\{0\\}$ par $A\\cdot v=Av$. Montrer que cette action est transitive, déterminer le stabilisateur de $e_1=\\begin{pmatrix}1\\\\0\\end{pmatrix}$ et en déduire le cardinal de $G$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $\\mathrm{GL}_2(\\mathbb{Z}/2\\mathbb{Z})$ ?",
+            "propositions": [
+              "$6$",
+              "$15$",
+              "$9$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Transitivité.** Soit $v\\in X$. La droite $\\mathbb{F}v=\\{0,v\\}$ a $2$ éléments et $\\mathbb{F}^2$ en a $4$ : on choisit $w\\notin\\mathbb{F}v$, et la matrice $A$ de colonnes $v$ et $w$ est inversible, avec $Ae_1=v$. L'orbite de $e_1$ est $X$, qui a $2^2-1=3$ éléments.\n\n**Stabilisateur.** $A\\in G_{e_1}$ si et seulement si $A=\\begin{pmatrix}1&b\\\\0&1\\end{pmatrix}$, $b\\in\\{0,1\\}$ : $2$ matrices.\n\n**Cardinal.** $|G|=3\\times2=6=(2^2-1)(2^2-2)$. L'action sur les $3$ vecteurs non nuls est de plus fidèle (une matrice qui fixe $e_1$ et $e_2$ est l'identité) : $\\mathrm{GL}_2(\\mathbb{Z}/2\\mathbb{Z})$ s'identifie à $\\mathfrak{S}_3$. Erreur fréquente : $(2^2-1)^2=9$ compte les couples de colonnes non nulles sans exiger qu'elles soient indépendantes.",
+          "indices": [
+            "Tout vecteur non nul $v$ de $(\\mathbb{Z}/2\\mathbb{Z})^2$ se complète en une base $(v,w)$ : considérer la matrice de colonnes $v$ et $w$.",
+            "Une matrice fixe $e_1$ si et seulement si sa première colonne est $e_1$ ; compter alors les secondes colonnes qui donnent une matrice inversible."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-orbites-ex4",
+      "carte": "gr-l3-actions-orbites",
+      "difficulte": 4,
+      "titre": "Un élément sans point fixe dans une action transitive",
+      "enonce": "Soit $G$ un groupe fini opérant transitivement sur un ensemble fini $X$ ayant au moins deux éléments. On fixe $x\\in X$ et l'on note $H=G_x$.\n\n**1.** Montrer que $H\\neq G$ et que tout élément de $G$ qui fixe au moins un point de $X$ appartient à l'un des sous-groupes $gHg^{-1}$, $g\\in G$.\n\n**2.** Montrer que $gHg^{-1}$ ne dépend que de la classe à gauche $gH$, et en déduire qu'il y a au plus $[G:H]$ sous-groupes distincts de la forme $gHg^{-1}$.\n\n**3.** Montrer que la réunion des $gHg^{-1}$, $g\\in G$, a au plus $|G|-[G:H]+1$ éléments, puis qu'il existe un élément de $G$ qui ne fixe aucun point de $X$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, si $g$ fixe $y$, écrire $y=k\\cdot x$ et utiliser $G_{k\\cdot x}=kG_xk^{-1}$.",
+        "Pour la question 3, tous les $gHg^{-1}$ contiennent le neutre : compter séparément le neutre et les autres éléments."
+      ],
+      "correction": "**1.** Si $H=G$, alors $G\\cdot x=\\{x\\}$ ; or l'action est transitive, donc $G\\cdot x=X$, qui a au moins deux éléments : contradiction. Si $g$ fixe un point $y$, la transitivité donne $k\\in G$ tel que $y=k\\cdot x$, et $g\\in G_y=kG_xk^{-1}=kHk^{-1}$.\n\n**2.** Si $gH=g'H$, alors $g'=gh$ avec $h\\in H$, et $g'Hg'^{-1}=g(hHh^{-1})g^{-1}=gHg^{-1}$, car $hHh^{-1}=H$ ($H$ est un sous-groupe contenant $h$). L'application $gH\\mapsto gHg^{-1}$ est donc bien définie sur l'ensemble des $[G:H]$ classes à gauche, et son image contient tous les conjugués de $H$ : il y en a au plus $[G:H]$.\n\n**3.** Chaque $gHg^{-1}$ a $|H|$ éléments ($y\\mapsto gyg^{-1}$ est injective) et contient $e$. La réunion est formée de $e$ et, pour chacun des conjugués distincts (au plus $[G:H]$), d'au plus $|H|-1$ autres éléments : elle a au plus $1+[G:H](|H|-1)=|G|-[G:H]+1$ éléments. Comme $H\\neq G$, $[G:H]\\ge2$, et ce nombre est au plus $|G|-1$ : un élément $g$ de $G$ n'est dans aucun $kHk^{-1}$, et d'après la question 1 il ne fixe aucun point.\n\nExemple : pour $\\mathfrak{S}_n$ opérant sur $\\{1,\\dots,n\\}$ ($n\\ge2$), on obtient l'existence de permutations sans point fixe, comme un $n$-cycle. L'hypothèse de finitude de $G$ sert au dénombrement de la question 3."
+    },
+    {
+      "id": "gr-l3-actions-orbites-ex5",
+      "carte": "gr-l3-actions-orbites",
+      "difficulte": 5,
+      "titre": "Un groupe de cardinal le double d'un impair a un sous-groupe d'indice deux",
+      "enonce": "Soit $G$ un groupe fini de cardinal $2m$, avec $m$ impair. On veut montrer que $G$ possède un sous-groupe à $m$ éléments.\n\n**1.** Montrer que $G$ opère sur lui-même par translations à gauche, $g\\cdot x=gx$, et que le morphisme associé $\\rho:G\\to\\mathfrak{S}(G)$ est injectif.\n\n**2.** En regroupant chaque élément avec son inverse, montrer que $G$ contient un élément $t$ d'ordre $2$.\n\n**3.** On numérote les éléments de $G$, c'est-à-dire qu'on fixe une bijection $\\beta:G\\to\\{1,\\dots,2m\\}$, et l'on pose $\\tilde\\rho(g)=\\beta\\circ\\rho(g)\\circ\\beta^{-1}\\in\\mathfrak{S}_{2m}$. Montrer que $\\tilde\\rho$ est un morphisme, que la signature de $\\tilde\\rho(g)$ ne dépend pas de la numérotation choisie, puis que $\\tilde\\rho(t)$ est un produit de $m$ transpositions à supports disjoints.\n\n**4.** En déduire que $H=\\{g\\in G : \\varepsilon(\\tilde\\rho(g))=1\\}$ est un sous-groupe de $G$ à $m$ éléments.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 2, les éléments $x$ tels que $x\\neq x^{-1}$ se regroupent par paires $\\{x,x^{-1}\\}$.",
+        "Pour la question 3, deux numérotations $\\beta$ et $\\beta'$ donnent des permutations conjuguées par $\\beta'\\circ\\beta^{-1}$ ; les orbites de $\\rho(t)$ sont les paires $\\{x,tx\\}$.",
+        "Pour la question 4, $\\varepsilon\\circ\\tilde\\rho$ est un morphisme de $G$ dans $\\{-1,1\\}$ : compter les antécédents de $1$ et de $-1$."
+      ],
+      "correction": "**1.** $e\\cdot x=x$ et $g\\cdot(h\\cdot x)=g(hx)=(gh)\\cdot x$ : c'est une action, et $\\rho(g):x\\mapsto gx$ définit un morphisme $\\rho:G\\to\\mathfrak{S}(G)$. Si $\\rho(g)=\\mathrm{id}$, alors $g=g\\cdot e=e$ : le noyau est trivial, $\\rho$ est injectif (théorème de Cayley).\n\n**2.** L'ensemble des $x$ tels que $x\\neq x^{-1}$ est réunion de paires disjointes $\\{x,x^{-1}\\}$, donc de cardinal pair. Son complémentaire $\\{x\\in G : x^2=e\\}$ a donc un cardinal pair, puisque $|G|=2m$ est pair ; il contient $e$, donc au moins un autre élément $t$ : $t\\neq e$ et $t^2=e$, $t$ est d'ordre $2$.\n\n**3.** $\\tilde\\rho(gh)=\\beta\\rho(g)\\rho(h)\\beta^{-1}=\\beta\\rho(g)\\beta^{-1}\\beta\\rho(h)\\beta^{-1}=\\tilde\\rho(g)\\tilde\\rho(h)$. Si $\\beta'$ est une autre numérotation, $\\beta'\\rho(g)\\beta'^{-1}=\\gamma\\tilde\\rho(g)\\gamma^{-1}$ avec $\\gamma=\\beta'\\beta^{-1}\\in\\mathfrak{S}_{2m}$, et $\\varepsilon(\\gamma\\tilde\\rho(g)\\gamma^{-1})=\\varepsilon(\\gamma)\\varepsilon(\\tilde\\rho(g))\\varepsilon(\\gamma)^{-1}=\\varepsilon(\\tilde\\rho(g))$. Enfin $\\rho(t)$ n'a pas de point fixe ($tx=x$ entraînerait $t=e$) et $\\rho(t)^2=\\rho(t^2)=\\mathrm{id}$ : ses orbites sont les $m$ paires $\\{x,tx\\}$, et $\\rho(t)$ est le produit des $m$ transpositions $(x\\ tx)$, à supports disjoints. Par la formule de conjugaison des cycles, $\\tilde\\rho(t)$ est le produit des $m$ transpositions $(\\beta(x)\\ \\beta(tx))$, à supports disjoints, donc $\\varepsilon(\\tilde\\rho(t))=(-1)^m=-1$, car $m$ est impair.\n\n**4.** $\\varphi=\\varepsilon\\circ\\tilde\\rho$ est un morphisme de $G$ dans $\\{-1,1\\}$, surjectif puisque $\\varphi(t)=-1$. Son noyau $H$ est un sous-groupe. Les antécédents de $1$ forment $H$, ceux de $-1$ forment $tH$, et chacun de ces ensembles a $|H|$ éléments : $2m=2|H|$, donc $|H|=m$.\n\nExemple : pour $G=\\mathfrak{S}_3$ ($m=3$), on trouve $H=\\mathfrak{A}_3$. L'hypothèse « $m$ impair » est indispensable : $\\mathfrak{A}_4$, de cardinal $12=2\\times6$, n'a aucun sous-groupe à $6$ éléments."
+    },
+    {
+      "id": "gr-l3-actions-formule-classes-ex1",
+      "carte": "gr-l3-actions-formule-classes",
+      "difficulte": 2,
+      "titre": "Nombre minimal de points fixes",
+      "enonce": "Le groupe $G=\\mathbb{Z}/25\\mathbb{Z}$ opère sur un ensemble $X$ à $12$ éléments. Quel est le plus petit nombre possible de points fixes de l'action ? On justifiera que ce minimum est atteint.",
+      "duree_min": 10,
+      "indices": [
+        "Appliquer la formule des classes modulo $5$.",
+        "Pour un diviseur $d$ de $25$, faire opérer $G$ sur $\\mathbb{Z}/d\\mathbb{Z}$ par $\\overline k\\cdot x=x+k$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit nombre possible de points fixes ?",
+        "propositions": [
+          "$2$",
+          "$0$",
+          "$1$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $|G|=25=5^2$, la formule des classes donne $|X^G|\\equiv|X|=12\\equiv2\\pmod5$ : $|X^G|\\in\\{2,7,12\\}$, donc l'action a au moins $2$ points fixes.\n\nLe minimum est atteint. Pour $d$ divisant $25$, $\\overline k\\cdot x=x+k$ (calculé modulo $d$) est bien défini sur $\\mathbb{Z}/d\\mathbb{Z}$ (si $k\\equiv k'\\pmod{25}$, alors $k\\equiv k'\\pmod d$) : c'est une action transitive, à une orbite de $d$ éléments. Sur $X=\\mathbb{Z}/5\\mathbb{Z}\\sqcup\\mathbb{Z}/5\\mathbb{Z}\\sqcup\\{a,b\\}$, avec $G$ fixant $a$ et $b$, on obtient $12$ éléments et exactement $2$ points fixes.",
+      "variantes": [
+        {
+          "enonce": "Le groupe $G=\\mathbb{Z}/27\\mathbb{Z}$ opère sur un ensemble $X$ à $22$ éléments. Quel est le plus petit nombre possible de points fixes de l'action ? On justifiera que ce minimum est atteint.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit nombre possible de points fixes ?",
+            "propositions": [
+              "$1$",
+              "$0$",
+              "$2$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $|G|=27=3^3$, la formule des classes donne $|X^G|\\equiv22\\equiv1\\pmod3$ : l'action a au moins $1$ point fixe.\n\nLe minimum est atteint : pour $d$ divisant $27$, $G$ opère transitivement sur $\\mathbb{Z}/d\\mathbb{Z}$ par $\\overline k\\cdot x=x+k$, ce qui est bien défini. Sur la réunion disjointe de $7$ copies de $\\mathbb{Z}/3\\mathbb{Z}$ et d'un point $a$ fixé par $G$, on obtient $7\\times3+1=22$ éléments et exactement $1$ point fixe.",
+          "indices": [
+            "Appliquer la formule des classes modulo $3$.",
+            "Pour un diviseur $d$ de $27$, faire opérer $G$ sur $\\mathbb{Z}/d\\mathbb{Z}$ par $\\overline k\\cdot x=x+k$."
+          ]
+        },
+        {
+          "enonce": "Le groupe $G=\\mathbb{Z}/49\\mathbb{Z}$ opère sur un ensemble $X$ à $17$ éléments. Quel est le plus petit nombre possible de points fixes de l'action ? On justifiera que ce minimum est atteint.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit nombre possible de points fixes ?",
+            "propositions": [
+              "$3$",
+              "$0$",
+              "$1$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $|G|=49=7^2$, la formule des classes donne $|X^G|\\equiv17\\equiv3\\pmod7$ : $|X^G|\\in\\{3,10,17\\}$, donc l'action a au moins $3$ points fixes.\n\nLe minimum est atteint : pour $d$ divisant $49$, $G$ opère transitivement sur $\\mathbb{Z}/d\\mathbb{Z}$ par $\\overline k\\cdot x=x+k$, ce qui est bien défini. Sur $X=\\mathbb{Z}/7\\mathbb{Z}\\sqcup\\mathbb{Z}/7\\mathbb{Z}\\sqcup\\{a,b,c\\}$, avec $G$ fixant $a$, $b$, $c$, on obtient $17$ éléments et exactement $3$ points fixes.",
+          "indices": [
+            "Appliquer la formule des classes modulo $7$.",
+            "Pour un diviseur $d$ de $49$, faire opérer $G$ sur $\\mathbb{Z}/d\\mathbb{Z}$ par $\\overline k\\cdot x=x+k$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-formule-classes-ex2",
+      "carte": "gr-l3-actions-formule-classes",
+      "difficulte": 2,
+      "titre": "Mots circulaires et petit théorème de Fermat",
+      "enonce": "Soit $A$ un alphabet à $3$ lettres. Le groupe $\\mathbb{Z}/5\\mathbb{Z}$ opère sur l'ensemble $X=A^5$ des mots de longueur $5$ par décalage circulaire : $\\overline k\\cdot(x_1,\\dots,x_5)=(x_{1+k},\\dots,x_{5+k})$, les indices étant lus modulo $5$ (entre $1$ et $5$). Déterminer les points fixes, les cardinaux possibles des orbites, puis le nombre d'orbites. Quelle congruence obtient-on ?",
+      "duree_min": 10,
+      "indices": [
+        "Un mot fixé par le décalage d'un cran a toutes ses lettres égales.",
+        "Le cardinal d'une orbite divise $5$."
+      ],
+      "reponse_finale": {
+        "question": "Combien l'action a-t-elle d'orbites ?",
+        "propositions": [
+          "$51$",
+          "$48$",
+          "$81$",
+          "$243$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le décalage de $k$ crans ne dépend que de $k$ modulo $5$, et décaler de $k$ puis de $l$ crans revient à décaler de $k+l$ crans : c'est bien une action.\n\n**Points fixes.** Un mot fixé par tous les décalages l'est par le décalage d'un cran, donc vérifie $x_1=x_2=\\cdots=x_5$ ; réciproquement, un mot constant est fixé. Il y a $3$ points fixes.\n\n**Orbites.** Le cardinal d'une orbite divise $5$ : il vaut $1$ (mots constants) ou $5$. Les $3^5-3=240$ mots non constants forment donc $\\frac{240}{5}=48$ orbites, et le nombre total d'orbites est $3+48=51$.\n\n**Congruence.** La formule des classes donne $3^5\\equiv3\\pmod5$ ; le même raisonnement, avec $a$ lettres et un nombre premier $p$, prouve le petit théorème de Fermat $a^p\\equiv a\\pmod p$.",
+      "variantes": [
+        {
+          "enonce": "Soit $A$ un alphabet à $2$ lettres. Le groupe $\\mathbb{Z}/7\\mathbb{Z}$ opère sur l'ensemble $X=A^7$ des mots de longueur $7$ par décalage circulaire : $\\overline k\\cdot(x_1,\\dots,x_7)=(x_{1+k},\\dots,x_{7+k})$, les indices étant lus modulo $7$ (entre $1$ et $7$). Déterminer les points fixes, les cardinaux possibles des orbites, puis le nombre d'orbites. Quelle congruence obtient-on ?",
+          "reponse_finale": {
+            "question": "Combien l'action a-t-elle d'orbites ?",
+            "propositions": [
+              "$20$",
+              "$18$",
+              "$64$",
+              "$128$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le décalage de $k$ crans ne dépend que de $k$ modulo $7$, et les décalages se composent en ajoutant les nombres de crans : c'est une action.\n\n**Points fixes.** Un mot fixé par le décalage d'un cran a toutes ses lettres égales : il y a $2$ points fixes, les mots constants.\n\n**Orbites.** Le cardinal d'une orbite divise $7$ : il vaut $1$ ou $7$. Les $2^7-2=126$ mots non constants forment $\\frac{126}{7}=18$ orbites ; au total $2+18=20$ orbites.\n\n**Congruence.** La formule des classes donne $2^7\\equiv2\\pmod7$, cas particulier du petit théorème de Fermat.",
+          "indices": [
+            "Un mot fixé par le décalage d'un cran a toutes ses lettres égales.",
+            "Le cardinal d'une orbite divise $7$."
+          ]
+        },
+        {
+          "enonce": "Soit $A$ un alphabet à $4$ lettres. Le groupe $\\mathbb{Z}/3\\mathbb{Z}$ opère sur l'ensemble $X=A^3$ des mots de longueur $3$ par décalage circulaire : $\\overline k\\cdot(x_1,x_2,x_3)=(x_{1+k},x_{2+k},x_{3+k})$, les indices étant lus modulo $3$ (entre $1$ et $3$). Déterminer les points fixes, les cardinaux possibles des orbites, puis le nombre d'orbites. Quelle congruence obtient-on ?",
+          "reponse_finale": {
+            "question": "Combien l'action a-t-elle d'orbites ?",
+            "propositions": [
+              "$24$",
+              "$20$",
+              "$16$",
+              "$64$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le décalage de $k$ crans ne dépend que de $k$ modulo $3$, et les décalages se composent en ajoutant les nombres de crans : c'est une action.\n\n**Points fixes.** Un mot fixé par le décalage d'un cran a toutes ses lettres égales : il y a $4$ points fixes, les mots constants.\n\n**Orbites.** Le cardinal d'une orbite divise $3$ : il vaut $1$ ou $3$. Les $4^3-4=60$ mots non constants forment $\\frac{60}{3}=20$ orbites ; au total $4+20=24$ orbites.\n\n**Congruence.** La formule des classes donne $4^3\\equiv4\\pmod3$, cas particulier du petit théorème de Fermat.",
+          "indices": [
+            "Un mot fixé par le décalage d'un cran a toutes ses lettres égales.",
+            "Le cardinal d'une orbite divise $3$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-formule-classes-ex3",
+      "carte": "gr-l3-actions-formule-classes",
+      "difficulte": 3,
+      "titre": "Actions sans point fixe d'un groupe cyclique",
+      "enonce": "Pour quels entiers $n\\ge1$ le groupe $\\mathbb{Z}/15\\mathbb{Z}$ peut-il opérer sans point fixe sur un ensemble à $n$ éléments ? Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/15\\mathbb{Z}$ sur un ensemble à $n$ éléments ait au moins un point fixe ?",
+      "duree_min": 15,
+      "indices": [
+        "Une action est sans point fixe si et seulement si aucune orbite n'a un seul élément ; quels cardinaux d'orbites sont possibles, et sont-ils tous réalisés ?",
+        "Chercher les entiers qui s'écrivent $3u+5v$ avec $u$ et $v$ entiers naturels."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/15\\mathbb{Z}$ sur un ensemble à $n$ éléments ait un point fixe ?",
+        "propositions": [
+          "$7$",
+          "$4$",
+          "$8$",
+          "$14$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le cardinal d'une orbite divise $15$ : il vaut $1$, $3$, $5$ ou $15$, et chacun est réalisé, car pour $d$ divisant $15$, $\\overline k\\cdot x=x+k$ définit une action transitive de $\\mathbb{Z}/15\\mathbb{Z}$ sur $\\mathbb{Z}/d\\mathbb{Z}$. Une action sans point fixe sur $n$ éléments existe donc si et seulement si $n$ est une somme de $3$, de $5$ et de $15$, c'est-à-dire (puisque $15=3\\times5$) si et seulement si $n=3u+5v$ avec $u,v\\in\\mathbb{N}$.\n\nLes entiers $8=3+5$, $9=3\\times3$ et $10=5\\times2$ s'écrivent ainsi, donc tout entier $n\\ge8$ aussi (ajouter des $3$). En revanche $7$ ne s'écrit pas ainsi : $7$ et $7-5=2$ ne sont pas multiples de $3$. Les entiers $n\\ge1$ non représentables sont $1$, $2$, $4$, $7$ : ce sont exactement ceux pour lesquels toute action a un point fixe, et le plus grand est $7=3\\times5-3-5$.",
+      "variantes": [
+        {
+          "enonce": "Pour quels entiers $n\\ge1$ le groupe $\\mathbb{Z}/21\\mathbb{Z}$ peut-il opérer sans point fixe sur un ensemble à $n$ éléments ? Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/21\\mathbb{Z}$ sur un ensemble à $n$ éléments ait au moins un point fixe ?",
+          "reponse_finale": {
+            "question": "Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/21\\mathbb{Z}$ sur un ensemble à $n$ éléments ait un point fixe ?",
+            "propositions": [
+              "$11$",
+              "$8$",
+              "$10$",
+              "$20$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le cardinal d'une orbite divise $21$ : il vaut $1$, $3$, $7$ ou $21$, et chacun est réalisé par l'action de $\\mathbb{Z}/21\\mathbb{Z}$ sur $\\mathbb{Z}/d\\mathbb{Z}$ par translation. Une action sans point fixe sur $n$ éléments existe si et seulement si $n=3u+7v$ avec $u,v\\in\\mathbb{N}$ ($21=3\\times7$).\n\nLes entiers $12=3\\times4$, $13=3\\times2+7$ et $14=7\\times2$ s'écrivent ainsi, donc tout entier $n\\ge12$ aussi (ajouter des $3$). En revanche $11$ ne s'écrit pas ainsi : $11$ et $11-7=4$ ne sont pas multiples de $3$. Les entiers $n\\ge1$ non représentables sont $1$, $2$, $4$, $5$, $8$, $11$, et le plus grand est $11=3\\times7-3-7$.",
+          "indices": [
+            "Une action est sans point fixe si et seulement si aucune orbite n'a un seul élément ; quels cardinaux d'orbites sont possibles, et sont-ils tous réalisés ?",
+            "Chercher les entiers qui s'écrivent $3u+7v$ avec $u$ et $v$ entiers naturels."
+          ]
+        },
+        {
+          "enonce": "Pour quels entiers $n\\ge1$ le groupe $\\mathbb{Z}/35\\mathbb{Z}$ peut-il opérer sans point fixe sur un ensemble à $n$ éléments ? Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/35\\mathbb{Z}$ sur un ensemble à $n$ éléments ait au moins un point fixe ?",
+          "reponse_finale": {
+            "question": "Quel est le plus grand entier $n$ tel que toute action de $\\mathbb{Z}/35\\mathbb{Z}$ sur un ensemble à $n$ éléments ait un point fixe ?",
+            "propositions": [
+              "$23$",
+              "$13$",
+              "$24$",
+              "$34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le cardinal d'une orbite divise $35$ : il vaut $1$, $5$, $7$ ou $35$, et chacun est réalisé par l'action de $\\mathbb{Z}/35\\mathbb{Z}$ sur $\\mathbb{Z}/d\\mathbb{Z}$ par translation. Une action sans point fixe sur $n$ éléments existe si et seulement si $n=5u+7v$ avec $u,v\\in\\mathbb{N}$ ($35=5\\times7$).\n\nLes entiers $24=5\\times2+7\\times2$, $25=5\\times5$, $26=5+7\\times3$, $27=5\\times4+7$ et $28=7\\times4$ s'écrivent ainsi, donc tout entier $n\\ge24$ aussi (ajouter des $5$). En revanche $23$ ne s'écrit pas ainsi : $23$, $16$, $9$ et $2$ ne sont pas multiples de $5$. Le plus grand entier non représentable est $23=5\\times7-5-7$.",
+          "indices": [
+            "Une action est sans point fixe si et seulement si aucune orbite n'a un seul élément ; quels cardinaux d'orbites sont possibles, et sont-ils tous réalisés ?",
+            "Chercher les entiers qui s'écrivent $5u+7v$ avec $u$ et $v$ entiers naturels."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-formule-classes-ex4",
+      "carte": "gr-l3-actions-formule-classes",
+      "difficulte": 4,
+      "titre": "Formule de Burnside et points fixes des permutations",
+      "enonce": "Soit $G$ un groupe fini opérant sur un ensemble fini $X$. Pour $g\\in G$, on note $\\mathrm{Fix}(g)=\\{x\\in X : g\\cdot x=x\\}$.\n\n**1.** En dénombrant de deux façons l'ensemble $E=\\{(g,x)\\in G\\times X : g\\cdot x=x\\}$, montrer la **formule de Burnside** : le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$.\n\n**2.** Soit $n\\ge2$. Pour $\\sigma\\in\\mathfrak{S}_n$, on note $f(\\sigma)$ le nombre de points fixes de $\\sigma$. Montrer que $\\frac{1}{n!}\\sum_{\\sigma\\in\\mathfrak{S}_n}f(\\sigma)=1$.\n\n**3.** En faisant opérer $\\mathfrak{S}_n$ sur $\\{1,\\dots,n\\}^2$ par $\\sigma\\cdot(i,j)=(\\sigma(i),\\sigma(j))$, calculer $\\frac{1}{n!}\\sum_{\\sigma\\in\\mathfrak{S}_n}f(\\sigma)^2$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, sommer d'abord sur $g$, puis d'abord sur $x$ ; dans la seconde somme, regrouper les $x$ par orbite et utiliser $|G_x|=\\frac{|G|}{|G\\cdot x|}$.",
+        "Pour la question 3, décrire les points de $\\{1,\\dots,n\\}^2$ fixés par $\\sigma$, puis compter les orbites."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{1}{n!}\\sum_{\\sigma\\in\\mathfrak{S}_n}f(\\sigma)^2$ pour $n\\ge2$ ?",
+        "propositions": [
+          "$2$",
+          "$1$",
+          "$\\frac32$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** En sommant sur $g$ : $|E|=\\sum_{g\\in G}|\\mathrm{Fix}(g)|$. En sommant sur $x$ : $|E|=\\sum_{x\\in X}|G_x|$. Pour une orbite $O$ et $x\\in O$, $|G_x|=\\frac{|G|}{|O|}$, donc $\\sum_{x\\in O}|G_x|=|G|$ ; en regroupant par orbite, $\\sum_{x\\in X}|G_x|=|G|\\times N$, où $N$ est le nombre d'orbites. D'où $N=\\frac{1}{|G|}\\sum_{g}|\\mathrm{Fix}(g)|$.\n\n**2.** L'action de $\\mathfrak{S}_n$ sur $\\{1,\\dots,n\\}$ est transitive (pour $i,j$, la transposition $(i\\ j)$, ou l'identité si $i=j$, envoie $i$ sur $j$) : une seule orbite. Comme $|\\mathrm{Fix}(\\sigma)|=f(\\sigma)$, la formule de Burnside donne $\\frac{1}{n!}\\sum_\\sigma f(\\sigma)=1$.\n\n**3.** C'est une action ($\\mathrm{id}$ fixe tout, $\\sigma\\cdot(\\tau\\cdot(i,j))=(\\sigma\\tau)\\cdot(i,j)$). Le couple $(i,j)$ est fixé par $\\sigma$ si et seulement si $i$ et $j$ sont des points fixes de $\\sigma$ : $|\\mathrm{Fix}(\\sigma)|=f(\\sigma)^2$. Les orbites sont la diagonale $\\{(i,i)\\}$ et son complémentaire $\\{(i,j) : i\\neq j\\}$, non vide car $n\\ge2$ : chacune est stable (car $\\sigma$ est injective), et chacune est une orbite, car pour $i\\neq j$ et $k\\neq l$ il existe $\\sigma$ telle que $\\sigma(i)=k$ et $\\sigma(j)=l$. Il y a donc $2$ orbites, et $\\frac{1}{n!}\\sum_\\sigma f(\\sigma)^2=2$.\n\nInterprétation : pour une permutation tirée au hasard, le nombre de points fixes a pour espérance $1$ et pour variance $2-1^2=1$, quel que soit $n\\ge2$."
+    },
+    {
+      "id": "gr-l3-actions-formule-classes-ex5",
+      "carte": "gr-l3-actions-formule-classes",
+      "difficulte": 5,
+      "titre": "Le théorème de Cauchy par une action",
+      "enonce": "Soient $G$ un groupe fini et $p$ un nombre premier qui divise $|G|$. On note $X=\\{(x_1,\\dots,x_p)\\in G^p : x_1x_2\\cdots x_p=e\\}$.\n\n**1.** Montrer que $|X|=|G|^{p-1}$.\n\n**2.** Montrer que si $(x_1,\\dots,x_p)\\in X$, alors $(x_2,\\dots,x_p,x_1)\\in X$. En déduire que $\\mathbb{Z}/p\\mathbb{Z}$ opère sur $X$ par décalage circulaire : $\\overline k\\cdot(x_1,\\dots,x_p)=(x_{1+k},\\dots,x_{p+k})$, les indices étant lus modulo $p$.\n\n**3.** Déterminer les points fixes de cette action.\n\n**4.** En déduire que le nombre de solutions de l'équation $x^p=e$ dans $G$ est un multiple de $p$, puis le **théorème de Cauchy** : $G$ contient un élément d'ordre $p$.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, $x_p$ est déterminé par $x_1,\\dots,x_{p-1}$.",
+        "Pour la question 2, écrire $x_1(x_2\\cdots x_p)=e$.",
+        "Pour la question 4, appliquer la formule des classes au groupe $\\mathbb{Z}/p\\mathbb{Z}$, de cardinal $p$."
+      ],
+      "correction": "**1.** L'application $(x_1,\\dots,x_p)\\mapsto(x_1,\\dots,x_{p-1})$ est une bijection de $X$ sur $G^{p-1}$ : sa réciproque est $(x_1,\\dots,x_{p-1})\\mapsto(x_1,\\dots,x_{p-1},(x_1\\cdots x_{p-1})^{-1})$. Donc $|X|=|G|^{p-1}$.\n\n**2.** Si $x_1(x_2\\cdots x_p)=e$, alors $x_2\\cdots x_p=x_1^{-1}$, puis $x_2\\cdots x_px_1=e$. Le décalage d'un cran $c$ envoie donc $X$ dans $X$, et $c^p=\\mathrm{id}$ ; le décalage de $k$ crans est $c^k$, qui ne dépend que de $k$ modulo $p$, et $c^kc^l=c^{k+l}$, $c^0=\\mathrm{id}$ : on a bien une action de $\\mathbb{Z}/p\\mathbb{Z}$.\n\n**3.** Un point fixe est fixé par $c$, donc vérifie $x_1=x_2=\\cdots=x_p$ : c'est un $p$-uplet $(x,\\dots,x)$ avec $x^p=e$. Réciproquement, ces $p$-uplets sont fixes. Les points fixes sont donc en bijection avec les solutions de $x^p=e$.\n\n**4.** Comme $|\\mathbb{Z}/p\\mathbb{Z}|=p$, la formule des classes donne $|X|\\equiv|X^G|\\pmod p$. Or $|X|=|G|^{p-1}$ est multiple de $p$ ($p$ divise $|G|$ et $p-1\\ge1$). Le nombre $N$ de solutions de $x^p=e$ est donc multiple de $p$ ; comme $e$ est solution, $N\\ge p\\ge2$, et il existe $x\\neq e$ tel que $x^p=e$. L'ordre de $x$ divise $p$ et vaut donc $p$.\n\nAu passage : le nombre d'éléments d'ordre $p$ est $N-1\\equiv-1\\pmod p$ ; par exemple $\\mathfrak{S}_4$ a $8$ éléments d'ordre $3$, et $8\\equiv-1\\pmod3$."
+    },
+    {
+      "id": "gr-l3-actions-conjugaison-ex1",
+      "carte": "gr-l3-actions-conjugaison",
+      "difficulte": 1,
+      "titre": "Conjuguer une permutation",
+      "enonce": "Dans $\\mathfrak{S}_5$, on pose $\\sigma=(1\\ 2\\ 3\\ 4)$ et $\\tau=(1\\ 3\\ 5)(2\\ 4)$. Calculer $\\tau\\sigma\\tau^{-1}$.",
+      "duree_min": 5,
+      "indices": [
+        "Utiliser la formule $\\tau(a_1\\ \\cdots\\ a_k)\\tau^{-1}=(\\tau(a_1)\\ \\cdots\\ \\tau(a_k))$.",
+        "Commencer par lire les images par $\\tau$ des entiers qui figurent dans l'écriture de $\\sigma$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\tau\\sigma\\tau^{-1}$ ?",
+        "propositions": [
+          "$(2\\ 3\\ 4\\ 5)$",
+          "$(1\\ 2\\ 5\\ 4)$",
+          "$(2\\ 5\\ 4\\ 3)$",
+          "$(1\\ 2\\ 3\\ 4)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $\\tau(1)=3$, $\\tau(2)=4$, $\\tau(3)=5$, $\\tau(4)=2$, donc $$\\tau\\sigma\\tau^{-1}=(\\tau(1)\\ \\tau(2)\\ \\tau(3)\\ \\tau(4))=(3\\ 4\\ 5\\ 2)=(2\\ 3\\ 4\\ 5).$$ Contrôle : $\\tau\\sigma\\tau^{-1}(3)=\\tau(\\sigma(1))=\\tau(2)=4$. Erreur fréquente : remplacer par les images par $\\tau^{-1}$, ce qui donne $\\tau^{-1}\\sigma\\tau=(1\\ 2\\ 5\\ 4)$.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathfrak{S}_5$, on pose $\\sigma=(1\\ 2\\ 3)(4\\ 5)$ et $\\tau=(1\\ 4)(2\\ 5\\ 3)$. Calculer $\\tau\\sigma\\tau^{-1}$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\tau\\sigma\\tau^{-1}$ ?",
+            "propositions": [
+              "$(1\\ 3)(2\\ 4\\ 5)$",
+              "$(1\\ 2)(3\\ 5\\ 4)$",
+              "$(1\\ 3)(2\\ 5\\ 4)$",
+              "$(1\\ 2\\ 3)(4\\ 5)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\tau(1)=4$, $\\tau(2)=5$, $\\tau(3)=2$, $\\tau(4)=1$, $\\tau(5)=3$, donc $$\\tau\\sigma\\tau^{-1}=(\\tau(1)\\ \\tau(2)\\ \\tau(3))(\\tau(4)\\ \\tau(5))=(4\\ 5\\ 2)(1\\ 3)=(1\\ 3)(2\\ 4\\ 5).$$ Contrôle : $\\tau\\sigma\\tau^{-1}(4)=\\tau(\\sigma(1))=\\tau(2)=5$. Erreur fréquente : remplacer par les images par $\\tau^{-1}$, ce qui donne $\\tau^{-1}\\sigma\\tau=(1\\ 2)(3\\ 5\\ 4)$.",
+          "indices": [
+            "Utiliser la formule $\\tau(a_1\\ \\cdots\\ a_k)\\tau^{-1}=(\\tau(a_1)\\ \\cdots\\ \\tau(a_k))$ pour chacun des deux cycles de $\\sigma$.",
+            "Commencer par lire les images par $\\tau$ des entiers de $1$ à $5$."
+          ]
+        },
+        {
+          "enonce": "Dans $\\mathfrak{S}_5$, on pose $\\sigma=(1\\ 5\\ 2\\ 4)$ et $\\tau=(1\\ 2\\ 3\\ 4\\ 5)$. Calculer $\\tau\\sigma\\tau^{-1}$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\tau\\sigma\\tau^{-1}$ ?",
+            "propositions": [
+              "$(1\\ 3\\ 5\\ 2)$",
+              "$(1\\ 3\\ 5\\ 4)$",
+              "$(1\\ 2\\ 5\\ 3)$",
+              "$(1\\ 5\\ 2\\ 4)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\tau(1)=2$, $\\tau(5)=1$, $\\tau(2)=3$, $\\tau(4)=5$, donc $$\\tau\\sigma\\tau^{-1}=(\\tau(1)\\ \\tau(5)\\ \\tau(2)\\ \\tau(4))=(2\\ 1\\ 3\\ 5)=(1\\ 3\\ 5\\ 2).$$ Contrôle : $\\tau\\sigma\\tau^{-1}(2)=\\tau(\\sigma(1))=\\tau(5)=1$. Erreur fréquente : remplacer par les images par $\\tau^{-1}$, ce qui donne $\\tau^{-1}\\sigma\\tau=(1\\ 3\\ 5\\ 4)$.",
+          "indices": [
+            "Utiliser la formule $\\tau(a_1\\ \\cdots\\ a_k)\\tau^{-1}=(\\tau(a_1)\\ \\cdots\\ \\tau(a_k))$.",
+            "Commencer par lire les images par $\\tau$ des entiers qui figurent dans l'écriture de $\\sigma$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-conjugaison-ex2",
+      "carte": "gr-l3-actions-conjugaison",
+      "difficulte": 2,
+      "titre": "Cardinal d'un centralisateur dans le groupe symétrique",
+      "enonce": "Dans $\\mathfrak{S}_5$, on pose $x=(1\\ 2)(3\\ 4)$. Déterminer le nombre de conjugués de $x$, puis le cardinal de son centralisateur $C(x)$.",
+      "duree_min": 10,
+      "indices": [
+        "Les conjugués de $x$ sont les permutations de même type : les compter.",
+        "Utiliser $|\\mathrm{Cl}(x)|\\times|C(x)|=|\\mathfrak{S}_5|$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal de $C(x)$ ?",
+        "propositions": [
+          "$8$",
+          "$4$",
+          "$15$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les conjugués de $x$ sont les permutations de type $(2,2,1)$, produits de deux transpositions à supports disjoints. On choisit le point fixe ($5$ façons), puis on répartit les quatre autres entiers en deux paires ($3$ façons) : $15$ conjugués. Donc $|C(x)|=\\frac{120}{15}=8$.\n\nContrôle : $C(x)$ contient $(1\\ 2)$, $(3\\ 4)$, $(1\\ 3)(2\\ 4)$ et les produits de ces éléments ; ce sont les permutations qui fixent $5$ et conservent la partition $\\{\\{1,2\\},\\{3,4\\}\\}$. Erreur fréquente : ne retenir que $\\{\\mathrm{id},(1\\ 2),(3\\ 4),(1\\ 2)(3\\ 4)\\}$, à $4$ éléments.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathfrak{S}_5$, on pose $x=(1\\ 2\\ 3)$. Déterminer le nombre de conjugués de $x$, puis le cardinal de son centralisateur $C(x)$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $C(x)$ ?",
+            "propositions": [
+              "$6$",
+              "$3$",
+              "$20$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les conjugués de $x$ sont les $3$-cycles. On choisit leur support ($\\binom53=10$ façons), puis l'un des $2$ cycles sur ce support : $20$ conjugués. Donc $|C(x)|=\\frac{120}{20}=6$.\n\nContrôle : $C(x)$ contient les puissances de $(1\\ 2\\ 3)$ et $(4\\ 5)$, qui commutent ; leurs produits donnent $6$ éléments distincts. Erreur fréquente : ne retenir que $\\langle x\\rangle$, à $3$ éléments.",
+          "indices": [
+            "Les conjugués de $x$ sont les permutations de même type : les compter.",
+            "Utiliser $|\\mathrm{Cl}(x)|\\times|C(x)|=|\\mathfrak{S}_5|$."
+          ]
+        },
+        {
+          "enonce": "Dans $\\mathfrak{S}_6$, on pose $x=(1\\ 2)(3\\ 4)(5\\ 6)$. Déterminer le nombre de conjugués de $x$, puis le cardinal de son centralisateur $C(x)$.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal de $C(x)$ ?",
+            "propositions": [
+              "$48$",
+              "$8$",
+              "$15$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les conjugués de $x$ sont les produits de trois transpositions à supports disjoints, c'est-à-dire les répartitions de $\\{1,\\dots,6\\}$ en trois paires : $5\\times3\\times1=15$ (le partenaire de $1$, puis celui du plus petit entier restant, etc.). Donc $|C(x)|=\\frac{720}{15}=48$.\n\nContrôle : $C(x)$ est formé des permutations qui permutent les trois paires $\\{1,2\\}$, $\\{3,4\\}$, $\\{5,6\\}$ ($3!$ façons) en échangeant ou non les deux éléments de chaque paire ($2^3$ façons) : $6\\times8=48$. Erreur fréquente : $2^3=8$ ne compte que les permutations qui conservent chaque paire.",
+          "indices": [
+            "Les conjugués de $x$ sont les permutations de même type : les compter.",
+            "Utiliser $|\\mathrm{Cl}(x)|\\times|C(x)|=|\\mathfrak{S}_6|$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-conjugaison-ex3",
+      "carte": "gr-l3-actions-conjugaison",
+      "difficulte": 3,
+      "titre": "Classes de conjugaison d'un petit groupe",
+      "enonce": "Déterminer les classes de conjugaison du groupe alterné $\\mathfrak{A}_4$ et vérifier l'équation aux classes.",
+      "duree_min": 15,
+      "indices": [
+        "Une classe de $\\mathfrak{A}_4$ est contenue dans une classe de $\\mathfrak{S}_4$ formée de permutations paires ; pour chacune, comparer le centralisateur dans $\\mathfrak{S}_4$ et dans $\\mathfrak{A}_4$.",
+        "Dans un groupe fini $G$, $|\\mathrm{Cl}_G(x)|=\\frac{|G|}{|C_G(x)|}$."
+      ],
+      "reponse_finale": {
+        "question": "Combien le groupe a-t-il de classes de conjugaison ?",
+        "propositions": [
+          "$4$",
+          "$3$",
+          "$5$",
+          "$12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les permutations paires de $\\mathfrak{S}_4$ sont l'identité, les $3$ doubles transpositions et les $8$ cycles de longueur $3$. Pour $x\\in\\mathfrak{A}_4$, $C_{\\mathfrak{A}_4}(x)=C_{\\mathfrak{S}_4}(x)\\cap\\mathfrak{A}_4$ : c'est le noyau de la signature restreinte à $C_{\\mathfrak{S}_4}(x)$. Si $C_{\\mathfrak{S}_4}(x)$ contient une permutation impaire, cette restriction est surjective sur $\\{-1,1\\}$, et $|C_{\\mathfrak{A}_4}(x)|=\\frac12|C_{\\mathfrak{S}_4}(x)|$ ; sinon les deux centralisateurs sont égaux.\n\n- **Doubles transpositions.** $x=(1\\ 2)(3\\ 4)$ a $3$ conjugués dans $\\mathfrak{S}_4$, donc $|C_{\\mathfrak{S}_4}(x)|=8$, et ce centralisateur contient $(1\\ 2)$, impaire : $|C_{\\mathfrak{A}_4}(x)|=4$ et la classe de $x$ dans $\\mathfrak{A}_4$ a $\\frac{12}{4}=3$ éléments. Les trois doubles transpositions forment une classe.\n- **$3$-cycles.** $c=(1\\ 2\\ 3)$ a $8$ conjugués dans $\\mathfrak{S}_4$, donc $|C_{\\mathfrak{S}_4}(c)|=3$ : c'est $\\langle c\\rangle$, contenu dans $\\mathfrak{A}_4$. La classe de $c$ dans $\\mathfrak{A}_4$ a donc $\\frac{12}{3}=4$ éléments : les $8$ cycles de longueur $3$ se répartissent en deux classes de $4$, celle de $(1\\ 2\\ 3)$, qui est $\\{(1\\ 2\\ 3),(1\\ 3\\ 4),(1\\ 4\\ 2),(2\\ 4\\ 3)\\}$, et celle de $(1\\ 3\\ 2)$, formée des inverses.\n\n$\\mathfrak{A}_4$ a donc $4$ classes, et l'équation aux classes s'écrit $12=1+3+4+4$ (le centre est trivial). Erreur fréquente : compter $3$ classes, une par type de permutation paire.",
+      "variantes": [
+        {
+          "enonce": "Soit $D_6$ le groupe des isométries du plan qui conservent l'ensemble des sommets de l'hexagone régulier $\\{e^{ik\\pi/3} : 0\\le k\\le5\\}$. On admet qu'il a $12$ éléments : les rotations $r^k$, où $r:z\\mapsto e^{i\\pi/3}z$, et les réflexions $sr^k$, où $s:z\\mapsto\\bar z$, pour $0\\le k\\le5$. Déterminer les classes de conjugaison de $D_6$ et vérifier l'équation aux classes.",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il de classes de conjugaison ?",
+            "propositions": [
+              "$6$",
+              "$4$",
+              "$7$",
+              "$9$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $srs^{-1}=r^{-1}$ (car $s\\circ r\\circ s(z)=\\overline{e^{i\\pi/3}\\bar z}=e^{-i\\pi/3}z$), donc $sr^ks^{-1}=r^{-k}$, et $s^{-1}=s$.\n\n- **Rotations.** $r^jr^kr^{-j}=r^k$ et $(sr^j)r^k(sr^j)^{-1}=s r^k s^{-1}=r^{-k}$ : la classe de $r^k$ est $\\{r^k,r^{-k}\\}$. D'où les classes $\\{\\mathrm{id}\\}$, $\\{r^3\\}$, $\\{r,r^5\\}$, $\\{r^2,r^4\\}$.\n- **Réflexions.** $r^j(sr^k)r^{-j}=s\\,r^{-j}r^kr^{-j}=sr^{k-2j}$ et $s(sr^k)s^{-1}=r^ks=sr^{-k}$. La classe de $sr^k$ est donc formée des $sr^{k'}$ avec $k'\\equiv k\\pmod 2$ : $\\{s,sr^2,sr^4\\}$ et $\\{sr,sr^3,sr^5\\}$.\n\n$D_6$ a donc $6$ classes ; le centre est $\\{\\mathrm{id},r^3\\}$ et l'équation aux classes s'écrit $12=1+1+2+2+3+3$.",
+          "indices": [
+            "Utiliser $sr^ks^{-1}=r^{-k}$, puis calculer $r^j(sr^k)r^{-j}$ et $s(sr^k)s^{-1}$.",
+            "Les éléments du centre sont ceux dont la classe est réduite à eux-mêmes."
+          ]
+        },
+        {
+          "enonce": "Déterminer les classes de conjugaison du groupe alterné $\\mathfrak{A}_5$ et vérifier l'équation aux classes.",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il de classes de conjugaison ?",
+            "propositions": [
+              "$5$",
+              "$4$",
+              "$7$",
+              "$60$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les permutations paires de $\\mathfrak{S}_5$ sont l'identité, les $20$ cycles de longueur $3$, les $15$ doubles transpositions et les $24$ cycles de longueur $5$. Comme pour $\\mathfrak{A}_4$, $|C_{\\mathfrak{A}_5}(x)|=\\frac12|C_{\\mathfrak{S}_5}(x)|$ si $C_{\\mathfrak{S}_5}(x)$ contient une permutation impaire, et $C_{\\mathfrak{A}_5}(x)=C_{\\mathfrak{S}_5}(x)$ sinon.\n\n- **$3$-cycles.** $|C_{\\mathfrak{S}_5}((1\\ 2\\ 3))|=\\frac{120}{20}=6$, et il contient $(4\\ 5)$ : $|C_{\\mathfrak{A}_5}|=3$, classe à $\\frac{60}{3}=20$ éléments.\n- **Doubles transpositions.** $|C_{\\mathfrak{S}_5}((1\\ 2)(3\\ 4))|=\\frac{120}{15}=8$, et il contient $(1\\ 2)$ : $|C_{\\mathfrak{A}_5}|=4$, classe à $15$ éléments.\n- **$5$-cycles.** $|C_{\\mathfrak{S}_5}(c)|=\\frac{120}{24}=5$ : c'est $\\langle c\\rangle\\subset\\mathfrak{A}_5$, donc la classe de $c$ dans $\\mathfrak{A}_5$ a $\\frac{60}{5}=12$ éléments, et les $24$ cycles de longueur $5$ forment deux classes de $12$.\n\n$\\mathfrak{A}_5$ a donc $5$ classes, et $60=1+20+15+12+12$. Erreur fréquente : compter $4$ classes, une par type de permutation paire.",
+          "indices": [
+            "Une classe de $\\mathfrak{A}_5$ est contenue dans une classe de $\\mathfrak{S}_5$ formée de permutations paires ; pour chacune, comparer le centralisateur dans $\\mathfrak{S}_5$ et dans $\\mathfrak{A}_5$.",
+            "Dans un groupe fini $G$, $|\\mathrm{Cl}_G(x)|=\\frac{|G|}{|C_G(x)|}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-conjugaison-ex4",
+      "carte": "gr-l3-actions-conjugaison",
+      "difficulte": 4,
+      "titre": "Les groupes de cardinal le carré d'un nombre premier",
+      "enonce": "Soient $p$ un nombre premier et $G$ un groupe de cardinal $p^2$.\n\n**1.** Montrer que $|Z(G)|$ vaut $p$ ou $p^2$.\n\n**2.** On suppose $|Z(G)|=p$ et l'on choisit $x\\in G\\setminus Z(G)$. Montrer que le centralisateur $C_G(x)$ contient $Z(G)$ et $x$, et aboutir à une contradiction.\n\n**3.** En déduire que $G$ est commutatif, puis le nombre de classes de conjugaison de $G$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 1, utiliser la non-trivialité du centre d'un groupe de cardinal $p^n$ et le théorème de Lagrange.",
+        "Pour la question 2, $C_G(x)$ est un sous-groupe qui a strictement plus de $p$ éléments."
+      ],
+      "reponse_finale": {
+        "question": "Combien un groupe de cardinal $p^2$ a-t-il de classes de conjugaison ?",
+        "propositions": [
+          "$p^2$",
+          "$p$",
+          "$p^2-1$",
+          "$p^2+p-1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Comme $|G|=p^2$ avec $p$ premier, $Z(G)\\neq\\{e\\}$ ; c'est un sous-groupe, donc $|Z(G)|$ est un diviseur de $p^2$ différent de $1$ : $p$ ou $p^2$.\n\n**2.** Tout élément du centre commute avec $x$, et $x$ commute avec lui-même : $Z(G)\\cup\\{x\\}\\subset C_G(x)$. Comme $x\\notin Z(G)$, $|C_G(x)|>p$ ; c'est un sous-groupe, donc $|C_G(x)|$ divise $p^2$, et $|C_G(x)|=p^2$ : $C_G(x)=G$, c'est-à-dire que $x$ commute avec tous les éléments, $x\\in Z(G)$. Contradiction.\n\n**3.** Donc $|Z(G)|=p^2$, $Z(G)=G$ : $G$ est commutatif. Ses classes de conjugaison sont alors des singletons : il y en a $p^2$. Exemples : $\\mathbb{Z}/p^2\\mathbb{Z}$ et $(\\mathbb{Z}/p\\mathbb{Z})^2$."
+    },
+    {
+      "id": "gr-l3-actions-conjugaison-ex5",
+      "carte": "gr-l3-actions-conjugaison",
+      "difficulte": 5,
+      "titre": "Probabilité que deux éléments commutent",
+      "enonce": "Soit $G$ un groupe fini. On note $k(G)$ son nombre de classes de conjugaison et $P(G)=\\frac{|\\{(g,h)\\in G^2 : gh=hg\\}|}{|G|^2}$ la probabilité que deux éléments de $G$, choisis au hasard uniformément et indépendamment, commutent.\n\n**1.** Montrer que $|\\{(g,h)\\in G^2 : gh=hg\\}|=\\sum_{g\\in G}|C_G(g)|$, puis que $P(G)=\\frac{k(G)}{|G|}$.\n\n**2.** Montrer que l'indice $[G:Z(G)]$ n'est jamais un nombre premier. En déduire que si $G$ n'est pas commutatif, $[G:Z(G)]\\ge4$.\n\n**3.** En déduire que si $G$ n'est pas commutatif, $P(G)\\le\\frac58$.\n\n**4.** On note $D$ le sous-groupe de $\\mathfrak{S}_4$ engendré par $\\sigma=(1\\ 2\\ 3\\ 4)$ et $\\tau=(1\\ 3)$ ; on admet qu'il a $8$ éléments, $\\sigma^k$ et $\\sigma^k\\tau$ pour $0\\le k\\le3$. Calculer $P(D)$.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, regrouper les $g$ par classe de conjugaison et utiliser $|C_G(g)|=\\frac{|G|}{|\\mathrm{Cl}(g)|}$.",
+        "Pour la question 2, si $x\\notin Z(G)$, comparer $|Z(G)|$, $|C_G(x)|$ et $|G|$ à l'aide du théorème de Lagrange.",
+        "Pour la question 3, majorer $|C_G(g)|$ par $\\frac{|G|}{2}$ quand $g\\notin Z(G)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la plus grande valeur possible de $P(G)$ pour un groupe fini $G$ non commutatif ?",
+        "propositions": [
+          "$\\frac58$",
+          "$\\frac12$",
+          "$\\frac34$",
+          "$\\frac23$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $g$ fixé, $h$ commute avec $g$ si et seulement si $h\\in C_G(g)$ : le nombre de couples est $\\sum_g|C_G(g)|$. Comme $|C_G(g)|=\\frac{|G|}{|\\mathrm{Cl}(g)|}$, en regroupant les $g$ par classe $K$ : $\\sum_g|C_G(g)|=|G|\\sum_K\\sum_{g\\in K}\\frac{1}{|K|}=|G|\\,k(G)$. Donc $P(G)=\\frac{|G|\\,k(G)}{|G|^2}=\\frac{k(G)}{|G|}$.\n\n**2.** Supposons $[G:Z(G)]=q$ premier. Alors $Z(G)\\neq G$ ; soit $x\\notin Z(G)$. $C_G(x)$ est un sous-groupe contenant $Z(G)$ et $x$, donc $|C_G(x)|=m|Z(G)|$ avec $m$ entier (théorème de Lagrange dans $C_G(x)$) et $m\\ge2$. Comme $|C_G(x)|$ divise $|G|=q|Z(G)|$, $m$ divise $q$, donc $m=q$ et $C_G(x)=G$ : $x\\in Z(G)$, contradiction. Si $G$ n'est pas commutatif, $[G:Z(G)]\\ge2$, et il ne vaut ni $2$ ni $3$, qui sont premiers : $[G:Z(G)]\\ge4$, soit $|Z(G)|\\le\\frac{|G|}{4}$.\n\n**3.** Si $g\\in Z(G)$, $|C_G(g)|=|G|$. Sinon, $C_G(g)$ est un sous-groupe strict, de cardinal divisant $|G|$, donc au plus $\\frac{|G|}{2}$. Ainsi $\\sum_g|C_G(g)|\\le|Z(G)|\\,|G|+(|G|-|Z(G)|)\\frac{|G|}{2}$, et $$P(G)\\le\\frac{|Z(G)|}{|G|}+\\frac12\\left(1-\\frac{|Z(G)|}{|G|}\\right)=\\frac12+\\frac{|Z(G)|}{2|G|}\\le\\frac12+\\frac18=\\frac58.$$\n\n**4.** On a $\\tau\\sigma\\tau^{-1}=(3\\ 2\\ 1\\ 4)=\\sigma^{-1}$, donc $\\sigma^j(\\sigma^k\\tau)\\sigma^{-j}=\\sigma^{k+2j}\\tau$ et $\\tau\\sigma^k\\tau^{-1}=\\sigma^{-k}$. Les classes de $D$ sont $\\{\\mathrm{id}\\}$, $\\{\\sigma^2\\}$, $\\{\\sigma,\\sigma^3\\}$, $\\{\\tau,\\sigma^2\\tau\\}$, $\\{\\sigma\\tau,\\sigma^3\\tau\\}$ : $k(D)=5$ et $P(D)=\\frac58$. La majoration de la question 3 est donc la meilleure possible, et elle est atteinte."
+    },
+    {
+      "id": "gr-l3-actions-automorphismes-ex1",
+      "carte": "gr-l3-actions-automorphismes",
+      "difficulte": 1,
+      "titre": "Image d'une matrice par un automorphisme intérieur",
+      "enonce": "Dans $\\mathrm{GL}_2(\\mathbb{R})$, on pose $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ et $A=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$. Calculer $i_P(A)=PAP^{-1}$.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer d'abord $P^{-1}$.",
+        "Contrôle : $i_P(A)$ a la même trace et le même déterminant que $A$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $PAP^{-1}$ ?",
+        "propositions": [
+          "$\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$",
+          "$\\begin{pmatrix}1&-1\\\\0&2\\end{pmatrix}$",
+          "$\\begin{pmatrix}1&2\\\\0&2\\end{pmatrix}$",
+          "$\\begin{pmatrix}2&1\\\\0&1\\end{pmatrix}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$P^{-1}=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$, $PA=\\begin{pmatrix}1&2\\\\0&2\\end{pmatrix}$, puis $$PAP^{-1}=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}.$$ Contrôle : trace $3$ et déterminant $2$, comme $A$. Erreur fréquente : calculer $P^{-1}AP=\\begin{pmatrix}1&-1\\\\0&2\\end{pmatrix}$, qui est $i_{P^{-1}}(A)$.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathrm{GL}_2(\\mathbb{R})$, on pose $P=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$ et $A=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$. Calculer $i_P(A)=PAP^{-1}$.",
+          "reponse_finale": {
+            "question": "Que vaut $PAP^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix}-1&3\\\\0&1\\end{pmatrix}$",
+              "$\\begin{pmatrix}-1&0\\\\3&1\\end{pmatrix}$",
+              "$\\begin{pmatrix}1&3\\\\0&-1\\end{pmatrix}$",
+              "$\\begin{pmatrix}-1&-3\\\\0&1\\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\det P=1$, donc $P^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ ; $PA=\\begin{pmatrix}1&2\\\\1&1\\end{pmatrix}$, puis $$PAP^{-1}=\\begin{pmatrix}-1&3\\\\0&1\\end{pmatrix}.$$ Contrôle : trace $0$ et déterminant $-1$, comme $A$. Erreur fréquente : calculer $P^{-1}AP=\\begin{pmatrix}-1&0\\\\3&1\\end{pmatrix}$, qui est $i_{P^{-1}}(A)$.",
+          "indices": [
+            "Calculer d'abord $P^{-1}$, sachant que $\\det P=1$.",
+            "Contrôle : $i_P(A)$ a la même trace et le même déterminant que $A$."
+          ]
+        },
+        {
+          "enonce": "Dans $\\mathrm{GL}_2(\\mathbb{R})$, on pose $P=\\begin{pmatrix}1&0\\\\2&1\\end{pmatrix}$ et $A=\\begin{pmatrix}3&1\\\\0&3\\end{pmatrix}$. Calculer $i_P(A)=PAP^{-1}$.",
+          "reponse_finale": {
+            "question": "Que vaut $PAP^{-1}$ ?",
+            "propositions": [
+              "$\\begin{pmatrix}1&1\\\\-4&5\\end{pmatrix}$",
+              "$\\begin{pmatrix}5&1\\\\-4&1\\end{pmatrix}$",
+              "$\\begin{pmatrix}1&-1\\\\4&5\\end{pmatrix}$",
+              "$\\begin{pmatrix}3&1\\\\0&3\\end{pmatrix}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$P^{-1}=\\begin{pmatrix}1&0\\\\-2&1\\end{pmatrix}$, $PA=\\begin{pmatrix}3&1\\\\6&5\\end{pmatrix}$, puis $$PAP^{-1}=\\begin{pmatrix}1&1\\\\-4&5\\end{pmatrix}.$$ Contrôle : trace $6$ et déterminant $9$, comme $A$. Erreur fréquente : calculer $P^{-1}AP=\\begin{pmatrix}5&1\\\\-4&1\\end{pmatrix}$, qui est $i_{P^{-1}}(A)$ ; et $A$ n'est pas fixée, car $A$ et $P$ ne commutent pas.",
+          "indices": [
+            "Calculer d'abord $P^{-1}$.",
+            "Contrôle : $i_P(A)$ a la même trace et le même déterminant que $A$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-automorphismes-ex2",
+      "carte": "gr-l3-actions-automorphismes",
+      "difficulte": 2,
+      "titre": "Nombre d'automorphismes intérieurs d'un petit groupe",
+      "enonce": "Déterminer le centre de $\\mathfrak{S}_3$, puis le nombre d'automorphismes intérieurs de $\\mathfrak{S}_3$.",
+      "duree_min": 10,
+      "indices": [
+        "Chercher les éléments qui commutent avec $(1\\ 2)$, puis ceux qui commutent avec $(1\\ 3)$.",
+        "Utiliser $|\\mathrm{Int}(G)|=\\frac{|G|}{|Z(G)|}$."
+      ],
+      "reponse_finale": {
+        "question": "Combien le groupe a-t-il d'automorphismes intérieurs ?",
+        "propositions": [
+          "$6$",
+          "$1$",
+          "$3$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La classe de $(1\\ 2)$ est formée des $3$ transpositions, donc $|C((1\\ 2))|=\\frac63=2$ : $C((1\\ 2))=\\{\\mathrm{id},(1\\ 2)\\}$. De même $C((1\\ 3))=\\{\\mathrm{id},(1\\ 3)\\}$. Un élément du centre commute avec $(1\\ 2)$ et $(1\\ 3)$, donc $Z(\\mathfrak{S}_3)=\\{\\mathrm{id}\\}$.\n\nPar conséquent $|\\mathrm{Int}(\\mathfrak{S}_3)|=\\frac{6}{1}=6$ : les conjugaisons par les $6$ permutations sont deux à deux distinctes.",
+      "variantes": [
+        {
+          "enonce": "Soit $D$ le sous-groupe de $\\mathfrak{S}_4$ engendré par $\\sigma=(1\\ 2\\ 3\\ 4)$ et $\\tau=(1\\ 3)$ ; on admet qu'il a $8$ éléments, $\\sigma^k$ et $\\sigma^k\\tau$ pour $0\\le k\\le3$. Déterminer le centre de $D$, puis le nombre d'automorphismes intérieurs de $D$.",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il d'automorphismes intérieurs ?",
+            "propositions": [
+              "$4$",
+              "$8$",
+              "$2$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\tau\\sigma\\tau^{-1}=(\\tau(1)\\ \\tau(2)\\ \\tau(3)\\ \\tau(4))=(3\\ 2\\ 1\\ 4)=\\sigma^{-1}$. Les éléments qui commutent avec $\\sigma$ sont les $\\sigma^k$ (car $\\sigma^k\\tau\\sigma(\\sigma^k\\tau)^{-1}=\\sigma^{-1}\\neq\\sigma$). Parmi eux, ceux qui commutent avec $\\tau$ vérifient $\\sigma^{-k}=\\tau\\sigma^k\\tau^{-1}=\\sigma^k$, soit $\\sigma^{2k}=\\mathrm{id}$ : $k\\in\\{0,2\\}$. Donc $Z(D)=\\{\\mathrm{id},\\sigma^2\\}=\\{\\mathrm{id},(1\\ 3)(2\\ 4)\\}$.\n\nPar conséquent $|\\mathrm{Int}(D)|=\\frac82=4$.",
+          "indices": [
+            "Calculer $\\tau\\sigma\\tau^{-1}$, puis chercher les éléments qui commutent à la fois avec $\\sigma$ et avec $\\tau$.",
+            "Utiliser $|\\mathrm{Int}(G)|=\\frac{|G|}{|Z(G)|}$."
+          ]
+        },
+        {
+          "enonce": "Déterminer le centre du groupe alterné $\\mathfrak{A}_4$, puis le nombre d'automorphismes intérieurs de $\\mathfrak{A}_4$.",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il d'automorphismes intérieurs ?",
+            "propositions": [
+              "$12$",
+              "$4$",
+              "$6$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le centralisateur de $(1\\ 2\\ 3)$ dans $\\mathfrak{S}_4$ a $\\frac{24}{8}=3$ éléments : c'est $\\langle(1\\ 2\\ 3)\\rangle$. Donc un élément de $Z(\\mathfrak{A}_4)$ est une puissance de $(1\\ 2\\ 3)$ ; or $(1\\ 2\\ 3)$ ne commute pas avec $(1\\ 2)(3\\ 4)$ : $(1\\ 2\\ 3)(1\\ 2)(3\\ 4)(1\\ 2\\ 3)^{-1}=(2\\ 3)(1\\ 4)\\neq(1\\ 2)(3\\ 4)$, et de même pour $(1\\ 3\\ 2)=(1\\ 2\\ 3)^{-1}$. Donc $Z(\\mathfrak{A}_4)=\\{\\mathrm{id}\\}$.\n\nPar conséquent $|\\mathrm{Int}(\\mathfrak{A}_4)|=\\frac{12}{1}=12$.",
+          "indices": [
+            "Chercher les éléments de $\\mathfrak{A}_4$ qui commutent avec $(1\\ 2\\ 3)$, puis ceux qui commutent aussi avec $(1\\ 2)(3\\ 4)$.",
+            "Utiliser $|\\mathrm{Int}(G)|=\\frac{|G|}{|Z(G)|}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-automorphismes-ex3",
+      "carte": "gr-l3-actions-automorphismes",
+      "difficulte": 3,
+      "titre": "Automorphismes d'un groupe cyclique",
+      "enonce": "Déterminer les automorphismes du groupe $(\\mathbb{Z}/12\\mathbb{Z},+)$ et leur nombre. Lesquels sont intérieurs ?",
+      "duree_min": 15,
+      "indices": [
+        "Un morphisme $f$ de $\\mathbb{Z}/12\\mathbb{Z}$ dans lui-même vérifie $f(\\overline k)=kf(\\overline1)$.",
+        "Un tel morphisme est surjectif si et seulement si $f(\\overline1)$ engendre $\\mathbb{Z}/12\\mathbb{Z}$."
+      ],
+      "reponse_finale": {
+        "question": "Combien le groupe a-t-il d'automorphismes ?",
+        "propositions": [
+          "$4$",
+          "$12$",
+          "$11$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Si $f$ est un morphisme, $f(\\overline k)=f(\\overline1+\\cdots+\\overline1)=kf(\\overline1)$ pour $k\\ge0$ : $f$ est déterminé par $f(\\overline1)=\\overline a$. Réciproquement, pour tout $a$, $f_a:\\overline k\\mapsto\\overline{ka}$ est bien défini (si $k\\equiv k'\\pmod{12}$, alors $ka\\equiv k'a$) et c'est un morphisme.\n\n$f_a$ est bijectif si et seulement s'il est surjectif (ensemble fini), c'est-à-dire si son image $\\langle\\overline a\\rangle$ est $\\mathbb{Z}/12\\mathbb{Z}$, si et seulement si $a$ est premier avec $12$ : $a\\in\\{1,5,7,11\\}$. Il y a donc $\\varphi(12)=4$ automorphismes, $\\overline k\\mapsto\\overline{ak}$ pour $a\\in\\{1,5,7,11\\}$.\n\nLe groupe est commutatif, donc $\\mathrm{Int}(\\mathbb{Z}/12\\mathbb{Z})=\\{\\mathrm{id}\\}$ : seul $f_1$ est intérieur. Erreur fréquente : $11$ compte les éléments non nuls, qui ne sont pas tous des générateurs.",
+      "variantes": [
+        {
+          "enonce": "Déterminer les automorphismes du groupe $(\\mathbb{Z}/15\\mathbb{Z},+)$ et leur nombre. Lesquels sont intérieurs ?",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il d'automorphismes ?",
+            "propositions": [
+              "$8$",
+              "$15$",
+              "$14$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Un morphisme $f$ est déterminé par $f(\\overline1)=\\overline a$, car $f(\\overline k)=kf(\\overline1)$, et réciproquement $f_a:\\overline k\\mapsto\\overline{ka}$ est un morphisme bien défini pour tout $a$.\n\n$f_a$ est bijectif si et seulement s'il est surjectif, si et seulement si $\\overline a$ engendre $\\mathbb{Z}/15\\mathbb{Z}$, c'est-à-dire si $a$ est premier avec $15$ : $a\\in\\{1,2,4,7,8,11,13,14\\}$. Il y a donc $\\varphi(15)=8$ automorphismes.\n\nLe groupe est commutatif : seul l'identité $f_1$ est intérieur. Erreur fréquente : $14$ compte les éléments non nuls, qui ne sont pas tous des générateurs.",
+          "indices": [
+            "Un morphisme $f$ de $\\mathbb{Z}/15\\mathbb{Z}$ dans lui-même vérifie $f(\\overline k)=kf(\\overline1)$.",
+            "Un tel morphisme est surjectif si et seulement si $f(\\overline1)$ engendre $\\mathbb{Z}/15\\mathbb{Z}$."
+          ]
+        },
+        {
+          "enonce": "Déterminer les automorphismes du groupe $(\\mathbb{Z}/9\\mathbb{Z},+)$ et leur nombre. Lesquels sont intérieurs ?",
+          "reponse_finale": {
+            "question": "Combien le groupe a-t-il d'automorphismes ?",
+            "propositions": [
+              "$6$",
+              "$9$",
+              "$8$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Un morphisme $f$ est déterminé par $f(\\overline1)=\\overline a$, car $f(\\overline k)=kf(\\overline1)$, et réciproquement $f_a:\\overline k\\mapsto\\overline{ka}$ est un morphisme bien défini pour tout $a$.\n\n$f_a$ est bijectif si et seulement s'il est surjectif, si et seulement si $\\overline a$ engendre $\\mathbb{Z}/9\\mathbb{Z}$, c'est-à-dire si $a$ est premier avec $9$ : $a\\in\\{1,2,4,5,7,8\\}$. Il y a donc $\\varphi(9)=6$ automorphismes.\n\nLe groupe est commutatif : seul l'identité $f_1$ est intérieur. Erreur fréquente : $8$ compte les éléments non nuls, qui ne sont pas tous des générateurs.",
+          "indices": [
+            "Un morphisme $f$ de $\\mathbb{Z}/9\\mathbb{Z}$ dans lui-même vérifie $f(\\overline k)=kf(\\overline1)$.",
+            "Un tel morphisme est surjectif si et seulement si $f(\\overline1)$ engendre $\\mathbb{Z}/9\\mathbb{Z}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-automorphismes-ex4",
+      "carte": "gr-l3-actions-automorphismes",
+      "difficulte": 4,
+      "titre": "Groupes dont les automorphismes intérieurs forment un groupe cyclique",
+      "enonce": "Soit $G$ un groupe.\n\n**1.** On suppose que $\\mathrm{Int}(G)$ est cyclique, engendré par $i_a$. Montrer que tout $g\\in G$ s'écrit $g=a^kz$ avec $k\\in\\mathbb{Z}$ et $z\\in Z(G)$, puis que $G$ est commutatif.\n\n**2.** En déduire que si $G$ est fini et non commutatif, $\\frac{|G|}{|Z(G)|}$ n'est pas un nombre premier.\n\n**3.** Soient $p$ un nombre premier et $G$ un groupe non commutatif de cardinal $p^3$. Déterminer $|Z(G)|$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, $i_g=i_a^k=i_{a^k}$ pour un entier $k$ ; que dire de $a^{-k}g$ ?",
+        "Pour la question 3, utiliser la non-trivialité du centre d'un groupe de cardinal $p^n$, puis la question 2."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal du centre d'un groupe non commutatif de cardinal $p^3$ ?",
+        "propositions": [
+          "$p$",
+          "$1$",
+          "$p^2$",
+          "$p^3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $g\\in G$. Comme $i_g\\in\\langle i_a\\rangle$, il existe $k\\in\\mathbb{Z}$ tel que $i_g=(i_a)^k=i_{a^k}$ ($g\\mapsto i_g$ est un morphisme). Alors $i_{a^{-k}g}=i_{a^k}^{-1}\\circ i_g=\\mathrm{id}$, donc $z=a^{-k}g$ appartient au noyau $Z(G)$, et $g=a^kz$. Si $g=a^kz$ et $h=a^lz'$ avec $z,z'\\in Z(G)$, alors $gh=a^ka^lzz'=a^{k+l}zz'$ et $hg=a^la^kz'z=a^{k+l}zz'$ : $G$ est commutatif (et donc $\\mathrm{Int}(G)=\\{\\mathrm{id}\\}$).\n\n**2.** $|\\mathrm{Int}(G)|=\\frac{|G|}{|Z(G)|}$. Si ce nombre est premier, $\\mathrm{Int}(G)$ est cyclique (un groupe de cardinal premier est engendré par n'importe lequel de ses éléments autres que le neutre, d'après le théorème de Lagrange), donc $G$ est commutatif, ce qui est exclu.\n\n**3.** $Z(G)\\neq\\{e\\}$ car $|G|=p^3$, et $|Z(G)|$ divise $p^3$ : $|Z(G)|\\in\\{p,p^2,p^3\\}$. Le cas $p^3$ est exclu ($G$ serait commutatif), le cas $p^2$ aussi, car $\\frac{|G|}{|Z(G)|}=p$ serait premier. Donc $|Z(G)|=p$.\n\nDe tels groupes existent : pour $p=2$, le sous-groupe de $\\mathfrak{S}_4$ engendré par $(1\\ 2\\ 3\\ 4)$ et $(1\\ 3)$, à $8$ éléments, a pour centre $\\{\\mathrm{id},(1\\ 3)(2\\ 4)\\}$ ; pour tout $p$, le groupe des matrices $\\begin{pmatrix}1&a&b\\\\0&1&c\\\\0&0&1\\end{pmatrix}$ à coefficients dans $\\mathbb{Z}/p\\mathbb{Z}$ a $p^3$ éléments, n'est pas commutatif, et son centre est formé des $p$ matrices telles que $a=c=0$."
+    },
+    {
+      "id": "gr-l3-actions-automorphismes-ex5",
+      "carte": "gr-l3-actions-automorphismes",
+      "difficulte": 5,
+      "titre": "Les automorphismes du groupe symétrique de degré quatre",
+      "enonce": "On veut montrer que tout automorphisme de $\\mathfrak{S}_4$ est intérieur.\n\n**1.** Montrer que $Z(\\mathfrak{S}_4)=\\{\\mathrm{id}\\}$ et en déduire que $\\mathrm{Int}(\\mathfrak{S}_4)$ a $24$ éléments.\n\n**2.** Soit $\\varphi\\in\\mathrm{Aut}(\\mathfrak{S}_4)$. Montrer que $\\varphi$ envoie l'ensemble des transpositions sur lui-même.\n\n**3.** Montrer que $\\varphi((1\\ 2))$, $\\varphi((1\\ 3))$, $\\varphi((1\\ 4))$ sont trois transpositions ayant un point commun $a$, et qu'on peut les écrire $(a\\ b)$, $(a\\ c)$, $(a\\ d)$ avec $\\{a,b,c,d\\}=\\{1,2,3,4\\}$.\n\n**4.** Soit $\\tau\\in\\mathfrak{S}_4$ définie par $\\tau(1)=a$, $\\tau(2)=b$, $\\tau(3)=c$, $\\tau(4)=d$. Montrer que $\\varphi=i_\\tau$ et conclure.",
+      "duree_min": 45,
+      "indices": [
+        "Pour la question 2, les éléments d'ordre $2$ de $\\mathfrak{S}_4$ forment deux classes de conjugaison, de cardinaux différents.",
+        "Pour la question 3, deux transpositions distinctes commutent si et seulement si leurs supports sont disjoints ; utiliser aussi que $(1\\ 2)$, $(1\\ 3)$, $(1\\ 4)$ engendrent $\\mathfrak{S}_4$.",
+        "Pour la question 4, comparer $\\varphi$ et $i_\\tau$ sur des générateurs."
+      ],
+      "reponse_finale": {
+        "question": "Combien $\\mathfrak{S}_4$ a-t-il d'automorphismes ?",
+        "propositions": [
+          "$24$",
+          "$48$",
+          "$12$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $\\sigma\\neq\\mathrm{id}$, et $i$ tel que $j=\\sigma(i)\\neq i$ ; on choisit $k\\notin\\{i,j\\}$ et l'on pose $t=(j\\ k)$. Alors $\\sigma t(i)=\\sigma(i)=j$ et $t\\sigma(i)=t(j)=k\\neq j$ : $\\sigma$ ne commute pas avec $t$. Donc $Z(\\mathfrak{S}_4)=\\{\\mathrm{id}\\}$, $g\\mapsto i_g$ est injectif et $|\\mathrm{Int}(\\mathfrak{S}_4)|=24$.\n\n**2.** Les éléments d'ordre $2$ de $\\mathfrak{S}_4$ sont les $6$ transpositions et les $3$ doubles transpositions ; chacun de ces deux ensembles est une classe de conjugaison (même type). Un automorphisme conserve l'ordre et envoie la classe de $x$ sur la classe de $\\varphi(x)$, bijectivement ; l'image d'une transposition est donc d'ordre $2$, dans une classe à $6$ éléments : c'est une transposition.\n\n**3.** Pour $i\\neq j$ dans $\\{2,3,4\\}$, $(1\\ i)(1\\ j)=(1\\ j\\ i)$ et $(1\\ j)(1\\ i)=(1\\ i\\ j)$ sont différents : $(1\\ i)$ et $(1\\ j)$ ne commutent pas, et, $\\varphi$ étant un isomorphisme, leurs images non plus. Deux transpositions distinctes qui ne commutent pas ont exactement un point commun. Écrivons $\\varphi((1\\ 2))=(a\\ b)$ et $\\varphi((1\\ 3))=(a\\ c)$, avec $c\\notin\\{a,b\\}$. La transposition $\\varphi((1\\ 4))$, distincte des deux autres, a un point commun avec chacune : ou bien elle contient $a$, et c'est $(a\\ d)$ avec $d$ le quatrième entier ; ou bien elle ne contient pas $a$, et c'est $(b\\ c)$. Dans ce dernier cas, les trois images fixent le quatrième entier, donc le sous-groupe qu'elles engendrent a au plus $6$ éléments ; or il contient $\\varphi(\\mathfrak{S}_4)=\\mathfrak{S}_4$, car $(1\\ 2)$, $(1\\ 3)$, $(1\\ 4)$ engendrent $\\mathfrak{S}_4$ (toute transposition $(i\\ j)$ vaut $(1\\ i)(1\\ j)(1\\ i)$, et les transpositions engendrent $\\mathfrak{S}_4$) : contradiction.\n\n**4.** $\\tau$ est une permutation, et $i_\\tau((1\\ i))=(\\tau(1)\\ \\tau(i))=\\varphi((1\\ i))$ pour $i=2,3,4$. L'ensemble des $x$ tels que $\\varphi(x)=i_\\tau(x)$ est un sous-groupe (si $\\varphi(x)=i_\\tau(x)$ et $\\varphi(y)=i_\\tau(y)$, alors $\\varphi(xy^{-1})=i_\\tau(xy^{-1})$) qui contient des générateurs de $\\mathfrak{S}_4$ : c'est $\\mathfrak{S}_4$, et $\\varphi=i_\\tau$. Ainsi $\\mathrm{Aut}(\\mathfrak{S}_4)=\\mathrm{Int}(\\mathfrak{S}_4)$ a $24$ éléments, et $g\\mapsto i_g$ est un isomorphisme de $\\mathfrak{S}_4$ sur $\\mathrm{Aut}(\\mathfrak{S}_4)$."
+    },
+    {
+      "id": "gr-l3-actions-geometrie-ex1",
+      "carte": "gr-l3-actions-geometrie",
+      "difficulte": 1,
+      "titre": "Stabilisateur dans le groupe des rotations d'un polyèdre",
+      "enonce": "On admet que le groupe $G$ des rotations de l'espace qui conservent un cube a $24$ éléments et qu'il opère transitivement sur les $12$ arêtes du cube. Quel est le cardinal du stabilisateur d'une arête ? Décrire ses éléments.",
+      "duree_min": 5,
+      "indices": [
+        "Utiliser la relation orbite-stabilisateur.",
+        "Une rotation qui conserve une arête conserve son milieu, ainsi que le centre du cube."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le cardinal du stabilisateur ?",
+        "propositions": [
+          "$2$",
+          "$12$",
+          "$4$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'orbite d'une arête $a$ contient les $12$ arêtes, donc $|G_a|=\\frac{24}{12}=2$. Ses éléments sont l'identité et le demi-tour (rotation d'angle $\\pi$) d'axe passant par le milieu de $a$ et celui de l'arête opposée, qui échange les deux extrémités de $a$.",
+      "variantes": [
+        {
+          "enonce": "On admet que le groupe $G$ des rotations de l'espace qui conservent un tétraèdre régulier a $12$ éléments et qu'il opère transitivement sur les $4$ faces du tétraèdre. Quel est le cardinal du stabilisateur d'une face ? Décrire ses éléments.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal du stabilisateur ?",
+            "propositions": [
+              "$3$",
+              "$4$",
+              "$12$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'orbite d'une face $F$ contient les $4$ faces, donc $|G_F|=\\frac{12}{4}=3$. Ses éléments sont l'identité et les rotations d'angles $\\pm\\frac{2\\pi}{3}$ d'axe passant par le centre de $F$ et le sommet opposé.",
+          "indices": [
+            "Utiliser la relation orbite-stabilisateur.",
+            "Une rotation qui conserve une face conserve son centre, ainsi que le centre du tétraèdre."
+          ]
+        },
+        {
+          "enonce": "On admet que le groupe $G$ des rotations de l'espace qui conservent un dodécaèdre régulier a $60$ éléments et qu'il opère transitivement sur les $12$ faces (pentagonales) du dodécaèdre. Quel est le cardinal du stabilisateur d'une face ? Décrire ses éléments.",
+          "reponse_finale": {
+            "question": "Quel est le cardinal du stabilisateur ?",
+            "propositions": [
+              "$5$",
+              "$12$",
+              "$60$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'orbite d'une face $F$ contient les $12$ faces, donc $|G_F|=\\frac{60}{12}=5$. Ses éléments sont les rotations d'angles $\\frac{2k\\pi}{5}$, $0\\le k\\le4$, d'axe passant par le centre de $F$ et celui de la face opposée.",
+          "indices": [
+            "Utiliser la relation orbite-stabilisateur.",
+            "Une rotation qui conserve une face conserve son centre, ainsi que le centre du dodécaèdre."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-geometrie-ex2",
+      "carte": "gr-l3-actions-geometrie",
+      "difficulte": 2,
+      "titre": "Orbites des paires de sommets d'un polygone régulier",
+      "enonce": "Soient $\\omega=e^{2i\\pi/6}$ et $D_6$ le groupe des isométries du plan qui conservent l'ensemble $S=\\{\\omega^k : 0\\le k\\le5\\}$ des sommets de l'hexagone régulier ; il est formé des $z\\mapsto\\omega^kz$ et des $z\\mapsto\\omega^k\\bar z$. Il opère sur l'ensemble des $15$ parties à deux éléments de $S$ par $f\\cdot\\{A,B\\}=\\{f(A),f(B)\\}$. Combien cette action a-t-elle d'orbites ?",
+      "duree_min": 10,
+      "indices": [
+        "Une isométrie conserve la distance entre deux sommets.",
+        "Exprimer $|\\omega^j-\\omega^k|$ à l'aide de $j-k$, puis utiliser les rotations $z\\mapsto\\omega^kz$."
+      ],
+      "reponse_finale": {
+        "question": "Combien l'action a-t-elle d'orbites ?",
+        "propositions": [
+          "$3$",
+          "$2$",
+          "$5$",
+          "$15$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour deux sommets distincts, $|\\omega^j-\\omega^k|=|\\omega^{j-k}-1|=2\\left|\\sin\\frac{\\pi(j-k)}{6}\\right|$ ne dépend que de $d=\\min(m,6-m)\\in\\{1,2,3\\}$, où $m\\in\\{1,\\dots,5\\}$ est le reste de $j-k$ modulo $6$ ; et $d\\mapsto2\\sin\\frac{\\pi d}{6}$ est strictement croissante sur $\\{1,2,3\\}$. Une isométrie conserve les distances, donc deux paires d'une même orbite ont le même $d$.\n\nRéciproquement, une paire de « pas » $d$ s'écrit $\\{\\omega^j,\\omega^{j+d}\\}$ (quitte à échanger les deux sommets) et c'est l'image de $\\{1,\\omega^d\\}$ par la rotation $z\\mapsto\\omega^jz$. Les orbites correspondent donc aux valeurs $d=1$ (les $6$ côtés), $d=2$ (les $6$ petites diagonales) et $d=3$ (les $3$ grandes diagonales) : $3$ orbites, et $6+6+3=15$. Erreur fréquente : distinguer les pas $d$ et $6-d$, ce qui donne $5$.",
+      "variantes": [
+        {
+          "enonce": "Soient $\\omega=e^{2i\\pi/9}$ et $D_9$ le groupe des isométries du plan qui conservent l'ensemble $S=\\{\\omega^k : 0\\le k\\le8\\}$ des sommets de l'ennéagone régulier ; il est formé des $z\\mapsto\\omega^kz$ et des $z\\mapsto\\omega^k\\bar z$. Il opère sur l'ensemble des $36$ parties à deux éléments de $S$ par $f\\cdot\\{A,B\\}=\\{f(A),f(B)\\}$. Combien cette action a-t-elle d'orbites ?",
+          "reponse_finale": {
+            "question": "Combien l'action a-t-elle d'orbites ?",
+            "propositions": [
+              "$4$",
+              "$3$",
+              "$8$",
+              "$36$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$|\\omega^j-\\omega^k|=2\\left|\\sin\\frac{\\pi(j-k)}{9}\\right|$ ne dépend que de $d=\\min(m,9-m)\\in\\{1,2,3,4\\}$, où $m$ est le reste de $j-k$ modulo $9$, et ces quatre distances sont distinctes. Les isométries conservent les distances, et la paire $\\{\\omega^j,\\omega^{j+d}\\}$ est l'image de $\\{1,\\omega^d\\}$ par $z\\mapsto\\omega^jz$. Il y a donc $4$ orbites, chacune à $9$ éléments : $4\\times9=36$. Erreur fréquente : distinguer les pas $d$ et $9-d$, ce qui donne $8$.",
+          "indices": [
+            "Une isométrie conserve la distance entre deux sommets.",
+            "Exprimer $|\\omega^j-\\omega^k|$ à l'aide de $j-k$, puis utiliser les rotations $z\\mapsto\\omega^kz$."
+          ]
+        },
+        {
+          "enonce": "Soient $\\omega=e^{2i\\pi/10}$ et $D_{10}$ le groupe des isométries du plan qui conservent l'ensemble $S=\\{\\omega^k : 0\\le k\\le9\\}$ des sommets du décagone régulier ; il est formé des $z\\mapsto\\omega^kz$ et des $z\\mapsto\\omega^k\\bar z$. Il opère sur l'ensemble des $45$ parties à deux éléments de $S$ par $f\\cdot\\{A,B\\}=\\{f(A),f(B)\\}$. Combien cette action a-t-elle d'orbites ?",
+          "reponse_finale": {
+            "question": "Combien l'action a-t-elle d'orbites ?",
+            "propositions": [
+              "$5$",
+              "$4$",
+              "$9$",
+              "$45$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$|\\omega^j-\\omega^k|=2\\left|\\sin\\frac{\\pi(j-k)}{10}\\right|$ ne dépend que de $d=\\min(m,10-m)\\in\\{1,\\dots,5\\}$, où $m$ est le reste de $j-k$ modulo $10$, et ces cinq distances sont distinctes. Les isométries conservent les distances, et la paire $\\{\\omega^j,\\omega^{j+d}\\}$ est l'image de $\\{1,\\omega^d\\}$ par $z\\mapsto\\omega^jz$. Il y a donc $5$ orbites : quatre à $10$ éléments ($d=1,2,3,4$) et une à $5$ éléments (les grandes diagonales, $d=5$), et $4\\times10+5=45$. Erreur fréquente : distinguer les pas $d$ et $10-d$, ce qui donne $9$.",
+          "indices": [
+            "Une isométrie conserve la distance entre deux sommets.",
+            "Exprimer $|\\omega^j-\\omega^k|$ à l'aide de $j-k$, puis utiliser les rotations $z\\mapsto\\omega^kz$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-geometrie-ex3",
+      "carte": "gr-l3-actions-geometrie",
+      "difficulte": 3,
+      "titre": "Colorier les sommets d'un polygone régulier",
+      "enonce": "On colorie chacun des $6$ sommets d'un hexagone régulier en noir ou en blanc. Deux coloriages sont considérés comme identiques si l'un est l'image de l'autre par une isométrie du plan qui conserve l'hexagone, c'est-à-dire par un élément du groupe $D_6$ ($12$ éléments : $6$ rotations et $6$ réflexions), qui opère sur les coloriages par $(f\\cdot c)(A)=c(f^{-1}(A))$. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+      "duree_min": 15,
+      "indices": [
+        "Un coloriage est fixé par $f$ si et seulement s'il est constant sur chaque cycle de la permutation des sommets induite par $f$.",
+        "Pour la rotation d'angle $\\frac{2k\\pi}{6}$, le nombre de cycles est $\\mathrm{pgcd}(k,6)$ ; pour les réflexions, distinguer celles dont l'axe passe par deux sommets et celles dont l'axe passe par les milieux de deux côtés."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de coloriages distincts ?",
+        "propositions": [
+          "$13$",
+          "$14$",
+          "$12$",
+          "$64$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Numérotons les sommets $\\omega^j$ par $j\\in\\mathbb{Z}/6\\mathbb{Z}$. Un coloriage est fixé par $f$ si et seulement s'il est constant sur chaque cycle de la permutation des sommets induite par $f$ : $|\\mathrm{Fix}(f)|=2^{c(f)}$, où $c(f)$ est le nombre de cycles, points fixes compris.\n\n**Rotations.** $j\\mapsto j+k$ a $\\mathrm{pgcd}(k,6)$ cycles : pour $k=0,1,2,3,4,5$, on trouve $2^6+2+4+8+4+2=84$ coloriages fixes.\n\n**Réflexions.** $j\\mapsto k-j$. Si $k$ est pair, l'axe passe par deux sommets : $2$ points fixes et $2$ transpositions, $4$ cycles, $2^4=16$. Si $k$ est impair, l'axe passe par les milieux de deux côtés : $3$ transpositions, $2^3=8$. Total : $3\\times16+3\\times8=72$.\n\nNombre de coloriages : $\\frac{84+72}{12}=\\frac{156}{12}=13$. Erreur fréquente : ne tenir compte que des rotations, ce qui donne $\\frac{84}{6}=14$.",
+      "variantes": [
+        {
+          "enonce": "On colorie chacun des $5$ sommets d'un pentagone régulier avec l'une de $3$ couleurs. Deux coloriages sont considérés comme identiques si l'un est l'image de l'autre par une isométrie du plan qui conserve le pentagone, c'est-à-dire par un élément du groupe $D_5$ ($10$ éléments : $5$ rotations et $5$ réflexions), qui opère sur les coloriages par $(f\\cdot c)(A)=c(f^{-1}(A))$. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+          "reponse_finale": {
+            "question": "Combien y a-t-il de coloriages distincts ?",
+            "propositions": [
+              "$39$",
+              "$51$",
+              "$27$",
+              "$243$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Numérotons les sommets par $j\\in\\mathbb{Z}/5\\mathbb{Z}$ ; $|\\mathrm{Fix}(f)|=3^{c(f)}$, où $c(f)$ est le nombre de cycles de la permutation des sommets induite par $f$.\n\n**Rotations.** L'identité fixe $3^5=243$ coloriages ; les $4$ autres rotations ont un seul cycle (car $5$ est premier) et fixent $3$ coloriages chacune : total $243+12=255$.\n\n**Réflexions.** $5$ est impair : chaque axe passe par un sommet et le milieu du côté opposé ; la réflexion a $1$ point fixe et $2$ transpositions, $3$ cycles, $3^3=27$ coloriages fixes. Total : $5\\times27=135$.\n\nNombre de coloriages : $\\frac{255+135}{10}=39$. Erreur fréquente : ne tenir compte que des rotations, ce qui donne $\\frac{255}{5}=51$.",
+          "indices": [
+            "Un coloriage est fixé par $f$ si et seulement s'il est constant sur chaque cycle de la permutation des sommets induite par $f$.",
+            "Pour les rotations, utiliser que $5$ est premier ; pour les réflexions, décrire les cycles de la permutation des sommets."
+          ]
+        },
+        {
+          "enonce": "On colorie chacun des $8$ sommets d'un octogone régulier en noir ou en blanc. Deux coloriages sont considérés comme identiques si l'un est l'image de l'autre par une isométrie du plan qui conserve l'octogone, c'est-à-dire par un élément du groupe $D_8$ ($16$ éléments : $8$ rotations et $8$ réflexions), qui opère sur les coloriages par $(f\\cdot c)(A)=c(f^{-1}(A))$. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+          "reponse_finale": {
+            "question": "Combien y a-t-il de coloriages distincts ?",
+            "propositions": [
+              "$30$",
+              "$36$",
+              "$32$",
+              "$256$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Numérotons les sommets par $j\\in\\mathbb{Z}/8\\mathbb{Z}$ ; $|\\mathrm{Fix}(f)|=2^{c(f)}$, où $c(f)$ est le nombre de cycles de la permutation des sommets induite par $f$.\n\n**Rotations.** $j\\mapsto j+k$ a $\\mathrm{pgcd}(k,8)$ cycles : $k=0$ donne $2^8=256$ ; $k=1,3,5,7$ donnent $2$ chacun ; $k=2,6$ donnent $4$ chacun ; $k=4$ donne $16$. Total $256+8+8+16=288$.\n\n**Réflexions.** $j\\mapsto k-j$. Si $k$ est pair, l'axe passe par deux sommets : $2$ points fixes et $3$ transpositions, $5$ cycles, $2^5=32$. Si $k$ est impair : $4$ transpositions, $2^4=16$. Total $4\\times32+4\\times16=192$.\n\nNombre de coloriages : $\\frac{288+192}{16}=30$. Erreur fréquente : ne tenir compte que des rotations, ce qui donne $\\frac{288}{8}=36$.",
+          "indices": [
+            "Un coloriage est fixé par $f$ si et seulement s'il est constant sur chaque cycle de la permutation des sommets induite par $f$.",
+            "Pour la rotation d'angle $\\frac{2k\\pi}{8}$, le nombre de cycles est $\\mathrm{pgcd}(k,8)$ ; pour les réflexions, distinguer celles dont l'axe passe par deux sommets et celles dont l'axe passe par les milieux de deux côtés."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-geometrie-ex4",
+      "carte": "gr-l3-actions-geometrie",
+      "difficulte": 4,
+      "titre": "Colorier les faces d'un cube",
+      "enonce": "On colorie chacune des $6$ faces d'un cube avec l'une de $3$ couleurs (plusieurs faces peuvent avoir la même couleur). Deux coloriages sont considérés comme identiques si l'un se déduit de l'autre par une rotation qui conserve le cube. On admet que le groupe $G$ de ces rotations a $24$ éléments. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+      "duree_min": 25,
+      "indices": [
+        "Classer les $24$ rotations selon leur axe : axes joignant les centres de deux faces opposées, deux sommets opposés, ou les milieux de deux arêtes opposées.",
+        "Pour chaque rotation, décrire les cycles de la permutation des $6$ faces : un coloriage est fixé si et seulement s'il est constant sur chaque cycle."
+      ],
+      "reponse_finale": {
+        "question": "Combien y a-t-il de coloriages distincts ?",
+        "propositions": [
+          "$57$",
+          "$56$",
+          "$30$",
+          "$729$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Un coloriage est fixé par une rotation si et seulement s'il est constant sur chaque cycle de la permutation des faces qu'elle induit. Les $24$ rotations se répartissent ainsi :\n- l'identité : $6$ cycles, $3^6=729$ coloriages fixes ;\n- les $6$ rotations d'angle $\\pm\\frac{\\pi}{2}$ autour des $3$ axes joignant les centres de deux faces opposées : les deux faces de l'axe sont fixes, les quatre autres forment un cycle ; $3$ cycles, $3^3=27$ chacune ;\n- les $3$ demi-tours autour de ces axes : $2$ faces fixes et $2$ transpositions, $4$ cycles, $3^4=81$ chacun ;\n- les $8$ rotations d'angle $\\pm\\frac{2\\pi}{3}$ autour des $4$ grandes diagonales : deux cycles de $3$ faces (les faces autour de chacun des deux sommets de l'axe), $3^2=9$ chacune ;\n- les $6$ demi-tours autour des axes joignant les milieux de deux arêtes opposées : $3$ transpositions, $3^3=27$ chacun.\n\nOn a bien $1+6+3+8+6=24$ rotations. Nombre de coloriages : $\\frac{729+6\\times27+3\\times81+8\\times9+6\\times27}{24}=\\frac{1368}{24}=57$. Erreur fréquente : en ajoutant les $24$ isométries indirectes qui conservent le cube, on obtiendrait $56$, mais l'énoncé ne retient que les rotations.",
+      "variantes": [
+        {
+          "enonce": "On colorie chacune des $6$ faces d'un cube avec l'une de $2$ couleurs (plusieurs faces peuvent avoir la même couleur). Deux coloriages sont considérés comme identiques si l'un se déduit de l'autre par une rotation qui conserve le cube. On admet que le groupe $G$ de ces rotations a $24$ éléments. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+          "reponse_finale": {
+            "question": "Combien y a-t-il de coloriages distincts ?",
+            "propositions": [
+              "$10$",
+              "$64$",
+              "$8$",
+              "$12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Un coloriage est fixé par une rotation si et seulement s'il est constant sur chaque cycle de la permutation des faces qu'elle induit. Les $24$ rotations se répartissent ainsi :\n- l'identité : $6$ cycles, $2^6=64$ coloriages fixes ;\n- les $6$ rotations d'angle $\\pm\\frac{\\pi}{2}$ autour des $3$ axes joignant les centres de deux faces opposées : les deux faces de l'axe sont fixes, les quatre autres forment un cycle ; $3$ cycles, $2^3=8$ chacune ;\n- les $3$ demi-tours autour de ces axes : $2$ faces fixes et $2$ transpositions, $4$ cycles, $2^4=16$ chacun ;\n- les $8$ rotations d'angle $\\pm\\frac{2\\pi}{3}$ autour des $4$ grandes diagonales : deux cycles de $3$ faces (les faces autour de chacun des deux sommets de l'axe), $2^2=4$ chacune ;\n- les $6$ demi-tours autour des axes joignant les milieux de deux arêtes opposées : $3$ transpositions, $2^3=8$ chacun.\n\nOn a bien $1+6+3+8+6=24$ rotations. Nombre de coloriages : $\\frac{64+6\\times8+3\\times16+8\\times4+6\\times8}{24}=\\frac{240}{24}=10$. On peut le vérifier à la main : selon le nombre de faces noires ($0$ à $6$), on trouve $1$, $1$, $2$, $2$, $2$, $1$, $1$ coloriages.",
+          "indices": [
+            "Classer les $24$ rotations selon leur axe : axes joignant les centres de deux faces opposées, deux sommets opposés, ou les milieux de deux arêtes opposées.",
+            "Pour chaque rotation, décrire les cycles de la permutation des $6$ faces : un coloriage est fixé si et seulement s'il est constant sur chaque cycle."
+          ]
+        },
+        {
+          "enonce": "On colorie chacune des $6$ faces d'un cube avec l'une de $4$ couleurs (plusieurs faces peuvent avoir la même couleur). Deux coloriages sont considérés comme identiques si l'un se déduit de l'autre par une rotation qui conserve le cube. On admet que le groupe $G$ de ces rotations a $24$ éléments. On admet la formule de Burnside : si un groupe fini $G$ opère sur un ensemble fini, le nombre d'orbites est $\\frac{1}{|G|}\\sum_{g\\in G}|\\mathrm{Fix}(g)|$, où $\\mathrm{Fix}(g)$ est l'ensemble des points fixés par $g$. Combien y a-t-il de coloriages distincts ?",
+          "reponse_finale": {
+            "question": "Combien y a-t-il de coloriages distincts ?",
+            "propositions": [
+              "$240$",
+              "$220$",
+              "$4096$",
+              "$256$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Un coloriage est fixé par une rotation si et seulement s'il est constant sur chaque cycle de la permutation des faces qu'elle induit. Les $24$ rotations se répartissent ainsi :\n- l'identité : $6$ cycles, $4^6=4096$ coloriages fixes ;\n- les $6$ rotations d'angle $\\pm\\frac{\\pi}{2}$ autour des $3$ axes joignant les centres de deux faces opposées : les deux faces de l'axe sont fixes, les quatre autres forment un cycle ; $3$ cycles, $4^3=64$ chacune ;\n- les $3$ demi-tours autour de ces axes : $2$ faces fixes et $2$ transpositions, $4$ cycles, $4^4=256$ chacun ;\n- les $8$ rotations d'angle $\\pm\\frac{2\\pi}{3}$ autour des $4$ grandes diagonales : deux cycles de $3$ faces (les faces autour de chacun des deux sommets de l'axe), $4^2=16$ chacune ;\n- les $6$ demi-tours autour des axes joignant les milieux de deux arêtes opposées : $3$ transpositions, $4^3=64$ chacun.\n\nOn a bien $1+6+3+8+6=24$ rotations. Nombre de coloriages : $\\frac{4096+6\\times64+3\\times256+8\\times16+6\\times64}{24}=\\frac{5760}{24}=240$. Erreur fréquente : diviser simplement $4^6=4096$ par $24$, ce qui ne donne même pas un entier.",
+          "indices": [
+            "Classer les $24$ rotations selon leur axe : axes joignant les centres de deux faces opposées, deux sommets opposés, ou les milieux de deux arêtes opposées.",
+            "Pour chaque rotation, décrire les cycles de la permutation des $6$ faces : un coloriage est fixé si et seulement s'il est constant sur chaque cycle."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr-l3-actions-geometrie-ex5",
+      "carte": "gr-l3-actions-geometrie",
+      "difficulte": 5,
+      "titre": "Le groupe des rotations du cube est isomorphe au groupe symétrique de degré quatre",
+      "enonce": "On note $G$ l'ensemble des matrices de $\\mathrm{M}_3(\\mathbb{R})$ dont chaque ligne et chaque colonne contient exactement un coefficient non nul, égal à $1$ ou à $-1$, et dont le déterminant vaut $1$. On admet que ce sont les matrices, dans la base canonique, des rotations qui conservent le cube $[-1,1]^3$.\n\n**1.** Montrer que $G$ est un sous-groupe de $\\mathrm{GL}_3(\\mathbb{R})$ à $24$ éléments.\n\n**2.** Soient $v_0=(1,1,1)$, $v_1=(-1,1,1)$, $v_2=(1,-1,1)$, $v_3=(1,1,-1)$, et $\\mathcal{D}=\\{\\mathbb{R}v_0,\\mathbb{R}v_1,\\mathbb{R}v_2,\\mathbb{R}v_3\\}$ l'ensemble des quatre droites qui portent les grandes diagonales du cube. Montrer que $G$ opère sur $\\mathcal{D}$ par $M\\cdot\\Delta=M(\\Delta)$.\n\n**3.** Montrer que le morphisme associé $\\rho:G\\to\\mathfrak{S}(\\mathcal{D})$ est injectif, et en déduire que $G$ est isomorphe à $\\mathfrak{S}_4$.\n\n**4.** Combien $G$ contient-il d'éléments d'ordre $2$ ? Les décrire géométriquement.",
+      "duree_min": 45,
+      "indices": [
+        "Pour la question 1, compter les positions et les signes des coefficients non nuls ; l'application $M\\mapsto-M$ échange les matrices de déterminant $1$ et celles de déterminant $-1$.",
+        "Pour la question 3, si $M$ conserve chaque droite, alors $Mv_i=\\lambda_iv_i$ avec $\\lambda_i=\\pm1$ ; remarquer que $v_0=v_1+v_2+v_3$.",
+        "Pour la question 4, utiliser l'isomorphisme avec $\\mathfrak{S}_4$ et les types de permutations."
+      ],
+      "reponse_finale": {
+        "question": "Combien $G$ contient-il d'éléments d'ordre $2$ ?",
+        "propositions": [
+          "$9$",
+          "$6$",
+          "$3$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Notons $W$ l'ensemble des matrices dont chaque ligne et chaque colonne contient exactement un coefficient non nul, égal à $\\pm1$ : $M\\in W$ si et seulement s'il existe une permutation $\\pi$ de $\\{1,2,3\\}$ et des signes $\\varepsilon_j$ tels que $Me_j=\\varepsilon_je_{\\pi(j)}$ pour tout $j$. Il y a $3!\\times2^3=48$ telles matrices. Le produit de deux éléments de $W$ est dans $W$ ($MNe_j=\\pm Me_{\\pi'(j)}=\\pm e_{\\pi\\pi'(j)}$), et $M\\in W$ est orthogonale (ses colonnes $\\pm e_{\\pi(j)}$ forment une base orthonormale), d'inverse ${}^tM\\in W$. Comme le déterminant est multiplicatif, $G=\\{M\\in W : \\det M=1\\}$ est un sous-groupe de $\\mathrm{GL}_3(\\mathbb{R})$. Enfin $M\\mapsto-M$ est une bijection de $W$ sur lui-même qui change le signe du déterminant (dimension $3$) : $|G|=\\frac{48}{2}=24$.\n\n**2.** Pour $M\\in G$, chaque coordonnée de $Mv_i$ est, au signe près, une coordonnée de $v_i$ : c'est $\\pm1$. Les vecteurs à coordonnées $\\pm1$ sont les $\\pm v_j$, donc $Mv_i=\\pm v_j$ pour un $j$ et $M(\\mathbb{R}v_i)=\\mathbb{R}v_j\\in\\mathcal{D}$. Comme $M$ est injective, deux droites distinctes ont des images distinctes : $M$ induit une permutation de $\\mathcal{D}$. De plus $I_3(\\Delta)=\\Delta$ et $M(N(\\Delta))=(MN)(\\Delta)$ : c'est une action.\n\n**3.** Soit $M$ dans le noyau : $M(\\mathbb{R}v_i)=\\mathbb{R}v_i$, donc $Mv_i=\\lambda_iv_i$, et $\\lambda_i=\\pm1$ car $M$ est orthogonale. Comme $v_0=v_1+v_2+v_3$, $\\lambda_0v_1+\\lambda_0v_2+\\lambda_0v_3=Mv_0=\\lambda_1v_1+\\lambda_2v_2+\\lambda_3v_3$ ; or $(v_1,v_2,v_3)$ est une base (déterminant $4$), donc $\\lambda_1=\\lambda_2=\\lambda_3=\\lambda_0=\\lambda$. Ainsi $M=\\lambda I_3$ (les deux coïncident sur une base), et $\\det M=\\lambda^3=1$ donne $\\lambda=1$. Le noyau est trivial, $\\rho$ est injectif, et comme $|G|=24=|\\mathfrak{S}(\\mathcal{D})|$, $\\rho$ est un isomorphisme ; numéroter les droites identifie $\\mathfrak{S}(\\mathcal{D})$ à $\\mathfrak{S}_4$.\n\n**4.** Un isomorphisme conserve l'ordre. Les éléments d'ordre $2$ de $\\mathfrak{S}_4$ sont les $6$ transpositions et les $3$ doubles transpositions : $G$ en a $9$. Ce sont les demi-tours : les $3$ demi-tours autour des axes de coordonnées (par exemple $\\mathrm{diag}(1,-1,-1)$, qui échange $\\mathbb{R}v_0$ et $\\mathbb{R}v_1$, ainsi que $\\mathbb{R}v_2$ et $\\mathbb{R}v_3$) correspondent aux doubles transpositions, et les $6$ demi-tours autour des axes joignant les milieux de deux arêtes opposées correspondent aux transpositions."
+    }
+  ]
+}

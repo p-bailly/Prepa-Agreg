@@ -1,0 +1,409 @@
+{
+  "cartes": [
+    {
+      "id": "arith-l3-algebriques-algebriques",
+      "theme": "arithmetique",
+      "niveau": "l3",
+      "chapitre": "arith-l3-algebriques",
+      "type": "theoreme",
+      "titre": "Éléments algébriques, polynôme minimal",
+      "recto": "Définir un nombre algébrique et un nombre transcendant, puis énoncer les propriétés du polynôme minimal d'un élément algébrique sur un sous-corps de $\\mathbb{C}$.",
+      "cours": "Un nombre complexe $\\alpha$ est **algébrique** sur un sous-corps $K$ de $\\mathbb{C}$ s'il annule un polynôme non nul à coefficients dans $K$, **transcendant** sinon ; sans précision, « algébrique » veut dire algébrique sur $\\mathbb{Q}$. Ainsi $\\sqrt2$, $\\sqrt[3]2$, $i$ et $e^{2i\\pi/n}$ sont algébriques : ils annulent $X^2-2$, $X^3-2$, $X^2+1$ et $X^n-1$. L'existence de nombres transcendants n'a rien d'évident : elle découle de la dénombrabilité des nombres algébriques (carte suivante), et Liouville en a construit explicitement (voir les exercices). La transcendance de $e$ (Hermite) et celle de $\\pi$ (Lindemann) sont des théorèmes difficiles, que l'on admet.\n\nTout tient dans le **morphisme d'évaluation** $P\\mapsto P(\\alpha)$, de $K[X]$ dans $\\mathbb{C}$ : son noyau est l'idéal des polynômes qui annulent $\\alpha$. Il est nul exactement quand $\\alpha$ est transcendant ; sinon, comme $K[X]$ est principal, il est engendré par un unique polynôme unitaire $\\pi_\\alpha$, le **polynôme minimal** de $\\alpha$ sur $K$. C'est la construction du polynôme minimal d'une matrice, avec $\\alpha$ à la place de la matrice. Comme $\\mathbb{C}$ est intègre, $\\pi_\\alpha$ est irréductible, et le théorème d'isomorphisme donne $K[\\alpha]\\simeq K[X]/(\\pi_\\alpha)$, qui est un corps : l'inverse d'un élément non nul de $K[\\alpha]$ s'écrit encore comme un polynôme en $\\alpha$.\n\n**Méthode.** Pour trouver le polynôme minimal de $\\alpha$ : trouver un polynôme unitaire $P\\in K[X]$ qui annule $\\alpha$ (isoler les radicaux, élever aux puissances), puis prouver que $P$ est irréductible sur $K$. En degré $2$ ou $3$, il suffit que $P$ n'ait pas de racine dans $K$ ; une racine rationnelle d'un polynôme unitaire de $\\mathbb{Z}[X]$ est un entier qui divise le coefficient constant. Un polynôme unitaire irréductible qui annule $\\alpha$ est forcément $\\pi_\\alpha$. Pour inverser $\\beta=A(\\alpha)\\neq0$ dans $K[\\alpha]$, on écrit une relation de Bézout $AU+\\pi_\\alpha V=1$ : alors $\\beta^{-1}=U(\\alpha)$.\n\n**Pièges.** Le polynôme minimal dépend du corps de base : celui de $i$ est $X^2+1$ sur $\\mathbb{Q}$ ou sur $\\mathbb{R}$, mais $X-i$ sur $\\mathbb{C}$ ; celui de $\\sqrt[3]2$ est $X^3-2$ sur $\\mathbb{Q}$, mais $X-\\sqrt[3]2$ sur $\\mathbb{R}$. Un polynôme qui annule $\\alpha$ n'est le polynôme minimal que s'il est unitaire et irréductible : $X^4-4=(X^2-2)(X^2+2)$ annule $\\sqrt2$ sans être minimal. Enfin, « sans racine dans $K$ » n'entraîne l'irréductibilité qu'en degré $2$ ou $3$ : $(X^2-2)(X^2-3)$ n'a pas de racine rationnelle.",
+      "hypotheses": [
+        "$K$ est un sous-corps de $\\mathbb{C}$ et $\\alpha\\in\\mathbb{C}$.",
+        "Il existe $P\\in K[X]$ non nul tel que $P(\\alpha)=0$.",
+        "$\\pi_\\alpha$ est, parmi les polynômes unitaires de $K[X]$ qui annulent $\\alpha$, celui de plus petit degré."
+      ],
+      "hypotheses_pieges": [
+        "$K$ est un sous-anneau de $\\mathbb{C}$, par exemple $\\mathbb{Z}$ (à la place de : un sous-corps).",
+        "Il existe $P\\in\\mathbb{C}[X]$ non nul tel que $P(\\alpha)=0$ (à la place de : $P\\in K[X]$).",
+        "$\\pi_\\alpha$ est un polynôme unitaire de $K[X]$ qui annule $\\alpha$ (à la place de : celui de plus petit degré)."
+      ],
+      "enonce": "Soient $K$ un sous-corps de $\\mathbb{C}$ et $\\alpha\\in\\mathbb{C}$. On dit que $\\alpha$ est **algébrique** sur $K$ s'il existe $P\\in K[X]$ non nul tel que $P(\\alpha)=0$, et **transcendant** sur $K$ sinon. Un **nombre algébrique** (resp. **transcendant**) est un complexe algébrique (resp. transcendant) sur $\\mathbb{Q}$. On note $K[\\alpha]=\\{P(\\alpha) : P\\in K[X]\\}$.\n\n**Théorème.** Supposons $\\alpha$ algébrique sur $K$.\n- L'ensemble des $P\\in K[X]$ tels que $P(\\alpha)=0$ est un idéal non nul de $K[X]$ ; il est engendré par un unique polynôme unitaire $\\pi_\\alpha$, le **polynôme minimal** de $\\alpha$ sur $K$, qui est aussi le polynôme unitaire de plus petit degré annulant $\\alpha$.\n- $\\pi_\\alpha$ est irréductible dans $K[X]$, et c'est le seul polynôme unitaire irréductible de $K[X]$ qui annule $\\alpha$. Son degré $d$ est le **degré** de $\\alpha$ sur $K$.\n- $K[\\alpha]$ est un sous-corps de $\\mathbb{C}$, et $(1,\\alpha,\\dots,\\alpha^{d-1})$ en est une base comme $K$-espace vectoriel : $\\dim_KK[\\alpha]=d$.\n\nRéciproquement, si $K[\\alpha]$ est un $K$-espace vectoriel de dimension finie, $\\alpha$ est algébrique sur $K$.",
+      "enonce_trous": "Soient $K$ un sous-corps de $\\mathbb{C}$ et $\\alpha\\in\\mathbb{C}$ algébrique sur $K$, de polynôme minimal $\\pi_\\alpha$ de degré $d$. Alors $\\pi_\\alpha$ est {{1}} dans $K[X]$, les polynômes de $K[X]$ qui annulent $\\alpha$ sont exactement {{2}}, et $K[\\alpha]$ est un sous-corps de $\\mathbb{C}$ de dimension {{3}} sur $K$.",
+      "trous": [
+        {
+          "reponse": "irréductible",
+          "leurres": [
+            "scindé sur $K$",
+            "de degré $1$",
+            "de degré pair"
+          ]
+        },
+        {
+          "reponse": "les multiples de $\\pi_\\alpha$",
+          "leurres": [
+            "les diviseurs de $\\pi_\\alpha$",
+            "les polynômes de degré au moins $d$",
+            "les polynômes unitaires de degré $d$"
+          ]
+        },
+        {
+          "reponse": "$d$",
+          "leurres": [
+            "$d-1$",
+            "$d+1$",
+            "$2^d$"
+          ]
+        }
+      ],
+      "demo": "**Idéal.** L'application $\\varphi:K[X]\\to\\mathbb{C}$, $P\\mapsto P(\\alpha)$, est un morphisme d'anneaux ; son noyau $I$ est donc un idéal de $K[X]$, non nul par hypothèse. Comme $K[X]$ est principal, $I=(\\pi_\\alpha)$ pour un unique $\\pi_\\alpha$ unitaire, qui est l'unique polynôme unitaire de degré minimal de $I$.\n\n**Irréductibilité.** $\\pi_\\alpha$ n'est pas constant, car une constante non nulle n'annule pas $\\alpha$. Si $\\pi_\\alpha=AB$ avec $A,B\\in K[X]$, alors $A(\\alpha)B(\\alpha)=0$ dans $\\mathbb{C}$, qui est intègre ; disons $A(\\alpha)=0$. Alors $A$ est un multiple non nul de $\\pi_\\alpha$, donc $\\deg A\\ge\\deg\\pi_\\alpha$, et $B$ est constant. Si $Q$ est unitaire, irréductible et annule $\\alpha$, alors $\\pi_\\alpha$ divise $Q$ ; comme $\\pi_\\alpha$ n'est pas constant et que $Q$ est irréductible, $Q=c\\,\\pi_\\alpha$ avec $c\\in K^*$, et $c=1$ car les deux sont unitaires.\n\n**Base.** Pour $P\\in K[X]$, la division euclidienne $P=\\pi_\\alpha Q+R$ avec $\\deg R<d$ donne $P(\\alpha)=R(\\alpha)$ : la famille $(1,\\alpha,\\dots,\\alpha^{d-1})$ engendre $K[\\alpha]$. Elle est libre : une relation $\\sum_{k<d}c_k\\alpha^k=0$ fournit un polynôme de $I$ de degré $<d$, donc nul.\n\n**Corps.** $K[\\alpha]=\\varphi(K[X])$ est un sous-anneau de $\\mathbb{C}$. Soit $\\beta=P(\\alpha)\\neq0$ ; alors $\\pi_\\alpha$ ne divise pas $P$. Un diviseur commun unitaire de $P$ et de $\\pi_\\alpha$ divise $\\pi_\\alpha$, irréductible, donc vaut $1$ ou $\\pi_\\alpha$, et ce n'est pas $\\pi_\\alpha$ : $P$ et $\\pi_\\alpha$ sont premiers entre eux. Le théorème de Bézout donne $U,V\\in K[X]$ tels que $UP+V\\pi_\\alpha=1$, d'où $U(\\alpha)\\beta=1$ : $\\beta^{-1}=U(\\alpha)\\in K[\\alpha]$.\n\n**Réciproque.** Si $\\dim_KK[\\alpha]=n$, les $n+1$ éléments $1,\\alpha,\\dots,\\alpha^n$ de $K[\\alpha]$ sont liés : il existe $(c_0,\\dots,c_n)\\neq0$ dans $K^{n+1}$ tel que $\\sum_kc_k\\alpha^k=0$, et $\\sum_kc_kX^k$ est un polynôme non nul de $K[X]$ qui annule $\\alpha$.",
+      "exemple": "Soit $\\alpha=\\sqrt[3]2$. Il annule $X^3-2$, unitaire et irréductible sur $\\mathbb{Q}$ : ce polynôme est de degré $3$ et n'a pas de racine rationnelle (ce serait un entier divisant $2$, et $\\pm1$, $\\pm2$ ne conviennent pas). Donc $\\pi_\\alpha=X^3-2$, $\\alpha$ est de degré $3$ sur $\\mathbb{Q}$ et tout élément de $\\mathbb{Q}[\\alpha]$ s'écrit de façon unique $a+b\\alpha+c\\alpha^2$ avec $a,b,c\\in\\mathbb{Q}$. Pour inverser $1+\\alpha$ : $(1+\\alpha)(1-\\alpha+\\alpha^2)=1+\\alpha^3=3$, donc $\\frac1{1+\\alpha}=\\frac{1-\\alpha+\\alpha^2}3$. Sur $\\mathbb{R}$, en revanche, le polynôme minimal de $\\alpha$ est $X-\\sqrt[3]2$.",
+      "contre_exemple": "- **Annuler ne suffit pas** : $X^4-4$ est unitaire et annule $\\sqrt2$, mais $X^4-4=(X^2-2)(X^2+2)$ ; le polynôme minimal de $\\sqrt2$ sur $\\mathbb{Q}$ est $X^2-2$, dont $X^4-4$ est un multiple.\n- **Sur un anneau, pas de polynôme minimal unitaire** : $\\frac12$ annule $2X-1\\in\\mathbb{Z}[X]$, mais aucun polynôme unitaire de $\\mathbb{Z}[X]$, car une racine rationnelle d'un tel polynôme est entière ; et $\\mathbb{Z}\\left[\\frac12\\right]$, formé des rationnels $\\frac a{2^k}$ avec $a\\in\\mathbb{Z}$ et $k\\in\\mathbb{N}$, n'est pas un corps : $3$ n'y est pas inversible.\n- **Le corps de base compte** : $i$ a pour polynôme minimal $X^2+1$ sur $\\mathbb{R}$ et $X-i$ sur $\\mathbb{C}$.",
+      "affirmations": [
+        {
+          "texte": "Tout nombre rationnel $q$ est algébrique de degré $1$ sur $\\mathbb{Q}$.",
+          "vrai": true,
+          "justification": "Son polynôme minimal sur $\\mathbb{Q}$ est $X-q$."
+        },
+        {
+          "texte": "Si $\\alpha$ est algébrique sur $\\mathbb{Q}$, alors $\\alpha^2$ l'est aussi.",
+          "vrai": true,
+          "justification": "Si $P(\\alpha)=0$ avec $P\\in\\mathbb{Q}[X]$ non nul, le polynôme $P(X)P(-X)$ est pair et non nul, donc de la forme $Q(X^2)$ avec $Q\\in\\mathbb{Q}[X]$ non nul, et $Q(\\alpha^2)=P(\\alpha)P(-\\alpha)=0$."
+        },
+        {
+          "texte": "Si un polynôme unitaire $P\\in\\mathbb{Q}[X]$ annule $\\alpha$ et n'a aucune racine rationnelle, alors $P$ est le polynôme minimal de $\\alpha$ sur $\\mathbb{Q}$.",
+          "vrai": false,
+          "contre_exemple": "$P=(X^2-2)(X^2-3)$ annule $\\sqrt2$ et n'a pas de racine rationnelle, mais le polynôme minimal de $\\sqrt2$ sur $\\mathbb{Q}$ est $X^2-2$."
+        },
+        {
+          "texte": "Les racines complexes du polynôme minimal sur $\\mathbb{Q}$ d'un nombre algébrique sont toutes simples.",
+          "vrai": true,
+          "justification": "$\\pi_\\alpha$ est irréductible et ne divise pas $\\pi_\\alpha'$, non nul et de degré plus petit ; ils sont donc premiers entre eux, et une relation de Bézout $U\\pi_\\alpha+V\\pi_\\alpha'=1$ interdit une racine commune, c'est-à-dire une racine multiple."
+        },
+        {
+          "texte": "La somme de deux nombres transcendants est transcendante.",
+          "vrai": false,
+          "contre_exemple": "Si $t$ est transcendant, $-t$ l'est aussi (si $P(-t)=0$, le polynôme non nul $P(-X)$ annule $t$), et $t+(-t)=0$ est algébrique. Des nombres transcendants existent : voir la carte suivante."
+        }
+      ],
+      "prerequis": [
+        "arith-l2-anneaux-principaux",
+        "arith-l2-anneaux-isomorphisme",
+        "arith-l1-polynomes-bezout",
+        "al-l1-espaces-familles"
+      ]
+    },
+    {
+      "id": "arith-l3-algebriques-denombrabilite",
+      "theme": "arithmetique",
+      "niveau": "l3",
+      "chapitre": "arith-l3-algebriques",
+      "type": "theoreme",
+      "titre": "Dénombrabilité des nombres algébriques",
+      "recto": "Démontrer que l'ensemble des nombres algébriques est dénombrable, et en déduire l'existence de nombres réels transcendants.",
+      "cours": "L'argument est dû à Cantor : il y a « peu » de polynômes à coefficients rationnels (une infinité dénombrable), chacun n'a qu'un nombre fini de racines, donc il y a peu de nombres algébriques ; or $\\mathbb{R}$ n'est pas dénombrable. Il existe donc des nombres réels transcendants, et même « presque tous » les réels le sont, au sens où l'ensemble des réels algébriques est dénombrable alors que celui des réels transcendants ne l'est pas. La preuve est une preuve d'existence : elle ne désigne aucun transcendant (le nombre de Liouville $\\sum_k10^{-k!}$, traité en exercice dans la carte précédente, en est un exemple explicite).\n\nLe cœur est un lemme de comptage : les polynômes de degré au plus $n$ à coefficients dans une partie au plus dénombrable $A$ sont paramétrés par $A^{n+1}$, au plus dénombrable, et $A[X]$ est la réunion de ces ensembles pour $n\\in\\mathbb{N}$. On peut aussi ranger les polynômes de $\\mathbb{Z}[X]$ selon leur **hauteur** $h(P)=\\deg P+\\sum_k|a_k|$ : il n'y a qu'un nombre fini de polynômes non nuls de hauteur donnée, d'où une énumération explicite des nombres algébriques (on se limite à $\\mathbb{Z}[X]$ en chassant les dénominateurs).\n\n**Méthode.** Pour montrer qu'un ensemble est au plus dénombrable, l'écrire comme une réunion d'ensembles finis ou au plus dénombrables, indexée par un ensemble au plus dénombrable. Pour montrer qu'une partie $T$ d'un ensemble non dénombrable $E$ n'est pas dénombrable, montrer que son complémentaire dans $E$ est au plus dénombrable. Ainsi tout intervalle $\\left]a,b\\right[$ avec $a<b$ contient une infinité non dénombrable de nombres transcendants.\n\n**Pièges.** Le polynôme nul doit être exclu : il annule tout complexe. Des coefficients réels quelconques ne conviennent pas : tout complexe $z$ est racine de $X^2-2\\,\\mathrm{Re}(z)X+|z|^2\\in\\mathbb{R}[X]$. Enfin, être dénombrable ne dit rien de la disposition : l'ensemble des nombres algébriques est dense dans $\\mathbb{C}$ (il contient $\\mathbb{Q}+i\\mathbb{Q}$), alors que son complémentaire n'est pas dénombrable.",
+      "hypotheses": [
+        "$A$ est une partie au plus dénombrable de $\\mathbb{C}$.",
+        "Seuls les polynômes non nuls de $A[X]$ sont pris en compte."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est une partie infinie de $\\mathbb{C}$ (à la place de : au plus dénombrable).",
+        "Tous les polynômes de $A[X]$, y compris le polynôme nul, sont pris en compte (à la place de : seulement les polynômes non nuls)."
+      ],
+      "enonce": "Soit $A$ une partie au plus dénombrable de $\\mathbb{C}$ contenant $0$ (par exemple $\\mathbb{Z}$, $\\mathbb{Q}$ ou $\\mathbb{Q}+i\\mathbb{Q}$), et notons $A[X]$ l'ensemble des polynômes dont tous les coefficients sont dans $A$. Alors $A[X]$ est au plus dénombrable, et l'ensemble des nombres complexes qui sont racines d'au moins un polynôme **non nul** de $A[X]$ est au plus dénombrable.\n\nEn particulier :\n- l'ensemble des nombres algébriques (sur $\\mathbb{Q}$) est dénombrable, ainsi que l'ensemble des nombres réels algébriques ;\n- l'ensemble des nombres réels transcendants n'est pas au plus dénombrable : il existe des nombres réels transcendants, et tout intervalle $\\left]a,b\\right[$ avec $a<b$ en contient.",
+      "enonce_trous": "Soit $A$ une partie {{1}} de $\\mathbb{C}$ contenant $0$. Alors l'ensemble des racines complexes des polynômes non nuls à coefficients dans $A$ est {{2}}. En particulier, l'ensemble des nombres réels transcendants est {{3}}.",
+      "trous": [
+        {
+          "reponse": "dénombrable",
+          "leurres": [
+            "infinie",
+            "bornée",
+            "fermée"
+          ]
+        },
+        {
+          "reponse": "au plus dénombrable",
+          "leurres": [
+            "fini",
+            "non dénombrable",
+            "égal à $\\mathbb{C}$"
+          ]
+        },
+        {
+          "reponse": "non dénombrable",
+          "leurres": [
+            "dénombrable",
+            "fini",
+            "vide"
+          ]
+        }
+      ],
+      "demo": "**Comptage des polynômes.** Pour $n\\in\\mathbb{N}$, l'application $(a_0,\\dots,a_n)\\mapsto\\sum_{k=0}^na_kX^k$ est une surjection de $A^{n+1}$ sur l'ensemble $A_n[X]$ des polynômes de $A[X]$ de degré au plus $n$, polynôme nul compris. Un produit fini d'ensembles au plus dénombrables est au plus dénombrable, et l'image d'un ensemble au plus dénombrable par une application l'est aussi : $A_n[X]$ est au plus dénombrable. Donc $A[X]=\\bigcup_{n\\in\\mathbb{N}}A_n[X]$, réunion indexée par $\\mathbb{N}$, est au plus dénombrable.\n\n**Comptage des racines.** Un polynôme non nul $P$ de degré $n$ a au plus $n$ racines dans $\\mathbb{C}$ : l'ensemble $Z(P)$ de ses racines est fini. L'ensemble étudié est $\\bigcup_{P\\in A[X],\\,P\\neq0}Z(P)$, réunion d'ensembles finis indexée par un ensemble au plus dénombrable : il est au plus dénombrable.\n\n**Nombres algébriques.** Avec $A=\\mathbb{Q}$, l'ensemble des nombres algébriques est au plus dénombrable ; il contient $\\mathbb{Q}$ (chaque $q\\in\\mathbb{Q}$ annule $X-q$), donc il est infini, donc dénombrable. Il en va de même de sa partie formée des réels algébriques, qui contient aussi $\\mathbb{Q}$.\n\n**Transcendants.** Notons $\\mathcal{A}$ l'ensemble des réels algébriques et $T$ celui des réels transcendants, de sorte que $\\mathbb{R}=\\mathcal{A}\\cup T$. Si $T$ était au plus dénombrable, $\\mathbb{R}$, réunion de deux ensembles au plus dénombrables, le serait, ce que contredit le théorème de Cantor. De même, pour $a<b$, l'intervalle $\\left]a,b\\right[$ est en bijection avec $\\mathbb{R}$ (par $x\\mapsto\\tan\\left(\\pi\\frac{x-a}{b-a}-\\frac\\pi2\\right)$), donc n'est pas au plus dénombrable, alors que $\\left]a,b\\right[\\cap\\mathcal{A}$ l'est : $\\left]a,b\\right[\\cap T$ n'est pas au plus dénombrable, en particulier il n'est pas vide.",
+      "exemple": "Rangeons les polynômes non nuls $P=\\sum_ka_kX^k$ de $\\mathbb{Z}[X]$ selon leur hauteur $h(P)=\\deg P+\\sum_k|a_k|$. Il n'y en a qu'un nombre fini de hauteur donnée : par exemple $\\pm1$ pour la hauteur $1$, et $\\pm2$, $\\pm X$ pour la hauteur $2$. Les racines des polynômes de hauteur au plus $3$ sont $0$, $1$ et $-1$ ; ceux de hauteur $4$ (par exemple $2X-1$, $X+2$, $X^2+1$) ajoutent $\\frac12$, $-\\frac12$, $2$, $-2$, $i$ et $-i$. En parcourant les hauteurs $1,2,3,\\dots$ et en écartant les racines déjà rencontrées, on numérote tous les nombres algébriques, puisque chacun annule un polynôme non nul de $\\mathbb{Z}[X]$.",
+      "contre_exemple": "- **Coefficients non dénombrables** : avec $A=\\mathbb{R}$, tout complexe $z$ est racine de $X^2-2\\,\\mathrm{Re}(z)X+|z|^2$ ; l'ensemble des racines est $\\mathbb{C}$, qui n'est pas dénombrable.\n- **Polynôme nul** : il annule tout complexe ; sans l'exclure, l'ensemble obtenu serait $\\mathbb{C}$.\n- **Pas de transcendant désigné** : l'argument prouve que des transcendants existent sans en nommer aucun ; montrer qu'un nombre donné, comme $e$ ou $\\pi$, est transcendant demande d'autres méthodes.",
+      "affirmations": [
+        {
+          "texte": "Tout intervalle $\\left]a,b\\right[$ avec $a<b$ contient un nombre transcendant.",
+          "vrai": true,
+          "justification": "$\\left]a,b\\right[$ n'est pas dénombrable, alors que l'ensemble des réels algébriques l'est."
+        },
+        {
+          "texte": "L'ensemble des nombres algébriques est une partie fermée de $\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "Il contient $\\mathbb{Q}+i\\mathbb{Q}$, dense dans $\\mathbb{C}$ ; s'il était fermé, il serait égal à $\\mathbb{C}$, qui n'est pas dénombrable."
+        },
+        {
+          "texte": "L'ensemble des nombres réels transcendants est dénombrable.",
+          "vrai": false,
+          "contre_exemple": "Sinon $\\mathbb{R}$, réunion des réels algébriques et des réels transcendants, serait dénombrable, ce que contredit le théorème de Cantor."
+        },
+        {
+          "texte": "Si $t$ est transcendant et $q\\in\\mathbb{Q}$, alors $t+q$ est transcendant.",
+          "vrai": true,
+          "justification": "Si $P\\in\\mathbb{Q}[X]$ non nul annule $t+q$, alors $P(X+q)$, non nul et à coefficients rationnels, annule $t$."
+        }
+      ],
+      "prerequis": [
+        "fond-l1-ensembles-denombrables",
+        "fond-l1-ensembles-cantor",
+        "arith-l1-racines-polynome",
+        "arith-l3-algebriques-algebriques"
+      ]
+    },
+    {
+      "id": "arith-l3-algebriques-fonctions-zp",
+      "theme": "arithmetique",
+      "niveau": "l3",
+      "chapitre": "arith-l3-algebriques",
+      "type": "theoreme",
+      "titre": "Polynômes et fonctions polynômes sur $\\mathbb{Z}/p\\mathbb{Z}$",
+      "recto": "Comparer polynômes et fonctions polynômes sur $\\mathbb{Z}/p\\mathbb{Z}$ : factorisation de $X^p-X$, polynômes qui définissent la même fonction, nombre de fonctions polynômes.",
+      "cours": "Sur un corps infini comme $\\mathbb{Q}$, $\\mathbb{R}$ ou $\\mathbb{C}$, un polynôme est déterminé par la fonction qu'il définit : deux polynômes qui coïncident en une infinité de points sont égaux. Sur le corps fini $\\mathbb{F}_p=\\mathbb{Z}/p\\mathbb{Z}$ ($p$ premier), c'est faux : d'après le petit théorème de Fermat, $a^p=a$ pour tout $a\\in\\mathbb{F}_p$, donc les polynômes $X^p$ et $X$, distincts, définissent la même fonction. Le théorème décrit exactement ce défaut : deux polynômes définissent la même fonction si et seulement si leur différence est un multiple de $X^p-X$.\n\nEn sens inverse, **toute** fonction de $\\mathbb{F}_p$ dans $\\mathbb{F}_p$ est polynomiale, et même de façon unique par un polynôme de degré au plus $p-1$. Une formule explicite vient encore de Fermat : pour $a\\in\\mathbb{F}_p$, la fonction $x\\mapsto1-(x-a)^{p-1}$ vaut $1$ en $a$ et $0$ ailleurs, donc $f$ est la fonction associée à $\\sum_{a\\in\\mathbb{F}_p}f(a)\\left(1-(X-a)^{p-1}\\right)$. En termes d'anneaux, l'évaluation est un morphisme surjectif de $\\mathbb{F}_p[X]$ sur l'anneau $\\mathcal{F}(\\mathbb{F}_p,\\mathbb{F}_p)$ des fonctions, de noyau $(X^p-X)$, d'où $\\mathbb{F}_p[X]/(X^p-X)\\simeq\\mathcal{F}(\\mathbb{F}_p,\\mathbb{F}_p)$, anneau à $p^p$ éléments.\n\n**Méthode.** Pour trouver le polynôme de degré au plus $p-1$ qui définit la même fonction que $P$, on remplace chaque $X^k$ avec $k\\ge p$ par $X^{k-(p-1)}$, et on recommence tant que l'exposant dépasse $p-1$ : on obtient le reste de la division euclidienne de $P$ par $X^p-X$. L'exposant d'un monôme non constant ne descend jamais à $0$ : $X^{p-1}$ ne se simplifie pas en $1$, car $0^{p-1}=0$. Pour interpoler une fonction donnée par sa table, on utilise la formule ci-dessus ou l'interpolation de Lagrange, valable sur tout corps.\n\n**Pièges.** Il faut $p$ premier : sur $\\mathbb{Z}/4\\mathbb{Z}$, la fonction qui vaut $1$ en $0$ et $0$ ailleurs n'est pas polynomiale, et seules $64$ des $4^4=256$ fonctions le sont. Le degré d'une fonction polynôme n'a de sens qu'en précisant le polynôme qui la définit : on prend celui de degré au plus $p-1$. Enfin, un polynôme de degré $p$ peut n'avoir aucune racine dans $\\mathbb{F}_p$ : $X^p-X+1$ vaut $1$ partout.",
+      "hypotheses": [
+        "$p$ est un nombre premier.",
+        "Le polynôme qui mesure le défaut est $X^p-X$.",
+        "L'unicité porte sur les polynômes de degré au plus $p-1$."
+      ],
+      "hypotheses_pieges": [
+        "$p\\ge2$ est un entier quelconque (à la place de : un nombre premier).",
+        "Le polynôme qui mesure le défaut est $X^{p-1}-1$ (à la place de : $X^p-X$).",
+        "L'unicité porte sur les polynômes de degré au plus $p$ (à la place de : au plus $p-1$)."
+      ],
+      "enonce": "Soit $p$ un nombre premier ; on note $\\mathbb{F}_p=\\mathbb{Z}/p\\mathbb{Z}$, qui est un corps, et $\\mathcal{F}(\\mathbb{F}_p,\\mathbb{F}_p)$ l'anneau des fonctions de $\\mathbb{F}_p$ dans $\\mathbb{F}_p$. À $P\\in\\mathbb{F}_p[X]$ on associe la fonction polynôme $\\widetilde P:x\\mapsto P(x)$.\n- Dans $\\mathbb{F}_p[X]$, on a $X^p-X=\\prod_{a\\in\\mathbb{F}_p}(X-a)$.\n- Pour $P,Q\\in\\mathbb{F}_p[X]$, on a $\\widetilde P=\\widetilde Q$ si et seulement si $X^p-X$ divise $P-Q$.\n- L'application $P\\mapsto\\widetilde P$ est un morphisme d'anneaux **surjectif** de $\\mathbb{F}_p[X]$ sur $\\mathcal{F}(\\mathbb{F}_p,\\mathbb{F}_p)$, de noyau $(X^p-X)$ : toute fonction de $\\mathbb{F}_p$ dans $\\mathbb{F}_p$ est associée à un **unique** polynôme de degré au plus $p-1$, et il y a exactement $p^p$ fonctions polynômes.",
+      "enonce_trous": "Soit $p$ {{1}}. Deux polynômes $P$ et $Q$ de $(\\mathbb{Z}/p\\mathbb{Z})[X]$ définissent la même fonction de $\\mathbb{Z}/p\\mathbb{Z}$ dans lui-même si et seulement si {{2}} divise $P-Q$ ; toute fonction de $\\mathbb{Z}/p\\mathbb{Z}$ dans lui-même est polynomiale, et le nombre de fonctions polynômes est {{3}}.",
+      "trous": [
+        {
+          "reponse": "un nombre premier",
+          "leurres": [
+            "un entier au moins égal à $2$",
+            "un entier impair au moins égal à $3$",
+            "une puissance de $2$"
+          ]
+        },
+        {
+          "reponse": "$X^p-X$",
+          "leurres": [
+            "$X^{p-1}-1$",
+            "$X^p$",
+            "$X^{p+1}-X$"
+          ]
+        },
+        {
+          "reponse": "$p^p$",
+          "leurres": [
+            "$p!$",
+            "$p^{p-1}$",
+            "infini"
+          ]
+        }
+      ],
+      "demo": "**Factorisation de $X^p-X$.** Par le petit théorème de Fermat, $a^p=a$ pour tout $a\\in\\mathbb{F}_p$ : les $p$ éléments de $\\mathbb{F}_p$ sont des racines distinctes de $X^p-X$. Sur un corps, si $a_1,\\dots,a_r$ sont des racines distinctes de $P$, alors $\\prod_i(X-a_i)$ divise $P$ : par récurrence, $P=(X-a_1)P_1$, et $P_1(a_i)=0$ pour $i\\ge2$ car $a_i-a_1\\neq0$. Ici $\\prod_a(X-a)$ divise $X^p-X$ ; les deux sont unitaires de degré $p$, donc égaux.\n\n**Noyau.** $\\widetilde P=\\widetilde Q$ signifie que tout $a\\in\\mathbb{F}_p$ est racine de $P-Q$, c'est-à-dire, par le même argument, que $\\prod_a(X-a)=X^p-X$ divise $P-Q$. L'application $P\\mapsto\\widetilde P$ est un morphisme d'anneaux, car les opérations sur les fonctions se font point par point ; son noyau est donc $(X^p-X)$.\n\n**Surjectivité.** Pour $a\\in\\mathbb{F}_p$, posons $E_a=1-(X-a)^{p-1}$. Si $x\\neq a$, alors $(x-a)^{p-1}=1$ par le petit théorème de Fermat, donc $E_a(x)=0$ ; et $E_a(a)=1$. Ainsi, pour $f\\in\\mathcal{F}(\\mathbb{F}_p,\\mathbb{F}_p)$, le polynôme $P_f=\\sum_af(a)E_a$, de degré au plus $p-1$, vérifie $\\widetilde{P_f}=f$.\n\n**Unicité et comptage.** Si $P$ et $Q$, de degré au plus $p-1$, définissent la même fonction, $X^p-X$, de degré $p$, divise $P-Q$, de degré au plus $p-1$ : $P=Q$. Les fonctions de $\\mathbb{F}_p$ dans $\\mathbb{F}_p$, toutes polynomiales, sont au nombre de $p^p$.",
+      "exemple": "Dans $\\mathbb{F}_3$, cherchons le polynôme de degré au plus $2$ qui définit la même fonction que $P=X^5+2X^4+X$. On réduit les exposants : $X^5$ devient $X^3$ puis $X$, et $X^4$ devient $X^2$ ; donc $P$ définit la même fonction que $R=X+2X^2+X=2X^2+2X$. Vérification dans $\\mathbb{F}_3$ : $P(0)=0=R(0)$ ; $P(1)=1+2+1=1$ et $R(1)=2+2=1$ ; $P(2)=32+32+2=0$ et $R(2)=8+4=0$. De même, la fonction qui vaut $1$ en $0$ et $0$ ailleurs est associée à $1-X^2$.",
+      "contre_exemple": "- **$X^p$ et $X$** sont deux polynômes distincts de $\\mathbb{F}_p[X]$ qui définissent la même fonction : sur un corps fini, un polynôme n'est pas déterminé par sa fonction.\n- **$p$ non premier** : sur $\\mathbb{Z}/4\\mathbb{Z}$, $X^4-X$ ne s'annule pas en $2$ ($2^4-2=14$, qui vaut $2$ modulo $4$), et la fonction $f$ qui vaut $1$ en $0$ et $0$ ailleurs n'est pas polynomiale : pour $P\\in\\mathbb{Z}[X]$, $P(2)-P(0)=\\sum_{k\\ge1}a_k2^k$ est pair, alors que $f(2)-f(0)=-1$ ne l'est pas modulo $4$.",
+      "affirmations": [
+        {
+          "texte": "Pour $p$ premier, toute application de $\\mathbb{Z}/p\\mathbb{Z}$ dans lui-même est une fonction polynôme.",
+          "vrai": true,
+          "justification": "Elle est associée au polynôme $\\sum_af(a)\\left(1-(X-a)^{p-1}\\right)$."
+        },
+        {
+          "texte": "Deux polynômes distincts de $(\\mathbb{Z}/p\\mathbb{Z})[X]$ définissent des fonctions distinctes.",
+          "vrai": false,
+          "contre_exemple": "$X^p$ et $X$ sont distincts et définissent la même fonction, puisque $a^p=a$ pour tout $a$."
+        },
+        {
+          "texte": "Le polynôme $X^p-X+1$ n'a aucune racine dans $\\mathbb{Z}/p\\mathbb{Z}$.",
+          "vrai": true,
+          "justification": "Pour tout $a$, $a^p-a+1=1\\neq0$."
+        },
+        {
+          "texte": "Pour tout entier $n\\ge2$, toute application de $\\mathbb{Z}/n\\mathbb{Z}$ dans lui-même est une fonction polynôme.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=4$, la fonction qui vaut $1$ en $0$ et $0$ ailleurs ne l'est pas, car $P(2)-P(0)$ est pair pour tout $P\\in\\mathbb{Z}[X]$."
+        },
+        {
+          "texte": "Dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, $X^{p-1}-1=\\prod_{a\\neq0}(X-a)$.",
+          "vrai": true,
+          "justification": "On a $X\\left(X^{p-1}-1\\right)=X^p-X=X\\prod_{a\\neq0}(X-a)$, et l'on simplifie par $X$, l'anneau $(\\mathbb{Z}/p\\mathbb{Z})[X]$ étant intègre."
+        }
+      ],
+      "prerequis": [
+        "arith-t-fermat",
+        "arith-l1-racines-polynome",
+        "arith-l1-polynomes-lagrange",
+        "arith-l2-anneaux-isomorphisme",
+        "arith-l2-anneaux-principaux"
+      ]
+    },
+    {
+      "id": "arith-l3-algebriques-alembert-gauss",
+      "theme": "arithmetique",
+      "niveau": "l3",
+      "chapitre": "arith-l3-algebriques",
+      "type": "theoreme",
+      "titre": "Démonstration du théorème de d'Alembert-Gauss",
+      "recto": "Démontrer que tout polynôme non constant de $\\mathbb{C}[X]$ a une racine complexe : coercivité, minimum atteint, lemme de d'Alembert.",
+      "cours": "Le théorème de d'Alembert-Gauss (tout polynôme complexe non constant a une racine) a été admis en première année ; il a une démonstration élémentaire, sans analyse complexe, qui repose sur deux idées. D'abord, $|P|$ atteint son minimum sur $\\mathbb{C}$ : comme $|P(z)|\\to+\\infty$ quand $|z|\\to+\\infty$, on peut se restreindre à un disque fermé, compact, où la fonction continue $|P|$ atteint sa borne inférieure. Ensuite, **lemme de d'Alembert** : en un point où $P$ ne s'annule pas, $|P|$ n'a pas de minimum local, car il existe une direction dans laquelle $|P|$ diminue. Le minimum est donc un zéro.\n\nLa direction de descente se lit sur le développement de $P$ en $z_0$ : $P(z_0+h)=P(z_0)+b_kh^k+h^{k+1}Q(h)$, où $b_k$ est le premier coefficient non nul après le terme constant. Pour $h=t\\omega$ avec $t>0$ petit, le terme $b_kt^k\\omega^k$ l'emporte sur le reste ; on choisit $\\omega$ tel que $b_k\\omega^k=-P(z_0)$, ce qui est possible car tout complexe non nul a des racines $k$-ièmes. Alors $P(z_0+t\\omega)=P(z_0)(1-t^k)+t^{k+1}\\omega^{k+1}Q(t\\omega)$, de module strictement inférieur à $|P(z_0)|$ pour $t$ assez petit. C'est ici que $\\mathbb{C}$ est indispensable : dans $\\mathbb{R}$, l'équation $b_k\\omega^k=-P(z_0)$ n'a pas toujours de solution (pour $x^2+1$ en $0$, il faudrait $\\omega^2=-1$).\n\n**Méthode.** La preuve se rédige en trois étapes, chacune utile ailleurs : la minoration $|P(z)|\\ge|a_n||z|^n-\\sum_{k<n}|a_k||z|^k$ (inégalité triangulaire) donne la coercivité ; la compacité des disques fermés de $\\mathbb{C}\\simeq\\mathbb{R}^2$ et la continuité de $|P|$ donnent le minimum ; le lemme de d'Alembert conclut. Le même raisonnement montre que si $P$ non constant ne s'annule pas sur un disque fermé, $|P|$ n'y atteint son minimum que sur le cercle du bord.\n\n**Pièges.** Au point où $|P|$ est minimal, la dérivée ne s'annule pas forcément : pour $P=X$, le minimum est en $0$ et $P'(0)=1$. Une fonction continue de $\\mathbb{C}$ dans $\\mathbb{C}$ qui tend vers l'infini peut ne pas s'annuler, comme $z\\mapsto1+|z|^2$ : c'est le lemme de d'Alembert, qui utilise la forme polynomiale de $P$, qui conclut. Sans coercivité, la borne inférieure peut ne pas être atteinte : l'exponentielle complexe ne s'annule pas, alors que la borne inférieure de $|e^z|$ est $0$.",
+      "hypotheses": [
+        "$P\\in\\mathbb{C}[X]$, et l'on cherche une racine dans $\\mathbb{C}$.",
+        "$P$ n'est pas constant."
+      ],
+      "hypotheses_pieges": [
+        "$P\\in\\mathbb{R}[X]$, et l'on cherche une racine dans $\\mathbb{R}$ (à la place de : dans $\\mathbb{C}$).",
+        "$P$ n'est pas le polynôme nul (à la place de : non constant).",
+        "$P$ est une fonction continue de $\\mathbb{C}$ dans $\\mathbb{C}$ telle que $|P(z)|\\to+\\infty$ quand $|z|\\to+\\infty$ (à la place de : un polynôme non constant)."
+      ],
+      "enonce": "Soit $P=\\sum_{k=0}^na_kX^k\\in\\mathbb{C}[X]$ non constant, de degré $n\\ge1$.\n- **Coercivité** : $|P(z)|\\to+\\infty$ quand $|z|\\to+\\infty$.\n- **Minimum** : la fonction $z\\mapsto|P(z)|$ atteint sur $\\mathbb{C}$ sa borne inférieure en un point $z_1$.\n- **Lemme de d'Alembert** : si $z_0\\in\\mathbb{C}$ vérifie $P(z_0)\\neq0$, il existe $z\\in\\mathbb{C}$ tel que $|P(z)|<|P(z_0)|$.\n\nPar conséquent $P(z_1)=0$. **Tout polynôme non constant de $\\mathbb{C}[X]$ a au moins une racine dans $\\mathbb{C}$** (théorème de d'Alembert-Gauss), et tout polynôme de $\\mathbb{C}[X]$ de degré $n\\ge1$ est scindé : il a exactement $n$ racines comptées avec leur multiplicité.",
+      "enonce_trous": "Soit $P\\in\\mathbb{C}[X]$ {{1}}. Alors $|P(z)|$ tend vers {{2}} quand $|z|\\to+\\infty$, donc $|P|$ atteint sur $\\mathbb{C}$ un minimum en un point $z_1$ ; le lemme de d'Alembert (si $P(z_0)\\neq0$, il existe $z$ tel que $|P(z)|<|P(z_0)|$) donne alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "non constant",
+          "leurres": [
+            "non nul",
+            "unitaire",
+            "à coefficients réels"
+          ]
+        },
+        {
+          "reponse": "$+\\infty$",
+          "leurres": [
+            "$0$",
+            "$|P(0)|$",
+            "$1$"
+          ]
+        },
+        {
+          "reponse": "$P(z_1)=0$",
+          "leurres": [
+            "$P'(z_1)=0$",
+            "$z_1=0$",
+            "$P(z_1)=P(0)$"
+          ]
+        }
+      ],
+      "demo": "**Coercivité.** Pour $|z|\\ge1$, l'inégalité triangulaire donne\n$$|P(z)|\\ge|a_n||z|^n-\\sum_{k=0}^{n-1}|a_k||z|^k\\ge|z|^{n-1}\\left(|a_n||z|-\\sum_{k=0}^{n-1}|a_k|\\right),$$\net le dernier membre tend vers $+\\infty$ car $a_n\\neq0$ et $n\\ge1$.\n\n**Minimum atteint.** Par coercivité, il existe $R>0$ tel que $|P(z)|>|P(0)|$ pour $|z|>R$. Le disque $D=\\{z\\in\\mathbb{C} : |z|\\le R\\}$ est fermé et borné dans $\\mathbb{C}\\simeq\\mathbb{R}^2$, de dimension finie, donc compact ; $|P|$ y est continue, donc y atteint son minimum en un point $z_1\\in D$. Pour $|z|>R$, on a $|P(z)|>|P(0)|\\ge|P(z_1)|$ puisque $0\\in D$ : $|P(z_1)|$ est le minimum de $|P|$ sur $\\mathbb{C}$.\n\n**Lemme de d'Alembert.** Le polynôme $P(z_0+X)$ est de degré $n$ ; écrivons $P(z_0+X)=P(z_0)+\\sum_{j=1}^nb_jX^j$, avec $b_n=a_n\\neq0$, et soit $k\\ge1$ le plus petit indice tel que $b_k\\neq0$. Alors $P(z_0+h)=P(z_0)+b_kh^k+h^{k+1}Q(h)$ pour un $Q\\in\\mathbb{C}[X]$. Le complexe $-\\frac{P(z_0)}{b_k}$ est non nul ; il a une racine $k$-ième $\\omega$ (forme exponentielle), de sorte que $b_k\\omega^k=-P(z_0)$. Pour $t\\in\\left]0,1\\right]$,\n$$P(z_0+t\\omega)=P(z_0)(1-t^k)+t^{k+1}\\omega^{k+1}Q(t\\omega).$$\nSoit $M$ la somme des modules des coefficients du polynôme $\\omega^{k+1}Q(\\omega X)$ ; pour $t\\in\\left]0,1\\right]$, $|\\omega^{k+1}Q(t\\omega)|\\le M$, d'où\n$$|P(z_0+t\\omega)|\\le|P(z_0)|(1-t^k)+Mt^{k+1}=|P(z_0)|-t^k\\left(|P(z_0)|-Mt\\right).$$\nPour $0<t<\\min\\left(1,\\frac{|P(z_0)|}{M+1}\\right)$, la parenthèse est strictement positive, donc $|P(z_0+t\\omega)|<|P(z_0)|$.\n\n**Conclusion.** Si $P(z_1)\\neq0$, le lemme fournit $z$ tel que $|P(z)|<|P(z_1)|$, ce qui contredit la minimalité : $P(z_1)=0$. En écrivant $P=(X-z_1)P_1$ et en raisonnant par récurrence sur le degré, $P$ est scindé sur $\\mathbb{C}$. La preuve n'utilise que la compacité en dimension finie, l'inégalité triangulaire et l'existence des racines $k$-ièmes d'un complexe non nul ; aucune analyse complexe n'intervient.",
+      "exemple": "Pour $P=X^2+1$ et $z_0=0$ : $P(0)=1$ et $P(h)=1+h^2$, donc $k=2$, $b_2=1$, et il faut $\\omega^2=-1$. Le choix $\\omega=i$ convient : $P(ti)=1-t^2<1$ pour $t\\in\\left]0,1\\right]$. Aucune direction réelle ne convient, puisque $x^2+1\\ge1$ sur $\\mathbb{R}$. Pour la coercivité, $|P(z)|\\ge|z|^2-1>1=|P(0)|$ dès que $|z|>\\sqrt2$ : le minimum de $|P|$ est atteint dans le disque de rayon $\\sqrt2$, en $i$ et en $-i$, où il est nul.",
+      "contre_exemple": "- **Sur $\\mathbb{R}$** : $X^2+1$ n'a pas de racine réelle ; le minimum de $x\\mapsto x^2+1$ sur $\\mathbb{R}$ vaut $1$, et l'analogue réel du lemme de d'Alembert est faux en $0$.\n- **Une fonction continue qui tend vers l'infini** : $f(z)=1+|z|^2$ atteint son minimum $1$ en $0$ sans s'annuler ; l'analogue du lemme de d'Alembert, qui repose sur la forme polynomiale, est faux pour $f$.\n- **Sans coercivité** : $z\\mapsto e^z$ ne s'annule pas, et $|e^z|=e^{\\mathrm{Re}\\,z}$ a pour borne inférieure $0$, qui n'est pas atteinte.",
+      "affirmations": [
+        {
+          "texte": "Tout polynôme de $\\mathbb{R}[X]$ de degré impair a au moins une racine réelle.",
+          "vrai": true,
+          "justification": "Ses racines complexes non réelles vont par paires conjuguées de même multiplicité ; comme leur nombre total, multiplicités comprises, est le degré, impair, l'une des racines est réelle. Le théorème des valeurs intermédiaires donne aussi ce résultat."
+        },
+        {
+          "texte": "Si $|P|$ atteint son minimum sur $\\mathbb{C}$ en $z_1$, alors $P'(z_1)=0$.",
+          "vrai": false,
+          "contre_exemple": "Pour $P=X$, le minimum de $|P|$ est atteint en $0$, et $P'(0)=1$."
+        },
+        {
+          "texte": "Si $P\\in\\mathbb{R}[X]$ n'est pas constant et si $P(x_0)\\neq0$ avec $x_0\\in\\mathbb{R}$, il existe $x\\in\\mathbb{R}$ tel que $|P(x)|<|P(x_0)|$.",
+          "vrai": false,
+          "contre_exemple": "Pour $P=X^2+1$ et $x_0=0$ : $|P(x)|=x^2+1\\ge1=|P(0)|$ pour tout réel $x$."
+        },
+        {
+          "texte": "Tout polynôme non constant de $\\mathbb{C}[X]$ est surjectif de $\\mathbb{C}$ sur $\\mathbb{C}$.",
+          "vrai": true,
+          "justification": "Pour $w\\in\\mathbb{C}$, le polynôme $P-w$ n'est pas constant, donc a une racine $z$ : $P(z)=w$."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-compacts",
+        "geo-l1-complexes-triangulaire",
+        "geo-t-complexes-exponentielle",
+        "arith-l1-polynomes-division"
+      ]
+    },
+    {
+      "id": "arith-l3-algebriques-taylor",
+      "theme": "arithmetique",
+      "niveau": "l3",
+      "chapitre": "arith-l3-algebriques",
+      "type": "theoreme",
+      "titre": "Identité de Taylor pour les polynômes",
+      "recto": "Énoncer et démontrer la formule de Taylor pour un polynôme sur un corps de caractéristique nulle, et en donner des conséquences.",
+      "cours": "Pour un polynôme, la formule de Taylor est une **identité exacte**, sans reste : un polynôme de degré au plus $n$ s'écrit dans la base $\\left(1,X-a,\\dots,(X-a)^n\\right)$, et ses coordonnées sont les $\\frac{P^{(k)}(a)}{k!}$. Autrement dit, $P(X+a)=\\sum_k\\frac{P^{(k)}(a)}{k!}X^k$ : développer $P(X+a)$ par la formule du binôme ou calculer les dérivées successives en $a$ donne le même résultat. Rien n'est analytique ici : les dérivées sont les dérivées formelles, $\\left(\\sum_ka_kX^k\\right)'=\\sum_kka_kX^{k-1}$.\n\nConséquences : la **multiplicité** d'une racine se lit sur les dérivées ($a$ est racine d'ordre au moins $m$ si et seulement si $P(a)=\\dots=P^{(m-1)}(a)=0$) ; le reste de la division euclidienne de $P$ par $(X-a)^m$ est $\\sum_{k<m}\\frac{P^{(k)}(a)}{k!}(X-a)^k$ ; un polynôme de degré au plus $n$ est déterminé par $P(a),P'(a),\\dots,P^{(n)}(a)$. Si $P\\in\\mathbb{Z}[X]$ et $a\\in\\mathbb{Z}$, les nombres $\\frac{P^{(k)}(a)}{k!}$ sont des entiers, puisque ce sont les coefficients de $P(X+a)\\in\\mathbb{Z}[X]$ ; on en tire $P(a+m)\\equiv P(a)+mP'(a)\\pmod{m^2}$, qui sert à relever une solution d'une congruence modulo $p$ en une solution modulo $p^2$.\n\n**Méthode.** Pour écrire $P$ en puissances de $X-a$ : calculer $P(a),P'(a),P''(a),\\dots$ et diviser par $k!$ ; ou poser $X=a+Y$ et développer ; ou effectuer des divisions euclidiennes successives par $X-a$. Pour un polynôme réel, si $P(a)>0$ et $P^{(k)}(a)\\ge0$ pour tout $k\\ge1$, la formule montre que $P(x)>0$ pour tout $x\\ge a$ : $a$ majore strictement les racines réelles de $P$.\n\n**Pièges.** La formule divise par $k!$ : elle demande la caractéristique nulle (en caractéristique $p$, elle reste valable pour les polynômes de degré $n<p$). Dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, la dérivée de $X^p$ est $pX^{p-1}=0$ : les dérivées en $0$ de $X^p$ et du polynôme nul coïncident toutes, et aucune formule en termes de dérivées ne peut retrouver $X^p$. Ne pas confondre non plus $\\frac{P^{(k)}(a)}{k!}$, coefficient de $(X-a)^k$, avec le coefficient de $X^k$ dans $P$, qui vaut $\\frac{P^{(k)}(0)}{k!}$.",
+      "hypotheses": [
+        "$\\mathbb{K}$ est un corps de caractéristique nulle (par exemple un sous-corps de $\\mathbb{C}$).",
+        "$P\\in\\mathbb{K}[X]$ est de degré au plus $n$, et la somme va de $k=0$ à $k=n$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}$ est un corps commutatif quelconque, par exemple $\\mathbb{Z}/2\\mathbb{Z}$ (à la place de : de caractéristique nulle).",
+        "$P\\in\\mathbb{K}[X]$ est de degré au plus $n+1$, la somme allant toujours de $k=0$ à $k=n$ (à la place de : de degré au plus $n$)."
+      ],
+      "enonce": "Soient $\\mathbb{K}$ un corps de caractéristique nulle (par exemple un sous-corps de $\\mathbb{C}$), $n\\in\\mathbb{N}$, $P\\in\\mathbb{K}[X]$ de degré au plus $n$ et $a\\in\\mathbb{K}$. Alors\n$$P=\\sum_{k=0}^n\\frac{P^{(k)}(a)}{k!}(X-a)^k,$$\noù $P^{(k)}$ est la dérivée formelle $k$-ième de $P$ ; de façon équivalente, $P(X+a)=\\sum_{k=0}^n\\frac{P^{(k)}(a)}{k!}X^k$. La famille $\\left(1,X-a,\\dots,(X-a)^n\\right)$ est une base de $\\mathbb{K}_n[X]$, et les coordonnées de $P$ dans cette base sont les $\\frac{P^{(k)}(a)}{k!}$ ; en particulier, $P$ est déterminé par $P(a),P'(a),\\dots,P^{(n)}(a)$.",
+      "enonce_trous": "Soient $\\mathbb{K}$ un corps {{1}}, $P\\in\\mathbb{K}[X]$ de degré au plus $n$ et $a\\in\\mathbb{K}$. Alors $P$ s'écrit $\\sum_{k=0}^nc_k(X-a)^k$, où le coefficient $c_k$ est égal à {{2}}, et les coefficients $c_0,\\dots,c_n$ sont {{3}}.",
+      "trous": [
+        {
+          "reponse": "de caractéristique nulle",
+          "leurres": [
+            "commutatif quelconque",
+            "fini",
+            "de caractéristique $2$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{P^{(k)}(a)}{k!}$",
+          "leurres": [
+            "$P^{(k)}(a)$",
+            "$\\frac{P^{(k)}(0)}{k!}$",
+            "$\\frac{P^{(k)}(a)}{n!}$"
+          ]
+        },
+        {
+          "reponse": "uniques",
+          "leurres": [
+            "tous non nuls",
+            "indépendants de $a$",
+            "tous égaux à $P(a)$"
+          ]
+        }
+      ],
+      "demo": "**Base.** Pour $0\\le j\\le n$, $(X-a)^j$ est de degré $j$ : la famille $\\left((X-a)^j\\right)_{0\\le j\\le n}$ est échelonnée en degrés, donc libre, et elle a $n+1=\\dim\\mathbb{K}_n[X]$ éléments : c'est une base de $\\mathbb{K}_n[X]$.\n\n**Dérivées des vecteurs de base.** Par récurrence sur $k$, la dérivée $k$-ième de $(X-a)^j$ est $\\frac{j!}{(j-k)!}(X-a)^{j-k}$ si $k\\le j$, et $0$ si $k>j$. En $a$, elle vaut donc $j!$ si $k=j$, et $0$ sinon.\n\n**Identification.** Écrivons $P=\\sum_{j=0}^nc_j(X-a)^j$. La dérivation est linéaire, donc $P^{(k)}(a)=\\sum_jc_j\\left[(X-a)^j\\right]^{(k)}(a)=k!\\,c_k$. Comme $\\mathbb{K}$ est de caractéristique nulle, $k!\\cdot1_{\\mathbb{K}}$ est non nul, donc inversible : $c_k=\\frac{P^{(k)}(a)}{k!}$. L'écriture $P(X+a)=\\sum_k\\frac{P^{(k)}(a)}{k!}X^k$ s'obtient en substituant $X+a$ à $X$, la substitution étant un morphisme d'anneaux.",
+      "exemple": "Pour $P=X^3-2X+1$ et $a=1$ : $P(1)=0$, $P'(1)=3-2=1$, $P''(1)=6$ et $P'''(1)=6$, donc\n$$X^3-2X+1=(X-1)+3(X-1)^2+(X-1)^3.$$\nOn y lit que $1$ est racine simple de $P$ (le coefficient de $X-1$ est non nul), et que le reste de la division euclidienne de $P$ par $(X-1)^2$ est $X-1$.",
+      "contre_exemple": "- **Caractéristique $p$** : dans $(\\mathbb{Z}/2\\mathbb{Z})[X]$, $P=X^2$ vérifie $P(0)=0$, $P'=2X=0$ et $P''=0$ : toutes ses dérivées en $0$ sont nulles, comme celles du polynôme nul. Aucune formule exprimant $P$ à l'aide des $P^{(k)}(0)$ ne peut être vraie, et $\\frac{P''(0)}{2!}$ n'a pas de sens puisque $2!=0$.\n- **Somme tronquée** : pour $P=X^{n+1}$ et $a=0$, $\\sum_{k=0}^n\\frac{P^{(k)}(0)}{k!}X^k=0\\neq P$ : la somme doit aller jusqu'au degré de $P$.\n- **Factorielles oubliées** : pour $P=X^2$ et $a=0$, $\\sum_kP^{(k)}(0)X^k=2X^2\\neq P$.",
+      "affirmations": [
+        {
+          "texte": "Si $P\\in\\mathbb{Z}[X]$ et $a\\in\\mathbb{Z}$, alors $\\frac{P^{(k)}(a)}{k!}$ est un entier pour tout $k\\in\\mathbb{N}$.",
+          "vrai": true,
+          "justification": "Ce sont les coefficients de $P(X+a)$, qui est à coefficients entiers d'après la formule du binôme."
+        },
+        {
+          "texte": "Dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, un polynôme de dérivée nulle est constant.",
+          "vrai": false,
+          "contre_exemple": "$X^p$ n'est pas constant et sa dérivée $pX^{p-1}$ est nulle."
+        },
+        {
+          "texte": "Si $P\\in\\mathbb{R}[X]$ vérifie $P(a)=P'(a)=0$, alors $(X-a)^3$ divise $P$.",
+          "vrai": false,
+          "contre_exemple": "$P=(X-a)^2$ vérifie $P(a)=P'(a)=0$, et $(X-a)^3$ ne le divise pas."
+        },
+        {
+          "texte": "Un polynôme $P\\in\\mathbb{R}[X]$ de degré au plus $n$ est déterminé par les nombres $P(a),P'(a),\\dots,P^{(n)}(a)$.",
+          "vrai": true,
+          "justification": "La formule de Taylor l'exprime à l'aide de ces nombres."
+        },
+        {
+          "texte": "Pour $P\\in\\mathbb{R}[X]$ et $a\\in\\mathbb{R}$, le reste de la division euclidienne de $P$ par $(X-a)^2$ est $P(a)+P'(a)(X-a)$.",
+          "vrai": true,
+          "justification": "La formule de Taylor donne $P=P(a)+P'(a)(X-a)+(X-a)^2S$ avec $S\\in\\mathbb{R}[X]$, et $P(a)+P'(a)(X-a)$ est de degré au plus $1$."
+        }
+      ],
+      "prerequis": [
+        "arith-l1-polynomes-multiplicite",
+        "al-l1-espaces-familles",
+        "arith-l2-anneaux-caracteristique"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "cartes": [
+    {
+      "id": "gr-l3-actions-orbites",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-actions",
+      "type": "theoreme",
+      "titre": "Groupe opérant sur un ensemble, orbites et stabilisateurs",
+      "recto": "Définir une action d'un groupe sur un ensemble, l'orbite et le stabilisateur d'un point, et énoncer la relation entre l'orbite et le stabilisateur.",
+      "cours": "Un groupe **opère** sur un ensemble quand chacun de ses éléments déplace les points de cet ensemble, de façon compatible avec la loi du groupe : agir par $h$ puis par $g$ revient à agir par $gh$. Les exemples sont partout : $\\mathfrak{S}_n$ opère sur $\\{1,\\dots,n\\}$, $\\mathrm{GL}_n(\\mathbb{R})$ sur $\\mathbb{R}^n$, le groupe des isométries d'une figure sur ses sommets, un groupe sur lui-même par translations ou par conjugaison. Se donner une action de $G$ sur $X$, c'est exactement se donner un morphisme de $G$ dans le groupe $\\mathfrak{S}(X)$ des bijections de $X$.\n\nL'**orbite** de $x$ est l'ensemble des points que l'on peut atteindre depuis $x$ ; les orbites découpent $X$ en morceaux disjoints (c'est l'analogue des orbites d'une permutation, qui sont les orbites du sous-groupe qu'elle engendre). Le **stabilisateur** de $x$ est l'ensemble des éléments qui fixent $x$ : c'est un sous-groupe. L'action est **transitive** s'il n'y a qu'une orbite, **fidèle** si seul le neutre fixe tous les points.\n\nLe résultat central est la relation orbite-stabilisateur : $g\\cdot x=g'\\cdot x$ si et seulement si $g$ et $g'$ sont dans la même classe à gauche modulo $G_x$. Les points de l'orbite sont donc en bijection avec les classes à gauche, et pour un groupe fini $|G\\cdot x|\\times|G_x|=|G|$. En pratique, c'est un outil de dénombrement très efficace : pour calculer le cardinal d'un groupe, on le fait opérer transitivement sur un ensemble bien choisi et on calcule un stabilisateur (exemple : $|\\mathrm{GL}_2(\\mathbb{Z}/p\\mathbb{Z})|$, ou le groupe des rotations du cube) ; inversement, pour compter une orbite, on calcule un stabilisateur.\n\nPièges : deux points d'une même orbite n'ont pas le même stabilisateur, mais des stabilisateurs **conjugués** ($G_{g\\cdot x}=gG_xg^{-1}$) ; un stabilisateur n'est pas en général distingué ; les orbites n'ont pas toutes le même cardinal ; la condition $e\\cdot x=x$ fait partie de la définition et ne découle pas de l'autre.",
+      "hypotheses": [
+        "$G$ est un groupe fini.",
+        "L'application $G\\times X\\to X$, $(g,x)\\mapsto g\\cdot x$, est une action : $e\\cdot x=x$ et $g\\cdot(h\\cdot x)=(gh)\\cdot x$ pour tous $g,h\\in G$ et $x\\in X$."
+      ],
+      "hypotheses_pieges": [
+        "$G$ est une partie finie de $\\mathfrak{S}(X)$ contenant l'identité, avec $g\\cdot x=g(x)$ (à la place d'un groupe fini opérant sur $X$).",
+        "L'application vérifie seulement $g\\cdot(h\\cdot x)=(gh)\\cdot x$ pour tous $g,h,x$ (à la place d'une action : la condition $e\\cdot x=x$ est oubliée).",
+        "L'application vérifie seulement $e\\cdot x=x$ pour tout $x$ (à la place d'une action : la condition $g\\cdot(h\\cdot x)=(gh)\\cdot x$ est oubliée)."
+      ],
+      "enonce": "Soient $G$ un groupe, de neutre $e$, et $X$ un ensemble. Une **action** (à gauche) de $G$ sur $X$ est une application $G\\times X\\to X$, $(g,x)\\mapsto g\\cdot x$, telle que $e\\cdot x=x$ et $g\\cdot(h\\cdot x)=(gh)\\cdot x$ pour tous $g,h\\in G$ et $x\\in X$ ; on dit que $G$ **opère** sur $X$. C'est la même chose qu'un morphisme de groupes $\\rho:G\\to\\mathfrak{S}(X)$, avec $g\\cdot x=\\rho(g)(x)$. L'**orbite** de $x\\in X$ est $G\\cdot x=\\{g\\cdot x : g\\in G\\}$ et son **stabilisateur** est $G_x=\\{g\\in G : g\\cdot x=x\\}$.\n\n**Théorème.**\n- Les orbites forment une partition de $X$ : ce sont les classes de la relation d'équivalence « $y=g\\cdot x$ pour un $g\\in G$ ».\n- $G_x$ est un sous-groupe de $G$, et $G_{g\\cdot x}=gG_xg^{-1}$ pour tout $g\\in G$.\n- L'application $gG_x\\mapsto g\\cdot x$ est bien définie et réalise une bijection de l'ensemble des classes à gauche modulo $G_x$ sur l'orbite $G\\cdot x$.\n- Si $G$ est fini, $|G\\cdot x|=[G:G_x]=\\frac{|G|}{|G_x|}$ ; en particulier le cardinal de toute orbite divise $|G|$.",
+      "enonce_trous": "Soient $G$ un groupe fini opérant sur un ensemble $X$ et $x\\in X$. Le stabilisateur $G_x$ est {{1}} de $G$, et l'application {{2}} est une bijection de l'ensemble des classes à gauche modulo $G_x$ sur l'orbite $G\\cdot x$. En particulier, le cardinal de l'orbite de $x$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "un sous-groupe",
+          "leurres": [
+            "un sous-groupe commutatif",
+            "réduit à $\\{e\\}$",
+            "un sous-groupe distingué"
+          ]
+        },
+        {
+          "reponse": "$gG_x\\mapsto g\\cdot x$",
+          "leurres": [
+            "$gG_x\\mapsto g^{-1}\\cdot x$",
+            "$G_xg\\mapsto g\\cdot x$",
+            "$gG_x\\mapsto x$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{|G|}{|G_x|}$",
+          "leurres": [
+            "$|G_x|$",
+            "$|G|-|G_x|$",
+            "$\\frac{|X|}{|G_x|}$"
+          ]
+        }
+      ],
+      "demo": "**Action et morphisme.** Pour $g\\in G$, notons $\\rho(g):x\\mapsto g\\cdot x$. Les axiomes s'écrivent $\\rho(e)=\\mathrm{id}_X$ et $\\rho(g)\\circ\\rho(h)=\\rho(gh)$. Donc $\\rho(g)\\circ\\rho(g^{-1})=\\rho(g^{-1})\\circ\\rho(g)=\\mathrm{id}_X$ : $\\rho(g)$ est une bijection, et $\\rho:G\\to\\mathfrak{S}(X)$ est un morphisme. Inversement, si $\\rho:G\\to\\mathfrak{S}(X)$ est un morphisme, $g\\cdot x=\\rho(g)(x)$ vérifie les deux axiomes, car $\\rho(e)=\\mathrm{id}_X$.\n\n**Partition.** Posons $y\\sim x$ s'il existe $g\\in G$ tel que $y=g\\cdot x$. La relation est réflexive ($x=e\\cdot x$), symétrique (si $y=g\\cdot x$, alors $g^{-1}\\cdot y=(g^{-1}g)\\cdot x=x$) et transitive (si $y=g\\cdot x$ et $z=h\\cdot y$, alors $z=(hg)\\cdot x$). La classe de $x$ est $G\\cdot x$ ; les classes d'une relation d'équivalence forment une partition.\n\n**Stabilisateur.** $e\\in G_x$. Si $g,h\\in G_x$, alors $h^{-1}\\cdot x=h^{-1}\\cdot(h\\cdot x)=x$, puis $(gh^{-1})\\cdot x=g\\cdot(h^{-1}\\cdot x)=x$ : $G_x$ est un sous-groupe. Pour $y=g\\cdot x$ et $h\\in G$ : $h\\cdot y=y\\iff(hg)\\cdot x=g\\cdot x\\iff(g^{-1}hg)\\cdot x=x\\iff g^{-1}hg\\in G_x\\iff h\\in gG_xg^{-1}$.\n\n**Bijection.** Pour $g,g'\\in G$ : $g\\cdot x=g'\\cdot x\\iff(g^{-1}g')\\cdot x=x\\iff g^{-1}g'\\in G_x\\iff gG_x=g'G_x$. Le sens « $\\Leftarrow$ » montre que $gG_x\\mapsto g\\cdot x$ ne dépend pas du représentant choisi, le sens « $\\Rightarrow$ » qu'elle est injective ; elle est surjective par définition de l'orbite.\n\n**Cardinal.** Si $G$ est fini, l'orbite a donc autant d'éléments qu'il y a de classes à gauche modulo $G_x$, c'est-à-dire $[G:G_x]=\\frac{|G|}{|G_x|}$ par le théorème de Lagrange.",
+      "exemple": "- $\\mathfrak{S}_4$ opère sur l'ensemble des $6$ parties à deux éléments de $\\{1,2,3,4\\}$ par $\\sigma\\cdot\\{a,b\\}=\\{\\sigma(a),\\sigma(b)\\}$. L'orbite de $\\{1,2\\}$ contient les $6$ paires (si $\\{a,b\\}$ est une paire, toute $\\sigma$ telle que $\\sigma(1)=a$ et $\\sigma(2)=b$ convient), donc son stabilisateur a $\\frac{24}{6}=4$ éléments : ce sont $\\mathrm{id}$, $(1\\ 2)$, $(3\\ 4)$ et $(1\\ 2)(3\\ 4)$.\n- Le groupe $\\mathbb{U}$ des complexes de module $1$ opère sur $\\mathbb{C}$ par $u\\cdot z=uz$. L'orbite de $z\\neq0$ est le cercle de centre $0$ de rayon $|z|$ et son stabilisateur est $\\{1\\}$ ; l'orbite de $0$ est $\\{0\\}$ et son stabilisateur est $\\mathbb{U}$ tout entier.",
+      "contre_exemple": "- **Un stabilisateur n'est pas distingué en général** : pour l'action de $\\mathfrak{S}_3$ sur $\\{1,2,3\\}$, $G_3=\\{\\mathrm{id},(1\\ 2)\\}$, mais $(1\\ 3)(1\\ 2)(1\\ 3)^{-1}=(2\\ 3)\\notin G_3$ ; d'ailleurs $G_1=\\{\\mathrm{id},(2\\ 3)\\}\\neq G_3$ alors que $1$ et $3$ sont dans la même orbite.\n- **Sans la condition $e\\cdot x=x$** : sur $X=\\{a,b\\}$, poser $g\\cdot x=a$ pour tous $g,x$ vérifie $g\\cdot(h\\cdot x)=(gh)\\cdot x$, mais l'ensemble $\\{g : g\\cdot b=b\\}$ est vide : ce n'est pas un sous-groupe.\n- **Une partie de $\\mathfrak{S}(X)$ qui n'est pas un groupe** : $P=\\{\\mathrm{id},(1\\ 2),(2\\ 3)\\}$ ; l'ensemble $\\{g(1) : g\\in P\\}=\\{1,2\\}$ a $2$ éléments, ceux de $P$ qui fixent $1$ sont $\\mathrm{id}$ et $(2\\ 3)$, et $\\frac{|P|}{2}=\\frac32\\neq2$.\n- **Les orbites n'ont pas toutes le même cardinal** : $\\langle(1\\ 2)\\rangle$ opérant sur $\\{1,2,3\\}$ a pour orbites $\\{1,2\\}$ et $\\{3\\}$.",
+      "affirmations": [
+        {
+          "texte": "Deux points d'une même orbite ont le même stabilisateur.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\mathfrak{S}_3$ opérant sur $\\{1,2,3\\}$, $G_1=\\{\\mathrm{id},(2\\ 3)\\}$ et $G_2=\\{\\mathrm{id},(1\\ 3)\\}$ ; seuls des stabilisateurs conjugués sont garantis : $G_{g\\cdot x}=gG_xg^{-1}$."
+        },
+        {
+          "texte": "Si un groupe fini $G$ opère transitivement sur un ensemble fini $X$, alors $|X|$ divise $|G|$.",
+          "vrai": true,
+          "justification": "$X$ est une orbite, de cardinal $\\frac{|G|}{|G_x|}$."
+        },
+        {
+          "texte": "Si l'action de $G$ sur $X$ est fidèle, tous les stabilisateurs sont réduits à $\\{e\\}$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathfrak{S}_3$ opère fidèlement sur $\\{1,2,3\\}$ (seule l'identité fixe les trois points), mais $G_1=\\{\\mathrm{id},(2\\ 3)\\}$."
+        },
+        {
+          "texte": "Pour une action d'un groupe fini, toutes les orbites ont le même cardinal.",
+          "vrai": false,
+          "contre_exemple": "$\\langle(1\\ 2)\\rangle$ opérant sur $\\{1,2,3\\}$ a une orbite à deux éléments, $\\{1,2\\}$, et une à un élément, $\\{3\\}$."
+        },
+        {
+          "texte": "Pour tous $g\\in G$ et $x\\in X$, $G_{g\\cdot x}=gG_xg^{-1}$.",
+          "vrai": true,
+          "justification": "$h\\cdot(g\\cdot x)=g\\cdot x\\iff(g^{-1}hg)\\cdot x=x\\iff h\\in gG_xg^{-1}$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-sous-groupes",
+        "gr-l1-groupes-lagrange",
+        "fond-l1-ensembles-equivalence",
+        "gr-l2-symetrique-cycles"
+      ]
+    },
+    {
+      "id": "gr-l3-actions-formule-classes",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-actions",
+      "type": "theoreme",
+      "titre": "Formule des classes",
+      "recto": "Énoncer la formule des classes pour l'action d'un groupe fini sur un ensemble fini, et sa conséquence pour un groupe de cardinal $p^n$.",
+      "cours": "La formule des classes n'est que la partition en orbites, combinée à la relation orbite-stabilisateur : on compte les éléments de $X$ orbite par orbite, et chaque orbite a pour cardinal l'indice du stabilisateur de l'un de ses points. Son intérêt vient de la contrainte arithmétique qu'elle impose : chaque terme est un diviseur de $|G|$.\n\nOn sépare souvent les **points fixes** (orbites à un élément) des autres orbites. Quand $G$ est un $p$-groupe, c'est-à-dire $|G|=p^n$ avec $p$ premier, toute orbite non réduite à un point a un cardinal $p^k$ avec $k\\ge1$, donc multiple de $p$ : $|X|\\equiv|X^G|\\pmod p$. C'est l'argument clé de beaucoup de preuves : existence d'un point fixe quand $p$ ne divise pas $|X|$, centre non trivial d'un $p$-groupe (action par conjugaison), petit théorème de Fermat (action de $\\mathbb{Z}/p\\mathbb{Z}$ sur les mots de longueur $p$ par décalage), théorème de Cauchy (voir les exercices).\n\nMéthode : pour exploiter la formule, on choisit l'action, on identifie les points fixes, puis on raisonne sur les cardinaux possibles des autres orbites (des diviseurs de $|G|$ strictement supérieurs à $1$). Une variante voisine, la formule de Burnside, compte les orbites : leur nombre est la moyenne du nombre de points fixes des éléments de $G$ (voir les exercices).\n\nPièges : la congruence $|X|\\equiv|X^G|\\pmod p$ demande que $|G|$ soit une **puissance** de $p$, pas seulement un multiple de $p$ ; le nombre d'**orbites** n'est pas congru à $|X|$ modulo $p$ en général ; et « $p$ divise $|X|$ » n'empêche pas l'existence de points fixes.",
+      "hypotheses": [
+        "Pour la congruence : $G$ est un groupe fini de cardinal $p^n$, avec $p$ premier et $n\\ge1$.",
+        "$G$ opère sur un ensemble fini $X$."
+      ],
+      "hypotheses_pieges": [
+        "$|G|$ est divisible par le nombre premier $p$ (à la place de $|G|=p^n$).",
+        "$|G|=m^n$ avec $m\\ge2$ entier quelconque, et la congruence est prise modulo $m$ (à la place de $p$ premier).",
+        "$G$ est cyclique de cardinal $pq$, avec $p$ et $q$ premiers distincts (à la place de $|G|=p^n$)."
+      ],
+      "enonce": "Soit $G$ un groupe fini opérant sur un ensemble fini $X$. On note $X^G=\\{x\\in X : g\\cdot x=x\\ \\text{pour tout}\\ g\\in G\\}$ l'ensemble des points fixes de l'action, c'est-à-dire des points dont l'orbite est réduite à un élément.\n\n**Théorème (formule des classes).**\n- Si $x_1,\\dots,x_r$ sont des représentants des orbites (un par orbite), alors $|X|=\\sum_{i=1}^{r}|G\\cdot x_i|=\\sum_{i=1}^{r}\\frac{|G|}{|G_{x_i}|}$.\n- En mettant à part les orbites à un élément : $|X|=|X^G|+\\sum_{j=1}^{s}\\frac{|G|}{|G_{y_j}|}$, où $y_1,\\dots,y_s$ représentent les orbites ayant au moins deux éléments ; chaque terme $\\frac{|G|}{|G_{y_j}|}$ est un diviseur de $|G|$ strictement supérieur à $1$.\n- Si $|G|=p^n$ avec $p$ premier et $n\\ge1$, alors $|X|\\equiv|X^G|\\pmod p$. En particulier, si $p$ ne divise pas $|X|$, l'action a au moins un point fixe.",
+      "enonce_trous": "Soit $G$ un groupe fini opérant sur un ensemble fini $X$. Si $x_1,\\dots,x_r$ représentent les orbites, $|X|$ est la somme des {{1}}. Si de plus $|G|=p^n$ avec $p$ premier et $n\\ge1$, alors $|X|$ est congru modulo $p$ au {{2}}. En particulier, si {{3}}, l'action a au moins un point fixe.",
+      "trous": [
+        {
+          "reponse": "indices $[G:G_{x_i}]$ des stabilisateurs des $x_i$",
+          "leurres": [
+            "cardinaux $|G_{x_i}|$ des stabilisateurs des $x_i$",
+            "nombres $|G|$, un par orbite",
+            "nombres de points fixes des éléments de $G$"
+          ]
+        },
+        {
+          "reponse": "nombre de points fixes de l'action",
+          "leurres": [
+            "nombre d'orbites de l'action",
+            "nombre $0$",
+            "nombre $1$"
+          ]
+        },
+        {
+          "reponse": "$p$ ne divise pas $|X|$",
+          "leurres": [
+            "$p$ divise $|X|$",
+            "$|X|$ est un nombre premier",
+            "$|X|\\ge p$"
+          ]
+        }
+      ],
+      "demo": "**Formule.** Les orbites $G\\cdot x_1,\\dots,G\\cdot x_r$ forment une partition de $X$, donc $|X|=\\sum_{i=1}^{r}|G\\cdot x_i|$, et $|G\\cdot x_i|=\\frac{|G|}{|G_{x_i}|}$ par la relation orbite-stabilisateur. Une orbite $G\\cdot x$ est réduite à $\\{x\\}$ si et seulement si $g\\cdot x=x$ pour tout $g$, c'est-à-dire $x\\in X^G$ ; les orbites à un élément sont donc les $\\{x\\}$, $x\\in X^G$, et elles apportent $|X^G|$ à la somme. Chacune des autres a un cardinal $\\frac{|G|}{|G_{y_j}|}$, diviseur de $|G|$ (car $|G|=\\frac{|G|}{|G_{y_j}|}\\times|G_{y_j}|$) et strictement supérieur à $1$.\n\n**Cas d'un $p$-groupe.** Si $|G|=p^n$, chaque $\\frac{|G|}{|G_{y_j}|}$ est un diviseur de $p^n$, donc de la forme $p^k$ (décomposition en facteurs premiers), avec $k\\ge1$ puisqu'il est strictement supérieur à $1$ : il est multiple de $p$. Donc $|X|-|X^G|$ est multiple de $p$. Si $p$ ne divise pas $|X|$, $|X^G|$ n'est pas multiple de $p$, donc $|X^G|\\neq0$.",
+      "exemple": "Le groupe $G=\\langle r\\rangle$ des quatre rotations du carré ($|G|=4=2^2$) opère sur les $16$ coloriages en noir et blanc de ses quatre sommets. Les points fixes sont les $2$ coloriages unis ; les deux coloriages alternés forment une orbite à $2$ éléments (ils sont fixés par $r^2$, pas par $r$) ; les $12$ autres sont fixés seulement par l'identité et forment $3$ orbites à $4$ éléments. Formule des classes : $16=2+2+3\\times4$, et l'on a bien $16\\equiv2\\pmod2$.",
+      "contre_exemple": "- **Un multiple de $p$ ne suffit pas** : $\\mathbb{Z}/6\\mathbb{Z}$ opère sans point fixe sur l'ensemble à $5$ éléments $X=\\mathbb{Z}/2\\mathbb{Z}\\sqcup\\mathbb{Z}/3\\mathbb{Z}$ par $k\\cdot x=x+k$ (calculé modulo $2$ ou modulo $3$), avec deux orbites à $2$ et $3$ éléments ; pourtant ni $2$ ni $3$ ne divise $5$. La congruence demande $|G|=p^n$.\n- **« $p$ divise $|X|$ » n'interdit pas les points fixes** : l'action triviale de $\\mathbb{Z}/2\\mathbb{Z}$ sur un ensemble à $2$ éléments a deux points fixes.\n- **Le nombre d'orbites n'est pas congru à $|X|$** : $\\mathbb{Z}/2\\mathbb{Z}$ échangeant les deux points de $\\{a,b\\}$ a une seule orbite, et $1\\not\\equiv2\\pmod 2$.",
+      "affirmations": [
+        {
+          "texte": "Toute action d'un groupe de cardinal $9$ sur un ensemble à $10$ éléments a au moins un point fixe.",
+          "vrai": true,
+          "justification": "$|X^G|\\equiv10\\equiv1\\pmod3$, donc $|X^G|\\neq0$."
+        },
+        {
+          "texte": "Toute action d'un groupe de cardinal $6$ sur un ensemble à $5$ éléments a au moins un point fixe.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}/6\\mathbb{Z}$ opère sur $\\mathbb{Z}/2\\mathbb{Z}\\sqcup\\mathbb{Z}/3\\mathbb{Z}$ par $k\\cdot x=x+k$, avec des orbites à $2$ et $3$ éléments et aucun point fixe."
+        },
+        {
+          "texte": "Si $|G|=p^n$ ($p$ premier, $n\\ge1$) et si $p$ divise $|X|$, l'action n'a aucun point fixe.",
+          "vrai": false,
+          "contre_exemple": "L'action triviale de $\\mathbb{Z}/2\\mathbb{Z}$ sur un ensemble à $2$ éléments fixe les deux points."
+        },
+        {
+          "texte": "Pour un groupe de cardinal $p^n$ ($p$ premier, $n\\ge1$) opérant sur $X$ fini, le nombre d'orbites est congru à $|X|$ modulo $p$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{Z}/2\\mathbb{Z}$ échangeant les deux points de $\\{a,b\\}$ : une orbite, et $1\\not\\equiv2\\pmod2$."
+        },
+        {
+          "texte": "Dans la formule des classes, chaque orbite non réduite à un point a un cardinal qui divise $|G|$ et qui est au moins $2$.",
+          "vrai": true,
+          "justification": "Son cardinal est l'indice $\\frac{|G|}{|G_y|}$ d'un stabilisateur, différent de $1$."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-actions-orbites",
+        "gr-l1-groupes-lagrange",
+        "arith-t-premiers-decomposition"
+      ]
+    },
+    {
+      "id": "gr-l3-actions-conjugaison",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-actions",
+      "type": "theoreme",
+      "titre": "Conjugaison, classes de conjugaison",
+      "recto": "Définir la conjugaison, les classes de conjugaison, le centralisateur et le centre ; énoncer l'équation aux classes, sa conséquence pour un groupe de cardinal $p^n$, et décrire les classes de conjugaison de $\\mathfrak{S}_n$.",
+      "cours": "Deux éléments **conjugués** $x$ et $gxg^{-1}$ jouent le même rôle dans le groupe : ils ont le même ordre, et, dans un groupe de transformations, ils représentent « la même transformation vue dans un autre repère ». Pour des matrices, être conjuguées dans $\\mathrm{GL}_n(\\mathbb{K})$, c'est être semblables ; pour des permutations, c'est avoir la même structure de cycles, après renommage des points par $\\tau$.\n\nLa conjugaison est une action de $G$ sur lui-même : on lui applique tout ce qui précède. Les orbites sont les **classes de conjugaison**, le stabilisateur de $x$ est son **centralisateur** $C_G(x)$, les points fixes forment le **centre** $Z(G)$. D'où $|\\mathrm{Cl}(x)|=[G:C_G(x)]$, qui divise $|G|$, et l'**équation aux classes**, formule des classes de cette action. Pour un groupe de cardinal $p^n$ ($n\\ge1$), elle donne aussitôt un centre non trivial : c'est l'un des premiers résultats de structure des $p$-groupes (un groupe de cardinal $p^2$ est commutatif, voir les exercices).\n\nDans $\\mathfrak{S}_n$, la formule $\\tau(a_1\\ \\cdots\\ a_k)\\tau^{-1}=(\\tau(a_1)\\ \\cdots\\ \\tau(a_k))$ permet de conjuguer sans calcul : on remplace chaque entier par son image par $\\tau$ dans l'écriture en cycles. Les classes de conjugaison de $\\mathfrak{S}_n$ correspondent ainsi aux **types** (listes des longueurs des cycles, c'est-à-dire aux partitions de $n$) ; $\\mathfrak{S}_5$ a $7$ classes. Pour compter une classe, on compte les permutations d'un type donné, et le centralisateur s'en déduit.\n\nPièges : le type compte, pas seulement l'ordre ou la signature ($(1\\ 2)$ et $(1\\ 2)(3\\ 4)$ sont d'ordre $2$ sans être conjuguées) ; deux éléments conjugués dans $G$ ne le sont pas forcément dans un sous-groupe qui les contient ($(1\\ 2\\ 3)$ et $(1\\ 3\\ 2)$ sont conjugués dans $\\mathfrak{S}_3$, pas dans $\\mathfrak{A}_3$, qui est commutatif) ; le centre d'un groupe non commutatif n'est pas toujours trivial.",
+      "hypotheses": [
+        "Pour la non-trivialité du centre : $G$ est un groupe fini de cardinal $p^n$.",
+        "$p$ est un nombre premier et $n\\ge1$."
+      ],
+      "hypotheses_pieges": [
+        "$|G|$ est divisible par le nombre premier $p$ (à la place de $|G|=p^n$).",
+        "$|G|=pq$ avec $p$ et $q$ premiers distincts (à la place de $|G|=p^n$).",
+        "$p$ est un entier $\\ge2$ quelconque (à la place de $p$ premier)."
+      ],
+      "enonce": "Soit $G$ un groupe. Il opère sur lui-même par **conjugaison** : $g\\cdot x=gxg^{-1}$. L'orbite de $x$ est sa **classe de conjugaison** $\\mathrm{Cl}(x)=\\{gxg^{-1} : g\\in G\\}$ ; deux éléments d'une même classe sont dits **conjugués**. Le stabilisateur de $x$ est son **centralisateur** $C_G(x)=\\{g\\in G : gx=xg\\}$, et les points fixes forment le **centre** $Z(G)=\\{x\\in G : gx=xg\\ \\text{pour tout}\\ g\\in G\\}$.\n\n**Théorème.**\n- Les classes de conjugaison forment une partition de $G$, et $\\mathrm{Cl}(x)=\\{x\\}$ si et seulement si $x\\in Z(G)$. Deux éléments conjugués ont le même ordre.\n- Si $G$ est fini, $|\\mathrm{Cl}(x)|=[G:C_G(x)]$, qui divise $|G|$, et (**équation aux classes**) $|G|=|Z(G)|+\\sum_{j=1}^{s}[G:C_G(x_j)]$, où $x_1,\\dots,x_s$ représentent les classes de conjugaison non réduites à un élément.\n- Si $|G|=p^n$ avec $p$ premier et $n\\ge1$, alors $Z(G)\\neq\\{e\\}$.\n- Dans $\\mathfrak{S}_n$, pour tout $\\tau$ et tout cycle, $\\tau(a_1\\ a_2\\ \\cdots\\ a_k)\\tau^{-1}=(\\tau(a_1)\\ \\tau(a_2)\\ \\cdots\\ \\tau(a_k))$ ; deux permutations sont conjuguées si et seulement si elles ont le même **type**, c'est-à-dire les mêmes longueurs de cycles, comptées avec multiplicité, dans leurs décompositions en cycles à supports disjoints.",
+      "enonce_trous": "Deux permutations de $\\mathfrak{S}_n$ sont conjuguées si et seulement si {{1}}. Dans un groupe fini $G$, le cardinal de la classe de conjugaison de $x$ est égal à {{2}}. Si $|G|=p^n$ avec $p$ premier et $n\\ge1$, le centre de $G$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "elles ont les mêmes longueurs de cycles, comptées avec multiplicité, dans leurs décompositions en cycles à supports disjoints",
+          "leurres": [
+            "elles ont la même signature",
+            "elles ont le même ordre",
+            "elles ont le même nombre de points fixes"
+          ]
+        },
+        {
+          "reponse": "l'indice $[G:C_G(x)]$ du centralisateur de $x$",
+          "leurres": [
+            "l'ordre de $x$",
+            "le cardinal $|C_G(x)|$ du centralisateur de $x$",
+            "le nombre de classes de conjugaison de $G$"
+          ]
+        },
+        {
+          "reponse": "non réduit à $\\{e\\}$",
+          "leurres": [
+            "réduit à $\\{e\\}$",
+            "égal à $G$",
+            "de cardinal $p$"
+          ]
+        }
+      ],
+      "demo": "**Action.** $exe^{-1}=x$ et $g(hxh^{-1})g^{-1}=(gh)x(gh)^{-1}$ : la conjugaison est une action. Son orbite en $x$ est $\\mathrm{Cl}(x)$, son stabilisateur $\\{g : gxg^{-1}=x\\}=C_G(x)$, et $x$ est un point fixe si et seulement si $gxg^{-1}=x$ pour tout $g$, c'est-à-dire $x\\in Z(G)$. La partition, la formule $|\\mathrm{Cl}(x)|=[G:C_G(x)]$ et l'équation aux classes sont les résultats sur les orbites et la formule des classes appliqués à cette action. Enfin $y\\mapsto gyg^{-1}$ est un morphisme injectif, donc $(gxg^{-1})^k=gx^kg^{-1}=e\\iff x^k=e$ : $x$ et $gxg^{-1}$ ont le même ordre.\n\n**Centre d'un $p$-groupe.** Par la formule des classes pour un groupe de cardinal $p^n$ opérant sur l'ensemble $G$ de cardinal $p^n$ : $|Z(G)|\\equiv|G|\\equiv0\\pmod p$. Comme $e\\in Z(G)$, $|Z(G)|\\ge1$, donc $|Z(G)|\\ge p\\ge2$.\n\n**Conjugués d'un cycle.** Soit $c=(a_1\\ \\cdots\\ a_k)$. Pour $i<k$, $\\tau c\\tau^{-1}(\\tau(a_i))=\\tau(c(a_i))=\\tau(a_{i+1})$, et $\\tau c\\tau^{-1}(\\tau(a_k))=\\tau(a_1)$ ; si $y\\notin\\{\\tau(a_1),\\dots,\\tau(a_k)\\}$, alors $\\tau^{-1}(y)\\notin\\{a_1,\\dots,a_k\\}$ est fixé par $c$, et $\\tau c\\tau^{-1}(y)=y$. D'où la formule.\n\n**Classes de $\\mathfrak{S}_n$.** Si $\\sigma=c_1\\cdots c_m$ (cycles à supports disjoints), alors $\\tau\\sigma\\tau^{-1}=(\\tau c_1\\tau^{-1})\\cdots(\\tau c_m\\tau^{-1})$, produit de cycles de mêmes longueurs, à supports $\\tau(\\mathrm{supp}\\,c_i)$ deux à deux disjoints : par unicité de la décomposition, $\\tau\\sigma\\tau^{-1}$ a le même type que $\\sigma$. Réciproquement, si $\\sigma$ et $\\sigma'$ ont le même type, écrivons leurs décompositions en comptant les points fixes comme des cycles de longueur $1$, avec les cycles rangés dans le même ordre de longueurs : $\\sigma=(a_1\\ \\cdots\\ a_{k_1})(a_{k_1+1}\\ \\cdots)\\cdots$ et $\\sigma'=(b_1\\ \\cdots\\ b_{k_1})(b_{k_1+1}\\ \\cdots)\\cdots$. Chaque entier de $1$ à $n$ apparaît une fois dans chaque écriture, donc $\\tau:a_i\\mapsto b_i$ est une permutation, et la formule précédente donne $\\tau\\sigma\\tau^{-1}=\\sigma'$.",
+      "exemple": "Classes de conjugaison de $\\mathfrak{S}_4$, par type : l'identité ($1$ élément), les transpositions ($6$), les doubles transpositions $(a\\ b)(c\\ d)$ ($3$), les $3$-cycles ($8$), les $4$-cycles ($6$). Le centre est trivial et l'équation aux classes s'écrit $24=1+6+3+8+6$ ; chaque terme divise $24$. Par exemple, le centralisateur d'un $3$-cycle a $\\frac{24}{8}=3$ éléments : c'est le sous-groupe qu'il engendre.",
+      "contre_exemple": "- **Même ordre, mais pas conjuguées** : $(1\\ 2)$ et $(1\\ 2)(3\\ 4)$ sont d'ordre $2$ dans $\\mathfrak{S}_4$, de types différents.\n- **Conjugués dans $G$, pas dans un sous-groupe** : $(1\\ 2\\ 3)$ et $(1\\ 3\\ 2)=(2\\ 3)(1\\ 2\\ 3)(2\\ 3)^{-1}$ sont conjugués dans $\\mathfrak{S}_3$, mais pas dans $\\mathfrak{A}_3=\\{\\mathrm{id},(1\\ 2\\ 3),(1\\ 3\\ 2)\\}$, commutatif, où chaque classe est un singleton.\n- **Un multiple de $p$ ne suffit pas** : $|\\mathfrak{S}_3|=6$ est divisible par $2$ et par $3$, mais $Z(\\mathfrak{S}_3)=\\{\\mathrm{id}\\}$.",
+      "affirmations": [
+        {
+          "texte": "Deux éléments conjugués ont le même ordre.",
+          "vrai": true,
+          "justification": "$y\\mapsto gyg^{-1}$ est un morphisme injectif, donc $(gxg^{-1})^k=e\\iff x^k=e$."
+        },
+        {
+          "texte": "Deux permutations de $\\mathfrak{S}_n$ de même ordre sont conjuguées.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2)$ et $(1\\ 2)(3\\ 4)$ sont d'ordre $2$ dans $\\mathfrak{S}_4$ mais de types différents."
+        },
+        {
+          "texte": "Le centre d'un groupe fini non commutatif est réduit au neutre.",
+          "vrai": false,
+          "contre_exemple": "Dans le sous-groupe de $\\mathfrak{S}_4$ engendré par $(1\\ 2\\ 3\\ 4)$ et $(1\\ 3)$, qui a $8$ éléments et n'est pas commutatif, $(1\\ 3)(2\\ 4)$ commute avec tous les éléments."
+        },
+        {
+          "texte": "Dans un groupe commutatif, toutes les classes de conjugaison sont des singletons.",
+          "vrai": true,
+          "justification": "$gxg^{-1}=gg^{-1}x=x$."
+        },
+        {
+          "texte": "Si $x$ et $y$ sont conjugués dans $G$ et appartiennent à un sous-groupe $H$, ils sont conjugués dans $H$.",
+          "vrai": false,
+          "contre_exemple": "$(1\\ 2\\ 3)$ et $(1\\ 3\\ 2)$ sont conjugués dans $\\mathfrak{S}_3$, pas dans $\\mathfrak{A}_3$, qui est commutatif."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-actions-orbites",
+        "gr-l3-actions-formule-classes",
+        "gr-l2-symetrique-cycles",
+        "gr-l1-groupes-ordre"
+      ]
+    },
+    {
+      "id": "gr-l3-actions-automorphismes",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-actions",
+      "type": "theoreme",
+      "titre": "Automorphismes intérieurs",
+      "recto": "Définir les automorphismes intérieurs d'un groupe et énoncer les propriétés du morphisme $g\\mapsto i_g$ (noyau, image, stabilité par conjugaison).",
+      "cours": "Un **automorphisme** d'un groupe est une bijection du groupe sur lui-même qui respecte la loi : il « renomme » les éléments sans changer la structure. Il conserve donc tout ce qui se définit à partir de la loi : ordre des éléments, centre, classes de conjugaison (qu'il permute entre elles), nombre de solutions d'une équation $x^k=e$… Les automorphismes forment un groupe $\\mathrm{Aut}(G)$.\n\nLes plus simples sont les conjugaisons $i_g:x\\mapsto gxg^{-1}$, appelées automorphismes **intérieurs**. Le morphisme $g\\mapsto i_g$ a pour noyau le centre : $i_g=i_h$ si et seulement si $g^{-1}h\\in Z(G)$. Pour un groupe fini, il y a donc $\\frac{|G|}{|Z(G)|}$ automorphismes intérieurs ; il n'y en a qu'un, l'identité, si et seulement si le groupe est commutatif. La formule $\\varphi\\circ i_g\\circ\\varphi^{-1}=i_{\\varphi(g)}$ montre que $\\mathrm{Int}(G)$ est stable par conjugaison dans $\\mathrm{Aut}(G)$.\n\nEn pratique, pour déterminer $\\mathrm{Aut}(G)$, on cherche des générateurs de $G$ : un automorphisme est déterminé par leurs images, qui doivent avoir le même ordre (et plus généralement les mêmes propriétés) que les générateurs. Ainsi $\\mathrm{Aut}(\\mathbb{Z}/n\\mathbb{Z})$ a $\\varphi(n)$ éléments (l'image de $\\overline1$ est un générateur), alors que $\\mathrm{Int}(\\mathbb{Z}/n\\mathbb{Z})$ est trivial ; à l'inverse, $\\mathrm{Aut}(\\mathfrak{S}_3)=\\mathrm{Int}(\\mathfrak{S}_3)$ et $\\mathrm{Aut}(\\mathfrak{S}_4)=\\mathrm{Int}(\\mathfrak{S}_4)$ (voir les exercices).\n\nPièges : un groupe commutatif peut avoir beaucoup d'automorphismes (non intérieurs) ; $x\\mapsto x^{-1}$ n'est un automorphisme que si le groupe est commutatif ; $i_g=i_h$ n'entraîne pas $g=h$ ; avec la convention $i_g(x)=g^{-1}xg$, on obtient $i_{gh}=i_h\\circ i_g$, et $g\\mapsto i_g$ n'est plus un morphisme si $G$ n'est pas commutatif.",
+      "hypotheses": [
+        "$G$ est un groupe, de centre $Z(G)$.",
+        "Pour $g\\in G$, $i_g$ est l'application $x\\mapsto gxg^{-1}$."
+      ],
+      "hypotheses_pieges": [
+        "Pour $g\\in G$, $i_g$ est l'application $x\\mapsto g^{-1}xg$ (à la place de $x\\mapsto gxg^{-1}$).",
+        "Pour $g\\in G$, $i_g$ est l'application $x\\mapsto gxg$ (à la place de $x\\mapsto gxg^{-1}$).",
+        "Pour $g\\in G$, $i_g$ est l'application $x\\mapsto gx^{-1}g^{-1}$ (à la place de $x\\mapsto gxg^{-1}$)."
+      ],
+      "enonce": "Soit $G$ un groupe. Un **automorphisme** de $G$ est un isomorphisme de $G$ sur lui-même ; les automorphismes de $G$ forment, pour la composition, un sous-groupe $\\mathrm{Aut}(G)$ de $\\mathfrak{S}(G)$. Pour $g\\in G$, on note $i_g:x\\mapsto gxg^{-1}$.\n\n**Théorème.**\n- Chaque $i_g$ est un automorphisme de $G$, dit **intérieur**, et $i_g\\circ i_h=i_{gh}$ : l'application $i:g\\mapsto i_g$ est un morphisme de groupes de $G$ dans $\\mathrm{Aut}(G)$, de noyau le centre $Z(G)$.\n- Son image $\\mathrm{Int}(G)=\\{i_g : g\\in G\\}$ est un sous-groupe de $\\mathrm{Aut}(G)$, et $\\varphi\\circ i_g\\circ\\varphi^{-1}=i_{\\varphi(g)}$ pour tous $\\varphi\\in\\mathrm{Aut}(G)$ et $g\\in G$ : $\\mathrm{Int}(G)$ est stable par conjugaison dans $\\mathrm{Aut}(G)$.\n- $\\mathrm{Int}(G)=\\{\\mathrm{id}_G\\}$ si et seulement si $G$ est commutatif ; si $G$ est fini, $|\\mathrm{Int}(G)|=\\frac{|G|}{|Z(G)|}$.\n- Tout automorphisme conserve l'ordre des éléments et envoie chaque classe de conjugaison sur une classe de conjugaison ; un automorphisme intérieur envoie chaque classe de conjugaison sur elle-même.",
+      "enonce_trous": "Soit $G$ un groupe. L'application $g\\mapsto i_g$, où $i_g(x)=gxg^{-1}$, est un morphisme de $G$ dans $\\mathrm{Aut}(G)$ de noyau {{1}}. Pour $\\varphi\\in\\mathrm{Aut}(G)$ et $g\\in G$, l'automorphisme $\\varphi\\circ i_g\\circ\\varphi^{-1}$ est égal à {{2}}. Si $G$ est fini, le nombre d'automorphismes intérieurs de $G$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "le centre $Z(G)$",
+          "leurres": [
+            "$\\{e\\}$",
+            "$G$ tout entier",
+            "l'ensemble des éléments d'ordre au plus $2$"
+          ]
+        },
+        {
+          "reponse": "$i_{\\varphi(g)}$",
+          "leurres": [
+            "$i_g$",
+            "$i_{\\varphi^{-1}(g)}$",
+            "$\\varphi$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{|G|}{|Z(G)|}$",
+          "leurres": [
+            "$|G|$",
+            "$|Z(G)|$",
+            "$|G|-|Z(G)|$"
+          ]
+        }
+      ],
+      "demo": "**$\\mathrm{Aut}(G)$.** L'identité est un automorphisme ; la composée de deux automorphismes en est un ; la réciproque $\\psi$ d'un automorphisme $\\varphi$ est un morphisme, car $\\varphi(\\psi(x)\\psi(y))=xy$ donne $\\psi(x)\\psi(y)=\\psi(xy)$. C'est donc un sous-groupe de $\\mathfrak{S}(G)$.\n\n**Automorphismes intérieurs.** $i_g(xy)=gxg^{-1}gyg^{-1}=i_g(x)i_g(y)$, et $i_g\\circ i_h(x)=ghxh^{-1}g^{-1}=i_{gh}(x)$. Comme $i_e=\\mathrm{id}_G$, $i_g\\circ i_{g^{-1}}=i_{g^{-1}}\\circ i_g=\\mathrm{id}_G$ : $i_g$ est bijectif, c'est un automorphisme, et $g\\mapsto i_g$ est un morphisme. Son noyau est $\\{g : gxg^{-1}=x\\ \\text{pour tout}\\ x\\}=Z(G)$, son image $\\mathrm{Int}(G)$ est un sous-groupe (image d'un morphisme).\n\n**Stabilité.** Pour $x\\in G$, posons $y=\\varphi^{-1}(x)$ : $\\varphi\\circ i_g\\circ\\varphi^{-1}(x)=\\varphi(gyg^{-1})=\\varphi(g)\\varphi(y)\\varphi(g)^{-1}=\\varphi(g)x\\varphi(g)^{-1}=i_{\\varphi(g)}(x)$.\n\n**Cardinal.** $\\mathrm{Int}(G)=\\{\\mathrm{id}_G\\}$ signifie que le noyau $Z(G)$ est $G$ tout entier, c'est-à-dire que $G$ est commutatif. Si $G$ est fini, chaque élément de l'image a exactement $|Z(G)|$ antécédents (ceux de $i_g$ sont les éléments de $gZ(G)$), donc $|G|=|\\mathrm{Int}(G)|\\times|Z(G)|$.\n\n**Ordre et classes.** Un automorphisme $\\varphi$ est un morphisme injectif : $\\varphi(x)^k=e\\iff\\varphi(x^k)=\\varphi(e)\\iff x^k=e$, donc $x$ et $\\varphi(x)$ ont le même ordre. Comme $\\varphi$ est surjectif, $\\varphi(\\mathrm{Cl}(x))=\\{\\varphi(g)\\varphi(x)\\varphi(g)^{-1} : g\\in G\\}=\\mathrm{Cl}(\\varphi(x))$. Enfin $i_g(x)\\in\\mathrm{Cl}(x)$, d'où $\\mathrm{Cl}(i_g(x))=\\mathrm{Cl}(x)$.",
+      "exemple": "- $Z(\\mathfrak{S}_3)=\\{\\mathrm{id}\\}$, donc $\\mathrm{Int}(\\mathfrak{S}_3)$ a $6$ éléments : deux conjugaisons par des permutations distinctes sont distinctes.\n- Le groupe $V=\\{0,a,b,c\\}=(\\mathbb{Z}/2\\mathbb{Z})^2$, avec $a=(\\overline1,\\overline0)$, $b=(\\overline0,\\overline1)$, $c=a+b$, est commutatif : $\\mathrm{Int}(V)=\\{\\mathrm{id}\\}$. Pourtant $\\mathrm{Aut}(V)$ a $6$ éléments : un automorphisme fixe $0$ et permute $a$, $b$, $c$, et chacune des $6$ permutations de $\\{a,b,c\\}$ (prolongée par $0\\mapsto0$) est un automorphisme, car la somme de deux éléments distincts de $\\{a,b,c\\}$ est le troisième.",
+      "contre_exemple": "- **Un automorphisme non intérieur** : dans $\\mathbb{Z}/3\\mathbb{Z}$, commutatif, $x\\mapsto-x$ est un automorphisme différent de l'identité, alors que $\\mathrm{Int}(\\mathbb{Z}/3\\mathbb{Z})=\\{\\mathrm{id}\\}$.\n- **$x\\mapsto x^{-1}$ n'est pas un morphisme en général** : dans $\\mathfrak{S}_3$, $((1\\ 2)(1\\ 3))^{-1}=(1\\ 3\\ 2)^{-1}=(1\\ 2\\ 3)$, alors que $(1\\ 2)^{-1}(1\\ 3)^{-1}=(1\\ 2)(1\\ 3)=(1\\ 3\\ 2)$.\n- **$i_g=i_h$ sans $g=h$** : dans un groupe commutatif, tous les $i_g$ sont égaux à l'identité.",
+      "affirmations": [
+        {
+          "texte": "Si $G$ est commutatif, $\\mathrm{Aut}(G)$ est réduit à l'identité.",
+          "vrai": false,
+          "contre_exemple": "$x\\mapsto-x$ est un automorphisme de $\\mathbb{Z}/3\\mathbb{Z}$ différent de l'identité."
+        },
+        {
+          "texte": "Pour $g,h\\in G$, $i_g=i_h$ si et seulement si $g^{-1}h\\in Z(G)$.",
+          "vrai": true,
+          "justification": "$i_g=i_h\\iff i_{g^{-1}h}=i_g^{-1}\\circ i_h=\\mathrm{id}\\iff g^{-1}h\\in Z(G)$."
+        },
+        {
+          "texte": "Un automorphisme d'un groupe conserve l'ordre des éléments.",
+          "vrai": true,
+          "justification": "$\\varphi(x)^k=\\varphi(x^k)$, et $\\varphi(x^k)=e\\iff x^k=e$ par injectivité."
+        },
+        {
+          "texte": "Dans tout groupe commutatif $G$, l'application $x\\mapsto x^2$ est un automorphisme.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{Z}/2\\mathbb{Z}$ (noté additivement), $x\\mapsto x+x$ est l'application nulle, non injective."
+        },
+        {
+          "texte": "Un automorphisme intérieur envoie chaque classe de conjugaison sur elle-même.",
+          "vrai": true,
+          "justification": "$i_g(x)=gxg^{-1}$ est un conjugué de $x$, donc $i_g(\\mathrm{Cl}(x))=\\mathrm{Cl}(i_g(x))=\\mathrm{Cl}(x)$."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-actions-conjugaison",
+        "gr-l1-groupes-noyau",
+        "fond-l1-ensembles-composition"
+      ]
+    },
+    {
+      "id": "gr-l3-actions-geometrie",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-actions",
+      "type": "theoreme",
+      "titre": "Le groupe d'un polygone régulier opérant sur ses sommets",
+      "recto": "Pour le polygone régulier à $n$ sommets, décrire l'action de son groupe d'isométries sur les sommets (transitivité, stabilisateur, fidélité) et en déduire le cardinal et les éléments de ce groupe.",
+      "cours": "Les groupes de la géométrie se comprennent par leurs actions : le groupe des isométries d'une figure opère sur ses sommets, ses arêtes, ses faces, ses diagonales, et chaque action renseigne sur le groupe. La méthode type pour calculer le cardinal d'un tel groupe est la relation orbite-stabilisateur : on montre que le groupe opère transitivement sur un ensemble bien choisi, puis on calcule le stabilisateur d'un élément.\n\nPour le polygone régulier à $n$ sommets, le groupe $D_n$ opère transitivement sur les $n$ sommets (les rotations suffisent), et le stabilisateur d'un sommet ne contient que l'identité et la réflexion d'axe passant par ce sommet : $|D_n|=2n$. L'action est fidèle, donc $D_n$ s'identifie à un sous-groupe de $\\mathfrak{S}_n$ ; pour $n=3$, c'est $\\mathfrak{S}_3$ tout entier, pour $n\\ge4$ un sous-groupe strict ($2n<n!$). Le même schéma donne le groupe des rotations du cube : il opère transitivement sur les $6$ faces, le stabilisateur d'une face est formé des $4$ rotations d'axe passant par son centre, d'où $24=6\\times4$ éléments ; on retrouve $24=8\\times3$ avec les sommets et $24=12\\times2$ avec les arêtes. Les actions sur les grandes diagonales montrent qu'il est isomorphe à $\\mathfrak{S}_4$ (voir les exercices).\n\nAutres exemples à connaître : $\\mathrm{O}(n)$ opère sur $\\mathbb{R}^n$ euclidien, avec pour orbites les sphères de centre $0$ ; $\\mathrm{GL}_n(\\mathbb{K})$ opère transitivement sur $\\mathbb{K}^n\\setminus\\{0\\}$ ; le groupe d'une figure opère sur les coloriages de ses sommets ou de ses faces, et la formule de Burnside compte les coloriages « à symétrie près ».\n\nPièges : le stabilisateur d'un sommet n'est pas trivial (l'action n'est pas libre) ; les isométries directes seules ne forment qu'un sous-groupe de cardinal $n$ ; un ensemble de $n$ points du cercle qui ne sont pas les sommets d'un polygone régulier a en général un groupe d'isométries bien plus petit.",
+      "hypotheses": [
+        "$n\\ge3$ et $S=\\{1,\\omega,\\dots,\\omega^{n-1}\\}$, où $\\omega=e^{2i\\pi/n}$ : $S$ est l'ensemble des sommets d'un polygone régulier.",
+        "$D_n$ est l'ensemble de toutes les isométries $f$ du plan telles que $f(S)=S$."
+      ],
+      "hypotheses_pieges": [
+        "$D_n$ est l'ensemble des isométries du plan qui conservent le cercle unité (à la place de celles qui conservent $S$).",
+        "$D_n$ est l'ensemble des isométries de la forme $z\\mapsto az+b$ (directes) qui conservent $S$ (à la place de toutes les isométries qui conservent $S$).",
+        "$S$ est un ensemble quelconque de $n$ points du cercle unité (à la place des sommets d'un polygone régulier)."
+      ],
+      "enonce": "On identifie le plan à $\\mathbb{C}$ ; une **isométrie** est une application $f:\\mathbb{C}\\to\\mathbb{C}$ telle que $|f(z)-f(z')|=|z-z'|$ pour tous $z,z'$. Soient $n\\ge3$, $\\omega=e^{2i\\pi/n}$ et $S=\\{1,\\omega,\\dots,\\omega^{n-1}\\}$ l'ensemble des sommets du polygone régulier $P_n$. On note $D_n$ l'ensemble des isométries $f$ telles que $f(S)=S$, et $r_k:z\\mapsto\\omega^kz$, $s_k:z\\mapsto\\omega^k\\bar z$.\n\n**Théorème.**\n- $D_n=\\{r_k,\\ s_k : 0\\le k\\le n-1\\}$ ; ces $2n$ applications sont distinctes, et $D_n$ est un groupe pour la composition (le **groupe diédral** d'ordre $2n$), formé de $n$ rotations de centre $0$ et de $n$ réflexions d'axes passant par $0$.\n- $D_n$ opère sur $S$ par $f\\cdot A=f(A)$. Cette action est **transitive**, le stabilisateur du sommet $1$ est $\\{\\mathrm{id},s_0\\}$ (avec $s_0:z\\mapsto\\bar z$), et l'on retrouve $|D_n|=n\\times2$.\n- L'action est **fidèle** : seule l'identité fixe tous les sommets. Le morphisme associé identifie donc $D_n$ à un sous-groupe de $\\mathfrak{S}(S)$, de cardinal $2n$ ; pour $n=3$, $D_3$ réalise les $6$ permutations des sommets d'un triangle équilatéral.",
+      "enonce_trous": "Soit $n\\ge3$. Le groupe $D_n$ des isométries du plan qui conservent l'ensemble des sommets du polygone régulier $\\{1,\\omega,\\dots,\\omega^{n-1}\\}$, où $\\omega=e^{2i\\pi/n}$, opère sur ces sommets ; cette action est {{1}}. Le stabilisateur du sommet $1$ est {{2}}, et $D_n$ a {{3}} éléments.",
+      "trous": [
+        {
+          "reponse": "transitive et fidèle",
+          "leurres": [
+            "transitive mais pas fidèle",
+            "fidèle mais pas transitive",
+            "transitive et libre (seule l'identité fixe un sommet)"
+          ]
+        },
+        {
+          "reponse": "$\\{\\mathrm{id},\\ z\\mapsto\\bar z\\}$",
+          "leurres": [
+            "$\\{\\mathrm{id}\\}$",
+            "$\\{\\mathrm{id},\\ z\\mapsto-z\\}$",
+            "le sous-groupe des rotations de $D_n$"
+          ]
+        },
+        {
+          "reponse": "$2n$",
+          "leurres": [
+            "$n$",
+            "$n^2$",
+            "$4n$"
+          ]
+        }
+      ],
+      "demo": "**Les $r_k$ et $s_k$.** Ce sont des isométries ($|\\omega^k|=1$ et $|\\bar z-\\bar z'|=|z-z'|$), bijectives, et $r_k(\\omega^j)=\\omega^{k+j}$, $s_k(\\omega^j)=\\omega^{k-j}$ : elles conservent $S$. Elles sont distinctes : $r_k(1)=s_k(1)=\\omega^k$ sépare les indices, et $r_k(\\omega)=\\omega^{k+1}\\neq\\omega^{k-1}=s_k(\\omega)$ car $\\omega^2\\neq1$ pour $n\\ge3$. On a $r_kr_j=r_{k+j}$, $r_ks_j=s_{k+j}$, $s_kr_j=s_{k-j}$, $s_ks_j=r_{k-j}$ (indices modulo $n$) : elles forment un groupe.\n\n**Tout $f\\in D_n$ fixe $0$.** Pour tout $k$, $|f(0)-f(\\omega^k)|=|0-\\omega^k|=1$, et les $f(\\omega^k)$ parcourent $S$ : $f(0)$ est à la distance $1$ des sommets $1,\\omega,\\omega^2$, trois points distincts d'un cercle, donc non alignés. Le seul point équidistant de trois points non alignés est le centre de leur cercle circonscrit : $f(0)=0$.\n\n**Une isométrie $g$ qui fixe $0$ et $1$ vaut $\\mathrm{id}$ ou $s_0$, si elle fixe ou conjugue $\\omega$.** De $|g(z)|=|z|$ et $|g(z)-1|=|z-1|$, on tire $\\mathrm{Re}\\,g(z)=\\mathrm{Re}\\,z$ (en développant $|u-1|^2=|u|^2-2\\mathrm{Re}\\,u+1$), puis $g(z)\\in\\{z,\\bar z\\}$. Supposons $g(\\omega)=\\omega$. Pour tout $u$, $|\\bar u-\\omega|^2-|u-\\omega|^2=2\\mathrm{Re}\\left((u-\\bar u)\\bar\\omega\\right)=4\\,\\mathrm{Im}\\,u\\,\\mathrm{Im}\\,\\omega$ ; si $g(z)=\\bar z\\neq z$, l'égalité $|g(z)-\\omega|=|z-\\omega|$ donnerait $\\mathrm{Im}\\,z\\,\\mathrm{Im}\\,\\omega=0$, impossible car $\\mathrm{Im}\\,z\\neq0$ et $\\mathrm{Im}\\,\\omega=\\sin\\frac{2\\pi}{n}\\neq0$. Donc $g=\\mathrm{id}$. Si $g(\\omega)=\\bar\\omega$, l'isométrie $s_0\\circ g$ fixe $0$, $1$ et $\\omega$, donc $s_0\\circ g=\\mathrm{id}$ et $g=s_0$.\n\n**Description de $D_n$.** Soit $f\\in D_n$ ; $f(1)=\\omega^k$ pour un $k$, et $g=r_{-k}\\circ f$ est une isométrie qui conserve $S$, fixe $0$ (étape précédente) et $1$. Comme $g(\\omega)\\in S$ est à la distance $|\\omega-1|$ de $1$ et que les seuls sommets à cette distance de $1$ sont $\\omega$ et $\\bar\\omega=\\omega^{n-1}$, $g\\in\\{\\mathrm{id},s_0\\}$, et $f=r_k\\circ g\\in\\{r_k,s_k\\}$.\n\n**Action.** $f\\cdot A=f(A)$ est une action (l'identité fixe tout, $(f\\circ g)(A)=f(g(A))$). Elle est transitive car $r_k(1)=\\omega^k$. Le stabilisateur de $1$ est $\\{r_k,s_k : \\omega^k=1\\}=\\{\\mathrm{id},s_0\\}$, et $2n=|D_n\\cdot1|\\times|\\{\\mathrm{id},s_0\\}|=n\\times2$. Si $f$ fixe tous les sommets, $f\\in\\{\\mathrm{id},s_0\\}$, et $s_0(\\omega)=\\bar\\omega\\neq\\omega$ : $f=\\mathrm{id}$. Le morphisme $D_n\\to\\mathfrak{S}(S)$ est donc injectif, et son image a $2n$ éléments ; pour $n=3$, $2n=6=3!$.",
+      "exemple": "Pour le carré ($n=4$, $\\omega=i$), $D_4$ a $8$ éléments : $\\mathrm{id}$, les rotations $z\\mapsto iz$, $z\\mapsto-z$, $z\\mapsto-iz$, et les réflexions $z\\mapsto\\bar z$, $z\\mapsto i\\bar z$, $z\\mapsto-\\bar z$, $z\\mapsto-i\\bar z$ (d'axes les deux diagonales et les deux médianes). En numérotant les sommets $1,i,-1,-i$ par $1,2,3,4$, $D_4$ s'identifie au sous-groupe de $\\mathfrak{S}_4$ engendré par $(1\\ 2\\ 3\\ 4)$ et $(2\\ 4)$ ; seules $8$ des $24$ permutations des sommets sont réalisées par des isométries.",
+      "contre_exemple": "- **Les isométries directes ne suffisent pas** : les $r_k$ ne forment que $n$ éléments ; le stabilisateur d'un sommet y est trivial.\n- **L'action n'est pas libre** : $s_0:z\\mapsto\\bar z$ fixe le sommet $1$ sans être l'identité.\n- **Des points quelconques du cercle** : pour $S=\\{1,i,-1\\}$, une isométrie qui conserve $S$ conserve la seule paire de points à distance $2$, $\\{1,-1\\}$, donc fixe $i$ ; elle fixe aussi le centre $\\frac i3$ du triangle, donc vaut $\\mathrm{id}$ ou $z\\mapsto-\\bar z$ : $2$ éléments, et non $6$.",
+      "affirmations": [
+        {
+          "texte": "Pour $n\\ge3$, toute permutation des $n$ sommets d'un polygone régulier est réalisée par une isométrie du plan.",
+          "vrai": false,
+          "contre_exemple": "Pour le carré, $|D_4|=8<24=|\\mathfrak{S}_4|$ : la transposition qui échange deux sommets voisins et fixe les deux autres n'est réalisée par aucune isométrie."
+        },
+        {
+          "texte": "Les isométries du plan qui conservent un triangle équilatéral réalisent les $6$ permutations de ses sommets.",
+          "vrai": true,
+          "justification": "$D_3$ a $6$ éléments et opère fidèlement sur les $3$ sommets, donc s'identifie à $\\mathfrak{S}_3$."
+        },
+        {
+          "texte": "Dans $D_n$, la composée de deux réflexions est une rotation.",
+          "vrai": true,
+          "justification": "$s_k\\circ s_j=r_{k-j}$."
+        },
+        {
+          "texte": "Le stabilisateur d'un sommet du polygone régulier dans $D_n$ est réduit à l'identité.",
+          "vrai": false,
+          "contre_exemple": "La réflexion $z\\mapsto\\bar z$ fixe le sommet $1$."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-actions-orbites",
+        "geo-l1-complexes-similitudes",
+        "gr-l2-symetrique-cycles"
+      ]
+    }
+  ]
+}
