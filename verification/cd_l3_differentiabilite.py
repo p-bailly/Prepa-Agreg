@@ -8,7 +8,7 @@ tirages aléatoires pour les majorations. Lancer : python3 verification/cd_l3_di
 
 import random
 
-from sympy import (Abs, Matrix, Rational, S, atan, cos, diff, exp, expand, factor, limit, ln, nsimplify, oo, pi, simplify,
+from sympy import (Abs, lambdify, Matrix, Rational, S, atan, cos, diff, exp, expand, factor, limit, ln, nsimplify, oo, pi, simplify,
                    sin, solve, sqrt, symbols, N, Function, eye, zeros)
 
 random.seed(2)
@@ -369,22 +369,21 @@ for kv in [1, 2]:
 assert simplify((x**3 * y**2 / (x**2 + y**2) ** 2).subs({x: t, y: t}) / t) == Rational(1, 4)  # f_3 non différentiable
 faux(4, 3, 2, 5)
 # Majorations utilisées (tirages) : |∂f_k| <= C r^(degré) pour les trois familles.
+majorations = []
+for kv in [3, 4]:
+    ex_ = x**kv * y / (x**2 + y**2)
+    majorations += [(diff(ex_, x), (kv + 2), kv - 2), (diff(ex_, y), 1, kv - 2)]
+e1_ = x * y**5 / (x**4 + y**4)
+majorations += [(diff(e1_, x), 16, 1), (diff(e1_, y), 4 * 5 + 16, 1)]
+e2_ = x**4 * y**2 / (x**2 + y**2) ** 2
+majorations += [(diff(e2_, x), 4 + 4, 1), (diff(e2_, y), 2, 1)]
+majorations = [(lambdify((x, y), e), C, d) for e, C, d in majorations]
 for a1_, a2_ in tirages(1500):
     if (a1_, a2_) == (0, 0):
         continue
     rr = (a1_**2 + a2_**2) ** 0.5
-    for kv in [3, 4]:
-        ex_ = x**kv * y / (x**2 + y**2)
-        assert abs(float(diff(ex_, x).subs({x: a1_, y: a2_}))) <= (kv + 2) * rr ** (kv - 2) + 1e-12
-        assert abs(float(diff(ex_, y).subs({x: a1_, y: a2_}))) <= rr ** (kv - 2) + 1e-12
-    for kv in [5]:
-        e1 = x * y**kv / (x**4 + y**4)
-        assert abs(float(diff(e1, x).subs({x: a1_, y: a2_}))) <= 16 * rr ** (kv - 4) + 1e-12
-        assert abs(float(diff(e1, y).subs({x: a1_, y: a2_}))) <= (4 * kv + 16) * rr ** (kv - 4) + 1e-12
-    for kv in [4]:
-        e2 = x**kv * y**2 / (x**2 + y**2) ** 2
-        assert abs(float(diff(e2, x).subs({x: a1_, y: a2_}))) <= (kv + 4) * rr ** (kv - 3) + 1e-12
-        assert abs(float(diff(e2, y).subs({x: a1_, y: a2_}))) <= 2 * rr ** (kv - 3) + 1e-12
+    for fn, C, d in majorations:
+        assert abs(fn(a1_, a2_)) <= C * rr**d + 1e-12
     assert abs(a1_ * a2_**4) / (a1_**4 + a2_**4) <= 2 * rr + 1e-12  # |f_4| <= 2r (v1)
 
 # cd-l3-differentiabilite-classe-c1-ex4 : borne supérieure 9/8 (calculée ci-dessus), leurres faux.
@@ -543,11 +542,11 @@ assert 4 + 9 == 13 and 9 + 1 == 10 and 2 <= N(pi)  # bornes de la question 2
 
 # cd-l3-differentiabilite-accroissements-finis-ex3 (et v1, v2) : normes subordonnées à ||.||_inf (sommes des lignes).
 def sup_lignes(Fv, pts):
-    Jf = Fv.jacobian([x, y])
+    Jf = lambdify((x, y), Fv.jacobian([x, y]))
     best = 0
     for p in pts:
-        Jp = Jf.subs({x: p[0], y: p[1]})
-        best = max(best, max(float(sum(abs(Jp[i, j]) for j in range(2))) for i in range(2)))
+        Jp = Jf(*p)
+        best = max(best, max(abs(Jp[i][0]) + abs(Jp[i][1]) for i in range(2)))
     return best
 grille = [(i * 0.13, j * 0.17) for i in range(-25, 26) for j in range(-25, 26)] + [(0, 0), (0, float(pi) / 2)]
 for Fv, rep, leurres in [
@@ -622,12 +621,11 @@ faux(2, -1, 0, 1)
 
 # cd-l3-differentiabilite-schwarz-ex3 (et v1, v2) : valeur de a et potentiel.
 for P_, Q_, rep, pot, leurres in [
-    (2 * x * y + al * y, x**2 + al * x, 1, x**2 * y + x * y, (0, 2, -1)),
+    (2 * x * y + y, x**2 + al * x, 1, x**2 * y + x * y, (0, 2, -1)),
     (3 * x**2 * y**2 + al * y, 2 * x**3 * y + 2 * x, 2, x**3 * y**2 + 2 * x * y, (0, 1, 3)),
     (al * y**2 + 2 * x, 6 * x * y, 3, 3 * x * y**2 + x**2, (6, 1, 2)),
 ]:
-    assert solve(expand(diff(P_, y) - diff(Q_, x)), al) == [rep] or \
-        solve(expand(diff(P_, y) - diff(Q_, x)).subs({x: 1, y: 1}), al) == [rep]
+    assert solve(expand(diff(P_, y) - diff(Q_, x)).subs({x: 1, y: 1}), al) == [rep]
     assert simplify(diff(P_, y) - diff(Q_, x)).subs(al, rep) == 0
     assert grad(pot) == [P_.subs(al, rep), Q_.subs(al, rep)]
     faux(rep, *leurres)

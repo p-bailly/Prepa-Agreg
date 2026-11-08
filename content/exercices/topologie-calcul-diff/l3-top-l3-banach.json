@@ -62,7 +62,7 @@
       "id": "top-l3-banach-banach-ex2",
       "carte": "top-l3-banach-banach",
       "difficulte": 2,
-      "titre": "Les polynômes ne sont pas complets pour la norme des coefficients",
+      "titre": "Polynômes et norme des coefficients",
       "enonce": "Sur $\\mathbb{R}[X]$, on pose $\\|P\\|=\\max_k|a_k|$ si $P=\\sum_ka_kX^k$.\n\n**1.** Vérifier que c'est une norme.\n\n**2.** Soit $P_n=\\sum_{k=0}^n\\frac{X^k}{(k+1)^2}$. Calculer $\\|P_q-P_p\\|$ pour $q>p$ et en déduire que $(P_n)$ est de Cauchy.\n\n**3.** La suite $(P_n)$ converge-t-elle dans $(\\mathbb{R}[X],\\|\\cdot\\|)$ ? Conclure.",
       "duree_min": 10,
       "indices": [
@@ -78,7 +78,43 @@
         ],
         "bonne": 0
       },
-      "correction": "**1.** Le maximum existe car un polynôme n'a qu'un nombre fini de coefficients non nuls. $\\|P\\|=0$ impose que tous les coefficients soient nuls ; $\\|\\lambda P\\|=|\\lambda|\\,\\|P\\|$ ; et $|a_k+b_k|\\le|a_k|+|b_k|\\le\\|P\\|+\\|Q\\|$ pour tout $k$ donne $\\|P+Q\\|\\le\\|P\\|+\\|Q\\|$.\n\n**2.** Pour $q>p$, $P_q-P_p=\\sum_{k=p+1}^q\\frac{X^k}{(k+1)^2}$, dont le plus grand coefficient est celui de $X^{p+1}$ : $\\|P_q-P_p\\|=\\frac1{(p+2)^2}$, qui tend vers $0$ quand $p\\to+\\infty$. La suite est donc de Cauchy. On peut aussi le voir comme les sommes partielles de la série $\\sum\\frac{X^k}{(k+1)^2}$, absolument convergente puisque $\\sum\\left\\|\\frac{X^k}{(k+1)^2}\\right\\|=\\sum\\frac1{(k+1)^2}<+\\infty$.\n\n**3.** Supposons que $P_n\\to P$, avec $P$ de degré au plus $d$. Pour $n\\ge d+1$, le coefficient de $X^{d+1}$ dans $P_n-P$ est $\\frac1{(d+2)^2}$, donc $\\|P_n-P\\|\\ge\\frac1{(d+2)^2}$, ce qui contredit $\\|P_n-P\\|\\to0$. La suite ne converge pas.\n\nConclusion : $(\\mathbb{R}[X],\\|\\cdot\\|)$ n'est pas complet ; on y trouve une série absolument convergente qui diverge. La « limite » naturelle $\\sum\\frac{X^k}{(k+1)^2}$ est une série formelle, pas un polynôme."
+      "correction": "**1.** Le maximum existe car un polynôme n'a qu'un nombre fini de coefficients non nuls. $\\|P\\|=0$ impose que tous les coefficients soient nuls ; $\\|\\lambda P\\|=|\\lambda|\\,\\|P\\|$ ; et $|a_k+b_k|\\le|a_k|+|b_k|\\le\\|P\\|+\\|Q\\|$ pour tout $k$ donne $\\|P+Q\\|\\le\\|P\\|+\\|Q\\|$.\n\n**2.** Pour $q>p$, $P_q-P_p=\\sum_{k=p+1}^q\\frac{X^k}{(k+1)^2}$, dont le plus grand coefficient est celui de $X^{p+1}$ : $\\|P_q-P_p\\|=\\frac1{(p+2)^2}$, qui tend vers $0$ quand $p\\to+\\infty$. La suite est donc de Cauchy. On peut aussi le voir comme les sommes partielles de la série $\\sum\\frac{X^k}{(k+1)^2}$, absolument convergente puisque $\\sum\\left\\|\\frac{X^k}{(k+1)^2}\\right\\|=\\sum\\frac1{(k+1)^2}<+\\infty$.\n\n**3.** Supposons que $P_n\\to P$, avec $P$ de degré au plus $d$. Pour $n\\ge d+1$, le coefficient de $X^{d+1}$ dans $P_n-P$ est $\\frac1{(d+2)^2}$, donc $\\|P_n-P\\|\\ge\\frac1{(d+2)^2}$, ce qui contredit $\\|P_n-P\\|\\to0$. La suite ne converge pas.\n\nConclusion : $(\\mathbb{R}[X],\\|\\cdot\\|)$ n'est pas complet ; on y trouve une série absolument convergente qui diverge. La « limite » naturelle $\\sum\\frac{X^k}{(k+1)^2}$ est une série formelle, pas un polynôme.",
+      "variantes": [
+        {
+          "enonce": "Sur $\\mathbb{R}[X]$, on pose $\\|P\\|=\\max_k|a_k|$ si $P=\\sum_ka_kX^k$.\n\n**1.** Vérifier que c'est une norme.\n\n**2.** Soit $P_n=\\sum_{k=0}^n\\frac{X^k}{2^k}$. Calculer $\\|P_q-P_p\\|$ pour $q>p$ et en déduire que $(P_n)$ est de Cauchy.\n\n**3.** La suite $(P_n)$ converge-t-elle dans $(\\mathbb{R}[X],\\|\\cdot\\|)$ ? Conclure.",
+          "reponse_finale": {
+            "question": "La suite $(P_n)$ converge-t-elle dans $(\\mathbb{R}[X],\\|\\cdot\\|)$ ?",
+            "propositions": [
+              "Non : elle est de Cauchy, mais une limite $P$ de degré au plus $d$ donnerait $\\|P_n-P\\|\\ge\\frac1{2^{d+1}}$ pour $n\\ge d+1$",
+              "Oui, vers la série entière $\\sum_{k\\ge0}\\frac{X^k}{2^k}$",
+              "Non, car elle n'est pas de Cauchy",
+              "Oui, car la série $\\sum\\frac1{2^k}$ converge"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Le maximum existe (nombre fini de coefficients non nuls) ; $\\|P\\|=0$ impose $P=0$, $\\|\\lambda P\\|=|\\lambda|\\,\\|P\\|$, et $|a_k+b_k|\\le\\|P\\|+\\|Q\\|$ pour tout $k$ donne l'inégalité triangulaire.\n\n**2.** Pour $q>p$, le plus grand coefficient de $P_q-P_p=\\sum_{k=p+1}^q\\frac{X^k}{2^k}$ est celui de $X^{p+1}$ : $\\|P_q-P_p\\|=\\frac1{2^{p+1}}$, qui tend vers $0$. La suite est de Cauchy.\n\n**3.** Si $P_n\\to P$ avec $P$ de degré au plus $d$, pour $n\\ge d+1$ le coefficient de $X^{d+1}$ dans $P_n-P$ vaut $\\frac1{2^{d+1}}$, donc $\\|P_n-P\\|\\ge\\frac1{2^{d+1}}$ : contradiction. La suite ne converge pas, et $(\\mathbb{R}[X],\\|\\cdot\\|)$ n'est pas complet.",
+          "indices": [
+            "Pour la question 3, raisonner par l'absurde avec une limite $P$ de degré au plus $d$ et regarder le coefficient de $X^{d+1}$ dans $P_n-P$, où $P_n=\\sum_{k\\le n}\\frac{X^k}{2^k}$."
+          ]
+        },
+        {
+          "enonce": "Sur $\\mathbb{R}[X]$, on pose $\\|P\\|=\\max_k|a_k|$ si $P=\\sum_ka_kX^k$.\n\n**1.** Vérifier que c'est une norme.\n\n**2.** Soit $P_n=\\sum_{k=0}^n\\frac{X^k}{k!}$. Calculer $\\|P_q-P_p\\|$ pour $q>p$ et en déduire que $(P_n)$ est de Cauchy.\n\n**3.** La suite $(P_n)$ converge-t-elle dans $(\\mathbb{R}[X],\\|\\cdot\\|)$ ? Conclure.",
+          "reponse_finale": {
+            "question": "La suite $(P_n)$ converge-t-elle dans $(\\mathbb{R}[X],\\|\\cdot\\|)$ ?",
+            "propositions": [
+              "Non : elle est de Cauchy, mais une limite $P$ de degré au plus $d$ donnerait $\\|P_n-P\\|\\ge\\frac1{(d+1)!}$ pour $n\\ge d+1$",
+              "Oui, vers la série entière $\\sum_{k\\ge0}\\frac{X^k}{k!}$",
+              "Non, car elle n'est pas de Cauchy",
+              "Oui, car la série $\\sum\\frac1{k!}$ converge"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Le maximum existe (nombre fini de coefficients non nuls) ; $\\|P\\|=0$ impose $P=0$, $\\|\\lambda P\\|=|\\lambda|\\,\\|P\\|$, et $|a_k+b_k|\\le\\|P\\|+\\|Q\\|$ pour tout $k$ donne l'inégalité triangulaire.\n\n**2.** Pour $q>p$, le plus grand coefficient de $P_q-P_p=\\sum_{k=p+1}^q\\frac{X^k}{k!}$ est celui de $X^{p+1}$ : $\\|P_q-P_p\\|=\\frac1{(p+1)!}$, qui tend vers $0$. La suite est de Cauchy.\n\n**3.** Si $P_n\\to P$ avec $P$ de degré au plus $d$, pour $n\\ge d+1$ le coefficient de $X^{d+1}$ dans $P_n-P$ vaut $\\frac1{(d+1)!}$, donc $\\|P_n-P\\|\\ge\\frac1{(d+1)!}$ : contradiction. La suite ne converge pas, et $(\\mathbb{R}[X],\\|\\cdot\\|)$ n'est pas complet.",
+          "indices": [
+            "Pour la question 3, raisonner par l'absurde avec une limite $P$ de degré au plus $d$ et regarder le coefficient de $X^{d+1}$ dans $P_n-P$, où $P_n=\\sum_{k\\le n}\\frac{X^k}{k!}$."
+          ]
+        }
+      ]
     },
     {
       "id": "top-l3-banach-banach-ex3",
@@ -387,7 +423,7 @@
         ],
         "bonne": 0
       },
-      "correction": "**1.** Une fonction en escalier ne prend qu'un nombre fini de valeurs : elle est bornée, et $\\mathcal{R}\\subset\\mathcal{B}([a,b],F)$ car une limite uniforme de fonctions bornées est bornée. Si $\\varphi$ et $\\psi$ sont en escalier, une subdivision plus fine que les deux montre que $\\varphi+\\lambda\\psi$ l'est ; en passant aux limites uniformes, $\\mathcal{R}$ est un sous-espace vectoriel. Soit $f_n\\in\\mathcal{R}$ tendant uniformément vers $f$ ; pour chaque $n$, on choisit $\\varphi_n$ en escalier avec $\\|f_n-\\varphi_n\\|_\\infty\\le\\frac1n$ ; alors $\\|f-\\varphi_n\\|_\\infty\\le\\|f-f_n\\|_\\infty+\\frac1n\\to0$ et $f\\in\\mathcal{R}$. Fermé dans l'espace de Banach $\\mathcal{B}([a,b],F)$, $\\mathcal{R}$ est complet.\n\n**2.** Soit $\\varepsilon>0$ et $\\varphi$ en escalier telle que $\\|f-\\varphi\\|_\\infty\\le\\varepsilon$. Le point $x$ appartient à un intervalle $\\left[s_{i-1},s_i\\right[$ de la subdivision de $\\varphi$, et $\\varphi$ est constante sur $\\left]x,x+\\delta\\right[$ avec $\\delta=s_i-x>0$. Pour $k,l$ assez grands, $t_k$ et $t_l$ sont dans cet intervalle, et $\\|f(t_k)-f(t_l)\\|\\le\\|f(t_k)-\\varphi(t_k)\\|+\\|\\varphi(t_l)-f(t_l)\\|\\le2\\varepsilon$ : $(f(t_k))$ est de Cauchy, donc converge dans $F$, qui est complet. Si $(t_k)$ et $(t'_k)$ sont deux telles suites, la suite $t_0,t'_0,t_1,t'_1,\\dots$ en est une aussi ; son image converge, donc ses deux sous-suites ont la même limite $\\ell$. Ainsi $f(t)\\to\\ell$ quand $t\\to x^+$, par la caractérisation séquentielle de la limite. (C'est ici que la complétude de $F$ sert.)\n\n**3.** La fonction $x\\mapsto\\sin\\frac1x$ n'a pas de limite à droite en $0$ : $\\sin\\frac1{t_k}=1$ pour $t_k=\\frac1{2k\\pi+\\pi/2}$ et $\\sin\\frac1{t'_k}=0$ pour $t'_k=\\frac1{2k\\pi}$, deux suites qui tendent vers $0^+$. Par la question 2, elle n'est pas réglée. Les trois autres le sont : la fonction indicatrice de $\\left[\\frac12,1\\right]$ est en escalier, et $x\\mapsto x\\sin\\frac1x$ (prolongée par $0$) et $\\sqrt{\\cdot}$ sont continues sur $[0,1]$, donc uniformément continues (Heine) ; avec la subdivision régulière de pas $\\frac1n$ et $\\varphi_n$ égale à $f$ en l'extrémité gauche de chaque intervalle, $\\|f-\\varphi_n\\|_\\infty$ est majoré par le module de continuité uniforme de $f$ au pas $\\frac1n$, qui tend vers $0$."
+      "correction": "**1.** Une fonction en escalier ne prend qu'un nombre fini de valeurs : elle est bornée, et $\\mathcal{R}\\subset\\mathcal{B}([a,b],F)$ car une limite uniforme de fonctions bornées est bornée. Si $\\varphi$ et $\\psi$ sont en escalier, une subdivision plus fine que les deux montre que $\\varphi+\\lambda\\psi$ l'est ; en passant aux limites uniformes, $\\mathcal{R}$ est un sous-espace vectoriel. Soit $f_n\\in\\mathcal{R}$ tendant uniformément vers $f$ ; pour chaque $n$, on choisit $\\varphi_n$ en escalier avec $\\|f_n-\\varphi_n\\|_\\infty\\le\\frac1n$ ; alors $\\|f-\\varphi_n\\|_\\infty\\le\\|f-f_n\\|_\\infty+\\frac1n\\to0$ et $f\\in\\mathcal{R}$. Fermé dans l'espace de Banach $\\mathcal{B}([a,b],F)$, $\\mathcal{R}$ est complet.\n\n**2.** Soit $\\varepsilon>0$ et $\\varphi$ en escalier telle que $\\|f-\\varphi\\|_\\infty\\le\\varepsilon$. Le point $x$ appartient à un intervalle $\\left[s_{i-1},s_i\\right[$ de la subdivision de $\\varphi$, et $\\varphi$ est constante sur $\\left]x,x+\\delta\\right[$ avec $\\delta=s_i-x>0$. Pour $k,l$ assez grands, $t_k$ et $t_l$ sont dans cet intervalle, et $\\|f(t_k)-f(t_l)\\|\\le\\|f(t_k)-\\varphi(t_k)\\|+\\|\\varphi(t_l)-f(t_l)\\|\\le2\\varepsilon$ : $(f(t_k))$ est de Cauchy, donc converge dans $F$, qui est complet. Si $(t_k)$ et $(t'_k)$ sont deux telles suites, la suite $t_0,t'_0,t_1,t'_1,\\dots$ en est une aussi ; son image converge, donc ses deux sous-suites ont la même limite $\\ell$. Ainsi $f(t)\\to\\ell$ quand $t\\to x^+$, par la caractérisation séquentielle de la limite. (C'est ici que la complétude de $F$ sert.)\n\n**3.** La fonction $x\\mapsto\\sin\\frac1x$ n'a pas de limite à droite en $0$ : $\\sin\\frac1{t_k}=1$ pour $t_k=\\frac1{2k\\pi+\\pi/2}$ et $\\sin\\frac1{t'_k}=0$ pour $t'_k=\\frac1{2k\\pi}$, deux suites qui tendent vers $0^+$. Par la question 2, elle n'est pas réglée. Les trois autres le sont : la fonction indicatrice de $\\left[\\frac12,1\\right]$ est en escalier, et $x\\mapsto x\\sin\\frac1x$ (prolongée par $0$) et $\\sqrt{\\cdot}$ sont continues sur $[0,1]$, donc uniformément continues (Heine) ; avec la subdivision régulière de pas $\\frac1n$ et $\\varphi_n$ égale à $f$ en l'extrémité gauche de chaque intervalle (et à $f(1)$ en $1$), $\\|f-\\varphi_n\\|_\\infty$ est majoré par le module de continuité uniforme de $f$ au pas $\\frac1n$, qui tend vers $0$."
     },
     {
       "id": "top-l3-banach-uniforme-ex5",
@@ -533,7 +569,7 @@
       "id": "top-l3-banach-exponentielle-ex3",
       "carte": "top-l3-banach-exponentielle",
       "difficulte": 3,
-      "titre": "Exponentielle d'une somme de deux matrices qui ne commutent pas",
+      "titre": "Exponentielle d'une somme de deux matrices nilpotentes",
       "enonce": "Soient $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$.\n\n**1.** Calculer $e^A$, $e^B$, $e^Ae^B$ et $e^Be^A$.\n\n**2.** Calculer $(A+B)^2$, puis $e^{A+B}$.\n\n**3.** Calculer $\\mathrm{tr}(e^Ae^B)-\\mathrm{tr}(e^{A+B})$. Que retenir ?",
       "duree_min": 15,
       "indices": [
@@ -758,7 +794,7 @@
       "id": "top-l3-banach-bessel-ex3",
       "carte": "top-l3-banach-bessel",
       "difficulte": 3,
-      "titre": "Égalité de Parseval pour une famille de sinus",
+      "titre": "Coefficients sur une famille de sinus",
       "enonce": "Dans $E=\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\langle f,g\\rangle=\\int_0^1f(t)g(t)\\,\\mathrm{d}t$, on pose $e_n(t)=\\sqrt2\\sin(n\\pi t)$ pour $n\\ge1$.\n\n**1.** Vérifier que $(e_n)_{n\\ge1}$ est orthonormale.\n\n**2.** Pour $f(t)=1$, calculer $\\langle e_n,f\\rangle$, puis $\\sum_{n\\ge1}\\langle e_n,f\\rangle^2$, à l'aide de $\\sum_{k\\ge0}\\frac1{(2k+1)^2}=\\frac{\\pi^2}8$.\n\n**3.** En déduire que $f$ est limite, pour la norme $\\|\\cdot\\|_2$, de combinaisons linéaires des $e_n$, alors qu'elle n'est limite uniforme d'aucune suite de telles combinaisons.",
       "duree_min": 20,
       "indices": [

@@ -70,16 +70,24 @@ for r_, S_expr, sup_attendu, somme_attendue, leurres in [
     for l in leurres:
         assert l != (sup_attendu, somme_attendue)
 # vérification des sommes géométriques en un point
-assert sp.simplify(sp.summation((-t / 3) ** k, (k, 0, sp.oo)).rewrite(sp.Piecewise).args[0][0] - 3 / (3 + t)) == 0
-assert sp.simplify(sp.summation((-t / 2) ** k, (k, 0, sp.oo)).rewrite(sp.Piecewise).args[0][0] - 2 / (2 + t)) == 0
-u_ = sp.symbols("u")
-assert sp.simplify(1 / (1 - (2 * t - 1) / 3) - 3 / (4 - 2 * t)) == 0
+def somme_num(terme, forme, points):
+    """Compare numériquement sum_{k>=0} terme(k, x) à la forme close en quelques points."""
+    for xv_ in points:
+        assert abs(mp.nsum(lambda j: terme(j, mp.mpf(xv_)), [0, mp.inf]) - forme(mp.mpf(xv_))) < mp.mpf(10) ** -20
 
-# banach-ex2 : ||P_q - P_p|| = 1/(p+2)^2 (plus grand coefficient de la différence)
-for p in range(8):
-    for q in range(p + 1, p + 6):
-        diff = [sp.Rational(1, (j + 1) ** 2) for j in range(p + 1, q + 1)]
-        assert max(diff) == sp.Rational(1, (p + 2) ** 2)
+
+somme_num(lambda j, y: (-y / 3) ** j, lambda y: 3 / (3 + y), [0, 0.3, 0.7, 1])
+somme_num(lambda j, y: (-y / 2) ** j, lambda y: 2 / (2 + y), [0, 0.3, 0.7, 1])
+somme_num(lambda j, y: ((2 * y - 1) / 3) ** j, lambda y: 3 / (4 - 2 * y), [0, 0.3, 0.7, 1])
+
+# banach-ex2 (v1, v2) : ||P_q - P_p|| = coefficient de X^(p+1) (plus grand coefficient de la différence)
+for coef, dist in [(lambda j: sp.Rational(1, (j + 1) ** 2), lambda p: sp.Rational(1, (p + 2) ** 2)),
+                   (lambda j: sp.Rational(1, 2 ** j), lambda p: sp.Rational(1, 2 ** (p + 1))),
+                   (lambda j: 1 / sp.factorial(j), lambda p: 1 / sp.factorial(p + 1))]:
+    for p in range(8):
+        for q in range(p + 1, p + 6):
+            assert max(coef(j) for j in range(p + 1, q + 1)) == dist(p)
+    assert all(coef(j) > 0 for j in range(20))  # le coefficient de X^(d+1) d'une limite ne peut pas s'annuler
 
 # banach-ex3 (v1, v2) : int_0^{1/n^a} (t^{-1/a'} - n) dt
 for alpha, borne, attendu, leurres in [
@@ -111,7 +119,7 @@ for nn in (2, 5, 50):
 # Carte top-l3-banach-uniforme
 # ===========================================================================
 # contre-exemple : sum x^n (1 - x) = 1 sur [0,1[ ; ||f_n|| = n^n/(n+1)^(n+1) >= 1/(e(n+1))
-assert sp.simplify(sp.summation(x ** k * (1 - x), (k, 0, sp.oo)).rewrite(sp.Piecewise).args[0][0]) == 1
+somme_num(lambda j, y: y ** j * (1 - y), lambda y: 1, [0, 0.2, 0.5, 0.9])
 for m in range(1, 60):
     fx = x ** m * (1 - x)
     xm = sp.solve(sp.diff(fx, x), x)
@@ -144,8 +152,7 @@ for a, attendu, leurres in [
     assert sp.simplify(f.subs(x, a / n) - attendu) == 0
     differents(attendu, leurres, valeurs=range(1, 20))
     # somme pour x > 0 : x^a / (e^x - 1)
-    somme = sp.summation(x ** a * sp.exp(-x) ** k, (k, 1, sp.oo)).rewrite(sp.Piecewise).args[0][0]
-    assert sp.simplify(somme - x ** a / (sp.exp(x) - 1)) == 0
+    somme_num(lambda j, y, a=a: y ** a * mp.e ** (-(j + 1) * y), lambda y, a=a: y ** a / (mp.e ** y - 1), [0.1, 1, 3])
 assert sp.limit(x ** 2 / (sp.exp(x) - 1), x, 0) == 0 and sp.limit(x / (sp.exp(x) - 1), x, 0) == 1
 assert sp.summation(4 / (sp.E ** 2 * n ** 2), (n, 1, sp.oo)).is_finite
 assert sp.summation(1 / (sp.E * n), (n, 1, sp.oo)) == sp.oo

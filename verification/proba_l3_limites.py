@@ -20,6 +20,12 @@ k, n, N, x = sp.symbols("k n N x", positive=True, integer=False)
 ki, ni, Ni = sp.symbols("k_i n_i N_i", positive=True, integer=True)
 
 
+def mpf_(r):
+    """Convertit un entier ou une Fraction en mpf."""
+    r = F(r)
+    return mp.mpf(r.numerator) / r.denominator
+
+
 def proche(a, b, tol=mp.mpf("1e-12")):
     return abs(mp.mpf(a) - mp.mpf(b)) < tol
 
@@ -418,7 +424,8 @@ for m in range(1, 40):
     ps = [F(m - i + 1, m) for i in range(1, m + 1)]
     assert sum(1 / p for p in ps) == m * sum(F(1, j) for j in range(1, m + 1))
     V = sum((1 - p) / p**2 for p in ps)
-    assert V <= m * m * sum(F(1, j * j) for j in range(1, m + 1)) <= m * m * mp.pi**2 / 6
+    borne = m * m * sum(F(1, j * j) for j in range(1, m + 1))
+    assert V <= borne and mp.mpf(borne.numerator) / borne.denominator <= m * m * mp.pi**2 / 6
 
 # =====================================================================================================
 # Exercices de la carte borel-cantelli
@@ -482,13 +489,13 @@ for q, inv, bonne, leurres in [(F(1, 2), 2, 1 / mp.log(2), [mp.log(2), 1, 2]),
                                (F(2, 3), F(3, 2), 1 / mp.log(1.5), [mp.log(1.5), 1 / mp.log(3), 1.5])]:
     for j in range(0, 200):
         xx = mp.mpf(j) / 7
-        val = mp.mpf(q) ** int(mp.floor(xx))
-        assert mp.mpf(q) ** xx <= val + mp.mpf("1e-25") and val <= mp.mpf(inv) * mp.mpf(q) ** xx + mp.mpf("1e-25")
+        val = mpf_(q) ** int(mp.floor(xx))
+        assert mpf_(q) ** xx <= val + mp.mpf("1e-25") and val <= mpf_(inv) * mpf_(q) ** xx + mp.mpf("1e-25")
     for c in [0.3, 1, 2.5]:
         for nn in [2, 10, 1000]:
-            assert proche(mp.mpf(q) ** (c * mp.log(nn)), mp.mpf(nn) ** (-c * mp.log(mp.mpf(inv))))
+            assert proche(mpf_(q) ** (c * mp.log(nn)), mp.mpf(nn) ** (-c * mp.log(mpf_(inv))))
     assert all(abs(bonne - l) > mp.mpf("0.05") for l in leurres)
-    assert proche(1 / mp.log(1 / mp.mpf(q)), bonne)
+    assert proche(1 / mp.log(1 / mpf_(q)), bonne)
 
 # =====================================================================================================
 # Exercices de la carte loi-forte
@@ -608,7 +615,7 @@ assert abs(Phi(1) - mp.mpf(1) / 2 - Phi(1)) > 0.4 and abs((1 - Phi(2)) - Phi(2))
 assert abs(mp.e**-2 - mp.mpf("0.1353")) < 0.00005 and abs(mp.mpf("0.998") ** 1000 - mp.mpf("0.1351")) < 0.00005
 ap1 = 3 * mp.e**-2
 ex1 = mp.mpf("0.996") ** 500 + 500 * mp.mpf("0.004") * mp.mpf("0.996") ** 499
-assert abs(ap1 - mp.mpf("0.4060")) < 0.00005 and abs(ex1 - mp.mpf("0.4057")) < 0.00005
+assert abs(ap1 - mp.mpf("0.4060")) < 0.00005 and abs(ex1 - mp.mpf("0.4055")) < 0.00005
 ap2 = mp.mpf(9) / 2 * mp.e**-3
 ex2 = binom_pmf(2000, mp.mpf("0.0015"), 2)
 assert abs(ap2 - mp.mpf("0.2240")) < 0.00005 and abs(ex2 - mp.mpf("0.2241")) < 0.00005
