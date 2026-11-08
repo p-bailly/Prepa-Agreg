@@ -7,8 +7,6 @@ Descartes sur le polynôme caractéristique, exacte puisque ses racines sont ré
 Lancer : python3 verification/al_l3_formes_quadratiques.py (doit finir sans erreur).
 """
 
-from itertools import product
-
 from sympy import I, Matrix, Poly, Rational, conjugate, diag, expand, eye, factor, simplify, sqrt, symbols, zeros
 
 R = Rational
@@ -78,8 +76,12 @@ assert qq(2) - 1 - 1 == 2 and R(qq(2) - qq(0), 2) == 2 and R(qq(1) + qq(1), 4) =
 # Trou 3 : x1^2 - x2^2 non dégénérée, isotrope (1,1), trace nulle ; 2x1x2 non dégénérée de diagonale nulle.
 assert diag(1, -1).det() != 0 and (1 - 1) == 0 and diag(1, -1).trace() == 0
 assert Matrix([[0, 1], [1, 0]]).det() != 0
-# Contre-exemple Z/2Z : b(x,y) = x1y2 + x2y1 symétrique, b(x,x) = 2x1x2 = 0 mod 2, non nulle.
-assert all((2 * u * v) % 2 == 0 for u, v in product(range(2), repeat=2)) and (1 * 1 + 0 * 0) % 2 == 1
+# Piège 3 et contre-exemple « lignes au lieu de colonnes » (relecture) : q = x1^2 sur R^2, B' = ((1,1),(0,1)).
+# Vraie matrice de passage P (colonnes) : tPMP = diag(1,0) = (b(e'_i, e'_j)) ; avec la transposée (lignes) : [[1,1],[1,1]].
+Pc = Matrix([[1, 0], [1, 1]])
+assert Pc.T * diag(1, 0) * Pc == diag(1, 0)
+assert Matrix([[1, 1], [0, 1]]).T * diag(1, 0) * Matrix([[1, 1], [0, 1]]) == Matrix([[1, 1], [1, 1]])
+assert (Matrix([1, 1]).T * diag(1, 0) * Matrix([0, 1]))[0] == 0 and (Matrix([1, 1]).T * diag(1, 0) * Matrix([1, 1]))[0] == 1
 # Affirmation 5 : forme positive, cône isotrope = noyau (exemple de bilineaires-ex2 : (x+y+z)^2 + (y+2z)^2).
 
 # =========================================================================================================
@@ -303,6 +305,22 @@ assert signature(Mb_.subs(a, R(-1, 2))) == (2, 0)
 assert signature(Mc.subs(a, R(3, 2))) == (2, 1)        # √2 < 3/2 < 2 : leurre |a| < 2 réfuté
 assert signature(Mc.subs(a, R(13, 10))) == (3, 0)      # 1 < 1,3 < √2 : leurre |a| < 1 réfuté
 assert signature(Mc.subs(a, sqrt(2))) == (2, 0)        # leurre |a| <= √2 réfuté
+# Relecture : ensembles exacts (pas seulement sur une grille), par résolution des inégalités « valeurs propres > 0 ».
+from sympy import Interval, oo, reduce_inequalities, S as SS
+ar = symbols("ar", real=True)
+def ensemble_dp(M_):
+    vp = list(M_.subs(a, ar).eigenvals())
+    return reduce_inequalities([v > 0 for v in vp], ar).as_set()
+assert ensemble_dp(Ma) == Interval.open(-sqrt(2)/2, sqrt(2)/2)       # sylvester-ex3
+assert ensemble_dp(Mb_) == Interval.open(-R(1, 2), 1)                # sylvester-ex3 v1
+assert ensemble_dp(Mc) == Interval.open(-sqrt(2), sqrt(2))           # sylvester-ex3 v2
+# Leurres d'intervalles réfutés exactement : ensembles différents de la bonne réponse.
+for bon, leurres in [
+    (Interval.open(-sqrt(2)/2, sqrt(2)/2), [Interval.open(-1, 1), Interval(-sqrt(2)/2, sqrt(2)/2), Interval.open(-R(1, 2), R(1, 2))]),
+    (Interval.open(-R(1, 2), 1), [Interval.open(-1, R(1, 2)), Interval.open(-R(1, 2), R(1, 2)), Interval(-R(1, 2), 1)]),
+    (Interval.open(-sqrt(2), sqrt(2)), [Interval.open(-2, 2), Interval.open(-1, 1), Interval(-sqrt(2), sqrt(2))]),
+]:
+    assert all(L != bon for L in leurres)
 
 # al-l3-formes-quadratiques-sylvester-ex4 : q(M) = tr(M^2), signature (n(n+1)/2, n(n-1)/2), n = 2, 3.
 for n, sig in [(2, (3, 1)), (3, (6, 3))]:
@@ -628,6 +646,19 @@ for Hm, ok, vals in [
 assert set(Matrix([[1, I*a], [-I*a, 1]]).eigenvals()) == {1 - a, 1 + a}
 assert expand(Matrix([[2, a*(1 + I)], [a*(1 - I), 4]]).det()) == 8 - 2*a**2
 assert set(Matrix([[a, 1 + I], [1 - I, a]]).eigenvals()) == {a - sqrt(2), a + sqrt(2)}
+# Relecture : ensembles exacts par résolution des inégalités (valeurs propres > 0), et leurres différents.
+from sympy import Interval, oo, reduce_inequalities, S as SS
+ah = symbols("ah", real=True)
+def ensemble_hdp(Hm_):
+    vp = list(Hm_.subs(a, ah).eigenvals())
+    return reduce_inequalities([v > 0 for v in vp], ah).as_set()
+assert ensemble_hdp(Matrix([[1, I*a], [-I*a, 1]])) == Interval.open(-1, 1)                       # endo-hermitiens-ex2
+assert ensemble_hdp(Matrix([[2, a*(1 + I)], [a*(1 - I), 4]])) == Interval.open(-2, 2)            # endo-hermitiens-ex2 v1
+assert ensemble_hdp(Matrix([[a, 1 + I], [1 - I, a]])) == Interval.open(sqrt(2), oo)              # endo-hermitiens-ex2 v2
+assert all(L != Interval.open(-1, 1) for L in [Interval(-1, 1), SS.Reals, Interval.Ropen(0, 1)])
+assert all(L != Interval.open(-2, 2) for L in [Interval.open(-sqrt(2), sqrt(2)), Interval(-2, 2), Interval.open(-4, 4)])
+assert all(L != Interval.open(sqrt(2), oo) for L in [Interval.open(2, oo), Interval.open(1, oo),
+                                                      Interval.open(-oo, -sqrt(2)) | Interval.open(sqrt(2), oo)])
 # Leurres réfutés : ex, a = 1 (|a| <= 1) et a = -1/2 (0 <= a < 1) ; v1, a = 3/2 (|a| < √2) et a = 2 (|a| <= 2) ;
 # v2, a = 3/2 (a > 2), a = 5/4 (a > 1) et a = -2 (|a| > √2) : ces cas sont dans la grille ci-dessus.
 
