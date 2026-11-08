@@ -157,6 +157,13 @@ assert egal(integrate(g2, (y, 0, 1)), x * exp(-x)) and integrate(x * exp(-x), (x
 assert limit(xp**2 * yp * exp(-xp * yp), xp, oo) == 0 and g2.subs(y, 0) == 0
 # Trou 1, leurre « séparément continue » : f = xy/(x²+y²)² (f(0,0) = 0), ∫_0^1 f dy = 1/(2x) − x/(2(1+x²)), non intégrable en 0.
 assert egal(integrate(xp * y / (xp**2 + y**2) ** 2, (y, 0, 1)), 1 / (2 * xp) - xp / (2 * (1 + xp**2)))
+# Relecture : même leurre avec des intégrales itérées finies et différentes. f = xy(x² − y²)/(x² + y²)³, f(0,0) = 0 :
+# f(x, 0) = f(0, y) = 0, donc f est continue en chaque variable séparément sur [0,1]², mais les itérées valent 1/8 et −1/8.
+fsep = x * y * (x**2 - y**2) / (x**2 + y**2) ** 3
+assert fsep.subs(y, 0) == 0 and fsep.subs(x, 0) == 0
+assert egal(integrate(fsep.subs(x, xp), (y, 0, 1)), xp / (2 * (1 + xp**2) ** 2))
+assert integrate(x / (2 * (1 + x**2) ** 2), (x, 0, 1)) == R_(1, 8)
+assert egal(fsep.subs({x: y, y: x}, simultaneous=True), -fsep)  # l'autre ordre donne −1/8
 # Trou 2, leurres : f = x sur [0,1]×[2,3] (∬ = 1/2, leurre 1 = 5/2) ; f = y sur [0,1]² (∬ = 1/2, leurres 2 et 3 = 0).
 assert integrate(x, (x, 0, 1), (y, 2, 3)) == R_(1, 2) and integrate(integrate(x, (x, 2, 3)), (y, 0, 1)) == R_(5, 2)
 assert integrate(y, (x, 0, 1), (y, 0, 1)) == R_(1, 2)
@@ -237,6 +244,13 @@ c_ = mp.quad(lambda w: abs(1 - w) / (1 + w) ** 3, [0, 1, mp.inf])
 X = mp.mpf(10) ** 4
 I_abs = mp.quad(lambda w: abs(X - w) / (X + w) ** 3, [1, X, mp.inf])
 assert c_ > 0.1 and abs(X * I_abs / c_ - 1) < 1e-3
+# Relecture, second contre-exemple (2 − xy)xy e^{−xy} : pour y > 0, ∫_0^∞ |f(x,y)| dx = c/y avec c = ∫_0^∞ |2 − w| w e^{−w} dw > 0
+# (w = xy), et 0 pour y = 0 : intégrale partielle de |f| non continue en 0, intégrale itérée de |f| infinie.
+c2 = mp.quad(lambda w: abs(2 - w) * w * mp.e ** (-w), [0, 2, mp.inf])
+for yy in (mp.mpf(1) / 3, mp.mpf(2), mp.mpf(1) / 50):
+    J_abs = mp.quad(lambda w: abs((2 - w * yy) * w * yy * mp.e ** (-w * yy)), [0, 2 / yy, mp.inf])
+    assert abs(J_abs - c2 / yy) < 1e-12
+assert abs(c2 - 8 * mp.e ** -2) < 1e-15  # c = 8 e^{−2} (∫_0^∞ (2 − w) w e^{−w} dw = 0)
 # Trou 1, leurres : ce contre-exemple est borné, à valeurs réelles, de classe C^∞.
 # Trou 2, leurres : 1/(x+y)² sur [1,∞[² : ∫_1^∞ dy = 1/(x+1), intégrale itérée infinie (pas « finies ») ;
 # 1/√x sur ]0,1]×[0,1] : non bornée, itérées égales à 2 ; e^{−x−y} sur [0,∞[² : égales à 1 sur des intervalles non bornés.
