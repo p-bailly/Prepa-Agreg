@@ -1,0 +1,490 @@
+{
+  "cartes": [
+    {
+      "id": "top-l3-metriques-continuite",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Espaces métriques et continuité",
+      "recto": "Définir une distance et la continuité d'une application entre espaces métriques, puis énoncer les caractérisations de la continuité (par les suites, par les images réciproques d'ouverts et de fermés) et les propriétés de la distance à une partie.",
+      "cours": "Une **distance** mesure l'écart entre deux points d'un ensemble quelconque. Une norme en fournit une, $d(x,y)=N(x-y)$, mais beaucoup d'espaces utiles ne sont pas des espaces vectoriels : une partie d'un espace normé munie de la distance induite (une sphère, une courbe, $\\mathrm{GL}_n(\\mathbb{R})$, $\\mathrm{O}_n(\\mathbb{R})$), $\\mathbb{Z}$, un ensemble muni de la distance discrète, ou $\\mathbb{R}$ muni de $|\\arctan x-\\arctan y|$. Boules, ouverts, fermés, intérieur, adhérence, suites convergentes et caractérisation séquentielle de l'adhérence et des fermés se définissent et se démontrent exactement comme dans le chapitre de L2 sur les espaces vectoriels normés, en remplaçant $N(x-y)$ par $d(x,y)$.\n\nLa continuité s'écrit avec $\\varepsilon$ et $\\eta$, et se reformule de trois façons : par les suites (l'outil de calcul), par les images réciproques d'ouverts ou de fermés (l'outil le plus maniable pour montrer qu'une partie est ouverte ou fermée). Méthode : une partie définie par des inégalités **strictes** entre fonctions continues est ouverte, une partie définie par des égalités ou des inégalités **larges** est fermée ; par exemple $\\mathrm{GL}_n(\\mathbb{R})=\\det^{-1}(\\mathbb{R}^*)$ est ouvert et $\\mathrm{O}_n(\\mathbb{R})$, image réciproque de $\\{I_n\\}$ par $A\\mapsto A^{\\top}A$, est fermé dans $\\mathcal{M}_n(\\mathbb{R})$.\n\nLes applications lipschitziennes sont continues ; un exemple important est la distance à une partie non vide, $x\\mapsto d(x,A)$, qui est $1$-lipschitzienne et s'annule exactement sur l'adhérence de $A$. Elle sert à fabriquer des fonctions continues (voir l'exercice sur la séparation de deux fermés).\n\nAttention, être ouvert dépend de l'espace ambiant : $\\left[0,\\frac12\\right[$ est la boule ouverte de centre $0$ et de rayon $\\frac12$ de l'espace métrique $[0,1]$, donc un ouvert de $[0,1]$, mais pas un ouvert de $\\mathbb{R}$.\n\nPièges : l'image **directe** d'un ouvert ou d'un fermé par une application continue n'a aucune raison d'être ouverte ou fermée ; la continuité en un point ne dit rien des images réciproques ; dans un espace métrique, l'adhérence de la boule ouverte $B(a,r)$ peut être strictement plus petite que la boule fermée $B'(a,r)$ ; être borné dépend de la distance choisie.",
+      "hypotheses": [
+        "$f:E\\to F$ est continue en tout point de $E$.",
+        "$V$ est une partie ouverte de $F$."
+      ],
+      "hypotheses_pieges": [
+        "$f:E\\to F$ est continue en un point $a$ de $E$ (à la place de : en tout point de $E$).",
+        "$V$ est une partie fermée de $F$ (à la place de : ouverte).",
+        "$f:E\\to F$ est injective (à la place de : continue en tout point de $E$)."
+      ],
+      "enonce": "Une **distance** sur un ensemble $E$ est une application $d:E\\times E\\to\\left[0,+\\infty\\right[$ telle que, pour tous $x,y,z\\in E$ : $d(x,y)=0\\iff x=y$ ; $d(x,y)=d(y,x)$ ; $d(x,z)\\le d(x,y)+d(y,z)$. Boules, ouverts, fermés, adhérence et convergence des suites se définissent comme dans un espace vectoriel normé, en remplaçant $N(x-y)$ par $d(x,y)$ ; toute partie de $E$ est un espace métrique pour la distance induite.\n\nSoient $(E,d)$ et $(F,\\delta)$ deux espaces métriques. Une application $f:E\\to F$ est **continue en** $a\\in E$ si $\\forall\\varepsilon>0,\\ \\exists\\eta>0,\\ \\forall x\\in E,\\ d(x,a)<\\eta\\Rightarrow\\delta(f(x),f(a))<\\varepsilon$, et **continue** si elle est continue en tout point de $E$.\n\n**Théorème.** Pour $f:E\\to F$, les propriétés suivantes sont équivalentes :\n- $f$ est continue ;\n- pour toute suite $(x_n)$ de $E$ qui converge vers un point $a$, la suite $(f(x_n))$ converge vers $f(a)$ ;\n- pour tout ouvert $V$ de $F$, $f^{-1}(V)$ est un ouvert de $E$ ;\n- pour tout fermé $G$ de $F$, $f^{-1}(G)$ est un fermé de $E$.\n\nDe plus, toute application lipschitzienne est continue, et pour toute partie non vide $A$ de $E$, l'application $x\\mapsto d(x,A)=\\inf_{y\\in A}d(x,y)$ est $1$-lipschitzienne et s'annule exactement sur $\\overline A$.",
+      "enonce_trous": "Une application $f:E\\to F$ entre deux espaces métriques est continue si et seulement si l'image réciproque par $f$ de tout {{1}} de $F$ est {{2}} de $E$. Pour toute partie non vide $A$ de $E$, l'application $x\\mapsto d(x,A)$ est {{3}}, et elle s'annule exactement sur {{4}}.",
+      "trous": [
+        {
+          "reponse": "ouvert",
+          "leurres": [
+            "fermé",
+            "singleton",
+            "partie"
+          ]
+        },
+        {
+          "reponse": "un ouvert",
+          "leurres": [
+            "un fermé",
+            "un ouvert borné",
+            "une boule ouverte"
+          ]
+        },
+        {
+          "reponse": "$1$-lipschitzienne",
+          "leurres": [
+            "$\\frac12$-lipschitzienne",
+            "constante",
+            "bornée"
+          ]
+        },
+        {
+          "reponse": "$\\overline A$",
+          "leurres": [
+            "$A$",
+            "l'intérieur de $A$",
+            "la frontière $\\overline A\\setminus\\mathring A$ de $A$"
+          ]
+        }
+      ],
+      "demo": "**Continuité et suites.** Si $f$ est continue en $a$ et si $x_n\\to a$, soit $\\varepsilon>0$ et $\\eta$ associé : pour $n$ assez grand, $d(x_n,a)<\\eta$, donc $\\delta(f(x_n),f(a))<\\varepsilon$. Réciproquement, si $f$ n'est pas continue en $a$, il existe $\\varepsilon>0$ tel que pour tout $n$ on trouve $x_n$ avec $d(x_n,a)<\\frac1{n+1}$ et $\\delta(f(x_n),f(a))\\ge\\varepsilon$ : la suite $(x_n)$ tend vers $a$ mais $(f(x_n))$ ne tend pas vers $f(a)$.\n\n**Ouverts.** Une boule ouverte est ouverte : si $y\\in B(b,r)$ et $\\rho=r-\\delta(y,b)>0$, l'inégalité triangulaire donne $B(y,\\rho)\\subset B(b,r)$. Supposons $f$ continue, soient $V$ un ouvert de $F$ et $a\\in f^{-1}(V)$ : il existe $\\varepsilon>0$ tel que $B(f(a),\\varepsilon)\\subset V$, puis $\\eta>0$ tel que $d(x,a)<\\eta\\Rightarrow\\delta(f(x),f(a))<\\varepsilon$, c'est-à-dire $B(a,\\eta)\\subset f^{-1}(V)$ : $f^{-1}(V)$ est ouvert. Réciproquement, si les images réciproques d'ouverts sont ouvertes, soient $a\\in E$ et $\\varepsilon>0$ : $f^{-1}(B(f(a),\\varepsilon))$ est un ouvert qui contient $a$, donc il contient une boule $B(a,\\eta)$, ce qui est la continuité en $a$.\n\n**Fermés.** Pour $G\\subset F$, $f^{-1}(F\\setminus G)=E\\setminus f^{-1}(G)$ : on passe d'une caractérisation à l'autre par complémentaire.\n\n**Lipschitz.** Si $\\delta(f(x),f(y))\\le k\\,d(x,y)$ pour tous $x,y$, il suffit de prendre $\\eta=\\frac{\\varepsilon}{k+1}$.\n\n**Distance à une partie.** Pour $x,x'\\in E$ et $y\\in A$, $d(x,A)\\le d(x,y)\\le d(x,x')+d(x',y)$ ; en passant à la borne inférieure en $y$, $d(x,A)\\le d(x,x')+d(x',A)$, et en échangeant les rôles, $|d(x,A)-d(x',A)|\\le d(x,x')$. Enfin $d(x,A)=0$ si et seulement si, pour tout $r>0$, il existe $y\\in A$ avec $d(x,y)<r$, c'est-à-dire si et seulement si toute boule $B(x,r)$ rencontre $A$, c'est-à-dire $x\\in\\overline A$.",
+      "exemple": "- Sur $\\mathbb{R}$, $d(x,y)=|\\arctan x-\\arctan y|$ est une distance, car $\\arctan$ est injective ; pour elle, $\\mathbb{R}$ est borné, de diamètre $\\pi$. Comme $\\arctan$ et sa réciproque $\\tan$ sont continues, une suite converge pour $d$ si et seulement si elle converge pour $|\\cdot|$, vers la même limite.\n- Dans $\\mathcal{M}_n(\\mathbb{R})$, $\\mathrm{GL}_n(\\mathbb{R})=\\det^{-1}(\\mathbb{R}^*)$ est ouvert et $\\mathrm{O}_n(\\mathbb{R})=\\{A:A^{\\top}A=I_n\\}$ est fermé, comme images réciproques d'un ouvert et d'un fermé par des applications continues (polynomiales en les coefficients).\n- Dans l'espace métrique $[0,1]$, la partie $\\left[0,\\frac12\\right[$ est ouverte : c'est la boule $B\\left(0,\\frac12\\right)$ de cet espace.",
+      "contre_exemple": "- **Image directe d'un ouvert** : $f(x)=x^2$ est continue sur $\\mathbb{R}$, mais $f(\\left]-1,1\\right[)=\\left[0,1\\right[$ n'est pas ouvert dans $\\mathbb{R}$.\n- **Image directe d'un fermé** : $\\exp(\\mathbb{R})=\\left]0,+\\infty\\right[$ n'est pas fermé dans $\\mathbb{R}$.\n- **Continuité en un seul point** : la fonction $f$ égale à $1$ sur $\\left[0,+\\infty\\right[$ et à $0$ ailleurs est continue en $-1$, mais $f^{-1}\\left(\\left]\\frac12,\\frac32\\right[\\right)=\\left[0,+\\infty\\right[$ n'est pas ouvert.\n- **Boule fermée et adhérence de la boule ouverte** : pour la distance discrète ($d(x,y)=1$ si $x\\neq y$) sur un ensemble $E$ ayant au moins deux points, $B(a,1)=\\{a\\}$ est fermée (toute partie est ouverte, donc toute partie est fermée), donc $\\overline{B(a,1)}=\\{a\\}$, alors que $B'(a,1)=E$.",
+      "affirmations": [
+        {
+          "texte": "L'image d'un ouvert par une application continue est un ouvert.",
+          "vrai": false,
+          "contre_exemple": "$x\\mapsto x^2$ est continue sur $\\mathbb{R}$ et l'image de l'ouvert $\\left]-1,1\\right[$ est $\\left[0,1\\right[$, qui n'est pas ouvert."
+        },
+        {
+          "texte": "Si $f:E\\to F$ est continue et si $G$ est un fermé de $F$, alors $f^{-1}(G)$ est un fermé de $E$.",
+          "vrai": true,
+          "justification": "$E\\setminus f^{-1}(G)=f^{-1}(F\\setminus G)$ est l'image réciproque d'un ouvert, donc un ouvert."
+        },
+        {
+          "texte": "Dans tout espace métrique, l'adhérence de la boule ouverte $B(a,r)$ est la boule fermée $B'(a,r)$.",
+          "vrai": false,
+          "contre_exemple": "Pour la distance discrète sur un ensemble à au moins deux points, $\\overline{B(a,1)}=\\{a\\}$ alors que $B'(a,1)$ est l'ensemble tout entier."
+        },
+        {
+          "texte": "Pour toute partie non vide $A$ d'un espace métrique, $d(x,A)=0$ si et seulement si $x\\in A$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, pour $A=\\left]0,1\\right]$, $d(0,A)=0$ (car $\\frac1n\\in A$) mais $0\\notin A$ : $d(x,A)=0$ caractérise $x\\in\\overline A$."
+        },
+        {
+          "texte": "Toute application lipschitzienne entre espaces métriques est continue.",
+          "vrai": true,
+          "justification": "Si $\\delta(f(x),f(y))\\le k\\,d(x,y)$, le choix $\\eta=\\frac{\\varepsilon}{k+1}$ convient en tout point."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-ouverts-fermes",
+        "top-l2-evn-suites",
+        "top-l2-evn-continuite-lineaire",
+        "ar-l1-continuite-sequentielle"
+      ]
+    },
+    {
+      "id": "top-l3-metriques-compacite",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Compacité séquentielle et image d'un compact",
+      "recto": "Définir une partie compacte d'un espace métrique (définition séquentielle) et énoncer ses propriétés : fermée et bornée, parties fermées d'un compact, produit de deux compacts, image par une application continue, bornes atteintes.",
+      "cours": "**Définition retenue.** Une partie $K$ est compacte quand toute suite d'éléments de $K$ admet une sous-suite qui converge **dans** $K$ : c'est la propriété de Bolzano–Weierstrass. D'autres ouvrages définissent la compacité par la propriété de Borel–Lebesgue (de tout recouvrement de $K$ par des ouverts, on peut extraire un recouvrement fini) ; dans un espace métrique les deux définitions sont équivalentes, mais ce résultat n'est ni démontré ni utilisé ici. Dans un espace vectoriel normé de dimension finie, les compacts sont les fermés bornés (chapitre de L2) ; dans un espace métrique quelconque, un compact est toujours fermé et borné, mais la réciproque est fausse.\n\nLe résultat central est que **l'image d'un compact par une application continue est compacte**. Il donne aussitôt le théorème des bornes atteintes : une fonction continue sur un compact non vide, à valeurs réelles, est bornée et atteint ses bornes. C'est l'outil standard des problèmes d'existence : pour montrer qu'un minimum, une distance ou un point fixe existe, on se ramène à une fonction continue sur un compact non vide. Par exemple, si $K$ est un compact non vide et $G$ un fermé disjoint de $K$, la fonction continue $x\\mapsto d(x,G)$ est strictement positive sur $K$ et y atteint son minimum : $K$ et $G$ sont à distance strictement positive.\n\nPour fabriquer des compacts : un fermé contenu dans un compact est compact ; un produit de deux compacts est compact (on extrait deux fois) ; l'image continue d'un compact est compacte (un cercle est l'image du segment $[0,2\\pi]$, un tore l'image de $[0,2\\pi]^2$) ; une suite convergente avec sa limite forme un compact.\n\nPièges : un fermé borné d'un espace métrique n'est pas forcément compact ; l'image **réciproque** d'un compact par une application continue n'est pas compacte en général ; deux fermés disjoints peuvent être à distance nulle si aucun des deux n'est compact ; la définition exige que la limite de la sous-suite soit dans $K$.",
+      "hypotheses": [
+        "$K$ est une partie compacte de $E$.",
+        "$f:K\\to F$ est continue."
+      ],
+      "hypotheses_pieges": [
+        "$K$ est une partie fermée et bornée de $E$ (à la place de : compacte).",
+        "$f:K\\to F$ est bornée (à la place de : continue).",
+        "$f:K\\to F$ est injective (à la place de : continue)."
+      ],
+      "enonce": "Soient $(E,d)$ et $(F,\\delta)$ deux espaces métriques. Une partie $K$ de $E$ est **compacte** si toute suite d'éléments de $K$ admet une sous-suite qui converge vers un élément de $K$ (propriété de Bolzano–Weierstrass ; c'est la définition retenue ici).\n\n**Théorème.**\n- Toute partie compacte de $E$ est fermée et bornée ; si $K$ est compacte et $G$ fermée, $K\\cap G$ est compacte.\n- Si $K\\subset E$ et $L\\subset F$ sont compactes, $K\\times L$ est compacte dans $E\\times F$ muni de la distance $\\big((x,y),(x',y')\\big)\\mapsto\\max\\big(d(x,x'),\\delta(y,y')\\big)$.\n- Si $K$ est compacte et $f:K\\to F$ est continue, alors $f(K)$ est une partie compacte de $F$.\n- En particulier, si $K$ est compacte non vide et $f:K\\to\\mathbb{R}$ est continue, $f$ est bornée et atteint ses bornes.",
+      "enonce_trous": "Une partie $K$ d'un espace métrique est compacte si toute suite d'éléments de $K$ {{1}}. L'image d'une partie compacte par une application {{2}} est compacte ; en particulier, une fonction continue sur un compact non vide, à valeurs réelles, {{3}}.",
+      "trous": [
+        {
+          "reponse": "admet une sous-suite qui converge vers un élément de $K$",
+          "leurres": [
+            "converge vers un élément de $K$",
+            "est bornée",
+            "admet une sous-suite qui converge dans l'espace ambiant"
+          ]
+        },
+        {
+          "reponse": "continue",
+          "leurres": [
+            "injective",
+            "bornée",
+            "surjective"
+          ]
+        },
+        {
+          "reponse": "est bornée et atteint ses bornes",
+          "leurres": [
+            "est bornée mais n'atteint pas toujours ses bornes",
+            "atteint ses bornes en des points de la frontière de $K$",
+            "est lipschitzienne"
+          ]
+        }
+      ],
+      "demo": "**Fermée et bornée.** Si $(x_n)$ est une suite de $K$ qui converge vers $\\ell\\in E$, une sous-suite converge vers un élément de $K$ ; sa limite est aussi $\\ell$, donc $\\ell\\in K$ : $K$ est fermée. Si $K$ est non vide et n'est pas bornée, fixons $a\\in E$ : il existe $x_n\\in K$ avec $d(a,x_n)\\ge n$. Une sous-suite $(x_{\\varphi(n)})$ converge vers un $b$, et $d(a,x_{\\varphi(n)})\\le d(a,b)+d(b,x_{\\varphi(n)})$ reste bornée, ce qui contredit $d(a,x_{\\varphi(n)})\\ge\\varphi(n)\\ge n$.\n\n**Intersection avec un fermé.** Une suite de $K\\cap G$ a une sous-suite qui converge vers un élément de $K$ ; cette limite est dans $G$ puisque $G$ est fermée.\n\n**Produit.** Soit $(x_n,y_n)$ une suite de $K\\times L$. On extrait $\\varphi$ telle que $x_{\\varphi(n)}\\to x\\in K$, puis $\\psi$ telle que $y_{\\varphi(\\psi(n))}\\to y\\in L$ ; la suite $(x_{\\varphi(\\psi(n))})$, extraite d'une suite convergente, tend encore vers $x$. Comme la distance produit est le maximum des deux distances, $(x_{\\varphi(\\psi(n))},y_{\\varphi(\\psi(n))})\\to(x,y)\\in K\\times L$.\n\n**Image continue.** Soit $(y_n)$ une suite de $f(K)$ : $y_n=f(x_n)$ avec $x_n\\in K$. Une sous-suite $(x_{\\varphi(n)})$ converge vers un $a\\in K$, et par continuité $y_{\\varphi(n)}=f(x_{\\varphi(n)})\\to f(a)\\in f(K)$.\n\n**Bornes atteintes.** $f(K)$ est une partie compacte non vide de $\\mathbb{R}$, donc bornée : $M=\\sup f(K)$ est fini. Par la caractérisation séquentielle de la borne supérieure, $M$ est limite d'une suite de $f(K)$, donc $M\\in f(K)$ puisque $f(K)$ est fermée : $M$ est atteint. On raisonne de même pour la borne inférieure.",
+      "exemple": "- Le cercle unité $C=\\{(\\cos t,\\sin t):t\\in[0,2\\pi]\\}$ est compact, image du compact $[0,2\\pi]$ par une application continue ; toute fonction continue sur $C$ y atteint ses bornes, par exemple $(x,y)\\mapsto x+2y$ atteint son maximum $\\sqrt5$ en $\\left(\\frac1{\\sqrt5},\\frac2{\\sqrt5}\\right)$.\n- Si $x_n\\to\\ell$ dans un espace métrique, $\\{x_n:n\\in\\mathbb{N}\\}\\cup\\{\\ell\\}$ est compacte.\n- Si $K$ est compact non vide, $G$ fermé et $K\\cap G=\\emptyset$, alors $\\inf_{x\\in K}d(x,G)>0$ : la fonction continue $x\\mapsto d(x,G)$ ne s'annule pas sur $K$ (elle ne s'annule que sur $\\overline G=G$) et y atteint son minimum.",
+      "contre_exemple": "- **Fermé borné non compact** : sur $\\mathbb{R}$, $d(x,y)=\\min(1,|x-y|)$ est une distance pour laquelle $\\mathbb{R}$ est borné (diamètre $1$) et fermé dans lui-même ; pourtant la suite $x_n=n$ n'a aucune sous-suite convergente, puisque $d(n,m)=1$ pour $n\\neq m$.\n- **Image réciproque** : $\\sin$ est continue, $[-1,1]$ est compact, mais $\\sin^{-1}([-1,1])=\\mathbb{R}$ n'est pas compact.\n- **Deux fermés disjoints à distance nulle** : dans $\\mathbb{R}^2$, l'hyperbole $\\{xy=1\\}$ et l'axe $\\{y=0\\}$ sont fermés et disjoints, mais $\\left\\|\\left(n,\\frac1n\\right)-(n,0)\\right\\|=\\frac1n\\to0$.\n- **Sans continuité** : sur $[0,1]$, la fonction égale à $x$ pour $x>0$ et à $1$ en $0$ est bornée, mais son image $\\left]0,1\\right]$ n'est pas compacte et sa borne inférieure $0$ n'est pas atteinte.",
+      "affirmations": [
+        {
+          "texte": "L'image d'une partie compacte par une application continue est compacte.",
+          "vrai": true,
+          "justification": "On extrait une sous-suite convergente des antécédents, et la continuité transporte la convergence."
+        },
+        {
+          "texte": "L'image réciproque d'une partie compacte par une application continue est compacte.",
+          "vrai": false,
+          "contre_exemple": "$\\sin^{-1}([-1,1])=\\mathbb{R}$, qui n'est pas borné."
+        },
+        {
+          "texte": "Dans tout espace métrique, une partie fermée et bornée est compacte.",
+          "vrai": false,
+          "contre_exemple": "$\\mathbb{R}$ muni de $d(x,y)=\\min(1,|x-y|)$ est fermé et borné, mais la suite $(n)$ n'a pas de sous-suite convergente : $d(n,m)=1$ pour $n\\neq m$."
+        },
+        {
+          "texte": "Si $K$ est compacte non vide, $G$ fermée et $K\\cap G=\\emptyset$, alors $\\inf_{x\\in K}d(x,G)>0$.",
+          "vrai": true,
+          "justification": "$x\\mapsto d(x,G)$ est continue, strictement positive sur $K$ (elle ne s'annule que sur $\\overline G=G$), et atteint son minimum sur $K$."
+        },
+        {
+          "texte": "Deux parties fermées et disjointes de $\\mathbb{R}^2$ sont à distance strictement positive l'une de l'autre.",
+          "vrai": false,
+          "contre_exemple": "L'hyperbole $\\{xy=1\\}$ et l'axe $\\{y=0\\}$ : les points $\\left(n,\\frac1n\\right)$ et $(n,0)$ sont à distance $\\frac1n$."
+        }
+      ],
+      "prerequis": [
+        "top-l3-metriques-continuite",
+        "top-l2-evn-compacts",
+        "ar-l1-bolzano-weierstrass",
+        "ar-l1-reels-sup-sequentielle"
+      ]
+    },
+    {
+      "id": "top-l3-metriques-heine",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Théorème de Heine",
+      "recto": "Définir la continuité uniforme d'une application entre espaces métriques, donner sa caractérisation par les suites et énoncer le théorème de Heine.",
+      "cours": "Dans la continuité en un point, le $\\eta$ dépend de $\\varepsilon$ **et du point** ; dans la continuité uniforme, un même $\\eta$ convient partout. Une application lipschitzienne est uniformément continue, et une application uniformément continue est continue ; aucune des réciproques n'est vraie ($\\sqrt{\\cdot}$ sur $[0,1]$ est uniformément continue sans être lipschitzienne, $x\\mapsto x^2$ sur $\\mathbb{R}$ est continue sans être uniformément continue).\n\nLa caractérisation par les suites est l'outil pratique : $f$ est uniformément continue si et seulement si $\\delta(f(x_n),f(y_n))\\to0$ dès que $d(x_n,y_n)\\to0$. Pour montrer qu'une fonction **n'est pas** uniformément continue, on exhibe deux suites de plus en plus proches dont les images restent écartées : pour $x\\mapsto x^2$ sur $\\mathbb{R}$, $x_n=n+\\frac1n$ et $y_n=n$ donnent $x_n^2-y_n^2=2+\\frac1{n^2}$.\n\nLe **théorème de Heine** affirme que sur un espace métrique compact, toute application continue est uniformément continue. Il étend le théorème de Heine sur un segment (L1), avec la même preuve par extraction. Il sert pour l'intégrale de Riemann (approximation uniforme des fonctions continues par des fonctions en escalier), pour la continuité des intégrales à paramètre sur un compact, et pour approcher uniformément une fonction continue par des fonctions lipschitziennes.\n\nPièges : la compacité est indispensable ($\\frac1x$ ou $\\sin\\frac1x$ sur $\\left]0,1\\right]$, $x^2$ sur $\\mathbb{R}$) ; une partie fermée et bornée d'un espace métrique ne suffit pas en général ; une fonction continue **bornée** n'est pas forcément uniformément continue ($\\sin(x^2)$ sur $\\mathbb{R}$) ; une fonction uniformément continue sur $\\mathbb{R}$ n'est ni forcément bornée ($x$) ni forcément lipschitzienne ($\\sqrt{|x|}$).",
+      "hypotheses": [
+        "$(E,d)$ est un espace métrique compact.",
+        "$f:E\\to F$ est continue."
+      ],
+      "hypotheses_pieges": [
+        "$(E,d)$ est un espace métrique borné (à la place de : compact).",
+        "$(E,d)$ est un espace métrique borné et complet (à la place de : compact).",
+        "$(E,d)$ est un espace métrique quelconque et $f$ est bornée (à la place de : $(E,d)$ compact)."
+      ],
+      "enonce": "Soient $(E,d)$ et $(F,\\delta)$ deux espaces métriques. Une application $f:E\\to F$ est **uniformément continue** si\n$$\\forall\\varepsilon>0,\\ \\exists\\eta>0,\\ \\forall x,y\\in E,\\quad d(x,y)<\\eta\\Longrightarrow\\delta(f(x),f(y))<\\varepsilon.$$\nDe façon équivalente, pour toutes suites $(x_n)$ et $(y_n)$ de $E$ telles que $d(x_n,y_n)\\to0$, on a $\\delta(f(x_n),f(y_n))\\to0$. Toute application lipschitzienne est uniformément continue, et toute application uniformément continue est continue.\n\n**Théorème de Heine.** Si l'espace métrique $E$ est compact et si $f:E\\to F$ est continue, alors $f$ est uniformément continue.",
+      "enonce_trous": "Soient $(E,d)$ et $(F,\\delta)$ deux espaces métriques. Une application $f:E\\to F$ est uniformément continue si, pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que {{1}}. Le théorème de Heine affirme que si {{2}} et si $f$ est continue, alors $f$ est uniformément continue.",
+      "trous": [
+        {
+          "reponse": "pour tous $x,y\\in E$, $d(x,y)<\\eta$ entraîne $\\delta(f(x),f(y))<\\varepsilon$",
+          "leurres": [
+            "pour tout $x\\in E$, il existe $y\\in E$ tel que $d(x,y)<\\eta$ et $\\delta(f(x),f(y))<\\varepsilon$",
+            "pour tous $x,y\\in E$, $\\delta(f(x),f(y))<\\eta$ entraîne $d(x,y)<\\varepsilon$",
+            "pour tous $x,y\\in E$, $d(x,y)<\\varepsilon$ entraîne $\\delta(f(x),f(y))<\\eta$"
+          ]
+        },
+        {
+          "reponse": "$E$ est compact",
+          "leurres": [
+            "$E$ est borné",
+            "$E$ est complet",
+            "$f$ est bornée"
+          ]
+        }
+      ],
+      "demo": "**Lipschitz, uniforme, continue.** Si $f$ est $k$-lipschitzienne, $\\eta=\\frac{\\varepsilon}{k+1}$ convient pour tous $x,y$. Si $f$ est uniformément continue, le $\\eta$ obtenu convient en particulier pour $y=a$ fixé : $f$ est continue en $a$.\n\n**Caractérisation par les suites.** Si $f$ est uniformément continue et $d(x_n,y_n)\\to0$, soit $\\varepsilon>0$ et $\\eta$ associé : pour $n$ assez grand, $d(x_n,y_n)<\\eta$, donc $\\delta(f(x_n),f(y_n))<\\varepsilon$. Si $f$ n'est pas uniformément continue, il existe $\\varepsilon>0$ tel que, pour tout $n$, on trouve $x_n,y_n\\in E$ avec $d(x_n,y_n)<\\frac1{n+1}$ et $\\delta(f(x_n),f(y_n))\\ge\\varepsilon$ : la condition sur les suites est en défaut.\n\n**Théorème de Heine.** Supposons $f$ continue mais pas uniformément continue : il existe $\\varepsilon>0$ et deux suites telles que $d(x_n,y_n)\\to0$ et $\\delta(f(x_n),f(y_n))\\ge\\varepsilon$ pour tout $n$. Comme $E$ est compact, une sous-suite $(x_{\\varphi(n)})$ converge vers un $a\\in E$, et $d(y_{\\varphi(n)},a)\\le d(y_{\\varphi(n)},x_{\\varphi(n)})+d(x_{\\varphi(n)},a)\\to0$. Par continuité de $f$ en $a$, $f(x_{\\varphi(n)})\\to f(a)$ et $f(y_{\\varphi(n)})\\to f(a)$, donc $\\delta(f(x_{\\varphi(n)}),f(y_{\\varphi(n)}))\\le\\delta(f(x_{\\varphi(n)}),f(a))+\\delta(f(a),f(y_{\\varphi(n)}))\\to0$, ce qui contredit la minoration par $\\varepsilon$.",
+      "exemple": "- $\\sqrt{\\cdot}$ est uniformément continue sur le compact $[0,1]$ par le théorème de Heine, bien qu'elle ne soit pas lipschitzienne ($\\frac{\\sqrt x-\\sqrt0}{x-0}=\\frac1{\\sqrt x}$ n'est pas borné). Elle l'est même sur $\\left[0,+\\infty\\right[$, car $|\\sqrt x-\\sqrt y|\\le\\sqrt{|x-y|}$.\n- **Intégrale à paramètre.** Si $K$ est un espace métrique compact et $g:K\\times[a,b]\\to\\mathbb{R}$ est continue, $G(x)=\\int_a^bg(x,t)\\,\\mathrm{d}t$ est continue sur $K$ : $K\\times[a,b]$ est compact, donc $g$ y est uniformément continue, et si $\\eta$ est associé à $\\varepsilon$, alors $d(x,x')<\\eta$ entraîne $|G(x)-G(x')|\\le(b-a)\\varepsilon$.",
+      "contre_exemple": "- **Espace non borné** : $x\\mapsto x^2$ sur $\\mathbb{R}$, avec $x_n=n+\\frac1n$ et $y_n=n$ : $x_n-y_n\\to0$ mais $x_n^2-y_n^2=2+\\frac1{n^2}\\ge2$.\n- **Espace borné non compact** : $\\sin\\frac1x$ sur $\\left]0,1\\right]$, avec $x_n=\\frac1{2n\\pi}$ et $y_n=\\frac1{2n\\pi+\\frac\\pi2}$ : $x_n-y_n\\to0$ mais $\\left|\\sin\\frac1{x_n}-\\sin\\frac1{y_n}\\right|=1$.\n- **Espace borné et complet non compact** : $\\mathbb{R}$ muni de $d(x,y)=\\min(1,|x-y|)$ est borné, et complet (une suite de Cauchy pour $d$ l'est pour $|\\cdot|$ dès que les écarts sont inférieurs à $1$) ; la fonction $x\\mapsto x^2$ y est continue (pour $d(x,a)<1$, $d(x,a)=|x-a|$) mais pas uniformément continue, avec les mêmes suites $n+\\frac1n$ et $n$, qui vérifient $d(x_n,y_n)=\\frac1n$.\n- **Fonction bornée** : $x\\mapsto\\sin(x^2)$ sur $\\mathbb{R}$, avec $x_n=\\sqrt{2n\\pi+\\frac\\pi2}$ et $y_n=\\sqrt{2n\\pi}$ : $x_n-y_n=\\frac{\\pi/2}{x_n+y_n}\\to0$ mais $\\sin(x_n^2)-\\sin(y_n^2)=1$.",
+      "affirmations": [
+        {
+          "texte": "Toute fonction continue et bornée sur $\\mathbb{R}$ est uniformément continue.",
+          "vrai": false,
+          "contre_exemple": "$\\sin(x^2)$ : pour $x_n=\\sqrt{2n\\pi+\\frac\\pi2}$ et $y_n=\\sqrt{2n\\pi}$, $x_n-y_n\\to0$ et $\\sin(x_n^2)-\\sin(y_n^2)=1$."
+        },
+        {
+          "texte": "Toute fonction continue sur $[0,1]^2$, à valeurs réelles, est uniformément continue.",
+          "vrai": true,
+          "justification": "$[0,1]^2$ est compact (produit de deux compacts) : c'est le théorème de Heine."
+        },
+        {
+          "texte": "Toute fonction uniformément continue sur $\\mathbb{R}$ est lipschitzienne.",
+          "vrai": false,
+          "contre_exemple": "$\\sqrt{|x|}$ est uniformément continue car $\\left|\\sqrt{|x|}-\\sqrt{|y|}\\right|\\le\\sqrt{|x-y|}$, mais $\\frac{\\sqrt{|x|}}{|x|}$ n'est pas borné au voisinage de $0$."
+        },
+        {
+          "texte": "Si $f:\\left]0,1\\right]\\to\\mathbb{R}$ est uniformément continue, alors $f$ est bornée.",
+          "vrai": true,
+          "justification": "Soit $\\eta\\in\\left]0,1\\right]$ associé à $\\varepsilon=1$. Tout $x\\in\\left]0,1\\right]$ se relie à $1$ par au plus $N=\\left\\lceil\\frac2\\eta\\right\\rceil$ pas de longueur inférieure à $\\eta$, d'où $|f(x)|\\le|f(1)|+N$."
+        },
+        {
+          "texte": "La composée de deux applications uniformément continues est uniformément continue.",
+          "vrai": true,
+          "justification": "Si $g$ est uniformément continue, $\\varepsilon$ donne $\\eta_1$ pour $g$, puis $\\eta_1$ donne $\\eta$ pour $f$ : $d(x,y)<\\eta$ entraîne successivement $\\delta(f(x),f(y))<\\eta_1$ et la majoration voulue pour $g\\circ f$."
+        }
+      ],
+      "prerequis": [
+        "top-l3-metriques-compacite",
+        "ar-l1-continuite-heine"
+      ]
+    },
+    {
+      "id": "top-l3-metriques-connexite",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Connexité et connexité par arcs",
+      "recto": "Définir un espace connexe et un espace connexe par arcs, décrire les parties connexes de $\\mathbb{R}$, et énoncer les liens entre les deux notions : image continue, implication, contre-exemple, cas des ouverts d'un espace vectoriel normé.",
+      "cours": "Un espace est **connexe** quand il est « d'un seul tenant » : on ne peut pas le couper en deux parties ouvertes disjointes non vides. La formulation la plus maniable est la suivante : toute application continue de l'espace dans $\\{0,1\\}$ est constante. Les connexes de $\\mathbb{R}$ sont exactement les intervalles ; c'est le contenu topologique du théorème des valeurs intermédiaires, et la propriété « l'image continue d'un connexe est connexe » en est la généralisation : une fonction continue à valeurs réelles sur un connexe prend toutes les valeurs comprises entre deux de ses valeurs.\n\nUn espace est **connexe par arcs** quand deux points quelconques y sont reliés par un chemin continu. Les parties convexes d'un espace vectoriel normé (boules, sous-espaces, segments) et plus généralement les parties étoilées sont connexes par arcs, ainsi que les images continues de connexes par arcs (un cercle, image de $[0,2\\pi]$). La connexité par arcs entraîne la connexité, et c'est en général ainsi qu'on prouve qu'un espace est connexe. La réciproque est fausse (sinus du topologiste), mais elle est vraie pour les **ouverts** d'un espace vectoriel normé, et même avec des chemins formés de segments.\n\nMéthode. Pour montrer qu'une partie n'est pas connexe, on cherche une application continue à valeurs réelles dont l'image n'est pas un intervalle : $\\det$ montre que $\\mathrm{GL}_n(\\mathbb{R})$ et $\\mathrm{O}_n(\\mathbb{R})$ ne sont pas connexes. Pour montrer que deux espaces ne sont pas homéomorphes, on compare ce qui se passe quand on leur retire un point : $\\mathbb{R}$ privé d'un point n'est pas connexe, $\\mathbb{R}^2$ privé d'un point l'est.\n\nPièges : la réunion de deux connexes n'est connexe que s'ils se rencontrent ; l'intersection de deux connexes n'est pas connexe en général ; l'adhérence d'un connexe est connexe, mais l'adhérence d'un connexe par arcs n'est pas toujours connexe par arcs ; l'image réciproque d'un connexe par une application continue n'est pas connexe en général.",
+      "hypotheses": [
+        "$U$ est une partie d'un espace vectoriel normé $E$.",
+        "$U$ est ouverte.",
+        "$U$ est connexe."
+      ],
+      "hypotheses_pieges": [
+        "$U$ est fermée (à la place de : ouverte).",
+        "$U$ est bornée (à la place de : ouverte).",
+        "$U$ est dense dans $E$ (à la place de : connexe)."
+      ],
+      "enonce": "Soit $(E,d)$ un espace métrique. On dit que $E$ est **connexe** si les seules parties de $E$ à la fois ouvertes et fermées sont $\\emptyset$ et $E$ ; de façon équivalente, si toute application continue de $E$ dans $\\{0,1\\}$ (muni de la distance induite par $\\mathbb{R}$) est constante. On dit que $E$ est **connexe par arcs** si, pour tous $x,y\\in E$, il existe une application continue $\\gamma:[0,1]\\to E$ telle que $\\gamma(0)=x$ et $\\gamma(1)=y$. Une partie de $E$ est connexe (par arcs) si elle l'est pour la distance induite.\n\n**Théorème.**\n- Les parties connexes de $\\mathbb{R}$ sont les intervalles.\n- L'image d'un espace connexe par une application continue est connexe ; en particulier, une fonction continue à valeurs réelles sur un espace connexe prend toutes les valeurs comprises entre deux de ses valeurs.\n- Tout espace connexe par arcs est connexe ; la réciproque est fausse.\n- Toute partie **ouverte** et connexe d'un espace vectoriel normé est connexe par arcs.",
+      "enonce_trous": "Les parties connexes de $\\mathbb{R}$ sont {{1}}. L'image d'un espace connexe par une application {{2}} est connexe. Tout espace connexe par arcs est connexe, et toute partie {{3}} et connexe d'un espace vectoriel normé est connexe par arcs.",
+      "trous": [
+        {
+          "reponse": "les intervalles",
+          "leurres": [
+            "les intervalles ouverts",
+            "les segments",
+            "les parties fermées"
+          ]
+        },
+        {
+          "reponse": "continue",
+          "leurres": [
+            "injective",
+            "bornée",
+            "surjective"
+          ]
+        },
+        {
+          "reponse": "ouverte",
+          "leurres": [
+            "fermée",
+            "bornée",
+            "compacte"
+          ]
+        }
+      ],
+      "demo": "**Les deux définitions.** Si $U\\neq\\emptyset,E$ est ouverte et fermée, l'indicatrice $\\mathbf{1}_U:E\\to\\{0,1\\}$ est continue (l'image réciproque de toute partie de $\\{0,1\\}$ est $\\emptyset$, $U$, $E\\setminus U$ ou $E$, toutes ouvertes) et n'est pas constante. Réciproquement, si $f:E\\to\\{0,1\\}$ est continue et non constante, $f^{-1}(\\{0\\})$ est ouverte et fermée (car $\\{0\\}$ l'est dans $\\{0,1\\}$), non vide et différente de $E$.\n\n**Connexes de $\\mathbb{R}$.** Si $I$ est un intervalle et $f:I\\to\\{0,1\\}$ est continue, le théorème des valeurs intermédiaires montre que $f(I)$ est un intervalle contenu dans $\\{0,1\\}$, donc un singleton. Si $A\\subset\\mathbb{R}$ n'est pas un intervalle, il existe $a<c<b$ avec $a,b\\in A$ et $c\\notin A$ ; la fonction égale à $0$ sur $A\\cap\\left]-\\infty,c\\right[$ et à $1$ sur $A\\cap\\left]c,+\\infty\\right[$ est continue sur $A$ (elle est constante sur une boule autour de chaque point) et n'est pas constante.\n\n**Image continue.** Si $f:E\\to F$ est continue, $E$ connexe, et $g:f(E)\\to\\{0,1\\}$ continue, alors $g\\circ f$ est constante, donc $g$ aussi puisque tout point de $f(E)$ s'écrit $f(x)$. Pour $f$ à valeurs réelles, $f(E)$ est un connexe de $\\mathbb{R}$, donc un intervalle.\n\n**Arcs entraîne connexe.** Soient $f:E\\to\\{0,1\\}$ continue et $x,y\\in E$ reliés par $\\gamma$ ; $f\\circ\\gamma$ est continue sur l'intervalle $[0,1]$, donc constante, et $f(x)=f(y)$.\n\n**Ouvert connexe d'un espace normé.** Fixons $a\\in U$ et notons $C$ l'ensemble des points de $U$ que l'on peut relier à $a$ par un chemin dans $U$ ; on met deux chemins bout à bout en parcourant chacun à vitesse double. $C$ contient $a$. Si $x\\in U$, il existe $r>0$ tel que $B(x,r)\\subset U$, et tout $y$ de cette boule (convexe) est relié à $x$ par le segment $[x,y]\\subset U$. Si $x\\in C$, toute la boule est donc dans $C$ ; si $x\\notin C$, aucun point de la boule n'est dans $C$ (sinon $x$ serait relié à $a$). Ainsi $C$ et $U\\setminus C$ sont ouverts : $C$ est ouverte et fermée dans $U$, non vide, donc $C=U$.\n\n**La réciproque est fausse.** Soit $G=\\left\\{\\left(x,\\sin\\frac1x\\right):0<x\\le1\\right\\}$, connexe par arcs comme image de $\\left]0,1\\right]$ par une application continue. Son adhérence dans $\\mathbb{R}^2$ est $\\Gamma=G\\cup(\\{0\\}\\times[-1,1])$ : si $\\left(x_n,\\sin\\frac1{x_n}\\right)$ converge avec $x_n\\to0$, la limite est de la forme $(0,y)$ avec $|y|\\le1$ ; réciproquement, si $y=\\sin\\theta$ avec $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, les points d'abscisse $\\frac1{\\theta+2n\\pi}$ ($n\\ge1$) tendent vers $(0,y)$. L'adhérence d'une partie connexe $A$ est connexe : si $f:\\overline A\\to\\{0,1\\}$ est continue, elle est constante, égale à $c$, sur $A$, et tout point de $\\overline A$ est limite d'une suite de $A$, d'où $f=c$. Donc $\\Gamma$ est connexe. Supposons qu'un chemin continu $\\gamma=(\\gamma_1,\\gamma_2):[0,1]\\to\\Gamma$ relie $(0,0)$ à $(1,\\sin1)$. L'ensemble des $t$ tels que $\\gamma_1(t)=0$ est fermé, non vide, et ne contient pas $1$ ; soit $t_0<1$ son plus grand élément. Pour $t>t_0$, $\\gamma_1(t)>0$ et $\\gamma_2(t)=\\sin\\frac1{\\gamma_1(t)}$. Pour tout $\\tau\\in\\left]t_0,1\\right]$, $\\gamma_1$ prend sur $[t_0,\\tau]$ toutes les valeurs de $[0,\\gamma_1(\\tau)]$, donc les valeurs $\\frac1{\\frac\\pi2+2k\\pi}$ et $\\frac1{-\\frac\\pi2+2k\\pi}$ pour $k$ assez grand : $\\gamma_2$ prend les valeurs $1$ et $-1$ sur tout intervalle $\\left]t_0,\\tau\\right]$, ce qui contredit la continuité de $\\gamma_2$ en $t_0$. Ainsi $\\Gamma$ n'est pas connexe par arcs.",
+      "exemple": "- Les parties convexes d'un espace normé sont connexes par arcs, par les chemins $t\\mapsto(1-t)x+ty$ ; de même $\\mathbb{R}^2$ privé d'un point (deux points s'y relient par au plus deux segments).\n- $\\mathrm{GL}_n(\\mathbb{R})$ n'est pas connexe : $\\det$ est continue et $\\det(\\mathrm{GL}_n(\\mathbb{R}))=\\mathbb{R}^*$ n'est pas un intervalle. De même $\\mathrm{O}_n(\\mathbb{R})$, sur lequel $\\det$ prend exactement les valeurs $1$ et $-1$.\n- $\\mathbb{R}$ et $\\mathbb{R}^2$ ne sont pas homéomorphes : un homéomorphisme $h$ induirait une bijection continue de $\\mathbb{R}^2\\setminus\\{h(0)\\}$, connexe, sur $\\mathbb{R}\\setminus\\{0\\}$, qui n'est pas connexe.",
+      "contre_exemple": "- **Sinus du topologiste** : $\\Gamma=\\left\\{\\left(x,\\sin\\frac1x\\right):0<x\\le1\\right\\}\\cup(\\{0\\}\\times[-1,1])$ est connexe, fermée et bornée (donc compacte) dans $\\mathbb{R}^2$, mais pas connexe par arcs.\n- **Intersection** : les demi-cercles supérieur et inférieur du cercle unité, fermés, sont connexes par arcs, mais leur intersection $\\{(1,0),(-1,0)\\}$ n'est pas connexe.\n- **Réunion** : $[0,1]\\cup[2,3]$ n'est pas un intervalle, donc pas connexe.\n- **Image réciproque** : pour $f(x)=x^2$, $f^{-1}([1,4])=[-2,-1]\\cup[1,2]$ n'est pas connexe.\n- **Ouvert dense non connexe** : $\\mathbb{R}^*$ est ouvert et dense dans $\\mathbb{R}$, mais n'est pas connexe.",
+      "affirmations": [
+        {
+          "texte": "Toute partie connexe par arcs d'un espace métrique est connexe.",
+          "vrai": true,
+          "justification": "Une application continue à valeurs dans $\\{0,1\\}$, composée avec un chemin, est constante sur $[0,1]$ ; elle prend donc la même valeur en deux points quelconques."
+        },
+        {
+          "texte": "Toute partie connexe de $\\mathbb{R}^2$ est connexe par arcs.",
+          "vrai": false,
+          "contre_exemple": "Le sinus du topologiste $\\left\\{\\left(x,\\sin\\frac1x\\right):0<x\\le1\\right\\}\\cup(\\{0\\}\\times[-1,1])$ est connexe (adhérence d'un connexe) mais pas connexe par arcs."
+        },
+        {
+          "texte": "L'intersection de deux parties connexes de $\\mathbb{R}^2$ est connexe.",
+          "vrai": false,
+          "contre_exemple": "Les demi-cercles fermés supérieur et inférieur du cercle unité se coupent en $\\{(1,0),(-1,0)\\}$, qui n'est pas connexe."
+        },
+        {
+          "texte": "Une partie ouverte et connexe de $\\mathbb{R}^n$ est connexe par arcs.",
+          "vrai": true,
+          "justification": "L'ensemble des points reliés à un point fixé par un chemin dans l'ouvert est ouvert et fermé dans l'ouvert, car les boules sont convexes."
+        },
+        {
+          "texte": "$\\mathrm{GL}_n(\\mathbb{R})$ est connexe.",
+          "vrai": false,
+          "contre_exemple": "$\\det$ est continue sur $\\mathrm{GL}_n(\\mathbb{R})$ et prend les valeurs $1$ (en $I_n$) et $-1$ (en $\\mathrm{diag}(-1,1,\\dots,1)$) mais jamais $0$ : son image n'est pas un intervalle."
+        }
+      ],
+      "prerequis": [
+        "top-l3-metriques-continuite",
+        "ar-t-tvi",
+        "ar-l1-continuite-image-intervalle",
+        "top-l2-evn-ouverts-fermes"
+      ]
+    },
+    {
+      "id": "top-l3-metriques-point-fixe",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Espaces complets et théorème du point fixe",
+      "recto": "Définir une suite de Cauchy et un espace métrique complet, donner les exemples de base, puis énoncer le théorème du point fixe de Picard avec ses estimations d'erreur a priori et a posteriori.",
+      "cours": "Une suite de Cauchy est une suite dont les termes se rapprochent les uns des autres ; on peut le vérifier **sans connaître la limite**. Toute suite convergente est de Cauchy ; un espace est **complet** quand la réciproque est vraie. Exemples : $\\mathbb{R}$ et $\\mathbb{C}$ (L1), tout espace vectoriel normé de dimension finie (on raisonne sur les coordonnées), $C^0([a,b],\\mathbb{R})$ muni de la norme uniforme (critère de Cauchy uniforme, L2), toute partie fermée d'un espace complet, tout espace métrique compact (une suite de Cauchy qui a une sous-suite convergente converge). Contre-exemples : $\\mathbb{Q}$, $\\left]0,1\\right]$.\n\nLa complétude dépend de la distance et pas seulement des suites convergentes : $\\mathbb{R}$ muni de $|\\arctan x-\\arctan y|$ a les mêmes suites convergentes que $\\mathbb{R}$ usuel, mais la suite $(n)$ y est de Cauchy sans converger.\n\nLe **théorème du point fixe de Picard** est l'application majeure : une contraction d'un espace complet non vide a un unique point fixe, et la méthode des approximations successives $x_{n+1}=f(x_n)$ y converge à vitesse géométrique, quel que soit le point de départ. L'estimation **a priori** fixe à l'avance un nombre d'itérations suffisant pour une précision donnée ; l'estimation **a posteriori** sert de critère d'arrêt à partir de deux itérés calculés. Le théorème s'applique à $\\mathbb{R}$ ou à un intervalle fermé (chapitre de L2), à $\\mathbb{R}^n$, mais aussi à des espaces de fonctions : équations intégrales, preuve du théorème de Cauchy-Lipschitz (admis au programme), du théorème d'inversion locale.\n\nMéthode. On travaille sur une partie **fermée** $F$ d'un espace complet (donc complète), on vérifie $f(F)\\subset F$, puis on majore la constante de Lipschitz, par exemple par l'inégalité des accroissements finis sur un intervalle.\n\nPièges : la condition $d(f(x),f(y))<d(x,y)$ pour $x\\neq y$ ne suffit pas ($x\\mapsto x+\\frac1x$ sur $\\left[1,+\\infty\\right[$) ; la complétude est indispensable ($x\\mapsto\\frac x2$ sur $\\left]0,1\\right]$) ; $k=1$ ne suffit pas (translation) ; la stabilité $f(F)\\subset F$ doit être vérifiée.",
+      "hypotheses": [
+        "$(E,d)$ est un espace métrique complet non vide.",
+        "$f:E\\to E$ est $k$-lipschitzienne avec $0\\le k<1$."
+      ],
+      "hypotheses_pieges": [
+        "$(E,d)$ est un espace métrique non vide quelconque (à la place de : complet).",
+        "$f:E\\to E$ vérifie $d(f(x),f(y))<d(x,y)$ pour tous $x\\neq y$ (à la place de : $k$-lipschitzienne avec $k<1$).",
+        "$f:E\\to E$ est $1$-lipschitzienne (à la place de : $k$-lipschitzienne avec $k<1$)."
+      ],
+      "enonce": "Soit $(E,d)$ un espace métrique. Une suite $(x_n)$ de $E$ est **de Cauchy** si $\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N},\\ \\forall p,q\\ge N,\\ d(x_p,x_q)<\\varepsilon$. Toute suite convergente est de Cauchy ; $E$ est **complet** si toute suite de Cauchy de $E$ converge dans $E$. Exemples : $\\mathbb{R}$, $\\mathbb{C}$, tout espace vectoriel normé de dimension finie, $C^0([a,b],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$. Une partie fermée d'un espace complet est complète ; une partie complète d'un espace métrique est fermée.\n\n**Théorème du point fixe (Picard).** Soient $(E,d)$ un espace métrique complet non vide et $f:E\\to E$ une application $k$-lipschitzienne avec $0\\le k<1$ (une **contraction**). Alors $f$ admet un unique point fixe $\\ell$. Pour tout $x_0\\in E$, la suite définie par $x_{n+1}=f(x_n)$ converge vers $\\ell$, et pour tout $n\\ge1$ :\n$$d(x_n,\\ell)\\le\\frac{k^n}{1-k}\\,d(x_0,x_1)\\quad\\text{(a priori)},\\qquad d(x_n,\\ell)\\le\\frac{k}{1-k}\\,d(x_{n-1},x_n)\\quad\\text{(a posteriori)}.$$",
+      "enonce_trous": "Soit $f:E\\to E$ une application {{1}}, où $E$ est un espace métrique {{2}} non vide. Alors $f$ admet un unique point fixe $\\ell$, limite de toute suite définie par $x_{n+1}=f(x_n)$, et l'on a, pour tout $n\\ge1$, l'estimation a priori {{3}}.",
+      "trous": [
+        {
+          "reponse": "$k$-lipschitzienne avec $0\\le k<1$",
+          "leurres": [
+            "$1$-lipschitzienne",
+            "telle que $d(f(x),f(y))<d(x,y)$ pour tous $x\\neq y$",
+            "continue"
+          ]
+        },
+        {
+          "reponse": "complet",
+          "leurres": [
+            "borné",
+            "connexe",
+            "quelconque"
+          ]
+        },
+        {
+          "reponse": "$d(x_n,\\ell)\\le\\frac{k^n}{1-k}\\,d(x_0,x_1)$",
+          "leurres": [
+            "$d(x_n,\\ell)\\le k^n\\,d(x_0,x_1)$",
+            "$d(x_n,\\ell)\\le\\frac{k^{n+1}}{1-k}\\,d(x_0,x_1)$",
+            "$d(x_n,\\ell)\\le\\frac{k^n}{1+k}\\,d(x_0,x_1)$"
+          ]
+        }
+      ],
+      "demo": "**Suites de Cauchy.** Si $x_n\\to\\ell$, $d(x_p,x_q)\\le d(x_p,\\ell)+d(\\ell,x_q)$ est petit pour $p,q$ grands.\n\n**Exemples.** $\\mathbb{R}$ et $\\mathbb{C}$ sont complets (L1). Dans un espace normé de dimension finie, toutes les normes sont équivalentes (et une suite de Cauchy pour une norme l'est pour toute norme équivalente) : avec la norme $\\|\\cdot\\|_\\infty$ relative à une base, les coordonnées d'une suite de Cauchy sont de Cauchy dans $\\mathbb{K}$, donc convergent, et la suite converge. Dans $C^0([a,b],\\mathbb{R})$, une suite de Cauchy pour $\\|\\cdot\\|_\\infty$ vérifie le critère de Cauchy uniforme, donc converge uniformément vers une fonction, continue comme limite uniforme de fonctions continues.\n\n**Parties fermées, parties complètes.** Si $F$ est fermée dans $E$ complet, une suite de Cauchy de $F$ converge dans $E$, et sa limite est dans $F$ puisque $F$ est fermée. Si $A\\subset E$ est complète et si $x_n\\in A$ converge vers $\\ell\\in E$, la suite $(x_n)$ est de Cauchy, donc converge dans $A$ vers un $\\ell'$ ; par unicité de la limite, $\\ell=\\ell'\\in A$.\n\n**Unicité du point fixe.** Si $f(\\ell)=\\ell$ et $f(\\ell')=\\ell'$, alors $d(\\ell,\\ell')\\le k\\,d(\\ell,\\ell')$, donc $d(\\ell,\\ell')=0$ puisque $k<1$.\n\n**Existence.** Par récurrence, $d(x_{j+1},x_j)\\le k^j\\,d(x_1,x_0)$. Pour $q>p$ :\n$$d(x_p,x_q)\\le\\sum_{j=p}^{q-1}d(x_j,x_{j+1})\\le\\sum_{j=p}^{q-1}k^j\\,d(x_0,x_1)\\le\\frac{k^p}{1-k}\\,d(x_0,x_1),$$\nqui tend vers $0$ quand $p\\to+\\infty$ : la suite est de Cauchy, donc converge vers un $\\ell\\in E$. Comme $f$ est lipschitzienne, donc continue, $\\ell=\\lim x_{n+1}=\\lim f(x_n)=f(\\ell)$.\n\n**Estimations.** Dans l'inégalité précédente, on fait tendre $q$ vers $+\\infty$ ($|d(x_p,x_q)-d(x_p,\\ell)|\\le d(x_q,\\ell)\\to0$) : c'est l'estimation a priori. En l'appliquant à la suite qui part de $x_{n-1}$, dont le terme d'indice $1$ est $x_n$, on obtient l'estimation a posteriori.",
+      "exemple": "- $g=\\cos$ envoie $[0,1]$ dans $[\\cos1,1]\\subset[0,1]$ et $|g'|=|\\sin|\\le\\sin1<1$ sur $[0,1]$ : $g$ a un unique point fixe dans $[0,1]$ (environ $0{,}739085$), limite de toute suite $x_{n+1}=\\cos x_n$ issue de $[0,1]$.\n- Sur $C^0([0,1],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$, $T(f)(x)=1+\\frac12\\int_0^xf(t)\\,\\mathrm{d}t$ est $\\frac12$-lipschitzienne ; son unique point fixe est $x\\mapsto e^{x/2}$, seule solution continue de l'équation intégrale $f(x)=1+\\frac12\\int_0^xf(t)\\,\\mathrm{d}t$.\n- Un espace métrique compact est complet : une suite de Cauchy qui a une sous-suite convergente converge vers la même limite.",
+      "contre_exemple": "- **Espace non complet** : $f(x)=\\frac x2$ est une $\\frac12$-contraction de $\\left]0,1\\right]$ sans point fixe. De même, les troncatures décimales de $\\sqrt2$ forment une suite de Cauchy de $\\mathbb{Q}$ qui ne converge pas dans $\\mathbb{Q}$.\n- **Contraction stricte sans constante $k<1$** : $f(x)=x+\\frac1x$ envoie le fermé $\\left[1,+\\infty\\right[$ dans lui-même et, pour $1\\le x<y$, $f(y)-f(x)=(y-x)\\left(1-\\frac1{xy}\\right)\\in\\left]0,y-x\\right[$ ; pourtant $f$ n'a pas de point fixe, car $\\frac1x\\neq0$.\n- **$k=1$** : la translation $x\\mapsto x+1$ est $1$-lipschitzienne sur $\\mathbb{R}$, sans point fixe.\n- **La complétude dépend de la distance** : pour $d(x,y)=|\\arctan x-\\arctan y|$ sur $\\mathbb{R}$, la suite $(n)$ est de Cauchy (car $\\arctan n$ converge) mais ne converge pas : si $d(n,\\ell)\\to0$, alors $\\arctan n\\to\\arctan\\ell<\\frac\\pi2$, ce qui est faux.",
+      "affirmations": [
+        {
+          "texte": "Toute suite de Cauchy d'un espace métrique est bornée.",
+          "vrai": true,
+          "justification": "Pour $\\varepsilon=1$, il existe $N$ tel que $d(x_p,x_N)<1$ pour $p\\ge N$ ; la suite est donc dans la boule de centre $x_N$ de rayon $1+\\max_{p<N}d(x_p,x_N)$."
+        },
+        {
+          "texte": "Toute partie fermée d'un espace métrique complet est complète.",
+          "vrai": true,
+          "justification": "Une suite de Cauchy de la partie converge dans l'espace, et sa limite reste dans la partie puisqu'elle est fermée."
+        },
+        {
+          "texte": "Si $E$ est complet non vide et si $f:E\\to E$ vérifie $d(f(x),f(y))<d(x,y)$ pour tous $x\\neq y$, alors $f$ a un point fixe.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=x+\\frac1x$ sur $\\left[1,+\\infty\\right[$, qui est complet : $|f(x)-f(y)|=|x-y|\\left(1-\\frac1{xy}\\right)<|x-y|$ pour $x\\neq y$, et $f$ n'a pas de point fixe."
+        },
+        {
+          "texte": "$\\mathbb{Q}$, muni de la distance $|x-y|$, est complet.",
+          "vrai": false,
+          "contre_exemple": "Les troncatures décimales $1$ ; $1{,}4$ ; $1{,}41$ ; … de $\\sqrt2$ forment une suite de Cauchy de rationnels dont la limite dans $\\mathbb{R}$, $\\sqrt2$, n'est pas rationnelle."
+        },
+        {
+          "texte": "Dans le théorème de Picard, la limite de la suite $x_{n+1}=f(x_n)$ ne dépend pas du point de départ $x_0$.",
+          "vrai": true,
+          "justification": "Quel que soit $x_0$, la limite est un point fixe de $f$, et ce point fixe est unique."
+        }
+      ],
+      "prerequis": [
+        "top-l3-metriques-continuite",
+        "ar-l1-suites-cauchy",
+        "num-l2-equations-point-fixe",
+        "top-l2-evn-equivalence-dim-finie",
+        "ar-l2-suites-fonctions-cauchy-uniforme",
+        "ar-l2-suites-fonctions-continuite"
+      ]
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-metriques",
+      "type": "theoreme",
+      "titre": "Critère de Cauchy pour les limites",
+      "recto": "Énoncer le critère de Cauchy pour l'existence d'une limite d'une fonction à valeurs dans un espace métrique complet, en un point adhérent et en $+\\infty$.",
+      "cours": "Le critère de Cauchy pour les fonctions permet, comme pour les suites, de prouver qu'une limite **existe sans la connaître** : il suffit que les valeurs de $f$ se rapprochent les unes des autres quand la variable se rapproche de $a$. Il demande que l'espace d'arrivée soit complet. La preuve se ramène aux suites : l'image d'une suite qui tend vers $a$ est de Cauchy, donc converge, et la limite ne dépend pas de la suite (on entrelace deux suites).\n\nIci, pour $a\\in\\overline A$, « $f$ admet la limite $\\ell$ en $a$ » signifie : pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que $\\delta(f(x),\\ell)<\\varepsilon$ pour tout $x\\in A$ vérifiant $d(x,a)<\\eta$. Si $a\\in A$, cette limite, si elle existe, vaut forcément $f(a)$ : elle existe si et seulement si $f$ est continue en $a$.\n\nApplications : convergence des intégrales impropres ($F(x)=\\int_a^xf$ a une limite en $b$ si et seulement si $\\int_x^yf$ est petit pour $x,y$ proches de $b$ ; c'est le critère de Cauchy de L2), limite en un point adhérent d'une application lipschitzienne ou uniformément continue, prolongement par continuité à l'adhérence d'une application uniformément continue (exercices). Le critère pour les suites et celui pour les séries en sont des cas particuliers.\n\nPièges : la complétude de l'espace d'arrivée est indispensable ($x\\mapsto x$ de $\\left]0,1\\right]$ dans $\\left]0,1\\right]$, en $0$) ; une **seule** suite $(x_n)$ tendant vers $a$ telle que $(f(x_n))$ converge ne suffit pas ($\\sin\\frac1x$ et $x_n=\\frac1{n\\pi}$) ; une fonction continue et bornée n'a pas forcément de limite ; la condition porte sur des couples $x,y$ **tous deux** proches de $a$, et non sur des couples de points proches l'un de l'autre (ce serait la continuité uniforme, plus forte) ; enfin $f(x+1)-f(x)\\to0$ ne suffit pas en $+\\infty$ ($\\sqrt x$).",
+      "hypotheses": [
+        "$(F,\\delta)$ est un espace métrique complet.",
+        "Pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que $\\delta(f(x),f(y))<\\varepsilon$ pour tous $x,y\\in A\\cap B(a,\\eta)$."
+      ],
+      "hypotheses_pieges": [
+        "$(F,\\delta)$ est un espace métrique quelconque (à la place de : complet).",
+        "Il existe une suite $(x_n)$ d'éléments de $A$, de limite $a$, telle que $(f(x_n))$ soit de Cauchy (à la place de la condition de Cauchy en $a$).",
+        "$f$ est continue et bornée sur $A$ (à la place de la condition de Cauchy en $a$)."
+      ],
+      "enonce": "Soient $(X,d)$ un espace métrique, $A$ une partie de $X$, $a\\in\\overline A$, $(F,\\delta)$ un espace métrique **complet** et $f:A\\to F$. Alors $f$ admet une limite en $a$, c'est-à-dire qu'il existe $\\ell\\in F$ tel que $\\forall\\varepsilon>0,\\ \\exists\\eta>0,\\ \\forall x\\in A,\\ d(x,a)<\\eta\\Rightarrow\\delta(f(x),\\ell)<\\varepsilon$, si et seulement si\n$$\\forall\\varepsilon>0,\\ \\exists\\eta>0,\\ \\forall x,y\\in A\\cap B(a,\\eta),\\quad\\delta(f(x),f(y))<\\varepsilon.$$\nDe même, si $A\\subset\\mathbb{R}$ n'est pas majorée, $f$ admet une limite en $+\\infty$ si et seulement si\n$$\\forall\\varepsilon>0,\\ \\exists M\\in\\mathbb{R},\\ \\forall x,y\\in A,\\quad x,y\\ge M\\Longrightarrow\\delta(f(x),f(y))<\\varepsilon.$$",
+      "enonce_trous": "Soient $A$ une partie d'un espace métrique $(X,d)$, $a\\in\\overline A$ et $f:A\\to F$, où $(F,\\delta)$ est un espace métrique {{1}}. Alors $f$ admet une limite en $a$ si et seulement si, pour tout $\\varepsilon>0$, il existe $\\eta>0$ tel que {{2}}.",
+      "trous": [
+        {
+          "reponse": "complet",
+          "leurres": [
+            "borné",
+            "connexe",
+            "quelconque"
+          ]
+        },
+        {
+          "reponse": "$\\delta(f(x),f(y))<\\varepsilon$ pour tous $x,y\\in A\\cap B(a,\\eta)$",
+          "leurres": [
+            "$\\delta(f(x),f(y))<\\varepsilon$ pour tous $x,y\\in A$ tels que $d(x,y)<\\eta$",
+            "$\\delta(f(x),f(y))<\\varepsilon$ pour tous $x\\in A\\cap B(a,\\eta)$ et $y\\in A$",
+            "$\\delta(f(x),f(y))<\\eta$ pour tous $x,y\\in A\\cap B(a,\\varepsilon)$"
+          ]
+        }
+      ],
+      "demo": "**La condition est nécessaire** (sans hypothèse sur $F$). Si $f$ tend vers $\\ell$ en $a$, soit $\\eta$ tel que $\\delta(f(x),\\ell)<\\frac\\varepsilon2$ pour $x\\in A\\cap B(a,\\eta)$ ; pour $x,y$ dans cet ensemble, $\\delta(f(x),f(y))\\le\\delta(f(x),\\ell)+\\delta(\\ell,f(y))<\\varepsilon$.\n\n**Elle est suffisante.** Supposons la condition vérifiée.\n- Si $(x_n)$ est une suite de $A$ qui tend vers $a$, $(f(x_n))$ est de Cauchy : pour $\\varepsilon>0$ et $\\eta$ associé, il existe $N$ tel que $x_n\\in B(a,\\eta)$ pour $n\\ge N$, d'où $\\delta(f(x_p),f(x_q))<\\varepsilon$ pour $p,q\\ge N$. Comme $F$ est complet, $(f(x_n))$ converge.\n- La limite ne dépend pas de la suite : si $(x_n)$ et $(y_n)$ tendent vers $a$, la suite $z$ définie par $z_{2n}=x_n$, $z_{2n+1}=y_n$ tend vers $a$, donc $(f(z_n))$ converge, et ses deux sous-suites $(f(x_n))$ et $(f(y_n))$ ont la même limite. Comme $a\\in\\overline A$, il existe au moins une suite de $A$ qui tend vers $a$ ; on note $\\ell$ la limite commune.\n- $f$ tend vers $\\ell$ en $a$ : soient $\\varepsilon>0$, $\\eta$ associé, et $x\\in A\\cap B(a,\\eta)$. Pour une suite $(x_n)$ de $A$ qui tend vers $a$, on a $x_n\\in B(a,\\eta)$ pour $n$ assez grand, donc $\\delta(f(x),f(x_n))<\\varepsilon$ ; en faisant tendre $n$ vers $+\\infty$, $\\delta(f(x),\\ell)\\le\\varepsilon$.\n\n**En $+\\infty$.** La preuve est la même en remplaçant « $x\\in B(a,\\eta)$ » par « $x\\ge M$ » et les suites qui tendent vers $a$ par des suites de $A$ qui tendent vers $+\\infty$ (il en existe puisque $A$ n'est pas majorée).",
+      "exemple": "- $F(x)=\\int_1^x\\frac{\\sin t}{t}\\,\\mathrm{d}t$ a une limite finie en $+\\infty$ : une intégration par parties donne $|F(y)-F(x)|\\le\\frac2x$ pour $y\\ge x\\ge1$.\n- Une application $k$-lipschitzienne $f:A\\to F$, avec $F$ complet, a une limite en tout point $a\\in\\overline A$ : pour $x,y\\in A\\cap B(a,\\eta)$, $\\delta(f(x),f(y))\\le k\\,d(x,y)<2k\\eta$. Par exemple $f(x)=\\int_x^1\\cos\\frac1t\\,\\mathrm{d}t$ est $1$-lipschitzienne sur $\\left]0,1\\right]$, donc admet une limite en $0$, que l'on n'a pas besoin de calculer.",
+      "contre_exemple": "- **Espace d'arrivée non complet** : $f:\\left]0,1\\right]\\to\\left]0,1\\right]$, $f(x)=x$, vérifie la condition en $a=0$ (pour $x,y\\in\\left]0,\\eta\\right[$, $|f(x)-f(y)|<\\eta$), mais n'a pas de limite dans $\\left]0,1\\right]$.\n- **Une seule suite ne suffit pas** : pour $f(x)=\\sin\\frac1x$ sur $\\left]0,1\\right]$ et $x_n=\\frac1{n\\pi}$, $f(x_n)=0$ pour tout $n$, mais $f$ n'a pas de limite en $0$ (le long de $\\frac1{2n\\pi+\\frac\\pi2}$, elle vaut $1$).\n- **Continue et bornée ne suffit pas** : $\\sin\\frac1x$ est continue et bornée sur $\\left]0,1\\right]$, sans limite en $0$.",
+      "affirmations": [
+        {
+          "texte": "Une fonction lipschitzienne $f:\\left]0,1\\right]\\to\\mathbb{R}$ admet une limite finie en $0$.",
+          "vrai": true,
+          "justification": "$\\mathbb{R}$ est complet et $|f(x)-f(y)|\\le k|x-y|<k\\eta$ pour $x,y\\in\\left]0,\\eta\\right[$ : le critère de Cauchy est vérifié."
+        },
+        {
+          "texte": "Si $(f(x_n))$ converge pour une suite $(x_n)$ d'éléments de $A$ de limite $a$, alors $f$ admet une limite en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\sin\\frac1x$ sur $\\left]0,1\\right]$ : $f\\left(\\frac1{n\\pi}\\right)=0$, mais $f\\left(\\frac1{2n\\pi+\\frac\\pi2}\\right)=1$, donc pas de limite en $0$."
+        },
+        {
+          "texte": "Le critère de Cauchy pour les limites reste valable pour une fonction à valeurs dans $\\mathbb{Q}$ muni de $|x-y|$.",
+          "vrai": false,
+          "contre_exemple": "$f:\\mathbb{Q}\\cap[0,1]\\to\\mathbb{Q}$, $f(x)=x$, vérifie la condition de Cauchy en $a=\\frac{\\sqrt2}2$, mais une limite $\\ell\\in\\mathbb{Q}$ serait aussi la limite dans $\\mathbb{R}$, c'est-à-dire $\\frac{\\sqrt2}{2}$, qui n'est pas rationnel."
+        },
+        {
+          "texte": "Si $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ vérifie $f(x+1)-f(x)\\to0$ quand $x\\to+\\infty$, alors $f$ admet une limite finie en $+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\sqrt x$ : $\\sqrt{x+1}-\\sqrt x=\\frac1{\\sqrt{x+1}+\\sqrt x}\\to0$, mais $\\sqrt x\\to+\\infty$."
+        }
+      ],
+      "prerequis": [
+        "top-l3-metriques-point-fixe",
+        "top-l3-metriques-continuite",
+        "ar-l1-continuite-sequentielle",
+        "int-l2-generalisees-cauchy"
+      ]
+    }
+  ]
+}
