@@ -1,0 +1,456 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l3-densites-densite",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "definition",
+      "titre": "Densité et fonction de répartition",
+      "recto": "Définir une variable aléatoire à densité et relier sa densité à sa fonction de répartition (dans les deux sens).",
+      "cours": "Une variable aléatoire réelle peut prendre une infinité non dénombrable de valeurs, chacune avec une probabilité nulle : une durée, une position, une erreur de mesure. Sa loi n'est alors plus décrite par les $P(X=x)$, tous nuls, mais par sa **fonction de répartition** $F_X(x)=P(X\\le x)$ ou, dans le cas le plus courant, par une **densité** $f$ : la probabilité que $X$ tombe dans un intervalle est l'aire sous la courbe de $f$ au-dessus de cet intervalle.\n\nSans théorie de la mesure, on prend pour densités des fonctions positives, **continues sauf en un nombre fini de points**, dont l'intégrale généralisée sur $\\mathbb{R}$ vaut $1$. On ne demande pas que $f$ soit bornée : $x\\mapsto\\frac1{2\\sqrt x}$ sur $\\left]0,1\\right]$ (et $0$ ailleurs) est une densité, celle du carré d'une variable uniforme sur $[0,1]$, l'intégrale étant impropre en $0$. Ce cadre contient les fonctions continues par morceaux, et aussi les densités des lois Gamma de paramètre de forme $a<1$, ou celle du carré d'une variable normale.\n\nTrois conséquences à retenir. La fonction $F_X$ est **continue**, donc $P(X=a)=0$ pour tout réel $a$, et inégalités larges ou strictes donnent la même probabilité. $F_X$ est dérivable de dérivée $f$ en tout point où $f$ est continue. Enfin une densité n'est déterminée qu'à un nombre fini de valeurs près : modifier $f$ en un point ne change pas la loi. La valeur $f(x)$ n'est pas une probabilité, elle peut dépasser $1$.\n\n**Méthode.** Pour montrer qu'une variable $Y=g(X)$ a une densité, on calcule sa fonction de répartition $F_Y(y)=P\\left(g(X)\\le y\\right)$ en résolvant l'inéquation $g(X)\\le y$, on vérifie que $F_Y$ est continue sur $\\mathbb{R}$ et de classe $\\mathcal{C}^1$ sauf en un nombre fini de points, et on dérive.\n\n**Pièges.** Une fonction de répartition de classe $\\mathcal{C}^1$ par morceaux mais discontinue (variable constante, ou mélange d'une partie discrète et d'une partie continue) ne donne pas de densité. Et $F_X$ n'est pas dérivable là où $f$ saute : pour la loi uniforme sur $[0,1]$, ni en $0$ ni en $1$.",
+      "hypotheses": [
+        "$X$ est une variable aléatoire réelle de densité $f$.",
+        "$f$ est continue au point $x_0$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue à droite au point $x_0$ (à la place de : $f$ est continue en $x_0$).",
+        "$f(x_0)>0$ (à la place de : $f$ est continue en $x_0$).",
+        "$F_X$ est continue au point $x_0$ (à la place de : $f$ est continue en $x_0$)."
+      ],
+      "enonce": "Soit $(\\Omega,\\mathcal{A},P)$ un espace probabilisé et $X:\\Omega\\to\\mathbb{R}$ une **variable aléatoire réelle** : $\\{X\\le x\\}\\in\\mathcal{A}$ pour tout réel $x$. Sa **fonction de répartition** est $F_X:x\\mapsto P(X\\le x)$.\n- Une **densité** est une fonction $f:\\mathbb{R}\\to\\left[0,+\\infty\\right[$, continue sauf en un nombre fini de points, dont l'intégrale généralisée sur $\\mathbb{R}$ converge et vaut $1$. On dit que $X$ **admet la densité** $f$ si $F_X(x)=\\int_{-\\infty}^xf(t)\\,\\mathrm{d}t$ pour tout réel $x$.\n- Si $X$ admet la densité $f$, alors $F_X$ est continue sur $\\mathbb{R}$, $P(X=a)=0$ pour tout réel $a$ et, pour tous réels $a\\le b$, $P(a<X\\le b)=P(a\\le X\\le b)=\\int_a^bf(t)\\,\\mathrm{d}t$. En tout point $x_0$ où $f$ est continue, $F_X$ est dérivable et $F_X'(x_0)=f(x_0)$. Deux densités de $X$ coïncident sauf en un nombre fini de points.\n- **Réciproque.** Si $F_X$ est continue sur $\\mathbb{R}$ et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}\\setminus A$, où $A$ est une partie finie de $\\mathbb{R}$, alors $X$ admet pour densité la fonction égale à $F_X'$ sur $\\mathbb{R}\\setminus A$ et à $0$ sur $A$.",
+      "enonce_trous": "Soit $X$ une variable aléatoire réelle de densité $f$ et $F_X$ sa fonction de répartition. Pour tous réels $a\\le b$, $P(a<X\\le b)$ est égal à {{1}} ; et en tout point où {{2}}, la fonction $F_X$ est dérivable, de dérivée $f$.",
+      "trous": [
+        {
+          "reponse": "$\\int_a^bf(t)\\,\\mathrm{d}t$",
+          "leurres": [
+            "$f(b)-f(a)$",
+            "$\\int_a^bF_X(t)\\,\\mathrm{d}t$",
+            "$\\int_a^btf(t)\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "$f$ est continue",
+          "leurres": [
+            "$f$ est strictement positive",
+            "$F_X$ est continue",
+            "$f$ est continue à droite"
+          ]
+        }
+      ],
+      "demo": "Pour une variable aléatoire réelle quelconque, on utilise les propriétés de $F_X$ établies pour les variables discrètes, avec la même preuve par continuité monotone : les ensembles $\\{a<X\\le b\\}$, $\\{X<a\\}=\\bigcup_n\\left\\{X\\le a-\\frac1n\\right\\}$ et $\\{X=a\\}$ sont des événements, $F_X$ est croissante, de limites $0$ en $-\\infty$ et $1$ en $+\\infty$, et $P(X=a)=F_X(a)-\\lim_{x\\to a^-}F_X(x)$, car $\\{X=a\\}$ est l'intersection de la suite décroissante des $\\left\\{a-\\frac1n<X\\le a\\right\\}$.\n\n**Continuité.** Soit $f$ une densité de $X$, continue hors d'une partie finie $\\{a_1<\\dots<a_p\\}$. Sur chacun des intervalles ouverts délimités par ces points (et par $\\pm\\infty$), $f$ est continue, et $F_X=\\int_{-\\infty}^{\\cdot}f$ est une primitive de $f$ : elle est continue. En un point $a_i$, la convergence des intégrales impropres de $f$ au voisinage de $a_i$ donne $\\int_{a_i}^xf(t)\\,\\mathrm{d}t\\to0$ quand $x\\to a_i$, donc $F_X$ est continue en $a_i$. Ainsi $F_X$ est continue sur $\\mathbb{R}$, et $P(X=a)=0$. Ensuite $P(a<X\\le b)=F_X(b)-F_X(a)=\\int_a^bf$ par la relation de Chasles, et $[a,b]$ ne diffère de $\\left]a,b\\right]$ que par $\\{X=a\\}$, de probabilité nulle.\n\n**Dérivée.** Si $f$ est continue en $x_0$, elle est bornée au voisinage de $x_0$ et, pour $h\\ne0$ assez petit,\n$$\\left|\\frac{F_X(x_0+h)-F_X(x_0)}h-f(x_0)\\right|=\\left|\\frac1h\\int_{x_0}^{x_0+h}\\left(f(t)-f(x_0)\\right)\\mathrm{d}t\\right|\\le\\sup_{|t-x_0|\\le|h|}|f(t)-f(x_0)|,$$\nqui tend vers $0$ avec $h$. Si $f$ et $g$ sont deux densités de $X$, en tout point où elles sont toutes deux continues, $f(x)=F_X'(x)=g(x)$ : elles ne peuvent différer qu'aux points de discontinuité de l'une ou de l'autre, en nombre fini.\n\n**Réciproque.** Soit $f$ la fonction de l'énoncé : elle est positive (car $F_X$ est croissante) et continue hors de $A$. Si $I$ est un intervalle ouvert ne rencontrant pas $A$ et $u<v$ sont dans $I$, $F_X(v)-F_X(u)=\\int_u^vf$. En faisant tendre $u$ et $v$ vers les bornes de $I$, la continuité de $F_X$ (et ses limites $0$ et $1$ en $\\mp\\infty$) montre que $\\int_If$ converge et vaut l'accroissement de $F_X$ entre les bornes de $I$. En découpant $\\left]-\\infty,x\\right]$ par les points de $A$ et en sommant, on obtient $\\int_{-\\infty}^xf=F_X(x)$ pour tout $x$, et en particulier $\\int_{-\\infty}^{+\\infty}f=1$ : $f$ est une densité de $X$.",
+      "exemple": "Soit $X$ de fonction de répartition $F_X(x)=0$ si $x<0$, $F_X(x)=x^2$ si $0\\le x\\le1$ et $F_X(x)=1$ si $x>1$ (c'est la loi du plus grand de deux nombres tirés uniformément et indépendamment dans $[0,1]$). $F_X$ est continue sur $\\mathbb{R}$ et de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$ : $X$ admet la densité $f$ égale à $2x$ sur $[0,1]$ et à $0$ ailleurs. Ainsi $P\\left(\\frac14<X\\le\\frac12\\right)=\\frac14-\\frac1{16}=\\frac3{16}$, et $f(1)=2>1$ : une densité n'est pas une probabilité. La fonction $F_X$ n'est pas dérivable en $1$ (dérivée à gauche $2$, à droite $0$), où $f$ saute.",
+      "contre_exemple": "- **Variable constante.** Si $X=0$, $F_X=\\mathbf{1}_{\\left[0,+\\infty\\right[}$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$ mais discontinue en $0$ : $P(X=0)=1\\ne0$, et $X$ n'a pas de densité.\n- **Variable mixte.** Si $U$ admet la densité $\\mathbf{1}_{[0,1]}$ (loi uniforme sur $[0,1]$) et $X=\\max\\left(U,\\frac12\\right)$, alors $P\\left(X=\\frac12\\right)=P\\left(U\\le\\frac12\\right)=\\frac12$ : $F_X$ saute en $\\frac12$ et $X$ n'a pas de densité, bien que $F_X$ soit de classe $\\mathcal{C}^1$ hors de $\\left\\{\\frac12,1\\right\\}$.\n- **Dérivabilité.** Pour la densité $\\mathbf{1}_{[0,1]}$, $F_X(x)=0$ si $x<0$ et $F_X(x)=x$ sur $[0,1]$ : en $0$, la dérivée à gauche vaut $0$ et la dérivée à droite $1$. $F_X$ n'est pas dérivable en $0$, bien que $f(0)=1>0$, que $f$ soit continue à droite en $0$ et que $F_X$ y soit continue.",
+      "affirmations": [
+        {
+          "texte": "Une densité est majorée par $1$.",
+          "vrai": false,
+          "contre_exemple": "$f=2\\cdot\\mathbf{1}_{\\left[0,\\frac12\\right]}$ est positive, continue hors de $\\left\\{0,\\frac12\\right\\}$ et d'intégrale $1$ : c'est une densité, qui vaut $2$ sur $\\left[0,\\frac12\\right]$."
+        },
+        {
+          "texte": "Si $X$ admet une densité, alors $P(X\\in\\mathbb{Q})=0$.",
+          "vrai": true,
+          "justification": "$\\mathbb{Q}$ est dénombrable : $\\{X\\in\\mathbb{Q}\\}$ est la réunion dénombrable des $\\{X=q\\}$, $q\\in\\mathbb{Q}$, disjoints et de probabilité nulle ; par $\\sigma$-additivité, $P(X\\in\\mathbb{Q})=0$."
+        },
+        {
+          "texte": "Une densité est bornée.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=\\frac1{2\\sqrt x}$ sur $\\left]0,1\\right]$, $f=0$ ailleurs : $f$ est continue hors de $\\{0,1\\}$ et $\\int_0^1\\frac{\\mathrm{d}x}{2\\sqrt x}=1$, mais $f$ n'est pas bornée au voisinage de $0$."
+        },
+        {
+          "texte": "Si $X$ admet une densité, alors $F_X$ est dérivable sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "Pour la densité $\\mathbf{1}_{[0,1]}$, $F_X$ a en $0$ une dérivée à gauche nulle et une dérivée à droite égale à $1$."
+        },
+        {
+          "texte": "Si $X$ admet une densité $f$ et si $a>0$, alors $aX$ admet la densité $x\\mapsto\\frac1af\\left(\\frac xa\\right)$.",
+          "vrai": true,
+          "justification": "$F_{aX}(x)=P\\left(X\\le\\frac xa\\right)=\\int_{-\\infty}^{x/a}f(t)\\,\\mathrm{d}t=\\int_{-\\infty}^x\\frac1af\\left(\\frac ua\\right)\\mathrm{d}u$ (changement de variable $u=at$), et cette fonction est positive, continue sauf en un nombre fini de points."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-repartition",
+        "int-l2-generalisees-positive",
+        "int-t-integrale-fondamental"
+      ]
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "theoreme",
+      "titre": "Lois uniforme, exponentielle, de Cauchy, normale, Gamma",
+      "recto": "Donner les densités des lois uniforme, exponentielle, de Cauchy, normale et Gamma, et caractériser la loi exponentielle par l'absence de mémoire.",
+      "cours": "Cinq lois à densité servent de modèles de base. La loi **uniforme** sur $[a,b]$ modélise un point « pris au hasard » dans un segment : la probabilité d'un sous-intervalle est proportionnelle à sa longueur. La loi **exponentielle** $\\mathcal{E}(\\lambda)$ modélise une durée de vie sans vieillissement (désintégration d'un atome, panne d'un composant électronique) : elle est la seule loi à densité **sans mémoire**, ce qui en fait l'analogue continu de la loi géométrique. La loi **normale** $\\mathcal{N}(m,\\sigma^2)$ décrit les erreurs de mesure et les fluctuations d'une somme de nombreux petits effets indépendants (ce que précisera le théorème central limite) ; sa fonction de répartition $\\Phi$, dans le cas $\\mathcal{N}(0,1)$, n'a pas d'expression à l'aide des fonctions usuelles et se lit dans une table.\n\nLa loi **Gamma** $\\gamma(a,\\lambda)$ généralise la loi exponentielle ($\\gamma(1,\\lambda)=\\mathcal{E}(\\lambda)$) ; pour $a=n$ entier, elle décrit le temps d'attente du $n$-ième événement quand les durées entre événements sont exponentielles et indépendantes, et pour $a=\\frac12$, $\\lambda=\\frac12$ c'est la loi du carré d'une variable $\\mathcal{N}(0,1)$. Les conventions varient selon les ouvrages : ici $\\lambda$ est une **intensité** (l'espérance de $\\mathcal{E}(\\lambda)$ sera $\\frac1\\lambda$), d'autres utilisent un paramètre d'échelle $\\frac1\\lambda$. Enfin la loi **de Cauchy** est la loi de la tangente d'un angle uniforme ; sa densité décroît si lentement qu'elle n'a pas d'espérance : c'est le contre-exemple de référence.\n\n**Méthode.** Pour vérifier qu'une fonction est une densité ou trouver une constante de normalisation, on se ramène à une intégrale connue : primitive explicite (uniforme, exponentielle, Cauchy), intégrale de Gauss par changement de variable affine (normale), fonction $\\Gamma$ d'Euler par le changement de variable $u=\\lambda x$ (Gamma). Pour une loi exponentielle, on calcule plutôt $P(X>t)=e^{-\\lambda t}$.\n\n**Pièges.** L'absence de mémoire seulement aux instants entiers ne suffit pas (loi géométrique) ; $\\frac1{1+x^2}$ sans le facteur $\\frac1\\pi$ n'est pas une densité ; une densité normale très concentrée dépasse $1$.",
+      "hypotheses": [
+        "$P(X>t)>0$ pour tout réel $t\\ge0$.",
+        "Pour tous réels $s,t\\ge0$, $P(X>s+t\\mid X>s)=P(X>t)$."
+      ],
+      "hypotheses_pieges": [
+        "Pour tous entiers naturels $s$ et $t$, $P(X>s+t\\mid X>s)=P(X>t)$ (à la place de : pour tous réels $s,t\\ge0$).",
+        "Pour tous réels $s,t\\ge0$, $P(X>s+t\\mid X>s)\\le P(X>t)$ (à la place de : l'égalité).",
+        "Pour tout réel $s\\ge0$, $P(X>s+1\\mid X>s)=P(X>1)$ (à la place de : pour tous réels $s,t\\ge0$, $P(X>s+t\\mid X>s)=P(X>t)$)."
+      ],
+      "enonce": "Les fonctions suivantes sont des densités ; une variable suit la loi correspondante si elle admet cette densité.\n- **Uniforme** sur $[a,b]$, $a<b$ : $\\frac1{b-a}\\mathbf{1}_{[a,b]}$ ; $F_X(x)=\\frac{x-a}{b-a}$ pour $x\\in[a,b]$. Notation $\\mathcal{U}([a,b])$.\n- **Exponentielle** de paramètre $\\lambda>0$ : $x\\mapsto\\lambda e^{-\\lambda x}\\mathbf{1}_{\\left[0,+\\infty\\right[}(x)$ ; $P(X>t)=e^{-\\lambda t}$ pour $t\\ge0$. Notation $\\mathcal{E}(\\lambda)$.\n- **De Cauchy** : $x\\mapsto\\frac1{\\pi(1+x^2)}$ sur $\\mathbb{R}$ ; $F_X(x)=\\frac12+\\frac1\\pi\\arctan x$.\n- **Normale** $\\mathcal{N}(m,\\sigma^2)$, $m\\in\\mathbb{R}$, $\\sigma>0$ : $x\\mapsto\\frac1{\\sigma\\sqrt{2\\pi}}\\exp\\left(-\\frac{(x-m)^2}{2\\sigma^2}\\right)$ ; la fonction de répartition de $\\mathcal{N}(0,1)$ est notée $\\Phi$.\n- **Gamma** $\\gamma(a,\\lambda)$, $a>0$ (forme), $\\lambda>0$ (intensité) : $x\\mapsto\\frac{\\lambda^a}{\\Gamma(a)}x^{a-1}e^{-\\lambda x}$ pour $x>0$, $0$ pour $x\\le0$ ; $\\gamma(1,\\lambda)=\\mathcal{E}(\\lambda)$.\n\n**Absence de mémoire.** Soit $X$ une variable aléatoire réelle telle que $P(X>t)>0$ pour tout réel $t\\ge0$. Alors $X$ suit une loi exponentielle si et seulement si, pour tous réels $s,t\\ge0$, $P(X>s+t\\mid X>s)=P(X>t)$.",
+      "enonce_trous": "La loi exponentielle de paramètre $\\lambda>0$ a pour densité {{1}} ; si $X$ suit cette loi, $P(X>t)$ vaut {{2}} pour tout réel $t\\ge0$.",
+      "trous": [
+        {
+          "reponse": "$x\\mapsto\\lambda e^{-\\lambda x}\\mathbf{1}_{\\left[0,+\\infty\\right[}(x)$",
+          "leurres": [
+            "$x\\mapsto\\lambda e^{-\\lambda|x|}$",
+            "$x\\mapsto\\lambda^2xe^{-\\lambda x}\\mathbf{1}_{\\left[0,+\\infty\\right[}(x)$",
+            "$x\\mapsto\\lambda e^{\\lambda x}\\mathbf{1}_{\\left]-\\infty,0\\right]}(x)$"
+          ]
+        },
+        {
+          "reponse": "$e^{-\\lambda t}$",
+          "leurres": [
+            "$1-e^{-\\lambda t}$",
+            "$\\frac1{1+\\lambda t}$",
+            "$e^{-\\lambda t^2}$"
+          ]
+        }
+      ],
+      "demo": "**Ce sont des densités.** Chacune est positive et continue sauf en au plus deux points. Uniforme : $\\int_a^b\\frac{\\mathrm{d}x}{b-a}=1$. Exponentielle : $\\int_0^A\\lambda e^{-\\lambda x}\\,\\mathrm{d}x=1-e^{-\\lambda A}\\to1$, et $P(X>t)=\\int_t^{+\\infty}\\lambda e^{-\\lambda x}\\,\\mathrm{d}x=e^{-\\lambda t}$ pour $t\\ge0$. Cauchy : $\\int_{-A}^B\\frac{\\mathrm{d}x}{\\pi(1+x^2)}=\\frac{\\arctan B+\\arctan A}\\pi\\to1$ quand $A,B\\to+\\infty$, et $F_X(x)=\\frac1\\pi\\left(\\arctan x+\\frac\\pi2\\right)$. Normale : le changement de variable affine $x=m+\\sigma\\sqrt2\\,u$ donne\n$$\\int_{-\\infty}^{+\\infty}\\frac1{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-m)^2}{2\\sigma^2}}\\,\\mathrm{d}x=\\frac1{\\sqrt\\pi}\\int_{-\\infty}^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=1$$\npar l'intégrale de Gauss. Gamma : $x\\mapsto x^{a-1}e^{-\\lambda x}$ est intégrable sur $\\left]0,+\\infty\\right[$ (en $0$ elle équivaut à $x^{a-1}$, avec $a-1>-1$ ; en $+\\infty$ elle est négligeable devant $\\frac1{x^2}$), et le changement de variable $u=\\lambda x$ donne $\\int_0^{+\\infty}x^{a-1}e^{-\\lambda x}\\,\\mathrm{d}x=\\lambda^{-a}\\Gamma(a)$.\n\n**Absence de mémoire.** Si $X$ suit $\\mathcal{E}(\\lambda)$, comme $\\{X>s+t\\}\\subset\\{X>s\\}$, $P(X>s+t\\mid X>s)=\\frac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}=e^{-\\lambda t}=P(X>t)$.\n\nRéciproquement, posons $G(t)=P(X>t)$ pour $t\\ge0$ : l'hypothèse s'écrit $G(s+t)=G(s)G(t)$. Avec $s=t=0$, $G(0)=G(0)^2$ et $G(0)>0$, donc $G(0)=1$. Par récurrence, $G(nt)=G(t)^n$ pour $n\\in\\mathbb{N}$ et $t\\ge0$. Pour $p,q\\in\\mathbb{N}^*$, $G\\left(\\frac1q\\right)^q=G(1)$ et $G\\left(\\frac1q\\right)>0$, donc $G\\left(\\frac1q\\right)=G(1)^{1/q}$ et $G\\left(\\frac pq\\right)=G(1)^{p/q}$. Posons $\\lambda=-\\ln G(1)\\ge0$ : $G(r)=e^{-\\lambda r}$ pour tout rationnel $r\\ge0$. Si $t\\ge0$ et si $(r_n)$ est une suite de rationnels strictement supérieurs à $t$ qui décroît vers $t$, les événements $\\{X>r_n\\}$ croissent et ont pour réunion $\\{X>t\\}$ ; par continuité monotone, $G(t)=\\lim G(r_n)=e^{-\\lambda t}$. Si l'on avait $\\lambda=0$, on aurait $P(X>n)=1$ pour tout $n$, alors que la suite décroissante $\\{X>n\\}$ a une intersection vide, d'où $P(X>n)\\to0$ : donc $\\lambda>0$. Enfin $F_X(t)=1-e^{-\\lambda t}$ pour $t\\ge0$ et, pour $t<0$, $0\\le F_X(t)\\le F_X(0)=1-G(0)=0$. C'est la fonction de répartition de $\\mathcal{E}(\\lambda)$, continue et de classe $\\mathcal{C}^1$ hors de $0$ : $X$ suit la loi $\\mathcal{E}(\\lambda)$.",
+      "exemple": "La durée de vie $T$ (en années) d'un composant qui ne s'use pas suit $\\mathcal{E}(\\lambda)$ avec $\\lambda=\\frac1{10}$ : $P(T>5)=e^{-1/2}\\approx0{,}61$, et sachant qu'il a déjà fonctionné $20$ ans, la probabilité qu'il fonctionne encore $5$ ans est la même. Pour la loi de Cauchy, $P(X>1)=\\frac12-\\frac1\\pi\\arctan1=\\frac14$. Pour $\\gamma(2,1)$, de densité $xe^{-x}$ sur $\\left]0,+\\infty\\right[$, une intégration par parties donne $P(X>t)=(1+t)e^{-t}$ pour $t\\ge0$.",
+      "contre_exemple": "- **Absence de mémoire aux seuls instants entiers.** Si $X$ suit la loi géométrique de paramètre $p\\in\\left]0,1\\right[$ sur $\\mathbb{N}^*$, $P(X>n)=(1-p)^n$ pour $n\\in\\mathbb{N}$, d'où $P(X>m+n\\mid X>m)=P(X>n)$ pour tous entiers $m,n$ ; plus généralement $P(X>s)=(1-p)^{\\lfloor s\\rfloor}$ pour $s\\ge0$, d'où $P(X>s+1\\mid X>s)=1-p=P(X>1)$ pour tout réel $s\\ge0$. Mais $X$ est discrète : elle n'a pas de densité.\n- **Une inégalité ne suffit pas.** Pour $\\gamma(2,1)$, $P(X>t)=(1+t)e^{-t}$ et $\\frac{P(X>s+t)}{P(X>s)}=\\frac{1+s+t}{1+s}e^{-t}\\le(1+t)e^{-t}=P(X>t)$ pour $s,t\\ge0$ : la loi « vieillit », sans être exponentielle.\n- **Pas des densités.** $x\\mapsto\\frac1{1+x^2}$ a pour intégrale $\\pi$ sur $\\mathbb{R}$, et $x\\mapsto e^{-x}$ n'est pas intégrable sur $\\mathbb{R}$ : il faut le facteur $\\frac1\\pi$, et l'indicatrice de $\\left[0,+\\infty\\right[$.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $\\sigma>0$, la densité de $\\mathcal{N}(0,\\sigma^2)$ est majorée par $1$.",
+          "vrai": false,
+          "contre_exemple": "Son maximum, atteint en $0$, vaut $\\frac1{\\sigma\\sqrt{2\\pi}}$ : pour $\\sigma=\\frac1{10}$, c'est $\\frac{10}{\\sqrt{2\\pi}}\\approx3{,}99$."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{E}(\\lambda)$, alors $\\lfloor X\\rfloor+1$ suit la loi géométrique de paramètre $1-e^{-\\lambda}$.",
+          "vrai": true,
+          "justification": "Pour $k\\in\\mathbb{N}^*$, $P\\left(\\lfloor X\\rfloor+1=k\\right)=P(k-1\\le X<k)=e^{-\\lambda(k-1)}-e^{-\\lambda k}=\\left(e^{-\\lambda}\\right)^{k-1}\\left(1-e^{-\\lambda}\\right)$."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{U}([0,1])$, alors $X^2$ suit $\\mathcal{U}([0,1])$.",
+          "vrai": false,
+          "contre_exemple": "$P\\left(X^2\\le\\frac14\\right)=P\\left(X\\le\\frac12\\right)=\\frac12$, alors que la loi $\\mathcal{U}([0,1])$ donnerait $\\frac14$."
+        },
+        {
+          "texte": "Si $X$ suit la loi de Cauchy, alors $\\frac1X$ (défini avec probabilité $1$) suit aussi la loi de Cauchy.",
+          "vrai": true,
+          "justification": "Pour $y>0$, $P\\left(\\frac1X\\le y\\right)=P(X<0)+P\\left(X\\ge\\frac1y\\right)=1-\\frac1\\pi\\arctan\\frac1y=\\frac12+\\frac1\\pi\\arctan y$, car $\\arctan y+\\arctan\\frac1y=\\frac\\pi2$ ; pour $y<0$, $P\\left(\\frac1X\\le y\\right)=P\\left(\\frac1y\\le X<0\\right)=-\\frac1\\pi\\arctan\\frac1y=\\frac12+\\frac1\\pi\\arctan y$ ; et $P\\left(\\frac1X\\le0\\right)=P(X<0)=\\frac12$."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{E}(\\lambda)$ et si $c>0$, alors $cX$ suit $\\mathcal{E}(c\\lambda)$.",
+          "vrai": false,
+          "contre_exemple": "$P(cX>t)=P\\left(X>\\frac tc\\right)=e^{-\\lambda t/c}$ : $cX$ suit $\\mathcal{E}\\left(\\frac\\lambda c\\right)$. Pour $\\lambda=1$, $c=2$, $P(2X>1)=e^{-1/2}$, alors que $\\mathcal{E}(2)$ donnerait $e^{-2}$."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-densites-densite",
+        "int-l2-parametre-gamma",
+        "int-l2-parametre-gauss",
+        "proba-l2-discretes-lois-usuelles",
+        "proba-l2-discretes-espace"
+      ]
+    },
+    {
+      "id": "proba-l3-densites-esperance",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "theoreme",
+      "titre": "Espérance, variance, théorème de transfert (admis)",
+      "recto": "Définir l'espérance et la variance d'une variable à densité, énoncer le théorème de transfert et donner les moments des lois usuelles.",
+      "cours": "Pour une variable à densité, l'espérance est la moyenne des valeurs pondérée par la densité : la somme $\\sum xP(X=x)$ du cas discret devient l'intégrale $\\int xf(x)\\,\\mathrm{d}x$. Comme dans le cas discret, on exige l'**absolue convergence** : $\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x<+\\infty$. Une densité paire ne suffit pas : la loi de Cauchy est symétrique, mais l'intégrale de $|x|f(x)$ diverge, et elle n'a pas d'espérance.\n\nLe **théorème de transfert** permet de calculer $E\\left(\\varphi(X)\\right)$ sans déterminer la loi de $\\varphi(X)$ : on intègre $\\varphi$ contre la densité de $X$. Sans théorie de la mesure, on ne sait pas définir l'espérance d'une variable aléatoire quelconque (une fonction de $X$ peut n'être ni discrète ni à densité, comme $\\max(X,0)$) : on admet qu'il existe une espérance, définie pour une large classe de variables, qui prolonge celles des cas discret et à densité, qui est linéaire et croissante, et qui vérifie le théorème de transfert. Ce théorème est admis ; tout le reste s'en déduit par des calculs d'intégrales.\n\nLa **variance** mesure la dispersion autour de l'espérance ; elle est définie dès que $X$ admet un moment d'ordre $2$, et se calcule par la formule de König-Huygens. Pour les lois usuelles, les moments se ramènent à la fonction $\\Gamma$ (lois exponentielle et Gamma), à l'intégrale de Gauss (loi normale) ou à des primitives polynomiales (loi uniforme).\n\n**Méthode.** Pour savoir si $\\varphi(X)$ admet une espérance : étudier la convergence de $\\int|\\varphi(x)|f(x)\\,\\mathrm{d}x$ (comparaison aux intégrales de Riemann aux bornes) ; puis calculer $\\int\\varphi(x)f(x)\\,\\mathrm{d}x$. Pour une variable positive, $E(X)=\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$ est souvent plus simple.\n\n**Pièges.** $E\\left(\\varphi(X)\\right)\\ne\\varphi\\left(E(X)\\right)$ en général ; une espérance finie n'entraîne pas un moment d'ordre $2$ fini ; la convergence de $\\int\\varphi f$ sans valeur absolue ne suffit pas, et la « valeur principale » $\\lim_A\\int_{-A}^Axf(x)\\,\\mathrm{d}x$ n'est pas une espérance.",
+      "hypotheses": [
+        "$X$ admet une densité $f$.",
+        "$\\varphi:\\mathbb{R}\\to\\mathbb{R}$ est continue sauf en un nombre fini de points.",
+        "L'intégrale $\\int_{-\\infty}^{+\\infty}|\\varphi(x)|f(x)\\,\\mathrm{d}x$ converge."
+      ],
+      "hypotheses_pieges": [
+        "L'intégrale $\\int_{-\\infty}^{+\\infty}\\varphi(x)f(x)\\,\\mathrm{d}x$ converge (à la place de : l'intégrale de $|\\varphi(x)|f(x)$ converge).",
+        "L'intégrale $\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$ converge (à la place de : l'intégrale de $|\\varphi(x)|f(x)$ converge).",
+        "$\\varphi(x)f(x)$ tend vers $0$ quand $|x|\\to+\\infty$ (à la place de : l'intégrale de $|\\varphi(x)|f(x)$ converge)."
+      ],
+      "enonce": "Soit $X$ une variable aléatoire réelle de densité $f$.\n- $X$ **admet une espérance** si l'intégrale $\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$ converge ; on pose alors $E(X)=\\int_{-\\infty}^{+\\infty}xf(x)\\,\\mathrm{d}x$.\n- **Théorème de transfert (admis).** Soit $\\varphi:\\mathbb{R}\\to\\mathbb{R}$ continue sauf en un nombre fini de points. La variable $\\varphi(X)$ admet une espérance si et seulement si $\\int_{-\\infty}^{+\\infty}|\\varphi(x)|f(x)\\,\\mathrm{d}x$ converge, et alors $E\\left(\\varphi(X)\\right)=\\int_{-\\infty}^{+\\infty}\\varphi(x)f(x)\\,\\mathrm{d}x$.\n- **Moments, variance.** Si $X^2$ admet une espérance ($X$ admet un moment d'ordre $2$), alors $X$ admet une espérance, $V(X)=E\\left(\\left(X-E(X)\\right)^2\\right)=E(X^2)-E(X)^2$ et, pour tous réels $a,b$, $E(aX+b)=aE(X)+b$ et $V(aX+b)=a^2V(X)$.\n- **Lois usuelles.** $\\mathcal{U}([a,b])$ : $E(X)=\\frac{a+b}2$, $V(X)=\\frac{(b-a)^2}{12}$ ; $\\mathcal{E}(\\lambda)$ : $E(X)=\\frac1\\lambda$, $V(X)=\\frac1{\\lambda^2}$ ; $\\gamma(a,\\lambda)$ : $E(X)=\\frac a\\lambda$, $V(X)=\\frac a{\\lambda^2}$ ; $\\mathcal{N}(m,\\sigma^2)$ : $E(X)=m$, $V(X)=\\sigma^2$ ; la loi de Cauchy n'admet pas d'espérance.",
+      "enonce_trous": "Soit $X$ une variable de densité $f$ et $\\varphi:\\mathbb{R}\\to\\mathbb{R}$ continue. La variable $\\varphi(X)$ admet une espérance si et seulement si l'intégrale {{1}} converge, et dans ce cas $E\\left(\\varphi(X)\\right)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\int_{-\\infty}^{+\\infty}|\\varphi(x)|f(x)\\,\\mathrm{d}x$",
+          "leurres": [
+            "$\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$",
+            "$\\int_{-\\infty}^{+\\infty}|\\varphi(x)|\\,\\mathrm{d}x$",
+            "$\\int_{-\\infty}^{+\\infty}\\varphi(x)f(x)\\,\\mathrm{d}x$"
+          ]
+        },
+        {
+          "reponse": "$\\int_{-\\infty}^{+\\infty}\\varphi(x)f(x)\\,\\mathrm{d}x$",
+          "leurres": [
+            "$\\varphi\\left(\\int_{-\\infty}^{+\\infty}xf(x)\\,\\mathrm{d}x\\right)$",
+            "$\\int_{-\\infty}^{+\\infty}\\varphi\\left(f(x)\\right)\\mathrm{d}x$",
+            "$\\int_{-\\infty}^{+\\infty}\\varphi(x)\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "Le théorème de transfert est admis : sa preuve demande une théorie générale de l'intégration. On en déduit le reste.\n\n**Moment d'ordre $2$.** Pour tout réel $x$, $|x|\\le\\frac{1+x^2}2$, donc $0\\le|x|f(x)\\le\\frac{f(x)+x^2f(x)}2$. Si $X^2$ admet une espérance, $\\int x^2f(x)\\,\\mathrm{d}x$ converge (transfert avec $\\varphi(x)=x^2$), et par comparaison de fonctions positives $\\int|x|f(x)\\,\\mathrm{d}x$ converge.\n\n**Variance, transformations affines.** Posons $m=E(X)$. Par transfert avec $\\varphi(x)=(x-m)^2=x^2-2mx+m^2$ et linéarité des intégrales convergentes,\n$$V(X)=\\int_{-\\infty}^{+\\infty}(x-m)^2f(x)\\,\\mathrm{d}x=\\int x^2f-2m\\int xf+m^2\\int f=E(X^2)-2m^2+m^2=E(X^2)-m^2.$$\nDe même $|ax+b|f(x)\\le|a||x|f(x)+|b|f(x)$, donc $aX+b$ admet une espérance et $E(aX+b)=\\int(ax+b)f(x)\\,\\mathrm{d}x=am+b$ ; puis $V(aX+b)=\\int(ax+b-am-b)^2f(x)\\,\\mathrm{d}x=a^2V(X)$.\n\n**Lois usuelles.** Pour $\\gamma(a,\\lambda)$ : $\\int_0^{+\\infty}x\\cdot\\frac{\\lambda^a}{\\Gamma(a)}x^{a-1}e^{-\\lambda x}\\,\\mathrm{d}x=\\frac{\\lambda^a}{\\Gamma(a)}\\cdot\\frac{\\Gamma(a+1)}{\\lambda^{a+1}}=\\frac a\\lambda$, et de même $E(X^2)=\\frac{\\Gamma(a+2)}{\\lambda^2\\Gamma(a)}=\\frac{a(a+1)}{\\lambda^2}$, d'où $V(X)=\\frac a{\\lambda^2}$ ; le cas $a=1$ donne la loi exponentielle. Pour $\\mathcal{U}([a,b])$ : $E(X)=\\frac{b^2-a^2}{2(b-a)}=\\frac{a+b}2$ et $E(X^2)=\\frac{b^3-a^3}{3(b-a)}=\\frac{a^2+ab+b^2}3$, d'où $V(X)=\\frac{(b-a)^2}{12}$. Pour $\\mathcal{N}(0,1)$ : $x\\mapsto xe^{-x^2/2}$ est impaire et intégrable, donc $E(X)=0$, et une intégration par parties (dériver $x$, intégrer $xe^{-x^2/2}$) donne $\\int_{-\\infty}^{+\\infty}x^2e^{-x^2/2}\\,\\mathrm{d}x=\\int_{-\\infty}^{+\\infty}e^{-x^2/2}\\,\\mathrm{d}x=\\sqrt{2\\pi}$, donc $V(X)=1$. Pour $\\mathcal{N}(m,\\sigma^2)$, le changement de variable $x=m+\\sigma u$ ramène les intégrales à celles de $\\mathcal{N}(0,1)$ : $E(X)=m+\\sigma\\cdot0=m$ et $V(X)=\\sigma^2\\cdot1$. Pour la loi de Cauchy, $\\int_0^A\\frac{x\\,\\mathrm{d}x}{\\pi(1+x^2)}=\\frac{\\ln(1+A^2)}{2\\pi}\\to+\\infty$ : l'intégrale de $|x|f(x)$ diverge.",
+      "exemple": "Si $X$ suit $\\mathcal{U}([0,1])$, le transfert donne $E\\left(e^X\\right)=\\int_0^1e^x\\,\\mathrm{d}x=e-1$, sans chercher la loi de $e^X$ ; en revanche $\\frac1X$ n'a pas d'espérance, car $\\int_0^1\\frac{\\mathrm{d}x}x$ diverge. Si $X$ suit $\\mathcal{E}(\\lambda)$, $E(X)=\\frac1\\lambda$ est la durée de vie moyenne, et $E\\left(e^{tX}\\right)=\\int_0^{+\\infty}\\lambda e^{(t-\\lambda)x}\\,\\mathrm{d}x=\\frac\\lambda{\\lambda-t}$ pour $t<\\lambda$, tandis que $e^{tX}$ n'a pas d'espérance pour $t\\ge\\lambda$.",
+      "contre_exemple": "- **Densité paire sans espérance.** La loi de Cauchy a une densité paire, et $\\int_{-A}^A\\frac{x\\,\\mathrm{d}x}{\\pi(1+x^2)}=0$ pour tout $A>0$ ; mais $\\int_0^{+\\infty}\\frac{x\\,\\mathrm{d}x}{\\pi(1+x^2)}$ diverge : $X$ n'admet pas d'espérance, la « valeur principale » nulle n'en est pas une.\n- **Espérance sans variance.** La densité $\\frac2{x^3}$ sur $\\left[1,+\\infty\\right[$ donne $E(X)=\\int_1^{+\\infty}\\frac2{x^2}\\,\\mathrm{d}x=2$, mais $\\int_1^{+\\infty}x^2\\cdot\\frac2{x^3}\\,\\mathrm{d}x$ diverge.\n- **Semi-convergence.** Pour la densité $\\frac1{x^2}$ sur $\\left[1,+\\infty\\right[$ et $\\varphi(x)=x\\sin x$, l'intégrale $\\int_1^{+\\infty}\\varphi(x)f(x)\\,\\mathrm{d}x=\\int_1^{+\\infty}\\frac{\\sin x}x\\,\\mathrm{d}x$ converge, mais pas absolument : $\\varphi(X)$ n'admet pas d'espérance, bien que $\\varphi(x)f(x)\\to0$.\n- **Le moment d'ordre $1$ ne suffit pas.** Si $X$ suit $\\mathcal{E}(1)$, $X$ admet une espérance, mais $e^X$ n'en admet pas : $\\int_0^{+\\infty}e^xe^{-x}\\,\\mathrm{d}x$ diverge.",
+      "affirmations": [
+        {
+          "texte": "Si la densité de $X$ est paire, alors $X$ admet une espérance, et elle est nulle.",
+          "vrai": false,
+          "contre_exemple": "La loi de Cauchy, de densité paire $\\frac1{\\pi(1+x^2)}$, n'a pas d'espérance : $\\int_0^A\\frac{x\\,\\mathrm{d}x}{\\pi(1+x^2)}=\\frac{\\ln(1+A^2)}{2\\pi}\\to+\\infty$."
+        },
+        {
+          "texte": "Si $X$ admet un moment d'ordre $2$, alors $X$ admet une espérance.",
+          "vrai": true,
+          "justification": "$|x|f(x)\\le\\frac{f(x)+x^2f(x)}2$, et les intégrales de $f$ et de $x^2f$ convergent."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{E}(\\lambda)$, alors $E(X^2)=E(X)^2$.",
+          "vrai": false,
+          "contre_exemple": "$E(X^2)=\\frac2{\\lambda^2}$ et $E(X)^2=\\frac1{\\lambda^2}$ : leur différence est $V(X)=\\frac1{\\lambda^2}>0$."
+        },
+        {
+          "texte": "Si $X$ est positive, à densité, et admet une espérance, alors $E(X)=\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$.",
+          "vrai": true,
+          "justification": "Une intégration par parties donne $\\int_0^AP(X>t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$, et $0\\le AP(X>A)\\le\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t\\to0$."
+        },
+        {
+          "texte": "Une variable dont la densité est bornée admet une espérance.",
+          "vrai": false,
+          "contre_exemple": "La densité de Cauchy est majorée par $\\frac1\\pi$, et la loi de Cauchy n'a pas d'espérance."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-densites-densite",
+        "proba-l3-densites-lois-usuelles",
+        "proba-l2-discretes-esperance",
+        "int-l2-generalisees-absolue"
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "theoreme",
+      "titre": "Vecteurs aléatoires à densité et indépendance",
+      "recto": "Définir l'indépendance de deux variables et la densité d'un couple, donner les densités marginales et caractériser l'indépendance de deux variables à densité.",
+      "cours": "Pour étudier plusieurs variables à la fois, on décrit la loi du **couple** $(X,Y)$, c'est-à-dire les probabilités $P\\left((X,Y)\\in D\\right)$ pour des parties $D$ du plan. Un couple a une **densité** $f$ quand ces probabilités sont des intégrales doubles de $f$ : le volume sous la surface $z=f(x,y)$ au-dessus de $D$. On définit la densité par les quadrants $\\left]-\\infty,x\\right]\\times\\left]-\\infty,y\\right]$, et l'on **admet** que la formule s'étend aux parties sur lesquelles on sait intégrer (réunions finies de domaines simples, éventuellement non bornés) ; on admet aussi, pour les fonctions considérées ici (continues sauf sur une réunion finie de droites, de segments ou de cercles), les théorèmes de Fubini-Tonelli et de changement de variables.\n\nLes **densités marginales** s'obtiennent en intégrant la densité du couple par rapport à l'autre variable. La réciproque est fausse : les marginales ne déterminent pas la loi du couple, et deux variables à densité peuvent former un couple sans densité ($Y=X$).\n\nL'**indépendance** de $X$ et $Y$ signifie que tout événement portant sur $X$ seul (« $X$ est dans un intervalle ») est indépendant de tout événement portant sur $Y$ seul. Pour des variables à densité, elle se lit sur la densité du couple : $X$ et $Y$ sont indépendantes si et seulement si le produit $f_X(x)f_Y(y)$ des densités marginales est une densité du couple. En pratique, si la densité du couple s'écrit $g(x)h(y)$, les variables sont indépendantes ; si elle est nulle sur une région qui n'est pas un produit (un triangle, un disque), elles ne le sont pas.\n\n**Méthode.** Pour calculer $P\\left((X,Y)\\in D\\right)$, écrire $D$ comme domaine simple et appliquer Fubini ; pour deux variables indépendantes, la densité du couple est le produit, ce qui ramène tout calcul sur le couple à des intégrales doubles explicites.\n\n**Pièges.** Une covariance nulle n'entraîne pas l'indépendance (point uniforme dans un disque) ; avoir deux marginales à densité ne donne pas une densité du couple.",
+      "hypotheses": [
+        "$X$ admet une densité $f_X$ et $Y$ admet une densité $f_Y$.",
+        "$X$ et $Y$ sont indépendantes."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathrm{Cov}(X,Y)=0$ (à la place de : $X$ et $Y$ sont indépendantes).",
+        "Le couple $(X,Y)$ admet une densité (à la place de : $X$ et $Y$ sont indépendantes).",
+        "$X$ et $Y$ ont la même loi (à la place de : $X$ et $Y$ sont indépendantes)."
+      ],
+      "enonce": "Soient $X$ et $Y$ deux variables aléatoires réelles sur un même espace probabilisé.\n- $X$ et $Y$ sont **indépendantes** si $P(X\\in I,Y\\in J)=P(X\\in I)P(Y\\in J)$ pour tous intervalles $I$ et $J$ de $\\mathbb{R}$ ; plus généralement, $X_1,\\dots,X_n$ sont (mutuellement) indépendantes si $P(X_1\\in I_1,\\dots,X_n\\in I_n)=P(X_1\\in I_1)\\cdots P(X_n\\in I_n)$ pour tous intervalles $I_1,\\dots,I_n$.\n- Le couple $(X,Y)$ **admet la densité** $f:\\mathbb{R}^2\\to\\left[0,+\\infty\\right[$ si l'intégrale double de $f$ sur $\\mathbb{R}^2$ vaut $1$ et si $P(X\\le x,Y\\le y)=\\int_{-\\infty}^x\\left(\\int_{-\\infty}^yf(s,t)\\,\\mathrm{d}t\\right)\\mathrm{d}s$ pour tous réels $x,y$. On admet qu'alors $P\\left((X,Y)\\in D\\right)=\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ pour toute partie $D$ sur laquelle on sait intégrer.\n- **Marginales.** Si $(X,Y)$ admet la densité $f$ et si $f_X:x\\mapsto\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}y$ est continue sauf en un nombre fini de points, alors $f_X$ est une densité de $X$ ; de même $f_Y:y\\mapsto\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}x$ pour $Y$.\n- **Indépendance.** Si $X$ et $Y$ admettent des densités $f_X$ et $f_Y$, alors $X$ et $Y$ sont indépendantes si et seulement si $(x,y)\\mapsto f_X(x)f_Y(y)$ est une densité du couple $(X,Y)$.",
+      "enonce_trous": "Si le couple $(X,Y)$ admet une densité $f$ (et si la fonction obtenue est continue sauf en un nombre fini de points), $X$ admet pour densité {{1}}. Si $X$ et $Y$ ont des densités $f_X$ et $f_Y$, elles sont indépendantes si et seulement si {{2}} est une densité du couple $(X,Y)$.",
+      "trous": [
+        {
+          "reponse": "$x\\mapsto\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}y$",
+          "leurres": [
+            "$x\\mapsto\\int_{-\\infty}^{+\\infty}f(y,x)\\,\\mathrm{d}y$",
+            "$x\\mapsto f(x,x)$",
+            "$x\\mapsto\\int_{-\\infty}^xf(x,y)\\,\\mathrm{d}y$"
+          ]
+        },
+        {
+          "reponse": "$(x,y)\\mapsto f_X(x)f_Y(y)$",
+          "leurres": [
+            "$(x,y)\\mapsto f_X(x)+f_Y(y)$",
+            "$(x,y)\\mapsto f_X(x)f_Y(x)$",
+            "$(x,y)\\mapsto f_X(x)f_Y(x-y)$"
+          ]
+        }
+      ],
+      "demo": "On utilise la formule admise $P\\left((X,Y)\\in D\\right)=\\iint_Df$, et les théorèmes de Fubini-Tonelli et de convergence monotone (admis).\n\n**Marginales.** Pour tout réel $x$, la suite d'événements $\\{X\\le x,Y\\le n\\}$ est croissante, de réunion $\\{X\\le x\\}$ ; par continuité monotone,\n$$F_X(x)=\\lim_{n\\to+\\infty}\\int_{-\\infty}^x\\left(\\int_{-\\infty}^nf(s,t)\\,\\mathrm{d}t\\right)\\mathrm{d}s=\\int_{-\\infty}^x\\left(\\int_{-\\infty}^{+\\infty}f(s,t)\\,\\mathrm{d}t\\right)\\mathrm{d}s=\\int_{-\\infty}^xf_X(s)\\,\\mathrm{d}s,$$\npar convergence monotone (les intégrandes $s\\mapsto\\int_{-\\infty}^nf(s,t)\\,\\mathrm{d}t$ sont positives et croissent vers $f_X$). La fonction $f_X$ est positive, continue sauf en un nombre fini de points par hypothèse, et $\\int_{-\\infty}^{+\\infty}f_X=\\lim_{x\\to+\\infty}F_X(x)=1$ : c'est une densité de $X$.\n\n**Indépendance, sens direct.** Si $X$ et $Y$ sont indépendantes, alors pour tous $x,y$, avec $I=\\left]-\\infty,x\\right]$ et $J=\\left]-\\infty,y\\right]$,\n$$P(X\\le x,Y\\le y)=F_X(x)F_Y(y)=\\int_{-\\infty}^xf_X(s)\\,\\mathrm{d}s\\int_{-\\infty}^yf_Y(t)\\,\\mathrm{d}t=\\int_{-\\infty}^x\\left(\\int_{-\\infty}^yf_X(s)f_Y(t)\\,\\mathrm{d}t\\right)\\mathrm{d}s,$$\net l'intégrale double de $f_X(x)f_Y(y)$ sur $\\mathbb{R}^2$ vaut $1\\times1$ : par définition, $(x,y)\\mapsto f_X(x)f_Y(y)$ est une densité de $(X,Y)$.\n\n**Réciproque.** Si $(x,y)\\mapsto f_X(x)f_Y(y)$ est une densité du couple, alors pour tous intervalles $I,J$, la formule admise appliquée au rectangle $I\\times J$ et Fubini donnent\n$$P(X\\in I,Y\\in J)=\\iint_{I\\times J}f_X(x)f_Y(y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_If_X(x)\\,\\mathrm{d}x\\int_Jf_Y(y)\\,\\mathrm{d}y=P(X\\in I)P(Y\\in J).$$",
+      "exemple": "Soit $(X,Y)$ de densité $f(x,y)=e^{-y}$ si $0<x<y$, $0$ sinon. On a bien $\\int_0^{+\\infty}\\left(\\int_x^{+\\infty}e^{-y}\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^{+\\infty}e^{-x}\\,\\mathrm{d}x=1$. Marginales : $f_X(x)=\\int_x^{+\\infty}e^{-y}\\,\\mathrm{d}y=e^{-x}$ pour $x>0$, donc $X$ suit $\\mathcal{E}(1)$, et $f_Y(y)=\\int_0^ye^{-y}\\,\\mathrm{d}x=ye^{-y}$ pour $y>0$, donc $Y$ suit $\\gamma(2,1)$. Elles ne sont pas indépendantes : $P(X>1,Y<1)=0$, puisque $X<Y$, alors que $P(X>1)P(Y<1)>0$. Enfin $P(Y>2X)=\\int_0^{+\\infty}\\left(\\int_{2x}^{+\\infty}e^{-y}\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^{+\\infty}e^{-2x}\\,\\mathrm{d}x=\\frac12$.",
+      "contre_exemple": "- **Covariance nulle sans indépendance.** Si $(X,Y)$ est uniforme sur le disque unité $D$ (densité $\\frac1\\pi\\mathbf{1}_D$), alors $X$ et $Y$ ont la densité $x\\mapsto\\frac2\\pi\\sqrt{1-x^2}$ sur $[-1,1]$, et $\\mathrm{Cov}(X,Y)=E(XY)=0$ par symétrie ; mais $P\\left(X>\\frac34,Y>\\frac34\\right)=0$, car $\\frac9{16}+\\frac9{16}>1$, alors que $P\\left(X>\\frac34\\right)^2>0$ : elles ne sont pas indépendantes, et le produit des marginales n'est pas une densité du couple.\n- **Deux variables à densité, un couple sans densité.** Si $X$ suit $\\mathcal{U}([0,1])$ et $Y=X$, alors $P\\left(X\\le\\frac12,Y\\le\\frac12\\right)=\\frac12$, alors que la densité produit donnerait $\\frac14$ ; et le couple n'a aucune densité, puisqu'il est porté par la diagonale, d'aire nulle.\n- **Les marginales ne déterminent pas la loi du couple.** $f(x,y)=1+(2x-1)(2y-1)$ sur $[0,1]^2$, $0$ ailleurs, est une densité (positive car $|(2x-1)(2y-1)|\\le1$) dont les deux marginales sont uniformes sur $[0,1]$ ; mais $P\\left(X\\le\\frac12,Y\\le\\frac12\\right)=\\frac14+\\left(\\int_0^{1/2}(2x-1)\\,\\mathrm{d}x\\right)^2=\\frac5{16}\\ne\\frac14$.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ et $Y$ admettent des densités, alors le couple $(X,Y)$ admet une densité.",
+          "vrai": false,
+          "contre_exemple": "$X$ de loi $\\mathcal{U}([0,1])$ et $Y=X$ : $P(X=Y)=1$, alors que l'intégrale de toute densité sur la diagonale, d'aire nulle, est nulle."
+        },
+        {
+          "texte": "Si le couple $(X,Y)$ admet une densité, alors $P(X=Y)=0$.",
+          "vrai": true,
+          "justification": "$P(X=Y)$ est l'intégrale de la densité sur la droite d'équation $y=x$, qui est d'aire nulle."
+        },
+        {
+          "texte": "Si le couple $(X,Y)$ admet une densité de la forme $(x,y)\\mapsto g(x)h(y)$, avec $g$ et $h$ positives, alors $X$ et $Y$ sont indépendantes.",
+          "vrai": true,
+          "justification": "Avec $\\alpha=\\int g$ et $\\beta=\\int h$, on a $\\alpha\\beta=1$, $f_X=\\beta g$ et $f_Y=\\alpha h$, donc $f_X(x)f_Y(y)=\\alpha\\beta g(x)h(y)=g(x)h(y)$ est une densité du couple."
+        },
+        {
+          "texte": "Deux variables à densité de covariance nulle sont indépendantes.",
+          "vrai": false,
+          "contre_exemple": "Le couple uniforme sur le disque unité : $\\mathrm{Cov}(X,Y)=0$, mais $P\\left(X>\\frac34,Y>\\frac34\\right)=0\\ne P\\left(X>\\frac34\\right)P\\left(Y>\\frac34\\right)$."
+        },
+        {
+          "texte": "Si $(X,Y)$ est uniforme sur le carré $[0,1]^2$, alors $X$ et $Y$ sont indépendantes.",
+          "vrai": true,
+          "justification": "La densité $\\mathbf{1}_{[0,1]^2}(x,y)=\\mathbf{1}_{[0,1]}(x)\\mathbf{1}_{[0,1]}(y)$ est le produit des densités marginales."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-densites-densite",
+        "int-l3-multiples-fubini-tonelli",
+        "int-l3-multiples-domaines",
+        "proba-l2-discretes-independance"
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "theoreme",
+      "titre": "Covariance et somme de variables indépendantes",
+      "recto": "Énoncer les propriétés de la covariance de variables à densité, la règle du produit pour des variables indépendantes et la densité de la somme de deux variables indépendantes.",
+      "cours": "La covariance et ses règles de calcul passent du cas discret au cas à densité sans changement de forme : $\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$, $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$, inégalité de Cauchy-Schwarz $|\\mathrm{Cov}(X,Y)|\\le\\sigma(X)\\sigma(Y)$. Comme au chapitre précédent, on admet le **théorème de transfert pour un couple** : si $(X,Y)$ a la densité $f$ et si $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}$ est continue, $\\varphi(X,Y)$ admet une espérance si et seulement si $\\iint|\\varphi|f<+\\infty$, et alors $E\\left(\\varphi(X,Y)\\right)=\\iint\\varphi f$. Pour deux variables indépendantes, la densité du couple est un produit et Fubini donne $E(XY)=E(X)E(Y)$ : covariance nulle et additivité des variances.\n\nLa **densité d'une somme** de deux variables indépendantes est le **produit de convolution** $f*g$ de leurs densités : $X+Y=z$ se réalise pour $X=x$ et $Y=z-x$, et l'on « somme » sur $x$. C'est l'analogue continu de la formule $P(X+Y=n)=\\sum_kP(X=k)P(Y=n-k)$. Dans le cadre de l'intégrale de Riemann, on demande que $f*g$ soit continue sauf en un nombre fini de points, ce qui est le cas dans tous les exemples usuels. Les lois Gamma de même intensité sont **stables** par somme indépendante : les paramètres de forme s'additionnent ; ainsi la somme de $n$ durées exponentielles indépendantes de même paramètre suit $\\gamma(n,\\lambda)$, et la loi de la somme de deux variables Gamma redonne même la relation entre fonction Bêta et fonction Gamma.\n\n**Méthode.** Pour la densité de $X+Y$, déterminer d'abord les $x$ pour lesquels $f(x)g(z-x)\\ne0$ (souvent $0<x<z$ pour des variables positives), puis intégrer ; vérifier que le résultat est positif et d'intégrale $1$.\n\n**Pièges.** Sans indépendance, la convolution ne donne pas la loi de la somme ($Y=X$, $Y=-X$) ; une covariance nulle ne suffit pas ; et la somme de deux variables uniformes n'est pas uniforme, ni celle de deux exponentielles exponentielle.",
+      "hypotheses": [
+        "$X$ et $Y$ admettent des densités $f$ et $g$.",
+        "$X$ et $Y$ sont indépendantes.",
+        "La fonction $h:z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ est définie et continue sur $\\mathbb{R}$ sauf en un nombre fini de points."
+      ],
+      "hypotheses_pieges": [
+        "$X$ et $Y$ ont la même loi (à la place de : $X$ et $Y$ sont indépendantes).",
+        "$\\mathrm{Cov}(X,Y)=0$ (à la place de : $X$ et $Y$ sont indépendantes).",
+        "Le couple $(X,Y)$ admet une densité (à la place de : $X$ et $Y$ sont indépendantes)."
+      ],
+      "enonce": "Soient $X$ et $Y$ deux variables aléatoires réelles à densité, définies sur le même espace probabilisé.\n- **Covariance.** Si $X$ et $Y$ admettent un moment d'ordre $2$, alors $XY$ admet une espérance, $\\mathrm{Cov}(X,Y)=E\\left(\\left(X-E(X)\\right)\\left(Y-E(Y)\\right)\\right)=E(XY)-E(X)E(Y)$, $V(X+Y)=V(X)+V(Y)+2\\,\\mathrm{Cov}(X,Y)$ et $|\\mathrm{Cov}(X,Y)|\\le\\sqrt{V(X)V(Y)}$.\n- **Indépendance.** Si $X$ et $Y$ sont indépendantes et admettent une espérance, alors $XY$ admet une espérance et $E(XY)=E(X)E(Y)$ ; si de plus elles admettent un moment d'ordre $2$, alors $\\mathrm{Cov}(X,Y)=0$ et $V(X+Y)=V(X)+V(Y)$.\n- **Densité d'une somme.** Si $X$ et $Y$ sont indépendantes, de densités $f$ et $g$, et si la fonction $h=f*g:z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ est définie et continue sur $\\mathbb{R}$ sauf en un nombre fini de points, alors $h$ est une densité de $X+Y$.\n- **Lois Gamma.** Si $X$ et $Y$ sont indépendantes de lois $\\gamma(a,\\lambda)$ et $\\gamma(b,\\lambda)$, alors $X+Y$ suit la loi $\\gamma(a+b,\\lambda)$. En particulier, la somme de deux variables indépendantes de loi $\\mathcal{E}(\\lambda)$ suit $\\gamma(2,\\lambda)$.",
+      "enonce_trous": "Si $X$ et $Y$ sont indépendantes, de densités $f$ et $g$, et si la fonction obtenue est continue sauf en un nombre fini de points, alors $X+Y$ admet pour densité {{1}} ; si de plus $X$ et $Y$ admettent un moment d'ordre $2$, alors $V(X+Y)$ est égal à {{2}}.",
+      "trous": [
+        {
+          "reponse": "$z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$",
+          "leurres": [
+            "$z\\mapsto f(z)+g(z)$",
+            "$z\\mapsto f(z)g(z)$",
+            "$z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z+x)\\,\\mathrm{d}x$"
+          ]
+        },
+        {
+          "reponse": "$V(X)+V(Y)$",
+          "leurres": [
+            "$V(X)+V(Y)+2E(X)E(Y)$",
+            "$\\left(\\sqrt{V(X)}+\\sqrt{V(Y)}\\right)^2$",
+            "$V(X)V(Y)$"
+          ]
+        }
+      ],
+      "demo": "On admet le théorème de transfert pour un couple à densité et, pour des fonctions positives, le théorème de Fubini-Tonelli, ainsi que la formule $P\\left((X,Y)\\in D\\right)=\\iint_Df$ (carte précédente).\n\n**Covariance.** On admet l'existence d'une espérance linéaire et croissante (carte de l'espérance). Comme $|xy|\\le\\frac{x^2+y^2}2$, $XY$ admet une espérance. En développant $\\left(X-E(X)\\right)\\left(Y-E(Y)\\right)$ et par linéarité, $\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$ ; en développant $\\left(X+Y-E(X)-E(Y)\\right)^2$, on obtient la formule de $V(X+Y)$. Pour tout réel $t$, $V(X+tY)=V(X)+2t\\,\\mathrm{Cov}(X,Y)+t^2V(Y)\\ge0$ ; si $V(Y)>0$, ce trinôme en $t$ a un discriminant négatif ou nul, ce qui donne $\\mathrm{Cov}(X,Y)^2\\le V(X)V(Y)$ (et si $V(Y)=0$, la positivité pour tout $t$ impose $\\mathrm{Cov}(X,Y)=0$).\n\n**Produit.** Si $X$ et $Y$ sont indépendantes, $(x,y)\\mapsto f(x)g(y)$ est une densité du couple. Par Fubini-Tonelli, $\\iint|xy|f(x)g(y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int|x|f(x)\\,\\mathrm{d}x\\int|y|g(y)\\,\\mathrm{d}y<+\\infty$, puis par transfert et Fubini, $E(XY)=\\int xf(x)\\,\\mathrm{d}x\\int yg(y)\\,\\mathrm{d}y=E(X)E(Y)$. D'où $\\mathrm{Cov}(X,Y)=0$ et $V(X+Y)=V(X)+V(Y)$.\n\n**Somme.** Soit $z$ réel et $D=\\{(x,y)\\ :\\ x+y\\le z\\}$. Par la formule admise, puis le changement de variable $y=u-x$ dans l'intégrale intérieure et Fubini-Tonelli (fonctions positives),\n$$P(X+Y\\le z)=\\int_{-\\infty}^{+\\infty}f(x)\\left(\\int_{-\\infty}^{z-x}g(y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{-\\infty}^{+\\infty}\\left(\\int_{-\\infty}^zf(x)g(u-x)\\,\\mathrm{d}u\\right)\\mathrm{d}x=\\int_{-\\infty}^zh(u)\\,\\mathrm{d}u.$$\nLa fonction $h$ est positive, continue sauf en un nombre fini de points par hypothèse, et $\\int_{-\\infty}^{+\\infty}h=\\lim_{z\\to+\\infty}P(X+Y\\le z)=1$ : c'est une densité, et $F_{X+Y}(z)=\\int_{-\\infty}^zh$, donc $h$ est une densité de $X+Y$.\n\n**Lois Gamma.** Pour $z\\le0$, $h(z)=0$. Pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$, et le changement de variable $x=zu$ donne\n$$h(z)=\\frac{\\lambda^{a+b}e^{-\\lambda z}}{\\Gamma(a)\\Gamma(b)}\\int_0^zx^{a-1}(z-x)^{b-1}\\,\\mathrm{d}x=\\frac{\\lambda^{a+b}B(a,b)}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}e^{-\\lambda z},\\qquad B(a,b)=\\int_0^1u^{a-1}(1-u)^{b-1}\\,\\mathrm{d}u.$$\nCette fonction est continue sur $\\mathbb{R}^*$, c'est donc une densité de $X+Y$ ; elle est proportionnelle à la densité de $\\gamma(a+b,\\lambda)$, et deux densités proportionnelles sont égales puisque leurs intégrales valent $1$. Donc $X+Y$ suit $\\gamma(a+b,\\lambda)$ (et l'on obtient au passage $B(a,b)=\\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}$).",
+      "exemple": "Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{U}([0,1])$, $h(z)=\\int_0^1\\mathbf{1}_{[0,1]}(z-x)\\,\\mathrm{d}x$ est la longueur de $[0,1]\\cap[z-1,z]$ : $h(z)=z$ sur $[0,1]$, $h(z)=2-z$ sur $[1,2]$, $h(z)=0$ ailleurs (loi triangulaire), et $P\\left(X+Y\\le\\frac12\\right)=\\frac18$. Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{E}(\\lambda)$, $h(z)=\\int_0^z\\lambda e^{-\\lambda x}\\lambda e^{-\\lambda(z-x)}\\,\\mathrm{d}x=\\lambda^2ze^{-\\lambda z}$ pour $z>0$ : c'est la loi $\\gamma(2,\\lambda)$, de variance $\\frac2{\\lambda^2}=V(X)+V(Y)$.",
+      "contre_exemple": "- **Sans indépendance.** Si $X$ suit $\\mathcal{U}([0,1])$ et $Y=X$, alors $X+Y=2X$ suit $\\mathcal{U}([0,2])$, de densité $\\frac12$ sur $[0,2]$, et non la loi triangulaire $f*f$ (qui vaut $1$ en $1$). Si $Y=1-X$, $X+Y=1$ n'a même pas de densité.\n- **Covariance nulle.** Pour le couple uniforme sur le disque unité, $\\mathrm{Cov}(X,Y)=0$ et le couple a une densité ; mais $X+Y\\le\\sqrt2$, car $x+y\\le\\sqrt2\\sqrt{x^2+y^2}$, alors que $f_X*f_Y$ est strictement positive sur $\\left]-2,2\\right[$ : elle n'est pas une densité de $X+Y$.\n- **Paramètres différents.** Si $X$ et $Y$ sont indépendantes de lois $\\mathcal{E}(1)$ et $\\mathcal{E}(2)$, $X+Y$ a pour densité $2\\left(e^{-z}-e^{-2z}\\right)$ sur $\\left]0,+\\infty\\right[$ ; ce n'est pas une densité Gamma : elle équivaut à $2z$ en $0$, ce qui imposerait la loi $\\gamma(2,\\sqrt2)$, de densité continue $2ze^{-\\sqrt2z}$, qui en diffère (en $z=1$ par exemple).",
+      "affirmations": [
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{U}([0,1])$, alors $X+Y$ suit la loi $\\mathcal{U}([0,2])$.",
+          "vrai": false,
+          "contre_exemple": "$X+Y$ a la densité triangulaire : $P\\left(X+Y\\le\\frac12\\right)=\\int_0^{1/2}z\\,\\mathrm{d}z=\\frac18$, alors que la loi $\\mathcal{U}([0,2])$ donnerait $\\frac14$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes de lois $\\gamma(a,\\lambda)$ et $\\gamma(b,\\lambda)$, alors $X+Y$ suit la loi $\\gamma(a+b,\\lambda)$.",
+          "vrai": true,
+          "justification": "La convolée des deux densités est proportionnelle à $z^{a+b-1}e^{-\\lambda z}$ sur $\\left]0,+\\infty\\right[$, et une densité proportionnelle à celle de $\\gamma(a+b,\\lambda)$ lui est égale."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes et admettent un moment d'ordre $2$, alors $V(X-Y)=V(X)-V(Y)$.",
+          "vrai": false,
+          "contre_exemple": "$V(X-Y)=V(X)+V(-Y)=V(X)+V(Y)$ ; pour $X$ et $Y$ indépendantes de loi $\\mathcal{U}([0,1])$, $V(X-Y)=\\frac16$, et non $0$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes de loi de Cauchy, alors $\\frac{X+Y}2$ suit la loi de Cauchy.",
+          "vrai": true,
+          "justification": "Le produit de convolution des deux densités vaut $\\frac2{\\pi(4+z^2)}$ ; la densité de $\\frac{X+Y}2$ est alors $2\\cdot\\frac2{\\pi(4+4u^2)}=\\frac1{\\pi(1+u^2)}$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{E}(\\lambda)$, alors $X+Y$ suit la loi $\\mathcal{E}(2\\lambda)$.",
+          "vrai": false,
+          "contre_exemple": "$X+Y$ suit $\\gamma(2,\\lambda)$, d'espérance $\\frac2\\lambda$, alors que $\\mathcal{E}(2\\lambda)$ a pour espérance $\\frac1{2\\lambda}$ (c'est la loi de $\\min(X,Y)$)."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-densites-vecteurs",
+        "proba-l3-densites-esperance",
+        "int-l3-multiples-fubini-tonelli",
+        "proba-l2-discretes-independance"
+      ]
+    },
+    {
+      "id": "proba-l3-densites-normales",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-densites",
+      "type": "theoreme",
+      "titre": "Lois normales",
+      "recto": "Énoncer les propriétés des lois normales : transformations affines et centrage-réduction, moments, stabilité par somme indépendante.",
+      "cours": "Toutes les lois normales se déduisent de la loi **centrée réduite** $\\mathcal{N}(0,1)$ par une transformation affine : $X$ suit $\\mathcal{N}(m,\\sigma^2)$ si et seulement si $X=m+\\sigma Z$ avec $Z$ de loi $\\mathcal{N}(0,1)$. Il suffit donc d'une seule table, celle de $\\Phi$, pour calculer toutes les probabilités normales : $P(X\\le x)=\\Phi\\left(\\frac{x-m}\\sigma\\right)$. La symétrie de la densité donne $\\Phi(-x)=1-\\Phi(x)$, et quelques valeurs servent sans cesse : $P(|Z|\\le1)\\approx0{,}683$, $P(|Z|\\le1{,}96)\\approx0{,}95$, $P(|Z|\\le3)\\approx0{,}997$. Le second paramètre est la **variance** : dans $\\mathcal{N}(3,4)$, l'écart-type vaut $2$.\n\nLa propriété fondamentale est la **stabilité par somme indépendante** : la somme de deux variables normales **indépendantes** est normale, les espérances et les variances s'ajoutant. Avec les transformations affines, toute combinaison linéaire (non triviale) de variables normales indépendantes est normale ; en particulier la moyenne de $n$ variables indépendantes de loi $\\mathcal{N}(m,\\sigma^2)$ suit exactement $\\mathcal{N}\\left(m,\\frac{\\sigma^2}n\\right)$. C'est ce qui fait des lois normales le cadre naturel de l'estimation, et le théorème central limite explique pourquoi elles apparaissent comme lois limites.\n\n**Méthode.** Pour calculer $P(X\\in I)$ : centrer et réduire, puis se ramener à $\\Phi$ en utilisant $\\Phi(-x)=1-\\Phi(x)$. Pour une combinaison de variables normales indépendantes : calculer l'espérance et la variance (les variances s'ajoutent après multiplication par le carré des coefficients), puis affirmer la normalité par stabilité.\n\n**Pièges.** Ce sont les variances, et non les écarts-types, qui s'additionnent ; la variance de $2X$ est $4\\sigma^2$ ; l'indépendance est indispensable : deux variables normales de covariance nulle n'ont pas nécessairement une somme normale.",
+      "hypotheses": [
+        "$X$ suit la loi $\\mathcal{N}(m_1,\\sigma_1^2)$ et $Y$ suit la loi $\\mathcal{N}(m_2,\\sigma_2^2)$, avec $\\sigma_1>0$ et $\\sigma_2>0$.",
+        "$X$ et $Y$ sont indépendantes."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathrm{Cov}(X,Y)=0$ (à la place de : $X$ et $Y$ sont indépendantes).",
+        "$X$ et $Y$ ont la même loi (à la place de : $X$ et $Y$ sont indépendantes).",
+        "Le couple $(X,Y)$ admet une densité (à la place de : $X$ et $Y$ sont indépendantes)."
+      ],
+      "enonce": "Soit $\\Phi$ la fonction de répartition de $\\mathcal{N}(0,1)$ : $\\Phi(x)=\\frac1{\\sqrt{2\\pi}}\\int_{-\\infty}^xe^{-t^2/2}\\,\\mathrm{d}t$.\n- **Transformations affines.** Si $X$ suit $\\mathcal{N}(m,\\sigma^2)$ et si $a\\ne0$ et $b$ sont réels, alors $aX+b$ suit $\\mathcal{N}(am+b,a^2\\sigma^2)$. En particulier, $X$ suit $\\mathcal{N}(m,\\sigma^2)$ si et seulement si $\\frac{X-m}\\sigma$ suit $\\mathcal{N}(0,1)$ (centrage-réduction), et alors $P(X\\le x)=\\Phi\\left(\\frac{x-m}\\sigma\\right)$.\n- **Moments et symétrie.** Si $X$ suit $\\mathcal{N}(m,\\sigma^2)$, $E(X)=m$ et $V(X)=\\sigma^2$ ; pour tout réel $x$, $\\Phi(-x)=1-\\Phi(x)$.\n- **Stabilité.** Si $X$ et $Y$ sont indépendantes de lois $\\mathcal{N}(m_1,\\sigma_1^2)$ et $\\mathcal{N}(m_2,\\sigma_2^2)$, alors $X+Y$ suit la loi $\\mathcal{N}(m_1+m_2,\\sigma_1^2+\\sigma_2^2)$.",
+      "enonce_trous": "Si $X$ suit la loi $\\mathcal{N}(m,\\sigma^2)$ avec $\\sigma>0$, alors {{1}} suit la loi $\\mathcal{N}(0,1)$ ; si $X$ et $Y$ sont indépendantes de lois $\\mathcal{N}(m_1,\\sigma_1^2)$ et $\\mathcal{N}(m_2,\\sigma_2^2)$, avec $\\sigma_1,\\sigma_2>0$, alors $X+Y$ suit la loi {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{X-m}\\sigma$",
+          "leurres": [
+            "$\\frac{X-m}{\\sigma^2}$",
+            "$X-m$",
+            "$\\sigma(X-m)$"
+          ]
+        },
+        {
+          "reponse": "$\\mathcal{N}(m_1+m_2,\\sigma_1^2+\\sigma_2^2)$",
+          "leurres": [
+            "$\\mathcal{N}\\left(m_1+m_2,(\\sigma_1+\\sigma_2)^2\\right)$",
+            "$\\mathcal{N}(m_1+m_2,\\sigma_1\\sigma_2)$",
+            "$\\mathcal{N}\\left(m_1+m_2,\\frac{\\sigma_1^2+\\sigma_2^2}2\\right)$"
+          ]
+        }
+      ],
+      "demo": "**Transformations affines.** Soit $a>0$. Pour tout réel $y$, $P(aX+b\\le y)=P\\left(X\\le\\frac{y-b}a\\right)=\\int_{-\\infty}^{(y-b)/a}\\frac1{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-m)^2}{2\\sigma^2}}\\,\\mathrm{d}x$, et le changement de variable $u=ax+b$ donne\n$$P(aX+b\\le y)=\\int_{-\\infty}^y\\frac1{a\\sigma\\sqrt{2\\pi}}\\exp\\left(-\\frac{(u-am-b)^2}{2a^2\\sigma^2}\\right)\\mathrm{d}u :$$\nc'est la fonction de répartition de $\\mathcal{N}(am+b,a^2\\sigma^2)$. Si $a<0$, $P(aX+b\\le y)=P\\left(X\\ge\\frac{y-b}a\\right)$ et le même changement de variable, qui renverse les bornes, donne la même formule avec $|a|$ à la place de $a$, c'est-à-dire la loi $\\mathcal{N}(am+b,a^2\\sigma^2)$. Avec $a=\\frac1\\sigma$, $b=-\\frac m\\sigma$, on obtient le centrage-réduction ; la réciproque s'obtient avec $a=\\sigma$, $b=m$. Enfin, si $Z$ suit $\\mathcal{N}(0,1)$, $-Z$ aussi ($a=-1$), donc $\\Phi(-x)=P(-Z\\ge x)=1-P(-Z<x)=1-\\Phi(x)$, car $P(-Z=x)=0$.\n\n**Moments.** Ils ont été calculés avec le théorème de transfert (carte de l'espérance) : $E(Z)=0$ et $V(Z)=1$ pour $Z$ de loi $\\mathcal{N}(0,1)$ ; comme $X=m+\\sigma Z$, $E(X)=m$ et $V(X)=\\sigma^2$.\n\n**Stabilité.** Les variables $X'=X-m_1$ et $Y'=Y-m_2$ sont indépendantes (car $\\{X'\\in I\\}=\\{X\\in I+m_1\\}$), de lois $\\mathcal{N}(0,\\sigma_1^2)$ et $\\mathcal{N}(0,\\sigma_2^2)$. Posons $s^2=\\sigma_1^2+\\sigma_2^2$. Pour tous réels $x,z$, on vérifie en développant que\n$$\\frac{x^2}{\\sigma_1^2}+\\frac{(z-x)^2}{\\sigma_2^2}=\\frac{s^2}{\\sigma_1^2\\sigma_2^2}\\left(x-\\frac{\\sigma_1^2z}{s^2}\\right)^2+\\frac{z^2}{s^2}.$$\nAvec l'intégrale de Gauss $\\int_{-\\infty}^{+\\infty}e^{-\\alpha(x-c)^2}\\,\\mathrm{d}x=\\sqrt{\\frac\\pi\\alpha}$, appliquée à $\\alpha=\\frac{s^2}{2\\sigma_1^2\\sigma_2^2}$, la convolée des deux densités vaut\n$$h(z)=\\frac{e^{-z^2/(2s^2)}}{2\\pi\\sigma_1\\sigma_2}\\int_{-\\infty}^{+\\infty}e^{-\\alpha\\left(x-\\sigma_1^2z/s^2\\right)^2}\\,\\mathrm{d}x=\\frac{e^{-z^2/(2s^2)}}{2\\pi\\sigma_1\\sigma_2}\\cdot\\frac{\\sqrt{2\\pi}\\,\\sigma_1\\sigma_2}s=\\frac1{s\\sqrt{2\\pi}}e^{-\\frac{z^2}{2s^2}}.$$\nCette fonction est continue sur $\\mathbb{R}$ : c'est une densité de $X'+Y'$ (carte précédente), qui suit donc $\\mathcal{N}(0,s^2)$, et $X+Y=X'+Y'+m_1+m_2$ suit $\\mathcal{N}(m_1+m_2,s^2)$.",
+      "exemple": "Si la taille $X$ (en cm) suit $\\mathcal{N}(170,36)$, l'écart-type vaut $6$ et $P(X\\le182)=\\Phi\\left(\\frac{182-170}6\\right)=\\Phi(2)\\approx0{,}977$. Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{N}(0,1)$, $-Y$ suit $\\mathcal{N}(0,1)$, donc $X-Y$ suit $\\mathcal{N}(0,2)$ et $\\frac{X+Y}{\\sqrt2}$ suit $\\mathcal{N}(0,1)$. Si $X_1,X_2$ sont indépendantes de loi $\\mathcal{N}(m,\\sigma^2)$, leur moyenne suit $\\mathcal{N}\\left(m,\\frac{\\sigma^2}2\\right)$.",
+      "contre_exemple": "- **Covariance nulle.** Soient $X$ de loi $\\mathcal{N}(0,1)$, $\\varepsilon$ indépendante de $X$ avec $P(\\varepsilon=1)=P(\\varepsilon=-1)=\\frac12$, et $Y=\\varepsilon X$. Alors $Y$ suit $\\mathcal{N}(0,1)$, car $P(Y\\le y)=\\frac12P(X\\le y)+\\frac12P(-X\\le y)=\\Phi(y)$, et $\\mathrm{Cov}(X,Y)=E(\\varepsilon)E(X^2)=0$ ; mais $P(X+Y=0)\\ge P(\\varepsilon=-1)=\\frac12$ : $X+Y$ n'est pas normale.\n- **Même loi.** Si $X$ suit $\\mathcal{N}(0,1)$ et $Y=-X$, $Y$ suit $\\mathcal{N}(0,1)$ et $X+Y=0$.\n- **Couple à densité, marginales normales.** $f(x,y)=\\frac1\\pi e^{-(x^2+y^2)/2}$ si $xy>0$, $0$ sinon, est une densité de couple dont les deux marginales sont $\\mathcal{N}(0,1)$ ; mais $X$ et $Y$ sont toujours de même signe, et $X+Y$ a pour densité $h(z)=\\int_{-\\infty}^{+\\infty}f(x,z-x)\\,\\mathrm{d}x$, continue et nulle en $0$, ce qui n'est le cas d'aucune densité normale.",
+      "affirmations": [
+        {
+          "texte": "Si $X$ suit $\\mathcal{N}(m,\\sigma^2)$, alors $2X$ suit $\\mathcal{N}(2m,2\\sigma^2)$.",
+          "vrai": false,
+          "contre_exemple": "$V(2X)=4V(X)=4\\sigma^2$ : $2X$ suit $\\mathcal{N}(2m,4\\sigma^2)$."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{N}(0,1)$, alors $X^2$ suit une loi normale.",
+          "vrai": false,
+          "contre_exemple": "$P(X^2<0)=0$, alors que pour toute loi $\\mathcal{N}(m,s^2)$, $P(Y<0)=\\Phi\\left(-\\frac ms\\right)>0$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ sont indépendantes de loi $\\mathcal{N}(0,1)$, alors $\\frac{X+Y}{\\sqrt2}$ suit $\\mathcal{N}(0,1)$.",
+          "vrai": true,
+          "justification": "$X+Y$ suit $\\mathcal{N}(0,2)$ par stabilité, et $\\frac1{\\sqrt2}(X+Y)$ suit $\\mathcal{N}\\left(0,\\frac12\\cdot2\\right)$."
+        },
+        {
+          "texte": "Si $X$ suit $\\mathcal{N}(m,\\sigma^2)$, alors $P(|X-m|\\le\\sigma)$ ne dépend ni de $m$ ni de $\\sigma$.",
+          "vrai": true,
+          "justification": "$P(|X-m|\\le\\sigma)=P(|Z|\\le1)=2\\Phi(1)-1\\approx0{,}683$, avec $Z=\\frac{X-m}\\sigma$ de loi $\\mathcal{N}(0,1)$."
+        },
+        {
+          "texte": "Si $X$ et $Y$ suivent la loi $\\mathcal{N}(0,1)$, alors $X+Y$ suit la loi $\\mathcal{N}(0,2)$.",
+          "vrai": false,
+          "contre_exemple": "$Y=-X$ suit $\\mathcal{N}(0,1)$, et $X+Y=0$."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-densites-lois-usuelles",
+        "proba-l3-densites-esperance",
+        "proba-l3-densites-somme",
+        "int-l2-parametre-gauss"
+      ]
+    }
+  ]
+}

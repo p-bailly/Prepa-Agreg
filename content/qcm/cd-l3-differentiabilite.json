@@ -1,0 +1,99 @@
+{
+  "chapitre": "cd-l3-differentiabilite",
+  "questions": [
+    {
+      "id": "cd-l3-differentiabilite-q1",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "genre": "choix",
+      "enonce": "Soit $f(x,y)=\\frac{x^2y}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$ et $f(0,0)=0$. Que peut-on dire de $f$ en $(0,0)$ ?",
+      "propositions": [
+        "Elle est continue, admet une dérivée selon tout vecteur, mais n'est pas différentiable.",
+        "Elle est différentiable, de différentielle nulle.",
+        "Elle n'est pas continue.",
+        "Elle n'admet pas de dérivée selon le vecteur $(1,1)$."
+      ],
+      "bonne": 0,
+      "explication": "$|f(x,y)|\\le|y|$, donc $f$ est continue en $(0,0)$. Comme $f(tv)=tf(v)$, $D_vf(0,0)=f(v)$ existe pour tout $v$. Les dérivées partielles sont nulles ($f$ est nulle sur les axes), mais $D_{(1,1)}f(0,0)=\\frac12\\neq0$ : $v\\mapsto D_vf(0,0)$ n'est pas linéaire, donc $f$ n'est pas différentiable en $(0,0)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q2",
+      "carte": "cd-l3-differentiabilite-jacobienne",
+      "genre": "vrai-faux",
+      "enonce": "Le déterminant jacobien de $(r,\\theta)\\mapsto(r\\cos\\theta,r\\sin\\theta)$ au point $(r,\\theta)$ est égal à $r$.",
+      "vrai": true,
+      "explication": "Vrai. La jacobienne est $\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{pmatrix}$, de déterminant $r\\cos^2\\theta+r\\sin^2\\theta=r$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q3",
+      "carte": "cd-l3-differentiabilite-classe-c1",
+      "genre": "choix",
+      "enonce": "Laquelle de ces conditions garantit que $f:\\mathbb{R}^2\\to\\mathbb{R}$ est différentiable en $(0,0)$ ?",
+      "propositions": [
+        "Les dérivées partielles de $f$ existent au voisinage de $(0,0)$ et sont continues en $(0,0)$.",
+        "Les dérivées partielles de $f$ existent en tout point et sont bornées.",
+        "$f$ est continue et admet des dérivées partielles en $(0,0)$.",
+        "$f$ admet en $(0,0)$ une dérivée selon tout vecteur."
+      ],
+      "bonne": 0,
+      "explication": "C'est le théorème sur la classe $\\mathcal{C}^1$. Les autres conditions ne suffisent pas : $\\frac{x^3}{x^2+y^2}$ (prolongée par $0$) a des dérivées partielles bornées partout, est continue, admet une dérivée selon tout vecteur en $(0,0)$, et n'y est pas différentiable, puisque $D_{(1,1)}f(0,0)=\\frac12\\neq1+0$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q4",
+      "carte": "cd-l3-differentiabilite-composee",
+      "genre": "choix",
+      "enonce": "Soient $f:\\mathbb{R}^2\\to\\mathbb{R}$ de classe $\\mathcal{C}^1$ et $g(t)=f(t^2,3t)$. Que vaut $g'(1)$ ?",
+      "propositions": [
+        "$2\\frac{\\partial f}{\\partial x}(1,3)+3\\frac{\\partial f}{\\partial y}(1,3)$",
+        "$\\frac{\\partial f}{\\partial x}(1,3)+\\frac{\\partial f}{\\partial y}(1,3)$",
+        "$6\\frac{\\partial f}{\\partial x}(1,3)\\frac{\\partial f}{\\partial y}(1,3)$",
+        "$2\\frac{\\partial f}{\\partial x}(2,3)+3\\frac{\\partial f}{\\partial y}(2,3)$"
+      ],
+      "bonne": 0,
+      "explication": "Par la règle de la composée, $g'(t)=2t\\,\\frac{\\partial f}{\\partial x}(t^2,3t)+3\\,\\frac{\\partial f}{\\partial y}(t^2,3t)$, et en $t=1$ le point est $(1,3)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q5",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "genre": "vrai-faux",
+      "enonce": "Si $f:\\mathbb{R}^2\\setminus\\{(0,0)\\}\\to\\mathbb{R}$ est différentiable et vérifie $|||df(x)|||\\le1$ en tout point (pour la norme euclidienne), alors $f$ est $1$-lipschitzienne.",
+      "vrai": true,
+      "explication": "Vrai, bien que l'ouvert ne soit pas convexe. Si le segment $[p,q]$ évite l'origine, l'inégalité des accroissements finis donne $|f(p)-f(q)|\\le\\|p-q\\|$. Sinon, on passe par un point $m$ proche du milieu de $[p,q]$, hors de la droite $(pq)$ : les segments $[p,m]$ et $[m,q]$ évitent l'origine, d'où $|f(p)-f(q)|\\le\\|p-m\\|+\\|m-q\\|$, quantité aussi proche que l'on veut de $\\|p-q\\|$. Sur une couronne fendue, en revanche, la conclusion peut tomber en défaut (fonction angle)."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q6",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "genre": "choix",
+      "enonce": "Pour laquelle de ces fonctions le théorème de Schwarz garantit-il l'égalité $\\frac{\\partial^2f}{\\partial x\\partial y}=\\frac{\\partial^2f}{\\partial y\\partial x}$ en tout point de $\\mathbb{R}^2$ ?",
+      "propositions": [
+        "$f(x,y)=e^{xy}\\sin x$",
+        "$f(x,y)=\\frac{xy(x^2-y^2)}{x^2+y^2}$, prolongée par $f(0,0)=0$",
+        "$f(x,y)=|x|\\,y$",
+        "$f(x,y)=\\sqrt{x^2+y^2}$"
+      ],
+      "bonne": 0,
+      "explication": "$(x,y)\\mapsto e^{xy}\\sin x$ est de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$. Les autres ne le sont pas : $\\frac{xy(x^2-y^2)}{x^2+y^2}$ a des dérivées croisées $-1$ et $1$ en $(0,0)$ ; $|x|\\,y$ n'a pas de dérivée partielle par rapport à $x$ aux points $(0,y)$, $y\\neq0$ ; $\\sqrt{x^2+y^2}$ n'est pas différentiable en $(0,0)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q7",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute matrice $A\\in\\mathcal{M}_n(\\mathbb{R})$, le gradient de $x\\mapsto\\langle Ax,x\\rangle$ (produit scalaire canonique) est $x\\mapsto2Ax$.",
+      "vrai": false,
+      "explication": "Faux en général : $\\langle A(x+h),x+h\\rangle=\\langle Ax,x\\rangle+\\langle(A+A^{\\mathsf T})x,h\\rangle+\\langle Ah,h\\rangle$, donc le gradient est $(A+A^{\\mathsf T})x$, égal à $2Ax$ si $A$ est symétrique. Contre-exemple : $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $\\langle Ax,x\\rangle=x_1x_2$, de gradient $(x_2,x_1)$, alors que $2Ax=(2x_2,0)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-q8",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "genre": "choix",
+      "enonce": "Soit $f$ de classe $\\mathcal{C}^2$ sur un ouvert de $\\mathbb{R}^2$ et $a$ un point critique où $r=1$, $s=2$ et $t=5$. Que peut-on affirmer ?",
+      "propositions": [
+        "$f$ admet en $a$ un minimum local strict.",
+        "$f$ admet en $a$ un maximum local strict.",
+        "$a$ est un point col.",
+        "On ne peut pas conclure sans étude supplémentaire."
+      ],
+      "bonne": 0,
+      "explication": "$rt-s^2=5-4=1>0$ et $r=1>0$ : $f$ admet en $a$ un minimum local strict."
+    }
+  ]
+}
