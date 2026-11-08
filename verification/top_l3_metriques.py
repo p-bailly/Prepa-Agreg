@@ -395,4 +395,68 @@ assert sp.limit(sp.exp(x), x, -sp.oo) == 0
 for v in [-8, -1, 0, 2, 27]:
     assert abs(float(sp.real_root(v ** 3, 3)) - v) < 1e-12
 
+# QCM q4 : pour f = exp, f(R) ∩ [0,1] = ]0,1] (0 non atteint, 1 atteint en 0) : pas compact.
+assert sp.solve(sp.Eq(sp.exp(x), 0), x) == [] and sp.exp(0) == 1
+
+# ---------------------------------------------------------------------------------------------------------------
+# Problèmes de difficulté 5 (contrôles numériques ajoutés à la relecture)
+# ---------------------------------------------------------------------------------------------------------------
+# compacite-ex5 : f = sin sur K = [0,1] vérifie |f(x) - f(y)| < |x - y| pour x != y (sans constante k < 1 :
+# le rapport tend vers 1 en 0) ; la suite x_{n+1} = sin x_n décroît vers l'unique point fixe 0.
+for _ in range(20000):
+    a, b = random.uniform(0, 1), random.uniform(0, 1)
+    if a != b:
+        assert abs(math.sin(a) - math.sin(b)) < abs(a - b)
+v = 1.0
+for _ in range(10 ** 5):
+    w = math.sin(v)
+    assert 0 < w < v
+    v = w
+assert v < 0.01
+
+# heine-ex5 : f_n(x) = inf_y (f(y) + n|x - y|) sur K = [0,1] (grille), f = sqrt : f_n <= f, f_n croissante en n,
+# f_n n-lipschitzienne, et f - f_n <= eps dès que n >= 2M/eta, avec eta = eps^2 (|sqrt x - sqrt y| <= sqrt|x - y|).
+grille = [i / 400 for i in range(401)]
+fq = [math.sqrt(v) for v in grille]
+Mq = max(abs(v) for v in fq)
+def inf_conv(nn):
+    return [min(fq[j] + nn * abs(xx - grille[j]) for j in range(len(grille))) for xx in grille]
+for eps_ in [0.5, 0.3]:
+    et = eps_ ** 2
+    nn = ceil(2 * Mq / et)
+    fn, fn1 = inf_conv(nn), inf_conv(nn + 1)
+    assert all(-Mq <= fn[i] <= fq[i] + 1e-15 and fn[i] <= fn1[i] + 1e-15 for i in range(len(grille)))
+    assert all(abs(fn[i] - fn[i + 1]) <= nn * (grille[i + 1] - grille[i]) + 1e-12 for i in range(len(grille) - 1))
+    assert max(fq[i] - fn[i] for i in range(len(grille))) <= eps_
+
+# point-fixe-ex5 : (e^{2Lt} - 1)/2 <= e^{2Lt}/2, d'où N(Phi(y) - Phi(z)) <= N(y - z)/2 ; contrôle numérique sur
+# F(t, y) = L sin(y) + t (L-lipschitzienne en y), avec intégrales par la méthode des trapèzes.
+Lq, Tq, P = 3.0, 2.0, 2000
+ts = [Tq * i / P for i in range(P + 1)]
+def Phi(yv, y0=0.5):
+    out, acc = [y0], 0.0
+    for i in range(P):
+        f0 = Lq * math.sin(yv[i]) + ts[i]
+        f1 = Lq * math.sin(yv[i + 1]) + ts[i + 1]
+        acc += (f0 + f1) / 2 * (ts[i + 1] - ts[i])
+        out.append(y0 + acc)
+    return out
+Nw = lambda w: max(math.exp(-2 * Lq * ts[i]) * abs(w[i]) for i in range(P + 1))
+for _ in range(5):
+    ya = [random.uniform(-5, 5) * math.cos(random.uniform(0, 3) * tt_) for tt_ in ts]
+    yb = [random.uniform(-5, 5) * math.sin(random.uniform(0, 3) * tt_) for tt_ in ts]
+    da = [p_ - q_ for p_, q_ in zip(Phi(ya), Phi(yb))]
+    assert Nw(da) <= 0.5 * Nw([p_ - q_ for p_, q_ in zip(ya, yb)]) * (1 + 1e-3)
+# avec la norme uniforme, la constante obtenue est LT = 6 > 1 (pas de contraction).
+assert Lq * Tq > 1
+
+# point-fixe-ex4 : T^2 est 1/2-lipschitzienne (x^2/2! <= 1/2 sur [0,1]), et x^n/n! <= 1/n! -> 0.
+assert sp.maximum(x ** 2 / 2, x, sp.Interval(0, 1)) == sp.Rational(1, 2)
+
+# cauchy-limites-ex5 : f = somme des pics est continue, positive, vaut 1 en n et 0 en n + 1/(2n^2) ; l'intégrale
+# du pic n vaut 1/(2n^2) (triangle de base 1/n^2, de hauteur 1).
+for m in range(1, 30):
+    base = F(1, m * m)
+    assert base * 1 / 2 == F(1, 2 * m * m)
+
 print("top_l3_metriques : toutes les vérifications passent.")
