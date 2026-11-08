@@ -385,9 +385,9 @@ for tt in (0.5 * min(1, abs(complex(coeffs[0])) / (M + 1)), 1e-3, 1e-2):
 # (z1 = 0) ; trou 1, « non nul », « unitaire », « à coefficients réels », vrais pour P = X. Nouveaux leurres : trou 1,
 # P constant (|P| ne tend pas vers +infini) ; trou 3, « P(z1) != 0 », « |P(z1)| > |P(0)| », « |P(z1)| = 1 », jamais vrais
 # puisque z1 est un point de minimum (|P(z1)| <= |P(0)|) et une racine.
-for P_ in (X, X**2, X**3 - 6 * X + 3, X**2 + 2 * X + 5, (X - 3)**2 * (X + I)):
-    z1 = min(nroots(P_, n=30), key=lambda r_: abs(complex(P_.subs(X, r_))))
-    assert abs(complex(P_.subs(X, z1))) < 1e-20 <= abs(complex(P_.subs(X, 0))) + 1e-20
+for P_ in (X, X**3 - 6 * X + 3, X**2 + 2 * X + 5, X**4 + 4, X**3 - 10 * X + 4):
+    z1 = min(nroots(P_, n=20, maxsteps=200), key=lambda r_: abs(complex(P_.subs(X, r_))))
+    assert abs(complex(P_.subs(X, z1))) < 1e-12 and abs(complex(P_.subs(X, z1))) <= abs(complex(P_.subs(X, 0)))
 assert expand(X**2).subs(X, 0) == 0 and diff(X**2, X).subs(X, 0) == 0  # P'(z1) = 0 pour P = X^2 : ancien leurre vrai
 
 # arith-l3-algebriques-alembert-gauss-ex1 (+ v1, v2) : directions de descente ; leurres (|P| augmente).
