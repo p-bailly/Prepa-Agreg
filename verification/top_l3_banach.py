@@ -670,4 +670,39 @@ for b in (sp.Rational(4, 15), sp.Rational(1, 3), sp.Rational(15, 4), sp.Rational
     assert orth == (b == sp.Rational(4, 15))
 assert sp.integrate(t ** 4 - sp.Rational(3, 5) * t ** 2, (t, -1, 1)) == 0
 
+# ===========================================================================
+# Relecture indépendante (2026-11-08) : valeurs numériques citées dans les corrections
+# ===========================================================================
+# exponentielle-ex4 : e^10 - e^9 ≈ 13 923 (et non 13 964)
+assert abs(mp.e ** 10 - mp.e ** 9 - mp.mpf("13923.38")) < mp.mpf("0.01")
+# exponentielle-ex3 (v1, v2) : 6 - 2 ch 2 ≈ -1,52 et 1 - 2 cos 1 ≈ -0,081 ; trace de e^A e^B : 3, 6, 1
+assert abs(6 - 2 * mp.cosh(2) + mp.mpf("1.524")) < mp.mpf("0.001")
+assert abs(1 - 2 * mp.cos(1) + mp.mpf("0.0806")) < mp.mpf("0.0001")
+Asy = sp.Matrix([[0, 1], [0, 0]])
+for c1, c2, tr in [(1, 1, 3), (2, 2, 6), (-1, 1, 1)]:
+    A_, B_ = c1 * Asy, c2 * Asy.T
+    assert (A_.exp() * B_.exp()).trace() == tr
+    assert sp.simplify((A_.exp() * B_.exp()).trace() - (A_ + B_).exp().trace()) != 0
+# exponentielle-ex5 : e^{A/n} e^{B/n} a un coefficient (2,2) égal à 1, celui de e^{(A+B)/n} vaut ch(1/n) > 1
+for nn in (1, 2, 5):
+    P_ = (Asy / nn).exp() * (Asy.T / nn).exp()
+    assert P_ == sp.Matrix([[1 + sp.Rational(1, nn ** 2), sp.Rational(1, nn)], [sp.Rational(1, nn), 1]])
+    assert sp.simplify(((Asy + Asy.T) / nn).exp()[1, 1] - sp.cosh(sp.Rational(1, nn))) == 0
+# hilbert-ex1 et v2 : sqrt(3/2) ≈ 1,225 ; hilbert-ex2 v2 : sqrt(6)/pi ≈ 0,78
+assert abs(mp.sqrt(mp.mpf(3) / 2) - mp.mpf("1.225")) < mp.mpf("0.001")
+assert abs(mp.sqrt(6) / mp.pi - mp.mpf("0.78")) < mp.mpf("0.005")
+# polynomes-orthogonaux-ex1 (v1) : racines 1/2 ± 1/(2 sqrt 3) ≈ 0,211 et 0,789 ; ex2 v1 : cos(pi/8) ≈ 0,924, cos(3pi/8) ≈ 0,383
+assert abs(mp.mpf(1) / 2 - 1 / (2 * mp.sqrt(3)) - mp.mpf("0.211")) < mp.mpf("0.001")
+assert abs(mp.cos(mp.pi / 8) - mp.mpf("0.924")) < mp.mpf("0.001") and abs(mp.cos(3 * mp.pi / 8) - mp.mpf("0.383")) < mp.mpf("0.001")
+# polynomes-orthogonaux-ex4 v2 : la somme des poids est int e^{-t^2} = sqrt(pi) (valeur désormais donnée dans l'énoncé)
+assert sp.integrate(sp.exp(-tt ** 2), (tt, -sp.oo, sp.oo)) == sp.sqrt(sp.pi)
+# uniforme-ex1 : |S(t)| = 1/|2 - e^{it}| entre 1/3 (t = pi) et 1 (t = 0) ; v1 : entre 1/4 et 1/2
+for q_, bas, haut in [(2, mp.mpf(1) / 3, 1), (3, mp.mpf(1) / 4, mp.mpf(1) / 2)]:
+    vals = [1 / abs(q_ - mp.expj(th)) for th in mp.linspace(0, 2 * mp.pi, 721)]
+    assert abs(min(vals) - bas) < 1e-20 and abs(max(vals) - haut) < 1e-20
+# bessel-ex4 : x = (1 + X + X^2 + X^3)/2 (coefficients) est de norme 1 et a 4 coefficients égaux à 1/2
+assert sum(sp.Rational(1, 4) for _ in range(4)) == 1
+# bessel-ex5 : C = B = 1 + sqrt(2)/2 (plus grande valeur propre de [[3/2, 1/2], [1/2, 1/2]])
+assert max(sp.Matrix([[sp.Rational(3, 2), sp.Rational(1, 2)], [sp.Rational(1, 2), sp.Rational(1, 2)]]).eigenvals()) == 1 + sp.sqrt(2) / 2
+
 print("top_l3_banach : toutes les vérifications passent.")
