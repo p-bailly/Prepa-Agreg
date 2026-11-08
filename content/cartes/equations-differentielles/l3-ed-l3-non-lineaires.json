@@ -1,0 +1,501 @@
+{
+  "cartes": [
+    {
+      "id": "ed-l3-non-lineaires-cauchy-lipschitz",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "theoreme",
+      "titre": "Théorème de Cauchy-Lipschitz ($f$ de classe $C^1$) et solutions maximales",
+      "recto": "Énoncer le théorème de Cauchy-Lipschitz pour $x'=f(t,x)$ avec $f$ de classe $C^1$ (solutions maximales), ainsi que le théorème de sortie de tout compact, avec leurs hypothèses.",
+      "cours": "Une équation différentielle **non linéaire** du premier ordre s'écrit $x'=f(t,x)$, où $f$ est définie sur une partie $U$ de $\\mathbb{R}\\times\\mathbb{R}^n$ : une solution est une fonction dérivable $x$, définie sur un intervalle $J$, dont le graphe reste dans $U$ et telle que $x'(t)=f(t,x(t))$ pour tout $t\\in J$. Contrairement au cas linéaire, on ne sait en général pas résoudre explicitement, et les solutions peuvent cesser d'exister au bout d'un temps fini : pour $x'=x^2$, la solution telle que $x(0)=1$ est $t\\mapsto\\frac1{1-t}$, qui « explose » en $t=1$.\n\nLe théorème de Cauchy-Lipschitz, **admis** au programme de l'agrégation interne dans le cas où $f$ est de classe $C^1$ sur un ouvert, répond à la question de l'existence et de l'unicité : par chaque point $(t_0,x_0)$ de $U$ passe une et une seule **solution maximale** (une solution qu'on ne peut pas prolonger à un intervalle strictement plus grand), et toute autre solution du même problème de Cauchy en est une restriction. En pratique, il suffit donc de trouver une solution et son plus grand intervalle de définition.\n\nDeux conséquences servent sans cesse. D'abord, les graphes de deux solutions maximales distinctes ne se rencontrent pas : pour $n=1$, si $f(t,a)=0$ pour tout $t$, la constante $a$ est solution, et une solution non constante ne prend jamais la valeur $a$. Ensuite, le **théorème de sortie de tout compact** (ou « des bouts »), admis ici : une solution maximale définie sur $\\left]\\alpha,\\beta\\right[$ avec $\\beta$ fini quitte définitivement tout compact de $U$ quand $t\\to\\beta$ ; si $U=I\\times\\mathbb{R}^n$ et $\\beta<\\sup I$, cela signifie que $\\|x(t)\\|$ tend vers $+\\infty$ quand $t$ tend vers $\\beta$. Contraposée utile : une solution maximale qui reste bornée est définie jusqu'au bord de $I$.\n\nMéthode : pour montrer qu'une solution est définie sur tout $\\mathbb{R}$, on la **majore a priori** (par une intégrale première, par comparaison, parce que $f$ est bornée…) puis on invoque le théorème des bouts. Pour montrer qu'elle explose, on la **minore** par une fonction explicite qui explose.\n\nPièges : la continuité de $f$ ne suffit pas pour l'unicité ($x'=3\\sqrt[3]{x^2}$) ; « maximale » ne veut pas dire « définie sur $\\mathbb{R}$ » ; les hypothèses portent sur un **ouvert** $U$ ; une équation d'ordre $2$, $x''=g(t,x,x')$, se traite en l'écrivant comme un système d'ordre $1$ en $(x,x')$, et les conditions initiales portent alors sur $x(t_0)$ et $x'(t_0)$.",
+      "hypotheses": [
+        "$U$ est un ouvert de $\\mathbb{R}\\times\\mathbb{R}^n$.",
+        "$f:U\\to\\mathbb{R}^n$ est de classe $C^1$ sur $U$.",
+        "$(t_0,x_0)\\in U$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur $U$ (à la place de : de classe $C^1$ sur $U$).",
+        "$f$ est de classe $C^1$ par rapport à $t$ seulement (à la place de : de classe $C^1$ sur $U$).",
+        "$U$ est un fermé de $\\mathbb{R}\\times\\mathbb{R}^n$ (à la place de : un ouvert)."
+      ],
+      "enonce": "Soient $U$ un **ouvert** de $\\mathbb{R}\\times\\mathbb{R}^n$ et $f:U\\to\\mathbb{R}^n$ de classe $C^1$. Une solution de $(E):\\ x'=f(t,x)$ est un couple $(J,x)$ où $J$ est un intervalle de $\\mathbb{R}$ non réduit à un point et $x:J\\to\\mathbb{R}^n$ une fonction dérivable telle que, pour tout $t\\in J$, $(t,x(t))\\in U$ et $x'(t)=f(t,x(t))$. Elle est **maximale** si elle n'est la restriction d'aucune solution définie sur un intervalle contenant strictement $J$.\n\n**Théorème de Cauchy-Lipschitz (admis).** Pour tout $(t_0,x_0)\\in U$, il existe une **unique solution maximale** $(J,x)$ de $(E)$ telle que $x(t_0)=x_0$ ; $J$ est un **intervalle ouvert**, et toute solution de $(E)$ qui vaut $x_0$ en $t_0$ est une restriction de celle-ci.\n\n**Sortie de tout compact (admis).** Si $J=\\left]\\alpha,\\beta\\right[$ avec $\\beta<+\\infty$, alors pour tout compact $K\\subset U$, il existe $\\tau\\in J$ tel que $(t,x(t))\\notin K$ pour tout $t\\in\\left]\\tau,\\beta\\right[$ (de même en $\\alpha$). En particulier, si $U=I\\times\\mathbb{R}^n$ avec $I$ intervalle ouvert et si $\\beta<\\sup I$, alors $\\|x(t)\\|\\to+\\infty$ quand $t\\to\\beta^-$.",
+      "enonce_trous": "Soient $U$ un {{1}} de $\\mathbb{R}\\times\\mathbb{R}^n$ et $f:U\\to\\mathbb{R}^n$ {{2}}. Pour tout $(t_0,x_0)\\in U$, l'équation $x'=f(t,x)$ admet {{3}} telle que $x(t_0)=x_0$, et cette solution est définie sur {{4}}.",
+      "trous": [
+        {
+          "reponse": "ouvert",
+          "leurres": [
+            "fermé",
+            "compact",
+            "sous-ensemble quelconque"
+          ]
+        },
+        {
+          "reponse": "de classe $C^1$",
+          "leurres": [
+            "continue",
+            "continue et bornée",
+            "de classe $C^1$ par rapport à $t$"
+          ]
+        },
+        {
+          "reponse": "une unique solution maximale",
+          "leurres": [
+            "une unique solution définie sur $\\mathbb{R}$",
+            "exactement deux solutions maximales",
+            "au moins deux solutions maximales"
+          ]
+        },
+        {
+          "reponse": "un intervalle ouvert",
+          "leurres": [
+            "$\\mathbb{R}$ tout entier",
+            "un segment",
+            "un intervalle borné"
+          ]
+        }
+      ],
+      "demo": "Le théorème de Cauchy-Lipschitz et le théorème de sortie de tout compact sont **admis** (programme de l'agrégation interne ; le premier se démontre par la méthode des approximations successives, le second en prolongeant la solution, $f$ étant bornée sur un compact). Montrons les conséquences annoncées.\n\n**Corollaire du théorème des bouts.** Supposons $U=I\\times\\mathbb{R}^n$, $\\beta<\\sup I$, et soit $R>0$. Fixons $t_0\\in J$ ; comme $I$ est un intervalle ouvert contenant $t_0$ et $\\beta<\\sup I$, le segment $[t_0,\\beta]$ est inclus dans $I$, et $K=[t_0,\\beta]\\times\\overline B(0,R)$ est un compact inclus dans $U$. Il existe $\\tau$ tel que $(t,x(t))\\notin K$ pour $t\\in\\left]\\tau,\\beta\\right[$ ; pour $t\\in\\left]\\max(\\tau,t_0),\\beta\\right[$, on a $t\\in[t_0,\\beta]$, donc $\\|x(t)\\|>R$. Ceci valant pour tout $R>0$, $\\|x(t)\\|\\to+\\infty$ quand $t\\to\\beta^-$.\n\n**Les graphes de deux solutions maximales distinctes sont disjoints.** Si $(J_1,x_1)$ et $(J_2,x_2)$ sont maximales et $x_1(t_1)=x_2(t_1)=y$ pour un $t_1\\in J_1\\cap J_2$, ce sont deux solutions maximales du problème de Cauchy en $(t_1,y)$ : par unicité, elles sont égales.\n\n**Solutions constantes.** Si $n=1$, $U=I\\times\\mathbb{R}$ et $f(t,a)=0$ pour tout $t\\in I$, la constante $a$ est une solution définie sur $I$ ; elle est donc maximale (une solution est définie sur une partie de $I$). Une solution qui prend la valeur $a$ en un instant $t_1$ est, par unicité, une restriction de cette constante : elle est constante. Ainsi, une solution non constante ne prend jamais la valeur $a$.",
+      "exemple": "Pour $x'=x^2$ ($f(t,x)=x^2$, de classe $C^1$ sur $U=\\mathbb{R}^2$) et $x_0>0$, la fonction $x(t)=\\frac{x_0}{1-x_0t}$ vérifie $x'(t)=\\frac{x_0^2}{(1-x_0t)^2}=x(t)^2$ et $x(0)=x_0$ sur $\\left]-\\infty,\\frac1{x_0}\\right[$. Elle tend vers $+\\infty$ en $\\frac1{x_0}$, donc ne se prolonge pas en une solution au-delà : c'est la solution maximale, définie sur l'intervalle ouvert $\\left]-\\infty,\\frac1{x_0}\\right[$, conformément au théorème des bouts. Pour $x_0=0$, la solution maximale est la fonction nulle, définie sur $\\mathbb{R}$ ; par unicité, une solution non nulle ne s'annule jamais.",
+      "contre_exemple": "- **Continuité seule : pas d'unicité.** $f(t,x)=3\\sqrt[3]{x^2}$ est continue sur $\\mathbb{R}^2$, mais pas de classe $C^1$ (sa dérivée $\\frac2{\\sqrt[3]x}$ par rapport à $x$ n'est pas définie en $x=0$). La fonction nulle et la fonction $t\\mapsto t^3$ sont deux solutions sur $\\mathbb{R}$ telles que $x(0)=0$ : la dérivée de $t^3$ est $3t^2=3\\sqrt[3]{t^6}$.\n- **Maximale ne veut pas dire globale** : pour $x'=x^2$, $x(0)=1$, la solution maximale est $t\\mapsto\\frac1{1-t}$, définie sur $\\left]-\\infty,1\\right[$ seulement, bien que $f$ soit de classe $C^1$ sur $\\mathbb{R}^2$.\n- **$U$ doit être ouvert** : sur le fermé $U=\\mathbb{R}\\times\\left[0,+\\infty\\right[$, prenons $f$ constante égale à $-1$ (de classe $C^1$ en tout sens raisonnable, puisque constante). Une solution telle que $x(0)=1$ vérifie $x(t)=1-t$, et son graphe ne reste dans $U$ que pour $t\\le1$ : la solution maximale est $t\\mapsto1-t$, définie sur $\\left]-\\infty,1\\right]$, qui n'est pas un intervalle ouvert.",
+      "affirmations": [
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$, toute solution maximale de $x'=f(t,x)$ est définie sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$f(t,x)=x^2$ : la solution maximale telle que $x(0)=1$ est $t\\mapsto\\frac1{1-t}$, définie sur $\\left]-\\infty,1\\right[$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$ et **bornée**, toute solution maximale de $x'=f(t,x)$ est définie sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Si $|f|\\le M$ et si $x$ est définie sur $\\left]\\alpha,\\beta\\right[$ avec $\\beta<+\\infty$, alors, pour $t_0$ fixé et $t\\in\\left[t_0,\\beta\\right[$, $|x(t)-x(t_0)|\\le M(t-t_0)\\le M(\\beta-t_0)$ (inégalité des accroissements finis) : $x$ reste bornée au voisinage de $\\beta$, ce que le théorème des bouts interdit. De même en $\\alpha$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est continue, le problème de Cauchy $x'=f(t,x)$, $x(t_0)=x_0$ a au plus une solution maximale.",
+          "vrai": false,
+          "contre_exemple": "$f(t,x)=3\\sqrt[3]{x^2}$ : la fonction nulle et $t\\mapsto t^3$ sont deux solutions maximales distinctes (définies sur $\\mathbb{R}$) telles que $x(0)=0$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$ et si une solution maximale $x$ de $x'=f(t,x)$ est définie sur $\\left]\\alpha,\\beta\\right[$ avec $\\beta<+\\infty$, alors $x(t)$ tend vers $+\\infty$ ou vers $-\\infty$ quand $t\\to\\beta$.",
+          "vrai": true,
+          "justification": "Par le théorème des bouts ($U=\\mathbb{R}\\times\\mathbb{R}$), $|x(t)|\\to+\\infty$. Il existe donc $\\tau$ tel que $|x(t)|>1$ sur $\\left]\\tau,\\beta\\right[$ ; $x$, continue, ne s'annule pas sur cet intervalle, donc y garde un signe constant (valeurs intermédiaires), et tend vers $+\\infty$ ou vers $-\\infty$ selon ce signe."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$, la solution maximale de $x'=f(t,x)$ telle que $x(0)=0$ est définie sur un intervalle symétrique par rapport à $0$.",
+          "vrai": false,
+          "contre_exemple": "$f(t,x)=(1+x)^2$ : la solution telle que $x(0)=0$ est $t\\mapsto\\frac t{1-t}$ (on a $1+x=\\frac1{1-t}$, d'où $x'=\\frac1{(1-t)^2}=(1+x)^2$), définie sur $\\left]-\\infty,1\\right[$."
+        }
+      ],
+      "prerequis": [
+        "ed-l2-systemes-cauchy",
+        "top-l2-evn-compacts"
+      ]
+    },
+    {
+      "id": "ed-l3-non-lineaires-separables",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "theoreme",
+      "titre": "Équations à variables séparables $x'=a(t)g(x)$",
+      "recto": "Énoncer le résultat qui décrit les solutions d'une équation à variables séparables $x'=a(t)g(x)$ (solutions constantes et autres solutions), avec ses hypothèses.",
+      "cours": "Une équation est **à variables séparables** quand elle s'écrit $x'=a(t)\\,g(x)$ : la dérivée est le produit d'une fonction du temps seul et d'une fonction de l'inconnue seule. L'idée est d'écrire formellement $\\frac{dx}{g(x)}=a(t)\\,dt$ et d'intégrer chaque membre ; le théorème justifie ce calcul et dit ce qu'il oublie.\n\nIl y a deux sortes de solutions. Les **solutions constantes** $x=z$, où $z$ est un zéro de $g$ : on les perd si l'on divise par $g(x)$ sans précaution. Les **autres solutions** ne prennent jamais une valeur où $g$ s'annule (c'est l'unicité de Cauchy-Lipschitz, que la démonstration établit ici directement) ; elles restent donc dans un intervalle $K$ où $g$ garde un signe constant, et vérifient $G(x(t))=A(t)+c$, avec $G$ une primitive de $\\frac1g$ sur $K$, $A$ une primitive de $a$ et $c$ une constante fixée par la condition initiale. Comme $G'=\\frac1g$ ne s'annule pas, $G$ est strictement monotone sur $K$, et $x(t)=G^{-1}(A(t)+c)$.\n\nMéthode :\n- chercher les zéros de $g$ (solutions constantes) ;\n- sur le plus grand intervalle $K$ contenant $x(t_0)$ où $g$ ne s'annule pas, écrire $\\frac{x'(t)}{g(x(t))}=a(t)$ et intégrer : $G(x(t))=A(t)+c$ ;\n- déterminer $c$ par la condition initiale, puis inverser $G$ ;\n- l'intervalle de définition de la solution maximale est le plus grand intervalle contenant $t_0$ sur lequel $A(t)+c$ reste dans $G(K)$.\n\nLes zéros de $g$ découpent le plan en bandes horizontales que les solutions ne traversent pas : une solution qui part entre deux zéros consécutifs de $g$ y reste.\n\nPièges : oublier les solutions constantes ; diviser par $g(x)$ sur un intervalle où $g$ s'annule ; donner une formule sans son intervalle de définition (l'expression $\\frac2{2-t^2}$ a un sens sur trois intervalles, mais la solution de $x'=tx^2$ qui vaut $1$ en $0$ n'est définie que sur $\\left]-\\sqrt2,\\sqrt2\\right[$) ; appliquer la conclusion avec $g$ seulement continue : $x'=2\\sqrt{|x|}$ a des solutions qui quittent $0$.",
+      "hypotheses": [
+        "$I$ et $J$ sont des intervalles ouverts de $\\mathbb{R}$, et $a:I\\to\\mathbb{R}$ est continue.",
+        "$g:J\\to\\mathbb{R}$ est de classe $C^1$.",
+        "$G$ est une primitive de $\\frac1g$ sur un intervalle $K\\subset J$ où $g$ ne s'annule pas, et $A$ une primitive de $a$ sur $I$."
+      ],
+      "hypotheses_pieges": [
+        "$g:J\\to\\mathbb{R}$ est continue (à la place de : de classe $C^1$).",
+        "$g$ est de classe $C^1$ sur $J$ privé d'un point (à la place de : sur $J$).",
+        "$G$ est une primitive de $g$ sur un intervalle $K\\subset J$ où $g$ ne s'annule pas (à la place de : de $\\frac1g$)."
+      ],
+      "enonce": "Soient $I$ et $J$ deux intervalles ouverts de $\\mathbb{R}$, $a:I\\to\\mathbb{R}$ continue et $g:J\\to\\mathbb{R}$ de classe $C^1$. On considère l'équation $(E):\\ x'=a(t)\\,g(x)$, dont les solutions sont des fonctions dérivables, définies sur un intervalle inclus dans $I$, à valeurs dans $J$.\n\n**1.** Si $g(z)=0$, la fonction constante égale à $z$ est solution de $(E)$ sur $I$, et toute solution de $(E)$ qui prend la valeur $z$ en un point est constante, égale à $z$.\n\n**2.** Soit $x$ une solution de $(E)$ qui ne prend aucune valeur où $g$ s'annule. Alors $x$ est à valeurs dans un intervalle ouvert $K\\subset J$ sur lequel $g$ ne s'annule pas ; si $G$ est une primitive de $\\frac1g$ sur $K$ et $A$ une primitive de $a$ sur $I$, $G$ est une bijection strictement monotone de $K$ sur l'intervalle $G(K)$, et il existe une constante $c$ telle que, pour tout $t$, $G(x(t))=A(t)+c$, c'est-à-dire $x(t)=G^{-1}\\big(A(t)+c\\big)$.",
+      "enonce_trous": "Soient $a$ continue sur un intervalle ouvert $I$ et $g$ {{1}} sur un intervalle ouvert $J$. Une solution de $x'=a(t)g(x)$ qui prend en un point une valeur $z$ telle que $g(z)=0$ est {{2}}. Une solution qui ne prend aucune telle valeur vérifie $G(x(t))=A(t)+c$, où $A$ est une primitive de $a$, $c$ une constante et $G$ une primitive de {{3}} sur un intervalle où $g$ ne s'annule pas.",
+      "trous": [
+        {
+          "reponse": "de classe $C^1$",
+          "leurres": [
+            "continue",
+            "continue et positive",
+            "dérivable en tout point où elle ne s'annule pas"
+          ]
+        },
+        {
+          "reponse": "constante",
+          "leurres": [
+            "strictement monotone",
+            "nulle",
+            "périodique et non constante"
+          ]
+        },
+        {
+          "reponse": "$\\frac1g$",
+          "leurres": [
+            "$g$",
+            "$g'$",
+            "$-\\frac1g$"
+          ]
+        }
+      ],
+      "demo": "**1.** Si $g(z)=0$, la constante $z$ vérifie $x'=0=a(t)g(z)$ sur $I$. Soit $x$ une solution, définie sur un intervalle $L$, telle que $x(t_1)=z$, et soit $t_2\\in L$ avec $t_2>t_1$ (le cas $t_2<t_1$ est symétrique). L'image $S=x([t_1,t_2])$ est un segment contenant $z$, inclus dans $J$ ; $g'$ est continue, donc bornée par un réel $k$ sur $S$, et l'inégalité des accroissements finis donne $|g(y)|=|g(y)-g(z)|\\le k|y-z|$ pour $y\\in S$. Soit $M$ un majorant de $|a|$ sur $[t_1,t_2]$. Pour $t\\in[t_1,t_2]$, $x(t)-z=\\int_{t_1}^ta(s)g(x(s))\\,ds$, donc $u(t)=|x(t)-z|$ vérifie $u(t)\\le Mk\\int_{t_1}^tu(s)\\,ds$. Posons $U(t)=\\int_{t_1}^tu(s)\\,ds$ : $U'=u\\le MkU$, donc $\\left(U(t)e^{-Mkt}\\right)'\\le0$ ; comme $U(t_1)=0$, $U\\le0$ sur $[t_1,t_2]$, et $U\\ge0$ : $U=0$, puis $u=U'=0$. Ainsi $x=z$ sur $[t_1,t_2]$, pour tout $t_2$ : $x$ est constante.\n\n**2.** $x$ est continue sur son intervalle de définition $L$, donc $x(L)$ est un intervalle (valeurs intermédiaires) qui ne contient aucun zéro de $g$ ; on prend pour $K$ le plus grand intervalle contenant $x(L)$ sur lequel $g$ ne s'annule pas, qui est ouvert ($g$ est continue et $J$ ouvert). Sur $K$, $g$ est continue et ne s'annule pas, donc garde un signe constant ; $G'=\\frac1g$ aussi, donc $G$ est continue et strictement monotone : c'est une bijection de $K$ sur l'intervalle $G(K)$. La fonction $t\\mapsto G(x(t))$ est dérivable, de dérivée $\\frac{x'(t)}{g(x(t))}=a(t)$ : elle diffère de $A$ d'une constante $c$ sur l'intervalle $L$. D'où $G(x(t))=A(t)+c$ et $x(t)=G^{-1}(A(t)+c)$.",
+      "exemple": "Pour $x'=tx^2$ ($a(t)=t$, $g(x)=x^2$), la seule solution constante est $0$. Une solution non nulle ne s'annule pas ; sur $K=\\left]0,+\\infty\\right[$ ou $K=\\left]-\\infty,0\\right[$, une primitive de $\\frac1{x^2}$ est $-\\frac1x$, d'où $-\\frac1{x(t)}=\\frac{t^2}2+c$. Avec $x(0)=1$ : $K=\\left]0,+\\infty\\right[$, $c=-1$ et $x(t)=\\frac2{2-t^2}$. La solution maximale est définie sur le plus grand intervalle contenant $0$ où $\\frac{t^2}2-1$ reste dans $G(K)=\\left]-\\infty,0\\right[$, c'est-à-dire $\\left]-\\sqrt2,\\sqrt2\\right[$ ; elle tend vers $+\\infty$ aux deux bornes.",
+      "contre_exemple": "- **$g$ seulement continue** : $g(x)=2\\sqrt{|x|}$ est continue sur $\\mathbb{R}$ mais pas dérivable en $0$. La fonction $t\\mapsto t|t|$ est solution de $x'=2\\sqrt{|x|}$ sur $\\mathbb{R}$ (sa dérivée $2|t|$ est égale à $2\\sqrt{t^2}$), vaut $0$ en $0$ et n'est pas constante : la conclusion du point 1 tombe.\n- **Solutions constantes oubliées** : pour $x'=x^2$, diviser par $x^2$ donne $x(t)=\\frac{1}{c-t}$, formule qui ne fournit jamais la solution nulle.\n- **Formule sans intervalle** : pour $x'=x^2$, $x(0)=1$, l'expression $\\frac1{1-t}$ a aussi un sens sur $\\left]1,+\\infty\\right[$, mais la solution maximale n'est définie que sur $\\left]-\\infty,1\\right[$ : un intervalle de définition ne franchit pas une explosion.",
+      "affirmations": [
+        {
+          "texte": "Les solutions de $x'=x^2$ autres que la fonction nulle ne s'annulent jamais.",
+          "vrai": true,
+          "justification": "$g(x)=x^2$ est de classe $C^1$ et $g(0)=0$ : une solution qui s'annule en un point est la fonction nulle."
+        },
+        {
+          "texte": "Si $a$ est continue sur $\\mathbb{R}$ et $g$ de classe $C^1$ sur $\\mathbb{R}$, toute solution maximale de $x'=a(t)g(x)$ est définie sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "$a=1$, $g(x)=x^2$ : la solution telle que $x(0)=1$ est $t\\mapsto\\frac1{1-t}$, définie sur $\\left]-\\infty,1\\right[$."
+        },
+        {
+          "texte": "Une solution de $x'=2\\sqrt{|x|}$ qui s'annule en un point est la fonction nulle.",
+          "vrai": false,
+          "contre_exemple": "$t\\mapsto t|t|$ est solution sur $\\mathbb{R}$ et ne s'annule qu'en $0$. Ici $g(x)=2\\sqrt{|x|}$ n'est pas de classe $C^1$."
+        },
+        {
+          "texte": "Si $g$ est de classe $C^1$ sur $\\mathbb{R}$ avec $g(1)=g(3)=0$, et si $a$ est continue, toute solution de $x'=a(t)g(x)$ qui vaut $2$ en un point est à valeurs dans $\\left]1,3\\right[$.",
+          "vrai": true,
+          "justification": "Elle ne prend ni la valeur $1$ ni la valeur $3$ (sinon elle serait constante, égale à $1$ ou à $3$), et son image est un intervalle contenant $2$ : cet intervalle est inclus dans $\\left]1,3\\right[$."
+        },
+        {
+          "texte": "Si $a$ est continue et $g$ de classe $C^1$ sans zéro, toute solution de $x'=a(t)g(x)$ vérifie $G(x(t))=A(t)+c$, où $G$ est une primitive de $g$ et $A$ une primitive de $a$.",
+          "vrai": false,
+          "contre_exemple": "$a=1$, $g(x)=1+x^2$ : $x=\\tan$ est solution sur $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, et $G(x)=x+\\frac{x^3}3$ donne $\\tan t+\\frac{\\tan^3t}3$, dont la dérivée $(1+\\tan^2t)^2$ n'est pas constante : ce n'est pas $t+c$. Il faut une primitive de $\\frac1g$, ici $\\arctan$."
+        }
+      ],
+      "prerequis": [
+        "ed-l3-non-lineaires-cauchy-lipschitz",
+        "ed-t-premier-ordre-primitives",
+        "ar-l1-continuite-reciproque",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "ed-l3-non-lineaires-homogenes",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "methode",
+      "titre": "Équations homogènes et changements d'inconnue",
+      "recto": "Énoncer la méthode de résolution d'une équation homogène $x'=h\\left(\\frac xt\\right)$ et celle d'une équation de Bernoulli $x'=a(t)x+b(t)x^\\alpha$, avec leurs hypothèses.",
+      "cours": "Certaines équations non linéaires se ramènent, par un **changement d'inconnue**, à une équation à variables séparables ou à une équation linéaire.\n\n**Équations homogènes.** Une équation $x'=f(t,x)$ est dite homogène quand $f(\\lambda t,\\lambda x)=f(t,x)$ pour tout $\\lambda>0$, c'est-à-dire quand elle s'écrit $x'=h\\left(\\frac xt\\right)$ pour $t>0$ : la pente ne dépend que de la direction du point $(t,x)$ vu depuis l'origine. On pose $y=\\frac xt$, soit $x=ty$ et $x'=y+ty'$ : l'équation devient $ty'=h(y)-y$, à variables séparables. Les zéros $\\lambda$ de $h(y)-y$ donnent les solutions $x=\\lambda t$, dont les graphes sont des demi-droites issues de l'origine ; les autres solutions s'obtiennent par séparation des variables. Géométriquement, si $x$ est solution, $t\\mapsto\\mu\\,x\\left(\\frac t\\mu\\right)$ l'est aussi pour $\\mu>0$ : les courbes intégrales se déduisent les unes des autres par les homothéties de centre $O$.\n\n**Équations de Bernoulli.** Pour $x'=a(t)x+b(t)x^\\alpha$ avec $\\alpha\\neq1$, on cherche les solutions **strictement positives** et on pose $y=x^{1-\\alpha}$ : $y'=(1-\\alpha)x^{-\\alpha}x'=(1-\\alpha)\\big(a(t)y+b(t)\\big)$, équation **linéaire** d'ordre $1$. Pour $\\alpha$ entier, on traite de même les solutions strictement négatives, et pour $\\alpha>0$ la fonction nulle est aussi solution. L'équation logistique $x'=x-x^2$ en est l'exemple type ($\\alpha=2$, $y=\\frac1x$).\n\n**Équations de Riccati.** Pour $x'=x^2+p(t)x+q(t)$, si l'on connaît une solution particulière $x_1$, on pose $x=x_1+z$ : $z'=z^2+\\big(2x_1(t)+p(t)\\big)z$, équation de Bernoulli avec $\\alpha=2$.\n\nPièges : travailler sur un intervalle qui contient $0$ (le quotient $\\frac xt$ n'y a pas de sens) ; oublier les solutions $x=\\lambda t$ ou $x=0$ ; appliquer $y=x^{1-\\alpha}$ à une solution qui s'annule ; revenir à $x$ sans vérifier sur quel intervalle la formule obtenue est une solution (pour $\\alpha=2$, $x=\\frac1y$ exige $y\\neq0$).",
+      "hypotheses": [
+        "$I=\\left]0,+\\infty\\right[$ ou $I=\\left]-\\infty,0\\right[$, et $h$ est continue sur un intervalle $J$ qui contient les valeurs de $\\frac{x(t)}t$.",
+        "Pour l'équation de Bernoulli : $a$ et $b$ sont continues sur un intervalle et $\\alpha\\neq1$.",
+        "Pour l'équation de Bernoulli : $x$ est à valeurs strictement positives."
+      ],
+      "hypotheses_pieges": [
+        "$I$ est un intervalle contenant $0$ (à la place de : $I=\\left]0,+\\infty\\right[$ ou $I=\\left]-\\infty,0\\right[$).",
+        "Pour l'équation de Bernoulli : $\\alpha=1$ (à la place de : $\\alpha\\neq1$).",
+        "Pour l'équation de Bernoulli : $x$ est à valeurs réelles quelconques (à la place de : strictement positives)."
+      ],
+      "enonce": "**Équation homogène.** Soient $I=\\left]0,+\\infty\\right[$ ou $I=\\left]-\\infty,0\\right[$, $h$ continue sur un intervalle $J$, et $x$ dérivable sur un intervalle inclus dans $I$, telle que $\\frac{x(t)}t\\in J$. Alors $x$ est solution de $x'=h\\left(\\frac xt\\right)$ si et seulement si $y=\\frac xt$ est solution de l'équation à variables séparables $ty'=h(y)-y$. En particulier, pour tout $\\lambda\\in J$ tel que $h(\\lambda)=\\lambda$, la fonction $t\\mapsto\\lambda t$ est solution sur $I$.\n\n**Équation de Bernoulli.** Soient $a$, $b$ continues sur un intervalle $I$ et $\\alpha\\in\\mathbb{R}$, $\\alpha\\neq1$. Une fonction $x$ dérivable et **à valeurs strictement positives** sur un intervalle inclus dans $I$ est solution de $x'=a(t)x+b(t)x^\\alpha$ si et seulement si $y=x^{1-\\alpha}$ est solution de l'équation linéaire $y'=(1-\\alpha)\\big(a(t)y+b(t)\\big)$.",
+      "enonce_trous": "Sur $\\left]0,+\\infty\\right[$, $x$ est solution de l'équation homogène $x'=h\\left(\\frac xt\\right)$ si et seulement si $y=\\frac xt$ est solution de {{1}}. Pour $\\alpha\\neq1$, une fonction $x$ à valeurs strictement positives est solution de $x'=a(t)x+b(t)x^\\alpha$ si et seulement si {{2}} est solution de l'équation linéaire $y'=(1-\\alpha)\\big(a(t)y+b(t)\\big)$.",
+      "trous": [
+        {
+          "reponse": "$ty'=h(y)-y$",
+          "leurres": [
+            "$ty'=h(y)$",
+            "$y'=h(y)-y$",
+            "$y'=h(y)$"
+          ]
+        },
+        {
+          "reponse": "$y=x^{1-\\alpha}$",
+          "leurres": [
+            "$y=x^{\\alpha-1}$",
+            "$y=x^{\\alpha}$",
+            "$y=\\ln x$"
+          ]
+        }
+      ],
+      "demo": "**Équation homogène.** Sur un intervalle inclus dans $I$, $t\\neq0$, et $y=\\frac xt$ est dérivable avec $x=ty$, donc $x'(t)=y(t)+ty'(t)$. Ainsi $x'(t)=h\\left(\\frac{x(t)}t\\right)$ équivaut à $y(t)+ty'(t)=h(y(t))$, c'est-à-dire à $ty'(t)=h(y(t))-y(t)$. Si $h(\\lambda)=\\lambda$, la constante $y=\\lambda$ vérifie $ty'=0=h(\\lambda)-\\lambda$, donc $x=\\lambda t$ est solution.\n\n**Équation de Bernoulli.** Comme $x>0$, $y=x^{1-\\alpha}=e^{(1-\\alpha)\\ln x}$ est dérivable et $y'=(1-\\alpha)x^{-\\alpha}x'$. Si $x'=ax+bx^\\alpha$, alors $y'=(1-\\alpha)(ax^{1-\\alpha}+b)=(1-\\alpha)(ay+b)$. Réciproquement, si $y'=(1-\\alpha)(ay+b)$, alors $(1-\\alpha)x^{-\\alpha}x'=(1-\\alpha)(ax^{1-\\alpha}+b)$ ; comme $1-\\alpha\\neq0$, on divise par $1-\\alpha$ et l'on multiplie par $x^\\alpha>0$ : $x'=ax+bx^\\alpha$.",
+      "exemple": "**Homogène.** $x'=1+\\frac xt+\\frac{x^2}{t^2}$ sur $\\left]0,+\\infty\\right[$ : $h(y)=1+y+y^2$ et $ty'=1+y^2$ ; $h(y)-y=1+y^2$ ne s'annule pas, et $\\frac{y'}{1+y^2}=\\frac1t$ donne $\\arctan y=\\ln t+c$, d'où $x(t)=t\\tan(\\ln t+c)$, pour $\\ln t+c\\in\\left]-\\frac\\pi2,\\frac\\pi2\\right[$.\n\n**Bernoulli.** Pour l'équation logistique $x'=x-x^2$ ($a=1$, $b=-1$, $\\alpha=2$) et $x>0$, $y=\\frac1x$ vérifie $y'=-(y-1)$, donc $y=1+Ce^{-t}$ et $x(t)=\\frac1{1+Ce^{-t}}$, sur un intervalle où $1+Ce^{-t}>0$.",
+      "contre_exemple": "- **Solutions $x=\\lambda t$ oubliées** : pour $x'=\\frac{x^2}{t^2}$ sur $\\left]0,+\\infty\\right[$, $h(y)=y^2$ et $ty'=y^2-y$ ; diviser par $y^2-y$ fait perdre $y=0$ et $y=1$, c'est-à-dire les solutions $x=0$ et $x=t$.\n- **Bernoulli et intervalle** : pour $x'=x-x^2$ et $x(0)=-1$, le changement $y=\\frac1x$ (licite ici, $\\alpha=2$ étant entier) donne $y=1-2e^{-t}$ et $x(t)=\\frac1{1-2e^{-t}}$ ; la solution maximale n'est définie que sur $\\left]-\\infty,\\ln2\\right[$, bien que la formule ait aussi un sens pour $t>\\ln2$. La fonction nulle, solution, n'est pas atteinte par $y=\\frac1x$.",
+      "affirmations": [
+        {
+          "texte": "Pour l'équation homogène $x'=h\\left(\\frac xt\\right)$ ($h$ continue sur $\\mathbb{R}$), si $h(\\lambda)=\\lambda$, la fonction $t\\mapsto\\lambda t$ est solution sur $\\left]0,+\\infty\\right[$.",
+          "vrai": true,
+          "justification": "$x'=\\lambda=h(\\lambda)=h\\left(\\frac{\\lambda t}t\\right)$."
+        },
+        {
+          "texte": "Le changement d'inconnue $y=\\frac xt$ transforme $x'=h\\left(\\frac xt\\right)$ en $y'=h(y)-y$.",
+          "vrai": false,
+          "contre_exemple": "Pour $h=1$, $x(t)=t+1$ est solution sur $\\left]0,+\\infty\\right[$ ; $y=1+\\frac1t$ vérifie $y'=-\\frac1{t^2}$, alors que $h(y)-y=-\\frac1t$. L'équation correcte est $ty'=h(y)-y$."
+        },
+        {
+          "texte": "Le changement $y=\\frac1x$ transforme l'équation $x'=x+x^2$, pour les solutions qui ne s'annulent pas, en l'équation linéaire $y'=-y-1$.",
+          "vrai": true,
+          "justification": "$y'=-\\frac{x'}{x^2}=-\\frac1x-1=-y-1$."
+        },
+        {
+          "texte": "Si $x_1$ est une solution de $x'=x^2+p(t)x+q(t)$, une fonction $x=x_1+z$ est solution si et seulement si $z'=z^2+(2x_1+p)z$.",
+          "vrai": true,
+          "justification": "$x'=x_1'+z'$ et $x^2+px+q=(x_1^2+px_1+q)+z^2+2x_1z+pz$ ; comme $x_1'=x_1^2+px_1+q$, l'équation équivaut à $z'=z^2+(2x_1+p)z$."
+        },
+        {
+          "texte": "Pour $\\alpha\\neq1$, toute solution de $x'=a(t)x+b(t)x^\\alpha$ s'obtient, par $y=x^{1-\\alpha}$, à partir d'une solution de l'équation linéaire associée.",
+          "vrai": false,
+          "contre_exemple": "Pour $x'=x-x^2$ ($\\alpha=2$), la fonction nulle est solution, mais $y=\\frac1x$ n'est pas défini : le changement ne vaut que pour les solutions qui ne s'annulent pas."
+        }
+      ],
+      "prerequis": [
+        "ed-l3-non-lineaires-separables",
+        "ed-l1-lineaires-ordre1",
+        "ar-t-derivation-composee"
+      ]
+    },
+    {
+      "id": "ed-l3-non-lineaires-qualitatives",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "theoreme",
+      "titre": "Équation autonome $x'=f(x)$ : monotonie et limites des solutions",
+      "recto": "Énoncer le comportement des solutions maximales d'une équation autonome scalaire $x'=f(x)$, avec $f$ de classe $C^1$ : monotonie, limites, rôle des zéros de $f$.",
+      "cours": "Quand on ne sait pas résoudre une équation, on peut souvent **décrire** ses solutions : sens de variation, bornes, limites, intervalle de définition. C'est l'objet des études qualitatives, dont l'équation **autonome** scalaire $x'=f(x)$ (la dérivée ne dépend pas explicitement de $t$) est le premier exemple.\n\nLe principe : les zéros de $f$ sont les **équilibres** (solutions constantes) ; une solution non constante ne peut pas en atteindre un (unicité de Cauchy-Lipschitz), donc $f(x(t))$ garde un signe constant (valeurs intermédiaires) et $x$ est **strictement monotone**. Si $f(x_0)>0$, $x$ croît ; si $f$ a un zéro au-dessus de $x_0$, la solution reste sous le plus petit d'entre eux, $a$, existe donc pour tout $t\\ge0$ (théorème des bouts) et a une limite, qui est forcément un zéro de $f$ : c'est $a$. On résume tout par un **diagramme de phase** : la droite réelle, les zéros de $f$, et des flèches qui indiquent le signe de $f$ entre eux.\n\nAutres outils, valables aussi pour une équation non autonome :\n- l'**invariance par translation** (cas autonome) : si $x$ est solution, $t\\mapsto x(t+\\tau)$ aussi ; il suffit donc d'étudier les données en $t_0=0$ ;\n- les **majorations a priori** : en majorant $|x'|$ ou en intégrant une inégalité différentielle, on encadre la solution par des fonctions explicites, ce qui donne, avec le théorème des bouts, l'existence globale ou l'explosion ;\n- les **barrières** : si $f(t,a)>0$ pour tout $t$, une solution de $x'=f(t,x)$ qui est au-dessus de $a$ à un instant $t_0$ y reste pour $t\\ge t_0$ (au premier instant où elle atteindrait $a$, sa dérivée serait à la fois strictement positive et négative ou nulle) ;\n- les **symétries** : si $f(-t,-x)=f(t,x)$, la solution telle que $x(0)=0$ est impaire, par unicité.\n\nPièges : conclure à la convergence vers un équilibre pour une équation **non autonome** ($x'=\\cos t$ a la solution bornée $\\sin t$, sans limite) ; oublier qu'une solution peut exploser en temps fini (si $f$ n'a pas de zéro au-dessus de $x_0$, la solution tend vers $+\\infty$, en temps fini ou non) ; utiliser l'unicité avec $f$ seulement continue.",
+      "hypotheses": [
+        "$f:\\mathbb{R}\\to\\mathbb{R}$ est de classe $C^1$.",
+        "$f(x_0)>0$.",
+        "$a$ est le plus petit zéro de $f$ strictement supérieur à $x_0$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue (à la place de : de classe $C^1$).",
+        "$f(x_0)\\ge0$ (à la place de : $f(x_0)>0$).",
+        "$a$ est un zéro quelconque de $f$ strictement supérieur à $x_0$ (à la place de : le plus petit)."
+      ],
+      "enonce": "Soient $f:\\mathbb{R}\\to\\mathbb{R}$ de classe $C^1$, $x_0\\in\\mathbb{R}$ et $x$ la solution maximale de $x'=f(x)$ telle que $x(0)=x_0$, définie sur $\\left]\\alpha,\\beta\\right[$.\n\n**1.** Si $f(x_0)=0$, $x$ est constante, égale à $x_0$, et définie sur $\\mathbb{R}$.\n\n**2.** Si $f(x_0)>0$, $x$ est strictement croissante. Si de plus $f$ a un zéro strictement supérieur à $x_0$ et si $a$ est le plus petit d'entre eux, alors $\\beta=+\\infty$, $x_0\\le x(t)<a$ pour tout $t\\ge0$, et $x(t)\\to a$ quand $t\\to+\\infty$.\n\n**3.** De même, si $f(x_0)<0$, $x$ est strictement décroissante ; si $f$ a un zéro strictement inférieur à $x_0$ et si $b$ est le plus grand d'entre eux, alors $\\beta=+\\infty$ et $x(t)\\to b$ quand $t\\to+\\infty$.",
+      "enonce_trous": "Soient $f$ de classe $C^1$ sur $\\mathbb{R}$ et $x$ la solution maximale de $x'=f(x)$ telle que $x(0)=x_0$. Si $f(x_0)>0$, $x$ est {{1}}. Si de plus $a$ est {{2}}, alors $x$ est définie sur $\\left[0,+\\infty\\right[$ et $x(t)$ tend vers {{3}} quand $t\\to+\\infty$.",
+      "trous": [
+        {
+          "reponse": "strictement croissante",
+          "leurres": [
+            "strictement décroissante",
+            "constante",
+            "croissante puis décroissante"
+          ]
+        },
+        {
+          "reponse": "le plus petit zéro de $f$ strictement supérieur à $x_0$",
+          "leurres": [
+            "le plus grand zéro de $f$",
+            "un zéro quelconque de $f$ strictement supérieur à $x_0$",
+            "le plus grand zéro de $f$ strictement inférieur à $x_0$"
+          ]
+        },
+        {
+          "reponse": "$a$",
+          "leurres": [
+            "$+\\infty$",
+            "$x_0$",
+            "$f(a)$"
+          ]
+        }
+      ],
+      "demo": "**1.** La constante $x_0$ est solution sur $\\mathbb{R}$, donc c'est la solution maximale (Cauchy-Lipschitz, admis, $f$ étant de classe $C^1$).\n\n**2.** Aucune valeur $x(t)$ n'est un zéro de $f$ : sinon $x$ serait constante (point 1 et unicité), alors que $x'(0)=f(x_0)\\neq0$. La fonction continue $t\\mapsto f(x(t))$ ne s'annule donc pas sur l'intervalle $\\left]\\alpha,\\beta\\right[$ ; elle vaut $f(x_0)>0$ en $0$, donc elle est strictement positive partout (valeurs intermédiaires) : $x'>0$ et $x$ est strictement croissante.\n\nL'ensemble $Z$ des zéros de $f$ strictement supérieurs à $x_0$ est non vide ; comme $f$ est continue et $f(x_0)>0$, $f>0$ sur un intervalle $[x_0,x_0+\\eta]$ ($\\eta>0$), donc $\\inf Z\\ge x_0+\\eta$, et $\\inf Z$ est un zéro de $f$ (limite d'une suite de zéros, $f$ continue) : le plus petit zéro $a$ existe. Pour $t\\in\\left[0,\\beta\\right[$, $x(t)\\ge x_0$ (croissance) et $x(t)\\neq a$ ; $x$ est continue et $x(0)<a$, donc $x(t)<a$ (valeurs intermédiaires). Ainsi $x$ est bornée sur $\\left[0,\\beta\\right[$ ; si $\\beta$ était fini, $|x(t)|$ tendrait vers $+\\infty$ en $\\beta$ (théorème des bouts, admis) : donc $\\beta=+\\infty$.\n\nCroissante et majorée par $a$, $x$ a une limite $\\ell\\in\\left]x_0,a\\right]$ en $+\\infty$. Par continuité de $f$, $x'(t)=f(x(t))\\to f(\\ell)$, et $f(\\ell)\\ge0$. Si $f(\\ell)>0$, il existe $T$ tel que $x'(t)\\ge\\frac{f(\\ell)}2$ pour $t\\ge T$, d'où $x(t)\\ge x(T)+\\frac{f(\\ell)}2(t-T)\\to+\\infty$ : c'est absurde. Donc $f(\\ell)=0$ : $\\ell$ est un zéro de $f$ strictement supérieur à $x_0$ et au plus égal à $a$, donc $\\ell=a$.\n\n**3.** On applique le point 2 à $y=-x$, solution de $y'=g(y)$ avec $g(y)=-f(-y)$ : $g(-x_0)=-f(x_0)>0$, et le plus petit zéro de $g$ supérieur à $-x_0$ est $-b$.",
+      "exemple": "L'équation logistique $x'=x(1-x)$ : $f(x)=x(1-x)$ a pour zéros $0$ et $1$, et $f>0$ sur $\\left]0,1\\right[$, $f<0$ ailleurs. Sans calcul : pour $0<x_0<1$, $x$ croît vers $1$ ; pour $x_0>1$, $x$ décroît vers $1$ ; pour $x_0<0$, $x$ décroît, et comme $f$ n'a pas de zéro sous $x_0$, elle n'a pas de limite finie. Le calcul (équation de Bernoulli) donne $x(t)=\\frac{x_0e^t}{1-x_0+x_0e^t}$ : pour $x_0<0$, le dénominateur s'annule en $t_1=\\ln\\left(1-\\frac1{x_0}\\right)>0$, et la solution tend vers $-\\infty$ en $t_1$ : elle explose en temps fini.",
+      "contre_exemple": "- **Équation non autonome** : $x'=\\cos t$ a pour solution $t\\mapsto\\sin t$, bornée, non monotone et sans limite en $+\\infty$ ; la conclusion « monotone et convergente » est propre au cas autonome.\n- **$f$ seulement continue** : $f(x)=2\\sqrt{|1-x|}$, $x_0=0$ ; le plus petit zéro de $f$ au-dessus de $0$ est $1$, mais la fonction égale à $1-(1-t)^2$ pour $t\\le1$ et à $1$ pour $t\\ge1$ est une solution définie sur $\\mathbb{R}$ qui vaut $0$ en $0$ et atteint $1$ en $t=1$.\n- **Pas de zéro au-dessus de $x_0$** : pour $x'=1+x^2$, la solution $\\tan$ croît et explose en $\\frac\\pi2$ ; pour $x'=1$, la solution $t\\mapsto t$ tend vers $+\\infty$ en temps infini.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est de classe $C^1$ sur $\\mathbb{R}$, toute solution maximale de $x'=f(x)$ est monotone.",
+          "vrai": true,
+          "justification": "Elle est constante, ou bien $f(x(t))$ ne s'annule jamais et garde un signe constant : $x$ est alors strictement monotone."
+        },
+        {
+          "texte": "Pour $x'=x(1-x)$, la solution maximale telle que $x(0)=2$ est définie sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "Elle vaut $\\frac{2e^t}{2e^t-1}$, et le dénominateur s'annule en $t=-\\ln2$ : elle est définie sur $\\left]-\\ln2,+\\infty\\right[$ et tend vers $+\\infty$ quand $t\\to-\\ln2$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $C^1$, toute solution de $x'=f(t,x)$ définie et bornée sur $\\left[0,+\\infty\\right[$ a une limite en $+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "$f(t,x)=\\cos t$ : la solution $t\\mapsto\\sin t$ est bornée et n'a pas de limite en $+\\infty$."
+        },
+        {
+          "texte": "Si $f$ est de classe $C^1$ sur $\\mathbb{R}$ avec $f(0)=f(1)=0$, la solution maximale de $x'=f(x)$ telle que $x(0)=\\frac12$ est définie sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Elle ne prend ni la valeur $0$ ni la valeur $1$, donc reste dans $\\left]0,1\\right[$ : bornée, elle est définie sur $\\mathbb{R}$ par le théorème des bouts."
+        },
+        {
+          "texte": "Si $f$ est de classe $C^1$ sur $\\mathbb{R}$ et si une solution de $x'=f(x)$ définie sur $\\left[0,+\\infty\\right[$ a une limite finie $\\ell$ en $+\\infty$, alors $f(\\ell)=0$.",
+          "vrai": true,
+          "justification": "$x'(t)=f(x(t))\\to f(\\ell)$ ; si $f(\\ell)\\neq0$, $|x'(t)|\\ge\\frac{|f(\\ell)|}2$ à partir d'un certain rang, avec un signe constant, et $x$ tendrait vers $\\pm\\infty$."
+        }
+      ],
+      "prerequis": [
+        "ed-l3-non-lineaires-cauchy-lipschitz",
+        "ed-l3-non-lineaires-separables",
+        "ar-t-tvi",
+        "ar-t-derivee-monotonie"
+      ]
+    },
+    {
+      "id": "ed-l3-non-lineaires-physique",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "theoreme",
+      "titre": "Mouvement conservatif $x''=-V'(x)$ : énergie et existence globale",
+      "recto": "Énoncer, pour l'équation $x''=-V'(x)$, l'existence et l'unicité des solutions, la conservation de l'énergie et une condition d'existence globale, avec les hypothèses.",
+      "cours": "La mécanique fournit les exemples fondateurs d'équations non linéaires. Le principe fondamental de la dynamique, pour un point de masse $1$ qui se déplace sur une droite sous l'effet d'une force qui ne dépend que de sa position, s'écrit $x''=F(x)$ ; en notant $V$ une primitive de $-F$ (l'**énergie potentielle**), l'équation devient $x''=-V'(x)$.\n\n**Énergie.** En multipliant par $x'$, on obtient $\\left(\\frac12x'^2+V(x)\\right)'=0$ : l'énergie $E=\\frac12x'^2+V(x)$ (cinétique plus potentielle) est constante le long du mouvement. C'est une **intégrale première** : elle donne $x'$ en fonction de $x$, $x'^2=2(E-V(x))$, ce qui ramène l'équation d'ordre $2$ à une équation d'ordre $1$ ; le mouvement a lieu là où $V(x)\\le E$, et la vitesse ne peut s'annuler qu'aux points où $V(x)=E$.\n\n**Exemples.**\n- **Oscillateur harmonique** : $x''+\\omega^2x=0$, $V(x)=\\frac12\\omega^2x^2$ ; l'énergie $\\frac12x'^2+\\frac12\\omega^2x^2$ est constante, la trajectoire dans le plan $(x,x')$ est une ellipse, et toutes les solutions non nulles ont la même période $\\frac{2\\pi}\\omega$.\n- **Pendule simple** : $\\theta''+\\omega^2\\sin\\theta=0$ avec $\\omega^2=\\frac g\\ell$, $V(\\theta)=-\\omega^2\\cos\\theta$. Pour de petites amplitudes, $\\sin\\theta\\approx\\theta$ et l'on retrouve l'oscillateur harmonique ; en général, la période dépend de l'amplitude. Lancé depuis $\\theta=0$ avec la vitesse $v_0>0$, le pendule oscille si $v_0<2\\omega$ et fait des tours complets si $v_0>2\\omega$.\n- **Chute avec frottement** : la vitesse d'un corps qui tombe vérifie $v'=g-kv$ (frottement linéaire, équation linéaire) ou $v'=g-kv^2$ (frottement quadratique, à variables séparables) ; dans le second cas, $v(t)=\\sqrt{\\frac gk}\\tanh\\left(\\sqrt{gk}\\,t\\right)$ si $v(0)=0$, et $\\sqrt{\\frac gk}$ est la **vitesse limite**.\n\n**Existence globale.** Si $V$ est minorée, l'énergie borne la vitesse, donc la position croît au plus linéairement : la solution ne peut pas exploser, et le théorème des bouts donne l'existence sur $\\mathbb{R}$.\n\nPièges : l'énergie n'est conservée que sans frottement ($x''+x'+x=0$ la dissipe) ; il faut $V$ de classe $C^2$, c'est-à-dire une force de classe $C^1$, pour appliquer Cauchy-Lipschitz ; une énergie potentielle non minorée peut faire exploser les solutions ($x''=4x^3$).",
+      "hypotheses": [
+        "$V:\\mathbb{R}\\to\\mathbb{R}$ est de classe $C^2$.",
+        "Pour l'existence globale : $V$ est minorée sur $\\mathbb{R}$."
+      ],
+      "hypotheses_pieges": [
+        "$V$ est de classe $C^1$ sur $\\mathbb{R}$ (à la place de : de classe $C^2$).",
+        "Pour l'existence globale : $V$ est majorée sur $\\mathbb{R}$ (à la place de : minorée).",
+        "Pour l'existence globale : $V$ est de classe $C^2$ et minorée sur $\\left]0,1\\right[$ seulement, l'équation étant posée pour $x\\in\\left]0,1\\right[$ (à la place de : sur $\\mathbb{R}$)."
+      ],
+      "enonce": "Soit $V:\\mathbb{R}\\to\\mathbb{R}$ de classe $C^2$. On considère l'équation $(E):\\ x''=-V'(x)$.\n\n**1.** Pour tous réels $x_0$, $v_0$, $(E)$ admet une unique solution maximale $x$ telle que $x(0)=x_0$ et $x'(0)=v_0$ ; elle est définie sur un intervalle ouvert $J$.\n\n**2.** Sur $J$, l'énergie $E(t)=\\frac12x'(t)^2+V(x(t))$ est constante.\n\n**3.** Si $V$ est minorée sur $\\mathbb{R}$, alors $J=\\mathbb{R}$.",
+      "enonce_trous": "Soit $V$ de classe $C^2$ sur $\\mathbb{R}$. Pour tous réels $x_0$, $v_0$, l'équation $x''=-V'(x)$ admet {{1}} telle que $x(0)=x_0$ et $x'(0)=v_0$ ; le long de cette solution, la quantité {{2}} est constante. Si $V$ est {{3}}, cette solution est définie sur $\\mathbb{R}$.",
+      "trous": [
+        {
+          "reponse": "une unique solution maximale",
+          "leurres": [
+            "une unique solution définie sur $\\mathbb{R}$",
+            "exactement deux solutions maximales",
+            "une infinité de solutions maximales"
+          ]
+        },
+        {
+          "reponse": "$\\frac12x'^2+V(x)$",
+          "leurres": [
+            "$\\frac12x'^2-V(x)$",
+            "$x'^2+V(x)$",
+            "$\\frac12x'^2+V'(x)$"
+          ]
+        },
+        {
+          "reponse": "minorée",
+          "leurres": [
+            "majorée",
+            "strictement décroissante",
+            "paire"
+          ]
+        }
+      ],
+      "demo": "**1.** On pose $X=(x,y)$ avec $y=x'$ : $(E)$ équivaut au système autonome $X'=F(X)$, $F(x,y)=(y,-V'(x))$. Comme $V$ est de classe $C^2$, $F$ est de classe $C^1$ sur $\\mathbb{R}^2$, et le théorème de Cauchy-Lipschitz (admis) donne une unique solution maximale telle que $X(0)=(x_0,v_0)$, définie sur un intervalle ouvert ; sa première composante est la solution cherchée.\n\n**2.** $E$ est dérivable et $E'(t)=x'(t)x''(t)+V'(x(t))x'(t)=x'(t)\\big(x''(t)+V'(x(t))\\big)=0$ ; $J$ étant un intervalle, $E$ est constante.\n\n**3.** Soient $m$ un minorant de $V$ et $E_0=\\frac12v_0^2+V(x_0)$. Pour $t\\in J$, $\\frac12x'(t)^2=E_0-V(x(t))\\le E_0-m$, donc $|x'(t)|\\le c=\\sqrt{2(E_0-m)}$, puis $|x(t)-x_0|\\le c|t|$ (accroissements finis). Si $J=\\left]\\alpha,\\beta\\right[$ avec $\\beta<+\\infty$, alors sur $\\left[0,\\beta\\right[$, $|x(t)|\\le|x_0|+c\\beta$ et $|x'(t)|\\le c$ : $X=(x,x')$ reste bornée, alors que le théorème des bouts (admis) imposerait $\\|X(t)\\|\\to+\\infty$. Donc $\\beta=+\\infty$ ; de même, $\\alpha=-\\infty$.",
+      "exemple": "Pour le pendule $\\theta''=-\\omega^2\\sin\\theta$, $V(\\theta)=-\\omega^2\\cos\\theta$ est de classe $C^2$ et minorée par $-\\omega^2$ : toute solution est définie sur $\\mathbb{R}$, et $\\frac12\\theta'^2-\\omega^2\\cos\\theta$ est constante. Lancé depuis $\\theta(0)=0$ avec $\\theta'(0)=v_0$, on a $\\theta'^2=v_0^2-2\\omega^2(1-\\cos\\theta)$. Si $v_0>2\\omega$, $\\theta'^2\\ge v_0^2-4\\omega^2>0$ : la vitesse ne s'annule jamais et le pendule tourne toujours dans le même sens. Pour la valeur critique $v_0=2\\omega$ (avec $\\omega=1$), la solution est $\\theta(t)=4\\arctan(e^t)-\\pi$, qui tend vers $\\pi$ sans l'atteindre : le pendule s'approche indéfiniment de la position haute.",
+      "contre_exemple": "- **Énergie potentielle non minorée** : pour $x''=4x^3$ ($V(x)=-x^4$), la fonction $x(t)=\\frac1{\\sqrt2\\,(1-t)}$ est solution, car $x''(t)=\\frac{2}{\\sqrt2\\,(1-t)^3}=4x(t)^3$ ; elle explose en $t=1$.\n- **Frottement** : pour $x''+x'+x=0$, $E=\\frac12x'^2+\\frac12x^2$ vérifie $E'=-x'^2\\le0$ : l'énergie décroît, et la solution $t\\mapsto e^{-t/2}\\cos\\left(\\frac{\\sqrt3}2t\\right)$ tend vers $0$.\n- **$V$ seulement de classe $C^1$** : pour $x''=\\sqrt{|x|}$ (c'est-à-dire $V'(x)=-\\sqrt{|x|}$, continue mais non dérivable en $0$), la fonction nulle et la fonction égale à $\\frac{t^4}{144}$ pour $t\\ge0$ et à $0$ pour $t<0$ vérifient toutes deux $x(0)=x'(0)=0$.",
+      "affirmations": [
+        {
+          "texte": "Pour le pendule $\\theta''+\\sin\\theta=0$, toute solution maximale est définie sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "$V(\\theta)=-\\cos\\theta$ est de classe $C^2$ et minorée par $-1$."
+        },
+        {
+          "texte": "Toute solution du pendule $\\theta''+\\sin\\theta=0$ est périodique.",
+          "vrai": false,
+          "contre_exemple": "La solution telle que $\\theta(0)=0$ et $\\theta'(0)=3$ vérifie $\\theta'^2=9-2(1-\\cos\\theta)\\ge5$ : $\\theta'$ ne s'annule pas et reste positive, donc $\\theta$ est strictement croissante, et une fonction strictement croissante n'est pas périodique (le pendule tourne)."
+        },
+        {
+          "texte": "Pour $x''+x^3=0$, toute solution est bornée.",
+          "vrai": true,
+          "justification": "$\\frac12x'^2+\\frac14x^4=E$ est constante, donc $x^4\\le4E$."
+        },
+        {
+          "texte": "Pour $v'=g-kv^2$ ($g,k>0$), toute solution maximale tend vers $\\sqrt{\\frac gk}$ en $+\\infty$.",
+          "vrai": false,
+          "contre_exemple": "Avec $g=k=1$ et $v(0)=-2$ : $v(t)=\\coth\\left(t-\\frac12\\ln3\\right)$ vérifie $v'=1-v^2$ et $v(0)=-2$ ; elle tend vers $-\\infty$ quand $t\\to\\frac12\\ln3$, et n'est donc pas définie au voisinage de $+\\infty$."
+        },
+        {
+          "texte": "Pour l'oscillateur harmonique $x''+\\omega^2x=0$, la période des solutions non nulles dépend de leur amplitude.",
+          "vrai": false,
+          "contre_exemple": "Les solutions sont $A\\cos(\\omega t)+B\\sin(\\omega t)$, toutes de période $\\frac{2\\pi}\\omega$, quelle que soit l'amplitude $\\sqrt{A^2+B^2}$ : par exemple $\\cos t$ et $2\\cos t$ ont la même période $2\\pi$ pour $\\omega=1$."
+        }
+      ],
+      "prerequis": [
+        "ed-l3-non-lineaires-cauchy-lipschitz",
+        "ed-l3-non-lineaires-separables",
+        "ed-l1-lineaires-ordre2"
+      ]
+    },
+    {
+      "id": "ed-l3-non-lineaires-champs",
+      "theme": "equations-differentielles",
+      "niveau": "l3",
+      "chapitre": "ed-l3-non-lineaires",
+      "type": "theoreme",
+      "titre": "Trajectoires d'un champ de vecteurs autonome du plan",
+      "recto": "Énoncer les propriétés des trajectoires d'un système autonome $X'=F(X)$ du plan (translation dans le temps, partition en trajectoires, solutions périodiques, intégrale première), avec leurs hypothèses.",
+      "cours": "Un système autonome $X'=F(X)$, où $F$ est un **champ de vecteurs** sur un ouvert $\\Omega$ de $\\mathbb{R}^2$, décrit un point qui se déplace en suivant à chaque instant le vecteur $F$ attaché à sa position. Les **trajectoires** (ou orbites) sont les courbes parcourues, c'est-à-dire les images des solutions maximales ; leur dessin s'appelle le **portrait de phase**. Toute équation scalaire $x''=g(x,x')$ s'écrit ainsi avec $X=(x,x')$.\n\nComme le champ ne dépend pas du temps, une solution décalée dans le temps reste une solution ; avec l'unicité de Cauchy-Lipschitz, il en résulte que **deux trajectoires sont disjointes ou confondues** : les trajectoires ne se croisent pas. Les points où $F$ s'annule sont les **équilibres** (trajectoires réduites à un point) ; une solution qui repasse par un point déjà visité est **périodique**, et sa trajectoire est une courbe fermée.\n\nPour dessiner les trajectoires, on cherche une **intégrale première** : une fonction $H$ de classe $C^1$, non constante, telle que $\\nabla H\\cdot F=0$ ; alors $H$ est constante le long de chaque solution, et chaque trajectoire est contenue dans une courbe de niveau de $H$. Exemples : l'énergie $\\frac12y^2+V(x)$ pour $x'=y$, $y'=-V'(x)$ ; la fonction $H(x,y)=dx-c\\ln x+by-a\\ln y$ pour le système de Lotka-Volterra $x'=x(a-by)$, $y'=y(-c+dx)$ sur $\\left]0,+\\infty\\right[^2$ (proies et prédateurs, $a,b,c,d>0$).\n\nMéthode : chercher les équilibres ; chercher une intégrale première (ou étudier $x^2+y^2$, ou passer en coordonnées polaires) ; décrire les courbes de niveau ; les découper en trajectoires en retirant les équilibres ; orienter à l'aide du signe des composantes de $F$.\n\nPièges : une courbe de niveau d'une intégrale première peut contenir **plusieurs** trajectoires (un équilibre et les arcs qui y aboutissent, ou deux branches d'hyperbole) ; une solution non constante n'atteint jamais un équilibre en un temps fini (elle peut seulement s'en approcher quand $t\\to\\pm\\infty$) ; tout cela suppose le système **autonome** et $F$ de classe $C^1$.",
+      "hypotheses": [
+        "$\\Omega$ est un ouvert de $\\mathbb{R}^2$ et $F:\\Omega\\to\\mathbb{R}^2$ est de classe $C^1$.",
+        "Le système est autonome : $F$ ne dépend pas de $t$.",
+        "Au point 3, $X$ est une solution maximale."
+      ],
+      "hypotheses_pieges": [
+        "$F:\\Omega\\to\\mathbb{R}^2$ est continue (à la place de : de classe $C^1$).",
+        "Le système est $X'=F(t,X)$, avec $F$ de classe $C^1$ sur $\\mathbb{R}\\times\\Omega$ (à la place de : autonome).",
+        "Au point 3, $X$ est une solution quelconque, pas forcément maximale (à la place de : maximale)."
+      ],
+      "enonce": "Soient $\\Omega$ un ouvert de $\\mathbb{R}^2$ et $F:\\Omega\\to\\mathbb{R}^2$ de classe $C^1$. On considère le système autonome $(S):\\ X'=F(X)$ ; la **trajectoire** d'une solution maximale est son image.\n\n**1.** Si $X$ est solution de $(S)$ sur $\\left]\\alpha,\\beta\\right[$ et $\\tau\\in\\mathbb{R}$, $t\\mapsto X(t+\\tau)$ est solution sur $\\left]\\alpha-\\tau,\\beta-\\tau\\right[$, maximale si $X$ l'est.\n\n**2.** Par tout point de $\\Omega$ passe une trajectoire et une seule : deux trajectoires sont disjointes ou confondues. Si $F(A)=0$, la trajectoire de $A$ est $\\{A\\}$.\n\n**3.** Si une solution maximale $X$ vérifie $X(t_1)=X(t_2)$ avec $t_1<t_2$, alors $X$ est définie sur $\\mathbb{R}$ et périodique de période $t_2-t_1$.\n\n**4.** Si $H:\\Omega\\to\\mathbb{R}$ est de classe $C^1$ et vérifie $\\nabla H(Z)\\cdot F(Z)=0$ pour tout $Z\\in\\Omega$, alors $H$ est constante le long de toute solution : chaque trajectoire est contenue dans une courbe de niveau de $H$ ($H$ est une **intégrale première**).",
+      "enonce_trous": "Soient $\\Omega$ un ouvert de $\\mathbb{R}^2$ et $F:\\Omega\\to\\mathbb{R}^2$ {{1}}. Pour le système autonome $X'=F(X)$, deux trajectoires sont {{2}}. Si une solution maximale prend la même valeur en deux instants $t_1<t_2$, elle est {{3}}.",
+      "trous": [
+        {
+          "reponse": "de classe $C^1$",
+          "leurres": [
+            "continue",
+            "continue et bornée",
+            "de classe $C^1$ par rapport à la première variable"
+          ]
+        },
+        {
+          "reponse": "disjointes ou confondues",
+          "leurres": [
+            "confondues",
+            "sécantes",
+            "images l'une de l'autre par une translation"
+          ]
+        },
+        {
+          "reponse": "définie sur $\\mathbb{R}$ et périodique de période $t_2-t_1$",
+          "leurres": [
+            "constante",
+            "définie sur $\\left[t_1,t_2\\right]$ seulement",
+            "définie sur $\\mathbb{R}$ et périodique de période $\\frac{t_2-t_1}2$"
+          ]
+        }
+      ],
+      "demo": "**1.** $Y(t)=X(t+\\tau)$ est dérivable sur $\\left]\\alpha-\\tau,\\beta-\\tau\\right[$ et $Y'(t)=X'(t+\\tau)=F(X(t+\\tau))=F(Y(t))$ : c'est ici que sert l'autonomie. Si $Y$ se prolongeait en une solution sur un intervalle plus grand, en décalant de $-\\tau$ on prolongerait $X$ : $Y$ est maximale si $X$ l'est.\n\n**2.** Soit $A\\in\\Omega$ : la solution maximale telle que $X(0)=A$ (Cauchy-Lipschitz, admis, appliqué à $(t,Z)\\mapsto F(Z)$, de classe $C^1$ sur l'ouvert $\\mathbb{R}\\times\\Omega$) a une trajectoire qui contient $A$. Si les trajectoires de deux solutions maximales $X_1$, $X_2$ se rencontrent, $X_1(t_1)=X_2(t_2)$, alors $Y(t)=X_2(t+t_2-t_1)$ est une solution maximale (point 1) qui vaut $X_1(t_1)$ en $t_1$ : par unicité, $Y=X_1$, et $X_1$, $X_2$ ont la même image. Si $F(A)=0$, la constante $A$ est solution sur $\\mathbb{R}$, donc maximale, de trajectoire $\\{A\\}$.\n\n**3.** Posons $T=t_2-t_1>0$ et $Y(t)=X(t+T)$, solution maximale sur $\\left]\\alpha-T,\\beta-T\\right[$ (point 1) ; $Y(t_1)=X(t_2)=X(t_1)$. Par unicité, $Y=X$ : elles ont le même intervalle de définition, donc $\\alpha-T=\\alpha$ et $\\beta-T=\\beta$, ce qui impose $\\alpha=-\\infty$ et $\\beta=+\\infty$ ; et $X(t+T)=X(t)$ pour tout $t$.\n\n**4.** Si $X$ est solution, $t\\mapsto H(X(t))$ est dérivable (composée), de dérivée $\\nabla H(X(t))\\cdot X'(t)=\\nabla H(X(t))\\cdot F(X(t))=0$ : elle est constante sur l'intervalle de définition.",
+      "exemple": "Pour $x'=-y$, $y'=x$ (champ des rotations), $H(x,y)=x^2+y^2$ est une intégrale première : $\\nabla H\\cdot F=2x(-y)+2y\\,x=0$. La solution telle que $X(0)=(r,0)$ est $X(t)=(r\\cos t,r\\sin t)$, définie sur $\\mathbb{R}$ et $2\\pi$-périodique : les trajectoires sont l'origine (seul équilibre) et les cercles de centre $O$.\n\nPour $x'=x$, $y'=-y$ (point selle), $H(x,y)=xy$ est une intégrale première et les solutions sont $t\\mapsto(ae^t,be^{-t})$. La courbe de niveau $\\{xy=0\\}$ (réunion des axes) contient cinq trajectoires : l'origine et les quatre demi-axes ouverts ; chaque branche d'hyperbole $xy=c$, $c\\neq0$, est une trajectoire.",
+      "contre_exemple": "- **Champ seulement continu** : pour $F(x,y)=\\left(1,3\\sqrt[3]{y^2}\\right)$, continu mais pas de classe $C^1$, les solutions $t\\mapsto(t,0)$ et $t\\mapsto(t,t^3)$ passent toutes deux par l'origine en $t=0$ : leurs trajectoires, l'axe des abscisses et la courbe $y=x^3$, sont distinctes et se coupent.\n- **Système non autonome** : les solutions de $X'=(\\cos t,\\sin t)$ sont $t\\mapsto(\\sin t+a,-\\cos t+b)$ ; leurs trajectoires sont des cercles de rayon $1$, et deux d'entre eux peuvent se couper sans être confondus (centres $(0,0)$ et $(1,0)$).\n- **Solution non maximale** : $X(t)=(\\cos t,\\sin t)$, restreinte à $\\left]0,8\\right[$, est une solution de $x'=-y$, $y'=x$ qui vérifie $X(1)=X(1+2\\pi)$, mais elle n'est pas définie sur $\\mathbb{R}$.",
+      "affirmations": [
+        {
+          "texte": "Pour $X'=F(X)$ avec $F$ de classe $C^1$ sur $\\mathbb{R}^2$, une trajectoire non réduite à un point ne contient aucun équilibre.",
+          "vrai": true,
+          "justification": "Si elle contenait un équilibre $A$, elle rencontrerait la trajectoire $\\{A\\}$, donc lui serait égale."
+        },
+        {
+          "texte": "Si $H$ est une intégrale première de $X'=F(X)$, chaque courbe de niveau de $H$ est exactement une trajectoire.",
+          "vrai": false,
+          "contre_exemple": "Pour $x'=x$, $y'=-y$ et $H(x,y)=xy$, la courbe $\\{xy=1\\}$ est formée de deux trajectoires, les deux branches de l'hyperbole : le long d'une solution, $x$ est continue et ne s'annule pas, donc garde un signe constant."
+        },
+        {
+          "texte": "Pour un système non autonome $X'=F(t,X)$ ($F$ de classe $C^1$), deux trajectoires distinctes sont disjointes.",
+          "vrai": false,
+          "contre_exemple": "Pour $X'=(\\cos t,\\sin t)$, les solutions $(\\sin t,-\\cos t)$ et $(\\sin t+1,-\\cos t)$ ont pour trajectoires les cercles de rayon $1$ centrés en $(0,0)$ et $(1,0)$, distincts et sécants."
+        },
+        {
+          "texte": "Une solution maximale non constante de $X'=F(X)$ ($F$ de classe $C^1$ sur $\\mathbb{R}^2$) peut tendre vers un équilibre quand $t\\to+\\infty$.",
+          "vrai": true,
+          "justification": "Pour $x'=-x$, $y'=-y$, la solution $t\\mapsto(e^{-t},0)$ tend vers l'équilibre $(0,0)$ ; elle ne l'atteint en aucun temps fini."
+        },
+        {
+          "texte": "Si une solution maximale de $X'=F(X)$ ($F$ de classe $C^1$ sur $\\mathbb{R}^2$) vérifie $X(0)=X(1)$, elle est définie sur $\\mathbb{R}$ et $1$-périodique.",
+          "vrai": true,
+          "justification": "C'est le point 3 avec $t_1=0$ et $t_2=1$."
+        }
+      ],
+      "prerequis": [
+        "ed-l3-non-lineaires-cauchy-lipschitz",
+        "ed-l3-non-lineaires-physique"
+      ]
+    }
+  ]
+}

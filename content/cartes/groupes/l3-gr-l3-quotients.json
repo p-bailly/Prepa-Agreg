@@ -1,0 +1,413 @@
+{
+  "cartes": [
+    {
+      "id": "gr-l3-quotients-engendre",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-quotients",
+      "type": "theoreme",
+      "titre": "Sous-groupe engendré par une partie",
+      "recto": "Définir le sous-groupe engendré par une partie $A$ d'un groupe et décrire ses éléments.",
+      "cours": "Pour fabriquer le plus petit sous-groupe contenant une partie $A$, il y a deux points de vue. « Par le haut », on intersecte tous les sous-groupes qui contiennent $A$, une intersection de sous-groupes étant un sous-groupe. « Par le bas », on ajoute à $A$ tout ce qu'un sous-groupe est obligé de contenir : le neutre, les inverses, les produits. Les deux donnent le même objet, et chacun sert : le premier pour prouver $\\langle A\\rangle\\subset H$ (il suffit que $H$ soit un sous-groupe contenant $A$), le second pour calculer. On note $\\langle a,b\\rangle$ pour $\\langle\\{a,b\\}\\rangle$.\n\nMéthode dans un groupe fini : on part de $A$ et on multiplie les éléments obtenus entre eux jusqu'à obtenir une partie stable par produit ; une partie finie non vide stable par produit d'un groupe est un sous-groupe, car l'inverse d'un élément d'ordre $d$ est sa puissance $d-1$. Le théorème de Lagrange aide à conclure : si l'on a trouvé dans $\\langle A\\rangle$ plus de $\\frac{|G|}{2}$ éléments, alors $\\langle A\\rangle=G$, puisque $|\\langle A\\rangle|$ divise $|G|$.\n\nExemples à connaître : dans $(\\mathbb{Z},+)$, $\\langle a,b\\rangle=a\\mathbb{Z}+b\\mathbb{Z}=(a\\wedge b)\\mathbb{Z}$ ; $\\mathfrak{S}_n$ est engendré par les transpositions, et $\\mathfrak{A}_n$ par les $3$-cycles pour $n\\ge3$ ; un groupe cyclique est engendré par un seul élément. Le dernier point du théorème est très utile : pour prouver que deux morphismes sont égaux, il suffit de les comparer sur une partie génératrice, par exemple sur les transpositions pour des morphismes définis sur $\\mathfrak{S}_n$.\n\nPièges : une réunion de sous-groupes n'est pas un sous-groupe en général ($2\\mathbb{Z}\\cup3\\mathbb{Z}$ ne contient pas $5$) ; dans un groupe infini, on ne peut pas oublier les inverses ($\\mathbb{N}$ contient $0$ et $1$ et est stable par addition, mais ce n'est pas $\\langle1\\rangle=\\mathbb{Z}$) ; et si $a$ et $b$ ne commutent pas, les éléments de $\\langle a,b\\rangle$ ne s'écrivent pas tous $a^kb^l$ : dans $\\mathfrak{S}_3$, $(1\\ 2)$ et $(1\\ 3)$ engendrent les $6$ éléments, mais les $a^kb^l$ ne sont que $4$.",
+      "hypotheses": [
+        "$G$ est un groupe et $A$ une partie de $G$, éventuellement vide.",
+        "Pour la description sans inverses : tout élément de $A$ est d'ordre fini.",
+        "Pour l'écriture $a^kb^l$ : $a$ et $b$ commutent.",
+        "Pour l'égalité de deux morphismes : ils coïncident sur $A$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la description sans inverses : $G$ est commutatif (à la place de : tout élément de $A$ est d'ordre fini).",
+        "Pour l'écriture $a^kb^l$ : $a$ et $b$ sont d'ordre fini (à la place de : $a$ et $b$ commutent).",
+        "Pour l'égalité de deux morphismes : ils ont le même noyau (à la place de : ils coïncident sur $A$)."
+      ],
+      "enonce": "Soient $G$ un groupe de neutre $e$ et $A$ une partie de $G$.\n\n- L'intersection de tous les sous-groupes de $G$ qui contiennent $A$ est un sous-groupe de $G$, noté $\\langle A\\rangle$ et appelé **sous-groupe engendré** par $A$ : c'est le plus petit sous-groupe de $G$ contenant $A$, c'est-à-dire que tout sous-groupe de $G$ contenant $A$ contient $\\langle A\\rangle$.\n- $\\langle A\\rangle$ est l'ensemble des produits $x_1x_2\\cdots x_k$, où $k\\in\\mathbb{N}$ et chaque $x_i$ est un élément de $A$ ou l'inverse d'un élément de $A$ (le produit vide, $k=0$, vaut $e$). En particulier $\\langle\\varnothing\\rangle=\\{e\\}$ et, pour $a\\in G$, $\\langle\\{a\\}\\rangle=\\langle a\\rangle=\\{a^k:k\\in\\mathbb{Z}\\}$.\n- Si tout élément de $A$ est d'ordre fini (par exemple si $G$ est fini), $\\langle A\\rangle$ est l'ensemble des produits finis d'éléments de $A$, sans recours aux inverses.\n- Si $a,b\\in G$ commutent, $\\langle a,b\\rangle=\\langle\\{a,b\\}\\rangle=\\{a^kb^l:k,l\\in\\mathbb{Z}\\}$.\n- Deux morphismes de groupes définis sur $G$ qui coïncident sur $A$ coïncident sur $\\langle A\\rangle$.\n\nOn dit que $A$ **engendre** $G$, ou que $A$ est une partie génératrice de $G$, si $\\langle A\\rangle=G$.",
+      "enonce_trous": "Le sous-groupe engendré par une partie $A$ d'un groupe $G$ est {{1}} ; ses éléments sont {{2}}. Si $a$ et $b$ {{3}}, le sous-groupe engendré par $\\{a,b\\}$ est formé des produits $a^kb^l$, $k,l\\in\\mathbb{Z}$.",
+      "trous": [
+        {
+          "reponse": "l'intersection de tous les sous-groupes de $G$ contenant $A$",
+          "leurres": [
+            "la réunion de tous les sous-groupes de $G$ contenant $A$",
+            "la réunion des sous-groupes $\\langle a\\rangle$ pour $a\\in A$",
+            "le plus grand sous-groupe de $G$ contenu dans $A$"
+          ]
+        },
+        {
+          "reponse": "les produits finis d'éléments de $A$ et d'inverses d'éléments de $A$",
+          "leurres": [
+            "les produits finis d'éléments de $A$",
+            "les puissances $a^k$ avec $a\\in A$ et $k\\in\\mathbb{Z}$",
+            "les produits $ab^{-1}$ avec $a,b\\in A$"
+          ]
+        },
+        {
+          "reponse": "commutent",
+          "leurres": [
+            "sont d'ordre fini",
+            "sont d'ordre $2$",
+            "engendrent un groupe fini"
+          ]
+        }
+      ],
+      "demo": "**Intersection.** Notons $\\mathcal{F}$ l'ensemble des sous-groupes de $G$ contenant $A$ ; il est non vide car $G\\in\\mathcal{F}$. Leur intersection $K$ contient $e$, et si $x,y\\in K$, alors $xy^{-1}$ appartient à chaque $H\\in\\mathcal{F}$, donc à $K$ : $K$ est un sous-groupe, il contient $A$, et il est contenu dans chaque $H\\in\\mathcal{F}$ par définition.\n\n**Description.** Soit $P$ l'ensemble des produits décrits. Il contient $e$ (produit vide) et $A$ ; le produit de deux éléments de $P$ est dans $P$ (on met les deux écritures bout à bout), et $(x_1\\cdots x_k)^{-1}=x_k^{-1}\\cdots x_1^{-1}$ est dans $P$, car l'inverse de l'inverse d'un élément de $A$ est cet élément. Donc $P$ est un sous-groupe contenant $A$, et $\\langle A\\rangle\\subset P$. Inversement, un sous-groupe contenant $A$ contient les inverses des éléments de $A$ et tous les produits de ceux-ci : $P\\subset\\langle A\\rangle$. Pour $A=\\{a\\}$, un produit de facteurs égaux à $a$ ou à $a^{-1}$ vaut $a^k$, où $k$ est le nombre de facteurs $a$ diminué du nombre de facteurs $a^{-1}$.\n\n**Sans inverses.** Si $a\\in A$ est d'ordre $d\\ge1$, $a^{-1}=a^{d-1}$ est un produit de $d-1$ facteurs égaux à $a$ (le produit vide si $d=1$) : dans chaque produit, on remplace chaque inverse par un tel produit.\n\n**Deux éléments qui commutent.** Si $ab=ba$, alors $a^{-1}b=ba^{-1}$ (multiplier à gauche et à droite par $a^{-1}$), puis, par récurrence, $a^kb^l=b^la^k$ pour tous $k,l\\in\\mathbb{Z}$. L'ensemble $E=\\{a^kb^l:k,l\\in\\mathbb{Z}\\}$ est contenu dans $\\langle a,b\\rangle$ ; il contient $e$, $a$ et $b$, et $a^kb^l\\,(a^{k'}b^{l'})^{-1}=a^kb^{l-l'}a^{-k'}=a^{k-k'}b^{l-l'}\\in E$. C'est donc un sous-groupe contenant $a$ et $b$, et il contient $\\langle a,b\\rangle$.\n\n**Morphismes.** Si $f,g:G\\to G'$ sont des morphismes égaux sur $A$, l'ensemble $\\{x\\in G:f(x)=g(x)\\}$ contient $A$, et c'est un sous-groupe : il contient $e$, et si $f(x)=g(x)$ et $f(y)=g(y)$, alors $f(xy^{-1})=f(x)f(y)^{-1}=g(x)g(y)^{-1}=g(xy^{-1})$. Il contient donc $\\langle A\\rangle$.",
+      "exemple": "Dans $\\mathfrak{S}_4$ (avec $\\sigma\\tau=\\sigma\\circ\\tau$), soient $r=(1\\ 2\\ 3\\ 4)$ et $s=(1\\ 3)$. On a $r^2=(1\\ 3)(2\\ 4)$, $r^3=(1\\ 4\\ 3\\ 2)$, $rs=(1\\ 4)(2\\ 3)$, $r^2s=(2\\ 4)$, $r^3s=(1\\ 2)(3\\ 4)$, et $sr=(1\\ 2)(3\\ 4)=r^{-1}s$. Grâce à cette relation, tout produit de facteurs $r^{\\pm1}$ et $s^{\\pm1}$ se ramène à la forme $r^ks^l$ avec $0\\le k\\le3$ et $0\\le l\\le1$ : $\\langle r,s\\rangle=\\{\\mathrm{id},r,r^2,r^3,s,rs,r^2s,r^3s\\}$ a $8$ éléments. Ce sont les permutations des sommets d'un carré numérotés $1,2,3,4$ dans l'ordre, induites par ses isométries ; $r$ et $s$ n'engendrent donc pas $\\mathfrak{S}_4$.",
+      "contre_exemple": "- **Une réunion de sous-groupes n'est pas un sous-groupe engendré** : dans $(\\mathbb{Z},+)$, $2\\mathbb{Z}\\cup3\\mathbb{Z}$ contient $2$ et $3$ mais pas $5=2+3$ ; et $\\langle2,3\\rangle=\\mathbb{Z}$.\n- **Les inverses sont nécessaires dans un groupe infini** : dans $(\\mathbb{Z},+)$, les sommes finies de termes égaux à $1$ forment $\\mathbb{N}$, et non $\\langle1\\rangle=\\mathbb{Z}$.\n- **Sans commutation, pas d'écriture $a^kb^l$** : dans $\\mathfrak{S}_3$, avec $a=(1\\ 2)$ et $b=(1\\ 3)$, les $a^kb^l$ sont $\\mathrm{id}$, $a$, $b$ et $ab=(1\\ 3\\ 2)$, soit $4$ éléments, alors que $\\langle a,b\\rangle=\\mathfrak{S}_3$ contient aussi $ba=(1\\ 2\\ 3)$ et a $6$ éléments.\n- **Même noyau ne suffit pas** : $x\\mapsto x$ et $x\\mapsto-x$ sont deux morphismes de $(\\mathbb{Z},+)$ dans lui-même, de noyau $\\{0\\}$, distincts sur $\\langle1\\rangle=\\mathbb{Z}$.",
+      "affirmations": [
+        {
+          "texte": "Si $A\\subset B\\subset G$, alors $\\langle A\\rangle\\subset\\langle B\\rangle$.",
+          "vrai": true,
+          "justification": "$\\langle B\\rangle$ est un sous-groupe qui contient $B$, donc $A$ ; il contient donc le plus petit sous-groupe contenant $A$."
+        },
+        {
+          "texte": "Le sous-groupe engendré par deux éléments d'ordre $2$ est toujours fini.",
+          "vrai": false,
+          "contre_exemple": "Dans le groupe des bijections de $\\mathbb{Z}$, $s:x\\mapsto-x$ et $t:x\\mapsto1-x$ sont d'ordre $2$, mais $t\\circ s:x\\mapsto x+1$ est d'ordre infini, donc $\\langle s,t\\rangle$ est infini."
+        },
+        {
+          "texte": "Tout sous-groupe de $(\\mathbb{Q},+)$ engendré par une partie finie est monogène.",
+          "vrai": true,
+          "justification": "Si $q\\ge1$ est un dénominateur commun des éléments de la partie, le sous-groupe engendré est contenu dans $\\frac1q\\mathbb{Z}$, isomorphe à $\\mathbb{Z}$ par $x\\mapsto qx$ ; or les sous-groupes de $\\mathbb{Z}$ sont les $d\\mathbb{Z}$, monogènes."
+        },
+        {
+          "texte": "Pour tous éléments $a$, $b$ d'un groupe, $\\langle a,b\\rangle=\\{a^kb^l:k,l\\in\\mathbb{Z}\\}$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathfrak{S}_3$, avec $a=(1\\ 2)$ et $b=(1\\ 3)$, l'ensemble des $a^kb^l$ a $4$ éléments et ne contient pas $ba=(1\\ 2\\ 3)$, alors que $\\langle a,b\\rangle=\\mathfrak{S}_3$."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-sous-groupes",
+        "gr-l1-groupes-ordre",
+        "gr-l1-groupes-sous-groupes-z"
+      ]
+    },
+    {
+      "id": "gr-l3-quotients-distingues",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-quotients",
+      "type": "definition",
+      "titre": "Sous-groupes distingués",
+      "recto": "Définir un sous-groupe distingué, en donner des caractérisations équivalentes et des exemples généraux.",
+      "cours": "Un sous-groupe distingué est un sous-groupe stable par toutes les conjugaisons $h\\mapsto ghg^{-1}$, $g\\in G$. L'intérêt de la notion apparaît dans la carte suivante : ce sont exactement les sous-groupes par lesquels on peut quotienter. Dans un groupe abélien, la condition est toujours remplie ; elle ne compte que pour les groupes non commutatifs.\n\nMéthodes. Pour montrer que $H$ est distingué, on le reconnaît comme un noyau (c'est le plus efficace : $\\mathfrak{A}_n=\\ker\\varepsilon$, $\\mathrm{SL}_n(\\mathbb{K})=\\ker\\det$), ou l'on montre qu'il est d'indice $2$, ou l'on vérifie $ghg^{-1}\\in H$ pour tous $g\\in G$, $h\\in H$. Dans ce dernier cas, si $G$ est fini, $G=\\langle S\\rangle$ et $H=\\langle T\\rangle$, il suffit de vérifier $sts^{-1}\\in H$ pour $s\\in S$ et $t\\in T$ : alors $sHs^{-1}=\\langle sTs^{-1}\\rangle\\subset H$, avec égalité par cardinalité, et l'ensemble des $g$ tels que $gHg^{-1}=H$, qui est un sous-groupe, contient $S$, donc vaut $G$. Dans $\\mathfrak{S}_n$, on calcule les conjugués par la formule $\\sigma(a_1\\ \\cdots\\ a_k)\\sigma^{-1}=(\\sigma(a_1)\\ \\cdots\\ \\sigma(a_k))$ : un sous-groupe distingué de $\\mathfrak{S}_n$ contient, avec une permutation, toutes celles qui ont la même décomposition en cycles. Pour montrer que $H$ n'est pas distingué, il suffit d'exhiber $g\\in G$ et $h\\in H$ tels que $ghg^{-1}\\notin H$.\n\nExemples : $\\mathfrak{A}_n\\lhd\\mathfrak{S}_n$ ; $\\mathrm{SL}_n(\\mathbb{K})\\lhd\\mathrm{GL}_n(\\mathbb{K})$ ; le centre $Z(G)$, formé des éléments qui commutent avec tous les autres, est distingué ; dans $\\mathfrak{S}_4$, le sous-groupe $V_4$ formé de l'identité et des trois doubles transpositions est distingué. En revanche $\\langle(1\\ 2)\\rangle$ n'est pas distingué dans $\\mathfrak{S}_3$ : $(1\\ 3)(1\\ 2)(1\\ 3)^{-1}=(2\\ 3)$.\n\nPièges : « distingué » est relatif au groupe ambiant (tout sous-groupe $H$ est distingué dans lui-même) ; la relation « est distingué dans » n'est pas transitive ; et $gH=Hg$ ne signifie pas que $g$ commute avec chaque élément de $H$, mais seulement que $gHg^{-1}=H$ globalement : dans $\\mathfrak{S}_3$, $(1\\ 2)$ ne commute pas avec $(1\\ 2\\ 3)$, et pourtant $\\mathfrak{A}_3$ est distingué.",
+      "hypotheses": [
+        "$H$ est un sous-groupe de $G$.",
+        "Condition : $gHg^{-1}\\subset H$ pour tout $g\\in G$.",
+        "Pour le critère de l'indice : $H$ est d'indice $2$ dans $G$.",
+        "Pour les noyaux : $H=\\ker f$, où $f$ est un morphisme de groupes défini sur $G$."
+      ],
+      "hypotheses_pieges": [
+        "Condition : $gHg^{-1}\\subset H$ pour tout $g\\in H$ (à la place de : pour tout $g\\in G$).",
+        "Pour le critère de l'indice : $H$ est d'indice $3$ dans $G$ (à la place de : d'indice $2$).",
+        "Pour les noyaux : $H=f(K)$ est l'image d'un morphisme de groupes $f:K\\to G$ (à la place de : le noyau d'un morphisme défini sur $G$)."
+      ],
+      "enonce": "Soient $G$ un groupe et $H$ un sous-groupe de $G$. Pour $g\\in G$, on note $gHg^{-1}=\\{ghg^{-1}:h\\in H\\}$, $gH=\\{gh:h\\in H\\}$ et $Hg=\\{hg:h\\in H\\}$. Les conditions suivantes sont équivalentes :\n- pour tout $g\\in G$, $gHg^{-1}\\subset H$ ;\n- pour tout $g\\in G$, $gHg^{-1}=H$ ;\n- pour tout $g\\in G$, $gH=Hg$ (classes à gauche et à droite confondues).\n\nOn dit alors que $H$ est **distingué** (ou normal) dans $G$, et on note $H\\lhd G$.\n\n**Exemples.**\n- $\\{e\\}$ et $G$ sont distingués dans $G$ ; si $G$ est abélien, tous ses sous-groupes sont distingués.\n- Le noyau d'un morphisme de groupes $f:G\\to G'$ est distingué dans $G$.\n- Un sous-groupe d'indice $2$ est distingué.\n- Une intersection de sous-groupes distingués est un sous-groupe distingué.",
+      "enonce_trous": "Un sous-groupe $H$ d'un groupe $G$ est distingué si {{1}}. Tout noyau de morphisme de groupes est distingué, ainsi que tout sous-groupe {{2}} et tout sous-groupe d'un groupe {{3}}.",
+      "trous": [
+        {
+          "reponse": "$gHg^{-1}\\subset H$ pour tout $g\\in G$",
+          "leurres": [
+            "$gHg^{-1}\\subset H$ pour tout $g\\in H$",
+            "$gHg^{-1}\\cap H\\neq\\varnothing$ pour tout $g\\in G$",
+            "$gH=Hg$ pour au moins un $g\\in G$ n'appartenant pas à $H$"
+          ]
+        },
+        {
+          "reponse": "d'indice $2$",
+          "leurres": [
+            "d'indice $3$",
+            "d'ordre $2$",
+            "d'ordre premier"
+          ]
+        },
+        {
+          "reponse": "abélien",
+          "leurres": [
+            "fini",
+            "d'ordre pair",
+            "engendré par deux éléments"
+          ]
+        }
+      ],
+      "demo": "**Équivalences.** La deuxième condition entraîne la première. Inversement, supposons la première et soit $g\\in G$ ; appliquée à $g^{-1}$, elle donne $g^{-1}Hg\\subset H$, donc $H=g(g^{-1}Hg)g^{-1}\\subset gHg^{-1}$, d'où l'égalité. Enfin, si $gHg^{-1}=H$, en multipliant à droite par $g$ on obtient $gH=Hg$ ; si $gH=Hg$, en multipliant à droite par $g^{-1}$ on obtient $gHg^{-1}=H$.\n\n**Abélien.** Si $G$ est abélien, $ghg^{-1}=h\\in H$.\n\n**Noyau.** Si $f(h)=e'$, alors $f(ghg^{-1})=f(g)e'f(g)^{-1}=e'$, donc $g(\\ker f)g^{-1}\\subset\\ker f$.\n\n**Indice 2.** Les classes à gauche $gH$ forment une partition de $G$ (théorème de Lagrange) ; s'il y en a deux, ce sont $H$ et $G\\setminus H$. L'application $x\\mapsto x^{-1}$ est une bijection de $G$ qui envoie $gH$ sur $Hg^{-1}$ : elle transforme la partition en classes à gauche en la famille des classes à droite, qui est donc aussi une partition de $G$ en deux classes, $H$ et $G\\setminus H$. Si $g\\in H$, $gH=H=Hg$ ; sinon, $gH=G\\setminus H=Hg$.\n\n**Intersection.** Si chaque $H_i$ est distingué et si $h\\in\\bigcap_iH_i$, alors $ghg^{-1}\\in H_i$ pour tout $i$ ; et une intersection de sous-groupes est un sous-groupe.",
+      "exemple": "Dans $\\mathfrak{S}_4$, $V_4=\\{\\mathrm{id},(1\\ 2)(3\\ 4),(1\\ 3)(2\\ 4),(1\\ 4)(2\\ 3)\\}$ est un sous-groupe (chaque élément est son propre inverse, et le produit de deux doubles transpositions distinctes est la troisième), et il est distingué : pour $\\sigma\\in\\mathfrak{S}_4$, $\\sigma\\,(a\\ b)(c\\ d)\\,\\sigma^{-1}=(\\sigma(a)\\ \\sigma(b))(\\sigma(c)\\ \\sigma(d))$ est encore une double transposition, donc $\\sigma V_4\\sigma^{-1}\\subset V_4$. En revanche, $K=\\{\\mathrm{id},(1\\ 2)(3\\ 4)\\}$, distingué dans le groupe abélien $V_4$, ne l'est pas dans $\\mathfrak{S}_4$ : $(1\\ 3)\\,(1\\ 2)(3\\ 4)\\,(1\\ 3)^{-1}=(3\\ 2)(1\\ 4)\\notin K$.",
+      "contre_exemple": "- **Indice 3** : $\\langle(1\\ 2)\\rangle$ est d'indice $3$ dans $\\mathfrak{S}_3$ et n'est pas distingué, car $(1\\ 3)(1\\ 2)(1\\ 3)^{-1}=(2\\ 3)$.\n- **Conjugaison par les seuls éléments de $H$** : pour tout sous-groupe, $hHh^{-1}=H$ si $h\\in H$ ; cela ne dit rien, comme le montre $\\langle(1\\ 2)\\rangle$ dans $\\mathfrak{S}_3$.\n- **La relation n'est pas transitive** : $K=\\langle(1\\ 2)(3\\ 4)\\rangle\\lhd V_4\\lhd\\mathfrak{S}_4$, mais $K$ n'est pas distingué dans $\\mathfrak{S}_4$ (voir l'exemple).\n- **Une image n'est pas toujours distinguée** : l'inclusion de $\\langle(1\\ 2)\\rangle$ dans $\\mathfrak{S}_3$ est un morphisme dont l'image n'est pas distinguée.",
+      "affirmations": [
+        {
+          "texte": "Si $K\\lhd H$ et $H\\lhd G$, alors $K\\lhd G$.",
+          "vrai": false,
+          "contre_exemple": "$K=\\langle(1\\ 2)(3\\ 4)\\rangle$ est distingué dans $V_4$, abélien, et $V_4\\lhd\\mathfrak{S}_4$, mais $(1\\ 3)\\,(1\\ 2)(3\\ 4)\\,(1\\ 3)^{-1}=(1\\ 4)(2\\ 3)\\notin K$."
+        },
+        {
+          "texte": "Le centre $Z(G)=\\{z\\in G:\\forall g\\in G,\\ zg=gz\\}$ est un sous-groupe distingué de $G$.",
+          "vrai": true,
+          "justification": "C'est un sous-groupe (si $z,z'$ commutent avec tout, $zz'^{-1}$ aussi), et pour $z\\in Z(G)$, $gzg^{-1}=z\\in Z(G)$."
+        },
+        {
+          "texte": "Un groupe non abélien n'a pas d'autre sous-groupe distingué que $\\{e\\}$ et lui-même.",
+          "vrai": false,
+          "contre_exemple": "$\\mathfrak{S}_3$ n'est pas abélien, et $\\mathfrak{A}_3$, noyau de la signature, y est distingué."
+        },
+        {
+          "texte": "Si $H\\lhd G$, tout élément de $G$ commute avec tout élément de $H$.",
+          "vrai": false,
+          "contre_exemple": "$\\mathfrak{A}_3\\lhd\\mathfrak{S}_3$, mais $(1\\ 2)(1\\ 2\\ 3)=(2\\ 3)$ et $(1\\ 2\\ 3)(1\\ 2)=(1\\ 3)$."
+        },
+        {
+          "texte": "Un sous-groupe $H$ d'un groupe fini $G$ tel que $|H|=\\frac{|G|}{2}$ est distingué dans $G$.",
+          "vrai": true,
+          "justification": "Par le théorème de Lagrange, $H$ est d'indice $2$, donc distingué."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-quotients-engendre",
+        "gr-l1-groupes-noyau",
+        "gr-l1-groupes-lagrange",
+        "gr-l2-symetrique-alterne"
+      ]
+    },
+    {
+      "id": "gr-l3-quotients-quotient",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-quotients",
+      "type": "theoreme",
+      "titre": "Groupe quotient",
+      "recto": "Énoncer la construction du groupe quotient $G/H$ par un sous-groupe distingué $H$, avec ses propriétés.",
+      "cours": "Quotienter, c'est décider de regarder comme égaux deux éléments qui diffèrent d'un élément de $H$ : on « écrase » $H$ sur le neutre. L'exemple fondateur est $\\mathbb{Z}/n\\mathbb{Z}$, quotient du groupe abélien $(\\mathbb{Z},+)$ par $n\\mathbb{Z}$ ; en notation additive, les classes s'écrivent $x+H$ et la loi $(x+H)+(y+H)=(x+y)+H$. Le calcul dans $G/H$ se fait sur des représentants, comme le calcul modulo $n$ : c'est légitime exactement parce que $H$ est distingué (voir la réciproque).\n\nMéthode : pour étudier $G/H$, on cherche son cardinal, $\\frac{|G|}{|H|}$ si $G$ est fini ; l'ordre de classes bien choisies, plus petit $k\\ge1$ tel que $x^k\\in H$ ; puis un isomorphisme avec un groupe connu, le plus souvent par le premier théorème d'isomorphisme (carte suivante). Par exemple, pour $n\\ge2$, $\\mathfrak{S}_n/\\mathfrak{A}_n$ a deux éléments, donc est isomorphe à $\\mathbb{Z}/2\\mathbb{Z}$ ; dans $\\mathbb{R}/\\mathbb{Z}$, la classe de $\\frac pq$ (fraction irréductible, $q\\ge1$) est d'ordre $q$, et celle d'un irrationnel est d'ordre infini.\n\nPièges : l'ordre de $xH$ divise l'ordre de $x$ quand celui-ci est fini, mais il peut être plus petit ; $G/H$ peut être abélien ou cyclique sans que $G$ le soit ($\\mathfrak{S}_3/\\mathfrak{A}_3$) ; le quotient d'un groupe infini peut être fini ($\\mathbb{Z}/n\\mathbb{Z}$), et un élément d'ordre infini peut avoir une classe d'ordre fini ($\\frac12$ dans $\\mathbb{R}/\\mathbb{Z}$). Enfin, $G/H$ n'est en général isomorphe à aucun sous-groupe de $G$ : $\\mathbb{Z}/2\\mathbb{Z}$ est un quotient de $\\mathbb{Z}$, qui n'a pas d'élément d'ordre $2$.",
+      "hypotheses": [
+        "$H$ est un sous-groupe distingué de $G$.",
+        "Relation : $x\\sim y$ si et seulement si $x^{-1}y\\in H$.",
+        "Loi : $(xH)(yH)=xyH$."
+      ],
+      "hypotheses_pieges": [
+        "$H$ est un sous-groupe quelconque de $G$ (à la place de : distingué).",
+        "Relation : $x\\sim y$ si et seulement si $xy\\in H$ (à la place de : $x^{-1}y\\in H$).",
+        "Loi : $(xH)(yH)=yxH$ (à la place de : $xyH$)."
+      ],
+      "enonce": "Soient $G$ un groupe et $H$ un sous-groupe distingué de $G$. La relation « $x^{-1}y\\in H$ » est une relation d'équivalence sur $G$, dont les classes sont les classes à gauche $xH$ ; on note $G/H$ l'ensemble de ces classes.\n\n**Théorème.**\n- La loi $(xH)(yH)=xyH$ est bien définie sur $G/H$ (le résultat ne dépend pas des représentants $x$ et $y$ choisis) et fait de $G/H$ un groupe, de neutre $H=eH$, l'inverse de $xH$ étant $x^{-1}H$.\n- La projection $\\pi:G\\to G/H$, $x\\mapsto xH$, est un morphisme de groupes surjectif, de noyau $H$. En particulier, tout sous-groupe distingué est le noyau d'un morphisme.\n- Si $G$ est fini, $|G/H|=\\frac{|G|}{|H|}$. Si $G$ est abélien (resp. cyclique), $G/H$ l'est aussi.\n- L'ordre de $xH$ dans $G/H$ est, s'il existe, le plus petit entier $k\\ge1$ tel que $x^k\\in H$.\n\nRéciproquement, si $H$ est un sous-groupe de $G$ tel que la formule $(xH)(yH)=xyH$ définit bien une loi sur l'ensemble des classes à gauche, alors $H$ est distingué.",
+      "enonce_trous": "Si $H$ est {{1}} de $G$, l'ensemble $G/H$ des classes $xH$ est un groupe pour la loi {{2}}, et la projection $x\\mapsto xH$ est un morphisme surjectif de noyau {{3}}.",
+      "trous": [
+        {
+          "reponse": "un sous-groupe distingué",
+          "leurres": [
+            "un sous-groupe",
+            "un sous-groupe abélien",
+            "un sous-groupe cyclique"
+          ]
+        },
+        {
+          "reponse": "$(xH)(yH)=xyH$",
+          "leurres": [
+            "$(xH)(yH)=yxH$",
+            "$(xH)(yH)=xy^{-1}H$",
+            "$(xH)(yH)=x^{-1}yH$"
+          ]
+        },
+        {
+          "reponse": "$H$",
+          "leurres": [
+            "$G$",
+            "$\\{e\\}$",
+            "le centre de $G$"
+          ]
+        }
+      ],
+      "demo": "**Relation.** Elle est réflexive ($x^{-1}x=e\\in H$), symétrique ($y^{-1}x=(x^{-1}y)^{-1}$) et transitive ($x^{-1}z=(x^{-1}y)(y^{-1}z)$). La classe de $x$ est $\\{y:x^{-1}y\\in H\\}=xH$.\n\n**Loi bien définie.** Si $x'H=xH$ et $y'H=yH$, écrivons $x'=xh$ et $y'=yk$ avec $h,k\\in H$. Alors $x'y'=xhyk=xy\\,(y^{-1}hy)\\,k$, et $y^{-1}hy\\in H$ car $H$ est distingué : $x'y'\\in xyH$, donc $x'y'H=xyH$.\n\n**Groupe.** L'associativité vient de celle de $G$ : $((xH)(yH))(zH)=(xy)zH=x(yz)H=(xH)((yH)(zH))$ ; de plus $(eH)(xH)=xH=(xH)(eH)$ et $(xH)(x^{-1}H)=H=(x^{-1}H)(xH)$.\n\n**Projection.** $\\pi(xy)=xyH=\\pi(x)\\pi(y)$ par définition de la loi ; $\\pi$ est surjective, et $\\pi(x)=H$ si et seulement si $x\\in H$. Le cardinal vient du théorème de Lagrange : $|G/H|=[G:H]=\\frac{|G|}{|H|}$. Si $G$ est abélien, $(xH)(yH)=xyH=yxH=(yH)(xH)$ ; si $G=\\langle a\\rangle$, tout élément de $G/H$ s'écrit $a^kH=(aH)^k$, donc $G/H=\\langle aH\\rangle$. Enfin $(xH)^k=x^kH$ vaut $H$ si et seulement si $x^k\\in H$, ce qui donne l'ordre.\n\n**Réciproque.** Supposons la loi bien définie, et soient $g\\in G$ et $h\\in H$. Comme $ghH=gH$, on a $(ghH)(g^{-1}H)=(gH)(g^{-1}H)$, soit $ghg^{-1}H=H$, donc $ghg^{-1}\\in H$.",
+      "exemple": "Dans le groupe abélien $G=\\mathbb{Z}/12\\mathbb{Z}$, le sous-groupe $H=\\langle\\bar4\\rangle=\\{\\bar0,\\bar4,\\bar8\\}$ est distingué, et $G/H$ a $\\frac{12}{3}=4$ éléments : $H$, $\\bar1+H$, $\\bar2+H$, $\\bar3+H$. Le plus petit $k\\ge1$ tel que $k\\cdot\\bar1\\in H$ est $4$ : la classe de $\\bar1$ est d'ordre $4$, et $G/H$ est cyclique d'ordre $4$, engendré par $\\bar1+H$. La classe de $\\bar8$ est le neutre $H$, alors que $\\bar8$ est d'ordre $3$ dans $G$.",
+      "contre_exemple": "- **$H$ non distingué : la loi n'est pas définie.** Dans $\\mathfrak{S}_3$, soit $H=\\langle(1\\ 2)\\rangle$. Les représentants $x=(1\\ 3)$ et $x'=(1\\ 3)(1\\ 2)$ définissent la même classe $xH=x'H$ ; avec $y=(1\\ 3)$, on a $xy=\\mathrm{id}\\in H$, alors que $x'y=(1\\ 3)(1\\ 2)(1\\ 3)=(2\\ 3)\\notin H$, donc $xyH\\neq x'yH$.\n- **L'ordre peut baisser** : dans $\\mathbb{Z}/4\\mathbb{Z}$, $\\bar1$ est d'ordre $4$, mais sa classe modulo $H=\\{\\bar0,\\bar2\\}$ est d'ordre $2$.\n- **$H$ et $G/H$ cycliques n'entraînent pas $G$ abélien** : $\\mathfrak{A}_3$ et $\\mathfrak{S}_3/\\mathfrak{A}_3$ sont cycliques, d'ordres $3$ et $2$, et $\\mathfrak{S}_3$ n'est pas abélien.",
+      "affirmations": [
+        {
+          "texte": "Si $H\\lhd G$ et si $H$ et $G/H$ sont cycliques, alors $G$ est cyclique.",
+          "vrai": false,
+          "contre_exemple": "$\\mathfrak{A}_3$, d'ordre $3$, et $\\mathfrak{S}_3/\\mathfrak{A}_3$, d'ordre $2$, sont cycliques, mais $\\mathfrak{S}_3$ n'est pas abélien."
+        },
+        {
+          "texte": "Tout quotient d'un groupe cyclique est cyclique.",
+          "vrai": true,
+          "justification": "Si $G=\\langle a\\rangle$, tout élément de $G/H$ s'écrit $a^kH=(aH)^k$ : $G/H=\\langle aH\\rangle$."
+        },
+        {
+          "texte": "L'ordre de la classe de $x$ dans $G/H$ est égal à l'ordre de $x$ dans $G$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{Z}/4\\mathbb{Z}$, $\\bar1$ est d'ordre $4$, et sa classe modulo $\\{\\bar0,\\bar2\\}$ est d'ordre $2$."
+        },
+        {
+          "texte": "Pour tout entier $n\\ge1$, le groupe $\\mathbb{R}/\\mathbb{Z}$ possède un élément d'ordre $n$.",
+          "vrai": true,
+          "justification": "La classe de $\\frac1n$ : $k\\cdot\\frac1n\\in\\mathbb{Z}$ pour $k\\ge1$ si et seulement si $n\\mid k$."
+        },
+        {
+          "texte": "Si $H\\lhd G$ et si $x\\in G$ est d'ordre fini $d$, l'ordre de $xH$ divise $d$.",
+          "vrai": true,
+          "justification": "$(xH)^d=x^dH=H$, et l'ordre d'un élément divise tout exposant qui l'annule."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-quotients-distingues",
+        "gr-l1-groupes-lagrange",
+        "gr-l1-groupes-ordre",
+        "gr-l1-groupes-cycliques",
+        "fond-l1-ensembles-equivalence"
+      ]
+    },
+    {
+      "id": "gr-l3-quotients-isomorphisme",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-quotients",
+      "type": "theoreme",
+      "titre": "Premier théorème d'isomorphisme",
+      "recto": "Énoncer le premier théorème d'isomorphisme pour les groupes, ainsi que la propriété de factorisation par un quotient.",
+      "cours": "Le théorème dit qu'un morphisme se décompose en une projection sur un quotient, suivie d'un isomorphisme, suivie d'une inclusion : tout le défaut d'injectivité est rassemblé dans le noyau, et une fois celui-ci écrasé, il ne reste qu'une bijection sur l'image. C'est l'outil principal pour **identifier un quotient** : pour montrer que $G/H$ est isomorphe à un groupe connu $Q$, on cherche un morphisme surjectif $G\\to Q$ de noyau exactement $H$.\n\nExemples à connaître :\n- la signature donne $\\mathfrak{S}_n/\\mathfrak{A}_n\\simeq\\{-1,1\\}$ pour $n\\ge2$ ;\n- le déterminant donne $\\mathrm{GL}_n(\\mathbb{K})/\\mathrm{SL}_n(\\mathbb{K})\\simeq\\mathbb{K}^*$ ;\n- $t\\mapsto e^{2i\\pi t}$ donne $\\mathbb{R}/\\mathbb{Z}\\simeq\\mathbb{U}$, et $z\\mapsto|z|$ donne $\\mathbb{C}^*/\\mathbb{U}\\simeq\\mathbb{R}_+^*$ ;\n- pour $a$ d'ordre $n$ dans un groupe, $k\\mapsto a^k$ donne $\\mathbb{Z}/n\\mathbb{Z}\\simeq\\langle a\\rangle$, ce qui redonne la structure des groupes cycliques.\n\nLa factorisation sert à construire des morphismes définis sur un quotient : pour définir un morphisme sur $\\mathbb{Z}/m\\mathbb{Z}$, il suffit d'un morphisme défini sur $\\mathbb{Z}$ dont le noyau contient $m\\mathbb{Z}$. Ainsi, les morphismes de $\\mathbb{Z}/m\\mathbb{Z}$ dans un groupe $G$ correspondent aux éléments $a\\in G$ tels que $a^m=e$, par $f\\mapsto f(\\bar1)$.\n\nPièges : vérifier la surjectivité avant d'écrire $G/\\ker f\\simeq G'$ ; ne pas confondre quotient et facteur d'un produit : $G/H\\simeq K$ n'entraîne pas $G\\simeq H\\times K$ ; et deux sous-groupes isomorphes d'un même groupe peuvent avoir des quotients non isomorphes.",
+      "hypotheses": [
+        "$f:G\\to G'$ est un morphisme de groupes.",
+        "Pour obtenir $G/\\ker f\\simeq G'$ : $f$ est surjectif.",
+        "Pour la factorisation par $G/H$ : $H$ est un sous-groupe distingué de $G$ contenu dans $\\ker f$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est une application de $G$ dans $G'$ telle que $f(e)=e'$ (à la place de : un morphisme de groupes).",
+        "Pour obtenir $G/\\ker f\\simeq G'$ : $f$ est injectif (à la place de : surjectif).",
+        "Pour la factorisation par $G/H$ : $H$ est un sous-groupe distingué de $G$ contenant $\\ker f$ (à la place de : contenu dans $\\ker f$)."
+      ],
+      "enonce": "Soit $f:G\\to G'$ un morphisme de groupes. Alors $\\ker f$ est un sous-groupe distingué de $G$, $\\operatorname{Im}f=f(G)$ est un sous-groupe de $G'$, et l'application\n$$\\bar f:G/\\ker f\\to\\operatorname{Im}f,\\qquad x\\ker f\\mapsto f(x)$$\nest bien définie et c'est un isomorphisme de groupes : $G/\\ker f\\simeq\\operatorname{Im}f$. On a $f=\\iota\\circ\\bar f\\circ\\pi$, où $\\pi:G\\to G/\\ker f$ est la projection et $\\iota:\\operatorname{Im}f\\to G'$ l'inclusion.\n\nConséquences :\n- si $f$ est surjectif, $G/\\ker f\\simeq G'$ ;\n- si $G$ est fini, $|G|=|\\ker f|\\times|\\operatorname{Im}f|$ ; en particulier $|\\operatorname{Im}f|$ divise $|G|$, et aussi $|G'|$ si $G'$ est fini.\n\n**Factorisation.** Plus généralement, si $H$ est un sous-groupe distingué de $G$ contenu dans $\\ker f$, il existe un unique morphisme $\\tilde f:G/H\\to G'$ tel que $f=\\tilde f\\circ\\pi_H$, où $\\pi_H:G\\to G/H$ est la projection ; il est donné par $\\tilde f(xH)=f(x)$.",
+      "enonce_trous": "Si $f:G\\to G'$ est un morphisme de groupes, le groupe {{1}} est isomorphe à {{2}}, par l'application qui envoie la classe de $x$ sur $f(x)$. Si $G$ est fini, on en déduit que {{3}}.",
+      "trous": [
+        {
+          "reponse": "$G/\\ker f$",
+          "leurres": [
+            "$G$",
+            "$G'/\\operatorname{Im}f$",
+            "$\\ker f$"
+          ]
+        },
+        {
+          "reponse": "$\\operatorname{Im}f$",
+          "leurres": [
+            "$G'$",
+            "$\\ker f$",
+            "$G$"
+          ]
+        },
+        {
+          "reponse": "$|G|=|\\ker f|\\times|\\operatorname{Im}f|$",
+          "leurres": [
+            "$|G|=|\\ker f|+|\\operatorname{Im}f|$",
+            "$|G'|=|\\ker f|\\times|\\operatorname{Im}f|$",
+            "$|\\operatorname{Im}f|=|\\ker f|$"
+          ]
+        }
+      ],
+      "demo": "**Noyau et image.** Ce sont des sous-groupes (chapitre de L1), et le noyau est distingué (carte des sous-groupes distingués). Notons $K=\\ker f$.\n\n**$\\bar f$ est bien définie et injective.** Pour $x,y\\in G$ : $xK=yK\\iff x^{-1}y\\in K\\iff f(x)^{-1}f(y)=e'\\iff f(x)=f(y)$. Le sens direct dit que $f(x)$ ne dépend que de la classe $xK$ : $\\bar f$ est bien définie ; le sens réciproque dit que $\\bar f$ est injective.\n\n**Morphisme, surjectivité.** $\\bar f((xK)(yK))=\\bar f(xyK)=f(xy)=f(x)f(y)=\\bar f(xK)\\,\\bar f(yK)$, et tout élément $f(x)$ de $\\operatorname{Im}f$ est l'image de $xK$. Donc $\\bar f$ est un isomorphisme, et $\\iota\\circ\\bar f\\circ\\pi(x)=f(x)$ pour tout $x$.\n\n**Conséquences.** Si $f$ est surjectif, $\\operatorname{Im}f=G'$. Si $G$ est fini, $|\\operatorname{Im}f|=|G/K|=\\frac{|G|}{|K|}$ ; si de plus $G'$ est fini, $\\operatorname{Im}f$ est un sous-groupe de $G'$ et le théorème de Lagrange donne la divisibilité.\n\n**Factorisation.** Si $H\\subset K$ et $xH=yH$, alors $x^{-1}y\\in H\\subset K$, donc $f(x)=f(y)$ : $\\tilde f(xH)=f(x)$ est bien définie ; c'est un morphisme par le même calcul que ci-dessus, et $\\tilde f\\circ\\pi_H=f$. Si $g:G/H\\to G'$ vérifie aussi $g\\circ\\pi_H=f$, alors $g(xH)=f(x)=\\tilde f(xH)$ pour tout $x$, et $\\pi_H$ est surjective : $g=\\tilde f$.",
+      "exemple": "L'application $f:\\mathbb{Z}/12\\mathbb{Z}\\to\\mathbb{Z}/12\\mathbb{Z}$, $\\bar x\\mapsto\\overline{3x}$, est bien définie ($x\\equiv y\\pmod{12}$ entraîne $3x\\equiv3y\\pmod{12}$) et c'est un morphisme. Son noyau est $\\{\\bar0,\\bar4,\\bar8\\}$, car $3x\\equiv0\\pmod{12}\\iff x\\equiv0\\pmod4$, et son image est $\\{\\bar0,\\bar3,\\bar6,\\bar9\\}=\\langle\\bar3\\rangle$, cyclique d'ordre $4$. Le théorème donne $(\\mathbb{Z}/12\\mathbb{Z})/\\langle\\bar4\\rangle\\simeq\\langle\\bar3\\rangle\\simeq\\mathbb{Z}/4\\mathbb{Z}$, et l'on vérifie $12=3\\times4$.",
+      "contre_exemple": "- **Sans surjectivité** : $\\mathbb{Z}/2\\mathbb{Z}\\to\\mathbb{Z}/4\\mathbb{Z}$, $\\bar x\\mapsto\\overline{2x}$, est un morphisme injectif, mais $(\\mathbb{Z}/2\\mathbb{Z})/\\{\\bar0\\}$, à $2$ éléments, n'est pas isomorphe à $\\mathbb{Z}/4\\mathbb{Z}$.\n- **Une application qui n'est pas un morphisme** : $x\\mapsto x^2$, de $(\\mathbb{Z},+)$ dans lui-même, envoie $0$ sur $0$, mais son image, l'ensemble des carrés, n'est pas un sous-groupe ($1+1=2$ n'est pas un carré).\n- **$H$ doit être contenu dans le noyau** : l'identité de $\\mathbb{Z}$ ne se factorise pas par $\\mathbb{Z}/2\\mathbb{Z}$, puisque $0$ et $2$ ont la même classe mais des images différentes.\n- **$G/H\\simeq K$ ne donne pas $G\\simeq H\\times K$** : avec $H=\\{\\bar0,\\bar2\\}$, $H$ et $(\\mathbb{Z}/4\\mathbb{Z})/H$ sont d'ordre $2$, donc isomorphes à $\\mathbb{Z}/2\\mathbb{Z}$, mais $\\mathbb{Z}/4\\mathbb{Z}$, cyclique, n'est pas isomorphe à $(\\mathbb{Z}/2\\mathbb{Z})^2$, dont tous les éléments vérifient $2x=0$.\n- **Des sous-groupes isomorphes peuvent avoir des quotients non isomorphes** : dans $G=\\mathbb{Z}/4\\mathbb{Z}\\times\\mathbb{Z}/2\\mathbb{Z}$, $H=\\langle(\\bar2,\\bar0)\\rangle$ et $K=\\langle(\\bar0,\\bar1)\\rangle$ sont d'ordre $2$, mais $G/K\\simeq\\mathbb{Z}/4\\mathbb{Z}$ (par la première projection, surjective de noyau $K$), alors que $G/H$, dont tous les éléments $\\xi$ vérifient $2\\xi=0$, n'est pas cyclique.",
+      "affirmations": [
+        {
+          "texte": "Si $f:G\\to G'$ est un morphisme surjectif et si $G$ est fini, $|G'|$ divise $|G|$.",
+          "vrai": true,
+          "justification": "$G'=\\operatorname{Im}f\\simeq G/\\ker f$, de cardinal $\\frac{|G|}{|\\ker f|}$."
+        },
+        {
+          "texte": "Il existe un morphisme surjectif de $\\mathbb{Z}/6\\mathbb{Z}$ sur $\\mathbb{Z}/4\\mathbb{Z}$.",
+          "vrai": false,
+          "contre_exemple": "Le cardinal de l'image d'un morphisme défini sur $\\mathbb{Z}/6\\mathbb{Z}$ divise $6$ ; or $4$ ne divise pas $6$."
+        },
+        {
+          "texte": "Tout morphisme de groupes de $\\mathfrak{S}_3$ dans $\\mathbb{Z}/3\\mathbb{Z}$ est constant, égal à $\\bar0$.",
+          "vrai": true,
+          "justification": "Le cardinal de l'image divise $6$ et $3$. S'il valait $3$, le noyau serait un sous-groupe distingué d'ordre $2$ de $\\mathfrak{S}_3$ ; or les sous-groupes d'ordre $2$ sont les $\\langle(a\\ b)\\rangle$, non distingués. L'image est donc $\\{\\bar0\\}$."
+        },
+        {
+          "texte": "Si $H\\lhd G$ et $G/H\\simeq K$, alors $G\\simeq H\\times K$.",
+          "vrai": false,
+          "contre_exemple": "Pour $G=\\mathbb{Z}/4\\mathbb{Z}$ et $H=\\{\\bar0,\\bar2\\}$, $H$ et $G/H$ sont isomorphes à $\\mathbb{Z}/2\\mathbb{Z}$, mais $G$, cyclique d'ordre $4$, n'est pas isomorphe à $(\\mathbb{Z}/2\\mathbb{Z})^2$, dont tous les éléments sont d'ordre au plus $2$."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-quotients-quotient",
+        "gr-l1-groupes-noyau",
+        "gr-l2-symetrique-signature",
+        "arith-l2-anneaux-isomorphisme"
+      ]
+    },
+    {
+      "id": "gr-l3-quotients-racines",
+      "theme": "groupes",
+      "niveau": "l3",
+      "chapitre": "gr-l3-quotients",
+      "type": "theoreme",
+      "titre": "Groupes des racines de l'unité",
+      "recto": "Énoncer la structure du groupe $\\mathbb{U}_n$ des racines $n$-ièmes de l'unité : générateurs, sous-groupes, sous-groupes finis de $\\mathbb{C}^*$.",
+      "cours": "Les racines $n$-ièmes de l'unité sont le modèle concret des groupes cycliques : $\\mathbb{U}_n$ est l'image de $\\mathbb{Z}/n\\mathbb{Z}$ par $\\bar k\\mapsto e^{2ik\\pi/n}$, et l'on se représente les sommets d'un polygone régulier qui tourne. Tout ce qu'on sait des groupes cycliques s'y lit : les générateurs sont les $e^{2ik\\pi/n}$ avec $k\\wedge n=1$, les sous-groupes sont les $\\mathbb{U}_d$ pour $d\\mid n$, et $\\mathbb{U}_d\\cap\\mathbb{U}_{d'}=\\mathbb{U}_{d\\wedge d'}$.\n\nLe groupe $\\mathbb{U}$ des complexes de module $1$ est isomorphe à $\\mathbb{R}/\\mathbb{Z}$ par $t\\mapsto e^{2i\\pi t}$ (premier théorème d'isomorphisme) ; ses éléments d'ordre fini sont les racines de l'unité, réunion de tous les $\\mathbb{U}_n$, qui correspondent aux classes des rationnels. Le dernier point du théorème est une rigidité remarquable : $\\mathbb{C}^*$ a un seul sous-groupe de chaque cardinal fini, et ces sous-groupes sont cycliques ; un groupe fini non cyclique, comme $(\\mathbb{Z}/2\\mathbb{Z})^2$, n'est isomorphe à aucun sous-groupe de $\\mathbb{C}^*$. Un argument de dénombrement, fondé sur le fait qu'un polynôme non nul de degré $d$ a au plus $d$ racines dans un corps commutatif et sur la formule $n=\\sum_{d\\mid n}\\varphi(d)$, montre que tout sous-groupe fini du groupe multiplicatif d'un corps commutatif est cyclique (voir les exercices) ; par exemple $(\\mathbb{Z}/p\\mathbb{Z})^*$ est cyclique pour $p$ premier.\n\nMéthode : pour l'ordre de $e^{2ik\\pi/n}$, on écrit $\\frac kn$ sous forme irréductible $\\frac{k'}{n'}$ avec $n'\\ge1$ : l'ordre est $n'=\\frac{n}{k\\wedge n}$.\n\nPièges : le produit de deux racines primitives $n$-ièmes n'est pas toujours primitif ($\\omega\\,\\omega^{-1}=1$) ; le produit $\\mathbb{U}_m\\mathbb{U}_n=\\{zw:z\\in\\mathbb{U}_m,\\ w\\in\\mathbb{U}_n\\}$ n'est pas $\\mathbb{U}_{mn}$ mais $\\mathbb{U}_{m\\vee n}$, où $m\\vee n$ est le PPCM ; et le résultat sur les sous-groupes finis ne dit rien des sous-groupes infinis : $\\{2^k:k\\in\\mathbb{Z}\\}$ est un sous-groupe de $\\mathbb{C}^*$ non contenu dans $\\mathbb{U}$.",
+      "hypotheses": [
+        "$n\\ge1$ est un entier.",
+        "Pour les générateurs : $k\\wedge n=1$.",
+        "Pour l'inclusion $\\mathbb{U}_d\\subset\\mathbb{U}_n$ : $d$ divise $n$.",
+        "Pour la rigidité : $G$ est un sous-groupe fini de $(\\mathbb{C}^*,\\times)$, de cardinal $n$."
+      ],
+      "hypotheses_pieges": [
+        "Pour les générateurs : $k$ est un nombre premier (à la place de : $k\\wedge n=1$).",
+        "Pour l'inclusion $\\mathbb{U}_d\\subset\\mathbb{U}_n$ : $d\\le n$ (à la place de : $d$ divise $n$).",
+        "Pour la rigidité : $G$ est une partie finie de $\\mathbb{C}^*$, de cardinal $n$, stable par passage à l'inverse (à la place de : un sous-groupe fini de cardinal $n$)."
+      ],
+      "enonce": "Pour $n\\ge1$, on note $\\mathbb{U}_n=\\{z\\in\\mathbb{C}:z^n=1\\}$, et $\\mathbb{U}=\\{z\\in\\mathbb{C}:|z|=1\\}$.\n\n- $\\mathbb{U}$ est un sous-groupe de $(\\mathbb{C}^*,\\times)$, et $\\mathbb{U}_n$ est un sous-groupe de $\\mathbb{U}$ : c'est le noyau du morphisme $z\\mapsto z^n$ de $\\mathbb{C}^*$ dans lui-même.\n- $\\mathbb{U}_n$ est cyclique d'ordre $n$, engendré par $\\omega=e^{2i\\pi/n}$, et $\\bar k\\mapsto\\omega^k$ est un isomorphisme de $\\mathbb{Z}/n\\mathbb{Z}$ sur $\\mathbb{U}_n$.\n- Pour $k\\in\\mathbb{Z}$, $\\omega^k$ engendre $\\mathbb{U}_n$ si et seulement si $k\\wedge n=1$ : $\\mathbb{U}_n$ a $\\varphi(n)$ générateurs, appelés **racines primitives** $n$-ièmes de l'unité ; ce sont les éléments d'ordre exactement $n$ de $\\mathbb{C}^*$.\n- Pour $d\\ge1$, $\\mathbb{U}_d\\subset\\mathbb{U}_n$ si et seulement si $d$ divise $n$ ; les sous-groupes de $\\mathbb{U}_n$ sont les $\\mathbb{U}_d$, $d$ diviseur positif de $n$, et $n=\\sum_{d\\mid n}\\varphi(d)$.\n- Tout sous-groupe fini de $\\mathbb{C}^*$, de cardinal $n$, est égal à $\\mathbb{U}_n$.",
+      "enonce_trous": "Pour $n\\ge1$, le groupe $\\mathbb{U}_n$ des racines $n$-ièmes de l'unité est {{1}} d'ordre $n$ ; pour $k\\in\\mathbb{Z}$, $e^{2ik\\pi/n}$ l'engendre si et seulement si {{2}}, et tout sous-groupe fini de $\\mathbb{C}^*$ de cardinal $n$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "cyclique",
+          "leurres": [
+            "non commutatif",
+            "sans élément d'ordre $2$",
+            "non monogène"
+          ]
+        },
+        {
+          "reponse": "$k\\wedge n=1$",
+          "leurres": [
+            "$k$ est premier",
+            "$k$ divise $n$",
+            "$k$ n'est pas multiple de $n$"
+          ]
+        },
+        {
+          "reponse": "égal à $\\mathbb{U}_n$",
+          "leurres": [
+            "contenu dans $\\{-1,1\\}$",
+            "égal à $\\mathbb{U}_{2n}$",
+            "isomorphe à $\\mathbb{U}_d$ pour un diviseur $d$ de $n$ autre que $n$"
+          ]
+        }
+      ],
+      "demo": "**Sous-groupes.** Comme $\\mathbb{C}^*$ est commutatif, $(zw)^n=z^nw^n$ : $z\\mapsto z^n$ est un morphisme, dont le noyau $\\mathbb{U}_n$ est un sous-groupe ; de même $\\mathbb{U}$ est le noyau du morphisme $z\\mapsto|z|$ de $\\mathbb{C}^*$ dans $\\mathbb{R}_+^*$. Enfin $z^n=1$ entraîne $|z|^n=1$, donc $|z|=1$ : $\\mathbb{U}_n\\subset\\mathbb{U}$.\n\n**Cyclicité.** On sait (Terminale) que $\\mathbb{U}_n=\\{\\omega^k:0\\le k\\le n-1\\}$, ces $n$ nombres étant distincts. Donc $\\omega$ est d'ordre $n$ et $\\mathbb{U}_n=\\langle\\omega\\rangle$ est cyclique d'ordre $n$. L'isomorphisme avec $\\mathbb{Z}/n\\mathbb{Z}$, la description des générateurs, leur nombre $\\varphi(n)$ et l'existence d'un unique sous-groupe d'ordre $d$ pour chaque diviseur $d$ de $n$ valent pour tout groupe cyclique d'ordre $n$. Un élément $z\\in\\mathbb{C}^*$ d'ordre $n$ vérifie $z^n=1$ et engendre un sous-groupe d'ordre $n$ de $\\mathbb{U}_n$, donc $\\mathbb{U}_n$ lui-même : c'est une racine primitive.\n\n**Inclusions.** Si $d\\mid n$, $z^d=1$ entraîne $z^n=(z^d)^{n/d}=1$. Si $\\mathbb{U}_d\\subset\\mathbb{U}_n$, l'élément $e^{2i\\pi/d}$, d'ordre $d$, vérifie $z^n=1$, donc $d\\mid n$. Pour $d\\mid n$, $\\mathbb{U}_d$ est donc un sous-groupe de $\\mathbb{U}_n$ à $d$ éléments : c'est l'unique sous-groupe d'ordre $d$ de $\\mathbb{U}_n$.\n\n**Formule.** Chaque élément de $\\mathbb{U}_n$ a un ordre $d$ qui divise $n$ (Lagrange) ; un élément d'ordre $d$ appartient à $\\mathbb{U}_d$ et l'engendre, et inversement les générateurs de $\\mathbb{U}_d$ sont d'ordre $d$ et appartiennent à $\\mathbb{U}_n$. Les éléments d'ordre $d$ de $\\mathbb{U}_n$ sont donc les $\\varphi(d)$ générateurs de $\\mathbb{U}_d$, et en comptant les éléments de $\\mathbb{U}_n$ selon leur ordre, $n=\\sum_{d\\mid n}\\varphi(d)$.\n\n**Sous-groupes finis.** Si $G$ est un sous-groupe de $\\mathbb{C}^*$ de cardinal $n$, l'ordre de tout $z\\in G$ divise $n$, donc $z^n=1$ : $G\\subset\\mathbb{U}_n$, et les deux ensembles ont $n$ éléments.",
+      "exemple": "Pour $n=12$ : les racines primitives douzièmes de l'unité sont les $e^{2ik\\pi/12}$ pour $k\\in\\{1,5,7,11\\}$, soit $\\varphi(12)=4$ nombres. Les sous-groupes de $\\mathbb{U}_{12}$ sont $\\mathbb{U}_1$, $\\mathbb{U}_2$, $\\mathbb{U}_3$, $\\mathbb{U}_4$, $\\mathbb{U}_6$ et $\\mathbb{U}_{12}$, et en comptant les éléments selon leur ordre : $12=\\varphi(1)+\\varphi(2)+\\varphi(3)+\\varphi(4)+\\varphi(6)+\\varphi(12)=1+1+2+2+2+4$. Le nombre $e^{2i\\pi\\cdot10/12}=e^{5i\\pi/3}$ est d'ordre $\\frac{12}{10\\wedge12}=6$ : c'est une racine primitive sixième de l'unité.",
+      "contre_exemple": "- **$k$ premier ne suffit pas** : $e^{2i\\pi\\cdot2/6}=e^{2i\\pi/3}$ est d'ordre $3$, il n'engendre pas $\\mathbb{U}_6$ ; et $k=1$, qui n'est pas premier, donne un générateur.\n- **$d\\le n$ ne suffit pas** : $-1\\in\\mathbb{U}_2$, mais $(-1)^3=-1\\neq1$, donc $\\mathbb{U}_2\\not\\subset\\mathbb{U}_3$.\n- **Partie stable par inverse, mais pas un sous-groupe** : $\\left\\{2,\\frac12\\right\\}$ a deux éléments et n'est pas $\\mathbb{U}_2=\\{-1,1\\}$.\n- **Groupe fini non cyclique** : $(\\mathbb{Z}/2\\mathbb{Z})^2$ n'est isomorphe à aucun sous-groupe de $\\mathbb{C}^*$, puisque les sous-groupes finis de $\\mathbb{C}^*$ sont cycliques.",
+      "affirmations": [
+        {
+          "texte": "Le produit de deux racines primitives $n$-ièmes de l'unité est une racine primitive $n$-ième.",
+          "vrai": false,
+          "contre_exemple": "Pour $n=3$, $j=e^{2i\\pi/3}$ et $j^2$ sont primitives, et $j\\cdot j^2=1$ ne l'est pas."
+        },
+        {
+          "texte": "La somme des racines primitives sixièmes de l'unité vaut $1$.",
+          "vrai": true,
+          "justification": "Ce sont $e^{i\\pi/3}$ et $e^{-i\\pi/3}$ (les $e^{2ik\\pi/6}$ avec $k\\in\\{1,5\\}$), de somme $2\\cos\\frac\\pi3=1$."
+        },
+        {
+          "texte": "Pour $m,n\\ge1$, $\\mathbb{U}_m\\cap\\mathbb{U}_n=\\mathbb{U}_{m\\wedge n}$.",
+          "vrai": true,
+          "justification": "L'intersection est un sous-groupe de $\\mathbb{U}_m$, donc un $\\mathbb{U}_d$ avec $d\\mid m$ ; $\\mathbb{U}_d\\subset\\mathbb{U}_n$ donne $d\\mid n$, donc $d\\mid m\\wedge n$ ; et $\\mathbb{U}_{m\\wedge n}$ est contenu dans les deux, donc $m\\wedge n\\mid d$."
+        },
+        {
+          "texte": "Pour $m,n\\ge1$, $\\{zw:z\\in\\mathbb{U}_m,\\ w\\in\\mathbb{U}_n\\}=\\mathbb{U}_{mn}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $m=n=2$, les produits $zw$ avec $z,w\\in\\{-1,1\\}$ forment $\\mathbb{U}_2$, qui n'est pas $\\mathbb{U}_4$ ($i$ n'est pas atteint)."
+        }
+      ],
+      "prerequis": [
+        "gr-l1-groupes-cycliques",
+        "gr-l1-groupes-lagrange",
+        "geo-t-complexes-racines-unite",
+        "arith-l1-congruences-euler",
+        "arith-l1-racines-polynome"
+      ]
+    }
+  ]
+}

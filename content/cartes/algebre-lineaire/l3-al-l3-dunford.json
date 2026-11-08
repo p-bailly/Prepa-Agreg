@@ -1,0 +1,398 @@
+{
+  "cartes": [
+    {
+      "id": "al-l3-dunford-simultanee",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dunford",
+      "type": "theoreme",
+      "titre": "Diagonalisation simultanée",
+      "recto": "Énoncer le théorème de diagonalisation simultanée d'une famille finie d'endomorphismes diagonalisables.",
+      "cours": "Deux endomorphismes diagonalisables n'ont en général aucune base de vecteurs propres en commun. Ils en ont une exactement quand ils **commutent** : c'est le théorème de diagonalisation simultanée, qui sert chaque fois que l'on manipule plusieurs endomorphismes à la fois (somme et produit de diagonalisables, unicité de la décomposition de Dunford, sous-groupes commutatifs de $GL_n(\\mathbb{C})$).\n\nLe sens facile : deux matrices diagonales commutent, donc deux endomorphismes diagonalisables dans une même base aussi. Le sens utile repose sur une remarque : si $v$ commute avec $u$, $v$ laisse stable chaque sous-espace propre $E_\\lambda(u)$ (pour $x\\in E_\\lambda(u)$, $u(v(x))=v(u(x))=\\lambda v(x)$). L'endomorphisme induit par $v$ sur $E_\\lambda(u)$ est encore diagonalisable, car tout polynôme annulateur de $v$ l'annule ; on diagonalise donc $v$ **à l'intérieur** de chaque sous-espace propre de $u$, où $u$ est une homothétie, et l'on juxtapose les bases obtenues.\n\nMéthode : pour diagonaliser simultanément $A$ et $B$, (1) vérifier $AB=BA$ ; (2) déterminer les sous-espaces propres de $A$ ; (3) dans chacun d'eux, chercher les vecteurs propres de $B$. Un vecteur propre de $A$ n'est pas forcément vecteur propre de $B$ quand le sous-espace propre de $A$ qui le contient est de dimension au moins $2$. Conséquences : la somme, le produit et plus généralement tout polynôme en $u_1,\\dots,u_p$ sont diagonalisables, et dans la base commune leurs valeurs propres s'obtiennent en associant les valeurs propres **vecteur par vecteur**, pas dans un ordre quelconque.\n\nVariantes : le résultat vaut pour une famille quelconque, même infinie, d'endomorphismes diagonalisables qui commutent deux à deux (on se ramène à une base finie, extraite de la famille, du sous-espace vectoriel qu'elle engendre dans $\\mathcal{L}(E)$). Sans diagonalisabilité, deux endomorphismes d'un $\\mathbb{C}$-espace vectoriel qui commutent ont un vecteur propre commun et sont trigonalisables dans une même base.\n\nPièges : la commutation est indispensable ; la diagonalisabilité de chacun aussi ($\\mathrm{id}_E$ commute avec un endomorphisme nilpotent non nul, qui n'est pas diagonalisable) ; avoir le même polynôme caractéristique ne suffit pas.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie non nulle et $u_1,\\dots,u_p\\in\\mathcal{L}(E)$.",
+        "Les endomorphismes $u_1,\\dots,u_p$ sont tous diagonalisables.",
+        "$u_i\\circ u_j=u_j\\circ u_i$ pour tous $i,j$."
+      ],
+      "hypotheses_pieges": [
+        "$u_1$ est diagonalisable et $u_2,\\dots,u_p$ sont seulement trigonalisables (à la place de : tous diagonalisables).",
+        "$u_i\\circ u_j$ est diagonalisable pour tous $i,j$ (à la place de : $u_i\\circ u_j=u_j\\circ u_i$).",
+        "Les $u_i$ ont le même polynôme caractéristique (à la place de : ils commutent deux à deux)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie non nulle et $u_1,\\dots,u_p$ des endomorphismes de $E$.\n- Si les $u_i$ sont **diagonalisables** et **commutent deux à deux** ($u_i\\circ u_j=u_j\\circ u_i$ pour tous $i,j$), il existe une base de $E$ formée de vecteurs propres communs à tous les $u_i$ : leurs matrices dans cette base sont toutes diagonales.\n- Réciproquement, des endomorphismes diagonalisables dans une même base commutent deux à deux.\n- En conséquence, si $u$ et $v$ sont diagonalisables et commutent, $u+v$, $u\\circ v$ et plus généralement tout polynôme en $u$ et $v$ sont diagonalisables.",
+      "enonce_trous": "Soient $u_1,\\dots,u_p$ des endomorphismes {{1}} d'un espace vectoriel $E$ de dimension finie non nulle. Il existe une base de $E$ formée de vecteurs propres communs à tous les $u_i$ si et seulement si {{2}}.",
+      "trous": [
+        {
+          "reponse": "diagonalisables",
+          "leurres": [
+            "trigonalisables",
+            "inversibles",
+            "nilpotents"
+          ]
+        },
+        {
+          "reponse": "ils commutent deux à deux",
+          "leurres": [
+            "ils ont le même polynôme caractéristique",
+            "ils ont les mêmes valeurs propres",
+            "leur somme $u_1+\\cdots+u_p$ est diagonalisable"
+          ]
+        }
+      ],
+      "demo": "**Réciproque.** Si les matrices de $u_1,\\dots,u_p$ dans une même base sont diagonales, elles commutent deux à deux, car deux matrices diagonales commutent ; donc les $u_i$ commutent.\n\n**Sens direct, par récurrence sur $p$.** Montrons pour tout $p\\ge1$ la propriété : « pour tout espace $E$ de dimension finie non nulle et toute famille $u_1,\\dots,u_p$ d'endomorphismes diagonalisables de $E$ qui commutent deux à deux, il existe une base de vecteurs propres communs ». Pour $p=1$, c'est la définition. Supposons-la vraie au rang $p-1$, avec $p\\ge2$. Comme $u_1$ est diagonalisable, $E=F_1\\oplus\\cdots\\oplus F_r$, où $F_k=E_{\\lambda_k}(u_1)$ et $\\lambda_1,\\dots,\\lambda_r$ sont les valeurs propres distinctes de $u_1$. Pour $j\\ge2$ et $x\\in F_k$, $u_1(u_j(x))=u_j(u_1(x))=\\lambda_ku_j(x)$ : chaque $F_k$ est stable par $u_j$. L'endomorphisme $u_{j,k}$ induit par $u_j$ sur $F_k$ est diagonalisable, car un polynôme scindé à racines simples qui annule $u_j$ annule aussi $u_{j,k}$ ; et les $u_{j,k}$, $2\\le j\\le p$, commutent deux à deux, comme les $u_j$. L'hypothèse de récurrence, appliquée dans $F_k$, donne une base $\\mathcal{B}_k$ de $F_k$ formée de vecteurs propres communs à $u_{2,k},\\dots,u_{p,k}$ ; ce sont aussi des vecteurs propres de $u_1$, qui vaut $\\lambda_k\\,\\mathrm{id}$ sur $F_k$. La juxtaposition de $\\mathcal{B}_1,\\dots,\\mathcal{B}_r$ est une base de $E$ qui convient.\n\n**Conséquence.** Dans une base commune de vecteurs propres de $u$ et $v$, les matrices de $u$ et de $v$ sont diagonales, donc celles de $u+v$, de $u\\circ v$ et de tout polynôme en $u$ et $v$ aussi.",
+      "exemple": "Soient $A=\\mathrm{diag}(1,1,2)$ et $B=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&5\\end{pmatrix}$. Elles commutent : $B$ laisse stables le plan $\\mathrm{Vect}(e_1,e_2)$ et la droite $\\mathrm{Vect}(e_3)$, sur lesquels $A$ est une homothétie. Le vecteur $e_1$, propre pour $A$, ne l'est pas pour $B$ : $Be_1=e_2$. Dans $E_1(A)=\\mathrm{Vect}(e_1,e_2)$, $B$ agit par $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, de vecteurs propres $e_1+e_2$ (valeur propre $1$) et $e_1-e_2$ (valeur propre $-1$) ; enfin $Be_3=5e_3$. Dans la base $(e_1+e_2,\\,e_1-e_2,\\,e_3)$, les matrices de $A$ et $B$ sont $\\mathrm{diag}(1,1,2)$ et $\\mathrm{diag}(1,-1,5)$, et $A+B$ a pour valeurs propres $2$, $0$ et $7$.",
+      "contre_exemple": "- **Sans commutation** : $A=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ sont diagonalisables (valeurs propres distinctes $1$ et $0$) et ont le même polynôme caractéristique $X(X-1)$, mais $AB=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\neq BA=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}$ : elles n'ont pas de base commune de vecteurs propres.\n- **Somme non diagonalisable** : avec la même $A$ et $C=\\begin{pmatrix}-1&0\\\\0&0\\end{pmatrix}$, diagonale, $A+C=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ est nilpotente non nulle, donc n'est pas diagonalisable.\n- **Sans diagonalisabilité** : $I_2$ et $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ commutent, mais aucune base n'est formée de vecteurs propres de $J$, qui n'est pas diagonalisable.",
+      "affirmations": [
+        {
+          "texte": "Si $u$ et $v$ sont diagonalisables et commutent, $u\\circ v$ est diagonalisable.",
+          "vrai": true,
+          "justification": "Dans une base commune de vecteurs propres, les matrices de $u$ et de $v$ sont diagonales, donc celle de $u\\circ v$ aussi."
+        },
+        {
+          "texte": "Si $u$ et $v$ commutent et si $u+v$ est diagonalisable, alors $u$ et $v$ sont diagonalisables.",
+          "vrai": false,
+          "contre_exemple": "$u=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $v=-u$ commutent, $u+v=0$ est diagonalisable, mais $u$, nilpotente non nulle, ne l'est pas."
+        },
+        {
+          "texte": "Si $u$ et $v$ commutent, tout vecteur propre de $u$ est un vecteur propre de $v$.",
+          "vrai": false,
+          "contre_exemple": "$u=I_2$ commute avec $v=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ ; $e_2$ est propre pour $u$, mais $ve_2=e_1+e_2$ n'est pas colinéaire à $e_2$."
+        },
+        {
+          "texte": "Deux endomorphismes d'un $\\mathbb{C}$-espace vectoriel de dimension finie non nulle qui commutent ont au moins un vecteur propre commun.",
+          "vrai": true,
+          "justification": "$v$ laisse stable un sous-espace propre $E_\\lambda(u)$, non nul ; l'endomorphisme induit par $v$ sur ce sous-espace a une valeur propre (son polynôme caractéristique est scindé sur $\\mathbb{C}$), et un vecteur propre associé convient."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-diagonalisabilite",
+        "al-l2-reduction-lemme-noyaux",
+        "al-l2-reduction-valeurs-propres"
+      ]
+    },
+    {
+      "id": "al-l3-dunford-dunford",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dunford",
+      "type": "theoreme",
+      "titre": "Décomposition de Dunford",
+      "recto": "Énoncer le théorème de décomposition de Dunford, avec ses hypothèses et les propriétés des deux termes.",
+      "cours": "Un endomorphisme dont le polynôme caractéristique est scindé n'est pas toujours diagonalisable, mais il s'écrit toujours, et de façon unique, $u=d+n$ avec $d$ diagonalisable, $n$ nilpotent, et $d$, $n$ qui **commutent**. La partie $d$ porte les valeurs propres, la partie $n$ mesure le défaut de diagonalisabilité. Cette écriture ramène les calculs sur $u$ (puissances, exponentielle, systèmes différentiels) à un calcul sur un endomorphisme diagonalisable et à un calcul sur un nilpotent, qui commutent : $u^k=\\sum_{j}\\binom kjd^{k-j}n^j$, somme qui s'arrête dès que $n^j=0$, et $e^u=e^de^n$.\n\nConstruction : sur chaque sous-espace caractéristique $N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$, $d$ vaut $\\lambda_i\\,\\mathrm{id}$ et $n$ vaut $u-\\lambda_i\\,\\mathrm{id}$. Autrement dit $d=\\sum_i\\lambda_ip_i$, où les $p_i$ sont les projecteurs associés à la décomposition $E=\\bigoplus_iN_i$ ; ce sont des polynômes en $u$, obtenus par une relation de Bézout entre les $(X-\\lambda_i)^{m_i}$, donc $d$ et $n$ sont des polynômes en $u$. L'unicité repose sur la diagonalisation simultanée : la différence de deux endomorphismes diagonalisables qui commutent est diagonalisable.\n\nMéthode pratique : (1) factoriser $\\chi_A$ ; (2) si ses racines sont simples, $A$ est diagonalisable, $D=A$ et $N=0$ ; (3) sinon, chercher $D$ sous la forme $Q(A)$, avec $Q\\equiv\\lambda_i$ modulo $(X-\\lambda_i)^{m_i}$ pour chaque $i$ (un tel $Q$ existe par le lemme chinois), ou calculer les projecteurs $p_i$ ; (4) contrôler que $N=A-D$ est nilpotente et que $DN=ND$. S'il n'y a qu'une valeur propre $\\lambda$, $D=\\lambda I$ et $N=A-\\lambda I$.\n\nPièges : la partie diagonale d'une matrice triangulaire n'est pas, en général, sa partie diagonalisable (la condition $DN=ND$ échoue) ; sans la condition de commutation, l'écriture « diagonalisable + nilpotent » n'est pas unique ; sur $\\mathbb{R}$, l'hypothèse « $\\chi_u$ scindé » est indispensable (voir la rotation d'angle $\\frac\\pi2$) ; $d$ est diagonalisable, pas forcément diagonale dans la base de départ.",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie non nulle et $u\\in\\mathcal{L}(E)$.",
+        "$\\chi_u$ est scindé sur $\\mathbb{K}$.",
+        "$d$ est diagonalisable et $n$ est nilpotent.",
+        "$d\\circ n=n\\circ d$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathbb{K}=\\mathbb{R}$ et $\\chi_u$ a au moins une racine réelle (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$).",
+        "$d$ et $n$ sont tous deux diagonalisables (à la place de : $n$ nilpotent).",
+        "$d\\circ n$ et $n\\circ d$ sont quelconques (à la place de : $d\\circ n=n\\circ d$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie non nulle et $u$ un endomorphisme de $E$ dont le polynôme caractéristique est **scindé** sur $\\mathbb{K}$ (c'est toujours le cas si $\\mathbb{K}=\\mathbb{C}$).\n- Il existe un **unique** couple $(d,n)$ d'endomorphismes de $E$ tel que $u=d+n$, $d$ diagonalisable, $n$ nilpotent et $d\\circ n=n\\circ d$.\n- $d$ et $n$ sont des polynômes en $u$. Plus précisément, si $\\chi_u=\\prod_{i=1}^{p}(X-\\lambda_i)^{m_i}$, avec $\\lambda_1,\\dots,\\lambda_p$ deux à deux distincts, et si $p_i$ est le projecteur sur le sous-espace caractéristique $N_i=\\mathrm{Ker}(u-\\lambda_i\\,\\mathrm{id}_E)^{m_i}$ parallèlement à la somme des autres, alors $d=\\sum_{i=1}^p\\lambda_ip_i$.\n- $\\chi_d=\\chi_u$ ; $u$ est diagonalisable si et seulement si $n=0$, et nilpotent si et seulement si $d=0$.",
+      "enonce_trous": "Si $\\chi_u$ est scindé, il existe un unique couple $(d,n)$ d'endomorphismes tel que $u=d+n$, avec {{1}}, {{2}} et {{3}} ; de plus, $d$ et $n$ sont des polynômes en $u$.",
+      "trous": [
+        {
+          "reponse": "$d$ diagonalisable",
+          "leurres": [
+            "$d$ trigonalisable",
+            "$d$ inversible",
+            "$d$ nilpotent"
+          ]
+        },
+        {
+          "reponse": "$n$ nilpotent",
+          "leurres": [
+            "$n$ diagonalisable",
+            "$n$ de rang au plus $1$",
+            "$n$ de trace nulle"
+          ]
+        },
+        {
+          "reponse": "$d\\circ n=n\\circ d$",
+          "leurres": [
+            "$d\\circ n=0$",
+            "$d\\circ n$ nilpotent",
+            "$\\mathrm{tr}(d\\circ n)=0$"
+          ]
+        }
+      ],
+      "demo": "**Existence.** Écrivons $\\chi_u=\\prod_{i=1}^p(X-\\lambda_i)^{m_i}$. Par Cayley-Hamilton et le lemme des noyaux, $E=N_1\\oplus\\cdots\\oplus N_p$. Posons $Q_i=\\prod_{j\\neq i}(X-\\lambda_j)^{m_j}$ : ces polynômes sont premiers entre eux dans leur ensemble, et le théorème de Bézout donne $U_1,\\dots,U_p$ avec $\\sum_iU_iQ_i=1$. L'endomorphisme $p_i=(U_iQ_i)(u)$ est nul sur $N_j$ pour $j\\neq i$, car $(X-\\lambda_j)^{m_j}$ divise $Q_i$ ; comme $\\sum_kp_k=\\mathrm{id}_E$, $p_i$ vaut l'identité sur $N_i$. C'est donc le projecteur sur $N_i$ parallèlement à $\\bigoplus_{j\\neq i}N_j$, et c'est un polynôme en $u$. Posons $d=\\sum_i\\lambda_ip_i$ et $n=u-d$ : ce sont des polynômes en $u$, donc ils commutent. Dans une base adaptée à $E=\\bigoplus_iN_i$, la matrice de $d$ est diagonale : $d$ est diagonalisable. Sur $N_i$, $n$ coïncide avec $u-\\lambda_i\\,\\mathrm{id}$, dont la puissance $m_i$ est nulle sur $N_i$ ; avec $m=\\max_im_i$, $n^m$ est nul sur chaque $N_i$, donc sur $E$.\n\n**Unicité.** Soit $(d',n')$ un autre couple qui convient. $d'$ commute avec $n'$ et avec lui-même, donc avec $u=d'+n'$, donc avec tout polynôme en $u$, en particulier avec $d$ ; de même, $n'$ commute avec $n$. Alors $d-d'=n'-n$. D'une part, $d$ et $d'$ sont diagonalisables et commutent : ils sont diagonalisables dans une même base, et $d-d'$ est diagonalisable. D'autre part, si $n^a=0$ et $n'^b=0$, la formule du binôme, valable car $n$ et $n'$ commutent, donne $(n'-n)^{a+b-1}=0$ : $n'-n$ est nilpotent. Un endomorphisme diagonalisable et nilpotent est nul (ses valeurs propres sont nulles) : $d=d'$, puis $n=n'$.\n\n**Compléments.** $d$ vaut $\\lambda_i\\,\\mathrm{id}$ sur $N_i$, qui est de dimension $m_i$, donc $\\chi_d=\\prod_i(X-\\lambda_i)^{m_i}=\\chi_u$. Si $u$ est diagonalisable, le couple $(u,0)$ convient, donc $n=0$ par unicité ; réciproquement, $n=0$ donne $u=d$. Si $u$ est nilpotent, $(0,u)$ convient, donc $d=0$ ; réciproquement, $d=0$ donne $u=n$.",
+      "exemple": "Pour $A=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&2\\end{pmatrix}$, $\\chi_A=(X-1)^2(X-2)$. La relation de Bézout $(X-1)^2-X(X-2)=1$ donne les projecteurs $p_2=(A-I_3)^2$ et $p_1=I_3-p_2$, d'où $$D=p_1+2p_2=I_3+(A-I_3)^2=\\begin{pmatrix}1&0&2\\\\0&1&1\\\\0&0&2\\end{pmatrix},\\qquad N=A-D=\\begin{pmatrix}0&1&-1\\\\0&0&0\\\\0&0&0\\end{pmatrix},$$ avec $N^2=0$ et $DN=ND$, puisque $D$ et $N$ sont des polynômes en $A$. La partie diagonale $\\mathrm{diag}(1,1,2)$ de $A$ n'est pas $D$ : $D$ est diagonalisable sans être diagonale.",
+      "contre_exemple": "- **Partie diagonale** : $A=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}+\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ est somme d'une matrice diagonale et d'une matrice nilpotente qui ne commutent pas : $\\mathrm{diag}(1,2)E_{12}=E_{12}$ et $E_{12}\\,\\mathrm{diag}(1,2)=2E_{12}$. Comme $A$ a deux valeurs propres distinctes, elle est diagonalisable, et sa décomposition de Dunford est $(A,0)$. Sans la condition de commutation, il n'y aurait donc pas unicité.\n- **Polynôme non scindé** : la matrice $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\in\\mathcal{M}_2(\\mathbb{R})$ ne s'écrit pas $R=D+N$ avec $D$ diagonalisable sur $\\mathbb{R}$, $N$ nilpotente et $DN=ND$. Sinon $D=R-N$ commuterait avec $R$ ; si $\\lambda$ est une valeur propre réelle de $D$, $E_\\lambda(D)$ serait stable par $R$ : ou bien c'est une droite, et $R$ aurait un vecteur propre réel, ou bien c'est $\\mathbb{R}^2$, et $R-\\lambda I_2=N$ serait nilpotente, donc $\\chi_R=(X-\\lambda)^2$. Les deux cas sont exclus, car $\\chi_R=X^2+1$.",
+      "affirmations": [
+        {
+          "texte": "Si $u$ est diagonalisable, sa décomposition de Dunford est $(u,0)$.",
+          "vrai": true,
+          "justification": "Le couple $(u,0)$ convient ($0$ est nilpotent et commute avec $u$), et la décomposition est unique."
+        },
+        {
+          "texte": "La partie diagonalisable de la décomposition de Dunford d'une matrice triangulaire supérieure est sa partie diagonale.",
+          "vrai": false,
+          "contre_exemple": "$A=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$ est diagonalisable : sa partie diagonalisable est $A$ elle-même, pas $\\mathrm{diag}(1,2)$."
+        },
+        {
+          "texte": "$u$ et $d$ ont le même polynôme caractéristique.",
+          "vrai": true,
+          "justification": "$d$ vaut $\\lambda_i\\,\\mathrm{id}$ sur le sous-espace caractéristique $N_i$, de dimension $m_i$, donc $\\chi_d=\\prod_i(X-\\lambda_i)^{m_i}=\\chi_u$."
+        },
+        {
+          "texte": "$u$ et $d$ ont le même polynôme minimal.",
+          "vrai": false,
+          "contre_exemple": "Pour $J=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $d=I_2$ a pour polynôme minimal $X-1$, alors que celui de $J$ est $(X-1)^2$."
+        },
+        {
+          "texte": "Tout endomorphisme qui commute avec $u$ commute avec $d$ et avec $n$.",
+          "vrai": true,
+          "justification": "$d$ et $n$ sont des polynômes en $u$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dunford-simultanee",
+        "al-l2-reduction-sous-espaces-caracteristiques",
+        "al-l2-reduction-lemme-noyaux",
+        "arith-l1-polynomes-bezout"
+      ]
+    },
+    {
+      "id": "al-l3-dunford-exponentielle",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dunford",
+      "type": "theoreme",
+      "titre": "Exponentielle d'un endomorphisme",
+      "recto": "Exprimer l'exponentielle d'un endomorphisme à l'aide de sa décomposition de Dunford, et en déduire son spectre et sa diagonalisabilité.",
+      "cours": "L'exponentielle $e^u=\\sum_{k\\ge0}\\frac{u^k}{k!}$ a été définie avec les systèmes différentiels : la série converge pour toute norme d'algèbre sur $\\mathcal{L}(E)$, et $e^{u+v}=e^ue^v$ quand $u$ et $v$ commutent. La décomposition de Dunford permet de la **calculer** et d'en lire les propriétés spectrales.\n\nCalcul : si $u=d+n$, $d$ et $n$ commutent, donc $e^u=e^de^n$. Le facteur $e^n$ est une **somme finie**, $\\sum_{k<m}\\frac{n^k}{k!}$ ; le facteur $e^d$ s'obtient en remplaçant chaque valeur propre par son exponentielle : $e^d=\\sum_ie^{\\lambda_i}p_i$, où les $p_i$ sont les projecteurs sur les sous-espaces caractéristiques. Sur $N_i$, $e^u$ agit donc par $e^{\\lambda_i}\\sum_{k<m_i}\\frac{(u-\\lambda_i\\,\\mathrm{id})^k}{k!}$. Comme $\\mathbb{K}[u]$ est un sous-espace de dimension finie, donc fermé, $e^u$ est même un polynôme en $u$ (polynôme qui dépend de $u$).\n\nPropriétés : les valeurs propres de $e^u$ sont les $e^\\lambda$, avec les mêmes multiplicités (on trigonalise), d'où $\\det e^u=e^{\\mathrm{tr}\\,u}\\neq0$. La décomposition de Dunford de $e^u$ est $e^d+e^d(e^n-\\mathrm{id})$, et $e^n-\\mathrm{id}=n\\circ(\\mathrm{id}+\\frac n2+\\cdots)$ n'est nul que si $n=0$ : sur $\\mathbb{C}$, $e^u$ est diagonalisable si et seulement si $u$ l'est.\n\nPièges : $e^{u+v}\\neq e^ue^v$ en général sans commutation ; l'exponentielle n'est pas injective ($e^B=I_2$ pour $B=\\begin{pmatrix}0&-2\\pi\\\\2\\pi&0\\end{pmatrix}$) ; sur $\\mathbb{R}$, $e^u$ peut être diagonalisable sans que $u$ le soit (même exemple) ; l'image de $\\exp$ sur $\\mathcal{M}_n(\\mathbb{R})$ ne contient que des matrices de déterminant strictement positif. Sur $\\mathbb{C}$, en revanche, $\\exp:\\mathcal{M}_n(\\mathbb{C})\\to GL_n(\\mathbb{C})$ est surjective (voir les exercices).",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie non nulle et $u\\in\\mathcal{L}(E)$.",
+        "$\\chi_u$ est scindé sur $\\mathbb{K}$.",
+        "$u=d+n$ est la décomposition de Dunford de $u$ : $d$ diagonalisable, $n$ nilpotent, $d\\circ n=n\\circ d$."
+      ],
+      "hypotheses_pieges": [
+        "$u=d+n$ avec $d$ diagonalisable et $n$ nilpotent, sans supposer $d\\circ n=n\\circ d$ (à la place de : la décomposition de Dunford).",
+        "$\\mathbb{K}=\\mathbb{R}$ et le polynôme caractéristique de $e^u$ est scindé sur $\\mathbb{R}$ (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$).",
+        "$\\mathbb{K}=\\mathbb{R}$ et $\\chi_u$ a au moins une racine réelle (à la place de : $\\chi_u$ scindé sur $\\mathbb{K}$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $m\\ge1$, $u\\in\\mathcal{L}(E)$ et $e^u=\\sum_{k\\ge0}\\frac{u^k}{k!}$.\n- $e^u$ est un polynôme en $u$.\n- Si $\\chi_u$ est scindé et si $u=d+n$ est la décomposition de Dunford de $u$, alors $e^u=e^d\\,e^n=e^d\\sum_{k=0}^{m-1}\\frac{n^k}{k!}$ ; si $d=\\sum_i\\lambda_ip_i$ (projecteurs sur les sous-espaces caractéristiques), alors $e^d=\\sum_ie^{\\lambda_i}p_i$. La décomposition de Dunford de $e^u$ est $e^u=e^d+e^d(e^n-\\mathrm{id}_E)$.\n- Si $\\chi_u=\\prod_i(X-\\lambda_i)^{m_i}$ est scindé, alors $\\chi_{e^u}=\\prod_i(X-e^{\\lambda_i})^{m_i}$ et $\\det e^u=e^{\\mathrm{tr}\\,u}$.\n- Si $\\chi_u$ est scindé, $e^u$ est diagonalisable si et seulement si $u$ est diagonalisable.",
+      "enonce_trous": "Si $\\chi_u$ est scindé et si $u=d+n$ est sa décomposition de Dunford, alors $e^u$ est égal à {{1}}, les valeurs propres de $e^u$ sont {{2}}, et $e^u$ est diagonalisable si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$e^d\\,e^n$",
+          "leurres": [
+            "$e^d+e^n$",
+            "$e^d+n$",
+            "$e^n$"
+          ]
+        },
+        {
+          "reponse": "les $e^\\lambda$, $\\lambda$ valeur propre de $u$",
+          "leurres": [
+            "les valeurs propres de $u$",
+            "les $1+\\lambda$, $\\lambda$ valeur propre de $u$",
+            "les $e^{a}$, $a$ coefficient diagonal de la matrice de $u$ dans une base quelconque"
+          ]
+        },
+        {
+          "reponse": "$n=0$",
+          "leurres": [
+            "$d=0$",
+            "$n^2=0$",
+            "$u$ est inversible"
+          ]
+        }
+      ],
+      "demo": "**Polynôme en $u$.** $\\mathbb{K}[u]$ est un sous-espace vectoriel de $\\mathcal{L}(E)$ de dimension finie, donc fermé (pour n'importe quelle norme). Les sommes partielles $\\sum_{k\\le K}\\frac{u^k}{k!}$ sont dans $\\mathbb{K}[u]$, donc leur limite $e^u$ aussi.\n\n**Dunford.** $d$ et $n$ commutent, donc $e^u=e^{d+n}=e^de^n$, et $e^n=\\sum_{k<m}\\frac{n^k}{k!}$ car $n^m=0$ (un endomorphisme nilpotent d'un espace de dimension $m$ vérifie $n^m=0$). Les $p_i$ sont des projecteurs de somme $\\mathrm{id}_E$, avec $p_ip_j=0$ pour $i\\neq j$, donc $d^k=\\sum_i\\lambda_i^kp_i$ et $e^d=\\sum_ie^{\\lambda_i}p_i$ : dans une base adaptée à $E=\\bigoplus_iN_i$, la matrice de $e^d$ est diagonale, et $e^d$ est diagonalisable. Posons $\\nu=e^d(e^n-\\mathrm{id}_E)$. On a $e^n-\\mathrm{id}_E=nw$, avec $w=\\sum_{k\\ge1}\\frac{n^{k-1}}{k!}$, polynôme en $n$ ; $e^d$, $n$ et $w$ sont des polynômes en $u$, donc commutent, et $\\nu^m=(e^d)^mw^mn^m=0$ : $\\nu$ est nilpotent. Enfin $e^d$ et $\\nu$ sont des polynômes en $u$, donc commutent, et $e^u=e^d+\\nu$ : par unicité, c'est la décomposition de Dunford de $e^u$.\n\n**Spectre.** Si $\\chi_u$ est scindé, $u$ est trigonalisable : dans une base convenable, sa matrice $T$ est triangulaire supérieure, de diagonale formée des $\\lambda_i$, chacun répété $m_i$ fois. Les $T^k$ sont triangulaires supérieures de diagonale formée des $\\lambda_i^k$, donc $e^T$ est triangulaire supérieure de diagonale formée des $e^{\\lambda_i}$. D'où $\\chi_{e^u}$, puis $\\det e^u=\\prod_ie^{m_i\\lambda_i}=e^{\\mathrm{tr}\\,u}$.\n\n**Diagonalisabilité.** $e^u$ est diagonalisable si et seulement si sa partie nilpotente $\\nu$ est nulle. Or $e^d$ est inversible (d'inverse $e^{-d}$) et $w=\\mathrm{id}_E+\\frac n2+\\cdots$ est inversible, comme somme de l'identité et d'un nilpotent qui commute avec elle ; donc $\\nu=e^dwn$ est nul si et seulement si $n=0$, c'est-à-dire si et seulement si $u$ est diagonalisable.",
+      "exemple": "Pour $A=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&2\\end{pmatrix}$, la carte de Dunford donne $p_2=(A-I_3)^2$, $p_1=I_3-p_2$ et $N=\\begin{pmatrix}0&1&-1\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, avec $N^2=0$. Alors $$e^D=e\\,p_1+e^2p_2=\\begin{pmatrix}e&0&2e^2-2e\\\\0&e&e^2-e\\\\0&0&e^2\\end{pmatrix},\\qquad e^A=e^D(I_3+N)=\\begin{pmatrix}e&e&2e^2-3e\\\\0&e&e^2-e\\\\0&0&e^2\\end{pmatrix}.$$ On contrôle $\\det e^A=e\\cdot e\\cdot e^2=e^4=e^{\\mathrm{tr}\\,A}$, et $e^A$ n'est pas diagonalisable, comme $A$.",
+      "contre_exemple": "- **Sans commutation** : $A=\\begin{pmatrix}1&1\\\\0&0\\end{pmatrix}=D'+N'$ avec $D'=\\mathrm{diag}(1,0)$ et $N'=E_{12}$, qui ne commutent pas. Comme $A^2=A$, $e^A=I_2+(e-1)A=\\begin{pmatrix}e&e-1\\\\0&1\\end{pmatrix}$, alors que $e^{D'}e^{N'}=\\begin{pmatrix}e&e\\\\0&1\\end{pmatrix}$.\n- **Sur $\\mathbb{R}$, sans polynôme scindé** : pour $B=\\begin{pmatrix}0&-2\\pi\\\\2\\pi&0\\end{pmatrix}$, $e^B=\\cos(2\\pi)I_2+\\sin(2\\pi)\\frac{B}{2\\pi}=I_2$ est diagonalisable, alors que $B$, de valeurs propres $\\pm2i\\pi$, ne l'est pas sur $\\mathbb{R}$. Cet exemple montre aussi que $e^u=\\mathrm{id}_E$ n'entraîne pas $u=0$.\n- **Non-surjectivité sur $\\mathbb{R}$** : $\\det e^A=e^{\\mathrm{tr}\\,A}>0$ pour $A$ réelle, donc $\\mathrm{diag}(-1,1)$ n'est l'exponentielle d'aucune matrice réelle.",
+      "affirmations": [
+        {
+          "texte": "Pour tout $u\\in\\mathcal{L}(E)$, $e^u$ est un polynôme en $u$.",
+          "vrai": true,
+          "justification": "$\\mathbb{K}[u]$ est de dimension finie, donc fermé, et contient les sommes partielles de la série."
+        },
+        {
+          "texte": "Si $e^u=\\mathrm{id}_E$, alors $u=0$.",
+          "vrai": false,
+          "contre_exemple": "$B=\\begin{pmatrix}0&-2\\pi\\\\2\\pi&0\\end{pmatrix}$ vérifie $e^B=\\cos(2\\pi)I_2+\\sin(2\\pi)\\frac{B}{2\\pi}=I_2$."
+        },
+        {
+          "texte": "Si $u$ est nilpotent, $e^u-\\mathrm{id}_E$ est nilpotent.",
+          "vrai": true,
+          "justification": "$e^u-\\mathrm{id}_E=uw$, avec $w$ polynôme en $u$, donc $(e^u-\\mathrm{id}_E)^m=u^mw^m=0$."
+        },
+        {
+          "texte": "Toute matrice de $GL_n(\\mathbb{R})$ est l'exponentielle d'une matrice réelle.",
+          "vrai": false,
+          "contre_exemple": "$\\det e^A=e^{\\mathrm{tr}\\,A}>0$ pour $A$ réelle : $\\mathrm{diag}(-1,1,\\dots,1)$, de déterminant $-1$, n'est pas une exponentielle."
+        },
+        {
+          "texte": "Pour $A\\in\\mathcal{M}_n(\\mathbb{C})$, $e^A$ est diagonalisable si et seulement si $A$ l'est.",
+          "vrai": true,
+          "justification": "La partie nilpotente de $e^A$ est $e^Dw N$, avec $e^D$ et $w$ inversibles : elle est nulle si et seulement si $N=0$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dunford-dunford",
+        "ed-l2-systemes-exponentielle",
+        "al-l2-reduction-trigonalisation",
+        "top-l2-evn-equivalence-dim-finie"
+      ]
+    },
+    {
+      "id": "al-l3-dunford-densite",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dunford",
+      "type": "theoreme",
+      "titre": "Densité de $GL(E)$ et des endomorphismes diagonalisables",
+      "recto": "Énoncer les résultats de densité de $GL(E)$ et des endomorphismes diagonalisables dans $\\mathcal{L}(E)$, sur $\\mathbb{C}$ et sur $\\mathbb{R}$.",
+      "cours": "En dimension finie, $\\mathcal{L}(E)$ est un espace vectoriel normé, où toutes les normes sont équivalentes : on peut y parler de parties ouvertes, fermées ou denses sans préciser la norme. Deux résultats de densité servent constamment : $GL(E)$ est un **ouvert dense**, et, sur $\\mathbb{C}$, les endomorphismes **diagonalisables** sont denses. Ils permettent de démontrer une identité entre fonctions **continues** de $u$ (par exemple polynomiales en les coefficients) d'abord pour $u$ inversible ou diagonalisable, où elle est facile, puis pour tout $u$ par passage à la limite.\n\nPourquoi : $\\det$ est continu, donc $GL(E)=\\{\\det\\neq0\\}$ est ouvert ; $u-t\\,\\mathrm{id}_E$ n'est non inversible que pour un nombre fini de valeurs de $t$ (les valeurs propres de $u$), donc $u$ est limite d'endomorphismes inversibles. Sur $\\mathbb{C}$, on trigonalise et l'on écarte légèrement les coefficients diagonaux pour les rendre deux à deux distincts.\n\nExemples d'utilisation : $\\chi_{AB}=\\chi_{BA}$ (évident si $A$ est inversible, puisque $BA=A^{-1}(AB)A$) ; le théorème de Cayley-Hamilton (évident pour une matrice diagonalisable, puis par densité dans $\\mathcal{M}_n(\\mathbb{C})$, ce qui suffit pour les matrices réelles, vues comme complexes) ; $\\det(\\mathrm{com}\\,A)=(\\det A)^{n-1}$ pour $n\\ge2$.\n\nSur $\\mathbb{R}$, la densité des diagonalisables est **fausse** dès la dimension $2$ : le discriminant $(\\mathrm{tr}\\,M)^2-4\\det M$ d'une matrice $M$ de taille $2$ dépend continûment de $M$ et reste strictement négatif près d'une rotation d'angle $\\frac\\pi2$. L'adhérence des matrices diagonalisables sur $\\mathbb{R}$ est exactement l'ensemble des matrices trigonalisables sur $\\mathbb{R}$, c'est-à-dire de polynôme caractéristique scindé sur $\\mathbb{R}$.\n\nPièges : « dense » ne veut pas dire « ouvert » (les diagonalisables ne forment pas un ouvert) ; l'argument de densité ne vaut que pour une propriété qui passe à la limite, comme une égalité entre fonctions continues, pas pour « être diagonalisable » ou « être semblable à ».",
+      "hypotheses": [
+        "$E$ est un $\\mathbb{K}$-espace vectoriel de dimension finie $m\\ge1$, et $\\mathcal{L}(E)$ est muni d'une norme.",
+        "Pour la densité des endomorphismes diagonalisables : $\\mathbb{K}=\\mathbb{C}$.",
+        "Pour $\\mathbb{K}=\\mathbb{R}$, « diagonalisable » s'entend sur $\\mathbb{R}$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la densité des endomorphismes diagonalisables : $\\mathbb{K}=\\mathbb{R}$ et $m\\ge2$ (à la place de : $\\mathbb{K}=\\mathbb{C}$).",
+        "Pour $\\mathbb{K}=\\mathbb{R}$, on considère les endomorphismes diagonalisables sur $\\mathbb{C}$ (à la place de : sur $\\mathbb{R}$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $m\\ge1$, et $\\mathcal{L}(E)$ muni d'une norme quelconque (elles sont toutes équivalentes).\n- $GL(E)$ est un ouvert dense de $\\mathcal{L}(E)$.\n- Si $\\mathbb{K}=\\mathbb{C}$, l'ensemble des endomorphismes diagonalisables est dense dans $\\mathcal{L}(E)$, et même celui des endomorphismes qui ont $m$ valeurs propres distinctes.\n- Si $\\mathbb{K}=\\mathbb{R}$, l'adhérence de l'ensemble des endomorphismes diagonalisables sur $\\mathbb{R}$ est l'ensemble des endomorphismes trigonalisables sur $\\mathbb{R}$, c'est-à-dire dont le polynôme caractéristique est scindé sur $\\mathbb{R}$. Pour $m\\ge2$, elle n'est pas égale à $\\mathcal{L}(E)$.",
+      "enonce_trous": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de dimension finie $m\\ge2$. Dans $\\mathcal{L}(E)$, $GL(E)$ est {{1}} ; pour $\\mathbb{K}=\\mathbb{C}$, les endomorphismes diagonalisables forment {{2}} ; pour $\\mathbb{K}=\\mathbb{R}$, l'adhérence de l'ensemble des endomorphismes diagonalisables est l'ensemble des endomorphismes {{3}}.",
+      "trous": [
+        {
+          "reponse": "un ouvert dense",
+          "leurres": [
+            "un fermé dense",
+            "un ouvert non dense",
+            "un fermé d'intérieur vide"
+          ]
+        },
+        {
+          "reponse": "une partie dense",
+          "leurres": [
+            "une partie d'intérieur vide",
+            "une partie bornée",
+            "une partie de complémentaire dense"
+          ]
+        },
+        {
+          "reponse": "trigonalisables sur $\\mathbb{R}$",
+          "leurres": [
+            "diagonalisables sur $\\mathbb{R}$",
+            "diagonalisables sur $\\mathbb{C}$",
+            "inversibles"
+          ]
+        }
+      ],
+      "demo": "On fixe une base, ce qui identifie $\\mathcal{L}(E)$ à $\\mathcal{M}_m(\\mathbb{K})$ ; toutes les normes étant équivalentes, on peut prendre $\\|A\\|=\\max_{i,j}|a_{ij}|$.\n\n**$GL(E)$ est ouvert.** $\\det$ est continue (polynomiale en les coefficients), et $GL_m(\\mathbb{K})$ est l'image réciproque par $\\det$ de l'ouvert $\\mathbb{K}\\setminus\\{0\\}$.\n\n**$GL(E)$ est dense.** Soit $A\\in\\mathcal{M}_m(\\mathbb{K})$. $t\\mapsto\\det(A-tI_m)$ est un polynôme de degré $m$, donc non nul, qui a au plus $m$ racines : pour $k$ assez grand, $A-\\frac1kI_m$ est inversible, et $\\|(A-\\frac1kI_m)-A\\|=\\frac1k\\to0$.\n\n**Diagonalisables, $\\mathbb{K}=\\mathbb{C}$.** Soit $A=PTP^{-1}$, avec $T$ triangulaire supérieure de diagonale $(t_{11},\\dots,t_{mm})$. Pour $k\\ge1$, on choisit successivement des réels $\\varepsilon_1,\\dots,\\varepsilon_m\\in\\left[0,\\frac1k\\right]$ tels que les $t_{ii}+\\varepsilon_i$ soient deux à deux distincts (à chaque étape, on évite un nombre fini de valeurs). $T_k=T+\\mathrm{diag}(\\varepsilon_1,\\dots,\\varepsilon_m)$ a $m$ valeurs propres distinctes, donc $A_k=PT_kP^{-1}$ aussi, et $A_k$ est diagonalisable ; enfin $A_k-A=P\\,\\mathrm{diag}(\\varepsilon_1,\\dots,\\varepsilon_m)P^{-1}\\to0$ quand $k\\to+\\infty$.\n\n**Diagonalisables, $\\mathbb{K}=\\mathbb{R}$.** Si $A$ est trigonalisable sur $\\mathbb{R}$, le même argument, avec $P$ et $T$ réelles, en fait une limite de matrices diagonalisables sur $\\mathbb{R}$. Réciproquement, un polynôme unitaire $Q$ de degré $m$ est scindé sur $\\mathbb{R}$ si et seulement si $|Q(z)|\\ge|\\mathrm{Im}\\,z|^m$ pour tout $z\\in\\mathbb{C}$ : si $Q=\\prod_j(X-r_j)$ avec des $r_j$ réels, $|z-r_j|\\ge|\\mathrm{Im}\\,z|$ ; si $Q$ a une racine $z_0$ non réelle, l'inégalité tombe en défaut en $z_0$. Si $A_k\\to A$ avec $A_k$ diagonalisables sur $\\mathbb{R}$, les coefficients de $\\chi_{A_k}$, polynomiaux en ceux de $A_k$, tendent vers ceux de $\\chi_A$, donc $\\chi_{A_k}(z)\\to\\chi_A(z)$ pour tout $z\\in\\mathbb{C}$, et l'inégalité passe à la limite : $\\chi_A$ est scindé sur $\\mathbb{R}$. Pour $m\\ge2$, la matrice diagonale par blocs de blocs $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ et $I_{m-2}$ a pour polynôme caractéristique $(X^2+1)(X-1)^{m-2}$, non scindé sur $\\mathbb{R}$ : elle n'est pas dans l'adhérence.",
+      "exemple": "$J=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ n'est ni inversible ni diagonalisable. Pourtant $J_k=\\begin{pmatrix}\\frac1k&1\\\\0&0\\end{pmatrix}$ a deux valeurs propres distinctes, $\\frac1k$ et $0$, donc est diagonalisable, et $J-\\frac1kI_2=\\begin{pmatrix}-\\frac1k&1\\\\0&-\\frac1k\\end{pmatrix}$ est inversible ; les deux suites tendent vers $J$.\n\nApplication : pour $A,B\\in\\mathcal{M}_m(\\mathbb{K})$, $\\chi_{AB}=\\chi_{BA}$. C'est vrai si $A$ est inversible, car $BA=A^{-1}(AB)A$. Dans le cas général, $A-\\frac1kI_m$ est inversible pour $k$ assez grand, donc $\\chi_{(A-\\frac1kI_m)B}=\\chi_{B(A-\\frac1kI_m)}$, et l'on fait tendre $k$ vers $+\\infty$, les coefficients d'un polynôme caractéristique étant des fonctions continues de la matrice.",
+      "contre_exemple": "- **Sur $\\mathbb{R}$** : si $B=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ vérifie $\\max(|a|,|b+1|,|c-1|,|d|)<\\frac14$, alors $(a-d)^2<\\frac14$, $b<-\\frac34$ et $c>\\frac34$, donc le discriminant de $\\chi_B$, $(a-d)^2+4bc$, est strictement inférieur à $\\frac14-\\frac94<0$ : $\\chi_B$ n'a pas de racine réelle, et aucune matrice diagonalisable sur $\\mathbb{R}$ n'est à distance strictement inférieure à $\\frac14$ de $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ pour la norme $\\max_{i,j}|m_{ij}|$.\n- **Les diagonalisables ne forment pas un ouvert** : $0$ est diagonalisable, mais, pour tout $\\varepsilon\\neq0$, $\\begin{pmatrix}0&\\varepsilon\\\\0&0\\end{pmatrix}$, nilpotente non nulle, ne l'est pas.\n- **Les nilpotentes ne sont pas denses** : la condition $A^m=0$ passe à la limite, donc l'ensemble des matrices nilpotentes de $\\mathcal{M}_m(\\mathbb{K})$ est fermé, et il ne contient pas $I_m$.",
+      "affirmations": [
+        {
+          "texte": "Pour $m\\ge2$, l'ensemble des matrices diagonalisables de $\\mathcal{M}_m(\\mathbb{C})$ est un ouvert.",
+          "vrai": false,
+          "contre_exemple": "Pour $m=2$ : $0$ est diagonalisable, et la matrice nilpotente non nulle $\\begin{pmatrix}0&\\varepsilon\\\\0&0\\end{pmatrix}$, aussi proche de $0$ qu'on veut, ne l'est pas."
+        },
+        {
+          "texte": "L'ensemble des matrices de $\\mathcal{M}_m(\\mathbb{C})$ qui ont $m$ valeurs propres distinctes est dense dans $\\mathcal{M}_m(\\mathbb{C})$.",
+          "vrai": true,
+          "justification": "On trigonalise, puis on écarte légèrement les coefficients diagonaux pour les rendre deux à deux distincts."
+        },
+        {
+          "texte": "Les matrices de $\\mathcal{M}_2(\\mathbb{R})$ diagonalisables sur $\\mathbb{R}$ forment une partie dense de $\\mathcal{M}_2(\\mathbb{R})$.",
+          "vrai": false,
+          "contre_exemple": "Aucune matrice diagonalisable sur $\\mathbb{R}$ n'est à distance strictement inférieure à $\\frac14$ de $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ pour la norme $\\max_{i,j}|m_{ij}|$ : le discriminant de son polynôme caractéristique serait strictement négatif."
+        },
+        {
+          "texte": "Pour $A,B\\in\\mathcal{M}_m(\\mathbb{K})$, $AB$ et $BA$ ont le même polynôme caractéristique.",
+          "vrai": true,
+          "justification": "C'est vrai si $A$ est inversible ($BA=A^{-1}(AB)A$), puis pour toute $A$ par densité de $GL_m(\\mathbb{K})$ et continuité des coefficients du polynôme caractéristique."
+        },
+        {
+          "texte": "$GL_m(\\mathbb{R})$ est une partie fermée de $\\mathcal{M}_m(\\mathbb{R})$.",
+          "vrai": false,
+          "contre_exemple": "$\\frac1kI_m$ est inversible et tend vers $0$, qui ne l'est pas."
+        }
+      ],
+      "prerequis": [
+        "al-l2-reduction-trigonalisation",
+        "al-l2-reduction-polynome-caracteristique",
+        "al-l1-determinant-inversibilite",
+        "top-l2-evn-equivalence-dim-finie",
+        "top-l2-evn-suites"
+      ]
+    },
+    {
+      "id": "al-l3-dunford-systemes",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dunford",
+      "type": "theoreme",
+      "titre": "Applications aux systèmes différentiels",
+      "recto": "Décrire les solutions de $X'=AX$ à l'aide des sous-espaces caractéristiques de $A$, et donner les critères de convergence vers $0$ et de bornitude des solutions sur $[0,+\\infty[$.",
+      "cours": "Pour un système à coefficients constants $X'=AX$, les solutions sont les $X(t)=e^{tA}X_0$ ; la décomposition de Dunford rend ce calcul explicite et, surtout, permet de lire le **comportement en temps long** sur les valeurs propres. Sur chaque sous-espace caractéristique $N_i$, $A=\\lambda_iI+(A-\\lambda_iI)$ avec $A-\\lambda_iI$ nilpotent sur $N_i$, d'où $e^{tA}=e^{\\lambda_it}\\sum_{k<m_i}\\frac{t^k}{k!}(A-\\lambda_iI)^k$ sur $N_i$ : une exponentielle multipliée par un polynôme en $t$ de degré strictement inférieur à $m_i$.\n\nMéthode : (1) valeurs propres et multiplicités ; (2) sous-espaces caractéristiques, et décomposition de $X_0$ suivant $\\bigoplus_iN_i$ ; (3) sur chaque $N_i$, la série de $e^{t(A-\\lambda_iI)}$ est une somme finie. Pour une matrice réelle à valeurs propres non réelles, on travaille sur $\\mathbb{C}$ : la solution issue d'une donnée initiale réelle est réelle.\n\nStabilité : le module de $e^{\\lambda t}$ est $e^{t\\,\\mathrm{Re}\\,\\lambda}$. Toutes les solutions tendent vers $0$ en $+\\infty$ si et seulement si toutes les valeurs propres sont de partie réelle strictement négative ; elles sont toutes bornées sur $[0,+\\infty[$ si et seulement si les parties réelles sont négatives ou nulles et si les valeurs propres de partie réelle nulle sont **semi-simples** ($N_i=E_{\\lambda_i}(A)$, c'est-à-dire racines simples du polynôme minimal). Si une valeur propre $\\lambda$ de partie réelle nulle n'est pas semi-simple, apparaissent des termes $te^{\\lambda t}$, de module $t$ : c'est le phénomène de **résonance**, par exemple pour $x''+x=y$, $y''+y=0$.\n\nPièges : la multiplicité dans $\\chi_A$ ne décide pas seule (comparer $0_2$ et $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$) ; c'est la partie réelle des valeurs propres qui compte, pas leur module (le module intervient pour les suites $X_{k+1}=AX_k$) ; borné sur $[0,+\\infty[$ ne veut pas dire borné sur $\\mathbb{R}$.",
+      "hypotheses": [
+        "$A\\in\\mathcal{M}_m(\\mathbb{C})$ est constante, de valeurs propres distinctes $\\lambda_1,\\dots,\\lambda_p$, de multiplicités $m_1,\\dots,m_p$, et $N_i=\\mathrm{Ker}(A-\\lambda_iI_m)^{m_i}$.",
+        "Pour la limite nulle : $\\mathrm{Re}\\,\\lambda_i<0$ pour tout $i$.",
+        "Pour la bornitude : $\\mathrm{Re}\\,\\lambda_i\\le0$ pour tout $i$.",
+        "Pour la bornitude : si $\\mathrm{Re}\\,\\lambda_i=0$, alors $N_i=E_{\\lambda_i}(A)$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la limite nulle : $\\mathrm{Re}\\,\\lambda_i\\le0$ pour tout $i$ (à la place de : $\\mathrm{Re}\\,\\lambda_i<0$).",
+        "Pour la bornitude : $|\\lambda_i|\\le1$ pour tout $i$ (à la place de : $\\mathrm{Re}\\,\\lambda_i\\le0$).",
+        "Pour la bornitude : si $\\mathrm{Re}\\,\\lambda_i=0$, alors $\\lambda_i$ est racine simple de $\\chi_A$ (à la place de : $N_i=E_{\\lambda_i}(A)$)."
+      ],
+      "enonce": "Soit $A\\in\\mathcal{M}_m(\\mathbb{C})$, $\\chi_A=\\prod_{i=1}^p(X-\\lambda_i)^{m_i}$ avec $\\lambda_1,\\dots,\\lambda_p$ deux à deux distincts, $N_i=\\mathrm{Ker}(A-\\lambda_iI_m)^{m_i}$ et $p_i$ le projecteur sur $N_i$ parallèlement à $\\bigoplus_{j\\neq i}N_j$.\n- Pour tout $t\\in\\mathbb{R}$, $e^{tA}=\\sum_{i=1}^pe^{\\lambda_it}\\sum_{k=0}^{m_i-1}\\frac{t^k}{k!}(A-\\lambda_iI_m)^kp_i$.\n- La solution de $X'=AX$ telle que $X(0)=X_0$ s'obtient en décomposant $X_0=\\sum_iX_{0,i}$ avec $X_{0,i}\\in N_i$ : $X(t)=\\sum_ie^{\\lambda_it}\\sum_{k=0}^{m_i-1}\\frac{t^k}{k!}(A-\\lambda_iI_m)^kX_{0,i}$.\n- Toutes les solutions tendent vers $0$ en $+\\infty$ si et seulement si $\\mathrm{Re}\\,\\lambda_i<0$ pour tout $i$.\n- Toutes les solutions sont bornées sur $[0,+\\infty[$ si et seulement si $\\mathrm{Re}\\,\\lambda_i\\le0$ pour tout $i$ et, pour chaque $i$ tel que $\\mathrm{Re}\\,\\lambda_i=0$, $N_i=E_{\\lambda_i}(A)$.\n\nPour $A$ réelle, les deux critères valent aussi pour les solutions réelles.",
+      "enonce_trous": "Les solutions de $X'=AX$ sont toutes bornées sur $[0,+\\infty[$ si et seulement si les valeurs propres de $A$ ont {{1}}, et si celles de partie réelle nulle {{2}}.",
+      "trous": [
+        {
+          "reponse": "une partie réelle négative ou nulle",
+          "leurres": [
+            "un module au plus égal à $1$",
+            "une partie réelle strictement négative",
+            "une partie imaginaire nulle"
+          ]
+        },
+        {
+          "reponse": "ont un sous-espace caractéristique égal au sous-espace propre",
+          "leurres": [
+            "sont racines simples du polynôme caractéristique",
+            "sont nulles",
+            "ont un sous-espace propre de dimension $1$"
+          ]
+        }
+      ],
+      "demo": "**Formule.** Soit $A=D+N$ la décomposition de Dunford : $D=\\sum_i\\lambda_ip_i$ et $N=\\sum_i(A-\\lambda_iI_m)p_i$, car $N$ vaut $A-\\lambda_iI_m$ sur chaque $N_i$. $D$ et $N$ commutent, donc $e^{tA}=e^{tD}e^{tN}=\\left(\\sum_ie^{\\lambda_it}p_i\\right)\\sum_{k\\ge0}\\frac{t^k}{k!}N^k$. Les $p_i$ sont des polynômes en $A$, donc commutent avec $A$, et vérifient $p_i^2=p_i$, $p_ip_j=0$ pour $i\\neq j$ : $p_iN^k=(A-\\lambda_iI_m)^kp_i$, qui est nul pour $k\\ge m_i$ puisque $(A-\\lambda_iI_m)^{m_i}$ s'annule sur $N_i=\\mathrm{Im}\\,p_i$. D'où la formule ; la solution est $e^{tA}X_0$, et $p_iX_0=X_{0,i}$.\n\n**Limite nulle.** Si $\\mathrm{Re}\\,\\lambda_i<0$ pour tout $i$, chaque terme $t^ke^{\\lambda_it}$, de module $t^ke^{t\\,\\mathrm{Re}\\,\\lambda_i}$, tend vers $0$, donc $X(t)\\to0$. Si $\\mathrm{Re}\\,\\lambda_i\\ge0$ pour un $i$, un vecteur propre $V$ associé donne la solution $e^{\\lambda_it}V$, de norme $e^{t\\,\\mathrm{Re}\\,\\lambda_i}\\|V\\|\\ge\\|V\\|>0$.\n\n**Bornitude.** Sous les conditions, les termes d'indice $i$ tels que $\\mathrm{Re}\\,\\lambda_i<0$ tendent vers $0$ ; si $\\mathrm{Re}\\,\\lambda_i=0$, $N_i=E_{\\lambda_i}(A)$ donne $(A-\\lambda_iI_m)X_{0,i}=0$, et le terme se réduit à $e^{\\lambda_it}X_{0,i}$, de norme constante. Réciproquement, si $\\mathrm{Re}\\,\\lambda_i>0$, la solution $e^{\\lambda_it}V$ n'est pas bornée. Si $\\mathrm{Re}\\,\\lambda_i=0$ et $E_{\\lambda_i}(A)\\neq N_i$, on choisit $Y\\in N_i$ tel que $(A-\\lambda_iI_m)Y\\neq0$, et $r\\ge1$ le plus grand entier tel que $(A-\\lambda_iI_m)^rY\\neq0$ ; $W=(A-\\lambda_iI_m)^{r-1}Y$ vérifie $(A-\\lambda_iI_m)W\\neq0$ et $(A-\\lambda_iI_m)^2W=0$, donc la solution issue de $W$ est $e^{\\lambda_it}\\left(W+t(A-\\lambda_iI_m)W\\right)$, de norme au moins $t\\|(A-\\lambda_iI_m)W\\|-\\|W\\|$, qui tend vers $+\\infty$.\n\n**Cas réel.** Si $A$ est réelle, les parties réelle et imaginaire d'une solution complexe sont des solutions réelles, et toute solution réelle est une solution complexe : toutes les solutions complexes sont bornées (ou tendent vers $0$) si et seulement si toutes les solutions réelles le sont.",
+      "exemple": "Pour $A=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&2\\end{pmatrix}$ (carte de Dunford), $p_2=(A-I_3)^2$, $p_1=I_3-p_2=\\begin{pmatrix}1&0&-2\\\\0&1&-1\\\\0&0&0\\end{pmatrix}$ et $(A-I_3)p_1=\\begin{pmatrix}0&1&-1\\\\0&0&0\\\\0&0&0\\end{pmatrix}$, d'où $$e^{tA}=e^t\\left(p_1+t(A-I_3)p_1\\right)+e^{2t}p_2=\\begin{pmatrix}e^t&te^t&2e^{2t}-(t+2)e^t\\\\0&e^t&e^{2t}-e^t\\\\0&0&e^{2t}\\end{pmatrix}.$$ Les valeurs propres $1$ et $2$ étant de partie réelle strictement positive, $X'=AX$ a des solutions non bornées ; pour $-A$, de valeurs propres $-1$ et $-2$, toutes les solutions de $X'=-AX$ tendent vers $0$ en $+\\infty$.",
+      "contre_exemple": "- **$\\mathrm{Re}\\,\\lambda\\le0$ ne suffit pas** : pour $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, la solution telle que $X(0)=(0,1)$ est $X(t)=(t,1)$, non bornée ; ici $N_0=\\mathbb{C}^2\\neq E_0(A)=\\mathrm{Vect}(e_1)$.\n- **La simplicité de la racine n'est pas nécessaire** : pour $A=0_2$, $0$ est racine double de $\\chi_A$, et toutes les solutions sont constantes, donc bornées ($N_0=E_0(A)=\\mathbb{C}^2$).\n- **Module et partie réelle** : pour $A=-2I_m$, toutes les solutions $e^{-2t}X_0$ tendent vers $0$, bien que la valeur propre $-2$ soit de module $2$ ; un critère portant sur le module, comme « $|\\lambda|<1$ », concerne les suites $X_{k+1}=AX_k$, pas les équations différentielles.",
+      "affirmations": [
+        {
+          "texte": "Si toutes les valeurs propres de $A$ ont une partie réelle strictement négative, toute solution de $X'=AX$ tend vers $0$ en $+\\infty$.",
+          "vrai": true,
+          "justification": "Chaque composante est une combinaison de fonctions $t^ke^{\\lambda t}$, de module $t^ke^{t\\,\\mathrm{Re}\\,\\lambda}\\to0$."
+        },
+        {
+          "texte": "Si toutes les solutions de $X'=AX$ sont bornées sur $[0,+\\infty[$, elles sont bornées sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $A=-I_m$, $X(t)=e^{-t}X_0$ est bornée sur $[0,+\\infty[$, mais pas sur $\\mathbb{R}$ si $X_0\\neq0$."
+        },
+        {
+          "texte": "Si $A$ est nilpotente non nulle, $X'=AX$ a des solutions non bornées sur $[0,+\\infty[$.",
+          "vrai": true,
+          "justification": "$0$ est la seule valeur propre, de partie réelle nulle, et $N_0=\\mathbb{C}^m\\neq E_0(A)=\\mathrm{Ker}\\,A$ puisque $A\\neq0$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{M}_m(\\mathbb{R})$ est antisymétrique, toutes les solutions réelles de $X'=AX$ sont bornées sur $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "$\\frac{\\mathrm{d}}{\\mathrm{d}t}\\|X\\|^2=2X^\\top AX=0$, car le réel $X^\\top AX$ est égal à son transposé $X^\\top A^\\top X=-X^\\top AX$ : $\\|X(t)\\|$ est constante."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dunford-exponentielle",
+        "ed-l2-systemes-reduction",
+        "al-l2-reduction-sous-espaces-caracteristiques"
+      ]
+    }
+  ]
+}

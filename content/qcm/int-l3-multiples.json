@@ -1,0 +1,93 @@
+{
+  "chapitre": "int-l3-multiples",
+  "questions": [
+    {
+      "id": "int-l3-multiples-q1",
+      "carte": "int-l3-multiples-curvilignes",
+      "genre": "choix",
+      "enonce": "Quelle est la longueur de l'arc $y=\\operatorname{ch}x$, $x\\in[0,1]$ ?",
+      "propositions": [
+        "$\\operatorname{sh}1$",
+        "$\\operatorname{ch}1$",
+        "$\\operatorname{ch}1-1$",
+        "$\\sqrt2$"
+      ],
+      "bonne": 0,
+      "explication": "La longueur d'un graphe $y=g(x)$ est $\\int\\sqrt{1+g'(x)^2}\\,\\mathrm{d}x$ ; ici $1+\\operatorname{sh}^2x=\\operatorname{ch}^2x$, donc $L=\\int_0^1\\operatorname{ch}x\\,\\mathrm{d}x=\\operatorname{sh}1\\approx1{,}175$. La valeur $\\operatorname{ch}1-1$ est la différence des ordonnées des extrémités, et la corde ne mesure que $\\sqrt{1+(\\operatorname{ch}1-1)^2}\\approx1{,}14$."
+    },
+    {
+      "id": "int-l3-multiples-q2",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "genre": "vrai-faux",
+      "enonce": "Pour $f(x,y)=\\frac{x^2-y^2}{(x^2+y^2)^2}$ sur $\\left]0,1\\right]^2$, on a $\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.",
+      "vrai": false,
+      "explication": "Faux. Comme $f=\\frac{\\partial}{\\partial y}\\left(\\frac y{x^2+y^2}\\right)$, $\\int_0^1f(x,y)\\,\\mathrm{d}y=\\frac1{1+x^2}$ et la première intégrale vaut $\\frac\\pi4$ ; comme $f(y,x)=-f(x,y)$, la seconde vaut $-\\frac\\pi4$. La formule de Fubini ne s'applique pas : $f$ n'est pas continue sur le rectangle fermé (elle n'est pas bornée près de $(0,0)$)."
+    },
+    {
+      "id": "int-l3-multiples-q3",
+      "carte": "int-l3-multiples-fubini-tonelli",
+      "genre": "choix",
+      "enonce": "Soit $f(x,y)=(2-xy)\\,xy\\,e^{-xy}$ sur $\\left[0,+\\infty\\right[\\times[0,1]$ ; on a $f=\\frac{\\partial}{\\partial y}\\left(xy^2e^{-xy}\\right)=\\frac{\\partial}{\\partial x}\\left(x^2ye^{-xy}\\right)$. Que valent $A=\\int_0^{+\\infty}\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$ et $B=\\int_0^1\\left(\\int_0^{+\\infty}f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$ ?",
+      "propositions": [
+        "$A=1$ et $B=0$",
+        "$A=B=1$",
+        "$A=B=0$",
+        "$A=0$ et $B=1$"
+      ],
+      "bonne": 0,
+      "explication": "$\\int_0^1f(x,y)\\,\\mathrm{d}y=\\left[xy^2e^{-xy}\\right]_{y=0}^{y=1}=xe^{-x}$, donc $A=\\int_0^{+\\infty}xe^{-x}\\,\\mathrm{d}x=1$. Pour $y>0$, $\\int_0^{+\\infty}f(x,y)\\,\\mathrm{d}x=\\left[x^2ye^{-xy}\\right]_{x=0}^{x\\to+\\infty}=0$, et $f(x,0)=0$ : $B=0$. Pas de contradiction : $f$ change de signe et l'intégrale itérée de $|f|$ est infinie, donc ni Fubini-Tonelli ni Fubini ne s'appliquent."
+    },
+    {
+      "id": "int-l3-multiples-q4",
+      "carte": "int-l3-multiples-domaines",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute fonction $f$ continue sur $[0,1]^2$, $\\int_0^1\\left(\\int_0^xf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_y^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.",
+      "vrai": true,
+      "explication": "Vrai. Les deux membres sont l'intégrale double de $f$ sur le triangle $\\{0\\le y\\le x\\le1\\}$, décrit d'abord comme $\\{0\\le x\\le1,\\ 0\\le y\\le x\\}$, puis comme $\\{0\\le y\\le1,\\ y\\le x\\le1\\}$."
+    },
+    {
+      "id": "int-l3-multiples-q5",
+      "carte": "int-l3-multiples-changement-variables",
+      "genre": "choix",
+      "enonce": "Que vaut $\\iint_{x^2+y^2\\le1}e^{x^2+y^2}\\,\\mathrm{d}x\\,\\mathrm{d}y$ ?",
+      "propositions": [
+        "$\\pi(e-1)$",
+        "$2\\pi(e-1)$",
+        "$\\pi e$",
+        "$\\frac{\\pi(e-1)}2$"
+      ],
+      "bonne": 0,
+      "explication": "En polaires, $\\int_0^{2\\pi}\\left(\\int_0^1e^{r^2}r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\left[\\frac{e^{r^2}}2\\right]_0^1=\\pi(e-1)$. Le facteur $r$ du jacobien est ce qui rend la primitive calculable."
+    },
+    {
+      "id": "int-l3-multiples-q6",
+      "carte": "int-l3-multiples-aires-volumes",
+      "genre": "vrai-faux",
+      "enonce": "L'aire du domaine limité par la courbe d'équation polaire $\\rho=2\\cos\\theta$ vaut $\\frac12\\int_0^{2\\pi}4\\cos^2\\theta\\,\\mathrm{d}\\theta=2\\pi$.",
+      "vrai": false,
+      "explication": "Faux. Cette courbe est le cercle de centre $(1,0)$ et de rayon $1$, qui limite un disque d'aire $\\pi$. Il est décrit une fois quand $\\theta$ parcourt $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, où $\\rho\\ge0$ ; sur $[0,2\\pi]$, il est parcouru deux fois (avec $\\rho<0$ sur une moitié), et la formule $\\frac12\\int\\rho^2$ compte le disque deux fois."
+    },
+    {
+      "id": "int-l3-multiples-q7",
+      "carte": "int-l3-multiples-triples",
+      "genre": "choix",
+      "enonce": "Que vaut le volume du « cornet » $\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2+z^2\\le1,\\ z\\ge\\sqrt{x^2+y^2}\\}$ ?",
+      "propositions": [
+        "$\\frac{\\pi(2-\\sqrt2)}3$",
+        "$\\frac{2\\pi}3$",
+        "$\\frac{\\pi\\sqrt2}3$",
+        "$\\frac\\pi3$"
+      ],
+      "bonne": 0,
+      "explication": "En sphériques, $z\\ge\\sqrt{x^2+y^2}$ équivaut à $\\cos\\varphi\\ge\\sin\\varphi$, soit $\\varphi\\in\\left[0,\\frac\\pi4\\right]$. Le volume vaut $\\int_0^{2\\pi}\\int_0^{\\pi/4}\\int_0^1\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi\\cdot\\left(1-\\frac{\\sqrt2}2\\right)\\cdot\\frac13=\\frac{\\pi(2-\\sqrt2)}3$. La valeur $\\frac{2\\pi}3$ est celle de la demi-boule."
+    },
+    {
+      "id": "int-l3-multiples-q8",
+      "carte": "int-l3-multiples-curvilignes",
+      "genre": "vrai-faux",
+      "enonce": "Le travail du champ $V(x,y)=(2xy,x^2)$ le long de tout chemin fermé de classe $\\mathcal{C}^1$ du plan est nul.",
+      "vrai": true,
+      "explication": "Vrai. $V=\\nabla f$ avec $f(x,y)=x^2y$, de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ : le travail le long d'un chemin de $A$ à $B$ vaut $f(B)-f(A)$, nul si $A=B$."
+    }
+  ]
+}

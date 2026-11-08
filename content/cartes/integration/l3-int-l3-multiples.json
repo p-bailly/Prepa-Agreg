@@ -1,0 +1,506 @@
+{
+  "cartes": [
+    {
+      "id": "int-l3-multiples-curvilignes",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Intégrales curvilignes, longueur d'un arc, travail d'une force",
+      "recto": "Définir la longueur d'un chemin et le travail d'un champ de vecteurs le long d'un chemin ; énoncer leur invariance par changement de paramètre et le cas d'un champ de gradient.",
+      "cours": "Un **chemin** de classe $\\mathcal{C}^1$ est une application $\\gamma:[a,b]\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$ ; son image est l'**arc** qu'il décrit. Si $\\gamma(t)$ est la position d'un mobile à l'instant $t$, $\\gamma'(t)$ est sa vitesse et $\\|\\gamma'(t)\\|$ (norme euclidienne) sa vitesse scalaire : la distance parcourue est $L(\\gamma)=\\int_a^b\\|\\gamma'(t)\\|\\,\\mathrm{d}t$, la **longueur** du chemin. Pour un graphe $y=g(x)$, $x\\in[a,b]$, on obtient $\\int_a^b\\sqrt{1+g'(x)^2}\\,\\mathrm{d}x$ ; pour une courbe polaire $r=\\rho(\\theta)$, on obtient $\\int\\sqrt{\\rho(\\theta)^2+\\rho'(\\theta)^2}\\,\\mathrm{d}\\theta$.\n\nSi $V$ est un champ de forces continu, le **travail** (ou circulation) de $V$ le long de $\\gamma$ est $W_\\gamma(V)=\\int_a^b\\langle V(\\gamma(t)),\\gamma'(t)\\rangle\\,\\mathrm{d}t$ : on somme le produit scalaire de la force et du petit déplacement. Dans le plan, avec $V=(P,Q)$, on le note $\\int_\\gamma P\\,\\mathrm{d}x+Q\\,\\mathrm{d}y$, où l'on remplace $x$, $y$, $\\mathrm{d}x$, $\\mathrm{d}y$ par $x(t)$, $y(t)$, $x'(t)\\,\\mathrm{d}t$, $y'(t)\\,\\mathrm{d}t$.\n\nCes deux quantités ne changent pas quand on reparamètre le chemin par une bijection $\\varphi$ de classe $\\mathcal{C}^1$, grâce à la formule de changement de variable, à ceci près que le travail change de signe quand $\\varphi$ renverse le sens de parcours ; la longueur, elle, ne dépend pas du sens. Si $V$ dérive d'un potentiel, $V=\\nabla f$, la dérivée de $t\\mapsto f(\\gamma(t))$ est $\\langle\\nabla f(\\gamma(t)),\\gamma'(t)\\rangle$ : le travail ne dépend que des extrémités, il vaut $f(\\gamma(b))-f(\\gamma(a))$ et il est nul sur un chemin fermé. Les définitions s'étendent aux chemins de classe $\\mathcal{C}^1$ par morceaux, en sommant sur les morceaux.\n\nMéthode : paramétrer l'arc, dériver, intégrer. Pour un travail, chercher d'abord un potentiel. Dans le plan, pour $V=(P,Q)$ de classe $\\mathcal{C}^1$, une condition **nécessaire** est $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ (théorème de Schwarz appliqué au potentiel, qui est alors de classe $\\mathcal{C}^2$).\n\nPièges : cette condition n'est **pas suffisante** sur un ouvert quelconque : le champ $\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)$ la vérifie sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ mais a un travail égal à $2\\pi$ le long du cercle unité. Un paramétrage qui repasse plusieurs fois sur l'arc compte plusieurs fois sa longueur. Enfin $L(\\gamma)$ n'est pas $\\|\\gamma(b)-\\gamma(a)\\|$, qui n'en est qu'un minorant.",
+      "hypotheses": [
+        "$\\gamma:[a,b]\\to\\mathbb{R}^n$ est de classe $\\mathcal{C}^1$ et $V$ est un champ continu sur un ouvert $U$ qui contient $\\gamma([a,b])$.",
+        "Pour la longueur : $\\varphi:[c,d]\\to[a,b]$ est une bijection de classe $\\mathcal{C}^1$.",
+        "Pour le travail : $\\varphi:[c,d]\\to[a,b]$ est de classe $\\mathcal{C}^1$, avec $\\varphi(c)=a$ et $\\varphi(d)=b$.",
+        "Pour le potentiel : $V=\\nabla f$, avec $f$ de classe $\\mathcal{C}^1$ sur $U$."
+      ],
+      "hypotheses_pieges": [
+        "Pour la longueur : $\\varphi:[c,d]\\to[a,b]$ est de classe $\\mathcal{C}^1$ et surjective (à la place de : bijective).",
+        "Pour le travail : $\\varphi:[c,d]\\to[a,b]$ est de classe $\\mathcal{C}^1$, avec $\\varphi(c)=b$ et $\\varphi(d)=a$ (à la place de : $\\varphi(c)=a$ et $\\varphi(d)=b$).",
+        "Pour le potentiel : $n=2$, $V=(P,Q)$ est de classe $\\mathcal{C}^1$ sur $U$ et $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ sur $U$ (à la place de : $V=\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$ sur $U$)."
+      ],
+      "enonce": "Soient $\\gamma:[a,b]\\to\\mathbb{R}^n$ un chemin de classe $\\mathcal{C}^1$ et $V$ un champ de vecteurs continu sur un ouvert $U$ qui contient $\\gamma([a,b])$ ; la norme $\\|\\cdot\\|$ et le produit scalaire $\\langle\\cdot,\\cdot\\rangle$ sont euclidiens.\n\n**Longueur.** $L(\\gamma)=\\int_a^b\\|\\gamma'(t)\\|\\,\\mathrm{d}t$. Si $\\varphi:[c,d]\\to[a,b]$ est une bijection de classe $\\mathcal{C}^1$, alors $L(\\gamma\\circ\\varphi)=L(\\gamma)$.\n\n**Travail.** $W_\\gamma(V)=\\int_a^b\\langle V(\\gamma(t)),\\gamma'(t)\\rangle\\,\\mathrm{d}t$. Si $\\varphi:[c,d]\\to[a,b]$ est de classe $\\mathcal{C}^1$ avec $\\varphi(c)=a$ et $\\varphi(d)=b$, alors $W_{\\gamma\\circ\\varphi}(V)=W_\\gamma(V)$ ; si $\\varphi(c)=b$ et $\\varphi(d)=a$ (parcours en sens inverse), $W_{\\gamma\\circ\\varphi}(V)=-W_\\gamma(V)$.\n\n**Potentiel.** Si $V=\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$ sur $U$, alors $W_\\gamma(V)=f(\\gamma(b))-f(\\gamma(a))$ ; en particulier, le travail de $V$ le long d'un chemin fermé ($\\gamma(a)=\\gamma(b)$) est nul.",
+      "enonce_trous": "Pour un chemin $\\gamma:[a,b]\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$, la longueur est {{1}}. Le travail d'un champ continu $V$ le long de $\\gamma$ ne change pas quand on remplace $\\gamma$ par $\\gamma\\circ\\varphi$, où $\\varphi:[c,d]\\to[a,b]$ est de classe $\\mathcal{C}^1$ et vérifie {{2}}. Si {{3}}, ce travail vaut $f(\\gamma(b))-f(\\gamma(a))$.",
+      "trous": [
+        {
+          "reponse": "$\\int_a^b\\|\\gamma'(t)\\|\\,\\mathrm{d}t$",
+          "leurres": [
+            "$\\int_a^b\\|\\gamma(t)\\|\\,\\mathrm{d}t$",
+            "$\\left\\|\\int_a^b\\gamma'(t)\\,\\mathrm{d}t\\right\\|$",
+            "$\\int_a^b\\|\\gamma'(t)\\|^2\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "$\\varphi(c)=a$ et $\\varphi(d)=b$",
+          "leurres": [
+            "$\\varphi(c)=b$ et $\\varphi(d)=a$",
+            "$\\varphi$ est bijective",
+            "$\\varphi([c,d])=[a,b]$"
+          ]
+        },
+        {
+          "reponse": "$V=\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$ sur un ouvert contenant l'arc",
+          "leurres": [
+            "$V=-\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$ sur un ouvert contenant l'arc",
+            "$\\|V\\|=\\|\\nabla f\\|$ avec $f$ de classe $\\mathcal{C}^1$ sur un ouvert contenant l'arc",
+            "$V$ est orthogonal à $\\nabla f$ en tout point, avec $f$ de classe $\\mathcal{C}^1$ sur un ouvert contenant l'arc"
+          ]
+        }
+      ],
+      "demo": "**Longueur.** Une bijection continue $\\varphi$ de $[c,d]$ sur $[a,b]$ est strictement monotone. Si elle est croissante, $\\varphi'\\ge0$, $\\varphi(c)=a$, $\\varphi(d)=b$ et, par le changement de variable $t=\\varphi(s)$,\n$$L(\\gamma\\circ\\varphi)=\\int_c^d\\|\\gamma'(\\varphi(s))\\|\\,\\varphi'(s)\\,\\mathrm{d}s=\\int_a^b\\|\\gamma'(t)\\|\\,\\mathrm{d}t=L(\\gamma).$$\nSi elle est décroissante, $|\\varphi'|=-\\varphi'$, $\\varphi(c)=b$, $\\varphi(d)=a$, et le même calcul donne $-\\int_b^a\\|\\gamma'(t)\\|\\,\\mathrm{d}t=L(\\gamma)$.\n\n**Travail.** $(\\gamma\\circ\\varphi)'(s)=\\varphi'(s)\\,\\gamma'(\\varphi(s))$. La fonction $g(t)=\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$ est continue sur $[a,b]$ et, par le changement de variable $t=\\varphi(s)$ (qui ne demande que $\\varphi$ de classe $\\mathcal{C}^1$),\n$$W_{\\gamma\\circ\\varphi}(V)=\\int_c^dg(\\varphi(s))\\,\\varphi'(s)\\,\\mathrm{d}s=\\int_{\\varphi(c)}^{\\varphi(d)}g(t)\\,\\mathrm{d}t.$$\nC'est $W_\\gamma(V)$ si $\\varphi(c)=a$ et $\\varphi(d)=b$, et $-W_\\gamma(V)$ si $\\varphi(c)=b$ et $\\varphi(d)=a$.\n\n**Potentiel.** Si $V=\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$, la dérivée d'une composée donne $(f\\circ\\gamma)'(t)=\\langle\\nabla f(\\gamma(t)),\\gamma'(t)\\rangle$, fonction continue. Donc $W_\\gamma(V)=\\int_a^b(f\\circ\\gamma)'(t)\\,\\mathrm{d}t=f(\\gamma(b))-f(\\gamma(a))$, nul si $\\gamma(a)=\\gamma(b)$.",
+      "exemple": "- **Longueur d'une arche de cycloïde.** $\\gamma(t)=(t-\\sin t,1-\\cos t)$, $t\\in[0,2\\pi]$ : $\\|\\gamma'(t)\\|^2=(1-\\cos t)^2+\\sin^2t=2-2\\cos t=4\\sin^2\\frac t2$, donc $L=\\int_0^{2\\pi}2\\sin\\frac t2\\,\\mathrm{d}t=8$.\n- **Travail d'un champ de gradient.** $V(x,y)=(y,x)=\\nabla(xy)$ : le long de tout chemin de $(0,0)$ à $(1,2)$, le travail vaut $1\\times2-0=2$. Par exemple, sur $\\gamma(t)=(t,2t^2)$, $t\\in[0,1]$, $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=2t^2+4t^2=6t^2$, d'intégrale $2$.",
+      "contre_exemple": "- **Condition de Schwarz sans potentiel.** Sur $U=\\mathbb{R}^2\\setminus\\{(0,0)\\}$, $V=(P,Q)=\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)$ vérifie $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}=\\frac{y^2-x^2}{(x^2+y^2)^2}$. Pourtant, sur le cercle $\\gamma(t)=(\\cos t,\\sin t)$, $t\\in[0,2\\pi]$, $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=\\sin^2t+\\cos^2t=1$ et le travail vaut $2\\pi\\neq0$ : $V$ n'est le gradient d'aucune fonction de classe $\\mathcal{C}^1$ sur $U$.\n- **Paramétrage qui repasse.** $\\gamma(t)=(t,0)$, $t\\in[0,1]$, a pour longueur $1$. Avec $\\varphi(s)=\\frac{1-\\cos(3\\pi s)}2$, $s\\in[0,1]$, de classe $\\mathcal{C}^1$ et surjective sur $[0,1]$ mais non injective, $\\gamma\\circ\\varphi$ parcourt le segment trois fois et $L(\\gamma\\circ\\varphi)=\\int_0^1|\\varphi'(s)|\\,\\mathrm{d}s=3$.\n- **Sens de parcours.** Pour $V=(y,x)$ et $\\gamma(t)=(t,t)$, $t\\in[0,1]$, le travail vaut $\\int_0^12t\\,\\mathrm{d}t=1$ ; avec $\\varphi(s)=1-s$, il vaut $-1$.",
+      "affirmations": [
+        {
+          "texte": "La longueur du chemin $t\\mapsto(\\cos t,\\sin t)$, $t\\in[0,4\\pi]$, vaut $2\\pi$.",
+          "vrai": false,
+          "contre_exemple": "Ce chemin fait deux fois le tour du cercle : $\\|\\gamma'(t)\\|=1$ et sa longueur vaut $4\\pi$. La longueur d'un chemin compte les passages multiples."
+        },
+        {
+          "texte": "Si $V=\\nabla f$ avec $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$, le travail de $V$ le long de tout chemin fermé de classe $\\mathcal{C}^1$ est nul.",
+          "vrai": true,
+          "justification": "Le travail vaut $f(\\gamma(b))-f(\\gamma(a))$, nul quand $\\gamma(a)=\\gamma(b)$."
+        },
+        {
+          "texte": "Si $V=(P,Q)$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ et vérifie $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$, son travail le long de tout chemin fermé est nul.",
+          "vrai": false,
+          "contre_exemple": "$V=\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)$ vérifie la condition, mais son travail le long du cercle unité parcouru une fois dans le sens direct vaut $2\\pi$."
+        },
+        {
+          "texte": "Pour tout chemin $\\gamma:[a,b]\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$, $\\|\\gamma(b)-\\gamma(a)\\|\\le L(\\gamma)$.",
+          "vrai": true,
+          "justification": "$\\gamma(b)-\\gamma(a)=\\int_a^b\\gamma'(t)\\,\\mathrm{d}t$, et la norme d'une intégrale est majorée par l'intégrale de la norme."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-changement-variable",
+        "int-t-integrale-fondamental",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Intégrale double sur un rectangle et formule de Fubini",
+      "recto": "Énoncer la formule de Fubini pour une fonction continue sur un rectangle, avec ses hypothèses.",
+      "cours": "Pour $f$ continue sur un rectangle $R=[a,b]\\times[c,d]$, l'**intégrale double** $\\iint_Rf(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ se définit comme en dimension $1$, par des sommes de Riemann : on découpe $R$ en petits rectangles $R_{ij}$, on choisit un point $(\\xi_{ij},\\eta_{ij})$ dans chacun et l'on fait tendre le pas vers $0$ dans $\\sum f(\\xi_{ij},\\eta_{ij})\\,\\mathrm{aire}(R_{ij})$. Si $f\\ge0$, c'est le volume sous le graphe de $f$. On retrouve les propriétés de l'intégrale simple : linéarité, positivité, $\\left|\\iint_Rf\\right|\\le\\iint_R|f|\\le(b-a)(d-c)\\sup_R|f|$.\n\nLa **formule de Fubini**, admise par le programme, ramène le calcul à deux intégrales simples emboîtées : on intègre d'abord en $y$ à $x$ fixé, puis en $x$, ou dans l'autre ordre. Intuitivement, on calcule le volume en découpant en tranches parallèles à l'un ou à l'autre des axes. Cas particulier très utile : si $f(x,y)=g(x)h(y)$, l'intégrale double est le produit $\\left(\\int_a^bg\\right)\\left(\\int_c^dh\\right)$.\n\nMéthode : choisir l'ordre qui donne les primitives les plus simples (pour $\\iint_{[0,1]^2}xe^{xy}$, intégrer d'abord en $y$). L'égalité des deux intégrales itérées sert aussi à calculer des intégrales simples : on écrit l'intégrande comme une intégrale, puis on échange les deux intégrations (par exemple $\\int_0^1\\frac{x^4-x}{\\ln x}\\,\\mathrm{d}x=\\int_1^4\\left(\\int_0^1x^y\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\ln\\frac52$).\n\nPièges : la continuité sur le rectangle **fermé** est essentielle. La fonction $\\frac{x^2-y^2}{(x^2+y^2)^2}$, continue sur $[0,1]^2$ privé de l'origine, a deux intégrales itérées égales à $\\frac\\pi4$ et $-\\frac\\pi4$ ; elle n'est pas bornée au voisinage de $(0,0)$. Sur un domaine non borné, voir le théorème de Fubini-Tonelli.",
+      "hypotheses": [
+        "$f$ est continue sur le rectangle fermé et borné $R=[a,b]\\times[c,d]$ (continuité par rapport au couple $(x,y)$)."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur $R$ privé d'un point (à la place de : sur tout le rectangle $R$).",
+        "$f$ est continue sur $\\left[a,+\\infty\\right[\\times[c,d]$ et ses deux intégrales itérées convergent (à la place de : sur un rectangle borné)."
+      ],
+      "enonce": "Soient $a<b$, $c<d$, $R=[a,b]\\times[c,d]$ et $f:R\\to\\mathbb{R}$ continue. Alors $x\\mapsto\\int_c^df(x,y)\\,\\mathrm{d}y$ est continue sur $[a,b]$, $y\\mapsto\\int_a^bf(x,y)\\,\\mathrm{d}x$ est continue sur $[c,d]$, et l'intégrale double de $f$ sur $R$ vérifie la **formule de Fubini** (admise) :\n$$\\iint_Rf(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_a^b\\left(\\int_c^df(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_c^d\\left(\\int_a^bf(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y.$$\nEn particulier, si $f(x,y)=g(x)h(y)$ avec $g$ et $h$ continues, $\\iint_Rf=\\left(\\int_a^bg(x)\\,\\mathrm{d}x\\right)\\left(\\int_c^dh(y)\\,\\mathrm{d}y\\right)$.",
+      "enonce_trous": "Soit $f$ une fonction {{1}} sur le rectangle $R=[a,b]\\times[c,d]$. Alors $\\iint_Rf(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_a^b\\left(\\int_c^df(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$, et cette intégrale est aussi égale à {{2}}.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par rapport à chaque variable séparément",
+            "continue sur $R$ privé d'un point",
+            "de classe $\\mathcal{C}^1$ sur $\\left]a,b\\right]\\times\\left]c,d\\right]$"
+          ]
+        },
+        {
+          "reponse": "$\\int_c^d\\left(\\int_a^bf(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$",
+          "leurres": [
+            "$\\int_a^b\\left(\\int_c^df(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$",
+            "$(d-c)\\int_a^bf(x,c)\\,\\mathrm{d}x$",
+            "$\\left(\\int_a^bf(x,c)\\,\\mathrm{d}x\\right)\\left(\\int_c^df(a,y)\\,\\mathrm{d}y\\right)$"
+          ]
+        }
+      ],
+      "demo": "La définition de l'intégrale double et son égalité avec les intégrales itérées sont admises. Démontrons la continuité des intégrales partielles et l'égalité des deux intégrales itérées, à partir des intégrales à paramètre.\n\n**Continuité.** $f$ est continue sur le rectangle $R$, fermé et borné : c'est le théorème de continuité d'une intégrale à paramètre sur un segment (qui repose sur la continuité uniforme de $f$, théorème de Heine).\n\n**Égalité des intégrales itérées.** Pour $s\\in[a,b]$ et $y\\in[c,d]$, posons $g(s,y)=\\int_a^sf(x,y)\\,\\mathrm{d}x$, puis\n$$\\Delta(s)=\\int_a^s\\left(\\int_c^df(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x-\\int_c^dg(s,y)\\,\\mathrm{d}y.$$\nLa fonction $g$ est continue sur $R$ : si $M=\\sup_R|f|$, $|g(s,y)-g(s',y')|\\le M|s-s'|+\\int_a^b|f(x,y)-f(x,y')|\\,\\mathrm{d}x$, et le dernier terme tend vers $0$ quand $y'\\to y$, par continuité uniforme de $f$. De plus $\\frac{\\partial g}{\\partial s}(s,y)=f(s,y)$ existe et est continue sur $R$. Par le théorème fondamental et la dérivation sous le signe somme sur un segment, $\\Delta$ est dérivable et\n$$\\Delta'(s)=\\int_c^df(s,y)\\,\\mathrm{d}y-\\int_c^df(s,y)\\,\\mathrm{d}y=0.$$\nComme $\\Delta(a)=0$, on a $\\Delta(b)=0$ : c'est l'égalité des deux intégrales itérées.",
+      "exemple": "$\\iint_{[0,1]\\times[0,2]}xy^2\\,\\mathrm{d}x\\,\\mathrm{d}y=\\left(\\int_0^1x\\,\\mathrm{d}x\\right)\\left(\\int_0^2y^2\\,\\mathrm{d}y\\right)=\\frac12\\cdot\\frac83=\\frac43$.\n\nPour $\\iint_{[0,1]^2}xe^{xy}\\,\\mathrm{d}x\\,\\mathrm{d}y$, on intègre d'abord en $y$ : $\\int_0^1xe^{xy}\\,\\mathrm{d}y=e^x-1$, puis $\\int_0^1(e^x-1)\\,\\mathrm{d}x=e-2$. Dans l'autre ordre, il faudrait une intégration par parties pour chaque $y$.",
+      "contre_exemple": "- **Fonction non bornée près d'un coin.** Sur $\\left]0,1\\right]^2$, soit $f(x,y)=\\frac{x^2-y^2}{(x^2+y^2)^2}=\\frac{\\partial}{\\partial y}\\left(\\frac y{x^2+y^2}\\right)$. Pour $x\\in\\left]0,1\\right]$, $\\int_0^1f(x,y)\\,\\mathrm{d}y=\\frac1{1+x^2}$, d'où $\\int_0^1\\left(\\int_0^1f\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\frac\\pi4$ ; comme $f(y,x)=-f(x,y)$, l'autre ordre donne $-\\frac\\pi4$. La fonction n'est pas bornée près de $(0,0)$ ($f(x,0)=\\frac1{x^2}$).\n- **Domaine non borné.** Sur $\\left[0,+\\infty\\right[\\times[0,1]$, $f(x,y)=(2-xy)\\,xy\\,e^{-xy}$ vérifie $\\int_0^1f(x,y)\\,\\mathrm{d}y=xe^{-x}$, donc $\\int_0^{+\\infty}\\left(\\int_0^1f\\,\\mathrm{d}y\\right)\\mathrm{d}x=1$, alors que $\\int_0^{+\\infty}f(x,y)\\,\\mathrm{d}x=\\left[x^2ye^{-xy}\\right]_{x=0}^{x\\to+\\infty}=0$ pour $y>0$ (et $f(x,0)=0$), donc l'autre ordre donne $0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue sur $[0,1]^2$, alors $\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.",
+          "vrai": true,
+          "justification": "C'est la formule de Fubini sur le rectangle $[0,1]^2$."
+        },
+        {
+          "texte": "Si $f$ est continue sur $\\left]0,1\\right]^2$ et si ses deux intégrales itérées sur $\\left]0,1\\right]^2$ convergent, elles sont égales.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{x^2-y^2}{(x^2+y^2)^2}$ a pour intégrales itérées $\\frac\\pi4$ et $-\\frac\\pi4$."
+        },
+        {
+          "texte": "$\\iint_{[0,1]\\times[0,2]}xy\\,\\mathrm{d}x\\,\\mathrm{d}y=1$.",
+          "vrai": true,
+          "justification": "$\\left(\\int_0^1x\\,\\mathrm{d}x\\right)\\left(\\int_0^2y\\,\\mathrm{d}y\\right)=\\frac12\\cdot2=1$."
+        },
+        {
+          "texte": "$\\iint_{[0,1]^2}(x-y)\\,\\mathrm{d}x\\,\\mathrm{d}y>0$.",
+          "vrai": false,
+          "contre_exemple": "$\\int_0^1\\left(\\int_0^1(x-y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(x-\\frac12\\right)\\mathrm{d}x=0$."
+        }
+      ],
+      "prerequis": [
+        "int-l2-parametre-segment",
+        "ar-l1-continuite-heine",
+        "int-t-integrale-fondamental",
+        "int-l1-riemann-sommes"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-tonelli",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Théorème de Fubini-Tonelli",
+      "recto": "Énoncer le théorème de Fubini-Tonelli (fonctions positives) et le théorème de Fubini (fonctions intégrables) pour des intégrales sur un produit de deux intervalles.",
+      "cours": "Sur un produit d'intervalles quelconques (non bornés, ou ouverts avec une fonction non bornée), les deux intégrales itérées sont des intégrales généralisées, et la formule de Fubini sur un rectangle ne s'applique plus telle quelle. Le **théorème de Fubini-Tonelli** dit que, pour une fonction **positive**, on peut toujours échanger l'ordre des intégrations : les deux intégrales itérées sont égales, finies ou infinies. C'est l'analogue de l'interversion des sommes dans une série double à termes positifs.\n\nPour une fonction de signe quelconque, il faut une hypothèse d'**intégrabilité absolue** : on applique d'abord Fubini-Tonelli à $|f|$ ; si l'une des intégrales itérées de $|f|$ est finie, on peut échanger l'ordre pour $f$. Les hypothèses de continuité des intégrales partielles servent seulement à rester dans le cadre de l'intégrale de Riemann, où l'on n'intègre que des fonctions continues par morceaux ; on les vérifie avec les théorèmes sur les intégrales à paramètre.\n\nMéthode : (1) vérifier la positivité, ou majorer $|f|$ et calculer une intégrale itérée de $|f|$ ; (2) intégrer dans l'ordre le plus commode. Applications typiques : calculer une intégrale simple en écrivant l'intégrande comme une intégrale (intégrale de Frullani : $\\int_0^{+\\infty}\\frac{e^{-at}-e^{-bt}}t\\,\\mathrm{d}t=\\ln\\frac ba$ pour $0<a<b$), ou calculer une intégrale de deux façons pour obtenir une égalité.\n\nPièges : sans positivité ni intégrabilité absolue, les deux intégrales itérées peuvent converger vers des valeurs différentes, même pour une fonction bornée et de classe $\\mathcal{C}^\\infty$ : sur $\\left[1,+\\infty\\right[^2$, $\\frac{x-y}{(x+y)^3}$ donne $-\\frac12$ dans un ordre et $\\frac12$ dans l'autre. La convergence d'une intégrale itérée de $f$ ne suffit pas : c'est celle de $|f|$ qu'il faut contrôler.",
+      "hypotheses": [
+        "$f$ est continue sur $I\\times J$ et ses intégrales partielles (celles de $f$ et de $|f|$, dans les deux ordres) sont définies et continues.",
+        "Fubini-Tonelli : $f$ est **positive** sur $I\\times J$.",
+        "Fubini : $\\int_I\\left(\\int_J|f(x,y)|\\,\\mathrm{d}y\\right)\\mathrm{d}x<+\\infty$."
+      ],
+      "hypotheses_pieges": [
+        "Fubini-Tonelli : $f$ est à valeurs réelles, de signe quelconque (à la place de : positive).",
+        "Fubini : $\\int_I\\left(\\int_Jf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$ converge (à la place de : l'intégrale itérée de $|f|$ est finie)."
+      ],
+      "enonce": "Soient $I$, $J$ deux intervalles de $\\mathbb{R}$ et $f:I\\times J\\to\\mathbb{R}$ continue. Pour rester dans le cadre de l'intégrale de Riemann, on suppose que les intégrales partielles qui interviennent ont un sens et sont continues : pour tout $x\\in I$, $y\\mapsto f(x,y)$ est intégrable sur $J$, et $x\\mapsto\\int_Jf(x,y)\\,\\mathrm{d}y$ et $x\\mapsto\\int_J|f(x,y)|\\,\\mathrm{d}y$ sont continues sur $I$ ; de même en échangeant les rôles de $x$ et de $y$. Les deux théorèmes suivants sont admis par le programme.\n\n**Fubini-Tonelli.** Si $f\\ge0$, les deux intégrales itérées sont égales dans $[0,+\\infty]$ (l'une est finie si et seulement si l'autre l'est) :\n$$\\int_I\\left(\\int_Jf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_J\\left(\\int_If(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y.$$\n**Fubini.** Si $\\int_I\\left(\\int_J|f(x,y)|\\,\\mathrm{d}y\\right)\\mathrm{d}x<+\\infty$, alors $x\\mapsto\\int_Jf(x,y)\\,\\mathrm{d}y$ est intégrable sur $I$, $y\\mapsto\\int_If(x,y)\\,\\mathrm{d}x$ est intégrable sur $J$, et\n$$\\int_I\\left(\\int_Jf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_J\\left(\\int_If(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y.$$",
+      "enonce_trous": "Soient $I$, $J$ deux intervalles et $f$ continue et {{1}} sur $I\\times J$, dont les intégrales partielles sont définies et continues. Alors $\\int_I\\left(\\int_Jf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$ et $\\int_J\\left(\\int_If(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$ {{2}}.",
+      "trous": [
+        {
+          "reponse": "positive",
+          "leurres": [
+            "bornée",
+            "à valeurs réelles",
+            "de classe $\\mathcal{C}^\\infty$"
+          ]
+        },
+        {
+          "reponse": "sont égales (finies, ou toutes deux égales à $+\\infty$)",
+          "leurres": [
+            "sont finies et égales",
+            "sont égales si et seulement si $f$ est bornée",
+            "ne sont égales que si $I$ et $J$ sont bornés"
+          ]
+        }
+      ],
+      "demo": "Le programme admet ces théorèmes. Voici comment ils se déduisent de la formule de Fubini sur un rectangle et du théorème de convergence monotone, tous deux admis.\n\n**Fubini-Tonelli.** Soient $([a_n,b_n])$ et $([c_m,d_m])$ des suites croissantes de segments contenus dans $I$ et $J$, telles que tout segment de $I$ (resp. de $J$) soit contenu dans l'un des $[a_n,b_n]$ (resp. des $[c_m,d_m]$). Posons\n$$A_{n,m}=\\int_{a_n}^{b_n}\\left(\\int_{c_m}^{d_m}f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{c_m}^{d_m}\\left(\\int_{a_n}^{b_n}f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$$\n(égalité sur un rectangle). Comme $f\\ge0$, $A_{n,m}$ croît avec $n$ et avec $m$. À $n$ fixé, les fonctions $x\\mapsto\\int_{c_m}^{d_m}f(x,y)\\,\\mathrm{d}y$ sont continues sur $[a_n,b_n]$ et croissent avec $m$ vers $\\varphi(x)=\\int_Jf(x,y)\\,\\mathrm{d}y$, continue : par convergence monotone sur le segment $[a_n,b_n]$, $\\int_{a_n}^{b_n}\\varphi=\\sup_mA_{n,m}$. Comme $\\varphi\\ge0$, $\\int_I\\varphi=\\sup_n\\int_{a_n}^{b_n}\\varphi=\\sup_n\\sup_mA_{n,m}$. De même, avec $\\psi(y)=\\int_If(x,y)\\,\\mathrm{d}x$, $\\int_J\\psi=\\sup_m\\sup_nA_{n,m}$. Les deux valeurs sont la borne supérieure de l'ensemble des $A_{n,m}$ : elles sont égales.\n\n**Fubini.** Posons $f^+=\\frac{|f|+f}2$ et $f^-=\\frac{|f|-f}2$ : elles sont continues, positives, et leurs intégrales partielles sont continues (demi-sommes de fonctions continues par hypothèse). Par Fubini-Tonelli appliqué à $|f|$, les deux intégrales itérées de $|f|$ sont finies ; comme $0\\le f^\\pm\\le|f|$, celles de $f^+$ et de $f^-$ le sont aussi, et elles sont égales deux à deux (Fubini-Tonelli). Par différence, les deux intégrales itérées de $f=f^+-f^-$ sont égales. L'intégrabilité vient de $\\left|\\int_Jf(x,y)\\,\\mathrm{d}y\\right|\\le\\int_J|f(x,y)|\\,\\mathrm{d}y$.",
+      "exemple": "**Intégrale de Frullani.** Soient $0<a<b$. Pour $t\\ge0$, $e^{-at}-e^{-bt}=t\\int_a^be^{-xt}\\,\\mathrm{d}x$. La fonction $(x,t)\\mapsto e^{-xt}$ est continue et positive sur $[a,b]\\times\\left[0,+\\infty\\right[$ ; $\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t=\\frac1x$ est continue sur $[a,b]$, et $\\int_a^be^{-xt}\\,\\mathrm{d}x$ (qui vaut $\\frac{e^{-at}-e^{-bt}}t$ pour $t>0$ et $b-a$ pour $t=0$) est continue sur $\\left[0,+\\infty\\right[$. Par Fubini-Tonelli :\n$$\\int_0^{+\\infty}\\frac{e^{-at}-e^{-bt}}t\\,\\mathrm{d}t=\\int_a^b\\left(\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}t\\right)\\mathrm{d}x=\\int_a^b\\frac{\\mathrm{d}x}x=\\ln\\frac ba.$$",
+      "contre_exemple": "- **Signe quelconque.** Sur $\\left[1,+\\infty\\right[^2$, soit $f(x,y)=\\frac{x-y}{(x+y)^3}$, de classe $\\mathcal{C}^\\infty$ et bornée ($|f(x,y)|\\le\\frac1{(x+y)^2}\\le\\frac14$). Comme $\\frac{\\partial}{\\partial y}\\left(\\frac y{(x+y)^2}\\right)=\\frac{x-y}{(x+y)^3}$, on a $\\int_1^{+\\infty}f(x,y)\\,\\mathrm{d}y=\\left[\\frac y{(x+y)^2}\\right]_{y=1}^{y\\to+\\infty}=-\\frac1{(x+1)^2}$, d'où $\\int_1^{+\\infty}\\left(\\int_1^{+\\infty}f\\,\\mathrm{d}y\\right)\\mathrm{d}x=-\\frac12$ ; comme $f(y,x)=-f(x,y)$, l'autre ordre donne $\\frac12$. Ici l'intégrale itérée de $|f|$ est infinie : $\\int_1^{+\\infty}|f(x,y)|\\,\\mathrm{d}y$ est équivalente à $\\frac cx$ (avec $c>0$) quand $x\\to+\\infty$.\n- **Même phénomène** pour $(2-xy)\\,xy\\,e^{-xy}$ sur $\\left[0,+\\infty\\right[\\times[0,1]$ : les deux intégrales itérées valent $1$ et $0$. Ici l'intégrale itérée de $|f|$ est infinie, et $y\\mapsto\\int_0^{+\\infty}|f(x,y)|\\,\\mathrm{d}x$, qui vaut $\\frac cy$ (avec $c>0$) pour $y>0$ et $0$ pour $y=0$, n'est même pas continue en $0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est continue et positive sur $\\left[0,+\\infty\\right[^2$, d'intégrales partielles continues, ses deux intégrales itérées sont égales, même si elles valent $+\\infty$.",
+          "vrai": true,
+          "justification": "C'est le théorème de Fubini-Tonelli."
+        },
+        {
+          "texte": "Si $f$ est continue et bornée sur $\\left[1,+\\infty\\right[^2$ et si ses deux intégrales itérées convergent, elles sont égales.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{x-y}{(x+y)^3}$, bornée par $\\frac14$, a pour intégrales itérées $-\\frac12$ et $\\frac12$."
+        },
+        {
+          "texte": "$\\int_0^{+\\infty}\\left(\\int_0^{+\\infty}e^{-x-y}\\,\\mathrm{d}y\\right)\\mathrm{d}x=1$.",
+          "vrai": true,
+          "justification": "$\\int_0^{+\\infty}e^{-x-y}\\,\\mathrm{d}y=e^{-x}$, puis $\\int_0^{+\\infty}e^{-x}\\,\\mathrm{d}x=1$."
+        },
+        {
+          "texte": "Si $f$ est continue et positive sur $I\\times J$ (intégrales partielles continues) et si $\\int_I\\left(\\int_Jf\\,\\mathrm{d}y\\right)\\mathrm{d}x=+\\infty$, alors $\\int_J\\left(\\int_If\\,\\mathrm{d}x\\right)\\mathrm{d}y=+\\infty$.",
+          "vrai": true,
+          "justification": "Par Fubini-Tonelli, les deux intégrales itérées sont égales dans $[0,+\\infty]$."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-fubini-rectangle",
+        "int-l2-generalisees-positive",
+        "int-l2-generalisees-dominee",
+        "int-l2-parametre-continuite"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-domaines",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Domaines géométriquement simples",
+      "recto": "Énoncer la formule de Fubini sur un domaine simple du plan, et dire comment échanger l'ordre d'intégration.",
+      "cours": "La plupart des intégrales doubles portent sur des domaines limités par des courbes : un triangle, un disque, la région entre deux paraboles. Un domaine est **simple selon $y$** si chaque droite verticale $x=x_0$ le coupe selon un segment $[\\varphi_1(x_0),\\varphi_2(x_0)]$ (ou pas du tout), les bornes dépendant continûment de $x_0$. On intègre alors d'abord en $y$ entre ces bornes **variables**, puis en $x$ entre des bornes **constantes**.\n\nMéthode pour échanger l'ordre d'intégration : dessiner le domaine, puis le décrire dans l'autre sens (pour chaque $y$ fixé, quels $x$ ?). Par exemple, le triangle $\\{0\\le x\\le1,\\ 0\\le y\\le x\\}$ s'écrit aussi $\\{0\\le y\\le1,\\ y\\le x\\le1\\}$, donc $\\int_0^1\\left(\\int_0^xf\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_y^1f\\,\\mathrm{d}x\\right)\\mathrm{d}y$. Cet échange permet de calculer des intégrales itérées dont la primitive intérieure n'est pas élémentaire, comme $\\int_0^1\\left(\\int_x^1\\frac{\\sin y}y\\,\\mathrm{d}y\\right)\\mathrm{d}x$. Un domaine qui n'est simple dans aucun sens (une couronne) se découpe en domaines simples, et les intégrales s'ajoutent (les bords communs ne comptent pas).\n\nPièges : les bornes extérieures sont toujours des **constantes** ; les bornes intérieures dépendent de la variable extérieure. Échanger les intégrales en gardant les mêmes bornes est faux dès que le domaine n'est pas un rectangle. Enfin il faut $\\varphi_1\\le\\varphi_2$ : sinon l'intégrale intérieure change de signe et ne mesure plus rien.",
+      "hypotheses": [
+        "$\\varphi_1$ et $\\varphi_2$ sont continues sur $[a,b]$ et $\\varphi_1\\le\\varphi_2$.",
+        "$f$ est continue sur $D$."
+      ],
+      "hypotheses_pieges": [
+        "$\\varphi_1$ et $\\varphi_2$ sont continues sur $[a,b]$, sans condition d'ordre (à la place de : $\\varphi_1\\le\\varphi_2$).",
+        "$f$ est continue sur $D$ privé d'un point (à la place de : sur $D$)."
+      ],
+      "enonce": "Un domaine **simple selon $y$** (ou élémentaire) est une partie du plan de la forme\n$$D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ a\\le x\\le b,\\ \\varphi_1(x)\\le y\\le\\varphi_2(x)\\},$$\noù $a\\le b$ et où $\\varphi_1$, $\\varphi_2$ sont continues sur $[a,b]$ avec $\\varphi_1\\le\\varphi_2$ ; c'est une partie fermée et bornée. Pour $f$ continue sur $D$, l'intégrale double sur $D$ vérifie la formule de Fubini (admise) :\n$$\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_a^b\\left(\\int_{\\varphi_1(x)}^{\\varphi_2(x)}f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x.$$\nSi $D$ est aussi simple selon $x$, $D=\\{(x,y)\\ :\\ c\\le y\\le d,\\ \\psi_1(y)\\le x\\le\\psi_2(y)\\}$ avec $\\psi_1\\le\\psi_2$ continues sur $[c,d]$, on a aussi $\\iint_Df=\\int_c^d\\left(\\int_{\\psi_1(y)}^{\\psi_2(y)}f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$. En particulier, l'aire de $D$ est $\\iint_D\\mathrm{d}x\\,\\mathrm{d}y=\\int_a^b(\\varphi_2(x)-\\varphi_1(x))\\,\\mathrm{d}x$.",
+      "enonce_trous": "Soient $\\varphi_1$, $\\varphi_2$ {{1}}, $D=\\{(x,y)\\ :\\ a\\le x\\le b,\\ \\varphi_1(x)\\le y\\le\\varphi_2(x)\\}$ et $f$ continue sur $D$. Alors $\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ est égale à {{2}}.",
+      "trous": [
+        {
+          "reponse": "continues sur $[a,b]$ et telles que $\\varphi_1\\le\\varphi_2$",
+          "leurres": [
+            "continues sur $[a,b]$",
+            "dérivables sur $[a,b]$",
+            "continues sur $[a,b]$ et telles que $\\varphi_1(a)\\le\\varphi_2(a)$ et $\\varphi_1(b)\\le\\varphi_2(b)$"
+          ]
+        },
+        {
+          "reponse": "$\\int_a^b\\left(\\int_{\\varphi_1(x)}^{\\varphi_2(x)}f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$",
+          "leurres": [
+            "$\\int_{\\varphi_1(a)}^{\\varphi_2(b)}\\left(\\int_a^bf(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$",
+            "$\\int_a^b\\big(\\varphi_2(x)-\\varphi_1(x)\\big)f\\big(x,\\varphi_1(x)\\big)\\,\\mathrm{d}x$",
+            "$\\int_a^b\\left(\\int_{\\varphi_1(x)}^{\\varphi_2(x)}f(x,y)\\,\\mathrm{d}y\\right)\\big(\\varphi_2(x)-\\varphi_1(x)\\big)\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "La définition de l'intégrale double sur $D$ (par exemple en prolongeant $f$ par $0$ sur un rectangle qui contient $D$) et la formule de Fubini sur $D$ sont admises : le prolongement n'est plus continu sur les graphes de $\\varphi_1$ et $\\varphi_2$, mais ces graphes, d'aire nulle, « ne comptent pas ». Vérifions au moins que le membre de droite a un sens. Pour $x\\in[a,b]$, le changement de variable $y=\\varphi_1(x)+s(\\varphi_2(x)-\\varphi_1(x))$ donne\n$$F(x)=\\int_{\\varphi_1(x)}^{\\varphi_2(x)}f(x,y)\\,\\mathrm{d}y=(\\varphi_2(x)-\\varphi_1(x))\\int_0^1f\\big(x,\\varphi_1(x)+s(\\varphi_2(x)-\\varphi_1(x))\\big)\\,\\mathrm{d}s.$$\nLa fonction $(x,s)\\mapsto f\\big(x,\\varphi_1(x)+s(\\varphi_2(x)-\\varphi_1(x))\\big)$ est continue sur $[a,b]\\times[0,1]$ (le point reste dans $D$ car $\\varphi_1\\le\\varphi_2$), donc $F$ est continue sur $[a,b]$ (intégrale à paramètre sur un segment) et l'intégrale extérieure existe. Pour $f=1$, on retrouve l'aire comme intégrale de la longueur $\\varphi_2(x)-\\varphi_1(x)$ des sections verticales.",
+      "exemple": "Soit $T=\\{(x,y)\\ :\\ 0\\le x\\le1,\\ 0\\le y\\le x\\}=\\{(x,y)\\ :\\ 0\\le y\\le1,\\ y\\le x\\le1\\}$. Alors\n$$\\iint_Txy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1x\\left(\\int_0^xy\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\frac{x^3}2\\,\\mathrm{d}x=\\frac18,$$\net, dans l'autre ordre, $\\int_0^1y\\left(\\int_y^1x\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1\\frac{y-y^3}2\\,\\mathrm{d}y=\\frac14-\\frac18=\\frac18$.",
+      "contre_exemple": "- **Bornes gardées.** Pour $f(x,y)=x$, $\\int_0^1\\left(\\int_0^xx\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\frac13$, alors que $\\int_0^1\\left(\\int_0^yx\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\frac16$ : la seconde intégrale porte sur le triangle symétrique $\\{0\\le x\\le y\\le1\\}$, pas sur le même domaine.\n- **Ordre des bornes.** Avec $\\varphi_1(x)=x$ et $\\varphi_2(x)=0$ sur $[0,1]$, l'ensemble $\\{0\\le x\\le1,\\ x\\le y\\le0\\}$ est réduit au point $(0,0)$, d'aire nulle, alors que $\\int_0^1(\\varphi_2(x)-\\varphi_1(x))\\,\\mathrm{d}x=-\\frac12$.",
+      "affirmations": [
+        {
+          "texte": "Pour toute $f$ continue sur $[0,1]^2$, $\\int_0^1\\left(\\int_x^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_0^yf(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.",
+          "vrai": true,
+          "justification": "Les deux intégrales portent sur le triangle $\\{0\\le x\\le y\\le1\\}$, décrit selon $y$ puis selon $x$."
+        },
+        {
+          "texte": "Pour toute $f$ continue sur $[0,1]^2$, $\\int_0^1\\left(\\int_0^xf(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1\\left(\\int_0^yf(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x,y)=x$, le membre de gauche vaut $\\frac13$ et celui de droite $\\frac16$."
+        },
+        {
+          "texte": "Le disque unité fermé est simple selon $y$, avec $\\varphi_1(x)=-\\sqrt{1-x^2}$ et $\\varphi_2(x)=\\sqrt{1-x^2}$ sur $[-1,1]$.",
+          "vrai": true,
+          "justification": "$x^2+y^2\\le1$ équivaut à $|x|\\le1$ et $|y|\\le\\sqrt{1-x^2}$, et ces bornes sont continues."
+        },
+        {
+          "texte": "La couronne $\\{(x,y)\\ :\\ 1\\le x^2+y^2\\le4\\}$ est simple selon $y$.",
+          "vrai": false,
+          "contre_exemple": "La droite $x=0$ la coupe selon $[-2,-1]\\cup[1,2]$, qui n'est pas un segment."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-fubini-rectangle",
+        "int-l2-parametre-segment",
+        "int-l1-riemann-changement-variable"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-changement-variables",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Changement de variables et coordonnées polaires",
+      "recto": "Énoncer la formule de changement de variables dans une intégrale double, et son cas particulier des coordonnées polaires.",
+      "cours": "Pour intégrer sur un disque, une couronne ou un secteur, les coordonnées cartésiennes donnent des bornes en $\\sqrt{1-x^2}$ et des primitives pénibles ; en polaires, le domaine devient un rectangle $[r_1,r_2]\\times[\\theta_1,\\theta_2]$. Mais on ne remplace pas simplement $\\mathrm{d}x\\,\\mathrm{d}y$ par $\\mathrm{d}r\\,\\mathrm{d}\\theta$ : un petit rectangle $[r,r+\\mathrm{d}r]\\times[\\theta,\\theta+\\mathrm{d}\\theta]$ a pour image un morceau de couronne d'aire voisine de $r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$. On écrit $\\mathrm{d}x\\,\\mathrm{d}y=r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$.\n\nEn général, un changement de variables $(x,y)=\\Phi(u,v)$ multiplie localement les aires par $|\\det J_\\Phi(u,v)|$, la valeur absolue du **jacobien** ; c'est l'analogue de $\\mathrm{d}x=|\\varphi'(u)|\\,\\mathrm{d}u$ en dimension $1$ (la valeur absolue remplace l'orientation des bornes). Le théorème, admis ici, demande un $\\mathcal{C}^1$-difféomorphisme ; on admet aussi qu'un défaut de bijectivité sur un ensemble d'aire nulle (centre, demi-droite, bord du domaine) ne change pas le résultat.\n\nMéthode : (1) choisir les variables adaptées à la forme du domaine ou de l'intégrande ($x^2+y^2$ appelle les polaires ; $x+y$ et $x-y$ appellent $u=x+y$, $v=x-y$) ; (2) décrire le nouveau domaine $\\Delta$ ; (3) calculer le jacobien de $\\Phi:(u,v)\\mapsto(x,y)$ ; si l'on connaît plutôt $(u,v)$ en fonction de $(x,y)$, on utilise $\\det J_\\Phi(u,v)=\\frac1{\\det J_{\\Phi^{-1}}(x,y)}$ au point $(x,y)=\\Phi(u,v)$ ; (4) appliquer Fubini sur $\\Delta$. Avec Fubini-Tonelli et un passage à la limite, le changement de variables sert aussi sur des domaines non bornés : c'est ainsi que l'on calcule classiquement $\\int_{-\\infty}^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\sqrt\\pi$.\n\nPièges : oublier le facteur $r$ ; oublier la valeur absolue du jacobien ; faire parcourir à $\\theta$ un intervalle de longueur supérieure à $2\\pi$ (le domaine est alors compté plusieurs fois) ; pour un disque qui n'est pas centré en l'origine, les bornes en $r$ dépendent de $\\theta$ (par exemple $0\\le r\\le2\\cos\\theta$, $-\\frac\\pi2\\le\\theta\\le\\frac\\pi2$, pour le disque de centre $(1,0)$ et de rayon $1$).",
+      "hypotheses": [
+        "$\\Phi$ est un $\\mathcal{C}^1$-difféomorphisme d'un ouvert $U$ qui contient $\\Delta$ sur un ouvert $V$.",
+        "$f$ est continue sur $D=\\Phi(\\Delta)$.",
+        "Coordonnées polaires : $0\\le r_1\\le r_2$ et $\\theta_1\\le\\theta_2\\le\\theta_1+2\\pi$."
+      ],
+      "hypotheses_pieges": [
+        "$\\Phi$ est de classe $\\mathcal{C}^1$ sur un ouvert $U$ qui contient $\\Delta$, de jacobien jamais nul (à la place de : un $\\mathcal{C}^1$-difféomorphisme de $U$ sur un ouvert $V$).",
+        "Coordonnées polaires : $0\\le r_1\\le r_2$ et $\\theta_1\\le\\theta_2$ quelconques (à la place de : $\\theta_2\\le\\theta_1+2\\pi$)."
+      ],
+      "enonce": "**Changement de variables (admis).** Soient $U$ et $V$ deux ouverts de $\\mathbb{R}^2$ et $\\Phi:U\\to V$ un $\\mathcal{C}^1$-difféomorphisme (bijection de classe $\\mathcal{C}^1$ dont la réciproque est de classe $\\mathcal{C}^1$), de matrice jacobienne $J_\\Phi$. Soient $\\Delta\\subset U$ une partie fermée bornée sur laquelle on sait intégrer (par exemple un domaine simple) et $D=\\Phi(\\Delta)$ (on admet que l'intégrale sur $D$ a un sens). Pour toute $f$ continue sur $D$,\n$$\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\iint_\\Delta f(\\Phi(u,v))\\,|\\det J_\\Phi(u,v)|\\,\\mathrm{d}u\\,\\mathrm{d}v.$$\n**Coordonnées polaires.** Soient $0\\le r_1\\le r_2$, $\\theta_1\\le\\theta_2\\le\\theta_1+2\\pi$ et $D=\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ r_1\\le r\\le r_2,\\ \\theta_1\\le\\theta\\le\\theta_2\\}$. Pour toute $f$ continue sur $D$,\n$$\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_{\\theta_1}^{\\theta_2}\\left(\\int_{r_1}^{r_2}f(r\\cos\\theta,r\\sin\\theta)\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta.$$",
+      "enonce_trous": "Soient $\\Phi$ {{1}}, $\\Delta\\subset U$ une partie fermée bornée et $f$ continue sur $D=\\Phi(\\Delta)$. Alors $\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\iint_\\Delta f(\\Phi(u,v))\\,j(u,v)\\,\\mathrm{d}u\\,\\mathrm{d}v$, où $j(u,v)$ vaut {{2}}. En coordonnées polaires, $\\mathrm{d}x\\,\\mathrm{d}y$ devient {{3}}.",
+      "trous": [
+        {
+          "reponse": "un $\\mathcal{C}^1$-difféomorphisme d'un ouvert $U$ sur un ouvert $V$",
+          "leurres": [
+            "une application de classe $\\mathcal{C}^1$ d'un ouvert $U$ dans $\\mathbb{R}^2$",
+            "une application de classe $\\mathcal{C}^1$ d'un ouvert $U$ dans $\\mathbb{R}^2$, de jacobien jamais nul",
+            "une application de classe $\\mathcal{C}^1$ d'un ouvert $U$ dans $\\mathbb{R}^2$, qui envoie $\\Delta$ sur $D$"
+          ]
+        },
+        {
+          "reponse": "$|\\det J_\\Phi(u,v)|$",
+          "leurres": [
+            "$\\det J_\\Phi(u,v)$",
+            "$\\frac1{|\\det J_\\Phi(u,v)|}$",
+            "$(\\det J_\\Phi(u,v))^2$"
+          ]
+        },
+        {
+          "reponse": "$r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$",
+          "leurres": [
+            "$\\mathrm{d}r\\,\\mathrm{d}\\theta$",
+            "$r^2\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$",
+            "$\\frac1r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$"
+          ]
+        }
+      ],
+      "demo": "La formule générale est admise (sa démonstration dépasse ce chapitre). Deux remarques l'éclairent.\n\n**Cas linéaire.** Si $\\Phi(u,v)=(\\alpha u+\\beta v,\\gamma u+\\delta v)$ avec $\\alpha\\delta-\\beta\\gamma\\neq0$, l'image du carré $[u,u+h]\\times[v,v+h]$ est le parallélogramme construit sur les vecteurs $h(\\alpha,\\gamma)$ et $h(\\beta,\\delta)$, d'aire $|\\alpha\\delta-\\beta\\gamma|\\,h^2$ : les aires sont multipliées par $|\\det J_\\Phi|$. Pour $\\Phi$ de classe $\\mathcal{C}^1$, $\\Phi$ est proche de sa différentielle sur un petit carré, d'où le facteur local $|\\det J_\\Phi(u,v)|$ ; les sommes de Riemann donnent alors la formule.\n\n**Polaires.** $\\Phi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$ a pour matrice jacobienne $\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{pmatrix}$, de déterminant $r$. Sur l'ouvert $\\left]0,+\\infty\\right[\\times\\left]\\theta_0,\\theta_0+2\\pi\\right[$, $\\Phi$ est un $\\mathcal{C}^1$-difféomorphisme sur le plan privé d'une demi-droite issue de l'origine. Si $r_1>0$ et $\\theta_2-\\theta_1<2\\pi$, le rectangle $[r_1,r_2]\\times[\\theta_1,\\theta_2]$ est contenu dans un tel ouvert et la formule générale s'applique. Sinon ($r_1=0$ ou $\\theta_2-\\theta_1=2\\pi$), la bijectivité n'est en défaut qu'au centre ou sur un segment, d'aire nulle ; on admet que la formule reste vraie.",
+      "exemple": "Pour $R>0$, en polaires :\n$$\\iint_{x^2+y^2\\le R^2}e^{-(x^2+y^2)}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^Re^{-r^2}r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\cdot\\frac{1-e^{-R^2}}2=\\pi\\left(1-e^{-R^2}\\right).$$",
+      "contre_exemple": "- **Sans le facteur $r$.** $\\int_0^{2\\pi}\\left(\\int_0^1\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi$, alors que le disque unité a pour aire $\\pi=\\int_0^{2\\pi}\\left(\\int_0^1r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta$.\n- **Application non injective.** $\\Phi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$ est de classe $\\mathcal{C}^1$, de jacobien $r\\neq0$ sur $\\left]0,+\\infty\\right[\\times\\mathbb{R}$, et envoie $\\Delta=[1,2]\\times[0,4\\pi]$ sur la couronne $D=\\{1\\le x^2+y^2\\le4\\}$, d'aire $3\\pi$. Mais $\\iint_\\Delta r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta=4\\pi\\cdot\\frac32=6\\pi$ : la couronne est comptée deux fois.\n- **Sans valeur absolue.** $\\Phi(u,v)=(v,u)$ a pour jacobien $-1$ ; sans valeur absolue, l'aire du carré $[0,1]^2$, image de lui-même, vaudrait $-1$.",
+      "affirmations": [
+        {
+          "texte": "$\\iint_{x^2+y^2\\le1}\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^1\\mathrm{d}r\\right)\\mathrm{d}\\theta$.",
+          "vrai": false,
+          "contre_exemple": "Le membre de droite vaut $2\\pi$, l'aire du disque vaut $\\pi$ : il manque le facteur $r$."
+        },
+        {
+          "texte": "Le jacobien de $(r,\\theta)\\mapsto(r\\cos\\theta,r\\sin\\theta)$ vaut $r$.",
+          "vrai": true,
+          "justification": "$\\begin{vmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{vmatrix}=r\\cos^2\\theta+r\\sin^2\\theta=r$."
+        },
+        {
+          "texte": "Si $\\Phi(u,v)=(2u,3v)$, l'image par $\\Phi$ d'un domaine simple d'aire $\\mathcal{A}$ a pour aire $6\\mathcal{A}$.",
+          "vrai": true,
+          "justification": "$|\\det J_\\Phi|=6$, constant : $\\iint_{\\Phi(\\Delta)}\\mathrm{d}x\\,\\mathrm{d}y=\\iint_\\Delta6\\,\\mathrm{d}u\\,\\mathrm{d}v=6\\mathcal{A}$."
+        },
+        {
+          "texte": "Le disque de centre $(1,0)$ et de rayon $1$ est décrit en polaires par $0\\le r\\le1$, $\\theta\\in[0,2\\pi]$.",
+          "vrai": false,
+          "contre_exemple": "Ces conditions décrivent le disque de centre $(0,0)$. Le disque de centre $(1,0)$ s'écrit $r^2\\le2r\\cos\\theta$, soit $0\\le r\\le2\\cos\\theta$ avec $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-domaines",
+        "geo-l2-affine-volume",
+        "int-l1-riemann-changement-variable"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Calculs d'aires planes et de volumes",
+      "recto": "Donner les formules intégrales de l'aire d'un domaine plan (en cartésiennes et en polaires) et du volume d'un solide (sous un graphe, par sections, de révolution).",
+      "cours": "Aires et volumes sont des intégrales de la fonction $1$ : $\\mathcal{A}(D)=\\iint_D\\mathrm{d}x\\,\\mathrm{d}y$ et, pour un solide $K$ de l'espace, $\\mathrm{vol}(K)=\\iiint_K\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ (carte suivante). Les formules de cette carte en découlent par les théorèmes de Fubini et de changement de variables.\n\n**Aires.** Pour un domaine simple, Fubini donne l'intégrale de la longueur des sections, $\\int_a^b(\\varphi_2-\\varphi_1)$ : on retrouve l'aire entre deux courbes vue en Terminale. Pour un domaine décrit en polaires, $0\\le r\\le\\rho(\\theta)$, le facteur $r$ du jacobien donne $\\int\\left(\\int_0^{\\rho(\\theta)}r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=\\frac12\\int\\rho^2$ : c'est la somme des aires $\\frac12\\rho^2\\,\\mathrm{d}\\theta$ de « petits secteurs » d'angle $\\mathrm{d}\\theta$.\n\n**Volumes.** Le volume sous le graphe d'une fonction positive est son intégrale double. Plus généralement, le volume est l'intégrale de l'aire des sections (principe de Cavalieri, conséquence du théorème de Fubini en dimension $3$) ; pour un solide de révolution autour de l'axe des abscisses, la section à l'abscisse $x$ est un disque de rayon $g(x)$, d'où $\\pi\\int g^2$. Exemple : la boule de rayon $R$, avec $g(x)=\\sqrt{R^2-x^2}$, a pour volume $\\pi\\int_{-R}^R(R^2-x^2)\\,\\mathrm{d}x=\\frac43\\pi R^3$.\n\nMéthode : dessiner, repérer les symétries (on calcule une partie et on multiplie), choisir les coordonnées adaptées (polaires pour un disque, cylindriques pour un solide de révolution), et contrôler l'ordre de grandeur du résultat (un solide contenu dans un pavé a un volume inférieur à celui du pavé).\n\nPièges : en polaires, c'est $\\frac12\\int\\rho^2$, et non $\\int\\rho$ ; une courbe polaire peut être parcourue deux fois (le cercle $\\rho=2\\cos\\theta$ est décrit une fois pour $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, où $\\rho\\ge0$ ; sur $[0,2\\pi]$, la formule donnerait $2\\pi$ au lieu de $\\pi$) ; l'intégrale double d'une fonction de signe quelconque n'est pas un volume.",
+      "hypotheses": [
+        "Aire en polaires : $\\rho$ est continue et positive sur $[\\theta_1,\\theta_2]$, avec $\\theta_2-\\theta_1\\le2\\pi$.",
+        "Volume sous un graphe : $f$ est continue et **positive** sur $D$.",
+        "Révolution : $g$ est continue et positive sur $[a,b]$."
+      ],
+      "hypotheses_pieges": [
+        "Aire en polaires : $\\rho$ est continue et positive sur $[\\theta_1,\\theta_2]$, avec $\\theta_2-\\theta_1\\le4\\pi$ (à la place de : $\\theta_2-\\theta_1\\le2\\pi$).",
+        "Volume sous un graphe : $f$ est continue sur $D$, de signe quelconque (à la place de : positive).",
+        "Révolution : $g$ est continue sur $[a,b]$, de signe quelconque (à la place de : positive)."
+      ],
+      "enonce": "**Aire.** L'aire d'un domaine $D$ du plan sur lequel on sait intégrer est $\\mathcal{A}(D)=\\iint_D\\mathrm{d}x\\,\\mathrm{d}y$. Pour un domaine simple $D=\\{a\\le x\\le b,\\ \\varphi_1(x)\\le y\\le\\varphi_2(x)\\}$, $\\mathcal{A}(D)=\\int_a^b(\\varphi_2(x)-\\varphi_1(x))\\,\\mathrm{d}x$. Si $\\rho$ est continue et positive sur $[\\theta_1,\\theta_2]$ avec $\\theta_2-\\theta_1\\le2\\pi$, le domaine $D=\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ \\theta_1\\le\\theta\\le\\theta_2,\\ 0\\le r\\le\\rho(\\theta)\\}$ a pour aire\n$$\\mathcal{A}(D)=\\frac12\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)^2\\,\\mathrm{d}\\theta.$$\n**Volume sous un graphe.** Si $f$ est continue et positive sur un domaine simple $D$, le solide $\\{(x,y,z)\\ :\\ (x,y)\\in D,\\ 0\\le z\\le f(x,y)\\}$ a pour volume $\\iint_Df(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$.\n\n**Volume par sections (Cavalieri).** Si un solide est compris entre les plans $z=a$ et $z=b$ et si sa section par le plan de cote $z$ a une aire $S(z)$ fonction continue de $z$, son volume est $\\int_a^bS(z)\\,\\mathrm{d}z$. En particulier, si $g$ est continue et positive sur $[a,b]$, le solide engendré par la rotation autour de l'axe des abscisses du domaine $\\{a\\le x\\le b,\\ 0\\le y\\le g(x)\\}$ a pour volume $\\pi\\int_a^bg(x)^2\\,\\mathrm{d}x$.",
+      "enonce_trous": "Si $\\rho$ est continue et positive sur $[\\theta_1,\\theta_2]$, avec $\\theta_2-\\theta_1\\le2\\pi$, le domaine $\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ \\theta_1\\le\\theta\\le\\theta_2,\\ 0\\le r\\le\\rho(\\theta)\\}$ a pour aire {{1}}. Si $g$ est continue et positive sur $[a,b]$, le solide engendré par la rotation autour de l'axe des abscisses du domaine $\\{a\\le x\\le b,\\ 0\\le y\\le g(x)\\}$ a pour volume {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac12\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)^2\\,\\mathrm{d}\\theta$",
+          "leurres": [
+            "$\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)\\,\\mathrm{d}\\theta$",
+            "$\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)^2\\,\\mathrm{d}\\theta$",
+            "$\\pi\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)^2\\,\\mathrm{d}\\theta$"
+          ]
+        },
+        {
+          "reponse": "$\\pi\\int_a^bg(x)^2\\,\\mathrm{d}x$",
+          "leurres": [
+            "$2\\pi\\int_a^bg(x)\\,\\mathrm{d}x$",
+            "$\\int_a^bg(x)^2\\,\\mathrm{d}x$",
+            "$\\frac\\pi3\\int_a^bg(x)^2\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "**Aire en polaires.** Le domaine $D$ est l'image par les coordonnées polaires du domaine $\\Delta=\\{(r,\\theta)\\ :\\ \\theta_1\\le\\theta\\le\\theta_2,\\ 0\\le r\\le\\rho(\\theta)\\}$, simple (selon $r$) car $\\rho$ est continue et positive. Comme $\\theta_2-\\theta_1\\le2\\pi$, la bijectivité n'est en défaut que sur un ensemble d'aire nulle, et le changement de variables (admis) donne\n$$\\mathcal{A}(D)=\\iint_\\Delta r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta=\\int_{\\theta_1}^{\\theta_2}\\left(\\int_0^{\\rho(\\theta)}r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=\\frac12\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)^2\\,\\mathrm{d}\\theta.$$\n**Volume sous un graphe.** Le solide est $\\{(x,y)\\in D,\\ 0\\le z\\le f(x,y)\\}$ ; par la formule de Fubini « par piles » (carte des intégrales triples), son volume est $\\iint_D\\left(\\int_0^{f(x,y)}\\mathrm{d}z\\right)\\mathrm{d}x\\,\\mathrm{d}y=\\iint_Df$, ce qui demande $f\\ge0$.\n\n**Révolution.** La section du solide par le plan d'abscisse $x$ est le disque de centre $(x,0,0)$ et de rayon $g(x)$ (ce qui demande $g\\ge0$), d'aire $\\pi g(x)^2$, fonction continue de $x$. La formule de Fubini « par tranches » (admise) donne le volume $\\int_a^b\\pi g(x)^2\\,\\mathrm{d}x$.",
+      "exemple": "- **Cardioïde.** $\\rho(\\theta)=1+\\cos\\theta$, $\\theta\\in[0,2\\pi]$ : $\\mathcal{A}=\\frac12\\int_0^{2\\pi}(1+2\\cos\\theta+\\cos^2\\theta)\\,\\mathrm{d}\\theta=\\frac12(2\\pi+0+\\pi)=\\frac{3\\pi}2$.\n- **Sous un paraboloïde.** Le volume de $\\{(x,y,z)\\ :\\ x^2+y^2\\le1,\\ 0\\le z\\le1-x^2-y^2\\}$ vaut $\\int_0^{2\\pi}\\left(\\int_0^1(1-r^2)\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\cdot\\frac14=\\frac\\pi2$.",
+      "contre_exemple": "- **Courbe parcourue deux fois.** $\\rho(\\theta)=2\\cos\\theta$ décrit le cercle de centre $(1,0)$ et de rayon $1$, qui limite un disque d'aire $\\pi$, quand $\\theta$ parcourt $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$. Sur $[0,2\\pi]$ (où $\\rho$ prend des valeurs négatives), $\\frac12\\int_0^{2\\pi}4\\cos^2\\theta\\,\\mathrm{d}\\theta=2\\pi$.\n- **Signe.** $\\iint_{[-1,1]\\times[0,1]}x\\,\\mathrm{d}x\\,\\mathrm{d}y=0$, alors que le solide compris entre le graphe de $(x,y)\\mapsto x$ et le plan $z=0$ est formé de deux morceaux de volume $\\frac12$ chacun.",
+      "affirmations": [
+        {
+          "texte": "Si $\\rho$ est continue et positive sur $[\\theta_1,\\theta_2]$ avec $\\theta_2-\\theta_1\\le2\\pi$, l'aire du domaine $\\{0\\le r\\le\\rho(\\theta),\\ \\theta_1\\le\\theta\\le\\theta_2\\}$ vaut $\\int_{\\theta_1}^{\\theta_2}\\rho(\\theta)\\,\\mathrm{d}\\theta$.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\rho=1$ sur $[0,2\\pi]$ (disque unité, d'aire $\\pi$), cette formule donne $2\\pi$. La bonne formule est $\\frac12\\int\\rho^2$."
+        },
+        {
+          "texte": "Le volume de la boule de rayon $R$ vaut $\\pi\\int_{-R}^R(R^2-x^2)\\,\\mathrm{d}x$.",
+          "vrai": true,
+          "justification": "C'est le solide de révolution engendré par $g(x)=\\sqrt{R^2-x^2}$ ; on trouve $\\frac43\\pi R^3$."
+        },
+        {
+          "texte": "Si $f$ est continue sur un domaine simple $D$, $\\iint_Df$ est le volume du solide compris entre le graphe de $f$ et le plan $z=0$.",
+          "vrai": false,
+          "contre_exemple": "$\\iint_{[-1,1]\\times[0,1]}x\\,\\mathrm{d}x\\,\\mathrm{d}y=0$, alors que ce solide a pour volume $1$."
+        },
+        {
+          "texte": "L'aire du disque de rayon $R$ vaut $\\frac12\\int_0^{2\\pi}R^2\\,\\mathrm{d}\\theta$.",
+          "vrai": true,
+          "justification": "Formule polaire avec $\\rho=R$ constant : $\\frac12\\cdot2\\pi R^2=\\pi R^2$."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-domaines",
+        "int-l3-multiples-changement-variables",
+        "int-t-integrale-aire"
+      ]
+    },
+    {
+      "id": "int-l3-multiples-triples",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-multiples",
+      "type": "theoreme",
+      "titre": "Intégrales triples",
+      "recto": "Énoncer les formules de calcul d'une intégrale triple (par piles, par tranches) et les changements de variables en coordonnées cylindriques et sphériques.",
+      "cours": "Les intégrales triples se traitent comme les intégrales doubles, avec une variable de plus : définition par sommes de Riemann sur des pavés, théorème de Fubini (admis) pour ramener le calcul à des intégrales simples, changement de variables (admis) avec la valeur absolue du jacobien.\n\nDeux façons de découper : **par piles** (on fixe $(x,y)$ dans la projection $D$ de $K$ sur le plan $xOy$, on intègre en $z$ entre le « plancher » $h_1(x,y)$ et le « plafond » $h_2(x,y)$, puis on intègre sur $D$) ou **par tranches** (on fixe $z$, on intègre sur la section $K_z$, puis en $z$). Les tranches sont commodes quand les sections sont des disques ou des couronnes ; pour $f=1$, on retrouve le principe de Cavalieri $\\mathrm{vol}(K)=\\int_a^b\\mathcal{A}(K_z)\\,\\mathrm{d}z$.\n\nCoordonnées **cylindriques** : les polaires dans le plan $xOy$, $z$ inchangé, jacobien $r$ ; adaptées aux solides de révolution d'axe $Oz$ (cylindres, cônes, paraboloïdes). Coordonnées **sphériques** : $\\rho$ est la distance à l'origine, $\\varphi\\in[0,\\pi]$ l'angle entre $Oz$ et le rayon (colatitude), $\\theta$ l'angle polaire de la projection sur $xOy$ ; jacobien $\\rho^2\\sin\\varphi$, positif sur $[0,\\pi]$. Elles sont adaptées aux boules, aux cônes de sommet l'origine et aux fonctions de $x^2+y^2+z^2$. Le jacobien se retrouve en calculant le déterminant de la matrice jacobienne, ou en notant que le petit pavé de côtés $\\mathrm{d}\\rho$, $\\rho\\,\\mathrm{d}\\varphi$, $\\rho\\sin\\varphi\\,\\mathrm{d}\\theta$ a ses côtés orthogonaux deux à deux.\n\nPièges : avec la latitude (angle avec le plan $xOy$, dans $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$) au lieu de la colatitude, le jacobien est $\\rho^2\\cos\\varphi$ ; ne jamais mélanger les deux conventions. Les bornes de l'intégrale la plus extérieure sont constantes. Par symétrie, l'intégrale d'une fonction impaire en $z$ sur un domaine symétrique par rapport au plan $xOy$ est nulle.",
+      "hypotheses": [
+        "$f$ est continue sur la partie fermée bornée $K$.",
+        "Par piles : $h_1$ et $h_2$ sont continues sur le domaine simple $D$ et $h_1\\le h_2$.",
+        "Sphériques : $\\varphi\\in[0,\\pi]$ est l'angle avec l'axe $Oz$ (colatitude) et $\\theta$ parcourt un intervalle de longueur $2\\pi$."
+      ],
+      "hypotheses_pieges": [
+        "Sphériques : $\\varphi\\in[0,2\\pi]$ (à la place de : $\\varphi\\in[0,\\pi]$), avec le même facteur $\\rho^2\\sin\\varphi$.",
+        "Sphériques : $\\varphi\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ est la latitude, angle avec le plan $xOy$, avec le même facteur $\\rho^2\\sin\\varphi$ (à la place de : la colatitude $\\varphi\\in[0,\\pi]$).",
+        "Par piles : $h_1$ et $h_2$ sont continues sur $D$, sans condition d'ordre (à la place de : $h_1\\le h_2$)."
+      ],
+      "enonce": "Soient $K$ une partie fermée bornée de $\\mathbb{R}^3$ et $f$ continue sur $K$. Les formules suivantes sont admises.\n\n**Par piles.** Si $K=\\{(x,y,z)\\ :\\ (x,y)\\in D,\\ h_1(x,y)\\le z\\le h_2(x,y)\\}$, avec $D$ domaine simple du plan et $h_1\\le h_2$ continues sur $D$ :\n$$\\iiint_Kf(x,y,z)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\iint_D\\left(\\int_{h_1(x,y)}^{h_2(x,y)}f(x,y,z)\\,\\mathrm{d}z\\right)\\mathrm{d}x\\,\\mathrm{d}y.$$\n**Par tranches.** Si $K=\\{(x,y,z)\\ :\\ a\\le z\\le b,\\ (x,y)\\in K_z\\}$, où chaque section $K_z$ est un domaine du plan sur lequel on sait intégrer (et si $z\\mapsto\\iint_{K_z}f$ est intégrable sur $[a,b]$) :\n$$\\iiint_Kf(x,y,z)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\int_a^b\\left(\\iint_{K_z}f(x,y,z)\\,\\mathrm{d}x\\,\\mathrm{d}y\\right)\\mathrm{d}z.$$\n**Changement de variables.** Pour un $\\mathcal{C}^1$-difféomorphisme $\\Phi$, $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ devient $|\\det J_\\Phi|\\,\\mathrm{d}u\\,\\mathrm{d}v\\,\\mathrm{d}w$ ; en particulier :\n- coordonnées cylindriques $(x,y,z)=(r\\cos\\theta,r\\sin\\theta,z)$ : $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$ ;\n- coordonnées sphériques $(x,y,z)=(\\rho\\sin\\varphi\\cos\\theta,\\rho\\sin\\varphi\\sin\\theta,\\rho\\cos\\varphi)$, avec $\\rho\\ge0$, $\\varphi\\in[0,\\pi]$ (angle avec l'axe $Oz$) et $\\theta$ dans un intervalle de longueur $2\\pi$ : $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$.\n\nLe volume de $K$ est $\\iiint_K\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+      "enonce_trous": "En coordonnées cylindriques $(r\\cos\\theta,r\\sin\\theta,z)$, $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ devient {{1}}. En coordonnées sphériques $(\\rho\\sin\\varphi\\cos\\theta,\\rho\\sin\\varphi\\sin\\theta,\\rho\\cos\\varphi)$, avec $\\varphi\\in[0,\\pi]$, il devient {{2}}.",
+      "trous": [
+        {
+          "reponse": "$r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$",
+          "leurres": [
+            "$\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$",
+            "$r^2\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$",
+            "$rz\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$"
+          ]
+        },
+        {
+          "reponse": "$\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$",
+          "leurres": [
+            "$\\rho^2\\cos\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$",
+            "$\\rho\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$",
+            "$\\rho^2\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$"
+          ]
+        }
+      ],
+      "demo": "Le théorème de Fubini et la formule de changement de variables en dimension $3$ sont admis. Calculons les jacobiens.\n\n**Cylindriques.** $\\Phi(r,\\theta,z)=(r\\cos\\theta,r\\sin\\theta,z)$ a pour matrice jacobienne $\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta&0\\\\\\sin\\theta&r\\cos\\theta&0\\\\0&0&1\\end{pmatrix}$, de déterminant $r$ (développement selon la dernière ligne).\n\n**Sphériques.** $\\Phi(\\rho,\\varphi,\\theta)=(\\rho\\sin\\varphi\\cos\\theta,\\rho\\sin\\varphi\\sin\\theta,\\rho\\cos\\varphi)$ a pour matrice jacobienne\n$$J_\\Phi=\\begin{pmatrix}\\sin\\varphi\\cos\\theta&\\rho\\cos\\varphi\\cos\\theta&-\\rho\\sin\\varphi\\sin\\theta\\\\\\sin\\varphi\\sin\\theta&\\rho\\cos\\varphi\\sin\\theta&\\rho\\sin\\varphi\\cos\\theta\\\\\\cos\\varphi&-\\rho\\sin\\varphi&0\\end{pmatrix}.$$\nEn développant selon la dernière ligne :\n$$\\det J_\\Phi=\\cos\\varphi\\cdot\\rho^2\\sin\\varphi\\cos\\varphi+\\rho\\sin\\varphi\\cdot\\rho\\sin^2\\varphi=\\rho^2\\sin\\varphi(\\cos^2\\varphi+\\sin^2\\varphi)=\\rho^2\\sin\\varphi.$$\nIl est strictement positif pour $\\rho>0$ et $\\varphi\\in\\left]0,\\pi\\right[$. Sur $\\left]0,+\\infty\\right[\\times\\left]0,\\pi\\right[\\times\\left]\\theta_0,\\theta_0+2\\pi\\right[$, $\\Phi$ est un $\\mathcal{C}^1$-difféomorphisme sur l'espace privé d'un demi-plan limité par l'axe $Oz$ ; on admet que l'on peut négliger ce demi-plan, de volume nul.",
+      "exemple": "- **Volume de la boule.** $\\iiint_{x^2+y^2+z^2\\le R^2}\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\int_0^{2\\pi}\\int_0^\\pi\\int_0^R\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi\\cdot2\\cdot\\frac{R^3}3=\\frac43\\pi R^3$.\n- **Par tranches.** Pour le cône $K=\\{(x,y,z)\\ :\\ \\sqrt{x^2+y^2}\\le z\\le1\\}$, la section $K_z$ est le disque de rayon $z$ : $\\iiint_Kz\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\int_0^1z\\cdot\\pi z^2\\,\\mathrm{d}z=\\frac\\pi4$.",
+      "contre_exemple": "- **Latitude et colatitude mélangées.** Si l'on prend $\\varphi\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ (latitude) en gardant le facteur $\\rho^2\\sin\\varphi$, le « volume » de la boule unité devient $2\\pi\\cdot\\frac13\\int_{-\\pi/2}^{\\pi/2}\\sin\\varphi\\,\\mathrm{d}\\varphi=0$. Avec la latitude, le bon facteur est $\\rho^2\\cos\\varphi$, qui redonne $\\frac{4\\pi}3$.\n- **Sans jacobien.** $\\int_0^{2\\pi}\\int_0^\\pi\\int_0^1\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi^2$, qui n'est pas le volume $\\frac{4\\pi}3$ de la boule unité.",
+      "affirmations": [
+        {
+          "texte": "En coordonnées sphériques (colatitude $\\varphi\\in[0,\\pi]$), $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta$.",
+          "vrai": true,
+          "justification": "Le déterminant de la matrice jacobienne vaut $\\rho^2\\sin\\varphi$, positif sur $[0,\\pi]$."
+        },
+        {
+          "texte": "En coordonnées cylindriques, $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$.",
+          "vrai": false,
+          "contre_exemple": "Le cylindre $\\{x^2+y^2\\le1,\\ 0\\le z\\le1\\}$ a pour volume $\\pi$, alors que $\\int_0^1\\int_0^{2\\pi}\\int_0^1\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z=2\\pi$ : il manque le facteur $r$."
+        },
+        {
+          "texte": "$\\iiint_{x^2+y^2+z^2\\le1}z\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=0$.",
+          "vrai": true,
+          "justification": "La boule est symétrique par rapport au plan $xOy$ et la fonction $z$ est impaire en $z$ (changement de variables $(x,y,z)\\mapsto(x,y,-z)$, de jacobien $-1$)."
+        },
+        {
+          "texte": "Le volume du tétraèdre $\\{x\\ge0,\\ y\\ge0,\\ z\\ge0,\\ x+y+z\\le1\\}$ vaut $\\frac13$.",
+          "vrai": false,
+          "contre_exemple": "Par piles, $\\iint_{x,y\\ge0,\\,x+y\\le1}(1-x-y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1\\frac{(1-x)^2}2\\,\\mathrm{d}x=\\frac16$."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-changement-variables",
+        "int-l3-multiples-domaines",
+        "al-l1-determinant-developpement"
+      ]
+    }
+  ]
+}

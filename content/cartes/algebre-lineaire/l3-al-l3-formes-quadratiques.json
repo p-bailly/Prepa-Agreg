@@ -1,0 +1,534 @@
+{
+  "cartes": [
+    {
+      "id": "al-l3-formes-quadratiques-bilineaires",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "definition",
+      "titre": "Formes bilinéaires symétriques et formes quadratiques",
+      "recto": "Définir une forme quadratique, sa forme polaire et sa matrice dans une base ; donner la formule de changement de base et la caractérisation des formes non dégénérées.",
+      "cours": "Sur un espace vectoriel $E$ de dimension finie $n$ sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$, une **forme bilinéaire** $b:E\\times E\\to\\mathbb{K}$ est linéaire par rapport à chacune de ses deux variables ; elle est **symétrique** si $b(y,x)=b(x,y)$. Une **forme quadratique** est une application $q(x)=\\varphi(x,x)$, où $\\varphi$ est bilinéaire ; dans une base, c'est un polynôme homogène de degré $2$ en les coordonnées, comme $q(x)=x_1^2-3x_2x_3$. L'exemple fondamental est le carré de la norme d'un espace euclidien, $q(x)=\\|x\\|^2$, de forme polaire le produit scalaire.\n\nPlusieurs formes bilinéaires donnent la même forme quadratique ($x_1y_2$ et $x_2y_1$ donnent toutes deux $x_1x_2$), mais une seule est symétrique : la **forme polaire**, que l'on retrouve par polarisation, $b(x,y)=\\frac12\\big(q(x+y)-q(x)-q(y)\\big)$. C'est elle qui définit la matrice de $q$ dans une base, $M=\\big(b(e_i,e_j)\\big)$, symétrique. En pratique, on lit $M$ sur l'expression de $q$ : le coefficient de $x_i^2$ va en position $(i,i)$, et **la moitié** du coefficient de $x_ix_j$ ($i\\neq j$) va en positions $(i,j)$ et $(j,i)$.\n\nUn changement de base remplace $M$ par ${}^tPMP$ (on dit que les deux matrices sont **congruentes**), et non par $P^{-1}MP$ : la matrice d'une forme quadratique ne se transforme pas comme celle d'un endomorphisme. Le rang est conservé, mais ni le déterminant (multiplié par $(\\det P)^2$), ni les valeurs propres ; sur $\\mathbb{R}$, le **signe** du déterminant est conservé.\n\nVocabulaire : $x$ et $y$ sont **orthogonaux** pour $q$ si $b(x,y)=0$ ; le **noyau** de $q$ est l'ensemble des vecteurs orthogonaux à tous les vecteurs de $E$ ; il correspond au noyau de $M$, et $q$ est **non dégénérée** si son noyau est réduit à $\\{0\\}$, c'est-à-dire si $\\det M\\neq0$. Un vecteur $x$ est **isotrope** si $q(x)=0$ ; le **cône isotrope** contient le noyau, souvent strictement : $q(x)=x_1^2-x_2^2$ est non dégénérée, et pourtant $q(1,1)=0$.\n\nPièges : oublier le facteur $\\frac12$ sur les coefficients non diagonaux ; écrire $P^{-1}MP$ au lieu de ${}^tPMP$ ; confondre « non dégénérée » (noyau nul) et « sans vecteur isotrope non nul » ; croire que le cône isotrope est un sous-espace vectoriel (pour $x_1^2-x_2^2$, c'est la réunion de deux droites).",
+      "hypotheses": [
+        "$E$ est un espace vectoriel de dimension finie sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$.",
+        "La forme bilinéaire $b$ associée à $q$ est cherchée **symétrique**.",
+        "$P$ est la matrice de passage de $\\mathcal{B}$ à $\\mathcal{B}'$ : ses colonnes sont les coordonnées dans $\\mathcal{B}$ des vecteurs de $\\mathcal{B}'$."
+      ],
+      "hypotheses_pieges": [
+        "La forme bilinéaire $b$ associée à $q$ est seulement supposée bilinéaire (à la place de : symétrique).",
+        "$P$ est la matrice de passage de $\\mathcal{B}'$ à $\\mathcal{B}$ (à la place de : de $\\mathcal{B}$ à $\\mathcal{B}'$).",
+        "$P$ est la matrice dont les **lignes** sont les coordonnées dans $\\mathcal{B}$ des vecteurs de $\\mathcal{B}'$ (à la place de : les colonnes)."
+      ],
+      "enonce": "Soit $E$ un espace vectoriel de dimension finie $n\\ge1$ sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$. Une **forme quadratique** sur $E$ est une application $q:E\\to\\mathbb{K}$ de la forme $q(x)=\\varphi(x,x)$, où $\\varphi$ est une forme bilinéaire sur $E$.\n\n- **Forme polaire.** Il existe une unique forme bilinéaire **symétrique** $b$ telle que $q(x)=b(x,x)$ pour tout $x\\in E$ ; elle est donnée par $b(x,y)=\\frac12\\big(q(x+y)-q(x)-q(y)\\big)$.\n- **Matrice.** Si $\\mathcal{B}=(e_1,\\dots,e_n)$ est une base de $E$, la matrice $M=\\big(b(e_i,e_j)\\big)_{i,j}$ de $q$ dans $\\mathcal{B}$ est symétrique et, si $X$ et $Y$ sont les colonnes des coordonnées de $x$ et $y$ dans $\\mathcal{B}$, $b(x,y)={}^tXMY$ et $q(x)={}^tXMX=\\sum_im_{ii}x_i^2+2\\sum_{i<j}m_{ij}x_ix_j$.\n- **Changement de base.** Si $P$ est la matrice de passage de $\\mathcal{B}$ à une base $\\mathcal{B}'$, la matrice de $q$ dans $\\mathcal{B}'$ est ${}^tPMP$. Le rang de $M$ ne dépend donc pas de la base : c'est le **rang** de $q$.\n- **Noyau.** Le noyau $\\mathrm{Ker}\\,q=\\{x\\in E : b(x,y)=0\\text{ pour tout }y\\in E\\}$ est formé des vecteurs dont la colonne des coordonnées appartient à $\\mathrm{Ker}\\,M$ ; $q$ est **non dégénérée** ($\\mathrm{Ker}\\,q=\\{0\\}$) si et seulement si $\\det M\\neq0$. Le noyau est contenu dans le **cône isotrope** $\\{x\\in E : q(x)=0\\}$.",
+      "enonce_trous": "Si $P$ est la matrice de passage de $\\mathcal{B}$ à $\\mathcal{B}'$, la matrice de $q$ dans $\\mathcal{B}'$ est {{1}}. La forme polaire de $q$ est donnée par $b(x,y)=$ {{2}}, et $q$ est non dégénérée si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "${}^tPMP$",
+          "leurres": [
+            "$P^{-1}MP$",
+            "$PM\\,{}^tP$",
+            "${}^t(P^{-1})MP^{-1}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac12\\big(q(x+y)-q(x)-q(y)\\big)$",
+          "leurres": [
+            "$q(x+y)-q(x)-q(y)$",
+            "$\\frac12\\big(q(x+y)-q(x-y)\\big)$",
+            "$\\frac14\\big(q(x+y)+q(x-y)\\big)$"
+          ]
+        },
+        {
+          "reponse": "le déterminant de sa matrice dans une base est non nul",
+          "leurres": [
+            "$q$ ne s'annule qu'en $0$",
+            "les coefficients diagonaux de sa matrice dans une base sont tous non nuls",
+            "la trace de sa matrice dans une base est non nulle"
+          ]
+        }
+      ],
+      "demo": "**Forme polaire.** Si $b$ est bilinéaire symétrique et $q(x)=b(x,x)$, alors, par bilinéarité et symétrie, $q(x+y)=b(x+y,x+y)=q(x)+2b(x,y)+q(y)$, d'où $b(x,y)=\\frac12\\big(q(x+y)-q(x)-q(y)\\big)$ (on peut diviser par $2$ dans $\\mathbb{R}$ ou $\\mathbb{C}$) : $b$ est déterminée par $q$, d'où l'unicité. Existence : si $q(x)=\\varphi(x,x)$, la forme $b(x,y)=\\frac12\\big(\\varphi(x,y)+\\varphi(y,x)\\big)$ est bilinéaire, symétrique, et $b(x,x)=\\varphi(x,x)=q(x)$.\n\n**Matrice.** $m_{ji}=b(e_j,e_i)=b(e_i,e_j)=m_{ij}$. Pour $x=\\sum_ix_ie_i$ et $y=\\sum_jy_je_j$, la bilinéarité donne $b(x,y)=\\sum_{i,j}x_iy_jb(e_i,e_j)={}^tXMY$ ; pour $y=x$, les termes d'indices $(i,j)$ et $(j,i)$ se regroupent en $2m_{ij}x_ix_j$.\n\n**Changement de base.** Si $X'$ et $Y'$ sont les coordonnées de $x$ et $y$ dans $\\mathcal{B}'$, alors $X=PX'$ et $Y=PY'$, donc $b(x,y)={}^tX'\\,({}^tPMP)\\,Y'$. Or la matrice $N$ de $b$ dans $\\mathcal{B}'$ est l'unique matrice telle que $b(x,y)={}^tX'NY'$ pour tous $X',Y'$ (en prenant pour $X'$ et $Y'$ des vecteurs de la base canonique, on retrouve ses coefficients) : $N={}^tPMP$. Comme $P$ et ${}^tP$ sont inversibles, $\\mathrm{rg}({}^tPMP)=\\mathrm{rg}\\,M$.\n\n**Noyau.** $x\\in\\mathrm{Ker}\\,q$ si et seulement si ${}^tXMY=0$ pour toute colonne $Y$, c'est-à-dire ${}^tXM=0$, ou encore, en transposant ($M$ est symétrique), $MX=0$. Donc $\\mathrm{Ker}\\,q=\\{0\\}$ si et seulement si $\\mathrm{Ker}\\,M=\\{0\\}$, si et seulement si $\\det M\\neq0$. Enfin, si $x\\in\\mathrm{Ker}\\,q$, en particulier $q(x)=b(x,x)=0$.",
+      "exemple": "Sur $\\mathbb{R}^3$, $q(x)=x_1^2-x_2^2+4x_1x_2-6x_2x_3$ a pour matrice $M=\\begin{pmatrix}1&2&0\\\\2&-1&-3\\\\0&-3&0\\end{pmatrix}$ dans la base canonique (moitiés des coefficients $4$ et $-6$), pour forme polaire $b(x,y)=x_1y_1-x_2y_2+2(x_1y_2+x_2y_1)-3(x_2y_3+x_3y_2)$, et $\\det M=-9\\neq0$ : $q$ est non dégénérée.\n\nDans la base $\\mathcal{B}'=\\big((1,0,0),(-2,1,0),(0,0,1)\\big)$, de matrice de passage $P=\\begin{pmatrix}1&-2&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$, la matrice de $q$ devient ${}^tPMP=\\begin{pmatrix}1&0&0\\\\0&-5&-3\\\\0&-3&0\\end{pmatrix}$ : en coordonnées $(y_1,y_2,y_3)$ dans $\\mathcal{B}'$, $q=y_1^2-5y_2^2-6y_2y_3$, avec $y_1=x_1+2x_2$. Le déterminant vaut encore $-9$ car $\\det P=1$.",
+      "contre_exemple": "- **Sans symétrie, pas d'unicité** : sur $\\mathbb{R}^2$, $\\varphi_1(x,y)=x_1y_2$ et $\\varphi_2(x,y)=x_2y_1$ sont bilinéaires, distinctes, et donnent la même forme quadratique $x_1x_2$ ; sa forme polaire est $\\frac12(x_1y_2+x_2y_1)$.\n- **Coordonnées en colonnes, pas en lignes** : pour $q(x)=x_1^2$ sur $\\mathbb{R}^2$ et la base $\\mathcal{B}'=\\big((1,1),(0,1)\\big)$, la matrice de passage est $P=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix}$ et ${}^tPMP=\\mathrm{diag}(1,0)$, car $q(1,1)=1$, $q(0,1)=0$ et $b\\big((1,1),(0,1)\\big)=0$ ; avec la matrice transposée $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ (coordonnées en lignes) à la place de $P$, on trouverait $\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$.\n- **${}^tPMP$ et non $P^{-1}MP$** : pour $q(x)=x^2$ sur $\\mathbb{R}$, de matrice $M=(1)$ dans la base $(1)$, et la base $(2)$, la matrice de passage est $P=(2)$ et la matrice de $q$ est $\\big(q(2)\\big)=(4)={}^tPMP$, alors que $P^{-1}MP=(1)$. Avec la matrice de passage dans l'autre sens, $\\left(\\frac12\\right)$, on trouverait $\\left(\\frac14\\right)$.\n- **Non dégénérée n'empêche pas les vecteurs isotropes** : $q(x)=x_1^2-x_2^2$ a pour matrice $\\mathrm{diag}(1,-1)$, inversible, et $q(1,1)=0$ ; son cône isotrope est la réunion des droites $x_2=x_1$ et $x_2=-x_1$, qui n'est pas un sous-espace vectoriel.",
+      "affirmations": [
+        {
+          "texte": "Le déterminant de la matrice d'une forme quadratique réelle ne dépend pas de la base choisie.",
+          "vrai": false,
+          "contre_exemple": "Pour $q(x)=x^2$ sur $\\mathbb{R}$, la matrice vaut $(1)$ dans la base $(1)$ et $(4)$ dans la base $(2)$. Seul son signe est invariant, car $\\det({}^tPMP)=(\\det P)^2\\det M$."
+        },
+        {
+          "texte": "Le rang de la matrice d'une forme quadratique ne dépend pas de la base choisie.",
+          "vrai": true,
+          "justification": "Les matrices dans deux bases sont liées par $M'={}^tPMP$ avec $P$ inversible, et multiplier par des matrices inversibles ne change pas le rang."
+        },
+        {
+          "texte": "Une forme quadratique non dégénérée ne s'annule qu'en $0$.",
+          "vrai": false,
+          "contre_exemple": "$q(x)=x_1^2-x_2^2$ sur $\\mathbb{R}^2$ est non dégénérée (matrice $\\mathrm{diag}(1,-1)$) et $q(1,1)=0$."
+        },
+        {
+          "texte": "Deux formes bilinéaires sur $E$ qui définissent la même forme quadratique sont égales.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{R}^2$, $x_1y_2$ et $x_2y_1$ sont distinctes et donnent toutes deux $x_1x_2$. L'unicité n'a lieu que parmi les formes bilinéaires symétriques."
+        },
+        {
+          "texte": "Si $q$ est une forme quadratique réelle positive ($q(x)\\ge0$ pour tout $x$), son cône isotrope est égal à son noyau.",
+          "vrai": true,
+          "justification": "Si $q(x)=0$, alors pour tout $y$ et tout réel $t$, $0\\le q(tx+y)=2t\\,b(x,y)+q(y)$ ; une fonction affine de $t$ positive sur $\\mathbb{R}$ est constante, donc $b(x,y)=0$ : $x$ est dans le noyau. L'autre inclusion est toujours vraie."
+        }
+      ],
+      "prerequis": [
+        "al-l1-applications-matrice",
+        "al-l1-applications-rang-matrice",
+        "al-l1-determinant-inversibilite",
+        "al-l2-euclidien-cauchy-schwarz"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-gauss",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "methode",
+      "titre": "Réduction de Gauss",
+      "recto": "Énoncer le théorème de réduction d'une forme quadratique en combinaison de carrés de formes linéaires indépendantes (méthode de Gauss), avec le lien entre le nombre de carrés et le rang.",
+      "cours": "Réduire une forme quadratique, c'est l'écrire comme combinaison de carrés de formes linéaires **indépendantes**, $q=\\alpha_1\\ell_1^2+\\dots+\\alpha_r\\ell_r^2$ : dans une base adaptée, sa matrice devient diagonale. La méthode de Gauss le fait par des complétions successives de carrés, sans calculer de valeurs propres, avec des opérations rationnelles sur les coefficients.\n\nMéthode (chaque étape élimine une ou deux variables) :\n- s'il y a un terme carré, par exemple $ax_1^2$ avec $a\\neq0$, on regroupe tous les termes contenant $x_1$ : $q=ax_1^2+x_1L+q_1=a\\left(x_1+\\frac{L}{2a}\\right)^2-\\frac{L^2}{4a}+q_1$, où la forme linéaire $L$ et la forme quadratique $q_1$ ne dépendent pas de $x_1$ ; on recommence avec $q_1-\\frac{L^2}{4a}$ ;\n- s'il n'y a aucun terme carré mais un terme $ax_1x_2$ avec $a\\neq0$, on écrit $q=ax_1x_2+x_1L_1+x_2L_2+q_2$, avec $L_1$, $L_2$, $q_2$ indépendants de $x_1$ et $x_2$, puis $q=a\\left(x_1+\\frac{L_2}{a}\\right)\\left(x_2+\\frac{L_1}{a}\\right)-\\frac{L_1L_2}{a}+q_2$, et l'identité $uv=\\frac14\\big((u+v)^2-(u-v)^2\\big)$ fait apparaître deux carrés.\n\nLes formes linéaires obtenues sont automatiquement indépendantes : chaque étape produit une ou deux formes qui font intervenir une ou deux variables absentes des formes suivantes. Le nombre de carrés est alors le rang de $q$. En complétant $(\\ell_1,\\dots,\\ell_r)$ en une famille libre $(\\ell_1,\\dots,\\ell_n)$ et en résolvant $\\ell_i(e_j)=1$ si $i=j$, $0$ sinon, on obtient une base $(e_1,\\dots,e_n)$ **orthogonale pour $q$**, où la matrice de $q$ est $\\mathrm{diag}(\\alpha_1,\\dots,\\alpha_r,0,\\dots,0)$ : si $L$ est la matrice dont les lignes sont les coefficients des $\\ell_i$, les $e_j$ sont les colonnes de $L^{-1}$.\n\nSur $\\mathbb{C}$, chaque $\\alpha_i$ a une racine carrée : $q=\\sum_i\\big(\\sqrt{\\alpha_i}\\,\\ell_i\\big)^2$, et toute forme quadratique complexe de rang $r$ a pour matrice $\\mathrm{diag}(1,\\dots,1,0,\\dots,0)$, avec $r$ coefficients égaux à $1$, dans une base convenable. Sur $\\mathbb{R}$, on ne peut normaliser les $\\alpha_i$ qu'à $\\pm1$ : c'est l'objet de la loi d'inertie de Sylvester.\n\nPièges : une somme de carrés de formes linéaires **liées** ne donne ni le rang ni la signature ($(x-y)^2+(y-z)^2+(z-x)^2$ a trois carrés mais est de rang $2$) ; les coefficients $\\alpha_i$ dépendent des choix faits (ordre des variables), seuls leur nombre et, sur $\\mathbb{R}$, les nombres de coefficients positifs et négatifs sont des invariants ; dans le cas sans terme carré, ne pas oublier le terme correctif $-\\frac{L_1L_2}{a}$ ; vérifier toujours le résultat en développant ; enfin, la base orthogonale est donnée par les colonnes de $L^{-1}$, pas par les lignes de $L$.",
+      "hypotheses": [
+        "Les scalaires $\\alpha_1,\\dots,\\alpha_r$ sont **non nuls**.",
+        "La famille $(\\ell_1,\\dots,\\ell_r)$ de formes linéaires est **libre**."
+      ],
+      "hypotheses_pieges": [
+        "Les formes linéaires $\\ell_1,\\dots,\\ell_r$ sont deux à deux non proportionnelles (à la place de : la famille est libre).",
+        "Les scalaires $\\alpha_1,\\dots,\\alpha_r$ sont quelconques (à la place de : non nuls)."
+      ],
+      "enonce": "Soit $q$ une forme quadratique sur un espace vectoriel $E$ de dimension finie $n$ sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$.\n\n- **Existence.** Il existe un entier $r\\in\\{0,\\dots,n\\}$, des scalaires **non nuls** $\\alpha_1,\\dots,\\alpha_r$ et des formes linéaires $\\ell_1,\\dots,\\ell_r$ formant une famille **libre** tels que $q=\\alpha_1\\ell_1^2+\\dots+\\alpha_r\\ell_r^2$ ; la méthode de Gauss en fournit une.\n- **Rang et noyau.** Pour toute écriture de ce type (scalaires non nuls, formes linéaires indépendantes), $r$ est le rang de $q$, et $\\mathrm{Ker}\\,q=\\mathrm{Ker}\\,\\ell_1\\cap\\dots\\cap\\mathrm{Ker}\\,\\ell_r$.\n- **Base orthogonale.** Il existe une base $(e_1,\\dots,e_n)$ de $E$ **orthogonale pour $q$** ($b(e_i,e_j)=0$ pour $i\\neq j$), dans laquelle la matrice de $q$ est $\\mathrm{diag}(\\alpha_1,\\dots,\\alpha_r,0,\\dots,0)$. Matriciellement : pour toute matrice symétrique $M\\in\\mathcal{S}_n(\\mathbb{K})$, il existe $P$ inversible telle que ${}^tPMP$ soit diagonale.",
+      "enonce_trous": "Si $q=\\alpha_1\\ell_1^2+\\dots+\\alpha_r\\ell_r^2$ avec des scalaires $\\alpha_i$ {{1}} et une famille $(\\ell_1,\\dots,\\ell_r)$ de formes linéaires {{2}}, alors $r$ est {{3}} de $q$.",
+      "trous": [
+        {
+          "reponse": "non nuls",
+          "leurres": [
+            "quelconques",
+            "positifs ou nuls",
+            "entiers"
+          ]
+        },
+        {
+          "reponse": "libre",
+          "leurres": [
+            "génératrice de l'espace des formes linéaires",
+            "formée de formes non nulles deux à deux non proportionnelles",
+            "quelconque"
+          ]
+        },
+        {
+          "reponse": "le rang",
+          "leurres": [
+            "la dimension du noyau",
+            "le nombre de valeurs propres strictement positives de la matrice",
+            "la dimension de l'espace"
+          ]
+        }
+      ],
+      "demo": "On fixe une base $(\\varepsilon_1,\\dots,\\varepsilon_n)$ de $E$, de coordonnées $x_1,\\dots,x_n$.\n\n**Existence (récurrence sur le nombre de variables dont dépend $q$).** Si $q=0$, on prend $r=0$. Sinon, deux cas.\n- Un coefficient de carré est non nul, disons celui de $x_1^2$, égal à $a$ : $q=ax_1^2+x_1L+q_1$, où $L$ est une forme linéaire et $q_1$ une forme quadratique en $x_2,\\dots,x_n$. Alors $q=a\\ell_1^2+q'$ avec $\\ell_1=x_1+\\frac{L}{2a}$ et $q'=q_1-\\frac{L^2}{4a}$, qui ne dépend pas de $x_1$.\n- Aucun carré, mais (quitte à renuméroter) le coefficient $a$ de $x_1x_2$ est non nul : $q=ax_1x_2+x_1L_1+x_2L_2+q_2$, où $L_1$, $L_2$, $q_2$ ne dépendent ni de $x_1$ ni de $x_2$. Avec $u=x_1+\\frac{L_2}{a}$ et $v=x_2+\\frac{L_1}{a}$, on a $q=auv+q'$ où $q'=q_2-\\frac{L_1L_2}{a}$ ne dépend ni de $x_1$ ni de $x_2$, et $auv=\\frac a4(u+v)^2-\\frac a4(u-v)^2$.\n\nOn applique l'hypothèse de récurrence à $q'$, qui dépend de moins de variables, et dont les formes linéaires ne font intervenir ni $x_1$ (premier cas), ni $x_1,x_2$ (second cas). La famille obtenue est libre : dans une combinaison linéaire nulle des formes, les coefficients de $x_1$ (et de $x_2$) ne viennent que des premières formes, $\\ell_1$ dans le premier cas, $u+v$ et $u-v$ (coefficients $(1,1)$ et $(1,-1)$ en $(x_1,x_2)$) dans le second, donc leurs coefficients sont nuls ; la liberté des formes suivantes, obtenue par récurrence, conclut.\n\n**Base orthogonale, rang et noyau.** Soit $q=\\sum_{i=1}^r\\alpha_i\\ell_i^2$ avec les $\\alpha_i$ non nuls et $(\\ell_1,\\dots,\\ell_r)$ libre. On la complète en une famille libre $(\\ell_1,\\dots,\\ell_n)$ de formes linéaires (théorème de la base incomplète dans l'espace des formes linéaires, de dimension $n$). La matrice $L$ dont la ligne $i$ est formée des coefficients de $\\ell_i$ a ses lignes indépendantes, donc est inversible. Soit $e_j$ le vecteur dont la colonne des coordonnées est la $j$-ième colonne de $L^{-1}$ : alors $\\ell_i(e_j)=1$ si $i=j$ et $0$ sinon. Pour $x=\\sum_jy_je_j$, on a $\\ell_i(x)=y_i$, donc $q(x)=\\sum_{i\\le r}\\alpha_iy_i^2$ : la matrice de $q$ dans $(e_1,\\dots,e_n)$ est $D=\\mathrm{diag}(\\alpha_1,\\dots,\\alpha_r,0,\\dots,0)$, la base est orthogonale pour $q$, et $\\mathrm{rg}\\,q=\\mathrm{rg}\\,D=r$ puisque les $\\alpha_i$ sont non nuls (le rang ne dépend pas de la base). Le noyau de $D$ est engendré par $e_{r+1},\\dots,e_n$ : ce sont les $x$ tels que $y_1=\\dots=y_r=0$, c'est-à-dire $\\ell_1(x)=\\dots=\\ell_r(x)=0$. Matriciellement, pour $M\\in\\mathcal{S}_n(\\mathbb{K})$, on applique ce qui précède à $q(X)={}^tXMX$ sur $\\mathbb{K}^n$ avec $P=L^{-1}$.",
+      "exemple": "$q(x,y,z)=x^2+4xy+2xz+3y^2+2yz$ : les termes en $x$ donnent $x^2+2x(2y+z)=(x+2y+z)^2-(2y+z)^2$, et il reste $3y^2+2yz-(2y+z)^2=-y^2-2yz-z^2=-(y+z)^2$. Donc $q=(x+2y+z)^2-(y+z)^2$ : deux formes indépendantes, $q$ est de rang $2$, et $\\mathrm{Ker}\\,q$ est défini par $x+2y+z=0$ et $y+z=0$, soit $\\mathrm{Ker}\\,q=\\mathrm{Vect}\\big((1,-1,1)\\big)$.\n\nSans terme carré : $2xy=\\frac12(x+y)^2-\\frac12(x-y)^2$.",
+      "contre_exemple": "- **Formes liées** : $q=(x-y)^2+(y-z)^2+(z-x)^2$ est écrite avec trois carrés, mais $z-x=-(x-y)-(y-z)$ ; la méthode de Gauss donne $q=2\\left(x-\\frac{y+z}2\\right)^2+\\frac32(y-z)^2$, de rang $2$, de noyau $\\mathrm{Vect}\\big((1,1,1)\\big)$.\n- **Coefficient nul** : $0\\cdot x^2$ est une écriture avec $r=1$ d'une forme de rang $0$.\n- **Coefficients non intrinsèques** : $x^2+2xy+2y^2=(x+y)^2+y^2$ si l'on commence par $x$, et $=2\\left(y+\\frac x2\\right)^2+\\frac12x^2$ si l'on commence par $y$ : les coefficients changent, pas leur nombre ni leurs signes.",
+      "affirmations": [
+        {
+          "texte": "Toute forme quadratique réelle s'écrit $\\sum_{i=1}^r\\alpha_i\\ell_i^2$ avec des $\\alpha_i$ non nuls et des formes linéaires $\\ell_i$ indépendantes.",
+          "vrai": true,
+          "justification": "C'est l'existence de la réduction, que fournit la méthode de Gauss."
+        },
+        {
+          "texte": "Si $q=\\ell_1^2+\\ell_2^2+\\ell_3^2$ sur $\\mathbb{R}^3$, avec $\\ell_1,\\ell_2,\\ell_3$ des formes linéaires non nulles, alors $q$ est non dégénérée.",
+          "vrai": false,
+          "contre_exemple": "$(x-y)^2+(y-z)^2+(z-x)^2$ est de rang $2$ : $q(1,1,1)=0$ et $(1,1,1)$ est dans le noyau. Les trois formes sont liées."
+        },
+        {
+          "texte": "Les coefficients $\\alpha_i$ d'une réduction de Gauss ne dépendent pas de l'ordre dans lequel on traite les variables.",
+          "vrai": false,
+          "contre_exemple": "$x^2+2xy+2y^2=(x+y)^2+y^2$ (coefficients $1$ et $1$) $=2\\left(y+\\frac x2\\right)^2+\\frac12x^2$ (coefficients $2$ et $\\frac12$)."
+        },
+        {
+          "texte": "Si $q=\\sum_{i=1}^r\\alpha_i\\ell_i^2$ avec des $\\alpha_i$ non nuls et $(\\ell_1,\\dots,\\ell_r)$ libre, le noyau de $q$ est l'intersection des noyaux des $\\ell_i$.",
+          "vrai": true,
+          "justification": "Dans la base orthogonale associée, la matrice de $q$ est $\\mathrm{diag}(\\alpha_1,\\dots,\\alpha_r,0,\\dots,0)$, dont le noyau est formé des vecteurs de coordonnées $y_1=\\dots=y_r=0$, c'est-à-dire $\\ell_1(x)=\\dots=\\ell_r(x)=0$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-formes-quadratiques-bilineaires",
+        "al-l1-espaces-dimension",
+        "al-l1-applications-isomorphismes"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-sylvester",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "theoreme",
+      "titre": "Loi d'inertie de Sylvester",
+      "recto": "Énoncer la loi d'inertie de Sylvester pour une forme quadratique réelle, avec la définition de la signature et la classification des matrices symétriques réelles à congruence près.",
+      "cours": "Une forme quadratique réelle se réduit de bien des façons : les coefficients d'une réduction de Gauss changent avec l'ordre des variables, les valeurs propres de la matrice changent avec la base. La loi d'inertie dit ce qui ne change pas : **le nombre de coefficients strictement positifs et le nombre de coefficients strictement négatifs** dans n'importe quelle base orthogonale pour $q$. Le couple $(p,s)$ est la **signature** de $q$, et $p+s$ son rang.\n\nCaractérisation intrinsèque : $p$ est la plus grande dimension d'un sous-espace sur lequel $q$ est définie positive ($q(x)>0$ pour $x\\neq0$), $s$ celle d'un sous-espace sur lequel $q$ est définie négative. La preuve repose sur un argument de dimension : un sous-espace où $q>0$ hors de $0$ et un sous-espace où $q\\le0$ ne se coupent qu'en $0$.\n\nPour calculer une signature : réduction de Gauss, puis compter les signes des coefficients (les formes linéaires doivent être indépendantes) ; ou, par le théorème spectral, compter les valeurs propres strictement positives et strictement négatives, avec multiplicité, de la matrice de $q$ dans **n'importe quelle** base : cette matrice $M$ est symétrique réelle, donc ${}^tOMO$ est diagonale pour une matrice orthogonale $O$, qui vérifie ${}^tO=O^{-1}$. Raccourcis : en dimension $2$, $\\det M<0$ donne la signature $(1,1)$ ; la trace et le déterminant donnent la somme et le produit des valeurs propres.\n\nConséquences : $q$ est définie positive si et seulement si sa signature est $(n,0)$, positive si et seulement si $s=0$ ; deux matrices symétriques réelles sont **congruentes** ($M'={}^tPMP$ avec $P$ inversible) si et seulement si elles ont la même signature, et toute $M\\in\\mathcal{S}_n(\\mathbb{R})$ est congruente à $\\mathrm{diag}(I_p,-I_s,0)$. Sur $\\mathbb{C}$, il n'y a pas de signature : $z^2=-(iz)^2$, et seul le rang classe les formes quadratiques complexes.\n\nPièges : la signature se lit sur une matrice **diagonale** (base orthogonale pour $q$) ou sur les valeurs propres, pas sur les coefficients diagonaux d'une matrice quelconque ($2xy$ a une diagonale nulle et la signature $(1,1)$) ; deux matrices congruentes n'ont en général ni les mêmes valeurs propres ni le même déterminant, seuls les signes des valeurs propres sont invariants.",
+      "hypotheses": [
+        "$E$ est un espace vectoriel **réel** de dimension finie $n$.",
+        "Les matrices comparées sont celles de $q$ dans des bases **orthogonales pour $q$** (matrices diagonales)."
+      ],
+      "hypotheses_pieges": [
+        "On compte les coefficients diagonaux strictement positifs de la matrice de $q$ dans une base quelconque de $E$ (à la place de : une base orthogonale pour $q$).",
+        "$E$ est un espace vectoriel complexe, et l'on compte les coefficients diagonaux réels strictement positifs (à la place de : $E$ réel)."
+      ],
+      "enonce": "Soit $q$ une forme quadratique sur un espace vectoriel **réel** $E$ de dimension finie $n$. Il existe un couple d'entiers $(p,s)$, la **signature** de $q$, tel que, dans **toute** base de $E$ orthogonale pour $q$, la matrice (diagonale) de $q$ ait exactement $p$ coefficients diagonaux strictement positifs et $s$ strictement négatifs. De plus :\n- $p+s=\\mathrm{rg}\\,q$ ;\n- $p$ est la plus grande dimension d'un sous-espace $F$ de $E$ sur lequel $q$ est définie positive ($q(x)>0$ pour tout $x\\in F$ non nul), et $s$ la plus grande dimension d'un sous-espace sur lequel $q$ est définie négative ;\n- si $M$ est la matrice de $q$ dans une base quelconque, $p$ et $s$ sont les nombres de valeurs propres strictement positives et strictement négatives de $M$, comptées avec multiplicité ;\n- deux matrices symétriques réelles $M$ et $M'$ sont **congruentes** (il existe $P$ inversible telle que $M'={}^tPMP$) si et seulement si elles ont la même signature ; toute matrice de signature $(p,s)$ est congruente à $\\mathrm{diag}(I_p,-I_s,0_{n-p-s})$.",
+      "enonce_trous": "Deux matrices symétriques réelles sont congruentes si et seulement si elles ont {{1}}. Pour une forme quadratique réelle $q$ de signature $(p,s)$, $p$ est la plus grande dimension d'un sous-espace sur lequel $q$ est {{2}}.",
+      "trous": [
+        {
+          "reponse": "la même signature",
+          "leurres": [
+            "le même rang",
+            "le même déterminant",
+            "les mêmes valeurs propres"
+          ]
+        },
+        {
+          "reponse": "définie positive",
+          "leurres": [
+            "positive",
+            "non dégénérée",
+            "nulle"
+          ]
+        }
+      ],
+      "demo": "**Existence d'une base orthogonale** : c'est la réduction de Gauss.\n\n**Invariance.** Soient $(e_1,\\dots,e_n)$ et $(f_1,\\dots,f_n)$ deux bases orthogonales pour $q$, numérotées de sorte que $q(e_i)>0$ exactement pour $i\\le p$ et $q(f_j)>0$ exactement pour $j\\le p'$. Soit $F=\\mathrm{Vect}(e_1,\\dots,e_p)$ et $G=\\mathrm{Vect}(f_{p'+1},\\dots,f_n)$. Pour $x=\\sum_{i\\le p}x_ie_i$ non nul, l'orthogonalité donne $q(x)=\\sum_{i\\le p}x_i^2q(e_i)>0$ ; pour $y=\\sum_{j>p'}y_jf_j$, $q(y)=\\sum_{j>p'}y_j^2q(f_j)\\le0$. Donc $F\\cap G=\\{0\\}$, et $\\dim F+\\dim G\\le n$, soit $p+(n-p')\\le n$, c'est-à-dire $p\\le p'$. Par symétrie, $p'\\le p$. Le nombre de coefficients diagonaux non nuls est le rang de la matrice diagonale, c'est-à-dire $\\mathrm{rg}\\,q$, qui ne dépend pas de la base ; donc $s=\\mathrm{rg}\\,q-p$ est aussi invariant.\n\n**Caractérisation de $p$.** $q$ est définie positive sur $F$, de dimension $p$. Si $q$ est définie positive sur un sous-espace $H$, le même argument donne $H\\cap G=\\{0\\}$ (ici avec $p'=p$), donc $\\dim H\\le n-(n-p)=p$. Même raisonnement pour $s$ avec $-q$.\n\n**Valeurs propres.** $M$ est symétrique réelle ; par le théorème spectral, $M=ODO^{-1}$ avec $O$ orthogonale et $D$ diagonale réelle, donc $D={}^tOMO$ : $D$ est la matrice de $q$ dans la base dont $O$ est la matrice de passage depuis la base initiale, et cette base est orthogonale pour $q$ puisque $D$ est diagonale. Les coefficients diagonaux de $D$ sont les valeurs propres de $M$, avec multiplicité.\n\n**Classification.** Si $M'={}^tPMP$, les matrices $M$ et $M'$ représentent la même forme quadratique $X\\mapsto{}^tXMX$ de $\\mathbb{R}^n$ dans deux bases, donc ont la même signature. Réciproquement, dans une base orthogonale pour $q$ ordonnée selon les signes ($q(e_i)>0$, puis $<0$, puis $=0$), on remplace chaque $e_i$ non isotrope par $\\frac{e_i}{\\sqrt{|q(e_i)|}}$ : la matrice devient $\\mathrm{diag}(I_p,-I_s,0)$. Deux matrices de même signature sont congruentes à cette même matrice, donc entre elles, car la congruence est une relation d'équivalence : ${}^t(PQ)M(PQ)={}^tQ({}^tPMP)Q$ et $M={}^t(P^{-1})M'P^{-1}$.",
+      "exemple": "$q(x,y,z)=x^2+y^2+z^2+4xy$ : Gauss donne $q=(x+2y)^2-3y^2+z^2$, deux coefficients positifs et un négatif, signature $(2,1)$. La matrice $\\begin{pmatrix}1&2&0\\\\2&1&0\\\\0&0&1\\end{pmatrix}$ a pour valeurs propres $3$, $-1$ et $1$ : les nombres ($1$, $-3$, $1$ d'un côté, $3$, $-1$, $1$ de l'autre) diffèrent, les signes concordent.",
+      "contre_exemple": "- **Base non orthogonale** : pour $q(x,y)=2xy$, la matrice dans la base canonique a ses deux coefficients diagonaux nuls, alors que dans la base $\\big((1,1),(1,-1)\\big)$, orthogonale pour $q$, elle vaut $\\mathrm{diag}(2,-2)$ : signature $(1,1)$.\n- **Sur $\\mathbb{C}$** : $q(z)=z^2$ a pour matrice $(1)$ dans la base $(1)$ et $(-1)$ dans la base $(i)$ ; il n'y a pas de signature, seul le rang est invariant.\n- **Congruentes mais pas semblables** : $I_2$ et $4I_2={}^t(2I_2)\\,I_2\\,(2I_2)$ sont congruentes, de valeurs propres différentes ; $I_2$ et $-I_2$ ont même rang et même déterminant et ne sont pas congruentes (signatures $(2,0)$ et $(0,2)$).",
+      "affirmations": [
+        {
+          "texte": "Deux matrices symétriques réelles congruentes ont les mêmes valeurs propres.",
+          "vrai": false,
+          "contre_exemple": "$4I_2={}^tPI_2P$ avec $P=2I_2$ est congruente à $I_2$, mais ses valeurs propres valent $4$ et non $1$. Seuls les signes des valeurs propres sont conservés."
+        },
+        {
+          "texte": "Une forme quadratique réelle sur $\\mathbb{R}^n$ de signature $(n,0)$ est définie positive : sa forme polaire est un produit scalaire.",
+          "vrai": true,
+          "justification": "Dans une base orthogonale normalisée, $q=\\sum_{i=1}^ny_i^2$, qui est strictement positif hors de $0$."
+        },
+        {
+          "texte": "Le nombre de coefficients diagonaux strictement positifs de la matrice d'une forme quadratique réelle dans une base quelconque est égal à $p$.",
+          "vrai": false,
+          "contre_exemple": "$q(x,y)=2xy$ a une matrice de diagonale nulle dans la base canonique, alors que $p=1$."
+        },
+        {
+          "texte": "Les valeurs propres des matrices d'une même forme quadratique réelle dans deux bases quelconques ont les mêmes signes, comptés avec multiplicité.",
+          "vrai": true,
+          "justification": "Les nombres de valeurs propres strictement positives et strictement négatives valent $p$ et $s$ dans toute base, et le nombre de valeurs propres nulles vaut $n-p-s$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-formes-quadratiques-gauss",
+        "al-l2-euclidien-spectral",
+        "al-l1-espaces-grassmann"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-simultanee",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "theoreme",
+      "titre": "Réduction simultanée de deux formes quadratiques",
+      "recto": "Énoncer le théorème de réduction simultanée de deux formes quadratiques réelles dont l'une est définie positive, sous forme géométrique et sous forme matricielle.",
+      "cours": "Une forme quadratique définie positive $\\varphi$ est le carré de la norme d'un produit scalaire. Le théorème spectral, appliqué dans l'espace euclidien $(E,\\varphi)$, réduit alors n'importe quelle autre forme quadratique $q$ dans une base **orthonormale pour $\\varphi$** : les deux formes deviennent simultanément des sommes de carrés, $\\varphi=\\sum y_i^2$ et $q=\\sum\\lambda_iy_i^2$.\n\nMatriciellement, pour $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ et $B\\in\\mathcal{S}_n(\\mathbb{R})$, il existe $P$ inversible, en général non orthogonale, telle que ${}^tPAP=I_n$ et ${}^tPBP=D$ diagonale. Les $\\lambda_i$ sont les valeurs propres de $A^{-1}B$, c'est-à-dire les racines de $\\det(B-\\lambda A)$ ; ils sont réels, même si $A^{-1}B$ n'est pas symétrique.\n\nMéthode : (1) trouver $P_1$ telle que ${}^tP_1AP_1=I_n$ (réduction de Gauss de $A$, normalisée, ou base orthonormale pour $A$ par le procédé de Schmidt) ; (2) calculer $B_1={}^tP_1BP_1$, symétrique ; (3) diagonaliser $B_1$ dans une base orthonormale : $B_1=ODO^{-1}$ avec $O$ orthogonale ; (4) $P=P_1O$ convient, car ${}^tPAP={}^tOO=I_n$ et ${}^tPBP={}^tOB_1O=D$. Si l'on ne veut que les $\\lambda_i$, il suffit de résoudre $\\det(B-\\lambda A)=0$.\n\nApplications : quotient de Rayleigh généralisé (le maximum de $q$ sur $\\{\\varphi=1\\}$ est le plus grand $\\lambda_i$), inégalités de déterminants entre matrices symétriques définies positives, comme $\\det(A+B)\\ge\\det A+\\det B$ ou l'inégalité de Minkowski.\n\nPièges : l'hypothèse « définie positive » sur l'une des deux formes est essentielle ($\\mathrm{diag}(1,-1)$ et $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ ne se réduisent pas simultanément) ; $P$ n'est pas orthogonale en général ; les $\\lambda_i$ ne sont pas les valeurs propres de $B$ ; et la base obtenue est orthonormale pour $\\varphi$, seulement orthogonale pour $q$.",
+      "hypotheses": [
+        "$A$ est symétrique réelle **définie positive**.",
+        "$B$ est symétrique réelle."
+      ],
+      "hypotheses_pieges": [
+        "$A$ est symétrique réelle inversible (à la place de : définie positive).",
+        "$A$ est symétrique réelle positive (à la place de : définie positive).",
+        "$B$ est une matrice réelle quelconque (à la place de : symétrique)."
+      ],
+      "enonce": "Soit $E$ un espace vectoriel réel de dimension finie $n\\ge1$, $\\varphi$ une forme quadratique **définie positive** et $q$ une forme quadratique quelconque sur $E$. Il existe une base $(e_1,\\dots,e_n)$ de $E$ orthonormale pour (la forme polaire de) $\\varphi$ et orthogonale pour $q$ : pour $x=\\sum_iy_ie_i$, $\\varphi(x)=\\sum_iy_i^2$ et $q(x)=\\sum_i\\lambda_iy_i^2$, avec $\\lambda_i=q(e_i)$.\n\n**Version matricielle.** Pour $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ (symétrique définie positive) et $B\\in\\mathcal{S}_n(\\mathbb{R})$, il existe $P\\in\\mathrm{GL}_n(\\mathbb{R})$ telle que ${}^tPAP=I_n$ et ${}^tPBP=D=\\mathrm{diag}(\\lambda_1,\\dots,\\lambda_n)$. Les $\\lambda_i$ sont réels : ce sont les valeurs propres de $A^{-1}B$, c'est-à-dire les racines du polynôme $\\det(B-\\lambda A)$, comptées avec multiplicité.",
+      "enonce_trous": "Si $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ et $B\\in\\mathcal{S}_n(\\mathbb{R})$, il existe une matrice $P$ {{1}} telle que ${}^tPAP=I_n$ et ${}^tPBP$ soit diagonale ; les coefficients diagonaux de ${}^tPBP$ sont alors les racines de {{2}}.",
+      "trous": [
+        {
+          "reponse": "inversible",
+          "leurres": [
+            "orthogonale",
+            "diagonale",
+            "de déterminant $1$"
+          ]
+        },
+        {
+          "reponse": "$\\det(B-\\lambda A)$",
+          "leurres": [
+            "$\\det(B-\\lambda I_n)$",
+            "$\\det(A-\\lambda B)$",
+            "$\\det(AB-\\lambda I_n)$"
+          ]
+        }
+      ],
+      "demo": "**Version géométrique.** La forme polaire $\\langle\\cdot,\\cdot\\rangle_\\varphi$ de $\\varphi$ est un produit scalaire : $(E,\\langle\\cdot,\\cdot\\rangle_\\varphi)$ est un espace euclidien. Soit $b$ la forme polaire de $q$. Pour $y$ fixé, $x\\mapsto b(x,y)$ est une forme linéaire ; par le théorème de représentation dans un espace euclidien, il existe un unique $u(y)\\in E$ tel que $b(x,y)=\\langle x,u(y)\\rangle_\\varphi$ pour tout $x$, et l'unicité montre que $u$ est linéaire. Comme $b$ est symétrique, $\\langle u(x),y\\rangle_\\varphi=b(y,x)=b(x,y)=\\langle x,u(y)\\rangle_\\varphi$ : $u$ est autoadjoint pour $\\langle\\cdot,\\cdot\\rangle_\\varphi$. Le théorème spectral fournit une base $(e_1,\\dots,e_n)$ orthonormale pour $\\varphi$ telle que $u(e_i)=\\lambda_ie_i$ ; alors $b(e_i,e_j)=\\langle e_i,u(e_j)\\rangle_\\varphi=\\lambda_j\\langle e_i,e_j\\rangle_\\varphi$, qui vaut $0$ si $i\\neq j$ et $\\lambda_i$ si $i=j$ : la base est orthogonale pour $q$ et $q(e_i)=\\lambda_i$.\n\n**Version matricielle.** On applique ce qui précède à $E=\\mathbb{R}^n$, $\\varphi(X)={}^tXAX$ et $q(X)={}^tXBX$ : si $P$ est la matrice de passage de la base canonique à la base $(e_i)$, les matrices de $\\varphi$ et de $q$ dans $(e_i)$ sont ${}^tPAP=I_n$ et ${}^tPBP=D$. Alors $A=({}^tP)^{-1}P^{-1}$, $B=({}^tP)^{-1}DP^{-1}$, donc $\\det(B-\\lambda A)=\\det\\big(({}^tP)^{-1}(D-\\lambda I_n)P^{-1}\\big)=\\frac{1}{(\\det P)^2}\\prod_i(\\lambda_i-\\lambda)$, dont les racines sont les $\\lambda_i$, avec multiplicité. Enfin $A^{-1}B=P\\,{}^tP\\,({}^tP)^{-1}DP^{-1}=PDP^{-1}$, dont les valeurs propres sont les $\\lambda_i$.",
+      "exemple": "$\\varphi(x,y)=x^2+2xy+2y^2=(x+y)^2+y^2$, de matrice $A=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$, et $q(x,y)=x^2+2xy+3y^2=(x+y)^2+2y^2$, de matrice $B=\\begin{pmatrix}1&1\\\\1&3\\end{pmatrix}$. Avec $u=x+y$ et $v=y$, $\\varphi=u^2+v^2$ et $q=u^2+2v^2$ : $P=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$ (car $x=u-v$, $y=v$) vérifie ${}^tPAP=I_2$ et ${}^tPBP=\\mathrm{diag}(1,2)$. Contrôle : $\\det(B-\\lambda A)=(1-\\lambda)(3-2\\lambda)-(1-\\lambda)^2=(1-\\lambda)(2-\\lambda)$.",
+      "contre_exemple": "- **Aucune des deux définie positive** : $A=\\mathrm{diag}(1,-1)$ et $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$. Si ${}^tPAP=D_1$ et ${}^tPBP=D_2$ étaient diagonales avec $P$ inversible, $D_1$ serait inversible et $P^{-1}A^{-1}BP=({}^tPAP)^{-1}({}^tPBP)=D_1^{-1}D_2$ serait diagonale réelle ; or $A^{-1}B=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$ a pour valeurs propres $\\pm i$.\n- **$P$ n'est pas orthogonale** : pour $A=2I_n$ et $B=I_n$, toute $P$ convenable vérifie ${}^tPP=\\frac12I_n$.\n- **Les $\\lambda_i$ ne sont pas les valeurs propres de $B$** : avec $A=2I_n$ et $B=I_n$, ${}^tPBP=\\frac12I_n$, alors que $B$ a pour seule valeur propre $1$.\n- **$B$ non symétrique** : ${}^tPBP$ diagonale entraîne $B=({}^tP)^{-1}({}^tPBP)P^{-1}$ symétrique ; $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ ne convient donc jamais.",
+      "affirmations": [
+        {
+          "texte": "Deux matrices symétriques réelles quelconques sont simultanément diagonalisables par congruence : il existe $P$ inversible telle que ${}^tPAP$ et ${}^tPBP$ soient diagonales.",
+          "vrai": false,
+          "contre_exemple": "$A=\\mathrm{diag}(1,-1)$ et $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ : sinon $P^{-1}A^{-1}BP$ serait diagonale réelle, alors que $A^{-1}B$ a pour valeurs propres $\\pm i$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ et $B\\in\\mathcal{S}_n(\\mathbb{R})$, les valeurs propres de $A^{-1}B$ sont réelles.",
+          "vrai": true,
+          "justification": "$A^{-1}B=PDP^{-1}$ avec $D$ diagonale réelle, par la réduction simultanée."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ et $B\\in\\mathcal{S}_n(\\mathbb{R})$, la matrice $A^{-1}B$ est symétrique.",
+          "vrai": false,
+          "contre_exemple": "$A=\\mathrm{diag}(1,2)$ et $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ donnent $A^{-1}B=\\begin{pmatrix}0&1\\\\\\frac12&0\\end{pmatrix}$."
+        },
+        {
+          "texte": "Si $A\\in\\mathcal{S}_n^{++}(\\mathbb{R})$ et $B\\in\\mathcal{S}_n^{+}(\\mathbb{R})$, alors $\\det(A+B)\\ge\\det A$.",
+          "vrai": true,
+          "justification": "Avec ${}^tPAP=I_n$ et ${}^tPBP=\\mathrm{diag}(\\lambda_i)$, $\\lambda_i=q(e_i)\\ge0$ et $\\det(A+B)=\\det A\\prod_i(1+\\lambda_i)\\ge\\det A$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-formes-quadratiques-bilineaires",
+        "al-l2-euclidien-spectral",
+        "al-l2-euclidien-positifs",
+        "al-l2-euclidien-adjoint"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-coniques",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "theoreme",
+      "titre": "Coniques et quadriques : classification",
+      "recto": "Classer une conique du plan euclidien selon la signature de sa partie quadratique et donner son équation réduite en repère orthonormé ; même question pour une quadrique de l'espace dont la partie quadratique est non dégénérée.",
+      "cours": "Une conique est l'ensemble des points du plan dont les coordonnées, dans un repère orthonormé, vérifient une équation du second degré $ax^2+2bxy+cy^2+dx+ey+f=0$, avec $(a,b,c)\\neq(0,0,0)$. Sa **partie quadratique** $q(x,y)=ax^2+2bxy+cy^2$, de matrice $S=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$, en décide l'allure : sa signature, que donne le signe de $\\det S=ac-b^2$, sépare les types ellipse, hyperbole et parabole.\n\nMéthode de réduction en repère orthonormé :\n- **rotation des axes** : on diagonalise $S$ dans une base orthonormale de vecteurs propres $(u_1,u_2)$ (théorème spectral) ; dans le repère $(O,u_1,u_2)$, de coordonnées $(X,Y)$, la partie quadratique devient $\\lambda_1X^2+\\lambda_2Y^2$ et la partie linéaire reste linéaire ;\n- **translation** : on complète les carrés en $X$ (si $\\lambda_1\\neq0$) et en $Y$ (si $\\lambda_2\\neq0$) ;\n- **lecture** : si $\\lambda_1\\lambda_2\\neq0$, on obtient $\\lambda_1X^2+\\lambda_2Y^2=k$ ; si $\\lambda_2=0$, on obtient une parabole quand il reste un terme en $Y$, sinon $\\lambda_1X^2=k$.\n\nQuand $\\det S\\neq0$, on peut aussi translater d'abord : le centre $\\Omega$ résout $S\\Omega=-\\frac12\\begin{pmatrix}d\\\\e\\end{pmatrix}$, et dans un repère centré en $\\Omega$ l'équation devient $q(X,Y)=-F(\\Omega)$, où $F(\\Omega)$ est la valeur du premier membre en $\\Omega$. Pour $\\det S=0$, il faut regarder si la partie linéaire a une composante selon le noyau de $S$ : oui, parabole ; non, deux droites parallèles, une droite ou rien.\n\nDans l'espace, même méthode pour une quadrique : si la partie quadratique est non dégénérée, on se ramène à $\\lambda_1X^2+\\lambda_2Y^2+\\lambda_3Z^2=k$ ; signature $(3,0)$ ou $(0,3)$ : ellipsoïde, point ou vide ; signature $(2,1)$ ou $(1,2)$ : hyperboloïde à une nappe, à deux nappes, ou cône si $k=0$. Si elle est dégénérée, on obtient notamment les paraboloïdes elliptiques ($X^2+Y^2=2pZ$) et hyperboliques ($X^2-Y^2=2pZ$), les cylindres et les paires de plans.\n\nPièges : les coefficients non diagonaux de $S$ sont **la moitié** du coefficient de $xy$ ; le signe de $\\det S$ donne le type, pas la nature exacte (une équation de type ellipse peut décrire un point ou l'ensemble vide, une de type hyperbole deux droites sécantes) ; la réduction à $\\lambda_1X^2+\\lambda_2Y^2=k$ avec les valeurs propres de $S$ suppose le repère **orthonormé**.",
+      "hypotheses": [
+        "Le repère dans lequel l'équation est écrite est **orthonormé**.",
+        "La partie quadratique est non nulle : $(a,b,c)\\neq(0,0,0)$.",
+        "$S=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$, où $2b$ est le coefficient de $xy$."
+      ],
+      "hypotheses_pieges": [
+        "Le repère est un repère cartésien quelconque (à la place de : orthonormé).",
+        "$S=\\begin{pmatrix}a&2b\\\\2b&c\\end{pmatrix}$, où $2b$ est le coefficient de $xy$ (à la place de : $b$ hors de la diagonale)."
+      ],
+      "enonce": "Soit $\\mathcal{C}$ l'ensemble des points du plan euclidien dont les coordonnées dans un repère **orthonormé** vérifient $ax^2+2bxy+cy^2+dx+ey+f=0$, avec $(a,b,c)\\neq(0,0,0)$, et soit $S=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$, de valeurs propres réelles $\\lambda_1,\\lambda_2$. Il existe un repère orthonormé, déduit du premier par un changement de base orthonormale (qui diagonalise $S$) et une translation, dans lequel l'équation de $\\mathcal{C}$ s'écrit :\n- si $\\det S\\neq0$ : $\\lambda_1X^2+\\lambda_2Y^2=k$, avec $k\\in\\mathbb{R}$ ; si $\\det S>0$ (signature $(2,0)$ ou $(0,2)$), $\\mathcal{C}$ est une ellipse (éventuellement un cercle), un point ou l'ensemble vide ; si $\\det S<0$ (signature $(1,1)$), $\\mathcal{C}$ est une hyperbole ou la réunion de deux droites sécantes ;\n- si $\\det S=0$ (rang $1$ ; on numérote de sorte que $\\lambda_1\\neq0=\\lambda_2$) : $X^2=2pY$ avec $p>0$, et $\\mathcal{C}$ est une parabole, ou $\\lambda_1X^2=k$, et $\\mathcal{C}$ est la réunion de deux droites parallèles, une droite ou l'ensemble vide.\n\nDans l'espace, pour une quadrique d'équation ${}^tVSV+{}^tLV+f=0$ en repère orthonormé, où $V$ est la colonne des coordonnées, avec $S\\in\\mathcal{S}_3(\\mathbb{R})$ **inversible** de valeurs propres $\\lambda_1,\\lambda_2,\\lambda_3$, on obtient de même $\\lambda_1X^2+\\lambda_2Y^2+\\lambda_3Z^2=k$ : pour la signature $(3,0)$ ou $(0,3)$, un ellipsoïde, un point ou l'ensemble vide ; pour la signature $(2,1)$ ou $(1,2)$, un hyperboloïde à une nappe, un hyperboloïde à deux nappes, ou un cône si $k=0$.",
+      "enonce_trous": "Pour une conique d'équation $ax^2+2bxy+cy^2+dx+ey+f=0$ en repère orthonormé, avec $(a,b,c)\\neq(0,0,0)$ et $S=\\begin{pmatrix}a&b\\\\b&c\\end{pmatrix}$ : si $\\det S>0$, la conique est {{1}} ; si $\\det S<0$, elle est {{2}} ; si $\\det S=0$, elle est une parabole, la réunion de deux droites parallèles, une droite ou {{3}}.",
+      "trous": [
+        {
+          "reponse": "une ellipse, un point ou l'ensemble vide",
+          "leurres": [
+            "une ellipse ou une hyperbole",
+            "une hyperbole ou la réunion de deux droites sécantes",
+            "une parabole ou l'ensemble vide"
+          ]
+        },
+        {
+          "reponse": "une hyperbole ou la réunion de deux droites sécantes",
+          "leurres": [
+            "une hyperbole",
+            "une ellipse, un point ou l'ensemble vide",
+            "une parabole"
+          ]
+        },
+        {
+          "reponse": "l'ensemble vide",
+          "leurres": [
+            "un point",
+            "une hyperbole",
+            "la réunion de deux droites sécantes"
+          ]
+        }
+      ],
+      "demo": "**Rotation.** $S$ est symétrique réelle : par le théorème spectral, il existe une base orthonormale $(u_1,u_2)$ de vecteurs propres, $Su_i=\\lambda_iu_i$. Soit $O$ la matrice orthogonale de colonnes $u_1,u_2$. Dans le repère d'origine inchangée et de base $(u_1,u_2)$, encore orthonormé, les coordonnées $Z={}^t(X,Y)$ vérifient ${}^t(x,y)=OZ$, et la partie quadratique devient ${}^t(OZ)S(OZ)={}^tZ({}^tOSO)Z=\\lambda_1X^2+\\lambda_2Y^2$, tandis que la partie linéaire reste une forme linéaire $d'X+e'Y$.\n\n**Cas $\\det S=\\lambda_1\\lambda_2\\neq0$.** $\\lambda_1X^2+d'X=\\lambda_1\\left(X+\\frac{d'}{2\\lambda_1}\\right)^2-\\frac{d'^2}{4\\lambda_1}$, et de même en $Y$ ; la translation qui place l'origine au point de coordonnées $\\left(-\\frac{d'}{2\\lambda_1},-\\frac{e'}{2\\lambda_2}\\right)$ donne $\\lambda_1X^2+\\lambda_2Y^2=k$. Si $\\lambda_1$ et $\\lambda_2$ sont de même signe, quitte à multiplier l'équation par $-1$, $\\lambda_1,\\lambda_2>0$ : pour $k>0$, $\\frac{X^2}{k/\\lambda_1}+\\frac{Y^2}{k/\\lambda_2}=1$ est une ellipse ; pour $k=0$, c'est le point $X=Y=0$ ; pour $k<0$, l'ensemble vide. Si $\\lambda_1>0>\\lambda_2$ : pour $k\\neq0$, une hyperbole ; pour $k=0$, $\\big(\\sqrt{\\lambda_1}X-\\sqrt{-\\lambda_2}Y\\big)\\big(\\sqrt{\\lambda_1}X+\\sqrt{-\\lambda_2}Y\\big)=0$, deux droites sécantes.\n\n**Cas $\\det S=0$.** Comme $S\\neq0$, une seule valeur propre est nulle, disons $\\lambda_2$. On complète le carré en $X$ : $\\lambda_1(X-X_0)^2+e'Y+f'=0$. Si $e'\\neq0$, la translation $Y'=Y+\\frac{f'}{e'}$ donne $\\lambda_1X'^2=-e'Y'$, soit $X'^2=2pY'$ avec $p=\\frac{|e'|}{2|\\lambda_1|}>0$, après avoir remplacé si besoin $u_2$ par $-u_2$ : une parabole. Si $e'=0$ : $\\lambda_1X'^2=-f'$, soit deux droites parallèles, une droite ou l'ensemble vide selon le signe de $-\\frac{f'}{\\lambda_1}$.\n\n**Quadriques.** Même calcul en dimension $3$ avec une base orthonormale de vecteurs propres de $S$, puis trois complétions de carrés. Quitte à changer l'équation en son opposée et à renuméroter : pour $\\lambda_1,\\lambda_2,\\lambda_3>0$, on obtient un ellipsoïde ($k>0$), un point ($k=0$) ou l'ensemble vide ($k<0$). Pour $\\lambda_1,\\lambda_2>0>\\lambda_3$, le plan $Z=c$ coupe la surface selon $\\lambda_1X^2+\\lambda_2Y^2=k+|\\lambda_3|c^2$ : pour $k>0$, une ellipse pour tout $c$ (hyperboloïde à une nappe) ; pour $k<0$, une ellipse si $c^2>\\frac{|k|}{|\\lambda_3|}$ et rien si $c^2<\\frac{|k|}{|\\lambda_3|}$ (hyperboloïde à deux nappes) ; pour $k=0$, un cône de sommet l'origine.",
+      "exemple": "$x^2+xy+y^2=1$ : $S=\\begin{pmatrix}1&\\frac12\\\\\\frac12&1\\end{pmatrix}$, de valeurs propres $\\frac32$ (vecteur $\\frac1{\\sqrt2}(1,1)$) et $\\frac12$ (vecteur $\\frac1{\\sqrt2}(1,-1)$). Dans le repère tourné, $\\frac32X^2+\\frac12Y^2=1$ : une ellipse de demi-axes $\\sqrt{\\frac23}$ selon la droite $y=x$ et $\\sqrt2$ selon la droite $y=-x$.\n\n$xy=1$ : $S$ a pour valeurs propres $\\pm\\frac12$ et l'équation réduite est $\\frac{X^2}{2}-\\frac{Y^2}{2}=1$, une hyperbole équilatère.",
+      "contre_exemple": "- **Repère non orthonormé** : si $(\\vec\\imath,\\vec\\jmath)$ est une base orthonormale, l'équation $x^2+y^2=1$ dans le repère $(O,\\vec\\imath,2\\vec\\jmath)$ décrit, en coordonnées orthonormées $X=x$, $Y=2y$, l'ellipse $X^2+\\frac{Y^2}{4}=1$, et non un cercle, bien que $S=I_2$.\n- **Coefficient de $xy$** : pour $x^2+2xy+2y^2=1$, $S=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$ et $\\det S=1>0$ : c'est une ellipse (non vide, elle contient $(1,0)$) ; la matrice fautive $\\begin{pmatrix}1&2\\\\2&2\\end{pmatrix}$, de déterminant $-2$, ferait conclure à tort à une hyperbole.\n- **Type ellipse, mais pas une ellipse** : $x^2+2y^2+1=0$ est vide et $x^2+y^2=0$ est un point.\n- **$\\det S=0$** : $x^2+y=0$ est une parabole, $x^2+x=0$ la réunion des deux droites parallèles $x=0$ et $x=-1$.",
+      "affirmations": [
+        {
+          "texte": "L'équation $x^2+2xy+y^2+x+y=0$ décrit une parabole.",
+          "vrai": false,
+          "contre_exemple": "Elle s'écrit $(x+y)^2+(x+y)=0$, soit $(x+y)(x+y+1)=0$ : deux droites parallèles. La partie linéaire n'a pas de composante selon le noyau de $S$, dirigé par $(1,-1)$."
+        },
+        {
+          "texte": "Si $\\det S<0$, la conique n'est pas vide.",
+          "vrai": true,
+          "justification": "Son équation réduite est $\\lambda_1X^2+\\lambda_2Y^2=k$ avec $\\lambda_1>0>\\lambda_2$ : une hyperbole ou deux droites sécantes, jamais vide."
+        },
+        {
+          "texte": "Si $\\det S>0$, la conique est une ellipse.",
+          "vrai": false,
+          "contre_exemple": "$x^2+y^2+1=0$ ($S=I_2$) décrit l'ensemble vide, et $x^2+y^2=0$ un point."
+        },
+        {
+          "texte": "La quadrique d'équation $x^2+y^2-z^2=1$ est un hyperboloïde à une nappe.",
+          "vrai": true,
+          "justification": "Chaque plan $z=c$ la coupe selon le cercle $x^2+y^2=1+c^2$, de rayon non nul ; la signature de la partie quadratique est $(2,1)$ et $k=1$ a le signe des deux valeurs propres positives."
+        }
+      ],
+      "prerequis": [
+        "al-l3-formes-quadratiques-sylvester",
+        "al-l2-euclidien-spectral",
+        "al-l2-euclidien-orthogonal",
+        "geo-l2-affine-sous-espaces"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-hermitiens",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "definition",
+      "titre": "Espaces hermitiens et groupe unitaire",
+      "recto": "Définir un produit scalaire hermitien, un espace hermitien et le groupe unitaire, et donner les caractérisations d'un endomorphisme unitaire.",
+      "cours": "Sur $\\mathbb{C}^n$, la forme $\\sum_ix_iy_i$ ne permet pas de mesurer des longueurs : le vecteur $(1,i)$ serait de « carré » nul. On conjugue l'une des variables : $\\langle x,y\\rangle=\\sum_i\\overline{x_i}y_i={}^t\\overline XY$, d'où $\\langle x,x\\rangle=\\sum_i|x_i|^2>0$ pour $x\\neq0$. Ce produit n'est plus bilinéaire mais **sesquilinéaire** : linéaire en $y$, semi-linéaire en $x$ ($\\langle\\lambda x,y\\rangle=\\overline\\lambda\\langle x,y\\rangle$), et à **symétrie hermitienne** : $\\langle y,x\\rangle=\\overline{\\langle x,y\\rangle}$. Certains ouvrages prennent la convention inverse (linéaire à gauche) ; seules quelques formules changent.\n\nTout ce qui ne dépend que des longueurs et de l'orthogonalité passe des espaces euclidiens aux **espaces hermitiens** (espaces complexes de dimension finie munis d'un produit scalaire hermitien) : inégalité de Cauchy-Schwarz $|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$, procédé de Schmidt, bases orthonormales, projection orthogonale. Dans une base orthonormale, $\\langle x,y\\rangle={}^t\\overline XY$ et la matrice de l'**adjoint** $u^*$, défini par $\\langle u(x),y\\rangle=\\langle x,u^*(y)\\rangle$, est la **transconjuguée** $M^*={}^t\\overline M$.\n\nLe **groupe unitaire** $\\mathrm{U}(E)$ est formé des endomorphismes qui conservent le produit scalaire, ou, ce qui revient au même, la norme ; matriciellement, $\\mathrm{U}_n(\\mathbb{C})=\\{U\\in\\mathcal{M}_n(\\mathbb{C}) : U^*U=I_n\\}$, ensemble des matrices dont les colonnes forment une base orthonormale de $\\mathbb{C}^n$. Il contient le groupe orthogonal $\\mathrm{O}_n(\\mathbb{R})$ (matrices unitaires réelles). Contrairement au cas réel, un endomorphisme unitaire est toujours diagonalisable dans une base orthonormale, avec des valeurs propres de module $1$ : $U=P\\,\\mathrm{diag}(e^{i\\theta_1},\\dots,e^{i\\theta_n})P^*$ avec $P$ unitaire. Par exemple, une rotation du plan, sans valeur propre réelle, se diagonalise ainsi sur $\\mathbb{C}$.\n\nMéthodes : pour vérifier qu'une matrice est unitaire, calculer $U^*U$, ou vérifier que ses colonnes sont orthonormées pour $\\langle x,y\\rangle=\\sum_i\\overline{x_i}y_i$. Dans le procédé de Schmidt, le coefficient à retrancher est $\\langle f_j,v\\rangle$, le vecteur normé $f_j$ étant à gauche (conjugué), et non $\\langle v,f_j\\rangle$.\n\nPièges : oublier la conjugaison (${}^tUU=I_n$ ne définit pas les matrices unitaires : $\\begin{pmatrix}2&i\\sqrt3\\\\-i\\sqrt3&2\\end{pmatrix}$ vérifie ${}^tUU=I_2$ et a pour valeurs propres $2\\pm\\sqrt3$) ; $|\\det U|=1$ ne suffit pas ; un endomorphisme qui conserve seulement l'orthogonalité n'est pas forcément unitaire ; et $\\langle x,x\\rangle$ est réel, mais $\\langle x,y\\rangle$ ne l'est pas en général.",
+      "hypotheses": [
+        "$E$ est un espace hermitien : produit scalaire sesquilinéaire, à symétrie hermitienne, défini positif, et $\\dim E$ finie.",
+        "$u$ conserve la norme : $\\|u(x)\\|=\\|x\\|$ pour tout $x\\in E$.",
+        "La base dans laquelle on lit la matrice $M$ de $u$ est orthonormale."
+      ],
+      "hypotheses_pieges": [
+        "$u$ conserve l'orthogonalité : $\\langle x,y\\rangle=0$ entraîne $\\langle u(x),u(y)\\rangle=0$ (à la place de : $u$ conserve la norme).",
+        "La base dans laquelle on lit la matrice $M$ de $u$ est une base quelconque de $E$ (à la place de : orthonormale).",
+        "$M$ vérifie ${}^tMM=I_n$ (à la place de : $M^*M=I_n$)."
+      ],
+      "enonce": "Un **produit scalaire hermitien** sur un espace vectoriel complexe $E$ est une application $\\langle\\cdot,\\cdot\\rangle:E\\times E\\to\\mathbb{C}$, linéaire par rapport à la seconde variable, à **symétrie hermitienne** ($\\langle y,x\\rangle=\\overline{\\langle x,y\\rangle}$, donc semi-linéaire par rapport à la première) et **définie positive** ($\\langle x,x\\rangle>0$ pour $x\\neq0$) ; si $\\dim E$ est finie, $E$ est un **espace hermitien**. On a alors l'inégalité de Cauchy-Schwarz $|\\langle x,y\\rangle|\\le\\|x\\|\\,\\|y\\|$, où $\\|x\\|=\\sqrt{\\langle x,x\\rangle}$, et $E$ possède des bases orthonormales (procédé de Schmidt). Tout $u\\in\\mathcal{L}(E)$ a un unique **adjoint** $u^*$ tel que $\\langle u(x),y\\rangle=\\langle x,u^*(y)\\rangle$ pour tous $x,y$ ; sa matrice dans une base orthonormale est $M^*={}^t\\overline M$, si $M$ est celle de $u$.\n\nPour $u\\in\\mathcal{L}(E)$, les propriétés suivantes sont équivalentes et définissent le **groupe unitaire** $\\mathrm{U}(E)$ :\n- $\\|u(x)\\|=\\|x\\|$ pour tout $x\\in E$ ;\n- $\\langle u(x),u(y)\\rangle=\\langle x,y\\rangle$ pour tous $x,y\\in E$ ;\n- $u$ transforme une base orthonormale de $E$ en une base orthonormale ;\n- $u^*u=\\mathrm{id}_E$ ;\n- la matrice $M$ de $u$ dans une base orthonormale vérifie $M^*M=I_n$ : $M\\in\\mathrm{U}_n(\\mathbb{C})$.\n\nUn tel $u$ a toutes ses valeurs propres de module $1$, vérifie $|\\det u|=1$, et $E$ possède une base orthonormale formée de vecteurs propres de $u$.",
+      "enonce_trous": "Une matrice $U\\in\\mathcal{M}_n(\\mathbb{C})$ est unitaire si et seulement si {{1}} ; ses valeurs propres sont alors {{2}}.",
+      "trous": [
+        {
+          "reponse": "$U^*U=I_n$",
+          "leurres": [
+            "${}^tUU=I_n$",
+            "$U^*=U$",
+            "$|\\det U|=1$"
+          ]
+        },
+        {
+          "reponse": "de module $1$",
+          "leurres": [
+            "réelles",
+            "égales à $1$ ou à $-1$",
+            "des racines de l'unité"
+          ]
+        }
+      ],
+      "demo": "**Cauchy-Schwarz.** Pour $a,b\\in E$, $\\|a+b\\|^2=\\|a\\|^2+\\|b\\|^2+2\\,\\mathrm{Re}\\langle a,b\\rangle$. Si $x=0$, l'inégalité est claire. Sinon, posons $\\alpha=\\frac{\\langle x,y\\rangle}{\\|x\\|^2}$ : $\\langle x,y-\\alpha x\\rangle=\\langle x,y\\rangle-\\alpha\\|x\\|^2=0$, donc $\\|y\\|^2=\\|\\alpha x+(y-\\alpha x)\\|^2=|\\alpha|^2\\|x\\|^2+\\|y-\\alpha x\\|^2\\ge|\\alpha|^2\\|x\\|^2=\\frac{|\\langle x,y\\rangle|^2}{\\|x\\|^2}$. Le procédé de Schmidt se fait comme dans le cas réel, avec $g_k=v_k-\\sum_{j<k}\\langle f_j,v_k\\rangle f_j$ et $f_k=\\frac{g_k}{\\|g_k\\|}$ : alors $\\langle f_i,g_k\\rangle=\\langle f_i,v_k\\rangle-\\langle f_i,v_k\\rangle=0$ pour $i<k$.\n\n**Adjoint.** Dans une base orthonormale, $\\langle x,y\\rangle={}^t\\overline XY$ (développer par sesquilinéarité). Si $M$ est la matrice de $u$, l'endomorphisme $v$ de matrice $M^*$ vérifie $\\langle u(x),y\\rangle={}^t\\overline{MX}\\,Y={}^t\\overline X\\,{}^t\\overline MY=\\langle x,v(y)\\rangle$. Il est unique : si $\\langle x,w(y)\\rangle=0$ pour tout $x$, le choix $x=w(y)$ donne $w(y)=0$.\n\n**Équivalences.** Norme conservée $\\Rightarrow$ produit scalaire conservé : la formule $\\|x+y\\|^2=\\|x\\|^2+\\|y\\|^2+2\\,\\mathrm{Re}\\langle x,y\\rangle$ montre que $u$ conserve $\\mathrm{Re}\\langle x,y\\rangle$ ; en remplaçant $y$ par $iy$, il conserve aussi $\\mathrm{Re}\\langle x,iy\\rangle=\\mathrm{Re}(i\\langle x,y\\rangle)=-\\mathrm{Im}\\langle x,y\\rangle$. Produit scalaire conservé $\\Rightarrow$ l'image d'une base orthonormale est orthonormale : immédiat. Si $(e_i)$ et $(u(e_i))$ sont orthonormales : $\\langle e_i,u^*u(e_j)\\rangle=\\langle u(e_i),u(e_j)\\rangle=\\langle e_i,e_j\\rangle$ pour tout $i$, et les coordonnées de $u^*u(e_j)$ dans la base orthonormale $(e_i)$ sont celles de $e_j$, donc $u^*u=\\mathrm{id}_E$. Si $u^*u=\\mathrm{id}_E$ : $\\|u(x)\\|^2=\\langle u(x),u(x)\\rangle=\\langle x,u^*u(x)\\rangle=\\|x\\|^2$. Enfin, la matrice de $u^*u$ dans une base orthonormale est $M^*M$.\n\n**Spectre.** Si $u(x)=\\lambda x$ avec $x\\neq0$ : $\\|x\\|=\\|u(x)\\|=|\\lambda|\\,\\|x\\|$, donc $|\\lambda|=1$ ; le polynôme caractéristique est scindé sur $\\mathbb{C}$ et $\\det u$ est le produit des valeurs propres, donc $|\\det u|=1$. Base de vecteurs propres, par récurrence sur $n=\\dim E$ : $u$ a une valeur propre $\\lambda$ ($\\mathbb{C}$ est algébriquement clos), de vecteur propre unitaire $e_1$. Si $y\\perp e_1$, alors $0=\\langle e_1,y\\rangle=\\langle u(e_1),u(y)\\rangle=\\overline\\lambda\\langle e_1,u(y)\\rangle$ avec $\\lambda\\neq0$, donc $u(y)\\perp e_1$ : l'hyperplan $e_1^\\perp$ est stable par $u$, la restriction de $u$ y est unitaire, et l'hypothèse de récurrence fournit une base orthonormale de $e_1^\\perp$ formée de vecteurs propres, qui complète $e_1$.",
+      "exemple": "La rotation $R_\\theta=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$, orthogonale, est unitaire. Pour $\\theta\\notin\\pi\\mathbb{Z}$, elle n'a pas de valeur propre réelle, mais $R_\\theta(1,-i)=e^{i\\theta}(1,-i)$ et $R_\\theta(1,i)=e^{-i\\theta}(1,i)$ : ses valeurs propres sont $e^{\\pm i\\theta}$, de module $1$, et les vecteurs propres $(1,-i)$ et $(1,i)$ sont orthogonaux pour le produit hermitien usuel, car $\\overline1\\cdot1+\\overline{(-i)}\\cdot i=1+i^2=0$.",
+      "contre_exemple": "- **Conserver l'orthogonalité ne suffit pas** : $u=2\\,\\mathrm{id}_E$ conserve l'orthogonalité, et $\\|u(x)\\|=2\\|x\\|$.\n- **Sans conjugaison** : $U=\\begin{pmatrix}2&i\\sqrt3\\\\-i\\sqrt3&2\\end{pmatrix}$ vérifie ${}^tUU=I_2$, mais pas $U^*U=I_2$ ; ses valeurs propres $2\\pm\\sqrt3$ ne sont pas de module $1$.\n- **Base non orthonormale** : dans $\\mathbb{C}^2$ usuel, l'endomorphisme $u$ tel que $u(e_1)=2e_2$ et $u(2e_2)=e_1$ a pour matrice $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, unitaire, dans la base $(e_1,2e_2)$ ; pourtant $\\|u(e_1)\\|=2\\neq\\|e_1\\|$.\n- **Module du déterminant** : $\\mathrm{diag}\\left(2,\\frac12\\right)$ a un déterminant de module $1$ et n'est pas unitaire.",
+      "affirmations": [
+        {
+          "texte": "Une matrice à coefficients réels est unitaire si et seulement si elle est orthogonale.",
+          "vrai": true,
+          "justification": "Pour $U$ réelle, $U^*={}^tU$, et la condition $U^*U=I_n$ devient ${}^tUU=I_n$."
+        },
+        {
+          "texte": "Toute matrice unitaire est diagonalisable.",
+          "vrai": true,
+          "justification": "Elle est même diagonalisable dans une base orthonormale de $\\mathbb{C}^n$ : l'orthogonal d'un vecteur propre est stable."
+        },
+        {
+          "texte": "Si $\\langle\\cdot,\\cdot\\rangle$ est un produit scalaire hermitien (linéaire à droite), alors $\\langle\\lambda x,y\\rangle=\\lambda\\langle x,y\\rangle$ pour tout $\\lambda\\in\\mathbb{C}$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{C}$ muni de $\\langle x,y\\rangle=\\overline xy$, $\\langle i\\cdot1,1\\rangle=\\overline i=-i$, alors que $i\\langle1,1\\rangle=i$ : on a $\\langle\\lambda x,y\\rangle=\\overline\\lambda\\langle x,y\\rangle$."
+        },
+        {
+          "texte": "Une matrice $U\\in\\mathcal{M}_n(\\mathbb{C})$ telle que ${}^tUU=I_n$ a ses valeurs propres de module $1$.",
+          "vrai": false,
+          "contre_exemple": "$U=\\begin{pmatrix}2&i\\sqrt3\\\\-i\\sqrt3&2\\end{pmatrix}$ vérifie ${}^tUU=I_2$ et a pour valeurs propres $2\\pm\\sqrt3$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-cauchy-schwarz",
+        "al-l2-euclidien-schmidt",
+        "al-l2-euclidien-adjoint",
+        "al-l2-euclidien-orthogonal",
+        "geo-t-complexes-module"
+      ]
+    },
+    {
+      "id": "al-l3-formes-quadratiques-endo-hermitiens",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-formes-quadratiques",
+      "type": "theoreme",
+      "titre": "Endomorphismes hermitiens",
+      "recto": "Énoncer le théorème spectral pour un endomorphisme hermitien d'un espace hermitien, et sa version matricielle.",
+      "cours": "Un endomorphisme $u$ d'un espace hermitien est **hermitien** (ou autoadjoint) si $u^*=u$, c'est-à-dire $\\langle u(x),y\\rangle=\\langle x,u(y)\\rangle$ pour tous $x,y$ ; dans une base orthonormale, sa matrice vérifie $H^*=H$ : coefficients diagonaux réels et $h_{ji}=\\overline{h_{ij}}$. C'est l'analogue complexe des matrices symétriques réelles, et le théorème spectral s'étend : valeurs propres réelles, sous-espaces propres orthogonaux, base orthonormale de vecteurs propres.\n\nLien avec les formes : $h(x)=\\langle x,u(x)\\rangle$ est réel pour tout $x$, car $\\overline{\\langle x,u(x)\\rangle}=\\langle u(x),x\\rangle=\\langle x,u(x)\\rangle$ ; c'est une **forme hermitienne**. Dans une base orthonormale de vecteurs propres, $h(x)=\\sum_i\\lambda_i|y_i|^2$ : $u$ est **positif** ($h\\ge0$) si et seulement si ses valeurs propres sont positives ou nulles, **défini positif** si et seulement si elles sont strictement positives.\n\nMéthode pour $H\\in\\mathcal{M}_n(\\mathbb{C})$ hermitienne : valeurs propres (réelles) par le polynôme caractéristique ; vecteurs propres ; base orthonormale de chaque sous-espace propre, pour le produit $\\sum_i\\overline{x_i}y_i$ ; $U$ a pour colonnes ces vecteurs, et $H=UDU^*$ avec $U^{-1}=U^*$. En dimension $2$, $\\mathrm{tr}\\,H$ et $\\det H$ sont réels et donnent les deux valeurs propres.\n\nCe qui sert dans la preuve, c'est que l'orthogonal d'un vecteur propre est stable. C'est vrai aussi pour les endomorphismes unitaires, et plus généralement pour les endomorphismes **normaux** ($uu^*=u^*u$), qui sont exactement ceux qui se diagonalisent dans une base orthonormale ; parmi eux, les hermitiens sont ceux dont les valeurs propres sont réelles.\n\nPièges : une matrice complexe **symétrique** (${}^tH=H$) n'est pas hermitienne en général et peut ne pas être diagonalisable ($\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ est nilpotente non nulle) ; les coefficients diagonaux d'une matrice hermitienne sont réels, ceux hors de la diagonale ne le sont pas forcément ; une matrice dont les valeurs propres sont réelles n'est pas forcément hermitienne ; la matrice d'un endomorphisme hermitien n'est hermitienne que dans une base orthonormale.",
+      "hypotheses": [
+        "$E$ est un espace hermitien, ou $H$ est une matrice carrée à coefficients complexes.",
+        "$u^*=u$, ou $H^*={}^t\\overline H=H$."
+      ],
+      "hypotheses_pieges": [
+        "${}^tH=H$ (à la place de : $H^*=H$).",
+        "$u$ est unitaire (à la place de : $u^*=u$).",
+        "La matrice de $u$ dans une base quelconque de $E$ vérifie $M^*=M$ (à la place de : $u^*=u$)."
+      ],
+      "enonce": "Soit $E$ un espace hermitien de dimension $n\\ge1$ et $u\\in\\mathcal{L}(E)$ **hermitien** (ou autoadjoint) : $u^*=u$, c'est-à-dire $\\langle u(x),y\\rangle=\\langle x,u(y)\\rangle$ pour tous $x,y\\in E$. Alors les valeurs propres de $u$ sont **réelles**, ses sous-espaces propres sont deux à deux orthogonaux, et $E$ possède une base orthonormale formée de vecteurs propres de $u$. Pour tout $x$, $\\langle x,u(x)\\rangle$ est réel, et $u$ est positif ($\\langle x,u(x)\\rangle\\ge0$ pour tout $x$) si et seulement si ses valeurs propres sont positives ou nulles.\n\n**Version matricielle.** Pour toute matrice $H\\in\\mathcal{M}_n(\\mathbb{C})$ **hermitienne**, $H^*={}^t\\overline H=H$, il existe $U\\in\\mathrm{U}_n(\\mathbb{C})$ et $D$ diagonale **réelle** telles que $H=UDU^*=UDU^{-1}$. Réciproquement, toute matrice $UDU^*$, avec $U$ unitaire et $D$ diagonale réelle, est hermitienne.",
+      "enonce_trous": "Si $H\\in\\mathcal{M}_n(\\mathbb{C})$ vérifie {{1}}, il existe une matrice $U$ {{2}} et une matrice $D$ {{3}} telles que $H=UDU^*$.",
+      "trous": [
+        {
+          "reponse": "$H^*=H$",
+          "leurres": [
+            "${}^tH=H$",
+            "$H^*H=I_n$",
+            "$H^2=H$"
+          ]
+        },
+        {
+          "reponse": "unitaire",
+          "leurres": [
+            "diagonale",
+            "triangulaire supérieure",
+            "à coefficients réels"
+          ]
+        },
+        {
+          "reponse": "diagonale réelle",
+          "leurres": [
+            "diagonale à coefficients de module $1$",
+            "diagonale à coefficients réels strictement positifs",
+            "scalaire (multiple de $I_n$)"
+          ]
+        }
+      ],
+      "demo": "**Valeurs propres réelles.** Si $u(x)=\\lambda x$ avec $x\\neq0$ : $\\lambda\\|x\\|^2=\\langle x,u(x)\\rangle=\\langle u(x),x\\rangle=\\langle\\lambda x,x\\rangle=\\overline\\lambda\\|x\\|^2$, donc $\\lambda=\\overline\\lambda$.\n\n**Orthogonalité.** Si $u(x)=\\lambda x$ et $u(y)=\\mu y$ avec $\\lambda\\neq\\mu$, réels : $\\mu\\langle x,y\\rangle=\\langle x,u(y)\\rangle=\\langle u(x),y\\rangle=\\overline\\lambda\\langle x,y\\rangle=\\lambda\\langle x,y\\rangle$, donc $\\langle x,y\\rangle=0$.\n\n**Base orthonormale (récurrence sur $n$).** Pour $n=1$, tout vecteur unitaire convient. Soit $n\\ge2$ : $u$ a une valeur propre $\\lambda$ ($\\mathbb{C}$ est algébriquement clos), de vecteur propre unitaire $e_1$. Si $y\\perp e_1$, $\\langle e_1,u(y)\\rangle=\\langle u(e_1),y\\rangle=\\overline\\lambda\\langle e_1,y\\rangle=0$ : l'hyperplan $F=e_1^\\perp$ est stable par $u$, et la restriction de $u$ à $F$ est hermitienne pour le produit scalaire induit. Par hypothèse de récurrence, $F$ a une base orthonormale $(e_2,\\dots,e_n)$ de vecteurs propres, et $(e_1,\\dots,e_n)$ convient.\n\n**Forme hermitienne.** $\\overline{\\langle x,u(x)\\rangle}=\\langle u(x),x\\rangle=\\langle x,u(x)\\rangle$, donc ce nombre est réel. Dans une base orthonormale $(e_i)$ de vecteurs propres, pour $x=\\sum_iy_ie_i$, $\\langle x,u(x)\\rangle=\\sum_i\\lambda_i|y_i|^2$ : il est positif pour tout $x$ si les $\\lambda_i$ sont positifs ou nuls ; réciproquement, $x=e_i$ donne $\\lambda_i\\ge0$.\n\n**Version matricielle.** On applique ce qui précède à $\\mathbb{C}^n$ muni du produit hermitien usuel et à l'endomorphisme de matrice $H$ dans la base canonique, orthonormale, qui est hermitien puisque sa matrice dans cette base est $H^*=H$. Si $U$ est la matrice de passage à une base orthonormale de vecteurs propres, ses colonnes sont orthonormées, donc $U^*U=I_n$, et $H=UDU^{-1}=UDU^*$. Réciproquement, $(UDU^*)^*=UD^*U^*=UDU^*$, car $D$ est diagonale réelle.",
+      "exemple": "$H=\\begin{pmatrix}1&i\\\\-i&1\\end{pmatrix}$ est hermitienne, de trace $2$ et de déterminant $1-i(-i)=0$ : valeurs propres $0$ et $2$. On trouve $H(1,i)=0$ et $H(1,-i)=2(1,-i)$ ; les vecteurs $(1,i)$ et $(1,-i)$ sont orthogonaux, d'où $H=UDU^*$ avec $U=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\i&-i\\end{pmatrix}$ et $D=\\mathrm{diag}(0,2)$. Ses valeurs propres étant $0$ et $2$, $H$ est positive, non définie.",
+      "contre_exemple": "- **Symétrique complexe** : $\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ vérifie ${}^tH=H$, n'est pas hermitienne, et son carré est nul : nilpotente et non nulle, elle n'est pas diagonalisable.\n- **Unitaire non hermitien** : $iI_n$ est unitaire et diagonale, mais sa valeur propre $i$ n'est pas réelle.\n- **Base non orthonormale** : dans $\\mathbb{C}^2$ usuel, l'endomorphisme de matrice $\\mathrm{diag}(1,2)$ dans la base $\\big((1,0),(1,1)\\big)$ a pour sous-espaces propres $\\mathrm{Vect}\\big((1,0)\\big)$ et $\\mathrm{Vect}\\big((1,1)\\big)$, non orthogonaux : il n'est pas hermitien, bien que sa matrice dans cette base le soit.\n- **Valeurs propres réelles ne suffit pas** : $\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$ a pour valeurs propres $1$ et $2$ et n'est pas hermitienne.",
+      "affirmations": [
+        {
+          "texte": "Les coefficients diagonaux d'une matrice hermitienne sont réels.",
+          "vrai": true,
+          "justification": "$H^*=H$ donne $\\overline{h_{ii}}=h_{ii}$."
+        },
+        {
+          "texte": "Toute matrice complexe symétrique est diagonalisable.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix}1&i\\\\i&-1\\end{pmatrix}$ est symétrique, de carré nul et non nulle : elle n'est pas diagonalisable."
+        },
+        {
+          "texte": "Si $H$ est hermitienne, $X^*HX$ est réel pour toute colonne $X\\in\\mathbb{C}^n$.",
+          "vrai": true,
+          "justification": "$\\overline{X^*HX}=(X^*HX)^*=X^*H^*X=X^*HX$ (un nombre est égal à sa transposée)."
+        },
+        {
+          "texte": "Une matrice hermitienne dont toutes les valeurs propres sont nulles est nulle.",
+          "vrai": true,
+          "justification": "$H=UDU^*$ avec $D$ diagonale de coefficients les valeurs propres, donc $D=0$ et $H=0$."
+        },
+        {
+          "texte": "Une matrice complexe dont toutes les valeurs propres sont réelles est hermitienne.",
+          "vrai": false,
+          "contre_exemple": "$\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$ a pour valeurs propres $1$ et $2$, et n'est pas hermitienne."
+        }
+      ],
+      "prerequis": [
+        "al-l3-formes-quadratiques-hermitiens",
+        "al-l2-euclidien-spectral",
+        "al-l2-euclidien-positifs"
+      ]
+    }
+  ]
+}

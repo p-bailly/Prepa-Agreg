@@ -1,0 +1,93 @@
+{
+  "chapitre": "int-l3-fourier",
+  "questions": [
+    {
+      "id": "int-l3-fourier-q1",
+      "carte": "int-l3-fourier-coefficients",
+      "genre": "choix",
+      "enonce": "Soit $f(t)=\\sin^2t$. Avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$, que vaut $a_2(f)$ ?",
+      "propositions": [
+        "$-\\frac12$",
+        "$\\frac12$",
+        "$-\\frac14$",
+        "$0$"
+      ],
+      "bonne": 0,
+      "explication": "$\\sin^2t=\\frac12-\\frac12\\cos(2t)$, donc $a_2(f)=-\\frac12$ (et $a_0(f)=1$). La valeur $-\\frac14$ est $c_2(f)=c_{-2}(f)$ : $a_2=c_2+c_{-2}$."
+    },
+    {
+      "id": "int-l3-fourier-q2",
+      "carte": "int-l3-fourier-approximation",
+      "genre": "vrai-faux",
+      "enonce": "Pour $f(t)=|\\sin t|$, la constante $c_0(f)=\\frac2\\pi$ est, parmi les constantes $c$, celle qui minimise $\\sup_{\\mathbb{R}}|f-c|$.",
+      "vrai": false,
+      "explication": "Faux. $\\sup|f-\\frac2\\pi|=\\frac2\\pi\\approx0{,}64$ (atteint là où $\\sin t=0$), alors que $\\sup|f-\\frac12|=\\frac12$. La constante $c_0(f)$ minimise $\\|f-c\\|_2$, pas l'écart uniforme."
+    },
+    {
+      "id": "int-l3-fourier-q3",
+      "carte": "int-l3-fourier-parseval",
+      "genre": "choix",
+      "enonce": "Soit $f(t)=\\sum_{n\\in\\mathbb{Z}}2^{-|n|}e^{int}$ (série normalement convergente), de sorte que $c_n(f)=2^{-|n|}$. Que vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)|^2\\,\\mathrm{d}t$ ?",
+      "propositions": [
+        "$\\frac53$",
+        "$\\frac43$",
+        "$3$",
+        "$9$"
+      ],
+      "bonne": 0,
+      "explication": "Par Parseval, $\\sum_{n\\in\\mathbb{Z}}4^{-|n|}=1+2\\cdot\\frac{1/4}{1-1/4}=\\frac53$. La valeur $\\frac43$ oublie les $n<0$ ; $3=\\sum c_n=f(0)$ et $9=f(0)^2$."
+    },
+    {
+      "id": "int-l3-fourier-q4",
+      "carte": "int-l3-fourier-dirichlet",
+      "genre": "vrai-faux",
+      "enonce": "La série de Fourier de la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ converge en $x=\\pi$ vers $\\pi$.",
+      "vrai": false,
+      "explication": "Faux. $f$ est $\\mathcal{C}^1$ par morceaux et saute en $\\pi$ : la série converge vers $\\frac{f(\\pi^+)+f(\\pi^-)}2=\\frac{-\\pi+\\pi}2=0$. D'ailleurs $S_N(f)(\\pi)=\\sum b_n\\sin(n\\pi)=0$ pour tout $N$."
+    },
+    {
+      "id": "int-l3-fourier-q5",
+      "carte": "int-l3-fourier-fejer",
+      "genre": "choix",
+      "enonce": "Avec $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$ et $f(t)=\\cos(2t)$, que vaut $\\sigma_4(f)(0)$ ?",
+      "propositions": [
+        "$\\frac12$",
+        "$1$",
+        "$\\frac34$",
+        "$\\frac14$"
+      ],
+      "bonne": 0,
+      "explication": "$\\sigma_N(f)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(f)e_n$ : le terme $\\cos(2t)$ est multiplié par $1-\\frac24=\\frac12$. Directement : $S_0(f)(0)=S_1(f)(0)=0$ et $S_2(f)(0)=S_3(f)(0)=1$, de moyenne $\\frac12$."
+    },
+    {
+      "id": "int-l3-fourier-q6",
+      "carte": "int-l3-fourier-normale",
+      "genre": "vrai-faux",
+      "enonce": "La série de Fourier d'une fonction $2\\pi$-périodique de classe $\\mathcal{C}^1$ par morceaux converge normalement sur $\\mathbb{R}$.",
+      "vrai": false,
+      "explication": "Faux : il faut aussi que $f$ soit continue. Le créneau est $\\mathcal{C}^1$ par morceaux, mais ses sommes partielles, continues, ne peuvent pas converger uniformément vers lui, qui est discontinu ; d'ailleurs $|c_n|=\\frac2{\\pi|n|}$ pour $n$ impair."
+    },
+    {
+      "id": "int-l3-fourier-q7",
+      "carte": "int-l3-fourier-weierstrass",
+      "genre": "choix",
+      "enonce": "Pour la norme $\\sup_{\\mathbb{R}}|\\cdot|$, les combinaisons linéaires réelles de quelle famille sont denses dans l'ensemble des fonctions continues $2\\pi$-périodiques à valeurs réelles ?",
+      "propositions": [
+        "$1$, $\\cos(nt)$, $\\sin(nt)$ pour $n\\ge1$",
+        "$\\cos(nt)$ pour $n\\ge0$",
+        "$\\sin(nt)$ pour $n\\ge1$",
+        "$1$, $\\cos(nt)$, $\\sin(nt)$ pour $n\\ge2$"
+      ],
+      "bonne": 0,
+      "explication": "C'est le théorème de Weierstrass trigonométrique (cas réel). Les $\\cos(nt)$ seuls donnent des fonctions paires ($\\sin t$ n'est pas approchable), les $\\sin(nt)$ seuls des fonctions nulles en $0$ ; sans $\\cos t$ et $\\sin t$, toute limite uniforme $g$ vérifie $\\int_{-\\pi}^{\\pi}g(t)\\cos t\\,\\mathrm{d}t=0$, ce qui exclut $\\cos t$."
+    },
+    {
+      "id": "int-l3-fourier-q8",
+      "carte": "int-l3-fourier-parseval",
+      "genre": "vrai-faux",
+      "enonce": "Deux fonctions $2\\pi$-périodiques continues par morceaux qui ont les mêmes coefficients de Fourier sont égales.",
+      "vrai": false,
+      "explication": "Faux : changer une fonction en un point ne change aucun coefficient. L'identité de Parseval montre seulement qu'elles coïncident sauf en un nombre fini de points par période ; l'égalité vaut pour des fonctions continues."
+    }
+  ]
+}
