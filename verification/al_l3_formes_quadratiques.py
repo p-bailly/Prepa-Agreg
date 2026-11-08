@@ -7,11 +7,9 @@ Descartes sur le polynôme caractéristique, exacte puisque ses racines sont ré
 Lancer : python3 verification/al_l3_formes_quadratiques.py (doit finir sans erreur).
 """
 
-from fractions import Fraction as F
 from itertools import product
 
-from sympy import (I, Matrix, Poly, Rational, conjugate, diag, expand, eye, factor, nsimplify, simplify, sqrt, symbols,
-                   zeros)
+from sympy import I, Matrix, Poly, Rational, conjugate, diag, expand, eye, factor, simplify, sqrt, symbols, zeros
 
 R = Rational
 x, y, z, lam, a = symbols("x y z lambda a")
@@ -67,7 +65,7 @@ assert expand(q.subs({x: y1 - 2*y2, y: y2, z: y3})) == expand(y1**2 - 5*y2**2 - 
 xp, yp, zp = symbols("xp yp zp")
 b = x*xp - y*yp + 2*(x*yp + y*xp) - 3*(y*zp + z*yp)
 assert expand(b.subs({xp: x, yp: y, zp: z})) == expand(q)
-# Trou 1 : q = x^2 sur R, base (2) : tPMP = 4 ; leurres P^{-1}MP = 1, P M tP = 4 (!) -> en dimension 2.
+# Trou 1 : les leurres P^{-1}MP, P M tP et t(P^{-1}) M P^{-1} diffèrent de tPMP sur des exemples.
 Pt, Mt = Matrix([[1, 1], [0, 1]]), diag(1, 0)
 assert Pt.T * Mt * Pt == Matrix([[1, 1], [1, 1]])
 assert Pt * Mt * Pt.T != Pt.T * Mt * Pt                      # leurre P M tP faux
@@ -429,7 +427,6 @@ assert factor(x**2 + x) == x*(x + 1)
 # al-l3-formes-quadratiques-coniques-ex1 (+ v1, v2).
 def centre(S, d, e):
     return S.inv() * Matrix([-R(d, 2), -R(e, 2)])
-Fq = lambda c: c
 # ex : x^2 + 4xy + y^2 - 2x
 S0 = Matrix([[1, 2], [2, 1]]); Om = centre(S0, -2, 0)
 assert S0.det() == -3 and Om == Matrix([R(-1, 3), R(2, 3)])
@@ -517,7 +514,6 @@ Uc = Matrix([[2, I*sqrt(3)], [-I*sqrt(3), 2]])
 assert simplify(Uc.T * Uc) == eye(2) and simplify(Uc.H * Uc) != eye(2)
 assert set(Uc.eigenvals()) == {2 + sqrt(3), 2 - sqrt(3)}
 th = symbols("theta", real=True)
-Rt = Matrix([[symbols("c"), -symbols("s")], [symbols("s"), symbols("c")]])
 from sympy import cos, sin, exp
 Rt = Matrix([[cos(th), -sin(th)], [sin(th), cos(th)]])
 assert (Rt * Matrix([1, -I]) - exp(I*th)*Matrix([1, -I])).applyfunc(lambda t: simplify(t.rewrite(cos))) == zeros(2, 1)
@@ -632,7 +628,8 @@ for Hm, ok, vals in [
 assert set(Matrix([[1, I*a], [-I*a, 1]]).eigenvals()) == {1 - a, 1 + a}
 assert expand(Matrix([[2, a*(1 + I)], [a*(1 - I), 4]]).det()) == 8 - 2*a**2
 assert set(Matrix([[a, 1 + I], [1 - I, a]]).eigenvals()) == {a - sqrt(2), a + sqrt(2)}
-# Leurres réfutés : a = 1 (|a| <= 1), a = 1/2 < 0 ? ; v1 : a = 3/2 (√2 < 3/2 < 2) ; v2 : a = 3/2 (√2 < 3/2 < 2), a = -2.
+# Leurres réfutés : ex, a = 1 (|a| <= 1) et a = -1/2 (0 <= a < 1) ; v1, a = 3/2 (|a| < √2) et a = 2 (|a| <= 2) ;
+# v2, a = 3/2 (a > 2), a = 5/4 (a > 1) et a = -2 (|a| > √2) : ces cas sont dans la grille ci-dessus.
 
 # al-l3-formes-quadratiques-endo-hermitiens-ex3 : H hermitienne, H^3 = I => H = I ; jI unitaire avec (jI)^3 = I.
 from sympy import pi

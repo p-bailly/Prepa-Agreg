@@ -79,8 +79,8 @@ assert A1 + diag(-1, 0) == E12 and not E12.is_diagonalizable()
 assert I2 * J == J * I2 and not J.is_diagonalizable() and J.det() != 0
 # Trou 1, leurre « nilpotents » : 0 et E12 commutent, E12 non diagonalisable.
 assert zeros(2) * E12 == E12 * zeros(2) and nilp(E12)
-# Piège 2 : u1 = id commute avec A1 et E11, qui ne commutent pas entre eux.
-assert I2 * A1 == A1 * I2 and I2 * E11 == E11 * I2
+# Piège 2 : A1 et E11 ne commutent pas, mais tous les produits A1 E11, E11 A1, A1^2, E11^2 sont diagonalisables.
+assert all(M.is_diagonalizable() for M in (A1 * E11, E11 * A1, A1 * A1, E11 * E11))
 # Affirmation 2 : u = E12, v = -E12 commutent, u + v = 0.
 assert E12 * (-E12) == (-E12) * E12 and E12 + (-E12) == zeros(2)
 # Affirmation 3 : I2 commute avec J ; J e2 = e1 + e2.
