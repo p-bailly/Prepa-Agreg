@@ -1,0 +1,571 @@
+{
+  "cartes": [
+    {
+      "id": "geo-l3-courbes-etude-locale",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Étude locale d'un point d'une courbe paramétrée plane",
+      "recto": "Énoncer le théorème qui donne la tangente et la position locale d'une courbe paramétrée plane en un point, à l'aide des premiers entiers $p<q$ tels que $f^{(p)}(t_0)\\neq0$ et $(f^{(p)}(t_0),f^{(q)}(t_0))$ libre.",
+      "cours": "Une **courbe paramétrée** plane (ou arc paramétré) est une application $f:I\\to\\mathbb{R}^2$, $t\\mapsto M(t)=f(t)=(x(t),y(t))$, définie sur un intervalle $I$ et de classe $\\mathcal{C}^k$ ; son image est le **support** de la courbe. Pour $t$ voisin de $t_0$, la question est double : la droite qui joint $M(t_0)$ à $M(t)$ a-t-elle une limite (la **tangente**), et de quel côté de cette tangente se trouvent les points voisins ? Le cas usuel est celui d'un point **régulier**, $f'(t_0)\\neq0$ : la tangente est dirigée par le vecteur vitesse $f'(t_0)$.\n\nL'outil est la formule de Taylor-Young, appliquée à chaque coordonnée. On note $p$ le premier entier $\\ge1$ tel que $f^{(p)}(t_0)\\neq0$, puis $q$ le premier entier $>p$ tel que $f^{(q)}(t_0)$ ne soit pas colinéaire à $f^{(p)}(t_0)$. Dans le repère $(M(t_0);f^{(p)}(t_0),f^{(q)}(t_0))$, les coordonnées de $M(t_0+h)$ sont équivalentes à $\\frac{h^p}{p!}$ et $\\frac{h^q}{q!}$ : la tangente est dirigée par $f^{(p)}(t_0)$, et la parité de $p$ et de $q$ donne l'allure. Si $p$ est impair, la courbe « avance » ; si $p$ est pair, elle rebrousse chemin. Si $q$ est pair, elle reste d'un même côté de sa tangente ; si $q$ est impair, elle la traverse.\n\nEn un point régulier ($p=1$), on regarde $f''(t_0)$ : si $\\det(f'(t_0),f''(t_0))\\neq0$, on a $q=2$ et le point est d'allure ordinaire (la courbe est localement d'un seul côté de sa tangente, du côté vers lequel pointe $f''(t_0)$). Un point d'inflexion régulier exige donc $\\det(f'(t_0),f''(t_0))=0$ ; réciproquement, en un point régulier, si $t\\mapsto\\det(f'(t),f''(t))$ s'annule en $t_0$ en changeant de signe, c'est un point d'inflexion (voir les exercices : localement, la courbe est le graphe d'une fonction dont la dérivée seconde est ce déterminant divisé par $x'(t)^3$). En pratique, on obtient souvent $p$ et $q$ plus vite par un développement limité de $f(t_0+h)$ que par le calcul des dérivées successives.\n\n**Branches infinies.** Quand $t$ tend vers une borne $t_0$ de l'intervalle (finie ou non) et que $\\|f(t)\\|\\to+\\infty$, on étudie la branche infinie. Si $x(t)\\to\\pm\\infty$ et $y(t)\\to\\ell$, la droite $y=\\ell$ est asymptote. Si $\\frac{y(t)}{x(t)}\\to a$ et $y(t)-ax(t)\\to b$ (finis), la droite $y=ax+b$ est asymptote, et le signe de $y(t)-ax(t)-b$ donne la position de la courbe. Si $\\frac{y(t)}{x(t)}\\to a$ mais $|y(t)-ax(t)|\\to+\\infty$, on parle de branche parabolique de direction $y=ax$.\n\nPièges : $q$ est défini par la non-colinéarité, pas par la non-nullité (pour $f(t)=(t+t^2,t^3)$, $f''(0)=(2,0)\\neq0$ est colinéaire à $f'(0)$ et $q=3$) ; un point singulier peut avoir une tangente et une allure ordinaire ($f(t)=(t^3,t^4)$ en $0$) ; si toutes les dérivées en $t_0$ sont colinéaires à $f^{(p)}(t_0)$, l'entier $q$ n'existe pas et le théorème ne dit rien de la position (pour $f(t)=(t,\\mathrm{e}^{-1/t^2})$, prolongée par $f(0)=(0,0)$, toutes les dérivées en $0$ au-delà de la première sont nulles).",
+      "hypotheses": [
+        "$f$ est de classe $\\mathcal{C}^k$ sur $I$ et $t_0$ est intérieur à $I$.",
+        "$p$ est le plus petit entier $\\ge1$ tel que $f^{(p)}(t_0)\\neq0$.",
+        "$q$ est le plus petit entier $>p$ tel que $(f^{(p)}(t_0),f^{(q)}(t_0))$ soit libre, et $q\\le k$."
+      ],
+      "hypotheses_pieges": [
+        "$q$ est le plus petit entier $>p$ tel que $f^{(q)}(t_0)\\neq0$ (à la place de : tel que $(f^{(p)}(t_0),f^{(q)}(t_0))$ soit libre).",
+        "$p$ est un entier $\\ge1$ quelconque tel que $f^{(p)}(t_0)\\neq0$ (à la place du plus petit)."
+      ],
+      "enonce": "Soient $I$ un intervalle, $f:I\\to\\mathbb{R}^2$ de classe $\\mathcal{C}^k$ et $t_0$ un point intérieur à $I$ ; on note $M(t)=f(t)$. On suppose qu'il existe des entiers $1\\le p<q\\le k$ tels que $f^{(j)}(t_0)=0$ pour $1\\le j<p$, $f^{(p)}(t_0)\\neq0$, $f^{(j)}(t_0)$ colinéaire à $f^{(p)}(t_0)$ pour $p<j<q$, et $(f^{(p)}(t_0),f^{(q)}(t_0))$ libre. Notons $(X(h),Y(h))$ les coordonnées de $M(t_0+h)$ dans le repère $(M(t_0);f^{(p)}(t_0),f^{(q)}(t_0))$.\n\n**Théorème.**\n- Quand $h\\to0$, $X(h)\\sim\\frac{h^p}{p!}$ et $Y(h)\\sim\\frac{h^q}{q!}$.\n- $M(t_0+h)\\neq M(t_0)$ pour $h\\neq0$ voisin de $0$, et la droite $(M(t_0)M(t_0+h))$ tend vers la droite passant par $M(t_0)$ dirigée par $f^{(p)}(t_0)$ : c'est la **tangente** en $M(t_0)$.\n- Si $p$ est impair et $q$ pair, $M(t_0)$ est un **point d'allure ordinaire** : la courbe reste localement d'un même côté de sa tangente.\n- Si $p$ et $q$ sont impairs, c'est un **point d'inflexion** : la courbe traverse sa tangente.\n- Si $p$ est pair et $q$ impair, c'est un **point de rebroussement de première espèce** : la courbe rebrousse chemin ($X(h)>0$ des deux côtés de $h=0$) et ses deux demi-branches sont de part et d'autre de la tangente.\n- Si $p$ et $q$ sont pairs, c'est un **point de rebroussement de seconde espèce** : la courbe rebrousse chemin et ses deux demi-branches sont du même côté de la tangente.",
+      "enonce_trous": "Soient $f:I\\to\\mathbb{R}^2$ de classe $\\mathcal{C}^k$, $t_0$ intérieur à $I$, $p$ le plus petit entier $\\ge1$ tel que $f^{(p)}(t_0)\\neq0$ et $q\\le k$ le plus petit entier $>p$ tel que $(f^{(p)}(t_0),f^{(q)}(t_0))$ soit libre. La tangente en $M(t_0)$ est dirigée par {{1}}. Si $p$ est impair et $q$ pair, $M(t_0)$ est {{2}}. Si $p$ est pair et $q$ impair, $M(t_0)$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$f^{(p)}(t_0)$",
+          "leurres": [
+            "$f^{(q)}(t_0)$",
+            "$f'(t_0)$",
+            "$f^{(p)}(t_0)+f^{(q)}(t_0)$"
+          ]
+        },
+        {
+          "reponse": "un point d'allure ordinaire",
+          "leurres": [
+            "un point d'inflexion",
+            "un point de rebroussement de première espèce",
+            "un point de rebroussement de seconde espèce"
+          ]
+        },
+        {
+          "reponse": "un point de rebroussement de première espèce",
+          "leurres": [
+            "un point de rebroussement de seconde espèce",
+            "un point d'inflexion",
+            "un point d'allure ordinaire"
+          ]
+        }
+      ],
+      "demo": "**Développement.** Notons $u=f^{(p)}(t_0)$ et $v=f^{(q)}(t_0)$ ; $(u,v)$ est une base de $\\mathbb{R}^2$. Pour $p<j<q$, $f^{(j)}(t_0)$ est colinéaire à $u$ : $f^{(j)}(t_0)=\\lambda_ju$. La formule de Taylor-Young à l'ordre $q$ ($f$ est de classe $\\mathcal{C}^q$), appliquée à chaque coordonnée, donne $f(t_0+h)=f(t_0)+\\sum_{j=p}^q\\frac{h^j}{j!}f^{(j)}(t_0)+h^q\\varepsilon(h)$ avec $\\varepsilon(h)\\to0$. Décomposons $\\varepsilon(h)=\\varepsilon_1(h)u+\\varepsilon_2(h)v$ : les coordonnées dans une base sont des formes linéaires, donc continues, et $\\varepsilon_1(h)\\to0$, $\\varepsilon_2(h)\\to0$. D'où $X(h)=\\frac{h^p}{p!}+\\sum_{p<j<q}\\lambda_j\\frac{h^j}{j!}+h^q\\varepsilon_1(h)$ et $Y(h)=\\frac{h^q}{q!}+h^q\\varepsilon_2(h)$, donc $X(h)\\sim\\frac{h^p}{p!}$ et $Y(h)\\sim\\frac{h^q}{q!}$ quand $h\\to0$.\n\n**Tangente.** Pour $h\\neq0$ voisin de $0$, $X(h)\\neq0$, donc $M(t_0+h)\\neq M(t_0)$, et la droite $(M(t_0)M(t_0+h))$ est dirigée par $X(h)u+Y(h)v$, donc par $u+\\frac{Y(h)}{X(h)}v$. Comme $\\frac{Y(h)}{X(h)}\\sim\\frac{p!}{q!}h^{q-p}\\to0$ ($q>p$), ce vecteur directeur tend vers $u$ : la droite tend vers la droite passant par $M(t_0)$ dirigée par $u$.\n\n**Position.** Au voisinage de $0$, $X(h)$ a le signe de $h^p$ et $Y(h)$ celui de $h^q$. Si $p$ est impair, $X$ change de signe en $0$ : $M(t_0+h)$ passe d'un côté à l'autre de la droite $M(t_0)+\\mathbb{R}v$ ; si $p$ est pair, $X(h)>0$ des deux côtés : la courbe rebrousse chemin. Si $q$ est pair, $Y(h)>0$ des deux côtés : la courbe reste du côté de la tangente vers lequel pointe $v$ ; si $q$ est impair, $Y$ change de signe : la courbe traverse sa tangente. Les quatre cas s'en déduisent.",
+      "exemple": "- $f(t)=(t^2,t^3)$ en $t_0=0$ : $f'(0)=(0,0)$, $f''(0)=(2,0)$, $f'''(0)=(0,6)$, donc $p=2$, $q=3$ : rebroussement de première espèce, de tangente l'axe des abscisses (c'est la parabole semi-cubique $y^2=x^3$).\n- $f(t)=(t^2,t^4+t^5)$ en $0$ : $f''(0)=(2,0)$, $f'''(0)=(0,0)$, $f^{(4)}(0)=(0,24)$, donc $p=2$, $q=4$ : rebroussement de seconde espèce ; les deux demi-branches, $y=x^2+x^{5/2}$ et $y=x^2-x^{5/2}$ ($x\\ge0$), sont au-dessus de la tangente.\n- $f(t)=(\\cos t,\\sin2t)$ en $\\frac{\\pi}{2}$ : $f'=(-1,-2)$, $f''=(0,0)$, $f'''=(1,8)$, et $\\det((-1,-2),(1,8))=-6\\neq0$ : $p=1$, $q=3$, point d'inflexion.",
+      "contre_exemple": "- **$q$ défini par la non-nullité** : pour $f(t)=(t+t^2,t^3)$ en $0$, $f'(0)=(1,0)$, $f''(0)=(2,0)\\neq0$ et $f'''(0)=(0,6)$. Le premier entier $j>1$ tel que $f^{(j)}(0)\\neq0$ est $2$, ce qui ferait conclure à un point d'allure ordinaire ; en fait $q=3$ et l'ordonnée $Y(h)=\\frac{h^3}{6}$ change de signe : c'est un point d'inflexion.\n- **$p$ pas le plus petit** : pour la même courbe, $f''(0)\\neq0$ et $(f''(0),f'''(0))$ est libre ; avec « $p=2$, $q=3$ » on conclurait à un rebroussement, alors que $x(t)=t+t^2$ change de signe en $0$ : la courbe ne rebrousse pas chemin.\n- **Sans entier $q$** : pour $f(t)=(t,0)$, toutes les dérivées sont colinéaires à $f'(0)$ ; la courbe est sa tangente et la question de la position n'a pas de sens.",
+      "affirmations": [
+        {
+          "texte": "Si $f'(t_0)=0$, la courbe n'a pas de tangente en $M(t_0)$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=(t^2,t^3)$ : $f'(0)=0$, mais la tangente en $M(0)$ existe et est dirigée par $f''(0)=(2,0)$."
+        },
+        {
+          "texte": "Si $f'(t_0)=0$ et si les entiers $p$ et $q$ existent, $M(t_0)$ est un point de rebroussement.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=(t^3,t^5)$ : $p=3$ et $q=5$ sont impairs, c'est un point d'inflexion (le support est le graphe de $x\\mapsto x^{5/3}$, racine cubique réelle)."
+        },
+        {
+          "texte": "Si $(f'(t_0),f''(t_0))$ est libre, la courbe est localement d'un seul côté de sa tangente en $M(t_0)$.",
+          "vrai": true,
+          "justification": "$p=1$ et $q=2$ : point d'allure ordinaire."
+        },
+        {
+          "texte": "Un point de rebroussement est toujours un point singulier.",
+          "vrai": true,
+          "justification": "$p$ est alors pair, donc $p\\ge2$ et $f'(t_0)=0$."
+        },
+        {
+          "texte": "Si $p=1$ et $q=3$, la courbe traverse sa tangente en $M(t_0)$.",
+          "vrai": true,
+          "justification": "$Y(h)\\sim\\frac{h^3}{6}$ change de signe en $0$ : c'est un point d'inflexion."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-taylor-young",
+        "ar-l1-taylor-dl-position",
+        "ar-t-derivation-inflexion",
+        "al-l1-determinant-famille"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-singuliers",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Points singuliers et changement de paramètre admissible",
+      "recto": "Définir un point régulier, un point singulier et un changement de paramètre admissible, et énoncer ce que conserve un tel changement de paramètre.",
+      "cours": "Un point $M(t_0)$ est **régulier** si $f'(t_0)\\neq0$ et **singulier** (ou stationnaire) sinon ; une courbe est régulière si tous ses points le sont. Cinématiquement, un point singulier est un instant où le mobile s'arrête : c'est là que peuvent apparaître des pointes, comme sur la cycloïde $f(t)=(t-\\sin t,1-\\cos t)$ pour $t\\in2\\pi\\mathbb{Z}$ ou sur l'astroïde $f(t)=(\\cos^3t,\\sin^3t)$ pour $t\\in\\frac{\\pi}{2}\\mathbb{Z}$. Il ne faut pas confondre point singulier et **point multiple** (point du support atteint pour plusieurs valeurs du paramètre) : le point double de la courbe en huit $f(t)=(\\cos t,\\sin2t)$ est atteint en $t=\\frac{\\pi}{2}$ et $t=\\frac{3\\pi}{2}$, et il y est régulier.\n\nLa régularité dépend du paramétrage, pas seulement du support : $t\\mapsto(t^3,t^3)$ décrit la droite $y=x$ avec un point singulier en $0$. Pour parler de propriétés géométriques, on se restreint aux **changements de paramètre admissibles** : les bijections $\\theta:J\\to I$ de classe $\\mathcal{C}^k$ dont la dérivée ne s'annule pas. Une telle $\\theta$ est strictement monotone et sa réciproque est de classe $\\mathcal{C}^k$ (dérivée d'une réciproque, puis récurrence) ; les paramétrages $f$ et $g=f\\circ\\theta$ sont dits équivalents, et la relation est symétrique.\n\nUn changement de paramètre admissible conserve le support, les points réguliers et singuliers, les tangentes, et même les entiers $p$ et $q$ de l'étude locale : la nature d'un point (allure ordinaire, inflexion, rebroussement) est donc une notion géométrique. Si $\\theta$ est croissante, le sens de parcours est conservé ; si elle est décroissante, la courbe est parcourue en sens inverse.\n\nPièges : une bijection de classe $\\mathcal{C}^\\infty$ n'est pas forcément admissible ($s\\mapsto s^3$, ou $s\\mapsto s+\\sin s$, dont la dérivée s'annule en $\\pi$) ; avec un tel changement, des points singuliers peuvent apparaître. Inversement, un point singulier d'un paramétrage peut disparaître dans un autre, non équivalent (la droite ci-dessus), alors qu'une vraie pointe, comme celle de $y^2=x^3$ à l'origine, est singulière pour tout paramétrage de classe $\\mathcal{C}^1$.",
+      "hypotheses": [
+        "$\\theta$ est une bijection de $J$ sur $I$ de classe $\\mathcal{C}^k$.",
+        "$\\theta'$ ne s'annule pas sur $J$."
+      ],
+      "hypotheses_pieges": [
+        "$\\theta$ est une bijection strictement croissante de $J$ sur $I$ de classe $\\mathcal{C}^k$ (à la place de : $\\theta'$ ne s'annule pas sur $J$).",
+        "$\\theta$ est de classe $\\mathcal{C}^k$ sur $J$, à valeurs dans $I$, et $\\theta'$ ne s'annule pas (à la place d'une bijection de $J$ sur $I$)."
+      ],
+      "enonce": "Soit $f:I\\to\\mathbb{R}^2$ de classe $\\mathcal{C}^k$ ($k\\ge1$) sur un intervalle $I$. Le point $M(t)=f(t)$ est **régulier** si $f'(t)\\neq0$, **singulier** sinon. Un **changement de paramètre admissible** (de classe $\\mathcal{C}^k$) est une bijection $\\theta:J\\to I$, où $J$ est un intervalle, de classe $\\mathcal{C}^k$ et dont la dérivée ne s'annule pas ; on pose $g=f\\circ\\theta$.\n\n**Théorème.**\n- $\\theta$ est strictement monotone, $\\theta^{-1}$ est de classe $\\mathcal{C}^k$, et $g(J)=f(I)$.\n- Pour tout $s\\in J$, $g'(s)=\\theta'(s)f'(\\theta(s))$ : le point $g(s)=M(\\theta(s))$ est régulier pour $g$ si et seulement s'il l'est pour $f$, et en un tel point les tangentes sont les mêmes.\n- Si $s_0\\in J$, $t_0=\\theta(s_0)$ et si les entiers $p<q\\le k$ de l'étude locale existent pour $f$ en $t_0$, ils existent pour $g$ en $s_0$ et sont les mêmes ; de plus $g^{(p)}(s_0)=\\theta'(s_0)^pf^{(p)}(t_0)$. La nature du point (allure ordinaire, inflexion, rebroussement de première ou de seconde espèce) ne dépend donc pas du paramétrage admissible choisi.",
+      "enonce_trous": "Soient $f:I\\to\\mathbb{R}^2$ de classe $\\mathcal{C}^k$ et $\\theta:J\\to I$ une bijection de classe $\\mathcal{C}^k$ telle que {{1}}. Alors $g=f\\circ\\theta$ vérifie {{2}} pour tout $s\\in J$, de sorte que $M(\\theta(s))$ est un point régulier de $f$ si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\theta'$ ne s'annule pas sur $J$",
+          "leurres": [
+            "$\\theta$ soit strictement monotone",
+            "$\\theta''$ ne s'annule pas sur $J$",
+            "$\\theta'$ s'annule en un seul point de $J$"
+          ]
+        },
+        {
+          "reponse": "$g'(s)=\\theta'(s)\\,f'(\\theta(s))$",
+          "leurres": [
+            "$g'(s)=f'(\\theta(s))$",
+            "$g'(s)=\\theta(s)\\,f'(\\theta(s))$",
+            "$g'(s)=f'(\\theta'(s))$"
+          ]
+        },
+        {
+          "reponse": "$g'(s)\\neq0$",
+          "leurres": [
+            "$\\theta'(s)\\neq0$",
+            "$g''(s)\\neq0$",
+            "$\\theta(s)\\neq0$"
+          ]
+        }
+      ],
+      "demo": "**Réciproque.** $\\theta'$ est continue et ne s'annule pas sur l'intervalle $J$, donc garde un signe constant (théorème des valeurs intermédiaires) : $\\theta$ est strictement monotone. Sa réciproque est dérivable, de dérivée $(\\theta^{-1})'=\\frac{1}{\\theta'\\circ\\theta^{-1}}$ ; par récurrence sur $j\\le k$, si $\\theta^{-1}$ est de classe $\\mathcal{C}^{j-1}$, cette formule montre qu'elle est de classe $\\mathcal{C}^j$. Comme $\\theta$ est surjective, $g(J)=f(\\theta(J))=f(I)$.\n\n**Points réguliers.** La dérivation d'une composée donne $g'(s)=\\theta'(s)f'(\\theta(s))$, et $\\theta'(s)\\neq0$ : $g'(s)=0\\iff f'(\\theta(s))=0$. En un point régulier, $g'(s)$ et $f'(\\theta(s))$ sont colinéaires et non nuls : ils dirigent la même tangente.\n\n**Lemme.** Pour $1\\le j\\le k$, il existe des fonctions $c_{j,m}$ ($1\\le m<j$), polynomiales en $\\theta',\\dots,\\theta^{(j)}$, telles que $g^{(j)}=\\theta'^j\\,f^{(j)}\\circ\\theta+\\sum_{m=1}^{j-1}c_{j,m}\\,f^{(m)}\\circ\\theta$. C'est vrai pour $j=1$. Si c'est vrai pour un $j<k$, les $c_{j,m}$ sont dérivables, car $\\theta$ est de classe $\\mathcal{C}^k$ et $j+1\\le k$, et l'on dérive : $(\\theta'^jf^{(j)}\\circ\\theta)'=j\\theta'^{j-1}\\theta''f^{(j)}\\circ\\theta+\\theta'^{j+1}f^{(j+1)}\\circ\\theta$ et $(c_{j,m}f^{(m)}\\circ\\theta)'=c_{j,m}'f^{(m)}\\circ\\theta+c_{j,m}\\theta'f^{(m+1)}\\circ\\theta$, avec $m+1\\le j$ : la formule est vraie au rang $j+1$.\n\n**Entiers $p$ et $q$.** Posons $u=f^{(p)}(t_0)$ et $\\lambda=\\theta'(s_0)\\neq0$. Pour $j<p$, toutes les $f^{(m)}(t_0)$, $m\\le j$, sont nulles, donc $g^{(j)}(s_0)=0$, et $g^{(p)}(s_0)=\\lambda^pu\\neq0$ : l'entier $p$ est le même. Pour $p<j<q$, les $f^{(m)}(t_0)$, $m\\le j$, sont nulles ou colinéaires à $u$, donc $g^{(j)}(s_0)$ aussi. Enfin $g^{(q)}(s_0)=\\lambda^qf^{(q)}(t_0)+w$ avec $w$ colinéaire à $u$ : comme $(u,f^{(q)}(t_0))$ est libre et $\\lambda\\neq0$, $(\\lambda^pu,g^{(q)}(s_0))$ est libre. L'entier $q$ est donc le même, et la nature du point, qui ne dépend que de la parité de $p$ et de $q$, aussi.",
+      "exemple": "- La cycloïde $f(t)=(t-\\sin t,1-\\cos t)$ a pour vitesse $f'(t)=(1-\\cos t,\\sin t)$, nulle si et seulement si $t\\in2\\pi\\mathbb{Z}$ : ce sont les points de contact avec l'axe des abscisses. En $0$, $f''(0)=(0,1)$ et $f'''(0)=(1,0)$ : $p=2$, $q=3$, rebroussement de première espèce, de tangente verticale.\n- $\\theta:\\left]-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right[\\to\\mathbb{R}$, $\\theta(s)=\\tan s$, est un changement de paramètre admissible de classe $\\mathcal{C}^\\infty$ ($\\theta'=1+\\tan^2>0$) : $s\\mapsto(\\tan s,\\tan^2s)$ est un paramétrage régulier de la parabole $y=x^2$, équivalent à $t\\mapsto(t,t^2)$.",
+      "contre_exemple": "- **Bijection non admissible** : $\\theta(s)=s^3$ est une bijection de classe $\\mathcal{C}^\\infty$ de $\\mathbb{R}$ sur $\\mathbb{R}$, strictement croissante, mais $\\theta'(0)=0$. Avec $f(t)=(t,t^2)$, régulière, $g(s)=(s^3,s^6)$ a un point singulier en $0$, et ses entiers en $0$ sont $p=3$, $q=6$ au lieu de $p=1$, $q=2$.\n- **Pas surjective** : $\\theta(s)=\\frac{s}{2}$, de $[0,2\\pi]$ dans $[0,2\\pi]$, vérifie $\\theta'\\neq0$, mais avec $f(t)=(\\cos t,\\sin t)$, $g([0,2\\pi])$ est le demi-cercle supérieur, et non le cercle.\n- **Singularité de paramétrage** : le support de $t\\mapsto(t^3,t^3)$ est une droite, sans aucune pointe ; son point singulier en $0$ tient au paramétrage.",
+      "affirmations": [
+        {
+          "texte": "Un point du support atteint pour deux valeurs distinctes du paramètre est un point singulier.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(t)=(\\cos t,\\sin2t)$, l'origine est atteinte en $\\frac{\\pi}{2}$ et en $\\frac{3\\pi}{2}$, avec $f'\\left(\\frac{\\pi}{2}\\right)=(-1,-2)\\neq0$."
+        },
+        {
+          "texte": "Si $\\theta$ est un changement de paramètre admissible, $f$ et $f\\circ\\theta$ ont les mêmes points singuliers, aux paramètres correspondants.",
+          "vrai": true,
+          "justification": "$(f\\circ\\theta)'(s)=\\theta'(s)f'(\\theta(s))$ et $\\theta'(s)\\neq0$."
+        },
+        {
+          "texte": "Tout point singulier d'un paramétrage est un point de rebroussement.",
+          "vrai": false,
+          "contre_exemple": "$t\\mapsto(t^3,t^3)$ est singulier en $0$ et décrit une droite ; $t\\mapsto(t^3,t^4)$ a en $0$ un point d'allure ordinaire ($p=3$, $q=4$)."
+        },
+        {
+          "texte": "Une bijection strictement croissante de classe $\\mathcal{C}^\\infty$ entre deux intervalles est un changement de paramètre admissible.",
+          "vrai": false,
+          "contre_exemple": "$s\\mapsto s^3$ sur $\\mathbb{R}$ : sa dérivée s'annule en $0$."
+        },
+        {
+          "texte": "Si $\\theta:J\\to I$ est une bijection de classe $\\mathcal{C}^1$ et si $f\\circ\\theta$ est un paramétrage régulier, alors $f$ est régulier.",
+          "vrai": true,
+          "justification": "$\\theta'(s)f'(\\theta(s))\\neq0$ impose $f'(\\theta(s))\\neq0$, et $\\theta$ est surjective."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-courbes-etude-locale",
+        "ar-l1-derivabilite-reciproque",
+        "ar-t-derivation-composee",
+        "ar-l1-continuite-image-intervalle"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-polaires",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Courbes en coordonnées polaires",
+      "recto": "Pour une courbe d'équation polaire $r=\\rho(\\theta)$, donner le vecteur vitesse dans le repère polaire, la caractérisation des points singuliers, l'angle $V$ entre le rayon et la tangente, et la tangente au pôle.",
+      "cours": "On note $\\vec u(\\theta)=(\\cos\\theta,\\sin\\theta)$ et $\\vec v(\\theta)=(-\\sin\\theta,\\cos\\theta)$ : $(\\vec u(\\theta),\\vec v(\\theta))$ est le **repère polaire**, une base orthonormale directe qui tourne avec $\\theta$, et $\\vec u\\,'=\\vec v$, $\\vec v\\,'=-\\vec u$. La courbe d'équation polaire $r=\\rho(\\theta)$ est la courbe paramétrée $f(\\theta)=\\rho(\\theta)\\vec u(\\theta)$, c'est-à-dire $x=\\rho(\\theta)\\cos\\theta$, $y=\\rho(\\theta)\\sin\\theta$ ; $\\rho$ peut prendre des valeurs négatives, le point est alors de l'autre côté du pôle $O$.\n\nDans le repère polaire, les calculs sont simples : $f'=\\rho'\\vec u+\\rho\\vec v$, $\\|f'\\|^2=\\rho^2+\\rho'^2$, $f''=(\\rho''-\\rho)\\vec u+2\\rho'\\vec v$ et $\\det(f',f'')=\\rho^2+2\\rho'^2-\\rho\\rho''$. Hors du pôle, tout point est régulier et l'angle $V$ entre le rayon $\\vec u$ et la tangente vérifie $\\tan V=\\frac{\\rho}{\\rho'}$ : c'est souvent la façon la plus rapide de tracer une tangente. Au pôle, la tangente est la droite d'angle polaire $\\theta_0$ : la courbe arrive en $O$ dans la direction du rayon.\n\nMéthode d'étude : réduire l'intervalle par les symétries ($\\rho(-\\theta)=\\rho(\\theta)$ donne une symétrie par rapport à l'axe des abscisses ; $\\rho(\\theta+\\pi)=-\\rho(\\theta)$ montre que la courbe est décrite une fois sur un intervalle de longueur $\\pi$), étudier le signe de $\\rho$, les passages au pôle et les tangentes qui y arrivent, les points où $\\rho'=0$ (tangente orthogonale au rayon), puis les branches infinies : quand $|\\rho(\\theta)|\\to+\\infty$ pour $\\theta\\to\\theta_0$, on étudie $\\rho(\\theta)\\sin(\\theta-\\theta_0)$, distance algébrique de $M(\\theta)$ à la droite d'angle polaire $\\theta_0$ ; sa limite, si elle existe, donne une asymptote parallèle à cette droite. Pour les points d'inflexion, on pose $u=\\frac1\\rho$ : $\\rho^2+2\\rho'^2-\\rho\\rho''=\\rho^3(u+u'')$.\n\nExemples : la cardioïde $\\rho=1+\\cos\\theta$, la spirale logarithmique $\\rho=\\mathrm{e}^{a\\theta}$ (angle $V$ constant), la droite $\\rho=\\frac{1}{\\cos(\\theta-\\theta_0)}$, le cercle $\\rho=2R\\cos\\theta$ passant par le pôle, les coniques $\\rho=\\frac{p}{1+e\\cos\\theta}$ de foyer $O$.\n\nPièges : un point du plan a une infinité de couples de coordonnées polaires, donc une courbe polaire peut passer plusieurs fois par un même point sans que cela se voie sur $\\rho$ (le cercle $\\rho=\\cos\\theta$ est décrit deux fois sur $[0,2\\pi]$) ; au pôle, la formule $\\tan V=\\frac{\\rho}{\\rho'}$ n'a plus de sens géométrique, puisque le rayon $OM$ est réduit à un point.",
+      "hypotheses": [
+        "$\\rho$ est de classe $\\mathcal{C}^1$ sur l'intervalle $I$.",
+        "$\\rho(\\theta_0)\\neq0$."
+      ],
+      "hypotheses_pieges": [
+        "$\\rho$ est continue sur $I$ (à la place de : de classe $\\mathcal{C}^1$).",
+        "$\\rho'(\\theta_0)\\neq0$ (à la place de : $\\rho(\\theta_0)\\neq0$)."
+      ],
+      "enonce": "Soient $\\rho:I\\to\\mathbb{R}$ de classe $\\mathcal{C}^k$ ($k\\ge1$) sur un intervalle $I$, $\\vec u(\\theta)=(\\cos\\theta,\\sin\\theta)$, $\\vec v(\\theta)=(-\\sin\\theta,\\cos\\theta)$, et $f(\\theta)=\\rho(\\theta)\\vec u(\\theta)$ (courbe d'équation polaire $r=\\rho(\\theta)$, de pôle $O$).\n\n**Théorème.**\n- $f'(\\theta)=\\rho'(\\theta)\\vec u(\\theta)+\\rho(\\theta)\\vec v(\\theta)$ et $\\|f'(\\theta)\\|^2=\\rho(\\theta)^2+\\rho'(\\theta)^2$ ; le point $M(\\theta)$ est singulier si et seulement si $\\rho(\\theta)=\\rho'(\\theta)=0$.\n- Si $\\rho(\\theta_0)\\neq0$, $M(\\theta_0)$ est un point régulier distinct de $O$, et une mesure $V$ de l'angle orienté $(\\vec u(\\theta_0),f'(\\theta_0))$ vérifie $\\tan V=\\frac{\\rho(\\theta_0)}{\\rho'(\\theta_0)}$ si $\\rho'(\\theta_0)\\neq0$, et $V\\equiv\\frac{\\pi}{2}\\pmod\\pi$ si $\\rho'(\\theta_0)=0$.\n- Si $\\rho(\\theta_0)=0$ et si $\\rho$ ne s'annule pas sur $\\left]\\theta_0-\\eta,\\theta_0+\\eta\\right[\\setminus\\{\\theta_0\\}$ pour un $\\eta>0$, la courbe passe par $O$ en $\\theta_0$ et y admet pour tangente la droite d'angle polaire $\\theta_0$, dirigée par $\\vec u(\\theta_0)$ ; ce point est régulier si et seulement si $\\rho'(\\theta_0)\\neq0$.\n- Si $k\\ge2$, $\\det(f'(\\theta),f''(\\theta))=\\rho(\\theta)^2+2\\rho'(\\theta)^2-\\rho(\\theta)\\rho''(\\theta)$.",
+      "enonce_trous": "Soient $\\rho$ de classe $\\mathcal{C}^1$ sur un intervalle et $f(\\theta)=\\rho(\\theta)\\vec u(\\theta)$, avec $\\vec u(\\theta)=(\\cos\\theta,\\sin\\theta)$ et $\\vec v(\\theta)=(-\\sin\\theta,\\cos\\theta)$. Alors $f'(\\theta)=$ {{1}}. Si $\\rho(\\theta_0)\\neq0$ et $\\rho'(\\theta_0)\\neq0$, l'angle $V$ du vecteur $\\vec u(\\theta_0)$ au vecteur $f'(\\theta_0)$ vérifie $\\tan V=$ {{2}}. Si $\\rho(\\theta_0)=0$ et $\\rho'(\\theta_0)\\neq0$, la tangente en $M(\\theta_0)=O$ est dirigée par {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\rho'(\\theta)\\vec u(\\theta)+\\rho(\\theta)\\vec v(\\theta)$",
+          "leurres": [
+            "$\\rho'(\\theta)\\vec u(\\theta)$",
+            "$\\rho(\\theta)\\vec u(\\theta)+\\rho'(\\theta)\\vec v(\\theta)$",
+            "$\\rho'(\\theta)\\vec u(\\theta)-\\rho(\\theta)\\vec v(\\theta)$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\rho(\\theta_0)}{\\rho'(\\theta_0)}$",
+          "leurres": [
+            "$\\frac{\\rho'(\\theta_0)}{\\rho(\\theta_0)}$",
+            "$-\\frac{\\rho(\\theta_0)}{\\rho'(\\theta_0)}$",
+            "$\\rho(\\theta_0)\\rho'(\\theta_0)$"
+          ]
+        },
+        {
+          "reponse": "$\\vec u(\\theta_0)$",
+          "leurres": [
+            "$\\vec v(\\theta_0)$",
+            "$\\vec u(\\theta_0)+\\vec v(\\theta_0)$",
+            "$\\vec u\\left(\\theta_0+\\frac{\\pi}{4}\\right)$"
+          ]
+        }
+      ],
+      "demo": "**Dérivées.** $\\vec u\\,'(\\theta)=(-\\sin\\theta,\\cos\\theta)=\\vec v(\\theta)$ et $\\vec v\\,'(\\theta)=-\\vec u(\\theta)$. Donc $f'=\\rho'\\vec u+\\rho\\vec v$ et, si $k\\ge2$, $f''=\\rho''\\vec u+\\rho'\\vec v+\\rho'\\vec v-\\rho\\vec u=(\\rho''-\\rho)\\vec u+2\\rho'\\vec v$. Comme $(\\vec u,\\vec v)$ est une base orthonormale directe, $\\|f'\\|^2=\\rho'^2+\\rho^2$, nul si et seulement si $\\rho=\\rho'=0$, et le déterminant de deux vecteurs se calcule sur leurs coordonnées dans cette base : $\\det(f',f'')=\\rho'\\cdot2\\rho'-\\rho(\\rho''-\\rho)=\\rho^2+2\\rho'^2-\\rho\\rho''$.\n\n**Angle $V$.** Si $\\rho(\\theta_0)\\neq0$, $\\|f(\\theta_0)\\|=|\\rho(\\theta_0)|>0$ et $\\|f'(\\theta_0)\\|>0$. Les coordonnées de $f'(\\theta_0)$ dans la base orthonormale directe $(\\vec u(\\theta_0),\\vec v(\\theta_0))$ sont $(\\rho'(\\theta_0),\\rho(\\theta_0))$, donc $\\cos V=\\frac{\\rho'(\\theta_0)}{\\|f'(\\theta_0)\\|}$ et $\\sin V=\\frac{\\rho(\\theta_0)}{\\|f'(\\theta_0)\\|}$. Si $\\rho'(\\theta_0)\\neq0$, $\\tan V=\\frac{\\rho(\\theta_0)}{\\rho'(\\theta_0)}$ ; sinon $\\cos V=0$ et $V\\equiv\\frac{\\pi}{2}\\pmod\\pi$.\n\n**Tangente au pôle.** $M(\\theta_0)=0\\cdot\\vec u(\\theta_0)=O$. Pour $0<|\\theta-\\theta_0|<\\eta$, $\\overrightarrow{OM(\\theta)}=\\rho(\\theta)\\vec u(\\theta)$ est non nul et dirigé par $\\vec u(\\theta)$, qui tend vers $\\vec u(\\theta_0)$ par continuité : la droite $(OM(\\theta))$ tend vers la droite passant par $O$ dirigée par $\\vec u(\\theta_0)$. Enfin $f'(\\theta_0)=\\rho'(\\theta_0)\\vec u(\\theta_0)$, non nul si et seulement si $\\rho'(\\theta_0)\\neq0$.",
+      "exemple": "- **Cardioïde** $\\rho=1+\\cos\\theta$. En $\\theta=\\pi$, $\\rho(\\pi)=0$ et $\\rho'(\\pi)=-\\sin\\pi=0$ : le pôle est un point singulier, avec pour tangente la droite d'angle polaire $\\pi$, c'est-à-dire l'axe des abscisses ($\\rho>0$ sur $\\left]-\\pi,\\pi\\right[$). Pour $\\theta\\in\\left]-\\pi,\\pi\\right[$, $\\theta\\neq0$, $\\tan V=\\frac{1+\\cos\\theta}{-\\sin\\theta}=-\\frac{1}{\\tan\\frac{\\theta}{2}}$, donc $V\\equiv\\frac{\\theta}{2}+\\frac{\\pi}{2}\\pmod\\pi$, ce qui vaut encore en $\\theta=0$.\n- **Spirale logarithmique** $\\rho=\\mathrm{e}^{a\\theta}$, $a\\neq0$ : $\\tan V=\\frac1a$ en tout point ; la spirale coupe chacun de ses rayons sous un angle constant.",
+      "contre_exemple": "- **$\\rho$ seulement continue** : $\\rho(\\theta)=1+|\\theta|$ en $\\theta_0=0$. Les dérivées à droite et à gauche de $\\rho$ valent $1$ et $-1$ : la courbe a deux demi-tangentes en $M(0)=(1,0)$, dirigées par $\\vec u(0)+\\vec v(0)=(1,1)$ et $-\\vec u(0)+\\vec v(0)=(-1,1)$, soit $\\tan V=1$ d'un côté et $\\tan V=-1$ de l'autre, et pas de tangente.\n- **$\\rho'(\\theta_0)\\neq0$ ne suffit pas** : pour $\\rho(\\theta)=\\theta$ (spirale d'Archimède), $\\rho'(0)=1$ mais $M(0)=O$ ; le « rayon » $OM(0)$ n'est pas une droite et l'angle $V$ n'a pas de sens géométrique.\n- **Au pôle, sans condition sur $\\rho$ au voisinage** : si $\\rho$ est nulle sur tout un intervalle autour de $\\theta_0$, la courbe reste en $O$ et n'a pas de tangente.",
+      "affirmations": [
+        {
+          "texte": "Le pôle est toujours un point singulier d'une courbe polaire.",
+          "vrai": false,
+          "contre_exemple": "Pour $\\rho(\\theta)=\\cos\\theta$ (cercle de diamètre $[O,A]$, $A=(1,0)$), $\\rho\\left(\\frac{\\pi}{2}\\right)=0$ et $\\rho'\\left(\\frac{\\pi}{2}\\right)=-1\\neq0$ : la courbe passe par $O$ en un point régulier, de tangente l'axe des ordonnées."
+        },
+        {
+          "texte": "Pour la spirale logarithmique $\\rho=\\mathrm{e}^{\\theta}$, l'angle $V$ vaut $\\frac{\\pi}{4}$ modulo $\\pi$ en tout point.",
+          "vrai": true,
+          "justification": "$\\tan V=\\frac{\\mathrm{e}^\\theta}{\\mathrm{e}^\\theta}=1$."
+        },
+        {
+          "texte": "Si $\\rho(\\theta_0)\\neq0$ et $\\rho'(\\theta_0)=0$, la tangente en $M(\\theta_0)$ est orthogonale à la droite $(OM(\\theta_0))$.",
+          "vrai": true,
+          "justification": "$f'(\\theta_0)=\\rho(\\theta_0)\\vec v(\\theta_0)$ est orthogonal à $\\vec u(\\theta_0)$."
+        },
+        {
+          "texte": "Si $\\rho$ est $2\\pi$-périodique, la courbe est décrite exactement une fois quand $\\theta$ parcourt $[0,2\\pi[$.",
+          "vrai": false,
+          "contre_exemple": "$\\rho=\\cos\\theta$ : $M(\\theta+\\pi)=-\\cos\\theta\\,\\vec u(\\theta+\\pi)=\\cos\\theta\\,\\vec u(\\theta)=M(\\theta)$, le cercle est décrit deux fois."
+        },
+        {
+          "texte": "La courbe $\\rho=\\frac{1}{\\cos\\theta}$, $\\theta\\in\\left]-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right[$, est la droite d'équation $x=1$.",
+          "vrai": true,
+          "justification": "$x=\\rho\\cos\\theta=1$ et $y=\\tan\\theta$ décrit $\\mathbb{R}$."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-courbes-etude-locale",
+        "geo-t-complexes-exponentielle",
+        "al-l1-determinant-famille"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-espace",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Courbes de l'espace, plan osculateur, courbes planes",
+      "recto": "Définir le plan osculateur d'une courbe de l'espace en un point birégulier, justifier qu'il est la position limite des plans contenant la tangente et un point voisin, et caractériser les courbes birégulières planes.",
+      "cours": "Une courbe paramétrée de l'espace est une application $f:I\\to\\mathbb{R}^3$ de classe $\\mathcal{C}^k$ ; l'étude locale du plan s'étend (la tangente est dirigée par la première dérivée non nulle), mais une nouvelle question apparaît : la courbe est-elle contenue, au moins approximativement, dans un plan ? Le point $M(t_0)$ est **birégulier** si $(f'(t_0),f''(t_0))$ est libre, c'est-à-dire si $f'(t_0)\\wedge f''(t_0)\\neq0$ ; le plan passant par $M(t_0)$ et dirigé par $f'(t_0)$ et $f''(t_0)$ est alors le **plan osculateur**, d'équation $\\det(\\overrightarrow{M(t_0)P},f'(t_0),f''(t_0))=0$ ($P$ point courant), de vecteur normal $f'(t_0)\\wedge f''(t_0)$.\n\nLe plan osculateur est le plan qui « colle » le mieux à la courbe : par Taylor-Young à l'ordre $2$, $f(t_0+h)=f(t_0)+hf'(t_0)+\\frac{h^2}{2}f''(t_0)+o(h^2)$, donc la courbe s'écarte du plan osculateur de $o(h^2)$, et les plans passant par la tangente et par $M(t_0+h)$ tendent vers lui. Il ne dépend que de la courbe géométrique : un changement de paramètre admissible $\\theta$ donne $g'=\\theta'\\,f'\\circ\\theta$ et $g''=\\theta''\\,f'\\circ\\theta+\\theta'^2\\,f''\\circ\\theta$, qui engendrent le même plan. Pour une courbe plane, il est constant, égal au plan de la courbe.\n\nRéciproquement, une courbe birégulière de classe $\\mathcal{C}^3$ est plane si et seulement si $\\det(f',f'',f''')$ est identiquement nul. Le nombre $\\tau=\\frac{\\det(f',f'',f''')}{\\|f'\\wedge f''\\|^2}$, invariant par changement de paramètre admissible, est la **torsion** : elle mesure la vitesse à laquelle le plan osculateur tourne autour de la tangente, et elle est identiquement nulle exactement pour les courbes birégulières planes. De même, la courbure d'une courbe de l'espace est $\\kappa=\\frac{\\|f'\\wedge f''\\|}{\\|f'\\|^3}$. Pour l'hélice $(a\\cos t,a\\sin t,bt)$, $a>0$, on trouve $\\kappa=\\frac{a}{a^2+b^2}$ et $\\tau=\\frac{b}{a^2+b^2}$, constantes.\n\nPièges : sans la birégularité, le critère tombe (une courbe peut être faite de deux arcs plans situés dans des plans différents, raccordés en un point où $f''=0$) ; et le plan osculateur n'est défini qu'en un point birégulier (sur une droite, tout plan contenant la droite conviendrait).",
+      "hypotheses": [
+        "$f$ est de classe $\\mathcal{C}^3$ sur l'intervalle $I$.",
+        "$f$ est birégulière : $(f'(t),f''(t))$ est libre pour tout $t\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est régulière : $f'(t)\\neq0$ pour tout $t\\in I$ (à la place de : birégulière).",
+        "$f$ est définie sur une réunion de deux intervalles disjoints (à la place d'un intervalle)."
+      ],
+      "enonce": "Soit $f:I\\to\\mathbb{R}^3$ de classe $\\mathcal{C}^k$, $k\\ge2$, sur un intervalle $I$ ; $\\mathbb{R}^3$ est muni de sa structure euclidienne orientée usuelle. Le point $M(t_0)=f(t_0)$ est **birégulier** si $(f'(t_0),f''(t_0))$ est libre ; le **plan osculateur** en $M(t_0)$ est alors le plan $\\mathcal{P}$ passant par $M(t_0)$ et dirigé par $f'(t_0)$ et $f''(t_0)$, de vecteur normal $f'(t_0)\\wedge f''(t_0)$.\n\n**Théorème.**\n- Pour $h\\neq0$ voisin de $0$, le plan $\\mathcal{P}_h$ passant par $M(t_0)$, contenant la tangente en $M(t_0)$ et le point $M(t_0+h)$, est bien défini, et il admet un vecteur normal $\\vec n(h)$ qui tend vers $f'(t_0)\\wedge f''(t_0)$ quand $h\\to0$ : $\\mathcal{P}_h$ tend vers le plan osculateur.\n- Le plan osculateur est conservé par tout changement de paramètre admissible.\n- Si $k\\ge3$ et si $f$ est birégulière en tout point de $I$, le support $f(I)$ est contenu dans un plan si et seulement si $\\det(f'(t),f''(t),f'''(t))=0$ pour tout $t\\in I$ ; ce plan est alors le plan osculateur en chacun de ses points.",
+      "enonce_trous": "Soit $f:I\\to\\mathbb{R}^3$ de classe $\\mathcal{C}^3$ sur un intervalle, birégulière. Le plan osculateur en $M(t_0)$ est le plan passant par $M(t_0)$ dirigé par {{1}}, et le support de $f$ est contenu dans un plan si et seulement si {{2}} pour tout $t\\in I$.",
+      "trous": [
+        {
+          "reponse": "$f'(t_0)$ et $f''(t_0)$",
+          "leurres": [
+            "$f'(t_0)$ et $f'''(t_0)$",
+            "$f''(t_0)$ et $f'''(t_0)$",
+            "$f'(t_0)$ et $f'(t_0)\\wedge f''(t_0)$"
+          ]
+        },
+        {
+          "reponse": "$\\det(f'(t),f''(t),f'''(t))=0$",
+          "leurres": [
+            "$\\det(f(t),f'(t),f''(t))=0$",
+            "$f'''(t)=0$",
+            "$\\|f'(t)\\wedge f''(t)\\|$ est constant"
+          ]
+        }
+      ],
+      "demo": "**Limite des plans.** Par la formule de Taylor-Young à l'ordre $2$, $f(t_0+h)=f(t_0)+hf'(t_0)+\\frac{h^2}{2}\\bigl(f''(t_0)+\\varepsilon(h)\\bigr)$ avec $\\varepsilon(h)\\to0$. Posons $\\vec w(h)=f''(t_0)+\\varepsilon(h)$ et $\\vec n(h)=f'(t_0)\\wedge\\vec w(h)$, qui tend vers $f'(t_0)\\wedge f''(t_0)\\neq0$ par continuité du produit vectoriel ; donc $\\vec n(h)\\neq0$ pour $h\\neq0$ assez petit, c'est-à-dire $(f'(t_0),\\vec w(h))$ libre. Comme $\\overrightarrow{M(t_0)M(t_0+h)}=hf'(t_0)+\\frac{h^2}{2}\\vec w(h)$, le point $M(t_0+h)$ n'est pas sur la tangente, et le plan $\\mathcal{P}_h$ est $M(t_0)+\\mathrm{Vect}(f'(t_0),\\vec w(h))$, de vecteur normal $\\vec n(h)$.\n\n**Changement de paramètre.** Si $g=f\\circ\\theta$ avec $\\theta'$ jamais nulle, $g'=\\theta'\\,f'\\circ\\theta$ et $g''=\\theta''\\,f'\\circ\\theta+\\theta'^2\\,f''\\circ\\theta$. La matrice de $(g'(s),g''(s))$ dans la base $(f'(t),f''(t))$ du plan qu'elle engendre, $t=\\theta(s)$, est triangulaire de déterminant $\\theta'(s)^3\\neq0$ : les deux familles engendrent le même plan vectoriel.\n\n**Courbe plane.** Si $f(I)$ est contenu dans un plan $A+\\vec{\\mathcal{P}}$, les dérivées $f'$, $f''$, $f'''$, limites de taux d'accroissement à valeurs dans le sous-espace $\\vec{\\mathcal{P}}$ (fermé, comme tout sous-espace de $\\mathbb{R}^3$), sont dans $\\vec{\\mathcal{P}}$, de dimension $2$ : leur déterminant est nul. Réciproquement, supposons $\\det(f',f'',f''')=0$ sur $I$ et posons $\\vec n=f'\\wedge f''$, de classe $\\mathcal{C}^1$ et jamais nul. Comme $(f',f'')$ est libre et $(f',f'',f''')$ liée, $f'''=af'+bf''$ avec $a$, $b$ réels dépendant de $t$, et $\\vec n\\,'=f''\\wedge f''+f'\\wedge f'''=b\\,\\vec n$ ; ainsi $b=\\frac{\\langle\\vec n\\,',\\vec n\\rangle}{\\|\\vec n\\|^2}$ est continue. Si $B$ est une primitive de $b$, $(\\mathrm{e}^{-B}\\vec n)'=0$, donc $\\vec n(t)=\\mathrm{e}^{B(t)-B(t_0)}\\vec n(t_0)$. Comme $\\vec n(t)\\perp f'(t)$, la dérivée de $t\\mapsto\\langle f(t)-f(t_0),\\vec n(t_0)\\rangle$ est nulle : ce produit scalaire est nul, et $f(I)$ est contenu dans le plan passant par $M(t_0)$ orthogonal à $\\vec n(t_0)$, qui est le plan osculateur en $M(t_0)$ ; $t_0$ étant quelconque, c'est le plan osculateur en tout point.",
+      "exemple": "- **Hélice circulaire** $f(t)=(\\cos t,\\sin t,t)$ : $f'=(-\\sin t,\\cos t,1)$, $f''=(-\\cos t,-\\sin t,0)$, $f'\\wedge f''=(\\sin t,-\\cos t,1)$ ; en $t=0$, le plan osculateur passe par $(1,0,0)$, de vecteur normal $(0,-1,1)$ : c'est le plan $y=z$. Avec $f'''=(\\sin t,-\\cos t,0)$, $\\det(f',f'',f''')=\\langle f''',f'\\wedge f''\\rangle=1$ : l'hélice n'est pas plane.\n- **Cubique gauche** $f(t)=(t,t^2,t^3)$ : $f'\\wedge f''=(6t^2,-6t,2)$ ne s'annule pas et $\\det(f',f'',f''')=12$ : courbe birégulière non plane ; son plan osculateur en $M(t)$ a pour équation $3t^2x-3ty+z=t^3$.",
+      "contre_exemple": "- **Régulière mais pas birégulière** : $f(t)=(t,t^4,0)$ pour $t\\le0$ et $f(t)=(t,0,t^4)$ pour $t>0$ est de classe $\\mathcal{C}^3$ (les dérivées jusqu'à l'ordre $3$ se raccordent en $0$, où elles valent $(1,0,0)$, $0$ et $0$), régulière, et $\\det(f',f'',f''')=0$ partout, car chaque moitié est plane ; pourtant les points $(-1,1,0)$, $(-2,16,0)$, $(0,0,0)$ et $(1,0,1)$ de la courbe ne sont pas coplanaires. En $t=0$, $f''(0)=0$ : la courbe n'est pas birégulière.\n- **Deux intervalles** : sur $\\left]-2,-1\\right[\\cup\\left]1,2\\right[$, $f(t)=(\\cos t,\\sin t,0)$ pour $t<0$ et $f(t)=(\\cos t,\\sin t,1)$ pour $t>0$ est birégulière, de déterminant $\\det(f',f'',f''')$ nul, mais son support est formé de deux arcs de cercle situés dans deux plans parallèles distincts.",
+      "affirmations": [
+        {
+          "texte": "Si $\\det(f'(t),f''(t),f'''(t))=0$ pour tout $t$ d'un intervalle, la courbe est plane.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=(t,t^4,0)$ pour $t\\le0$, $f(t)=(t,0,t^4)$ pour $t>0$ : de classe $\\mathcal{C}^3$, de déterminant nul partout, mais $(-1,1,0)$, $(-2,16,0)$, $(0,0,0)$ et $(1,0,1)$ ne sont pas coplanaires ; la courbe n'est pas birégulière en $0$."
+        },
+        {
+          "texte": "Le plan osculateur en un point birégulier contient la tangente en ce point.",
+          "vrai": true,
+          "justification": "Il passe par $M(t_0)$ et sa direction contient $f'(t_0)$."
+        },
+        {
+          "texte": "Le plan osculateur de l'hélice $(\\cos t,\\sin t,t)$ en $M(0)$ contient la direction de l'axe $(Oz)$.",
+          "vrai": false,
+          "contre_exemple": "Son vecteur normal $(0,-1,1)$ n'est pas orthogonal à $(0,0,1)$ : le plan $y=z$ ne contient pas cette direction."
+        },
+        {
+          "texte": "Une courbe de l'espace de classe $\\mathcal{C}^2$ telle que $f''=0$ sur un intervalle est contenue dans une droite.",
+          "vrai": true,
+          "justification": "$f'$ est constante, donc $f(t)=f(t_0)+(t-t_0)f'(t_0)$."
+        },
+        {
+          "texte": "La torsion d'une courbe birégulière plane est nulle.",
+          "vrai": true,
+          "justification": "$\\det(f',f'',f''')=0$ puisque les trois vecteurs sont dans la direction du plan."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-courbes-etude-locale",
+        "geo-l3-courbes-singuliers",
+        "al-l2-euclidien-produit-vectoriel",
+        "geo-t-espace-equation-plan",
+        "ar-l1-taylor-young"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-longueur",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Longueur d'un arc, abscisse curviligne, paramétrage normal",
+      "recto": "Définir la longueur d'un arc de classe $\\mathcal{C}^1$, la relier aux lignes polygonales inscrites, et énoncer l'existence d'un paramétrage normal par l'abscisse curviligne.",
+      "cours": "La longueur d'un arc $f:[a,b]\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$ (norme euclidienne) est $L(f)=\\int_a^b\\|f'(t)\\|\\,\\mathrm{d}t$ : c'est la distance parcourue par un mobile de vitesse $f'(t)$. Cette définition est justifiée géométriquement : $L(f)$ est la borne supérieure, et la limite quand le pas tend vers $0$, des longueurs $\\sum\\|f(t_{i+1})-f(t_i)\\|$ des lignes polygonales inscrites. La longueur ne change pas quand on remplace $f$ par $f\\circ\\theta$, $\\theta$ bijection de classe $\\mathcal{C}^1$ entre segments (changement de variable) ; elle ne dépend pas du sens de parcours.\n\nFormules usuelles : pour un graphe $y=g(x)$, $L=\\int_a^b\\sqrt{1+g'(x)^2}\\,\\mathrm{d}x$ ; en polaires, $L=\\int_{\\theta_1}^{\\theta_2}\\sqrt{\\rho^2+\\rho'^2}\\,\\mathrm{d}\\theta$. On les obtient directement en calculant $\\|f'\\|$. Les longueurs se calculent rarement sous forme close (celle de l'ellipse conduit à une intégrale elliptique), mais la cycloïde, l'astroïde, la cardioïde, la chaînette et la spirale logarithmique se prêtent bien au calcul.\n\nL'**abscisse curviligne** d'origine $t_0$ est $s(t)=\\int_{t_0}^t\\|f'(u)\\|\\,\\mathrm{d}u$, longueur algébrique de l'arc depuis $M(t_0)$. Si la courbe est régulière et de classe $\\mathcal{C}^k$, $s$ est un changement de paramètre admissible de classe $\\mathcal{C}^k$, strictement croissant, et $g=f\\circ s^{-1}$ vérifie $\\|g'\\|=1$ : c'est un **paramétrage normal** (par la longueur d'arc), dans lequel la longueur de l'arc entre les paramètres $\\sigma_1<\\sigma_2$ est $\\sigma_2-\\sigma_1$. C'est le paramétrage naturel pour définir la courbure. Deux paramétrages normaux équivalents et de même sens diffèrent d'une translation du paramètre.\n\nPièges : un paramétrage qui repasse sur une partie du support compte plusieurs fois sa longueur, si bien que la longueur dépend du nombre de passages et pas seulement du support ; sans régularité, l'abscisse curviligne existe toujours mais sa réciproque peut ne pas être dérivable (en une pointe, aucun paramétrage normal de classe $\\mathcal{C}^1$ n'existe) ; une courbe peut faire une infinité de tours et avoir une longueur finie (spirale logarithmique au voisinage de son pôle).",
+      "hypotheses": [
+        "$f$ est de classe $\\mathcal{C}^k$ ($k\\ge1$) sur l'intervalle $I$.",
+        "$f$ est régulière : $f'(t)\\neq0$ pour tout $t\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$f'(t)\\neq0$ pour tout $t\\in I$ sauf en un point (à la place de : pour tout $t$).",
+        "$f$ est continue et de classe $\\mathcal{C}^1$ par morceaux sur $I$, et $f'$ ne s'annule pas là où elle est définie (à la place de : de classe $\\mathcal{C}^k$)."
+      ],
+      "enonce": "Soit $f:I\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$ sur un intervalle $I$, $\\mathbb{R}^n$ étant muni de la norme euclidienne. Pour $[a,b]\\subset I$, la **longueur** de l'arc $f_{|[a,b]}$ est $L_a^b(f)=\\int_a^b\\|f'(t)\\|\\,\\mathrm{d}t$.\n\n**Théorème.**\n- Pour toute subdivision $a=t_0<t_1<\\dots<t_m=b$, $\\sum_{i=0}^{m-1}\\|f(t_{i+1})-f(t_i)\\|\\le L_a^b(f)$, et cette somme tend vers $L_a^b(f)$ quand le pas $\\max_i(t_{i+1}-t_i)$ tend vers $0$ : $L_a^b(f)$ est la borne supérieure des longueurs des lignes polygonales inscrites. En particulier $\\|f(b)-f(a)\\|\\le L_a^b(f)$.\n- Si $f$ est de classe $\\mathcal{C}^k$ ($k\\ge1$) et régulière, et si $t_0\\in I$, l'**abscisse curviligne** $s(t)=\\int_{t_0}^t\\|f'(u)\\|\\,\\mathrm{d}u$ est un changement de paramètre admissible de classe $\\mathcal{C}^k$, strictement croissant, de $I$ sur l'intervalle $J=s(I)$, et $g=f\\circ s^{-1}:J\\to\\mathbb{R}^n$ est un **paramétrage normal** : $g$ est de classe $\\mathcal{C}^k$, $\\|g'(\\sigma)\\|=1$ pour tout $\\sigma\\in J$, et la longueur de $g$ entre $\\sigma_1<\\sigma_2$ vaut $\\sigma_2-\\sigma_1$.",
+      "enonce_trous": "Soit $f:I\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^k$ ($k\\ge1$) et régulière. La longueur de l'arc entre les paramètres $a<b$ est {{1}}. L'abscisse curviligne $s:t\\mapsto$ {{2}} est un changement de paramètre admissible, et $g=f\\circ s^{-1}$ vérifie {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\int_a^b\\|f'(t)\\|\\,\\mathrm{d}t$",
+          "leurres": [
+            "$\\left\\|\\int_a^bf'(t)\\,\\mathrm{d}t\\right\\|$",
+            "$\\int_a^b\\|f'(t)\\|^2\\,\\mathrm{d}t$",
+            "$\\int_a^b\\|f(t)\\|\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "$\\int_{t_0}^t\\|f'(u)\\|\\,\\mathrm{d}u$",
+          "leurres": [
+            "$\\|f(t)-f(t_0)\\|$",
+            "$\\int_{t_0}^t\\|f(u)\\|\\,\\mathrm{d}u$",
+            "$(t-t_0)\\|f'(t)\\|$"
+          ]
+        },
+        {
+          "reponse": "$\\|g'(\\sigma)\\|=1$ pour tout $\\sigma$",
+          "leurres": [
+            "$g''(\\sigma)=0$ pour tout $\\sigma$",
+            "$\\|g(\\sigma)\\|=1$ pour tout $\\sigma$",
+            "$\\|g''(\\sigma)\\|=1$ pour tout $\\sigma$"
+          ]
+        }
+      ],
+      "demo": "**Lignes polygonales.** Pour $i$ fixé, $f(t_{i+1})-f(t_i)=\\int_{t_i}^{t_{i+1}}f'(t)\\,\\mathrm{d}t$, donc $\\|f(t_{i+1})-f(t_i)\\|\\le\\int_{t_i}^{t_{i+1}}\\|f'(t)\\|\\,\\mathrm{d}t$ (inégalité triangulaire pour les intégrales, qui découle de celle des sommes de Riemann) ; on somme. Soit $\\varepsilon>0$. Par le théorème de Heine, $f'$ est uniformément continue sur $[a,b]$ : il existe $\\delta>0$ tel que $|t-t'|\\le\\delta\\Rightarrow\\|f'(t)-f'(t')\\|\\le\\varepsilon$. Si le pas est au plus $\\delta$, pour $t\\in[t_i,t_{i+1}]$, $\\|f'(t)\\|\\le\\|f'(t_i)\\|+\\varepsilon$, donc $\\int_{t_i}^{t_{i+1}}\\|f'\\|\\le(t_{i+1}-t_i)(\\|f'(t_i)\\|+\\varepsilon)$ ; et $f(t_{i+1})-f(t_i)=(t_{i+1}-t_i)f'(t_i)+\\int_{t_i}^{t_{i+1}}(f'(t)-f'(t_i))\\,\\mathrm{d}t$, donc $\\|f(t_{i+1})-f(t_i)\\|\\ge(t_{i+1}-t_i)(\\|f'(t_i)\\|-\\varepsilon)$. En sommant, $L_a^b(f)\\le\\sum_i\\|f(t_{i+1})-f(t_i)\\|+2\\varepsilon(b-a)$.\n\n**Abscisse curviligne.** L'application $t\\mapsto\\|f'(t)\\|=\\sqrt{\\langle f'(t),f'(t)\\rangle}$ est de classe $\\mathcal{C}^{k-1}$, car $f'$ l'est et ne s'annule pas, et la racine carrée est de classe $\\mathcal{C}^\\infty$ sur $\\left]0,+\\infty\\right[$. Donc $s$ est de classe $\\mathcal{C}^k$, de dérivée $s'=\\|f'\\|>0$ : c'est une bijection strictement croissante de $I$ sur l'intervalle $J=s(I)$, à dérivée jamais nulle, donc un changement de paramètre admissible, et $s^{-1}$ est de classe $\\mathcal{C}^k$. Alors $g=f\\circ s^{-1}$ est de classe $\\mathcal{C}^k$ et $g'(\\sigma)=(s^{-1})'(\\sigma)f'(t)=\\frac{f'(t)}{\\|f'(t)\\|}$ avec $t=s^{-1}(\\sigma)$ : $\\|g'(\\sigma)\\|=1$, et la longueur de $g$ entre $\\sigma_1$ et $\\sigma_2$ vaut $\\int_{\\sigma_1}^{\\sigma_2}1\\,\\mathrm{d}\\sigma=\\sigma_2-\\sigma_1$.",
+      "exemple": "- **Cycloïde** $f(t)=(t-\\sin t,1-\\cos t)$ : $\\|f'(t)\\|^2=(1-\\cos t)^2+\\sin^2t=2-2\\cos t=4\\sin^2\\frac t2$, donc la longueur d'une arche est $\\int_0^{2\\pi}2\\sin\\frac t2\\,\\mathrm{d}t=8$.\n- **Cercle** de rayon $R$, $f(t)=(R\\cos t,R\\sin t)$ : $s(t)=Rt$ depuis $t_0=0$, et $g(\\sigma)=\\left(R\\cos\\frac{\\sigma}{R},R\\sin\\frac{\\sigma}{R}\\right)$ est un paramétrage normal.",
+      "contre_exemple": "- **Un point singulier** : pour $f(t)=(t^2,t^3)$ sur $[-1,1]$, $s(t)=\\int_0^t|u|\\sqrt{4+9u^2}\\,\\mathrm{d}u$ est une bijection croissante, mais $s'(0)=0$ ; comme $s(t)\\sim t|t|$ en $0$, la première coordonnée $t^2$ de $g=f\\circ s^{-1}$ est équivalente à $|\\sigma|$ en $0$ : $g$ n'est pas dérivable en $0$.\n- **Un coin** : $f(t)=(t,|t|)$ est de classe $\\mathcal{C}^1$ par morceaux, avec $\\|f'\\|=\\sqrt2$ ; $s(t)=\\sqrt2\\,t$ et $g(\\sigma)=\\left(\\frac{\\sigma}{\\sqrt2},\\frac{|\\sigma|}{\\sqrt2}\\right)$ n'est pas dérivable en $0$.\n- **Plusieurs passages** : $t\\mapsto(\\cos t,\\sin t)$ sur $[0,4\\pi]$ a pour longueur $4\\pi$, le double du périmètre du cercle qu'elle décrit.",
+      "affirmations": [
+        {
+          "texte": "La longueur d'un arc de classe $\\mathcal{C}^1$ ne dépend que de son support.",
+          "vrai": false,
+          "contre_exemple": "$t\\mapsto(\\cos t,\\sin t)$ a pour longueur $2\\pi$ sur $[0,2\\pi]$ et $4\\pi$ sur $[0,4\\pi]$, pour le même support, le cercle unité."
+        },
+        {
+          "texte": "Pour un arc de classe $\\mathcal{C}^1$, $L_a^b(f)\\ge\\|f(b)-f(a)\\|$.",
+          "vrai": true,
+          "justification": "$\\left\\|\\int_a^bf'\\right\\|\\le\\int_a^b\\|f'\\|$."
+        },
+        {
+          "texte": "La spirale $\\rho=\\mathrm{e}^{-\\theta}$, $\\theta\\ge0$, qui tourne une infinité de fois autour du pôle, a une longueur infinie.",
+          "vrai": false,
+          "contre_exemple": "$\\|f'\\|=\\sqrt{\\rho^2+\\rho'^2}=\\sqrt2\\,\\mathrm{e}^{-\\theta}$, et $\\int_0^{+\\infty}\\sqrt2\\,\\mathrm{e}^{-\\theta}\\,\\mathrm{d}\\theta=\\sqrt2$."
+        },
+        {
+          "texte": "Dans un paramétrage normal, le vecteur vitesse est unitaire en tout point.",
+          "vrai": true,
+          "justification": "C'est la définition : $\\|g'(\\sigma)\\|=1$."
+        },
+        {
+          "texte": "Toute courbe de classe $\\mathcal{C}^1$ admet un paramétrage normal de classe $\\mathcal{C}^1$.",
+          "vrai": false,
+          "contre_exemple": "La parabole semi-cubique $t\\mapsto(t^2,t^3)$ : si $g=(g_1,g_2)$ est de classe $\\mathcal{C}^1$, à valeurs dans le support $\\{x\\ge0,\\ y^2=x^3\\}$, et passe par l'origine en un paramètre intérieur $\\sigma_0$, alors $g_1\\ge0$ est minimale en $\\sigma_0$, donc $g_1'(\\sigma_0)=0$, puis $|g_2|=g_1^{3/2}=o(\\sigma-\\sigma_0)$ : $g'(\\sigma_0)=0$, et $g$ n'est pas normal."
+        }
+      ],
+      "prerequis": [
+        "int-l3-multiples-curvilignes",
+        "geo-l3-courbes-singuliers",
+        "ar-l1-continuite-heine"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-frenet",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Repère de Frenet, courbure et cercle osculateur d'une courbe plane",
+      "recto": "Pour une courbe plane régulière de classe $\\mathcal{C}^2$, définir le repère de Frenet et la courbure, écrire les formules de Frenet et la courbure dans un paramétrage quelconque, et définir le centre et le cercle de courbure.",
+      "cours": "Le plan est euclidien orienté ; on note $R$ la rotation d'angle $+\\frac{\\pi}{2}$, $R(x,y)=(-y,x)$. Pour une courbe régulière $f$ de classe $\\mathcal{C}^2$, le **repère de Frenet** en $M(t)$ est $(M(t);\\vec T(t),\\vec N(t))$, où $\\vec T=\\frac{f'}{\\|f'\\|}$ est le vecteur unitaire tangent et $\\vec N=R\\vec T$ le vecteur unitaire normal : c'est un repère orthonormé direct qui accompagne le point.\n\nDans un paramétrage normal $g$ ($\\|g'\\|=1$, paramètre $s$), $\\vec T=g'$ est unitaire, donc sa dérivée lui est orthogonale : $\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\kappa\\vec N$, ce qui définit la **courbure** (algébrique) $\\kappa$, puis $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=-\\kappa\\vec T$ : ce sont les **formules de Frenet**. La courbure est la vitesse de rotation de la tangente par unité de longueur : si $\\vec T=(\\cos\\varphi,\\sin\\varphi)$, $\\kappa=\\frac{\\mathrm{d}\\varphi}{\\mathrm{d}s}$. Elle est positive quand la courbe tourne à gauche. Dans un paramétrage quelconque, $\\kappa=\\frac{\\det(f',f'')}{\\|f'\\|^3}$ ; pour un graphe $y=h(x)$, $\\kappa=\\frac{h''}{(1+h'^2)^{3/2}}$ ; en polaires, $\\kappa=\\frac{\\rho^2+2\\rho'^2-\\rho\\rho''}{(\\rho^2+\\rho'^2)^{3/2}}$.\n\nLà où $\\kappa\\neq0$, le **rayon de courbure** est $\\frac1\\kappa$ (algébrique), le **centre de courbure** est $C=M+\\frac1\\kappa\\vec N$, et le **cercle osculateur** est le cercle de centre $C$ et de rayon $\\frac1{|\\kappa|}$ : c'est le cercle qui approche le mieux la courbe en $M$, au sens où, paramétrés tous deux par la longueur d'arc à partir de $M$ et dans le même sens, ils diffèrent de $o(h^2)$. Le lieu des centres de courbure est la **développée**. Une courbe de courbure constante $\\frac1R\\neq0$ est contenue dans un cercle de rayon $|R|$ ; de courbure nulle, dans une droite. Plus généralement, la courbure en fonction de l'abscisse curviligne détermine la courbe à un déplacement près.\n\nDans l'espace, on définit de même $\\vec T$, la courbure $\\kappa=\\frac{\\|f'\\wedge f''\\|}{\\|f'\\|^3}\\ge0$, et, en un point birégulier, $\\vec N$ par $\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\kappa\\vec N$ ; le plan $(M;\\vec T,\\vec N)$ est le plan osculateur, et la binormale $\\vec B=\\vec T\\wedge\\vec N$ complète le repère.\n\nPièges : la courbure plane est algébrique et change de signe quand on change le sens de parcours ($\\vec N$ aussi, si bien que le centre de courbure ne change pas) ; elle ne vaut pas $\\frac{\\|f''\\|}{\\|f'\\|^2}$ en général, même au signe près (c'est vrai quand $f''\\perp f'$, par exemple à vitesse constante) ; en un point d'inflexion d'une courbe régulière, $\\kappa=0$ et il n'y a pas de cercle osculateur.",
+      "hypotheses": [
+        "$f$ est de classe $\\mathcal{C}^2$ sur l'intervalle $I$.",
+        "$f$ est régulière : $f'(t)\\neq0$ pour tout $t\\in I$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est de classe $\\mathcal{C}^1$ sur $I$ (à la place de : $\\mathcal{C}^2$).",
+        "$f'(t)\\neq0$ pour tout $t\\in I$ sauf en un point (à la place de : pour tout $t$)."
+      ],
+      "enonce": "Le plan $\\mathbb{R}^2$ est euclidien orienté, et $R$ désigne la rotation d'angle $\\frac{\\pi}{2}$. Soit $f:I\\to\\mathbb{R}^2$ de classe $\\mathcal{C}^2$ et régulière sur un intervalle $I$ ; on pose $v(t)=\\|f'(t)\\|$, $\\vec T=\\frac{f'}{v}$ et $\\vec N=R\\vec T$ (repère de Frenet).\n\n**Théorème.**\n- Il existe une unique fonction $\\kappa$ sur $I$, la **courbure**, telle que $\\vec T\\,'=v\\kappa\\vec N$ ; elle est continue, et $\\vec N\\,'=-v\\kappa\\vec T$. Pour un paramétrage normal ($v=1$, paramètre $s$), ce sont les **formules de Frenet** : $\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\kappa\\vec N$ et $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=-\\kappa\\vec T$.\n- Dans tout paramétrage régulier de classe $\\mathcal{C}^2$, $\\kappa(t)=\\frac{\\det(f'(t),f''(t))}{\\|f'(t)\\|^3}$, et $f''=v'\\vec T+v^2\\kappa\\vec N$.\n- Si $\\kappa(t_0)\\neq0$, le **centre de courbure** en $M(t_0)$ est $C=M(t_0)+\\frac{1}{\\kappa(t_0)}\\vec N(t_0)$ et le **cercle osculateur** est le cercle de centre $C$ et de rayon $\\frac{1}{|\\kappa(t_0)|}$. Si $g=f\\circ s^{-1}$, où $s$ est l'abscisse curviligne d'origine $t_0$, et si $c$ est le paramétrage normal du cercle osculateur tel que $c(0)=M(t_0)$ et $c'(0)=\\vec T(t_0)$, alors $g(h)-c(h)=o(h^2)$ quand $h\\to0$.",
+      "enonce_trous": "Soit $f$ une courbe plane régulière de classe $\\mathcal{C}^2$, de repère de Frenet $(\\vec T,\\vec N)$. Sa courbure vaut $\\kappa(t)=$ {{1}}. Dans un paramétrage normal, {{2}}. Si $\\kappa(t)\\neq0$, le centre de courbure est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{\\det(f'(t),f''(t))}{\\|f'(t)\\|^3}$",
+          "leurres": [
+            "$\\frac{\\det(f'(t),f''(t))}{\\|f'(t)\\|^2}$",
+            "$\\frac{\\|f''(t)\\|}{\\|f'(t)\\|^2}$",
+            "$\\det(f'(t),f''(t))$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\kappa\\vec N$ et $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=-\\kappa\\vec T$",
+          "leurres": [
+            "$\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\kappa\\vec N$ et $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=\\kappa\\vec T$",
+            "$\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=-\\kappa\\vec N$ et $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=\\kappa\\vec T$",
+            "$\\frac{\\mathrm{d}\\vec T}{\\mathrm{d}s}=\\frac{1}{\\kappa}\\vec N$ et $\\frac{\\mathrm{d}\\vec N}{\\mathrm{d}s}=-\\frac{1}{\\kappa}\\vec T$"
+          ]
+        },
+        {
+          "reponse": "$M(t)+\\frac{1}{\\kappa(t)}\\vec N(t)$",
+          "leurres": [
+            "$M(t)-\\frac{1}{\\kappa(t)}\\vec N(t)$",
+            "$M(t)+\\kappa(t)\\vec N(t)$",
+            "$M(t)+\\frac{1}{\\kappa(t)}\\vec T(t)$"
+          ]
+        }
+      ],
+      "demo": "**Courbure.** $v=\\sqrt{\\langle f',f'\\rangle}$ est de classe $\\mathcal{C}^1$ ($f'$ l'est et ne s'annule pas), donc $\\vec T$ aussi. Comme $\\|\\vec T\\|^2=1$, en dérivant, $\\langle\\vec T\\,',\\vec T\\rangle=0$ : $\\vec T\\,'$ est colinéaire à $\\vec N$, $\\vec T\\,'=\\langle\\vec T\\,',\\vec N\\rangle\\vec N$, et $\\kappa=\\frac{\\langle\\vec T\\,',\\vec N\\rangle}{v}$ est l'unique fonction qui convient ; elle est continue. Comme $R$ est linéaire, $\\vec N\\,'=R\\vec T\\,'=v\\kappa R\\vec N=v\\kappa R^2\\vec T=-v\\kappa\\vec T$.\n\n**Formule de la courbure.** $f'=v\\vec T$, donc $f''=v'\\vec T+v\\vec T\\,'=v'\\vec T+v^2\\kappa\\vec N$. Par bilinéarité et alternance du déterminant, $\\det(f',f'')=\\det(v\\vec T,v'\\vec T+v^2\\kappa\\vec N)=v^3\\kappa\\det(\\vec T,\\vec N)=v^3\\kappa$, car $(\\vec T,\\vec N)$ est une base orthonormale directe. D'où $\\kappa=\\frac{\\det(f',f'')}{v^3}$. Si $\\theta$ est un changement de paramètre admissible croissant de classe $\\mathcal{C}^2$ et $g=f\\circ\\theta$, $\\det(g',g'')=\\theta'^3\\det(f',f'')\\circ\\theta$ et $\\|g'\\|^3=\\theta'^3\\|f'\\circ\\theta\\|^3$ : la courbure en un point ne dépend pas du paramétrage croissant choisi.\n\n**Cercle osculateur.** Soit $\\kappa_0=\\kappa(t_0)\\neq0$, $\\vec T_0=\\vec T(t_0)$, $\\vec N_0=\\vec N(t_0)$. Le paramétrage $c(h)=C+\\frac{1}{\\kappa_0}\\bigl(\\sin(\\kappa_0h)\\vec T_0-\\cos(\\kappa_0h)\\vec N_0\\bigr)$ décrit le cercle de centre $C$ et de rayon $\\frac1{|\\kappa_0|}$, avec $c(0)=C-\\frac1{\\kappa_0}\\vec N_0=M(t_0)$, $c'(h)=\\cos(\\kappa_0h)\\vec T_0+\\sin(\\kappa_0h)\\vec N_0$ unitaire, $c'(0)=\\vec T_0$ et $c''(0)=\\kappa_0\\vec N_0$. Pour $g$, qui est de classe $\\mathcal{C}^2$, $g'(0)=\\vec T_0$ et, par la formule de Frenet, $g''(0)=\\kappa_0\\vec N_0$, la courbure de $g$ en $0$ étant celle de $f$ en $t_0$. Les fonctions $g$ et $c$ ont donc mêmes valeurs et mêmes dérivées première et seconde en $0$ ; la formule de Taylor-Young à l'ordre $2$ appliquée à $g-c$ donne $g(h)-c(h)=o(h^2)$.",
+      "exemple": "- **Cercle** de centre $O$ et de rayon $r$, parcouru dans le sens direct, $f(t)=(r\\cos t,r\\sin t)$ : $\\det(f',f'')=r^2$, $\\|f'\\|=r$, donc $\\kappa=\\frac1r$ ; $\\vec N(t)=(-\\cos t,-\\sin t)$ pointe vers le centre, qui est le centre de courbure.\n- **Parabole** $f(t)=(t,t^2)$ : $\\kappa(t)=\\frac{2}{(1+4t^2)^{3/2}}$, maximale au sommet où elle vaut $2$ ; le cercle osculateur au sommet a pour centre $\\left(0,\\frac12\\right)$ et pour rayon $\\frac12$, et le centre de courbure en $M(t)$ est $\\left(-4t^3,\\frac12+3t^2\\right)$.",
+      "contre_exemple": "- **Classe $\\mathcal{C}^1$ seulement** : $f(t)=(t,t|t|)$ est régulière de classe $\\mathcal{C}^1$, mais $\\vec T(t)=\\frac{(1,2|t|)}{\\sqrt{1+4t^2}}$ n'est pas dérivable en $0$ : la courbure, égale à $\\frac{2}{(1+4t^2)^{3/2}}$ pour $t>0$ et à $-\\frac{2}{(1+4t^2)^{3/2}}$ pour $t<0$, n'est pas définie en $0$.\n- **Un point singulier** : pour $f(t)=(t^2,t^3)$, $\\frac{\\det(f',f'')}{\\|f'\\|^3}=\\frac{6t^2}{|t|^3(4+9t^2)^{3/2}}=\\frac{6}{|t|(4+9t^2)^{3/2}}$ tend vers $+\\infty$ en $0$, où $\\vec T$ n'est pas défini.\n- **Le sens de parcours compte** : $t\\mapsto(\\cos t,-\\sin t)$ décrit le cercle unité dans le sens indirect ; $\\det(f',f'')=-1$, donc $\\kappa=-1$, alors que $\\kappa=1$ pour $t\\mapsto(\\cos t,\\sin t)$.",
+      "affirmations": [
+        {
+          "texte": "Une courbe plane régulière de classe $\\mathcal{C}^2$ dont la courbure est constante et non nulle est contenue dans un cercle.",
+          "vrai": true,
+          "justification": "Le centre de courbure $C=M+\\frac1\\kappa\\vec N$ a pour dérivée $f'-v\\vec T=0$ : il est fixe, et $\\|M-C\\|=\\frac1{|\\kappa|}$."
+        },
+        {
+          "texte": "La courbure d'une courbe plane ne dépend pas du paramétrage régulier choisi.",
+          "vrai": false,
+          "contre_exemple": "Elle change de signe avec le sens de parcours : $\\kappa=1$ pour $(\\cos t,\\sin t)$, $\\kappa=-1$ pour $(\\cos t,-\\sin t)$."
+        },
+        {
+          "texte": "Le rayon de courbure de la parabole $y=x^2$ en son sommet vaut $2$.",
+          "vrai": false,
+          "contre_exemple": "Avec $f(t)=(t,t^2)$, $\\det(f'(0),f''(0))=2$ et $\\|f'(0)\\|=1$ : la courbure vaut $2$ et le rayon de courbure $\\frac12$."
+        },
+        {
+          "texte": "Au sommet $(a,0)$ de l'ellipse $(a\\cos t,b\\sin t)$, $a,b>0$, le rayon de courbure vaut $\\frac{b^2}{a}$.",
+          "vrai": true,
+          "justification": "En $t=0$, $f'=(0,b)$, $f''=(-a,0)$, $\\det(f',f'')=ab$ et $\\|f'\\|^3=b^3$ : $\\kappa=\\frac{a}{b^2}$."
+        },
+        {
+          "texte": "Si $\\|f'\\|$ est constante, $|\\kappa|=\\frac{\\|f''\\|}{\\|f'\\|^2}$.",
+          "vrai": true,
+          "justification": "$v'=0$, donc $f''=v^2\\kappa\\vec N$ et $\\|f''\\|=v^2|\\kappa|$."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-courbes-longueur",
+        "geo-l3-courbes-etude-locale",
+        "al-l1-determinant-famille",
+        "ar-l1-taylor-young"
+      ]
+    },
+    {
+      "id": "geo-l3-courbes-bezier",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-courbes",
+      "type": "theoreme",
+      "titre": "Polynômes de Bernstein et courbes de Bézier",
+      "recto": "Définir les polynômes de Bernstein et la courbe de Bézier associée à des points de contrôle, et énoncer ses propriétés : extrémités et tangentes, enveloppe convexe, algorithme de De Casteljau.",
+      "cours": "Les **polynômes de Bernstein** de degré $n$ sont $B_{k,n}(t)=\\binom nkt^k(1-t)^{n-k}$, $0\\le k\\le n$. Sur $[0,1]$, ils sont positifs et de somme $1$ (formule du binôme appliquée à $(t+(1-t))^n$) : ce sont des poids barycentriques. En probabilités, $B_{k,n}(t)$ est la probabilité d'obtenir $k$ succès en $n$ épreuves de Bernoulli de paramètre $t$ ; c'est l'idée de la preuve du théorème de Weierstrass par les polynômes $\\sum_kf\\left(\\frac kn\\right)B_{k,n}$.\n\nÉtant donnés des **points de contrôle** $P_0,\\dots,P_n$ du plan ou de l'espace, la **courbe de Bézier** associée est $B(t)=\\sum_{k=0}^nB_{k,n}(t)P_k$, $t\\in[0,1]$, barycentre des $P_k$ affectés des poids $B_{k,n}(t)$. Pour $n=1$, c'est le segment $[P_0P_1]$ ; pour $n=2$, un arc de parabole (ou un segment). Introduites pour la conception assistée par ordinateur (P. Bézier chez Renault, P. de Casteljau chez Citroën), ces courbes se manipulent par leurs points de contrôle : la courbe part de $P_0$ tangentiellement à $(P_0P_1)$, arrive en $P_n$ tangentiellement à $(P_{n-1}P_n)$, reste dans l'enveloppe convexe des $P_k$, et la construction commute aux applications affines (l'image de la courbe par une application affine est la courbe de Bézier des images des points de contrôle).\n\nL'**algorithme de De Casteljau** calcule $B(t)$ par des barycentres successifs, sans polynôme : on remplace chaque segment $[P_kP_{k+1}]$ du polygone de contrôle par le point $(1-t)P_k+tP_{k+1}$, et on recommence sur les $n$ points obtenus, jusqu'à n'en avoir plus qu'un. Les points intermédiaires donnent aussi la tangente en $B(t)$ (dirigée par $\\overrightarrow{P_0^{(n-1)}P_1^{(n-1)}}$) et les points de contrôle des deux morceaux de la courbe sur $[0,t]$ et sur $[t,1]$ (subdivision).\n\nPièges : la courbe ne passe pas, en général, par les points de contrôle intérieurs $P_1,\\dots,P_{n-1}$ ; la dérivée en $0$ est $n\\overrightarrow{P_0P_1}$, avec le facteur $n$ ; hors de $[0,1]$, les poids ne sont plus tous positifs et la courbe peut sortir de l'enveloppe convexe ; si $P_1=P_0$, le point $B(0)$ est singulier.",
+      "hypotheses": [
+        "$t\\in[0,1]$.",
+        "$n\\ge1$ et $P_1\\neq P_0$ (pour la tangente en $P_0$)."
+      ],
+      "hypotheses_pieges": [
+        "$t\\in\\mathbb{R}$ (à la place de $t\\in[0,1]$).",
+        "$n\\ge1$ et $P_n\\neq P_0$ (à la place de $P_1\\neq P_0$)."
+      ],
+      "enonce": "Pour $n\\ge1$ et $0\\le k\\le n$, le **polynôme de Bernstein** $B_{k,n}$ est $B_{k,n}(t)=\\binom nkt^k(1-t)^{n-k}$. Soient $P_0,\\dots,P_n$ des points d'un espace affine réel de dimension finie (plan ou espace) ; la **courbe de Bézier** de points de contrôle $P_0,\\dots,P_n$ est $B(t)=\\sum_{k=0}^nB_{k,n}(t)P_k$ (barycentre), $t\\in[0,1]$.\n\n**Théorème.**\n- Les $B_{k,n}$, $0\\le k\\le n$, forment une base de $\\mathbb{R}_n[X]$ ; pour $t\\in[0,1]$, ils sont positifs et $\\sum_{k=0}^nB_{k,n}(t)=1$. Par conséquent, $B(t)$ appartient à l'enveloppe convexe de $\\{P_0,\\dots,P_n\\}$ pour tout $t\\in[0,1]$.\n- $B(0)=P_0$, $B(1)=P_n$, et $B'(t)=n\\sum_{k=0}^{n-1}B_{k,n-1}(t)\\,\\overrightarrow{P_kP_{k+1}}$ ; en particulier $B'(0)=n\\overrightarrow{P_0P_1}$ et $B'(1)=n\\overrightarrow{P_{n-1}P_n}$ : si $P_1\\neq P_0$, la courbe est tangente en $P_0$ à la droite $(P_0P_1)$, et si $P_{n-1}\\neq P_n$, elle est tangente en $P_n$ à $(P_{n-1}P_n)$.\n- **Algorithme de De Casteljau.** Pour $t$ fixé, posons $P_k^{(0)}=P_k$ et, pour $1\\le r\\le n$ et $0\\le k\\le n-r$, $P_k^{(r)}=(1-t)P_k^{(r-1)}+tP_{k+1}^{(r-1)}$. Alors $P_k^{(r)}=\\sum_{j=0}^rB_{j,r}(t)P_{k+j}$ ; en particulier $B(t)=P_0^{(n)}$.",
+      "enonce_trous": "Soient $n\\ge1$, des points de contrôle $P_0,\\dots,P_n$ et $B(t)=\\sum_{k=0}^n\\binom nkt^k(1-t)^{n-k}P_k$. Pour $t\\in[0,1]$, le point $B(t)$ appartient à {{1}}. On a $B'(0)=$ {{2}}. Enfin, si l'on pose $P_k^{(0)}=P_k$ et $P_k^{(r)}=(1-t)P_k^{(r-1)}+tP_{k+1}^{(r-1)}$, alors $B(t)=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "l'enveloppe convexe de $\\{P_0,\\dots,P_n\\}$",
+          "leurres": [
+            "le segment $[P_0P_n]$",
+            "la ligne polygonale $P_0P_1\\dots P_n$",
+            "la droite $(P_0P_1)$"
+          ]
+        },
+        {
+          "reponse": "$n\\overrightarrow{P_0P_1}$",
+          "leurres": [
+            "$\\overrightarrow{P_0P_1}$",
+            "$n\\overrightarrow{P_0P_n}$",
+            "$(n-1)\\overrightarrow{P_0P_1}$"
+          ]
+        },
+        {
+          "reponse": "$P_0^{(n)}$",
+          "leurres": [
+            "$P_n^{(0)}$",
+            "$P_0^{(n-1)}$",
+            "$P_1^{(n-1)}$"
+          ]
+        }
+      ],
+      "demo": "**Base et somme.** Par la formule du binôme, $\\sum_kB_{k,n}(t)=(t+1-t)^n=1$, et chaque $B_{k,n}(t)$ est positif sur $[0,1]$. Les $n+1$ polynômes $B_{k,n}$ sont dans $\\mathbb{R}_n[X]$, de dimension $n+1$ : il suffit de voir qu'ils forment une famille libre. Si $\\sum_ka_kB_{k,n}=0$, en divisant par $(1-t)^n$ pour $t\\in\\left[0,1\\right[$ et en posant $x=\\frac{t}{1-t}$, qui parcourt $\\left[0,+\\infty\\right[$, on obtient $\\sum_ka_k\\binom nkx^k=0$ pour une infinité de $x$ : ce polynôme est nul, et tous les $a_k$ aussi.\n\n**Enveloppe convexe.** Pour $t\\in[0,1]$, $B(t)$ est un barycentre des $P_k$ à poids positifs de somme $1$, donc une combinaison convexe : il est dans l'enveloppe convexe.\n\n**Extrémités et dérivée.** $B_{k,n}(0)$ vaut $1$ si $k=0$ et $0$ sinon, d'où $B(0)=P_0$ ; de même $B(1)=P_n$. Pour $1\\le k\\le n-1$, $B_{k,n}'(t)=\\binom nk\\bigl(kt^{k-1}(1-t)^{n-k}-(n-k)t^k(1-t)^{n-k-1}\\bigr)=n\\bigl(B_{k-1,n-1}(t)-B_{k,n-1}(t)\\bigr)$, car $k\\binom nk=n\\binom{n-1}{k-1}$ et $(n-k)\\binom nk=n\\binom{n-1}{k}$ ; la formule vaut encore pour $k=0$ et $k=n$ en convenant que $B_{-1,n-1}=B_{n,n-1}=0$. Fixons une origine $O$ et écrivons $B(t)=O+\\sum_kB_{k,n}(t)\\overrightarrow{OP_k}$. Alors $B'(t)=n\\sum_{k=0}^nB_{k-1,n-1}(t)\\overrightarrow{OP_k}-n\\sum_{k=0}^nB_{k,n-1}(t)\\overrightarrow{OP_k}=n\\sum_{j=0}^{n-1}B_{j,n-1}(t)\\bigl(\\overrightarrow{OP_{j+1}}-\\overrightarrow{OP_j}\\bigr)$. En $t=0$, seul $B_{0,n-1}(0)=1$ subsiste : $B'(0)=n\\overrightarrow{P_0P_1}$ ; de même $B'(1)=n\\overrightarrow{P_{n-1}P_n}$.\n\n**De Casteljau.** Récurrence sur $r$ : pour $r=0$, c'est la définition. Si la formule vaut au rang $r-1$, $P_k^{(r)}=(1-t)\\sum_{j=0}^{r-1}B_{j,r-1}(t)P_{k+j}+t\\sum_{j=0}^{r-1}B_{j,r-1}(t)P_{k+1+j}$ ; le coefficient de $P_{k+j}$ est $(1-t)B_{j,r-1}(t)+tB_{j-1,r-1}(t)=\\left(\\binom{r-1}{j}+\\binom{r-1}{j-1}\\right)t^j(1-t)^{r-j}=B_{j,r}(t)$ par la formule de Pascal (avec les mêmes conventions aux bords). Pour $r=n$ et $k=0$, $P_0^{(n)}=\\sum_jB_{j,n}(t)P_j=B(t)$. Au passage, $P_0^{(n-1)}$ et $P_1^{(n-1)}$ sont les barycentres $\\sum_jB_{j,n-1}(t)P_j$ et $\\sum_jB_{j,n-1}(t)P_{j+1}$, donc $B'(t)=n\\overrightarrow{P_0^{(n-1)}P_1^{(n-1)}}$.",
+      "exemple": "- $n=2$, $P_0=(0,0)$, $P_1=(1,2)$, $P_2=(2,0)$ : $B(t)=2t(1-t)(1,2)+t^2(2,0)=(2t,4t-4t^2)$, arc de la parabole $y=2x-x^2$ ; il est tangent en $P_0$ à la droite $y=2x$, en $P_2$ à la droite $y=-2x+4$, et son sommet $B\\left(\\frac12\\right)=(1,1)$ n'est pas $P_1$.\n- Par De Casteljau en $t=\\frac12$ pour ces trois points : $P_0^{(1)}=\\left(\\frac12,1\\right)$, $P_1^{(1)}=\\left(\\frac32,1\\right)$, puis $P_0^{(2)}=(1,1)$ ; la tangente en $(1,1)$ est horizontale, dirigée par $\\overrightarrow{P_0^{(1)}P_1^{(1)}}=(1,0)$.",
+      "contre_exemple": "- **Hors de $[0,1]$** : pour $n=1$, $P_0=(0,0)$, $P_1=(1,0)$, $B(2)=-P_0+2P_1=(2,0)$ n'est pas dans le segment $[P_0P_1]$, enveloppe convexe des points de contrôle.\n- **Si $P_1=P_0$** : pour $P_0=P_1=(0,0)$ et $P_2=(1,1)$, $B(t)=t^2(1,1)$ et $B'(0)=0$ : la droite $(P_0P_1)$ n'est pas définie, et la tangente en $P_0$, dirigée par $B''(0)=2\\overrightarrow{P_0P_2}$, est la droite $(P_0P_2)$.\n- **Points intérieurs non atteints** : pour $P_0=(0,0)$, $P_1=(1,1)$, $P_2=(2,0)$, l'ordonnée $2t(1-t)$ de $B(t)$ ne dépasse pas $\\frac12$, donc la courbe ne passe pas par $P_1$.",
+      "affirmations": [
+        {
+          "texte": "Une courbe de Bézier passe par tous ses points de contrôle.",
+          "vrai": false,
+          "contre_exemple": "Pour $P_0=(0,0)$, $P_1=(1,1)$, $P_2=(2,0)$, l'ordonnée de $B(t)$ est $2t(1-t)\\le\\frac12$ : la courbe ne passe pas par $P_1$."
+        },
+        {
+          "texte": "Les polynômes de Bernstein de degré $n$ forment une base de $\\mathbb{R}_n[X]$.",
+          "vrai": true,
+          "justification": "Ils sont $n+1$, et libres : $\\sum_ka_kB_{k,n}=0$ donne, avec $x=\\frac{t}{1-t}$, $\\sum_ka_k\\binom nkx^k=0$ sur $\\left[0,+\\infty\\right[$."
+        },
+        {
+          "texte": "Si les points de contrôle sont alignés, la courbe de Bézier est contenue dans un segment.",
+          "vrai": true,
+          "justification": "L'enveloppe convexe de points alignés est un segment."
+        },
+        {
+          "texte": "La courbe de Bézier de points de contrôle $P_0,\\dots,P_n$ est tangente en $P_n$ à la droite $(P_0P_n)$.",
+          "vrai": false,
+          "contre_exemple": "Pour $P_0=(0,0)$, $P_1=(1,2)$, $P_2=(2,0)$, la tangente en $P_2$ est dirigée par $\\overrightarrow{P_1P_2}=(1,-2)$, alors que $(P_0P_2)$ est l'axe des abscisses."
+        },
+        {
+          "texte": "L'image d'une courbe de Bézier par une application affine $\\varphi$ est la courbe de Bézier de points de contrôle $\\varphi(P_0),\\dots,\\varphi(P_n)$.",
+          "vrai": true,
+          "justification": "Une application affine conserve les barycentres."
+        }
+      ],
+      "prerequis": [
+        "geo-l2-affine-barycentres",
+        "geo-l2-affine-convexite",
+        "proba-t-binomiale-pascal",
+        "ar-l2-suites-fonctions-approximation",
+        "geo-l3-courbes-etude-locale"
+      ]
+    }
+  ]
+}
