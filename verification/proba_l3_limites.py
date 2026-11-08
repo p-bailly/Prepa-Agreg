@@ -695,4 +695,41 @@ assert len({float(v) for v in [Phi(2), Phi(1), Phi(0.5), 0.5]}) == 4
 assert abs(3 * (1 - mp.mpf(3) / 10**8) ** (10**8 - 1) - 3 * mp.e**-3) < mp.mpf("1e-6")
 assert len({float(v) for v in [3 * mp.e**-3, mp.e**-3, 3 * mp.e**-1, 1 - mp.e**-3]}) == 4
 
+# =====================================================================================================
+# Compléments de la relecture indépendante (2026-11-08)
+# =====================================================================================================
+# loi-faible-ex4 (et v1, v2) : si |e/ln n - c| < ε/2, e/ln n <= 2c et |R/ln n - c| >= ε, alors |R - e| >= (ε/(4c)) e,
+# c'est-à-dire η = ε/4, ε/8, ε/2 pour c = 1, 2, 1/2 (testé sur une grille de valeurs).
+for c_, eta_coef in [(F(1), F(1, 4)), (F(2), F(1, 8)), (F(1, 2), F(1, 2))]:
+    assert eta_coef == 1 / (4 * c_)
+    for eps_ in [F(1, 10), F(1, 2), F(1)]:
+        for i in range(-20, 21):
+            ratio = c_ + eps_ / 2 * F(i, 21)  # e_n/ln n, à moins de ε/2 de c
+            if ratio <= 0 or ratio > 2 * c_:
+                continue
+            for j in range(-60, 61):
+                rl = c_ + eps_ * F(j, 20)  # R_n/ln n
+                if abs(rl - c_) >= eps_:
+                    # |R - e|/e = |rl/ratio - 1|
+                    assert abs(rl / ratio - 1) >= eta_coef * eps_
+# loi-forte-ex2 v1 : E(C_n)^{1/n} = 3/2 > √5/2 = lim C_n^{1/n} > 1 ; v2 : 9/8 > 1 > √2/2.
+assert sp.sqrt(5) / 2 < sp.Rational(3, 2) and sp.sqrt(5) / 2 > 1 and sp.sqrt(2) / 2 < 1 < sp.Rational(9, 8)
+assert F(1, 2) * F(1, 2) + F(1, 2) * F(3, 2) == 1  # loi-forte-ex2 : E(X_k) = 1, donc E(C_n) = 1
+# tcl-ex3 (et v1, v2) : « environ cinq fois moins d'épreuves ».
+for bt, tc in [(27778, 5336), (12500, 2401), (32000, 6147)]:
+    assert 5 < F(bt, tc) < F(53, 10)
+# borel-cantelli-ex3 (et v1, v2) : blocs numérotés à partir de 2, de longueurs ℓ_k >= 1 (ℓ_2 = 1, 2, 1).
+assert [ceil(log(2, 2) - 1e-12), ceil(2 * log(2, 2) - 1e-12), ceil(log(2, 3) - 1e-12)] == [1, 2, 1]
+# tcl-ex4 (et v1, v2) : P(X_k = 0) = 1 - 1/k², 1 - 1/k⁴, 1 - 1/4^k (énoncés simplifiés), positives ou nulles.
+for kk in range(1, 30):
+    assert 1 - 2 * F(1, 2 * kk**2) == 1 - F(1, kk**2) >= 0 and 1 - 2 * F(1, 2 * kk**4) == 1 - F(1, kk**4) >= 0
+    assert 1 - 2 * F(1, 2 * 4**kk) == 1 - F(1, 4**kk) >= 0
+# binomiale-ex4 (et v1, v2) : le calcul exact et l'approximation donnent le même plus grand N (vérifié plus haut) ;
+# marge de l'arrondi : N = 117, 310, 434 dépassent 0,05 dans les deux calculs.
+for s_, p_, nmax_ in [(100, "0.8", 116), (300, "0.95", 309), (400, "0.9", 433)]:
+    pp = mp.mpf(p_)
+    approx = lambda NN: 1 - Phi((s_ + mp.mpf("0.5") - NN * pp) / mp.sqrt(NN * pp * (1 - pp)))
+    assert approx(nmax_) <= mp.mpf("0.05") < approx(nmax_ + 1)
+    assert P_exacte_depasse(nmax_, pp, s_) <= mp.mpf("0.05") < P_exacte_depasse(nmax_ + 1, pp, s_)
+
 print("proba_l3_limites : toutes les vérifications passent.")
