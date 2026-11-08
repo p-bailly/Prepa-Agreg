@@ -1,0 +1,506 @@
+{
+  "cartes": [
+    {
+      "id": "geo-l3-euclidienne-decomposition",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Décomposition canonique d'une isométrie affine",
+      "recto": "Énoncer le théorème de décomposition canonique d'une isométrie d'un espace affine euclidien, avec le lemme sur $\\ker(\\vec f-\\mathrm{id})$ et $\\mathrm{Im}(\\vec f-\\mathrm{id})$ et la caractérisation des isométries ayant un point fixe.",
+      "cours": "Une isométrie d'un espace affine euclidien est une application qui conserve les distances. Elle est automatiquement affine et bijective, et sa partie linéaire $\\vec f$ est un endomorphisme orthogonal : tout le chapitre consiste à lire la géométrie de $f$ sur $\\vec f$ et sur ses points fixes. On appelle **déplacements** les isométries de partie linéaire de déterminant $1$, **antidéplacements** les autres.\n\nLa clé est un lemme d'algèbre linéaire : pour $\\varphi$ orthogonal, $\\ker(\\varphi-\\mathrm{id})$ (les vecteurs fixes) et $\\mathrm{Im}(\\varphi-\\mathrm{id})$ sont **orthogonaux et supplémentaires**. On en déduit la **décomposition canonique** : toute isométrie s'écrit de façon unique $f=t_{\\vec u}\\circ g$, où $g$ a au moins un point fixe et où la translation commute avec $g$, ce qui revient à $\\vec f(\\vec u)=\\vec u$. Le vecteur $\\vec u$ est la partie « glissement » de $f$ ; $g$ est la partie « tournante ». On a $\\vec u=\\vec 0$ exactement quand $f$ a un point fixe.\n\nMéthode : pour un point $A$ quelconque, $\\vec u$ est le **projeté orthogonal** de $\\overrightarrow{Af(A)}$ sur $\\ker(\\vec f-\\mathrm{id})$ (ce projeté ne dépend pas de $A$), puis $g=t_{-\\vec u}\\circ f$, dont on cherche les points fixes en résolvant $f(M)=M+\\vec u$ ; ils forment un sous-espace affine de direction $\\ker(\\vec f-\\mathrm{id})$. On a de plus, pour tout point $M$, $\\|\\overrightarrow{Mf(M)}\\|^2=\\|\\vec u\\|^2+\\|\\overrightarrow{Mg(M)}\\|^2$ : $\\|\\vec u\\|$ est le plus petit déplacement d'un point par $f$, atteint exactement sur l'ensemble des points fixes de $g$.\n\nPièges : écrire $f=t_{\\vec v}\\circ h$ avec $h$ ayant un point fixe ne suffit pas, il faut aussi la commutation (une réflexion du plan est aussi $t_{\\vec v}\\circ s'$, avec $\\vec v$ orthogonal à l'axe et $s'$ une réflexion d'axe parallèle) ; le vecteur $\\vec u$ n'est pas $\\overrightarrow{Af(A)}$ en général ; et la décomposition n'existe pas pour une bijection affine quelconque.",
+      "hypotheses": [
+        "$E$ est un espace affine euclidien de dimension finie $n\\ge1$.",
+        "$f:E\\to E$ conserve les distances.",
+        "$g$ est une isométrie admettant au moins un point fixe.",
+        "La translation $t_{\\vec u}$ et $g$ commutent."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est une bijection affine quelconque (à la place d'une application qui conserve les distances).",
+        "$g$ est une isométrie quelconque, sans condition de point fixe (à la place d'une isométrie admettant un point fixe).",
+        "$\\vec u$ est orthogonal à $\\ker(\\vec f-\\mathrm{id})$ (à la place de : $t_{\\vec u}$ et $g$ commutent)."
+      ],
+      "enonce": "Soit $E$ un espace affine euclidien de dimension finie $n\\ge1$, de direction $\\vec E$. Une **isométrie** de $E$ est une application $f:E\\to E$ telle que $d(f(M),f(N))=d(M,N)$ pour tous points $M$, $N$. On note $t_{\\vec u}$ la translation de vecteur $\\vec u$.\n\n- Toute isométrie $f$ est affine et bijective, et sa partie linéaire $\\vec f$ appartient à $\\mathrm{O}(\\vec E)$. Les isométries forment un groupe $\\mathrm{Is}(E)$ ; les **déplacements** ($\\det\\vec f=1$) en forment un sous-groupe $\\mathrm{Is}^+(E)$, les autres sont les **antidéplacements**.\n- **Lemme.** Pour tout $\\varphi\\in\\mathrm{O}(\\vec E)$, $\\ker(\\varphi-\\mathrm{id})$ et $\\mathrm{Im}(\\varphi-\\mathrm{id})$ sont supplémentaires orthogonaux dans $\\vec E$.\n- **Décomposition canonique.** Pour toute isométrie $f$, il existe un unique couple $(\\vec u,g)$, formé d'un vecteur $\\vec u$ et d'une isométrie $g$ admettant au moins un point fixe, tel que $f=t_{\\vec u}\\circ g$ et $t_{\\vec u}\\circ g=g\\circ t_{\\vec u}$. On a alors $\\vec g=\\vec f$ et $\\vec f(\\vec u)=\\vec u$ ; l'ensemble des points fixes de $g$ est un sous-espace affine de direction $\\ker(\\vec f-\\mathrm{id})$, et pour tout point $A$, $\\vec u$ est le projeté orthogonal de $\\overrightarrow{Af(A)}$ sur $\\ker(\\vec f-\\mathrm{id})$.\n- $f$ admet un point fixe si et seulement si $\\vec u=\\vec 0$.",
+      "enonce_trous": "Soit $f$ une isométrie d'un espace affine euclidien de dimension finie, de partie linéaire $\\vec f$. Les sous-espaces $\\ker(\\vec f-\\mathrm{id})$ et $\\mathrm{Im}(\\vec f-\\mathrm{id})$ sont {{1}}. Il existe un unique couple $(\\vec u,g)$ tel que $f=t_{\\vec u}\\circ g$, où $g$ est une isométrie {{2}} et $\\vec u$ un vecteur {{3}}. Enfin, $f$ a un point fixe si et seulement si {{4}}.",
+      "trous": [
+        {
+          "reponse": "supplémentaires orthogonaux",
+          "leurres": [
+            "égaux",
+            "de même dimension",
+            "tous deux réduits à $\\{\\vec 0\\}$"
+          ]
+        },
+        {
+          "reponse": "admettant au moins un point fixe",
+          "leurres": [
+            "sans point fixe",
+            "admettant exactement un point fixe",
+            "quelconque"
+          ]
+        },
+        {
+          "reponse": "fixé par $\\vec f$",
+          "leurres": [
+            "quelconque",
+            "orthogonal à $\\ker(\\vec f-\\mathrm{id})$",
+            "appartenant à $\\mathrm{Im}(\\vec f-\\mathrm{id})$"
+          ]
+        },
+        {
+          "reponse": "$\\vec u=\\vec 0$",
+          "leurres": [
+            "$\\vec f=\\mathrm{id}$",
+            "$1$ n'est pas valeur propre de $\\vec f$",
+            "$\\vec u\\neq\\vec 0$"
+          ]
+        }
+      ],
+      "demo": "**Une isométrie est affine.** Fixons un point $O$ et posons $\\psi(\\vec x)=\\overrightarrow{f(O)f(O+\\vec x)}$. Alors $\\psi(\\vec 0)=\\vec 0$ et $\\|\\psi(\\vec x)-\\psi(\\vec y)\\|=\\|\\vec x-\\vec y\\|$, donc $\\|\\psi(\\vec x)\\|=\\|\\vec x\\|$, et par polarisation $\\langle\\psi(\\vec x),\\psi(\\vec y)\\rangle=\\frac12\\left(\\|\\psi(\\vec x)\\|^2+\\|\\psi(\\vec y)\\|^2-\\|\\psi(\\vec x)-\\psi(\\vec y)\\|^2\\right)=\\langle\\vec x,\\vec y\\rangle$. Si $(\\vec e_1,\\dots,\\vec e_n)$ est une base orthonormale, $(\\psi(\\vec e_i))$ est une famille orthonormale de $n$ vecteurs, donc une base orthonormale, et $\\langle\\psi(\\vec x),\\psi(\\vec e_i)\\rangle=\\langle\\vec x,\\vec e_i\\rangle$ donne $\\psi(\\vec x)=\\sum_i\\langle\\vec x,\\vec e_i\\rangle\\psi(\\vec e_i)$ : $\\psi$ est linéaire et conserve la norme, donc $\\psi\\in\\mathrm{O}(\\vec E)$. Ainsi $f(O+\\vec x)=f(O)+\\psi(\\vec x)$ : $f$ est affine, de partie linéaire $\\psi$ bijective, donc $f$ est bijective. La composée et la réciproque d'isométries sont des isométries, et $f\\mapsto\\det\\vec f$ est un morphisme à valeurs dans $\\{-1,1\\}$, de noyau $\\mathrm{Is}^+(E)$.\n\n**Lemme.** Soient $\\vec x\\in\\ker(\\varphi-\\mathrm{id})$ et $\\vec z\\in\\vec E$. Comme $\\varphi$ conserve le produit scalaire et $\\varphi(\\vec x)=\\vec x$, $\\langle\\vec x,\\varphi(\\vec z)\\rangle=\\langle\\varphi(\\vec x),\\varphi(\\vec z)\\rangle=\\langle\\vec x,\\vec z\\rangle$, donc $\\langle\\vec x,\\varphi(\\vec z)-\\vec z\\rangle=0$. Les deux sous-espaces sont orthogonaux, donc d'intersection nulle, et leurs dimensions ont pour somme $n$ par le théorème du rang : ils sont supplémentaires.\n\n**Une formule.** Pour tous points $P$, $M$ : $\\overrightarrow{Mf(M)}=\\overrightarrow{MP}+\\overrightarrow{Pf(P)}+\\overrightarrow{f(P)f(M)}=\\overrightarrow{Pf(P)}+(\\vec f-\\mathrm{id})(\\overrightarrow{PM})$. Les vecteurs $\\overrightarrow{Mf(M)}$ ont donc tous le même projeté orthogonal sur $F=\\ker(\\vec f-\\mathrm{id})$, puisque $(\\vec f-\\mathrm{id})(\\overrightarrow{PM})\\in\\mathrm{Im}(\\vec f-\\mathrm{id})=F^\\perp$.\n\n**Existence.** Fixons $A$ et écrivons $\\overrightarrow{Af(A)}=\\vec u+\\vec w$ avec $\\vec u\\in F$ et $\\vec w\\in F^\\perp=\\mathrm{Im}(\\vec f-\\mathrm{id})$, disons $\\vec w=(\\vec f-\\mathrm{id})(\\vec y)$. Le point $\\Omega=A-\\vec y$ vérifie, par la formule, $\\overrightarrow{\\Omega f(\\Omega)}=\\vec u+\\vec w-(\\vec f-\\mathrm{id})(\\vec y)=\\vec u$. Posons $g=t_{-\\vec u}\\circ f$ : c'est une isométrie de partie linéaire $\\vec f$, et $g(\\Omega)=\\Omega$. Pour tout $M$, $g(M+\\vec u)=g(M)+\\vec f(\\vec u)=g(M)+\\vec u$ : $g\\circ t_{\\vec u}=t_{\\vec u}\\circ g$.\n\n**Unicité.** Soit $(\\vec v,h)$ un autre couple, $h$ fixant un point $P$. On a $\\vec h=\\vec f$, et la commutation $h(M)+\\vec f(\\vec v)=h(M+\\vec v)=h(M)+\\vec v$ donne $\\vec v\\in F$. Comme $\\overrightarrow{Pf(P)}=\\vec v\\in F$, $\\vec v$ est le projeté orthogonal sur $F$ de $\\overrightarrow{Pf(P)}$, donc de tous les $\\overrightarrow{Mf(M)}$ : $\\vec v=\\vec u$, puis $h=t_{-\\vec u}\\circ f=g$.\n\n**Points fixes.** $g(M)=M$ équivaut à $\\vec f(\\overrightarrow{\\Omega M})=\\overrightarrow{\\Omega M}$ : l'ensemble des points fixes de $g$ est $\\Omega+F$. Si $f(P)=P$, alors $\\vec u$, projeté de $\\overrightarrow{Pf(P)}=\\vec 0$, est nul ; réciproquement, si $\\vec u=\\vec 0$, $f=g$ fixe $\\Omega$.",
+      "exemple": "Dans le plan rapporté à un repère orthonormé, soit $f(x,y)=(x+2,\\,-y+1)$. Sa partie linéaire est $(x,y)\\mapsto(x,-y)$, dont les vecteurs fixes forment $\\mathbb{R}\\vec\\imath$. On a $\\overrightarrow{Of(O)}=(2,1)$, de projeté orthogonal $\\vec u=(2,0)$ sur $\\mathbb{R}\\vec\\imath$. Alors $g=t_{-\\vec u}\\circ f:(x,y)\\mapsto(x,1-y)$ est la réflexion d'axe la droite $y=\\frac12$, et $f=t_{\\vec u}\\circ g$ est la symétrie glissée d'axe $y=\\frac12$ et de vecteur $(2,0)$ ; elle n'a pas de point fixe. On a aussi $f=t_{(2,1)}\\circ s$, avec $s:(x,y)\\mapsto(x,-y)$, mais ce n'est pas la décomposition canonique : $t_{(2,1)}$ ne commute pas avec $s$.",
+      "contre_exemple": "- **Bijection affine qui n'est pas une isométrie.** Pour $f(x,y)=(x+y,\\,y+1)$, $\\ker(\\vec f-\\mathrm{id})=\\mathrm{Im}(\\vec f-\\mathrm{id})=\\mathbb{R}\\vec\\imath$ : ces sous-espaces ne sont pas supplémentaires. Pour tout $\\vec u=(a,0)$ fixé par $\\vec f$, $t_{-\\vec u}\\circ f:(x,y)\\mapsto(x+y-a,\\,y+1)$ n'a aucun point fixe (sa seconde coordonnée l'interdit) : $f$ n'a pas de décomposition canonique.\n- **Sans la condition de point fixe**, l'unicité tombe : pour tout $\\vec u$, $\\mathrm{id}=t_{\\vec u}\\circ t_{-\\vec u}$, et $t_{\\vec u}$ commute avec $t_{-\\vec u}$.\n- **Sans la commutation**, l'unicité tombe aussi : la réflexion $s:(x,y)\\mapsto(x,-y)$ vaut $t_{(0,2)}\\circ s'$, où $s':(x,y)\\mapsto(x,-y-2)$ est la réflexion d'axe $y=-1$.",
+      "affirmations": [
+        {
+          "texte": "Une isométrie affine sans point fixe a une partie linéaire qui admet $1$ pour valeur propre.",
+          "vrai": true,
+          "justification": "Si $1$ n'était pas valeur propre de $\\vec f$, on aurait $\\ker(\\vec f-\\mathrm{id})=\\{\\vec 0\\}$, donc $\\vec u=\\vec 0$, et $f$ aurait un point fixe."
+        },
+        {
+          "texte": "La composée de deux isométries qui ont chacune un point fixe a un point fixe.",
+          "vrai": false,
+          "contre_exemple": "Les réflexions du plan d'axes $x=0$ et $x=1$ ont chacune une droite de points fixes, et leur composée $(x,y)\\mapsto(x+2,y)$ (réflexion d'axe $x=1$ après celle d'axe $x=0$) est une translation de vecteur non nul."
+        },
+        {
+          "texte": "Le vecteur $\\vec u$ de la décomposition canonique de $f$ est égal à $\\overrightarrow{Mf(M)}$ pour tout point $M$.",
+          "vrai": false,
+          "contre_exemple": "Pour la rotation $f$ de centre $O$ et d'angle $\\frac{\\pi}{2}$ du plan, $\\vec u=\\vec 0$ (elle fixe $O$), alors que $\\overrightarrow{Mf(M)}\\neq\\vec 0$ pour tout $M\\neq O$."
+        },
+        {
+          "texte": "Si $f=t_{\\vec u}\\circ g$ est la décomposition canonique, alors $\\|\\overrightarrow{Mf(M)}\\|\\ge\\|\\vec u\\|$ pour tout point $M$.",
+          "vrai": true,
+          "justification": "$\\overrightarrow{Mf(M)}=\\vec u+\\overrightarrow{Mg(M)}$, avec $\\vec u\\in\\ker(\\vec f-\\mathrm{id})$ et $\\overrightarrow{Mg(M)}\\in\\mathrm{Im}(\\vec f-\\mathrm{id})$, orthogonaux : $\\|\\overrightarrow{Mf(M)}\\|^2=\\|\\vec u\\|^2+\\|\\overrightarrow{Mg(M)}\\|^2$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-orthogonal",
+        "al-l2-euclidien-projection",
+        "geo-l2-affine-applications",
+        "al-l1-applications-rang"
+      ]
+    },
+    {
+      "id": "geo-l3-euclidienne-plan",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Classification des isométries du plan",
+      "recto": "Classer les isométries du plan euclidien (écriture complexe, points fixes, nature), et donner le critère qui distingue une réflexion d'une symétrie glissée.",
+      "cours": "Dans le plan, la partie linéaire d'une isométrie est une rotation vectorielle ou une réflexion vectorielle, et la décomposition canonique fait le reste : il n'y a que cinq types d'isométries. Les **déplacements** sont l'identité, les translations et les rotations ; les **antidéplacements** sont les réflexions et les **symétries glissées** $t_{\\vec u}\\circ s_D$, où le vecteur $\\vec u\\neq\\vec 0$ dirige l'axe $D$.\n\nEn complexes (repère orthonormé direct), les déplacements s'écrivent $z\\mapsto az+b$ et les antidéplacements $z\\mapsto a\\bar z+b$, avec $|a|=1$. Pour un déplacement, $a=1$ donne une translation, et $a\\neq1$ la rotation de centre $\\frac{b}{1-a}$ et d'angle $\\arg a$. Pour un antidéplacement, on calcule $f\\circ f$ : c'est la translation de vecteur d'affixe $a\\bar b+b$, qui vaut $2\\vec u$. Si $a\\bar b+b=0$, $f$ est une réflexion ; sinon, c'est une symétrie glissée de vecteur d'affixe $\\frac{a\\bar b+b}{2}$, dont l'axe est l'ensemble des points $M$ tels que $\\overrightarrow{Mf(M)}=\\vec u$. L'axe est toujours dirigé par $e^{i\\theta/2}$, où $\\theta$ est un argument de $a$.\n\nOn peut aussi classer par l'ensemble des points fixes : tout le plan (identité), une droite (réflexion), un point (rotation d'angle non nul), aucun (translation de vecteur non nul ou symétrie glissée, que le déterminant de la partie linéaire distingue). Composer deux réflexions donne une rotation (axes sécants) ou une translation (axes parallèles) : c'est un déplacement.\n\nPièges : une isométrie sans point fixe n'est pas forcément une translation ; $z\\mapsto a\\bar z+b$ avec $b\\neq0$ peut être une réflexion ($z\\mapsto-\\bar z+2$ est la réflexion d'axe $x=1$) ; le vecteur d'une symétrie glissée est la moitié de celui de $f\\circ f$.",
+      "hypotheses": [
+        "Le plan affine euclidien orienté est identifié à $\\mathbb{C}$ par un repère orthonormé direct.",
+        "$f$ conserve les distances."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est une bijection affine qui conserve les aires (à la place d'une application qui conserve les distances).",
+        "$f$ est une isométrie d'un espace euclidien de dimension $3$ (à la place d'une isométrie du plan)."
+      ],
+      "enonce": "On identifie le plan affine euclidien orienté à $\\mathbb{C}$ par un repère orthonormé direct.\n\n- Les isométries du plan sont exactement les applications $z\\mapsto az+b$ (déplacements) et $z\\mapsto a\\bar z+b$ (antidéplacements), où $a,b\\in\\mathbb{C}$ et $|a|=1$.\n- **Déplacements.** $f(z)=az+b$ est l'identité si $a=1$ et $b=0$, la translation de vecteur d'affixe $b$ si $a=1$, et si $a\\neq1$ la **rotation** de centre $\\Omega$ d'affixe $\\omega=\\frac{b}{1-a}$ et d'angle $\\arg a$, qui vérifie $f(z)-\\omega=a(z-\\omega)$ et dont $\\Omega$ est l'unique point fixe.\n- **Antidéplacements.** Si $f(z)=a\\bar z+b$, alors $f\\circ f$ est la translation de vecteur d'affixe $a\\bar b+b$. Si $a\\bar b+b=0$, $f$ est une **réflexion**, dont l'axe est l'ensemble des points fixes. Sinon, $f$ est une **symétrie glissée** $t_{\\vec u}\\circ s_D$, sans point fixe, où $\\vec u$ a pour affixe $\\frac{a\\bar b+b}{2}$ et dirige l'axe $D$, qui est l'ensemble des points $M$ tels que $\\overrightarrow{Mf(M)}=\\vec u$ ; $t_{\\vec u}$ et $s_D$ commutent. Dans les deux cas, l'axe est dirigé par $e^{i\\theta/2}$, où $\\theta$ est un argument de $a$.\n- **Par les points fixes.** L'ensemble des points fixes d'une isométrie du plan est le plan (identité), une droite (réflexion), un point (rotation d'angle non nul) ou vide (translation de vecteur non nul ou symétrie glissée).",
+      "enonce_trous": "Une isométrie du plan euclidien sans point fixe est {{1}}. Une isométrie du plan dont l'ensemble des points fixes est réduit à un point est {{2}}. Avec $|a|=1$, l'application $z\\mapsto a\\bar z+b$ est une réflexion si et seulement si {{3}}.",
+      "trous": [
+        {
+          "reponse": "une translation de vecteur non nul ou une symétrie glissée",
+          "leurres": [
+            "une translation de vecteur non nul",
+            "une symétrie glissée",
+            "une rotation d'angle non nul"
+          ]
+        },
+        {
+          "reponse": "une rotation d'angle non nul",
+          "leurres": [
+            "une réflexion",
+            "une symétrie centrale",
+            "une symétrie glissée"
+          ]
+        },
+        {
+          "reponse": "$a\\bar b+b=0$",
+          "leurres": [
+            "$b=0$",
+            "$|b|=1$",
+            "$a=1$"
+          ]
+        }
+      ],
+      "demo": "**Partie linéaire.** Soit $f$ une isométrie ; $\\vec f\\in\\mathrm{O}(2)$ (carte de la décomposition canonique). Dans la base orthonormale directe du repère, la première colonne de sa matrice est un vecteur unitaire $(c,s)$, et la seconde est unitaire et orthogonale à la première, donc égale à $(-s,c)$ ou à $(s,-c)$. Avec $a=c+is$, la matrice $\\begin{pmatrix}c&-s\\\\s&c\\end{pmatrix}$ est celle de $z\\mapsto az$ et $\\begin{pmatrix}c&s\\\\s&-c\\end{pmatrix}$ celle de $z\\mapsto a\\bar z$ (en effet $(c+is)(x-iy)=cx+sy+i(sx-cy)$). Comme $f(z)=f(0)+\\vec f(z)$, $f(z)=az+b$ ou $f(z)=a\\bar z+b$ avec $b=f(0)$ et $|a|=1$ ; réciproquement ces applications conservent les distances, et leurs parties linéaires ont pour déterminant $1$ et $-1$.\n\n**Déplacements.** Si $a=1$, $f$ est la translation de vecteur d'affixe $b$. Si $a\\neq1$, $\\omega=a\\omega+b$ a l'unique solution $\\omega=\\frac{b}{1-a}$, et $f(z)-\\omega=az+b-(a\\omega+b)=a(z-\\omega)$ : c'est la rotation de centre $\\Omega$ et d'angle $\\arg a$, et $f(z)=z$ équivaut à $(a-1)(z-\\omega)=0$, soit $z=\\omega$.\n\n**Antidéplacements.** On a $f(f(z))=a\\,\\overline{a\\bar z+b}+b=a\\bar az+a\\bar b+b=z+(a\\bar b+b)$. Soit $f=t_{\\vec u}\\circ g$ la décomposition canonique : $g$ fixe un point $\\Omega$ et a pour partie linéaire $\\varphi:z\\mapsto a\\bar z$, qui vérifie $\\varphi\\circ\\varphi=\\mathrm{id}$ ; donc $g\\circ g$, qui fixe $\\Omega$ et a pour partie linéaire l'identité, est l'identité. Comme $t_{\\vec u}$ et $g$ commutent, $f\\circ f=t_{2\\vec u}\\circ g\\circ g=t_{2\\vec u}$, d'où l'affixe $\\frac{a\\bar b+b}{2}$ de $\\vec u$. Les vecteurs fixes de $\\varphi$ sont les $re^{i\\theta/2}$, $r\\in\\mathbb{R}$ (si $z=re^{i\\beta}$ avec $r\\neq0$, $a\\bar z=z$ équivaut à $e^{2i\\beta}=a$) : $\\ker(\\varphi-\\mathrm{id})$ est la droite $D_0$ dirigée par $e^{i\\theta/2}$, et $\\varphi$ vaut $-\\mathrm{id}$ sur la droite orthogonale (si $\\varphi(\\vec y)=-\\vec y$ et $\\vec x\\in D_0$, $\\langle\\vec x,\\vec y\\rangle=\\langle\\varphi(\\vec x),\\varphi(\\vec y)\\rangle=-\\langle\\vec x,\\vec y\\rangle$, et $ie^{i\\theta/2}$ convient) : $\\varphi$ est la réflexion vectorielle d'axe $D_0$. L'ensemble $D$ des points fixes de $g$ est la droite $\\Omega+D_0$, et $g$, qui fixe $\\Omega$ et a pour partie linéaire $\\varphi$, est la réflexion d'axe $D$. Si $\\vec u=\\vec 0$, $f=g$ ; sinon $f=t_{\\vec u}\\circ s_D$ avec $\\vec u\\in D_0$, sans point fixe, et $D$, ensemble des points fixes de $g=t_{-\\vec u}\\circ f$, est l'ensemble des $M$ tels que $f(M)=M+\\vec u$.\n\n**Points fixes.** L'identité fixe tout, une translation de vecteur non nul et une symétrie glissée rien, une réflexion exactement son axe, une rotation d'angle non nul exactement son centre. Ces cas épuisent toutes les isométries et donnent des ensembles de points fixes deux à deux différents, sauf pour les translations et les symétries glissées, que le déterminant de la partie linéaire sépare.",
+      "exemple": "Soit $f(z)=i\\bar z+3+i$. Ici $a=i$, $b=3+i$ et $a\\bar b+b=i(3-i)+3+i=4+4i\\neq0$ : $f$ est une symétrie glissée de vecteur d'affixe $2+2i$. Son axe est formé des $z=x+iy$ tels que $i\\bar z+3+i-z=2+2i$, soit $(y-x+3)+i(x-y+1)=2+2i$, c'est-à-dire $y=x-1$ : c'est bien une droite dirigée par $e^{i\\pi/4}$, où $\\frac{\\pi}{2}$ est un argument de $a$. En revanche, $z\\mapsto iz+2$ est la rotation de centre $\\frac{2}{1-i}=1+i$ et d'angle $\\frac{\\pi}{2}$.",
+      "contre_exemple": "- **Conserver les aires ne suffit pas** : $(x,y)\\mapsto\\left(2x,\\frac y2\\right)$ est une bijection affine qui conserve les aires et n'a que l'origine pour point fixe, mais ce n'est pas une rotation (elle ne conserve pas les distances).\n- **En dimension 3**, la liste ne suffit plus : $(x,y,z)\\mapsto(-y,x,z+1)$, composée de la rotation d'angle $\\frac{\\pi}{2}$ autour de l'axe $(Oz)$ et de la translation de vecteur $(0,0,1)$, est un déplacement sans point fixe qui n'est pas une translation.\n- **Une isométrie sans point fixe n'est pas forcément une translation** : $z\\mapsto\\bar z+1$ est une symétrie glissée.",
+      "affirmations": [
+        {
+          "texte": "La composée de deux réflexions du plan est une rotation ou une translation.",
+          "vrai": true,
+          "justification": "C'est un déplacement (la partie linéaire a pour déterminant $(-1)^2=1$), donc l'identité, une translation ou une rotation."
+        },
+        {
+          "texte": "La composée de deux symétries glissées du plan est une translation.",
+          "vrai": false,
+          "contre_exemple": "$f_1(z)=\\bar z+1$ et $f_2(z)=-\\bar z+i$ sont des symétries glissées (les nombres $a\\bar b+b$ valent $2$ et $2i$), et $f_2\\circ f_1(z)=-z-1+i$ est la symétrie centrale de centre $\\frac{-1+i}{2}$."
+        },
+        {
+          "texte": "Toute isométrie du plan sans point fixe est une translation.",
+          "vrai": false,
+          "contre_exemple": "$z\\mapsto\\bar z+1$ n'a pas de point fixe ($\\bar z+1=z$ équivaut à $2i\\,\\mathrm{Im}\\,z=1$, impossible car $2i\\,\\mathrm{Im}\\,z$ est imaginaire pur) et ce n'est pas une translation : c'est la symétrie glissée d'axe $\\mathbb{R}$ et de vecteur d'affixe $1$."
+        },
+        {
+          "texte": "Le carré d'une symétrie glissée est une translation de vecteur non nul.",
+          "vrai": true,
+          "justification": "Si $f=t_{\\vec u}\\circ s_D$ avec $t_{\\vec u}$ et $s_D$ qui commutent, $f\\circ f=t_{2\\vec u}\\circ s_D\\circ s_D=t_{2\\vec u}$, et $\\vec u\\neq\\vec 0$."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-euclidienne-decomposition",
+        "geo-l1-complexes-similitudes",
+        "al-l2-euclidien-orthogonal"
+      ]
+    },
+    {
+      "id": "geo-l3-euclidienne-espace",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Classification des isométries de l'espace",
+      "recto": "Classer les isométries de l'espace euclidien de dimension $3$ : forme réduite de la partie linéaire, trace, et nature selon les points fixes (rotations, vissages, réflexions, symétries glissées, antirotations).",
+      "cours": "En dimension $3$, une rotation vectorielle $\\varphi\\neq\\mathrm{id}$ fixe une droite (son **axe**) et agit comme une rotation plane sur le plan orthogonal. Une fois l'axe orienté par un vecteur unitaire $\\vec a$, l'angle $\\theta$ est défini modulo $2\\pi$ ; changer $\\vec a$ en $-\\vec a$ change $\\theta$ en $-\\theta$. La trace donne $\\cos\\theta$ par $\\mathrm{tr}\\,\\varphi=1+2\\cos\\theta$, et le signe de $\\sin\\theta$ est celui du produit mixte $[\\vec a,\\vec x,\\varphi(\\vec x)]$ pour tout $\\vec x$ non colinéaire à $\\vec a$. Un élément de $\\mathrm{O}(3)$ de déterminant $-1$ est l'opposé d'une rotation : c'est la composée d'une rotation d'axe $\\mathbb{R}\\vec a$ et de la réflexion par rapport au plan $\\vec a^\\perp$, et sa trace vaut $-1+2\\cos\\theta$.\n\nLa décomposition canonique donne alors la liste complète. Déplacements : identité, translations, **rotations** autour d'une droite affine, **vissages** (rotation suivie d'une translation le long de l'axe, sans point fixe). Antidéplacements : **réflexions** par rapport à un plan, **symétries glissées** (réflexion suivie d'une translation parallèle au plan), **antirotations** (rotation d'axe $D$ composée avec la réflexion par rapport à un plan orthogonal à $D$), qui ont un unique point fixe ; pour l'angle $\\pi$, l'antirotation est la symétrie centrale.\n\nMéthode pour une isométrie donnée en coordonnées : calculer $\\det\\vec f$ et $\\mathrm{tr}\\,\\vec f$ ; chercher l'axe (vecteurs fixes de $\\vec f$, ou de $-\\vec f$ si $\\det\\vec f=-1$) ; projeter $\\overrightarrow{Of(O)}$ sur les vecteurs fixes de $\\vec f$ pour obtenir $\\vec u$ ; résoudre $f(M)=M+\\vec u$ pour obtenir l'axe affine ou le plan.\n\nPièges : un déplacement sans point fixe n'est pas forcément une translation (vissage) ; une isométrie ayant un unique point fixe n'est pas forcément une symétrie centrale ; la trace ne donne que $\\cos\\theta$, pas le signe de l'angle.",
+      "hypotheses": [
+        "$E$ est un espace affine euclidien orienté de dimension $3$.",
+        "$f$ conserve les distances."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est un plan affine euclidien (à la place de la dimension $3$).",
+        "$f$ est une bijection affine de partie linéaire de déterminant $\\pm1$ (à la place d'une isométrie)."
+      ],
+      "enonce": "Soit $E$ un espace affine euclidien orienté de dimension $3$. Pour $\\theta\\in\\mathbb{R}$, on note $R_\\theta=\\begin{pmatrix}1&0&0\\\\0&\\cos\\theta&-\\sin\\theta\\\\0&\\sin\\theta&\\cos\\theta\\end{pmatrix}$.\n\n- **Partie linéaire.** Pour tout $\\varphi\\in\\mathrm{SO}(\\vec E)$ différent de l'identité, il existe un vecteur unitaire $\\vec a$ et un réel $\\theta\\not\\equiv0\\ [2\\pi]$ tels que la matrice de $\\varphi$ dans toute base orthonormale directe $(\\vec a,\\vec e_2,\\vec e_3)$ soit $R_\\theta$ : $\\varphi$ est la **rotation** d'axe $\\mathbb{R}\\vec a=\\ker(\\varphi-\\mathrm{id})$, orienté par $\\vec a$, et d'angle $\\theta$ ; $\\mathrm{tr}\\,\\varphi=1+2\\cos\\theta$. Si $\\varphi\\in\\mathrm{O}(\\vec E)$ et $\\det\\varphi=-1$, sa matrice dans une telle base est $\\mathrm{diag}(-1,1,1)\\,R_\\theta$ pour un réel $\\theta$, et $\\mathrm{tr}\\,\\varphi=-1+2\\cos\\theta$.\n- **Déplacements.** Une isométrie de partie linéaire de déterminant $1$ est l'identité ; une translation de vecteur non nul (aucun point fixe) ; une rotation d'axe une droite $D$ et d'angle non nul (points fixes : $D$) ; ou un **vissage** $t_{\\vec u}\\circ r$, où $r$ est une rotation d'axe $D$ et d'angle non nul et où $\\vec u\\neq\\vec 0$ dirige $D$ (aucun point fixe).\n- **Antidéplacements.** Une isométrie de partie linéaire de déterminant $-1$ est une réflexion par rapport à un plan $\\Pi$ (points fixes : $\\Pi$) ; une **symétrie glissée** $t_{\\vec u}\\circ s_\\Pi$ avec $\\vec u\\neq\\vec 0$ parallèle à $\\Pi$ (aucun point fixe) ; ou une **antirotation** $r\\circ s_\\Pi$, où $r$ est une rotation d'axe une droite $D$ orthogonale à $\\Pi$ et d'angle non nul (un seul point fixe, $D\\cap\\Pi$) ; pour l'angle $\\pi$, c'est la symétrie centrale de centre $D\\cap\\Pi$.\n- Dans chaque cas, les deux applications composées commutent, et ces cas s'excluent mutuellement.",
+      "enonce_trous": "Une isométrie de l'espace euclidien de dimension $3$ sans point fixe est {{1}}. Un déplacement de l'espace dont l'ensemble des points fixes est une droite est {{2}}. Une isométrie de l'espace qui a un unique point fixe est {{3}}. Si $\\varphi\\in\\mathrm{SO}(3)$ est une rotation d'angle $\\theta$, la trace de $\\varphi$ vaut {{4}}.",
+      "trous": [
+        {
+          "reponse": "une translation de vecteur non nul, un vissage ou une symétrie glissée",
+          "leurres": [
+            "une translation de vecteur non nul ou un vissage",
+            "une translation de vecteur non nul ou une symétrie glissée",
+            "une translation de vecteur non nul, un vissage ou une antirotation"
+          ]
+        },
+        {
+          "reponse": "une rotation d'angle non nul autour de cette droite",
+          "leurres": [
+            "un vissage d'axe cette droite",
+            "une réflexion par rapport à un plan contenant cette droite",
+            "une symétrie centrale"
+          ]
+        },
+        {
+          "reponse": "la composée d'une rotation d'axe une droite $D$ et d'angle non nul et de la réflexion par rapport à un plan orthogonal à $D$",
+          "leurres": [
+            "une rotation d'angle non nul",
+            "une symétrie centrale",
+            "un vissage"
+          ]
+        },
+        {
+          "reponse": "$1+2\\cos\\theta$",
+          "leurres": [
+            "$2\\cos\\theta$",
+            "$-1+2\\cos\\theta$",
+            "$2+2\\cos\\theta$"
+          ]
+        }
+      ],
+      "demo": "**Rotations vectorielles.** Soit $\\varphi\\in\\mathrm{SO}(\\vec E)$. Comme $\\varphi^*=\\varphi^{-1}$, $\\varphi-\\mathrm{id}=\\varphi\\circ(\\mathrm{id}-\\varphi^*)=\\varphi\\circ(\\mathrm{id}-\\varphi)^*$, d'où $\\det(\\varphi-\\mathrm{id})=\\det\\varphi\\cdot\\det(\\mathrm{id}-\\varphi)=(-1)^3\\det(\\varphi-\\mathrm{id})$ : $\\det(\\varphi-\\mathrm{id})=0$, et il existe un vecteur unitaire $\\vec a$ tel que $\\varphi(\\vec a)=\\vec a$. Le plan $P=\\vec a^\\perp$ est stable : si $\\vec x\\perp\\vec a$, $\\langle\\varphi(\\vec x),\\vec a\\rangle=\\langle\\varphi(\\vec x),\\varphi(\\vec a)\\rangle=\\langle\\vec x,\\vec a\\rangle=0$. Dans une base orthonormale directe $(\\vec a,\\vec e_2,\\vec e_3)$, la matrice de $\\varphi$ est diagonale par blocs $\\mathrm{diag}(1,N)$ avec $N$ orthogonale et $\\det N=\\det\\varphi=1$ ; par la classification plane, $N=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$. Ce $\\theta$ ne dépend pas de la base orthonormale directe $(\\vec e_2,\\vec e_3)$ de $P$ choisie, car les matrices de rotation du plan commutent. On a $\\mathrm{tr}\\,\\varphi=1+2\\cos\\theta$. Si $\\varphi\\neq\\mathrm{id}$, $\\theta\\not\\equiv0$, $N$ n'a pas de vecteur fixe non nul et $\\ker(\\varphi-\\mathrm{id})=\\mathbb{R}\\vec a$. Si $\\det\\varphi=-1$, $-\\varphi\\in\\mathrm{SO}(\\vec E)$ a dans une telle base une matrice $\\mathrm{diag}(1,N')$, et $\\varphi$ a pour matrice $\\mathrm{diag}(-1,-N')=\\mathrm{diag}(-1,1,1)R_\\theta$ avec $-N'$ la rotation d'angle $\\theta$ (angle de $N'$ plus $\\pi$) ; sa trace est $-1+2\\cos\\theta$.\n\n**Isométries affines.** Soit $f=t_{\\vec u}\\circ g$ la décomposition canonique : $g$ fixe un point $\\Omega$, ses points fixes forment $\\Omega+\\ker(\\vec f-\\mathrm{id})$, et $\\vec u\\in\\ker(\\vec f-\\mathrm{id})$.\n- Si $\\vec f=\\mathrm{id}$, $g$ fixe $\\Omega$ et a pour partie linéaire l'identité, donc $g=\\mathrm{id}$ et $f=t_{\\vec u}$.\n- Si $\\vec f$ est une rotation d'angle $\\theta\\not\\equiv0$ et d'axe $\\mathbb{R}\\vec a$, $g$ est la rotation d'axe $D=\\Omega+\\mathbb{R}\\vec a$ et d'angle $\\theta$, et $\\vec u\\in\\mathbb{R}\\vec a$ : rotation si $\\vec u=\\vec 0$, vissage sinon (sans point fixe d'après la décomposition canonique).\n- Si $\\det\\vec f=-1$ et $\\theta\\not\\equiv0$, la matrice $\\mathrm{diag}(-1,R')$, où $R'$ est la rotation plane d'angle $\\theta$, n'a pas de vecteur fixe non nul : $\\vec u=\\vec 0$, $f=g$ a pour seul point fixe $\\Omega$, et $\\mathrm{diag}(-1,1,1)R_\\theta=R_\\theta\\,\\mathrm{diag}(-1,1,1)$ montre que $f$ est la composée, commutative, de la rotation d'axe $D=\\Omega+\\mathbb{R}\\vec a$ et d'angle $\\theta$ et de la réflexion par rapport au plan $\\Pi=\\Omega+\\vec a^\\perp$. Pour $\\theta\\equiv\\pi$, $\\vec f=-\\mathrm{id}$ : symétrie centrale.\n- Si $\\det\\vec f=-1$ et $\\theta\\equiv0$, $\\vec f$ est la réflexion vectorielle par rapport au plan $\\vec a^\\perp=\\ker(\\vec f-\\mathrm{id})$ ; $g$ est la réflexion par rapport à $\\Pi=\\Omega+\\vec a^\\perp$, et $\\vec u$ est parallèle à $\\Pi$ : réflexion si $\\vec u=\\vec 0$, symétrie glissée sinon.\n\n**Exclusion.** Le déterminant de $\\vec f$ sépare déplacements et antidéplacements ; parmi eux, l'ensemble des points fixes (espace, plan, droite, point ou vide) et, s'il est vide, la nature de $\\vec f$ (identité, rotation, réflexion) distinguent les cas.",
+      "exemple": "Soit $f(x,y,z)=(-y+1,\\,x,\\,z+2)$ dans un repère orthonormé direct. Sa partie linéaire $(x,y,z)\\mapsto(-y,x,z)$ est la rotation d'axe $\\mathbb{R}\\vec k$ (orienté par $\\vec k$) et d'angle $\\frac{\\pi}{2}$ ; ses vecteurs fixes forment $\\mathbb{R}\\vec k$, et le projeté de $\\overrightarrow{Of(O)}=(1,0,2)$ sur cette droite est $\\vec u=(0,0,2)$. Les points fixes de $g=t_{-\\vec u}\\circ f:(x,y,z)\\mapsto(-y+1,x,z)$ vérifient $x=-y+1$ et $y=x$, soit la droite $D$ d'équations $x=y=\\frac12$. Ainsi $f$ est le vissage d'axe $D$, d'angle $\\frac{\\pi}{2}$ et de vecteur $(0,0,2)$.",
+      "contre_exemple": "- **Un déplacement sans point fixe n'est pas forcément une translation** : le vissage de l'exemple n'en est pas une.\n- **Un unique point fixe ne fait pas une symétrie centrale** : $(x,y,z)\\mapsto(-y,x,-z)$ ne fixe que l'origine (les équations $x=-y$, $y=x$, $z=-z$ l'imposent), mais c'est l'antirotation d'axe $\\mathbb{R}\\vec k$ et d'angle $\\frac{\\pi}{2}$, et non $-\\mathrm{id}$.\n- **La trace ne donne pas le signe de l'angle** : les rotations d'axe $\\mathbb{R}\\vec k$ d'angles $\\frac{\\pi}{2}$ et $-\\frac{\\pi}{2}$ ont toutes deux pour trace $1$, mais elles sont différentes.\n- **Une bijection affine de déterminant $1$** comme $(x,y,z)\\mapsto(x+y,y,z+1)$ n'a pas de point fixe et n'est ni une translation ni un vissage.",
+      "affirmations": [
+        {
+          "texte": "Tout déplacement de l'espace différent de l'identité a une droite de points fixes ou n'a aucun point fixe.",
+          "vrai": true,
+          "justification": "Les déplacements autres que l'identité sont les translations de vecteur non nul et les vissages (aucun point fixe) et les rotations d'angle non nul (une droite de points fixes)."
+        },
+        {
+          "texte": "Une isométrie de l'espace qui a exactement un point fixe est une symétrie centrale.",
+          "vrai": false,
+          "contre_exemple": "$(x,y,z)\\mapsto(-y,x,-z)$ ne fixe que l'origine, et ce n'est pas $-\\mathrm{id}$ : c'est l'antirotation d'axe $\\mathbb{R}\\vec k$ et d'angle $\\frac{\\pi}{2}$."
+        },
+        {
+          "texte": "Deux rotations de l'espace de même axe et de même trace sont égales.",
+          "vrai": false,
+          "contre_exemple": "Les rotations d'axe $\\mathbb{R}\\vec k$ et d'angles $\\frac{\\pi}{2}$ et $-\\frac{\\pi}{2}$, $(x,y,z)\\mapsto(-y,x,z)$ et $(x,y,z)\\mapsto(y,-x,z)$, ont toutes deux pour trace $1$."
+        },
+        {
+          "texte": "Toute isométrie de l'espace de partie linéaire de déterminant $-1$ a un point fixe.",
+          "vrai": false,
+          "contre_exemple": "La symétrie glissée $(x,y,z)\\mapsto(x+1,y,-z)$ n'a pas de point fixe (il faudrait $x+1=x$)."
+        },
+        {
+          "texte": "La composée de deux réflexions de l'espace par rapport à des plans parallèles distincts est une translation de vecteur non nul.",
+          "vrai": true,
+          "justification": "Pour les plans $z=0$ et $z=c$ ($c\\neq0$), la composée est $(x,y,z)\\mapsto(x,y,2c-(-z))=(x,y,z+2c)$, translation de vecteur $(0,0,2c)$ ; le cas général s'y ramène par un repère orthonormé adapté."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-euclidienne-decomposition",
+        "geo-l3-euclidienne-plan",
+        "al-l2-euclidien-produit-vectoriel",
+        "al-l2-euclidien-adjoint"
+      ]
+    },
+    {
+      "id": "geo-l3-euclidienne-generation",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Génération du groupe orthogonal par les réflexions et des déplacements par les demi-tours",
+      "recto": "Énoncer les résultats de génération : nombre minimal de réflexions pour un élément de $\\mathrm{O}(\\vec E)$, nombre de réflexions pour une isométrie affine, et génération des déplacements de l'espace par les demi-tours.",
+      "cours": "Les réflexions sont les briques élémentaires des isométries. En vectoriel, un élément $\\varphi$ de $\\mathrm{O}(\\vec E)$ se décompose en exactement $p=\\mathrm{rg}(\\varphi-\\mathrm{id})$ réflexions, et pas moins : à chaque étape, on compose par la réflexion qui échange un vecteur non fixe $\\vec x$ et son image, ce qui agrandit l'espace des vecteurs fixes d'une dimension ; inversement, une composée de $k$ réflexions fixe l'intersection de $k$ hyperplans, de dimension au moins $n-k$. On en déduit $\\det\\varphi=(-1)^p$.\n\nEn affine, une isométrie qui fixe un point est composée d'au plus $n$ réflexions (on vectorialise en ce point). Sinon, on la compose d'abord par la réflexion par rapport à l'hyperplan médiateur d'un segment $[A\\,f(A)]$, ce qui ramène au cas précédent : au plus $n+1$ réflexions. Ce nombre est atteint : une symétrie glissée du plan demande $3$ réflexions, un vissage de l'espace en demande $4$.\n\nEn dimension $3$, un **demi-tour** est une rotation d'angle $\\pi$ ; vectoriellement, le demi-tour d'axe $\\mathbb{R}\\vec b$ ($\\vec b$ unitaire) est $\\vec x\\mapsto2\\langle\\vec x,\\vec b\\rangle\\vec b-\\vec x$, l'opposé de la réflexion par rapport à $\\vec b^\\perp$. La composée de deux demi-tours est donc la composée des deux réflexions correspondantes, et toute rotation d'angle $\\theta$ est le produit de deux demi-tours d'axes orthogonaux à son axe et faisant entre eux l'angle $\\frac\\theta2$. En affine, tout déplacement de l'espace (translation, rotation, vissage) est la composée de deux demi-tours d'axes perpendiculaires à son axe : la distance entre les deux axes donne la moitié de la translation, leur angle la moitié de l'angle. Plus généralement, en dimension $n\\ge3$, les retournements engendrent $\\mathrm{SO}(n)$ (voir les exercices).\n\nPièges : une transvection a un déterminant égal à $1$ mais n'est pas un produit de réflexions (elle n'est pas orthogonale) ; les demi-tours n'engendrent pas $\\mathrm{O}(3)$ mais seulement $\\mathrm{SO}(3)$ ; le nombre minimal de réflexions est le rang de $\\varphi-\\mathrm{id}$, et non la dimension de l'espace des vecteurs fixes.",
+      "hypotheses": [
+        "$\\vec E$ est un espace euclidien de dimension $n\\ge1$ et $\\varphi\\in\\mathrm{O}(\\vec E)$.",
+        "$p=\\mathrm{rg}(\\varphi-\\mathrm{id})$."
+      ],
+      "hypotheses_pieges": [
+        "$\\varphi\\in\\mathrm{GL}(\\vec E)$ et $\\det\\varphi=\\pm1$ (à la place de $\\varphi\\in\\mathrm{O}(\\vec E)$).",
+        "$p=\\dim\\ker(\\varphi-\\mathrm{id})$ (à la place du rang de $\\varphi-\\mathrm{id}$)."
+      ],
+      "enonce": "- **Vectoriel.** Soient $\\vec E$ un espace euclidien de dimension $n\\ge1$, $\\varphi\\in\\mathrm{O}(\\vec E)$ et $p=\\mathrm{rg}(\\varphi-\\mathrm{id})$. Alors $\\varphi$ est la composée de $p$ réflexions (aucune si $\\varphi=\\mathrm{id}$), et n'est la composée d'aucune famille de moins de $p$ réflexions. En particulier, $\\mathrm{O}(\\vec E)$ est engendré par les réflexions, tout élément est la composée d'au plus $n$ réflexions, et $\\det\\varphi=(-1)^p$.\n- **Affine.** Soit $E$ un espace affine euclidien de dimension $n\\ge1$. Toute isométrie de $E$ qui admet un point fixe est la composée d'au plus $n$ réflexions (par rapport à des hyperplans affines), et toute isométrie de $E$ est la composée d'au plus $n+1$ réflexions.\n- **Demi-tours.** On suppose $n=3$ et l'on appelle **demi-tour** une rotation d'angle $\\pi$. Toute rotation de $\\mathrm{SO}(\\vec E)$ est la composée de deux demi-tours vectoriels, et tout déplacement de $E$ est la composée de deux demi-tours d'axes des droites affines. Les demi-tours engendrent donc $\\mathrm{SO}(\\vec E)$ et le groupe $\\mathrm{Is}^+(E)$ des déplacements.",
+      "enonce_trous": "Soient $\\vec E$ un espace euclidien de dimension $n\\ge1$ et $\\varphi\\in\\mathrm{O}(\\vec E)$. Le plus petit nombre de réflexions dont $\\varphi$ est la composée est {{1}}. Toute isométrie d'un espace affine euclidien de dimension $n$ est la composée d'au plus {{2}} réflexions. Dans l'espace affine euclidien de dimension $3$, tout déplacement est la composée de {{3}}.",
+      "trous": [
+        {
+          "reponse": "le rang de $\\varphi-\\mathrm{id}$",
+          "leurres": [
+            "$n$",
+            "la dimension de $\\ker(\\varphi-\\mathrm{id})$",
+            "le nombre de valeurs propres de $\\varphi$ égales à $-1$, comptées avec multiplicité"
+          ]
+        },
+        {
+          "reponse": "$n+1$",
+          "leurres": [
+            "$n$",
+            "$n-1$",
+            "$3$"
+          ]
+        },
+        {
+          "reponse": "deux demi-tours",
+          "leurres": [
+            "deux réflexions",
+            "un demi-tour",
+            "deux symétries centrales"
+          ]
+        }
+      ],
+      "demo": "**Majoration (vectoriel).** Récurrence sur $p$. Si $p=0$, $\\varphi=\\mathrm{id}$. Si $p\\ge1$, soit $F=\\ker(\\varphi-\\mathrm{id})\\neq\\vec E$. Par le lemme de la décomposition canonique, $F^\\perp=\\mathrm{Im}(\\varphi-\\mathrm{id})$, qui est stable par $\\varphi$ ($\\varphi(\\varphi(\\vec z)-\\vec z)=\\varphi(\\varphi(\\vec z))-\\varphi(\\vec z)$). Prenons $\\vec x\\in F^\\perp$ non nul et $\\vec y=\\varphi(\\vec x)$ : $\\vec y\\in F^\\perp$, $\\|\\vec y\\|=\\|\\vec x\\|$ et $\\vec y\\neq\\vec x$ (sinon $\\vec x\\in F\\cap F^\\perp$). La réflexion $s$ par rapport à l'hyperplan $(\\vec x-\\vec y)^\\perp$ échange $\\vec x$ et $\\vec y$, et fixe $F$ point par point car $\\vec x-\\vec y\\in F^\\perp$. Alors $\\psi=s\\circ\\varphi\\in\\mathrm{O}(\\vec E)$ fixe $F$ point par point et fixe $\\vec x$ ($\\psi(\\vec x)=s(\\vec y)=\\vec x$) : $\\ker(\\psi-\\mathrm{id})\\supset F\\oplus\\mathbb{R}\\vec x$, donc $\\mathrm{rg}(\\psi-\\mathrm{id})\\le p-1$. Par hypothèse de récurrence, $\\psi$ est la composée d'au plus $p-1$ réflexions, et $\\varphi=s\\circ\\psi$ d'au plus $p$.\n\n**Minoration.** Si $\\varphi=s_1\\circ\\dots\\circ s_k$, où $s_i$ est la réflexion par rapport à l'hyperplan $H_i$, tout vecteur de $H_1\\cap\\dots\\cap H_k$ est fixé par $\\varphi$, et $\\dim(H_1\\cap\\dots\\cap H_k)\\ge n-k$ (chaque intersection avec un hyperplan fait perdre au plus une dimension). Donc $n-p=\\dim F\\ge n-k$, soit $k\\ge p$. Avec la majoration, le nombre minimal est exactement $p$, et $\\det\\varphi=(-1)^p$, chaque réflexion ayant pour déterminant $-1$.\n\n**Affine.** Si $f$ fixe $\\Omega$, on écrit $\\vec f=\\vec s_1\\circ\\dots\\circ\\vec s_p$ ($p\\le n$) ; la réflexion affine $s_i$ par rapport à $\\Omega+H_i$ vérifie $s_i(M)=\\Omega+\\vec s_i(\\overrightarrow{\\Omega M})$, donc $s_1\\circ\\dots\\circ s_p(M)=\\Omega+\\vec f(\\overrightarrow{\\Omega M})=f(M)$. Sinon, soit $A$ un point et $B=f(A)\\neq A$ ; la réflexion $\\sigma$ par rapport à l'hyperplan médiateur de $[AB]$ (passant par le milieu $I$ et de direction $\\overrightarrow{AB}^\\perp$) envoie $B$ sur $A$, donc $\\sigma\\circ f$ fixe $A$ et est la composée d'au plus $n$ réflexions ; $f=\\sigma\\circ(\\sigma\\circ f)$ en est une composée d'au plus $n+1$.\n\n**Demi-tours vectoriels.** Le demi-tour d'axe $\\mathbb{R}\\vec b$, $\\|\\vec b\\|=1$, est $\\rho_{\\vec b}:\\vec x\\mapsto2\\langle\\vec x,\\vec b\\rangle\\vec b-\\vec x$ (il fixe $\\vec b$ et vaut $-\\mathrm{id}$ sur $\\vec b^\\perp$), c'est-à-dire $-s_{\\vec b}$, où $s_{\\vec b}$ est la réflexion par rapport à $\\vec b^\\perp$. Soit $r$ la rotation d'axe orienté par $\\vec a$ unitaire et d'angle $\\theta$. Prenons $\\vec b$ unitaire orthogonal à $\\vec a$ et $\\vec c=\\cos\\frac\\theta2\\,\\vec b+\\sin\\frac\\theta2\\,\\vec a\\wedge\\vec b$. Alors $\\rho_{\\vec c}\\circ\\rho_{\\vec b}=s_{\\vec c}\\circ s_{\\vec b}$ fixe $\\vec a$ et laisse stable $P=\\vec a^\\perp$. En identifiant $P$ à $\\mathbb{C}$ par la base orthonormale directe $(\\vec b,\\vec a\\wedge\\vec b)$, $\\vec b$ correspond à $1$ et $\\vec c$ à $e^{i\\theta/2}$ ; la réflexion par rapport à la droite dirigée par $e^{i\\beta}$ étant $z\\mapsto e^{2i\\beta}\\bar z$, $s_{\\vec b}$ et $s_{\\vec c}$ agissent sur $P$ par $z\\mapsto-\\bar z$ et $z\\mapsto-e^{i\\theta}\\bar z$, et leur composée par $z\\mapsto-e^{i\\theta}\\overline{(-\\bar z)}=e^{i\\theta}z$. Donc $\\rho_{\\vec c}\\circ\\rho_{\\vec b}=r$.\n\n**Demi-tours affines.** Par la classification de l'espace, un déplacement $f$ s'écrit $t_{\\vec u}\\circ r$, où $r$ est une rotation d'axe une droite $D$ dirigée par $\\vec a$ unitaire, d'angle $\\theta$ (éventuellement nul), et $\\vec u$ colinéaire à $\\vec a$ (pour une translation, on prend pour $D$ une droite dirigée par $\\vec u$, pour l'identité une droite quelconque). Soient $P_1\\in D$, $P_2=P_1+\\frac12\\vec u$, $\\Delta_1=P_1+\\mathbb{R}\\vec b$ et $\\Delta_2=P_2+\\mathbb{R}\\vec c$ avec $\\vec b$, $\\vec c$ comme ci-dessus. Le demi-tour d'axe $\\Delta_i$ est $M\\mapsto P_i+\\rho_i(\\overrightarrow{P_iM})$. Comme $\\rho_{\\vec c}(\\vec u)=-\\vec u$ ($\\vec u\\perp\\vec c$) :\n$$\\rho_{\\Delta_2}(\\rho_{\\Delta_1}(M))=P_2+\\rho_{\\vec c}\\left(-\\tfrac12\\vec u+\\rho_{\\vec b}(\\overrightarrow{P_1M})\\right)=P_1+\\vec u+r(\\overrightarrow{P_1M})=f(M).$$",
+      "exemple": "Dans $\\mathbb{R}^3$ euclidien orienté usuel, la rotation $r$ d'axe orienté par $\\vec k$ et d'angle $\\frac{\\pi}{2}$, $(x,y,z)\\mapsto(-y,x,z)$, est la composée $\\rho_{\\vec c}\\circ\\rho_{\\vec\\imath}$ des demi-tours d'axes $\\mathbb{R}\\vec\\imath$ et $\\mathbb{R}\\vec c$, $\\vec c=\\frac{1}{\\sqrt2}(1,1,0)$ : $\\rho_{\\vec\\imath}(x,y,z)=(x,-y,-z)$ et $\\rho_{\\vec c}(x,y,z)=(y,x,-z)$, d'où $\\rho_{\\vec c}(\\rho_{\\vec\\imath}(x,y,z))=(-y,x,z)$. Comme $\\mathrm{rg}(r-\\mathrm{id})=2$, $r$ est aussi la composée de deux réflexions, et pas d'une seule : ici $r=s_{\\vec c}\\circ s_{\\vec\\imath}$, réflexions par rapport aux plans $x=0$ puis $x+y=0$.",
+      "contre_exemple": "- **Déterminant $\\pm1$ ne suffit pas** : la transvection de matrice $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ a pour déterminant $1$, mais n'est pas orthogonale (elle envoie $(0,1)$ sur $(1,1)$, de norme $\\sqrt2$), donc n'est pas une composée de réflexions.\n- **Une symétrie glissée du plan n'est pas la composée de deux réflexions** : une telle composée est un déplacement, alors qu'une symétrie glissée est un antidéplacement ; une réflexion seule a des points fixes : il en faut $3$.\n- **Les demi-tours n'engendrent pas $\\mathrm{O}(3)$** : ils sont de déterminant $1$, donc toutes leurs composées aussi, et $-\\mathrm{id}$ n'en est pas une.",
+      "affirmations": [
+        {
+          "texte": "Toute rotation de $\\mathrm{SO}(3)$ est la composée de deux réflexions.",
+          "vrai": true,
+          "justification": "Si $r\\neq\\mathrm{id}$, $\\mathrm{rg}(r-\\mathrm{id})=2$ ; et $\\mathrm{id}=s\\circ s$ pour toute réflexion $s$."
+        },
+        {
+          "texte": "Toute isométrie du plan est la composée d'au plus deux réflexions.",
+          "vrai": false,
+          "contre_exemple": "La symétrie glissée $(x,y)\\mapsto(x+1,-y)$ est un antidéplacement sans point fixe : elle n'est ni une réflexion, ni une composée de deux réflexions (qui serait un déplacement)."
+        },
+        {
+          "texte": "Si $\\varphi\\in\\mathrm{O}(\\vec E)$ est la composée de $k$ réflexions, alors $\\det\\varphi=(-1)^k$.",
+          "vrai": true,
+          "justification": "Le déterminant est multiplicatif et chaque réflexion a pour déterminant $-1$."
+        },
+        {
+          "texte": "Les demi-tours engendrent le groupe $\\mathrm{O}(3)$.",
+          "vrai": false,
+          "contre_exemple": "Toute composée de demi-tours est de déterminant $1$ ; $-\\mathrm{id}$, de déterminant $-1$, n'en est pas une."
+        },
+        {
+          "texte": "Toute translation de l'espace de dimension $3$ est la composée de deux demi-tours.",
+          "vrai": true,
+          "justification": "Les demi-tours d'axes $(Ox)$ et $\\{z=c\\}\\cap\\{y=0\\}$ ont pour composée $(x,y,z)\\mapsto(x,y,z+2c)$ ; en général, on prend deux axes parallèles, orthogonaux au vecteur, distants de la moitié de sa norme."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-euclidienne-espace",
+        "geo-l3-euclidienne-decomposition",
+        "al-l2-euclidien-orthogonal"
+      ]
+    },
+    {
+      "id": "geo-l3-euclidienne-similitudes",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Similitudes du plan : écriture complexe, centre, forme réduite",
+      "recto": "Énoncer la description des similitudes du plan (écriture complexe, centre d'une similitude de rapport différent de $1$, forme réduite d'une similitude directe ou indirecte) et le nombre de similitudes envoyant deux points sur deux points.",
+      "cours": "Une **similitude** de rapport $k>0$ multiplie toutes les distances par $k$. En divisant par $k$, on obtient une isométrie : les similitudes du plan sont donc les $z\\mapsto az+b$ (**directes**, elles conservent les angles orientés) et les $z\\mapsto a\\bar z+b$ (**indirectes**, elles les changent en leurs opposés), avec $a\\neq0$ et un rapport égal à $|a|$. Elles multiplient les aires par $k^2$ et conservent les angles géométriques, l'alignement, le parallélisme et l'orthogonalité.\n\nUne similitude de rapport $k\\neq1$ a un unique point fixe, son **centre** $\\Omega$ ; c'est une application contractante ou dilatante autour de $\\Omega$. Pour une similitude directe, $\\omega=\\frac{b}{1-a}$ et $f(z)-\\omega=a(z-\\omega)$ : homothétie de rapport $k$ et rotation d'angle $\\arg a$, de même centre. Pour une similitude indirecte, on ne peut pas utiliser $\\frac{b}{1-a}$ : on résout $z=a\\bar z+b$ avec son conjugué, ce qui donne $\\omega=\\frac{a\\bar b+b}{1-|a|^2}$, puis $f(z)-\\omega=a\\,\\overline{z-\\omega}$ : $f$ est la composée de l'homothétie de centre $\\Omega$ et de rapport $k$ et de la réflexion d'axe la droite passant par $\\Omega$ dirigée par $e^{i\\theta/2}$ ($\\theta=\\arg a$). Cet axe et la droite perpendiculaire en $\\Omega$ sont les deux droites globalement invariantes par $f$.\n\nMéthode : pour trouver la similitude qui envoie $A$ sur $A'$ et $B$ sur $B'$ ($A\\neq B$, $A'\\neq B'$), on résout $a\\alpha+b=\\alpha'$, $a\\beta+b=\\beta'$ (directe) ou $a\\bar\\alpha+b=\\alpha'$, $a\\bar\\beta+b=\\beta'$ (indirecte) : il y en a exactement une de chaque sorte.\n\nPièges : une similitude de rapport $1$ peut n'avoir aucun point fixe (translation, symétrie glissée) ; le centre d'une similitude indirecte n'est pas $\\frac{b}{1-a}$ ; le rapport est $|a|$, qui est positif, même si $a$ est un réel négatif ; une similitude multiplie les aires par $k^2$, pas par $k$.",
+      "hypotheses": [
+        "$f:\\mathbb{C}\\to\\mathbb{C}$ et $k>0$ vérifient $|f(z)-f(z')|=k|z-z'|$ pour tous $z,z'\\in\\mathbb{C}$.",
+        "Pour l'existence et l'unicité du centre : $k\\neq1$.",
+        "Pour la dernière propriété : $A\\neq B$ et $A'\\neq B'$."
+      ],
+      "hypotheses_pieges": [
+        "$k=1$ (à la place de $k\\neq1$) pour l'existence du centre.",
+        "$|f(z)-f(z')|\\le k|z-z'|$ pour tous $z,z'$ (à la place de l'égalité).",
+        "$A\\neq B$ et $A'=B'$ (à la place de $A'\\neq B'$)."
+      ],
+      "enonce": "On identifie le plan euclidien orienté à $\\mathbb{C}$. Une **similitude** de rapport $k>0$ est une application $f:\\mathbb{C}\\to\\mathbb{C}$ telle que $|f(z)-f(z')|=k|z-z'|$ pour tous $z,z'\\in\\mathbb{C}$.\n\n- Les similitudes sont exactement les applications $z\\mapsto az+b$ (**directes**) et $z\\mapsto a\\bar z+b$ (**indirectes**), avec $a\\in\\mathbb{C}^*$ et $b\\in\\mathbb{C}$ ; leur rapport est $|a|$. Elles forment un groupe pour la composition, dont les similitudes directes forment un sous-groupe.\n- Une similitude $f$ de rapport $k\\neq1$ admet un unique point fixe $\\Omega$, son **centre**, d'affixe $\\omega$. Si $f(z)=az+b$, $\\omega=\\frac{b}{1-a}$ et $f$ est la composée, commutative, de l'homothétie de centre $\\Omega$ et de rapport $k$ et de la rotation de centre $\\Omega$ et d'angle $\\arg a$. Si $f(z)=a\\bar z+b$, $\\omega=\\frac{a\\bar b+b}{1-|a|^2}$ et $f$ est la composée, commutative, de l'homothétie de centre $\\Omega$ et de rapport $k$ et de la réflexion d'axe la droite passant par $\\Omega$ et dirigée par $e^{i\\theta/2}$, où $\\theta$ est un argument de $a$.\n- Si $A\\neq B$ et $A'\\neq B'$, il existe exactement deux similitudes qui envoient $A$ sur $A'$ et $B$ sur $B'$ : une directe et une indirecte.",
+      "enonce_trous": "Une similitude indirecte du plan de rapport $k\\neq1$ admet {{1}}, et c'est la composée de l'homothétie de rapport $k$ centrée en ce point et {{2}}. Si $A\\neq B$ et $A'\\neq B'$, il existe exactement {{3}} similitudes du plan qui envoient $A$ sur $A'$ et $B$ sur $B'$.",
+      "trous": [
+        {
+          "reponse": "un unique point fixe",
+          "leurres": [
+            "aucun point fixe",
+            "une droite de points fixes",
+            "exactement deux points fixes"
+          ]
+        },
+        {
+          "reponse": "d'une réflexion d'axe passant par ce point",
+          "leurres": [
+            "d'une rotation de centre ce point",
+            "d'une symétrie glissée",
+            "d'une translation"
+          ]
+        },
+        {
+          "reponse": "deux",
+          "leurres": [
+            "une",
+            "quatre",
+            "une infinité de"
+          ]
+        }
+      ],
+      "demo": "**Forme complexe.** Si $f$ est une similitude de rapport $k$, $g=\\frac1kf$ vérifie $|g(z)-g(z')|=|z-z'|$ : c'est une isométrie, donc (classification plane) $g(z)=\\alpha z+\\beta$ ou $g(z)=\\alpha\\bar z+\\beta$ avec $|\\alpha|=1$, et $f=kg$ est de la forme annoncée avec $|a|=k$. Réciproquement, $|az+b-az'-b|=|a||z-z'|$ et de même avec $\\bar z$. Les composées s'écrivent $a(a'z+b')+b$, $a\\,\\overline{a'\\bar z+b'}+b=a\\bar a'z+a\\bar b'+b$, etc. : une composée de deux similitudes est une similitude, directe si et seulement si les deux sont de même nature, et la réciproque de $z\\mapsto a\\bar z+b$ est $z\\mapsto\\frac{\\bar z-\\bar b}{\\bar a}$. Ces écritures sont uniques ($a$, $b$ se lisent sur $f(0)$, $f(1)$), et aucune application n'est à la fois $z\\mapsto az+b$ et $z\\mapsto a'\\bar z+b'$ avec $a,a'\\neq0$ : en $0$, $1$ et $i$, on aurait $b=b'$, $a=a'$ et $ai=-a'i$, d'où $a=0$.\n\n**Centre d'une similitude directe.** Si $k\\neq1$, alors $a\\neq1$, l'équation $\\omega=a\\omega+b$ a l'unique solution $\\omega=\\frac{b}{1-a}$, et $f(z)-\\omega=a(z-\\omega)=k\\,e^{i\\theta}(z-\\omega)$ : l'homothétie $z\\mapsto\\omega+k(z-\\omega)$ et la rotation $z\\mapsto\\omega+e^{i\\theta}(z-\\omega)$ commutent et ont pour composée $f$.\n\n**Centre d'une similitude indirecte.** Si $z=a\\bar z+b$, en conjuguant, $\\bar z=\\bar az+\\bar b$, donc $z=a(\\bar az+\\bar b)+b=|a|^2z+a\\bar b+b$ et $z=\\frac{a\\bar b+b}{1-k^2}$ : il y a au plus un point fixe. Réciproquement, pour $\\omega=\\frac{a\\bar b+b}{1-k^2}$, $a\\bar\\omega+b=\\frac{a(\\bar ab+\\bar b)+(1-k^2)b}{1-k^2}=\\frac{k^2b+a\\bar b+b-k^2b}{1-k^2}=\\omega$. Alors $f(z)-\\omega=a\\bar z+b-(a\\bar\\omega+b)=a\\,\\overline{z-\\omega}$. Avec $a=ke^{i\\theta}$, soit $s(z)=\\omega+e^{i\\theta}\\,\\overline{z-\\omega}$ : c'est un antidéplacement qui fixe $\\Omega$, donc une réflexion d'axe passant par $\\Omega$, et elle fixe $\\omega+te^{i\\theta/2}$ ($t$ réel) car $e^{i\\theta}\\,\\overline{te^{i\\theta/2}}=te^{i\\theta/2}$ : son axe est dirigé par $e^{i\\theta/2}$. Pour $h(z)=\\omega+k(z-\\omega)$, $h(s(z))=\\omega+ke^{i\\theta}\\,\\overline{z-\\omega}=f(z)$, et $s(h(z))=\\omega+e^{i\\theta}\\,\\overline{k(z-\\omega)}=f(z)$ car $k$ est réel.\n\n**Deux points.** Notons $\\alpha,\\beta,\\alpha',\\beta'$ les affixes. Une similitude directe convient si et seulement si $a\\alpha+b=\\alpha'$ et $a\\beta+b=\\beta'$, soit $a=\\frac{\\beta'-\\alpha'}{\\beta-\\alpha}$ (non nul car $A'\\neq B'$) et $b=\\alpha'-a\\alpha$ : une seule. Une similitude indirecte convient si et seulement si $a\\bar\\alpha+b=\\alpha'$ et $a\\bar\\beta+b=\\beta'$, soit $a=\\frac{\\beta'-\\alpha'}{\\overline{\\beta-\\alpha}}$ et $b=\\alpha'-a\\bar\\alpha$ : une seule. Elles sont distinctes (l'une est directe, l'autre non) : il y en a exactement deux.",
+      "exemple": "Soit $f(z)=2i\\bar z+1$, similitude indirecte de rapport $2$. Son centre a pour affixe $\\omega=\\frac{2i\\cdot1+1}{1-4}=-\\frac{1+2i}{3}$ ; on vérifie $2i\\,\\bar\\omega+1=2i\\cdot\\frac{-1+2i}{3}+1=\\frac{-2i-4+3}{3}=\\omega$. Comme $\\frac{\\pi}{2}$ est un argument de $2i$, $f$ est la composée de l'homothétie de centre $\\Omega$ et de rapport $2$ et de la réflexion d'axe la droite passant par $\\Omega$ dirigée par $e^{i\\pi/4}$, c'est-à-dire la droite $y=x-\\frac13$. La formule des similitudes directes donnerait $\\frac{1}{1-2i}=\\frac{1+2i}{5}$, qui n'est pas un point fixe de $f$.",
+      "contre_exemple": "- **Rapport $1$** : $z\\mapsto z+1$ (directe) et $z\\mapsto\\bar z+1$ (indirecte, symétrie glissée) sont des similitudes de rapport $1$ sans point fixe.\n- **Inégalité au lieu de l'égalité** : une application constante vérifie $|f(z)-f(z')|\\le k|z-z'|$ pour tout $k>0$, mais n'est pas une similitude.\n- **Images confondues** : si $A\\neq B$ et $A'=B'$, aucune similitude n'envoie $A$ et $B$ sur $A'$, puisqu'une similitude est injective.\n- **Une bijection affine n'est pas une similitude** en général : $(x,y)\\mapsto(2x,y)$ multiplie par $2$ la distance de $(0,0)$ à $(1,0)$ mais conserve celle de $(0,0)$ à $(0,1)$.",
+      "affirmations": [
+        {
+          "texte": "Une similitude du plan qui conserve les angles orientés est de la forme $z\\mapsto az+b$ avec $a\\neq0$.",
+          "vrai": true,
+          "justification": "Une similitude indirecte $z\\mapsto a\\bar z+b$ change chaque angle orienté de vecteurs en son opposé : elle transforme l'angle droit direct $(1,i)$ en un angle droit indirect."
+        },
+        {
+          "texte": "Toute similitude du plan admet un point fixe.",
+          "vrai": false,
+          "contre_exemple": "La translation $z\\mapsto z+1$ est une similitude de rapport $1$ sans point fixe."
+        },
+        {
+          "texte": "La composée de deux similitudes indirectes est une similitude directe.",
+          "vrai": true,
+          "justification": "$a\\,\\overline{a'\\bar z+b'}+b=a\\bar a'z+a\\bar b'+b$."
+        },
+        {
+          "texte": "Une similitude de rapport $k$ multiplie les aires par $k$.",
+          "vrai": false,
+          "contre_exemple": "L'homothétie $z\\mapsto2z$, de rapport $2$, envoie le carré unité, d'aire $1$, sur un carré de côté $2$, d'aire $4=2^2$."
+        },
+        {
+          "texte": "Le centre de la similitude $z\\mapsto a\\bar z+b$, avec $|a|\\neq1$, a pour affixe $\\frac{b}{1-a}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(z)=2i\\bar z+1$, $\\frac{1}{1-2i}=\\frac{1+2i}{5}$ a pour image $2i\\cdot\\frac{1-2i}{5}+1=\\frac{9+2i}{5}$ : ce n'est pas un point fixe ; le centre est $-\\frac{1+2i}{3}$."
+        }
+      ],
+      "prerequis": [
+        "geo-l3-euclidienne-plan",
+        "geo-l1-complexes-similitudes"
+      ]
+    },
+    {
+      "id": "geo-l3-euclidienne-figures",
+      "theme": "geometrie",
+      "niveau": "l3",
+      "chapitre": "geo-l3-euclidienne",
+      "type": "theoreme",
+      "titre": "Groupe des isométries qui conservent une partie finie",
+      "recto": "Pour une partie finie $X$ d'un espace affine euclidien, non contenue dans un hyperplan, décrire le groupe des isométries qui conservent $X$ (point fixe, action sur $X$, permutations réalisées) et l'appliquer au tétraèdre régulier.",
+      "cours": "Le groupe des isométries qui conservent une figure mesure sa symétrie. Pour un polygone ou un polyèdre, conserver la figure revient à conserver l'ensemble $X$ de ses sommets : une isométrie est affine, donc conserve les enveloppes convexes, et envoie les sommets (points extrémaux) sur les sommets. On se ramène ainsi à une partie finie $X$.\n\nTrois outils : (1) toute isométrie qui conserve $X$ fixe son **isobarycentre** $G$ (une application affine conserve les barycentres), donc s'écrit $M\\mapsto G+\\vec f(\\overrightarrow{GM})$ ; (2) si $X$ n'est contenu dans aucun hyperplan, l'action sur $X$ est **fidèle** : une isométrie est déterminée par la permutation des sommets qu'elle induit, et le groupe est un sous-groupe de $\\mathfrak{S}(X)$ ; (3) une permutation de $X$ est réalisée par une isométrie si et seulement si elle **conserve les distances** entre points de $X$. Le cardinal du groupe se calcule alors par la relation orbite-stabilisateur, sur les sommets, les arêtes ou les faces.\n\nExemples : le rectangle non carré et le losange non carré ont un groupe à $4$ éléments (identité, symétrie centrale, deux réflexions), non cyclique ; le polygone régulier à $n$ sommets a le groupe diédral à $2n$ éléments ; le tétraèdre régulier a $24$ isométries, qui réalisent toutes les permutations des sommets, dont $12$ déplacements (permutations paires) ; le cube en a $48$, dont $24$ déplacements.\n\nPièges : pour une figure plane vue dans l'espace, l'action n'est plus fidèle (la réflexion par rapport au plan de la figure fixe tous ses points) ; une partie infinie peut avoir un groupe infini et aucun point fixe commun ; et une permutation des sommets n'est pas forcément réalisée par un **déplacement**, même quand elle l'est par une isométrie.",
+      "hypotheses": [
+        "$X$ est une partie finie non vide d'un espace affine euclidien $E$ de dimension $n\\ge1$.",
+        "$X$ n'est contenue dans aucun hyperplan affine de $E$.",
+        "Les éléments de $\\mathrm{Is}(X)$ sont des isométries $f$ de $E$ telles que $f(X)=X$."
+      ],
+      "hypotheses_pieges": [
+        "$X$ est une partie infinie de $E$ (à la place d'une partie finie).",
+        "$X$ est contenue dans un hyperplan affine de $E$ (à la place de n'être contenue dans aucun)."
+      ],
+      "enonce": "Soient $E$ un espace affine euclidien de dimension $n\\ge1$ et $X$ une partie finie non vide de $E$, contenue dans aucun hyperplan affine. On note $\\mathrm{Is}(X)$ l'ensemble des isométries $f$ de $E$ telles que $f(X)=X$, et $G$ l'isobarycentre de $X$.\n\n- $\\mathrm{Is}(X)$ est un sous-groupe de $\\mathrm{Is}(E)$ ; tout $f\\in\\mathrm{Is}(X)$ fixe $G$, et $f\\mapsto\\vec f$ est un morphisme injectif de $\\mathrm{Is}(X)$ dans $\\mathrm{O}(\\vec E)$.\n- $\\mathrm{Is}(X)$ opère sur $X$ par $f\\cdot A=f(A)$, et cette action est fidèle : $f\\mapsto f_{|X}$ est un morphisme injectif de $\\mathrm{Is}(X)$ dans le groupe $\\mathfrak{S}(X)$ des permutations de $X$. En particulier, $\\mathrm{Is}(X)$ est fini et son cardinal divise $|X|!$.\n- Une permutation $\\sigma$ de $X$ est la restriction d'un élément de $\\mathrm{Is}(X)$ si et seulement si $d(\\sigma(A),\\sigma(B))=d(A,B)$ pour tous $A,B\\in X$.\n- **Tétraèdre régulier.** Si $n=3$ et si $X=\\{A,B,C,D\\}$ est l'ensemble des sommets d'un tétraèdre régulier, $f\\mapsto f_{|X}$ est un isomorphisme de $\\mathrm{Is}(X)$ sur $\\mathfrak{S}(X)$, qui envoie le sous-groupe des déplacements de $\\mathrm{Is}(X)$ sur le groupe alterné de $X$ : $|\\mathrm{Is}(X)|=24$, et $12$ de ces isométries sont des déplacements.",
+      "enonce_trous": "Soit $X$ une partie finie non vide d'un espace affine euclidien $E$, contenue dans aucun hyperplan affine. Toute isométrie qui conserve $X$ fixe {{1}}, et l'application $f\\mapsto f_{|X}$ est un morphisme {{2}} du groupe de ces isométries dans le groupe des permutations de $X$, dont l'image est formée des permutations qui {{3}}.",
+      "trous": [
+        {
+          "reponse": "l'isobarycentre de $X$",
+          "leurres": [
+            "chaque point de $X$",
+            "au moins un point de $X$",
+            "chaque point d'une droite passant par l'isobarycentre de $X$"
+          ]
+        },
+        {
+          "reponse": "injectif",
+          "leurres": [
+            "surjectif",
+            "bijectif",
+            "de noyau à deux éléments"
+          ]
+        },
+        {
+          "reponse": "conservent les distances entre les points de $X$",
+          "leurres": [
+            "fixent au moins un point de $X$",
+            "sont paires",
+            "sont des cycles"
+          ]
+        }
+      ],
+      "demo": "**Sous-groupe, point fixe.** L'identité conserve $X$, et si $f(X)=X$ et $h(X)=X$, alors $f\\circ h(X)=X$ et $f^{-1}(X)=X$ ($f$ est bijective). Une isométrie est affine, donc conserve les barycentres : $f(G)$ est l'isobarycentre de $f(X)=X$, c'est-à-dire $G$. Ainsi $f(M)=G+\\vec f(\\overrightarrow{GM})$, et $f$ est déterminée par $\\vec f$ : le morphisme $f\\mapsto\\vec f$ est injectif.\n\n**Fidélité.** Si $f$ fixe tous les points de $X$, $\\vec f$ fixe tous les vecteurs $\\overrightarrow{GA}$, $A\\in X$, donc leurs différences $\\overrightarrow{A_0A}$ ; comme $X$ n'est contenue dans aucun hyperplan, ces vecteurs engendrent $\\vec E$, donc $\\vec f=\\mathrm{id}$ et $f=\\mathrm{id}$. Le morphisme $f\\mapsto f_{|X}$ (on a $(f\\circ h)_{|X}=f_{|X}\\circ h_{|X}$) est donc injectif, et son image est un sous-groupe de $\\mathfrak{S}(X)$, dont le cardinal divise $|X|!$ par le théorème de Lagrange.\n\n**Permutations réalisées.** La restriction d'une isométrie conserve évidemment les distances. Réciproquement, soit $\\sigma$ une permutation de $X$ qui les conserve. Comme $X$ engendre $E$, on peut choisir $A_0,\\dots,A_n\\in X$ affinement indépendants ; posons $\\vec e_i=\\overrightarrow{A_0A_i}$ et $\\vec e\\,'_i=\\overrightarrow{\\sigma(A_0)\\sigma(A_i)}$. Par $\\langle\\vec e_i,\\vec e_j\\rangle=\\frac12\\left(A_0A_i^2+A_0A_j^2-A_iA_j^2\\right)$, les deux familles ont la même matrice de Gram, inversible car $(\\vec e_i)$ est une base. L'application linéaire $\\varphi$ telle que $\\varphi(\\vec e_i)=\\vec e\\,'_i$ conserve donc le produit scalaire (par bilinéarité), donc $\\varphi\\in\\mathrm{O}(\\vec E)$, et $f:M\\mapsto\\sigma(A_0)+\\varphi(\\overrightarrow{A_0M})$ est une isométrie qui coïncide avec $\\sigma$ en $A_0,\\dots,A_n$. Un point $P$ est déterminé par ses distances aux $A_i$ : de $A_iP^2=A_0P^2-2\\langle\\vec e_i,\\overrightarrow{A_0P}\\rangle+A_0A_i^2$, on tire les produits scalaires $\\langle\\vec e_i,\\overrightarrow{A_0P}\\rangle$, donc $\\overrightarrow{A_0P}$. Pour $P\\in X$, $f(P)$ et $\\sigma(P)$ sont à la même distance $A_iP$ de chacun des points $f(A_i)=\\sigma(A_i)$, affinement indépendants, donc $f(P)=\\sigma(P)$. Ainsi $f(X)=\\sigma(X)=X$ et $f_{|X}=\\sigma$.\n\n**Tétraèdre régulier.** Les six distances entre sommets sont égales, donc toute permutation de $X$ les conserve : $f\\mapsto f_{|X}$ est surjective, c'est un isomorphisme sur $\\mathfrak{S}(X)$, et $|\\mathrm{Is}(X)|=24$. La transposition qui échange $A$ et $B$ est réalisée par la réflexion par rapport au plan médiateur de $[AB]$, qui contient $C$ et $D$ ($CA=CB$, $DA=DB$) et qui est un antidéplacement. Le morphisme $\\sigma\\mapsto\\det\\vec f$, où $f$ réalise $\\sigma$, vaut donc $-1$ sur chaque transposition ; les transpositions engendrant $\\mathfrak{S}(X)$, c'est la signature. Les déplacements correspondent exactement aux permutations paires : il y en a $12$.",
+      "exemple": "Soit $X$ l'ensemble des sommets $A(2,1)$, $B(-2,1)$, $C(-2,-1)$, $D(2,-1)$ d'un rectangle non carré. Les distances sont $AB=CD=4$, $BC=DA=2$ et $AC=BD=2\\sqrt5$, trois valeurs distinctes. Une permutation qui conserve les distances doit envoyer la paire $\\{A,B\\}$ sur $\\{A,B\\}$ ou sur $\\{C,D\\}$, et la paire $\\{A,C\\}$ sur une diagonale ; on trouve exactement $4$ permutations : l'identité, $(A\\,B)(C\\,D)$, $(A\\,D)(B\\,C)$ et $(A\\,C)(B\\,D)$, réalisées par l'identité, la réflexion d'axe $x=0$, la réflexion d'axe $y=0$ et la symétrie de centre $O$. C'est un groupe à $4$ éléments dont tous les éléments non triviaux sont d'ordre $2$ : il n'est pas cyclique. Pour le carré, on retrouve le groupe diédral à $8$ éléments.",
+      "contre_exemple": "- **Partie contenue dans un hyperplan** : pour les sommets $X$ d'un triangle équilatéral de l'espace, la réflexion par rapport au plan du triangle fixe tous les points de $X$ sans être l'identité : l'action n'est pas fidèle, et $\\mathrm{Is}(X)$ a $12$ éléments ($6$ isométries du plan du triangle, composées ou non avec cette réflexion), et $12$ ne divise pas $3!=6$.\n- **Partie infinie** : $X=\\mathbb{Z}\\times\\{0\\}$ dans le plan est conservée par toutes les translations de vecteur $(m,0)$, $m\\in\\mathbb{Z}$ : $\\mathrm{Is}(X)$ est infini, et aucun point n'est fixé par toutes ses isométries.\n- **Isométrie, mais pas déplacement** : la transposition de deux sommets d'un tétraèdre régulier n'est réalisée que par une réflexion.",
+      "affirmations": [
+        {
+          "texte": "Le groupe des isométries du plan qui conservent un rectangle non carré a $8$ éléments.",
+          "vrai": false,
+          "contre_exemple": "Il en a $4$ : seules $4$ permutations des sommets conservent les trois longueurs distinctes (côtés et diagonales) ; le carré, lui, en a $8$."
+        },
+        {
+          "texte": "Toute permutation des sommets d'un tétraèdre régulier est réalisée par une isométrie de l'espace.",
+          "vrai": true,
+          "justification": "Toutes les distances entre sommets sont égales, donc toute permutation les conserve, et une telle permutation est réalisée par une isométrie."
+        },
+        {
+          "texte": "Toute permutation des sommets d'un tétraèdre régulier est réalisée par un déplacement.",
+          "vrai": false,
+          "contre_exemple": "La transposition de deux sommets n'est réalisée que par la réflexion par rapport au plan médiateur de l'arête qui les joint (l'isométrie qui la réalise est unique), qui n'est pas un déplacement."
+        },
+        {
+          "texte": "Si $X$ est une partie finie non vide d'un espace affine euclidien, toute isométrie qui conserve $X$ fixe l'isobarycentre de $X$.",
+          "vrai": true,
+          "justification": "Une isométrie est affine, donc conserve les barycentres : elle envoie l'isobarycentre de $X$ sur celui de $f(X)=X$."
+        },
+        {
+          "texte": "Le groupe des isométries du plan qui conservent un losange non carré est cyclique.",
+          "vrai": false,
+          "contre_exemple": "Il a $4$ éléments (identité, symétrie centrale, réflexions d'axes les deux diagonales), tous d'ordre au plus $2$ : aucun n'est d'ordre $4$."
+        }
+      ],
+      "prerequis": [
+        "gr-l3-actions-geometrie",
+        "gr-l3-actions-orbites",
+        "geo-l2-affine-barycentres",
+        "gr-l2-symetrique-signature",
+        "gr-l2-symetrique-transpositions",
+        "geo-l3-euclidienne-decomposition"
+      ]
+    }
+  ]
+}

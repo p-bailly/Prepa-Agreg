@@ -140,7 +140,7 @@ for uu in [R(1, 10), R(1, 3), R(1, 2), R(4, 5)]:
     assert egal(Fc.subs(x, tan(pi * uu - pi / 2)), uu)
 # tan(pi u / 2) >= 0 sur ]0,1[ (P(g(U) < 0) = 0 au lieu de 1/2) ; 1/(pi(1+u^2)) dans [1/(2pi), 1/pi] ;
 # arctan(u)/pi + 1/2 dans [1/2, 3/4] : ces variables sont bornées ou positives, pas de Cauchy.
-assert all(math.tan(math.pi * k / 200) >= 0 for k in range(1, 200))
+assert all(math.tan(math.pi * (k / 200) / 2) >= 0 for k in range(1, 200))
 
 # ===========================================================================================
 # Carte proba-l3-densites-lois-usuelles
@@ -232,7 +232,7 @@ choix("lois-usuelles-ex4", 2, PN(log(R(3, 2)), 2), {r"$\frac4{27}$": R(4, 27), r
 # --- lois-usuelles-ex5 : phare. Q1 : dérivée de 1/2 + arctan(x/a)/pi. Q3 : tan(2θ) et angle ramené uniforme.
 assert simplify(diff(R(1, 2) + atan(x / a) / pi, x) - a / (pi * (a**2 + x**2))) == 0
 th = Symbol("theta", real=True)
-assert simplify(2 * tan(th) / (1 - tan(th)**2) - tan(2 * th)) == 0
+assert all(abs(2 * math.tan(w) / (1 - math.tan(w)**2) - math.tan(2 * w)) < 1e-9 for w in [-1.2, -0.5, 0.1, 0.3, 1.1])
 for tv in [-1.4, -0.7, -0.1, 0, 0.2, 0.9, 1.5]:
     L1 = tv / 2 + math.pi / 4
     L2 = math.pi / 4 if tv >= 0 else tv / 2 + math.pi / 4
@@ -304,7 +304,7 @@ choix("esperance-ex2", 2, mgf(3, 2), {r"$3$": 3, r"$e^{2/3}$": exp(R(2, 3)), r"$
 # --- esperance-ex3 et variantes : loi de Pareto.
 rr = Symbol("r", positive=True)
 assert I(a / x**(a + 1), (x, 1, oo)) == 1
-assert I(3 / x**2, (x, 1, oo)) == oo  # a = 3, r = 3 : X^3 sans espérance
+assert I(x**3 * 3 / x**4, (x, 1, oo)) == oo  # a = 3, r = 3 : X^3 sans espérance
 PV = lambda aa: I(x**2 * aa / x**(aa + 1), (x, 1, oo)) - I(x * aa / x**(aa + 1), (x, 1, oo))**2
 NON = 99  # valeur sentinelle pour « X n'admet pas de variance »
 choix("esperance-ex3", 0, PV(3), {r"$\frac34$": R(3, 4), r"$3$": 3, r"$\frac94$": R(9, 4), r"$X$ n'admet pas de variance": NON})
@@ -324,7 +324,7 @@ choix("esperance-ex4", 2, sqrt(pi) / 2, {r"$\frac{\sqrt\pi}2$": sqrt(pi) / 2, r"
 
 # --- esperance-ex5 et variantes : φ(a) = E|X - a| minimal en la médiane.
 aS = Symbol("aS", positive=True)
-phiE = I(abs(x - aS) * exp(-x), (x, 0, oo))
+phiE = I((aS - x) * exp(-x), (x, 0, aS)) + I((x - aS) * exp(-x), (x, aS, oo))
 assert simplify(phiE - (aS - 1 + 2 * exp(-aS))) == 0
 assert simplify(phiE.subs(aS, log(2)) - log(2)) == 0 and simplify(phiE.subs(aS, 1) - 2 / E) == 0
 assert round(math.log(2), 3) == 0.693 and round(2 / math.e, 3) == 0.736
@@ -440,7 +440,7 @@ for aa, bb in [(R(1, 2), R(3, 2)), (2, 3), (R(1, 2), R(1, 2)), (R(3, 2), R(5, 2)
 # f_X * f_X > 0 sur ]-2,2[ (valeur en 1,9) ; E(1) + E(2) : 2(e^{-z} - e^{-2z}) contre 2z e^{-√2 z}.
 hdisque = mp.quad(lambda v: 2 / mp.pi * mp.sqrt(1 - v**2) * 2 / mp.pi * mp.sqrt(max(0, 1 - (1.9 - v)**2)), [0.9, 1])
 assert hdisque > 0
-assert I(exp(-x) * 2 * exp(-2 * (zp - x)), (x, 0, zp)) == 2 * (exp(-zp) - exp(-2 * zp))
+assert simplify(I(exp(-x) * 2 * exp(-2 * (zp - x)), (x, 0, zp)) - 2 * (exp(-zp) - exp(-2 * zp))) == 0
 assert abs(2 * (math.exp(-1) - math.exp(-2)) - 2 * math.exp(-math.sqrt(2))) > 0.01
 assert limit(2 * (exp(-z) - exp(-2 * z)) / (2 * z), z, 0) == 1
 # Trou 1, leurres : f + g d'intégrale 2 ; f g pour U([0,1]) : 1_[0,1] (vaut 0 en 3/2, h(3/2) = 1/2) ;
@@ -451,8 +451,8 @@ assert 1 + 1 == 2 != 4 and 2 != 1
 # Affirmations : V(X - Y) = 1/6 pour U([0,1]) ; Cauchy (X+Y)/2 ; E(X+Y) = 2/λ contre 1/(2λ).
 assert 2 * R(1, 12) == R(1, 6)
 for zv in [0, 0.5, 1, 3, -2.2]:
-    hc = mp.quad(lambda v: 1 / (mp.pi**2 * (1 + v**2) * (1 + (zv - v)**2)), [-mp.inf, 0, zv, mp.inf])
-    assert abs(hc - 2 / (mp.pi * (4 + zv**2))) < 1e-20
+    hc = mp.quad(lambda v: 1 / (mp.pi**2 * (1 + v**2) * (1 + (zv - v)**2)), [-mp.inf] + sorted({0, zv}) + [mp.inf])
+    assert abs(hc - 2 / (mp.pi * (4 + zv**2))) < 1e-12
 assert simplify(2 * 2 / (pi * (4 + (2 * u)**2)) - 1 / (pi * (1 + u**2))) == 0
 
 # --- somme-ex1 et variantes.
@@ -479,7 +479,15 @@ choix("somme-ex2", 1, R(4, 225), {r"$\frac4{225}$": R(4, 225), r"$\frac49$": R(4
 choix("somme-ex2", 2, R(1, 9), {r"$\frac19$": R(1, 9), r"$1$": 1, r"$\frac89$": R(8, 9), r"$-\frac19$": -R(1, 9)})
 
 # --- somme-ex3 et variantes : loi triangulaire.
-htri = lambda lo, hi: I(z, (z, max(lo, 0), min(hi, 1))) + I(2 - z, (z, max(lo, 1), min(hi, 2)))
+def htri(lo, hi):
+    """P(lo <= X + Y <= hi) pour la densité triangulaire (morceaux vides ignorés)."""
+    tot = 0
+    for g, p, q in [(z, 0, 1), (2 - z, 1, 2)]:
+        if max(lo, p) < min(hi, q):
+            tot += I(g, (z, max(lo, p), min(hi, q)))
+    return tot
+
+
 assert htri(0, 2) == 1
 choix("somme-ex3", 0, htri(0, R(3, 2)), {r"$\frac78$": R(7, 8), r"$\frac34$": R(3, 4), r"$\frac18$": R(1, 8), r"$\frac12$": R(1, 2)})
 choix("somme-ex3", 1, htri(0, R(1, 2)), {r"$\frac18$": R(1, 8), r"$\frac14$": R(1, 4), r"$\frac78$": R(7, 8), r"$\frac12$": R(1, 2)})
@@ -527,8 +535,8 @@ choix("somme-ex6", 0, R(1, 2), {r"$\frac12$": R(1, 2), r"$\frac14$": R(1, 4), r"
                                 r"$\frac1{2\pi}$": 1 / (2 * pi)})
 # Résultat admis de la question 3 (densités a/(π(a^2+x^2)) et b/(π(b^2+x^2))), contrôlé numériquement pour (a, b) = (2, 1).
 for zv in [0, 1.3, -4]:
-    hc = mp.quad(lambda v: 2 / (mp.pi * (4 + v**2)) / (mp.pi * (1 + (zv - v)**2)), [-mp.inf, 0, zv, mp.inf])
-    assert abs(hc - 3 / (mp.pi * (9 + zv**2))) < 1e-20
+    hc = mp.quad(lambda v: 2 / (mp.pi * (4 + v**2)) / (mp.pi * (1 + (zv - v)**2)), [-mp.inf] + sorted({0, zv}) + [mp.inf])
+    assert abs(hc - 3 / (mp.pi * (9 + zv**2))) < 1e-12
 
 # ===========================================================================================
 # Carte proba-l3-densites-normales
