@@ -594,6 +594,12 @@ for T in [0.4, 1.3, 2.2, 3.7, 5.5]:
     w = Fv - Mv
     Pp = Mv + tg * (w.dot(tg))  # projeté de F sur la tangente
     assert abs(Pp.norm() - 5) < 1e-10
+# tangentes-ex4, remarque de la correction : tout point P du cercle principal est obtenu ; la droite passant par
+# P = (a cos φ, a sin φ) et orthogonale à FP (F = (c,0)) vérifie la condition de tangence a^2 u^2 + b^2 v^2 = w^2
+ph_, aa_, cc_ = sp.symbols('phi_ a_ c_', positive=True)
+nu_, nv_ = aa_ * sp.cos(ph_) - cc_, aa_ * sp.sin(ph_)
+nw_ = nu_ * aa_ * sp.cos(ph_) + nv_ * aa_ * sp.sin(ph_)
+assert sp.simplify(aa_**2 * nu_**2 + (aa_**2 - cc_**2) * nv_**2 - nw_**2) == 0
 # ex5 : condition de tangence a^2 u^2 + b^2 v^2 = w^2 et trace nulle sur le cercle x^2 + y^2 = a^2 + b^2
 U_, V_, W_ = sp.symbols('U V W', real=True)
 ligne_y = sp.solve(U_ * x + V_ * y - W_, y)[0]
@@ -660,6 +666,14 @@ for (mm, gb, leurres, petit) in [(lam(1, 2), 4 * sp.sqrt(5) / 3, [lam(8, 3), 2 *
     u0 = mm / (s_ * A_)
     assert sp.simplify(eqp - (A_ * (u - u0)**2 + v**2 - C_)) == 0
 # ex4 : AA' = d/cos α (longueur d'un segment de génératrice entre deux plans perpendiculaires à l'axe)
+# sections-cone-ex3 (et v1, v2), contrôle direct dans le plan y = 0 : extrémités du grand axe sur x = ±z
+for (mm_, gb, pb_) in [(lam(1, 2), 4 * sp.sqrt(5) / 3, 4 * sp.sqrt(3) / 3), (lam(1, 3), 3 * sp.sqrt(10) / 4, 3 * sp.sqrt(2) / 2),
+                       (lam(3, 4), lam(40, 7), 8 * sp.sqrt(7) / 7)]:
+    xa_, xb_ = 1 / (1 - mm_), -1 / (1 + mm_)  # x = z et x = -z avec z = m x + 1
+    long_ = sp.sqrt((xa_ - xb_)**2 * (1 + mm_**2))
+    assert sp.simplify(long_ - gb) == 0 and sp.simplify(gb - pb_) > 0
+    # e^2 = 1 - (petit/grand)^2 = cos^2 β / cos^2 α = 2 m^2/(1 + m^2)
+    assert sp.simplify(1 - (pb_ / gb)**2 - 2 * mm_**2 / (1 + mm_**2)) == 0
 
 # ---------------------------------------------------------------------------------------------------------------
 # Exercices de la carte kepler
@@ -689,6 +703,8 @@ for (v02, eb) in [(lam(3, 2), lam(1, 2)), (2, 1), (3, 2)]:
     assert abs(lam_) * pp == eb == abs(v02 - 1)
 assert lam(3, 2) / (1 - lam(1, 4)) == 2 and lam(3, 2) / (1 + lam(1, 2)) == 1
 # leurres d'excentricité : 3/4, 3/2 (ex4) ; 1/2, 2 (v1) ; 1/2, 3 (v2) différents des bonnes valeurs
+# kepler-ex4 v2 : u = 1/3 + (2/3) cos θ, soit r = 3/(1 + 2 cos θ), branche cos θ > -1/2
+assert sp.simplify(1 / (lam(1, 3) + lam(2, 3) * sp.cos(th)) - 3 / (1 + 2 * sp.cos(th))) == 0
 # ex5 : E = K(e^2 - 1)/(2p) et a = -K/(2E)
 ph = sp.symbols('phi', real=True)
 uu_ = (1 + e * sp.cos(ph)) / p
