@@ -267,6 +267,9 @@ for j in range(1, 7):
     assert P_.degree() == j and P_.coeff_monomial(1) == 0 and nul(P_.coeff_monomial(aa_**j) - diff(thf, s) ** j)
 # trou 1 et pièges : s^3 strictement croissante mais g'(0)=0 alors que f'(0) != 0 ; theta(s)=s^2 sur [0,1] (theta''=2)
 assert diff(s**3, s).subs(s, 0) == 0 and diff(s**2, s, 2) == 2 and diff(s**2, s).subs(s, 0) == 0
+# trou 1, leurre « theta de classe C^infini » (relecture) : s^3 est C^infini, bijective de R sur R, et pour f = (t, t^2),
+# régulière, g = f o theta a une vitesse nulle en 0 : l'énoncé obtenu est faux
+assert [diff(c, s).subs(s, 0) for c in (s**3, s**6)] == [0, 0]
 # trou 2 : f(t) = (t, 0), theta(s) = 2s, en s = 1/3 : g'(s) = (2, 0) ; leurres f'(theta(s)) = (1, 0),
 # theta(s) f'(theta(s)) = (2/3, 0), f'(theta'(s)) = (1, 0) : tous faux
 fl, thl = (t, 0 * t), 2 * s
@@ -369,8 +372,15 @@ assert nul(trigsimp(det2((diff(r, th), r), (cos(th / 2 + pi / 2), sin(th / 2 + p
 # spirale : tan V = 1/a ; affirmation e^theta : V = pi/4
 a_ = symbols("a", nonzero=True, real=True)
 assert nul(exp(a_ * th) / diff(exp(a_ * th), th) - 1 / a_)
-# contre-exemple rho = 1 + |theta| : demi-tangentes (1,1) et (-1,1) en M(0) = (1,0)
-assert [1 * 1 + 1 * 0, 1 * 0 + 1 * 1] == [1, 1] and [-1 * 1 + 1 * 0, -1 * 0 + 1 * 1] == [-1, 1]
+# contre-exemple rho = 1 + |theta| : vecteurs dérivés à droite (1,1) et à gauche (-1,1) en M(0) = (1,0) ;
+# demi-tangentes : (M(theta) - M(0))/|theta| tend vers (1,1) pour theta > 0 et vers (1,-1) pour theta < 0
+# (relecture : la demi-tangente de gauche est dirigée par (1,-1), et non par (-1,1))
+Mp = [(1 + th) * cos(th) - 1, (1 + th) * sin(th)]
+Mm = [(1 - th) * cos(th) - 1, (1 - th) * sin(th)]
+assert [limit(c / th, th, 0, "+") for c in Mp] == [1, 1]
+assert [limit(c / (-th), th, 0, "-") for c in Mm] == [1, -1]
+assert [diff(c, th).subs(th, 0) for c in Mp] == [1, 1] and [diff(c, th).subs(th, 0) for c in Mm] == [-1, 1]
+assert det2((1, 1), (1, -1)) != 0
 # affirmations : rho = cos theta en pi/2 : rho = 0, rho' = -1 ; M(theta + pi) = M(theta) ; rho = 1/cos : x = 1
 assert cos(pi / 2) == 0 and diff(cos(th), th).subs(th, pi / 2) == -1
 assert all(nul(cos(th + pi) * c.subs(th, th + pi) - cos(th) * c) for c in uv)

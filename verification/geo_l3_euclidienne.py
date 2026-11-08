@@ -399,6 +399,8 @@ for (A_, B_, C_) in [(0, 4, 1 + 3j), (0, 1, 1j), (-1 + 0.5j, 3 - 1j, 2 + 2j)]:
     rA, rB, rC = rot_(A_, 2 * al), rot_(B_, 2 * bet), rot_(C_, 2 * ga)
     for P in (0.3 + 0.7j, -2 + 1j, 5j):
         assert abs(rA(rB(rC(P))) - P) < 1e-9
+    # contrôle de la correction (relecture) : 2(Â + B̂ + Ĉ) = 2π, partie linéaire identité
+    assert abs(2 * (al + bet + ga) - 2 * cmath.pi) < 1e-12
 
 # geo-l3-euclidienne-plan-ex5 : antidéplacement envoyant [AB] sur [A'B'] ; axe = (IJ), vecteur = projeté de AA'
 
@@ -438,6 +440,8 @@ assert simplify(Rt * Matrix([1, 2, 2]) - Matrix([1, 2, 2])) == zeros(3, 1)
 Rx = Matrix([[1, 0, 0], [0, cos(th), -sin(th)], [0, sin(th), cos(th)]])
 assert simplify((Matrix.diag(-1, 1, 1) * Rx).trace() - (-1 + 2 * cos(th))) == 0
 assert simplify(Matrix.diag(-1, 1, 1) * Rx - Rx * Matrix.diag(-1, 1, 1)) == zeros(3, 3)
+# énoncé de la carte (relecture) : dans la base (a, e2, e3), φ(a) = -a pour φ = diag(-1,1,1) R_θ
+assert Matrix.diag(-1, 1, 1) * Rx * Matrix([1, 0, 0]) == Matrix([-1, 0, 0])
 assert simplify(-Rx.subs(th, t) - Matrix.diag(-1, 1, 1) * Rx.subs(th, t + pi)) == zeros(3, 3)
 # trou 4 : les leurres 2cosθ, -1+2cosθ, 2+2cosθ diffèrent de 1+2cosθ d'une constante non nulle
 for leurre in (2 * cos(th), -1 + 2 * cos(th), 2 + 2 * cos(th)):
@@ -906,6 +910,16 @@ assert len(stab) == 2 and len({p[0] for p, _ in Gp}) == 6
 pyr = [(1, 1, 0), (-1, 1, 0), (-1, -1, 0), (1, -1, 0), (0, 0, 1)]
 Gy = groupe(pyr)
 assert len(Gy) == 8 and all(p[4] == 4 for p, _ in Gy)
+# figures-ex2 v1 (relecture) : 4 réflexions, de plans x = 0, y = 0, x = y, x = -y, et 4 rotations d'axe (Oz)
+refl_y = [M_ for _, M_ in Gy if est_reflexion(M_)]
+assert len(refl_y) == 4 and all(M_ * Matrix([0, 0, 1]) == Matrix([0, 0, 1]) for _, M_ in Gy)
+assert {tuple((M_ - eye(3)).columnspace()[0].normalized()) for M_ in refl_y} <= {
+    tuple(Matrix(v).normalized()) for v in ([1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [1, 1, 0], [-1, -1, 0], [1, -1, 0], [-1, 1, 0])}
+# figures-ex2 (relecture) : prisme triangulaire, 6 déplacements = id, 2 rotations d'axe vertical, 3 demi-tours horizontaux
+dep_p = [M_ for _, M_ in Gp if M_.det() == 1]
+assert sum(1 for M_ in dep_p if M_ == eye(3)) == 1
+assert sum(1 for M_ in dep_p if M_ != eye(3) and M_ * Matrix([0, 0, 1]) == Matrix([0, 0, 1])) == 2
+assert sum(1 for M_ in dep_p if M_.trace() == -1 and M_ * Matrix([0, 0, 1]) == Matrix([0, 0, -1])) == 3
 pc = [(sx_, sy_, sz_) for sx_ in (1, -1) for sy_ in (1, -1) for sz_ in (0, 3)]
 Gc = groupe(pc)
 assert len(Gc) == 16 and len([p for p, _ in Gc if p[0] == 0]) == 2
