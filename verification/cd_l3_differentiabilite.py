@@ -843,11 +843,12 @@ mn, mx_, vals = extremums(fK, None, [((0, s), 0, 2), ((2, s), 0, 2), ((s, 0), 0,
 assert (mn, mx_) == (-1, 4) and Rational(-1, 2) in vals and en(fK, (0, 2)) == 4 == en(fK, (2, 0))
 for (f_, test, mn_, mx2) in [(fT1, lambda a, b: a + b <= 2, Rational(-1, 3), 4), (fT2, lambda a, b: a + b <= 3, -1, 6),
                              (fK, lambda a, b: a <= 2 and b <= 2, -1, 4)]:
+    fl = lambdify((x, y), f_)
     for i in range(0, 61):
         for j in range(0, 61):
             a, b = i * 0.05, j * 0.05
             if test(a, b):
-                val = float(f_.subs({x: a, y: b}))
+                val = fl(a, b)
                 assert mn_ - 1e-12 <= val <= mx2 + 1e-12
 # leurres : (-1/4, 4), (-1/3, 2), (-1/12, 4) ; (-3/4, 6), (-1, 3), (-1/4, 6) ; (-1/2, 4), (-1, 8), (0, 4).
 for bon, leurres in [((Rational(-1, 3), 4), [(Rational(-1, 4), 4), (Rational(-1, 3), 2), (Rational(-1, 12), 4)]),
