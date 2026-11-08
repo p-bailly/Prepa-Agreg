@@ -833,4 +833,32 @@ assert len(centre(D)) == 2 and len({tuple(conj(g, x) for x in D) for g in D}) ==
 D4s = list(groupe_diedral(4)[0])
 assert len(D4s) == 8 and len(stab(D4s, 1, perm_act)) == 2  # q8
 
+# ===========================================================================
+# Ajouts de la relecture indépendante
+# ===========================================================================
+# gr-l3-actions-geometrie (démonstration) : s_k : z -> w^k conj(z) fixe la droite e^{ik pi/n} R point par point et
+# s_k ∘ s_k = id (réflexion d'axe cette droite)
+for n in range(3, 11):
+    w = np.exp(2j * np.pi / n)
+    for k in range(n):
+        for t in (-2.0, -0.5, 1.0, 3.0):
+            z = t * np.exp(1j * k * np.pi / n)
+            assert abs(w ** k * np.conj(z) - z) < 1e-12
+        z = 0.3 + 0.7j
+        assert abs(w ** k * np.conj(w ** k * np.conj(z)) - z) < 1e-12
+
+# q7 : les deux groupes non commutatifs de cardinal 8 (D et le groupe des quaternions, réalisé dans S8) ont un centre à
+# 2 éléments et 4 automorphismes intérieurs
+Q8 = engendre([cyc(8, [1, 2, 3, 4], [5, 6, 7, 8]), cyc(8, [1, 5, 3, 7], [2, 8, 4, 6])])
+assert len(Q8) == 8 and any(comp(x, y) != comp(y, x) for x in Q8 for y in Q8)
+assert sum(1 for x in Q8 if ordre(x) == 2) == 1  # pas isomorphe à D (qui a 5 éléments d'ordre 2)
+assert len(centre(Q8)) == 2 and len({tuple(conj(g, x) for x in Q8) for g in Q8}) == 4
+
+# gr-l3-actions-conjugaison-ex5 : P(G) = k(G)/|G| <= 5/8 pour d'autres groupes non commutatifs (S4, A4, Q8, D_5, D_6)
+for G in [S4, A4, Q8, groupe_diedral(5)[0], groupe_diedral(6)[0]]:
+    G = list(G)
+    commutent = sum(1 for g in G for h in G if comp(g, h) == comp(h, g))
+    assert F(commutent, len(G) ** 2) == F(len(classes(G)), len(G)) <= F(5, 8)
+assert len(classes(Q8)) == 5  # Q8 atteint aussi 5/8
+
 print("gr_l3_actions : toutes les vérifications passent.")
