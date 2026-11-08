@@ -772,8 +772,8 @@ juste_et_leurres(Z(lambda k: mp.cos(2 * k * PI / 3) / (4 * k ** 2 - 1)), mp.mpf(
 # normale-ex3 (+ v2) : N·sup|f - S_N| tend vers 2/π (|t|) et 4 (t²), pas vers les constantes des leurres ;
 # v1 : valeur exacte 2/(π(2N+1)), testée pour N = 1..5 contre la somme directe des |a_{2k}|.
 for Nf in [10 ** 4, 10 ** 5]:
-    r1 = Nf * 4 / PI * mp.nsum(lambda k: 1 / (2 * k + 1) ** 2, [(Nf + 1) // 2, mp.inf])
-    r2 = Nf * 4 * mp.nsum(lambda k: 1 / k ** 2, [Nf + 1, mp.inf])
+    r1 = Nf * 4 / PI * mp.zeta(2, (Nf + 1) // 2 + mp.mpf(1) / 2) / 4     # Σ_{k ≥ K} 1/(2k+1)² = ζ(2, K + 1/2)/4 (Hurwitz)
+    r2 = Nf * 4 * mp.zeta(2, Nf + 1)
     assert abs(r1 - 2 / PI) < 10 / mp.mpf(Nf) and abs(r2 - 4) < 10 / mp.mpf(Nf)
     assert all(abs(r1 - l) > mp.mpf(10) ** -2 for l in [4 / PI, 1]) and all(abs(r2 - l) > 1 for l in [2, 8])
 for Nf in range(1, 6):
