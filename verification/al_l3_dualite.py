@@ -454,4 +454,50 @@ assert A7.rank() == 2 and len(A7.T.nullspace()) == 1 and len(A7.nullspace()) == 
 # q8 : les X^(2k+1) sont libres et forment une famille infinie dans le supplémentaire impair.
 assert Matrix([[1 if j == 2 * k + 1 else 0 for j in range(12)] for k in range(6)]).rank() == 6
 
+# ---------------------------------------------------------------------------
+# Relecture indépendante : leurres des textes à trous (énoncés quantifiés « pour tout »), pièges.
+# ---------------------------------------------------------------------------
+# al-l3-dualite-base-duale, trou 1 (n >= 2) : les formes (x+y, x+y) vérifient e_i*(e_i) = 1 pour la base canonique de R^2
+# sans être la base duale (famille liée) ; e_i*(e_j) = 0 (i != j) est vérifié par (2x, 3y), qui n'est pas la base duale.
+assert all(forme((1, 1), e) == 1 for e in [(1, 0), (0, 1)]) and Matrix([[1, 1], [1, 1]]).rank() == 1
+assert forme((2, 0), (0, 1)) == 0 and forme((0, 3), (1, 0)) == 0 and forme((2, 0), (1, 0)) != 1
+# al-l3-dualite-orthogonalite, trou 1 (n = 2) : F = {0} donne dim F^perp = 2 != dim F = 0 ; F = E donne 0 != n = 2
+# et 0 != n + dim F = 4. Trou 3 : trois formes nulles sur R^2 (p = 3, r = 0) : noyaux d'intersection R^2, de dimension
+# 2 = n - r, alors que n - p = -1, r = 0 et p - r = 3.
+assert len(zeros(1, 2).nullspace()) == 2 and len(eye(2).nullspace()) == 0
+Z3 = zeros(3, 2)
+assert Z3.rank() == 0 and len(Z3.nullspace()) == 2 and 2 not in (2 - 3, 0, 3 - 0)
+# al-l3-dualite-transposee, trous 2 et 3 : u = 0 de R^2 dans R^3 : Ker tu = (R^3)* (dimension 3, donc pas {0}), rg tu = 0,
+# alors que dim E - rg u = 2, dim F - rg u = 3, dim F = 3.
+U0 = zeros(3, 2)
+assert len(U0.T.nullspace()) == 3 and U0.T.rank() == 0 and 0 not in (2 - 0, 3 - 0, 3)
+# al-l3-dualite-transposee, piège 2 : B' = B, C' = (2 f_1, 2 f_2) ; Mat_{B,C'}(u) = A/2, et la matrice de tu dans
+# (C'*, B*) est t(A/2), différente de tA dès que A != 0 (A de l'exemple de la carte).
+A = Matrix([[1, 2, 0], [0, 1, -1]])
+Pc2 = 2 * eye(2)                        # colonnes : coordonnées de C' dans C
+assert (Pc2.inv() * A).T != A.T and (Pc2.inv() * A).T == A.T / 2
+# Piège 1 (contre-exemple de la carte) : u = id de R, base chi = 2x de E*, psi = y de F* : tu(psi) = psi = chi / 2.
+assert R(1, 2) * 2 == 1
+# al-l3-dualite-quotients, trou 3 (E = R^2) : F = E donne dim E/F = 0, alors que dim E = 2 et dim E + dim F = 4 ;
+# F = {0} donne dim E/F = 2 != dim F = 0.
+assert (2 - 2, 2 - 0) == (0, 2) and 0 not in (2, 4) and 2 != 0
+# al-l3-dualite-hyperplans-ex5 : pour n = 1, M_1(K) = K, son seul hyperplan est {0}, sans matrice inversible ;
+# pour n = 2, l'hyperplan des matrices de trace nulle contient E_12 + E_21, inversible.
+assert Matrix([[0, 1], [1, 0]]).trace() == 0 and Matrix([[0, 1], [1, 0]]).det() != 0
+# hyperplans-ex5 Q4 (n = 3) : I - lambda E_ij est dans H = {tr(AM) = 0} pour lambda = tr(A) / a_ji (a_ji != 0).
+A5 = Matrix([[1, 2, 0], [3, 4, 5], [6, 7, 8]])
+lam5 = A5.trace() / A5[2, 0]            # i = 0, j = 2 : tau_A(E_02) = a_20
+M5 = eye(3) - lam5 * E(0, 2)
+assert (A5 * M5).trace() == 0 and M5.det() == 1
+# base-duale-ex4 Q3 (n = 1, [0,1], points 0 et 1/3) : Q = X^2 (X - 1/3)^2 d'intégrale > 0, nulle aux deux points.
+Q3 = X**2 * (X - R(1, 3))**2
+assert integrate(Q3, (X, 0, 1)) > 0 and Q3.subs(X, 0) == 0 and Q3.subs(X, R(1, 3)) == 0
+# orthogonalite-ex4 Q3, cas où 0 n'est pas parmi les a_k : P = X (X - 1)(X + 2), nul en 1 et -2, P'(0) = -2 != 0.
+P4 = X * (X - 1) * (X + 2)
+assert P4.subs(X, 1) == 0 and P4.subs(X, -2) == 0 and diff(P4, X).subs(X, 0) == -2
+# quotients-ex5 Q4 : les trois formes restent libres sur R[X] (déjà sur R_2[X]) ; F contient X(X-1)(5X^2 - 5X + 1)
+# (intégrale nulle), donc F est de dimension infinie mais de codimension 3.
+P5 = X * (X - 1) * (5 * X**2 - 5 * X + 1)
+assert P5.subs(X, 0) == 0 and P5.subs(X, 1) == 0 and integrate(P5, (X, 0, 1)) == 0
+
 print("al_l3_dualite : toutes les vérifications passent.")
