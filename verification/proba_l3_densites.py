@@ -645,4 +645,24 @@ code = {r"$\mathcal{N}(-1,24)$": (-1, 24), r"$\mathcal{N}(-1,14)$": (-1, 14), r"
         r"$\mathcal{N}(1,24)$": (1, 24)}
 assert set(q8["propositions"]) == set(code) and code[q8["propositions"][q8["bonne"]]] == (1 - 2, 4 + 4 * 5)
 
+# ===========================================================================================
+# Compléments de la relecture indépendante
+# ===========================================================================================
+# q7 (explication) : min(X, Y) pour X, Y indépendantes de loi E(1) a pour survie e^{-2z}, donc la densité 2e^{-2z} ;
+# la somme de trois variables indépendantes de loi E(1) a la densité (ze^{-z}) * e^{-z} = z^2/2 e^{-z}.
+assert simplify(-diff(exp(-z) * exp(-z), z) - 2 * exp(-2 * z)) == 0
+assert simplify(I(x * exp(-x) * exp(-(z - x)), (x, 0, z)) - z**2 / 2 * exp(-z)) == 0
+# Cours de la carte densite : le carré d'une variable U([0,1]) a pour fonction de répartition √y sur [0,1], de dérivée
+# 1/(2√y), non bornée en 0.
+assert simplify(diff(sqrt(y), y) - 1 / (2 * sqrt(y))) == 0 and limit(1 / (2 * sqrt(y)), y, 0, "+") == oo
+# somme-ex6 : sur [-A, A], le terme logarithmique (1/z)[ln((1+x^2)/(1+(z-x)^2))] tend vers 0 (testé z = 3, A = 10^8),
+# alors que chaque intégrale ∫ 2x/(z(1+x^2)) dx, prise seule sur [0, +∞[, diverge.
+zz, A = mp.mpf(3), mp.mpf(10)**8
+crochet = (mp.log((1 + A**2) / (1 + (zz - A)**2)) - mp.log((1 + A**2) / (1 + (zz + A)**2))) / zz
+assert abs(crochet) < 1e-6
+assert limit(log(1 + x**2), x, oo) == oo
+# vecteurs-ex5 : l'aiguille (ℓ <= d) n'atteint pas une autre rainure : (ℓ/2) sin θ <= d/2 <= d - X pour X <= d/2.
+for lv in [1, R(1, 2), R(3, 4)]:
+    assert lv / 2 <= R(1, 2)
+
 print("proba_l3_densites : toutes les vérifications passent.")
