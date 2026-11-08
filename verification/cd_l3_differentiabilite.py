@@ -550,19 +550,21 @@ def sup_lignes(Fv, pts):
     return best
 grille = [(i * 0.13, j * 0.17) for i in range(-25, 26) for j in range(-25, 26)] + [(0, 0), (0, float(pi) / 2)]
 for Fv, rep, leurres in [
-    (Matrix([sin(x + y) / 3, cos(x - y) / 3]), Rational(2, 3), (Rational(1, 3), Rational(4, 3), sqrt(2) / 3)),
-    (Matrix([sin(x + y) / 4, cos(x - y) / 4]), Rational(1, 2), (Rational(1, 4), 1, sqrt(2) / 4)),
-    (Matrix([sin(x) / 2 + cos(y) / 4, sin(x - y) / 3]), Rational(3, 4), (Rational(2, 3), Rational(1, 2), Rational(17, 12))),
+    (Matrix([sin(x + y) / 3, cos(x - y) / 3]), Rational(2, 3), (Rational(1, 3), 2 * sqrt(2) / 3, sqrt(2) / 3)),
+    (Matrix([sin(x + y) / 4, cos(x - y) / 4]), Rational(1, 2), (Rational(1, 4), sqrt(2) / 2, sqrt(2) / 4)),
+    (Matrix([sin(x) / 2 + cos(y) / 4, sin(x - y) / 3]), Rational(3, 4), (Rational(2, 3), Rational(1, 2), sqrt(5) / 4)),
 ]:
     sup = sup_lignes(Fv, grille)
     assert abs(sup - float(rep)) < 1e-12  # atteinte en (0,0) ou (0, π/2), jamais dépassée sur la grille
     faux(rep, *leurres)
+    # relecture : tous les leurres sont < 1, sinon la question 2 (« k < 1 ») les éliminerait.
+    assert all(N(l) < 1 for l in leurres)
 # borne théorique v2 : 1/2 + 1/4 = 3/4 et 2/3 < 3/4.
 assert Rational(1, 2) + Rational(1, 4) == Rational(3, 4) > Rational(2, 3)
 
 # cd-l3-differentiabilite-accroissements-finis-ex5 : g = (sin y / 2, cos x / 2), borne 1/2 atteinte en (0,0).
 assert abs(sup_lignes(Matrix([sin(y) / 2, cos(x) / 2]), grille) - 0.5) < 1e-12
-faux(Rational(1, 2), 1, Rational(1, 4), sqrt(2) / 2)
+faux(Rational(1, 2), sqrt(2) / 4, Rational(1, 4), sqrt(2) / 2)  # leurres < 1 : la question 5 demande k < 1
 # itérations de la question 3 : convergence vers une solution de f(x) = y pour un exemple.
 import math
 cible_ = (1.3, -0.7)
@@ -898,5 +900,29 @@ q7 = expand((X2.T * A7 * X2)[0])
 assert q7 == x * y and Matrix(grad(q7)) == Matrix([y, x]) != 2 * A7 * X2
 # q8 : r = 1, s = 2, t = 5 : rt - s^2 = 1 > 0 et r > 0 : minimum local strict.
 assert 1 * 5 - 2**2 == 1 > 0
+
+# ===========================================================================
+# Relecture indépendante (2026-11-08)
+# ===========================================================================
+# q5 : si 0 est sur le segment [p,q] (q = -lambda p), un point m hors de la droite (pq) donne deux segments [p,m], [m,q]
+# qui évitent l'origine.
+pv, qv, mv = Matrix([2, 1]), Matrix([-4, -2]), Matrix([Rational(-1, 2), Rational(1, 10)])
+aa = symbols("aa")
+assert solve(list((1 - aa) * pv + aa * qv), aa, dict=True) == [{aa: Rational(1, 3)}]  # [p,q] passe par l'origine
+for A_, B_ in [(pv, mv), (mv, qv)]:
+    assert solve(list((1 - aa) * A_ + aa * B_), aa, dict=True) == []  # [p,m] et [m,q] l'évitent
+# cd-l3-differentiabilite-accroissements-finis-ex4 : gradient de theta = 2 arctan(y/(x + R)) égal à (-y, x)/R^2.
+Rr = sqrt(x**2 + y**2)
+th_ = 2 * atan(y / (x + Rr))
+assert simplify(diff(th_, x) + y / Rr**2) == 0 and simplify(diff(th_, y) - x / Rr**2) == 0
+assert abs(N(th_.subs({x: Rational(-3, 2), y: Rational(1, 2)}) - th_.subs({x: Rational(-3, 2), y: Rational(-1, 2)}))
+           - N(2 * pi - 2 * atan(Rational(1, 3)))) < 1e-12
+# cd-l3-differentiabilite-classe-c1-ex4 : sup de x^2(x^2+3y^2)/(x^2+y^2)^2 = sup de c(3-2c) sur [0,1] = 9/8 en c = 3/4 ;
+# leurre 3 sqrt(3)/8 = sup |dg/dy| = sup 2|cos^3 sin|.
+cc = symbols("cc")
+assert solve(diff(cc * (3 - 2 * cc), cc), cc) == [Rational(3, 4)] and Rational(3, 4) * (3 - 2 * Rational(3, 4)) == Rational(9, 8)
+assert abs(max(2 * abs(math.cos(a_) ** 3 * math.sin(a_)) for a_ in [i * 1e-4 for i in range(31416)]) - 3 * math.sqrt(3) / 8) < 1e-6
+# cd-l3-differentiabilite-extremums-ex5 : f(x, 3x^2/2) < 0 pour x != 0 (leurres x^4/4 et 0 positifs ou nuls).
+assert fPe.subs(y, Rational(3, 2) * x**2).subs(x, Rational(1, 3)) < 0
 
 print("cd_l3_differentiabilite : toutes les vérifications passent.")
