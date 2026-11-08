@@ -345,9 +345,9 @@ assert abs(milieu - 2 / PI * Si) < mp.mpf(10) ** -6
 cre_S2N = 4 / PI * mp.fsum(mp.sin((2 * k + 1) * PI / (2 * N)) / (2 * k + 1) for k in range(N))
 assert proche(cre_S2N, milieu, mp.mpf(10) ** -20)
 dent_S = 2 * mp.fsum((-1) ** (k + 1) * mp.sin(k * (PI - PI / N)) / k for k in range(1, N + 1))
-assert abs(dent_S - 2 * Si) < mp.mpf(10) ** -5
+assert abs(dent_S - 2 * Si) < 2 * PI / N   # extrémités droites : erreur O(1/N)
 v2_S = mp.fsum(mp.sin(k * PI / N) / k for k in range(1, N + 1))
-assert abs(v2_S - Si) < mp.mpf(10) ** -5
+assert abs(v2_S - Si) < PI / N
 assert abs(2 / PI * Si - mp.mpf("1.179")) < mp.mpf("0.0005") and abs(2 * Si - mp.mpf("3.704")) < mp.mpf("0.0005")
 assert abs(Si - mp.mpf("1.852")) < mp.mpf("0.0005") and abs(Si / PI - mp.mpf("0.589")) < mp.mpf("0.0005")
 assert abs(4 / PI * Si - mp.mpf("2.358")) < mp.mpf("0.0005") and 2 * Si > PI and Si > PI / 2
