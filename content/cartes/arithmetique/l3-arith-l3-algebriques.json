@@ -16,7 +16,7 @@
       ],
       "hypotheses_pieges": [
         "$K$ est un sous-anneau de $\\mathbb{C}$, par exemple $\\mathbb{Z}$ (à la place de : un sous-corps).",
-        "Il existe $P\\in\\mathbb{C}[X]$ non nul tel que $P(\\alpha)=0$ (à la place de : $P\\in K[X]$).",
+        "$K$ est un sous-corps de $\\mathbb{C}$ et $\\alpha$ est une matrice carrée à coefficients dans $K$ (à la place de : $\\alpha\\in\\mathbb{C}$).",
         "$\\pi_\\alpha$ est un polynôme unitaire de $K[X]$ qui annule $\\alpha$ (à la place de : celui de plus petit degré)."
       ],
       "enonce": "Soient $K$ un sous-corps de $\\mathbb{C}$ et $\\alpha\\in\\mathbb{C}$. On dit que $\\alpha$ est **algébrique** sur $K$ s'il existe $P\\in K[X]$ non nul tel que $P(\\alpha)=0$, et **transcendant** sur $K$ sinon. Un **nombre algébrique** (resp. **transcendant**) est un complexe algébrique (resp. transcendant) sur $\\mathbb{Q}$. On note $K[\\alpha]=\\{P(\\alpha) : P\\in K[X]\\}$.\n\n**Théorème.** Supposons $\\alpha$ algébrique sur $K$.\n- L'ensemble des $P\\in K[X]$ tels que $P(\\alpha)=0$ est un idéal non nul de $K[X]$ ; il est engendré par un unique polynôme unitaire $\\pi_\\alpha$, le **polynôme minimal** de $\\alpha$ sur $K$, qui est aussi le polynôme unitaire de plus petit degré annulant $\\alpha$.\n- $\\pi_\\alpha$ est irréductible dans $K[X]$, et c'est le seul polynôme unitaire irréductible de $K[X]$ qui annule $\\alpha$. Son degré $d$ est le **degré** de $\\alpha$ sur $K$.\n- $K[\\alpha]$ est un sous-corps de $\\mathbb{C}$, et $(1,\\alpha,\\dots,\\alpha^{d-1})$ en est une base comme $K$-espace vectoriel : $\\dim_KK[\\alpha]=d$.\n\nRéciproquement, si $K[\\alpha]$ est un $K$-espace vectoriel de dimension finie, $\\alpha$ est algébrique sur $K$.",
@@ -25,9 +25,9 @@
         {
           "reponse": "irréductible",
           "leurres": [
-            "scindé sur $K$",
-            "de degré $1$",
-            "de degré pair"
+            "réductible",
+            "inversible",
+            "divisible par le carré d'un polynôme non constant"
           ]
         },
         {
@@ -49,7 +49,7 @@
       ],
       "demo": "**Idéal.** L'application $\\varphi:K[X]\\to\\mathbb{C}$, $P\\mapsto P(\\alpha)$, est un morphisme d'anneaux ; son noyau $I$ est donc un idéal de $K[X]$, non nul par hypothèse. Comme $K[X]$ est principal, $I=(\\pi_\\alpha)$ pour un unique $\\pi_\\alpha$ unitaire, qui est l'unique polynôme unitaire de degré minimal de $I$.\n\n**Irréductibilité.** $\\pi_\\alpha$ n'est pas constant, car une constante non nulle n'annule pas $\\alpha$. Si $\\pi_\\alpha=AB$ avec $A,B\\in K[X]$, alors $A(\\alpha)B(\\alpha)=0$ dans $\\mathbb{C}$, qui est intègre ; disons $A(\\alpha)=0$. Alors $A$ est un multiple non nul de $\\pi_\\alpha$, donc $\\deg A\\ge\\deg\\pi_\\alpha$, et $B$ est constant. Si $Q$ est unitaire, irréductible et annule $\\alpha$, alors $\\pi_\\alpha$ divise $Q$ ; comme $\\pi_\\alpha$ n'est pas constant et que $Q$ est irréductible, $Q=c\\,\\pi_\\alpha$ avec $c\\in K^*$, et $c=1$ car les deux sont unitaires.\n\n**Base.** Pour $P\\in K[X]$, la division euclidienne $P=\\pi_\\alpha Q+R$ avec $\\deg R<d$ donne $P(\\alpha)=R(\\alpha)$ : la famille $(1,\\alpha,\\dots,\\alpha^{d-1})$ engendre $K[\\alpha]$. Elle est libre : une relation $\\sum_{k<d}c_k\\alpha^k=0$ fournit un polynôme de $I$ de degré $<d$, donc nul.\n\n**Corps.** $K[\\alpha]=\\varphi(K[X])$ est un sous-anneau de $\\mathbb{C}$. Soit $\\beta=P(\\alpha)\\neq0$ ; alors $\\pi_\\alpha$ ne divise pas $P$. Un diviseur commun unitaire de $P$ et de $\\pi_\\alpha$ divise $\\pi_\\alpha$, irréductible, donc vaut $1$ ou $\\pi_\\alpha$, et ce n'est pas $\\pi_\\alpha$ : $P$ et $\\pi_\\alpha$ sont premiers entre eux. Le théorème de Bézout donne $U,V\\in K[X]$ tels que $UP+V\\pi_\\alpha=1$, d'où $U(\\alpha)\\beta=1$ : $\\beta^{-1}=U(\\alpha)\\in K[\\alpha]$.\n\n**Réciproque.** Si $\\dim_KK[\\alpha]=n$, les $n+1$ éléments $1,\\alpha,\\dots,\\alpha^n$ de $K[\\alpha]$ sont liés : il existe $(c_0,\\dots,c_n)\\neq0$ dans $K^{n+1}$ tel que $\\sum_kc_k\\alpha^k=0$, et $\\sum_kc_kX^k$ est un polynôme non nul de $K[X]$ qui annule $\\alpha$.",
       "exemple": "Soit $\\alpha=\\sqrt[3]2$. Il annule $X^3-2$, unitaire et irréductible sur $\\mathbb{Q}$ : ce polynôme est de degré $3$ et n'a pas de racine rationnelle (ce serait un entier divisant $2$, et $\\pm1$, $\\pm2$ ne conviennent pas). Donc $\\pi_\\alpha=X^3-2$, $\\alpha$ est de degré $3$ sur $\\mathbb{Q}$ et tout élément de $\\mathbb{Q}[\\alpha]$ s'écrit de façon unique $a+b\\alpha+c\\alpha^2$ avec $a,b,c\\in\\mathbb{Q}$. Pour inverser $1+\\alpha$ : $(1+\\alpha)(1-\\alpha+\\alpha^2)=1+\\alpha^3=3$, donc $\\frac1{1+\\alpha}=\\frac{1-\\alpha+\\alpha^2}3$. Sur $\\mathbb{R}$, en revanche, le polynôme minimal de $\\alpha$ est $X-\\sqrt[3]2$.",
-      "contre_exemple": "- **Annuler ne suffit pas** : $X^4-4$ est unitaire et annule $\\sqrt2$, mais $X^4-4=(X^2-2)(X^2+2)$ ; le polynôme minimal de $\\sqrt2$ sur $\\mathbb{Q}$ est $X^2-2$, dont $X^4-4$ est un multiple.\n- **Sur un anneau, pas de polynôme minimal unitaire** : $\\frac12$ annule $2X-1\\in\\mathbb{Z}[X]$, mais aucun polynôme unitaire de $\\mathbb{Z}[X]$, car une racine rationnelle d'un tel polynôme est entière ; et $\\mathbb{Z}\\left[\\frac12\\right]$, formé des rationnels $\\frac a{2^k}$ avec $a\\in\\mathbb{Z}$ et $k\\in\\mathbb{N}$, n'est pas un corps : $3$ n'y est pas inversible.\n- **Le corps de base compte** : $i$ a pour polynôme minimal $X^2+1$ sur $\\mathbb{R}$ et $X-i$ sur $\\mathbb{C}$.",
+      "contre_exemple": "- **Annuler ne suffit pas** : $X^4-4$ est unitaire et annule $\\sqrt2$, mais $X^4-4=(X^2-2)(X^2+2)$ ; le polynôme minimal de $\\sqrt2$ sur $\\mathbb{Q}$ est $X^2-2$, dont $X^4-4$ est un multiple.\n- **Sur un anneau, pas de polynôme minimal unitaire** : $\\frac12$ annule $2X-1\\in\\mathbb{Z}[X]$, mais aucun polynôme unitaire de $\\mathbb{Z}[X]$, car une racine rationnelle d'un tel polynôme est entière ; et $\\mathbb{Z}\\left[\\frac12\\right]$, formé des rationnels $\\frac a{2^k}$ avec $a\\in\\mathbb{Z}$ et $k\\in\\mathbb{N}$, n'est pas un corps : $3$ n'y est pas inversible.\n- **Le corps de base compte** : $i$ a pour polynôme minimal $X^2+1$ sur $\\mathbb{R}$ et $X-i$ sur $\\mathbb{C}$.\n- **Hors d'un anneau intègre** : la matrice $N=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ vérifie $N\\neq0$ et $N^2=0$ ; les polynômes de $\\mathbb{Q}[X]$ qui l'annulent sont les multiples de $X^2$, qui n'est pas irréductible, et $\\mathbb{Q}[N]$ n'est pas un corps, car $N$ n'est pas inversible.",
       "affirmations": [
         {
           "texte": "Tout nombre rationnel $q$ est algébrique de degré $1$ sur $\\mathbb{Q}$.",
@@ -107,15 +107,15 @@
         {
           "reponse": "dénombrable",
           "leurres": [
-            "infinie",
-            "bornée",
-            "fermée"
+            "non dénombrable",
+            "ouverte",
+            "d'intérieur non vide"
           ]
         },
         {
           "reponse": "au plus dénombrable",
           "leurres": [
-            "fini",
+            "un ouvert non vide de $\\mathbb{C}$",
             "non dénombrable",
             "égal à $\\mathbb{C}$"
           ]
@@ -186,9 +186,9 @@
         {
           "reponse": "un nombre premier",
           "leurres": [
-            "un entier au moins égal à $2$",
-            "un entier impair au moins égal à $3$",
-            "une puissance de $2$"
+            "un entier composé",
+            "une puissance de $2$ au moins égale à $4$",
+            "le produit de deux nombres premiers distincts"
           ]
         },
         {
@@ -270,9 +270,9 @@
         {
           "reponse": "non constant",
           "leurres": [
-            "non nul",
-            "unitaire",
-            "à coefficients réels"
+            "constant",
+            "nul",
+            "constant non nul"
           ]
         },
         {
@@ -286,9 +286,9 @@
         {
           "reponse": "$P(z_1)=0$",
           "leurres": [
-            "$P'(z_1)=0$",
-            "$z_1=0$",
-            "$P(z_1)=P(0)$"
+            "$P(z_1)\\neq0$",
+            "$|P(z_1)|>|P(0)|$",
+            "$|P(z_1)|=1$"
           ]
         }
       ],
@@ -332,7 +332,7 @@
       "type": "theoreme",
       "titre": "Identité de Taylor pour les polynômes",
       "recto": "Énoncer et démontrer la formule de Taylor pour un polynôme sur un corps de caractéristique nulle, et en donner des conséquences.",
-      "cours": "Pour un polynôme, la formule de Taylor est une **identité exacte**, sans reste : un polynôme de degré au plus $n$ s'écrit dans la base $\\left(1,X-a,\\dots,(X-a)^n\\right)$, et ses coordonnées sont les $\\frac{P^{(k)}(a)}{k!}$. Autrement dit, $P(X+a)=\\sum_k\\frac{P^{(k)}(a)}{k!}X^k$ : développer $P(X+a)$ par la formule du binôme ou calculer les dérivées successives en $a$ donne le même résultat. Rien n'est analytique ici : les dérivées sont les dérivées formelles, $\\left(\\sum_ka_kX^k\\right)'=\\sum_kka_kX^{k-1}$.\n\nConséquences : la **multiplicité** d'une racine se lit sur les dérivées ($a$ est racine d'ordre au moins $m$ si et seulement si $P(a)=\\dots=P^{(m-1)}(a)=0$) ; le reste de la division euclidienne de $P$ par $(X-a)^m$ est $\\sum_{k<m}\\frac{P^{(k)}(a)}{k!}(X-a)^k$ ; un polynôme de degré au plus $n$ est déterminé par $P(a),P'(a),\\dots,P^{(n)}(a)$. Si $P\\in\\mathbb{Z}[X]$ et $a\\in\\mathbb{Z}$, les nombres $\\frac{P^{(k)}(a)}{k!}$ sont des entiers, puisque ce sont les coefficients de $P(X+a)\\in\\mathbb{Z}[X]$ ; on en tire $P(a+m)\\equiv P(a)+mP'(a)\\pmod{m^2}$, qui sert à relever une solution d'une congruence modulo $p$ en une solution modulo $p^2$.\n\n**Méthode.** Pour écrire $P$ en puissances de $X-a$ : calculer $P(a),P'(a),P''(a),\\dots$ et diviser par $k!$ ; ou poser $X=a+Y$ et développer ; ou effectuer des divisions euclidiennes successives par $X-a$. Pour un polynôme réel, si $P(a)>0$ et $P^{(k)}(a)\\ge0$ pour tout $k\\ge1$, la formule montre que $P(x)>0$ pour tout $x\\ge a$ : $a$ majore strictement les racines réelles de $P$.\n\n**Pièges.** La formule divise par $k!$ : elle demande la caractéristique nulle (en caractéristique $p$, elle reste valable pour les polynômes de degré $n<p$). Dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, la dérivée de $X^p$ est $pX^{p-1}=0$ : les dérivées en $0$ de $X^p$ et du polynôme nul coïncident toutes, et aucune formule en termes de dérivées ne peut retrouver $X^p$. Ne pas confondre non plus $\\frac{P^{(k)}(a)}{k!}$, coefficient de $(X-a)^k$, avec le coefficient de $X^k$ dans $P$, qui vaut $\\frac{P^{(k)}(0)}{k!}$.",
+      "cours": "Pour un polynôme, la formule de Taylor est une **identité exacte**, sans reste : un polynôme de degré au plus $n$ s'écrit dans la base $\\left(1,X-a,\\dots,(X-a)^n\\right)$, et ses coordonnées sont les $\\frac{P^{(k)}(a)}{k!}$. Autrement dit, $P(X+a)=\\sum_k\\frac{P^{(k)}(a)}{k!}X^k$ : développer $P(X+a)$ par la formule du binôme ou calculer les dérivées successives en $a$ donne le même résultat. Rien n'est analytique ici : les dérivées sont les dérivées formelles, $\\left(\\sum_ka_kX^k\\right)'=\\sum_kka_kX^{k-1}$.\n\nConséquences : la **multiplicité** d'une racine se lit sur les dérivées ($a$ est racine d'ordre au moins $m$ si et seulement si $P(a)=\\dots=P^{(m-1)}(a)=0$) ; le reste de la division euclidienne de $P$ par $(X-a)^m$ est $\\sum_{k<m}\\frac{P^{(k)}(a)}{k!}(X-a)^k$ ; un polynôme de degré au plus $n$ est déterminé par $P(a),P'(a),\\dots,P^{(n)}(a)$. Si $P\\in\\mathbb{Z}[X]$ et $a\\in\\mathbb{Z}$, les nombres $\\frac{P^{(k)}(a)}{k!}$ sont des entiers, puisque ce sont les coefficients de $P(X+a)\\in\\mathbb{Z}[X]$ ; on en tire $P(a+m)\\equiv P(a)+mP'(a)\\pmod{m^2}$, qui sert à relever une solution d'une congruence modulo $p$ en une solution modulo $p^2$.\n\n**Méthode.** Pour écrire $P$ en puissances de $X-a$ : calculer $P(a),P'(a),P''(a),\\dots$ et diviser par $k!$ ; ou poser $X=a+Y$ et développer ; ou effectuer des divisions euclidiennes successives par $X-a$. Pour un polynôme réel, si $P(a)>0$ et $P^{(k)}(a)\\ge0$ pour tout $k\\ge1$, la formule montre que $P(x)>0$ pour tout $x\\ge a$ : $a$ majore strictement les racines réelles de $P$.\n\n**Pièges.** La formule divise par $k!$ : elle demande la caractéristique nulle (en caractéristique $p$, elle reste valable pour les polynômes de degré $n<p$). Dans $(\\mathbb{Z}/p\\mathbb{Z})[X]$, la dérivée de $X^p$ est $pX^{p-1}=0$ : les dérivées en $0$ de $X^p$ et du polynôme nul coïncident toutes, et aucune formule en termes de dérivées en $0$ ne peut retrouver $X^p$. Ne pas confondre non plus $\\frac{P^{(k)}(a)}{k!}$, coefficient de $(X-a)^k$, avec le coefficient de $X^k$ dans $P$, qui vaut $\\frac{P^{(k)}(0)}{k!}$.",
       "hypotheses": [
         "$\\mathbb{K}$ est un corps de caractéristique nulle (par exemple un sous-corps de $\\mathbb{C}$).",
         "$P\\in\\mathbb{K}[X]$ est de degré au plus $n$, et la somme va de $k=0$ à $k=n$."
@@ -342,12 +342,12 @@
         "$P\\in\\mathbb{K}[X]$ est de degré au plus $n+1$, la somme allant toujours de $k=0$ à $k=n$ (à la place de : de degré au plus $n$)."
       ],
       "enonce": "Soient $\\mathbb{K}$ un corps de caractéristique nulle (par exemple un sous-corps de $\\mathbb{C}$), $n\\in\\mathbb{N}$, $P\\in\\mathbb{K}[X]$ de degré au plus $n$ et $a\\in\\mathbb{K}$. Alors\n$$P=\\sum_{k=0}^n\\frac{P^{(k)}(a)}{k!}(X-a)^k,$$\noù $P^{(k)}$ est la dérivée formelle $k$-ième de $P$ ; de façon équivalente, $P(X+a)=\\sum_{k=0}^n\\frac{P^{(k)}(a)}{k!}X^k$. La famille $\\left(1,X-a,\\dots,(X-a)^n\\right)$ est une base de $\\mathbb{K}_n[X]$, et les coordonnées de $P$ dans cette base sont les $\\frac{P^{(k)}(a)}{k!}$ ; en particulier, $P$ est déterminé par $P(a),P'(a),\\dots,P^{(n)}(a)$.",
-      "enonce_trous": "Soient $\\mathbb{K}$ un corps {{1}}, $P\\in\\mathbb{K}[X]$ de degré au plus $n$ et $a\\in\\mathbb{K}$. Alors $P$ s'écrit $\\sum_{k=0}^nc_k(X-a)^k$, où le coefficient $c_k$ est égal à {{2}}, et les coefficients $c_0,\\dots,c_n$ sont {{3}}.",
+      "enonce_trous": "Soient $\\mathbb{K}$ un corps {{1}}, $n\\ge2$ un entier, $P\\in\\mathbb{K}[X]$ de degré au plus $n$ et $a\\in\\mathbb{K}$. Alors $P$ s'écrit $\\sum_{k=0}^nc_k(X-a)^k$, où le coefficient $c_k$ est égal à {{2}}, et les coefficients $c_0,\\dots,c_n$ sont {{3}}.",
       "trous": [
         {
           "reponse": "de caractéristique nulle",
           "leurres": [
-            "commutatif quelconque",
+            "de caractéristique non nulle",
             "fini",
             "de caractéristique $2$"
           ]
@@ -356,7 +356,7 @@
           "reponse": "$\\frac{P^{(k)}(a)}{k!}$",
           "leurres": [
             "$P^{(k)}(a)$",
-            "$\\frac{P^{(k)}(0)}{k!}$",
+            "$\\frac{P^{(k+1)}(a)}{(k+1)!}$",
             "$\\frac{P^{(k)}(a)}{n!}$"
           ]
         },

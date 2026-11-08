@@ -1,0 +1,1633 @@
+{
+  "exercices": [
+    {
+      "id": "int-l3-multiples-curvilignes-ex1",
+      "carte": "int-l3-multiples-curvilignes",
+      "difficulte": 1,
+      "titre": "Longueur d'un arc paramétré",
+      "enonce": "Calculer la longueur de l'arc paramétré $\\gamma(t)=(t^2,t^3)$, $t\\in[0,1]$.",
+      "duree_min": 10,
+      "indices": [
+        "Calculer $\\|\\gamma'(t)\\|$, puis mettre $t\\ge0$ en facteur sous la racine."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut la longueur de l'arc ?",
+        "propositions": [
+          "$\\frac{13\\sqrt{13}-8}{27}$",
+          "$\\frac{13\\sqrt{13}}{27}$",
+          "$\\frac{13\\sqrt{13}-8}{18}$",
+          "$\\sqrt2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\gamma'(t)=(2t,3t^2)$, donc $\\|\\gamma'(t)\\|=\\sqrt{4t^2+9t^4}=t\\sqrt{4+9t^2}$ car $t\\ge0$. Avec $u=4+9t^2$, $\\mathrm{d}u=18t\\,\\mathrm{d}t$ :\n$$L=\\int_0^1t\\sqrt{4+9t^2}\\,\\mathrm{d}t=\\frac1{18}\\int_4^{13}\\sqrt u\\,\\mathrm{d}u=\\frac1{27}\\left[u^{3/2}\\right]_4^{13}=\\frac{13\\sqrt{13}-8}{27}\\approx1{,}440.$$\nContrôle : c'est un peu plus que la longueur de la corde, $\\|\\gamma(1)-\\gamma(0)\\|=\\sqrt2\\approx1{,}414$.",
+      "variantes": [
+        {
+          "enonce": "Calculer la longueur de l'arc paramétré $\\gamma(t)=(\\cos^3t,\\sin^3t)$, $t\\in\\left[0,\\frac\\pi2\\right]$.",
+          "indices": [
+            "Calculer $\\gamma'(t)$, puis mettre $9\\cos^2t\\sin^2t$ en facteur dans $\\|\\gamma'(t)\\|^2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut la longueur de l'arc ?",
+            "propositions": [
+              "$\\frac32$",
+              "$\\frac34$",
+              "$\\sqrt2$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\gamma'(t)=(-3\\cos^2t\\sin t,3\\sin^2t\\cos t)$, donc $\\|\\gamma'(t)\\|^2=9\\cos^2t\\sin^2t(\\cos^2t+\\sin^2t)$ et $\\|\\gamma'(t)\\|=3\\cos t\\sin t$ sur $\\left[0,\\frac\\pi2\\right]$, où ce produit est positif. Ainsi\n$$L=\\int_0^{\\pi/2}\\frac32\\sin(2t)\\,\\mathrm{d}t=\\frac32\\left[-\\frac{\\cos(2t)}2\\right]_0^{\\pi/2}=\\frac32.$$\nC'est le quart de l'astroïde, de longueur totale $6$ ; la corde mesure $\\sqrt2<\\frac32$."
+        },
+        {
+          "enonce": "Calculer la longueur de l'arc paramétré $\\gamma(t)=(\\cos t,\\sin t,t)$, $t\\in[0,2\\pi]$.",
+          "indices": [
+            "Calculer $\\|\\gamma'(t)\\|$ : elle ne dépend pas de $t$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut la longueur de l'arc ?",
+            "propositions": [
+              "$2\\pi\\sqrt2$",
+              "$2\\pi$",
+              "$4\\pi$",
+              "$\\sqrt{4\\pi^2+1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\gamma'(t)=(-\\sin t,\\cos t,1)$, donc $\\|\\gamma'(t)\\|=\\sqrt{\\sin^2t+\\cos^2t+1}=\\sqrt2$ et $L=\\int_0^{2\\pi}\\sqrt2\\,\\mathrm{d}t=2\\pi\\sqrt2$. Contrôle : la corde joint $(1,0,0)$ à $(1,0,2\\pi)$ et mesure $2\\pi<2\\pi\\sqrt2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-curvilignes-ex2",
+      "carte": "int-l3-multiples-curvilignes",
+      "difficulte": 2,
+      "titre": "Travail d'un champ le long de deux chemins",
+      "enonce": "Dans le plan, on considère le champ de forces $V(x,y)=(-y,x)$. Calculer son travail le long de l'arc de parabole $y=x^2$ parcouru de $(0,0)$ à $(1,1)$, puis le long du segment qui joint ces deux points. Le champ $V$ est-il un champ de gradient ?",
+      "duree_min": 10,
+      "indices": [
+        "Paramétrer l'arc par $\\gamma(t)=(t,t^2)$, $t\\in[0,1]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le travail de $V$ le long de l'arc de parabole ?",
+        "propositions": [
+          "$\\frac13$",
+          "$0$",
+          "$\\frac23$",
+          "$-\\frac13$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Avec $\\gamma(t)=(t,t^2)$, $t\\in[0,1]$ : $V(\\gamma(t))=(-t^2,t)$ et $\\gamma'(t)=(1,2t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=-t^2+2t^2=t^2$ et le travail vaut $\\int_0^1t^2\\,\\mathrm{d}t=\\frac13$.\n\nSur le segment $\\sigma(t)=(t,t)$, $t\\in[0,1]$ : $\\langle V(\\sigma(t)),\\sigma'(t)\\rangle=-t+t=0$, le travail est nul.\n\nLes deux chemins ont les mêmes extrémités et des travaux différents : $V$ n'est pas un champ de gradient, sinon le travail ne dépendrait que des extrémités. On le voit aussi avec $V=(P,Q)$ : $\\frac{\\partial P}{\\partial y}=-1\\neq1=\\frac{\\partial Q}{\\partial x}$.",
+      "variantes": [
+        {
+          "enonce": "Dans le plan, on considère le champ de forces $V(x,y)=(-y,x)$. Calculer son travail le long de l'arc de cubique $y=x^3$ parcouru de $(0,0)$ à $(1,1)$, puis le long du segment qui joint ces deux points. Le champ $V$ est-il un champ de gradient ?",
+          "indices": [
+            "Paramétrer l'arc par $\\gamma(t)=(t,t^3)$, $t\\in[0,1]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail de $V$ le long de l'arc de cubique ?",
+            "propositions": [
+              "$\\frac12$",
+              "$0$",
+              "$\\frac14$",
+              "$\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $\\gamma(t)=(t,t^3)$, $t\\in[0,1]$ : $V(\\gamma(t))=(-t^3,t)$ et $\\gamma'(t)=(1,3t^2)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=-t^3+3t^3=2t^3$ et le travail vaut $\\int_0^12t^3\\,\\mathrm{d}t=\\frac12$.\n\nSur le segment $\\sigma(t)=(t,t)$, $t\\in[0,1]$ : $\\langle V(\\sigma(t)),\\sigma'(t)\\rangle=-t+t=0$, le travail est nul.\n\nLes deux chemins ont les mêmes extrémités et des travaux différents : $V$ n'est pas un champ de gradient. On le voit aussi avec $V=(P,Q)$ : $\\frac{\\partial P}{\\partial y}=-1\\neq1=\\frac{\\partial Q}{\\partial x}$."
+        },
+        {
+          "enonce": "Dans le plan, on considère le champ de forces $V(x,y)=(-y,x)$. Calculer son travail le long de le quart de cercle de centre $(0,0)$ et de rayon $1$ parcouru de $(1,0)$ à $(0,1)$ dans le sens direct, puis le long du segment qui joint ces deux points. Le champ $V$ est-il un champ de gradient ?",
+          "indices": [
+            "Paramétrer l'arc par $\\gamma(t)=(\\cos t,\\sin t)$, $t\\in\\left[0,\\frac\\pi2\\right]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail de $V$ le long du quart de cercle ?",
+            "propositions": [
+              "$\\frac\\pi2$",
+              "$0$",
+              "$\\pi$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $\\gamma(t)=(\\cos t,\\sin t)$, $t\\in\\left[0,\\frac\\pi2\\right]$ : $V(\\gamma(t))=(-\\sin t,\\cos t)=\\gamma'(t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=1$ et le travail vaut $\\frac\\pi2$.\n\nSur le segment $\\sigma(t)=(1-t,t)$, $t\\in[0,1]$ : $V(\\sigma(t))=(-t,1-t)$ et $\\sigma'(t)=(-1,1)$, donc $\\langle V(\\sigma(t)),\\sigma'(t)\\rangle=t+1-t=1$ et le travail vaut $1$.\n\nLes deux chemins ont les mêmes extrémités et des travaux différents ($\\frac\\pi2\\neq1$) : $V$ n'est pas un champ de gradient. On le voit aussi avec $V=(P,Q)$ : $\\frac{\\partial P}{\\partial y}=-1\\neq1=\\frac{\\partial Q}{\\partial x}$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-curvilignes-ex3",
+      "carte": "int-l3-multiples-curvilignes",
+      "difficulte": 3,
+      "titre": "Travail d'un champ de gradient",
+      "enonce": "Dans l'espace, soit $V(x,y,z)=(2xy+z,\\ x^2,\\ x)$. Trouver une fonction $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^3$ telle que $V=\\nabla f$, puis calculer le travail de $V$ le long du chemin $\\gamma(t)=\\left(t,2t^3,3\\sin\\frac{\\pi t}2\\right)$, $t\\in[0,1]$.",
+      "duree_min": 15,
+      "indices": [
+        "Intégrer $\\frac{\\partial f}{\\partial x}=2xy+z$ par rapport à $x$, à $y$ et $z$ fixés, puis ajuster avec les deux autres dérivées partielles.",
+        "Le travail d'un champ de gradient ne dépend que des extrémités du chemin."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le travail de $V$ le long de $\\gamma$ ?",
+        "propositions": [
+          "$5$",
+          "$2$",
+          "$3$",
+          "$7$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On cherche $f$ telle que $\\frac{\\partial f}{\\partial x}=2xy+z$ : $f(x,y,z)=x^2y+xz+g(y,z)$. Alors $\\frac{\\partial f}{\\partial y}=x^2+\\frac{\\partial g}{\\partial y}$ doit valoir $x^2$, et $\\frac{\\partial f}{\\partial z}=x+\\frac{\\partial g}{\\partial z}$ doit valoir $x$ : $g$ est constante. La fonction $f(x,y,z)=x^2y+xz$ convient (on vérifie que $\\nabla f=V$).\n\nLe travail d'un champ de gradient vaut $f(\\gamma(1))-f(\\gamma(0))$, avec $\\gamma(0)=(0,0,0)$ et $\\gamma(1)=(1,2,3)$ :\n$$W=f(1,2,3)-f(0,0,0)=2+3=5.$$",
+      "variantes": [
+        {
+          "enonce": "Dans l'espace, soit $V(x,y,z)=(yz,\\ xz,\\ xy)$. Trouver une fonction $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^3$ telle que $V=\\nabla f$, puis calculer le travail de $V$ le long du chemin $\\gamma(t)=(1+t,\\ 1+2t^2,\\ 1+3t)$, $t\\in[0,1]$.",
+          "indices": [
+            "Intégrer $\\frac{\\partial f}{\\partial x}=yz$ par rapport à $x$, à $y$ et $z$ fixés, puis ajuster avec les deux autres dérivées partielles.",
+            "Le travail d'un champ de gradient ne dépend que des extrémités du chemin."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail de $V$ le long de $\\gamma$ ?",
+            "propositions": [
+              "$23$",
+              "$24$",
+              "$9$",
+              "$22$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On cherche $f$ telle que $\\frac{\\partial f}{\\partial x}=yz$ : $f(x,y,z)=xyz+g(y,z)$. Alors $\\frac{\\partial f}{\\partial y}=xz+\\frac{\\partial g}{\\partial y}$ doit valoir $xz$ et $\\frac{\\partial f}{\\partial z}=xy+\\frac{\\partial g}{\\partial z}$ doit valoir $xy$ : $g$ est constante, et $f(x,y,z)=xyz$ convient.\n\nAvec $\\gamma(0)=(1,1,1)$ et $\\gamma(1)=(2,3,4)$ :\n$$W=f(2,3,4)-f(1,1,1)=24-1=23.$$"
+        },
+        {
+          "enonce": "Dans le plan, soit $V(x,y)=(e^y,\\ xe^y+2y)$. Trouver une fonction $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ telle que $V=\\nabla f$, puis calculer le travail de $V$ le long du chemin $\\gamma(t)=(2t^2,\\ t\\ln3)$, $t\\in[0,1]$.",
+          "indices": [
+            "Intégrer $\\frac{\\partial f}{\\partial x}=e^y$ par rapport à $x$, à $y$ fixé, puis ajuster avec $\\frac{\\partial f}{\\partial y}$.",
+            "Le travail d'un champ de gradient ne dépend que des extrémités du chemin."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail de $V$ le long de $\\gamma$ ?",
+            "propositions": [
+              "$6+(\\ln3)^2$",
+              "$6$",
+              "$2+(\\ln3)^2$",
+              "$6+2\\ln3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On cherche $f$ telle que $\\frac{\\partial f}{\\partial x}=e^y$ : $f(x,y)=xe^y+g(y)$. Alors $\\frac{\\partial f}{\\partial y}=xe^y+g'(y)$ doit valoir $xe^y+2y$, donc $g(y)=y^2$ (à une constante près) et $f(x,y)=xe^y+y^2$ convient.\n\nAvec $\\gamma(0)=(0,0)$ et $\\gamma(1)=(2,\\ln3)$ :\n$$W=f(2,\\ln3)-f(0,0)=2\\cdot3+(\\ln3)^2=6+(\\ln3)^2.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-curvilignes-ex4",
+      "carte": "int-l3-multiples-curvilignes",
+      "difficulte": 4,
+      "titre": "Un champ sans potentiel sur le plan privé de l'origine",
+      "enonce": "Sur $U=\\mathbb{R}^2\\setminus\\{(0,0)\\}$, on pose $V(x,y)=\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)=(P,Q)$.\n\n1. Vérifier que $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ sur $U$.\n\n2. Calculer le travail de $V$ le long du cercle de centre $(0,0)$ et de rayon $R>0$, parcouru une fois dans le sens direct. En déduire que $V$ n'est le gradient d'aucune fonction de classe $\\mathcal{C}^1$ sur $U$.\n\n3. Sur le demi-plan $H=\\{(x,y)\\ :\\ x>0\\}$, montrer que $V=\\nabla\\theta$, où $\\theta(x,y)=\\arctan\\frac yx$.\n\n4. Calculer le travail de $V$ le long du cercle de centre $(3,0)$ et de rayon $1$, parcouru une fois dans le sens direct.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 2, paramétrer le cercle par $t\\mapsto(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$.",
+        "Pour la question 4, situer le chemin par rapport au demi-plan $H$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le travail demandé à la question 4 ?",
+        "propositions": [
+          "$0$",
+          "$2\\pi$",
+          "$\\pi$",
+          "$-2\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $\\frac{\\partial P}{\\partial y}=\\frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$ et $\\frac{\\partial Q}{\\partial x}=\\frac{(x^2+y^2)-2x^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$.\n\n2. Avec $\\gamma(t)=(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$ : $V(\\gamma(t))=\\frac1R(-\\sin t,\\cos t)$ et $\\gamma'(t)=R(-\\sin t,\\cos t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=1$ et le travail vaut $2\\pi$, quel que soit $R$. Si l'on avait $V=\\nabla f$ sur $U$, le travail le long de ce chemin fermé serait nul : c'est impossible. La condition de la question 1 est nécessaire, mais pas suffisante sur $U$.\n\n3. Sur $H$, $\\theta$ est de classe $\\mathcal{C}^1$ et $\\frac{\\partial\\theta}{\\partial x}=\\frac{-y/x^2}{1+y^2/x^2}=\\frac{-y}{x^2+y^2}$, $\\frac{\\partial\\theta}{\\partial y}=\\frac{1/x}{1+y^2/x^2}=\\frac{x}{x^2+y^2}$.\n\n4. Le cercle de centre $(3,0)$ et de rayon $1$ est contenu dans $H$ (on y a $x\\ge2$), où $V=\\nabla\\theta$ avec $\\theta$ de classe $\\mathcal{C}^1$ : le travail de $V$ le long de ce chemin fermé est nul.",
+      "variantes": [
+        {
+          "enonce": "Sur $U=\\mathbb{R}^2\\setminus\\{(0,0)\\}$, on pose $V(x,y)=\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)=(P,Q)$.\n\n1. Vérifier que $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ sur $U$.\n\n2. Calculer le travail de $V$ le long du cercle de centre $(0,0)$ et de rayon $R>0$, parcouru une fois dans le sens direct. En déduire que $V$ n'est le gradient d'aucune fonction de classe $\\mathcal{C}^1$ sur $U$.\n\n3. Sur le demi-plan $H=\\{(x,y)\\ :\\ x>0\\}$, montrer que $V=\\nabla\\theta$, où $\\theta(x,y)=\\arctan\\frac yx$.\n\n4. Calculer le travail de $V$ le long du cercle de centre $(0,0)$ et de rayon $2$, parcouru deux fois dans le sens indirect.",
+          "indices": [
+            "Pour la question 2, paramétrer le cercle par $t\\mapsto(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$.",
+            "Pour la question 4, comparer le chemin à celui de la question 2 : sens de parcours et nombre de tours."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail demandé à la question 4 ?",
+            "propositions": [
+              "$-4\\pi$",
+              "$4\\pi$",
+              "$0$",
+              "$-8\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\frac{\\partial P}{\\partial y}=\\frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$ et $\\frac{\\partial Q}{\\partial x}=\\frac{(x^2+y^2)-2x^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$.\n\n2. Avec $\\gamma(t)=(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$ : $V(\\gamma(t))=\\frac1R(-\\sin t,\\cos t)$ et $\\gamma'(t)=R(-\\sin t,\\cos t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=1$ et le travail vaut $2\\pi$, quel que soit $R$. Si l'on avait $V=\\nabla f$ sur $U$, le travail le long de ce chemin fermé serait nul : c'est impossible. La condition de la question 1 est nécessaire, mais pas suffisante sur $U$.\n\n3. Sur $H$, $\\theta$ est de classe $\\mathcal{C}^1$ et $\\frac{\\partial\\theta}{\\partial x}=\\frac{-y/x^2}{1+y^2/x^2}=\\frac{-y}{x^2+y^2}$, $\\frac{\\partial\\theta}{\\partial y}=\\frac{1/x}{1+y^2/x^2}=\\frac{x}{x^2+y^2}$.\n\n4. Le chemin $\\gamma(t)=(2\\cos t,-2\\sin t)$, $t\\in[0,4\\pi]$, donne $V(\\gamma(t))=\\frac12(\\sin t,\\cos t)$ et $\\gamma'(t)=(-2\\sin t,-2\\cos t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=-1$ et le travail vaut $-4\\pi$ (deux tours, chacun de travail $-2\\pi$ dans le sens indirect)."
+        },
+        {
+          "enonce": "Sur $U=\\mathbb{R}^2\\setminus\\{(0,0)\\}$, on pose $V(x,y)=\\left(\\frac{-y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)=(P,Q)$.\n\n1. Vérifier que $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ sur $U$.\n\n2. Calculer le travail de $V$ le long du cercle de centre $(0,0)$ et de rayon $R>0$, parcouru une fois dans le sens direct. En déduire que $V$ n'est le gradient d'aucune fonction de classe $\\mathcal{C}^1$ sur $U$.\n\n3. Sur le demi-plan $H=\\{(x,y)\\ :\\ x>0\\}$, montrer que $V=\\nabla\\theta$, où $\\theta(x,y)=\\arctan\\frac yx$.\n\n4. Calculer le travail de $V$ le long de l'arc $\\gamma(t)=(2\\cos t,2\\sin t)$, $t\\in\\left[-\\frac\\pi3,\\frac\\pi3\\right]$.",
+          "indices": [
+            "Pour la question 2, paramétrer le cercle par $t\\mapsto(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$, et calculer $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle$.",
+            "Pour la question 4, situer le chemin par rapport au demi-plan $H$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le travail demandé à la question 4 ?",
+            "propositions": [
+              "$\\frac{2\\pi}3$",
+              "$\\frac{4\\pi}3$",
+              "$\\frac\\pi3$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\frac{\\partial P}{\\partial y}=\\frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$ et $\\frac{\\partial Q}{\\partial x}=\\frac{(x^2+y^2)-2x^2}{(x^2+y^2)^2}=\\frac{y^2-x^2}{(x^2+y^2)^2}$.\n\n2. Avec $\\gamma(t)=(R\\cos t,R\\sin t)$, $t\\in[0,2\\pi]$ : $V(\\gamma(t))=\\frac1R(-\\sin t,\\cos t)$ et $\\gamma'(t)=R(-\\sin t,\\cos t)$, donc $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=1$ et le travail vaut $2\\pi$, quel que soit $R$. Si l'on avait $V=\\nabla f$ sur $U$, le travail le long de ce chemin fermé serait nul : c'est impossible. La condition de la question 1 est nécessaire, mais pas suffisante sur $U$.\n\n3. Sur $H$, $\\theta$ est de classe $\\mathcal{C}^1$ et $\\frac{\\partial\\theta}{\\partial x}=\\frac{-y/x^2}{1+y^2/x^2}=\\frac{-y}{x^2+y^2}$, $\\frac{\\partial\\theta}{\\partial y}=\\frac{1/x}{1+y^2/x^2}=\\frac{x}{x^2+y^2}$.\n\n4. L'arc est contenu dans $H$ ($x=2\\cos t\\ge1$), où $V=\\nabla\\theta$ : le travail vaut $\\theta(1,\\sqrt3)-\\theta(1,-\\sqrt3)=\\arctan\\sqrt3-\\arctan(-\\sqrt3)=\\frac{2\\pi}3$. Directement : $\\langle V(\\gamma(t)),\\gamma'(t)\\rangle=1$, d'intégrale $\\frac{2\\pi}3$ sur $\\left[-\\frac\\pi3,\\frac\\pi3\\right]$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle-ex1",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "difficulte": 1,
+      "titre": "Intégrale double sur un rectangle",
+      "enonce": "Calculer $\\iint_{[0,1]\\times[0,2]}(x+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+      "duree_min": 5,
+      "indices": [
+        "La fonction est continue sur le rectangle : intégrer d'abord en $y$ à $x$ fixé, puis en $x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac{11}3$",
+          "$\\frac{19}6$",
+          "$\\frac73$",
+          "$\\frac{14}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La fonction est continue sur le rectangle ; par la formule de Fubini, $\\int_0^2(x+y^2)\\,\\mathrm{d}y=2x+\\frac83$, puis\n$$\\int_0^1\\left(2x+\\frac83\\right)\\mathrm{d}x=1+\\frac83=\\frac{11}3.$$\nDans l'autre ordre : $\\int_0^1(x+y^2)\\,\\mathrm{d}x=\\frac12+y^2$ et $\\int_0^2\\left(\\frac12+y^2\\right)\\mathrm{d}y=1+\\frac83$, la même valeur.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iint_{[0,2]\\times[0,1]}xy^2\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "La fonction est le produit d'une fonction de $x$ et d'une fonction de $y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac23$",
+              "$\\frac43$",
+              "$\\frac16$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $(x,y)\\mapsto xy^2$ est continue et produit d'une fonction de $x$ et d'une fonction de $y$ :\n$$\\iint_{[0,2]\\times[0,1]}xy^2\\,\\mathrm{d}x\\,\\mathrm{d}y=\\left(\\int_0^2x\\,\\mathrm{d}x\\right)\\left(\\int_0^1y^2\\,\\mathrm{d}y\\right)=2\\cdot\\frac13=\\frac23.$$"
+        },
+        {
+          "enonce": "Calculer $\\iint_{\\left[0,\\frac\\pi2\\right]^2}\\sin(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "La fonction est continue sur le carré : intégrer d'abord en $y$ ; une primitive de $y\\mapsto\\sin(x+y)$ est $y\\mapsto-\\cos(x+y)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$0$",
+              "$\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction est continue sur le carré. À $x$ fixé, $\\int_0^{\\pi/2}\\sin(x+y)\\,\\mathrm{d}y=\\cos x-\\cos\\left(x+\\frac\\pi2\\right)=\\cos x+\\sin x$, puis\n$$\\int_0^{\\pi/2}(\\cos x+\\sin x)\\,\\mathrm{d}x=1+1=2.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle-ex2",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "difficulte": 2,
+      "titre": "Choisir l'ordre d'intégration",
+      "enonce": "Calculer $\\iint_{[0,2]\\times[0,1]}\\frac{x}{1+xy}\\,\\mathrm{d}x\\,\\mathrm{d}y$, en choisissant l'ordre d'intégration le plus commode.",
+      "duree_min": 10,
+      "indices": [
+        "À $x$ fixé, $y\\mapsto\\frac x{1+xy}$ est la dérivée d'une fonction simple de $y$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$3\\ln3-2$",
+          "$3\\ln3$",
+          "$2\\ln3-1$",
+          "$\\ln3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La fonction $(x,y)\\mapsto\\frac x{1+xy}$ est continue sur $[0,2]\\times[0,1]$, où $1+xy\\ge1$. À $x$ fixé,\n$$\\int_0^1\\frac{x}{1+xy}\\,\\mathrm{d}y=\\big[\\ln(1+xy)\\big]_{y=0}^{y=1}=\\ln(1+x).$$\nPuis, par parties, $\\int_0^2\\ln(1+x)\\,\\mathrm{d}x=\\big[(1+x)\\ln(1+x)-x\\big]_0^2=3\\ln3-2$. Dans l'autre ordre, il faudrait décomposer $\\frac x{1+xy}=\\frac1y-\\frac1{y(1+xy)}$ pour chaque $y\\neq0$, ce qui est plus long.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iint_{[0,\\pi]\\times[0,1]}y\\sin(xy)\\,\\mathrm{d}x\\,\\mathrm{d}y$, en choisissant l'ordre d'intégration le plus commode.",
+          "indices": [
+            "À $y$ fixé, $x\\mapsto y\\sin(xy)$ est la dérivée d'une fonction simple de $x$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$1$",
+              "$2$",
+              "$\\frac2\\pi$",
+              "$1-\\frac2\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction est continue sur $[0,\\pi]\\times[0,1]$. À $y$ fixé, on intègre d'abord en $x$ :\n$$\\int_0^\\pi y\\sin(xy)\\,\\mathrm{d}x=\\big[-\\cos(xy)\\big]_{x=0}^{x=\\pi}=1-\\cos(\\pi y).$$\nPuis $\\int_0^1(1-\\cos(\\pi y))\\,\\mathrm{d}y=1-\\left[\\frac{\\sin(\\pi y)}\\pi\\right]_0^1=1$. Dans l'autre ordre, il faudrait intégrer $y\\sin(xy)$ par parties en $y$."
+        },
+        {
+          "enonce": "Calculer $\\iint_{[0,1]\\times[0,1]}\\frac{y}{1+xy}\\,\\mathrm{d}x\\,\\mathrm{d}y$, en choisissant l'ordre d'intégration le plus commode.",
+          "indices": [
+            "À $y$ fixé, $x\\mapsto\\frac y{1+xy}$ est la dérivée d'une fonction simple de $x$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$2\\ln2-1$",
+              "$\\ln2$",
+              "$2\\ln2$",
+              "$1-\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction est continue sur $[0,1]^2$, où $1+xy\\ge1$. À $y$ fixé, $\\int_0^1\\frac y{1+xy}\\,\\mathrm{d}x=\\big[\\ln(1+xy)\\big]_{x=0}^{x=1}=\\ln(1+y)$, puis, par parties,\n$$\\int_0^1\\ln(1+y)\\,\\mathrm{d}y=\\big[(1+y)\\ln(1+y)-y\\big]_0^1=2\\ln2-1.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle-ex3",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "difficulte": 3,
+      "titre": "Une intégrale simple calculée par la formule de Fubini",
+      "enonce": "1. Pour $x\\in\\left]0,1\\right[$, montrer que $\\frac{x^{2}-x}{\\ln x}=\\int_{1}^{2}x^y\\,\\mathrm{d}y$.\n\n2. Justifier que $(x,y)\\mapsto x^y$, prolongée par $0$ en $x=0$, est continue sur $[0,1]\\times[1,2]$.\n\n3. En déduire la valeur de $I=\\int_0^1\\frac{x^{2}-x}{\\ln x}\\,\\mathrm{d}x$ (l'intégrande se prolonge par continuité en $0$ et en $1$).",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, écrire $x^y=e^{y\\ln x}$ et intégrer en $y$.",
+        "Pour la question 2, majorer $x^y$ par $x$ quand $x\\in[0,1]$ et $y\\ge1$.",
+        "Pour la question 3, échanger l'ordre d'intégration sur $[0,1]\\times[1,2]$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I$ ?",
+        "propositions": [
+          "$\\ln\\frac32$",
+          "$\\ln2$",
+          "$\\frac12$",
+          "$\\ln3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $0<x<1$, $\\int_{1}^{2}x^y\\,\\mathrm{d}y=\\int_{1}^{2}e^{y\\ln x}\\,\\mathrm{d}y=\\left[\\frac{e^{y\\ln x}}{\\ln x}\\right]_{y=1}^{y=2}=\\frac{x^{2}-x}{\\ln x}$.\n\n2. Sur $\\left]0,1\\right]\\times[1,2]$, $x^y=e^{y\\ln x}$ est continue. En un point $(0,y_0)$ : pour $x\\in[0,1]$ et $y\\ge1$, $0\\le x^y\\le x$, qui tend vers $0$ quand $x\\to0$ ; la fonction prolongée par $0$ est donc continue en $(0,y_0)$.\n\n3. L'intégrande $g(x)=\\frac{x^{2}-x}{\\ln x}$ se prolonge par $g(0)=0$ et $g(1)=1$ (en $1$, $x^{2}-x\\sim(x-1)$ et $\\ln x\\sim x-1$) ; sur $[0,1]$, il coïncide avec $x\\mapsto\\int_{1}^{2}x^y\\,\\mathrm{d}y$ (en $0$ et en $1$, les deux membres valent $0$ et $1$). Par la formule de Fubini sur le rectangle $[0,1]\\times[1,2]$ :\n$$I=\\int_0^1\\left(\\int_{1}^{2}x^y\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{1}^{2}\\left(\\int_0^1x^y\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_{1}^{2}\\frac{\\mathrm{d}y}{y+1}=\\ln3-\\ln2=\\ln\\frac32.$$",
+      "variantes": [
+        {
+          "enonce": "1. Pour $x\\in\\left]0,1\\right[$, montrer que $\\frac{x^{3}-x}{\\ln x}=\\int_{1}^{3}x^y\\,\\mathrm{d}y$.\n\n2. Justifier que $(x,y)\\mapsto x^y$, prolongée par $0$ en $x=0$, est continue sur $[0,1]\\times[1,3]$.\n\n3. En déduire la valeur de $I=\\int_0^1\\frac{x^{3}-x}{\\ln x}\\,\\mathrm{d}x$ (l'intégrande se prolonge par continuité en $0$ et en $1$).",
+          "indices": [
+            "Pour la question 1, écrire $x^y=e^{y\\ln x}$ et intégrer en $y$.",
+            "Pour la question 2, majorer $x^y$ par $x$ quand $x\\in[0,1]$ et $y\\ge1$.",
+            "Pour la question 3, échanger l'ordre d'intégration sur $[0,1]\\times[1,3]$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\ln2$",
+              "$\\ln\\frac32$",
+              "$\\ln3$",
+              "$\\frac23$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $0<x<1$, $\\int_{1}^{3}x^y\\,\\mathrm{d}y=\\int_{1}^{3}e^{y\\ln x}\\,\\mathrm{d}y=\\left[\\frac{e^{y\\ln x}}{\\ln x}\\right]_{y=1}^{y=3}=\\frac{x^{3}-x}{\\ln x}$.\n\n2. Sur $\\left]0,1\\right]\\times[1,3]$, $x^y=e^{y\\ln x}$ est continue. En un point $(0,y_0)$ : pour $x\\in[0,1]$ et $y\\ge1$, $0\\le x^y\\le x$, qui tend vers $0$ quand $x\\to0$ ; la fonction prolongée par $0$ est donc continue en $(0,y_0)$.\n\n3. L'intégrande $g(x)=\\frac{x^{3}-x}{\\ln x}$ se prolonge par $g(0)=0$ et $g(1)=2$ (en $1$, $x^{3}-x\\sim2(x-1)$ et $\\ln x\\sim x-1$) ; sur $[0,1]$, il coïncide avec $x\\mapsto\\int_{1}^{3}x^y\\,\\mathrm{d}y$ (en $0$ et en $1$, les deux membres valent $0$ et $2$). Par la formule de Fubini sur le rectangle $[0,1]\\times[1,3]$ :\n$$I=\\int_0^1\\left(\\int_{1}^{3}x^y\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{1}^{3}\\left(\\int_0^1x^y\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_{1}^{3}\\frac{\\mathrm{d}y}{y+1}=\\ln4-\\ln2=\\ln2.$$"
+        },
+        {
+          "enonce": "1. Pour $x\\in\\left]0,1\\right[$, montrer que $\\frac{x^{4}-x^{2}}{\\ln x}=\\int_{2}^{4}x^y\\,\\mathrm{d}y$.\n\n2. Justifier que $(x,y)\\mapsto x^y$, prolongée par $0$ en $x=0$, est continue sur $[0,1]\\times[2,4]$.\n\n3. En déduire la valeur de $I=\\int_0^1\\frac{x^{4}-x^{2}}{\\ln x}\\,\\mathrm{d}x$ (l'intégrande se prolonge par continuité en $0$ et en $1$).",
+          "indices": [
+            "Pour la question 1, écrire $x^y=e^{y\\ln x}$ et intégrer en $y$.",
+            "Pour la question 2, majorer $x^y$ par $x$ quand $x\\in[0,1]$ et $y\\ge2$.",
+            "Pour la question 3, échanger l'ordre d'intégration sur $[0,1]\\times[2,4]$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\ln\\frac53$",
+              "$\\ln2$",
+              "$\\ln\\frac54$",
+              "$\\frac25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $0<x<1$, $\\int_{2}^{4}x^y\\,\\mathrm{d}y=\\int_{2}^{4}e^{y\\ln x}\\,\\mathrm{d}y=\\left[\\frac{e^{y\\ln x}}{\\ln x}\\right]_{y=2}^{y=4}=\\frac{x^{4}-x^{2}}{\\ln x}$.\n\n2. Sur $\\left]0,1\\right]\\times[2,4]$, $x^y=e^{y\\ln x}$ est continue. En un point $(0,y_0)$ : pour $x\\in[0,1]$ et $y\\ge2$, $0\\le x^y\\le x^{2}\\le x$, qui tend vers $0$ quand $x\\to0$ ; la fonction prolongée par $0$ est donc continue en $(0,y_0)$.\n\n3. L'intégrande $g(x)=\\frac{x^{4}-x^{2}}{\\ln x}$ se prolonge par $g(0)=0$ et $g(1)=2$ (en $1$, $x^{4}-x^{2}\\sim2(x-1)$ et $\\ln x\\sim x-1$) ; sur $[0,1]$, il coïncide avec $x\\mapsto\\int_{2}^{4}x^y\\,\\mathrm{d}y$ (en $0$ et en $1$, les deux membres valent $0$ et $2$). Par la formule de Fubini sur le rectangle $[0,1]\\times[2,4]$ :\n$$I=\\int_0^1\\left(\\int_{2}^{4}x^y\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{2}^{4}\\left(\\int_0^1x^y\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_{2}^{4}\\frac{\\mathrm{d}y}{y+1}=\\ln5-\\ln3=\\ln\\frac53.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle-ex4",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "difficulte": 4,
+      "titre": "Deux intégrales itérées différentes",
+      "enonce": "Pour $(x,y)\\in\\left]0,1\\right]^2$, on pose $f(x,y)=\\frac{x^2-y^2}{(x^2+y^2)^2}$.\n\n1. Calculer $\\frac{\\partial}{\\partial y}\\left(\\frac y{x^2+y^2}\\right)$.\n\n2. En déduire $\\int_0^1f(x,y)\\,\\mathrm{d}y$ pour $x\\in\\left]0,1\\right]$, puis $A=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$.\n\n3. Sans nouveau calcul, donner $B=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.\n\n4. Pourquoi cela ne contredit-il pas la formule de Fubini ?",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 3, échanger les rôles de $x$ et de $y$ change $f$ en $-f$.",
+        "Pour la question 4, regarder le comportement de $f(x,0)$ quand $x\\to0^+$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $A$ ?",
+        "propositions": [
+          "$\\frac\\pi4$",
+          "$-\\frac\\pi4$",
+          "$0$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $\\frac{\\partial}{\\partial y}\\left(\\frac y{x^2+y^2}\\right)=\\frac{x^2+y^2-2y^2}{(x^2+y^2)^2}=f(x,y)$.\n\n2. Pour $x\\in\\left]0,1\\right]$, $y\\mapsto f(x,y)$ est continue sur $[0,1]$ et $\\int_0^1f(x,y)\\,\\mathrm{d}y=\\left[\\frac y{x^2+y^2}\\right]_0^1=\\frac1{1+x^2}$. Donc $A=\\int_0^1\\frac{\\mathrm{d}x}{1+x^2}=\\frac\\pi4$.\n\n3. $f(y,x)=-f(x,y)$, donc $\\int_0^1f(x,y)\\,\\mathrm{d}x=-\\frac1{1+y^2}$ et $B=-\\frac\\pi4$.\n\n4. $A\\neq B$, mais la formule de Fubini suppose $f$ continue sur le rectangle **fermé** $[0,1]^2$. Ici $f$ n'est pas bornée au voisinage de $(0,0)$ : $f(x,0)=\\frac1{x^2}$ tend vers $+\\infty$ quand $x\\to0^+$. La formule ne s'applique pas. D'ailleurs, en coupant en $y=x$, $\\int_0^1|f(x,y)|\\,\\mathrm{d}y=\\frac1x-\\frac1{1+x^2}$, qui n'est pas intégrable en $0$ : l'intégrale itérée de $|f|$ est infinie, et le théorème de Fubini pour les fonctions intégrables ne s'applique pas non plus.",
+      "variantes": [
+        {
+          "enonce": "Pour $(x,y)\\in\\left]0,1\\right]^2$, on pose $f(x,y)=\\frac{x-y}{(x+y)^3}$.\n\n1. Calculer $\\frac{\\partial}{\\partial y}\\left(\\frac y{(x+y)^2}\\right)$.\n\n2. En déduire $\\int_0^1f(x,y)\\,\\mathrm{d}y$ pour $x\\in\\left]0,1\\right]$, puis $A=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$.\n\n3. Sans nouveau calcul, donner $B=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.\n\n4. Pourquoi cela ne contredit-il pas la formule de Fubini ?",
+          "indices": [
+            "Pour la question 3, échanger les rôles de $x$ et de $y$ change $f$ en $-f$.",
+            "Pour la question 4, regarder le comportement de $f(x,0)$ quand $x\\to0^+$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A$ ?",
+            "propositions": [
+              "$\\frac12$",
+              "$-\\frac12$",
+              "$0$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\frac{\\partial}{\\partial y}\\left(\\frac y{(x+y)^2}\\right)=\\frac{(x+y)-2y}{(x+y)^3}=f(x,y)$.\n\n2. Pour $x\\in\\left]0,1\\right]$, $y\\mapsto f(x,y)$ est continue sur $[0,1]$ et $\\int_0^1f(x,y)\\,\\mathrm{d}y=\\left[\\frac y{(x+y)^2}\\right]_0^1=\\frac1{(1+x)^2}$. Donc $A=\\int_0^1\\frac{\\mathrm{d}x}{(1+x)^2}=\\frac12$.\n\n3. $f(y,x)=-f(x,y)$, donc $\\int_0^1f(x,y)\\,\\mathrm{d}x=-\\frac1{(1+y)^2}$ et $B=-\\frac12$.\n\n4. $A\\neq B$, mais la formule de Fubini suppose $f$ continue sur le rectangle **fermé** $[0,1]^2$. Ici $f$ n'est pas bornée au voisinage de $(0,0)$ : $f(x,0)=\\frac1{x^2}$ tend vers $+\\infty$ quand $x\\to0^+$. La formule ne s'applique pas. D'ailleurs, en coupant en $y=x$, $\\int_0^1|f(x,y)|\\,\\mathrm{d}y=\\frac1{2x}-\\frac1{(1+x)^2}$, qui n'est pas intégrable en $0$ : l'intégrale itérée de $|f|$ est infinie."
+        },
+        {
+          "enonce": "Pour $(x,y)\\in\\left]0,1\\right]^2$, on pose $f(x,y)=\\frac{y^2-x^2}{(x^2+y^2)^2}$.\n\n1. Calculer $\\frac{\\partial}{\\partial y}\\left(\\frac{-y}{x^2+y^2}\\right)$.\n\n2. En déduire $\\int_0^1f(x,y)\\,\\mathrm{d}y$ pour $x\\in\\left]0,1\\right]$, puis $A=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}y\\right)\\mathrm{d}x$.\n\n3. Sans nouveau calcul, donner $B=\\int_0^1\\left(\\int_0^1f(x,y)\\,\\mathrm{d}x\\right)\\mathrm{d}y$.\n\n4. Pourquoi cela ne contredit-il pas la formule de Fubini ?",
+          "indices": [
+            "Pour la question 3, échanger les rôles de $x$ et de $y$ change $f$ en $-f$.",
+            "Pour la question 4, regarder le comportement de $f(x,0)$ quand $x\\to0^+$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $A$ ?",
+            "propositions": [
+              "$-\\frac\\pi4$",
+              "$\\frac\\pi4$",
+              "$0$",
+              "$-\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\frac{\\partial}{\\partial y}\\left(\\frac{-y}{x^2+y^2}\\right)=\\frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=f(x,y)$.\n\n2. Pour $x\\in\\left]0,1\\right]$, $y\\mapsto f(x,y)$ est continue sur $[0,1]$ et $\\int_0^1f(x,y)\\,\\mathrm{d}y=\\left[\\frac{-y}{x^2+y^2}\\right]_0^1=-\\frac1{1+x^2}$. Donc $A=-\\int_0^1\\frac{\\mathrm{d}x}{1+x^2}=-\\frac\\pi4$.\n\n3. $f(y,x)=-f(x,y)$, donc $\\int_0^1f(x,y)\\,\\mathrm{d}x=\\frac1{1+y^2}$ et $B=\\frac\\pi4$.\n\n4. $A\\neq B$, mais la formule de Fubini suppose $f$ continue sur le rectangle **fermé** $[0,1]^2$. Ici $f$ n'est pas bornée au voisinage de $(0,0)$ : $f(x,0)=-\\frac1{x^2}$ tend vers $-\\infty$ quand $x\\to0^+$. La formule ne s'applique pas. D'ailleurs, en coupant en $y=x$, $\\int_0^1|f(x,y)|\\,\\mathrm{d}y=\\frac1x-\\frac1{1+x^2}$, qui n'est pas intégrable en $0$ : l'intégrale itérée de $|f|$ est infinie."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-rectangle-ex5",
+      "carte": "int-l3-multiples-fubini-rectangle",
+      "difficulte": 4,
+      "titre": "Le théorème de Schwarz par la formule de Fubini",
+      "enonce": "Soient $U$ un ouvert de $\\mathbb{R}^2$ et $f:U\\to\\mathbb{R}$ de classe $\\mathcal{C}^2$. On veut montrer que $\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)=\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)$ sur $U$.\n\n1. Soit $R=[a,b]\\times[c,d]\\subset U$. Calculer $\\iint_R\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)\\mathrm{d}x\\,\\mathrm{d}y$ en intégrant d'abord en $x$, puis $\\iint_R\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)\\mathrm{d}x\\,\\mathrm{d}y$ en intégrant d'abord en $y$.\n\n2. En déduire que $g=\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)-\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)$ a une intégrale nulle sur tout rectangle contenu dans $U$.\n\n3. Conclure en raisonnant par l'absurde.",
+      "duree_min": 20,
+      "indices": [
+        "À $y$ fixé, $\\int_a^b\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)(x,y)\\,\\mathrm{d}x=\\frac{\\partial f}{\\partial y}(b,y)-\\frac{\\partial f}{\\partial y}(a,y)$.",
+        "Si $g(x_0,y_0)>0$, $g$ reste minorée par $\\frac{g(x_0,y_0)}2$ sur un petit carré centré en $(x_0,y_0)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\iint_R\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)\\mathrm{d}x\\,\\mathrm{d}y$ ?",
+        "propositions": [
+          "$f(b,d)-f(a,d)-f(b,c)+f(a,c)$",
+          "$f(b,d)-f(a,c)$",
+          "$f(b,d)+f(a,d)-f(b,c)-f(a,c)$",
+          "$\\frac{\\partial f}{\\partial y}(b,d)-\\frac{\\partial f}{\\partial y}(a,c)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Les deux dérivées secondes sont continues sur $R$, fermé borné contenu dans $U$ : la formule de Fubini s'applique. À $y$ fixé, $\\int_a^b\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)(x,y)\\,\\mathrm{d}x=\\frac{\\partial f}{\\partial y}(b,y)-\\frac{\\partial f}{\\partial y}(a,y)$, puis\n$$\\int_c^d\\left(\\frac{\\partial f}{\\partial y}(b,y)-\\frac{\\partial f}{\\partial y}(a,y)\\right)\\mathrm{d}y=f(b,d)-f(b,c)-f(a,d)+f(a,c).$$\nDe même, en intégrant d'abord en $y$ : $\\int_c^d\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)(x,y)\\,\\mathrm{d}y=\\frac{\\partial f}{\\partial x}(x,d)-\\frac{\\partial f}{\\partial x}(x,c)$, puis $\\int_a^b\\left(\\frac{\\partial f}{\\partial x}(x,d)-\\frac{\\partial f}{\\partial x}(x,c)\\right)\\mathrm{d}x=f(b,d)-f(a,d)-f(b,c)+f(a,c)$. Les deux intégrales doubles sont égales.\n\n2. Par linéarité, $\\iint_Rg=0$ pour tout rectangle $R\\subset U$.\n\n3. $g$ est continue sur $U$. Si $g(x_0,y_0)>0$, il existe $\\eta>0$ tel que le carré $R=[x_0-\\eta,x_0+\\eta]\\times[y_0-\\eta,y_0+\\eta]$ soit contenu dans $U$ et que $g\\ge\\frac{g(x_0,y_0)}2$ sur $R$ ; alors $\\iint_Rg\\ge\\frac{g(x_0,y_0)}2\\cdot4\\eta^2>0$, ce qui contredit la question 2. De même si $g(x_0,y_0)<0$. Donc $g=0$ sur $U$ : c'est le théorème de Schwarz pour une fonction de classe $\\mathcal{C}^2$."
+    },
+    {
+      "id": "int-l3-multiples-fubini-tonelli-ex1",
+      "carte": "int-l3-multiples-fubini-tonelli",
+      "difficulte": 2,
+      "titre": "Intégrale itérée sur un quart de plan",
+      "enonce": "Justifier l'existence et calculer $\\int_1^{+\\infty}\\left(\\int_1^{+\\infty}\\frac{\\mathrm{d}y}{(x+y)^3}\\right)\\mathrm{d}x$. Que vaut l'intégrale itérée dans l'autre ordre ?",
+      "duree_min": 10,
+      "indices": [
+        "À $x\\ge1$ fixé, une primitive de $y\\mapsto(x+y)^{-3}$ est $y\\mapsto-\\frac12(x+y)^{-2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale itérée ?",
+        "propositions": [
+          "$\\frac14$",
+          "$\\frac12$",
+          "$\\frac18$",
+          "$+\\infty$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La fonction $f(x,y)=(x+y)^{-3}$ est continue et positive sur $\\left[1,+\\infty\\right[^2$. À $x$ fixé,\n$$\\int_1^{+\\infty}\\frac{\\mathrm{d}y}{(x+y)^3}=\\left[-\\frac1{2(x+y)^2}\\right]_{y=1}^{y\\to+\\infty}=\\frac1{2(x+1)^2},$$\nfonction continue de $x$ ; puis $\\int_1^{+\\infty}\\frac{\\mathrm{d}x}{2(x+1)^2}=\\left[-\\frac1{2(x+1)}\\right]_1^{+\\infty}=\\frac14$. Par symétrie de $f$, l'intégrale partielle en $x$ vaut $\\frac1{2(y+1)^2}$, continue elle aussi ; par Fubini-Tonelli (fonction positive), l'intégrale itérée dans l'autre ordre vaut aussi $\\frac14$.",
+      "variantes": [
+        {
+          "enonce": "Justifier l'existence et calculer $\\int_0^{+\\infty}\\left(\\int_0^{+\\infty}\\frac{\\mathrm{d}y}{(1+x+y)^3}\\right)\\mathrm{d}x$. Que vaut l'intégrale itérée dans l'autre ordre ?",
+          "indices": [
+            "À $x\\ge0$ fixé, une primitive de $y\\mapsto(1+x+y)^{-3}$ est $y\\mapsto-\\frac12(1+x+y)^{-2}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale itérée ?",
+            "propositions": [
+              "$\\frac12$",
+              "$\\frac14$",
+              "$1$",
+              "$+\\infty$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f(x,y)=(1+x+y)^{-3}$ est continue et positive sur $\\left[0,+\\infty\\right[^2$. À $x$ fixé, $\\int_0^{+\\infty}\\frac{\\mathrm{d}y}{(1+x+y)^3}=\\frac1{2(1+x)^2}$, fonction continue de $x$ ; puis $\\int_0^{+\\infty}\\frac{\\mathrm{d}x}{2(1+x)^2}=\\frac12$. Par symétrie de $f$ et Fubini-Tonelli, l'autre ordre donne aussi $\\frac12$."
+        },
+        {
+          "enonce": "Justifier l'existence et calculer $\\int_0^{+\\infty}\\left(\\int_0^{+\\infty}\\frac{\\mathrm{d}y}{(1+x+y)^4}\\right)\\mathrm{d}x$. Que vaut l'intégrale itérée dans l'autre ordre ?",
+          "indices": [
+            "À $x\\ge0$ fixé, une primitive de $y\\mapsto(1+x+y)^{-4}$ est $y\\mapsto-\\frac13(1+x+y)^{-3}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale itérée ?",
+            "propositions": [
+              "$\\frac16$",
+              "$\\frac13$",
+              "$\\frac1{12}$",
+              "$\\frac19$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f(x,y)=(1+x+y)^{-4}$ est continue et positive sur $\\left[0,+\\infty\\right[^2$. À $x$ fixé, $\\int_0^{+\\infty}\\frac{\\mathrm{d}y}{(1+x+y)^4}=\\frac1{3(1+x)^3}$, fonction continue de $x$ ; puis $\\int_0^{+\\infty}\\frac{\\mathrm{d}x}{3(1+x)^3}=\\frac13\\cdot\\frac12=\\frac16$. Par symétrie de $f$ et Fubini-Tonelli, l'autre ordre donne aussi $\\frac16$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-tonelli-ex2",
+      "carte": "int-l3-multiples-fubini-tonelli",
+      "difficulte": 3,
+      "titre": "Une intégrale de type Frullani",
+      "enonce": "1. Pour $t>0$, montrer que $\\arctan(2t)-\\arctan t=\\int_1^2\\frac{t}{1+x^2t^2}\\,\\mathrm{d}x$.\n\n2. En déduire, en justifiant l'échange des intégrations, la valeur de $I=\\int_0^{+\\infty}\\frac{\\arctan(2t)-\\arctan t}{t}\\,\\mathrm{d}t$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, dériver $x\\mapsto\\arctan(xt)$ à $t$ fixé.",
+        "Pour la question 2, appliquer le théorème de Fubini-Tonelli à $(x,t)\\mapsto\\frac1{1+x^2t^2}$, positive et continue sur $[1,2]\\times\\left[0,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I$ ?",
+        "propositions": [
+          "$\\frac\\pi2\\ln2$",
+          "$\\pi\\ln2$",
+          "$\\ln2$",
+          "$\\frac\\pi4\\ln2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. À $t>0$ fixé, $\\frac{\\partial}{\\partial x}\\arctan(xt)=\\frac t{1+x^2t^2}$ ; on intègre de $1$ à $2$.\n\n2. Pour $t>0$, l'intégrande de $I$ vaut donc $g(t)=\\int_1^2\\frac{\\mathrm{d}x}{1+x^2t^2}$ ; cette formule définit aussi $g(0)=1$, et $g$ est continue sur $\\left[0,+\\infty\\right[$ (intégrale à paramètre sur un segment). La fonction $f(x,t)=\\frac1{1+x^2t^2}$ est continue et positive sur $[1,2]\\times\\left[0,+\\infty\\right[$, et $\\int_0^{+\\infty}f(x,t)\\,\\mathrm{d}t=\\frac1x\\big[\\arctan(xt)\\big]_{t=0}^{t\\to+\\infty}=\\frac\\pi{2x}$ est continue sur $[1,2]$. Par Fubini-Tonelli :\n$$I=\\int_0^{+\\infty}\\left(\\int_1^2f(x,t)\\,\\mathrm{d}x\\right)\\mathrm{d}t=\\int_1^2\\left(\\int_0^{+\\infty}f(x,t)\\,\\mathrm{d}t\\right)\\mathrm{d}x=\\int_1^2\\frac\\pi{2x}\\,\\mathrm{d}x=\\frac\\pi2\\ln2.$$\nL'égalité montre au passage que $I$ converge.",
+      "variantes": [
+        {
+          "enonce": "1. Pour $t>0$, montrer que $\\arctan(3t)-\\arctan t=\\int_1^3\\frac{t}{1+x^2t^2}\\,\\mathrm{d}x$.\n\n2. En déduire, en justifiant l'échange des intégrations, la valeur de $I=\\int_0^{+\\infty}\\frac{\\arctan(3t)-\\arctan t}{t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour la question 1, dériver $x\\mapsto\\arctan(xt)$ à $t$ fixé.",
+            "Pour la question 2, appliquer le théorème de Fubini-Tonelli à $(x,t)\\mapsto\\frac1{1+x^2t^2}$, positive et continue sur $[1,3]\\times\\left[0,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac\\pi2\\ln3$",
+              "$\\pi\\ln3$",
+              "$\\ln3$",
+              "$\\frac\\pi2\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. À $t>0$ fixé, $\\frac{\\partial}{\\partial x}\\arctan(xt)=\\frac t{1+x^2t^2}$ ; on intègre de $1$ à $3$.\n\n2. Pour $t>0$, l'intégrande de $I$ vaut $g(t)=\\int_1^3\\frac{\\mathrm{d}x}{1+x^2t^2}$, formule qui définit aussi $g(0)=2$ ; $g$ est continue sur $\\left[0,+\\infty\\right[$. La fonction $f(x,t)=\\frac1{1+x^2t^2}$ est continue et positive sur $[1,3]\\times\\left[0,+\\infty\\right[$, et $\\int_0^{+\\infty}f(x,t)\\,\\mathrm{d}t=\\frac\\pi{2x}$ est continue sur $[1,3]$. Par Fubini-Tonelli :\n$$I=\\int_1^3\\frac\\pi{2x}\\,\\mathrm{d}x=\\frac\\pi2\\ln3.$$"
+        },
+        {
+          "enonce": "1. Pour $t>0$, montrer que $e^{-t^2}-e^{-2t^2}=\\int_1^2t^2e^{-xt^2}\\,\\mathrm{d}x$.\n\n2. En déduire, en justifiant l'échange des intégrations, la valeur de $I=\\int_0^{+\\infty}\\frac{e^{-t^2}-e^{-2t^2}}{t}\\,\\mathrm{d}t$.",
+          "indices": [
+            "Pour la question 1, dériver $x\\mapsto e^{-xt^2}$ à $t$ fixé.",
+            "Pour la question 2, appliquer le théorème de Fubini-Tonelli à $(x,t)\\mapsto te^{-xt^2}$, positive et continue sur $[1,2]\\times\\left[0,+\\infty\\right[$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac{\\ln2}2$",
+              "$\\ln2$",
+              "$\\frac{\\sqrt\\pi}2\\ln2$",
+              "$\\frac{\\ln2}4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. À $t>0$ fixé, $\\frac{\\partial}{\\partial x}\\left(-e^{-xt^2}\\right)=t^2e^{-xt^2}$ ; on intègre de $1$ à $2$.\n\n2. Pour $t>0$, l'intégrande de $I$ vaut donc $g(t)=\\int_1^2te^{-xt^2}\\,\\mathrm{d}x$ ; cette formule définit aussi $g(0)=0$, et $g$ est continue sur $\\left[0,+\\infty\\right[$ (intégrale à paramètre sur un segment). La fonction $f(x,t)=te^{-xt^2}$ est continue et positive sur $[1,2]\\times\\left[0,+\\infty\\right[$, et $\\int_0^{+\\infty}te^{-xt^2}\\,\\mathrm{d}t=\\left[-\\frac{e^{-xt^2}}{2x}\\right]_{t=0}^{t\\to+\\infty}=\\frac1{2x}$ est continue sur $[1,2]$. Par Fubini-Tonelli :\n$$I=\\int_1^2\\frac{\\mathrm{d}x}{2x}=\\frac{\\ln2}2.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-fubini-tonelli-ex3",
+      "carte": "int-l3-multiples-fubini-tonelli",
+      "difficulte": 4,
+      "titre": "L'intégrale de Gauss par le théorème de Fubini-Tonelli",
+      "enonce": "On note $G=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t$ (intégrale convergente) et, pour $(x,y)\\in\\left]0,+\\infty\\right[\\times\\left[0,+\\infty\\right[$, $f(x,y)=xe^{-x^2(1+y^2)}$.\n\n1. Pour $y\\ge0$, calculer $\\int_0^{+\\infty}f(x,y)\\,\\mathrm{d}x$.\n\n2. Pour $x>0$, montrer que $\\int_0^{+\\infty}f(x,y)\\,\\mathrm{d}y=Ge^{-x^2}$.\n\n3. Justifier l'application du théorème de Fubini-Tonelli et en déduire la valeur de $G$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 2, poser $u=xy$ à $x>0$ fixé.",
+        "Pour la question 3, vérifier que les deux intégrales partielles obtenues sont continues, sur $\\left[0,+\\infty\\right[$ et sur $\\left]0,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $G$ ?",
+        "propositions": [
+          "$\\frac{\\sqrt\\pi}2$",
+          "$\\sqrt\\pi$",
+          "$\\frac\\pi4$",
+          "$\\frac{\\sqrt\\pi}4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $\\int_0^{+\\infty}xe^{-x^2(1+y^2)}\\,\\mathrm{d}x=\\left[-\\frac{e^{-x^2(1+y^2)}}{2(1+y^2)}\\right]_{x=0}^{x\\to+\\infty}=\\frac1{2(1+y^2)}$.\n\n2. À $x>0$ fixé, le changement de variable $u=xy$ donne $\\int_0^{+\\infty}xe^{-x^2}e^{-x^2y^2}\\,\\mathrm{d}y=e^{-x^2}\\int_0^{+\\infty}e^{-u^2}\\,\\mathrm{d}u=Ge^{-x^2}$.\n\n3. $f$ est continue et positive sur $\\left]0,+\\infty\\right[\\times\\left[0,+\\infty\\right[$, et les intégrales partielles $x\\mapsto Ge^{-x^2}$ (sur $\\left]0,+\\infty\\right[$) et $y\\mapsto\\frac1{2(1+y^2)}$ (sur $\\left[0,+\\infty\\right[$) sont continues. Par Fubini-Tonelli :\n$$\\int_0^{+\\infty}Ge^{-x^2}\\,\\mathrm{d}x=\\int_0^{+\\infty}\\frac{\\mathrm{d}y}{2(1+y^2)},\\quad\\text{soit}\\quad G^2=\\frac\\pi4.$$\nComme $G>0$, $G=\\frac{\\sqrt\\pi}2$."
+    },
+    {
+      "id": "int-l3-multiples-fubini-tonelli-ex4",
+      "carte": "int-l3-multiples-fubini-tonelli",
+      "difficulte": 5,
+      "titre": "L'intégrale de Dirichlet par le théorème de Fubini",
+      "enonce": "Soit $A>0$. On veut calculer $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$, intégrale semi-convergente dont on admet la convergence.\n\n1. Pour $t>0$, montrer que $\\frac1t=\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}x$.\n\n2. On pose $f(x,t)=e^{-xt}\\sin t$ sur $\\left[0,+\\infty\\right[\\times\\left]0,A\\right]$. Montrer que $\\int_0^A\\left(\\int_0^{+\\infty}|f(x,t)|\\,\\mathrm{d}x\\right)\\mathrm{d}t$ est finie, puis que\n$$\\int_0^A\\frac{\\sin t}t\\,\\mathrm{d}t=\\int_0^{+\\infty}\\left(\\int_0^Ae^{-xt}\\sin t\\,\\mathrm{d}t\\right)\\mathrm{d}x.$$\n\n3. Calculer $\\int_0^Ae^{-xt}\\sin t\\,\\mathrm{d}t$ (on pourra passer par la partie imaginaire de $e^{(i-x)t}$).\n\n4. En faisant tendre $A$ vers $+\\infty$, en déduire la valeur de $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 2, $\\int_0^{+\\infty}|f(x,t)|\\,\\mathrm{d}x=\\frac{|\\sin t|}t$.",
+        "Pour la question 4, utiliser le théorème de convergence dominée avec $A=n$, après avoir majoré $(1+x)e^{-xA}$ par $1$ pour $A\\ge1$ et $x\\ge0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t$ ?",
+        "propositions": [
+          "$\\frac\\pi2$",
+          "$\\pi$",
+          "$\\frac\\pi4$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $t>0$, $\\int_0^{+\\infty}e^{-xt}\\,\\mathrm{d}x=\\left[-\\frac{e^{-xt}}t\\right]_{x=0}^{x\\to+\\infty}=\\frac1t$.\n\n2. $f$ est continue sur $\\left[0,+\\infty\\right[\\times\\left]0,A\\right]$ et, pour $t\\in\\left]0,A\\right]$, $\\int_0^{+\\infty}|f(x,t)|\\,\\mathrm{d}x=\\frac{|\\sin t|}t$, fonction continue et majorée par $1$ ; donc $\\int_0^A\\left(\\int_0^{+\\infty}|f|\\,\\mathrm{d}x\\right)\\mathrm{d}t\\le A<+\\infty$. Les autres intégrales partielles sont continues : $\\int_0^{+\\infty}f(x,t)\\,\\mathrm{d}x=\\frac{\\sin t}t$ sur $\\left]0,A\\right]$, et $x\\mapsto\\int_0^Ae^{-xt}\\sin t\\,\\mathrm{d}t$, $x\\mapsto\\int_0^Ae^{-xt}|\\sin t|\\,\\mathrm{d}t$ sont continues sur $\\left[0,+\\infty\\right[$ (intégrales à paramètre sur un segment, l'intégrande étant continu sur $\\left[0,+\\infty\\right[\\times[0,A]$). Le théorème de Fubini donne l'égalité annoncée.\n\n3. $\\int_0^Ae^{(i-x)t}\\,\\mathrm{d}t=\\frac{e^{(i-x)A}-1}{i-x}=\\frac{\\left(1-e^{(i-x)A}\\right)(x+i)}{1+x^2}$, dont la partie imaginaire est\n$$\\int_0^Ae^{-xt}\\sin t\\,\\mathrm{d}t=\\frac{1-e^{-xA}(x\\sin A+\\cos A)}{1+x^2}.$$\n\n4. Notons $h_A(x)$ cette fonction. Pour $x>0$, $h_A(x)\\to\\frac1{1+x^2}$ quand $A\\to+\\infty$. Pour $A\\ge1$ et $x\\ge0$, $e^{-xA}|x\\sin A+\\cos A|\\le(1+x)e^{-x}\\le1$, donc $|h_A(x)|\\le\\frac2{1+x^2}$, fonction intégrable sur $\\left]0,+\\infty\\right[$. Par convergence dominée sur $\\left]0,+\\infty\\right[$ (avec $A=n\\to+\\infty$), $\\int_0^{+\\infty}h_n\\to\\int_0^{+\\infty}\\frac{\\mathrm{d}x}{1+x^2}=\\frac\\pi2$. Comme $\\int_0^n\\frac{\\sin t}t\\,\\mathrm{d}t$ tend vers l'intégrale cherchée,\n$$\\int_0^{+\\infty}\\frac{\\sin t}t\\,\\mathrm{d}t=\\frac\\pi2.$$"
+    },
+    {
+      "id": "int-l3-multiples-domaines-ex1",
+      "carte": "int-l3-multiples-domaines",
+      "difficulte": 1,
+      "titre": "Intégrale double sur un domaine simple",
+      "enonce": "Soit $T=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x\\le1,\\ 0\\le y\\le x\\}$. Calculer $\\iint_T(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+      "duree_min": 10,
+      "indices": [
+        "Intégrer d'abord en $y$ entre $0$ et $x$, puis en $x$ entre $0$ et $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac12$",
+          "$1$",
+          "$\\frac13$",
+          "$\\frac14$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$T$ est simple selon $y$, avec $\\varphi_1(x)=0$ et $\\varphi_2(x)=x$, et la fonction est continue. À $x$ fixé, $\\int_0^x(x+y)\\,\\mathrm{d}y=x^2+\\frac{x^2}2=\\frac{3x^2}2$, puis\n$$\\iint_T(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1\\frac{3x^2}2\\,\\mathrm{d}x=\\frac12.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x\\le1,\\ x^2\\le y\\le x\\}$. Calculer $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Intégrer d'abord en $y$ entre $x^2$ et $x$ (on a bien $x^2\\le x$ sur $[0,1]$), puis en $x$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac1{12}$",
+              "$\\frac16$",
+              "$\\frac1{20}$",
+              "$\\frac1{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$D$ est simple selon $y$, avec $\\varphi_1(x)=x^2\\le\\varphi_2(x)=x$ sur $[0,1]$. À $x$ fixé, $\\int_{x^2}^xx\\,\\mathrm{d}y=x(x-x^2)$, puis\n$$\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1(x^2-x^3)\\,\\mathrm{d}x=\\frac13-\\frac14=\\frac1{12}.$$"
+        },
+        {
+          "enonce": "Soit $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ x\\ge0,\\ y\\ge0,\\ x+y\\le1\\}$. Calculer $\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Décrire $D$ sous la forme $\\{0\\le x\\le1,\\ 0\\le y\\le\\varphi_2(x)\\}$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac16$",
+              "$\\frac13$",
+              "$\\frac12$",
+              "$\\frac1{24}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$D=\\{0\\le x\\le1,\\ 0\\le y\\le1-x\\}$ est simple selon $y$. À $x$ fixé, $\\int_0^{1-x}y\\,\\mathrm{d}y=\\frac{(1-x)^2}2$, puis\n$$\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1\\frac{(1-x)^2}2\\,\\mathrm{d}x=\\frac16.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-domaines-ex2",
+      "carte": "int-l3-multiples-domaines",
+      "difficulte": 2,
+      "titre": "Échanger l'ordre d'intégration",
+      "enonce": "Calculer $I=\\int_0^1\\left(\\int_x^1e^{y^2}\\,\\mathrm{d}y\\right)\\mathrm{d}x$ en échangeant l'ordre d'intégration.",
+      "duree_min": 10,
+      "indices": [
+        "Dessiner le domaine $\\{0\\le x\\le1,\\ x\\le y\\le1\\}$ et le décrire à $y$ fixé."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $I$ ?",
+        "propositions": [
+          "$\\frac{e-1}2$",
+          "$e-1$",
+          "$\\frac e2$",
+          "$\\frac{e-2}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le domaine d'intégration est le triangle $D=\\{0\\le x\\le1,\\ x\\le y\\le1\\}=\\{0\\le y\\le1,\\ 0\\le x\\le y\\}$, simple dans les deux sens, et $(x,y)\\mapsto e^{y^2}$ est continue sur $D$. Donc\n$$I=\\int_0^1\\left(\\int_0^ye^{y^2}\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1ye^{y^2}\\,\\mathrm{d}y=\\left[\\frac{e^{y^2}}2\\right]_0^1=\\frac{e-1}2.$$\nDans l'ordre initial, $y\\mapsto e^{y^2}$ n'a pas de primitive élémentaire.",
+      "variantes": [
+        {
+          "enonce": "Calculer $I=\\int_0^1\\left(\\int_y^1\\sin(x^2)\\,\\mathrm{d}x\\right)\\mathrm{d}y$ en échangeant l'ordre d'intégration.",
+          "indices": [
+            "Dessiner le domaine $\\{0\\le y\\le1,\\ y\\le x\\le1\\}$ et le décrire à $x$ fixé."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac{1-\\cos1}2$",
+              "$1-\\cos1$",
+              "$\\frac{\\sin1}2$",
+              "$\\frac{1+\\cos1}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le domaine est le triangle $\\{0\\le y\\le1,\\ y\\le x\\le1\\}=\\{0\\le x\\le1,\\ 0\\le y\\le x\\}$, et $(x,y)\\mapsto\\sin(x^2)$ est continue. Donc\n$$I=\\int_0^1\\left(\\int_0^x\\sin(x^2)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1x\\sin(x^2)\\,\\mathrm{d}x=\\left[-\\frac{\\cos(x^2)}2\\right]_0^1=\\frac{1-\\cos1}2.$$"
+        },
+        {
+          "enonce": "Calculer $I=\\int_0^1\\left(\\int_{\\sqrt x}^1e^{y^3}\\,\\mathrm{d}y\\right)\\mathrm{d}x$ en échangeant l'ordre d'intégration.",
+          "indices": [
+            "Dessiner le domaine $\\{0\\le x\\le1,\\ \\sqrt x\\le y\\le1\\}$ et le décrire à $y$ fixé."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $I$ ?",
+            "propositions": [
+              "$\\frac{e-1}3$",
+              "$\\frac{e-1}2$",
+              "$e-1$",
+              "$\\frac e3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le domaine est $\\{0\\le x\\le1,\\ \\sqrt x\\le y\\le1\\}=\\{0\\le y\\le1,\\ 0\\le x\\le y^2\\}$ (pour $x,y\\ge0$, $\\sqrt x\\le y$ équivaut à $x\\le y^2$), et $(x,y)\\mapsto e^{y^3}$ est continue. Donc\n$$I=\\int_0^1\\left(\\int_0^{y^2}e^{y^3}\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1y^2e^{y^3}\\,\\mathrm{d}y=\\left[\\frac{e^{y^3}}3\\right]_0^1=\\frac{e-1}3.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-domaines-ex3",
+      "carte": "int-l3-multiples-domaines",
+      "difficulte": 3,
+      "titre": "Domaine limité par une parabole et une droite",
+      "enonce": "Soit $D$ le domaine borné du plan limité par la parabole $y=x^2$ et la droite $y=x+2$. Calculer l'aire de $D$ et $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+      "duree_min": 15,
+      "indices": [
+        "Déterminer les abscisses des points d'intersection, puis la position relative des deux courbes entre elles.",
+        "Décrire $D$ comme un domaine simple selon $y$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y$ ?",
+        "propositions": [
+          "$\\frac94$",
+          "$\\frac92$",
+          "$\\frac12$",
+          "$\\frac{27}4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les courbes se coupent quand $x^2=x+2$, soit $x=-1$ ou $x=2$, et $x^2\\le x+2$ sur $[-1,2]$. Donc $D=\\{-1\\le x\\le2,\\ x^2\\le y\\le x+2\\}$. L'aire vaut\n$$\\int_{-1}^2(x+2-x^2)\\,\\mathrm{d}x=\\left[\\frac{x^2}2+2x-\\frac{x^3}3\\right]_{-1}^2=\\frac{10}3+\\frac76=\\frac92,$$\net\n$$\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_{-1}^2x(x+2-x^2)\\,\\mathrm{d}x=\\left[\\frac{x^3}3+x^2-\\frac{x^4}4\\right]_{-1}^2=\\frac83-\\frac5{12}=\\frac94.$$\nLe centre de gravité de $D$ a donc pour abscisse $\\frac94\\Big/\\frac92=\\frac12$, milieu de $[-1,2]$.",
+      "variantes": [
+        {
+          "enonce": "Soit $D$ le domaine borné du plan limité par la parabole $y=x^2$ et la droite $y=2x$. Calculer l'aire de $D$ et $\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Déterminer les abscisses des points d'intersection, puis la position relative des deux courbes entre elles.",
+            "Décrire $D$ comme un domaine simple selon $y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y$ ?",
+            "propositions": [
+              "$\\frac{32}{15}$",
+              "$\\frac43$",
+              "$\\frac{16}{15}$",
+              "$\\frac{64}{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les courbes se coupent quand $x^2=2x$, soit $x=0$ ou $x=2$, et $x^2\\le2x$ sur $[0,2]$. Donc $D=\\{0\\le x\\le2,\\ x^2\\le y\\le2x\\}$. L'aire vaut $\\int_0^2(2x-x^2)\\,\\mathrm{d}x=4-\\frac83=\\frac43$, et\n$$\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^2\\left(\\int_{x^2}^{2x}y\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^2\\frac{4x^2-x^4}2\\,\\mathrm{d}x=\\frac12\\left(\\frac{32}3-\\frac{32}5\\right)=\\frac{32}{15}.$$"
+        },
+        {
+          "enonce": "Soit $D$ le domaine borné du plan limité par la parabole $y=x^2$ et la droite $y=1$. Calculer l'aire de $D$ et $\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Déterminer les abscisses des points d'intersection, puis la position relative des deux courbes entre elles.",
+            "Décrire $D$ comme un domaine simple selon $y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y$ ?",
+            "propositions": [
+              "$\\frac45$",
+              "$\\frac43$",
+              "$\\frac25$",
+              "$\\frac35$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les courbes se coupent quand $x^2=1$, soit $x=-1$ ou $x=1$, et $x^2\\le1$ sur $[-1,1]$. Donc $D=\\{-1\\le x\\le1,\\ x^2\\le y\\le1\\}$. L'aire vaut $\\int_{-1}^1(1-x^2)\\,\\mathrm{d}x=\\frac43$, et\n$$\\iint_Dy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_{-1}^1\\left(\\int_{x^2}^1y\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_{-1}^1\\frac{1-x^4}2\\,\\mathrm{d}x=\\frac12\\left(2-\\frac25\\right)=\\frac45.$$\nLe centre de gravité de $D$ a donc pour ordonnée $\\frac45\\Big/\\frac43=\\frac35$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-domaines-ex4",
+      "carte": "int-l3-multiples-domaines",
+      "difficulte": 4,
+      "titre": "Intégrales itérées sur un triangle",
+      "enonce": "Soit $f$ continue sur $[0,1]$.\n\n1. Montrer que, pour $x\\in[0,1]$, $\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s$, en écrivant le membre de gauche comme une intégrale double sur un triangle.\n\n2. Retrouver ce résultat par une intégration par parties.\n\n3. Application : calculer $\\int_0^1\\left(\\int_0^t\\frac{\\mathrm{d}s}{1+s}\\right)\\mathrm{d}t$.",
+      "duree_min": 20,
+      "indices": [
+        "Le domaine $\\{0\\le t\\le x,\\ 0\\le s\\le t\\}$ s'écrit aussi $\\{0\\le s\\le x,\\ s\\le t\\le x\\}$.",
+        "Pour la question 2, intégrer par parties en dérivant $t\\mapsto\\int_0^tf(s)\\,\\mathrm{d}s$ et en prenant $t\\mapsto t-x$ comme primitive de $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale de la question 3 ?",
+        "propositions": [
+          "$2\\ln2-1$",
+          "$\\ln2$",
+          "$1-\\ln2$",
+          "$2\\ln2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $x\\in\\left]0,1\\right]$ (le cas $x=0$ est évident), le domaine $T_x=\\{(t,s)\\ :\\ 0\\le t\\le x,\\ 0\\le s\\le t\\}$ est un triangle, simple dans les deux sens : $T_x=\\{0\\le s\\le x,\\ s\\le t\\le x\\}$. La fonction $(t,s)\\mapsto f(s)$ est continue sur $T_x$ ; par la formule de Fubini,\n$$\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\iint_{T_x}f(s)\\,\\mathrm{d}s\\,\\mathrm{d}t=\\int_0^x\\left(\\int_s^x\\mathrm{d}t\\right)f(s)\\,\\mathrm{d}s=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s.$$\n\n2. Avec $F(t)=\\int_0^tf(s)\\,\\mathrm{d}s$, de classe $\\mathcal{C}^1$ et de dérivée $f$ : $\\int_0^xF(t)\\,\\mathrm{d}t=\\big[(t-x)F(t)\\big]_0^x-\\int_0^x(t-x)f(t)\\,\\mathrm{d}t=\\int_0^x(x-t)f(t)\\,\\mathrm{d}t$.\n\n3. Avec $f(s)=\\frac1{1+s}$ et $x=1$ : $\\int_0^1\\frac{1-s}{1+s}\\,\\mathrm{d}s=\\int_0^1\\left(\\frac2{1+s}-1\\right)\\mathrm{d}s=2\\ln2-1$. Contrôle : $\\int_0^t\\frac{\\mathrm{d}s}{1+s}=\\ln(1+t)$ et $\\int_0^1\\ln(1+t)\\,\\mathrm{d}t=2\\ln2-1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ continue sur $[0,1]$.\n\n1. Montrer que, pour $x\\in[0,1]$, $\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s$, en écrivant le membre de gauche comme une intégrale double sur un triangle.\n\n2. Retrouver ce résultat par une intégration par parties.\n\n3. Application : calculer $\\int_0^1\\left(\\int_0^te^s\\,\\mathrm{d}s\\right)\\mathrm{d}t$.",
+          "indices": [
+            "Le domaine $\\{0\\le t\\le x,\\ 0\\le s\\le t\\}$ s'écrit aussi $\\{0\\le s\\le x,\\ s\\le t\\le x\\}$.",
+            "Pour la question 2, intégrer par parties en dérivant $t\\mapsto\\int_0^tf(s)\\,\\mathrm{d}s$ et en prenant $t\\mapsto t-x$ comme primitive de $1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale de la question 3 ?",
+            "propositions": [
+              "$e-2$",
+              "$e-1$",
+              "$1$",
+              "$e-3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $x\\in\\left]0,1\\right]$ (le cas $x=0$ est évident), le domaine $T_x=\\{(t,s)\\ :\\ 0\\le t\\le x,\\ 0\\le s\\le t\\}$ est un triangle, simple dans les deux sens : $T_x=\\{0\\le s\\le x,\\ s\\le t\\le x\\}$. La fonction $(t,s)\\mapsto f(s)$ est continue sur $T_x$ ; par la formule de Fubini,\n$$\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\iint_{T_x}f(s)\\,\\mathrm{d}s\\,\\mathrm{d}t=\\int_0^x\\left(\\int_s^x\\mathrm{d}t\\right)f(s)\\,\\mathrm{d}s=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s.$$\n\n2. Avec $F(t)=\\int_0^tf(s)\\,\\mathrm{d}s$, de classe $\\mathcal{C}^1$ et de dérivée $f$ : $\\int_0^xF(t)\\,\\mathrm{d}t=\\big[(t-x)F(t)\\big]_0^x-\\int_0^x(t-x)f(t)\\,\\mathrm{d}t=\\int_0^x(x-t)f(t)\\,\\mathrm{d}t$.\n\n3. Avec $f(s)=e^s$ et $x=1$ : $\\int_0^1(1-s)e^s\\,\\mathrm{d}s=\\big[(1-s)e^s\\big]_0^1+\\int_0^1e^s\\,\\mathrm{d}s=-1+(e-1)=e-2$. Contrôle : $\\int_0^te^s\\,\\mathrm{d}s=e^t-1$ et $\\int_0^1(e^t-1)\\,\\mathrm{d}t=e-2$."
+        },
+        {
+          "enonce": "Soit $f$ continue sur $[0,1]$.\n\n1. Montrer que, pour $x\\in[0,1]$, $\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s$, en écrivant le membre de gauche comme une intégrale double sur un triangle.\n\n2. Retrouver ce résultat par une intégration par parties.\n\n3. Application : calculer $\\int_0^1\\left(\\int_0^t\\frac{\\mathrm{d}s}{(1+s)^2}\\right)\\mathrm{d}t$.",
+          "indices": [
+            "Le domaine $\\{0\\le t\\le x,\\ 0\\le s\\le t\\}$ s'écrit aussi $\\{0\\le s\\le x,\\ s\\le t\\le x\\}$.",
+            "Pour la question 2, intégrer par parties en dérivant $t\\mapsto\\int_0^tf(s)\\,\\mathrm{d}s$ et en prenant $t\\mapsto t-x$ comme primitive de $1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale de la question 3 ?",
+            "propositions": [
+              "$1-\\ln2$",
+              "$\\ln2$",
+              "$2\\ln2-1$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $x\\in\\left]0,1\\right]$ (le cas $x=0$ est évident), le domaine $T_x=\\{(t,s)\\ :\\ 0\\le t\\le x,\\ 0\\le s\\le t\\}$ est un triangle, simple dans les deux sens : $T_x=\\{0\\le s\\le x,\\ s\\le t\\le x\\}$. La fonction $(t,s)\\mapsto f(s)$ est continue sur $T_x$ ; par la formule de Fubini,\n$$\\int_0^x\\left(\\int_0^tf(s)\\,\\mathrm{d}s\\right)\\mathrm{d}t=\\iint_{T_x}f(s)\\,\\mathrm{d}s\\,\\mathrm{d}t=\\int_0^x\\left(\\int_s^x\\mathrm{d}t\\right)f(s)\\,\\mathrm{d}s=\\int_0^x(x-s)f(s)\\,\\mathrm{d}s.$$\n\n2. Avec $F(t)=\\int_0^tf(s)\\,\\mathrm{d}s$, de classe $\\mathcal{C}^1$ et de dérivée $f$ : $\\int_0^xF(t)\\,\\mathrm{d}t=\\big[(t-x)F(t)\\big]_0^x-\\int_0^x(t-x)f(t)\\,\\mathrm{d}t=\\int_0^x(x-t)f(t)\\,\\mathrm{d}t$.\n\n3. Avec $f(s)=\\frac1{(1+s)^2}$ et $x=1$ : $\\int_0^1\\frac{1-s}{(1+s)^2}\\,\\mathrm{d}s=\\int_0^1\\left(\\frac2{(1+s)^2}-\\frac1{1+s}\\right)\\mathrm{d}s=2\\cdot\\frac12-\\ln2=1-\\ln2$. Contrôle : $\\int_0^t\\frac{\\mathrm{d}s}{(1+s)^2}=1-\\frac1{1+t}$ et $\\int_0^1\\left(1-\\frac1{1+t}\\right)\\mathrm{d}t=1-\\ln2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-changement-variables-ex1",
+      "carte": "int-l3-multiples-changement-variables",
+      "difficulte": 1,
+      "titre": "Intégrale sur un disque en coordonnées polaires",
+      "enonce": "Calculer $\\iint_{x^2+y^2\\le4}(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+      "duree_min": 5,
+      "indices": [
+        "Passer en coordonnées polaires, sans oublier le facteur $r$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$8\\pi$",
+          "$4\\pi$",
+          "$\\frac{16\\pi}3$",
+          "$16\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le disque est décrit en polaires par $r\\in[0,2]$ et $\\theta\\in[0,2\\pi]$, et $x^2+y^2=r^2$ :\n$$\\iint_{x^2+y^2\\le4}(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^2r^2\\cdot r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\cdot\\frac{2^4}4=8\\pi.$$\nSans le facteur $r$, on trouverait à tort $2\\pi\\cdot\\frac83=\\frac{16\\pi}3$.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iint_{x^2+y^2\\le1}\\sqrt{x^2+y^2}\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Passer en coordonnées polaires, sans oublier le facteur $r$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac{2\\pi}3$",
+              "$\\pi$",
+              "$\\frac\\pi3$",
+              "$\\frac{4\\pi}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "En polaires, $r\\in[0,1]$, $\\theta\\in[0,2\\pi]$ et $\\sqrt{x^2+y^2}=r$ :\n$$\\iint_{x^2+y^2\\le1}\\sqrt{x^2+y^2}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^1r\\cdot r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\cdot\\frac13=\\frac{2\\pi}3.$$\nSans le facteur $r$, on trouverait à tort $2\\pi\\cdot\\frac12=\\pi$."
+        },
+        {
+          "enonce": "Calculer $\\iint_{1\\le x^2+y^2\\le4}\\frac{\\mathrm{d}x\\,\\mathrm{d}y}{x^2+y^2}$.",
+          "indices": [
+            "Passer en coordonnées polaires, sans oublier le facteur $r$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$2\\pi\\ln2$",
+              "$\\pi\\ln2$",
+              "$\\pi$",
+              "$4\\pi\\ln2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La couronne est décrite en polaires par $r\\in[1,2]$ et $\\theta\\in[0,2\\pi]$ ; la fonction est continue sur la couronne et vaut $\\frac1{r^2}$ :\n$$\\iint_{1\\le x^2+y^2\\le4}\\frac{\\mathrm{d}x\\,\\mathrm{d}y}{x^2+y^2}=\\int_0^{2\\pi}\\left(\\int_1^2\\frac{r}{r^2}\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\ln2.$$\nSans le facteur $r$, on trouverait à tort $2\\pi\\cdot\\frac12=\\pi$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-changement-variables-ex2",
+      "carte": "int-l3-multiples-changement-variables",
+      "difficulte": 2,
+      "titre": "Intégrale sur une portion de disque",
+      "enonce": "Calculer $\\iint_Dxy\\,\\mathrm{d}x\\,\\mathrm{d}y$, où $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ x\\ge0,\\ y\\ge0,\\ x^2+y^2\\le1\\}$.",
+      "duree_min": 10,
+      "indices": [
+        "En polaires, $D$ correspond à $r\\in[0,1]$ et $\\theta\\in\\left[0,\\frac\\pi2\\right]$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac18$",
+          "$\\frac14$",
+          "$\\frac16$",
+          "$\\frac1{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "En polaires, $D$ correspond à $[0,1]\\times\\left[0,\\frac\\pi2\\right]$ et $xy=r^2\\cos\\theta\\sin\\theta$ :\n$$\\iint_Dxy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\left(\\int_0^1r^3\\,\\mathrm{d}r\\right)\\left(\\int_0^{\\pi/2}\\cos\\theta\\sin\\theta\\,\\mathrm{d}\\theta\\right)=\\frac14\\cdot\\frac12=\\frac18.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y$, où $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ x\\ge0,\\ x^2+y^2\\le1\\}$.",
+          "indices": [
+            "En polaires, $D$ correspond à $r\\in[0,1]$ et $\\theta\\in\\left[-\\frac\\pi2,\\frac\\pi2\\right]$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac23$",
+              "$\\frac13$",
+              "$\\frac\\pi4$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "En polaires, $D$ (demi-disque) correspond à $[0,1]\\times\\left[-\\frac\\pi2,\\frac\\pi2\\right]$ et $x=r\\cos\\theta$ :\n$$\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y=\\left(\\int_0^1r^2\\,\\mathrm{d}r\\right)\\left(\\int_{-\\pi/2}^{\\pi/2}\\cos\\theta\\,\\mathrm{d}\\theta\\right)=\\frac13\\cdot2=\\frac23.$$"
+        },
+        {
+          "enonce": "Calculer $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y$, où $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ x\\ge0,\\ y\\ge0,\\ 1\\le x^2+y^2\\le4\\}$.",
+          "indices": [
+            "En polaires, $D$ correspond à $r\\in[1,2]$ et $\\theta\\in\\left[0,\\frac\\pi2\\right]$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac73$",
+              "$\\frac32$",
+              "$\\frac83$",
+              "$\\frac{7\\pi}6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "En polaires, $D$ (quart de couronne) correspond à $[1,2]\\times\\left[0,\\frac\\pi2\\right]$ et $x=r\\cos\\theta$ :\n$$\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}y=\\left(\\int_1^2r^2\\,\\mathrm{d}r\\right)\\left(\\int_0^{\\pi/2}\\cos\\theta\\,\\mathrm{d}\\theta\\right)=\\frac73\\cdot1=\\frac73.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-changement-variables-ex3",
+      "carte": "int-l3-multiples-changement-variables",
+      "difficulte": 3,
+      "titre": "Un changement de variables linéaire",
+      "enonce": "Soit $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ |x+y|\\le1,\\ |x-y|\\le1\\}$. À l'aide du changement de variables $u=x+y$, $v=x-y$, calculer $\\iint_D(x+y)^2\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+      "duree_min": 15,
+      "indices": [
+        "Exprimer $(x,y)$ en fonction de $(u,v)$ et calculer le jacobien de cette application.",
+        "Le domaine $D$ correspond à le carré $[-1,1]^2$ dans les variables $(u,v)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac23$",
+          "$\\frac43$",
+          "$\\frac13$",
+          "$\\frac83$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'application $\\Phi(u,v)=\\left(\\frac{u+v}2,\\frac{u-v}2\\right)$ est une bijection linéaire de $\\mathbb{R}^2$ sur $\\mathbb{R}^2$ (donc un $\\mathcal{C}^1$-difféomorphisme), réciproque de $(x,y)\\mapsto(x+y,x-y)$, et $\\det J_\\Phi=\\begin{vmatrix}\\frac12&\\frac12\\\\\\frac12&-\\frac12\\end{vmatrix}=-\\frac12$. Elle envoie $\\Delta=[-1,1]^2$ sur $D$. Donc\n$$\\iint_D(x+y)^2\\,\\mathrm{d}x\\,\\mathrm{d}y=\\iint_\\Delta u^2\\cdot\\frac12\\,\\mathrm{d}u\\,\\mathrm{d}v=\\frac12\\left(\\int_{-1}^1u^2\\,\\mathrm{d}u\\right)\\left(\\int_{-1}^1\\mathrm{d}v\\right)=\\frac12\\cdot\\frac23\\cdot2=\\frac23.$$\nAttention : c'est la valeur absolue du jacobien de $\\Phi:(u,v)\\mapsto(x,y)$ qui intervient, soit $\\frac12$, et non celle du jacobien de $(x,y)\\mapsto(u,v)$, qui vaut $2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x+y\\le1,\\ 0\\le x-y\\le2\\}$. À l'aide du changement de variables $u=x+y$, $v=x-y$, calculer $\\iint_De^{x+y}\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Exprimer $(x,y)$ en fonction de $(u,v)$ et calculer le jacobien de cette application.",
+            "Le domaine $D$ correspond à le rectangle $[0,1]\\times[0,2]$ dans les variables $(u,v)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$e-1$",
+              "$2(e-1)$",
+              "$\\frac{e-1}2$",
+              "$4(e-1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'application $\\Phi(u,v)=\\left(\\frac{u+v}2,\\frac{u-v}2\\right)$ est une bijection linéaire de $\\mathbb{R}^2$ sur $\\mathbb{R}^2$ (donc un $\\mathcal{C}^1$-difféomorphisme), réciproque de $(x,y)\\mapsto(x+y,x-y)$, et $\\det J_\\Phi=\\begin{vmatrix}\\frac12&\\frac12\\\\\\frac12&-\\frac12\\end{vmatrix}=-\\frac12$. Elle envoie $\\Delta=[0,1]\\times[0,2]$ sur $D$. Donc\n$$\\iint_De^{x+y}\\,\\mathrm{d}x\\,\\mathrm{d}y=\\frac12\\left(\\int_0^1e^u\\,\\mathrm{d}u\\right)\\left(\\int_0^2\\mathrm{d}v\\right)=\\frac12(e-1)\\cdot2=e-1.$$"
+        },
+        {
+          "enonce": "Soit $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x+y\\le2,\\ 0\\le x-y\\le1\\}$. À l'aide du changement de variables $u=x+y$, $v=x-y$, calculer $\\iint_D(x+y)(x-y)^2\\,\\mathrm{d}x\\,\\mathrm{d}y$.",
+          "indices": [
+            "Exprimer $(x,y)$ en fonction de $(u,v)$ et calculer le jacobien de cette application.",
+            "Le domaine $D$ correspond à le rectangle $[0,2]\\times[0,1]$ dans les variables $(u,v)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac13$",
+              "$\\frac23$",
+              "$\\frac16$",
+              "$\\frac43$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'application $\\Phi(u,v)=\\left(\\frac{u+v}2,\\frac{u-v}2\\right)$ est une bijection linéaire de $\\mathbb{R}^2$ sur $\\mathbb{R}^2$ (donc un $\\mathcal{C}^1$-difféomorphisme), réciproque de $(x,y)\\mapsto(x+y,x-y)$, et $\\det J_\\Phi=\\begin{vmatrix}\\frac12&\\frac12\\\\\\frac12&-\\frac12\\end{vmatrix}=-\\frac12$. Elle envoie $\\Delta=[0,2]\\times[0,1]$ sur $D$. Donc\n$$\\iint_D(x+y)(x-y)^2\\,\\mathrm{d}x\\,\\mathrm{d}y=\\frac12\\left(\\int_0^2u\\,\\mathrm{d}u\\right)\\left(\\int_0^1v^2\\,\\mathrm{d}v\\right)=\\frac12\\cdot2\\cdot\\frac13=\\frac13.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-changement-variables-ex4",
+      "carte": "int-l3-multiples-changement-variables",
+      "difficulte": 5,
+      "titre": "Fonctions Gamma et Bêta par les coordonnées polaires",
+      "enonce": "Pour $a,b\\ge\\frac12$, on rappelle que $\\Gamma(a)=\\int_0^{+\\infty}t^{a-1}e^{-t}\\,\\mathrm{d}t$, et l'on pose $B(a,b)=2\\int_0^{\\pi/2}\\cos^{2a-1}\\theta\\,\\sin^{2b-1}\\theta\\,\\mathrm{d}\\theta$.\n\n1. Montrer que $\\Gamma(a)=2\\int_0^{+\\infty}u^{2a-1}e^{-u^2}\\,\\mathrm{d}u$.\n\n2. Pour $R>0$, on note $Q_R=[0,R]^2$, $C_R=\\{(u,v)\\ :\\ u\\ge0,\\ v\\ge0,\\ u^2+v^2\\le R^2\\}$ et $g(u,v)=4u^{2a-1}v^{2b-1}e^{-u^2-v^2}$. Calculer $\\iint_{C_R}g$ en coordonnées polaires, sous la forme du produit de $B(a,b)$ par une intégrale simple.\n\n3. En utilisant $C_R\\subset Q_R\\subset C_{R\\sqrt2}$, en déduire que $\\Gamma(a)\\Gamma(b)=\\Gamma(a+b)\\,B(a,b)$.\n\n4. Application : calculer $\\int_0^{\\pi/2}\\cos^3\\theta\\,\\sin^5\\theta\\,\\mathrm{d}\\theta$ à l'aide de cette formule.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, poser $t=u^2$.",
+        "Pour la question 2, $g(r\\cos\\theta,r\\sin\\theta)\\,r=4r^{2a+2b-1}e^{-r^2}\\cos^{2a-1}\\theta\\,\\sin^{2b-1}\\theta$.",
+        "Pour la question 3, $g$ est positive : encadrer $\\iint_{Q_R}g$, puis faire tendre $R$ vers $+\\infty$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\int_0^{\\pi/2}\\cos^3\\theta\\,\\sin^5\\theta\\,\\mathrm{d}\\theta$ ?",
+        "propositions": [
+          "$\\frac1{24}$",
+          "$\\frac1{12}$",
+          "$\\frac1{48}$",
+          "$\\frac1{60}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Le changement de variable $t=u^2$ ($u>0$, $\\mathrm{d}t=2u\\,\\mathrm{d}u$), bijection de classe $\\mathcal{C}^1$ de $\\left]0,+\\infty\\right[$ sur lui-même, donne $\\int_0^{+\\infty}t^{a-1}e^{-t}\\,\\mathrm{d}t=\\int_0^{+\\infty}u^{2a-2}e^{-u^2}\\,2u\\,\\mathrm{d}u$.\n\n2. Comme $a,b\\ge\\frac12$, $g$ est continue et positive sur $\\left[0,+\\infty\\right[^2$ (avec la convention $0^0=1$). En polaires, $C_R$ correspond à $r\\in[0,R]$, $\\theta\\in\\left[0,\\frac\\pi2\\right]$, et\n$$\\iint_{C_R}g=\\int_0^{\\pi/2}\\left(\\int_0^R4r^{2a+2b-1}e^{-r^2}\\cos^{2a-1}\\theta\\,\\sin^{2b-1}\\theta\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=B(a,b)\\cdot2\\int_0^Rr^{2(a+b)-1}e^{-r^2}\\,\\mathrm{d}r.$$\n\n3. Sur le carré, par la formule de Fubini (produit d'une fonction de $u$ et d'une fonction de $v$), $\\iint_{Q_R}g=\\left(2\\int_0^Ru^{2a-1}e^{-u^2}\\,\\mathrm{d}u\\right)\\left(2\\int_0^Rv^{2b-1}e^{-v^2}\\,\\mathrm{d}v\\right)$, qui tend vers $\\Gamma(a)\\Gamma(b)$ quand $R\\to+\\infty$ (question 1). Comme $g\\ge0$ et $C_R\\subset Q_R\\subset C_{R\\sqrt2}$, on a $\\iint_{C_R}g\\le\\iint_{Q_R}g\\le\\iint_{C_{R\\sqrt2}}g$. Les deux membres extrêmes tendent vers $B(a,b)\\Gamma(a+b)$ (question 2, puis question 1 appliquée à $a+b$). Par encadrement, $\\Gamma(a)\\Gamma(b)=\\Gamma(a+b)\\,B(a,b)$.\n\n4. Avec $a=2$ et $b=3$ : $2\\int_0^{\\pi/2}\\cos^3\\theta\\,\\sin^5\\theta\\,\\mathrm{d}\\theta=B(2,3)=\\frac{\\Gamma(2)\\Gamma(3)}{\\Gamma(5)}=\\frac{1\\cdot2}{24}=\\frac1{12}$, donc l'intégrale vaut $\\frac1{24}$. Contrôle direct : avec $s=\\sin\\theta$, $\\int_0^1(1-s^2)s^5\\,\\mathrm{d}s=\\frac16-\\frac18=\\frac1{24}$."
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes-ex1",
+      "carte": "int-l3-multiples-aires-volumes",
+      "difficulte": 1,
+      "titre": "Aire entre deux courbes",
+      "enonce": "Calculer l'aire du domaine $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x\\le1,\\ x^2\\le y\\le\\sqrt x\\}$ comme intégrale double.",
+      "duree_min": 10,
+      "indices": [
+        "$D$ est simple selon $y$ : intégrer d'abord en $y$ entre $x^2$ et $\\sqrt x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'aire de $D$ ?",
+        "propositions": [
+          "$\\frac13$",
+          "$\\frac23$",
+          "$\\frac16$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Sur $[0,1]$, $x^2\\le\\sqrt x$. Donc\n$$\\mathcal{A}(D)=\\iint_D\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1\\left(\\int_{x^2}^{\\sqrt x}\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1(\\sqrt x-x^2)\\,\\mathrm{d}x=\\frac23-\\frac13=\\frac13.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer l'aire du domaine $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x\\le1,\\ x^3\\le y\\le x\\}$ comme intégrale double.",
+          "indices": [
+            "$D$ est simple selon $y$ : intégrer d'abord en $y$ entre $x^3$ et $x$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'aire de $D$ ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac12$",
+              "$\\frac34$",
+              "$\\frac1{12}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,1]$, $x^3\\le x$. Donc $\\mathcal{A}(D)=\\int_0^1\\left(\\int_{x^3}^x\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1(x-x^3)\\,\\mathrm{d}x=\\frac12-\\frac14=\\frac14$."
+        },
+        {
+          "enonce": "Calculer l'aire du domaine $D=\\{(x,y)\\in\\mathbb{R}^2\\ :\\ 0\\le x\\le\\pi,\\ 0\\le y\\le\\sin x\\}$ comme intégrale double.",
+          "indices": [
+            "$D$ est simple selon $y$ : intégrer d'abord en $y$ entre $0$ et $\\sin x$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'aire de $D$ ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$\\pi$",
+              "$\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,\\pi]$, $\\sin x\\ge0$. Donc $\\mathcal{A}(D)=\\int_0^\\pi\\left(\\int_0^{\\sin x}\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^\\pi\\sin x\\,\\mathrm{d}x=2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes-ex2",
+      "carte": "int-l3-multiples-aires-volumes",
+      "difficulte": 2,
+      "titre": "Aire d'un domaine décrit en coordonnées polaires",
+      "enonce": "Calculer l'aire du domaine $\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ -\\frac\\pi4\\le\\theta\\le\\frac\\pi4,\\ 0\\le r\\le\\cos(2\\theta)\\}$, un pétale de la rosace d'équation polaire $\\rho=\\cos(2\\theta)$.",
+      "duree_min": 10,
+      "indices": [
+        "Appliquer la formule $\\frac12\\int\\rho(\\theta)^2\\,\\mathrm{d}\\theta$ (ici $\\rho\\ge0$) et linéariser $\\cos^2(2\\theta)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'aire ?",
+        "propositions": [
+          "$\\frac\\pi8$",
+          "$\\frac\\pi4$",
+          "$1$",
+          "$\\frac\\pi{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Sur $\\left[-\\frac\\pi4,\\frac\\pi4\\right]$, $\\rho(\\theta)=\\cos(2\\theta)\\ge0$ et l'intervalle a une longueur $\\frac\\pi2\\le2\\pi$. Donc\n$$\\mathcal{A}=\\frac12\\int_{-\\pi/4}^{\\pi/4}\\cos^2(2\\theta)\\,\\mathrm{d}\\theta=\\frac12\\int_{-\\pi/4}^{\\pi/4}\\frac{1+\\cos(4\\theta)}2\\,\\mathrm{d}\\theta=\\frac12\\cdot\\frac\\pi4=\\frac\\pi8.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer l'aire du domaine $\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ 0\\le\\theta\\le2\\pi,\\ 0\\le r\\le\\theta\\}$, balayé par le rayon vecteur de la spirale d'équation polaire $\\rho=\\theta$ lors de son premier tour.",
+          "indices": [
+            "Appliquer la formule $\\frac12\\int\\rho(\\theta)^2\\,\\mathrm{d}\\theta$ (ici $\\rho\\ge0$ et l'intervalle a une longueur $2\\pi$)."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'aire ?",
+            "propositions": [
+              "$\\frac{4\\pi^3}3$",
+              "$\\frac{8\\pi^3}3$",
+              "$2\\pi^2$",
+              "$\\frac{2\\pi^3}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,2\\pi]$, $\\rho(\\theta)=\\theta\\ge0$ et l'intervalle a une longueur $2\\pi$. Donc\n$$\\mathcal{A}=\\frac12\\int_0^{2\\pi}\\theta^2\\,\\mathrm{d}\\theta=\\frac12\\cdot\\frac{(2\\pi)^3}3=\\frac{4\\pi^3}3.$$"
+        },
+        {
+          "enonce": "Calculer l'aire du domaine $\\{(r\\cos\\theta,r\\sin\\theta)\\ :\\ 0\\le\\theta\\le2\\pi,\\ 0\\le r\\le2+\\cos\\theta\\}$, limité par la courbe d'équation polaire $\\rho=2+\\cos\\theta$.",
+          "indices": [
+            "Appliquer la formule $\\frac12\\int\\rho(\\theta)^2\\,\\mathrm{d}\\theta$ (ici $\\rho\\ge0$) et linéariser $\\cos^2\\theta$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'aire ?",
+            "propositions": [
+              "$\\frac{9\\pi}2$",
+              "$9\\pi$",
+              "$4\\pi$",
+              "$\\frac{5\\pi}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,2\\pi]$, $\\rho(\\theta)=2+\\cos\\theta\\ge1>0$. Donc\n$$\\mathcal{A}=\\frac12\\int_0^{2\\pi}(4+4\\cos\\theta+\\cos^2\\theta)\\,\\mathrm{d}\\theta=\\frac12(8\\pi+0+\\pi)=\\frac{9\\pi}2.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes-ex3",
+      "carte": "int-l3-multiples-aires-volumes",
+      "difficulte": 3,
+      "titre": "Volume d'un solide de révolution",
+      "enonce": "Calculer le volume du solide $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2\\le z\\le2-x^2-y^2\\}$.",
+      "duree_min": 15,
+      "indices": [
+        "Déterminer la projection de $K$ sur le plan $xOy$ (l'ensemble des $(x,y)$ au-dessus desquels $K$ a des points).",
+        "Le volume est l'intégrale double de la hauteur $(2-x^2-y^2)-(x^2+y^2)$ sur cette projection ; passer en polaires."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le volume de $K$ ?",
+        "propositions": [
+          "$\\pi$",
+          "$2\\pi$",
+          "$\\frac\\pi2$",
+          "$\\frac{4\\pi}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $x^2+y^2\\le2-x^2-y^2$ si et seulement si $x^2+y^2\\le1$ : $K$ est formé des points situés au-dessus du disque unité fermé $\\overline D$, entre le plancher $z=x^2+y^2$ et le plafond $z=2-x^2-y^2$. Par piles, son volume est l'intégrale de la hauteur :\n$$V=\\iint_{\\overline D}\\big(2-2(x^2+y^2)\\big)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^1(2-2r^2)\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\left(1-\\frac12\\right)=\\pi.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer le volume du solide $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ \\sqrt{x^2+y^2}\\le z\\le1\\}$.",
+          "indices": [
+            "Déterminer la projection de $K$ sur le plan $xOy$ (l'ensemble des $(x,y)$ au-dessus desquels $K$ a des points).",
+            "Le volume est l'intégrale double de la hauteur $1-\\sqrt{x^2+y^2}$ sur cette projection ; passer en polaires."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le volume de $K$ ?",
+            "propositions": [
+              "$\\frac\\pi3$",
+              "$\\frac\\pi2$",
+              "$\\frac{2\\pi}3$",
+              "$\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\sqrt{x^2+y^2}\\le1$ si et seulement si $x^2+y^2\\le1$ : $K$ est le cône formé des points au-dessus du disque unité fermé $\\overline D$, entre $z=\\sqrt{x^2+y^2}$ et $z=1$. Son volume est\n$$V=\\iint_{\\overline D}\\left(1-\\sqrt{x^2+y^2}\\right)\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^1(1-r)\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\left(\\frac12-\\frac13\\right)=\\frac\\pi3,$$\nle tiers du volume du cylindre de même base et de même hauteur."
+        },
+        {
+          "enonce": "Calculer le volume du solide $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ 0\\le z\\le4-x^2-y^2\\}$.",
+          "indices": [
+            "Déterminer la projection de $K$ sur le plan $xOy$ (l'ensemble des $(x,y)$ au-dessus desquels $K$ a des points).",
+            "Le volume est l'intégrale double de la hauteur $4-x^2-y^2$ sur cette projection ; passer en polaires."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le volume de $K$ ?",
+            "propositions": [
+              "$8\\pi$",
+              "$16\\pi$",
+              "$4\\pi$",
+              "$\\frac{32\\pi}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $0\\le4-x^2-y^2$ si et seulement si $x^2+y^2\\le4$ : $K$ est formé des points au-dessus du disque fermé $\\overline D$ de rayon $2$, entre $z=0$ et $z=4-x^2-y^2$. Son volume est\n$$V=\\iint_{\\overline D}(4-x^2-y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^{2\\pi}\\left(\\int_0^2(4-r^2)\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi(8-4)=8\\pi.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes-ex4",
+      "carte": "int-l3-multiples-aires-volumes",
+      "difficulte": 4,
+      "titre": "Volume d'un solide découpé par des cylindres",
+      "enonce": "Soit $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2\\le1,\\ x^2+z^2\\le1\\}$, intersection de deux cylindres de révolution d'axes perpendiculaires.\n\n1. Pour $x\\in[-1,1]$, décrire la section de $K$ par le plan d'abscisse $x$ et calculer son aire $S(x)$.\n\n2. En déduire le volume de $K$.\n\n3. Comparer au volume de la boule unité, contenue dans $K$.",
+      "duree_min": 25,
+      "indices": [
+        "À $x$ fixé, les conditions portent séparément sur $y$ et sur $z$.",
+        "Appliquer le principe de Cavalieri : le volume est $\\int_{-1}^1S(x)\\,\\mathrm{d}x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le volume de $K$ ?",
+        "propositions": [
+          "$\\frac{16}3$",
+          "$\\frac{4\\pi}3$",
+          "$\\frac83$",
+          "$4\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. À $x\\in[-1,1]$ fixé, la section est $\\{(y,z)\\ :\\ |y|\\le\\sqrt{1-x^2},\\ |z|\\le\\sqrt{1-x^2}\\}$, un carré de côté $2\\sqrt{1-x^2}$ : $S(x)=4(1-x^2)$, fonction continue de $x$.\n\n2. $V=\\int_{-1}^14(1-x^2)\\,\\mathrm{d}x=4\\left(2-\\frac23\\right)=\\frac{16}3$.\n\n3. La boule unité est contenue dans $K$ (si $x^2+y^2+z^2\\le1$, alors $x^2+y^2\\le1$ et $x^2+z^2\\le1$), et $\\frac{4\\pi}3\\approx4{,}19<\\frac{16}3\\approx5{,}33$. Les sections de la boule sont les disques inscrits dans ces carrés : le rapport des aires des sections vaut $\\frac\\pi4$ à chaque abscisse, et c'est aussi le rapport des volumes.",
+      "variantes": [
+        {
+          "enonce": "Une boule de rayon $2$ est percée d'un trou cylindrique de rayon $1$ dont l'axe passe par son centre : on considère $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2+z^2\\le4,\\ x^2+y^2\\ge1\\}$.\n\n1. En coordonnées cylindriques, décrire $K$ (bornes de $z$ en fonction de $r$).\n\n2. En déduire le volume de $K$.\n\n3. Vérifier que ce volume est celui d'une boule dont le diamètre est la hauteur du trou.",
+          "indices": [
+            "Pour $1\\le r\\le2$, les points de $K$ vérifient $|z|\\le\\sqrt{4-r^2}$.",
+            "Le jacobien des coordonnées cylindriques est $r$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le volume de $K$ ?",
+            "propositions": [
+              "$4\\sqrt3\\,\\pi$",
+              "$\\frac{32\\pi}3$",
+              "$\\frac{32\\pi}3-2\\sqrt3\\,\\pi$",
+              "$8\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. En coordonnées cylindriques, $K=\\{(r,\\theta,z)\\ :\\ 1\\le r\\le2,\\ \\theta\\in[0,2\\pi],\\ |z|\\le\\sqrt{4-r^2}\\}$.\n\n2. Par piles, avec le jacobien $r$ :\n$$V=\\int_0^{2\\pi}\\left(\\int_1^22\\sqrt{4-r^2}\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\left[-\\frac23(4-r^2)^{3/2}\\right]_1^2=2\\pi\\cdot\\frac23\\cdot3^{3/2}=4\\sqrt3\\,\\pi.$$\n\n3. Le trou a pour hauteur $2\\sqrt3$ (pour $r=1$, $|z|\\le\\sqrt3$). La boule de diamètre $2\\sqrt3$ a pour volume $\\frac43\\pi(\\sqrt3)^3=4\\sqrt3\\,\\pi$ : c'est le même volume."
+        },
+        {
+          "enonce": "Soit $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2+z^2\\le4,\\ x^2+y^2\\le1\\}$, partie de la boule de rayon $2$ contenue dans le cylindre de rayon $1$ d'axe $Oz$.\n\n1. En coordonnées cylindriques, décrire $K$ (bornes de $z$ en fonction de $r$).\n\n2. En déduire le volume de $K$.\n\n3. Vérifier que ce volume est compris entre celui du cylindre $\\{x^2+y^2\\le1,\\ |z|\\le\\sqrt3\\}$ et celui du cylindre $\\{x^2+y^2\\le1,\\ |z|\\le2\\}$.",
+          "indices": [
+            "Pour $0\\le r\\le1$, les points de $K$ vérifient $|z|\\le\\sqrt{4-r^2}$.",
+            "Le jacobien des coordonnées cylindriques est $r$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le volume de $K$ ?",
+            "propositions": [
+              "$\\frac{4\\pi(8-3\\sqrt3)}3$",
+              "$4\\pi$",
+              "$\\frac{32\\pi}3$",
+              "$2\\sqrt3\\,\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. En coordonnées cylindriques, $K=\\{(r,\\theta,z)\\ :\\ 0\\le r\\le1,\\ \\theta\\in[0,2\\pi],\\ |z|\\le\\sqrt{4-r^2}\\}$.\n\n2. Par piles, avec le jacobien $r$ :\n$$V=\\int_0^{2\\pi}\\left(\\int_0^12\\sqrt{4-r^2}\\,r\\,\\mathrm{d}r\\right)\\mathrm{d}\\theta=2\\pi\\left[-\\frac23(4-r^2)^{3/2}\\right]_0^1=\\frac{4\\pi}3\\left(8-3\\sqrt3\\right).$$\n\n3. Les deux cylindres ont pour volumes $\\pi\\cdot2\\sqrt3=2\\sqrt3\\,\\pi\\approx10{,}88$ et $\\pi\\cdot4=4\\pi\\approx12{,}57$, et $V\\approx11{,}74$ est bien entre les deux : $K$ contient le premier cylindre et est contenu dans le second."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-aires-volumes-ex5",
+      "carte": "int-l3-multiples-aires-volumes",
+      "difficulte": 5,
+      "titre": "Théorème de Guldin et volume du tore",
+      "enonce": "Soit $D$ un domaine simple fermé du plan des $(x,z)$, contenu dans le demi-plan $\\{x>0\\}$ et d'aire $\\mathcal{A}>0$. On note $K$ le solide obtenu en faisant tourner $D$ autour de l'axe $Oz$ : $K=\\{(r\\cos\\theta,r\\sin\\theta,z)\\ :\\ (r,z)\\in D,\\ \\theta\\in[0,2\\pi]\\}$.\n\n1. En coordonnées cylindriques, montrer que $\\mathrm{vol}(K)=2\\pi\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}z$.\n\n2. En déduire le **théorème de Guldin** : $\\mathrm{vol}(K)=2\\pi\\bar x\\,\\mathcal{A}$, où $\\bar x=\\frac1{\\mathcal{A}}\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}z$ est l'abscisse du centre de gravité de $D$.\n\n3. Application : soient $0<a<R$ et $D$ le disque de centre $(R,0)$ et de rayon $a$. Calculer le volume du tore $K$.\n\n4. Retrouver ce volume par la méthode des tranches horizontales.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 1, $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$, et $\\theta$ décrit un intervalle de longueur $2\\pi$.",
+        "Pour la question 3, utiliser la symétrie du disque par rapport à la droite $x=R$.",
+        "Pour la question 4, la section du tore par le plan de cote $z$ est une couronne."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le volume du tore ?",
+        "propositions": [
+          "$2\\pi^2Ra^2$",
+          "$\\pi^2Ra^2$",
+          "$4\\pi^2Ra^2$",
+          "$2\\pi Ra^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. En coordonnées cylindriques $(r,\\theta,z)$, $K$ correspond à $\\{(r,\\theta,z)\\ :\\ (r,z)\\in D,\\ \\theta\\in[0,2\\pi]\\}$ ; comme $D$ est contenu dans $\\{x>0\\}$, on a $r>0$ sur $D$. Avec $\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z=r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z$ et la formule de Fubini :\n$$\\mathrm{vol}(K)=\\int_0^{2\\pi}\\left(\\iint_Dr\\,\\mathrm{d}r\\,\\mathrm{d}z\\right)\\mathrm{d}\\theta=2\\pi\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}z$$\n(on a renommé $r$ en $x$).\n\n2. Par définition de $\\bar x$, $\\iint_Dx\\,\\mathrm{d}x\\,\\mathrm{d}z=\\bar x\\,\\mathcal{A}$. Le volume est l'aire de $D$ multipliée par la longueur $2\\pi\\bar x$ du cercle que décrit son centre de gravité.\n\n3. Comme $a<R$, le disque $D$ est contenu dans $\\{x>0\\}$. Il est symétrique par rapport à la droite $x=R$ : le changement de variables $(x,z)\\mapsto(2R-x,z)$, de jacobien $-1$, laisse $D$ invariant et change $x-R$ en son opposé, donc $\\iint_D(x-R)\\,\\mathrm{d}x\\,\\mathrm{d}z=0$ et $\\bar x=R$. Avec $\\mathcal{A}=\\pi a^2$ : $\\mathrm{vol}(K)=2\\pi R\\cdot\\pi a^2=2\\pi^2Ra^2$.\n\n4. Pour $z\\in[-a,a]$, posons $s=\\sqrt{a^2-z^2}$ : la section de $D$ à la cote $z$ est le segment $R-s\\le x\\le R+s$, et celle du tore est la couronne de rayons $R-s$ et $R+s$, d'aire $\\pi\\big((R+s)^2-(R-s)^2\\big)=4\\pi Rs$. Par le principe de Cavalieri,\n$$\\mathrm{vol}(K)=\\int_{-a}^a4\\pi R\\sqrt{a^2-z^2}\\,\\mathrm{d}z=4\\pi R\\cdot\\frac{\\pi a^2}2=2\\pi^2Ra^2,$$\ncar $\\int_{-a}^a\\sqrt{a^2-z^2}\\,\\mathrm{d}z$ est l'aire d'un demi-disque de rayon $a$."
+    },
+    {
+      "id": "int-l3-multiples-triples-ex1",
+      "carte": "int-l3-multiples-triples",
+      "difficulte": 1,
+      "titre": "Intégrale triple sur un pavé",
+      "enonce": "Calculer $\\iiint_{[0,1]^3}(x+yz)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+      "duree_min": 5,
+      "indices": [
+        "Utiliser la linéarité ; pour $yz$, l'intégrale sur le cube est un produit d'intégrales simples."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac34$",
+          "$\\frac12$",
+          "$1$",
+          "$\\frac54$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par la formule de Fubini sur le cube $[0,1]^3$ (pavé) : $\\iiint_{[0,1]^3}x=\\int_0^1x\\,\\mathrm{d}x=\\frac12$ et $\\iiint_{[0,1]^3}yz=\\left(\\int_0^1y\\,\\mathrm{d}y\\right)\\left(\\int_0^1z\\,\\mathrm{d}z\\right)=\\frac14$. Par linéarité, l'intégrale vaut $\\frac12+\\frac14=\\frac34$.",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iiint_{[0,1]\\times[0,2]\\times[0,3]}xyz\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "La fonction est le produit d'une fonction de $x$, d'une fonction de $y$ et d'une fonction de $z$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac92$",
+              "$\\frac94$",
+              "$9$",
+              "$\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par la formule de Fubini sur le pavé : $\\left(\\int_0^1x\\,\\mathrm{d}x\\right)\\left(\\int_0^2y\\,\\mathrm{d}y\\right)\\left(\\int_0^3z\\,\\mathrm{d}z\\right)=\\frac12\\cdot2\\cdot\\frac92=\\frac92$."
+        },
+        {
+          "enonce": "Calculer $\\iiint_{[0,1]^3}x^2yz\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "La fonction est le produit d'une fonction de $x$, d'une fonction de $y$ et d'une fonction de $z$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac1{12}$",
+              "$\\frac18$",
+              "$\\frac1{24}$",
+              "$\\frac16$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par la formule de Fubini sur le cube : $\\left(\\int_0^1x^2\\,\\mathrm{d}x\\right)\\left(\\int_0^1y\\,\\mathrm{d}y\\right)\\left(\\int_0^1z\\,\\mathrm{d}z\\right)=\\frac13\\cdot\\frac12\\cdot\\frac12=\\frac1{12}$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-triples-ex2",
+      "carte": "int-l3-multiples-triples",
+      "difficulte": 2,
+      "titre": "Intégrale sur un tétraèdre",
+      "enonce": "Soit $T=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x\\ge0,\\ y\\ge0,\\ z\\ge0,\\ x+y+z\\le1\\}$. Calculer $\\iiint_Tx\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+      "duree_min": 10,
+      "indices": [
+        "Intégrer par piles : à $(x,y)$ fixé dans le triangle $\\{x\\ge0,\\ y\\ge0,\\ x+y\\le1\\}$, $z$ varie de $0$ à $1-x-y$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\frac1{24}$",
+          "$\\frac16$",
+          "$\\frac1{12}$",
+          "$\\frac18$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par piles, puis en intégrant en $y$ de $0$ à $1-x$ :\n$$\\iiint_Tx=\\int_0^1x\\left(\\int_0^{1-x}(1-x-y)\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^1x\\frac{(1-x)^2}2\\,\\mathrm{d}x=\\frac12\\left(\\frac12-\\frac23+\\frac14\\right)=\\frac1{24}.$$\nContrôle : le volume de $T$ est $\\frac16$ et, par symétrie, son centre de gravité est le point $\\left(\\frac14,\\frac14,\\frac14\\right)$ ; on trouve bien $\\frac16\\cdot\\frac14$.",
+      "variantes": [
+        {
+          "enonce": "Soit $T=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x\\ge0,\\ y\\ge0,\\ z\\ge0,\\ \\frac x2+y+z\\le1\\}$. Calculer le volume $\\iiint_T\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "Intégrer par piles : à $(x,y)$ fixé, $z$ varie de $0$ à $1-\\frac x2-y$, et $(x,y)$ décrit un triangle à préciser."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut le volume de $T$ ?",
+            "propositions": [
+              "$\\frac13$",
+              "$\\frac16$",
+              "$\\frac23$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La projection de $T$ sur le plan $xOy$ est le triangle $\\{0\\le x\\le2,\\ 0\\le y\\le1-\\frac x2\\}$. Par piles :\n$$\\mathrm{vol}(T)=\\int_0^2\\left(\\int_0^{1-x/2}\\left(1-\\frac x2-y\\right)\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^2\\frac12\\left(1-\\frac x2\\right)^2\\mathrm{d}x=\\frac12\\cdot\\frac23=\\frac13.$$\nC'est le volume $\\frac16\\cdot2\\cdot1\\cdot1$ du tétraèdre de sommets $0$, $(2,0,0)$, $(0,1,0)$, $(0,0,1)$."
+        },
+        {
+          "enonce": "Soit $T=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x\\ge0,\\ y\\ge0,\\ z\\ge0,\\ x+y+z\\le1\\}$. Calculer $\\iiint_Txyz\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "Intégrer par piles : à $(x,y)$ fixé dans le triangle $\\{x\\ge0,\\ y\\ge0,\\ x+y\\le1\\}$, $z$ varie de $0$ à $1-x-y$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac1{720}$",
+              "$\\frac1{120}$",
+              "$\\frac1{48}$",
+              "$\\frac1{360}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par piles : $\\int_0^{1-x-y}z\\,\\mathrm{d}z=\\frac{(1-x-y)^2}2$. Puis, à $x$ fixé et avec $c=1-x$, $\\int_0^cy\\frac{(c-y)^2}2\\,\\mathrm{d}y=\\frac{c^4}{24}$ (développer, ou poser $y=cs$). Enfin\n$$\\iiint_Txyz=\\int_0^1x\\frac{(1-x)^4}{24}\\,\\mathrm{d}x=\\frac1{24}\\int_0^1(1-u)u^4\\,\\mathrm{d}u=\\frac1{24}\\left(\\frac15-\\frac16\\right)=\\frac1{720}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-triples-ex3",
+      "carte": "int-l3-multiples-triples",
+      "difficulte": 3,
+      "titre": "Intégrale triple en coordonnées cylindriques",
+      "enonce": "Calculer $\\iiint_K(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$, où $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2\\le1,\\ 0\\le z\\le2\\}$.",
+      "duree_min": 15,
+      "indices": [
+        "Passer en coordonnées cylindriques.",
+        "Décrire $K$ en coordonnées cylindriques : $r$, $\\theta$ et $z$ y varient dans des intervalles fixes."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut l'intégrale ?",
+        "propositions": [
+          "$\\pi$",
+          "$\\frac{4\\pi}3$",
+          "$2\\pi$",
+          "$\\frac\\pi2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "En coordonnées cylindriques, $K$ correspond à $[0,1]\\times[0,2\\pi]\\times[0,2]$, et $x^2+y^2=r^2$ ; avec le jacobien $r$ :\n$$\\iiint_K(x^2+y^2)=\\int_0^2\\int_0^{2\\pi}\\int_0^1r^2\\cdot r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta\\,\\mathrm{d}z=2\\cdot2\\pi\\cdot\\frac14=\\pi.$$",
+      "variantes": [
+        {
+          "enonce": "Calculer $\\iiint_Kz\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$, où $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2\\le z\\le1\\}$.",
+          "indices": [
+            "Passer en coordonnées cylindriques, ou intégrer par tranches horizontales.",
+            "À $z\\in[0,1]$ fixé, la section de $K$ est un disque dont on calculera le rayon."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac\\pi3$",
+              "$\\frac\\pi2$",
+              "$\\frac\\pi6$",
+              "$\\frac{2\\pi}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par tranches : pour $z\\in[0,1]$, la section $K_z=\\{x^2+y^2\\le z\\}$ est le disque de rayon $\\sqrt z$, d'aire $\\pi z$. Donc\n$$\\iiint_Kz=\\int_0^1z\\cdot\\pi z\\,\\mathrm{d}z=\\frac\\pi3.$$"
+        },
+        {
+          "enonce": "Calculer $\\iiint_Kz\\sqrt{x^2+y^2}\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$, où $K=\\{(x,y,z)\\in\\mathbb{R}^3\\ :\\ x^2+y^2\\le4,\\ 0\\le z\\le1\\}$.",
+          "indices": [
+            "Passer en coordonnées cylindriques.",
+            "Décrire $K$ en coordonnées cylindriques : $r$, $\\theta$ et $z$ y varient dans des intervalles fixes."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut l'intégrale ?",
+            "propositions": [
+              "$\\frac{8\\pi}3$",
+              "$\\frac{16\\pi}3$",
+              "$2\\pi$",
+              "$\\frac{4\\pi}3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "En coordonnées cylindriques, $K$ correspond à $[0,2]\\times[0,2\\pi]\\times[0,1]$, et $\\sqrt{x^2+y^2}=r$ ; avec le jacobien $r$ :\n$$\\iiint_Kz\\sqrt{x^2+y^2}=\\left(\\int_0^1z\\,\\mathrm{d}z\\right)\\left(\\int_0^{2\\pi}\\mathrm{d}\\theta\\right)\\left(\\int_0^2r\\cdot r\\,\\mathrm{d}r\\right)=\\frac12\\cdot2\\pi\\cdot\\frac83=\\frac{8\\pi}3.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-triples-ex4",
+      "carte": "int-l3-multiples-triples",
+      "difficulte": 4,
+      "titre": "Moments d'inertie d'une boule",
+      "enonce": "Soit $B$ la boule unité fermée de $\\mathbb{R}^3$.\n\n1. Calculer $\\iiint_B(x^2+y^2+z^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ en coordonnées sphériques.\n\n2. Justifier que $\\iiint_Bx^2=\\iiint_By^2=\\iiint_Bz^2$.\n\n3. En déduire $\\iiint_B(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ (moment d'inertie de la boule homogène de densité $1$ par rapport à l'axe $Oz$).",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 1, l'intégrande vaut $\\rho^2$ et le jacobien $\\rho^2\\sin\\varphi$.",
+        "Pour la question 2, utiliser des changements de variables qui permutent les coordonnées et laissent $B$ invariante."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\iiint_B(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ ?",
+        "propositions": [
+          "$\\frac{8\\pi}{15}$",
+          "$\\frac{4\\pi}5$",
+          "$\\frac{4\\pi}{15}$",
+          "$\\frac{2\\pi}5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. En sphériques, $B$ correspond à $\\rho\\in[0,1]$, $\\varphi\\in[0,\\pi]$, $\\theta\\in[0,2\\pi]$ :\n$$\\iiint_B(x^2+y^2+z^2)=\\int_0^{2\\pi}\\int_0^\\pi\\int_0^1\\rho^2\\cdot\\rho^2\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi\\cdot2\\cdot\\frac15=\\frac{4\\pi}5.$$\n\n2. L'application $(x,y,z)\\mapsto(y,x,z)$ est linéaire, de déterminant $-1$ (de valeur absolue $1$), et laisse $B$ invariante : par changement de variables, $\\iiint_Bx^2=\\iiint_By^2$. De même avec $(x,y,z)\\mapsto(z,y,x)$ : $\\iiint_Bx^2=\\iiint_Bz^2$.\n\n3. Chacune des trois intégrales vaut donc $\\frac13\\cdot\\frac{4\\pi}5=\\frac{4\\pi}{15}$, et $\\iiint_B(x^2+y^2)=\\frac{8\\pi}{15}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $B$ la boule fermée de centre $0$ et de rayon $2$ de $\\mathbb{R}^3$.\n\n1. Calculer $\\iiint_B(x^2+y^2+z^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ en coordonnées sphériques.\n\n2. Justifier que $\\iiint_Bx^2=\\iiint_By^2=\\iiint_Bz^2$.\n\n3. En déduire $\\iiint_B(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "Pour la question 1, l'intégrande vaut $\\rho^2$ et le jacobien $\\rho^2\\sin\\varphi$.",
+            "Pour la question 2, utiliser des changements de variables qui permutent les coordonnées et laissent $B$ invariante."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\iiint_B(x^2+y^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ ?",
+            "propositions": [
+              "$\\frac{256\\pi}{15}$",
+              "$\\frac{128\\pi}5$",
+              "$\\frac{128\\pi}{15}$",
+              "$\\frac{64\\pi}{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. En sphériques, $B$ correspond à $\\rho\\in[0,2]$, $\\varphi\\in[0,\\pi]$, $\\theta\\in[0,2\\pi]$ :\n$$\\iiint_B(x^2+y^2+z^2)=\\int_0^{2\\pi}\\int_0^\\pi\\int_0^2\\rho^4\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi\\cdot2\\cdot\\frac{32}5=\\frac{128\\pi}5.$$\n\n2. L'application $(x,y,z)\\mapsto(y,x,z)$ est linéaire, de déterminant $-1$ (de valeur absolue $1$), et laisse $B$ invariante : par changement de variables, $\\iiint_Bx^2=\\iiint_By^2$. De même avec $(x,y,z)\\mapsto(z,y,x)$ : $\\iiint_Bx^2=\\iiint_Bz^2$.\n\n3. Chacune des trois intégrales vaut donc $\\frac{128\\pi}{15}$, et $\\iiint_B(x^2+y^2)=\\frac{256\\pi}{15}$."
+        },
+        {
+          "enonce": "Soit $B$ la boule unité fermée de $\\mathbb{R}^3$.\n\n1. Calculer $\\iiint_B(x^2+y^2+z^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ en coordonnées sphériques.\n\n2. Justifier que $\\iiint_Bx^2=\\iiint_By^2=\\iiint_Bz^2$.\n\n3. En déduire $\\iiint_B(x^2+2y^2+3z^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$.",
+          "indices": [
+            "Pour la question 1, l'intégrande vaut $\\rho^2$ et le jacobien $\\rho^2\\sin\\varphi$.",
+            "Pour la question 2, utiliser des changements de variables qui permutent les coordonnées et laissent $B$ invariante."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\iiint_B(x^2+2y^2+3z^2)\\,\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z$ ?",
+            "propositions": [
+              "$\\frac{8\\pi}5$",
+              "$\\frac{12\\pi}5$",
+              "$\\frac{4\\pi}5$",
+              "$\\frac{24\\pi}5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. En sphériques, $B$ correspond à $\\rho\\in[0,1]$, $\\varphi\\in[0,\\pi]$, $\\theta\\in[0,2\\pi]$ :\n$$\\iiint_B(x^2+y^2+z^2)=\\int_0^{2\\pi}\\int_0^\\pi\\int_0^1\\rho^4\\sin\\varphi\\,\\mathrm{d}\\rho\\,\\mathrm{d}\\varphi\\,\\mathrm{d}\\theta=2\\pi\\cdot2\\cdot\\frac15=\\frac{4\\pi}5.$$\n\n2. L'application $(x,y,z)\\mapsto(y,x,z)$ est linéaire, de déterminant $-1$ (de valeur absolue $1$), et laisse $B$ invariante : par changement de variables, $\\iiint_Bx^2=\\iiint_By^2$. De même avec $(x,y,z)\\mapsto(z,y,x)$ : $\\iiint_Bx^2=\\iiint_Bz^2$.\n\n3. Chacune des trois intégrales vaut donc $\\frac{4\\pi}{15}$, et $\\iiint_B(x^2+2y^2+3z^2)=(1+2+3)\\cdot\\frac{4\\pi}{15}=\\frac{8\\pi}5$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-multiples-triples-ex5",
+      "carte": "int-l3-multiples-triples",
+      "difficulte": 5,
+      "titre": "Potentiel créé par une boule homogène",
+      "enonce": "Soient $B$ la boule unité fermée de $\\mathbb{R}^3$ et $P=(0,0,d)$ avec $d>1$. On veut calculer\n$$U(d)=\\iiint_B\\frac{\\mathrm{d}x\\,\\mathrm{d}y\\,\\mathrm{d}z}{\\|M-P\\|},\\qquad M=(x,y,z),$$\nle potentiel newtonien créé en $P$ par la boule homogène de densité $1$.\n\n1. Justifier que l'intégrande est continu sur $B$.\n\n2. En coordonnées sphériques, montrer que $\\|M-P\\|^2=\\rho^2+d^2-2\\rho d\\cos\\varphi$.\n\n3. Pour $0\\le\\rho\\le1$, calculer $\\int_0^\\pi\\frac{\\sin\\varphi\\,\\mathrm{d}\\varphi}{\\sqrt{\\rho^2+d^2-2\\rho d\\cos\\varphi}}$.\n\n4. En déduire $U(d)$ et l'interpréter.\n\n5. Que vaut $U(2)$ ?",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 3, poser $u=\\cos\\varphi$ ; une primitive de $u\\mapsto(\\alpha-\\beta u)^{-1/2}$ (avec $\\beta>0$) est $u\\mapsto-\\frac2\\beta\\sqrt{\\alpha-\\beta u}$.",
+        "Pour la question 3, traiter à part le cas $\\rho=0$, et utiliser $d>\\rho$ pour simplifier $\\sqrt{(d-\\rho)^2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $U(2)$ ?",
+        "propositions": [
+          "$\\frac{2\\pi}3$",
+          "$\\frac{4\\pi}3$",
+          "$\\frac\\pi3$",
+          "$\\frac\\pi6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $M\\in B$, $\\|M-P\\|\\ge\\|P\\|-\\|M\\|\\ge d-1>0$ : l'intégrande est continu sur $B$ (et majoré par $\\frac1{d-1}$).\n\n2. Avec $M=(\\rho\\sin\\varphi\\cos\\theta,\\rho\\sin\\varphi\\sin\\theta,\\rho\\cos\\varphi)$ : $\\|M-P\\|^2=\\rho^2\\sin^2\\varphi+(\\rho\\cos\\varphi-d)^2=\\rho^2+d^2-2\\rho d\\cos\\varphi$.\n\n3. Si $\\rho=0$, l'intégrale vaut $\\frac1d\\int_0^\\pi\\sin\\varphi\\,\\mathrm{d}\\varphi=\\frac2d$. Si $\\rho>0$, avec $u=\\cos\\varphi$ :\n$$\\int_{-1}^1\\frac{\\mathrm{d}u}{\\sqrt{\\rho^2+d^2-2\\rho d\\,u}}=\\left[-\\frac{\\sqrt{\\rho^2+d^2-2\\rho d\\,u}}{\\rho d}\\right]_{-1}^1=\\frac{(d+\\rho)-(d-\\rho)}{\\rho d}=\\frac2d,$$\ncar $\\sqrt{(d-\\rho)^2}=d-\\rho$ puisque $d>\\rho$. Dans tous les cas, l'intégrale vaut $\\frac2d$, indépendamment de $\\rho$.\n\n4. En coordonnées sphériques (jacobien $\\rho^2\\sin\\varphi$) :\n$$U(d)=\\int_0^{2\\pi}\\left(\\int_0^1\\rho^2\\left(\\int_0^\\pi\\frac{\\sin\\varphi\\,\\mathrm{d}\\varphi}{\\sqrt{\\rho^2+d^2-2\\rho d\\cos\\varphi}}\\right)\\mathrm{d}\\rho\\right)\\mathrm{d}\\theta=2\\pi\\cdot\\frac2d\\cdot\\frac13=\\frac{4\\pi}{3d}.$$\nC'est $\\frac{\\mathrm{vol}(B)}d$ : à l'extérieur de la boule, le potentiel est celui d'un point de masse $\\mathrm{vol}(B)=\\frac{4\\pi}3$ placé au centre (théorème de Newton).\n\n5. $U(2)=\\frac{4\\pi}6=\\frac{2\\pi}3$."
+    }
+  ]
+}

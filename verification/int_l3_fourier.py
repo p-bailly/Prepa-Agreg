@@ -103,7 +103,14 @@ for k in range(1, 9):
     assert b_sym(t, k, 0, 2 * pi) == -2 / Integer(k) and a_sym(t, k, 0, 2 * pi) == 0      # v1
     assert simplify(a_sym(Abs(t), k) - 2 * ((-1) ** k - 1) / (pi * k ** 2)) == 0             # v2
 assert a_sym(t, 0, 0, 2 * pi) == 2 * pi and a_sym(Abs(t), 0) == pi
-assert b_sym(t, 2) != Integer(2) / 2 and b_sym(t, 1) != -2 and b_sym(t, 1) != Rational(1, 1) / 1 * 1 - 1   # leurres
+# Leurres de ex2 (formules en n) : chacun diffère de la bonne formule pour n = 1 ou n = 2 ; idem pour v1 et v2.
+def differe(vraie, leurre):
+    return any(simplify(vraie.subs(n, k) - leurre.subs(n, k)) != 0 for k in (1, 2, 3))
+for vraie, leurres in [(2 * (-1) ** (n + 1) / n, [2 / n, 2 * (-1) ** n / n, (-1) ** (n + 1) / n]),
+                       (-2 / n, [2 / n, 2 * (-1) ** (n + 1) / n, -1 / n]),
+                       (2 * ((-1) ** n - 1) / (pi * n**2), [2 * (1 - (-1) ** n) / (pi * n**2), ((-1) ** n - 1) / (pi * n**2),
+                                                          2 * ((-1) ** n - 1) / (pi * n)])]:
+    assert all(differe(vraie, l) for l in leurres)
 for k in range(1, 6):   # c_n = i(-1)^n / n (main), i/n (v1)
     assert proche(c_num(dent, k), mp.mpc(0, (-1) ** k) / k) and proche(c_num(dent, -k), mp.mpc(0, (-1) ** k) / (-k))
     assert proche(mp.quad(lambda s: s * mp.expj(-k * s), [0, 2 * PI]) / (2 * PI), mp.mpc(0, 1) / k)
@@ -333,9 +340,13 @@ for a in [mp.mpf(1), mp.mpf(2), mp.mpf(1) / 2]:
     assert proche(s1, (PI - a) / 2) and proche(s2, a * (PI - a) / 2)
     # c_n de l'indicatrice de [-a, a] : sin(na)/(πn), c_0 = a/π.
     assert proche(c_num(lambda s: 1 if abs(s) <= a else 0, 3, [-PI, -a, a, PI]), mp.sin(3 * a) / (3 * PI))
-assert proche((PI - 1) / 2, 1 * (PI - 1) / 2)       # a = 1 : les deux sommes coïncident
-for v, l in [((PI - 1) / 2, (PI - 1) / 4), ((PI - 2) / 2, PI - 2), ((2 * PI - 1) / 4, (2 * PI - 1) / 8)]:
-    assert not proche(v, l) or v == (PI - 1) / 2
+# Propositions (couples) : la bonne est la seule à valoir ((π-a)/2, a(π-a)/2).
+for a, props in [(1, [((PI - 1) / 2, (PI - 1) / 2), ((PI - 1) / 2, (PI - 1) / 4), (PI / 2, (PI - 1) / 2), ((PI - 1) / 2, (PI**2 - 1) / 2)]),
+                 (2, [((PI - 2) / 2, PI - 2), ((PI - 2) / 2, (PI - 2) / 2), (PI - 2, (PI - 2) / 2), ((PI - 2) / 2, 2 * PI - 4)]),
+                 (mp.mpf(1) / 2, [((2 * PI - 1) / 4, (2 * PI - 1) / 8), ((2 * PI - 1) / 4, (2 * PI - 1) / 4),
+                                  ((2 * PI - 1) / 8, (2 * PI - 1) / 4), ((PI - 1) / 4, (2 * PI - 1) / 8)])]:
+    juste = ((PI - a) / 2, a * (PI - a) / 2)
+    assert [proche(p[0], juste[0]) and proche(p[1], juste[1]) for p in props] == [True, False, False, False]
 
 # int-l3-fourier-dirichlet-ex5 (+ v1, v2) : Gibbs, sommes de Riemann.
 Si = mp.si(PI)
@@ -457,9 +468,9 @@ assert proche(mp.nsum(lambda k: 1 / (4 * k * k - 1), [1, mp.inf]), mp.mpf(1) / 2
 
 # int-l3-fourier-normale-ex3 (+ v1, v2) : vitesses de convergence uniforme.
 for N in [10**3, 10**5]:
-    reste_abs = 4 / PI * mp.nsum(lambda j: 1 / (2 * j + 1) ** 2, [N // 2 + (N % 2), mp.inf])   # impairs > N
+    reste_abs = 4 / PI * mp.zeta(2, N // 2 + (N % 2) + mp.mpf(1) / 2) / 4   # impairs > N (zêta de Hurwitz)
     assert abs(reste_abs * PI * N / 2 - 1) < mp.mpf(3) / N
-    reste_t2 = 4 * mp.nsum(lambda k: 1 / k**2, [N + 1, mp.inf])
+    reste_t2 = 4 * mp.zeta(2, N + 1)
     assert abs(reste_t2 * N / 4 - 1) < mp.mpf(2) / N
 for N in [0, 1, 4, 30]:   # |sin t| : (4/π)Σ_{k>N} 1/(4k²-1) = 2/(π(2N+1)) exactement
     assert proche(4 / PI * mp.nsum(lambda k: 1 / (4 * k * k - 1), [N + 1, mp.inf]), 2 / (PI * (2 * N + 1)))
