@@ -9,7 +9,7 @@ import random
 from fractions import Fraction as F
 
 from sympy import (E, I as i_, Matrix, Rational, cos, diag, diff, dsolve, Eq, exp, expand, eye, factor, Function,
-                   pi, simplify, sin, symbols, zeros, Poly, re)
+                   pi, simplify, sin, symbols, zeros, Poly, re, factorial)
 
 X = symbols("X")
 t, th = symbols("t theta", real=True)
@@ -223,7 +223,7 @@ for A, lam, mu, rg, S, D, N, Q, leurres in [
     ([[-1, 0, 0], [1, 3, -1], [-2, 1, 1]], 2, -1, 2, [[9, 0, 0], [0, 0, 0], [9, 0, 0]], [[-1, 0, 0], [0, 2, 0], [-3, 0, 2]],
      [[0, 0, 0], [1, 1, -1], [1, 1, -1]], 2 - (X - 2) ** 2 / 3, [2 + (X - 2) ** 2 / 3, 2 - (X - 2) ** 2 / 9, 2 - (X - 2) ** 2]),
     ([[1, 0, 0], [-1, -1, 1], [0, -1, 1]], 0, 1, 2, [[1, 0, 0], [0, 0, 0], [1, 0, 0]], [[1, 0, 0], [0, 0, 0], [1, 0, 0]],
-     [[0, 0, 0], [-1, -1, 1], [-1, -1, 1]], X ** 2, [X, -X ** 2, 2 * X ** 2 - X]),
+     [[0, 0, 0], [-1, -1, 1], [-1, -1, 1]], X ** 2, [X ** 2 / 2, -X ** 2, 2 * X ** 2]),  # leurres revus à la relecture
     ([[1, 0, 0], [-3, 3, 1], [-2, 0, 3]], 3, 1, 2, [[4, 0, 0], [4, 0, 0], [4, 0, 0]], [[1, 0, 0], [-2, 3, 0], [-2, 0, 3]],
      [[0, 0, 0], [-1, 0, 1], [0, 0, 0]], 3 - (X - 3) ** 2 / 2, [3 + (X - 3) ** 2 / 2, 3 - (X - 3) ** 2 / 4, 3 - (X - 3) ** 2]),
 ]:
@@ -286,6 +286,13 @@ assert eqm(B2.exp(), I2) and not B2.is_diagonalizable(reals_only=True) and B2.is
 # piège 3 : u = diag(0) + 2 pi R sur R^3 : chi a une racine réelle, e^u = I3, u non diagonalisable sur R.
 U3 = diag(Matrix([[0]]), B2)
 assert eqm(U3.exp(), I3) and not U3.is_diagonalizable(reals_only=True)
+assert factor(chi(U3)) == X * (X ** 2 + 4 * pi ** 2)
+# piège 2 (K = R, chi de e^u scindé) : chi de e^B = (X - 1)^2 scindé sur R, chi_B = X^2 + 4 pi^2 ne l'est pas.
+assert expand(chi(B2.exp().applyfunc(simplify)) - (X - 1) ** 2) == 0 and factor(chi(B2)) == X ** 2 + 4 * pi ** 2
+# al-l3-dunford-dunford, piège 1 (K = R, chi_u a une racine réelle) : u = diag(1) + R sur R^3, chi = (X-1)(X^2+1).
+# Si u = d + n (d diagonalisable sur R, n nilpotent, dn = nd), n laisse stables les sous-espaces propres de d, sur
+# lesquels u = lambda id + n : chi_u serait scindé sur R. Donc u n'a pas de décomposition de Dunford réelle.
+assert factor(chi(diag(Matrix([[1]]), R))) == (X - 1) * (X ** 2 + 1)
 # Trou 1, leurres : e^0 + e^0 = 2I ; e^I = e I mais e^0 = I ; pour J : e^J = e(I+E12) != e I + E12.
 assert eqm(J.exp(), E * (I2 + E12)) and not eqm(J.exp(), E * I2 + E12)
 # Trou 2, leurres : u = I (e^1 != 1, e != 2) ; u = [[0,1],[1,0]] : diagonale nulle, valeurs propres de e^u : e, 1/e.
@@ -364,6 +371,15 @@ for Nm in [Matrix([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [0, 0, 0, 0]]), Mat
     assert eqm(L.exp(), eye(m) + Nm)
     Lt = sum(((-1) ** (k + 1) * t ** k * Nm ** k / k for k in range(1, m)), zeros(m))
     assert eqm(Lt.diff(t) * (eye(m) + t * Nm), Nm)
+    # correction revue : L(t)^m = 0, L'(t) L(t)^(m-1) = 0, d/dt e^{L(t)} = L'(t) e^{L(t)} (somme finie),
+    # (I + tN)^{-1} = sum_{j<m} (-tN)^j et sa dérivée -N (I + tN)^{-2}, g(t) = (I + tN)^{-1} e^{L(t)} constante.
+    assert Lt ** m == zeros(m) and (Lt.diff(t) * Lt ** (m - 1)).applyfunc(expand) == zeros(m)
+    eLt = sum((Lt ** k / factorial(k) for k in range(m)), zeros(m))
+    assert (eLt.diff(t) - Lt.diff(t) * eLt).applyfunc(expand) == zeros(m)
+    inv_t = sum(((-t * Nm) ** j for j in range(m)), zeros(m))
+    assert ((eye(m) + t * Nm) * inv_t).applyfunc(expand) == eye(m)
+    assert (inv_t.diff(t) + Nm * inv_t * inv_t).applyfunc(expand) == zeros(m)
+    assert (inv_t * eLt).applyfunc(expand) == eye(m)
 assert Matrix([[-1, 0], [0, 2]]).det() < 0 and eqm((pi * K).exp(), -I2)
 assert eqm(diag(Rational(1), 1).exp(), diag(E, E)) and eqm(E12.exp(), J)
 
@@ -416,8 +432,12 @@ for (a0, b0, rho, leurres) in [(1, 2, F(2, 3), [1, F(1, 3), F(1, 2)]), (1, 1, F(
         h = [F(random.randint(-999, 999), 1000) * rho for _ in range(4)]
         assert (a0 + h[0]) * (b0 + h[3]) - h[1] * h[2] > 0
     assert all(F(l) != rho for l in leurres)
-    # distance pour la norme subordonnée euclidienne : plus petite valeur propre (valeur citée)
-    assert min(a0, b0) == a0
+    # distance pour la norme subordonnée euclidienne (preuve ajoutée à la relecture) : ||A^{-1}|| = 1/a0
+    # (norme subordonnée euclidienne d'une matrice diagonale = plus grand |coefficient|), et A - a0 E11 est singulière,
+    # avec ||a0 E11|| = a0 : la distance vaut a0.
+    assert min(a0, b0) == a0 and max(F(1, a0), F(1, b0)) == F(1, a0)
+    assert (diag(a0, b0) - a0 * E11).det() == 0
+    assert max(abs(x) for x in (a0 * E11).singular_values()) == a0
 
 # --- al-l3-dunford-densite-ex3 : AB = E12, BA = 0.
 assert E11 * E12 == E12 and E12 * E11 == zeros(2) and chi(E12) == chi(zeros(2)) == X ** 2

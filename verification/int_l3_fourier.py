@@ -552,4 +552,264 @@ assert all(abs(mp.fsum(2 * (-1) ** (k + 1) / k * mp.sin(k * PI) for k in range(1
 assert (1 - Fr(2, 4)) == Fr(1, 2) and (Fr(0) + 0 + 1 + 1) / 4 == Fr(1, 2)                               # q5
 # q6 : créneau, |c_n| = 2/(π|n|) (voir carte coefficients) ; q7 : orthogonalité ci-dessus ; q8 : modification en un point.
 
+# ===========================================================================
+# Relecture indépendante (2026-11-08) : chaque bonne réponse est recalculée par un autre chemin (intégrales numériques
+# des coefficients, sommes directes de séries, polylogarithmes), et chaque leurre est vérifié FAUX (écart > 1e-6),
+# avec mpmath à 30 chiffres.
+# ===========================================================================
+def juste_et_leurres(vraie, bonne, leurres, tol=mp.mpf(10) ** -15):
+    """La bonne proposition vaut la valeur recalculée ; chaque leurre en diffère."""
+    assert abs(mp.mpc(vraie) - mp.mpc(bonne)) < tol, (vraie, bonne)
+    for l in leurres:
+        assert abs(mp.mpc(vraie) - mp.mpc(l)) > mp.mpf(10) ** -6, (vraie, l)
+
+
+SH, CH = mp.sinh, mp.cosh
+COTH = lambda u: mp.cosh(u) / mp.sinh(u)
+# coefficients-ex1, v1, v2 : a_3(cos³), b_3(sin³), a_0(cos⁴) par quadrature.
+juste_et_leurres(a_num(lambda s: mp.cos(s) ** 3, 3), mp.mpf(1) / 4, [mp.mpf(3) / 4, mp.mpf(1) / 8, mp.mpf(1) / 2])
+juste_et_leurres(b_num(lambda s: mp.sin(s) ** 3, 3), -mp.mpf(1) / 4, [mp.mpf(1) / 4, -mp.mpf(3) / 4, mp.mpf(3) / 4])
+juste_et_leurres(a_num(lambda s: mp.cos(s) ** 4, 0), mp.mpf(3) / 4, [mp.mpf(3) / 8, mp.mpf(3) / 2, mp.mpf(1) / 8])
+
+
+# coefficients-ex2 (+ v1, v2) : formules en n, comparées pour n = 1..4 ; chaque leurre faux pour au moins un n.
+def formule_juste(calc, bonne, leurres, ns=range(1, 5)):
+    vals = [calc(k) for k in ns]
+    assert all(abs(v - bonne(k)) < mp.mpf(10) ** -15 for v, k in zip(vals, ns))
+    for l in leurres:
+        assert any(abs(v - l(k)) > mp.mpf(10) ** -6 for v, k in zip(vals, ns)), l
+
+
+formule_juste(lambda k: b_num(dent, k), lambda k: 2 * (-1) ** (k + 1) / mp.mpf(k),
+              [lambda k: 2 / mp.mpf(k), lambda k: 2 * (-1) ** k / mp.mpf(k), lambda k: (-1) ** (k + 1) / mp.mpf(k)])
+formule_juste(lambda k: mp.quad(lambda s: s * mp.sin(k * s), [0, 2 * PI]) / PI, lambda k: -2 / mp.mpf(k),   # v1
+              [lambda k: 2 / mp.mpf(k), lambda k: 2 * (-1) ** (k + 1) / mp.mpf(k), lambda k: -1 / mp.mpf(k)])
+formule_juste(lambda k: a_num(abs, k, [-PI, 0, PI]), lambda k: 2 * ((-1) ** k - 1) / (PI * k ** 2),            # v2
+              [lambda k: 2 * (1 - (-1) ** k) / (PI * k ** 2), lambda k: ((-1) ** k - 1) / (PI * k ** 2),
+               lambda k: 2 * ((-1) ** k - 1) / (PI * k)])
+# coefficients-ex3 (+ v1, v2) : c_n(e^{αt}), n = -2..2.
+for al, bonne, leurres in [
+        (1, lambda k: (-1) ** k * SH(PI) / (PI * (1 - 1j * k)),
+         [lambda k: SH(PI) / (PI * (1 - 1j * k)), lambda k: (-1) ** k * SH(PI) / (PI * (1 + 1j * k)),
+          lambda k: (-1) ** k * SH(PI) / (2 * PI * (1 - 1j * k))]),
+        (2, lambda k: (-1) ** k * SH(2 * PI) / (PI * (2 - 1j * k)),
+         [lambda k: SH(2 * PI) / (PI * (2 - 1j * k)), lambda k: (-1) ** k * SH(2 * PI) / (PI * (2 + 1j * k)),
+          lambda k: (-1) ** k * SH(2 * PI) / (2 * PI * (2 - 1j * k))]),
+        (-1, lambda k: (-1) ** k * SH(PI) / (PI * (1 + 1j * k)),
+         [lambda k: (-1) ** k * SH(PI) / (PI * (1 - 1j * k)), lambda k: -(-1) ** k * SH(PI) / (PI * (1 + 1j * k)),
+          lambda k: SH(PI) / (PI * (1 + 1j * k))])]:
+    formule_juste(lambda k: c_num(lambda s: mp.exp(al * s), k), bonne, leurres, ns=range(-2, 3))
+# coefficients-ex4 (+ v1, v2) : T_k(cos u) = cos(ku) en trois points ; chaque leurre faux en l'un d'eux.
+for k, bonne, leurres in [
+        (5, lambda X: 16 * X ** 5 - 20 * X ** 3 + 5 * X,
+         [lambda X: 16 * X ** 5 + 20 * X ** 3 + 5 * X, lambda X: 32 * X ** 5 - 40 * X ** 3 + 10 * X,
+          lambda X: 16 * X ** 5 - 20 * X ** 3 - 5 * X]),
+        (4, lambda X: 8 * X ** 4 - 8 * X ** 2 + 1,
+         [lambda X: 8 * X ** 4 + 8 * X ** 2 + 1, lambda X: 8 * X ** 4 - 8 * X ** 2 - 1, lambda X: 16 * X ** 4 - 16 * X ** 2 + 2]),
+        (6, lambda X: 32 * X ** 6 - 48 * X ** 4 + 18 * X ** 2 - 1,
+         [lambda X: 32 * X ** 6 - 48 * X ** 4 + 18 * X ** 2 + 1, lambda X: 64 * X ** 6 - 96 * X ** 4 + 36 * X ** 2 - 2,
+          lambda X: 32 * X ** 6 - 48 * X ** 4 - 18 * X ** 2 - 1])]:
+    formule_juste(lambda u: mp.cos(k * u), lambda u: bonne(mp.cos(u)), [lambda u, l=l: l(mp.cos(u)) for l in leurres],
+                  ns=[mp.mpf(1) / 3, mp.mpf(1), mp.mpf(2)])
+
+
+# approximation-ex1 (+ v1, v2) : chaque proposition P donne ∫|f - P|² ; la bonne donne strictement le plus petit.
+def ecart2(f, P, pts):
+    return mp.quad(lambda s: abs(f(s) - P(s)) ** 2, pts)
+
+
+for f, pts, bonne, leurres in [
+        (dent, [-PI, PI], lambda s: 2 * mp.sin(s), [mp.sin, lambda s: -2 * mp.sin(s), lambda s: 4 / PI * mp.sin(s)]),
+        (abs, [-PI, 0, PI], lambda s: PI / 2 - 4 / PI * mp.cos(s),
+         [lambda s: PI - 4 / PI * mp.cos(s), lambda s: PI / 2 + 4 / PI * mp.cos(s), lambda s: PI / 2 - 2 / PI * mp.cos(s)]),
+        (creneau, [-PI, 0, PI], lambda s: 4 / PI * mp.sin(s),
+         [lambda s: 4 / PI * mp.sin(s) + 2 / PI * mp.sin(2 * s), lambda s: 2 / PI * mp.sin(s), mp.sin])]:
+    eb = ecart2(f, bonne, pts)
+    assert all(ecart2(f, l, pts) > eb + mp.mpf(10) ** -6 for l in leurres)
+# approximation-ex2 (+ v1, v2) : d² = ‖f‖² - Σ_{|n|≤1}|c_n|², coefficients par quadrature.
+for f, pts, bonne, leurres in [
+        (dent, [-PI, PI], PI ** 2 / 3 - 2, [PI ** 2 / 3 - 4, PI ** 2 / 3 - 1, PI ** 2 / 3]),
+        (creneau, [-PI, 0, PI], 1 - 8 / PI ** 2, [1 - 16 / PI ** 2, 1 - 4 / PI ** 2, 8 / PI ** 2]),
+        (abs, [-PI, 0, PI], PI ** 2 / 12 - 8 / PI ** 2, [PI ** 2 / 3 - 8 / PI ** 2, PI ** 2 / 12 - 16 / PI ** 2, PI ** 2 / 12])]:
+    d2 = mp.quad(lambda s: abs(f(s)) ** 2, pts) / (2 * PI) - mp.fsum(abs(c_num(f, k, pts)) ** 2 for k in (-1, 0, 1))
+    juste_et_leurres(d2, bonne, leurres)
+
+
+# approximation-ex3 (+ v1, v2) : moindres carrés sur [0, π] par le système normal (matrice de Gram numérique).
+def moindres_carres(g, u, v):
+    G = mp.matrix([[mp.quad(lambda s: a(s) * b(s), [0, PI]) for b in (u, v)] for a in (u, v)])
+    B = mp.matrix([mp.quad(lambda s: g(s) * a(s), [0, PI]) for a in (u, v)])
+    sol = mp.lu_solve(G, B)
+    return mp.quad(lambda s: (g(s) - sol[0] * u(s) - sol[1] * v(s)) ** 2, [0, PI]), sol
+
+
+m, sol = moindres_carres(lambda s: 1, mp.sin, lambda s: mp.sin(3 * s))
+juste_et_leurres(m, PI - 80 / (9 * PI), [PI - 8 / PI, PI - 160 / (9 * PI), 80 / (9 * PI)])
+assert proche(sol[0], 4 / PI) and proche(sol[1], 4 / (3 * PI))
+m, sol = moindres_carres(lambda s: s, mp.sin, lambda s: mp.sin(2 * s))                                     # v1
+juste_et_leurres(m, PI ** 3 / 3 - 5 * PI / 2, [PI ** 3 / 3 - 2 * PI, PI ** 3 / 3 - 5 * PI, PI ** 3 / 3 - 3 * PI / 2])
+assert proche(sol[0], 2) and proche(sol[1], -1)
+m, sol = moindres_carres(lambda s: s, lambda s: 1, mp.cos)                                                # v2
+juste_et_leurres(m, PI ** 3 / 12 - 8 / PI, [PI ** 3 / 12 - 4 / PI, PI ** 3 / 3 - 8 / PI, PI ** 3 / 12])
+assert proche(sol[0], PI / 2) and proche(sol[1], -4 / PI)
+# approximation-ex4 (+ v1, v2) : limite (2/π)∫_0^π g, et contrôle direct à n = 300 (intégrale découpée en arches).
+for g, bonne, leurres in [(mp.exp, 2 / PI * (mp.e ** PI - 1), [mp.e ** PI - 1, (mp.e ** PI - 1) / 2, 0]),
+                          (lambda s: 1 / (1 + s), 2 / PI * mp.log(1 + PI), [mp.log(1 + PI), mp.log(1 + PI) / 2, 0]),
+                          (lambda s: s ** 2, 2 * PI ** 2 / 3, [PI ** 3 / 3, PI ** 3 / 6, 0])]:
+    juste_et_leurres(2 / PI * mp.quad(g, [0, PI]), bonne, leurres)
+    with mp.workdps(15):
+        n0 = 300
+        I_n = mp.quad(lambda s: g(s) * abs(mp.sin(n0 * s)), mp.linspace(0, PI, n0 + 1))
+        assert abs(I_n - bonne) < mp.mpf(10) ** -3 * max(1, abs(bonne)), (I_n, bonne)
+
+# parseval-ex1, ex2, ex3 (+ v1, v2) : sommes directes (nsum) comparées aux propositions.
+Z = lambda F: mp.nsum(F, [1, mp.inf])
+juste_et_leurres(Z(lambda k: 1 / k ** 2), PI ** 2 / 6, [PI ** 2 / 8, PI ** 2 / 12, PI ** 2 / 3])
+juste_et_leurres(Z(lambda k: 1 / (2 * k - 1) ** 2), PI ** 2 / 8, [PI ** 2 / 6, PI ** 2 / 4, PI / 4])
+juste_et_leurres(Z(lambda k: 1 / (2 * k - 1) ** 4), PI ** 4 / 96, [PI ** 4 / 90, PI ** 4 / 48, PI ** 2 / 8])
+juste_et_leurres(Z(lambda k: 1 / k ** 4), PI ** 4 / 90, [PI ** 4 / 96, PI ** 4 / 45, PI ** 4 / 72])
+juste_et_leurres(Z(lambda k: 1 / (2 * k - 1) ** 6), PI ** 6 / 960, [PI ** 6 / 945, PI ** 6 / 480, PI ** 6 / 1920])
+juste_et_leurres(Z(lambda k: 1 / (4 * k ** 2 - 1) ** 2), PI ** 2 / 16 - mp.mpf(1) / 2,
+                 [PI ** 2 / 8 - 1, PI ** 2 / 16 - mp.mpf(1) / 4, mp.mpf(1) / 2 - 4 / PI ** 2])
+juste_et_leurres(Z(lambda k: 1 / (1 + k ** 2)), (PI * COTH(PI) - 1) / 2,
+                 [PI * COTH(PI), PI * COTH(PI) / 2, (PI * COTH(PI) + 1) / 2])
+juste_et_leurres(Z(lambda k: 1 / (4 + k ** 2)), PI / 4 * COTH(2 * PI) - mp.mpf(1) / 8,
+                 [PI / 2 * COTH(2 * PI), PI / 4 * COTH(2 * PI), PI / 2 * COTH(2 * PI) - mp.mpf(1) / 4])
+juste_et_leurres(Z(lambda k: 1 / (1 + 4 * k ** 2)), PI / 4 * COTH(PI / 2) - mp.mpf(1) / 2,
+                 [PI / 2 * COTH(PI / 2), PI / 4 * COTH(PI / 2), PI / 2 * COTH(PI / 2) - 1])
+# parseval-ex2 : coefficients a_n(t²) = 4(-1)^n/n² et b_n de v1 = 8/(πn³) (n impair) par quadrature, n = 1..4.
+formule_juste(lambda k: a_num(lambda s: s ** 2, k), lambda k: 4 * (-1) ** k / mp.mpf(k) ** 2, [])
+formule_juste(lambda k: b_num(lambda s: s * (PI - abs(s)), k, [-PI, 0, PI]),
+              lambda k: 4 * (1 - (-1) ** k) / (PI * k ** 3), [])
+formule_juste(lambda k: a_num(lambda s: mp.cos(s / 2), k), lambda k: 4 * (-1) ** (k + 1) / (PI * (4 * k ** 2 - 1)), [],
+              ns=range(0, 4))
+# parseval-ex4 : cos(2t) vérifie les hypothèses sans égalité ; a cos t + b sin t réalise l'égalité.
+assert proche(mp.quad(lambda s: (-2 * mp.sin(2 * s)) ** 2, [-PI, PI]), 4 * mp.quad(lambda s: mp.cos(2 * s) ** 2, [-PI, PI]))
+assert proche(mp.quad(lambda s: (2 * mp.cos(s) - 3 * mp.sin(s)) ** 2, [-PI, PI]),
+              mp.quad(lambda s: (-2 * mp.sin(s) - 3 * mp.cos(s)) ** 2, [-PI, PI]))
+
+# dirichlet-ex1 (+ v1, v2) : demi-somme des limites latérales ; v1 contrôlé par la série Σ c_n(-1)^n (convergente).
+juste_et_leurres(mp.mpf(1) / 2, mp.mpf(1) / 2, [1, 0])
+cn_exp = lambda k: (-1) ** k * SH(PI) / (PI * (1 - 1j * k))
+S_pi = cn_exp(0) + Z(lambda k: (cn_exp(k) + cn_exp(-k)) * (-1) ** k)
+juste_et_leurres(S_pi, CH(PI), [mp.e ** PI, mp.e ** -PI, SH(PI)])
+juste_et_leurres((0 + 2 * PI) / 2, PI, [0, 2 * PI, PI / 2])
+# dirichlet-ex2 (+ v1, v2) : sommes directes, regroupées par périodes pour accélérer.
+juste_et_leurres(Z(lambda k: 1 / (4 * k - 3) - 1 / (4 * k - 1)), PI / 4, [PI / 2, PI / 8, 1])
+juste_et_leurres(Z(lambda k: 1 / (8 * k - 7) + 1 / (8 * k - 5) - 1 / (8 * k - 3) - 1 / (8 * k - 1)), PI * mp.sqrt(2) / 4,
+                 [PI / 4, PI * mp.sqrt(2) / 8, PI * mp.sqrt(2) / 2])
+juste_et_leurres(Z(lambda k: 1 / (3 * k - 2) - 1 / (3 * k - 1)), PI * mp.sqrt(3) / 9,
+                 [PI / 3, PI / 6, PI * mp.sqrt(3) / 6])
+# dirichlet-ex3 (+ v1, v2) : sommes directes.
+juste_et_leurres(Z(lambda k: (-1) ** (k + 1) / (9 * k ** 2 - 1)), PI * mp.sqrt(3) / 9 - mp.mpf(1) / 2,
+                 [PI * mp.sqrt(3) / 9, mp.mpf(1) / 2 - PI * mp.sqrt(3) / 18, PI * mp.sqrt(3) / 18 - mp.mpf(1) / 2])
+juste_et_leurres(Z(lambda k: (-1) ** (k + 1) / (9 * k ** 2 - 4)), PI * mp.sqrt(3) / 18 - mp.mpf(1) / 8,
+                 [PI * mp.sqrt(3) / 18, PI * mp.sqrt(3) / 9 - mp.mpf(1) / 4, mp.mpf(1) / 8 - PI * mp.sqrt(3) / 36])
+juste_et_leurres(Z(lambda k: 1 / (9 * k ** 2 - 1)), mp.mpf(1) / 2 - PI * mp.sqrt(3) / 18,
+                 [PI * mp.sqrt(3) / 9 - mp.mpf(1) / 2, mp.mpf(1) / 2 - PI * mp.sqrt(3) / 9, PI * mp.sqrt(3) / 18])
+# dirichlet-ex4 (+ v1, v2) : Σ sin(na)/n = Im(-log(1 - e^{ia})), Σ sin²(na)/n² = (ζ(2) - Re Li₂(e^{2ia}))/2.
+for a, bonne, leurres in [
+        (1, ((PI - 1) / 2, (PI - 1) / 2), [((PI - 1) / 2, (PI - 1) / 4), (PI / 2, (PI - 1) / 2), ((PI - 1) / 2, (PI ** 2 - 1) / 2)]),
+        (2, ((PI - 2) / 2, PI - 2), [((PI - 2) / 2, (PI - 2) / 2), (PI - 2, (PI - 2) / 2), ((PI - 2) / 2, 2 * PI - 4)]),
+        (mp.mpf(1) / 2, ((2 * PI - 1) / 4, (2 * PI - 1) / 8),
+         [((2 * PI - 1) / 4, (2 * PI - 1) / 4), ((2 * PI - 1) / 8, (2 * PI - 1) / 4), ((PI - 1) / 4, (2 * PI - 1) / 8)])]:
+    s1 = mp.im(-mp.log(1 - mp.expj(a)))
+    s2 = (mp.zeta(2) - mp.re(mp.polylog(2, mp.expj(2 * a)))) / 2
+    assert proche(s1, bonne[0]) and proche(s2, bonne[1])
+    assert all(abs(s1 - l1) + abs(s2 - l2) > mp.mpf(10) ** -6 for l1, l2 in leurres)
+# dirichlet-ex5 (+ v1, v2) : sommes partielles calculées directement pour N = 4000, proches de la limite (Si(π)) ;
+# les leurres en sont éloignés de plus de 0,01.
+SI = mp.si(PI)
+with mp.workdps(20):
+    N0 = 4000
+    v0 = 4 / PI * mp.fsum(mp.sin((2 * k + 1) * PI / (2 * N0)) / (2 * k + 1) for k in range(N0))
+    v1 = 2 * mp.fsum((-1) ** (k + 1) * mp.sin(k * (PI - PI / N0)) / k for k in range(1, N0 + 1))
+    v2 = mp.fsum(mp.sin(k * PI / N0) / k for k in range(1, N0 + 1))
+for v, bonne, leurres in [(v0, 2 / PI * SI, [1, SI / PI, 4 / PI * SI]), (v1, 2 * SI, [PI, SI, 2 / PI * SI]),
+                          (v2, SI, [PI / 2, 2 / PI * SI, 2 * SI])]:
+    assert abs(v - bonne) < 2 * mp.mpf(10) ** -3, (v, bonne)            # erreur en O(1/N) (sommes de Riemann)
+    assert all(abs(bonne - l) > mp.mpf(10) ** -2 for l in leurres)
+assert abs(2 / PI * SI - mp.mpf("1.17898")) < 1e-5 and abs(2 * SI - mp.mpf("3.70387")) < 1e-5
+
+# fejer-ex1 (+ v1, v2) et fejer-ex3 (+ v1, v2), q5 : σ_N(f)(x) recalculé comme moyenne des S_k(f)(x),
+# coefficients obtenus par quadrature.
+def sigma(f, Nf, x0, pts=None):
+    cs = {k: c_num(f, k, pts) for k in range(-Nf, Nf + 1)}
+    S = lambda K: mp.fsum(cs[k] * mp.expj(k * x0) for k in range(-K, K + 1))
+    return mp.re(mp.fsum(S(K) for K in range(Nf)) / Nf), mp.re(S(Nf - 1))
+
+
+juste_et_leurres(sigma(lambda s: 1 + 4 * mp.cos(2 * s) - 2 * mp.sin(3 * s), 4, 0)[0], 3, [5, 2, 4])
+juste_et_leurres(sigma(lambda s: mp.cos(s) + mp.cos(2 * s), 3, 0)[0], 1, [2, mp.mpf(5) / 3, mp.mpf(4) / 3])
+juste_et_leurres(sigma(lambda s: 2 + mp.sin(s) + 3 * mp.cos(2 * s), 2, PI / 2)[0], mp.mpf(5) / 2, [0, 3, 1])
+juste_et_leurres(sigma(lambda s: mp.cos(2 * s), 4, 0)[0], mp.mpf(1) / 2, [1, mp.mpf(3) / 4, mp.mpf(1) / 4])   # q5
+for Nf, x0, bonne_sig, bonne_S, leurres in [
+        (6, PI / 2, 14 / (5 * PI), 52 / (15 * PI), [52 / (15 * PI), 1, 4 / PI]),
+        (4, PI / 4, 5 * mp.sqrt(2) / (3 * PI), 8 * mp.sqrt(2) / (3 * PI), [8 * mp.sqrt(2) / (3 * PI), 1, 2 * mp.sqrt(2) / PI]),
+        (6, PI / 6, 12 / (5 * PI), 56 / (15 * PI), [56 / (15 * PI), 1, 2 / PI])]:
+    sg, sp = sigma(creneau, Nf, x0, [-PI, 0, PI])
+    juste_et_leurres(sg, bonne_sig, leurres)
+    assert proche(sp, bonne_S) and sp > 1 > sg                          # la somme partielle dépasse 1, pas Fejér
+# fejer-ex2 (+ v1, v2) : (1/2π)∫K_N² avec K_N = (1/N)(sin(Nt/2)/sin(t/2))².
+for Nf, bonne, leurres in [(3, mp.mpf(19) / 9, [3, 1, mp.mpf(14) / 9]), (2, mp.mpf(3) / 2, [2, 1, mp.mpf(5) / 4]),
+                           (4, mp.mpf(11) / 4, [4, 1, mp.mpf(15) / 8])]:
+    KN = lambda s: (mp.sin(Nf * s / 2) / mp.sin(s / 2)) ** 2 / Nf
+    juste_et_leurres(mp.quad(lambda s: KN(s) ** 2, [-PI, 0, PI]) / (2 * PI), bonne, leurres)
+# fejer-ex4 : L_N croît (et dépasse les leurres finis 1, 4/π², 0) ; minoration (4/π²)Σ1/k vérifiée pour N = 5, 20.
+with mp.workdps(15):
+    LN = lambda Nf: mp.quad(lambda s: abs(mp.sin((Nf + mp.mpf(1) / 2) * s) / mp.sin(s / 2)),
+                            mp.linspace(0, PI, 2 * Nf + 2)) / PI
+    L5, L20 = LN(5), LN(20)
+    assert L20 > L5 > 1 and L5 >= 4 / PI ** 2 * mp.fsum(mp.mpf(1) / k for k in range(1, 6))
+    assert L20 >= 4 / PI ** 2 * mp.fsum(mp.mpf(1) / k for k in range(1, 21))
+
+# normale-ex2 (+ v1, v2) : sommes directes.
+juste_et_leurres(Z(lambda k: (-1) ** (k + 1) / (4 * k ** 2 - 1)), (PI - 2) / 4, [(PI - 2) / 2, (PI + 2) / 4, mp.mpf(1) / 2])
+juste_et_leurres(Z(lambda k: (-1) ** (k + 1) / (16 * k ** 2 - 1)), PI * mp.sqrt(2) / 8 - mp.mpf(1) / 2,
+                 [PI * mp.sqrt(2) / 4 - mp.mpf(1) / 2, mp.mpf(1) / 2 - PI * mp.sqrt(2) / 8, PI * mp.sqrt(2) / 8])
+juste_et_leurres(Z(lambda k: mp.cos(2 * k * PI / 3) / (4 * k ** 2 - 1)), mp.mpf(1) / 2 - PI * mp.sqrt(3) / 8,
+                 [PI * mp.sqrt(3) / 8 - mp.mpf(1) / 2, mp.mpf(1) / 2 - PI * mp.sqrt(3) / 4, PI * mp.sqrt(3) / 8])
+# normale-ex3 (+ v2) : N·sup|f - S_N| tend vers 2/π (|t|) et 4 (t²), pas vers les constantes des leurres ;
+# v1 : valeur exacte 2/(π(2N+1)), testée pour N = 1..5 contre la somme directe des |a_{2k}|.
+for Nf in [10 ** 4, 10 ** 5]:
+    r1 = Nf * 4 / PI * mp.nsum(lambda k: 1 / (2 * k + 1) ** 2, [(Nf + 1) // 2, mp.inf])
+    r2 = Nf * 4 * mp.nsum(lambda k: 1 / k ** 2, [Nf + 1, mp.inf])
+    assert abs(r1 - 2 / PI) < 10 / mp.mpf(Nf) and abs(r2 - 4) < 10 / mp.mpf(Nf)
+    assert all(abs(r1 - l) > mp.mpf(10) ** -2 for l in [4 / PI, 1]) and all(abs(r2 - l) > 1 for l in [2, 8])
+for Nf in range(1, 6):
+    vraie = 4 / PI * mp.nsum(lambda k: 1 / (4 * k ** 2 - 1), [Nf + 1, mp.inf])
+    juste_et_leurres(vraie, 2 / (PI * (2 * Nf + 1)), [4 / (PI * (2 * Nf + 1)), 2 / (PI * (2 * Nf + 1) ** 2), mp.mpf(1) / (2 * Nf + 1)])
+# normale-ex4 : pour t², sup|f - c_0| / ‖f'‖₂ = π/√3 (donc π/√6 et 1 ne sont pas des constantes valables).
+c0 = mp.quad(lambda s: s ** 2, [-PI, PI]) / (2 * PI)
+supf = max(abs(PI ** 2 - c0), abs(0 - c0))
+normd = mp.sqrt(mp.quad(lambda s: (2 * s) ** 2, [-PI, PI]) / (2 * PI))
+assert proche(supf / normd, PI / mp.sqrt(3)) and PI / mp.sqrt(6) < supf / normd and 1 < supf / normd
+
+# weierstrass-ex3 (+ v1, v2) : a_n par quadrature, P(x) recomposé et comparé aux propositions en x = 0, 1/2, 1.
+for g, Nf, bonne, leurres in [
+        (lambda s: abs(mp.cos(s)), 2, lambda X: (2 + 8 * X ** 2) / (3 * PI),
+         [lambda X: 2 / PI + 8 * X ** 2 / (3 * PI), lambda X: (2 - 8 * X ** 2) / (3 * PI), lambda X: (4 + 8 * X ** 2) / (3 * PI)]),
+        (lambda s: abs(mp.sin(s)), 2, lambda X: (10 - 8 * X ** 2) / (3 * PI),
+         [lambda X: 2 / PI - 8 * X ** 2 / (3 * PI), lambda X: (10 + 8 * X ** 2) / (3 * PI), lambda X: (2 - 8 * X ** 2) / (3 * PI)]),
+        (lambda s: mp.acos(mp.cos(s)), 3, lambda X: PI / 2 - 8 * X / (3 * PI) - 16 * X ** 3 / (9 * PI),
+         [lambda X: PI / 2 - 4 * X / PI - 16 * X ** 3 / (9 * PI), lambda X: PI - 8 * X / (3 * PI) - 16 * X ** 3 / (9 * PI),
+          lambda X: PI / 2 + 8 * X / (3 * PI) + 16 * X ** 3 / (9 * PI)])]:
+    an = [a_num(g, k, [-PI, -PI / 2, 0, PI / 2, PI]) for k in range(Nf + 1)]
+    SN = lambda u: an[0] / 2 + mp.fsum(an[k] * mp.cos(k * u) for k in range(1, Nf + 1))
+    formule_juste(lambda X: SN(mp.acos(X)), bonne, leurres, ns=[mp.mpf(0), mp.mpf(1) / 2, mp.mpf(1)])
+# weierstrass-ex4 (+ v1, v2) : moyennes M_N(g) pour N = 2·10⁵, et moyennes intégrales (1/2π)∫g.
+with mp.workdps(15):
+    Nw = 200000
+    ks = range(1, Nw + 1)
+    for g, bonne, leurres in [(lambda u: abs(math.sin(u)), 2 / PI, [mp.mpf(1) / 2, PI / 4, 0]),
+                              (lambda u: math.sin(u) ** 4, mp.mpf(3) / 8, [mp.mpf(1) / 4, mp.mpf(1) / 2, 0]),
+                              (lambda u: abs(math.cos(u)) ** 3, 4 / (3 * PI), [2 / PI, mp.mpf(2) / 3, 0])]:
+        moy = math.fsum(g(k) for k in ks) / Nw
+        assert abs(moy - bonne) < 1e-3 and all(abs(bonne - l) > 0.05 for l in leurres)
+juste_et_leurres(mp.quad(lambda s: abs(mp.sin(s)), [-PI, 0, PI]) / (2 * PI), 2 / PI, [mp.mpf(1) / 2, PI / 4, 0])
+
+# QCM : q1 (a_2(sin²) par quadrature), q3 (Σ 4^{-|n|}).
+juste_et_leurres(a_num(lambda s: mp.sin(s) ** 2, 2), -mp.mpf(1) / 2, [mp.mpf(1) / 2, -mp.mpf(1) / 4, 0])
+juste_et_leurres(1 + 2 * Z(lambda k: mp.mpf(4) ** -k), mp.mpf(5) / 3, [mp.mpf(4) / 3, 3, 9])
+
 print("int_l3_fourier : toutes les vérifications passent.")
