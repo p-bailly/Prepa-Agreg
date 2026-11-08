@@ -105,8 +105,8 @@ for k in range(1, 9):
 assert a_sym(t, 0, 0, 2 * pi) == 2 * pi and a_sym(Abs(t), 0) == pi
 assert b_sym(t, 2) != Integer(2) / 2 and b_sym(t, 1) != -2 and b_sym(t, 1) != Rational(1, 1) / 1 * 1 - 1   # leurres
 for k in range(1, 6):   # c_n = i(-1)^n / n (main), i/n (v1)
-    assert proche(c_num(dent, k), 1j * (-1) ** k / k) and proche(c_num(dent, -k), 1j * (-1) ** k / (-k))
-    assert proche(mp.quad(lambda s: s * mp.expj(-k * s), [0, 2 * PI]) / (2 * PI), 1j / k)
+    assert proche(c_num(dent, k), mp.mpc(0, (-1) ** k) / k) and proche(c_num(dent, -k), mp.mpc(0, (-1) ** k) / (-k))
+    assert proche(mp.quad(lambda s: s * mp.expj(-k * s), [0, 2 * PI]) / (2 * PI), mp.mpc(0, 1) / k)
 # Leurres de v2 faux pour n = 1 : 2(1-(-1)^n)/(πn²) = 4/π, ((-1)^n-1)/(πn²) = -2/π, 2((-1)^n-1)/(πn) = -4/π = vraie ?
 # (pour n = 1, ce dernier coïncide ; il diffère pour n = 3 : -4/(3π) contre -4/(9π)).
 assert 2 * ((-1) ** 3 - 1) / (PI * 3) != 2 * ((-1) ** 3 - 1) / (PI * 9)
