@@ -268,11 +268,11 @@ hh = (y - 1) / (y + 1)
 assert nul(hh - y + (1 + y**2) / (1 + y))  # Q2
 assert nul(diff(log(1 + y**2) / 2 + atan(y), y) - (1 + y) / (1 + y**2))  # Q3
 assert num_nul(log(1 + tan(th) ** 2) / 2 + log(cos(th)), var=th, pts=(R_(-1, 5), R_(1, 2), R_(3, 2)))  # Q4 : (1/2) ln(1 + tan^2) = -ln cos
-for rr, bon in [(K * exp(-th), True), (K * exp(th), False), (K - th, False), (K / cos(th), False)]:
+for rr, bon in [(K * exp(-th), True), (K * exp(th), False), (K + 3 - th, False)]:
     tt, xx_ = rr * cos(th), rr * sin(th)
-    pente = diff(xx_, th) / diff(tt, th)
-    ok = num_nul(pente - (xx_ - tt) / (xx_ + tt), var=th, pts=(R_(1, 5), R_(1, 2), R_(1)))
-    assert ok == bon or (rr == K / cos(th))  # Q5 et leurres ; r = K/cos theta : droite t = K, pente infinie
+    pente = (diff(xx_, th) / diff(tt, th)).subs(K, 2)
+    ok = num_nul(pente - ((xx_ - tt) / (xx_ + tt)).subs(K, 2), var=th, pts=(R_(1, 5), R_(1, 2), R_(1)))
+    assert ok == bon  # Q5 (r = K e^-theta) et leurres r = K e^theta, r = K - theta (ici K = 5 > theta)
 assert simplify((K / cos(th)) * cos(th)) == K  # leurre : la droite verticale t = K n'est pas un graphe
 
 # ===========================================================================
