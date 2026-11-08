@@ -1,0 +1,398 @@
+{
+  "cartes": [
+    {
+      "id": "al-l3-dualite-hyperplans",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dualite",
+      "type": "theoreme",
+      "titre": "Formes linéaires et hyperplans",
+      "recto": "Définir forme linéaire et hyperplan, donner la caractérisation d'un hyperplan par une droite supplémentaire, et énoncer le lien entre deux formes linéaires dont les noyaux sont inclus l'un dans l'autre.",
+      "cours": "Une **forme linéaire** sur un $\\mathbb{K}$-espace vectoriel $E$ est une application linéaire de $E$ dans $\\mathbb{K}$ ; elles forment le **dual** $E^*=\\mathcal{L}(E,\\mathbb{K})$. Exemples : une coordonnée dans une base, $P\\mapsto P(a)$ ou $P\\mapsto\\int_0^1P(t)\\,\\mathrm{d}t$ sur $\\mathbb{K}[X]$, la trace sur $\\mathcal{M}_n(\\mathbb{K})$. Une forme linéaire non nulle est surjective (son image est un sous-espace non nul de $\\mathbb{K}$, donc $\\mathbb{K}$ tout entier) : elle est de rang $1$.\n\nUn **hyperplan** est le noyau d'une forme linéaire non nulle. Le point clé : si $H=\\mathrm{Ker}\\,\\varphi$ et $x_0\\notin H$, tout vecteur $x$ s'écrit de façon unique $x=h+\\lambda x_0$ avec $h\\in H$, et l'on trouve $\\lambda=\\frac{\\varphi(x)}{\\varphi(x_0)}$ en appliquant $\\varphi$. Un hyperplan est donc un sous-espace qui admet une droite pour supplémentaire, et cette caractérisation vaut en toute dimension. En dimension finie $n$, les hyperplans sont exactement les sous-espaces de dimension $n-1$ (théorème du rang).\n\nL'équation d'un hyperplan est unique à un facteur non nul près : plus précisément, si $\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$, alors $\\psi$ est un multiple de $\\varphi$. Dans une base $(e_1,\\dots,e_n)$, $\\varphi(x)=a_1x_1+\\cdots+a_nx_n$ avec $a_i=\\varphi(e_i)$ : un hyperplan est l'ensemble des solutions d'une équation linéaire homogène non triviale, ce qui généralise les plans vectoriels de $\\mathbb{R}^3$ et les droites vectorielles de $\\mathbb{R}^2$.\n\nMéthode : pour montrer qu'un sous-espace $H$ est un hyperplan, l'écrire comme noyau d'une forme linéaire non nulle (ou, en dimension finie, calculer sa dimension) ; pour décomposer $x$ sur $H\\oplus\\mathbb{K}x_0$, appliquer $\\varphi$ ; pour trouver une équation de l'hyperplan engendré par des vecteurs donnés, résoudre le système linéaire dont les inconnues sont les coefficients $a_i$.\n\nPièges : la réunion de deux hyperplans distincts n'est pas un sous-espace ; en dimension finie $n\\ge2$, l'intersection de deux hyperplans distincts est de dimension $n-2$, ce n'est pas un hyperplan ; en dimension infinie, on ne peut plus compter les dimensions : un sous-espace strict, même « très gros », n'est pas forcément un hyperplan (les polynômes pairs dans $\\mathbb{K}[X]$, voir les contre-exemples).",
+      "hypotheses": [
+        "$\\varphi$ et $\\psi$ sont deux formes linéaires sur $E$, c'est-à-dire à valeurs dans $\\mathbb{K}$.",
+        "$\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$."
+      ],
+      "hypotheses_pieges": [
+        "$\\varphi$ et $\\psi$ sont deux applications linéaires de $E$ dans un espace $G$ de dimension au moins $2$ (à la place de : deux formes linéaires).",
+        "$\\mathrm{Ker}\\,\\varphi\\cap\\mathrm{Ker}\\,\\psi\\neq\\{0\\}$ (à la place de : $\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$).",
+        "$E$ est de dimension finie et $\\mathrm{Ker}\\,\\varphi$ et $\\mathrm{Ker}\\,\\psi$ ont la même dimension (à la place de : $\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel ($\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$), de dimension finie ou non. Une **forme linéaire** sur $E$ est une application linéaire de $E$ dans $\\mathbb{K}$ ; un **hyperplan** de $E$ est le noyau d'une forme linéaire non nulle.\n- Si $H=\\mathrm{Ker}\\,\\varphi$ est un hyperplan et $x_0\\in E\\setminus H$, alors $E=H\\oplus\\mathbb{K}x_0$. Réciproquement, un sous-espace $H$ tel que $E=H\\oplus D$ pour une droite $D$ est un hyperplan.\n- Si $\\varphi$ et $\\psi$ sont deux formes linéaires sur $E$ telles que $\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$, il existe $\\lambda\\in\\mathbb{K}$ tel que $\\psi=\\lambda\\varphi$. En particulier, deux formes linéaires non nulles ont le même noyau si et seulement si elles sont proportionnelles.\n- Si $\\dim E=n\\ge1$, les hyperplans de $E$ sont exactement les sous-espaces de dimension $n-1$ ; dans une base de $E$, ce sont les ensembles d'équation $a_1x_1+\\cdots+a_nx_n=0$ avec $(a_1,\\dots,a_n)\\neq(0,\\dots,0)$, l'équation étant unique à un facteur non nul près.",
+      "enonce_trous": "Si $E$ est de dimension finie $n\\ge1$, les hyperplans de $E$ sont exactement les sous-espaces de dimension {{1}}. Deux formes linéaires non nulles sur $E$ ont le même noyau si et seulement si elles sont {{2}}. Si $H$ est un hyperplan de $E$ et $x_0\\notin H$, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n-1$",
+          "leurres": [
+            "$n$",
+            "$n-2$",
+            "au moins $n-1$"
+          ]
+        },
+        {
+          "reponse": "proportionnelles",
+          "leurres": [
+            "égales",
+            "linéairement indépendantes",
+            "de somme nulle"
+          ]
+        },
+        {
+          "reponse": "$E=H\\oplus\\mathbb{K}x_0$",
+          "leurres": [
+            "$H\\oplus\\mathbb{K}x_0$ est un hyperplan de $E$",
+            "$\\mathbb{K}x_0\\subset H$",
+            "$\\varphi(x_0)=0$ pour toute forme linéaire $\\varphi$ de noyau $H$"
+          ]
+        }
+      ],
+      "demo": "**Surjectivité.** Si $\\varphi\\neq0$, soit $x_1$ tel que $\\varphi(x_1)\\neq0$ ; pour $t\\in\\mathbb{K}$, $\\varphi\\big(\\frac{t}{\\varphi(x_1)}x_1\\big)=t$.\n\n**Droite supplémentaire.** Soit $H=\\mathrm{Ker}\\,\\varphi$ et $x_0\\notin H$, donc $\\varphi(x_0)\\neq0$. Pour $x\\in E$, posons $\\lambda=\\frac{\\varphi(x)}{\\varphi(x_0)}$ et $h=x-\\lambda x_0$ : $\\varphi(h)=\\varphi(x)-\\lambda\\varphi(x_0)=0$, donc $x=h+\\lambda x_0\\in H+\\mathbb{K}x_0$. Si $\\mu x_0\\in H$, alors $\\mu\\varphi(x_0)=0$, donc $\\mu=0$ : $H\\cap\\mathbb{K}x_0=\\{0\\}$. Réciproquement, si $E=H\\oplus\\mathbb{K}x_0$ avec $x_0\\neq0$, l'application $\\varphi:h+\\lambda x_0\\mapsto\\lambda$ est bien définie (unicité de la décomposition), linéaire, non nulle ($\\varphi(x_0)=1$), de noyau $H$.\n\n**Formes proportionnelles.** Si $\\varphi=0$, alors $\\mathrm{Ker}\\,\\varphi=E\\subset\\mathrm{Ker}\\,\\psi$, donc $\\psi=0=0\\cdot\\varphi$. Sinon, soit $x_0$ tel que $\\varphi(x_0)=1$ et $\\lambda=\\psi(x_0)$. Pour $x\\in E$, $x-\\varphi(x)x_0\\in\\mathrm{Ker}\\,\\varphi\\subset\\mathrm{Ker}\\,\\psi$, donc $\\psi(x)=\\varphi(x)\\psi(x_0)=\\lambda\\varphi(x)$. Si de plus les noyaux sont égaux et $\\psi\\neq0$, alors $\\lambda\\neq0$ ; la réciproque est immédiate.\n\n**Dimension finie.** Une forme non nulle est de rang $1$, donc son noyau est de dimension $n-1$ (théorème du rang). Réciproquement, un sous-espace $H$ de dimension $n-1$ admet un supplémentaire, de dimension $1$ : c'est une droite, et $H$ est un hyperplan. Dans une base $(e_1,\\dots,e_n)$, $\\varphi(x_1e_1+\\cdots+x_ne_n)=a_1x_1+\\cdots+a_nx_n$ avec $a_i=\\varphi(e_i)$, et $\\varphi\\neq0$ si et seulement si les $a_i$ ne sont pas tous nuls ; l'unicité de l'équation à un facteur près est le point précédent.",
+      "exemple": "Dans $\\mathbb{R}^3$, soit $H$ le plan d'équation $x+2y-z=0$, noyau de $\\varphi(x,y,z)=x+2y-z$, et $x_0=(0,0,1)$, avec $\\varphi(x_0)=-1\\neq0$. Pour $v=(1,1,1)$, $\\varphi(v)=2$, donc $\\lambda=\\frac{2}{-1}=-2$ et $h=v+2x_0=(1,1,3)$ ; on vérifie $\\varphi(h)=1+2-3=0$. Ainsi $(1,1,1)=(1,1,3)-2(0,0,1)$ est la décomposition de $v$ sur $H\\oplus\\mathbb{R}x_0$.\n\nEn dimension infinie : dans $\\mathbb{K}[X]$, $\\{P\\mid P(1)=0\\}$, noyau de la forme non nulle $P\\mapsto P(1)$, est un hyperplan ; les constantes en forment un supplémentaire, car $P=(P-P(1))+P(1)$.",
+      "contre_exemple": "- **Noyaux de même dimension** : sur $\\mathbb{R}^2$, $\\varphi(x,y)=x$ et $\\psi(x,y)=y$ ont des noyaux de dimension $1$, mais $\\psi$ n'est pas un multiple de $\\varphi$ ($\\psi(0,1)=1$ alors que $\\varphi(0,1)=0$).\n- **Noyaux qui se rencontrent seulement** : sur $\\mathbb{R}^3$, $x$ et $y$ ont des noyaux dont l'intersection est l'axe des $z$, non réduit à $\\{0\\}$, et ne sont pas proportionnelles.\n- **Applications à valeurs dans un espace de dimension au moins 2** : sur $\\mathbb{R}^2$, $f=\\mathrm{id}$ et $g(x,y)=(y,x)$ vérifient $\\mathrm{Ker}\\,f=\\{0\\}\\subset\\mathrm{Ker}\\,g$, mais $g$ n'est pas de la forme $\\lambda f$, car $g(1,0)=(0,1)$ n'est pas colinéaire à $(1,0)$.\n- **Dimension infinie** : dans $\\mathbb{K}[X]$, le sous-espace $\\mathcal{P}$ des polynômes pairs n'est pas un hyperplan, bien qu'il soit de dimension infinie et distinct de $\\mathbb{K}[X]$. Sinon $\\mathcal{P}=\\mathrm{Ker}\\,\\varphi$ avec $\\varphi\\neq0$ ; pour $k$ impair, $\\varphi(X)X^k-\\varphi(X^k)X$ est un polynôme impair du noyau, donc nul, et comme $X$ et $X^k$ sont libres pour $k\\ge3$, $\\varphi(X)=0$ puis $\\varphi(X^k)=0$ pour tout $k$ impair ; $\\varphi$ serait nulle sur les polynômes impairs et sur $\\mathcal{P}$, donc nulle.",
+      "affirmations": [
+        {
+          "texte": "La réunion de deux hyperplans d'un espace vectoriel est un sous-espace vectoriel.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, les droites $x=0$ et $y=0$ sont des hyperplans ; $(1,0)$ et $(0,1)$ sont dans leur réunion, mais pas leur somme $(1,1)$."
+        },
+        {
+          "texte": "Si $\\varphi$ et $\\psi$ sont deux formes linéaires non nulles sur un espace $E$ de dimension finie au moins $2$, alors $\\mathrm{Ker}\\,\\varphi\\cap\\mathrm{Ker}\\,\\psi$ est un hyperplan.",
+          "vrai": false,
+          "contre_exemple": "Sur $\\mathbb{R}^2$, pour $\\varphi(x,y)=x$ et $\\psi(x,y)=y$, l'intersection des noyaux est $\\{0\\}$, de dimension $0\\neq1$."
+        },
+        {
+          "texte": "Dans un espace de dimension finie $n\\ge2$, l'intersection de deux hyperplans distincts est de dimension $n-2$.",
+          "vrai": true,
+          "justification": "$H_1\\subsetneq H_1+H_2$, donc $H_1+H_2=E$ (dimension $n$) ; par la formule de Grassmann, $\\dim(H_1\\cap H_2)=(n-1)+(n-1)-n=n-2$."
+        },
+        {
+          "texte": "Dans un espace de dimension finie, tout sous-espace distinct de $E$ est contenu dans un hyperplan.",
+          "vrai": true,
+          "justification": "On complète une base $(e_1,\\dots,e_p)$ de $F$, avec $p<n$, en une base $(e_1,\\dots,e_n)$ de $E$ ; le noyau de la forme coordonnée sur $e_n$ est un hyperplan qui contient $e_1,\\dots,e_p$, donc $F$."
+        }
+      ],
+      "prerequis": [
+        "al-l1-applications-rang",
+        "al-l1-espaces-somme-directe",
+        "al-l1-espaces-dimension"
+      ]
+    },
+    {
+      "id": "al-l3-dualite-base-duale",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dualite",
+      "type": "theoreme",
+      "titre": "Base duale, application à l'interpolation de Lagrange",
+      "recto": "Définir la base duale d'une base d'un espace de dimension finie, donner les formules de décomposition qu'elle fournit, puis en déduire l'interpolation de Lagrange.",
+      "cours": "En dimension finie, une base $\\mathcal{B}=(e_1,\\dots,e_n)$ de $E$ fournit $n$ formes linéaires naturelles : les **formes coordonnées** $e_1^*,\\dots,e_n^*$, où $e_i^*(x)$ est la $i$-ième coordonnée de $x$ dans $\\mathcal{B}$. Elles sont caractérisées par $e_i^*(e_j)=\\delta_{ij}$ (symbole de Kronecker : $1$ si $i=j$, $0$ sinon) et forment une base de $E^*$, la **base duale** de $\\mathcal{B}$ ; ainsi $\\dim E^*=\\dim E$.\n\nLes deux formules à retenir : $x=\\sum_ie_i^*(x)\\,e_i$ pour $x\\in E$, et $\\varphi=\\sum_i\\varphi(e_i)\\,e_i^*$ pour $\\varphi\\in E^*$ ; la coordonnée de $\\varphi$ sur $e_i^*$ s'obtient en évaluant $\\varphi$ en $e_i$. Inversement, toute base $(\\varphi_1,\\dots,\\varphi_n)$ de $E^*$ est la base duale d'une unique base de $E$, sa **base antéduale**.\n\nAttention : $e_i^*$ dépend de **toute** la base, pas seulement de $e_i$. Dans $\\mathbb{R}^2$, pour la base $((1,0),(0,1))$, $e_1^*(x,y)=x$ ; pour la base $((1,0),(1,1))$, $e_1^*(x,y)=x-y$. Méthode matricielle : si $P$ est la matrice dont les colonnes sont les coordonnées des $e_j$ dans la base canonique de $\\mathbb{K}^n$, les lignes de $P^{-1}$ donnent les coefficients des formes $e_1^*,\\dots,e_n^*$, puisque l'égalité $P^{-1}P=I_n$ s'écrit $e_i^*(e_j)=\\delta_{ij}$.\n\nApplication : l'interpolation de Lagrange. Pour $a_0,\\dots,a_n$ deux à deux distincts, les formes $\\delta_{a_i}:P\\mapsto P(a_i)$ forment une base du dual de $\\mathbb{K}_n[X]$, dont la base antéduale est formée des polynômes de Lagrange $L_i=\\prod_{j\\neq i}\\frac{X-a_j}{a_i-a_j}$. La formule $P=\\sum_iP(a_i)L_i$ est la décomposition de $P$ dans la base $(L_i)$, et toute forme linéaire $\\varphi$ sur $\\mathbb{K}_n[X]$ s'écrit $\\varphi=\\sum_i\\varphi(L_i)\\,\\delta_{a_i}$ : c'est l'origine des formules de quadrature (trapèzes, Simpson) et de dérivation numérique, exactes sur $\\mathbb{K}_n[X]$.\n\nPièges : en dimension infinie, il n'y a plus de base duale : dans $\\mathbb{K}[X]$, les formes coordonnées dans la base $(X^k)$ sont libres mais n'engendrent pas le dual, car $P\\mapsto P(1)$, somme de tous les coefficients, n'est combinaison linéaire d'aucun nombre fini d'entre elles ; pour $\\mathbb{K}_n[X]$, de dimension $n+1$, il faut $n+1$ points distincts, et l'interpolation ne détermine pas un polynôme de degré $n+1$.",
+      "hypotheses": [
+        "$E$ est de dimension finie $n$ et $(e_1,\\dots,e_n)$ est une base de $E$.",
+        "Les scalaires $a_0,\\dots,a_n$ sont deux à deux distincts.",
+        "$P$ est un polynôme de degré au plus $n$."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est de dimension infinie, de base $(e_i)_{i\\in\\mathbb{N}}$ (à la place de : dimension finie $n$).",
+        "Les scalaires $a_0,\\dots,a_n$ ne sont pas tous égaux (à la place de : deux à deux distincts).",
+        "$P$ est un polynôme de degré au plus $n+1$ (à la place de : au plus $n$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel de **dimension finie** $n\\ge1$ et $\\mathcal{B}=(e_1,\\dots,e_n)$ une base de $E$.\n- Il existe des formes linéaires uniques $e_1^*,\\dots,e_n^*$ telles que $e_i^*(e_j)=\\delta_{ij}$ pour tous $i,j$ ; elles forment une base de $E^*$, la **base duale** de $\\mathcal{B}$, et $\\dim E^*=n$. Pour tous $x\\in E$ et $\\varphi\\in E^*$ : $x=\\sum_{i=1}^ne_i^*(x)\\,e_i$ et $\\varphi=\\sum_{i=1}^n\\varphi(e_i)\\,e_i^*$.\n- Toute base $(\\varphi_1,\\dots,\\varphi_n)$ de $E^*$ est la base duale d'une unique base de $E$, appelée base **antéduale**.\n\n**Interpolation de Lagrange.** Soit $n\\ge0$ et $a_0,\\dots,a_n\\in\\mathbb{K}$ deux à deux distincts. Les formes $\\delta_{a_i}:P\\mapsto P(a_i)$, pour $0\\le i\\le n$, forment une base du dual de $\\mathbb{K}_n[X]$, de base antéduale $(L_0,\\dots,L_n)$, où $L_i=\\prod_{j\\neq i}\\frac{X-a_j}{a_i-a_j}$. Pour tout $P\\in\\mathbb{K}_n[X]$, $P=\\sum_{i=0}^nP(a_i)L_i$ ; pour tous $b_0,\\dots,b_n\\in\\mathbb{K}$, il existe un unique $P\\in\\mathbb{K}_n[X]$ tel que $P(a_i)=b_i$ pour tout $i$.",
+      "enonce_trous": "La base duale de la base $(e_1,\\dots,e_n)$ de $E$ est la famille $(e_1^*,\\dots,e_n^*)$ des formes linéaires définies par {{1}}. Toute forme linéaire $\\varphi$ sur $E$ s'écrit alors {{2}}. Si $n\\ge1$ et si $a_0,\\dots,a_n$ sont deux à deux distincts, la base antéduale de $(P\\mapsto P(a_0),\\dots,P\\mapsto P(a_n))$ dans le dual de $\\mathbb{K}_n[X]$ est formée des polynômes {{3}}.",
+      "trous": [
+        {
+          "reponse": "$e_i^*(e_j)=\\delta_{ij}$ pour tous $i,j$",
+          "leurres": [
+            "$e_i^*(e_i)=1$ pour tout $i$",
+            "$e_i^*(e_j)=0$ pour tous $i\\neq j$",
+            "$e_i^*(e_j)=1-\\delta_{ij}$ pour tous $i,j$"
+          ]
+        },
+        {
+          "reponse": "$\\varphi=\\sum_{i=1}^n\\varphi(e_i)\\,e_i^*$",
+          "leurres": [
+            "$\\varphi=\\sum_{i=1}^ne_i^*$",
+            "$\\varphi=\\sum_{i=1}^n\\varphi(e_i)\\,e_i$",
+            "$\\varphi=\\sum_{i=1}^n\\varphi(e_i^*)\\,e_i^*$"
+          ]
+        },
+        {
+          "reponse": "$L_i=\\prod_{j\\neq i}\\frac{X-a_j}{a_i-a_j}$",
+          "leurres": [
+            "$L_i=\\prod_{j\\neq i}(X-a_j)$",
+            "$L_i=X^i$",
+            "$L_i=\\prod_{j\\neq i}\\frac{X-a_i}{a_j-a_i}$"
+          ]
+        }
+      ],
+      "demo": "**Base duale.** Une application linéaire est déterminée par les images des vecteurs d'une base, qu'on peut choisir librement : $e_i^*$ existe et est unique. Si $\\sum_ic_ie_i^*=0$, en appliquant à $e_j$ on obtient $c_j=0$ : la famille est libre. Pour $\\varphi\\in E^*$, les formes $\\varphi$ et $\\sum_i\\varphi(e_i)e_i^*$ coïncident sur chaque $e_j$, donc sont égales : la famille engendre $E^*$. C'est une base, et $\\dim E^*=n$. Enfin, si $x=\\sum_jx_je_j$, alors $e_i^*(x)=x_i$.\n\n**Base antéduale.** Soit $(\\varphi_1,\\dots,\\varphi_n)$ une base de $E^*$ et $\\Phi:E\\to\\mathbb{K}^n$, $x\\mapsto(\\varphi_1(x),\\dots,\\varphi_n(x))$. Si $\\Phi(x)=0$, toute forme, combinaison des $\\varphi_i$, s'annule en $x$ ; en particulier les formes coordonnées d'une base de $E$ sont nulles en $x$, donc $x=0$. Ainsi $\\Phi$ est injective entre espaces de dimension $n$ : c'est un isomorphisme. Les vecteurs $f_j=\\Phi^{-1}(\\varepsilon_j)$, où $(\\varepsilon_j)$ est la base canonique de $\\mathbb{K}^n$, forment une base de $E$ et vérifient $\\varphi_i(f_j)=\\delta_{ij}$ ; ils sont uniques, car cette condition impose $\\Phi(f_j)=\\varepsilon_j$.\n\n**Lagrange.** Chaque $L_i$ est de degré $n$, et $L_i(a_k)=\\delta_{ik}$ : pour $k\\neq i$, le facteur $X-a_k$ s'annule ; pour $k=i$, chaque facteur vaut $1$ (les $a_j$ étant distincts, les dénominateurs ne sont pas nuls). Si $\\sum_ic_iL_i=0$, l'évaluation en $a_k$ donne $c_k=0$ : les $n+1$ polynômes $L_i$ forment une famille libre de $\\mathbb{K}_n[X]$, de dimension $n+1$, donc une base. Comme $\\delta_{a_k}(L_i)=\\delta_{ki}$, $(\\delta_{a_0},\\dots,\\delta_{a_n})$ est sa base duale, et la formule $x=\\sum_ie_i^*(x)e_i$ donne $P=\\sum_iP(a_i)L_i$. Pour des valeurs $b_i$, $P=\\sum_ib_iL_i$ convient, et il est unique car $P\\mapsto(P(a_0),\\dots,P(a_n))$ est un isomorphisme.",
+      "exemple": "Dans $\\mathbb{R}^2$, base $e_1=(1,1)$, $e_2=(1,2)$ : $P=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}$, $P^{-1}=\\begin{pmatrix}2&-1\\\\-1&1\\end{pmatrix}$, donc $e_1^*(x,y)=2x-y$ et $e_2^*(x,y)=-x+y$. Vérification : $e_1^*(e_1)=1$, $e_1^*(e_2)=0$, $e_2^*(e_1)=0$, $e_2^*(e_2)=1$.\n\nAux points $0$, $1$, $2$ : $L_0=\\frac{(X-1)(X-2)}{2}$, $L_1=-X(X-2)$, $L_2=\\frac{X(X-1)}{2}$. Le polynôme de $\\mathbb{R}_2[X]$ qui vaut $1$, $3$, $7$ en $0$, $1$, $2$ est $L_0+3L_1+7L_2=X^2+X+1$.",
+      "contre_exemple": "- **$e_1^*$ ne dépend pas que de $e_1$** : dans $\\mathbb{R}^2$, avec $e_1=(1,0)$, on trouve $e_1^*(x,y)=x$ si $e_2=(0,1)$, mais $e_1^*(x,y)=x-y$ si $e_2=(1,1)$.\n- **Dimension infinie** : dans $\\mathbb{K}[X]$, de base $(X^k)_{k\\in\\mathbb{N}}$, les formes coordonnées $c_k$ (coefficient de $X^k$) sont libres, mais la forme $P\\mapsto P(1)=\\sum_kc_k(P)$ n'en est pas une combinaison finie : une combinaison de $c_0,\\dots,c_N$ s'annule en $X^{N+1}$, alors que $X^{N+1}$ vaut $1$ en $1$.\n- **Degré trop grand** : $P=X(X-1)(X-2)$, de degré $3$, est nul en $0$, $1$, $2$ sans être nul : les valeurs en trois points ne déterminent pas un polynôme de degré au plus $3$.\n- **Points non distincts** : pour $a_0=a_1=0$ et $a_2=1$, les formes $\\delta_{a_0}$ et $\\delta_{a_1}$ sont égales, la famille est liée, et $X(X-1)\\neq0$ s'annule aux trois points.",
+      "affirmations": [
+        {
+          "texte": "La forme coordonnée $e_1^*$ ne dépend que du vecteur $e_1$, et pas des autres vecteurs de la base.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, avec $e_1=(1,0)$ : $e_1^*(x,y)=x$ pour $e_2=(0,1)$, mais $e_1^*(x,y)=x-y$ pour $e_2=(1,1)$ (car alors $(x,y)=(x-y)e_1+ye_2$)."
+        },
+        {
+          "texte": "Si $E$ est de dimension infinie et $(e_i)_{i\\in I}$ est une base de $E$, les formes coordonnées associées engendrent $E^*$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{K}[X]$, $P\\mapsto P(1)$ n'est combinaison d'aucun nombre fini de formes coordonnées dans la base $(X^k)$ : une telle combinaison est nulle sur $X^{N+1}$ pour $N$ assez grand, alors que $X^{N+1}$ vaut $1$ en $1$."
+        },
+        {
+          "texte": "Pour $a_0,\\dots,a_n$ deux à deux distincts et des scalaires quelconques $b_0,\\dots,b_n$, il existe un unique $P\\in\\mathbb{K}_n[X]$ tel que $P(a_i)=b_i$ pour tout $i$.",
+          "vrai": true,
+          "justification": "$P\\mapsto(P(a_0),\\dots,P(a_n))$ est injective (un polynôme de degré au plus $n$ à $n+1$ racines est nul) entre espaces de dimension $n+1$, donc bijective ; $P=\\sum_ib_iL_i$."
+        },
+        {
+          "texte": "Les polynômes de Lagrange associés à des points deux à deux distincts vérifient $L_0+L_1+\\cdots+L_n=1$.",
+          "vrai": true,
+          "justification": "La formule $P=\\sum_iP(a_i)L_i$, appliquée au polynôme constant $P=1$, donne $1=\\sum_iL_i$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dualite-hyperplans",
+        "arith-l1-polynomes-lagrange",
+        "al-l1-applications-isomorphismes",
+        "al-l1-applications-matrice"
+      ]
+    },
+    {
+      "id": "al-l3-dualite-orthogonalite",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dualite",
+      "type": "theoreme",
+      "titre": "Orthogonalité entre $E$ et son dual",
+      "recto": "Définir l'orthogonal d'une partie de $E$ dans $E^*$ et d'une partie de $E^*$ dans $E$, puis énoncer, en dimension finie, les formules de dimension et de double orthogonal, et le critère d'appartenance d'une forme à un sous-espace engendré par des formes.",
+      "cours": "La dualité fait passer d'une description d'un sous-espace par des **générateurs** à sa description par des **équations**. Pour une partie $A$ de $E$, l'**orthogonal** $A^{\\perp}$ est l'ensemble des formes linéaires nulles sur $A$ : ce sont les équations vérifiées par $A$. Pour une partie $B$ de $E^*$, l'orthogonal $B^{\\circ}$ est l'ensemble des vecteurs annulés par toutes les formes de $B$, c'est-à-dire l'intersection de leurs noyaux : l'ensemble des solutions du système d'équations $B$. Beaucoup d'ouvrages notent aussi $B^{\\perp}$ ce second orthogonal ; la notation $B^{\\circ}$ évite de confondre les deux. Ce sont toujours des sous-espaces, et $A^{\\perp}=\\mathrm{Vect}(A)^{\\perp}$.\n\nEn dimension finie $n$, tout se compte : $\\dim F^{\\perp}=n-\\dim F$ et $\\dim G^{\\circ}=n-\\dim G$, et l'on revient au point de départ en prenant deux fois l'orthogonal : $(F^{\\perp})^{\\circ}=F$ et $(G^{\\circ})^{\\perp}=G$. Concrètement, un sous-espace de dimension $d$ est défini par $n-d$ équations indépendantes (une base de $F^{\\perp}$), et pas moins ; des formes $\\varphi_1,\\dots,\\varphi_p$ de rang $r$ définissent un sous-espace de dimension $n-r$, et non $n-p$ : une équation combinaison des autres n'apporte rien. Enfin, $\\varphi$ est combinaison linéaire de $\\varphi_1,\\dots,\\varphi_p$ si et seulement si elle s'annule partout où elles s'annulent toutes ; ce dernier critère vaut en toute dimension, pour un nombre **fini** de formes.\n\nLe **bidual** $E^{**}$ reçoit $E$ par l'application linéaire $J$ définie par $J(x)(\\varphi)=\\varphi(x)$ (« évaluer en $x$ »). En dimension finie, $J$ est un isomorphisme qui ne dépend d'aucun choix de base : on identifie $E$ et $E^{**}$, ce qui rend symétriques les rôles de $E$ et $E^*$ ci-dessus. En dimension infinie, $J$ n'est jamais surjective (résultat admis), et cette symétrie disparaît.\n\nMéthode : pour trouver des équations de $F=\\mathrm{Vect}(u_1,\\dots,u_p)$ dans $\\mathbb{K}^n$, chercher les formes $a_1x_1+\\cdots+a_nx_n$ nulles en $u_1,\\dots,u_p$ (un système linéaire en les $a_i$) et en extraire une base : on obtient $n-\\dim F$ équations indépendantes de $F$. Pour la dimension d'un sous-espace défini par des équations, calculer le rang de la famille des formes.\n\nPièges : l'orthogonal renverse les inclusions ; $(F+G)^{\\perp}=F^{\\perp}\\cap G^{\\perp}$, mais $(F\\cap G)^{\\perp}=F^{\\perp}+G^{\\perp}$ (en dimension finie), et non $F^{\\perp}\\cap G^{\\perp}$ ; en dimension infinie, $(G^{\\circ})^{\\perp}$ peut être strictement plus grand que $G$, et le critère de combinaison linéaire tombe en défaut pour une famille infinie de formes (voir les contre-exemples).",
+      "hypotheses": [
+        "$E$ est de dimension finie $n$.",
+        "$F$ est un sous-espace vectoriel de $E$, de dimension $d$.",
+        "$G$ est un sous-espace vectoriel de $E^*$, de dimension $q$."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est de dimension infinie (à la place de : dimension finie $n$).",
+        "$F$ est une partie de $E$ à $d$ éléments (à la place de : un sous-espace de dimension $d$).",
+        "$G$ est engendré par $q$ formes linéaires (à la place de : $G$ est de dimension $q$)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel. Pour une partie $A$ de $E$ et une partie $B$ de $E^*$, on note $A^{\\perp}=\\{\\varphi\\in E^*\\mid\\forall x\\in A,\\ \\varphi(x)=0\\}$ et $B^{\\circ}=\\{x\\in E\\mid\\forall\\varphi\\in B,\\ \\varphi(x)=0\\}$ ; ce sont des sous-espaces de $E^*$ et de $E$.\n\n**Théorème.** On suppose $E$ de **dimension finie** $n$ ; soit $F$ un sous-espace de $E$ et $G$ un sous-espace de $E^*$.\n- $\\dim F^{\\perp}=n-\\dim F$ et $(F^{\\perp})^{\\circ}=F$.\n- $\\dim G^{\\circ}=n-\\dim G$ et $(G^{\\circ})^{\\perp}=G$.\n- Si $(\\varphi_1,\\dots,\\varphi_p)$ est une famille de $E^*$ de rang $r$, alors $\\dim\\bigcap_{i=1}^p\\mathrm{Ker}\\,\\varphi_i=n-r$. Un sous-espace de dimension $d<n$ est l'intersection de $n-d$ hyperplans, et pas de moins de $n-d$ hyperplans.\n- L'application $J:E\\to E^{**}$, $J(x)(\\varphi)=\\varphi(x)$, est un isomorphisme.\n\n**En toute dimension**, pour des formes linéaires $\\varphi,\\varphi_1,\\dots,\\varphi_p$ **en nombre fini** : $\\varphi\\in\\mathrm{Vect}(\\varphi_1,\\dots,\\varphi_p)$ si et seulement si $\\bigcap_{i=1}^p\\mathrm{Ker}\\,\\varphi_i\\subset\\mathrm{Ker}\\,\\varphi$.",
+      "enonce_trous": "Si $E$ est de dimension finie $n$ et $F$ est un sous-espace de $E$, alors $\\dim F^{\\perp}$ vaut {{1}} et $(F^{\\perp})^{\\circ}$ est égal à {{2}}. Si $(\\varphi_1,\\dots,\\varphi_p)$ est une famille de formes linéaires sur $E$ de rang $r$, l'intersection de leurs noyaux est de dimension {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n-\\dim F$",
+          "leurres": [
+            "$\\dim F$",
+            "$n$",
+            "$n+\\dim F$"
+          ]
+        },
+        {
+          "reponse": "$F$",
+          "leurres": [
+            "$E$",
+            "$\\{0\\}$",
+            "$F^{\\perp}$"
+          ]
+        },
+        {
+          "reponse": "$n-r$",
+          "leurres": [
+            "$n-p$",
+            "$r$",
+            "$p-r$"
+          ]
+        }
+      ],
+      "demo": "**Orthogonal de $F$.** Soit $(e_1,\\dots,e_d)$ une base de $F$, complétée en une base $(e_1,\\dots,e_n)$ de $E$, de base duale $(e_i^*)$. Une forme $\\varphi=\\sum_ic_ie_i^*$ est nulle sur $F$ si et seulement si $c_i=\\varphi(e_i)=0$ pour $i\\le d$ : $F^{\\perp}=\\mathrm{Vect}(e_{d+1}^*,\\dots,e_n^*)$, de dimension $n-d$. Un vecteur $x=\\sum_ix_ie_i$ est annulé par $F^{\\perp}$ si et seulement si $x_i=e_i^*(x)=0$ pour $i>d$ : $(F^{\\perp})^{\\circ}=\\mathrm{Vect}(e_1,\\dots,e_d)=F$.\n\n**Orthogonal de $G$.** Soit $(\\varphi_1,\\dots,\\varphi_q)$ une base de $G$, complétée en une base $(\\varphi_1,\\dots,\\varphi_n)$ de $E^*$, de base antéduale $(f_1,\\dots,f_n)$. Comme $x=\\sum_i\\varphi_i(x)f_i$, on a $x\\in G^{\\circ}$ si et seulement si $x\\in\\mathrm{Vect}(f_{q+1},\\dots,f_n)$ : $\\dim G^{\\circ}=n-q$. Puisque $(\\varphi_i)$ est la base duale de $(f_i)$, le premier point appliqué à $G^{\\circ}=\\mathrm{Vect}(f_{q+1},\\dots,f_n)$ donne $(G^{\\circ})^{\\perp}=\\mathrm{Vect}(\\varphi_1,\\dots,\\varphi_q)=G$.\n\n**Conséquences.** Si $G=\\mathrm{Vect}(\\varphi_1,\\dots,\\varphi_p)$, de dimension $r$, alors $\\bigcap_i\\mathrm{Ker}\\,\\varphi_i=G^{\\circ}$, de dimension $n-r$. Si $F$ est de dimension $d<n$, une base $(\\psi_1,\\dots,\\psi_{n-d})$ de $F^{\\perp}$ donne $F=(F^{\\perp})^{\\circ}=\\bigcap_j\\mathrm{Ker}\\,\\psi_j$ ; et l'intersection de $m$ hyperplans est de dimension au moins $n-m$, d'où $m\\ge n-d$. Enfin $J$ est linéaire ; si $J(x)=0$, toutes les formes coordonnées s'annulent en $x$, donc $x=0$ ; comme $\\dim E^{**}=\\dim E^*=n$, $J$ est un isomorphisme.\n\n**Critère en toute dimension.** Si $\\varphi=\\sum_ic_i\\varphi_i$, elle s'annule sur l'intersection des noyaux. Réciproquement, soit $\\Phi:E\\to\\mathbb{K}^p$, $x\\mapsto(\\varphi_1(x),\\dots,\\varphi_p(x))$, de noyau $\\bigcap_i\\mathrm{Ker}\\,\\varphi_i\\subset\\mathrm{Ker}\\,\\varphi$. Si $\\Phi(x)=\\Phi(x')$, alors $x-x'\\in\\mathrm{Ker}\\,\\varphi$, donc $\\ell(\\Phi(x))=\\varphi(x)$ définit une forme linéaire $\\ell$ sur $\\mathrm{Im}\\,\\Phi$ ; on la prolonge à $\\mathbb{K}^p$ (dimension finie : on la prend nulle sur un supplémentaire de $\\mathrm{Im}\\,\\Phi$). Alors $\\ell(y)=\\sum_ic_iy_i$ pour des scalaires $c_i$, et $\\varphi=\\ell\\circ\\Phi=\\sum_ic_i\\varphi_i$.",
+      "exemple": "Dans $\\mathbb{R}^4$, soit $F=\\mathrm{Vect}(u,v)$ avec $u=(1,1,0,0)$ et $v=(0,1,1,1)$. Une forme $a_1x_1+a_2x_2+a_3x_3+a_4x_4$ est nulle sur $F$ si et seulement si $a_1+a_2=0$ et $a_2+a_3+a_4=0$ : $F^{\\perp}$ est de dimension $2=4-2$, de base $\\varphi_1=x_1-x_2+x_3$, $\\varphi_2=x_1-x_2+x_4$. Donc $F$ est défini par le système $x_1-x_2+x_3=0$, $x_1-x_2+x_4=0$.\n\nLa forme $x_3-x_4$ est nulle sur $F$ : par le critère, elle est combinaison de $\\varphi_1$ et $\\varphi_2$, et en effet $x_3-x_4=\\varphi_1-\\varphi_2$.",
+      "contre_exemple": "- **Dimension infinie, double orthogonal** : dans $E=\\mathbb{K}[X]$, soit $G$ le sous-espace de $E^*$ engendré par les formes coordonnées $c_k$ (coefficient de $X^k$). Un polynôme dont tous les coefficients sont nuls est nul : $G^{\\circ}=\\{0\\}$, donc $(G^{\\circ})^{\\perp}=E^*$. Mais $P\\mapsto P(1)$ n'est pas dans $G$ : $(G^{\\circ})^{\\perp}\\neq G$.\n- **Famille infinie de formes** : dans $\\mathbb{R}[X]$, les formes $\\delta_a:P\\mapsto P(a)$, $a\\in\\mathbb{R}$, n'ont en commun que le noyau $\\{0\\}$ (un polynôme ayant une infinité de racines est nul), contenu dans le noyau de $\\psi:P\\mapsto P'(0)$. Pourtant $\\psi$ n'est combinaison d'aucun nombre fini de $\\delta_{a_i}$ : $P=X\\prod_{a_i\\neq0}(X-a_i)$ est nul en chaque $a_i$, et $P'(0)=\\prod_{a_i\\neq0}(-a_i)\\neq0$.\n- **Partie qui n'est pas un sous-espace** : pour $A=\\{x\\}$ avec $x\\neq0$, $(A^{\\perp})^{\\circ}=\\mathbb{K}x\\neq A$ ; de même, pour $A=\\{x,2x\\}$, à deux éléments, $\\dim A^{\\perp}=n-1$ et non $n-2$.\n- **Formes liées** : sur $\\mathbb{R}^3$, $\\varphi_1=x+y$ et $\\varphi_2=2x+2y$ sont deux formes, mais l'intersection de leurs noyaux est le plan $x+y=0$, de dimension $2=3-1$ (le rang) et non $3-2$.",
+      "affirmations": [
+        {
+          "texte": "Si $F$ et $F'$ sont deux sous-espaces d'un espace $E$ de dimension finie, alors $(F\\cap F')^{\\perp}=F^{\\perp}\\cap F'^{\\perp}$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, pour deux droites distinctes $F$ et $F'$ : $F\\cap F'=\\{0\\}$, d'orthogonal $E^*$ (dimension $2$), alors que $F^{\\perp}$ et $F'^{\\perp}$ sont deux droites distinctes de $E^*$, d'intersection $\\{0\\}$. La bonne formule est $(F\\cap F')^{\\perp}=F^{\\perp}+F'^{\\perp}$."
+        },
+        {
+          "texte": "Si $F\\subset F'$ sont deux sous-espaces de $E$, alors $F'^{\\perp}\\subset F^{\\perp}$.",
+          "vrai": true,
+          "justification": "Une forme nulle sur $F'$ est nulle sur la partie $F$ de $F'$ ; cela vaut en toute dimension."
+        },
+        {
+          "texte": "Dans $\\mathbb{R}^5$, un sous-espace de dimension $2$ peut être défini par un système de $2$ équations linéaires.",
+          "vrai": false,
+          "contre_exemple": "L'intersection de $2$ hyperplans de $\\mathbb{R}^5$ est de dimension au moins $5-2=3$ ; il faut au moins $5-2=3$ équations pour définir un sous-espace de dimension $2$, par exemple $x_3=x_4=x_5=0$ pour $\\mathrm{Vect}(e_1,e_2)$."
+        },
+        {
+          "texte": "Si $F$ et $F'$ sont deux sous-espaces de $E$, alors $(F+F')^{\\perp}=F^{\\perp}\\cap F'^{\\perp}$.",
+          "vrai": true,
+          "justification": "Une forme est nulle sur $F+F'$ si et seulement si elle est nulle sur $F$ et sur $F'$, par linéarité."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dualite-base-duale",
+        "al-l3-dualite-hyperplans",
+        "al-l1-espaces-dimension",
+        "al-l1-applications-rang"
+      ]
+    },
+    {
+      "id": "al-l3-dualite-transposee",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dualite",
+      "type": "theoreme",
+      "titre": "Transposée d'une application linéaire",
+      "recto": "Définir la transposée d'une application linéaire, donner sa matrice dans les bases duales, son noyau, son image et son rang, et le lien entre sous-espaces stables par $u$ et par sa transposée.",
+      "cours": "Une application linéaire $u:E\\to F$ agit aussi sur les formes linéaires, en sens inverse : une forme $\\psi$ sur $F$ donne la forme $\\psi\\circ u$ sur $E$ (on « remonte » l'équation $\\psi$ par $u$). La **transposée** de $u$ est ${}^tu:F^*\\to E^*$, $\\psi\\mapsto\\psi\\circ u$ ; elle est linéaire, ${}^t(v\\circ u)={}^tu\\circ{}^tv$ (l'ordre s'inverse, comme pour la transposée d'un produit de matrices) et ${}^t\\mathrm{id}_E=\\mathrm{id}_{E^*}$.\n\nEn dimension finie, le lien avec les matrices est exact : si $A$ est la matrice de $u$ dans des bases $\\mathcal{B}$ de $E$ et $\\mathcal{C}$ de $F$, la matrice de ${}^tu$ dans les bases **duales** $\\mathcal{C}^*$ et $\\mathcal{B}^*$ est ${}^t\\!A$. C'est la vraie raison d'être de la transposée d'une matrice ; avec d'autres bases des duaux, la formule est fausse.\n\nNoyau et image s'échangent par orthogonalité : $\\mathrm{Ker}\\,{}^tu=(\\mathrm{Im}\\,u)^{\\perp}$ en toute dimension, puisque $\\psi\\circ u=0$ signifie que $\\psi$ est nulle sur l'image ; en dimension finie, $\\mathrm{Im}\\,{}^tu=(\\mathrm{Ker}\\,u)^{\\perp}$. On en tire $\\mathrm{rg}\\,{}^tu=\\mathrm{rg}\\,u$, donc $\\mathrm{rg}\\,{}^t\\!A=\\mathrm{rg}\\,A$ (le rang des lignes égale le rang des colonnes), et : $u$ est injective si et seulement si ${}^tu$ est surjective, $u$ est surjective si et seulement si ${}^tu$ est injective.\n\nMéthode : pour calculer ${}^tu(\\psi)$, composer. Pour trouver les hyperplans stables par un endomorphisme $u$, chercher les vecteurs propres de ${}^tu$ : $\\mathrm{Ker}\\,\\varphi$ est stable par $u$ si et seulement si $\\varphi\\circ u$ est un multiple de $\\varphi$ ; matriciellement, si la forme $\\varphi$ a pour ligne de coefficients $L\\neq0$, la forme $\\varphi\\circ u$ a pour ligne $LA$, et l'on cherche $LA=\\lambda L$, c'est-à-dire ${}^t\\!A\\,{}^tL=\\lambda\\,{}^tL$. De même, en dimension finie, $\\mathrm{Im}\\,u=(\\mathrm{Ker}\\,{}^tu)^{\\circ}$ : le système $AX=B$ a une solution si et seulement si $YB=0$ pour toute ligne $Y$ telle que $YA=0$.\n\nPièges : ${}^tu$ va de $F^*$ dans $E^*$, et non de $E^*$ dans $F^*$ ; la transposée n'est pas l'adjoint d'un espace euclidien, qui est un endomorphisme de $E$ défini grâce au produit scalaire et dont la matrice n'est ${}^t\\!A$ que dans une base orthonormale ; $u$ injective n'entraîne pas ${}^tu$ injective.",
+      "hypotheses": [
+        "$E$ et $F$ sont de dimension finie.",
+        "$\\mathcal{B}$ et $\\mathcal{C}$ sont des bases de $E$ et de $F$, et $\\mathcal{B}^*$, $\\mathcal{C}^*$ sont leurs bases duales.",
+        "$u\\in\\mathcal{L}(E,F)$ et $A=\\mathrm{Mat}_{\\mathcal{B},\\mathcal{C}}(u)$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathcal{B}^*$ et $\\mathcal{C}^*$ sont des bases quelconques de $E^*$ et de $F^*$ (à la place de : les bases duales de $\\mathcal{B}$ et $\\mathcal{C}$).",
+        "$\\mathcal{B}^*$ et $\\mathcal{C}^*$ sont les bases duales de bases $\\mathcal{B}'$ et $\\mathcal{C}'$ de $E$ et $F$ autres que $\\mathcal{B}$ et $\\mathcal{C}$ (à la place de : les bases duales de $\\mathcal{B}$ et $\\mathcal{C}$)."
+      ],
+      "enonce": "Soit $E$ et $F$ deux $\\mathbb{K}$-espaces vectoriels et $u\\in\\mathcal{L}(E,F)$. La **transposée** de $u$ est l'application ${}^tu:F^*\\to E^*$, $\\psi\\mapsto\\psi\\circ u$. Elle est linéaire, ${}^t(v\\circ u)={}^tu\\circ{}^tv$ pour $v\\in\\mathcal{L}(F,G)$, et, en toute dimension, $\\mathrm{Ker}\\,{}^tu=(\\mathrm{Im}\\,u)^{\\perp}$.\n\n**Théorème.** On suppose $E$ et $F$ de **dimension finie**, munis de bases $\\mathcal{B}$ et $\\mathcal{C}$, de bases duales $\\mathcal{B}^*$ et $\\mathcal{C}^*$, et l'on note $A=\\mathrm{Mat}_{\\mathcal{B},\\mathcal{C}}(u)$.\n- $\\mathrm{Mat}_{\\mathcal{C}^*,\\mathcal{B}^*}({}^tu)={}^t\\!A$.\n- $\\mathrm{Im}\\,{}^tu=(\\mathrm{Ker}\\,u)^{\\perp}$ et $\\mathrm{rg}\\,{}^tu=\\mathrm{rg}\\,u$ ; en particulier $\\mathrm{rg}\\,{}^t\\!A=\\mathrm{rg}\\,A$.\n- $u$ est injective si et seulement si ${}^tu$ est surjective, et $u$ est surjective si et seulement si ${}^tu$ est injective.\n- Si $F=E$, un sous-espace $V$ de $E$ est stable par $u$ si et seulement si $V^{\\perp}$ est stable par ${}^tu$ ; en particulier, pour $\\varphi\\neq0$, l'hyperplan $\\mathrm{Ker}\\,\\varphi$ est stable par $u$ si et seulement si $\\varphi$ est un vecteur propre de ${}^tu$.",
+      "enonce_trous": "Si $E$ et $F$ sont de dimension finie et si $A$ est la matrice de $u\\in\\mathcal{L}(E,F)$ dans des bases $\\mathcal{B}$ de $E$ et $\\mathcal{C}$ de $F$, la matrice de ${}^tu$ dans les bases {{1}} est ${}^t\\!A$. Par ailleurs, le noyau de ${}^tu$ est égal à {{2}}, et le rang de ${}^tu$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\mathcal{C}^*$ et $\\mathcal{B}^*$, duales de $\\mathcal{C}$ et $\\mathcal{B}$",
+          "leurres": [
+            "$\\mathcal{C}$ et $\\mathcal{B}$",
+            "quelconques de $F^*$ et de $E^*$",
+            "$\\mathcal{B}$ et $\\mathcal{C}$"
+          ]
+        },
+        {
+          "reponse": "$(\\mathrm{Im}\\,u)^{\\perp}$",
+          "leurres": [
+            "$(\\mathrm{Ker}\\,u)^{\\perp}$",
+            "$\\mathrm{Ker}\\,u$",
+            "$\\{0\\}$"
+          ]
+        },
+        {
+          "reponse": "$\\mathrm{rg}\\,u$",
+          "leurres": [
+            "$\\dim E-\\mathrm{rg}\\,u$",
+            "$\\dim F-\\mathrm{rg}\\,u$",
+            "$\\dim F$"
+          ]
+        }
+      ],
+      "demo": "**Propriétés générales.** ${}^tu(\\alpha\\psi+\\psi')=(\\alpha\\psi+\\psi')\\circ u=\\alpha\\,{}^tu(\\psi)+{}^tu(\\psi')$. Pour $\\chi\\in G^*$, ${}^t(v\\circ u)(\\chi)=\\chi\\circ v\\circ u={}^tu({}^tv(\\chi))$. Enfin ${}^tu(\\psi)=0$ signifie $\\psi(u(x))=0$ pour tout $x$, c'est-à-dire que $\\psi$ est nulle sur $\\mathrm{Im}\\,u$.\n\n**Matrice.** Notons $\\mathcal{B}=(e_1,\\dots,e_p)$, $\\mathcal{C}=(f_1,\\dots,f_m)$ et $A=(a_{ij})$, de sorte que $u(e_j)=\\sum_ia_{ij}f_i$. Pour tout $i$, ${}^tu(f_i^*)=f_i^*\\circ u$ prend en $e_j$ la valeur $f_i^*(u(e_j))=a_{ij}$ ; d'après la décomposition dans une base duale, ${}^tu(f_i^*)=\\sum_ja_{ij}e_j^*$. La $i$-ième colonne de la matrice de ${}^tu$ est donc la $i$-ième ligne de $A$ : cette matrice est ${}^t\\!A$.\n\n**Image et rang.** D'après le théorème de l'orthogonal, $\\dim\\mathrm{Ker}\\,{}^tu=\\dim(\\mathrm{Im}\\,u)^{\\perp}=\\dim F-\\mathrm{rg}\\,u$, donc, par le théorème du rang appliqué à ${}^tu$, $\\mathrm{rg}\\,{}^tu=\\dim F^*-(\\dim F-\\mathrm{rg}\\,u)=\\mathrm{rg}\\,u$. Toute forme $\\psi\\circ u$ est nulle sur $\\mathrm{Ker}\\,u$, donc $\\mathrm{Im}\\,{}^tu\\subset(\\mathrm{Ker}\\,u)^{\\perp}$, et les dimensions sont égales : $\\dim(\\mathrm{Ker}\\,u)^{\\perp}=\\dim E-\\dim\\mathrm{Ker}\\,u=\\mathrm{rg}\\,u$. Les matrices ${}^t\\!A$ et $A$ représentant ${}^tu$ et $u$, elles ont le même rang.\n\n**Injectivité et surjectivité.** $u$ injective $\\iff\\mathrm{Ker}\\,u=\\{0\\}\\iff(\\mathrm{Ker}\\,u)^{\\perp}=E^*\\iff{}^tu$ surjective. $u$ surjective $\\iff\\mathrm{Im}\\,u=F\\iff(\\mathrm{Im}\\,u)^{\\perp}=\\{0\\}\\iff{}^tu$ injective (on utilise $\\dim W^{\\perp}=n-\\dim W$).\n\n**Stabilité.** Si $u(V)\\subset V$ et $\\varphi\\in V^{\\perp}$, alors $\\varphi\\circ u$ est nulle sur $V$ : ${}^tu(\\varphi)\\in V^{\\perp}$. Réciproquement, si $V^{\\perp}$ est stable par ${}^tu$, pour $x\\in V$ et $\\varphi\\in V^{\\perp}$, $\\varphi(u(x))={}^tu(\\varphi)(x)=0$, donc $u(x)\\in(V^{\\perp})^{\\circ}=V$. Pour $V=\\mathrm{Ker}\\,\\varphi$, $V^{\\perp}=\\mathbb{K}\\varphi$ (droite contenue dans $V^{\\perp}$, qui est de dimension $1$), et $\\mathbb{K}\\varphi$ est stable par ${}^tu$ si et seulement si ${}^tu(\\varphi)=\\lambda\\varphi$ pour un scalaire $\\lambda$.",
+      "exemple": "Soit $u:\\mathbb{R}^3\\to\\mathbb{R}^2$, $u(x,y,z)=(x+2y,\\,y-z)$, de matrice $A=\\begin{pmatrix}1&2&0\\\\0&1&-1\\end{pmatrix}$ dans les bases canoniques. Avec $f_1^*(a,b)=a$ et $f_2^*(a,b)=b$ : ${}^tu(f_1^*)(x,y,z)=x+2y$, soit $e_1^*+2e_2^*$, et ${}^tu(f_2^*)=e_2^*-e_3^*$. Les colonnes $(1,2,0)$ et $(0,1,-1)$ forment bien ${}^t\\!A$.\n\nIci $\\mathrm{Ker}\\,u=\\mathrm{Vect}((-2,1,1))$, et l'image de ${}^tu$, engendrée par $x+2y$ et $y-z$, est l'ensemble des formes $ax+by+cz$ telles que $-2a+b+c=0$ : c'est $(\\mathrm{Ker}\\,u)^{\\perp}$, de dimension $2=\\mathrm{rg}\\,u$.",
+      "contre_exemple": "- **Bases des duaux qui ne sont pas les bases duales** : $E=F=\\mathbb{R}$, $u=\\mathrm{id}$, $\\mathcal{B}=\\mathcal{C}=(1)$, donc $A=(1)$. Prenons pour base de $E^*$ la forme $\\chi:x\\mapsto2x$ et pour base de $F^*$ la forme $\\psi:y\\mapsto y$. Alors ${}^tu(\\psi)=\\psi=\\frac12\\chi$ : la matrice de ${}^tu$ dans ces bases est $(\\frac12)\\neq{}^t\\!A$.\n- **Injective sans transposée injective** : l'injection $u:\\mathbb{R}\\to\\mathbb{R}^2$, $x\\mapsto(x,0)$, est injective, mais ${}^tu$ envoie la forme $(a,b)\\mapsto b$ sur la forme nulle : ${}^tu$ est surjective, pas injective.\n- **Ordre des facteurs** : pour $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, ${}^t(BA)={}^t\\!A\\,{}^t\\!B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$, tandis que ${}^t\\!B\\,{}^t\\!A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$ : ${}^t(v\\circ u)\\neq{}^tv\\circ{}^tu$ en général.",
+      "affirmations": [
+        {
+          "texte": "Si $u\\in\\mathcal{L}(E,F)$ est injective, alors ${}^tu$ est injective.",
+          "vrai": false,
+          "contre_exemple": "$u:\\mathbb{R}\\to\\mathbb{R}^2$, $x\\mapsto(x,0)$, est injective, mais ${}^tu$ annule la forme non nulle $(a,b)\\mapsto b$."
+        },
+        {
+          "texte": "Entre espaces de dimension finie, $u$ est injective si et seulement si ${}^tu$ est surjective.",
+          "vrai": true,
+          "justification": "$\\mathrm{Im}\\,{}^tu=(\\mathrm{Ker}\\,u)^{\\perp}$, qui est égal à $E^*$ si et seulement si $\\mathrm{Ker}\\,u=\\{0\\}$, puisque $\\dim(\\mathrm{Ker}\\,u)^{\\perp}=\\dim E-\\dim\\mathrm{Ker}\\,u$."
+        },
+        {
+          "texte": "Si $u$ est un endomorphisme d'un espace de dimension finie, $u$ et ${}^tu$ ont les mêmes valeurs propres.",
+          "vrai": true,
+          "justification": "Dans une base et sa base duale, leurs matrices sont $A$ et ${}^t\\!A$, et $\\det({}^t\\!A-\\lambda I_n)=\\det(A-\\lambda I_n)$."
+        },
+        {
+          "texte": "Si $u\\in\\mathcal{L}(E,F)$ et $v\\in\\mathcal{L}(F,G)$, alors ${}^t(v\\circ u)={}^tv\\circ{}^tu$.",
+          "vrai": false,
+          "contre_exemple": "La composée ${}^tv\\circ{}^tu$ n'a en général même pas de sens ; pour $E=F=G=\\mathbb{R}^2$ et les matrices $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, ${}^t(BA)=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}\\neq{}^t\\!B\\,{}^t\\!A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$. La bonne formule est ${}^t(v\\circ u)={}^tu\\circ{}^tv$."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dualite-orthogonalite",
+        "al-l3-dualite-base-duale",
+        "al-l1-applications-matrice",
+        "al-l1-applications-rang-matrice",
+        "al-l2-reduction-valeurs-propres"
+      ]
+    },
+    {
+      "id": "al-l3-dualite-quotients",
+      "theme": "algebre-lineaire",
+      "niveau": "l3",
+      "chapitre": "al-l3-dualite",
+      "type": "theoreme",
+      "titre": "Espaces vectoriels quotients",
+      "recto": "Définir l'espace quotient $E/F$ et la projection canonique, puis énoncer le théorème de factorisation, le premier théorème d'isomorphisme et la dimension d'un quotient.",
+      "cours": "Quotienter $E$ par un sous-espace $F$, c'est décider de ne plus distinguer deux vecteurs dont la différence est dans $F$. La relation $x\\sim y\\iff x-y\\in F$ est une relation d'équivalence parce que $F$ est un sous-espace ; la classe de $x$ est $\\bar x=x+F$, un sous-espace affine de direction $F$, et l'ensemble des classes est noté $E/F$. Les opérations $\\bar x+\\bar y=\\overline{x+y}$ et $\\lambda\\bar x=\\overline{\\lambda x}$ ne dépendent pas des représentants : $E/F$ est un espace vectoriel, et la **projection canonique** $\\pi:x\\mapsto\\bar x$ est linéaire, surjective, de noyau $F$. C'est la construction déjà rencontrée pour $\\mathbb{Z}/n\\mathbb{Z}$ et les anneaux quotients.\n\nL'outil principal est le **théorème de factorisation** : une application linéaire $u:E\\to G$ « passe au quotient » par $F$, c'est-à-dire s'écrit $u=\\bar u\\circ\\pi$ avec $\\bar u$ linéaire sur $E/F$, si et seulement si $F\\subset\\mathrm{Ker}\\,u$ ; on pose alors $\\bar u(\\bar x)=u(x)$, qui ne dépend pas du représentant. Avec $F=\\mathrm{Ker}\\,u$, $\\bar u$ est injective : $E/\\mathrm{Ker}\\,u$ est isomorphe à $\\mathrm{Im}\\,u$, c'est le **premier théorème d'isomorphisme**, qui contient le théorème du rang.\n\nTout supplémentaire $S$ de $F$ est isomorphe à $E/F$, par la restriction de $\\pi$, mais aucun n'est privilégié : le quotient est un objet intrinsèque, alors qu'un supplémentaire demande un choix. En dimension finie, $\\dim E/F=\\dim E-\\dim F$. En dimension quelconque, $\\dim E/F$ s'appelle la **codimension** de $F$ : les hyperplans sont exactement les sous-espaces de codimension $1$, et un sous-espace de dimension infinie peut être de codimension finie (dans $\\mathbb{K}[X]$, les polynômes nuls en $0$ forment un hyperplan).\n\nMéthode : pour identifier $E/F$, chercher une application linéaire **surjective** $u:E\\to G$ de noyau **exactement** $F$ ; alors $\\bar u$ est un isomorphisme de $E/F$ sur $G$. Pour savoir si deux vecteurs ont la même classe, tester si leur différence est dans $F$, ou comparer leurs images par une telle $u$. Si $F$ est stable par un endomorphisme $u$, $u$ induit un endomorphisme $\\bar u$ de $E/F$, $\\bar u(\\bar x)=\\overline{u(x)}$ ; en dimension finie, dans une base de $E$ qui commence par une base de $F$, la matrice de $u$ est triangulaire par blocs, et le bloc en bas à droite est la matrice de $\\bar u$.\n\nPièges : $E/F$ n'est pas un sous-espace de $E$ (ses éléments sont des parties de $E$) ; pour factoriser, il faut $F\\subset\\mathrm{Ker}\\,u$, et non l'inclusion inverse ; deux quotients $E/F$ et $E/F'$ peuvent être isomorphes sans que $F=F'$ ; en dimension infinie, la formule $\\dim E-\\dim F$ n'a plus de sens.",
+      "hypotheses": [
+        "$F$ est un sous-espace vectoriel de $E$.",
+        "$u$ est une application linéaire de $E$ dans un espace vectoriel $G$.",
+        "$F\\subset\\mathrm{Ker}\\,u$."
+      ],
+      "hypotheses_pieges": [
+        "$\\mathrm{Ker}\\,u\\subset F$ (à la place de : $F\\subset\\mathrm{Ker}\\,u$).",
+        "$F\\cap\\mathrm{Ker}\\,u=\\{0\\}$ (à la place de : $F\\subset\\mathrm{Ker}\\,u$).",
+        "$F$ est une partie de $E$ contenant $0$, sans être un sous-espace (à la place de : un sous-espace vectoriel)."
+      ],
+      "enonce": "Soit $E$ un $\\mathbb{K}$-espace vectoriel, de dimension finie ou non, et $F$ un sous-espace de $E$. La relation $x\\sim y\\iff x-y\\in F$ est une relation d'équivalence ; on note $\\bar x=x+F$ la classe de $x$ et $E/F$ l'ensemble des classes.\n- Les lois $\\bar x+\\bar y=\\overline{x+y}$ et $\\lambda\\bar x=\\overline{\\lambda x}$ sont bien définies et font de $E/F$ un $\\mathbb{K}$-espace vectoriel ; la **projection canonique** $\\pi:E\\to E/F$, $x\\mapsto\\bar x$, est linéaire, surjective, de noyau $F$.\n- **Factorisation.** Soit $u\\in\\mathcal{L}(E,G)$ tel que $F\\subset\\mathrm{Ker}\\,u$. Il existe une unique application linéaire $\\bar u:E/F\\to G$ telle que $\\bar u\\circ\\pi=u$ ; son image est $\\mathrm{Im}\\,u$, et $\\bar u$ est injective si et seulement si $F=\\mathrm{Ker}\\,u$. En particulier, $E/\\mathrm{Ker}\\,u$ est isomorphe à $\\mathrm{Im}\\,u$.\n- Si $S$ est un supplémentaire de $F$ dans $E$, la restriction de $\\pi$ à $S$ est un isomorphisme de $S$ sur $E/F$. Si $E$ est de dimension finie, $\\dim E/F=\\dim E-\\dim F$.",
+      "enonce_trous": "Si $F\\subset\\mathrm{Ker}\\,u$, il existe une unique application linéaire $\\bar u$ de $E/F$ dans $G$ telle que {{1}}. Cette application $\\bar u$ est injective si et seulement si {{2}}. Si $E$ est de dimension finie, la dimension de $E/F$ est {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\bar u\\circ\\pi=u$",
+          "leurres": [
+            "$\\pi\\circ\\bar u=u$",
+            "$u\\circ\\pi=\\bar u$",
+            "$\\bar u\\circ u=\\pi$"
+          ]
+        },
+        {
+          "reponse": "$F=\\mathrm{Ker}\\,u$",
+          "leurres": [
+            "$F=\\{0\\}$",
+            "$u$ est injective",
+            "$u$ est surjective"
+          ]
+        },
+        {
+          "reponse": "$\\dim E-\\dim F$",
+          "leurres": [
+            "$\\dim F$",
+            "$\\dim E$",
+            "$\\dim E+\\dim F$"
+          ]
+        }
+      ],
+      "demo": "**Relation d'équivalence et lois.** $x-x=0\\in F$ ; si $x-y\\in F$, alors $y-x\\in F$ ; si $x-y$ et $y-z$ sont dans $F$, leur somme $x-z$ aussi. Si $\\bar x=\\bar x'$ et $\\bar y=\\bar y'$, alors $(x+y)-(x'+y')=(x-x')+(y-y')\\in F$ et $\\lambda x-\\lambda x'=\\lambda(x-x')\\in F$ : les lois ne dépendent pas des représentants. Les axiomes d'espace vectoriel se lisent sur les représentants ; $\\pi$ est linéaire par définition des lois, surjective, et $\\pi(x)=\\bar0$ si et seulement si $x\\in F$.\n\n**Factorisation.** Unicité : $\\bar u(\\bar x)=u(x)$ est imposé, et tout élément de $E/F$ est de la forme $\\bar x$. Existence : si $\\bar x=\\bar x'$, alors $x-x'\\in F\\subset\\mathrm{Ker}\\,u$, donc $u(x)=u(x')$ ; $\\bar u(\\bar x)=u(x)$ définit une application, linéaire car $\\bar u(\\bar x+\\lambda\\bar y)=u(x+\\lambda y)=u(x)+\\lambda u(y)$. Son image est celle de $u$. Enfin $\\bar u(\\bar x)=0$ équivaut à $x\\in\\mathrm{Ker}\\,u$ : $\\bar u$ est injective si et seulement si tout $x\\in\\mathrm{Ker}\\,u$ vérifie $\\bar x=\\bar 0$, c'est-à-dire $\\mathrm{Ker}\\,u\\subset F$, soit $F=\\mathrm{Ker}\\,u$. Avec $F=\\mathrm{Ker}\\,u$, $\\bar u$ est une bijection de $E/\\mathrm{Ker}\\,u$ sur $\\mathrm{Im}\\,u$.\n\n**Supplémentaire.** Si $E=F\\oplus S$, la restriction $\\pi_S$ de $\\pi$ à $S$ est injective, car son noyau est $S\\cap F=\\{0\\}$, et surjective, car $x=f+s$ donne $\\bar x=\\bar s$. En dimension finie, $\\dim E/F=\\dim S=\\dim E-\\dim F$ (formule de Grassmann).",
+      "exemple": "Dans $E=\\mathbb{R}^3$, soit $F=\\mathrm{Vect}((1,1,1))$ et $u(x,y,z)=(x-y,\\,y-z)$. Le noyau de $u$ est $\\{x=y=z\\}=F$ et $u$ est surjective, puisque $u(a+b,b,0)=(a,b)$ : $\\bar u$ est un isomorphisme de $\\mathbb{R}^3/F$ sur $\\mathbb{R}^2$, et deux vecteurs ont la même classe si et seulement s'ils ont la même image par $u$, par exemple $(1,0,0)$ et $(2,1,1)$. Les classes sont les droites affines parallèles à $(1,1,1)$.\n\nEn dimension infinie : la forme $P\\mapsto P(0)$ est surjective de $\\mathbb{K}[X]$ sur $\\mathbb{K}$, de noyau $X\\mathbb{K}[X]$ ; donc $\\mathbb{K}[X]/X\\mathbb{K}[X]$ est isomorphe à $\\mathbb{K}$, de dimension $1$, alors que $X\\mathbb{K}[X]$ est de dimension infinie.",
+      "contre_exemple": "- **Inclusion dans le mauvais sens** : pour $u=\\mathrm{id}_E$ et $F=E\\neq\\{0\\}$, on a $\\mathrm{Ker}\\,u=\\{0\\}\\subset F$ (et $F\\cap\\mathrm{Ker}\\,u=\\{0\\}$), mais aucune $\\bar u$ ne convient : $E/F=\\{\\bar0\\}$, donc $\\bar u\\circ\\pi$ est l'application nulle, alors que $u\\neq0$.\n- **Partie qui n'est pas un sous-espace** : dans $\\mathbb{R}^2$, pour $F=\\{(0,0),(1,0)\\}$, la relation $x-y\\in F$ n'est pas symétrique : $(1,0)\\sim(0,0)$, mais $(0,0)-(1,0)=(-1,0)\\notin F$.\n- **Quotients isomorphes, sous-espaces distincts** : dans $\\mathbb{R}^2$, pour deux droites distinctes $F$ et $F'$, $\\mathbb{R}^2/F$ et $\\mathbb{R}^2/F'$ sont tous deux de dimension $1$, donc isomorphes.\n- **Dimension infinie** : dans $\\mathbb{K}[X]$, le quotient par le sous-espace des polynômes pairs est isomorphe au supplémentaire formé des polynômes impairs, de dimension infinie ; le quotient par $X\\mathbb{K}[X]$ est de dimension $1$ : la dimension infinie de $F$ ne dit rien de celle de $E/F$.",
+      "affirmations": [
+        {
+          "texte": "L'espace quotient $E/F$ est un sous-espace vectoriel de $E$.",
+          "vrai": false,
+          "contre_exemple": "Les éléments de $E/F$ sont des parties de $E$ (des classes $x+F$), pas des vecteurs de $E$ : pour $F=\\mathbb{R}\\times\\{0\\}$ dans $\\mathbb{R}^2$, ce sont les droites horizontales. $E/F$ est seulement isomorphe à n'importe quel supplémentaire de $F$, sans choix canonique."
+        },
+        {
+          "texte": "Si $E=F\\oplus S$, alors $E/F$ est isomorphe à $S$.",
+          "vrai": true,
+          "justification": "La restriction de $\\pi$ à $S$ a pour noyau $S\\cap F=\\{0\\}$ et est surjective, car $x=f+s$ donne $\\bar x=\\bar s$."
+        },
+        {
+          "texte": "Si $F$ et $F'$ sont deux sous-espaces de $E$ tels que $E/F$ et $E/F'$ sont isomorphes, alors $F=F'$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}^2$, les droites $F=\\mathbb{R}(1,0)$ et $F'=\\mathbb{R}(0,1)$ sont distinctes, et les deux quotients sont de dimension $1$, donc isomorphes à $\\mathbb{R}$."
+        },
+        {
+          "texte": "Si $F$ est un sous-espace de dimension infinie d'un espace $E$, alors $E/F$ est de dimension finie.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{K}[X]$, le sous-espace $\\mathcal{P}$ des polynômes pairs est de dimension infinie, et $\\mathbb{K}[X]/\\mathcal{P}$ est isomorphe au supplémentaire des polynômes impairs, de dimension infinie."
+        }
+      ],
+      "prerequis": [
+        "al-l3-dualite-hyperplans",
+        "al-l1-espaces-grassmann",
+        "al-l1-applications-noyau",
+        "al-l1-applications-rang",
+        "arith-l2-anneaux-ideaux"
+      ]
+    }
+  ]
+}
