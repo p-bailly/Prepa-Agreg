@@ -176,8 +176,11 @@ for n in range(2, 8):
     ck = ident(n)
     for k in range(n - 1):
         assert conj(ck, t12) == cyc(n, [k + 1, k + 2])
-        if k:  # leurres (k k+1), (1 k+2) faux pour k >= 1
+        if k:  # leurres (k k+1), (1 k+2), (1 2) faux pour k >= 1 (question du QCM : n >= 3, 1 <= k <= n - 2)
             assert conj(ck, t12) != cyc(n, [k, k + 1]) and conj(ck, t12) != cyc(n, [1, k + 2])
+            assert conj(ck, t12) != t12
+        else:  # pour k = 0, (1 k+2) et (1 2) coïncident avec la réponse : d'où la restriction k >= 1 du QCM
+            assert conj(ck, t12) == cyc(n, [1, k + 2]) == t12
         ck = comp(c, ck)
     assert comp(*[cyc(n, [i, i + 1]) for i in range(1, n)]) == c
     if n <= 5:

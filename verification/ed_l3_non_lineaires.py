@@ -8,6 +8,8 @@ limites, périodes) sont recalculées avec mpmath ou par la méthode de Runge-Ku
 Lancer : python3 verification/ed_l3_non_lineaires.py (doit finir sans erreur, en quelques secondes).
 """
 
+import math
+
 import mpmath as mp
 from sympy import (E, Eq, Function, Rational, atan, cbrt, coth, cos, diff, dsolve, exp, factor, log, pi, simplify,
                    sin, sinh, cosh, solve, sqrt, symbols, tan, tanh)
@@ -327,18 +329,17 @@ uu = tan(XF(t) / 2)
 assert nul(diff(uu, t).subs(diff(XF(t), t), sin(XF(t))) - uu)
 
 # ed-l3-non-lineaires-qualitatives-ex4 (+ v1, v2) : x' = 1/(c^2 + t^2 + x^2), x(0) = 0.
-for c2, cnum, mino_tex, borne_sup, leurre_bas in [
-    (1, 1, pi / sqrt(4 + pi**2), pi / 2, pi / 4),
-    (4, 2, 2 * pi / sqrt(64 + pi**2), pi / 4, pi / 8),
-    (9, 3, 3 * pi / sqrt(324 + pi**2), pi / 6, pi / 12),
+for c2, cnum, mino_tex, borne_sup, leurre_bas, approx in [
+    (1, 1, pi / sqrt(4 + pi**2), pi / 2, pi / 4, 1.397),
+    (4, 2, 2 * pi / sqrt(64 + pi**2), pi / 4, pi / 8, 0.778),
+    (9, 3, 3 * pi / sqrt(324 + pi**2), pi / 6, pi / 12, 0.523),
 ]:
     a2 = c2 + (pi / (2 * cnum)) ** 2
     assert nul(pi / (2 * sqrt(a2)) - mino_tex) and nul(pi / (2 * cnum) - borne_sup)
-    g = mp.odefun(lambda s, xv: 1 / (c2 + s**2 + xv**2), 0, 0)
-    T = 400
-    xT = g(T)
-    # x(T) < ell < x(T) + 1/T (car x' < 1/t^2 au-delà de T)
-    assert float(mino_tex) < xT and xT + 1.0 / T < float(borne_sup)
+    # Avec t = tan s, dx/ds = 1/(c^2 cos^2 s + sin^2 s + x^2 cos^2 s), régulier sur [0, pi/2] : ell = x(s = pi/2).
+    ell = rk4(lambda s, Yv: [1 / (c2 * math.cos(s) ** 2 + math.sin(s) ** 2 + Yv[0] ** 2 * math.cos(s) ** 2)],
+              [0.0], 0.0, math.pi / 2, 2000)[0]
+    assert float(mino_tex) < ell < float(borne_sup) and abs(ell - approx) < 1e-3  # valeurs citées dans les corrections
     assert float(leurre_bas) < float(mino_tex)  # leurre « 0 < ell <= pi/(4c) » faux
 assert nul(diff(atan(t / 2) / 2, t) - 1 / (4 + t**2)) and nul(diff(atan(t / 3) / 3, t) - 1 / (9 + t**2))
 
@@ -409,7 +410,7 @@ for w in [3, 2, 1]:
 Yp = [0.0, 5.9]
 mx = 0.0
 for _ in range(40):
-    Yp = rk4(lambda s, Y: [Y[1], -9 * mp.sin(Y[0])], Yp, 0, 0.1, 20)
+    Yp = rk4(lambda s, Y: [Y[1], -9 * math.sin(Y[0])], Yp, 0, 0.1, 20)
     mx = max(mx, abs(float(Yp[0])))
 assert mx < float(mp.pi)
 
@@ -418,7 +419,7 @@ lam = symbols("lam", positive=True)
 Xa = Function("Xa")
 ya = lam * Xa(lam * t)
 # y'' = lam^3 X''(lam t) = -lam^3 X(lam t)^3 = -y^3 (règle de dérivation des composées, puis algèbre).
-assert nul(lam**3 * (-xs**3) + (lam * xs) ** 3)
+assert nul(lam**3 * (-w**3) + (lam * w) ** 3)
 # Contrôle sur une fonction concrète : d^2/dt^2 [lam f(lam t)] = lam^3 f''(lam t) pour f = sin.
 assert nul(diff(lam * sin(lam * t), t, 2) - lam**3 * (-sin(lam * t)))
 for v0, l, per in [(4, 2, R_(1, 2)), (9, 3, R_(1, 3)), (R_(1, 4), R_(1, 2), 2)]:
@@ -456,7 +457,7 @@ kk2 = mp.sin(th0 / 2) ** 2
 Tth = 4 * mp.ellipk(kk2)
 Yp, T, h = [th0, 0.0], 0.0, 1e-3
 while True:
-    Y2 = rk4(lambda s, Yv: [Yv[1], -mp.sin(Yv[0])], Yp, T, T + h, 1)
+    Y2 = rk4(lambda s, Yv: [Yv[1], -math.sin(Yv[0])], Yp, T, T + h, 1)
     if Y2[0] <= 0:
         tau = T + h * Yp[0] / (Yp[0] - Y2[0])
         break
