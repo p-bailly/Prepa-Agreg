@@ -51,10 +51,23 @@ assert not irreductible_q((X - 1)**2)
 # Contre-exemple : X^4 - 4 = (X^2 - 2)(X^2 + 2), polynôme minimal de sqrt(2) = X^2 - 2 ; i : X^2 + 1 sur Q.
 assert expand((X**2 - 2) * (X**2 + 2)) == X**4 - 4 and expand(minpoly(sqrt(2)) - (X**2 - 2)) == 0
 assert expand(minpoly(I) - (X**2 + 1)) == 0
-# Trous : leurres « scindé sur K », « de degré 1 », « de degré pair » réfutés par sqrt(2) (X^2 - 2 non scindé sur Q)
-# et 2^(1/3) (degré 3) ; trou 2 : la constante 1 divise pi_alpha sans annuler alpha, X^2 n'annule pas sqrt(2) ;
+# Trou 1 (relecture) : les anciens leurres « scindé sur K », « de degré 1 » laissaient l'énoncé vrai pour alpha dans K
+# (pi_alpha = X - alpha), « de degré pair » pour sqrt(2) ; nouveaux leurres « réductible », « inversible », « divisible
+# par le carré d'un polynôme non constant », faux pour tout alpha : pi_alpha est irréductible, non constant, et premier
+# avec sa dérivée (racines simples). Vérifié sur des exemples, dont le degré 1 (alpha = 3/2).
+for alpha in (Rational(3, 2), sqrt(2), cbrt(2), sqrt(2) + sqrt(3), 1 + cbrt(2), I * sqrt(2)):
+    m = Poly(minpoly(alpha), X)
+    assert irreductible_q(m.as_expr()) and m.degree() >= 1 and m.gcd(m.diff(X)).degree() == 0
+# Trou 2 : la constante 1 divise pi_alpha sans annuler alpha, X^2 n'annule pas sqrt(2) ;
 # trou 3 : d - 1, d + 1, 2^d sont différents de d pour tout d >= 1.
 assert irreductible_q(X**2 - 2) and Poly(minpoly(cbrt(2)), X).degree() == 3  # X^2 - 2 irréductible, donc non scindé sur Q
+# Piège 2 (relecture : remplace « P dans C[X] », dont la réfutation demandait un nombre transcendant) et contre-exemple
+# « hors d'un anneau intègre » : N = [[0,1],[0,0]] vérifie N^2 = 0, N != 0, polynôme minimal X^2 (réductible),
+# N non inversible.
+from sympy import Matrix as _Mat
+N_ = _Mat([[0, 1], [0, 0]])
+assert N_ != _Mat.zeros(2, 2) and N_**2 == _Mat.zeros(2, 2) and N_.det() == 0
+assert not irreductible_q(X**2)
 assert all(2**d != d and d - 1 != d and d + 1 != d for d in range(1, 50))
 # Affirmation 2 : P(X)P(-X) pair, exemple P = X^3 - X - 1.
 P = X**3 - X - 1
@@ -190,6 +203,13 @@ assert rac[4] == {0, 1, -1, Rational(1, 2), Rational(-1, 2), 2, -2, I, -I}
 for z in (2 + 3 * I, -1 + I / 2, Rational(5)):
     assert simplify((X**2 - 2 * z.as_real_imag()[0] * X + abs(z)**2).subs(X, z)) == 0
 # Démonstration : bijection ]a,b[ -> R par x -> tan(pi (x-a)/(b-a) - pi/2) (bornes -pi/2, pi/2).
+# Trous (relecture) : l'ancien leurre « fini » du trou 2 laissait l'énoncé vrai pour A = {0} (aucun polynôme non nul,
+# ensemble vide de racines) ; « infinie », « bornée », « fermée » du trou 1 le laissaient vrai pour A = Z, {0, 1}, {0}.
+# Nouveaux leurres : A non dénombrable, ouverte ou d'intérieur non vide (donc non dénombrable) ; alors, pour a1 dans A
+# non nul, les racines -a0/a1 des polynômes a1 X + a0 (a0 dans A) forment une partie en bijection avec A : l'énoncé est
+# faux pour toute telle A. Trou 2 : un ouvert non vide de C n'est pas dénombrable, l'ensemble des racines l'est toujours.
+assert all(roots(a1 * X + a0, X) == {-Rational(a0) / a1: 1} for a1 in (1, 2, -3) for a0 in (0, 5, Rational(7, 2)))
+assert [ci for H in range(1, 5) for ci in polys_hauteur(H) if all(x in (0,) for x in ci)] == []  # A = {0} : aucun
 # Affirmation 4 : si P(t+q) = 0 alors P(X+q) annule t (identité de substitution).
 assert expand((X**2 - 2).subs(X, X + Rational(1, 3))) == X**2 + 2 * X / 3 - Rational(17, 9)
 
@@ -263,6 +283,19 @@ assert (3**9 - 3) % 9 != 0
 fs9 = {tuple(sum(c[k] * a**k for k in range(4)) % 9 for a in range(9)) for c in product(range(9), repeat=4)}
 assert (1, 0, 0, 0, 0, 0, 0, 0, 0) not in fs9  # f(3) - f(0) doit être multiple de 3 pour une fonction polynôme
 assert all((P_3 - P_0) % 3 == 0 for (P_0, _, _, P_3, *_) in fs9)
+# Trou 1 (relecture) : les anciens leurres « entier >= 2 », « impair >= 3 », « puissance de 2 » laissaient l'énoncé
+# vrai pour n = 3, 3, 2 (premiers) ; nouveaux leurres, tous composés : pour n composé et d diviseur propre de n,
+# d divise P(d) - P(0) pour tout P de Z[X], alors que l'indicatrice de 0 vérifie f(d) - f(0) = -1 : elle n'est pas
+# polynomiale, et l'énoncé est faux pour tout n composé (4, 8, 16, 6, 10, 15... testés ci-dessous).
+import random
+random.seed(1)
+for n in (4, 6, 8, 9, 10, 14, 15, 16, 21, 25, 32, 35):
+    d = next(x for x in range(2, n) if n % x == 0)
+    for _ in range(200):
+        c_ = [random.randint(-50, 50) for _ in range(random.randint(1, 8))]
+        Pd, P0 = sum(ci * d**i for i, ci in enumerate(c_)), c_[0]
+        assert (Pd - P0) % d == 0
+    assert (0 - 1) % d != 0
 # Trou 3 : p!, p^{p-1} différents de p^p pour p premier.
 assert all(factorial(p_) != p_**p_ and p_**(p_ - 1) != p_**p_ for p_ in (2, 3, 5, 7))
 # Exemple : X^5 + 2X^4 + X et 2X^2 + 2X, même fonction sur F_3 ; indicatrice de 0 = 1 - X^2.
@@ -348,6 +381,14 @@ M = sum(abs(complex(cc)) for cc in Poly(expand(w**(k + 1) * Q.subs(Y, w * Y)), Y
 for tt in (0.5 * min(1, abs(complex(coeffs[0])) / (M + 1)), 1e-3, 1e-2):
     assert abs(complex(P.subs(X, z0 + tt * w))) < abs(complex(P.subs(X, z0)))
 # Contre-exemples : |e^z| = e^{Re z} ; 1 + |z|^2 >= 1. Affirmation 2 : P = X, P'(0) = 1.
+# Trous (relecture) : anciens leurres du trou 3, « P'(z1) = 0 », « z1 = 0 », « P(z1) = P(0) », vrais pour P = X^2
+# (z1 = 0) ; trou 1, « non nul », « unitaire », « à coefficients réels », vrais pour P = X. Nouveaux leurres : trou 1,
+# P constant (|P| ne tend pas vers +infini) ; trou 3, « P(z1) != 0 », « |P(z1)| > |P(0)| », « |P(z1)| = 1 », jamais vrais
+# puisque z1 est un point de minimum (|P(z1)| <= |P(0)|) et une racine.
+for P_ in (X, X**2, X**3 - 6 * X + 3, X**2 + 2 * X + 5, (X - 3)**2 * (X + I)):
+    z1 = min(nroots(P_, n=30), key=lambda r_: abs(complex(P_.subs(X, r_))))
+    assert abs(complex(P_.subs(X, z1))) < 1e-20 <= abs(complex(P_.subs(X, 0))) + 1e-20
+assert expand(X**2).subs(X, 0) == 0 and diff(X**2, X).subs(X, 0) == 0  # P'(z1) = 0 pour P = X^2 : ancien leurre vrai
 
 # arith-l3-algebriques-alembert-gauss-ex1 (+ v1, v2) : directions de descente ; leurres (|P| augmente).
 for P, z0, bon, leurres in [
@@ -425,6 +466,11 @@ assert Poly(diff(X**2, X), X, modulus=2).is_zero
 # Trous : leurres P^{(k)}(0)/k! et P^{(k)}(a)/n! faux (P = X, a = 1 ; P = X^2, n = 2).
 assert taylor(X, 1)[0] == 1 and Poly(X, X).eval(0) == 0
 assert taylor(X**2, 3)[0] == 9 and F(9, 2) != 9
+# Trou 2 (relecture) : n >= 2 dans le texte à trous (pour n <= 1, P^{(k)}(a) et P^{(k)}(a)/n! coïncidaient avec la
+# réponse) ; leurre P^{(k)}(0)/k! (vrai pour a = 0) remplacé par P^{(k+1)}(a)/(k+1)!, faux pour P = 1 (c_0 = 1, et 0).
+assert taylor(Rational(1) + 0 * X, 5) == [1] and diff(1 + 0 * X, X) == 0
+assert all(taylor(X**2, a_)[2] == 1 and diff(X**2, X, 2) == 2 and F(1, factorial(n)) != 1
+           for a_ in (0, 1, -2) for n in range(2, 8))
 # Affirmation 1 : P(X + a) à coefficients entiers (exemple).
 assert all(cc.is_integer for cc in taylor(7 * X**5 - 3 * X**2 + X - 4, -3))
 
