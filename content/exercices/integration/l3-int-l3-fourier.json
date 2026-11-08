@@ -1,0 +1,1562 @@
+{
+  "exercices": [
+    {
+      "id": "int-l3-fourier-coefficients-ex1",
+      "carte": "int-l3-fourier-coefficients",
+      "difficulte": 1,
+      "titre": "Coefficients de Fourier par linéarisation",
+      "enonce": "Soit $f(t)=\\cos^3t$. En linéarisant, écrire $f$ comme un polynôme trigonométrique, puis donner tous ses coefficients de Fourier, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+      "duree_min": 8,
+      "indices": [
+        "Écrire $\\cos t=\\frac{e^{it}+e^{-it}}2$ et développer le cube ; les coefficients d'un polynôme trigonométrique se lisent sur son écriture."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $a_3(f)$ ?",
+        "propositions": [
+          "$\\frac14$",
+          "$\\frac34$",
+          "$\\frac18$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On développe :\n$$\\cos^3t=\\frac{(e^{it}+e^{-it})^3}8=\\frac{e^{3it}+3e^{it}+3e^{-it}+e^{-3it}}8=\\frac34\\cos t+\\frac14\\cos(3t).$$\nPar orthonormalité des $e_n$, les coefficients d'un polynôme trigonométrique se lisent sur son écriture : $c_{\\pm1}(f)=\\frac38$, $c_{\\pm3}(f)=\\frac18$, et les autres $c_n(f)$ sont nuls. Avec $a_n=c_n+c_{-n}$ et $b_n=i(c_n-c_{-n})$ : $a_1(f)=\\frac34$, $a_3(f)=\\frac14$, les autres $a_n(f)$ sont nuls, et $b_n(f)=0$ pour tout $n$ ($f$ est paire).\n\nDonc $a_3(f)=\\frac14$. La valeur $\\frac18$ est $c_3(f)$, à ne pas confondre avec $a_3(f)=2c_3(f)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(t)=\\sin^3t$. En linéarisant, écrire $f$ comme un polynôme trigonométrique, puis donner tous ses coefficients de Fourier, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+          "indices": [
+            "Écrire $\\sin t=\\frac{e^{it}-e^{-it}}{2i}$ et développer le cube ; les coefficients d'un polynôme trigonométrique se lisent sur son écriture."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $b_3(f)$ ?",
+            "propositions": [
+              "$-\\frac14$",
+              "$\\frac14$",
+              "$-\\frac34$",
+              "$\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On développe, avec $(2i)^3=-8i$ :\n$$\\sin^3t=\\frac{(e^{it}-e^{-it})^3}{-8i}=\\frac{e^{3it}-3e^{it}+3e^{-it}-e^{-3it}}{-8i}=\\frac{2i\\sin(3t)-6i\\sin t}{-8i}=\\frac34\\sin t-\\frac14\\sin(3t).$$\nLes coefficients se lisent : $c_1(f)=-\\frac{3i}8$, $c_{-1}(f)=\\frac{3i}8$, $c_3(f)=\\frac i8$, $c_{-3}(f)=-\\frac i8$, les autres sont nuls ; $a_n(f)=0$ pour tout $n$ ($f$ est impaire), $b_1(f)=\\frac34$, $b_3(f)=i(c_3-c_{-3})=-\\frac14$, les autres $b_n(f)$ sont nuls.\n\nDonc $b_3(f)=-\\frac14$."
+        },
+        {
+          "enonce": "Soit $f(t)=\\cos^4t$. En linéarisant, écrire $f$ comme un polynôme trigonométrique, puis donner tous ses coefficients de Fourier, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+          "indices": [
+            "Écrire $\\cos t=\\frac{e^{it}+e^{-it}}2$ et développer la puissance quatrième ; attention au facteur $\\frac12$ devant $a_0$ dans la série de Fourier."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $a_0(f)$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$\\frac38$",
+              "$\\frac32$",
+              "$\\frac18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On développe :\n$$\\cos^4t=\\frac{(e^{it}+e^{-it})^4}{16}=\\frac{e^{4it}+4e^{2it}+6+4e^{-2it}+e^{-4it}}{16}=\\frac38+\\frac12\\cos(2t)+\\frac18\\cos(4t).$$\nLes coefficients se lisent : $c_0(f)=\\frac38$, $c_{\\pm2}(f)=\\frac14$, $c_{\\pm4}(f)=\\frac1{16}$, les autres sont nuls ; $b_n(f)=0$, $a_2(f)=\\frac12$, $a_4(f)=\\frac18$, et $a_0(f)=2c_0(f)=\\frac34$ (c'est la valeur moyenne $\\frac38$ multipliée par $2$, puisque $a_0$ est défini avec $\\frac1\\pi$).\n\nDonc $a_0(f)=\\frac34$ ; la valeur $\\frac38$ est la moyenne $c_0(f)=\\frac{a_0(f)}2$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-coefficients-ex2",
+      "carte": "int-l3-fourier-coefficients",
+      "difficulte": 2,
+      "titre": "Coefficients d'une fonction affine par morceaux",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ pour $t\\in\\left]-\\pi,\\pi\\right]$. Calculer $a_n(f)$ et $b_n(f)$, puis $c_n(f)$, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+      "duree_min": 12,
+      "indices": [
+        "$f$ est impaire, sauf en des points isolés qui ne changent pas les intégrales ; intégrer par parties $\\int_0^\\pi t\\sin(nt)\\,\\mathrm{d}t$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $b_n(f)$ pour $n\\ge1$ ?",
+        "propositions": [
+          "$\\frac{2(-1)^{n+1}}n$",
+          "$\\frac2n$",
+          "$\\frac{2(-1)^n}n$",
+          "$\\frac{(-1)^{n+1}}n$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Hors des points $\\pi+2k\\pi$, $f(-t)=-f(t)$ ; les valeurs en des points isolés ne changent pas les intégrales, donc $a_n(f)=0$ pour tout $n\\ge0$ et, pour $n\\ge1$,\n$$b_n(f)=\\frac2\\pi\\int_0^\\pi t\\sin(nt)\\,\\mathrm{d}t=\\frac2\\pi\\left(\\left[-\\frac{t\\cos(nt)}n\\right]_0^\\pi+\\int_0^\\pi\\frac{\\cos(nt)}n\\,\\mathrm{d}t\\right)=\\frac2\\pi\\cdot\\left(-\\frac{\\pi(-1)^n}n\\right)=\\frac{2(-1)^{n+1}}n,$$\ncar $\\int_0^\\pi\\cos(nt)\\,\\mathrm{d}t=0$. Enfin $c_0(f)=0$ et, pour $n\\ge1$, $c_n(f)=\\frac{a_n-ib_n}2=\\frac{i(-1)^n}n$ et $c_{-n}(f)=\\frac{a_n+ib_n}2=-\\frac{i(-1)^n}n$ ; dans les deux cas, $c_n(f)=\\frac{i(-1)^n}n$ pour tout $n\\neq0$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ pour $t\\in\\left[0,2\\pi\\right[$. Calculer $a_n(f)$ et $b_n(f)$, puis $c_n(f)$, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+          "indices": [
+            "Intégrer sur la période $[0,2\\pi]$ plutôt que sur $[-\\pi,\\pi]$, puis intégrer par parties."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $b_n(f)$ pour $n\\ge1$ ?",
+            "propositions": [
+              "$-\\frac2n$",
+              "$\\frac2n$",
+              "$\\frac{2(-1)^{n+1}}n$",
+              "$-\\frac1n$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On intègre sur la période $[0,2\\pi]$ : $a_0(f)=\\frac1\\pi\\int_0^{2\\pi}t\\,\\mathrm{d}t=2\\pi$ et, pour $n\\ge1$,\n$$a_n(f)=\\frac1\\pi\\left(\\left[\\frac{t\\sin(nt)}n\\right]_0^{2\\pi}-\\int_0^{2\\pi}\\frac{\\sin(nt)}n\\,\\mathrm{d}t\\right)=0,\\qquad b_n(f)=\\frac1\\pi\\left(\\left[-\\frac{t\\cos(nt)}n\\right]_0^{2\\pi}+\\int_0^{2\\pi}\\frac{\\cos(nt)}n\\,\\mathrm{d}t\\right)=\\frac1\\pi\\cdot\\left(-\\frac{2\\pi}n\\right)=-\\frac2n.$$\nDonc $c_0(f)=\\pi$ et, pour $n\\neq0$, $c_n(f)=\\frac in$ (pour $n\\ge1$ : $c_n=\\frac{-ib_n}2=\\frac in$ ; pour $n\\le-1$ : $c_n=\\frac{ib_{|n|}}2=-\\frac i{|n|}=\\frac in$)."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $|t|$ pour $t\\in[-\\pi,\\pi]$. Calculer $a_n(f)$ et $b_n(f)$, puis $c_n(f)$, avec les conventions $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.",
+          "indices": [
+            "$f$ est paire ; intégrer par parties $\\int_0^\\pi t\\cos(nt)\\,\\mathrm{d}t$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $a_n(f)$ pour $n\\ge1$ ?",
+            "propositions": [
+              "$\\frac{2((-1)^n-1)}{\\pi n^2}$",
+              "$\\frac{2(1-(-1)^n)}{\\pi n^2}$",
+              "$\\frac{(-1)^n-1}{\\pi n^2}$",
+              "$\\frac{2((-1)^n-1)}{\\pi n}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est paire, donc $b_n(f)=0$, $a_0(f)=\\frac2\\pi\\int_0^\\pi t\\,\\mathrm{d}t=\\pi$ et, pour $n\\ge1$,\n$$a_n(f)=\\frac2\\pi\\int_0^\\pi t\\cos(nt)\\,\\mathrm{d}t=\\frac2\\pi\\left(\\left[\\frac{t\\sin(nt)}n\\right]_0^\\pi-\\int_0^\\pi\\frac{\\sin(nt)}n\\,\\mathrm{d}t\\right)=\\frac2\\pi\\left[\\frac{\\cos(nt)}{n^2}\\right]_0^\\pi=\\frac{2((-1)^n-1)}{\\pi n^2}.$$\nAinsi $a_n(f)=-\\frac4{\\pi n^2}$ pour $n$ impair et $0$ pour $n\\ge2$ pair. Enfin $c_0(f)=\\frac\\pi2$ et $c_n(f)=c_{-n}(f)=\\frac{a_{|n|}(f)}2=\\frac{(-1)^n-1}{\\pi n^2}$ pour $n\\neq0$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-coefficients-ex3",
+      "carte": "int-l3-fourier-coefficients",
+      "difficulte": 3,
+      "titre": "Coefficients d'une exponentielle restreinte à une période",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^t$ pour $t\\in\\left]-\\pi,\\pi\\right]$. Avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$, puis en déduire $a_n(f)=c_n(f)+c_{-n}(f)$.",
+      "duree_min": 15,
+      "indices": [
+        "Calculer directement $\\int_{-\\pi}^{\\pi}e^{(1-in)t}\\,\\mathrm{d}t$ à l'aide d'une primitive d'exponentielle complexe.",
+        "$e^{\\pm in\\pi}=(-1)^n$ et $e^\\pi-e^{-\\pi}=2\\operatorname{sh}\\pi$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $c_n(f)$ ?",
+        "propositions": [
+          "$\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1-in)}$",
+          "$\\frac{\\operatorname{sh}\\pi}{\\pi(1-in)}$",
+          "$\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1+in)}$",
+          "$\\frac{(-1)^n\\operatorname{sh}\\pi}{2\\pi(1-in)}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $1-in\\neq0$,\n$$\\int_{-\\pi}^{\\pi}e^{(1-in)t}\\,\\mathrm{d}t=\\left[\\frac{e^{(1-in)t}}{1-in}\\right]_{-\\pi}^{\\pi}=\\frac{e^\\pi e^{-in\\pi}-e^{-\\pi}e^{in\\pi}}{1-in}=\\frac{(-1)^n\\left(e^\\pi-e^{-\\pi}\\right)}{1-in},$$\ndonc $c_n(f)=\\frac1{2\\pi}\\cdot\\frac{2(-1)^n\\operatorname{sh}\\pi}{1-in}=\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1-in)}$.\n\nPuis $a_n(f)=c_n(f)+c_{-n}(f)=\\frac{(-1)^n\\operatorname{sh}\\pi}\\pi\\left(\\frac1{1-in}+\\frac1{1+in}\\right)=\\frac{2(-1)^n\\operatorname{sh}\\pi}{\\pi(1+n^2)}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^{2t}$ pour $t\\in\\left]-\\pi,\\pi\\right]$. Avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$, puis en déduire $a_n(f)=c_n(f)+c_{-n}(f)$.",
+          "indices": [
+            "Calculer directement $\\int_{-\\pi}^{\\pi}e^{(2-in)t}\\,\\mathrm{d}t$ à l'aide d'une primitive d'exponentielle complexe.",
+            "$e^{\\pm in\\pi}=(-1)^n$ et $e^{2\\pi}-e^{-2\\pi}=2\\operatorname{sh}(2\\pi)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $c_n(f)$ ?",
+            "propositions": [
+              "$\\frac{(-1)^n\\operatorname{sh}(2\\pi)}{\\pi(2-in)}$",
+              "$\\frac{\\operatorname{sh}(2\\pi)}{\\pi(2-in)}$",
+              "$\\frac{(-1)^n\\operatorname{sh}(2\\pi)}{\\pi(2+in)}$",
+              "$\\frac{(-1)^n\\operatorname{sh}(2\\pi)}{2\\pi(2-in)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $2-in\\neq0$,\n$$\\int_{-\\pi}^{\\pi}e^{(2-in)t}\\,\\mathrm{d}t=\\frac{e^{2\\pi}e^{-in\\pi}-e^{-2\\pi}e^{in\\pi}}{2-in}=\\frac{2(-1)^n\\operatorname{sh}(2\\pi)}{2-in},$$\ndonc $c_n(f)=\\frac{(-1)^n\\operatorname{sh}(2\\pi)}{\\pi(2-in)}$, puis $a_n(f)=\\frac{(-1)^n\\operatorname{sh}(2\\pi)}\\pi\\left(\\frac1{2-in}+\\frac1{2+in}\\right)=\\frac{4(-1)^n\\operatorname{sh}(2\\pi)}{\\pi(4+n^2)}$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^{-t}$ pour $t\\in\\left]-\\pi,\\pi\\right]$. Avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$, puis en déduire $a_n(f)=c_n(f)+c_{-n}(f)$.",
+          "indices": [
+            "Calculer directement $\\int_{-\\pi}^{\\pi}e^{-(1+in)t}\\,\\mathrm{d}t$ à l'aide d'une primitive d'exponentielle complexe.",
+            "$e^{\\pm in\\pi}=(-1)^n$ et $e^\\pi-e^{-\\pi}=2\\operatorname{sh}\\pi$ ; attention aux signes."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $c_n(f)$ ?",
+            "propositions": [
+              "$\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1+in)}$",
+              "$\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1-in)}$",
+              "$-\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1+in)}$",
+              "$\\frac{\\operatorname{sh}\\pi}{\\pi(1+in)}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $1+in\\neq0$,\n$$\\int_{-\\pi}^{\\pi}e^{-(1+in)t}\\,\\mathrm{d}t=\\left[-\\frac{e^{-(1+in)t}}{1+in}\\right]_{-\\pi}^{\\pi}=\\frac{e^{\\pi}e^{in\\pi}-e^{-\\pi}e^{-in\\pi}}{1+in}=\\frac{2(-1)^n\\operatorname{sh}\\pi}{1+in},$$\ndonc $c_n(f)=\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1+in)}$, puis $a_n(f)=\\frac{(-1)^n\\operatorname{sh}\\pi}\\pi\\left(\\frac1{1+in}+\\frac1{1-in}\\right)=\\frac{2(-1)^n\\operatorname{sh}\\pi}{\\pi(1+n^2)}$, comme pour $e^t$ : les deux fonctions ont la même partie paire, $\\operatorname{ch}t$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-coefficients-ex4",
+      "carte": "int-l3-fourier-coefficients",
+      "difficulte": 4,
+      "titre": "Polynômes trigonométriques pairs et polynômes de Tchebychev",
+      "enonce": "1. Montrer qu'il existe une unique suite de polynômes $(T_n)_{n\\ge0}$ à coefficients réels telle que $\\cos(nt)=T_n(\\cos t)$ pour tout réel $t$, et que $T_0=1$, $T_1=X$ et $T_{n+1}=2XT_n-T_{n-1}$ pour $n\\ge1$. Préciser le degré et le coefficient dominant de $T_n$ pour $n\\ge1$.\n\n2. Soit $N\\in\\mathbb{N}$. Montrer que les polynômes trigonométriques réels et pairs de degré au plus $N$, c'est-à-dire les fonctions $t\\mapsto\\sum_{n=0}^N\\alpha_n\\cos(nt)$ avec des $\\alpha_n$ réels, sont exactement les fonctions $t\\mapsto Q(\\cos t)$ où $Q$ est un polynôme réel de degré au plus $N$.\n\n3. Calculer $T_5$.",
+      "duree_min": 25,
+      "indices": [
+        "$\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ ; pour l'unicité, un polynôme qui s'annule sur $[-1,1]$ est nul.",
+        "Pour l'inclusion réciproque de la question 2, utiliser que $(T_0,\\dots,T_N)$ est une base de $\\mathbb{R}_N[X]$, car les degrés sont échelonnés."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $T_5$ ?",
+        "propositions": [
+          "$16X^5-20X^3+5X$",
+          "$16X^5+20X^3+5X$",
+          "$32X^5-40X^3+10X$",
+          "$16X^5-20X^3-5X$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. **Existence.** On définit $T_n$ par la récurrence. Si $\\cos(kt)=T_k(\\cos t)$ pour $k=n-1$ et $k=n$, la formule $\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ donne $\\cos((n+1)t)=2\\cos t\\,T_n(\\cos t)-T_{n-1}(\\cos t)=T_{n+1}(\\cos t)$ ; l'initialisation est claire. **Unicité.** Si $Q(\\cos t)=R(\\cos t)$ pour tout $t$, $Q-R$ s'annule sur $[-1,1]$, ensemble infini, donc $Q=R$. Par récurrence, $T_n$ est de degré $n$ et de coefficient dominant $2^{n-1}$ pour $n\\ge1$ (le coefficient dominant double à chaque étape à partir de $T_1=X$).\n\n2. Si $P(t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$, alors $P(t)=Q(\\cos t)$ avec $Q=\\sum_{n=0}^N\\alpha_nT_n$, de degré au plus $N$. Réciproquement, $(T_0,\\dots,T_N)$ est une famille de polynômes de degrés $0,1,\\dots,N$, donc une base de $\\mathbb{R}_N[X]$ ; tout $Q$ de degré au plus $N$ s'écrit $\\sum_{n=0}^N\\alpha_nT_n$ avec des $\\alpha_n$ réels, et $Q(\\cos t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$.\n\n3. Avec $T_2=2X^2-1$ et $T_3=4X^3-3X$, la récurrence donne $T_4=2XT_3-T_2=8X^4-8X^2+1$, puis $T_5=2XT_4-T_3=16X^5-16X^3+2X-4X^3+3X=16X^5-20X^3+5X$ ; on vérifie que $T_5(1)=1=\\cos0$ et que le coefficient dominant est $2^4=16$.",
+      "variantes": [
+        {
+          "enonce": "1. Montrer qu'il existe une unique suite de polynômes $(T_n)_{n\\ge0}$ à coefficients réels telle que $\\cos(nt)=T_n(\\cos t)$ pour tout réel $t$, et que $T_0=1$, $T_1=X$ et $T_{n+1}=2XT_n-T_{n-1}$ pour $n\\ge1$. Préciser le degré et le coefficient dominant de $T_n$ pour $n\\ge1$.\n\n2. Soit $N\\in\\mathbb{N}$. Montrer que les polynômes trigonométriques réels et pairs de degré au plus $N$, c'est-à-dire les fonctions $t\\mapsto\\sum_{n=0}^N\\alpha_n\\cos(nt)$ avec des $\\alpha_n$ réels, sont exactement les fonctions $t\\mapsto Q(\\cos t)$ où $Q$ est un polynôme réel de degré au plus $N$.\n\n3. Calculer $T_4$.",
+          "indices": [
+            "$\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ ; pour l'unicité, un polynôme qui s'annule sur $[-1,1]$ est nul.",
+            "Pour l'inclusion réciproque de la question 2, utiliser que $(T_0,\\dots,T_N)$ est une base de $\\mathbb{R}_N[X]$, car les degrés sont échelonnés."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $T_4$ ?",
+            "propositions": [
+              "$8X^4-8X^2+1$",
+              "$8X^4+8X^2+1$",
+              "$8X^4-8X^2-1$",
+              "$16X^4-16X^2+2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. **Existence.** On définit $T_n$ par la récurrence. Si $\\cos(kt)=T_k(\\cos t)$ pour $k=n-1$ et $k=n$, la formule $\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ donne $\\cos((n+1)t)=2\\cos t\\,T_n(\\cos t)-T_{n-1}(\\cos t)=T_{n+1}(\\cos t)$ ; l'initialisation est claire. **Unicité.** Si $Q(\\cos t)=R(\\cos t)$ pour tout $t$, $Q-R$ s'annule sur $[-1,1]$, ensemble infini, donc $Q=R$. Par récurrence, $T_n$ est de degré $n$ et de coefficient dominant $2^{n-1}$ pour $n\\ge1$ (le coefficient dominant double à chaque étape à partir de $T_1=X$).\n\n2. Si $P(t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$, alors $P(t)=Q(\\cos t)$ avec $Q=\\sum_{n=0}^N\\alpha_nT_n$, de degré au plus $N$. Réciproquement, $(T_0,\\dots,T_N)$ est une famille de polynômes de degrés $0,1,\\dots,N$, donc une base de $\\mathbb{R}_N[X]$ ; tout $Q$ de degré au plus $N$ s'écrit $\\sum_{n=0}^N\\alpha_nT_n$ avec des $\\alpha_n$ réels, et $Q(\\cos t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$.\n\n3. Avec $T_2=2X^2-1$ et $T_3=4X^3-3X$, la récurrence donne $T_4=2XT_3-T_2=8X^4-6X^2-2X^2+1=8X^4-8X^2+1$ ; on vérifie que $T_4(1)=1$ et que $T_4(0)=1=\\cos\\left(4\\cdot\\frac\\pi2\\right)$."
+        },
+        {
+          "enonce": "1. Montrer qu'il existe une unique suite de polynômes $(T_n)_{n\\ge0}$ à coefficients réels telle que $\\cos(nt)=T_n(\\cos t)$ pour tout réel $t$, et que $T_0=1$, $T_1=X$ et $T_{n+1}=2XT_n-T_{n-1}$ pour $n\\ge1$. Préciser le degré et le coefficient dominant de $T_n$ pour $n\\ge1$.\n\n2. Soit $N\\in\\mathbb{N}$. Montrer que les polynômes trigonométriques réels et pairs de degré au plus $N$, c'est-à-dire les fonctions $t\\mapsto\\sum_{n=0}^N\\alpha_n\\cos(nt)$ avec des $\\alpha_n$ réels, sont exactement les fonctions $t\\mapsto Q(\\cos t)$ où $Q$ est un polynôme réel de degré au plus $N$.\n\n3. Calculer $T_6$.",
+          "indices": [
+            "$\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ ; pour l'unicité, un polynôme qui s'annule sur $[-1,1]$ est nul.",
+            "Pour l'inclusion réciproque de la question 2, utiliser que $(T_0,\\dots,T_N)$ est une base de $\\mathbb{R}_N[X]$, car les degrés sont échelonnés."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $T_6$ ?",
+            "propositions": [
+              "$32X^6-48X^4+18X^2-1$",
+              "$32X^6-48X^4+18X^2+1$",
+              "$64X^6-96X^4+36X^2-2$",
+              "$32X^6-48X^4-18X^2-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. **Existence.** On définit $T_n$ par la récurrence. Si $\\cos(kt)=T_k(\\cos t)$ pour $k=n-1$ et $k=n$, la formule $\\cos((n+1)t)+\\cos((n-1)t)=2\\cos t\\cos(nt)$ donne $\\cos((n+1)t)=2\\cos t\\,T_n(\\cos t)-T_{n-1}(\\cos t)=T_{n+1}(\\cos t)$ ; l'initialisation est claire. **Unicité.** Si $Q(\\cos t)=R(\\cos t)$ pour tout $t$, $Q-R$ s'annule sur $[-1,1]$, ensemble infini, donc $Q=R$. Par récurrence, $T_n$ est de degré $n$ et de coefficient dominant $2^{n-1}$ pour $n\\ge1$ (le coefficient dominant double à chaque étape à partir de $T_1=X$).\n\n2. Si $P(t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$, alors $P(t)=Q(\\cos t)$ avec $Q=\\sum_{n=0}^N\\alpha_nT_n$, de degré au plus $N$. Réciproquement, $(T_0,\\dots,T_N)$ est une famille de polynômes de degrés $0,1,\\dots,N$, donc une base de $\\mathbb{R}_N[X]$ ; tout $Q$ de degré au plus $N$ s'écrit $\\sum_{n=0}^N\\alpha_nT_n$ avec des $\\alpha_n$ réels, et $Q(\\cos t)=\\sum_{n=0}^N\\alpha_n\\cos(nt)$.\n\n3. Avec $T_2=2X^2-1$ et $T_3=4X^3-3X$, la récurrence donne $T_4=2XT_3-T_2=8X^4-8X^2+1$, $T_5=2XT_4-T_3=16X^5-20X^3+5X$, puis $T_6=2XT_5-T_4=32X^6-40X^4+10X^2-8X^4+8X^2-1=32X^6-48X^4+18X^2-1$ ; on vérifie que $T_6(1)=1$ et que $T_6(0)=-1=\\cos\\left(6\\cdot\\frac\\pi2\\right)$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-approximation-ex1",
+      "carte": "int-l3-fourier-approximation",
+      "difficulte": 1,
+      "titre": "Meilleure approximation quadratique de degré 1",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Parmi les fonctions $P(t)=\\alpha+\\beta\\cos t+\\gamma\\sin t$, avec $\\alpha,\\beta,\\gamma\\in\\mathbb{C}$, laquelle minimise $\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$ ?",
+      "duree_min": 6,
+      "indices": [
+        "Ces fonctions $P$ forment $\\mathcal{T}_1$ : appliquer le théorème de meilleure approximation avec $N=1$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le minimiseur ?",
+        "propositions": [
+          "$2\\sin t$",
+          "$\\sin t$",
+          "$-2\\sin t$",
+          "$\\frac4\\pi\\sin t$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les fonctions $\\alpha+\\beta\\cos t+\\gamma\\sin t$ sont exactement les éléments de $\\mathcal{T}_1=\\mathrm{Vect}(e_{-1},e_0,e_1)$. Le minimiseur unique est $S_1(f)(t)=\\frac{a_0(f)}2+a_1(f)\\cos t+b_1(f)\\sin t=2\\sin t$, car $b_1(f)=\\frac{2(-1)^2}1=2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ ; on admet que $a_0(f)=\\pi$, $a_n(f)=\\frac{2((-1)^n-1)}{\\pi n^2}$ et $b_n(f)=0$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Parmi les fonctions $P(t)=\\alpha+\\beta\\cos t+\\gamma\\sin t$, avec $\\alpha,\\beta,\\gamma\\in\\mathbb{C}$, laquelle minimise $\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$ ?",
+          "indices": [
+            "Ces fonctions $P$ forment $\\mathcal{T}_1$ : appliquer le théorème de meilleure approximation avec $N=1$, sans oublier le facteur $\\frac12$ devant $a_0$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le minimiseur ?",
+            "propositions": [
+              "$\\frac\\pi2-\\frac4\\pi\\cos t$",
+              "$\\pi-\\frac4\\pi\\cos t$",
+              "$\\frac\\pi2+\\frac4\\pi\\cos t$",
+              "$\\frac\\pi2-\\frac2\\pi\\cos t$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le minimiseur unique est $S_1(f)(t)=\\frac{a_0(f)}2+a_1(f)\\cos t+b_1(f)\\sin t=\\frac\\pi2-\\frac4\\pi\\cos t$, car $a_1(f)=\\frac{2(-1-1)}\\pi=-\\frac4\\pi$ et $b_1(f)=0$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Parmi les fonctions $P(t)=\\alpha+\\beta\\cos t+\\gamma\\sin t+\\delta\\cos(2t)+\\eta\\sin(2t)$, à coefficients complexes, laquelle minimise $\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$ ?",
+          "indices": [
+            "Ces fonctions $P$ forment $\\mathcal{T}_2$ : appliquer le théorème de meilleure approximation avec $N=2$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le minimiseur ?",
+            "propositions": [
+              "$\\frac4\\pi\\sin t$",
+              "$\\frac4\\pi\\sin t+\\frac2\\pi\\sin(2t)$",
+              "$\\frac2\\pi\\sin t$",
+              "$\\sin t$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les fonctions proposées forment $\\mathcal{T}_2$. Le minimiseur unique est $S_2(f)=\\frac{a_0}2+a_1\\cos t+b_1\\sin t+a_2\\cos(2t)+b_2\\sin(2t)=\\frac4\\pi\\sin t$, car $b_1(f)=\\frac4\\pi$ et $b_2(f)=0$ (les $b_n$ d'indice pair sont nuls)."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-approximation-ex2",
+      "carte": "int-l3-fourier-approximation",
+      "difficulte": 2,
+      "titre": "Distance à un espace de polynômes trigonométriques",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Calculer $d^2=\\min_{P\\in\\mathcal{T}_1}\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$, où $\\mathcal{T}_1$ est l'ensemble des polynômes trigonométriques de degré au plus $1$.",
+      "duree_min": 10,
+      "indices": [
+        "$d^2=\\|f\\|_2^2-\\sum_{n=-1}^{1}|c_n(f)|^2$, et $|c_n|^2+|c_{-n}|^2=\\frac{|a_n|^2+|b_n|^2}2$ pour $n\\ge1$, $|c_0|^2=\\frac{|a_0|^2}4$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $d^2$ ?",
+        "propositions": [
+          "$\\frac{\\pi^2}3-2$",
+          "$\\frac{\\pi^2}3-4$",
+          "$\\frac{\\pi^2}3-1$",
+          "$\\frac{\\pi^2}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par le théorème de meilleure approximation, $d^2=\\|f-S_1(f)\\|_2^2=\\|f\\|_2^2-\\sum_{|n|\\le1}|c_n(f)|^2$. Ici $\\|f\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^2\\,\\mathrm{d}t=\\frac{\\pi^2}3$, et $\\sum_{|n|\\le1}|c_n(f)|^2=\\frac{a_0^2}4+\\frac{a_1^2+b_1^2}2=\\frac{4}2=2$. Donc $d^2=\\frac{\\pi^2}3-2\\approx1{,}29$. (La valeur $\\frac{\\pi^2}3-4$, négative, oublie le facteur $\\frac12$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Calculer $d^2=\\min_{P\\in\\mathcal{T}_1}\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$, où $\\mathcal{T}_1$ est l'ensemble des polynômes trigonométriques de degré au plus $1$.",
+          "indices": [
+            "$d^2=\\|f\\|_2^2-\\sum_{n=-1}^{1}|c_n(f)|^2$, et $|c_1|^2+|c_{-1}|^2=\\frac{|a_1|^2+|b_1|^2}2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $d^2$ ?",
+            "propositions": [
+              "$1-\\frac8{\\pi^2}$",
+              "$1-\\frac{16}{\\pi^2}$",
+              "$1-\\frac4{\\pi^2}$",
+              "$\\frac8{\\pi^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$d^2=\\|f\\|_2^2-\\sum_{|n|\\le1}|c_n(f)|^2$, avec $\\|f\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}1\\,\\mathrm{d}t=1$ (la valeur en $0$ et $\\pi$ ne compte pas) et $\\sum_{|n|\\le1}|c_n(f)|^2=\\frac{b_1^2}2=\\frac12\\cdot\\frac{16}{\\pi^2}=\\frac8{\\pi^2}$. Donc $d^2=1-\\frac8{\\pi^2}\\approx0{,}19$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ ; on admet que $a_0(f)=\\pi$, $a_n(f)=\\frac{2((-1)^n-1)}{\\pi n^2}$ et $b_n(f)=0$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Calculer $d^2=\\min_{P\\in\\mathcal{T}_1}\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)-P(t)|^2\\,\\mathrm{d}t$, où $\\mathcal{T}_1$ est l'ensemble des polynômes trigonométriques de degré au plus $1$.",
+          "indices": [
+            "$d^2=\\|f\\|_2^2-\\sum_{n=-1}^{1}|c_n(f)|^2$, avec $|c_0|^2=\\frac{|a_0|^2}4$ et $|c_1|^2+|c_{-1}|^2=\\frac{|a_1|^2+|b_1|^2}2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $d^2$ ?",
+            "propositions": [
+              "$\\frac{\\pi^2}{12}-\\frac8{\\pi^2}$",
+              "$\\frac{\\pi^2}3-\\frac8{\\pi^2}$",
+              "$\\frac{\\pi^2}{12}-\\frac{16}{\\pi^2}$",
+              "$\\frac{\\pi^2}{12}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$d^2=\\|f\\|_2^2-\\sum_{|n|\\le1}|c_n(f)|^2$, avec $\\|f\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^2\\,\\mathrm{d}t=\\frac{\\pi^2}3$, $|c_0|^2=\\frac{a_0^2}4=\\frac{\\pi^2}4$ et $|c_1|^2+|c_{-1}|^2=\\frac{a_1^2}2=\\frac12\\cdot\\frac{16}{\\pi^2}=\\frac8{\\pi^2}$. Donc $d^2=\\frac{\\pi^2}3-\\frac{\\pi^2}4-\\frac8{\\pi^2}=\\frac{\\pi^2}{12}-\\frac8{\\pi^2}\\approx0{,}012$ : la fonction est déjà très bien approchée par $\\frac\\pi2-\\frac4\\pi\\cos t$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-approximation-ex3",
+      "carte": "int-l3-fourier-approximation",
+      "difficulte": 3,
+      "titre": "Moindres carrés sur une demi-période",
+      "enonce": "Déterminer le couple $(a,b)\\in\\mathbb{R}^2$ qui minimise $J(a,b)=\\int_0^\\pi\\left(1-a\\sin t-b\\sin(3t)\\right)^2\\,\\mathrm{d}t$, et la valeur de ce minimum.",
+      "duree_min": 15,
+      "indices": [
+        "Les fonctions $\\sin t$ et $\\sin(3t)$ sont orthogonales pour $\\langle u,v\\rangle=\\int_0^\\pi u(t)v(t)\\,\\mathrm{d}t$, de carré scalaire $\\frac\\pi2$ (on peut aussi prolonger la fonction constante $1$ en une fonction impaire et $2\\pi$-périodique).",
+        "Le minimum vaut l'intégrale du carré de la fonction à approcher, moins le carré de la norme de sa projection orthogonale."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\min J$ ?",
+        "propositions": [
+          "$\\pi-\\frac{80}{9\\pi}$",
+          "$\\pi-\\frac8\\pi$",
+          "$\\pi-\\frac{160}{9\\pi}$",
+          "$\\frac{80}{9\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $\\langle u,v\\rangle=\\int_0^\\pi u(t)v(t)\\,\\mathrm{d}t$, on a $\\int_0^\\pi\\sin t\\sin(3t)\\,\\mathrm{d}t=\\frac12\\int_0^\\pi\\left(\\cos(2t)-\\cos(4t)\\right)\\mathrm{d}t=0$ et $\\int_0^\\pi\\sin^2(kt)\\,\\mathrm{d}t=\\frac\\pi2$. Le minimum de $J$ est atteint pour la projection orthogonale de $1$ sur $\\mathrm{Vect}(\\sin t,\\sin(3t))$ :\n$$a=\\frac{\\int_0^\\pi\\sin t\\,\\mathrm{d}t}{\\pi/2}=\\frac2{\\pi/2}=\\frac4\\pi,\\qquad b=\\frac{\\int_0^\\pi\\sin(3t)\\,\\mathrm{d}t}{\\pi/2}=\\frac{2/3}{\\pi/2}=\\frac4{3\\pi}.$$\n(Ce sont les coefficients $b_1$ et $b_3$ du créneau, prolongement impair de $1$.) Par Pythagore,\n$$\\min J=\\int_0^\\pi1\\,\\mathrm{d}t-\\frac\\pi2\\left(a^2+b^2\\right)=\\pi-\\frac\\pi2\\cdot\\frac{16}{\\pi^2}\\left(1+\\frac19\\right)=\\pi-\\frac{80}{9\\pi}\\approx0{,}31.$$",
+      "variantes": [
+        {
+          "enonce": "Déterminer le couple $(a,b)\\in\\mathbb{R}^2$ qui minimise $J(a,b)=\\int_0^\\pi\\left(t-a\\sin t-b\\sin(2t)\\right)^2\\,\\mathrm{d}t$, et la valeur de ce minimum.",
+          "indices": [
+            "Les fonctions $\\sin t$ et $\\sin(2t)$ sont orthogonales pour $\\langle u,v\\rangle=\\int_0^\\pi u(t)v(t)\\,\\mathrm{d}t$, de carré scalaire $\\frac\\pi2$ ; intégrer par parties $\\int_0^\\pi t\\sin(kt)\\,\\mathrm{d}t$.",
+            "Le minimum vaut l'intégrale du carré de la fonction à approcher, moins le carré de la norme de sa projection orthogonale."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\min J$ ?",
+            "propositions": [
+              "$\\frac{\\pi^3}3-\\frac{5\\pi}2$",
+              "$\\frac{\\pi^3}3-2\\pi$",
+              "$\\frac{\\pi^3}3-5\\pi$",
+              "$\\frac{\\pi^3}3-\\frac{3\\pi}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sin t$ et $\\sin(2t)$ sont orthogonales sur $[0,\\pi]$, de carré scalaire $\\frac\\pi2$. Par parties, $\\int_0^\\pi t\\sin t\\,\\mathrm{d}t=\\pi$ et $\\int_0^\\pi t\\sin(2t)\\,\\mathrm{d}t=\\left[-\\frac{t\\cos(2t)}2\\right]_0^\\pi+\\int_0^\\pi\\frac{\\cos(2t)}2\\,\\mathrm{d}t=-\\frac\\pi2$. Donc $a=\\frac{\\pi}{\\pi/2}=2$ et $b=\\frac{-\\pi/2}{\\pi/2}=-1$ (les coefficients $b_1$, $b_2$ de la fonction $t$ prolongée par imparité). Par Pythagore,\n$$\\min J=\\int_0^\\pi t^2\\,\\mathrm{d}t-\\frac\\pi2\\left(a^2+b^2\\right)=\\frac{\\pi^3}3-\\frac{5\\pi}2\\approx2{,}48.$$"
+        },
+        {
+          "enonce": "Déterminer le couple $(a,b)\\in\\mathbb{R}^2$ qui minimise $J(a,b)=\\int_0^\\pi\\left(t-a-b\\cos t\\right)^2\\,\\mathrm{d}t$, et la valeur de ce minimum.",
+          "indices": [
+            "Les fonctions $1$ et $\\cos t$ sont orthogonales pour $\\langle u,v\\rangle=\\int_0^\\pi u(t)v(t)\\,\\mathrm{d}t$ ; calculer leurs carrés scalaires.",
+            "Le minimum vaut l'intégrale du carré de la fonction à approcher, moins le carré de la norme de sa projection orthogonale."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\min J$ ?",
+            "propositions": [
+              "$\\frac{\\pi^3}{12}-\\frac8\\pi$",
+              "$\\frac{\\pi^3}{12}-\\frac4\\pi$",
+              "$\\frac{\\pi^3}3-\\frac8\\pi$",
+              "$\\frac{\\pi^3}{12}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Sur $[0,\\pi]$, $\\int_0^\\pi\\cos t\\,\\mathrm{d}t=0$ : $1$ et $\\cos t$ sont orthogonales, de carrés scalaires $\\pi$ et $\\frac\\pi2$. Avec $\\int_0^\\pi t\\,\\mathrm{d}t=\\frac{\\pi^2}2$ et $\\int_0^\\pi t\\cos t\\,\\mathrm{d}t=[t\\sin t]_0^\\pi-\\int_0^\\pi\\sin t\\,\\mathrm{d}t=-2$ : $a=\\frac{\\pi^2/2}\\pi=\\frac\\pi2$ et $b=\\frac{-2}{\\pi/2}=-\\frac4\\pi$ (les coefficients $\\frac{a_0}2$ et $a_1$ de $|t|$). Par Pythagore,\n$$\\min J=\\frac{\\pi^3}3-\\pi a^2-\\frac\\pi2b^2=\\frac{\\pi^3}3-\\frac{\\pi^3}4-\\frac8\\pi=\\frac{\\pi^3}{12}-\\frac8\\pi\\approx0{,}037.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-approximation-ex4",
+      "carte": "int-l3-fourier-approximation",
+      "difficulte": 4,
+      "titre": "Lemme de Riemann-Lebesgue et oscillations rapides",
+      "enonce": "On admet que, pour tout réel $u$, $|\\sin u|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2ku)}{4k^2-1}$, la série convergeant normalement sur $\\mathbb{R}$ (convergence normale des séries de Fourier).\n\n1. Soit $g$ continue par morceaux sur $[0,\\pi]$. Montrer que $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t\\to0$ quand l'entier $m$ tend vers $+\\infty$ (appliquer l'inégalité de Bessel à une fonction $2\\pi$-périodique bien choisie).\n\n2. En déduire que $\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t\\to\\frac2\\pi\\int_0^\\pi g(t)\\,\\mathrm{d}t$ quand $n\\to+\\infty$.\n\n3. Calculer $\\lim_{n\\to+\\infty}\\int_0^\\pi e^t|\\sin(nt)|\\,\\mathrm{d}t$.",
+      "duree_min": 25,
+      "indices": [
+        "Question 1 : prolonger $g$ par $0$ sur $\\left[-\\pi,0\\right[$, puis par $2\\pi$-périodicité ; ses coefficients $a_m$ tendent vers $0$.",
+        "Question 2 : intégrer terme à terme (convergence uniforme en $t$ à $n$ fixé), puis couper la série en une somme finie et un reste majoré indépendamment de $n$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette limite ?",
+        "propositions": [
+          "$\\frac2\\pi\\left(e^\\pi-1\\right)$",
+          "$e^\\pi-1$",
+          "$\\frac12\\left(e^\\pi-1\\right)$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Soit $\\tilde g$ la fonction $2\\pi$-périodique égale à $g$ sur $[0,\\pi[$ et à $0$ sur $[-\\pi,0[$ : elle est continue par morceaux, et $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t=\\pi a_m(\\tilde g)$ (la valeur en $\\pi$ ne compte pas). Par l'inégalité de Bessel, $\\sum|c_m(\\tilde g)|^2$ converge, donc $c_{\\pm m}(\\tilde g)\\to0$ et $a_m(\\tilde g)=c_m(\\tilde g)+c_{-m}(\\tilde g)\\to0$.\n\n2. Pour $n$ fixé, la série de $|\\sin(nt)|$ converge uniformément en $t$ et $g$ est bornée : on intègre terme à terme,\n$$\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t=\\frac2\\pi\\int_0^\\pi g-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{I_{2kn}}{4k^2-1},\\qquad I_m=\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t.$$\nSoit $A=\\int_0^\\pi|g|$, de sorte que $|I_m|\\le A$. Pour $\\varepsilon>0$, on choisit $K$ tel que $\\frac4\\pi A\\sum_{k>K}\\frac1{4k^2-1}\\le\\varepsilon$ ; alors\n$$\\left|\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t-\\frac2\\pi\\int_0^\\pi g\\right|\\le\\frac4\\pi\\sum_{k=1}^K\\frac{|I_{2kn}|}{4k^2-1}+\\varepsilon,$$\net la somme finie tend vers $0$ quand $n\\to+\\infty$ par la question 1 ($2kn\\to+\\infty$ pour chaque $k\\le K$). Le membre de gauche est donc inférieur à $2\\varepsilon$ pour $n$ assez grand.\n\n3. Avec $g(t)=e^t$, continue sur $[0,\\pi]$ : la limite vaut $\\frac2\\pi\\int_0^\\pi e^t\\,\\mathrm{d}t=\\frac2\\pi\\left(e^\\pi-1\\right)\\approx14{,}1$. La fonction $|\\sin(nt)|$, qui oscille de plus en plus vite, se comporte « en moyenne » comme sa valeur moyenne $\\frac2\\pi$.",
+      "variantes": [
+        {
+          "enonce": "On admet que, pour tout réel $u$, $|\\sin u|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2ku)}{4k^2-1}$, la série convergeant normalement sur $\\mathbb{R}$ (convergence normale des séries de Fourier).\n\n1. Soit $g$ continue par morceaux sur $[0,\\pi]$. Montrer que $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t\\to0$ quand l'entier $m$ tend vers $+\\infty$ (appliquer l'inégalité de Bessel à une fonction $2\\pi$-périodique bien choisie).\n\n2. En déduire que $\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t\\to\\frac2\\pi\\int_0^\\pi g(t)\\,\\mathrm{d}t$ quand $n\\to+\\infty$.\n\n3. Calculer $\\lim_{n\\to+\\infty}\\int_0^\\pi \\frac1{1+t}|\\sin(nt)|\\,\\mathrm{d}t$.",
+          "indices": [
+            "Question 1 : prolonger $g$ par $0$ sur $\\left[-\\pi,0\\right[$, puis par $2\\pi$-périodicité ; ses coefficients $a_m$ tendent vers $0$.",
+            "Question 2 : intégrer terme à terme (convergence uniforme en $t$ à $n$ fixé), puis couper la série en une somme finie et un reste majoré indépendamment de $n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette limite ?",
+            "propositions": [
+              "$\\frac2\\pi\\ln(1+\\pi)$",
+              "$\\ln(1+\\pi)$",
+              "$\\frac12\\ln(1+\\pi)$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Soit $\\tilde g$ la fonction $2\\pi$-périodique égale à $g$ sur $[0,\\pi[$ et à $0$ sur $[-\\pi,0[$ : elle est continue par morceaux, et $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t=\\pi a_m(\\tilde g)$ (la valeur en $\\pi$ ne compte pas). Par l'inégalité de Bessel, $\\sum|c_m(\\tilde g)|^2$ converge, donc $c_{\\pm m}(\\tilde g)\\to0$ et $a_m(\\tilde g)=c_m(\\tilde g)+c_{-m}(\\tilde g)\\to0$.\n\n2. Pour $n$ fixé, la série de $|\\sin(nt)|$ converge uniformément en $t$ et $g$ est bornée : on intègre terme à terme,\n$$\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t=\\frac2\\pi\\int_0^\\pi g-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{I_{2kn}}{4k^2-1},\\qquad I_m=\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t.$$\nSoit $A=\\int_0^\\pi|g|$, de sorte que $|I_m|\\le A$. Pour $\\varepsilon>0$, on choisit $K$ tel que $\\frac4\\pi A\\sum_{k>K}\\frac1{4k^2-1}\\le\\varepsilon$ ; alors\n$$\\left|\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t-\\frac2\\pi\\int_0^\\pi g\\right|\\le\\frac4\\pi\\sum_{k=1}^K\\frac{|I_{2kn}|}{4k^2-1}+\\varepsilon,$$\net la somme finie tend vers $0$ quand $n\\to+\\infty$ par la question 1 ($2kn\\to+\\infty$ pour chaque $k\\le K$). Le membre de gauche est donc inférieur à $2\\varepsilon$ pour $n$ assez grand.\n\n3. Avec $g(t)=\\frac1{1+t}$, continue sur $[0,\\pi]$ : la limite vaut $\\frac2\\pi\\int_0^\\pi\\frac{\\mathrm{d}t}{1+t}=\\frac2\\pi\\ln(1+\\pi)\\approx0{,}91$."
+        },
+        {
+          "enonce": "On admet que, pour tout réel $u$, $|\\sin u|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2ku)}{4k^2-1}$, la série convergeant normalement sur $\\mathbb{R}$ (convergence normale des séries de Fourier).\n\n1. Soit $g$ continue par morceaux sur $[0,\\pi]$. Montrer que $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t\\to0$ quand l'entier $m$ tend vers $+\\infty$ (appliquer l'inégalité de Bessel à une fonction $2\\pi$-périodique bien choisie).\n\n2. En déduire que $\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t\\to\\frac2\\pi\\int_0^\\pi g(t)\\,\\mathrm{d}t$ quand $n\\to+\\infty$.\n\n3. Calculer $\\lim_{n\\to+\\infty}\\int_0^\\pi t^2|\\sin(nt)|\\,\\mathrm{d}t$.",
+          "indices": [
+            "Question 1 : prolonger $g$ par $0$ sur $\\left[-\\pi,0\\right[$, puis par $2\\pi$-périodicité ; ses coefficients $a_m$ tendent vers $0$.",
+            "Question 2 : intégrer terme à terme (convergence uniforme en $t$ à $n$ fixé), puis couper la série en une somme finie et un reste majoré indépendamment de $n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette limite ?",
+            "propositions": [
+              "$\\frac{2\\pi^2}3$",
+              "$\\frac{\\pi^3}3$",
+              "$\\frac{\\pi^3}6$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Soit $\\tilde g$ la fonction $2\\pi$-périodique égale à $g$ sur $[0,\\pi[$ et à $0$ sur $[-\\pi,0[$ : elle est continue par morceaux, et $\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t=\\pi a_m(\\tilde g)$ (la valeur en $\\pi$ ne compte pas). Par l'inégalité de Bessel, $\\sum|c_m(\\tilde g)|^2$ converge, donc $c_{\\pm m}(\\tilde g)\\to0$ et $a_m(\\tilde g)=c_m(\\tilde g)+c_{-m}(\\tilde g)\\to0$.\n\n2. Pour $n$ fixé, la série de $|\\sin(nt)|$ converge uniformément en $t$ et $g$ est bornée : on intègre terme à terme,\n$$\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t=\\frac2\\pi\\int_0^\\pi g-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{I_{2kn}}{4k^2-1},\\qquad I_m=\\int_0^\\pi g(t)\\cos(mt)\\,\\mathrm{d}t.$$\nSoit $A=\\int_0^\\pi|g|$, de sorte que $|I_m|\\le A$. Pour $\\varepsilon>0$, on choisit $K$ tel que $\\frac4\\pi A\\sum_{k>K}\\frac1{4k^2-1}\\le\\varepsilon$ ; alors\n$$\\left|\\int_0^\\pi g(t)|\\sin(nt)|\\,\\mathrm{d}t-\\frac2\\pi\\int_0^\\pi g\\right|\\le\\frac4\\pi\\sum_{k=1}^K\\frac{|I_{2kn}|}{4k^2-1}+\\varepsilon,$$\net la somme finie tend vers $0$ quand $n\\to+\\infty$ par la question 1 ($2kn\\to+\\infty$ pour chaque $k\\le K$). Le membre de gauche est donc inférieur à $2\\varepsilon$ pour $n$ assez grand.\n\n3. Avec $g(t)=t^2$ : la limite vaut $\\frac2\\pi\\int_0^\\pi t^2\\,\\mathrm{d}t=\\frac2\\pi\\cdot\\frac{\\pi^3}3=\\frac{2\\pi^2}3\\approx6{,}58$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-parseval-ex1",
+      "carte": "int-l3-fourier-parseval",
+      "difficulte": 1,
+      "titre": "Une somme de série par l'identité de Parseval",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Écrire l'identité de Parseval pour $f$ et en déduire $\\sum_{n=1}^{+\\infty}\\frac1{n^2}$.",
+      "duree_min": 6,
+      "indices": [
+        "Parseval sous forme réelle : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac{|a_0|^2}4+\\frac12\\sum_{n\\ge1}\\left(|a_n|^2+|b_n|^2\\right)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{n^2}$ ?",
+        "propositions": [
+          "$\\frac{\\pi^2}6$",
+          "$\\frac{\\pi^2}8$",
+          "$\\frac{\\pi^2}{12}$",
+          "$\\frac{\\pi^2}3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est $2\\pi$-périodique et continue par morceaux ; $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^2\\,\\mathrm{d}t=\\frac{\\pi^2}3$ et $|b_n(f)|^2=\\frac4{n^2}$. L'identité de Parseval donne $\\frac{\\pi^2}3=\\frac12\\sum_{n\\ge1}\\frac4{n^2}$, donc $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Écrire l'identité de Parseval pour $f$ et en déduire $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^2}$.",
+          "indices": [
+            "Parseval sous forme réelle : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac{|a_0|^2}4+\\frac12\\sum_{n\\ge1}\\left(|a_n|^2+|b_n|^2\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^2}$ ?",
+            "propositions": [
+              "$\\frac{\\pi^2}8$",
+              "$\\frac{\\pi^2}6$",
+              "$\\frac{\\pi^2}4$",
+              "$\\frac\\pi4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=1$, et $b_n(f)=\\frac4{\\pi n}$ pour $n$ impair, $0$ pour $n$ pair. Parseval donne $1=\\frac12\\sum_{k\\ge0}\\frac{16}{\\pi^2(2k+1)^2}$, donc $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^2}=\\frac{\\pi^2}8$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ ; on admet que $a_0(f)=\\pi$, $a_n(f)=\\frac{2((-1)^n-1)}{\\pi n^2}$ et $b_n(f)=0$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Écrire l'identité de Parseval pour $f$ et en déduire $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^4}$.",
+          "indices": [
+            "Parseval sous forme réelle : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac{|a_0|^2}4+\\frac12\\sum_{n\\ge1}\\left(|a_n|^2+|b_n|^2\\right)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^4}$ ?",
+            "propositions": [
+              "$\\frac{\\pi^4}{96}$",
+              "$\\frac{\\pi^4}{90}$",
+              "$\\frac{\\pi^4}{48}$",
+              "$\\frac{\\pi^2}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^2\\,\\mathrm{d}t=\\frac{\\pi^2}3$, $\\frac{a_0^2}4=\\frac{\\pi^2}4$ et $a_n(f)=-\\frac4{\\pi n^2}$ pour $n$ impair, $0$ pour $n\\ge2$ pair. Parseval donne $\\frac{\\pi^2}3=\\frac{\\pi^2}4+\\frac12\\sum_{k\\ge0}\\frac{16}{\\pi^2(2k+1)^4}$, d'où $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^4}=\\frac{\\pi^2}{12}\\cdot\\frac{\\pi^2}8=\\frac{\\pi^4}{96}$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-parseval-ex2",
+      "carte": "int-l3-fourier-parseval",
+      "difficulte": 2,
+      "titre": "Calcul de coefficients, puis identité de Parseval",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t^2$ sur $[-\\pi,\\pi]$. Calculer ses coefficients $a_n(f)$, $b_n(f)$ (avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$), puis, à l'aide de l'identité de Parseval, $\\sum_{n=1}^{+\\infty}\\frac1{n^4}$.",
+      "duree_min": 15,
+      "indices": [
+        "$f$ est paire ; deux intégrations par parties donnent $a_n(f)$ pour $n\\ge1$. Ne pas oublier le terme $\\frac{|a_0|^2}4$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{n^4}$ ?",
+        "propositions": [
+          "$\\frac{\\pi^4}{90}$",
+          "$\\frac{\\pi^4}{96}$",
+          "$\\frac{\\pi^4}{45}$",
+          "$\\frac{\\pi^4}{72}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est paire : $b_n(f)=0$ et $a_0(f)=\\frac2\\pi\\int_0^\\pi t^2\\,\\mathrm{d}t=\\frac{2\\pi^2}3$. Pour $n\\ge1$, deux intégrations par parties donnent\n$$a_n(f)=\\frac2\\pi\\int_0^\\pi t^2\\cos(nt)\\,\\mathrm{d}t=\\frac2\\pi\\left(\\left[\\frac{t^2\\sin(nt)}n\\right]_0^\\pi-\\frac2n\\int_0^\\pi t\\sin(nt)\\,\\mathrm{d}t\\right)=-\\frac4{\\pi n}\\cdot\\frac{\\pi(-1)^{n+1}}n=\\frac{4(-1)^n}{n^2},$$\ncar $\\int_0^\\pi t\\sin(nt)\\,\\mathrm{d}t=\\frac{\\pi(-1)^{n+1}}n$. Puis $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^4\\,\\mathrm{d}t=\\frac{\\pi^4}5$, et Parseval donne\n$$\\frac{\\pi^4}5=\\frac14\\cdot\\frac{4\\pi^4}9+\\frac12\\sum_{n\\ge1}\\frac{16}{n^4},\\qquad\\text{d'où}\\qquad\\sum_{n=1}^{+\\infty}\\frac1{n^4}=\\frac18\\left(\\frac{\\pi^4}5-\\frac{\\pi^4}9\\right)=\\frac{\\pi^4}{90}.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique et impaire telle que $f(t)=t(\\pi-t)$ pour $t\\in[0,\\pi]$. Calculer ses coefficients $a_n(f)$, $b_n(f)$ (avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$), puis, à l'aide de l'identité de Parseval, $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^6}$.",
+          "indices": [
+            "$f$ est impaire : $a_n(f)=0$ et $b_n(f)=\\frac2\\pi\\int_0^\\pi t(\\pi-t)\\sin(nt)\\,\\mathrm{d}t$, à calculer par deux intégrations par parties."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^6}$ ?",
+            "propositions": [
+              "$\\frac{\\pi^6}{960}$",
+              "$\\frac{\\pi^6}{945}$",
+              "$\\frac{\\pi^6}{480}$",
+              "$\\frac{\\pi^6}{1920}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est impaire (et continue, car $f(0)=f(\\pi)=0$) : $a_n(f)=0$. Pour $n\\ge1$, avec $u(t)=t(\\pi-t)$, $u'(t)=\\pi-2t$, $u''=-2$ et $u(0)=u(\\pi)=0$, deux intégrations par parties donnent\n$$\\int_0^\\pi u(t)\\sin(nt)\\,\\mathrm{d}t=\\frac1n\\int_0^\\pi u'(t)\\cos(nt)\\,\\mathrm{d}t=-\\frac1{n^2}\\int_0^\\pi u''(t)\\sin(nt)\\,\\mathrm{d}t=\\frac2{n^2}\\cdot\\frac{1-(-1)^n}n,$$\ndonc $b_n(f)=\\frac{4(1-(-1)^n)}{\\pi n^3}$, soit $\\frac8{\\pi n^3}$ pour $n$ impair et $0$ pour $n$ pair. Puis $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f^2=\\frac1\\pi\\int_0^\\pi t^2(\\pi-t)^2\\,\\mathrm{d}t=\\frac{\\pi^4}{30}$, et Parseval donne $\\frac{\\pi^4}{30}=\\frac12\\sum_{k\\ge0}\\frac{64}{\\pi^2(2k+1)^6}$, d'où $\\sum_{k=0}^{+\\infty}\\frac1{(2k+1)^6}=\\frac{\\pi^6}{960}$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $\\cos\\frac t2$ sur $[-\\pi,\\pi]$. Calculer ses coefficients $a_n(f)$, $b_n(f)$ (avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$), puis, à l'aide de l'identité de Parseval, $\\sum_{n=1}^{+\\infty}\\frac1{(4n^2-1)^2}$.",
+          "indices": [
+            "$f$ est paire ; linéariser $\\cos\\frac t2\\cos(nt)$ pour calculer $a_n(f)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{(4n^2-1)^2}$ ?",
+            "propositions": [
+              "$\\frac{\\pi^2}{16}-\\frac12$",
+              "$\\frac{\\pi^2}8-1$",
+              "$\\frac{\\pi^2}{16}-\\frac14$",
+              "$\\frac12-\\frac4{\\pi^2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est paire : $b_n(f)=0$ et, pour $n\\ge0$, en linéarisant, avec $\\sin\\left(\\left(n+\\frac12\\right)\\pi\\right)=(-1)^n$ et $\\sin\\left(\\left(n-\\frac12\\right)\\pi\\right)=-(-1)^n$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\cos\\left(\\left(n+\\tfrac12\\right)t\\right)+\\cos\\left(\\left(n-\\tfrac12\\right)t\\right)\\right)\\mathrm{d}t=\\frac{(-1)^n}\\pi\\left(\\frac1{n+\\frac12}-\\frac1{n-\\frac12}\\right)=\\frac{4(-1)^{n+1}}{\\pi(4n^2-1)},$$\nen particulier $a_0(f)=\\frac4\\pi$. Puis $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\cos^2\\frac t2\\,\\mathrm{d}t=\\frac12$, et Parseval donne\n$$\\frac12=\\frac4{\\pi^2}+\\frac12\\sum_{n\\ge1}\\frac{16}{\\pi^2(4n^2-1)^2},\\qquad\\text{d'où}\\qquad\\sum_{n=1}^{+\\infty}\\frac1{(4n^2-1)^2}=\\frac{\\pi^2}8\\left(\\frac12-\\frac4{\\pi^2}\\right)=\\frac{\\pi^2}{16}-\\frac12.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-parseval-ex3",
+      "carte": "int-l3-fourier-parseval",
+      "difficulte": 3,
+      "titre": "Identité de Parseval pour une exponentielle",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^t$ sur $\\left]-\\pi,\\pi\\right]$. Calculer $c_n(f)$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, puis, à l'aide de l'identité de Parseval, $\\sum_{n=1}^{+\\infty}\\frac1{1+n^2}$.",
+      "duree_min": 20,
+      "indices": [
+        "$|c_n(f)|^2=\\frac{\\operatorname{sh}^2\\pi}{\\pi^2(1+n^2)}$ ; calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{2t}\\,\\mathrm{d}t$ et utiliser $\\operatorname{sh}(2\\pi)=2\\operatorname{sh}\\pi\\operatorname{ch}\\pi$.",
+        "La somme sur $\\mathbb{Z}$ compte le terme $n=0$ une fois et chaque $n\\ge1$ deux fois."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{1+n^2}$ ?",
+        "propositions": [
+          "$\\frac{\\pi\\coth\\pi-1}2$",
+          "$\\pi\\coth\\pi$",
+          "$\\frac{\\pi\\coth\\pi}2$",
+          "$\\frac{\\pi\\coth\\pi+1}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le calcul direct donne $c_n(f)=\\frac1{2\\pi}\\left[\\frac{e^{(1-in)t}}{1-in}\\right]_{-\\pi}^{\\pi}=\\frac{(-1)^n\\operatorname{sh}\\pi}{\\pi(1-in)}$, donc $|c_n(f)|^2=\\frac{\\operatorname{sh}^2\\pi}{\\pi^2(1+n^2)}$. D'autre part $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{2t}\\,\\mathrm{d}t=\\frac{\\operatorname{sh}(2\\pi)}{2\\pi}$. Parseval donne\n$$\\sum_{n\\in\\mathbb{Z}}\\frac1{1+n^2}=\\frac{\\pi^2}{\\operatorname{sh}^2\\pi}\\cdot\\frac{\\operatorname{sh}(2\\pi)}{2\\pi}=\\frac{\\pi\\operatorname{ch}\\pi}{\\operatorname{sh}\\pi}=\\pi\\coth\\pi.$$\nComme $\\sum_{n\\in\\mathbb{Z}}=1+2\\sum_{n\\ge1}$, on obtient $\\sum_{n=1}^{+\\infty}\\frac1{1+n^2}=\\frac{\\pi\\coth\\pi-1}2\\approx1{,}077$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^{2t}$ sur $\\left]-\\pi,\\pi\\right]$. Calculer $c_n(f)$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, puis, à l'aide de l'identité de Parseval, $\\sum_{n=1}^{+\\infty}\\frac1{4+n^2}$.",
+          "indices": [
+            "$|c_n(f)|^2=\\frac{\\operatorname{sh}^2(2\\pi)}{\\pi^2(4+n^2)}$ ; calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{4t}\\,\\mathrm{d}t$ et utiliser $\\operatorname{sh}(4\\pi)=2\\operatorname{sh}(2\\pi)\\operatorname{ch}(2\\pi)$.",
+            "La somme sur $\\mathbb{Z}$ compte le terme $n=0$ une fois et chaque $n\\ge1$ deux fois."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{4+n^2}$ ?",
+            "propositions": [
+              "$\\frac\\pi4\\coth(2\\pi)-\\frac18$",
+              "$\\frac\\pi2\\coth(2\\pi)$",
+              "$\\frac\\pi4\\coth(2\\pi)$",
+              "$\\frac\\pi2\\coth(2\\pi)-\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$c_n(f)=\\frac{(-1)^n\\operatorname{sh}(2\\pi)}{\\pi(2-in)}$, donc $|c_n(f)|^2=\\frac{\\operatorname{sh}^2(2\\pi)}{\\pi^2(4+n^2)}$, et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{4t}\\,\\mathrm{d}t=\\frac{\\operatorname{sh}(4\\pi)}{4\\pi}$. Parseval donne\n$$\\sum_{n\\in\\mathbb{Z}}\\frac1{4+n^2}=\\frac{\\pi^2}{\\operatorname{sh}^2(2\\pi)}\\cdot\\frac{\\operatorname{sh}(4\\pi)}{4\\pi}=\\frac\\pi2\\coth(2\\pi),$$\npuis $\\sum_{n=1}^{+\\infty}\\frac1{4+n^2}=\\frac12\\left(\\frac\\pi2\\coth(2\\pi)-\\frac14\\right)=\\frac\\pi4\\coth(2\\pi)-\\frac18\\approx0{,}660$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^{t/2}$ sur $\\left]-\\pi,\\pi\\right]$. Calculer $c_n(f)$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, puis, à l'aide de l'identité de Parseval, $\\sum_{n=1}^{+\\infty}\\frac1{1+4n^2}$.",
+          "indices": [
+            "$|c_n(f)|^2=\\frac{4\\operatorname{sh}^2\\frac\\pi2}{\\pi^2(1+4n^2)}$ ; calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{t}\\,\\mathrm{d}t$ et utiliser $\\operatorname{sh}\\pi=2\\operatorname{sh}\\frac\\pi2\\operatorname{ch}\\frac\\pi2$.",
+            "La somme sur $\\mathbb{Z}$ compte le terme $n=0$ une fois et chaque $n\\ge1$ deux fois."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sum_{n=1}^{+\\infty}\\frac1{1+4n^2}$ ?",
+            "propositions": [
+              "$\\frac\\pi4\\coth\\frac\\pi2-\\frac12$",
+              "$\\frac\\pi2\\coth\\frac\\pi2$",
+              "$\\frac\\pi4\\coth\\frac\\pi2$",
+              "$\\frac\\pi2\\coth\\frac\\pi2-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$c_n(f)=\\frac1{2\\pi}\\left[\\frac{e^{(\\frac12-in)t}}{\\frac12-in}\\right]_{-\\pi}^{\\pi}=\\frac{(-1)^n\\operatorname{sh}\\frac\\pi2}{\\pi\\left(\\frac12-in\\right)}=\\frac{2(-1)^n\\operatorname{sh}\\frac\\pi2}{\\pi(1-2in)}$, donc $|c_n(f)|^2=\\frac{4\\operatorname{sh}^2\\frac\\pi2}{\\pi^2(1+4n^2)}$, et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^t\\,\\mathrm{d}t=\\frac{\\operatorname{sh}\\pi}\\pi$. Parseval donne\n$$\\sum_{n\\in\\mathbb{Z}}\\frac1{1+4n^2}=\\frac{\\pi^2}{4\\operatorname{sh}^2\\frac\\pi2}\\cdot\\frac{\\operatorname{sh}\\pi}\\pi=\\frac\\pi2\\coth\\frac\\pi2,$$\npuis $\\sum_{n=1}^{+\\infty}\\frac1{1+4n^2}=\\frac12\\left(\\frac\\pi2\\coth\\frac\\pi2-1\\right)=\\frac\\pi4\\coth\\frac\\pi2-\\frac12\\approx0{,}356$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-parseval-ex4",
+      "carte": "int-l3-fourier-parseval",
+      "difficulte": 4,
+      "titre": "Inégalité de Wirtinger",
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{R}$ $2\\pi$-périodique, continue et de classe $\\mathcal{C}^1$ par morceaux, telle que $\\int_{-\\pi}^{\\pi}f(t)\\,\\mathrm{d}t=0$. On note $c_n(g)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)e^{-int}\\,\\mathrm{d}t$.\n\n1. Montrer que $c_n(f')=in\\,c_n(f)$ pour tout $n\\in\\mathbb{Z}$.\n\n2. En déduire l'inégalité de Wirtinger : $\\int_{-\\pi}^{\\pi}f(t)^2\\,\\mathrm{d}t\\le\\int_{-\\pi}^{\\pi}f'(t)^2\\,\\mathrm{d}t$.\n\n3. Déterminer les cas d'égalité.",
+      "duree_min": 25,
+      "indices": [
+        "Intégrer par parties sur chaque intervalle où $f$ est de classe $\\mathcal{C}^1$ ; la continuité et la périodicité de $f$ font disparaître les termes de bord.",
+        "Appliquer l'identité de Parseval à $f$ et à $f'$, en notant que $c_0(f)=0$ et que $n^2\\ge1$ pour $n\\neq0$."
+      ],
+      "reponse_finale": {
+        "question": "Quelles fonctions, parmi celles qui vérifient les hypothèses, réalisent l'égalité ?",
+        "propositions": [
+          "Les fonctions $t\\mapsto a\\cos t+b\\sin t$, avec $a,b\\in\\mathbb{R}$",
+          "Les fonctions $t\\mapsto a\\cos(nt)+b\\sin(nt)$, avec $n\\ge1$ et $a,b\\in\\mathbb{R}$",
+          "La seule fonction nulle",
+          "Les fonctions $t\\mapsto a\\cos(2t)+b\\sin(2t)$, avec $a,b\\in\\mathbb{R}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Soit $-\\pi=\\alpha_0<\\dots<\\alpha_p=\\pi$ une subdivision adaptée. Sur chaque $[\\alpha_{j-1},\\alpha_j]$, $\\int f'(t)e^{-int}\\,\\mathrm{d}t=\\left[f(t)e^{-int}\\right]+in\\int f(t)e^{-int}\\,\\mathrm{d}t$, les valeurs aux bords étant celles de $f$, continue. En sommant, les termes de bord se télescopent en $f(\\pi)e^{-in\\pi}-f(-\\pi)e^{in\\pi}=0$, d'où $c_n(f')=in\\,c_n(f)$.\n\n2. $c_0(f)=0$ par hypothèse. Par Parseval pour $f$ et pour $f'$ (continue par morceaux),\n$$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f^2=\\sum_{n\\neq0}|c_n(f)|^2\\le\\sum_{n\\neq0}n^2|c_n(f)|^2=\\sum_{n\\in\\mathbb{Z}}|c_n(f')|^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f'^2.$$\n\n3. L'égalité a lieu si et seulement si $(n^2-1)|c_n(f)|^2=0$ pour tout $n\\neq0$, c'est-à-dire $c_n(f)=0$ pour $|n|\\ge2$. Alors $f$ et $P=c_1(f)e_1+c_{-1}(f)e_{-1}$ sont continues et ont les mêmes coefficients, donc $f=P$ (injectivité des coefficients sur les fonctions continues) ; comme $f$ est réelle, $c_{-1}=\\overline{c_1}$ et $f(t)=a\\cos t+b\\sin t$ avec $a,b$ réels. Réciproquement, ces fonctions vérifient les hypothèses et $\\int(a\\cos t+b\\sin t)^2=\\pi(a^2+b^2)=\\int(-a\\sin t+b\\cos t)^2$. Pour $n\\ge2$, $f=\\cos(nt)$ donne $\\int f'^2=n^2\\int f^2>\\int f^2$ : pas d'égalité."
+    },
+    {
+      "id": "int-l3-fourier-dirichlet-ex1",
+      "carte": "int-l3-fourier-dirichlet",
+      "difficulte": 1,
+      "titre": "Somme d'une série de Fourier en un point de saut",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $[0,\\pi[$ et à $0$ sur $[\\pi,2\\pi[$. Justifier que la série de Fourier de $f$ converge en $x=0$ et donner sa somme.",
+      "duree_min": 5,
+      "indices": [
+        "Vérifier que $f$ est de classe $\\mathcal{C}^1$ par morceaux, puis appliquer le théorème de Dirichlet avec les limites à droite et à gauche au point considéré."
+      ],
+      "reponse_finale": {
+        "question": "Vers quoi converge $S_N(f)(0)$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$1$",
+          "$0$",
+          "La série de Fourier diverge en $0$."
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est constante sur $\\left]0,\\pi\\right[$ et sur $\\left]\\pi,2\\pi\\right[$ : elle est de classe $\\mathcal{C}^1$ par morceaux. Par le théorème de Dirichlet, $S_N(f)(0)\\to\\frac{f(0^+)+f(0^-)}2$, avec $f(0^+)=1$ et $f(0^-)=\\lim_{t\\to2\\pi^-}f(t)=0$. La somme est $\\frac12$, et non $f(0)=1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $e^t$ pour $t\\in\\left]-\\pi,\\pi\\right]$. Justifier que la série de Fourier de $f$ converge en $x=\\pi$ et donner sa somme.",
+          "indices": [
+            "Vérifier que $f$ est de classe $\\mathcal{C}^1$ par morceaux, puis appliquer le théorème de Dirichlet avec les limites à droite et à gauche au point considéré."
+          ],
+          "reponse_finale": {
+            "question": "Vers quoi converge $S_N(f)(\\pi)$ ?",
+            "propositions": [
+              "$\\operatorname{ch}\\pi$",
+              "$e^\\pi$",
+              "$e^{-\\pi}$",
+              "$\\operatorname{sh}\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ coïncide sur $\\left]-\\pi,\\pi\\right[$ avec $e^t$, de classe $\\mathcal{C}^1$ sur $[-\\pi,\\pi]$ : elle est $\\mathcal{C}^1$ par morceaux. En $\\pi$, $f(\\pi^-)=e^\\pi$ et $f(\\pi^+)=\\lim_{t\\to-\\pi^+}e^t=e^{-\\pi}$. Par le théorème de Dirichlet, $S_N(f)(\\pi)\\to\\frac{e^\\pi+e^{-\\pi}}2=\\operatorname{ch}\\pi$, et non $f(\\pi)=e^\\pi$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ pour $t\\in\\left[0,2\\pi\\right[$. Justifier que la série de Fourier de $f$ converge en $x=0$ et donner sa somme.",
+          "indices": [
+            "Vérifier que $f$ est de classe $\\mathcal{C}^1$ par morceaux, puis appliquer le théorème de Dirichlet avec les limites à droite et à gauche au point considéré."
+          ],
+          "reponse_finale": {
+            "question": "Vers quoi converge $S_N(f)(0)$ ?",
+            "propositions": [
+              "$\\pi$",
+              "$0$",
+              "$2\\pi$",
+              "$\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ coïncide sur $\\left]0,2\\pi\\right[$ avec $t$ : elle est $\\mathcal{C}^1$ par morceaux. En $0$, $f(0^+)=0$ et $f(0^-)=\\lim_{t\\to2\\pi^-}t=2\\pi$. Par le théorème de Dirichlet, $S_N(f)(0)\\to\\frac{0+2\\pi}2=\\pi$ ; c'est d'ailleurs $c_0(f)=\\pi$, car $S_N(f)(0)=c_0(f)+\\sum_{n=1}^Nb_n(f)\\sin0$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-dirichlet-ex2",
+      "carte": "int-l3-fourier-dirichlet",
+      "difficulte": 2,
+      "titre": "Une série numérique par le théorème de Dirichlet",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. En appliquant le théorème de Dirichlet en $x=\\frac\\pi2$, calculer $\\sum_{k=0}^{+\\infty}\\frac{(-1)^k}{2k+1}$.",
+      "duree_min": 10,
+      "indices": [
+        "$f$ est $\\mathcal{C}^1$ par morceaux et continue en $\\frac\\pi2$ ; calculer $\\sin\\frac{n\\pi}2$ selon la parité de $n$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sum_{k=0}^{+\\infty}\\frac{(-1)^k}{2k+1}$ ?",
+        "propositions": [
+          "$\\frac\\pi4$",
+          "$\\frac\\pi2$",
+          "$\\frac\\pi8$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f$ est $\\mathcal{C}^1$ par morceaux et continue en $\\frac\\pi2$, donc $S_N(f)\\left(\\frac\\pi2\\right)\\to\\frac\\pi2$. Or $\\sin\\frac{n\\pi}2=0$ pour $n$ pair et $\\sin\\frac{(2k+1)\\pi}2=(-1)^k$, avec $(-1)^{(2k+1)+1}=1$ : $S_{2K+1}(f)\\left(\\frac\\pi2\\right)=2\\sum_{k=0}^K\\frac{(-1)^k}{2k+1}$. Donc $\\sum_{k=0}^{+\\infty}\\frac{(-1)^k}{2k+1}=\\frac\\pi4$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. En appliquant le théorème de Dirichlet en $x=\\frac\\pi4$, calculer $\\sum_{k=0}^{+\\infty}\\frac{\\varepsilon_k}{2k+1}=1+\\frac13-\\frac15-\\frac17+\\frac19+\\frac1{11}-\\cdots$, où $\\varepsilon_k=1$ si $k\\equiv0$ ou $1\\pmod4$ et $\\varepsilon_k=-1$ sinon.",
+          "indices": [
+            "$f$ est $\\mathcal{C}^1$ par morceaux et continue en $\\frac\\pi4$ ; $\\sin\\frac{(2k+1)\\pi}4$ vaut $\\pm\\frac{\\sqrt2}2$, avec le signe de $\\varepsilon_k$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac{\\pi\\sqrt2}4$",
+              "$\\frac\\pi4$",
+              "$\\frac{\\pi\\sqrt2}8$",
+              "$\\frac{\\pi\\sqrt2}2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est $\\mathcal{C}^1$ par morceaux et continue en $\\frac\\pi4$, où elle vaut $1$ : $S_N(f)\\left(\\frac\\pi4\\right)\\to1$. Seuls les $b_n$ d'indice impair sont non nuls, $b_{2k+1}=\\frac4{\\pi(2k+1)}$, et $\\sin\\frac{(2k+1)\\pi}4=\\varepsilon_k\\frac{\\sqrt2}2$ (les angles $\\frac\\pi4,\\frac{3\\pi}4,\\frac{5\\pi}4,\\frac{7\\pi}4$ se répètent modulo $2\\pi$). Donc $1=\\frac4\\pi\\cdot\\frac{\\sqrt2}2\\sum_{k\\ge0}\\frac{\\varepsilon_k}{2k+1}$, soit $\\sum_{k=0}^{+\\infty}\\frac{\\varepsilon_k}{2k+1}=\\frac\\pi{2\\sqrt2}=\\frac{\\pi\\sqrt2}4\\approx1{,}11$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. En appliquant le théorème de Dirichlet en $x=\\frac\\pi3$, calculer $1-\\frac12+\\frac14-\\frac15+\\frac17-\\frac18+\\cdots$, c'est-à-dire $\\sum_{n\\ge1,\\ 3\\nmid n}\\frac{\\eta_n}n$, où $\\eta_n=1$ si $n\\equiv1\\pmod3$ et $\\eta_n=-1$ si $n\\equiv2\\pmod3$.",
+          "indices": [
+            "$f$ est $\\mathcal{C}^1$ par morceaux et continue en $\\frac\\pi3$ ; calculer $(-1)^{n+1}\\sin\\frac{n\\pi}3$ selon le reste de $n$ modulo $6$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac{\\pi\\sqrt3}9$",
+              "$\\frac\\pi3$",
+              "$\\frac\\pi6$",
+              "$\\frac{\\pi\\sqrt3}6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f$ est continue en $\\frac\\pi3$ : $S_N(f)\\left(\\frac\\pi3\\right)\\to\\frac\\pi3$. Pour $n\\equiv1,2,3,4,5,0\\pmod6$, $\\sin\\frac{n\\pi}3$ vaut $\\frac{\\sqrt3}2,\\frac{\\sqrt3}2,0,-\\frac{\\sqrt3}2,-\\frac{\\sqrt3}2,0$ et $(-1)^{n+1}$ vaut $1,-1,1,-1,1,-1$ : le produit $(-1)^{n+1}\\sin\\frac{n\\pi}3$ vaut $\\eta_n\\frac{\\sqrt3}2$ si $3\\nmid n$ et $0$ sinon. Ainsi $S_N(f)\\left(\\frac\\pi3\\right)=\\sqrt3\\sum_{n\\le N,\\ 3\\nmid n}\\frac{\\eta_n}n$, et la somme demandée vaut $\\frac\\pi{3\\sqrt3}=\\frac{\\pi\\sqrt3}9\\approx0{,}605$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-dirichlet-ex3",
+      "carte": "int-l3-fourier-dirichlet",
+      "difficulte": 3,
+      "titre": "Développement de $t\\mapsto\\cos(\\alpha t)$ et sommes de séries",
+      "enonce": "Soit $\\alpha\\in\\left]0,1\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $\\cos(\\alpha t)$ sur $[-\\pi,\\pi]$.\n\n1. Justifier que $f$ est continue et de classe $\\mathcal{C}^1$ par morceaux, et calculer $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ pour $n\\ge0$.\n\n2. On prend $\\alpha=\\frac13$. Avec le théorème de Dirichlet en $x=0$, calculer $\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-1}$.",
+      "duree_min": 20,
+      "indices": [
+        "$f$ est paire et $f(-\\pi)=f(\\pi)$ ; linéariser $\\cos(\\alpha t)\\cos(nt)$ et utiliser $\\sin((\\alpha\\pm n)\\pi)=(-1)^n\\sin(\\alpha\\pi)$.",
+        "En $x=0$, $f$ est continue et $f(0)=1=\\frac{a_0(f)}2+\\sum_{n\\ge1}a_n(f)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette somme ?",
+        "propositions": [
+          "$\\frac{\\pi\\sqrt3}9-\\frac12$",
+          "$\\frac{\\pi\\sqrt3}9$",
+          "$\\frac12-\\frac{\\pi\\sqrt3}{18}$",
+          "$\\frac{\\pi\\sqrt3}{18}-\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $f(-\\pi)=\\cos(\\alpha\\pi)=f(\\pi)$, donc le prolongement périodique est continu, et il coïncide sur $[-\\pi,\\pi]$ avec une fonction $\\mathcal{C}^1$ : $f$ est continue et $\\mathcal{C}^1$ par morceaux. Elle est paire, donc $b_n(f)=0$ et, comme $\\alpha\\pm n\\neq0$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\cos((\\alpha+n)t)+\\cos((\\alpha-n)t)\\right)\\mathrm{d}t=\\frac{(-1)^n\\sin(\\alpha\\pi)}\\pi\\left(\\frac1{\\alpha+n}+\\frac1{\\alpha-n}\\right)=\\frac{2\\alpha(-1)^n\\sin(\\alpha\\pi)}{\\pi(\\alpha^2-n^2)},$$\nen particulier $\\frac{a_0(f)}2=\\frac{\\sin(\\alpha\\pi)}{\\alpha\\pi}$.\n\n2. Pour $\\alpha=\\frac13$, $\\sin\\frac\\pi3=\\frac{\\sqrt3}2$ : $\\frac{a_0}2=\\frac{3\\sqrt3}{2\\pi}$ et $a_n=\\frac{2}{3}\\cdot\\frac{\\sqrt3}2\\cdot\\frac{(-1)^n}{\\pi\\left(\\frac19-n^2\\right)}=\\frac{3\\sqrt3}\\pi\\cdot\\frac{(-1)^n}{1-9n^2}=\\frac{3\\sqrt3}\\pi\\cdot\\frac{(-1)^{n+1}}{9n^2-1}$. Par le théorème de Dirichlet en $0$, point de continuité :\n$$1=\\frac{3\\sqrt3}{2\\pi}+\\frac{3\\sqrt3}\\pi\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-1},\\qquad\\text{d'où}\\qquad\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-1}=\\frac\\pi{3\\sqrt3}-\\frac12=\\frac{\\pi\\sqrt3}9-\\frac12\\approx0{,}105.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $\\alpha\\in\\left]0,1\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $\\cos(\\alpha t)$ sur $[-\\pi,\\pi]$.\n\n1. Justifier que $f$ est continue et de classe $\\mathcal{C}^1$ par morceaux, et calculer $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ pour $n\\ge0$.\n\n2. On prend $\\alpha=\\frac23$. Avec le théorème de Dirichlet en $x=0$, calculer $\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-4}$.",
+          "indices": [
+            "$f$ est paire et $f(-\\pi)=f(\\pi)$ ; linéariser $\\cos(\\alpha t)\\cos(nt)$ et utiliser $\\sin((\\alpha\\pm n)\\pi)=(-1)^n\\sin(\\alpha\\pi)$.",
+            "En $x=0$, $f$ est continue et $f(0)=1=\\frac{a_0(f)}2+\\sum_{n\\ge1}a_n(f)$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac{\\pi\\sqrt3}{18}-\\frac18$",
+              "$\\frac{\\pi\\sqrt3}{18}$",
+              "$\\frac{\\pi\\sqrt3}9-\\frac14$",
+              "$\\frac18-\\frac{\\pi\\sqrt3}{36}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f(-\\pi)=\\cos(\\alpha\\pi)=f(\\pi)$, donc le prolongement périodique est continu, et il coïncide sur $[-\\pi,\\pi]$ avec une fonction $\\mathcal{C}^1$ : $f$ est continue et $\\mathcal{C}^1$ par morceaux. Elle est paire, donc $b_n(f)=0$ et, comme $\\alpha\\pm n\\neq0$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\cos((\\alpha+n)t)+\\cos((\\alpha-n)t)\\right)\\mathrm{d}t=\\frac{(-1)^n\\sin(\\alpha\\pi)}\\pi\\left(\\frac1{\\alpha+n}+\\frac1{\\alpha-n}\\right)=\\frac{2\\alpha(-1)^n\\sin(\\alpha\\pi)}{\\pi(\\alpha^2-n^2)},$$\nen particulier $\\frac{a_0(f)}2=\\frac{\\sin(\\alpha\\pi)}{\\alpha\\pi}$.\n\n2. Pour $\\alpha=\\frac23$, $\\sin\\frac{2\\pi}3=\\frac{\\sqrt3}2$ : $\\frac{a_0}2=\\frac{\\sqrt3/2}{2\\pi/3}=\\frac{3\\sqrt3}{4\\pi}$ et $a_n=\\frac43\\cdot\\frac{\\sqrt3}2\\cdot\\frac{(-1)^n}{\\pi\\left(\\frac49-n^2\\right)}=\\frac{6\\sqrt3}\\pi\\cdot\\frac{(-1)^{n+1}}{9n^2-4}$. Par le théorème de Dirichlet en $0$ :\n$$1=\\frac{3\\sqrt3}{4\\pi}+\\frac{6\\sqrt3}\\pi\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-4},\\qquad\\text{d'où}\\qquad\\sum_{n=1}^{+\\infty}\\frac{(-1)^{n+1}}{9n^2-4}=\\frac\\pi{6\\sqrt3}-\\frac18=\\frac{\\pi\\sqrt3}{18}-\\frac18\\approx0{,}177.$$"
+        },
+        {
+          "enonce": "Soit $\\alpha\\in\\left]0,1\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $\\cos(\\alpha t)$ sur $[-\\pi,\\pi]$.\n\n1. Justifier que $f$ est continue et de classe $\\mathcal{C}^1$ par morceaux, et calculer $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ pour $n\\ge0$.\n\n2. On prend $\\alpha=\\frac13$. Avec le théorème de Dirichlet en $x=\\pi$, calculer $\\sum_{n=1}^{+\\infty}\\frac1{9n^2-1}$.",
+          "indices": [
+            "$f$ est paire et $f(-\\pi)=f(\\pi)$ ; linéariser $\\cos(\\alpha t)\\cos(nt)$ et utiliser $\\sin((\\alpha\\pm n)\\pi)=(-1)^n\\sin(\\alpha\\pi)$.",
+            "En $x=\\pi$, $f$ est continue, $f(\\pi)=\\cos\\frac\\pi3$ et $\\cos(n\\pi)=(-1)^n$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac12-\\frac{\\pi\\sqrt3}{18}$",
+              "$\\frac{\\pi\\sqrt3}9-\\frac12$",
+              "$\\frac12-\\frac{\\pi\\sqrt3}9$",
+              "$\\frac{\\pi\\sqrt3}{18}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f(-\\pi)=\\cos(\\alpha\\pi)=f(\\pi)$, donc le prolongement périodique est continu, et il coïncide sur $[-\\pi,\\pi]$ avec une fonction $\\mathcal{C}^1$ : $f$ est continue et $\\mathcal{C}^1$ par morceaux. Elle est paire, donc $b_n(f)=0$ et, comme $\\alpha\\pm n\\neq0$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\cos((\\alpha+n)t)+\\cos((\\alpha-n)t)\\right)\\mathrm{d}t=\\frac{(-1)^n\\sin(\\alpha\\pi)}\\pi\\left(\\frac1{\\alpha+n}+\\frac1{\\alpha-n}\\right)=\\frac{2\\alpha(-1)^n\\sin(\\alpha\\pi)}{\\pi(\\alpha^2-n^2)},$$\nen particulier $\\frac{a_0(f)}2=\\frac{\\sin(\\alpha\\pi)}{\\alpha\\pi}$.\n\n2. Pour $\\alpha=\\frac13$ : $\\frac{a_0}2=\\frac{3\\sqrt3}{2\\pi}$ et $a_n=\\frac{3\\sqrt3}\\pi\\cdot\\frac{(-1)^n}{1-9n^2}$. En $x=\\pi$, point de continuité où $f(\\pi)=\\cos\\frac\\pi3=\\frac12$, et avec $(-1)^n\\cos(n\\pi)=1$ :\n$$\\frac12=\\frac{3\\sqrt3}{2\\pi}-\\frac{3\\sqrt3}\\pi\\sum_{n=1}^{+\\infty}\\frac1{9n^2-1},\\qquad\\text{d'où}\\qquad\\sum_{n=1}^{+\\infty}\\frac1{9n^2-1}=\\frac12-\\frac\\pi{6\\sqrt3}=\\frac12-\\frac{\\pi\\sqrt3}{18}\\approx0{,}198.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-dirichlet-ex4",
+      "carte": "int-l3-fourier-dirichlet",
+      "difficulte": 4,
+      "titre": "Deux séries qui ont la même somme",
+      "enonce": "Soit $a\\in\\left]0,\\pi\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $1$ sur $[-a,a]$ et à $0$ sur $[-\\pi,\\pi]\\setminus[-a,a]$. On note $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$.\n\n1. Calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$.\n\n2. Avec le théorème de Dirichlet en $x=0$, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n$.\n\n3. Avec l'identité de Parseval, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}$.\n\n4. On prend $a=1$. Que valent alors ces deux sommes ?",
+      "duree_min": 25,
+      "indices": [
+        "$f$ est paire, $\\mathcal{C}^1$ par morceaux et continue en $0$ ; $c_0(f)$ est la proportion de la période où $f$ vaut $1$.",
+        "Dans l'identité de Parseval, $\\sum_{n\\in\\mathbb{Z}}|c_n|^2=|c_0|^2+2\\sum_{n\\ge1}|c_n|^2$."
+      ],
+      "reponse_finale": {
+        "question": "Pour $a=1$, que valent $\\sum_{n\\ge1}\\frac{\\sin n}n$ et $\\sum_{n\\ge1}\\frac{\\sin^2n}{n^2}$, dans cet ordre ?",
+        "propositions": [
+          "$\\frac{\\pi-1}2$ et $\\frac{\\pi-1}2$",
+          "$\\frac{\\pi-1}2$ et $\\frac{\\pi-1}4$",
+          "$\\frac\\pi2$ et $\\frac{\\pi-1}2$",
+          "$\\frac{\\pi-1}2$ et $\\frac{\\pi^2-1}2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $c_0(f)=\\frac{2a}{2\\pi}=\\frac a\\pi$ et, pour $n\\neq0$, $c_n(f)=\\frac1{2\\pi}\\int_{-a}^ae^{-int}\\,\\mathrm{d}t=\\frac1{2\\pi}\\cdot\\frac{2\\sin(na)}n=\\frac{\\sin(na)}{\\pi n}$.\n\n2. $f$ est constante par morceaux, donc $\\mathcal{C}^1$ par morceaux, et continue en $0$ où elle vaut $1$. Par Dirichlet, $1=\\sum_{n\\in\\mathbb{Z}}c_n(f)=\\frac a\\pi+2\\sum_{n\\ge1}\\frac{\\sin(na)}{\\pi n}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n=\\frac{\\pi-a}2$.\n\n3. $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac a\\pi$, et Parseval donne $\\frac a\\pi=\\frac{a^2}{\\pi^2}+2\\sum_{n\\ge1}\\frac{\\sin^2(na)}{\\pi^2n^2}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}=\\frac{a(\\pi-a)}2$.\n\n4. Pour $a=1$, les deux sommes valent $\\frac{\\pi-1}2\\approx1{,}071$ : $\\sum_{n\\ge1}\\frac{\\sin n}n=\\sum_{n\\ge1}\\frac{\\sin^2n}{n^2}$, coïncidence qui tient à $a(\\pi-a)=\\pi-a$ pour $a=1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $a\\in\\left]0,\\pi\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $1$ sur $[-a,a]$ et à $0$ sur $[-\\pi,\\pi]\\setminus[-a,a]$. On note $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$.\n\n1. Calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$.\n\n2. Avec le théorème de Dirichlet en $x=0$, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n$.\n\n3. Avec l'identité de Parseval, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}$.\n\n4. On prend $a=2$. Que valent alors ces deux sommes ?",
+          "indices": [
+            "$f$ est paire, $\\mathcal{C}^1$ par morceaux et continue en $0$ ; $c_0(f)$ est la proportion de la période où $f$ vaut $1$.",
+            "Dans l'identité de Parseval, $\\sum_{n\\in\\mathbb{Z}}|c_n|^2=|c_0|^2+2\\sum_{n\\ge1}|c_n|^2$."
+          ],
+          "reponse_finale": {
+            "question": "Pour $a=2$, que valent $\\sum_{n\\ge1}\\frac{\\sin(2n)}n$ et $\\sum_{n\\ge1}\\frac{\\sin^2(2n)}{n^2}$, dans cet ordre ?",
+            "propositions": [
+              "$\\frac{\\pi-2}2$ et $\\pi-2$",
+              "$\\frac{\\pi-2}2$ et $\\frac{\\pi-2}2$",
+              "$\\pi-2$ et $\\frac{\\pi-2}2$",
+              "$\\frac{\\pi-2}2$ et $2\\pi-4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $c_0(f)=\\frac{2a}{2\\pi}=\\frac a\\pi$ et, pour $n\\neq0$, $c_n(f)=\\frac1{2\\pi}\\int_{-a}^ae^{-int}\\,\\mathrm{d}t=\\frac1{2\\pi}\\cdot\\frac{2\\sin(na)}n=\\frac{\\sin(na)}{\\pi n}$.\n\n2. $f$ est constante par morceaux, donc $\\mathcal{C}^1$ par morceaux, et continue en $0$ où elle vaut $1$. Par Dirichlet, $1=\\sum_{n\\in\\mathbb{Z}}c_n(f)=\\frac a\\pi+2\\sum_{n\\ge1}\\frac{\\sin(na)}{\\pi n}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n=\\frac{\\pi-a}2$.\n\n3. $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac a\\pi$, et Parseval donne $\\frac a\\pi=\\frac{a^2}{\\pi^2}+2\\sum_{n\\ge1}\\frac{\\sin^2(na)}{\\pi^2n^2}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}=\\frac{a(\\pi-a)}2$.\n\n4. Pour $a=2$ : $\\sum_{n\\ge1}\\frac{\\sin(2n)}n=\\frac{\\pi-2}2\\approx0{,}571$ et $\\sum_{n\\ge1}\\frac{\\sin^2(2n)}{n^2}=\\frac{2(\\pi-2)}2=\\pi-2\\approx1{,}142$."
+        },
+        {
+          "enonce": "Soit $a\\in\\left]0,\\pi\\right[$ et $f$ la fonction $2\\pi$-périodique égale à $1$ sur $[-a,a]$ et à $0$ sur $[-\\pi,\\pi]\\setminus[-a,a]$. On note $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$.\n\n1. Calculer $c_n(f)$ pour $n\\in\\mathbb{Z}$.\n\n2. Avec le théorème de Dirichlet en $x=0$, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n$.\n\n3. Avec l'identité de Parseval, calculer $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}$.\n\n4. On prend $a=\\frac12$. Que valent alors ces deux sommes ?",
+          "indices": [
+            "$f$ est paire, $\\mathcal{C}^1$ par morceaux et continue en $0$ ; $c_0(f)$ est la proportion de la période où $f$ vaut $1$.",
+            "Dans l'identité de Parseval, $\\sum_{n\\in\\mathbb{Z}}|c_n|^2=|c_0|^2+2\\sum_{n\\ge1}|c_n|^2$."
+          ],
+          "reponse_finale": {
+            "question": "Pour $a=\\frac12$, que valent $\\sum_{n\\ge1}\\frac{\\sin\\frac n2}n$ et $\\sum_{n\\ge1}\\frac{\\sin^2\\frac n2}{n^2}$, dans cet ordre ?",
+            "propositions": [
+              "$\\frac{2\\pi-1}4$ et $\\frac{2\\pi-1}8$",
+              "$\\frac{2\\pi-1}4$ et $\\frac{2\\pi-1}4$",
+              "$\\frac{2\\pi-1}8$ et $\\frac{2\\pi-1}4$",
+              "$\\frac{\\pi-1}4$ et $\\frac{2\\pi-1}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $c_0(f)=\\frac{2a}{2\\pi}=\\frac a\\pi$ et, pour $n\\neq0$, $c_n(f)=\\frac1{2\\pi}\\int_{-a}^ae^{-int}\\,\\mathrm{d}t=\\frac1{2\\pi}\\cdot\\frac{2\\sin(na)}n=\\frac{\\sin(na)}{\\pi n}$.\n\n2. $f$ est constante par morceaux, donc $\\mathcal{C}^1$ par morceaux, et continue en $0$ où elle vaut $1$. Par Dirichlet, $1=\\sum_{n\\in\\mathbb{Z}}c_n(f)=\\frac a\\pi+2\\sum_{n\\ge1}\\frac{\\sin(na)}{\\pi n}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin(na)}n=\\frac{\\pi-a}2$.\n\n3. $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2=\\frac a\\pi$, et Parseval donne $\\frac a\\pi=\\frac{a^2}{\\pi^2}+2\\sum_{n\\ge1}\\frac{\\sin^2(na)}{\\pi^2n^2}$, d'où $\\sum_{n=1}^{+\\infty}\\frac{\\sin^2(na)}{n^2}=\\frac{a(\\pi-a)}2$.\n\n4. Pour $a=\\frac12$ : $\\sum_{n\\ge1}\\frac{\\sin\\frac n2}n=\\frac{\\pi-\\frac12}2=\\frac{2\\pi-1}4\\approx1{,}321$ et $\\sum_{n\\ge1}\\frac{\\sin^2\\frac n2}{n^2}=\\frac{\\frac12\\left(\\pi-\\frac12\\right)}2=\\frac{2\\pi-1}8\\approx0{,}660$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-dirichlet-ex5",
+      "carte": "int-l3-fourier-dirichlet",
+      "difficulte": 5,
+      "titre": "Phénomène de Gibbs",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Montrer que $S_{2N}(f)(x)=\\frac4\\pi\\sum_{k=0}^{N-1}\\frac{\\sin((2k+1)x)}{2k+1}$ et que $S_{2N}(f)$ converge simplement vers $f$ sur $\\mathbb{R}$.\n\n2. Écrire $S_{2N}(f)\\left(\\frac\\pi{2N}\\right)$ comme une somme de Riemann de la fonction $\\varphi:u\\mapsto\\frac{\\sin u}u$, prolongée par $\\varphi(0)=1$, sur $[0,\\pi]$.\n\n3. En déduire $\\lim_{N\\to+\\infty}S_{2N}(f)\\left(\\frac\\pi{2N}\\right)$. La convergence de $S_{2N}(f)$ vers $f$ est-elle uniforme sur $\\left]0,\\pi\\right[$ ?",
+      "duree_min": 40,
+      "indices": [
+        "Question 2 : poser $u_k=\\frac{(2k+1)\\pi}{2N}$, milieux des intervalles de la subdivision régulière de $[0,\\pi]$ en $N$ morceaux.",
+        "Question 3 : les sommes de Riemann d'une fonction continue sur un segment convergent vers son intégrale."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\lim_{N\\to+\\infty}S_{2N}(f)\\left(\\frac\\pi{2N}\\right)$ ?",
+        "propositions": [
+          "$\\frac2\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}179$",
+          "$1$",
+          "$\\frac1\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx0{,}589$",
+          "$\\frac4\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx2{,}358$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $b_n(f)=\\frac4{\\pi n}$ pour $n$ impair et $0$ pour $n$ pair, $a_n(f)=0$ : $S_{2N}(f)(x)=\\sum_{n=1}^{2N}b_n\\sin(nx)=\\frac4\\pi\\sum_{k=0}^{N-1}\\frac{\\sin((2k+1)x)}{2k+1}$. La fonction $f$ est $\\mathcal{C}^1$ par morceaux et vérifie $f(x)=\\frac{f(x^+)+f(x^-)}2$ en tout point (en $0$ et en $\\pi$, la demi-somme vaut $0=f(0)=f(\\pi)$) : par le théorème de Dirichlet, $S_N(f)\\to f$ simplement, et en particulier $S_{2N}(f)\\to f$.\n\n2. Avec $h=\\frac\\pi N$ et $u_k=\\frac{(2k+1)\\pi}{2N}=\\left(k+\\frac12\\right)h$, on a $\\frac{\\sin u_k}{2k+1}=\\frac\\pi{2N}\\cdot\\frac{\\sin u_k}{u_k}$, donc\n$$S_{2N}(f)\\left(\\frac\\pi{2N}\\right)=\\frac4\\pi\\cdot\\frac\\pi{2N}\\sum_{k=0}^{N-1}\\varphi(u_k)=\\frac2\\pi\\cdot\\frac\\pi N\\sum_{k=0}^{N-1}\\varphi(u_k),$$\nsomme de Riemann de $\\varphi$ sur $[0,\\pi]$, de pas $\\frac\\pi N$, aux milieux des intervalles, multipliée par $\\frac2\\pi$.\n\n3. $\\varphi$ est continue sur $[0,\\pi]$, donc $S_{2N}(f)\\left(\\frac\\pi{2N}\\right)\\to\\frac2\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}179$. Les points $\\frac\\pi{2N}$ sont dans $\\left]0,\\pi\\right[$, où $f=1$, et $S_{2N}(f)\\left(\\frac\\pi{2N}\\right)-1\\to0{,}179\\ldots\\neq0$ : la convergence n'est pas uniforme sur $\\left]0,\\pi\\right[$. Près du saut, les sommes partielles dépassent la valeur $1$ d'environ $9\\,\\%$ de la hauteur du saut (qui vaut $2$), quel que soit $N$ assez grand : c'est le phénomène de Gibbs.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Montrer que $S_N(f)(x)=2\\sum_{n=1}^N\\frac{(-1)^{n+1}\\sin(nx)}n$ et que $S_N(f)(x)\\to f(x)$ pour tout $x\\in\\left]-\\pi,\\pi\\right[$.\n\n2. Montrer que $S_N(f)\\left(\\pi-\\frac\\pi N\\right)=2\\sum_{n=1}^N\\frac{\\sin\\frac{n\\pi}N}n$, et l'écrire comme une somme de Riemann de la fonction $\\varphi:u\\mapsto\\frac{\\sin u}u$, prolongée par $\\varphi(0)=1$, sur $[0,\\pi]$.\n\n3. En déduire $\\lim_{N\\to+\\infty}S_N(f)\\left(\\pi-\\frac\\pi N\\right)$ et la comparer à $\\sup|f|=\\pi$. La convergence de $S_N(f)$ vers $f$ est-elle uniforme sur $\\left]-\\pi,\\pi\\right[$ ?",
+          "indices": [
+            "Question 2 : $\\sin\\left(n\\pi-\\frac{n\\pi}N\\right)=(-1)^{n+1}\\sin\\frac{n\\pi}N$, puis poser $u_n=\\frac{n\\pi}N$.",
+            "Question 3 : les sommes de Riemann d'une fonction continue sur un segment convergent vers son intégrale."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\lim_{N\\to+\\infty}S_N(f)\\left(\\pi-\\frac\\pi N\\right)$ ?",
+            "propositions": [
+              "$2\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx3{,}704$",
+              "$\\pi$",
+              "$\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}852$",
+              "$\\frac2\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}179$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $S_N(f)(x)=\\sum_{n=1}^Nb_n\\sin(nx)=2\\sum_{n=1}^N\\frac{(-1)^{n+1}\\sin(nx)}n$ ; $f$ est $\\mathcal{C}^1$ par morceaux et continue sur $\\left]-\\pi,\\pi\\right[$, d'où la convergence par le théorème de Dirichlet.\n\n2. $\\sin\\left(n\\pi-\\frac{n\\pi}N\\right)=-\\cos(n\\pi)\\sin\\frac{n\\pi}N=(-1)^{n+1}\\sin\\frac{n\\pi}N$, et $(-1)^{n+1}(-1)^{n+1}=1$ : $S_N(f)\\left(\\pi-\\frac\\pi N\\right)=2\\sum_{n=1}^N\\frac{\\sin\\frac{n\\pi}N}n=2\\cdot\\frac\\pi N\\sum_{n=1}^N\\varphi\\left(\\frac{n\\pi}N\\right)$, somme de Riemann de $\\varphi$ sur $[0,\\pi]$ (pas $\\frac\\pi N$, extrémités droites), multipliée par $2$.\n\n3. $\\varphi$ étant continue sur $[0,\\pi]$, la limite vaut $2\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx3{,}704>\\pi$. Les points $\\pi-\\frac\\pi N$ sont dans $\\left]-\\pi,\\pi\\right[$ et $f\\left(\\pi-\\frac\\pi N\\right)\\to\\pi$, donc $S_N(f)-f$ prend en ces points des valeurs qui tendent vers $0{,}56\\ldots\\neq0$ : la convergence n'est pas uniforme sur $\\left]-\\pi,\\pi\\right[$ (phénomène de Gibbs, près du saut en $\\pi$)."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $\\frac{\\pi-t}2$ sur $\\left]0,2\\pi\\right[$ et nulle en $0$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac1n$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Montrer que $S_N(f)(x)=\\sum_{n=1}^N\\frac{\\sin(nx)}n$ et que $S_N(f)$ converge simplement vers $f$ sur $\\mathbb{R}$.\n\n2. Écrire $S_N(f)\\left(\\frac\\pi N\\right)$ comme une somme de Riemann de la fonction $\\varphi:u\\mapsto\\frac{\\sin u}u$, prolongée par $\\varphi(0)=1$, sur $[0,\\pi]$.\n\n3. En déduire $\\lim_{N\\to+\\infty}S_N(f)\\left(\\frac\\pi N\\right)$ et la comparer à $\\sup|f|=\\frac\\pi2$. La convergence de $S_N(f)$ vers $f$ est-elle uniforme sur $\\left]0,2\\pi\\right[$ ?",
+          "indices": [
+            "Question 2 : poser $u_n=\\frac{n\\pi}N$, extrémités droites des intervalles de la subdivision régulière de $[0,\\pi]$ en $N$ morceaux.",
+            "Question 3 : les sommes de Riemann d'une fonction continue sur un segment convergent vers son intégrale."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\lim_{N\\to+\\infty}S_N(f)\\left(\\frac\\pi N\\right)$ ?",
+            "propositions": [
+              "$\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}852$",
+              "$\\frac\\pi2$",
+              "$\\frac2\\pi\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}179$",
+              "$2\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx3{,}704$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $S_N(f)(x)=\\sum_{n=1}^Nb_n\\sin(nx)=\\sum_{n=1}^N\\frac{\\sin(nx)}n$. La fonction $f$ est $\\mathcal{C}^1$ par morceaux et vérifie $f(x)=\\frac{f(x^+)+f(x^-)}2$ en tout point (en $0$ : $\\frac{\\frac\\pi2-\\frac\\pi2}2=0=f(0)$) : le théorème de Dirichlet donne la convergence simple vers $f$.\n\n2. $S_N(f)\\left(\\frac\\pi N\\right)=\\sum_{n=1}^N\\frac{\\sin\\frac{n\\pi}N}n=\\frac\\pi N\\sum_{n=1}^N\\varphi\\left(\\frac{n\\pi}N\\right)$, somme de Riemann de $\\varphi$ sur $[0,\\pi]$, de pas $\\frac\\pi N$, aux extrémités droites.\n\n3. $\\varphi$ étant continue, la limite vaut $\\int_0^\\pi\\frac{\\sin u}u\\,\\mathrm{d}u\\approx1{,}852>\\frac\\pi2\\approx1{,}571$ (borne supérieure de $|f|$, non atteinte). Comme $f\\left(\\frac\\pi N\\right)\\to\\frac\\pi2$, l'écart $S_N(f)\\left(\\frac\\pi N\\right)-f\\left(\\frac\\pi N\\right)$ tend vers $0{,}28\\ldots\\neq0$ : la convergence n'est pas uniforme sur $\\left]0,2\\pi\\right[$ (phénomène de Gibbs près du saut en $0$)."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-fejer-ex1",
+      "carte": "int-l3-fourier-fejer",
+      "difficulte": 1,
+      "titre": "Somme de Fejér d'un polynôme trigonométrique",
+      "enonce": "On rappelle que la somme de Fejér d'ordre $N\\ge1$ est $\\sigma_N(g)=\\frac1N\\sum_{k=0}^{N-1}S_k(g)$, de sorte que $\\sigma_N(g)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(g)e_n$, avec $c_n(g)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)e^{-int}\\,\\mathrm{d}t$ et $e_n(t)=e^{int}$. Soit $f(t)=1+4\\cos(2t)-2\\sin(3t)$. Calculer $\\sigma_4(f)$, puis $\\sigma_4(f)(0)$.",
+      "duree_min": 6,
+      "indices": [
+        "Dans l'écriture réelle, chaque terme $a_n\\cos(nt)+b_n\\sin(nt)$ avec $1\\le n<N$ est multiplié par $1-\\frac nN$, le terme constant est inchangé, et les termes d'indice $n\\ge N$ disparaissent."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sigma_4(f)(0)$ ?",
+        "propositions": [
+          "$3$",
+          "$5$",
+          "$2$",
+          "$4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les termes d'indices $0$, $\\pm2$ et $\\pm3$ sont multipliés respectivement par $1$, $1-\\frac24=\\frac12$ et $1-\\frac34=\\frac14$ :\n$$\\sigma_4(f)(t)=1+2\\cos(2t)-\\frac12\\sin(3t),\\qquad\\sigma_4(f)(0)=1+2=3.$$\nOn remarque que $\\sigma_4(f)(0)\\neq f(0)=5$ : les sommes de Fejér d'un polynôme trigonométrique ne lui sont pas égales, elles tendent seulement vers lui.",
+      "variantes": [
+        {
+          "enonce": "On rappelle que la somme de Fejér d'ordre $N\\ge1$ est $\\sigma_N(g)=\\frac1N\\sum_{k=0}^{N-1}S_k(g)$, de sorte que $\\sigma_N(g)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(g)e_n$, avec $c_n(g)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)e^{-int}\\,\\mathrm{d}t$ et $e_n(t)=e^{int}$. Soit $f(t)=\\cos t+\\cos(2t)$. Calculer $\\sigma_3(f)$, puis $\\sigma_3(f)(0)$.",
+          "indices": [
+            "Dans l'écriture réelle, chaque terme $a_n\\cos(nt)+b_n\\sin(nt)$ avec $1\\le n<N$ est multiplié par $1-\\frac nN$, le terme constant est inchangé, et les termes d'indice $n\\ge N$ disparaissent."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma_3(f)(0)$ ?",
+            "propositions": [
+              "$1$",
+              "$2$",
+              "$\\frac53$",
+              "$\\frac43$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les termes en $\\cos t$ et $\\cos(2t)$ sont multipliés par $1-\\frac13=\\frac23$ et $1-\\frac23=\\frac13$ : $\\sigma_3(f)(t)=\\frac23\\cos t+\\frac13\\cos(2t)$, et $\\sigma_3(f)(0)=1$, alors que $f(0)=2$."
+        },
+        {
+          "enonce": "On rappelle que la somme de Fejér d'ordre $N\\ge1$ est $\\sigma_N(g)=\\frac1N\\sum_{k=0}^{N-1}S_k(g)$, de sorte que $\\sigma_N(g)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(g)e_n$, avec $c_n(g)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)e^{-int}\\,\\mathrm{d}t$ et $e_n(t)=e^{int}$. Soit $f(t)=2+\\sin t+3\\cos(2t)$. Calculer $\\sigma_2(f)$, puis $\\sigma_2(f)\\left(\\frac\\pi2\\right)$.",
+          "indices": [
+            "Dans l'écriture réelle, chaque terme $a_n\\cos(nt)+b_n\\sin(nt)$ avec $1\\le n<N$ est multiplié par $1-\\frac nN$, le terme constant est inchangé, et les termes d'indice $n\\ge N$ disparaissent."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma_2(f)\\left(\\frac\\pi2\\right)$ ?",
+            "propositions": [
+              "$\\frac52$",
+              "$0$",
+              "$3$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $N=2$, le terme constant est inchangé, le terme en $\\sin t$ est multiplié par $1-\\frac12=\\frac12$ et le terme en $\\cos(2t)$ disparaît ($|n|=2\\ge N$) : $\\sigma_2(f)(t)=2+\\frac12\\sin t$, et $\\sigma_2(f)\\left(\\frac\\pi2\\right)=\\frac52$, alors que $f\\left(\\frac\\pi2\\right)=2+1-3=0$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-fejer-ex2",
+      "carte": "int-l3-fourier-fejer",
+      "difficulte": 2,
+      "titre": "Norme quadratique du noyau de Fejér",
+      "enonce": "Le noyau de Fejér est $K_N(t)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)e^{int}$. Vérifier que $K_N(0)=N$, puis calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N(t)^2\\,\\mathrm{d}t$ pour $N=3$.",
+      "duree_min": 12,
+      "indices": [
+        "Les $e_n$ sont orthonormées : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\left|\\sum\\gamma_ne_n\\right|^2=\\sum|\\gamma_n|^2$ pour une somme finie."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_3(t)^2\\,\\mathrm{d}t$ ?",
+        "propositions": [
+          "$\\frac{19}9$",
+          "$3$",
+          "$1$",
+          "$\\frac{14}9$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$K_N(0)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)=1+2\\sum_{k=1}^{N-1}\\frac{N-k}N=1+(N-1)=N$. Comme $K_N$ est réel, $K_N^2=|K_N|^2$, et l'orthonormalité des $e_n$ donne\n$$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_3^2=1+2\\left(\\left(\\frac23\\right)^2+\\left(\\frac13\\right)^2\\right)=1+\\frac{10}9=\\frac{19}9.$$\nPlus généralement, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N^2=\\frac{2N^2+1}{3N}$, à comparer à $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$ : le noyau se concentre près de $0$.",
+      "variantes": [
+        {
+          "enonce": "Le noyau de Fejér est $K_N(t)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)e^{int}$. Vérifier que $K_N(0)=N$, puis calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N(t)^2\\,\\mathrm{d}t$ pour $N=2$.",
+          "indices": [
+            "Les $e_n$ sont orthonormées : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\left|\\sum\\gamma_ne_n\\right|^2=\\sum|\\gamma_n|^2$ pour une somme finie."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_2(t)^2\\,\\mathrm{d}t$ ?",
+            "propositions": [
+              "$\\frac32$",
+              "$2$",
+              "$1$",
+              "$\\frac54$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$K_N(0)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)=1+(N-1)=N$. Pour $N=2$, $K_2=1+\\frac12e_1+\\frac12e_{-1}=1+\\cos t$, et l'orthonormalité donne $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_2^2=1+\\frac14+\\frac14=\\frac32$."
+        },
+        {
+          "enonce": "Le noyau de Fejér est $K_N(t)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)e^{int}$. Vérifier que $K_N(0)=N$, puis calculer $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N(t)^2\\,\\mathrm{d}t$ pour $N=4$.",
+          "indices": [
+            "Les $e_n$ sont orthonormées : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\left|\\sum\\gamma_ne_n\\right|^2=\\sum|\\gamma_n|^2$ pour une somme finie."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_4(t)^2\\,\\mathrm{d}t$ ?",
+            "propositions": [
+              "$\\frac{11}4$",
+              "$4$",
+              "$1$",
+              "$\\frac{15}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$K_N(0)=1+(N-1)=N$. Pour $N=4$, les coefficients sont $1$, puis $\\frac34,\\frac12,\\frac14$ pour $|n|=1,2,3$ ; l'orthonormalité donne $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_4^2=1+2\\left(\\frac9{16}+\\frac4{16}+\\frac1{16}\\right)=1+\\frac{28}{16}=\\frac{11}4$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-fejer-ex3",
+      "carte": "int-l3-fourier-fejer",
+      "difficulte": 3,
+      "titre": "Sommes de Fejér et sommes partielles d'un créneau",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. On note $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$.\n\n1. Montrer que $|\\sigma_N(f)(x)|\\le1$ pour tout $N\\ge1$ et tout réel $x$.\n\n2. Calculer $S_5(f)\\left(\\frac\\pi2\\right)$ et $\\sigma_6(f)\\left(\\frac\\pi2\\right)$. Que constate-t-on ?",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$, avec $K_N\\ge0$ et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.",
+        "Question 2 : seuls les $b_n$ d'indice impair sont non nuls, et $\\sin\\frac{n\\pi}2$ vaut $1$, $0$, $-1$, $0$ selon que $n\\equiv1,2,3,0\\pmod4$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\sigma_6(f)\\left(\\frac\\pi2\\right)$ ?",
+        "propositions": [
+          "$\\frac{14}{5\\pi}$",
+          "$\\frac{52}{15\\pi}$",
+          "$1$",
+          "$\\frac4\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$ avec $K_N\\ge0$ de moyenne $1$, et $|f|\\le1$ : $|\\sigma_N(f)(x)|\\le\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.\n\n2. Avec $b_1=\\frac4\\pi$, $b_3=\\frac4{3\\pi}$, $b_5=\\frac4{5\\pi}$ et $\\sin\\frac\\pi2=1$, $\\sin\\frac{3\\pi}2=-1$, $\\sin\\frac{5\\pi}2=1$ :\n$$S_5(f)\\left(\\frac\\pi2\\right)=\\frac4\\pi\\left(1-\\frac13+\\frac15\\right)=\\frac{52}{15\\pi}\\approx1{,}10,\\qquad\\sigma_6(f)\\left(\\frac\\pi2\\right)=\\frac4\\pi\\left(\\frac56-\\frac12\\cdot\\frac13+\\frac16\\cdot\\frac15\\right)=\\frac4\\pi\\cdot\\frac{21}{30}=\\frac{14}{5\\pi}\\approx0{,}89.$$\nLa somme partielle dépasse $\\sup|f|=1$, la somme de Fejér non : c'est l'intérêt de la positivité du noyau de Fejér.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. On note $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$.\n\n1. Montrer que $|\\sigma_N(f)(x)|\\le1$ pour tout $N\\ge1$ et tout réel $x$.\n\n2. Calculer $S_3(f)\\left(\\frac\\pi4\\right)$ et $\\sigma_4(f)\\left(\\frac\\pi4\\right)$. Que constate-t-on ?",
+          "indices": [
+            "Question 1 : $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$, avec $K_N\\ge0$ et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.",
+            "Question 2 : seuls $b_1$ et $b_3$ interviennent, et $\\sin\\frac\\pi4=\\sin\\frac{3\\pi}4=\\frac{\\sqrt2}2$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma_4(f)\\left(\\frac\\pi4\\right)$ ?",
+            "propositions": [
+              "$\\frac{5\\sqrt2}{3\\pi}$",
+              "$\\frac{8\\sqrt2}{3\\pi}$",
+              "$1$",
+              "$\\frac{2\\sqrt2}\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$ avec $K_N\\ge0$ de moyenne $1$, et $|f|\\le1$ : $|\\sigma_N(f)(x)|\\le\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.\n\n2. Avec $b_1=\\frac4\\pi$, $b_3=\\frac4{3\\pi}$ et $\\sin\\frac\\pi4=\\sin\\frac{3\\pi}4=\\frac{\\sqrt2}2$ :\n$$S_3(f)\\left(\\frac\\pi4\\right)=\\frac4\\pi\\cdot\\frac{\\sqrt2}2\\left(1+\\frac13\\right)=\\frac{8\\sqrt2}{3\\pi}\\approx1{,}20,\\qquad\\sigma_4(f)\\left(\\frac\\pi4\\right)=\\frac4\\pi\\cdot\\frac{\\sqrt2}2\\left(\\frac34+\\frac14\\cdot\\frac13\\right)=\\frac{5\\sqrt2}{3\\pi}\\approx0{,}75.$$\nLa somme partielle dépasse $\\sup|f|=1$, la somme de Fejér non."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et en $\\pi$ ; on admet que $a_n(f)=0$ pour tout $n\\ge0$ et $b_n(f)=\\frac{2(1-(-1)^n)}{\\pi n}$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. On note $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$.\n\n1. Montrer que $|\\sigma_N(f)(x)|\\le1$ pour tout $N\\ge1$ et tout réel $x$.\n\n2. Calculer $S_5(f)\\left(\\frac\\pi6\\right)$ et $\\sigma_6(f)\\left(\\frac\\pi6\\right)$. Que constate-t-on ?",
+          "indices": [
+            "Question 1 : $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$, avec $K_N\\ge0$ et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.",
+            "Question 2 : seuls $b_1$, $b_3$, $b_5$ interviennent ; $\\sin\\frac\\pi6=\\sin\\frac{5\\pi}6=\\frac12$ et $\\sin\\frac\\pi2=1$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sigma_6(f)\\left(\\frac\\pi6\\right)$ ?",
+            "propositions": [
+              "$\\frac{12}{5\\pi}$",
+              "$\\frac{56}{15\\pi}$",
+              "$1$",
+              "$\\frac2\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$ avec $K_N\\ge0$ de moyenne $1$, et $|f|\\le1$ : $|\\sigma_N(f)(x)|\\le\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$.\n\n2. Avec $b_1=\\frac4\\pi$, $b_3=\\frac4{3\\pi}$, $b_5=\\frac4{5\\pi}$ et $\\sin\\frac\\pi6=\\frac12$, $\\sin\\frac{3\\pi}6=1$, $\\sin\\frac{5\\pi}6=\\frac12$ :\n$$S_5(f)\\left(\\frac\\pi6\\right)=\\frac4\\pi\\left(\\frac12+\\frac13+\\frac1{10}\\right)=\\frac{56}{15\\pi}\\approx1{,}19,\\qquad\\sigma_6(f)\\left(\\frac\\pi6\\right)=\\frac4\\pi\\left(\\frac56\\cdot\\frac12+\\frac12\\cdot\\frac13+\\frac16\\cdot\\frac1{10}\\right)=\\frac4\\pi\\cdot\\frac35=\\frac{12}{5\\pi}\\approx0{,}76.$$\nLa somme partielle dépasse $\\sup|f|=1$, la somme de Fejér non."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-fejer-ex4",
+      "carte": "int-l3-fourier-fejer",
+      "difficulte": 4,
+      "titre": "Constantes de Lebesgue : pourquoi moyenner",
+      "enonce": "On note $D_N(t)=\\sum_{n=-N}^Ne^{int}$ le noyau de Dirichlet, de sorte que $S_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)D_N(t)\\,\\mathrm{d}t$ pour $f$ $2\\pi$-périodique continue par morceaux, et $L_N=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|D_N(t)|\\,\\mathrm{d}t$.\n\n1. Montrer que $D_N(t)=\\frac{\\sin\\left(\\left(N+\\frac12\\right)t\\right)}{\\sin\\frac t2}$ pour $t\\notin2\\pi\\mathbb{Z}$.\n\n2. En utilisant $\\sin\\frac t2\\le\\frac t2$ pour $t\\in[0,\\pi]$, montrer que $L_N\\ge\\frac2\\pi\\int_0^{(N+\\frac12)\\pi}\\frac{|\\sin u|}u\\,\\mathrm{d}u\\ge\\frac4{\\pi^2}\\sum_{k=1}^N\\frac1k$.\n\n3. En déduire la limite de $L_N$, et comparer avec $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|K_N(t)|\\,\\mathrm{d}t$, où $K_N$ est le noyau de Fejér. Expliquer pourquoi la majoration $|S_N(f)(x)|\\le L_N\\sup|f|$ ne permet pas de conclure comme pour les sommes de Fejér.",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : somme géométrique, puis mettre $e^{i\\frac t2}$ et $e^{-i(N+\\frac12)t}$ en facteur (ou multiplier par $2\\sin\\frac t2$ et télescoper).",
+        "Question 2 : par parité, $L_N=\\frac1\\pi\\int_0^\\pi|D_N|$ ; sur $[(k-1)\\pi,k\\pi]$, minorer $\\frac1u$ par $\\frac1{k\\pi}$, et $\\int_{(k-1)\\pi}^{k\\pi}|\\sin u|\\,\\mathrm{d}u=2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la limite de $L_N$ quand $N\\to+\\infty$ ?",
+        "propositions": [
+          "$+\\infty$",
+          "$1$",
+          "$\\frac4{\\pi^2}$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $t\\notin2\\pi\\mathbb{Z}$, $e^{it}\\neq1$ et\n$$D_N(t)=e^{-iNt}\\frac{e^{i(2N+1)t}-1}{e^{it}-1}=\\frac{e^{i(N+\\frac12)t}-e^{-i(N+\\frac12)t}}{e^{i\\frac t2}-e^{-i\\frac t2}}=\\frac{\\sin\\left(\\left(N+\\frac12\\right)t\\right)}{\\sin\\frac t2}.$$\n\n2. $D_N$ est paire, donc $L_N=\\frac1\\pi\\int_0^\\pi\\frac{|\\sin((N+\\frac12)t)|}{\\sin\\frac t2}\\,\\mathrm{d}t$. Sur $\\left]0,\\pi\\right]$, $0<\\sin\\frac t2\\le\\frac t2$, d'où $L_N\\ge\\frac2\\pi\\int_0^\\pi\\frac{|\\sin((N+\\frac12)t)|}t\\,\\mathrm{d}t=\\frac2\\pi\\int_0^{(N+\\frac12)\\pi}\\frac{|\\sin u|}u\\,\\mathrm{d}u$ (changement de variable $u=(N+\\frac12)t$, qui conserve $\\frac{\\mathrm{d}t}t$). En gardant les intervalles $[(k-1)\\pi,k\\pi]$ pour $1\\le k\\le N$ et en minorant $\\frac1u$ par $\\frac1{k\\pi}$ :\n$$L_N\\ge\\frac2\\pi\\sum_{k=1}^N\\frac1{k\\pi}\\int_{(k-1)\\pi}^{k\\pi}|\\sin u|\\,\\mathrm{d}u=\\frac4{\\pi^2}\\sum_{k=1}^N\\frac1k.$$\n\n3. La série harmonique diverge, donc $L_N\\to+\\infty$ (comme $\\frac4{\\pi^2}\\ln N$ au moins). Au contraire, $K_N\\ge0$ et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|K_N|=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$ pour tout $N$. La majoration $|S_N(f)(x)|\\le L_N\\sup|f|$ a une constante qui tend vers l'infini : elle ne donne aucun contrôle uniforme en $N$, alors que $|\\sigma_N(f)(x)|\\le\\sup|f|$, et c'est ce contrôle uniforme (avec la positivité) qui fait marcher la preuve du théorème de Fejér."
+    },
+    {
+      "id": "int-l3-fourier-fejer-ex5",
+      "carte": "int-l3-fourier-fejer",
+      "difficulte": 4,
+      "titre": "Convergence de la série de Fourier d'une fonction continue en un point",
+      "enonce": "1. (Lemme de Cesàro) Soit $(u_k)$ une suite complexe qui converge vers $\\ell$. Montrer que $\\frac1N\\sum_{k=0}^{N-1}u_k\\to\\ell$.\n\n2. Soit $f$ continue et $2\\pi$-périodique, et $x_0\\in\\mathbb{R}$. On suppose que $S_N(f)(x_0)$ converge quand $N\\to+\\infty$. Montrer que sa limite est $f(x_0)$.\n\n3. Soit $f$ continue et $2\\pi$-périodique telle que la série $\\sum_{n\\in\\mathbb{Z}}|c_n(f)|$ converge. Montrer que la série de Fourier de $f$ converge uniformément vers $f$ sur $\\mathbb{R}$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 2 : $\\sigma_N(f)(x_0)$ est la moyenne de Cesàro des $S_k(f)(x_0)$ ; appliquer le théorème de Fejér.",
+        "Question 3 : la convergence normale donne une limite uniforme $g$ ; l'identifier point par point grâce à la question 2."
+      ],
+      "correction": "1. Soit $\\varepsilon>0$ et $K$ tel que $|u_k-\\ell|\\le\\varepsilon$ pour $k\\ge K$. Pour $N>K$,\n$$\\left|\\frac1N\\sum_{k=0}^{N-1}u_k-\\ell\\right|\\le\\frac1N\\sum_{k=0}^{K-1}|u_k-\\ell|+\\frac{N-K}N\\varepsilon\\le\\frac CN+\\varepsilon,$$\navec $C=\\sum_{k<K}|u_k-\\ell|$ indépendant de $N$ ; c'est au plus $2\\varepsilon$ pour $N$ assez grand.\n\n2. Soit $\\ell=\\lim S_N(f)(x_0)$. Par la question 1, $\\sigma_N(f)(x_0)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)(x_0)\\to\\ell$. Par le théorème de Fejér ($f$ continue), $\\sigma_N(f)(x_0)\\to f(x_0)$. Par unicité de la limite, $\\ell=f(x_0)$.\n\n3. $\\sup_x|c_n(f)e^{inx}|=|c_n(f)|$ : la série de Fourier converge normalement, donc uniformément, vers une fonction continue $g$. En chaque $x_0$, $S_N(f)(x_0)\\to g(x_0)$, donc $g(x_0)=f(x_0)$ par la question 2. Ainsi $S_N(f)\\to f$ uniformément sur $\\mathbb{R}$."
+    },
+    {
+      "id": "int-l3-fourier-normale-ex1",
+      "carte": "int-l3-fourier-normale",
+      "difficulte": 1,
+      "titre": "Reconnaître une convergence normale",
+      "enonce": "On considère les fonctions $2\\pi$-périodiques suivantes, définies par leur restriction à $\\left]-\\pi,\\pi\\right]$ :\n- $f_1(t)=t$ ;\n- $f_2(t)=|\\sin t|$ ;\n- $f_3$, indicatrice de $[-1,1]$ (égale à $1$ sur $[-1,1]$ et à $0$ ailleurs) ;\n- $f_4$, égale à $1$ sur $\\left]0,\\pi\\right[$, à $-1$ sur $\\left]-\\pi,0\\right[$ et nulle en $0$ et $\\pi$.\n\nPour chacune, dire si sa série de Fourier converge normalement sur $\\mathbb{R}$.",
+      "duree_min": 5,
+      "indices": [
+        "Une limite uniforme de fonctions continues est continue ; le théorème de convergence normale demande $f$ continue sur $\\mathbb{R}$ et $\\mathcal{C}^1$ par morceaux."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fonctions a une série de Fourier normalement convergente sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "$f_2$",
+          "$f_1$",
+          "$f_3$",
+          "$f_4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f_2$ est continue sur $\\mathbb{R}$ (elle vaut $0$ en $\\pm\\pi$, et $|\\sin|$ est continue) et $\\mathcal{C}^1$ par morceaux (égale à $\\sin$ sur $[0,\\pi]$ et à $-\\sin$ sur $[-\\pi,0]$) : sa série de Fourier converge normalement. Les trois autres sont discontinues ($f_1$ en $\\pi$, $f_3$ en $\\pm1$, $f_4$ en $0$ et $\\pi$) ; leurs sommes partielles sont continues, donc ne peuvent converger uniformément vers elles, et a fortiori pas normalement."
+    },
+    {
+      "id": "int-l3-fourier-normale-ex2",
+      "carte": "int-l3-fourier-normale",
+      "difficulte": 2,
+      "titre": "Développement de $|\\sin t|$ et sommes de séries",
+      "enonce": "Soit $f(t)=|\\sin t|$.\n\n1. Calculer $a_n(f)$ et $b_n(f)$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$, et justifier que la série de Fourier de $f$ converge normalement vers $f$ sur $\\mathbb{R}$.\n\n2. En évaluant en $x=\\frac\\pi2$, calculer $\\sum_{k=1}^{+\\infty}\\frac{(-1)^{k+1}}{4k^2-1}$.",
+      "duree_min": 15,
+      "indices": [
+        "$f$ est paire ; linéariser $\\sin t\\cos(nt)$ sur $[0,\\pi]$ ; seuls les indices pairs donnent un coefficient non nul.",
+        "En $x=\\frac\\pi2$, $\\cos\\left(2k\\cdot\\frac\\pi2\\right)=(-1)^k$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette somme ?",
+        "propositions": [
+          "$\\frac{\\pi-2}4$",
+          "$\\frac{\\pi-2}2$",
+          "$\\frac{\\pi+2}4$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $f$ est paire : $b_n(f)=0$. Pour $n\\neq1$, en linéarisant, avec $\\cos((1\\pm n)\\pi)=-(-1)^n$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\sin((1+n)t)+\\sin((1-n)t)\\right)\\mathrm{d}t=\\frac{1+(-1)^n}\\pi\\left(\\frac1{1+n}+\\frac1{1-n}\\right)=\\frac{2(1+(-1)^n)}{\\pi(1-n^2)},$$\net $a_1(f)=\\frac1\\pi\\int_0^\\pi\\sin(2t)\\,\\mathrm{d}t=0$. Donc $a_0(f)=\\frac4\\pi$, $a_{2k}(f)=-\\frac4{\\pi(4k^2-1)}$ pour $k\\ge1$, et $a_n(f)=0$ pour $n$ impair. $f$ est continue et $\\mathcal{C}^1$ par morceaux : sa série de Fourier converge normalement vers $f$, et\n$$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2kx)}{4k^2-1}\\qquad\\text{pour tout réel }x.$$\n\n2. En $x=\\frac\\pi2$ : $1=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{(-1)^k}{4k^2-1}=\\frac2\\pi+\\frac4\\pi\\sum_{k\\ge1}\\frac{(-1)^{k+1}}{4k^2-1}$, d'où $\\sum_{k=1}^{+\\infty}\\frac{(-1)^{k+1}}{4k^2-1}=\\frac\\pi4\\left(1-\\frac2\\pi\\right)=\\frac{\\pi-2}4\\approx0{,}285$. (En $x=0$, on retrouve $\\sum_{k\\ge1}\\frac1{4k^2-1}=\\frac12$.)",
+      "variantes": [
+        {
+          "enonce": "Soit $f(t)=|\\sin t|$.\n\n1. Calculer $a_n(f)$ et $b_n(f)$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$, et justifier que la série de Fourier de $f$ converge normalement vers $f$ sur $\\mathbb{R}$.\n\n2. En évaluant en $x=\\frac\\pi4$, calculer $\\sum_{m=1}^{+\\infty}\\frac{(-1)^{m+1}}{16m^2-1}$.",
+          "indices": [
+            "$f$ est paire ; linéariser $\\sin t\\cos(nt)$ sur $[0,\\pi]$ ; seuls les indices pairs donnent un coefficient non nul.",
+            "En $x=\\frac\\pi4$, $\\cos\\frac{k\\pi}2$ est nul pour $k$ impair et vaut $(-1)^m$ pour $k=2m$."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac{\\pi\\sqrt2}8-\\frac12$",
+              "$\\frac{\\pi\\sqrt2}4-\\frac12$",
+              "$\\frac12-\\frac{\\pi\\sqrt2}8$",
+              "$\\frac{\\pi\\sqrt2}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est paire : $b_n(f)=0$. Pour $n\\neq1$, en linéarisant, avec $\\cos((1\\pm n)\\pi)=-(-1)^n$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\sin((1+n)t)+\\sin((1-n)t)\\right)\\mathrm{d}t=\\frac{1+(-1)^n}\\pi\\left(\\frac1{1+n}+\\frac1{1-n}\\right)=\\frac{2(1+(-1)^n)}{\\pi(1-n^2)},$$\net $a_1(f)=\\frac1\\pi\\int_0^\\pi\\sin(2t)\\,\\mathrm{d}t=0$. Donc $a_0(f)=\\frac4\\pi$, $a_{2k}(f)=-\\frac4{\\pi(4k^2-1)}$ pour $k\\ge1$, et $a_n(f)=0$ pour $n$ impair. $f$ est continue et $\\mathcal{C}^1$ par morceaux : sa série de Fourier converge normalement vers $f$, et\n$$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2kx)}{4k^2-1}\\qquad\\text{pour tout réel }x.$$\n\n2. En $x=\\frac\\pi4$, $\\cos\\frac{k\\pi}2$ est nul pour $k$ impair et vaut $(-1)^m$ pour $k=2m$ ; avec $4(2m)^2-1=16m^2-1$ :\n$$\\frac{\\sqrt2}2=\\frac2\\pi-\\frac4\\pi\\sum_{m\\ge1}\\frac{(-1)^m}{16m^2-1},\\qquad\\text{d'où}\\qquad\\sum_{m=1}^{+\\infty}\\frac{(-1)^{m+1}}{16m^2-1}=\\frac\\pi4\\left(\\frac{\\sqrt2}2-\\frac2\\pi\\right)=\\frac{\\pi\\sqrt2}8-\\frac12\\approx0{,}055.$$"
+        },
+        {
+          "enonce": "Soit $f(t)=|\\sin t|$.\n\n1. Calculer $a_n(f)$ et $b_n(f)$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$, et justifier que la série de Fourier de $f$ converge normalement vers $f$ sur $\\mathbb{R}$.\n\n2. En évaluant en $x=\\frac\\pi3$, calculer $\\sum_{k=1}^{+\\infty}\\frac{\\cos\\frac{2k\\pi}3}{4k^2-1}$.",
+          "indices": [
+            "$f$ est paire ; linéariser $\\sin t\\cos(nt)$ sur $[0,\\pi]$ ; seuls les indices pairs donnent un coefficient non nul.",
+            "En $x=\\frac\\pi3$, $f$ vaut $\\frac{\\sqrt3}2$ ; garder $\\cos\\frac{2k\\pi}3$ dans la somme."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette somme ?",
+            "propositions": [
+              "$\\frac12-\\frac{\\pi\\sqrt3}8$",
+              "$\\frac{\\pi\\sqrt3}8-\\frac12$",
+              "$\\frac12-\\frac{\\pi\\sqrt3}4$",
+              "$\\frac{\\pi\\sqrt3}8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est paire : $b_n(f)=0$. Pour $n\\neq1$, en linéarisant, avec $\\cos((1\\pm n)\\pi)=-(-1)^n$,\n$$a_n(f)=\\frac1\\pi\\int_0^\\pi\\left(\\sin((1+n)t)+\\sin((1-n)t)\\right)\\mathrm{d}t=\\frac{1+(-1)^n}\\pi\\left(\\frac1{1+n}+\\frac1{1-n}\\right)=\\frac{2(1+(-1)^n)}{\\pi(1-n^2)},$$\net $a_1(f)=\\frac1\\pi\\int_0^\\pi\\sin(2t)\\,\\mathrm{d}t=0$. Donc $a_0(f)=\\frac4\\pi$, $a_{2k}(f)=-\\frac4{\\pi(4k^2-1)}$ pour $k\\ge1$, et $a_n(f)=0$ pour $n$ impair. $f$ est continue et $\\mathcal{C}^1$ par morceaux : sa série de Fourier converge normalement vers $f$, et\n$$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k=1}^{+\\infty}\\frac{\\cos(2kx)}{4k^2-1}\\qquad\\text{pour tout réel }x.$$\n\n2. En $x=\\frac\\pi3$ : $\\frac{\\sqrt3}2=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos\\frac{2k\\pi}3}{4k^2-1}$, d'où $\\sum_{k=1}^{+\\infty}\\frac{\\cos\\frac{2k\\pi}3}{4k^2-1}=\\frac\\pi4\\left(\\frac2\\pi-\\frac{\\sqrt3}2\\right)=\\frac12-\\frac{\\pi\\sqrt3}8\\approx-0{,}180$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-normale-ex3",
+      "carte": "int-l3-fourier-normale",
+      "difficulte": 3,
+      "titre": "Vitesse de convergence uniforme d'une série de Fourier",
+      "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ ; on admet que $a_0(f)=\\pi$, $a_n(f)=\\frac{2((-1)^n-1)}{\\pi n^2}$ et $b_n(f)=0$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Justifier que $S_N(f)$ converge uniformément vers $f$ sur $\\mathbb{R}$.\n\n2. Montrer que $\\sup_{\\mathbb{R}}|f-S_N(f)|=\\frac4\\pi\\sum_{n>N,\\ n\\text{ impair}}\\frac1{n^2}$.\n\n3. En déduire un équivalent de $\\sup_{\\mathbb{R}}|f-S_N(f)|$ quand $N\\to+\\infty$.",
+      "duree_min": 20,
+      "indices": [
+        "Les $a_n(f)$, $n\\ge1$, sont tous négatifs ou nuls : en quel point $\\left|\\sum_{n>N}a_n(f)\\cos(nx)\\right|$ est-il maximal ?",
+        "Comparer $\\sum_{n>N,\\ n\\text{ impair}}\\frac1{n^2}$ à une intégrale, en remarquant que les entiers impairs sont espacés de $2$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est un équivalent de $\\sup_{\\mathbb{R}}|f-S_N(f)|$ ?",
+        "propositions": [
+          "$\\frac2{\\pi N}$",
+          "$\\frac4{\\pi N}$",
+          "$\\frac2{\\pi N^2}$",
+          "$\\frac1N$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $f$ est continue ($|{-\\pi}|=|\\pi|$) et $\\mathcal{C}^1$ par morceaux : la convergence est normale, donc uniforme.\n\n2. $f(x)-S_N(f)(x)=\\sum_{n>N}a_n(f)\\cos(nx)$, donc $|f(x)-S_N(f)(x)|\\le\\sum_{n>N}|a_n(f)|$, avec égalité en $x=0$ puisque tous les $a_n(f)$, $n\\ge1$, sont du même signe. Or $|a_n(f)|=\\frac4{\\pi n^2}$ pour $n$ impair et $0$ pour $n$ pair.\n\n3. Pour $n$ impair, $\\frac1{n^2}$ est compris entre $\\frac12\\int_n^{n+2}\\frac{\\mathrm{d}t}{t^2}$ et $\\frac12\\int_{n-2}^n\\frac{\\mathrm{d}t}{t^2}$. En sommant sur les impairs $n\\ge M$, où $M$ est le premier impair $>N$ : $\\frac1{2M}\\le\\sum_{n\\ge M,\\ n\\text{ impair}}\\frac1{n^2}\\le\\frac1{2(M-2)}$. Comme $M\\sim N$, la somme est équivalente à $\\frac1{2N}$, et $\\sup|f-S_N(f)|\\sim\\frac4\\pi\\cdot\\frac1{2N}=\\frac2{\\pi N}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(t)=|\\sin t|$ ; on admet que $a_0(f)=\\frac4\\pi$, $a_{2k}(f)=-\\frac4{\\pi(4k^2-1)}$ pour $k\\ge1$, $a_n(f)=0$ pour $n$ impair et $b_n(f)=0$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Justifier que $S_N(f)$ converge uniformément vers $f$ sur $\\mathbb{R}$.\n\n2. Montrer que $\\sup_{\\mathbb{R}}|f-S_{2N}(f)|=\\frac4\\pi\\sum_{k>N}\\frac1{4k^2-1}$.\n\n3. En déduire la valeur exacte de $\\sup_{\\mathbb{R}}|f-S_{2N}(f)|$.",
+          "indices": [
+            "Les $a_n(f)$, $n\\ge1$, sont tous négatifs ou nuls : en quel point $\\left|\\sum_{k>N}a_{2k}(f)\\cos(2kx)\\right|$ est-il maximal ?",
+            "Décomposer $\\frac1{4k^2-1}$ en éléments simples : la somme télescope."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $\\sup_{\\mathbb{R}}|f-S_{2N}(f)|$ ?",
+            "propositions": [
+              "$\\frac2{\\pi(2N+1)}$",
+              "$\\frac4{\\pi(2N+1)}$",
+              "$\\frac2{\\pi(2N+1)^2}$",
+              "$\\frac1{2N+1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est continue et $\\mathcal{C}^1$ par morceaux : la convergence est normale, donc uniforme.\n\n2. $f(x)-S_{2N}(f)(x)=\\sum_{k>N}a_{2k}(f)\\cos(2kx)$ ; tous les $a_{2k}(f)$ sont négatifs, donc $|f(x)-S_{2N}(f)(x)|\\le\\sum_{k>N}|a_{2k}(f)|$, avec égalité en $x=0$.\n\n3. $\\frac1{4k^2-1}=\\frac12\\left(\\frac1{2k-1}-\\frac1{2k+1}\\right)$, donc $\\sum_{k>N}\\frac1{4k^2-1}=\\frac1{2(2N+1)}$ (télescopage), et $\\sup|f-S_{2N}(f)|=\\frac4\\pi\\cdot\\frac1{2(2N+1)}=\\frac2{\\pi(2N+1)}$."
+        },
+        {
+          "enonce": "Soit $f$ la fonction $2\\pi$-périodique égale à $t^2$ sur $[-\\pi,\\pi]$ ; on admet que $a_0(f)=\\frac{2\\pi^2}3$, $a_n(f)=\\frac{4(-1)^n}{n^2}$ et $b_n(f)=0$ pour $n\\ge1$, avec $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Justifier que $S_N(f)$ converge uniformément vers $f$ sur $\\mathbb{R}$.\n\n2. Montrer que $\\sup_{\\mathbb{R}}|f-S_N(f)|=4\\sum_{n>N}\\frac1{n^2}$.\n\n3. En déduire un équivalent de $\\sup_{\\mathbb{R}}|f-S_N(f)|$ quand $N\\to+\\infty$.",
+          "indices": [
+            "$a_n(f)\\cos(n\\pi)=\\frac4{n^2}>0$ : en quel point $\\left|\\sum_{n>N}a_n(f)\\cos(nx)\\right|$ est-il maximal ?",
+            "Comparer $\\sum_{n>N}\\frac1{n^2}$ à une intégrale."
+          ],
+          "reponse_finale": {
+            "question": "Quel est un équivalent de $\\sup_{\\mathbb{R}}|f-S_N(f)|$ ?",
+            "propositions": [
+              "$\\frac4N$",
+              "$\\frac2N$",
+              "$\\frac4{N^2}$",
+              "$\\frac8N$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est continue ($(-\\pi)^2=\\pi^2$) et $\\mathcal{C}^1$ par morceaux : la convergence est normale, donc uniforme.\n\n2. $|f(x)-S_N(f)(x)|=\\left|\\sum_{n>N}a_n(f)\\cos(nx)\\right|\\le\\sum_{n>N}\\frac4{n^2}$, avec égalité en $x=\\pi$, où $a_n(f)\\cos(n\\pi)=\\frac4{n^2}$.\n\n3. Par comparaison série-intégrale, $\\frac1{N+1}=\\int_{N+1}^{+\\infty}\\frac{\\mathrm{d}t}{t^2}\\le\\sum_{n>N}\\frac1{n^2}\\le\\int_N^{+\\infty}\\frac{\\mathrm{d}t}{t^2}=\\frac1N$, donc $\\sum_{n>N}\\frac1{n^2}\\sim\\frac1N$ et $\\sup|f-S_N(f)|\\sim\\frac4N$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-normale-ex4",
+      "carte": "int-l3-fourier-normale",
+      "difficulte": 4,
+      "titre": "Une inégalité de type Sobolev et sa constante optimale",
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique, continue et de classe $\\mathcal{C}^1$ par morceaux. On note $c_n(g)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)e^{-int}\\,\\mathrm{d}t$ et $\\|g\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|g(t)|^2\\,\\mathrm{d}t$, et l'on admet que $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$.\n\n1. Montrer que $\\sup_{x\\in\\mathbb{R}}|f(x)-c_0(f)|\\le\\sum_{n\\neq0}|c_n(f)|\\le\\frac\\pi{\\sqrt3}\\|f'\\|_2$.\n\n2. Calculer $\\sup|f-c_0(f)|$ et $\\|f'\\|_2$ pour la fonction $2\\pi$-périodique égale à $t^2$ sur $[-\\pi,\\pi]$.\n\n3. Quelle est la plus petite constante $C$ telle que $\\sup|f-c_0(f)|\\le C\\|f'\\|_2$ pour toute $f$ vérifiant les hypothèses ?",
+      "duree_min": 30,
+      "indices": [
+        "Écrire $f=\\sum c_n(f)e_n$ (convergence normale), puis $c_n(f)=\\frac{c_n(f')}{in}$ pour $n\\neq0$, et appliquer l'inégalité de Cauchy-Schwarz avec l'inégalité de Bessel pour $f'$.",
+        "Pour $t^2$, $c_0=\\frac{\\pi^2}3$ ; chercher où $\\left|t^2-\\frac{\\pi^2}3\\right|$ est maximal sur $[-\\pi,\\pi]$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la plus petite constante $C$ ?",
+        "propositions": [
+          "$\\frac\\pi{\\sqrt3}$",
+          "$\\frac\\pi{\\sqrt6}$",
+          "$1$",
+          "$\\frac{2\\pi}{\\sqrt3}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. La série de Fourier de $f$ converge normalement vers $f$, donc $f(x)-c_0(f)=\\sum_{n\\neq0}c_n(f)e^{inx}$ et $|f(x)-c_0(f)|\\le\\sum_{n\\neq0}|c_n(f)|$. Pour $n\\neq0$, $c_n(f)=\\frac{c_n(f')}{in}$, et l'inégalité de Cauchy-Schwarz, puis celle de Bessel pour $f'$, donnent\n$$\\sum_{n\\neq0}|c_n(f)|\\le\\left(\\sum_{n\\neq0}\\frac1{n^2}\\right)^{\\frac12}\\left(\\sum_{n\\neq0}|c_n(f')|^2\\right)^{\\frac12}\\le\\sqrt{\\frac{\\pi^2}3}\\,\\|f'\\|_2=\\frac\\pi{\\sqrt3}\\|f'\\|_2.$$\n\n2. Pour $f(t)=t^2$ sur $[-\\pi,\\pi]$ (continue, $\\mathcal{C}^1$ par morceaux) : $c_0(f)=\\frac{\\pi^2}3$, et $t^2-\\frac{\\pi^2}3$ varie de $-\\frac{\\pi^2}3$ (en $0$) à $\\frac{2\\pi^2}3$ (en $\\pm\\pi$), donc $\\sup|f-c_0(f)|=\\frac{2\\pi^2}3$. Puis $\\|f'\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}4t^2\\,\\mathrm{d}t=\\frac{4\\pi^2}3$, soit $\\|f'\\|_2=\\frac{2\\pi}{\\sqrt3}$.\n\n3. Pour cette fonction, $\\frac\\pi{\\sqrt3}\\|f'\\|_2=\\frac{2\\pi^2}3=\\sup|f-c_0(f)|$ : l'inégalité de la question 1 est une égalité. Toute constante $C$ valable vérifie donc $C\\ge\\frac\\pi{\\sqrt3}$, et $C=\\frac\\pi{\\sqrt3}$ convient : c'est la plus petite. (L'égalité dans Cauchy-Schwarz demande $|c_n(f')|$ proportionnel à $\\frac1{|n|}$, et des phases alignées au point de maximum, ce que réalise $t^2$, dont $c_n=\\frac{2(-1)^n}{n^2}$ et $e^{in\\pi}=(-1)^n$.)"
+    },
+    {
+      "id": "int-l3-fourier-weierstrass-ex1",
+      "carte": "int-l3-fourier-weierstrass",
+      "difficulte": 1,
+      "titre": "Une fonction continue déterminée par ses coefficients",
+      "enonce": "Soit $f$ continue et $2\\pi$-périodique telle que $c_1(f)=c_{-1}(f)=\\frac12$ et $c_n(f)=0$ pour $|n|\\neq1$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$. Identifier $f$ et calculer $f\\left(\\frac\\pi3\\right)$.",
+      "duree_min": 5,
+      "indices": [
+        "Comparer $f$ au polynôme trigonométrique $P=\\frac12e_1+\\frac12e_{-1}$ : $f-P$ est continue et a tous ses coefficients nuls."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $f\\left(\\frac\\pi3\\right)$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$1$",
+          "$\\frac{\\sqrt3}2$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le polynôme trigonométrique $P(t)=\\frac12e^{it}+\\frac12e^{-it}=\\cos t$ a les mêmes coefficients que $f$. Comme $f$ et $P$ sont continues et $2\\pi$-périodiques, le théorème de Weierstrass trigonométrique (injectivité des coefficients) donne $f=P=\\cos$, et $f\\left(\\frac\\pi3\\right)=\\frac12$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f$ continue et $2\\pi$-périodique telle que $c_2(f)=-\\frac i2$, $c_{-2}(f)=\\frac i2$ et $c_n(f)=0$ pour $|n|\\neq2$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$. Identifier $f$ et calculer $f\\left(\\frac\\pi8\\right)$.",
+          "indices": [
+            "Comparer $f$ au polynôme trigonométrique $P=-\\frac i2e_2+\\frac i2e_{-2}$ : $f-P$ est continue et a tous ses coefficients nuls."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f\\left(\\frac\\pi8\\right)$ ?",
+            "propositions": [
+              "$\\frac{\\sqrt2}2$",
+              "$-\\frac{\\sqrt2}2$",
+              "$1$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le polynôme $P(t)=-\\frac i2e^{2it}+\\frac i2e^{-2it}=-\\frac i2\\cdot2i\\sin(2t)=\\sin(2t)$ a les mêmes coefficients que $f$ ; $f$ et $P$ étant continues, $f=P$ et $f\\left(\\frac\\pi8\\right)=\\sin\\frac\\pi4=\\frac{\\sqrt2}2$."
+        },
+        {
+          "enonce": "Soit $f$ continue et $2\\pi$-périodique telle que $c_0(f)=1$, $c_1(f)=c_{-1}(f)=\\frac12$ et $c_n(f)=0$ pour $|n|\\ge2$, avec $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$. Identifier $f$ et calculer $f\\left(\\frac\\pi2\\right)$.",
+          "indices": [
+            "Comparer $f$ au polynôme trigonométrique $P=e_0+\\frac12e_1+\\frac12e_{-1}$ : $f-P$ est continue et a tous ses coefficients nuls."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut $f\\left(\\frac\\pi2\\right)$ ?",
+            "propositions": [
+              "$1$",
+              "$2$",
+              "$0$",
+              "$\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Le polynôme $P(t)=1+\\frac12e^{it}+\\frac12e^{-it}=1+\\cos t$ a les mêmes coefficients que $f$ ; $f$ et $P$ étant continues, $f=P$ et $f\\left(\\frac\\pi2\\right)=1+\\cos\\frac\\pi2=1$."
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-weierstrass-ex2",
+      "carte": "int-l3-fourier-weierstrass",
+      "difficulte": 2,
+      "titre": "Approximation uniforme sur une demi-période",
+      "enonce": "Soit $g$ continue sur $[0,\\pi]$, à valeurs réelles. On se demande quelles familles permettent, par combinaisons linéaires réelles, d'approcher uniformément sur $[0,\\pi]$, à toute précision, n'importe quelle telle fonction $g$ :\n- $(\\cos(nt))_{n\\ge0}$ ;\n- $(\\sin(nt))_{n\\ge1}$ ;\n- $(\\cos((2n+1)t))_{n\\ge0}$.\n\nRépondre en justifiant (on pourra prolonger $g$ à $\\mathbb{R}$ de façon convenable).",
+      "duree_min": 12,
+      "indices": [
+        "Prolonger $g$ par parité puis par $2\\pi$-périodicité, appliquer le théorème de Weierstrass trigonométrique et garder la partie paire de l'approximant.",
+        "Pour les deux autres familles, chercher un point de $[0,\\pi]$ où toutes leurs combinaisons s'annulent."
+      ],
+      "reponse_finale": {
+        "question": "Quelle famille convient pour toute $g$ continue sur $[0,\\pi]$ ?",
+        "propositions": [
+          "$(\\cos(nt))_{n\\ge0}$",
+          "$(\\sin(nt))_{n\\ge1}$",
+          "$(\\cos((2n+1)t))_{n\\ge0}$",
+          "Aucune des trois"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Les cosinus conviennent.** Soit $G$ la fonction $2\\pi$-périodique égale à $g(|t|)$ sur $[-\\pi,\\pi]$ : elle est continue (les valeurs en $\\pm\\pi$ coïncident) et paire. Par le théorème de Weierstrass trigonométrique, il existe un polynôme trigonométrique réel $P$ avec $\\sup|G-P|\\le\\varepsilon$ ; sa partie paire $Q(t)=\\frac{P(t)+P(-t)}2$ est une combinaison des $\\cos(nt)$, et $|G(t)-Q(t)|\\le\\frac12|G(t)-P(t)|+\\frac12|G(-t)-P(-t)|\\le\\varepsilon$. Sur $[0,\\pi]$, $G=g$.\n\n**Les sinus ne conviennent pas** : toutes leurs combinaisons sont nulles en $0$, donc pour $g=1$ l'écart uniforme est au moins $1$.\n\n**Les $\\cos((2n+1)t)$ ne conviennent pas** : $\\cos((2n+1)\\frac\\pi2)=0$, donc toutes leurs combinaisons sont nulles en $\\frac\\pi2$, et pour $g=1$ l'écart uniforme est au moins $1$."
+    },
+    {
+      "id": "int-l3-fourier-weierstrass-ex3",
+      "carte": "int-l3-fourier-weierstrass",
+      "difficulte": 3,
+      "titre": "Du théorème trigonométrique aux polynômes",
+      "enonce": "On rappelle que $\\cos(kt)=T_k(\\cos t)$ pour tout réel $t$, avec $T_0=1$, $T_1=X$, $T_2=2X^2-1$, $T_3=4X^3-3X$. On note $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Soit $g$ continue sur $[-1,1]$, à valeurs réelles. Montrer que $f=g\\circ\\cos$ est continue, paire et $2\\pi$-périodique, et en déduire que $g$ est limite uniforme sur $[-1,1]$ de polynômes (théorème de Weierstrass).\n\n2. On prend $g(x)=|x|$, de sorte que $f(t)=|\\cos t|$. Calculer $a_0(f)$, $a_1(f)$, $a_2(f)$, et en déduire le polynôme $P$ tel que $S_2(f)(t)=P(\\cos t)$.",
+      "duree_min": 20,
+      "indices": [
+        "Question 1 : approcher $f$ par un polynôme trigonométrique réel, le remplacer par sa partie paire, puis utiliser $\\cos(kt)=T_k(\\cos t)$.",
+        "Question 2 : $f(t)=|\\cos t|$ est paire ; utiliser la symétrie $t\\mapsto\\pi-t$ pour $a_1(f)$, et calculer $a_2(f)$ sur $\\left[0,\\frac\\pi2\\right]$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le polynôme $P$ ?",
+        "propositions": [
+          "$P(x)=\\frac{2+8x^2}{3\\pi}$",
+          "$P(x)=\\frac2\\pi+\\frac{8x^2}{3\\pi}$",
+          "$P(x)=\\frac{2-8x^2}{3\\pi}$",
+          "$P(x)=\\frac{4+8x^2}{3\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. $f$ est continue (composée), paire et $2\\pi$-périodique comme $\\cos$. Par le théorème de Weierstrass trigonométrique, pour $\\varepsilon>0$, il existe un polynôme trigonométrique réel $P$ avec $\\sup|f-P|\\le\\varepsilon$ ; sa partie paire $\\frac{P(t)+P(-t)}2=\\sum_{k=0}^M\\alpha_k\\cos(kt)$ est encore à distance au plus $\\varepsilon$ de $f$, qui est paire. Avec $Q=\\sum_{k=0}^M\\alpha_kT_k$, on a $Q(\\cos t)=\\sum\\alpha_k\\cos(kt)$, donc $|g(x)-Q(x)|\\le\\varepsilon$ pour tout $x=\\cos t\\in[-1,1]$.\n\n2. $f$ est paire, donc $b_n(f)=0$ et $a_n(f)=\\frac2\\pi\\int_0^\\pi|\\cos t|\\cos(nt)\\,\\mathrm{d}t$. On a $a_0(f)=\\frac2\\pi\\cdot2=\\frac4\\pi$. Le changement de variable $t\\mapsto\\pi-t$ laisse $|\\cos t|$ invariant et change $\\cos t$ en son opposé : $a_1(f)=0$. Enfin, $|\\cos|$ et $\\cos(2t)$ étant invariantes par $t\\mapsto\\pi-t$,\n$$a_2(f)=\\frac4\\pi\\int_0^{\\pi/2}\\cos t\\cos(2t)\\,\\mathrm{d}t=\\frac2\\pi\\int_0^{\\pi/2}\\left(\\cos(3t)+\\cos t\\right)\\mathrm{d}t=\\frac2\\pi\\left(-\\frac13+1\\right)=\\frac4{3\\pi}.$$\nDonc $S_2(f)(t)=\\frac2\\pi+\\frac4{3\\pi}\\cos(2t)=\\frac2\\pi+\\frac4{3\\pi}\\left(2\\cos^2t-1\\right)$, et $P(x)=\\frac2{3\\pi}+\\frac{8x^2}{3\\pi}=\\frac{2+8x^2}{3\\pi}$, approximation de $|x|$ sur $[-1,1]$ (par exemple $P(1)\\approx1{,}06$ et $P(0)\\approx0{,}21$).",
+      "variantes": [
+        {
+          "enonce": "On rappelle que $\\cos(kt)=T_k(\\cos t)$ pour tout réel $t$, avec $T_0=1$, $T_1=X$, $T_2=2X^2-1$, $T_3=4X^3-3X$. On note $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Soit $g$ continue sur $[-1,1]$, à valeurs réelles. Montrer que $f=g\\circ\\cos$ est continue, paire et $2\\pi$-périodique, et en déduire que $g$ est limite uniforme sur $[-1,1]$ de polynômes (théorème de Weierstrass).\n\n2. On prend $g(x)=\\sqrt{1-x^2}$, de sorte que $f(t)=|\\sin t|$. Calculer $a_0(f)$, $a_1(f)$, $a_2(f)$, et en déduire le polynôme $P$ tel que $S_2(f)(t)=P(\\cos t)$.",
+          "indices": [
+            "Question 1 : approcher $f$ par un polynôme trigonométrique réel, le remplacer par sa partie paire, puis utiliser $\\cos(kt)=T_k(\\cos t)$.",
+            "Question 2 : $f(t)=|\\sin t|$ est paire et vérifie $f(\\pi-t)=f(t)$ ; linéariser $\\sin t\\cos(nt)$ sur $[0,\\pi]$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le polynôme $P$ ?",
+            "propositions": [
+              "$P(x)=\\frac{10-8x^2}{3\\pi}$",
+              "$P(x)=\\frac2\\pi-\\frac{8x^2}{3\\pi}$",
+              "$P(x)=\\frac{10+8x^2}{3\\pi}$",
+              "$P(x)=\\frac{2-8x^2}{3\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est continue (composée), paire et $2\\pi$-périodique comme $\\cos$. Par le théorème de Weierstrass trigonométrique, pour $\\varepsilon>0$, il existe un polynôme trigonométrique réel $P$ avec $\\sup|f-P|\\le\\varepsilon$ ; sa partie paire $\\frac{P(t)+P(-t)}2=\\sum_{k=0}^M\\alpha_k\\cos(kt)$ est encore à distance au plus $\\varepsilon$ de $f$, qui est paire. Avec $Q=\\sum_{k=0}^M\\alpha_kT_k$, on a $Q(\\cos t)=\\sum\\alpha_k\\cos(kt)$, donc $|g(x)-Q(x)|\\le\\varepsilon$ pour tout $x=\\cos t\\in[-1,1]$.\n\n2. $\\sqrt{1-\\cos^2t}=|\\sin t|$. $f$ est paire, $a_n(f)=\\frac2\\pi\\int_0^\\pi\\sin t\\cos(nt)\\,\\mathrm{d}t$ : $a_0(f)=\\frac4\\pi$, $a_1(f)=\\frac1\\pi\\int_0^\\pi\\sin(2t)\\,\\mathrm{d}t=0$ et $a_2(f)=\\frac1\\pi\\int_0^\\pi\\left(\\sin(3t)-\\sin t\\right)\\mathrm{d}t=\\frac1\\pi\\left(\\frac23-2\\right)=-\\frac4{3\\pi}$. Donc $S_2(f)(t)=\\frac2\\pi-\\frac4{3\\pi}\\left(2\\cos^2t-1\\right)$ et $P(x)=\\frac2\\pi+\\frac4{3\\pi}-\\frac{8x^2}{3\\pi}=\\frac{10-8x^2}{3\\pi}$."
+        },
+        {
+          "enonce": "On rappelle que $\\cos(kt)=T_k(\\cos t)$ pour tout réel $t$, avec $T_0=1$, $T_1=X$, $T_2=2X^2-1$, $T_3=4X^3-3X$. On note $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$.\n\n1. Soit $g$ continue sur $[-1,1]$, à valeurs réelles. Montrer que $f=g\\circ\\cos$ est continue, paire et $2\\pi$-périodique, et en déduire que $g$ est limite uniforme sur $[-1,1]$ de polynômes (théorème de Weierstrass).\n\n2. On prend $g=\\arccos$, de sorte que $f(t)=\\arccos(\\cos t)$. Calculer $a_n(f)$ pour $0\\le n\\le3$, et en déduire le polynôme $P$ tel que $S_3(f)(t)=P(\\cos t)$.",
+          "indices": [
+            "Question 1 : approcher $f$ par un polynôme trigonométrique réel, le remplacer par sa partie paire, puis utiliser $\\cos(kt)=T_k(\\cos t)$.",
+            "Question 2 : $\\arccos(\\cos t)=|t|$ pour $t\\in[-\\pi,\\pi]$ ; intégrer par parties $\\int_0^\\pi t\\cos(nt)\\,\\mathrm{d}t$."
+          ],
+          "reponse_finale": {
+            "question": "Quel est le polynôme $P$ ?",
+            "propositions": [
+              "$P(x)=\\frac\\pi2-\\frac{8x}{3\\pi}-\\frac{16x^3}{9\\pi}$",
+              "$P(x)=\\frac\\pi2-\\frac{4x}\\pi-\\frac{16x^3}{9\\pi}$",
+              "$P(x)=\\pi-\\frac{8x}{3\\pi}-\\frac{16x^3}{9\\pi}$",
+              "$P(x)=\\frac\\pi2+\\frac{8x}{3\\pi}+\\frac{16x^3}{9\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. $f$ est continue (composée), paire et $2\\pi$-périodique comme $\\cos$. Par le théorème de Weierstrass trigonométrique, pour $\\varepsilon>0$, il existe un polynôme trigonométrique réel $P$ avec $\\sup|f-P|\\le\\varepsilon$ ; sa partie paire $\\frac{P(t)+P(-t)}2=\\sum_{k=0}^M\\alpha_k\\cos(kt)$ est encore à distance au plus $\\varepsilon$ de $f$, qui est paire. Avec $Q=\\sum_{k=0}^M\\alpha_kT_k$, on a $Q(\\cos t)=\\sum\\alpha_k\\cos(kt)$, donc $|g(x)-Q(x)|\\le\\varepsilon$ pour tout $x=\\cos t\\in[-1,1]$.\n\n2. Pour $t\\in[-\\pi,\\pi]$, $\\arccos(\\cos t)=|t|$, dont les coefficients sont $a_0=\\pi$ et $a_n=\\frac{2((-1)^n-1)}{\\pi n^2}$ (intégration par parties) : $a_1=-\\frac4\\pi$, $a_2=0$, $a_3=-\\frac4{9\\pi}$. Donc $S_3(f)(t)=\\frac\\pi2-\\frac4\\pi\\cos t-\\frac4{9\\pi}\\cos(3t)$, et avec $\\cos(3t)=4\\cos^3t-3\\cos t$,\n$$P(x)=\\frac\\pi2-\\frac4\\pi x-\\frac4{9\\pi}\\left(4x^3-3x\\right)=\\frac\\pi2-\\frac{8x}{3\\pi}-\\frac{16x^3}{9\\pi}.$$"
+        }
+      ]
+    },
+    {
+      "id": "int-l3-fourier-weierstrass-ex4",
+      "carte": "int-l3-fourier-weierstrass",
+      "difficulte": 4,
+      "titre": "Moyennes le long des entiers : un critère de Weyl",
+      "enonce": "On admet que $\\pi$ est irrationnel. Pour $g$ continue et $2\\pi$-périodique, on pose $M_N(g)=\\frac1N\\sum_{k=1}^Ng(k)$, et l'on note $e_n(t)=e^{int}$.\n\n1. Montrer que $M_N(e_n)\\to0$ pour tout entier $n\\neq0$.\n\n2. En déduire que $M_N(P)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P(t)\\,\\mathrm{d}t$ pour tout polynôme trigonométrique $P$, puis que $M_N(g)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)\\,\\mathrm{d}t$ pour toute $g$ continue et $2\\pi$-périodique.\n\n3. Calculer $\\lim_{N\\to+\\infty}\\frac1N\\sum_{k=1}^N|\\sin k|$.",
+      "duree_min": 30,
+      "indices": [
+        "Question 1 : somme géométrique de raison $e^{in}$, différente de $1$ car $\\pi$ est irrationnel.",
+        "Question 2 : approcher $g$ à $\\varepsilon$ près uniformément par un polynôme trigonométrique, puis découper l'écart en trois."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette limite ?",
+        "propositions": [
+          "$\\frac2\\pi$",
+          "$\\frac12$",
+          "$\\frac\\pi4$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "1. Pour $n\\neq0$, $e^{in}\\neq1$ : sinon $n\\in2\\pi\\mathbb{Z}$, et $\\pi=\\frac n{2m}$ serait rationnel. Donc\n$$|M_N(e_n)|=\\frac1N\\left|e^{in}\\frac{e^{inN}-1}{e^{in}-1}\\right|\\le\\frac2{N|e^{in}-1|}\\to0.$$\n\n2. $M_N(e_0)=1=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_0$ et, pour $n\\neq0$, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_n=0=\\lim M_N(e_n)$ ; par linéarité, $M_N(P)\\to c_0(P)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P$ pour tout polynôme trigonométrique $P$. Pour $g$ continue $2\\pi$-périodique et $\\varepsilon>0$, soit $P$ un polynôme trigonométrique avec $\\sup|g-P|\\le\\varepsilon$ (théorème de Weierstrass trigonométrique). Alors $|M_N(g)-M_N(P)|\\le\\varepsilon$, $\\left|\\frac1{2\\pi}\\int g-\\frac1{2\\pi}\\int P\\right|\\le\\varepsilon$, et $|M_N(P)-\\frac1{2\\pi}\\int P|\\le\\varepsilon$ pour $N$ assez grand : $|M_N(g)-\\frac1{2\\pi}\\int g|\\le3\\varepsilon$.\n\n3. $g=|\\sin|$ est continue et $2\\pi$-périodique : la limite vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|\\sin t|\\,\\mathrm{d}t=\\frac1{2\\pi}\\cdot4=\\frac2\\pi\\approx0{,}637$.",
+      "variantes": [
+        {
+          "enonce": "On admet que $\\pi$ est irrationnel. Pour $g$ continue et $2\\pi$-périodique, on pose $M_N(g)=\\frac1N\\sum_{k=1}^Ng(k)$, et l'on note $e_n(t)=e^{int}$.\n\n1. Montrer que $M_N(e_n)\\to0$ pour tout entier $n\\neq0$.\n\n2. En déduire que $M_N(P)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P(t)\\,\\mathrm{d}t$ pour tout polynôme trigonométrique $P$, puis que $M_N(g)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)\\,\\mathrm{d}t$ pour toute $g$ continue et $2\\pi$-périodique.\n\n3. Calculer $\\lim_{N\\to+\\infty}\\frac1N\\sum_{k=1}^N\\sin^4k$.",
+          "indices": [
+            "Question 1 : somme géométrique de raison $e^{in}$, différente de $1$ car $\\pi$ est irrationnel.",
+            "Question 2 : approcher $g$ à $\\varepsilon$ près uniformément par un polynôme trigonométrique, puis découper l'écart en trois."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette limite ?",
+            "propositions": [
+              "$\\frac38$",
+              "$\\frac14$",
+              "$\\frac12$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $n\\neq0$, $e^{in}\\neq1$ : sinon $n\\in2\\pi\\mathbb{Z}$, et $\\pi=\\frac n{2m}$ serait rationnel. Donc\n$$|M_N(e_n)|=\\frac1N\\left|e^{in}\\frac{e^{inN}-1}{e^{in}-1}\\right|\\le\\frac2{N|e^{in}-1|}\\to0.$$\n\n2. $M_N(e_0)=1=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_0$ et, pour $n\\neq0$, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_n=0=\\lim M_N(e_n)$ ; par linéarité, $M_N(P)\\to c_0(P)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P$ pour tout polynôme trigonométrique $P$. Pour $g$ continue $2\\pi$-périodique et $\\varepsilon>0$, soit $P$ un polynôme trigonométrique avec $\\sup|g-P|\\le\\varepsilon$ (théorème de Weierstrass trigonométrique). Alors $|M_N(g)-M_N(P)|\\le\\varepsilon$, $\\left|\\frac1{2\\pi}\\int g-\\frac1{2\\pi}\\int P\\right|\\le\\varepsilon$, et $|M_N(P)-\\frac1{2\\pi}\\int P|\\le\\varepsilon$ pour $N$ assez grand : $|M_N(g)-\\frac1{2\\pi}\\int g|\\le3\\varepsilon$.\n\n3. $\\sin^4t=\\frac38-\\frac12\\cos(2t)+\\frac18\\cos(4t)$ est un polynôme trigonométrique : la limite vaut sa valeur moyenne, $\\frac38$."
+        },
+        {
+          "enonce": "On admet que $\\pi$ est irrationnel. Pour $g$ continue et $2\\pi$-périodique, on pose $M_N(g)=\\frac1N\\sum_{k=1}^Ng(k)$, et l'on note $e_n(t)=e^{int}$.\n\n1. Montrer que $M_N(e_n)\\to0$ pour tout entier $n\\neq0$.\n\n2. En déduire que $M_N(P)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P(t)\\,\\mathrm{d}t$ pour tout polynôme trigonométrique $P$, puis que $M_N(g)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}g(t)\\,\\mathrm{d}t$ pour toute $g$ continue et $2\\pi$-périodique.\n\n3. Calculer $\\lim_{N\\to+\\infty}\\frac1N\\sum_{k=1}^N|\\cos k|^3$.",
+          "indices": [
+            "Question 1 : somme géométrique de raison $e^{in}$, différente de $1$ car $\\pi$ est irrationnel.",
+            "Question 2 : approcher $g$ à $\\varepsilon$ près uniformément par un polynôme trigonométrique, puis découper l'écart en trois."
+          ],
+          "reponse_finale": {
+            "question": "Que vaut cette limite ?",
+            "propositions": [
+              "$\\frac4{3\\pi}$",
+              "$\\frac2\\pi$",
+              "$\\frac23$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "1. Pour $n\\neq0$, $e^{in}\\neq1$ : sinon $n\\in2\\pi\\mathbb{Z}$, et $\\pi=\\frac n{2m}$ serait rationnel. Donc\n$$|M_N(e_n)|=\\frac1N\\left|e^{in}\\frac{e^{inN}-1}{e^{in}-1}\\right|\\le\\frac2{N|e^{in}-1|}\\to0.$$\n\n2. $M_N(e_0)=1=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_0$ et, pour $n\\neq0$, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e_n=0=\\lim M_N(e_n)$ ; par linéarité, $M_N(P)\\to c_0(P)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}P$ pour tout polynôme trigonométrique $P$. Pour $g$ continue $2\\pi$-périodique et $\\varepsilon>0$, soit $P$ un polynôme trigonométrique avec $\\sup|g-P|\\le\\varepsilon$ (théorème de Weierstrass trigonométrique). Alors $|M_N(g)-M_N(P)|\\le\\varepsilon$, $\\left|\\frac1{2\\pi}\\int g-\\frac1{2\\pi}\\int P\\right|\\le\\varepsilon$, et $|M_N(P)-\\frac1{2\\pi}\\int P|\\le\\varepsilon$ pour $N$ assez grand : $|M_N(g)-\\frac1{2\\pi}\\int g|\\le3\\varepsilon$.\n\n3. $g=|\\cos|^3$ est continue et $2\\pi$-périodique : la limite vaut $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|\\cos t|^3\\,\\mathrm{d}t=\\frac2\\pi\\int_0^{\\pi/2}\\cos^3t\\,\\mathrm{d}t=\\frac2\\pi\\cdot\\frac23=\\frac4{3\\pi}\\approx0{,}424$."
+        }
+      ]
+    }
+  ]
+}

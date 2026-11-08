@@ -1,0 +1,527 @@
+{
+  "cartes": [
+    {
+      "id": "int-l3-fourier-coefficients",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "definition",
+      "titre": "Polynômes trigonométriques et coefficients de Fourier",
+      "recto": "Définir les polynômes trigonométriques et les coefficients de Fourier (exponentiels $c_n$ et réels $a_n$, $b_n$) d'une fonction $2\\pi$-périodique continue par morceaux ; donner les relations entre eux et l'effet de la parité.",
+      "cours": "Une fonction $2\\pi$-périodique se décompose, comme un son, en harmoniques $e^{int}=\\cos(nt)+i\\sin(nt)$ de fréquences entières. Le coefficient $c_n(f)$ mesure la part de l'harmonique $e_n$ dans $f$ : c'est la moyenne sur une période de $f(t)e^{-int}$. Les **polynômes trigonométriques** $\\sum_{|n|\\le N}\\gamma_ne_n$ sont les sommes finies d'harmoniques ; pour eux, $c_n$ redonne exactement le coefficient $\\gamma_n$, grâce à l'orthonormalité $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{int}e^{-imt}\\,\\mathrm{d}t=\\delta_{n,m}$. Toute la théorie consiste à savoir dans quelle mesure cela reste vrai pour une fonction quelconque, c'est-à-dire en quel sens $f$ est la somme de la série $\\sum c_n(f)e_n$.\n\nLe cadre est celui des fonctions $2\\pi$-périodiques **continues par morceaux** : sur une période, un nombre fini de points de discontinuité, avec des limites finies à droite et à gauche. Changer $f$ en un nombre fini de points par période ne change aucun coefficient.\n\nDeux écritures coexistent, et il faut savoir passer de l'une à l'autre. L'écriture exponentielle ($c_n$, $n\\in\\mathbb{Z}$) simplifie les calculs ; l'écriture réelle ($a_n$, $b_n$) est commode pour les fonctions réelles, paires ou impaires. Le lien : $c_n=\\frac{a_n-ib_n}2$, $c_{-n}=\\frac{a_n+ib_n}2$, $c_0=\\frac{a_0}2$ ; le facteur $\\frac12$ devant $a_0$ dans $S_N(f)(x)=\\frac{a_0}2+\\sum_{n=1}^N\\left(a_n\\cos(nx)+b_n\\sin(nx)\\right)$ vient de ce que $a_0$ est défini avec $\\frac1\\pi$, comme les autres $a_n$.\n\nMéthode : pour calculer des coefficients, on exploite la parité ($f$ paire : $b_n=0$ et $a_n=\\frac2\\pi\\int_0^\\pi f(t)\\cos(nt)\\,\\mathrm{d}t$ ; $f$ impaire : $a_n=0$), on intègre par parties pour les fonctions polynomiales par morceaux, et on calcule directement $c_n$ pour les exponentielles. Pour un polynôme en $\\cos t$ et $\\sin t$, on linéarise : les coefficients se lisent alors sans intégrer.\n\nPièges : les conventions varient d'un ouvrage à l'autre (intégrale sur $[0,2\\pi]$, facteur $\\frac1{2\\pi}$ ou $\\frac1\\pi$, $a_0$ ou $\\frac{a_0}2$ dans la somme) ; il faut rappeler celle qu'on utilise. Une fonction réelle vérifie $c_{-n}=\\overline{c_n}$, pas $c_{-n}=c_n$ (qui est le cas des fonctions paires). Enfin, $c_n(f)=0$ pour tout $n$ n'entraîne pas $f=0$ pour une fonction seulement continue par morceaux : il faut la continuité (théorème de Weierstrass trigonométrique).",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique et continue par morceaux sur $\\mathbb{R}$.",
+        "Pour $b_n(f)=0$ : $f$ est paire.",
+        "Pour $c_{-n}(f)=\\overline{c_n(f)}$ : $f$ est à valeurs réelles."
+      ],
+      "hypotheses_pieges": [
+        "Pour $b_n(f)=0$ : $f$ est à valeurs réelles (à la place de paire).",
+        "Pour $c_{-n}(f)=\\overline{c_n(f)}$ : $f$ est paire (à la place de à valeurs réelles).",
+        "Les coefficients sont $c_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$ (à la place de $\\frac1{2\\pi}$), et l'on affirme toujours $c_n(P)=\\gamma_n$ pour $P=\\sum\\gamma_ke_k$."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique et continue par morceaux. On note $e_n(t)=e^{int}$ pour $n\\in\\mathbb{Z}$.\n- Un **polynôme trigonométrique** de degré au plus $N$ est une fonction $P=\\sum_{n=-N}^N\\gamma_ne_n$, avec $\\gamma_n\\in\\mathbb{C}$ ; on note $\\mathcal{T}_N$ leur ensemble.\n- Les **coefficients de Fourier** de $f$ sont $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$ pour $n\\in\\mathbb{Z}$, et $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ ($n\\ge0$), $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$ ($n\\ge1$) ; on peut intégrer sur n'importe quel intervalle de longueur $2\\pi$.\n- Pour $n\\ge1$ : $c_n=\\frac{a_n-ib_n}2$, $c_{-n}=\\frac{a_n+ib_n}2$, $a_n=c_n+c_{-n}$, $b_n=i(c_n-c_{-n})$, et $c_0=\\frac{a_0}2$. La **somme partielle de Fourier** d'ordre $N$ est $S_N(f)(x)=\\sum_{n=-N}^Nc_n(f)e^{inx}=\\frac{a_0}2+\\sum_{n=1}^N\\left(a_n\\cos(nx)+b_n\\sin(nx)\\right)$.\n- **Orthonormalité** : $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{int}e^{-imt}\\,\\mathrm{d}t$ vaut $1$ si $n=m$ et $0$ sinon ; donc si $P=\\sum_{|k|\\le N}\\gamma_ke_k$, alors $c_n(P)=\\gamma_n$ pour $|n|\\le N$ et $c_n(P)=0$ pour $|n|>N$.\n- Si $f$ est paire, $b_n(f)=0$ et $a_n(f)=\\frac2\\pi\\int_0^\\pi f(t)\\cos(nt)\\,\\mathrm{d}t$ ; si $f$ est impaire, $a_n(f)=0$ et $b_n(f)=\\frac2\\pi\\int_0^\\pi f(t)\\sin(nt)\\,\\mathrm{d}t$ ; si $f$ est à valeurs réelles, les $a_n(f)$, $b_n(f)$ sont réels et $c_{-n}(f)=\\overline{c_n(f)}$.",
+      "enonce_trous": "Pour $f$ $2\\pi$-périodique continue par morceaux, on pose $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$, $a_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\cos(nt)\\,\\mathrm{d}t$ et $b_n(f)=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)\\sin(nt)\\,\\mathrm{d}t$. Si $P(t)=\\sum_{k=-N}^N\\gamma_ke^{ikt}$, alors $c_n(P)$ est égal à {{1}} pour $|n|\\le N$. Pour $n\\ge1$, $c_n(f)$ est égal à {{2}}. Si $f$ est {{3}}, alors $b_n(f)=0$ pour tout $n\\ge1$.",
+      "trous": [
+        {
+          "reponse": "$\\gamma_n$",
+          "leurres": [
+            "$2\\pi\\gamma_n$",
+            "$\\gamma_{-n}$",
+            "$\\frac{\\gamma_n}2$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{a_n(f)-ib_n(f)}2$",
+          "leurres": [
+            "$\\frac{a_n(f)+ib_n(f)}2$",
+            "$a_n(f)-ib_n(f)$",
+            "$\\frac{a_n(f)+b_n(f)}2$"
+          ]
+        },
+        {
+          "reponse": "paire",
+          "leurres": [
+            "impaire",
+            "à valeurs réelles",
+            "continue"
+          ]
+        }
+      ],
+      "demo": "**Période quelconque.** Si $g$ est $2\\pi$-périodique et continue par morceaux et si $a\\in[-\\pi,\\pi]$, le changement de variable $u=t-2\\pi$ donne $\\int_\\pi^{a+2\\pi}g(t)\\,\\mathrm{d}t=\\int_{-\\pi}^ag(u)\\,\\mathrm{d}u$, d'où $\\int_a^{a+2\\pi}g=\\int_a^\\pi g+\\int_{-\\pi}^ag=\\int_{-\\pi}^\\pi g$ ; pour $a$ quelconque, on se ramène à ce cas par une translation d'un multiple de $2\\pi$.\n\n**Orthonormalité.** Pour $n\\neq m$, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{i(n-m)t}\\,\\mathrm{d}t=\\frac1{2\\pi}\\left[\\frac{e^{i(n-m)t}}{i(n-m)}\\right]_{-\\pi}^{\\pi}=0$, car $e^{i(n-m)\\pi}=e^{-i(n-m)\\pi}$ ; pour $n=m$, l'intégrande vaut $1$. Par linéarité de l'intégrale, si $P=\\sum_{|k|\\le N}\\gamma_ke_k$, alors $c_n(P)=\\sum_{|k|\\le N}\\gamma_k\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}e^{ikt}e^{-int}\\,\\mathrm{d}t$, qui vaut $\\gamma_n$ si $|n|\\le N$ et $0$ sinon.\n\n**Relations.** $e^{\\mp int}=\\cos(nt)\\mp i\\sin(nt)$ donne $c_n=\\frac{a_n-ib_n}2$ et $c_{-n}=\\frac{a_n+ib_n}2$ ; en ajoutant et en retranchant, $a_n=c_n+c_{-n}$ et $b_n=i(c_n-c_{-n})$ ; enfin $c_0=\\frac1{2\\pi}\\int f=\\frac{a_0}2$. Pour $n\\ge1$ et $x$ réel,\n$$c_ne^{inx}+c_{-n}e^{-inx}=\\frac{a_n-ib_n}2\\left(\\cos(nx)+i\\sin(nx)\\right)+\\frac{a_n+ib_n}2\\left(\\cos(nx)-i\\sin(nx)\\right)=a_n\\cos(nx)+b_n\\sin(nx),$$\nce qui donne les deux écritures de $S_N(f)$.\n\n**Parité et valeurs réelles.** Si $f$ est paire, $t\\mapsto f(t)\\sin(nt)$ est impaire, d'intégrale nulle sur $[-\\pi,\\pi]$, et $t\\mapsto f(t)\\cos(nt)$ est paire, d'où $a_n=\\frac2\\pi\\int_0^\\pi f(t)\\cos(nt)\\,\\mathrm{d}t$ ; le cas impair est symétrique. Si $f$ est réelle, $a_n$ et $b_n$ sont des intégrales de fonctions réelles, et $\\overline{c_n(f)}=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{int}\\,\\mathrm{d}t=c_{-n}(f)$.",
+      "exemple": "Soit $f$ la fonction $2\\pi$-périodique, impaire, égale à $1$ sur $\\left]0,\\pi\\right[$ et nulle en $0$ et en $\\pi$ (« créneau »). Elle est impaire, donc $a_n(f)=0$, et\n$$b_n(f)=\\frac2\\pi\\int_0^\\pi\\sin(nt)\\,\\mathrm{d}t=\\frac2\\pi\\cdot\\frac{1-(-1)^n}n,$$\nsoit $b_n(f)=\\frac4{\\pi n}$ pour $n$ impair et $0$ pour $n$ pair. Par suite $c_n(f)=\\frac{a_n-ib_n}2=-\\frac{2i}{\\pi n}$ pour $n\\ge1$ impair, $c_{-n}(f)=\\overline{c_n(f)}$ ($f$ est réelle), et $S_{2N+1}(f)(x)=\\frac4\\pi\\sum_{k=0}^N\\frac{\\sin((2k+1)x)}{2k+1}$.",
+      "contre_exemple": "- **Réelle ne suffit pas pour avoir $b_n=0$** : $f(t)=\\sin t$ est réelle et $b_1(f)=1$. Il faut la parité.\n- **Paire ne suffit pas pour avoir $c_{-n}=\\overline{c_n}$** : la fonction constante $f=i$ est paire et $c_0(f)=i\\neq\\overline{c_0(f)}$. Il faut que $f$ soit réelle.\n- **Les coefficients ne déterminent pas une fonction continue par morceaux** : la fonction $2\\pi$-périodique égale à $1$ aux points de $2\\pi\\mathbb{Z}$ et à $0$ ailleurs n'est pas nulle, mais tous ses coefficients le sont (intégrales de fonctions nulles sauf en un point par période).",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est impaire, $a_n(f)=0$ pour tout $n\\ge0$.",
+          "vrai": true,
+          "justification": "$t\\mapsto f(t)\\cos(nt)$ est impaire, donc d'intégrale nulle sur $[-\\pi,\\pi]$."
+        },
+        {
+          "texte": "Si $f$ est réelle et paire, les $c_n(f)$ sont réels et $c_{-n}(f)=c_n(f)$.",
+          "vrai": true,
+          "justification": "$b_n=0$, donc $c_n=c_{-n}=\\frac{a_n}2$, réel."
+        },
+        {
+          "texte": "Un polynôme trigonométrique à valeurs réelles s'écrit $\\sum_{|n|\\le N}\\gamma_ne^{int}$ avec des $\\gamma_n$ tous réels.",
+          "vrai": false,
+          "contre_exemple": "$\\sin t=\\frac{e^{it}-e^{-it}}{2i}$ : $\\gamma_1=-\\frac i2$ et $\\gamma_{-1}=\\frac i2$ ne sont pas réels. Pour une fonction réelle, on a seulement $\\gamma_{-n}=\\overline{\\gamma_n}$."
+        },
+        {
+          "texte": "Si $c_n(f)=0$ pour tout $n\\in\\mathbb{Z}$, alors $f$ est nulle.",
+          "vrai": false,
+          "contre_exemple": "La fonction $2\\pi$-périodique égale à $1$ sur $2\\pi\\mathbb{Z}$ et à $0$ ailleurs est continue par morceaux, non nulle, et tous ses coefficients sont nuls."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-cpm",
+        "geo-t-complexes-exponentielle",
+        "ar-t-fonctions-usuelles-trigo"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-approximation",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Meilleure approximation en moyenne quadratique",
+      "recto": "Énoncer le théorème de meilleure approximation d'une fonction $2\\pi$-périodique continue par morceaux par les polynômes trigonométriques en moyenne quadratique, et l'inégalité de Bessel.",
+      "cours": "Les coefficients de Fourier sont des produits scalaires : avec $\\langle f,g\\rangle=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)\\overline{g(t)}\\,\\mathrm{d}t$, on a $c_n(f)=\\langle f,e_n\\rangle$, et $(e_n)_{n\\in\\mathbb{Z}}$ est une famille orthonormale. La somme partielle $S_N(f)=\\sum_{|n|\\le N}\\langle f,e_n\\rangle e_n$ est donc la **projection orthogonale** de $f$ sur $\\mathcal{T}_N$, comme en dimension finie : c'est le polynôme trigonométrique de degré au plus $N$ le plus proche de $f$ en moyenne quadratique.\n\nLe théorème de Pythagore donne tout le reste. Pour $P\\in\\mathcal{T}_N$, $f-P=(f-S_N(f))+(S_N(f)-P)$ est une somme de deux termes orthogonaux, d'où $\\|f-P\\|_2^2=\\|f-S_N(f)\\|_2^2+\\|S_N(f)-P\\|_2^2$ ; avec $P=0$, $\\sum_{|n|\\le N}|c_n(f)|^2=\\|S_N(f)\\|_2^2\\le\\|f\\|_2^2$. C'est l'**inégalité de Bessel** : la série $\\sum|c_n(f)|^2$ converge, donc $c_n(f)\\to0$ (lemme de Riemann-Lebesgue pour les fonctions continues par morceaux) ; les hautes fréquences ont un poids qui tend vers $0$.\n\nMéthode : pour minimiser $\\int_{-\\pi}^{\\pi}|f-P|^2$ sur des polynômes trigonométriques, ou $\\int_0^\\pi|g-P|^2$ sur des combinaisons de quelques $\\sin(nt)$ (ou $\\cos(nt)$), on reconnaît une projection sur une famille orthogonale : les coefficients optimaux sont ceux de Fourier (de $f$, ou d'un prolongement impair ou pair de $g$), et le minimum vaut le carré de la norme de la fonction moins celui de la norme de sa projection. Le lemme de Riemann-Lebesgue s'utilise aussi sur un segment : on prolonge la fonction par $0$, puis par périodicité.\n\nPièges : sur les fonctions continues par morceaux, $\\langle\\cdot,\\cdot\\rangle$ n'est pas défini positif (une fonction nulle sauf en un point a une norme nulle) ; c'est sans conséquence ici, car Pythagore et Cauchy-Schwarz restent vrais, et $\\|\\cdot\\|_2$ est une vraie norme sur $\\mathcal{T}_N$. La meilleure approximation concerne $\\|\\cdot\\|_2$, pas la norme uniforme : $S_N(f)$ n'est en général pas le polynôme trigonométrique le plus proche de $f$ pour $\\sup|f-P|$. Enfin, Bessel ne donne que $\\sum|c_n|^2<+\\infty$, pas $\\sum|c_n|<+\\infty$.",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique et continue par morceaux sur $\\mathbb{R}$.",
+        "Le polynôme $P$ parcourt $\\mathcal{T}_N$, l'ensemble des $\\sum_{n=-N}^N\\gamma_ne_n$.",
+        "L'écart est mesuré par $\\|f-P\\|_2$, avec $\\|g\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|g(t)|^2\\,\\mathrm{d}t$."
+      ],
+      "hypotheses_pieges": [
+        "L'écart est mesuré par $\\sup_{\\mathbb{R}}|f-P|$ (à la place de $\\|f-P\\|_2$).",
+        "Le polynôme $P$ parcourt l'ensemble des $\\sum_{n=0}^N\\gamma_ne_n$, à fréquences positives (à la place de $\\mathcal{T}_N$)."
+      ],
+      "enonce": "Soit $f$ $2\\pi$-périodique, continue par morceaux, à valeurs complexes ; on pose $\\langle f,g\\rangle=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)\\overline{g(t)}\\,\\mathrm{d}t$ et $\\|f\\|_2=\\sqrt{\\langle f,f\\rangle}$, de sorte que $c_n(f)=\\langle f,e_n\\rangle$. Pour tout $N\\in\\mathbb{N}$ :\n- $f-S_N(f)$ est orthogonale à $\\mathcal{T}_N$, et pour tout $P\\in\\mathcal{T}_N$, $\\|f-P\\|_2^2=\\|f-S_N(f)\\|_2^2+\\|S_N(f)-P\\|_2^2$ ; ainsi $S_N(f)$ est l'**unique** $P\\in\\mathcal{T}_N$ qui minimise $\\|f-P\\|_2$ ;\n- le minimum vaut $\\|f-S_N(f)\\|_2^2=\\|f\\|_2^2-\\sum_{n=-N}^N|c_n(f)|^2$ ;\n- **inégalité de Bessel** : $\\sum_{n=-N}^N|c_n(f)|^2\\le\\|f\\|_2^2$ ; la série $\\sum|c_n(f)|^2$ converge, et $c_n(f)\\to0$ quand $|n|\\to+\\infty$ (lemme de Riemann-Lebesgue).",
+      "enonce_trous": "Soit $f$ $2\\pi$-périodique et continue par morceaux, et $N\\in\\mathbb{N}$. Parmi les polynômes trigonométriques $P$ de degré au plus $N$, celui qui minimise {{1}} est {{2}}, et le minimum de $\\|f-P\\|_2^2$ vaut {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\|f-P\\|_2$",
+          "leurres": [
+            "$\\sup_{\\mathbb{R}}|f-P|$",
+            "$|f(0)-P(0)|$",
+            "$\\int_{-\\pi}^{\\pi}|f(t)-P(t)|\\,\\mathrm{d}t$"
+          ]
+        },
+        {
+          "reponse": "$S_N(f)=\\sum_{n=-N}^Nc_n(f)e_n$",
+          "leurres": [
+            "$\\sum_{n=0}^Nc_n(f)e_n$",
+            "$\\sum_{n=-N}^N2c_n(f)e_n$",
+            "$\\sum_{n=-N}^Nc_n(f)e_{-n}$"
+          ]
+        },
+        {
+          "reponse": "$\\|f\\|_2^2-\\sum_{n=-N}^N|c_n(f)|^2$",
+          "leurres": [
+            "$\\|f\\|_2^2-\\sum_{n=0}^N|c_n(f)|^2$",
+            "$\\|f\\|_2^2+\\sum_{n=-N}^N|c_n(f)|^2$",
+            "$\\|f\\|_2^2-\\left(\\sum_{n=-N}^N|c_n(f)|\\right)^2$"
+          ]
+        }
+      ],
+      "demo": "**Orthogonalité.** Pour $|k|\\le N$, $\\langle f-S_N(f),e_k\\rangle=c_k(f)-\\sum_{|n|\\le N}c_n(f)\\langle e_n,e_k\\rangle=c_k(f)-c_k(f)=0$ ; par linéarité, $f-S_N(f)$ est orthogonale à tout $Q\\in\\mathcal{T}_N$.\n\n**Pythagore.** La forme $\\langle\\cdot,\\cdot\\rangle$ est hermitienne et positive. Si $\\langle u,v\\rangle=0$, alors $\\|u+v\\|_2^2=\\|u\\|_2^2+2\\,\\mathrm{Re}\\langle u,v\\rangle+\\|v\\|_2^2=\\|u\\|_2^2+\\|v\\|_2^2$. Pour $P\\in\\mathcal{T}_N$, avec $u=f-S_N(f)$ et $v=S_N(f)-P\\in\\mathcal{T}_N$ : $\\|f-P\\|_2^2=\\|f-S_N(f)\\|_2^2+\\|S_N(f)-P\\|_2^2\\ge\\|f-S_N(f)\\|_2^2$.\n\n**Unicité.** Si $Q=\\sum_{|n|\\le N}\\delta_ne_n$, l'orthonormalité donne $\\|Q\\|_2^2=\\sum_{|n|\\le N}|\\delta_n|^2$, qui n'est nul que si $Q=0$. Donc l'égalité $\\|f-P\\|_2=\\|f-S_N(f)\\|_2$ impose $P=S_N(f)$.\n\n**Distance et Bessel.** Avec $P=0$ : $\\|f\\|_2^2=\\|f-S_N(f)\\|_2^2+\\|S_N(f)\\|_2^2$ et $\\|S_N(f)\\|_2^2=\\sum_{|n|\\le N}|c_n(f)|^2$, d'où la valeur du minimum et l'inégalité $\\sum_{|n|\\le N}|c_n(f)|^2\\le\\|f\\|_2^2$. Les sommes partielles de la série à termes positifs $\\sum|c_n(f)|^2$ sont donc majorées : elle converge, son terme général tend vers $0$, et $c_n(f)\\to0$ quand $|n|\\to+\\infty$.",
+      "exemple": "Pour la fonction $2\\pi$-périodique $f$ égale à $t$ sur $\\left]-\\pi,\\pi\\right]$, on a $a_n(f)=0$ et $b_n(f)=\\frac{2(-1)^{n+1}}n$, donc $c_0(f)=0$ et $c_{\\pm1}(f)=\\mp i$. Le polynôme de $\\mathcal{T}_1$ le plus proche de $f$ en moyenne quadratique est $S_1(f)(t)=2\\sin t$, et\n$$\\min_{P\\in\\mathcal{T}_1}\\|f-P\\|_2^2=\\|f\\|_2^2-|c_{-1}(f)|^2-|c_0(f)|^2-|c_1(f)|^2=\\frac{\\pi^2}3-2\\approx1{,}29.$$",
+      "contre_exemple": "- **Pour la norme uniforme, $S_N(f)$ n'est pas le meilleur choix.** Pour $f(t)=|\\sin t|$ et $N=0$, $S_0(f)=c_0(f)=\\frac2\\pi$ et $\\sup|f-\\frac2\\pi|=\\frac2\\pi\\approx0{,}64$ (atteint là où $\\sin t=0$), alors que la constante $\\frac12$ donne $\\sup|f-\\frac12|=\\frac12$.\n- **Bessel ne donne pas $\\sum|c_n|<+\\infty$** : pour le créneau, $|c_n|=\\frac2{\\pi|n|}$ pour $n$ impair, et $\\sum\\frac1{|n|}$ diverge, alors que $\\sum|c_n|^2$ converge.\n- **$\\|\\cdot\\|_2$ n'est pas une norme sur les fonctions continues par morceaux** : la fonction $2\\pi$-périodique égale à $1$ sur $2\\pi\\mathbb{Z}$ et à $0$ ailleurs est non nulle et de norme nulle.",
+      "affirmations": [
+        {
+          "texte": "Pour toute $f$ $2\\pi$-périodique continue par morceaux, $a_n(f)\\to0$ et $b_n(f)\\to0$.",
+          "vrai": true,
+          "justification": "$a_n=c_n+c_{-n}$ et $b_n=i(c_n-c_{-n})$, avec $c_{\\pm n}(f)\\to0$ (inégalité de Bessel)."
+        },
+        {
+          "texte": "Pour toute $f$ $2\\pi$-périodique continue par morceaux, la série $\\sum_{n\\in\\mathbb{Z}}|c_n(f)|$ converge.",
+          "vrai": false,
+          "contre_exemple": "Pour le créneau (impair, égal à $1$ sur $\\left]0,\\pi\\right[$), $|c_n|=\\frac2{\\pi|n|}$ pour $n$ impair : la série diverge."
+        },
+        {
+          "texte": "La suite $N\\mapsto\\|f-S_N(f)\\|_2$ est décroissante.",
+          "vrai": true,
+          "justification": "$\\|f-S_N(f)\\|_2^2=\\|f\\|_2^2-\\sum_{|n|\\le N}|c_n(f)|^2$ décroît quand $N$ augmente."
+        },
+        {
+          "texte": "Si $\\|f\\|_2=0$, alors $f=0$.",
+          "vrai": false,
+          "contre_exemple": "La fonction $2\\pi$-périodique égale à $1$ sur $2\\pi\\mathbb{Z}$ et à $0$ ailleurs est de norme nulle sans être nulle."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-coefficients",
+        "al-l2-euclidien-projection"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-parseval",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Identité de Parseval",
+      "recto": "Énoncer l'identité de Parseval pour une fonction $2\\pi$-périodique continue par morceaux, sous forme exponentielle et sous forme réelle.",
+      "cours": "L'inégalité de Bessel dit que la somme des $|c_n(f)|^2$ ne dépasse pas l'« énergie » $\\|f\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f|^2$ ; l'identité de Parseval dit qu'il y a égalité : aucune énergie n'est perdue, la famille $(e_n)$ est « complète ». C'est l'analogue de $\\|x\\|^2=\\sum|x_i|^2$ dans une base orthonormale. Elle équivaut à la convergence de $S_N(f)$ vers $f$ en moyenne quadratique, puisque $\\|f-S_N(f)\\|_2^2=\\|f\\|_2^2-\\sum_{|n|\\le N}|c_n(f)|^2$.\n\nLa démonstration repose sur la **densité** : il suffit de trouver un polynôme trigonométrique proche de $f$ en moyenne quadratique, car $S_N(f)$ fait au moins aussi bien dès que $N$ dépasse son degré. On approche d'abord $f$ par une fonction continue (en raccordant affinement les sauts), puis la fonction continue, uniformément, par un polynôme trigonométrique (théorème de Weierstrass trigonométrique, conséquence du théorème de Fejér).\n\nMéthode, pour calculer une somme comme $\\sum\\frac1{n^{2k}}$ : choisir $f$ dont les coefficients sont, au carré, les termes voulus (souvent $t$, $|t|$, $t^2$, un créneau, $e^{at}$), calculer ces coefficients et $\\frac1{2\\pi}\\int|f|^2$, puis écrire Parseval sous forme réelle\n$$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)|^2\\,\\mathrm{d}t=\\frac{|a_0|^2}4+\\frac12\\sum_{n=1}^{+\\infty}\\left(|a_n|^2+|b_n|^2\\right).$$\nAinsi $f(t)=t$ donne $\\sum\\frac1{n^2}=\\frac{\\pi^2}6$, et $f(t)=t^2$ donne $\\sum\\frac1{n^4}=\\frac{\\pi^4}{90}$. La forme polarisée $\\langle f,g\\rangle=\\sum c_n(f)\\overline{c_n(g)}$ donne d'autres sommes, et Parseval appliqué à $f'$ conduit à des inégalités (Wirtinger).\n\nPièges : le terme $\\frac{|a_0|^2}4$ (et non $\\frac{|a_0|^2}2$) ; le facteur $\\frac12$ devant la somme des $|a_n|^2+|b_n|^2$ ; la somme porte sur tout $\\mathbb{Z}$ dans la forme exponentielle. Parseval ne dit rien de la convergence en un point : il faut pour cela le théorème de Dirichlet. Enfin, deux fonctions continues par morceaux de mêmes coefficients vérifient $\\|f-g\\|_2=0$ : elles coïncident sauf en un nombre fini de points par période, sans être forcément égales.",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique et continue par morceaux sur $\\mathbb{R}$.",
+        "Les coefficients sont $c_n(f)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$.",
+        "La somme porte sur tous les $n\\in\\mathbb{Z}$."
+      ],
+      "hypotheses_pieges": [
+        "Les coefficients sont $\\frac1\\pi\\int_{-\\pi}^{\\pi}f(t)e^{-int}\\,\\mathrm{d}t$ (à la place de $\\frac1{2\\pi}$).",
+        "La somme ne porte que sur les $n\\in\\mathbb{N}$ (à la place de $n\\in\\mathbb{Z}$)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique et continue par morceaux. Alors $\\|f-S_N(f)\\|_2\\to0$ quand $N\\to+\\infty$, et\n$$\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)|^2\\,\\mathrm{d}t=\\sum_{n=-\\infty}^{+\\infty}|c_n(f)|^2=\\frac{|a_0(f)|^2}4+\\frac12\\sum_{n=1}^{+\\infty}\\left(|a_n(f)|^2+|b_n(f)|^2\\right).$$\nPlus généralement, si $f$ et $g$ sont $2\\pi$-périodiques et continues par morceaux, la série $\\sum c_n(f)\\overline{c_n(g)}$ converge absolument et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)\\overline{g(t)}\\,\\mathrm{d}t=\\sum_{n=-\\infty}^{+\\infty}c_n(f)\\overline{c_n(g)}$.",
+      "enonce_trous": "Soit $f$ $2\\pi$-périodique et continue par morceaux. Alors $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(t)|^2\\,\\mathrm{d}t$ est égal à {{1}}, et aussi à {{2}}. Enfin, {{3}} quand $N\\to+\\infty$.",
+      "trous": [
+        {
+          "reponse": "$\\sum_{n=-\\infty}^{+\\infty}|c_n(f)|^2$",
+          "leurres": [
+            "$\\sum_{n=0}^{+\\infty}|c_n(f)|^2$",
+            "$\\left(\\sum_{n=-\\infty}^{+\\infty}|c_n(f)|\\right)^2$",
+            "$\\sum_{n=-\\infty}^{+\\infty}c_n(f)^2$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{|a_0(f)|^2}4+\\frac12\\sum_{n=1}^{+\\infty}\\left(|a_n(f)|^2+|b_n(f)|^2\\right)$",
+          "leurres": [
+            "$\\frac{|a_0(f)|^2}2+\\sum_{n=1}^{+\\infty}\\left(|a_n(f)|^2+|b_n(f)|^2\\right)$",
+            "$\\frac{|a_0(f)|^2}4+\\sum_{n=1}^{+\\infty}\\left(|a_n(f)|^2+|b_n(f)|^2\\right)$",
+            "$\\frac{|a_0(f)|^2}4+\\frac12\\sum_{n=1}^{+\\infty}|a_n(f)+ib_n(f)|^2$"
+          ]
+        },
+        {
+          "reponse": "$\\|f-S_N(f)\\|_2\\to0$",
+          "leurres": [
+            "$\\sup_{\\mathbb{R}}|f-S_N(f)|\\to0$",
+            "$S_N(f)(x)\\to f(x)$ pour tout réel $x$",
+            "$\\|S_N(f)\\|_2\\to0$"
+          ]
+        }
+      ],
+      "demo": "**Réduction.** D'après la meilleure approximation, pour tout $P\\in\\mathcal{T}_M$ et tout $N\\ge M$, $\\|f-S_N(f)\\|_2\\le\\|f-P\\|_2$, car $P\\in\\mathcal{T}_N$. Il suffit donc de montrer : pour tout $\\varepsilon>0$, il existe un polynôme trigonométrique $P$ tel que $\\|f-P\\|_2\\le2\\varepsilon$.\n\n**Approximation par une fonction continue.** Soit $M=\\sup|f|$ et $x_1<\\dots<x_p$ les points de discontinuité de $f$ dans une période $[\\alpha,\\alpha+2\\pi[$, où $\\alpha$ est un point de continuité. Pour $\\delta>0$ assez petit, les intervalles $[x_j-\\delta,x_j+\\delta]$ sont disjoints, contenus dans $\\left]\\alpha,\\alpha+2\\pi\\right[$, et leurs extrémités sont des points de continuité ; soit $g$ égale à $f$ hors de ces intervalles, affine sur chacun d'eux avec les valeurs $f(x_j-\\delta)$ et $f(x_j+\\delta)$ aux extrémités, puis prolongée par $2\\pi$-périodicité. Alors $g$ est continue, $|g|\\le M$, et $f-g$ est nulle hors d'une réunion d'intervalles de longueur totale $2p\\delta$ par période, où $|f-g|\\le2M$ : $\\|f-g\\|_2^2\\le\\frac{4M^2\\cdot2p\\delta}{2\\pi}$, qui est au plus $\\varepsilon^2$ pour $\\delta$ assez petit.\n\n**Approximation uniforme.** Par le théorème de Weierstrass trigonométrique, il existe un polynôme trigonométrique $P$ avec $\\sup|g-P|\\le\\varepsilon$, donc $\\|g-P\\|_2\\le\\varepsilon$. L'inégalité triangulaire (valable pour $\\|\\cdot\\|_2$, conséquence de Cauchy-Schwarz) donne $\\|f-P\\|_2\\le2\\varepsilon$.\n\n**Conclusion.** $\\|f-S_N(f)\\|_2^2=\\|f\\|_2^2-\\sum_{|n|\\le N}|c_n(f)|^2\\to0$, d'où l'identité. La forme réelle vient de $|c_0|^2=\\frac{|a_0|^2}4$ et de $|c_n|^2+|c_{-n}|^2=\\frac{|a_n-ib_n|^2+|a_n+ib_n|^2}4=\\frac{|a_n|^2+|b_n|^2}2$ (identité du parallélogramme). Pour la forme polarisée, $|c_n(f)\\overline{c_n(g)}|\\le\\frac12\\left(|c_n(f)|^2+|c_n(g)|^2\\right)$ assure la convergence absolue, et $\\langle S_N(f),S_N(g)\\rangle=\\sum_{|n|\\le N}c_n(f)\\overline{c_n(g)}$ tend vers $\\langle f,g\\rangle$, car $\\langle f,g\\rangle-\\langle S_N(f),S_N(g)\\rangle=\\langle f-S_N(f),g\\rangle+\\langle S_N(f),g-S_N(g)\\rangle$ est majoré en module, par Cauchy-Schwarz, par $\\|f-S_N(f)\\|_2\\|g\\|_2+\\|f\\|_2\\|g-S_N(g)\\|_2$.",
+      "exemple": "Pour la fonction $2\\pi$-périodique $f$ égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ : $a_n(f)=0$, $b_n(f)=\\frac{2(-1)^{n+1}}n$ et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}t^2\\,\\mathrm{d}t=\\frac{\\pi^2}3$. L'identité de Parseval donne\n$$\\frac{\\pi^2}3=\\frac12\\sum_{n=1}^{+\\infty}\\frac4{n^2},\\qquad\\text{donc}\\qquad\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6.$$",
+      "contre_exemple": "- **Pas de convergence en tout point** : soit $f$ le créneau (impair, égal à $1$ sur $\\left]0,\\pi\\right[$), modifié en posant $f(0)=1$. On a $\\|f-S_N(f)\\|_2\\to0$, mais $S_N(f)(0)=0$ pour tout $N$ (les $\\sin(n\\cdot0)$ sont nuls), donc $S_N(f)(0)$ ne tend pas vers $f(0)$.\n- **Pas de convergence uniforme** : pour le même créneau, les $S_N(f)$ sont continues et $f$ ne l'est pas ; une limite uniforme de fonctions continues étant continue, $S_N(f)$ ne converge pas uniformément vers $f$.\n- **La somme sur $\\mathbb{N}$ seulement est fausse** : pour $f(t)=e^{-it}$, $\\|f\\|_2^2=1$ mais $c_n(f)=0$ pour tout $n\\ge0$.",
+      "affirmations": [
+        {
+          "texte": "Deux fonctions $2\\pi$-périodiques continues par morceaux qui ont les mêmes coefficients de Fourier coïncident sauf en un nombre fini de points par période.",
+          "vrai": true,
+          "justification": "Parseval appliqué à $h=f-g$ donne $\\int_{-\\pi}^{\\pi}|h|^2=0$ ; sur chaque intervalle ouvert où $h$ est continue, $|h|^2$ est continue, positive et d'intégrale nulle, donc nulle."
+        },
+        {
+          "texte": "Pour $f$ réelle, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)^2\\,\\mathrm{d}t=\\sum_{n\\ge0}\\left(a_n(f)^2+b_n(f)^2\\right)$ (avec $b_0=0$).",
+          "vrai": false,
+          "contre_exemple": "Pour $f=1$ : le premier membre vaut $1$, le second $a_0^2=4$. La bonne formule est $\\frac{a_0^2}4+\\frac12\\sum_{n\\ge1}(a_n^2+b_n^2)$."
+        },
+        {
+          "texte": "Pour $f$, $g$ $2\\pi$-périodiques continues par morceaux, $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(t)\\overline{g(t)}\\,\\mathrm{d}t=\\sum_{n\\in\\mathbb{Z}}c_n(f)\\overline{c_n(g)}$.",
+          "vrai": true,
+          "justification": "C'est la forme polarisée de l'identité de Parseval."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-approximation",
+        "int-l3-fourier-weierstrass"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-dirichlet",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Théorème de Dirichlet",
+      "recto": "Énoncer le théorème de Dirichlet de convergence ponctuelle des séries de Fourier, avec ses hypothèses.",
+      "cours": "Le théorème de Dirichlet répond à la question naturelle : la série de Fourier de $f$ converge-t-elle vers $f(x)$ en un point $x$ donné ? Pour une fonction **de classe $\\mathcal{C}^1$ par morceaux**, oui en tout point de continuité ; en un point de saut, la série converge vers la **moyenne** $\\frac{f(x^+)+f(x^-)}2$ des limites à droite et à gauche, quelle que soit la valeur $f(x)$.\n\nUne fonction $2\\pi$-périodique est de classe $\\mathcal{C}^1$ par morceaux s'il existe une subdivision $a_0<a_1<\\dots<a_p$ d'une période telle que, sur chaque $\\left]a_{j-1},a_j\\right[$, $f$ coïncide avec une fonction de classe $\\mathcal{C}^1$ sur le segment $[a_{j-1},a_j]$ : $f$ et $f'$ ont des limites finies aux bords. Les exemples usuels ($t$, $|t|$, $t^2$, créneaux, $e^{at}$ restreints à une période puis périodisés) le sont.\n\nL'outil est le **noyau de Dirichlet** $D_N(t)=\\sum_{|n|\\le N}e^{int}=\\frac{\\sin\\left(\\left(N+\\frac12\\right)t\\right)}{\\sin\\frac t2}$, qui permet d'écrire $S_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)D_N(t)\\,\\mathrm{d}t$. L'écart $S_N(f)(x)-\\frac{f(x^+)+f(x^-)}2$ devient l'intégrale d'une fonction continue par morceaux contre $\\sin\\left(\\left(N+\\frac12\\right)t\\right)$, qui tend vers $0$ par le lemme de Riemann-Lebesgue ; l'hypothèse $\\mathcal{C}^1$ par morceaux sert à contrôler le quotient $\\frac{f(x+t)-f(x^+)}{\\sin\\frac t2}$ près de $t=0$.\n\nMéthode, pour sommer une série numérique : choisir $f$, calculer ses coefficients, vérifier que $f$ est $\\mathcal{C}^1$ par morceaux, puis évaluer la série de Fourier en un point bien choisi, en tenant compte d'un éventuel saut. Ainsi $f(t)=t$ en $\\frac\\pi2$ donne $1-\\frac13+\\frac15-\\cdots=\\frac\\pi4$, et $f(t)=t^2$ en $\\pi$ donne $\\sum\\frac1{n^2}=\\frac{\\pi^2}6$.\n\nPièges : en un point de discontinuité, la limite n'est pas $f(x)$ ; la convergence n'est pas uniforme au voisinage d'un saut (phénomène de Gibbs : pour $N$ grand, les sommes partielles du créneau dépassent $1$ d'environ $0{,}18$ près de $0$) ; enfin, la seule continuité ne suffit pas : il existe des fonctions continues dont la série de Fourier diverge en un point (résultat de du Bois-Reymond, admis ici).",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique.",
+        "$f$ est de classe $\\mathcal{C}^1$ par morceaux sur $\\mathbb{R}$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue sur $\\mathbb{R}$ (à la place de $\\mathcal{C}^1$ par morceaux).",
+        "$f$ est continue par morceaux sur $\\mathbb{R}$ (à la place de $\\mathcal{C}^1$ par morceaux)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique et de classe $\\mathcal{C}^1$ par morceaux. Pour tout réel $x$, $f$ a une limite à droite $f(x^+)$ et une limite à gauche $f(x^-)$ en $x$, et\n$$S_N(f)(x)=\\sum_{n=-N}^Nc_n(f)e^{inx}\\xrightarrow[N\\to+\\infty]{}\\frac{f(x^+)+f(x^-)}2.$$\nEn particulier, en tout point $x$ où $f$ est continue, $f(x)=\\frac{a_0(f)}2+\\sum_{n=1}^{+\\infty}\\left(a_n(f)\\cos(nx)+b_n(f)\\sin(nx)\\right)$.",
+      "enonce_trous": "Soit $f$ $2\\pi$-périodique et {{1}}. Alors, pour tout réel $x$, $S_N(f)(x)$ tend vers {{2}} quand $N\\to+\\infty$ ; la convergence vers $f(x)$ a donc lieu {{3}}.",
+      "trous": [
+        {
+          "reponse": "de classe $\\mathcal{C}^1$ par morceaux",
+          "leurres": [
+            "continue par morceaux",
+            "continue",
+            "bornée"
+          ]
+        },
+        {
+          "reponse": "$\\frac{f(x^+)+f(x^-)}2$",
+          "leurres": [
+            "$f(x)$",
+            "$f(x^+)$",
+            "$\\frac{f(x^+)-f(x^-)}2$"
+          ]
+        },
+        {
+          "reponse": "en tout point où $f$ est continue",
+          "leurres": [
+            "en tout point de $\\mathbb{R}$",
+            "uniformément sur $\\mathbb{R}$",
+            "seulement aux points où $f$ est dérivable"
+          ]
+        }
+      ],
+      "demo": "**Noyau de Dirichlet.** $S_N(f)(x)=\\sum_{|n|\\le N}\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(u)e^{in(x-u)}\\,\\mathrm{d}u=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(u)D_N(x-u)\\,\\mathrm{d}u=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)D_N(t)\\,\\mathrm{d}t$ (changement de variable $t=x-u$, puis périodicité). Pour $t\\notin2\\pi\\mathbb{Z}$, la somme géométrique donne\n$$D_N(t)=e^{-iNt}\\frac{e^{i(2N+1)t}-1}{e^{it}-1}=\\frac{e^{i(N+\\frac12)t}-e^{-i(N+\\frac12)t}}{e^{i\\frac t2}-e^{-i\\frac t2}}=\\frac{\\sin\\left(\\left(N+\\frac12\\right)t\\right)}{\\sin\\frac t2}.$$\n$D_N$ est paire et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}D_N=1$ (seul le terme $n=0$ contribue), donc $\\frac1{2\\pi}\\int_0^\\pi D_N=\\frac12$.\n\n**Écart.** Par parité de $D_N$, $S_N(f)(x)=\\frac1{2\\pi}\\int_0^\\pi\\left(f(x+t)+f(x-t)\\right)D_N(t)\\,\\mathrm{d}t$, et $\\ell=\\frac{f(x^+)+f(x^-)}2=\\frac1{2\\pi}\\int_0^\\pi\\left(f(x^+)+f(x^-)\\right)D_N(t)\\,\\mathrm{d}t$. Donc\n$$S_N(f)(x)-\\ell=\\frac1{2\\pi}\\int_0^\\pi g(t)\\sin\\left(\\left(N+\\tfrac12\\right)t\\right)\\mathrm{d}t,\\qquad g(t)=\\frac{f(x+t)-f(x^+)+f(x-t)-f(x^-)}{\\sin\\frac t2}.$$\n\n**Régularité de $g$.** Comme $f$ est $\\mathcal{C}^1$ par morceaux, il existe $\\delta>0$ et $h$ de classe $\\mathcal{C}^1$ sur $[x,x+\\delta]$ avec $f=h$ sur $\\left]x,x+\\delta\\right]$ ; alors $f(x^+)=h(x)$ existe et $\\frac{f(x+t)-f(x^+)}t\\to h'(x)$ quand $t\\to0^+$. De même à gauche. Comme $\\frac t{\\sin\\frac t2}\\to2$, $g$, continue par morceaux sur $\\left]0,\\pi\\right]$, a une limite finie en $0^+$ : prolongée en $0$, elle est continue par morceaux sur $[0,\\pi]$.\n\n**Riemann-Lebesgue.** Si $u$ est continue par morceaux sur $[0,\\pi]$, la fonction $2\\pi$-périodique $U$ égale à $u$ sur $[0,\\pi[$ et à $0$ sur $[-\\pi,0[$ est continue par morceaux, et $\\int_0^\\pi u(t)\\cos(Nt)\\,\\mathrm{d}t=\\pi\\left(c_N(U)+c_{-N}(U)\\right)\\to0$ par l'inégalité de Bessel ; de même $\\int_0^\\pi u(t)\\sin(Nt)\\,\\mathrm{d}t=i\\pi\\left(c_N(U)-c_{-N}(U)\\right)\\to0$. Comme $\\sin\\left(\\left(N+\\frac12\\right)t\\right)=\\sin(Nt)\\cos\\frac t2+\\cos(Nt)\\sin\\frac t2$, on applique ceci à $u=g\\cos\\frac t2$ et à $u=g\\sin\\frac t2$ : $S_N(f)(x)-\\ell\\to0$.",
+      "exemple": "Soit $f$ $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ : elle est $\\mathcal{C}^1$ par morceaux et $b_n(f)=\\frac{2(-1)^{n+1}}n$, $a_n(f)=0$. En $x=\\frac\\pi2$, point de continuité, $\\sin\\frac{n\\pi}2$ vaut $0$ pour $n$ pair et $(-1)^k$ pour $n=2k+1$ :\n$$\\frac\\pi2=2\\sum_{k=0}^{+\\infty}\\frac{(-1)^k}{2k+1},\\qquad\\text{soit}\\qquad1-\\frac13+\\frac15-\\frac17+\\cdots=\\frac\\pi4.$$\nEn $x=\\pi$, point de saut, tous les $\\sin(n\\pi)$ sont nuls : $S_N(f)(\\pi)=0=\\frac{f(\\pi^+)+f(\\pi^-)}2=\\frac{-\\pi+\\pi}2$, alors que $f(\\pi)=\\pi$.",
+      "contre_exemple": "- **En un point de saut, la limite n'est pas $f(x)$** : dans l'exemple, $S_N(f)(\\pi)=0$ pour tout $N$, alors que $f(\\pi)=\\pi$.\n- **La convergence n'est pas uniforme** : les $S_N(f)$ sont continues et $f$ ne l'est pas en $\\pi$ ; une limite uniforme de fonctions continues serait continue.\n- **La continuité seule ne suffit pas** : il existe des fonctions continues et $2\\pi$-périodiques dont la série de Fourier diverge en un point (du Bois-Reymond, 1873) ; ce résultat est admis ici.",
+      "affirmations": [
+        {
+          "texte": "La série de Fourier de la fonction $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ converge vers cette fonction en tout réel $x$.",
+          "vrai": true,
+          "justification": "Elle est continue (ses valeurs en $-\\pi$ et $\\pi$ coïncident) et $\\mathcal{C}^1$ par morceaux : le théorème de Dirichlet s'applique en tout point, qui est un point de continuité."
+        },
+        {
+          "texte": "Si $f$ est $\\mathcal{C}^1$ par morceaux et si $S_N(f)(x)\\to f(x)$ pour tout réel $x$, alors $f$ est continue.",
+          "vrai": false,
+          "contre_exemple": "Le créneau impair, égal à $1$ sur $\\left]0,\\pi\\right[$ et nul en $0$ et $\\pi$, vérifie $f(x)=\\frac{f(x^+)+f(x^-)}2$ en tout point : $S_N(f)\\to f$ partout, mais $f$ est discontinue en $0$."
+        },
+        {
+          "texte": "Si $f$ est $2\\pi$-périodique et $\\mathcal{C}^1$ par morceaux, sa série de Fourier converge en tout point de $\\mathbb{R}$.",
+          "vrai": true,
+          "justification": "Elle converge vers $\\frac{f(x^+)+f(x^-)}2$ (théorème de Dirichlet)."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-approximation"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-fejer",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Théorème de Fejér",
+      "recto": "Définir les sommes de Fejér et le noyau de Fejér, et énoncer le théorème de Fejér.",
+      "cours": "Les sommes partielles $S_N(f)$ convergent mal : pour une fonction seulement continue, elles peuvent diverger en certains points (résultat admis). Fejér a eu l'idée de les **moyenner** : $\\sigma_N(f)=\\frac1N\\left(S_0(f)+\\dots+S_{N-1}(f)\\right)$. Si $S_N(f)(x)$ converge, $\\sigma_N(f)(x)$ converge vers la même limite (lemme de Cesàro). Concrètement, $\\sigma_N(f)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(f)e_n$ : on atténue progressivement les hautes fréquences au lieu de les couper net.\n\nLa raison du succès est la **positivité du noyau** : $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$ est une moyenne pondérée des valeurs de $f$ autour de $x$, avec un poids $K_N\\ge0$ de masse totale $1$ qui se concentre en $0$ quand $N$ grandit. D'où la convergence uniforme pour $f$ continue : près de $0$, on utilise la continuité uniforme de $f$, loin de $0$, la petitesse de $K_N$. Le noyau de Dirichlet $D_N$, lui, change de signe et $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|D_N|$ tend vers $+\\infty$ : c'est la source des difficultés des sommes partielles.\n\nMéthode : pour un polynôme trigonométrique, $\\sigma_N$ se calcule en multipliant le coefficient d'indice $n$ par $1-\\frac{|n|}N$ (et en supprimant les indices $|n|\\ge N$) ; pour majorer $\\sigma_N(f)$, on utilise $\\sup|\\sigma_N(f)|\\le\\sup|f|$ (positivité et masse $1$). Le théorème de Fejér sert surtout à démontrer le théorème de Weierstrass trigonométrique, l'injectivité des coefficients sur les fonctions continues et, par là, l'identité de Parseval.\n\nPièges : les conventions varient ($\\sigma_N$ est parfois la moyenne de $S_0,\\dots,S_N$, divisée par $N+1$) ; la convergence uniforme demande $f$ continue sur $\\mathbb{R}$ (pour une fonction continue par morceaux, $\\sigma_N(f)(x)$ tend vers $\\frac{f(x^+)+f(x^-)}2$ en chaque point, sans convergence uniforme en général) ; et la convergence de $\\sigma_N(f)$ ne dit rien sur celle de $S_N(f)$.",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique et continue sur $\\mathbb{R}$.",
+        "On prend les moyennes de Cesàro $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$ des sommes partielles."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est $2\\pi$-périodique et continue par morceaux (à la place de continue).",
+        "$f$ est la fonction $2\\pi$-périodique qui prolonge une fonction continue sur $\\left]-\\pi,\\pi\\right]$ (à la place de : continue sur $\\mathbb{R}$).",
+        "On prend les sommes partielles $S_N(f)$ elles-mêmes (à la place de leurs moyennes de Cesàro)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique et continue par morceaux. Pour $N\\ge1$, la **somme de Fejér** d'ordre $N$ est la moyenne de Cesàro $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$ ; on a\n$$\\sigma_N(f)(x)=\\sum_{n=-(N-1)}^{N-1}\\left(1-\\frac{|n|}N\\right)c_n(f)e^{inx}=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t,\\qquad K_N(t)=\\frac1N\\left(\\frac{\\sin\\frac{Nt}2}{\\sin\\frac t2}\\right)^2,$$\noù le **noyau de Fejér** $K_N$ (prolongé par $K_N(t)=N$ pour $t\\in2\\pi\\mathbb{Z}$) est positif, pair, vérifie $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N(t)\\,\\mathrm{d}t=1$ et, pour $0<\\delta\\le\\pi$, $K_N(t)\\le\\frac1{N\\sin^2\\frac\\delta2}$ pour $\\delta\\le|t|\\le\\pi$.\n\n**Théorème de Fejér.** Si $f$ est continue, $\\sigma_N(f)$ converge uniformément vers $f$ sur $\\mathbb{R}$. De plus, $\\sup|\\sigma_N(f)|\\le\\sup|f|$ pour tout $N$.",
+      "enonce_trous": "Soit $f$ $2\\pi$-périodique et {{1}}. Les moyennes $\\sigma_N(f)=\\frac1N\\sum_{k=0}^{N-1}S_k(f)$ s'écrivent $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$, où le noyau $K_N$ est {{2}} ; elles convergent vers $f$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "continue",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "intégrable sur $[-\\pi,\\pi]$"
+          ]
+        },
+        {
+          "reponse": "positif et vérifie $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$",
+          "leurres": [
+            "de signe variable et vérifie $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$",
+            "positif et vérifie $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=N$",
+            "positif et vérifie $\\int_{-\\pi}^{\\pi}K_N=1$"
+          ]
+        },
+        {
+          "reponse": "uniformément sur $\\mathbb{R}$",
+          "leurres": [
+            "simplement sur $\\mathbb{R}$, mais pas uniformément en général",
+            "en moyenne quadratique, mais pas simplement en général",
+            "uniformément sur $\\mathbb{R}$, avec $\\sup|\\sigma_N(f)-f|\\le\\frac{\\sup|f|}N$"
+          ]
+        }
+      ],
+      "demo": "**Coefficients.** $S_k(f)=\\sum_{|n|\\le k}c_n(f)e_n$ ; dans $\\sum_{k=0}^{N-1}S_k(f)$, le terme $c_n(f)e_n$ apparaît pour les $k$ tels que $|n|\\le k\\le N-1$, soit $N-|n|$ fois si $|n|<N$. D'où $\\sigma_N(f)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(f)e_n$.\n\n**Noyau.** Le calcul fait pour le théorème de Dirichlet donne $S_k(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)D_k(t)\\,\\mathrm{d}t$ avec $D_k=\\sum_{|n|\\le k}e_n$, donc $\\sigma_N(f)(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f(x-t)K_N(t)\\,\\mathrm{d}t$ avec $K_N=\\frac1N\\sum_{k=0}^{N-1}D_k=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)e_n$. Pour $t\\notin2\\pi\\mathbb{Z}$, $\\sin\\frac t2\\,D_k(t)=\\sin\\left(\\left(k+\\frac12\\right)t\\right)$ et $2\\sin\\left(\\left(k+\\frac12\\right)t\\right)\\sin\\frac t2=\\cos(kt)-\\cos((k+1)t)$ ; en sommant (télescopage), $2\\sin^2\\frac t2\\sum_{k=0}^{N-1}D_k(t)=1-\\cos(Nt)=2\\sin^2\\frac{Nt}2$, d'où la formule de $K_N$, qui est positif et pair. Le coefficient d'indice $0$ de $K_N$ vaut $1$, donc $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$ ; pour $\\delta\\le|t|\\le\\pi$, $\\sin^2\\frac t2\\ge\\sin^2\\frac\\delta2$ et $\\sin^2\\frac{Nt}2\\le1$, d'où la majoration.\n\n**Convergence uniforme.** Soit $f$ continue et $2\\pi$-périodique ; elle est bornée, par $M$, et uniformément continue (théorème de Heine sur $[-2\\pi,2\\pi]$ et périodicité). Soit $\\varepsilon>0$ et $\\delta\\in\\left]0,\\pi\\right]$ tel que $|f(y)-f(x)|\\le\\varepsilon$ dès que $|y-x|\\le\\delta$. Comme $\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=1$,\n$$\\sigma_N(f)(x)-f(x)=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\left(f(x-t)-f(x)\\right)K_N(t)\\,\\mathrm{d}t.$$\nPar positivité de $K_N$, la partie $|t|\\le\\delta$ est majorée en module par $\\varepsilon\\cdot\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}K_N=\\varepsilon$, et la partie $\\delta\\le|t|\\le\\pi$ par $2M\\cdot\\frac1{N\\sin^2\\frac\\delta2}$. Donc $\\sup_{x\\in\\mathbb{R}}|\\sigma_N(f)(x)-f(x)|\\le\\varepsilon+\\frac{2M}{N\\sin^2\\frac\\delta2}\\le2\\varepsilon$ pour $N$ assez grand. Enfin $|\\sigma_N(f)(x)|\\le\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|f(x-t)|K_N(t)\\,\\mathrm{d}t\\le\\sup|f|$.",
+      "exemple": "Pour $f(t)=\\cos(2t)=\\frac{e^{2it}+e^{-2it}}2$ et $N\\ge3$, $\\sigma_N(f)=\\left(1-\\frac2N\\right)\\cos(2t)$, qui tend uniformément vers $f$ ; pour $N\\le2$, $\\sigma_N(f)=0$. Pour le créneau $f$ (impair, égal à $1$ sur $\\left]0,\\pi\\right[$), $|\\sigma_N(f)|\\le1$ pour tout $N$, alors que $S_5(f)\\left(\\frac\\pi2\\right)=\\frac4\\pi\\left(1-\\frac13+\\frac15\\right)=\\frac{52}{15\\pi}\\approx1{,}10$ dépasse $1$.",
+      "contre_exemple": "- **La continuité est nécessaire pour la convergence uniforme** : pour le créneau, les $\\sigma_N(f)$ sont continues et $f$ ne l'est pas ; une limite uniforme de fonctions continues serait continue. D'ailleurs $\\sigma_N(f)(0)=0$ pour tout $N$.\n- **Une fonction continue sur $\\left]-\\pi,\\pi\\right]$ seulement ne suffit pas** : la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ est discontinue en $\\pi$, et $\\sigma_N(f)(\\pi)=0$ pour tout $N$ (les $\\sin(n\\pi)$ sont nuls), alors que $f(\\pi)=\\pi$.\n- **Le noyau de Dirichlet n'est pas positif** : $D_1(t)=1+2\\cos t$ vaut $-1$ en $\\pi$ ; c'est pourquoi la méthode ne s'applique pas aux sommes partielles.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est $2\\pi$-périodique et continue par morceaux, $\\sigma_N(f)(x)\\to\\frac{f(x^+)+f(x^-)}2$ en tout réel $x$.",
+          "vrai": true,
+          "justification": "Par parité de $K_N$, $\\sigma_N(f)(x)-\\ell=\\frac1{2\\pi}\\int_0^\\pi\\left(f(x+t)-f(x^+)+f(x-t)-f(x^-)\\right)K_N(t)\\,\\mathrm{d}t$, où $\\ell$ est la demi-somme ; on majore près de $0$ grâce aux limites latérales, et loin de $0$ grâce à la petitesse de $K_N$."
+        },
+        {
+          "texte": "Le noyau de Dirichlet $D_N$ est, comme le noyau de Fejér, positif.",
+          "vrai": false,
+          "contre_exemple": "$D_1(t)=1+2\\cos t$ vaut $-1$ en $t=\\pi$."
+        },
+        {
+          "texte": "Si $\\sup|f|\\le1$, alors $\\sup|S_N(f)|\\le1$ pour tout $N$.",
+          "vrai": false,
+          "contre_exemple": "Pour le créneau, $S_5(f)\\left(\\frac\\pi2\\right)=\\frac{52}{15\\pi}\\approx1{,}10$ ; seules les sommes de Fejér vérifient $\\sup|\\sigma_N(f)|\\le\\sup|f|$."
+        },
+        {
+          "texte": "$\\sigma_N(f)$ est un polynôme trigonométrique de degré au plus $N-1$.",
+          "vrai": true,
+          "justification": "$\\sigma_N(f)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(f)e_n$."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-dirichlet",
+        "ar-l1-continuite-heine",
+        "ar-l2-suites-fonctions-uniforme"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-normale",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Convergence normale pour une fonction continue et C¹ par morceaux",
+      "recto": "Énoncer le théorème de convergence normale de la série de Fourier d'une fonction continue et de classe $\\mathcal{C}^1$ par morceaux, avec la relation entre les coefficients de $f$ et ceux de $f'$.",
+      "cours": "Pour une fonction **continue** et $\\mathcal{C}^1$ par morceaux, on a mieux que la convergence en chaque point : la série de Fourier converge normalement, donc uniformément, sur $\\mathbb{R}$. Le mécanisme est un échange entre régularité et décroissance des coefficients : une intégration par parties donne $c_n(f')=in\\,c_n(f)$, donc $|c_n(f)|=\\frac{|c_n(f')|}{|n|}$ pour $n\\neq0$ ; comme $\\sum|c_n(f')|^2$ converge (Bessel pour $f'$), l'inégalité de Cauchy-Schwarz, ou simplement $ab\\le\\frac{a^2+b^2}2$, donne $\\sum|c_n(f)|<+\\infty$.\n\nLa continuité de $f$ sur $\\mathbb{R}$ tout entier, y compris aux bords de la période, est indispensable : c'est elle qui fait disparaître les termes de bord dans l'intégration par parties. Pour la fonction $t$ restreinte à $\\left]-\\pi,\\pi\\right]$ puis périodisée, la dérivée vaut $1$ (sauf en $\\pi$) et $c_n(f')=0$ pour $n\\neq0$, alors que $c_n(f)=\\frac{i(-1)^n}n$ : le saut en $\\pi$ crée un terme en $\\frac1n$.\n\nPlus généralement, plus $f$ est régulière, plus ses coefficients décroissent vite : si $f$ est de classe $\\mathcal{C}^k$, $c_n(f)=\\frac{c_n(f^{(k)})}{(in)^k}$ pour $n\\neq0$, et $n^kc_n(f)\\to0$. Typiquement, un saut de $f$ donne des coefficients en $\\frac1n$, un saut de $f'$ des coefficients en $\\frac1{n^2}$.\n\nMéthode : pour justifier la convergence normale, vérifier la continuité (en particulier $f(-\\pi)=f(\\pi)$ pour une fonction définie sur une période) et le caractère $\\mathcal{C}^1$ par morceaux, ou majorer directement $|c_n(f)|$ par le terme d'une série convergente. Le reste se majore alors uniformément : $\\sup|f-S_N(f)|\\le\\sum_{|n|>N}|c_n(f)|$, ce qui donne des vitesses de convergence.\n\nPièges : la convergence normale ne s'obtient pas pour une fonction seulement $\\mathcal{C}^1$ par morceaux (le créneau a des $|c_n|$ égaux à $\\frac2{\\pi|n|}$ pour $n$ impair) ; la dérivée $f'$ n'est définie que sauf en un nombre fini de points par période, ce qui ne change pas ses coefficients ; et la convergence normale de $\\sum c_n(f)e_n$ montre que la somme est continue, mais c'est le théorème de Dirichlet (ou l'injectivité des coefficients) qui permet d'affirmer que cette somme est $f$.",
+      "hypotheses": [
+        "$f$ est $2\\pi$-périodique.",
+        "$f$ est continue sur $\\mathbb{R}$.",
+        "$f$ est de classe $\\mathcal{C}^1$ par morceaux."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est continue par morceaux sur $\\mathbb{R}$ (à la place de continue).",
+        "$f$ est le prolongement $2\\pi$-périodique de la restriction à $\\left]-\\pi,\\pi\\right]$ d'une fonction de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$ (à la place de : continue sur $\\mathbb{R}$ et $\\mathcal{C}^1$ par morceaux)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ $2\\pi$-périodique, **continue** et de classe $\\mathcal{C}^1$ par morceaux, et $f'$ sa dérivée, définie sauf en un nombre fini de points par période et complétée de façon quelconque en ces points (c'est une fonction continue par morceaux). Avec $\\|g\\|_2^2=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}|g(t)|^2\\,\\mathrm{d}t$ :\n- $c_n(f')=in\\,c_n(f)$ pour tout $n\\in\\mathbb{Z}$ ;\n- la série $\\sum_{n\\in\\mathbb{Z}}|c_n(f)|$ converge, et $\\sum_{n\\neq0}|c_n(f)|\\le\\frac\\pi{\\sqrt3}\\|f'\\|_2$ ;\n- la série de Fourier de $f$ converge **normalement** sur $\\mathbb{R}$, et sa somme est $f$ : pour tout $N$, $\\sup_{x\\in\\mathbb{R}}|f(x)-S_N(f)(x)|\\le\\sum_{|n|>N}|c_n(f)|$, qui tend vers $0$.",
+      "enonce_trous": "Soit $f$ $2\\pi$-périodique, {{1}} et de classe $\\mathcal{C}^1$ par morceaux. Alors $c_n(f')$ est égal à {{2}} pour tout $n\\in\\mathbb{Z}$, la série $\\sum|c_n(f)|$ converge, et la série de Fourier de $f$ converge vers $f$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "continue sur $\\mathbb{R}$",
+          "leurres": [
+            "continue par morceaux",
+            "bornée",
+            "continue sur $\\left]-\\pi,\\pi\\right[$"
+          ]
+        },
+        {
+          "reponse": "$in\\,c_n(f)$",
+          "leurres": [
+            "$-in\\,c_n(f)$",
+            "$n\\,c_n(f)$",
+            "$\\frac{c_n(f)}{in}$"
+          ]
+        },
+        {
+          "reponse": "normalement sur $\\mathbb{R}$",
+          "leurres": [
+            "en moyenne quadratique seulement, pas uniformément en général",
+            "simplement, mais pas uniformément en général",
+            "uniformément, mais pas absolument en général"
+          ]
+        }
+      ],
+      "demo": "**Dérivée.** Soit $-\\pi=\\alpha_0<\\alpha_1<\\dots<\\alpha_p=\\pi$ une subdivision telle que $f$ soit de classe $\\mathcal{C}^1$ sur chaque $[\\alpha_{j-1},\\alpha_j]$ (au sens du prolongement aux bords). Une intégration par parties sur chacun de ces segments donne\n$$\\int_{\\alpha_{j-1}}^{\\alpha_j}f'(t)e^{-int}\\,\\mathrm{d}t=\\left[f(t)e^{-int}\\right]_{\\alpha_{j-1}}^{\\alpha_j}+in\\int_{\\alpha_{j-1}}^{\\alpha_j}f(t)e^{-int}\\,\\mathrm{d}t,$$\noù les valeurs aux bords sont celles de $f$, puisque $f$ est continue. En sommant, les termes de bord se télescopent en $f(\\pi)e^{-in\\pi}-f(-\\pi)e^{in\\pi}=0$ (périodicité), d'où $c_n(f')=in\\,c_n(f)$.\n\n**Convergence absolue.** Pour $n\\neq0$, $|c_n(f)|=\\frac{|c_n(f')|}{|n|}$. Par l'inégalité de Cauchy-Schwarz dans $\\mathbb{R}^{2N}$ puis l'inégalité de Bessel pour $f'$,\n$$\\sum_{0<|n|\\le N}|c_n(f)|\\le\\left(\\sum_{n\\neq0}\\frac1{n^2}\\right)^{\\frac12}\\left(\\sum_{n\\in\\mathbb{Z}}|c_n(f')|^2\\right)^{\\frac12}\\le\\sqrt{2\\cdot\\frac{\\pi^2}6}\\,\\|f'\\|_2=\\frac\\pi{\\sqrt3}\\|f'\\|_2.$$\n\n**Convergence normale.** $\\sup_{x}|c_n(f)e^{inx}|=|c_n(f)|$, terme d'une série convergente : la série de Fourier converge normalement, donc uniformément, sur $\\mathbb{R}$. Comme $f$ est continue et $\\mathcal{C}^1$ par morceaux, le théorème de Dirichlet donne $S_N(f)(x)\\to f(x)$ en tout point : la somme est $f$, et $|f(x)-S_N(f)(x)|=\\left|\\sum_{|n|>N}c_n(f)e^{inx}\\right|\\le\\sum_{|n|>N}|c_n(f)|$.",
+      "exemple": "Soit $f$ $2\\pi$-périodique égale à $|t|$ sur $[-\\pi,\\pi]$ : $f$ est continue (car $f(-\\pi)=f(\\pi)$) et $\\mathcal{C}^1$ par morceaux, $a_0(f)=\\pi$, $a_n(f)=\\frac{2((-1)^n-1)}{\\pi n^2}$ et $b_n(f)=0$. La série\n$$|x|=\\frac\\pi2-\\frac4\\pi\\sum_{k=0}^{+\\infty}\\frac{\\cos((2k+1)x)}{(2k+1)^2}\\qquad\\text{pour }x\\in[-\\pi,\\pi]$$\nconverge normalement, et $x=0$ donne $\\sum_{k\\ge0}\\frac1{(2k+1)^2}=\\frac{\\pi^2}8$. La relation $c_n(f')=in\\,c_n(f)$ se vérifie : $f'$ est le créneau, de coefficients $c_n(f')=-\\frac{2i}{\\pi n}$ pour $n$ impair, et $in\\,c_n(f)=in\\cdot\\left(-\\frac2{\\pi n^2}\\right)=-\\frac{2i}{\\pi n}$.",
+      "contre_exemple": "- **La continuité est indispensable** : la fonction $2\\pi$-périodique égale à $t$ sur $\\left]-\\pi,\\pi\\right]$ est $\\mathcal{C}^1$ par morceaux mais discontinue en $\\pi$ ; $|c_n(f)|=\\frac1{|n|}$, la série $\\sum|c_n(f)|$ diverge et la convergence n'est pas uniforme. La formule $c_n(f')=in\\,c_n(f)$ y est fausse : $f'=1$ (sauf en $\\pi$), donc $c_n(f')=0$ pour $n\\neq0$, alors que $in\\,c_n(f)=-(-1)^n$.\n- **$\\sum|c_n|$ converge, mais pas forcément $\\sum|n\\,c_n|$** : pour $|t|$, $|n\\,c_n(f)|=\\frac2{\\pi|n|}$ pour $n$ impair, série divergente.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est $2\\pi$-périodique et de classe $\\mathcal{C}^2$, alors $n^2c_n(f)\\to0$.",
+          "vrai": true,
+          "justification": "Le théorème appliqué à $f$ puis à $f'$ donne $c_n(f'')=in\\,c_n(f')=-n^2c_n(f)$, et $c_n(f'')\\to0$ (lemme de Riemann-Lebesgue)."
+        },
+        {
+          "texte": "Si $f$ est $2\\pi$-périodique, continue et $\\mathcal{C}^1$ par morceaux, la série $\\sum n|c_n(f)|$ converge.",
+          "vrai": false,
+          "contre_exemple": "Pour $f$ égale à $|t|$ sur $[-\\pi,\\pi]$, $n|c_n(f)|=\\frac2{\\pi n}$ pour $n\\ge1$ impair : la série diverge."
+        },
+        {
+          "texte": "Une fonction $2\\pi$-périodique, continue et $\\mathcal{C}^1$ par morceaux est la somme de sa série de Fourier en tout point.",
+          "vrai": true,
+          "justification": "La convergence est même normale sur $\\mathbb{R}$."
+        },
+        {
+          "texte": "Si $f$ est $2\\pi$-périodique, $\\mathcal{C}^1$ par morceaux et bornée, sa série de Fourier converge uniformément sur $\\mathbb{R}$.",
+          "vrai": false,
+          "contre_exemple": "Le créneau est $\\mathcal{C}^1$ par morceaux et borné, mais discontinu : ses sommes partielles, continues, ne peuvent pas converger uniformément vers lui."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-dirichlet",
+        "int-l3-fourier-approximation",
+        "ar-l2-suites-fonctions-normale"
+      ]
+    },
+    {
+      "id": "int-l3-fourier-weierstrass",
+      "theme": "integration",
+      "niveau": "l3",
+      "chapitre": "int-l3-fourier",
+      "type": "theoreme",
+      "titre": "Théorème de Weierstrass trigonométrique",
+      "recto": "Énoncer le théorème de Weierstrass trigonométrique et sa conséquence sur les coefficients de Fourier des fonctions continues.",
+      "cours": "Le théorème de Weierstrass trigonométrique est l'analogue périodique du théorème de Weierstrass sur les polynômes : toute fonction **continue et $2\\pi$-périodique** est limite uniforme de polynômes trigonométriques. La preuve la plus directe utilise les sommes de Fejér : $\\sigma_N(f)$ est un polynôme trigonométrique de degré au plus $N-1$, et $\\sigma_N(f)\\to f$ uniformément. L'approximant n'est donc pas la troncature $S_N(f)$ de la série de Fourier, qui ne converge pas forcément, mais une version adoucie.\n\nConséquences : (1) **injectivité** : une fonction continue $2\\pi$-périodique dont tous les coefficients de Fourier sont nuls est nulle, puisque ses sommes de Fejér le sont toutes ; une fonction continue est donc déterminée par ses coefficients ; (2) **densité en moyenne quadratique** des polynômes trigonométriques, d'où l'identité de Parseval ; (3) le **théorème de Weierstrass polynomial** sur $[-1,1]$, en écrivant $g(x)=f(t)$ avec $x=\\cos t$, puisque $\\cos(nt)$ est un polynôme en $\\cos t$.\n\nMéthode, pour démontrer qu'une propriété linéaire et stable par limite uniforme vaut pour toutes les fonctions continues $2\\pi$-périodiques : la vérifier sur les $e_n$, l'étendre par linéarité aux polynômes trigonométriques, puis passer à la limite. C'est ainsi qu'on montre que $\\frac1N\\sum_{k=1}^Nf(k)\\to\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}f$ pour $f$ continue et $2\\pi$-périodique (critère de Weyl, qui utilise l'irrationalité de $\\pi$).\n\nPièges : la périodicité est essentielle (la fonction $t\\mapsto t$ n'est pas limite uniforme sur $[-\\pi,\\pi]$ de polynômes trigonométriques, car ceux-ci prennent la même valeur en $-\\pi$ et en $\\pi$) ; la continuité aussi (un créneau n'est pas limite uniforme de fonctions continues) ; enfin, l'injectivité des coefficients est fausse pour les fonctions seulement continues par morceaux.",
+      "hypotheses": [
+        "$f$ est continue sur $\\mathbb{R}$.",
+        "$f$ est $2\\pi$-périodique."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est seulement continue sur $[-\\pi,\\pi]$, l'approximation étant demandée sur $[-\\pi,\\pi]$ (à la place de : continue sur $\\mathbb{R}$ et $2\\pi$-périodique).",
+        "$f$ est $2\\pi$-périodique et continue par morceaux (à la place de continue).",
+        "Pour la conséquence sur les coefficients : $f$ est $2\\pi$-périodique et continue par morceaux (à la place de continue)."
+      ],
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{C}$ continue et $2\\pi$-périodique. Pour tout $\\varepsilon>0$, il existe un polynôme trigonométrique $P$ tel que $\\sup_{x\\in\\mathbb{R}}|f(x)-P(x)|\\le\\varepsilon$ ; si $f$ est à valeurs réelles, on peut prendre $P$ réel, de la forme $P(x)=\\alpha_0+\\sum_{n=1}^N\\left(\\alpha_n\\cos(nx)+\\beta_n\\sin(nx)\\right)$ avec des $\\alpha_n$, $\\beta_n$ réels.\n\n**Conséquence.** Si $f$ est continue, $2\\pi$-périodique et si $c_n(f)=0$ pour tout $n\\in\\mathbb{Z}$, alors $f=0$. Deux fonctions continues $2\\pi$-périodiques qui ont les mêmes coefficients de Fourier sont donc égales.",
+      "enonce_trous": "Toute fonction {{1}} est limite uniforme sur $\\mathbb{R}$ de {{2}}. En conséquence, si $f$ est continue, $2\\pi$-périodique et si {{3}}, alors $f=0$.",
+      "trous": [
+        {
+          "reponse": "continue et $2\\pi$-périodique",
+          "leurres": [
+            "continue par morceaux et $2\\pi$-périodique",
+            "continue et bornée sur $\\mathbb{R}$",
+            "de classe $\\mathcal{C}^1$ par morceaux et $2\\pi$-périodique"
+          ]
+        },
+        {
+          "reponse": "polynômes trigonométriques",
+          "leurres": [
+            "polynômes en $x$",
+            "sommes $\\sum_{n=0}^N\\gamma_ne^{inx}$ à fréquences positives",
+            "sommes $\\sum_{n=1}^N\\beta_n\\sin(nx)$"
+          ]
+        },
+        {
+          "reponse": "$c_n(f)=0$ pour tout $n\\in\\mathbb{Z}$",
+          "leurres": [
+            "$c_n(f)=0$ pour tout $n\\in\\mathbb{N}$",
+            "$a_n(f)=0$ pour tout $n\\in\\mathbb{N}$",
+            "$c_n(f)=0$ pour tout $n\\neq0$"
+          ]
+        }
+      ],
+      "demo": "**Approximation.** Pour $N\\ge1$, $\\sigma_N(f)=\\sum_{|n|<N}\\left(1-\\frac{|n|}N\\right)c_n(f)e_n$ est un polynôme trigonométrique, et le théorème de Fejér donne $\\sup|f-\\sigma_N(f)|\\to0$ : pour $\\varepsilon>0$, $P=\\sigma_N(f)$ convient pour $N$ assez grand.\n\n**Cas réel.** Si $f$ est réelle et si $P=\\sum_{|n|\\le M}\\gamma_ne_n$ vérifie $\\sup|f-P|\\le\\varepsilon$, alors $|f-\\mathrm{Re}\\,P|=|\\mathrm{Re}(f-P)|\\le|f-P|\\le\\varepsilon$, et $\\mathrm{Re}\\,P(x)=\\sum_{|n|\\le M}\\left(\\mathrm{Re}(\\gamma_n)\\cos(nx)-\\mathrm{Im}(\\gamma_n)\\sin(nx)\\right)$ est de la forme annoncée, en regroupant les indices $n$ et $-n$ grâce à $\\cos(-nx)=\\cos(nx)$ et $\\sin(-nx)=-\\sin(nx)$.\n\n**Injectivité.** Si $f$ est continue, $2\\pi$-périodique et si $c_n(f)=0$ pour tout $n$, alors $\\sigma_N(f)=0$ pour tout $N$, et $f=\\lim\\sigma_N(f)=0$. Pour deux fonctions continues de mêmes coefficients, on applique ceci à leur différence (les coefficients sont linéaires).",
+      "exemple": "Soit $g$ continue sur $[-1,1]$. La fonction $f(t)=g(\\cos t)$ est continue, paire et $2\\pi$-périodique ; il existe un polynôme trigonométrique réel $P$ avec $\\sup|f-P|\\le\\varepsilon$, et sa partie paire $\\frac{P(t)+P(-t)}2=\\sum_{n=0}^M\\alpha_n\\cos(nt)$ convient aussi, puisque $f$ est paire. Comme $\\cos(nt)=T_n(\\cos t)$, où $T_n$ est un polynôme ($T_0=1$, $T_1=X$, $T_{n+1}=2XT_n-T_{n-1}$), le polynôme $Q=\\sum_{n=0}^M\\alpha_nT_n$ vérifie $|g(x)-Q(x)|\\le\\varepsilon$ pour tout $x\\in[-1,1]$ : c'est le théorème de Weierstrass polynomial.",
+      "contre_exemple": "- **Périodicité** : pour $f(t)=t$ sur $[-\\pi,\\pi]$ et tout polynôme trigonométrique $P$, $P(\\pi)=P(-\\pi)$, donc $|\\pi-P(\\pi)|+|-\\pi-P(-\\pi)|\\ge2\\pi$ et $\\sup_{[-\\pi,\\pi]}|f-P|\\ge\\pi$.\n- **Continuité** : le créneau n'est limite uniforme d'aucune suite de polynômes trigonométriques, puisqu'une limite uniforme de fonctions continues est continue.\n- **Injectivité** : la fonction $2\\pi$-périodique égale à $1$ sur $2\\pi\\mathbb{Z}$ et à $0$ ailleurs a tous ses coefficients nuls sans être nulle ; elle n'est pas continue.",
+      "affirmations": [
+        {
+          "texte": "Toute fonction continue sur $[0,\\pi]$ est limite uniforme sur $[0,\\pi]$ de combinaisons linéaires des fonctions $t\\mapsto\\cos(nt)$, $n\\ge0$.",
+          "vrai": true,
+          "justification": "On prolonge la fonction en une fonction paire et $2\\pi$-périodique, continue, on l'approche par un polynôme trigonométrique et on garde sa partie paire."
+        },
+        {
+          "texte": "Toute fonction continue sur $[0,\\pi]$ est limite uniforme sur $[0,\\pi]$ de combinaisons linéaires des fonctions $t\\mapsto\\sin(nt)$, $n\\ge1$.",
+          "vrai": false,
+          "contre_exemple": "Ces combinaisons sont nulles en $0$ : la fonction constante $1$ reste à distance au moins $1$ de chacune d'elles."
+        },
+        {
+          "texte": "Les polynômes trigonométriques sont denses, pour la norme $\\sup$, dans l'ensemble des fonctions $2\\pi$-périodiques continues par morceaux.",
+          "vrai": false,
+          "contre_exemple": "Le créneau n'est pas limite uniforme de fonctions continues."
+        },
+        {
+          "texte": "Si $f$ est continue, $2\\pi$-périodique et si $\\int_{-\\pi}^{\\pi}f(t)P(t)\\,\\mathrm{d}t=0$ pour tout polynôme trigonométrique $P$, alors $f=0$.",
+          "vrai": true,
+          "justification": "Avec $P=e_{-n}$, tous les $c_n(f)$ sont nuls, et $f$ est continue."
+        }
+      ],
+      "prerequis": [
+        "int-l3-fourier-fejer"
+      ]
+    }
+  ]
+}
