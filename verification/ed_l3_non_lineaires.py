@@ -253,6 +253,13 @@ for x00, sol, leurres in [
         assert l.subs(t, 0) != x00 or ne_resout_pas(l, fb)
 # v1 : t + 1 + e^t s'annule une fois, entre -2 et -1.
 assert (t + 1 + exp(t)).subs(t, -1) > 0 and (t + 1 + exp(t)).subs(t, -2) < 0
+# v2 (relecture) : psi = 2t + 2 - e^t, maximum 2 ln 2 > 0 en ln 2, s'annule une fois dans ]-1, 0[ et une fois dans
+# ]ln 2, 2[ : la solution maximale est définie entre ces deux racines.
+psi = 2 * t + 2 - exp(t)
+assert psi.subs(t, -1) < 0 and psi.subs(t, 0) == 1 and psi.subs(t, log(2)) > 0 and psi.subs(t, 2) < 0
+r1 = mp.findroot(lambda s_: 2 * s_ + 2 - mp.exp(s_), -0.7)
+r2 = mp.findroot(lambda s_: 2 * s_ + 2 - mp.exp(s_), 1.7)
+assert -1 < r1 < 0 and mp.log(2) < r2 < 2
 # dsolve confirme la solution générale de l'équation linéaire y' = y - t.
 yl = Function("yl")
 assert nul(dsolve(Eq(yl(t).diff(t), yl(t) - t), yl(t), ics={yl(0): 1}).rhs - (t + 1))
@@ -486,6 +493,9 @@ assert nul((dd - cc_ / xp) * xp * (a - bb_ * ypos) + (bb_ - a / ypos) * ypos * (
 # Contre-exemple : F = (1, 3 cbrt(y^2)), (t, t^3) solution (t > 0) ; non autonome : (sin t + a, -cos t + b).
 assert nul(diff(tp**3, tp) - 3 * (tp**6) ** R_(1, 3))
 assert nul(diff(sin(t) + a, t) - cos(t)) and nul(diff(-cos(t) + bb_, t) - sin(t))
+# Carte champs, contre-exemple « solution non maximale » (relecture) : 1 et 1 + 2 pi sont dans ]0, 8[
+# (1 + 2 pi ~ 7.28 n'était pas dans ]0, 7[).
+assert 0 < 1 < 1 + 2 * math.pi < 8 and 1 + 2 * math.pi > 7
 # Les cercles de rayon 1 centrés en (0,0) et (1,0) se coupent en (1/2, ±sqrt3/2).
 assert nul(R_(1, 4) + R_(3, 4) - 1) and nul((R_(1, 2) - 1) ** 2 + R_(3, 4) - 1)
 # Trou 1 : F = (1, 3 cbrt(y^2)) est C1 en la première variable (indépendant de x) ; même contre-exemple.
