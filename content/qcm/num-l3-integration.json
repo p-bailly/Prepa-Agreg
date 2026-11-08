@@ -1,0 +1,99 @@
+{
+  "chapitre": "num-l3-integration",
+  "questions": [
+    {
+      "id": "num-l3-integration-q1",
+      "carte": "num-l3-integration-rectangles",
+      "genre": "choix",
+      "enonce": "Quel est le degré d'exactitude de la méthode du point milieu ?",
+      "propositions": [
+        "$1$",
+        "$0$",
+        "$2$",
+        "$3$"
+      ],
+      "bonne": 0,
+      "explication": "Le point milieu intègre exactement $1$ et $t$ (symétrie du sous-intervalle par rapport à son milieu), mais pas $t^2$ : sur $[0,1]$ avec $n=1$, il donne $\\frac14$ au lieu de $\\frac13$. Son degré d'exactitude est $1$, d'où une erreur en $O(h^2)$."
+    },
+    {
+      "id": "num-l3-integration-q2",
+      "carte": "num-l3-integration-rectangles",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute $f$ de classe $C^1$ sur $[0,1]$ et tout $n\\ge1$, la somme des rectangles à gauche vérifie $\\left|\\int_0^1f(t)\\,\\mathrm{d}t-R_n\\right|\\le\\frac{\\max|f'|}{4n}$.",
+      "vrai": false,
+      "explication": "Faux. Pour $f(t)=t$ : $\\max|f'|=1$, $R_n=\\frac1n\\sum_{k=0}^{n-1}\\frac kn=\\frac{n-1}{2n}$ et l'erreur vaut $\\frac1{2n}>\\frac1{4n}$. La bonne majoration est $\\frac{(b-a)^2\\max|f'|}{2n}$, atteinte pour cette fonction."
+    },
+    {
+      "id": "num-l3-integration-q3",
+      "carte": "num-l3-integration-trapezes",
+      "genre": "choix",
+      "enonce": "Soit $f$ de classe $C^2$ et convexe sur $[a,b]$, et $I=\\int_a^bf(t)\\,\\mathrm{d}t$. Pour tout $n\\ge1$, on a :",
+      "propositions": [
+        "$M_n\\le I\\le T_n$",
+        "$T_n\\le I\\le M_n$",
+        "$I\\le M_n\\le T_n$",
+        "$M_n\\le T_n\\le I$"
+      ],
+      "bonne": 0,
+      "explication": "La corde est au-dessus de la courbe d'une fonction convexe, donc $I\\le T_n$ ; la tangente au milieu de chaque sous-intervalle est en dessous, donc $M_n\\le I$. Pour $f(t)=t^2$ sur $[0,1]$ et $n=1$ : $M_1=\\frac14\\le\\frac13\\le T_1=\\frac12$, ce qui exclut les trois autres propositions."
+    },
+    {
+      "id": "num-l3-integration-q4",
+      "carte": "num-l3-integration-trapezes",
+      "genre": "vrai-faux",
+      "enonce": "Pour toute fonction $f$ de classe $C^2$ sur $[a,b]$ et tout $n$, la méthode des trapèzes est au moins aussi précise que celle du point milieu.",
+      "vrai": false,
+      "explication": "Faux. Pour $f(t)=t^2$ : $I-T_n=-\\frac{(b-a)h^2}6$ et $I-M_n=\\frac{(b-a)h^2}{12}$, donc l'erreur des trapèzes est exactement double de celle du point milieu (et de signe contraire)."
+    },
+    {
+      "id": "num-l3-integration-q5",
+      "carte": "num-l3-integration-simpson",
+      "genre": "choix",
+      "enonce": "On applique la méthode de Simpson à un panneau ($n=1$) à $\\int_0^1t^4\\,\\mathrm{d}t$. Que vaut l'erreur $I-S_1$ ?",
+      "propositions": [
+        "$-\\frac1{120}$",
+        "$0$",
+        "$\\frac1{120}$",
+        "$-\\frac1{2880}$"
+      ],
+      "bonne": 0,
+      "explication": "$S_1=\\frac16\\left(0+4\\cdot\\frac1{16}+1\\right)=\\frac5{24}$ et $I=\\frac15$, donc $I-S_1=-\\frac1{120}$, ce que redonne la formule $-\\frac{(b-a)h^4}{2880}f^{(4)}(\\xi)$ avec $f^{(4)}=24$. Simpson n'est pas exacte pour $t^4$."
+    },
+    {
+      "id": "num-l3-integration-q6",
+      "carte": "num-l3-integration-simpson",
+      "genre": "vrai-faux",
+      "enonce": "La méthode de Simpson est exacte pour tous les polynômes de degré au plus $4$.",
+      "vrai": false,
+      "explication": "Faux. Elle est exacte jusqu'au degré $3$ seulement : sur $[0,1]$, pour $t^4$, $S_1=\\frac5{24}\\neq\\frac15$."
+    },
+    {
+      "id": "num-l3-integration-q7",
+      "carte": "num-l3-integration-erreur",
+      "genre": "choix",
+      "enonce": "Une formule élémentaire a pour degré d'exactitude $5$. Quel est le plus grand entier $p$ tel que l'erreur de la méthode composée de pas $h$ soit un $O(h^p)$ pour toute fonction $f$ de classe $C^\\infty$ sur $[a,b]$ ?",
+      "propositions": [
+        "$6$",
+        "$5$",
+        "$7$",
+        "$10$"
+      ],
+      "bonne": 0,
+      "explication": "Le théorème du cours donne $O(h^{d+1})=O(h^6)$. On ne peut pas faire mieux : pour $f(t)=t^6$, sur un sous-intervalle $[x_k,x_k+h]$, $t^6=(t-x_k)^6+(\\text{degré}\\le5)$, donc l'erreur locale vaut $e\\,h^7$ où $e\\neq0$ est l'erreur de la formule pour $t^6$ sur $[0,1]$ ; l'erreur totale vaut $n\\,e\\,h^7=(b-a)\\,e\\,h^6$, qui n'est pas un $O(h^7)$."
+    },
+    {
+      "id": "num-l3-integration-q8",
+      "carte": "num-l3-integration-romberg",
+      "genre": "choix",
+      "enonce": "Pour toute fonction $f$ continue sur $[a,b]$, la première extrapolation de Richardson des trapèzes, $\\frac{4T_{2n}-T_n}3$, est égale à :",
+      "propositions": [
+        "$S_n$ (Simpson)",
+        "$M_n$ (point milieu)",
+        "$T_{4n}$ (trapèzes)",
+        "$\\frac{T_n+M_n}2$"
+      ],
+      "bonne": 0,
+      "explication": "$T_{2n}=\\frac{T_n+M_n}2$, donc $\\frac{4T_{2n}-T_n}3=\\frac{T_n+2M_n}3=S_n$, la somme de Simpson à $n$ panneaux. Pour $t^2$ sur $[0,1]$ et $n=1$ : $\\frac{4\\cdot\\frac38-\\frac12}3=\\frac13$, alors que $M_1=\\frac14$, $T_4=\\frac{11}{32}$ et $\\frac{T_1+M_1}2=\\frac38$."
+    }
+  ]
+}
