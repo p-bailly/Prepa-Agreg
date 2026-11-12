@@ -1,0 +1,99 @@
+{
+  "chapitre": "proba-l3-limites",
+  "questions": [
+    {
+      "id": "proba-l3-limites-q1",
+      "carte": "proba-l3-limites-convergences",
+      "genre": "choix",
+      "enonce": "Pour tout $n\\geq1$, $X_n$ est la variable constante égale à $\\frac1n$. Laquelle des affirmations suivantes est exacte ?",
+      "propositions": [
+        "$(X_n)$ converge en loi vers $0$, bien que $F_{X_n}(0)$ ne tende pas vers $1$",
+        "$(X_n)$ ne converge pas en loi vers $0$, car $F_{X_n}(0)=0$ pour tout $n$",
+        "$(X_n)$ converge en probabilité vers $0$, mais pas en loi",
+        "$(X_n)$ converge en loi vers $0$, mais pas en probabilité"
+      ],
+      "bonne": 0,
+      "explication": "$F_{X_n}(t)$ vaut $1$ si $t\\geq\\frac1n$ et $0$ sinon. Pour $t>0$, $F_{X_n}(t)=1$ dès que $n\\geq\\frac1t$ ; pour $t<0$, $F_{X_n}(t)=0$. La convergence vers la fonction de répartition de la variable nulle a lieu partout sauf en $0$, qui est justement son point de discontinuité, exclu par la définition. D'ailleurs $X_n\\to0$ en tout point, donc presque sûrement, en probabilité et en loi."
+    },
+    {
+      "id": "proba-l3-limites-q2",
+      "carte": "proba-l3-limites-convergences",
+      "genre": "vrai-faux",
+      "enonce": "Si $(X_n)$ converge en loi vers $X$, alors $(X_n)$ converge en probabilité vers $X$.",
+      "vrai": false,
+      "explication": "Faux. Si $X$ vaut $\\pm1$ avec probabilité $\\frac12$ et $X_n=-X$, alors $X_n$ a la même loi que $X$ et converge en loi vers $X$, mais $|X_n-X|=2$. L'implication est vraie lorsque la limite est une variable constante, mais pas en général."
+    },
+    {
+      "id": "proba-l3-limites-q3",
+      "carte": "proba-l3-limites-loi-faible",
+      "genre": "choix",
+      "enonce": "Des variables $X_1,\\dots,X_{100}$, deux à deux non corrélées et de même loi, ont pour espérance $\\mu$ et pour variance $4$ ; $M_{100}$ est leur moyenne. Quel majorant de $P\\left(|M_{100}-\\mu|\\geq\\frac12\\right)$ l'inégalité de Bienaymé-Tchebychev donne-t-elle ?",
+      "propositions": [
+        "$\\frac4{25}$",
+        "$\\frac2{25}$",
+        "$\\frac1{625}$",
+        "$\\frac1{25}$"
+      ],
+      "bonne": 0,
+      "explication": "$V(M_{100})=\\frac4{100}$ grâce à la non-corrélation, et $P\\left(|M_{100}-\\mu|\\geq\\frac12\\right)\\leq\\frac{4/100}{1/4}=\\frac{16}{100}=\\frac4{25}$."
+    },
+    {
+      "id": "proba-l3-limites-q4",
+      "carte": "proba-l3-limites-borel-cantelli",
+      "genre": "vrai-faux",
+      "enonce": "Si $\\sum_nP(A_n)=+\\infty$, alors presque sûrement une infinité des événements $A_n$ sont réalisés.",
+      "vrai": false,
+      "explication": "Faux sans indépendance : si $A_n=A$ pour tout $n$, avec $P(A)=\\frac12$, la série diverge, mais l'événement « une infinité des $A_n$ sont réalisés » est $A$, de probabilité $\\frac12$. Le second lemme de Borel-Cantelli demande des événements mutuellement indépendants."
+    },
+    {
+      "id": "proba-l3-limites-q5",
+      "carte": "proba-l3-limites-borel-cantelli",
+      "genre": "choix",
+      "enonce": "Des événements $A_n$, $n\\geq1$, mutuellement indépendants, vérifient $P(A_n)=\\frac1{n+1}$. Quelle est la probabilité qu'une infinité d'entre eux soient réalisés ?",
+      "propositions": [
+        "$1$",
+        "$0$",
+        "$\\frac12$",
+        "On ne peut pas conclure"
+      ],
+      "bonne": 0,
+      "explication": "La série $\\sum\\frac1{n+1}$ diverge et les événements sont indépendants : par le second lemme de Borel-Cantelli, la probabilité vaut $1$, bien que $P(A_n)\\to0$."
+    },
+    {
+      "id": "proba-l3-limites-q6",
+      "carte": "proba-l3-limites-loi-forte",
+      "genre": "vrai-faux",
+      "enonce": "Si les $X_n$ sont mutuellement indépendantes, de même loi, et admettent une espérance $\\mu$ (mais pas forcément de moment d'ordre $2$), alors $P\\left(|M_n-\\mu|\\geq\\varepsilon\\right)\\to0$ pour tout $\\varepsilon>0$, où $M_n=\\frac{X_1+\\dots+X_n}n$.",
+      "vrai": true,
+      "explication": "Vrai. La loi forte des grands nombres donne la convergence presque sûre de $(M_n)$ vers $\\mu$, qui entraîne la convergence en probabilité. L'inégalité de Bienaymé-Tchebychev ne s'applique pas sans moment d'ordre $2$, mais le résultat reste vrai."
+    },
+    {
+      "id": "proba-l3-limites-q7",
+      "carte": "proba-l3-limites-tcl",
+      "genre": "choix",
+      "enonce": "$S_n$ est le nombre de piles obtenus en $n$ lancers indépendants d'une pièce équilibrée, et $\\Phi$ la fonction de répartition de la loi normale centrée réduite. Quelle est la limite de $P\\left(S_n\\leq\\frac n2+\\sqrt n\\right)$ ?",
+      "propositions": [
+        "$\\Phi(2)$",
+        "$\\Phi(1)$",
+        "$\\Phi\\left(\\frac12\\right)$",
+        "$\\frac12$"
+      ],
+      "bonne": 0,
+      "explication": "$S_n$ a pour espérance $\\frac n2$ et pour écart type $\\frac{\\sqrt n}2$. L'événement s'écrit $\\frac{S_n-n/2}{\\sqrt n/2}\\leq2$, de probabilité tendant vers $\\Phi(2)$ par le théorème central limite ($\\Phi$ est continue)."
+    },
+    {
+      "id": "proba-l3-limites-q8",
+      "carte": "proba-l3-limites-binomiale",
+      "genre": "choix",
+      "enonce": "Pour $n\\geq3$, $X_n$ suit la loi $\\mathcal{B}\\left(n,\\frac3n\\right)$. Quelle est la limite de $P(X_n=1)$ ?",
+      "propositions": [
+        "$3e^{-3}$",
+        "$e^{-3}$",
+        "$3e^{-1}$",
+        "$1-e^{-3}$"
+      ],
+      "bonne": 0,
+      "explication": "$np_n=3$ : par l'approximation de Poisson, $P(X_n=1)\\to e^{-3}\\frac{3^1}{1!}=3e^{-3}$. Directement : $P(X_n=1)=n\\cdot\\frac3n\\left(1-\\frac3n\\right)^{n-1}=3\\left(1-\\frac3n\\right)^{n-1}\\to3e^{-3}$."
+    }
+  ]
+}

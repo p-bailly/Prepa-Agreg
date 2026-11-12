@@ -1,0 +1,499 @@
+{
+  "cartes": [
+    {
+      "id": "top-l3-banach-banach",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Espaces de Banach et séries absolument convergentes",
+      "recto": "Définir une suite de Cauchy dans un espace vectoriel normé et un espace de Banach, puis caractériser les espaces de Banach par les séries absolument convergentes.",
+      "cours": "Dans $\\mathbb{R}$, une suite converge si et seulement si elle est de Cauchy : c'est ce qui permet de prouver une convergence sans connaître la limite. Dans un espace vectoriel normé quelconque, la définition d'une suite de Cauchy garde le même sens ($\\|x_p-x_q\\|$ petit pour $p$ et $q$ grands) et toute suite convergente est de Cauchy, mais la réciproque peut tomber en défaut. Un espace où elle est vraie est dit **complet** ; un espace vectoriel normé complet est un **espace de Banach**.\n\nExemples : tout espace vectoriel normé de dimension finie (par l'équivalence des normes et la complétude de $\\mathbb{R}$ et de $\\mathbb{C}$) ; l'espace des suites bornées et, plus généralement, celui des fonctions bornées sur un ensemble, muni de la norme uniforme ; $\\mathcal{C}([a,b],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$ (carte suivante). Contre-exemples : $\\mathbb{R}[X]$ muni de la norme $\\max_k|a_k|$ des coefficients, $\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|f\\|_1=\\int_0^1|f|$ ou de la norme de la moyenne quadratique. La complétude dépend de la norme, mais deux normes équivalentes ont les mêmes suites de Cauchy.\n\nLe critère pratique : $E$ est complet si et seulement si toute série absolument convergente converge. Dans un espace de Banach, on prouve donc la convergence d'une série en majorant la norme de ses termes par le terme général d'une série numérique convergente : c'est ainsi que l'on traite la convergence normale des séries de fonctions, l'exponentielle d'un endomorphisme ou la série $\\sum u^k$ qui inverse $\\mathrm{id}-u$. Le sens réciproque repose sur un lemme utile : une suite de Cauchy qui admet une sous-suite convergente converge ; on extrait une sous-suite dont les écarts successifs sont majorés par $2^{-k}$.\n\nPièges : une série absolument convergente peut diverger dans un espace non complet ; « le terme général tend vers $0$ » ne suffit jamais, même dans $\\mathbb{R}$ ; l'inégalité $\\left\\|\\sum x_n\\right\\|\\le\\sum\\|x_n\\|$ est en général stricte ; un sous-espace d'un espace de Banach n'est complet que s'il est fermé.",
+      "hypotheses": [
+        "$E$ est un espace vectoriel normé complet.",
+        "La série numérique $\\sum\\|x_n\\|$ converge."
+      ],
+      "hypotheses_pieges": [
+        "$E$ est un espace vectoriel normé quelconque (à la place de complet).",
+        "$\\|x_n\\|\\to0$ (à la place de : la série $\\sum\\|x_n\\|$ converge)."
+      ],
+      "enonce": "Soit $(E,\\|\\cdot\\|)$ un espace vectoriel normé sur $\\mathbb{K}=\\mathbb{R}$ ou $\\mathbb{C}$. Une suite $(x_n)$ d'éléments de $E$ est **de Cauchy** si $$\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N},\\ \\forall p,q\\ge N,\\quad\\|x_p-x_q\\|\\le\\varepsilon.$$ Toute suite convergente est de Cauchy. On dit que $E$ est **complet**, ou que c'est un **espace de Banach**, si toute suite de Cauchy de $E$ converge dans $E$.\n\n**Théorème.**\n- Une suite de Cauchy est bornée ; si elle admet une sous-suite convergente, elle converge vers la limite de cette sous-suite.\n- $E$ est complet si et seulement si toute série absolument convergente d'éléments de $E$ (c'est-à-dire telle que la série numérique $\\sum\\|x_n\\|$ converge) converge dans $E$. Pour une telle série, $\\left\\|\\sum_{n=0}^{+\\infty}x_n\\right\\|\\le\\sum_{n=0}^{+\\infty}\\|x_n\\|$.\n- Tout espace vectoriel normé de dimension finie est complet.\n- Si $E$ est complet, un sous-espace vectoriel $F$ de $E$, muni de la norme induite, est complet si et seulement s'il est fermé dans $E$.",
+      "enonce_trous": "Un espace vectoriel normé $E$ est complet si et seulement si toute série {{1}} d'éléments de $E$ converge dans $E$ ; pour une telle série, $\\left\\|\\sum_{n=0}^{+\\infty}x_n\\right\\|$ {{2}} $\\sum_{n=0}^{+\\infty}\\|x_n\\|$. Une suite de Cauchy de $E$ qui admet une sous-suite convergente {{3}}.",
+      "trous": [
+        {
+          "reponse": "absolument convergente",
+          "leurres": [
+            "dont le terme général tend vers $0$",
+            "dont les sommes partielles sont bornées",
+            "dont le terme général est de norme décroissante"
+          ]
+        },
+        {
+          "reponse": "est inférieur ou égal à",
+          "leurres": [
+            "est égal à",
+            "est supérieur ou égal à",
+            "est strictement inférieur à"
+          ]
+        },
+        {
+          "reponse": "converge vers la limite de cette sous-suite",
+          "leurres": [
+            "peut diverger",
+            "est stationnaire",
+            "converge, mais pas forcément vers la limite de cette sous-suite"
+          ]
+        }
+      ],
+      "demo": "**Suites de Cauchy.** Si $x_n\\to\\ell$ et $\\varepsilon>0$, il existe $N$ tel que $\\|x_n-\\ell\\|\\le\\frac\\varepsilon2$ pour $n\\ge N$, d'où $\\|x_p-x_q\\|\\le\\varepsilon$ pour $p,q\\ge N$. Si $(x_n)$ est de Cauchy, avec $\\varepsilon=1$ on obtient $N$ tel que $\\|x_n\\|\\le\\|x_N\\|+1$ pour $n\\ge N$ : la suite est bornée par $\\max(\\|x_0\\|,\\dots,\\|x_{N-1}\\|,\\|x_N\\|+1)$. Si de plus $x_{\\varphi(k)}\\to\\ell$ et $\\varepsilon>0$, on prend $N$ comme dans la définition, puis $k$ tel que $\\varphi(k)\\ge N$ et $\\|x_{\\varphi(k)}-\\ell\\|\\le\\varepsilon$ (possible car $\\varphi(k)\\ge k$) ; pour $n\\ge N$, $\\|x_n-\\ell\\|\\le\\|x_n-x_{\\varphi(k)}\\|+\\|x_{\\varphi(k)}-\\ell\\|\\le2\\varepsilon$.\n\n**Complet implique : les séries absolument convergentes convergent.** Soit $S_n=\\sum_{k=0}^nx_k$. Pour $q>p$, $\\|S_q-S_p\\|=\\left\\|\\sum_{k=p+1}^qx_k\\right\\|\\le\\sum_{k=p+1}^{+\\infty}\\|x_k\\|$, reste d'une série convergente, qui tend vers $0$ quand $p\\to+\\infty$ : $(S_n)$ est de Cauchy, donc converge. De plus $\\|S_n\\|\\le\\sum_{k=0}^n\\|x_k\\|\\le\\sum_{k=0}^{+\\infty}\\|x_k\\|$, et la norme est continue ($|\\|a\\|-\\|b\\||\\le\\|a-b\\|$) : on passe à la limite.\n\n**Réciproque.** Soit $(x_n)$ une suite de Cauchy. Pour chaque $k$, on choisit $N_k$ tel que $\\|x_p-x_q\\|\\le2^{-k}$ pour $p,q\\ge N_k$, et l'on pose $\\varphi(k)=\\max(N_0,\\dots,N_k)+k$, strictement croissante. Comme $\\varphi(k)$ et $\\varphi(k+1)$ sont supérieurs à $N_k$, $\\|x_{\\varphi(k+1)}-x_{\\varphi(k)}\\|\\le2^{-k}$ : la série $\\sum_k(x_{\\varphi(k+1)}-x_{\\varphi(k)})$ est absolument convergente, donc converge par hypothèse. Sa somme partielle de rang $K$ vaut $x_{\\varphi(K+1)}-x_{\\varphi(0)}$ : la sous-suite $(x_{\\varphi(k)})$ converge, donc $(x_n)$ converge par le premier point.\n\n**Dimension finie.** Si $E=\\{0\\}$, c'est évident. Sinon, soit $(e_1,\\dots,e_d)$ une base de $E$. Toutes les normes de $E$ sont équivalentes, et deux normes équivalentes ont les mêmes suites de Cauchy et les mêmes suites convergentes : on peut prendre $\\left\\|\\sum_ia_ie_i\\right\\|_\\infty=\\max_i|a_i|$. Si $(x_n)$ est de Cauchy pour cette norme, chaque suite de coordonnées est de Cauchy dans $\\mathbb{K}$, donc converge, et $(x_n)$ converge vers le vecteur des limites.\n\n**Sous-espaces.** Si $F$ est complet et si une suite $(x_n)$ de $F$ converge vers $x\\in E$, elle est de Cauchy, donc converge dans $F$ vers un $y$ ; par unicité de la limite dans $E$, $x=y\\in F$ : $F$ est fermé. Si $E$ est complet et $F$ fermé, une suite de Cauchy de $F$ converge dans $E$, et sa limite est dans $F$ puisque $F$ est fermé.",
+      "exemple": "- L'espace $\\ell^\\infty$ des suites réelles bornées, muni de $\\|x\\|_\\infty=\\sup_n|x_n|$, est complet. Si $(x^{(p)})_p$ est de Cauchy, pour chaque $n$ on a $|x^{(p)}_n-x^{(q)}_n|\\le\\|x^{(p)}-x^{(q)}\\|_\\infty$ : la suite $(x^{(p)}_n)_p$ est de Cauchy dans $\\mathbb{R}$, de limite notée $x_n$. Si $\\|x^{(p)}-x^{(q)}\\|_\\infty\\le\\varepsilon$ pour $p,q\\ge N$, on fait tendre $q$ vers $+\\infty$ : $|x^{(p)}_n-x_n|\\le\\varepsilon$ pour tout $n$ et tout $p\\ge N$. Donc $x=(x_n)$ est bornée et $\\|x^{(p)}-x\\|_\\infty\\le\\varepsilon$ pour $p\\ge N$.\n- Dans $\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$, qui est complet, la série des $f_n:t\\mapsto\\frac{\\cos(nt)}{n^2}$ ($n\\ge1$) vérifie $\\|f_n\\|_\\infty=\\frac1{n^2}$ : elle est absolument convergente, donc converge, et sa somme est continue.",
+      "contre_exemple": "- **Un espace non complet** : $\\mathbb{R}[X]$ muni de $\\left\\|\\sum_ka_kX^k\\right\\|=\\max_k|a_k|$. Les termes $x_n=\\frac{X^n}{2^n}$ vérifient $\\sum\\|x_n\\|=2$. Si $\\sum x_n$ convergeait vers un polynôme $P$ de degré au plus $d$, alors pour $N\\ge d+1$ le coefficient de $X^{d+1}$ dans $\\sum_{n=0}^Nx_n-P$ vaudrait $\\frac1{2^{d+1}}$, donc $\\left\\|\\sum_{n=0}^Nx_n-P\\right\\|\\ge\\frac1{2^{d+1}}$ : contradiction.\n- **Le terme général tend vers $0$** : dans $\\mathbb{R}$, qui est complet, $\\frac1{n+1}\\to0$ mais $\\sum\\frac1{n+1}$ diverge.\n- **Inégalité stricte** : dans $\\mathbb{R}$, avec $x_0=1$, $x_1=-1$ et $x_n=0$ pour $n\\ge2$, $\\left|\\sum x_n\\right|=0<2=\\sum|x_n|$.\n- **Un sous-espace non fermé n'est pas complet** : dans $\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$, les sommes partielles de $\\sum\\frac{t^k}{k!}$ sont des fonctions polynomiales qui convergent uniformément vers $\\exp$, qui n'est pas polynomiale (elle est égale à sa dérivée sans être nulle) : le sous-espace des fonctions polynomiales n'est pas fermé, donc pas complet.",
+      "affirmations": [
+        {
+          "texte": "Dans un espace vectoriel normé, toute suite de Cauchy est bornée.",
+          "vrai": true,
+          "justification": "Avec $\\varepsilon=1$ : $\\|x_n\\|\\le\\|x_N\\|+1$ pour $n\\ge N$, et il reste un nombre fini de termes."
+        },
+        {
+          "texte": "Dans un espace de Banach, une série dont le terme général tend vers $0$ converge.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, qui est complet, $\\frac1{n+1}\\to0$ et pourtant $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "Si $E$ est un espace de Banach et si $\\sum x_n$ converge absolument, alors $\\left\\|\\sum_{n=0}^{+\\infty}x_n\\right\\|=\\sum_{n=0}^{+\\infty}\\|x_n\\|$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}$, avec $x_0=1$, $x_1=-1$ et $x_n=0$ ensuite : $0\\neq2$."
+        },
+        {
+          "texte": "Tout sous-espace vectoriel de dimension finie d'un espace vectoriel normé est fermé.",
+          "vrai": true,
+          "justification": "Il est complet (dimension finie), et un sous-espace complet est fermé."
+        },
+        {
+          "texte": "L'espace $\\mathbb{R}[X]$ est complet pour toute norme.",
+          "vrai": false,
+          "contre_exemple": "Pour la norme $\\max_k|a_k|$, la série absolument convergente $\\sum\\frac{X^n}{2^n}$ ne converge pas."
+        }
+      ],
+      "prerequis": [
+        "ar-l1-suites-cauchy",
+        "ar-l2-series-cauchy-absolue",
+        "top-l2-evn-suites",
+        "top-l2-evn-equivalence-dim-finie",
+        "top-l3-metriques-point-fixe"
+      ]
+    },
+    {
+      "id": "top-l3-banach-uniforme",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Convergence uniforme et normale à valeurs dans un Banach",
+      "recto": "Énoncer la complétude de l'espace des applications bornées à valeurs dans un espace de Banach, le théorème de convergence normale, la continuité de la limite uniforme et la complétude de $\\mathcal{L}_c(E,F)$.",
+      "cours": "La convergence uniforme d'une suite de fonctions est la convergence pour la norme $\\|f\\|_\\infty=\\sup_{x\\in X}\\|f(x)\\|$ : c'est donc une question d'espace vectoriel normé, et l'on peut prendre des fonctions à valeurs dans n'importe quel espace vectoriel normé $F$ (vecteurs, matrices, endomorphismes, fonctions…). Ce qui fait marcher les théorèmes de deuxième année (critère de Cauchy uniforme, convergence normale entraînant la convergence uniforme), c'est la complétude de l'espace d'arrivée : $\\mathbb{R}$ et $\\mathbb{C}$ y sont remplacés par un espace de Banach $F$.\n\nLe théorème central : $\\mathcal{B}(X,F)$ est complet dès que $F$ l'est. La preuve suit le schéma de toutes les preuves de complétude : une suite de Cauchy pour $\\|\\cdot\\|_\\infty$ est de Cauchy en chaque point ; la complétude de $F$ fournit une limite simple ; on fait tendre l'un des deux indices vers l'infini dans l'inégalité de Cauchy pour obtenir la convergence uniforme. Avec la carte précédente, la convergence normale d'une série de fonctions n'est rien d'autre que sa convergence absolue dans l'espace de Banach $\\mathcal{B}(X,F)$ : elle entraîne la convergence uniforme.\n\nDeux conséquences servent constamment. La continuité passe à la limite uniforme, donc l'espace $\\mathcal{C}_b(X,F)$ des applications continues bornées est fermé, donc complet ; avec $X=[a,b]$, on obtient que $\\mathcal{C}([a,b],F)$ muni de $\\|\\cdot\\|_\\infty$ est un espace de Banach. Et l'espace $\\mathcal{L}_c(E,F)$ des applications linéaires continues est complet dès que $F$ l'est, sans hypothèse sur $E$ : si $E$ est un espace de Banach, $\\mathcal{L}_c(E)$ est complet, ce qui permet d'y définir l'exponentielle et l'inverse de $\\mathrm{id}_E-u$ par une série (carte suivante et exercices).\n\nPièges : la convergence absolue en chaque point ne donne pas la convergence uniforme ($\\sum x^n(1-x)$ sur $[0,1]$) ; une limite simple de fonctions bornées n'est pas forcément bornée ; sans complétude de l'espace d'arrivée, la convergence normale ne garantit rien ; une série uniformément convergente n'est pas forcément normalement convergente.",
+      "hypotheses": [
+        "$F$ est un espace de Banach.",
+        "La série numérique $\\sum\\|f_n\\|_\\infty$ converge.",
+        "Chaque $f_n$ est continue sur $X$, partie d'un espace vectoriel normé."
+      ],
+      "hypotheses_pieges": [
+        "La série $\\sum\\|f_n(x)\\|$ converge pour tout $x\\in X$ (à la place de : $\\sum\\|f_n\\|_\\infty$ converge).",
+        "$F$ est un espace vectoriel normé quelconque (à la place d'un espace de Banach).",
+        "Chaque $f_n$ est continue en au moins un point de $X$ (à la place de continue sur $X$)."
+      ],
+      "enonce": "Soient $X$ un ensemble non vide et $(F,\\|\\cdot\\|)$ un espace vectoriel normé. On note $\\mathcal{B}(X,F)$ l'espace des applications bornées de $X$ dans $F$, muni de la **norme uniforme** $\\|f\\|_\\infty=\\sup_{x\\in X}\\|f(x)\\|$ ; une suite $(f_n)$ converge vers $f$ pour cette norme si et seulement si elle converge **uniformément** vers $f$ sur $X$. Une série $\\sum f_n$ d'éléments de $\\mathcal{B}(X,F)$ **converge normalement** sur $X$ si la série numérique $\\sum\\|f_n\\|_\\infty$ converge.\n\n**Théorème.** On suppose $F$ complet.\n- $\\mathcal{B}(X,F)$ est un espace de Banach.\n- Si $\\sum\\|f_n\\|_\\infty$ converge, alors pour tout $x\\in X$ la série $\\sum f_n(x)$ converge absolument dans $F$, et $\\sum f_n$ converge uniformément sur $X$ vers sa somme $S$, avec $\\left\\|S-\\sum_{k=0}^nf_k\\right\\|_\\infty\\le\\sum_{k=n+1}^{+\\infty}\\|f_k\\|_\\infty$.\n- Si $X$ est une partie d'un espace vectoriel normé, l'espace $\\mathcal{C}_b(X,F)$ des applications continues et bornées est fermé dans $\\mathcal{B}(X,F)$, donc complet : une limite uniforme d'applications continues est continue. En particulier, la somme d'une série normalement convergente d'applications continues est continue.\n- Si $E\\neq\\{0\\}$ est un espace vectoriel normé, l'espace $\\mathcal{L}_c(E,F)$ des applications linéaires continues de $E$ dans $F$, muni de la norme subordonnée $|||\\cdot|||$, est un espace de Banach.",
+      "enonce_trous": "Soient $X$ un ensemble non vide, $F$ {{1}} et $(f_n)$ une suite d'applications bornées de $X$ dans $F$. Si {{2}}, alors $\\sum f_n$ converge uniformément sur $X$ ; si de plus $X$ est une partie d'un espace vectoriel normé et si chaque $f_n$ est {{3}}, la somme de la série est continue sur $X$.",
+      "trous": [
+        {
+          "reponse": "un espace de Banach",
+          "leurres": [
+            "un espace vectoriel normé quelconque",
+            "un espace préhilbertien",
+            "un sous-espace vectoriel d'un espace de Banach"
+          ]
+        },
+        {
+          "reponse": "la série $\\sum\\|f_n\\|_\\infty$ converge",
+          "leurres": [
+            "la série $\\sum\\|f_n(x)\\|$ converge pour tout $x\\in X$",
+            "$\\|f_n\\|_\\infty\\to0$",
+            "la série $\\sum\\|f_n\\|_\\infty^2$ converge"
+          ]
+        },
+        {
+          "reponse": "continue sur $X$",
+          "leurres": [
+            "bornée sur $X$",
+            "continue en au moins un point de $X$",
+            "continue sur $X$ privé d'un point"
+          ]
+        }
+      ],
+      "demo": "**L'espace normé $\\mathcal{B}(X,F)$.** Une somme et un multiple d'applications bornées sont bornés ; $\\|f\\|_\\infty=0$ impose $f=0$, $\\|\\lambda f\\|_\\infty=|\\lambda|\\,\\|f\\|_\\infty$, et $\\|f(x)+g(x)\\|\\le\\|f\\|_\\infty+\\|g\\|_\\infty$ pour tout $x$ donne l'inégalité triangulaire. Par définition, $\\|f_n-f\\|_\\infty\\to0$ signifie que $(f_n)$ converge uniformément vers $f$.\n\n**Complétude.** Soit $(f_n)$ de Cauchy dans $\\mathcal{B}(X,F)$. Pour $x\\in X$, $\\|f_p(x)-f_q(x)\\|\\le\\|f_p-f_q\\|_\\infty$ : $(f_n(x))$ est de Cauchy dans $F$, donc converge vers un élément noté $f(x)$. Soit $\\varepsilon>0$ et $N$ tel que $\\|f_p-f_q\\|_\\infty\\le\\varepsilon$ pour $p,q\\ge N$. Pour tout $x$ et tous $p,q\\ge N$, $\\|f_p(x)-f_q(x)\\|\\le\\varepsilon$ ; en faisant tendre $q$ vers $+\\infty$ (la norme est continue), $\\|f_p(x)-f(x)\\|\\le\\varepsilon$. Ainsi $\\|f(x)\\|\\le\\|f_N\\|_\\infty+\\varepsilon$ : $f$ est bornée, et $\\|f_p-f\\|_\\infty\\le\\varepsilon$ pour $p\\ge N$.\n\n**Convergence normale.** Pour $x\\in X$, $\\|f_n(x)\\|\\le\\|f_n\\|_\\infty$, donc $\\sum f_n(x)$ converge absolument dans $F$, donc converge (carte précédente) : notons $S(x)$ sa somme. D'autre part $\\sum f_n$ converge absolument dans l'espace de Banach $\\mathcal{B}(X,F)$, donc converge vers un $T\\in\\mathcal{B}(X,F)$. L'évaluation en $x$ vérifie $\\|g(x)\\|\\le\\|g\\|_\\infty$ : elle est continue, donc $T(x)=\\sum f_n(x)=S(x)$. Enfin $S-\\sum_{k=0}^nf_k=\\sum_{k=n+1}^{+\\infty}f_k$ dans $\\mathcal{B}(X,F)$, de norme au plus $\\sum_{k=n+1}^{+\\infty}\\|f_k\\|_\\infty$ (carte précédente).\n\n**Continuité de la limite uniforme.** Soient $f_n\\in\\mathcal{C}_b(X,F)$ qui convergent uniformément vers $f$, $a\\in X$ et $\\varepsilon>0$. On choisit $n$ tel que $\\|f_n-f\\|_\\infty\\le\\varepsilon$, puis $\\eta>0$ tel que $\\|f_n(x)-f_n(a)\\|\\le\\varepsilon$ pour $x\\in X$, $\\|x-a\\|<\\eta$. Pour de tels $x$, $\\|f(x)-f(a)\\|\\le\\|f(x)-f_n(x)\\|+\\|f_n(x)-f_n(a)\\|+\\|f_n(a)-f(a)\\|\\le3\\varepsilon$. Donc $\\mathcal{C}_b(X,F)$ est fermé dans l'espace complet $\\mathcal{B}(X,F)$, donc complet (carte précédente). Les sommes partielles d'une série d'applications continues sont continues, et leur limite uniforme aussi.\n\n**Applications linéaires continues.** $\\mathcal{L}_c(E,F)$ muni de $|||\\cdot|||$ est un espace vectoriel normé. Soit $(u_n)$ une suite de Cauchy. Pour $x\\in E$, $\\|u_p(x)-u_q(x)\\|\\le|||u_p-u_q|||\\,\\|x\\|$ : $(u_n(x))$ est de Cauchy dans $F$, de limite notée $u(x)$. Par passage à la limite, $u(\\lambda x+y)=\\lambda u(x)+u(y)$ : $u$ est linéaire. Si $|||u_p-u_q|||\\le\\varepsilon$ pour $p,q\\ge N$, alors $\\|u_p(x)-u_q(x)\\|\\le\\varepsilon\\|x\\|$, et pour $q\\to+\\infty$, $\\|u_p(x)-u(x)\\|\\le\\varepsilon\\|x\\|$ pour tout $x$. Ainsi $u_p-u$ est continue de norme au plus $\\varepsilon$, donc $u=u_p-(u_p-u)\\in\\mathcal{L}_c(E,F)$, et $|||u_p-u|||\\le\\varepsilon$ pour $p\\ge N$.",
+      "exemple": "- **Une série de matrices** : on munit $\\mathcal{M}_2(\\mathbb{R})$ de la norme subordonnée à la norme euclidienne et l'on pose, pour $n\\ge1$ et $t\\in\\mathbb{R}$, $f_n(t)=\\frac1{n^2}\\begin{pmatrix}\\cos nt&-\\sin nt\\\\\\sin nt&\\cos nt\\end{pmatrix}$. La matrice de rotation conserve la norme euclidienne, donc $\\|f_n(t)\\|=\\frac1{n^2}$ : la série $\\sum f_n$ converge normalement sur $\\mathbb{R}$, et sa somme est une application continue de $\\mathbb{R}$ dans $\\mathcal{M}_2(\\mathbb{R})$.\n- **Suites bornées** : avec $X=\\mathbb{N}$ et $F=\\mathbb{R}$, $\\mathcal{B}(\\mathbb{N},\\mathbb{R})$ est l'espace $\\ell^\\infty$ des suites bornées, qui est donc complet.",
+      "contre_exemple": "- **Convergence absolue en chaque point sans convergence uniforme** : sur $[0,1]$, $f_n(x)=x^n(1-x)$ est continue et $\\sum f_n(x)$ converge absolument pour tout $x$ (série géométrique, ou série nulle en $x=1$). Sa somme vaut $1$ sur $\\left[0,1\\right[$ et $0$ en $1$ : elle n'est pas continue, donc la convergence n'est pas uniforme ; d'ailleurs $\\|f_n\\|_\\infty=\\frac{n^n}{(n+1)^{n+1}}\\ge\\frac1{e(n+1)}$, terme général d'une série divergente.\n- **Espace d'arrivée non complet** : $F=\\mathbb{R}[X]$ muni de la norme $\\max_k|a_k|$ des coefficients, $X$ quelconque et $f_n$ constante égale à $\\frac{X^n}{2^n}$. Alors $\\sum\\|f_n\\|_\\infty=2$, mais $\\sum f_n$ ne converge pas (carte précédente).\n- **Hypothèse de continuité affaiblie** : sur $X=[0,1]$, $f_0$ égale à $1$ en $0$ et à $0$ ailleurs (continue en $1$), et $f_n=0$ pour $n\\ge1$ : la série converge normalement, sa somme $f_0$ n'est pas continue.",
+      "affirmations": [
+        {
+          "texte": "Si $F$ est un espace de Banach, une limite simple d'applications bornées de $X$ dans $F$ est bornée.",
+          "vrai": false,
+          "contre_exemple": "$X=\\mathbb{N}$, $F=\\mathbb{R}$, $f_n(k)=\\min(k,n)$ : chaque $f_n$ est bornée par $n$, mais la limite simple $k\\mapsto k$ ne l'est pas."
+        },
+        {
+          "texte": "Si $F$ est un espace de Banach, $\\mathcal{C}([0,1],F)$ muni de $\\|\\cdot\\|_\\infty$ est un espace de Banach.",
+          "vrai": true,
+          "justification": "Une application continue sur $[0,1]$ est bornée ($x\\mapsto\\|f(x)\\|$ est continue sur un segment), donc $\\mathcal{C}([0,1],F)=\\mathcal{C}_b([0,1],F)$, fermé dans l'espace complet $\\mathcal{B}([0,1],F)$."
+        },
+        {
+          "texte": "Pour que $\\mathcal{L}_c(E,F)$ soit complet, il suffit que $F$ le soit, même si $E$ ne l'est pas.",
+          "vrai": true,
+          "justification": "La preuve n'utilise que la complétude de $F$, où l'on prend les limites $u(x)=\\lim u_n(x)$."
+        },
+        {
+          "texte": "Si $\\sum f_n$ converge uniformément sur $X$, alors $\\sum\\|f_n\\|_\\infty$ converge.",
+          "vrai": false,
+          "contre_exemple": "Sur $X=\\{0\\}$, $f_n$ constante égale à $\\frac{(-1)^n}{n+1}$ : la série converge (série alternée), donc uniformément sur un singleton, mais $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "La somme d'une série de fonctions continues qui converge normalement sur $[0,1]$ est continue sur $[0,1]$.",
+          "vrai": true,
+          "justification": "La convergence normale entraîne la convergence uniforme, qui conserve la continuité."
+        }
+      ],
+      "prerequis": [
+        "top-l3-banach-banach",
+        "ar-l2-suites-fonctions-normale",
+        "ar-l2-suites-fonctions-continuite",
+        "ar-l2-suites-fonctions-cauchy-uniforme",
+        "top-l2-evn-continuite-lineaire"
+      ]
+    },
+    {
+      "id": "top-l3-banach-exponentielle",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Exponentielle d'un endomorphisme continu",
+      "recto": "Définir l'exponentielle d'un endomorphisme continu d'un espace de Banach et en donner les propriétés : majoration, produit pour des endomorphismes qui commutent, inversibilité, dérivée de $t\\mapsto e^{tu}$.",
+      "cours": "Dans un espace de Banach $E$, l'algèbre $\\mathcal{L}_c(E)$ des endomorphismes continus est complète pour la norme subordonnée (carte précédente), et cette norme vérifie $|||uv|||\\le|||u|||\\,|||v|||$ : c'est une **algèbre de Banach**. On peut donc y évaluer des séries entières : si $\\sum a_kz^k$ a un rayon $R$ et si $|||u|||<R$, la série $\\sum a_ku^k$ converge absolument, car $|||a_ku^k|||\\le|a_k|\\,|||u|||^k$. Deux exemples dominent : l'exponentielle, définie pour tout $u$, et la série $\\sum u^k$, qui converge si $|||u|||<1$ et donne l'inverse de $\\mathrm{id}_E-u$ (exercices). En dimension finie, on retrouve l'exponentielle de matrice des systèmes différentiels ; ici $E$ peut être de dimension infinie, et la complétude de $\\mathcal{L}_c(E)$ remplace l'argument de dimension finie.\n\nLes règles de calcul viennent toutes de la propriété du produit pour des éléments qui commutent : si $uv=vu$, la formule du binôme s'applique à $(u+v)^m$, et le produit des séries $\\sum\\frac{u^k}{k!}$ et $\\sum\\frac{v^l}{l!}$ se regroupe en $\\sum\\frac{(u+v)^m}{m!}$. Pour le justifier, on compare l'écart entre $S_n(u)S_n(v)$ et $S_n(u+v)$ (sommes partielles) à l'écart correspondant pour les séries numériques de $e^{|||u|||}$ et $e^{|||v|||}$. On en déduit que $e^u$ est toujours inversible, d'inverse $e^{-u}$, que $t\\mapsto e^{tu}$ est un morphisme de $(\\mathbb{R},+)$ dans le groupe des inversibles, et qu'il est dérivable de dérivée $ue^{tu}$ : $t\\mapsto e^{tu}(x_0)$ est solution de $x'=u(x)$, $x(0)=x_0$, dans $E$.\n\nExemples où tout se calcule : si $p$ est un projecteur continu, $p^k=p$ pour $k\\ge1$ et $e^{tp}=\\mathrm{id}_E+(e^t-1)p$ ; si $u^2=0$, $e^u=\\mathrm{id}_E+u$ ; si $u^2=\\mathrm{id}_E$, $e^{tu}=\\operatorname{ch}(t)\\,\\mathrm{id}_E+\\operatorname{sh}(t)\\,u$ ; sur $\\mathcal{C}([0,1],\\mathbb{R})$, la multiplication $M_g:f\\mapsto gf$ par une fonction continue $g$ a pour exponentielle $M_{e^g}$.\n\nPièges : sans commutation, $e^{u+v}\\neq e^ue^v$ en général ; la majoration $|||e^u|||\\le e^{|||u|||}$ est souvent stricte (pour $u$ antisymétrique dans le plan euclidien, $e^u$ est une rotation et $|||e^u|||=1$) ; $e^u$ est inversible même si $u$ ne l'est pas ($e^0=\\mathrm{id}_E$) ; la dérivée de $t\\mapsto e^{tu}$ est $ue^{tu}$, et non $e^{tu}$.",
+      "hypotheses": [
+        "$E$ est un espace de Banach et $u,v\\in\\mathcal{L}_c(E)$.",
+        "$u$ et $v$ commutent : $uv=vu$."
+      ],
+      "hypotheses_pieges": [
+        "$u$ et $v$ sont nilpotents (à la place de : $u$ et $v$ commutent).",
+        "$|||u|||=|||v|||$ (à la place de : $u$ et $v$ commutent)."
+      ],
+      "enonce": "Soit $(E,\\|\\cdot\\|)$ un espace de Banach non réduit à $\\{0\\}$ et $\\mathcal{L}_c(E)$ l'algèbre des endomorphismes continus de $E$, munie de la norme subordonnée $|||\\cdot|||$, qui vérifie $|||u\\circ v|||\\le|||u|||\\,|||v|||$ et $|||\\mathrm{id}_E|||=1$. On note $uv=u\\circ v$ et $u^0=\\mathrm{id}_E$.\n\n**Théorème.** Soit $u\\in\\mathcal{L}_c(E)$.\n- La série $\\sum_{k\\ge0}\\frac{u^k}{k!}$ converge absolument dans $\\mathcal{L}_c(E)$ ; sa somme est notée $e^u$ ou $\\exp(u)$, et $|||e^u|||\\le e^{|||u|||}$, $|||e^u-\\mathrm{id}_E|||\\le e^{|||u|||}-1$.\n- Si $w\\in\\mathcal{L}_c(E)$ commute avec $u$, alors $w$ commute avec $e^u$.\n- Si $v\\in\\mathcal{L}_c(E)$ commute avec $u$, alors $e^{u+v}=e^ue^v$. En particulier $e^u$ est inversible dans $\\mathcal{L}_c(E)$, d'inverse $e^{-u}$, et $e^{(s+t)u}=e^{su}e^{tu}$ pour tous $s,t\\in\\mathbb{K}$.\n- L'application $t\\mapsto e^{tu}$, de $\\mathbb{R}$ dans $\\mathcal{L}_c(E)$, est dérivable, de dérivée $t\\mapsto ue^{tu}=e^{tu}u$.",
+      "enonce_trous": "Soient $E$ un espace de Banach et $u,v\\in\\mathcal{L}_c(E)$. La série $\\sum\\frac{u^k}{k!}$ converge dans $\\mathcal{L}_c(E)$, et sa somme vérifie $|||e^u|||$ {{1}}. Si {{2}}, alors $e^{u+v}=e^ue^v$. L'application $t\\mapsto e^{tu}$ est dérivable sur $\\mathbb{R}$, de dérivée {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\le e^{|||u|||}$",
+          "leurres": [
+            "$=e^{|||u|||}$",
+            "$\\ge e^{|||u|||}$",
+            "$\\le1+|||u|||$"
+          ]
+        },
+        {
+          "reponse": "$uv=vu$",
+          "leurres": [
+            "$|||u|||=|||v|||$",
+            "$u$ et $v$ sont inversibles",
+            "$u^2=v^2$"
+          ]
+        },
+        {
+          "reponse": "$t\\mapsto ue^{tu}$",
+          "leurres": [
+            "$t\\mapsto e^{tu}$",
+            "$t\\mapsto tue^{tu}$",
+            "$t\\mapsto|||u|||\\,e^{tu}$"
+          ]
+        }
+      ],
+      "demo": "**Algèbre de Banach.** $E$ étant complet, $\\mathcal{L}_c(E)$ l'est (carte précédente). L'inégalité $|||uv|||\\le|||u|||\\,|||v|||$ donne, par récurrence, $|||u^k|||\\le|||u|||^k$ pour $k\\ge1$ ; enfin $|||\\mathrm{id}_E|||=1$ car $E\\neq\\{0\\}$.\n\n**Convergence.** $\\left|\\left|\\left|\\frac{u^k}{k!}\\right|\\right|\\right|\\le\\frac{|||u|||^k}{k!}$, terme général d'une série convergente de somme $e^{|||u|||}$. La série converge donc absolument, donc converge dans l'espace complet $\\mathcal{L}_c(E)$, et $|||e^u|||\\le\\sum_{k\\ge0}\\frac{|||u|||^k}{k!}=e^{|||u|||}$ ; de même $|||e^u-\\mathrm{id}_E|||=\\left|\\left|\\left|\\sum_{k\\ge1}\\frac{u^k}{k!}\\right|\\right|\\right|\\le e^{|||u|||}-1$.\n\n**Commutation.** Si $wu=uw$, $w$ commute avec chaque $u^k$, donc avec chaque somme partielle $S_n(u)=\\sum_{k=0}^n\\frac{u^k}{k!}$. Les applications $x\\mapsto wx$ et $x\\mapsto xw$ sont continues sur $\\mathcal{L}_c(E)$ ($|||wx-wy|||\\le|||w|||\\,|||x-y|||$) : en passant à la limite, $we^u=e^uw$.\n\n**Produit.** On suppose $uv=vu$. La formule du binôme donne $\\frac{(u+v)^m}{m!}=\\sum_{k+l=m}\\frac{u^kv^l}{k!\\,l!}$, d'où $$S_n(u)S_n(v)-S_n(u+v)=\\sum_{(k,l)\\in D_n}\\frac{u^kv^l}{k!\\,l!},$$ où $D_n=\\{(k,l) : k\\le n,\\ l\\le n,\\ k+l>n\\}$. Avec $a=|||u|||$ et $b=|||v|||$, la norme de cette différence est au plus $\\sum_{(k,l)\\in D_n}\\frac{a^kb^l}{k!\\,l!}=S_n(a)S_n(b)-S_n(a+b)$ (même identité pour les réels $a$ et $b$, qui commutent), quantité qui tend vers $e^ae^b-e^{a+b}=0$. D'autre part $S_n(u)S_n(v)\\to e^ue^v$, car $|||xy-x'y'|||\\le|||x|||\\,|||y-y'|||+|||x-x'|||\\,|||y'|||$. Donc $S_n(u+v)\\to e^ue^v$, c'est-à-dire $e^{u+v}=e^ue^v$. Avec $v=-u$ : $e^ue^{-u}=e^{-u}e^u=e^0=\\mathrm{id}_E$. Avec $su$ et $tu$, qui commutent : $e^{(s+t)u}=e^{su}e^{tu}$.\n\n**Dérivée.** Pour $h\\neq0$, $e^{(t+h)u}=e^{tu}e^{hu}$, donc $$\\frac{e^{(t+h)u}-e^{tu}}h-e^{tu}u=e^{tu}\\left(\\frac{e^{hu}-\\mathrm{id}_E}h-u\\right),$$ et, avec $a=|||u|||$, $\\left|\\left|\\left|\\frac{e^{hu}-\\mathrm{id}_E}h-u\\right|\\right|\\right|=\\left|\\left|\\left|\\sum_{k\\ge2}\\frac{h^{k-1}u^k}{k!}\\right|\\right|\\right|\\le\\frac{e^{|h|a}-1-|h|a}{|h|}$, qui tend vers $0$ quand $h\\to0$ (dérivée en $0$ de $s\\mapsto e^{sa}$). La dérivée est donc $e^{tu}u$, égale à $ue^{tu}$ par le point sur la commutation.",
+      "exemple": "- **Projecteur** : si $p\\in\\mathcal{L}_c(E)$ vérifie $p^2=p$, alors $p^k=p$ pour $k\\ge1$ et $e^{tp}=\\mathrm{id}_E+\\sum_{k\\ge1}\\frac{t^k}{k!}p=\\mathrm{id}_E+(e^t-1)p$.\n- **Opérateur de multiplication** : sur $E=\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$, pour $g\\in E$, $M_g:f\\mapsto gf$ vérifie $|||M_g|||=\\|g\\|_\\infty$ (la majoration est immédiate, l'égalité s'obtient avec $f=1$) et $(M_g)^k=M_{g^k}$. Comme $h\\mapsto M_h$ est linéaire et conserve la norme, et que $\\sum\\frac{g^k}{k!}$ converge dans $E$ vers $e^g$, on obtient $e^{M_g}=M_{e^g}$. Pour $g(x)=-x$ : $|||M_g|||=1$ et $|||e^{M_g}|||=\\sup_{[0,1]}e^{-x}=1<e$.",
+      "contre_exemple": "- **Sans commutation** : $E=\\mathbb{R}^2$, $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ ; $A^2=B^2=0$, donc $e^A=I_2+A$, $e^B=I_2+B$ et $e^Ae^B=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$, de trace $3$. Mais $(A+B)^2=I_2$, donc $e^{A+B}=\\operatorname{ch}(1)I_2+\\operatorname{sh}(1)(A+B)$, de trace $2\\operatorname{ch}1\\neq3$. Ici $A$ et $B$ sont nilpotents et de même norme, mais ne commutent pas.\n- **Majoration stricte** : pour $J=\\begin{pmatrix}0&-\\theta\\\\\\theta&0\\end{pmatrix}$ avec $\\theta>0$ et la norme euclidienne, $|||J|||=\\theta$, et $e^J$ est la rotation d'angle $\\theta$, de norme $1<e^\\theta$.\n- **L'exponentielle n'est pas injective** : pour $J$ ci-dessus avec $\\theta=2\\pi$, $e^J=I_2=e^0$.",
+      "affirmations": [
+        {
+          "texte": "Si $u$ est nilpotent, la série définissant $e^u$ n'a qu'un nombre fini de termes non nuls.",
+          "vrai": true,
+          "justification": "Si $u^m=0$, alors $u^k=0$ pour $k\\ge m$, et $e^u=\\sum_{k=0}^{m-1}\\frac{u^k}{k!}$."
+        },
+        {
+          "texte": "Pour tous $u,v\\in\\mathcal{L}_c(E)$, $e^{u+v}=e^ue^v$.",
+          "vrai": false,
+          "contre_exemple": "Avec $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ et $B=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$, $\\mathrm{tr}(e^Ae^B)=3$ et $\\mathrm{tr}(e^{A+B})=2\\operatorname{ch}1$."
+        },
+        {
+          "texte": "$e^u$ n'est inversible que si $u$ l'est.",
+          "vrai": false,
+          "contre_exemple": "$e^0=\\mathrm{id}_E$ est inversible alors que $0$ ne l'est pas ; en fait $e^u$ est toujours inversible, d'inverse $e^{-u}$."
+        },
+        {
+          "texte": "Pour tout $u\\in\\mathcal{L}_c(E)$, $|||e^u|||\\ge1$.",
+          "vrai": false,
+          "contre_exemple": "$E=\\mathbb{R}$ et $u=-\\mathrm{id}_{\\mathbb{R}}$ : $e^u=e^{-1}\\mathrm{id}_{\\mathbb{R}}$, de norme $e^{-1}<1$."
+        },
+        {
+          "texte": "Si $u$ et $v$ commutent, alors $e^u$ et $e^v$ commutent.",
+          "vrai": true,
+          "justification": "$e^ue^v=e^{u+v}=e^{v+u}=e^ve^u$."
+        }
+      ],
+      "prerequis": [
+        "top-l3-banach-uniforme",
+        "ed-l2-systemes-exponentielle",
+        "ar-l2-series-entieres-usuels"
+      ]
+    },
+    {
+      "id": "top-l3-banach-bessel",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Espaces préhilbertiens, suites orthonormales et inégalité de Bessel",
+      "recto": "Pour une suite orthonormale d'un espace préhilbertien, énoncer la propriété de meilleure approximation des sommes partielles, l'inégalité de Bessel et le cas d'égalité de Parseval.",
+      "cours": "Un espace préhilbertien est un espace vectoriel muni d'un produit scalaire, réel ou hermitien, sans hypothèse de dimension : $\\mathbb{R}^n$ et $\\mathbb{C}^n$, mais aussi $\\mathcal{C}([a,b],\\mathbb{K})$ muni de $\\langle f,g\\rangle=\\int_a^b\\overline fg$, ou $\\mathbb{R}[X]$ muni d'une intégrale à poids (dernière carte du chapitre). Dans le cas complexe, on prend comme au chapitre des formes quadratiques un produit scalaire linéaire par rapport à la seconde variable. Les outils de dimension finie restent valables tant qu'on ne projette que sur des sous-espaces de dimension finie : inégalité de Cauchy-Schwarz, théorème de Pythagore, projection orthogonale sur $\\mathrm{Vect}(e_0,\\dots,e_N)$ donnée par $\\sum_{n\\le N}\\langle e_n,x\\rangle e_n$.\n\nUne suite orthonormale $(e_n)$ joue le rôle d'une base orthonormale « infinie ». La somme partielle $S_N(x)$ est la meilleure approximation de $x$ dans $F_N=\\mathrm{Vect}(e_0,\\dots,e_N)$, et le théorème de Pythagore donne $\\|x\\|^2=\\|S_N(x)\\|^2+\\|x-S_N(x)\\|^2\\ge\\sum_{n\\le N}|\\langle e_n,x\\rangle|^2$ : c'est l'inégalité de Bessel. Les distances $\\|x-S_N(x)\\|=\\mathrm{d}(x,F_N)$ décroissent avec $N$ ; elles tendent vers $0$ exactement quand $x$ est limite de combinaisons linéaires des $e_n$, et c'est le cas d'égalité de Parseval. Pour les fonctions continues $2\\pi$-périodiques, avec $e_n(t)=e^{int}$ ($n\\in\\mathbb{Z}$) et $\\langle f,g\\rangle=\\frac1{2\\pi}\\int_{-\\pi}^{\\pi}\\overline fg$, on retrouve l'inégalité de Bessel des séries de Fourier, et le théorème de Weierstrass trigonométrique donne l'égalité de Parseval.\n\nMéthode : pour prouver l'égalité de Parseval, il suffit d'approcher $x$ par des combinaisons linéaires finies des $e_n$, sans que ce soient les sommes partielles : la propriété de meilleure approximation fait le reste. Pour calculer la distance de $x$ à un sous-espace de dimension finie, on en orthonormalise une base (procédé de Schmidt) et l'on utilise $\\mathrm{d}(x,F_N)^2=\\|x\\|^2-\\sum_{n\\le N}|\\langle e_n,x\\rangle|^2$.\n\nPièges : la suite doit être orthonormale, pas seulement orthogonale, ni seulement libre et formée de vecteurs unitaires ; l'égalité de Parseval peut être vraie pour certains $x$ et fausse pour d'autres ; avec la convention inverse ($\\langle\\cdot,\\cdot\\rangle$ linéaire à gauche), le coefficient s'écrit $\\langle x,e_n\\rangle$, de même module ; la convergence $S_N(x)\\to x$ est une convergence pour la norme de l'espace, pas une convergence uniforme.",
+      "hypotheses": [
+        "$E$ est un espace préhilbertien.",
+        "$(e_n)$ est une suite orthonormale de $E$."
+      ],
+      "hypotheses_pieges": [
+        "$(e_n)$ est une suite orthogonale de vecteurs non nuls (à la place d'orthonormale).",
+        "$(e_n)$ est une suite libre de vecteurs de norme $1$ (à la place d'orthonormale)."
+      ],
+      "enonce": "Soit $E$ un espace préhilbertien réel ou complexe : un espace vectoriel muni d'un produit scalaire $\\langle\\cdot,\\cdot\\rangle$ (dans le cas complexe, linéaire par rapport à la seconde variable et à symétrie hermitienne), et de la norme $\\|x\\|=\\sqrt{\\langle x,x\\rangle}$. Soit $(e_n)_{n\\in\\mathbb{N}}$ une suite **orthonormale** de $E$ ($\\langle e_n,e_m\\rangle$ vaut $1$ si $n=m$ et $0$ sinon) ; on pose $F_N=\\mathrm{Vect}(e_0,\\dots,e_N)$ et, pour $x\\in E$, $c_n(x)=\\langle e_n,x\\rangle$ et $S_N(x)=\\sum_{n=0}^Nc_n(x)e_n$.\n\n**Théorème.** Soit $x\\in E$.\n- $x-S_N(x)$ est orthogonal à $F_N$, et pour tout $y\\in F_N$, $\\|x-y\\|^2=\\|x-S_N(x)\\|^2+\\|S_N(x)-y\\|^2$. Ainsi $S_N(x)$ est l'unique élément de $F_N$ le plus proche de $x$, et $\\|x-S_N(x)\\|^2=\\|x\\|^2-\\sum_{n=0}^N|c_n(x)|^2$.\n- **Inégalité de Bessel.** La série $\\sum|c_n(x)|^2$ converge et $\\sum_{n=0}^{+\\infty}|c_n(x)|^2\\le\\|x\\|^2$ ; en particulier $c_n(x)\\to0$.\n- **Égalité de Parseval.** $\\sum_{n=0}^{+\\infty}|c_n(x)|^2=\\|x\\|^2$ si et seulement si $S_N(x)\\to x$, si et seulement si $x$ appartient à l'adhérence de $\\mathrm{Vect}(e_n)_{n\\in\\mathbb{N}}$.",
+      "enonce_trous": "Soient $E$ un espace préhilbertien, $(e_n)$ une suite {{1}} de $E$ et $x\\in E$. Alors $\\sum_{n=0}^{+\\infty}|\\langle e_n,x\\rangle|^2$ {{2}} $\\|x\\|^2$, avec égalité si et seulement si $x$ appartient à {{3}}.",
+      "trous": [
+        {
+          "reponse": "orthonormale",
+          "leurres": [
+            "orthogonale",
+            "libre de vecteurs de norme $1$",
+            "de vecteurs de norme $1$"
+          ]
+        },
+        {
+          "reponse": "est inférieur ou égal à",
+          "leurres": [
+            "est égal à",
+            "est supérieur ou égal à",
+            "est strictement inférieur à"
+          ]
+        },
+        {
+          "reponse": "l'adhérence de $\\mathrm{Vect}(e_n)_{n\\in\\mathbb{N}}$",
+          "leurres": [
+            "$\\mathrm{Vect}(e_n)_{n\\in\\mathbb{N}}$",
+            "l'orthogonal de $\\mathrm{Vect}(e_n)_{n\\in\\mathbb{N}}$",
+            "la boule unité fermée de $E$"
+          ]
+        }
+      ],
+      "demo": "**Projection.** Pour $k\\le N$, par linéarité à droite, $\\langle e_k,x-S_N(x)\\rangle=c_k(x)-\\sum_{n=0}^Nc_n(x)\\langle e_k,e_n\\rangle=c_k(x)-c_k(x)=0$. Un élément $z=\\sum_k\\alpha_ke_k$ de $F_N$ vérifie alors $\\langle z,x-S_N(x)\\rangle=\\sum_k\\overline{\\alpha_k}\\langle e_k,x-S_N(x)\\rangle=0$ : $x-S_N(x)$ est orthogonal à $F_N$. Si $\\langle a,b\\rangle=0$, alors $\\|a+b\\|^2=\\|a\\|^2+2\\,\\mathrm{Re}\\langle a,b\\rangle+\\|b\\|^2=\\|a\\|^2+\\|b\\|^2$ (Pythagore). Pour $y\\in F_N$, $S_N(x)-y\\in F_N$, d'où $\\|x-y\\|^2=\\|x-S_N(x)\\|^2+\\|S_N(x)-y\\|^2$, minimal si et seulement si $y=S_N(x)$. Avec $y=0$ : $\\|x\\|^2=\\|x-S_N(x)\\|^2+\\|S_N(x)\\|^2$, et par orthonormalité $\\|S_N(x)\\|^2=\\sum_{n,m}\\overline{c_n(x)}c_m(x)\\langle e_n,e_m\\rangle=\\sum_{n=0}^N|c_n(x)|^2$.\n\n**Bessel.** Ainsi $\\sum_{n=0}^N|c_n(x)|^2=\\|x\\|^2-\\|x-S_N(x)\\|^2\\le\\|x\\|^2$ : les sommes partielles de la série à termes positifs $\\sum|c_n(x)|^2$ sont majorées, donc elle converge, de somme au plus $\\|x\\|^2$, et son terme général tend vers $0$.\n\n**Parseval.** D'après l'égalité $\\|x-S_N(x)\\|^2=\\|x\\|^2-\\sum_{n=0}^N|c_n(x)|^2$, l'égalité de Parseval équivaut à $\\|x-S_N(x)\\|\\to0$. Si $S_N(x)\\to x$, $x$ est limite d'une suite d'éléments de $\\mathrm{Vect}(e_n)$, donc dans son adhérence. Réciproquement, si $x$ est dans l'adhérence et si $\\varepsilon>0$, il existe $y\\in\\mathrm{Vect}(e_n)$ tel que $\\|x-y\\|\\le\\varepsilon$ ; $y$ est dans un $F_M$, donc dans $F_N$ pour tout $N\\ge M$, et la meilleure approximation donne $\\|x-S_N(x)\\|\\le\\|x-y\\|\\le\\varepsilon$ pour $N\\ge M$.",
+      "exemple": "- Dans $E=\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\langle f,g\\rangle=\\int_0^1fg$, $e_0=1$ et $e_1:t\\mapsto\\sqrt3(2t-1)$ forment une famille orthonormale : $\\int_0^1(2t-1)\\,\\mathrm{d}t=0$ et $3\\int_0^1(2t-1)^2\\,\\mathrm{d}t=1$. Pour $x(t)=t^4$, $c_0(x)=\\frac15$, $c_1(x)=\\sqrt3\\int_0^1(2t^5-t^4)\\,\\mathrm{d}t=\\frac{2\\sqrt3}{15}$ et $\\|x\\|^2=\\frac19$ ; la meilleure approximation de $x$ par une fonction affine est à la distance $\\mathrm{d}(x,F_1)$ telle que $\\mathrm{d}(x,F_1)^2=\\frac19-\\frac1{25}-\\frac4{75}=\\frac4{225}$, soit $\\mathrm{d}(x,F_1)=\\frac2{15}$.\n- Une famille orthonormale finie se traite de même : dans $\\mathbb{R}^3$ usuel, avec $e_0=(1,0,0)$, $e_1=\\frac1{\\sqrt2}(0,1,1)$ et $x=(0,1,0)$, $\\langle e_0,x\\rangle^2+\\langle e_1,x\\rangle^2=\\frac12<1=\\|x\\|^2$ ; la distance de $x$ au plan $\\mathrm{Vect}(e_0,e_1)$ vaut $\\frac1{\\sqrt2}$, atteinte en $S_1(x)=\\frac12(0,1,1)$.",
+      "contre_exemple": "On munit $\\mathbb{R}[X]$ du produit scalaire $\\left\\langle\\sum a_kX^k,\\sum b_kX^k\\right\\rangle=\\sum a_kb_k$.\n- **Suite orthogonale non normée** : $e_n=2X^n$ et $x=1$ : $\\sum|\\langle e_n,x\\rangle|^2=4>1=\\|x\\|^2$.\n- **Suite libre de vecteurs de norme $1$** : $e_0=1$, $e_1=\\frac{1+X}{\\sqrt2}$ et $e_n=X^n$ pour $n\\ge2$ ; pour $x=1+X$, $\\langle e_0,x\\rangle^2+\\langle e_1,x\\rangle^2=1+2=3>2=\\|x\\|^2$.\n- **Inégalité stricte** : $e_n=X^{n+1}$ et $x=1$ : tous les coefficients sont nuls, $0<1$ ; en effet $1$ est à distance $1$ de $\\mathrm{Vect}(X^{n+1})_{n\\in\\mathbb{N}}$.",
+      "affirmations": [
+        {
+          "texte": "Si $(e_n)$ est orthonormale, $\\langle e_n,x\\rangle\\to0$ pour tout $x\\in E$.",
+          "vrai": true,
+          "justification": "C'est le terme général de la série convergente $\\sum|\\langle e_n,x\\rangle|^2$."
+        },
+        {
+          "texte": "Si $(e_n)$ est orthonormale, l'égalité de Parseval est vraie pour tout $x\\in E$.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\mathbb{R}[X]$ muni du produit scalaire des coefficients, avec $e_n=X^{n+1}$ et $x=1$ : $\\sum\\langle e_n,x\\rangle^2=0<1$."
+        },
+        {
+          "texte": "La suite $\\left(\\|x-S_N(x)\\|\\right)_N$ est décroissante.",
+          "vrai": true,
+          "justification": "$\\|x-S_N(x)\\|=\\mathrm{d}(x,F_N)$ et $F_N\\subset F_{N+1}$."
+        },
+        {
+          "texte": "Si $\\sum_{n=0}^{+\\infty}|\\langle e_n,x\\rangle|^2=\\|x\\|^2$, alors $x$ est combinaison linéaire d'un nombre fini des $e_n$.",
+          "vrai": false,
+          "contre_exemple": "Dans l'espace $\\ell^2$ des suites de carré sommable (carte suivante), avec la base canonique $(e_n)$ et $x=\\left(\\frac1{2^n}\\right)_n$ : $\\sum\\frac1{4^n}=\\frac43=\\|x\\|^2$, et $x$ a une infinité de coordonnées non nulles."
+        },
+        {
+          "texte": "Pour tout $y\\in F_N$, $\\|x-S_N(x)\\|\\le\\|x-y\\|$.",
+          "vrai": true,
+          "justification": "$\\|x-y\\|^2=\\|x-S_N(x)\\|^2+\\|S_N(x)-y\\|^2$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-projection",
+        "al-l3-formes-quadratiques-hermitiens",
+        "top-l2-evn-suites"
+      ]
+    },
+    {
+      "id": "top-l3-banach-hilbert",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Espaces de Hilbert : définition et exemples",
+      "recto": "Définir un espace de Hilbert, montrer que $\\ell^2$ en est un, donner un espace préhilbertien non complet, et énoncer la convergence des séries $\\sum a_ne_n$ pour une suite orthonormale.",
+      "cours": "La complétude est ce qui manque aux espaces préhilbertiens pour que l'analyse par les coefficients fonctionne dans les deux sens. L'inégalité de Bessel dit que les coefficients $\\langle e_n,x\\rangle$ d'un vecteur forment une suite de carré sommable ; dans un espace de Hilbert, réciproquement, toute suite de carré sommable $(a_n)$ est la suite des coefficients d'un vecteur, à savoir $\\sum a_ne_n$. La preuve est typique : par Pythagore, $\\left\\|\\sum_{p<n\\le q}a_ne_n\\right\\|^2=\\sum_{p<n\\le q}|a_n|^2$, donc les sommes partielles forment une suite de Cauchy, et la complétude fournit la limite.\n\nL'exemple fondamental est $\\ell^2$, l'espace des suites de carré sommable, sorte de « $\\mathbb{K}^n$ de dimension infinie » : tout espace de Hilbert qui possède une suite orthonormale dont les combinaisons linéaires sont denses s'identifie à $\\ell^2$ par $x\\mapsto(\\langle e_n,x\\rangle)_n$, d'après Parseval et le résultat précédent. Sa complétude se prouve comme celle de l'espace des suites bornées : une suite de Cauchy converge coordonnée par coordonnée, et l'on passe à la limite dans des sommes finies avant de faire tendre leur longueur vers l'infini.\n\nSans intégrale de Lebesgue, les espaces de fonctions munis d'une norme intégrale ne sont pas complets : $\\mathcal{C}([0,1],\\mathbb{K})$ muni de $\\|f\\|_2=\\left(\\int_0^1|f|^2\\right)^{1/2}$ est préhilbertien, mais des fonctions continues qui approchent une fonction en escalier forment une suite de Cauchy sans limite continue. On y travaille alors avec Bessel et Parseval, qui n'utilisent pas la complétude. Le sous-espace $c_{00}$ des suites nulles à partir d'un certain rang est un autre espace préhilbertien non complet, dense dans $\\ell^2$.\n\nPièges : une suite de limite nulle n'est pas forcément de carré sommable ($\\frac1{\\sqrt{n+1}}$) ; la boule unité fermée de $\\ell^2$ n'est pas compacte, car $\\|e_n-e_m\\|=\\sqrt2$ pour $n\\neq m$ ; $\\sum a_ne_n$ converge dès que $\\sum|a_n|^2$ converge, même si $\\sum|a_n|$ diverge ; un sous-espace d'un espace de Hilbert est un espace de Hilbert si et seulement s'il est fermé.",
+      "hypotheses": [
+        "$H$ est un espace de Hilbert et $(e_n)$ une suite orthonormale de $H$.",
+        "La série $\\sum|a_n|^2$ converge."
+      ],
+      "hypotheses_pieges": [
+        "$H$ est un espace préhilbertien (à la place d'un espace de Hilbert).",
+        "$a_n\\to0$ (à la place de : la série $\\sum|a_n|^2$ converge)."
+      ],
+      "enonce": "Un **espace de Hilbert** est un espace préhilbertien (réel ou complexe) complet pour la norme $\\|x\\|=\\sqrt{\\langle x,x\\rangle}$.\n\n**Théorème.**\n- Tout espace préhilbertien de dimension finie (espace euclidien ou hermitien) est un espace de Hilbert.\n- L'ensemble $\\ell^2$ des suites $x=(x_n)_{n\\in\\mathbb{N}}$ de scalaires telles que $\\sum|x_n|^2$ converge est un espace vectoriel ; pour $x,y\\in\\ell^2$, la série $\\sum\\overline{x_n}y_n$ converge absolument, et $\\langle x,y\\rangle=\\sum_{n=0}^{+\\infty}\\overline{x_n}y_n$ fait de $\\ell^2$ un espace de Hilbert.\n- L'espace $\\mathcal{C}([0,1],\\mathbb{K})$ muni de $\\langle f,g\\rangle=\\int_0^1\\overline{f(t)}g(t)\\,\\mathrm{d}t$ est un espace préhilbertien qui n'est pas complet.\n- Soient $H$ un espace de Hilbert, $(e_n)$ une suite orthonormale de $H$ et $(a_n)$ une suite de scalaires telle que $\\sum|a_n|^2$ converge. Alors la série $\\sum a_ne_n$ converge dans $H$, et sa somme $x$ vérifie $\\langle e_n,x\\rangle=a_n$ pour tout $n$ et $\\|x\\|^2=\\sum_{n=0}^{+\\infty}|a_n|^2$.",
+      "enonce_trous": "Soient $H$ {{1}}, $(e_n)$ une suite orthonormale de $H$ et $(a_n)$ une suite de scalaires. Si {{2}}, la série $\\sum a_ne_n$ converge dans $H$ et sa somme $x$ vérifie {{3}}.",
+      "trous": [
+        {
+          "reponse": "un espace de Hilbert",
+          "leurres": [
+            "un espace préhilbertien",
+            "un espace préhilbertien de dimension infinie",
+            "un sous-espace vectoriel dense d'un espace de Hilbert"
+          ]
+        },
+        {
+          "reponse": "la série $\\sum|a_n|^2$ converge",
+          "leurres": [
+            "$a_n\\to0$",
+            "la suite $(a_n)$ est bornée",
+            "la série $\\sum a_n$ converge"
+          ]
+        },
+        {
+          "reponse": "$\\|x\\|^2=\\sum_{n=0}^{+\\infty}|a_n|^2$",
+          "leurres": [
+            "$\\|x\\|=\\sum_{n=0}^{+\\infty}|a_n|$",
+            "$\\|x\\|=\\sum_{n=0}^{+\\infty}|a_n|^2$",
+            "$\\|x\\|^2<\\sum_{n=0}^{+\\infty}|a_n|^2$"
+          ]
+        }
+      ],
+      "demo": "**Dimension finie.** Un espace vectoriel normé de dimension finie est complet (première carte du chapitre).\n\n**$\\ell^2$ est un espace préhilbertien.** Pour des scalaires, $|\\overline{x_n}y_n|\\le\\frac{|x_n|^2+|y_n|^2}2$ : la série $\\sum\\overline{x_n}y_n$ converge absolument. De même $|x_n+y_n|^2\\le2|x_n|^2+2|y_n|^2$, donc $\\ell^2$ est stable par somme, et évidemment par multiplication par un scalaire. L'application $\\langle\\cdot,\\cdot\\rangle$ est linéaire en $y$, à symétrie hermitienne, et $\\langle x,x\\rangle=\\sum|x_n|^2$ est positif, nul seulement si $x=0$.\n\n**Complétude de $\\ell^2$.** Soit $(x^{(p)})_p$ une suite de Cauchy. Pour chaque $n$, $|x^{(p)}_n-x^{(q)}_n|\\le\\|x^{(p)}-x^{(q)}\\|$ : la suite $(x^{(p)}_n)_p$ est de Cauchy dans $\\mathbb{K}$, de limite notée $x_n$. Soit $\\varepsilon>0$ et $N$ tel que $\\|x^{(p)}-x^{(q)}\\|\\le\\varepsilon$ pour $p,q\\ge N$. Pour tout $M$, $\\sum_{n=0}^M|x^{(p)}_n-x^{(q)}_n|^2\\le\\varepsilon^2$ ; on fait tendre $q$ vers $+\\infty$ dans cette somme finie : $\\sum_{n=0}^M|x^{(p)}_n-x_n|^2\\le\\varepsilon^2$, puis $M\\to+\\infty$ : $x^{(p)}-x\\in\\ell^2$ et $\\|x^{(p)}-x\\|\\le\\varepsilon$ pour $p\\ge N$. Donc $x=x^{(p)}-(x^{(p)}-x)\\in\\ell^2$, et $x^{(p)}\\to x$.\n\n**$\\mathcal{C}([0,1],\\mathbb{K})$ n'est pas complet.** Le produit scalaire est défini positif car une fonction continue positive d'intégrale nulle est nulle. Pour $n\\ge2$, soit $f_n$ nulle sur $\\left[0,\\frac12\\right]$, égale à $1$ sur $\\left[\\frac12+\\frac1n,1\\right]$, affine entre les deux, et $h$ la fonction égale à $0$ sur $\\left[0,\\frac12\\right]$ et à $1$ sur $\\left]\\frac12,1\\right]$. On note $N(\\varphi)=\\left(\\int_0^1|\\varphi|^2\\right)^{1/2}$ pour $\\varphi$ continue par morceaux ; l'inégalité de Cauchy-Schwarz pour les intégrales donne l'inégalité triangulaire pour $N$. Comme $|f_n-h|\\le1$ et que $f_n=h$ hors de $\\left[\\frac12,\\frac12+\\frac1n\\right]$, $N(f_n-h)\\le\\frac1{\\sqrt n}$, d'où $\\|f_n-f_m\\|_2\\le\\frac1{\\sqrt n}+\\frac1{\\sqrt m}$ : la suite est de Cauchy. Si elle convergeait vers $g$ continue, on aurait $N(g-h)\\le\\|g-f_n\\|_2+\\frac1{\\sqrt n}\\to0$, donc $\\int_0^{1/2}|g|^2=0$ et $\\int_c^1|g-1|^2=0$ pour tout $c\\in\\left]\\frac12,1\\right[$ : $g=0$ sur $\\left[0,\\frac12\\right]$ et $g=1$ sur $\\left]\\frac12,1\\right]$, ce qui contredit la continuité de $g$ en $\\frac12$.\n\n**Séries orthogonales.** Soit $S_N=\\sum_{n=0}^Na_ne_n$. Pour $q>p$, par orthonormalité, $\\|S_q-S_p\\|^2=\\sum_{n=p+1}^q|a_n|^2\\le\\sum_{n>p}|a_n|^2$, qui tend vers $0$ : $(S_N)$ est de Cauchy, donc converge dans $H$ vers un $x$. L'application $y\\mapsto\\langle e_k,y\\rangle$ est continue ($|\\langle e_k,y\\rangle-\\langle e_k,z\\rangle|\\le\\|y-z\\|$ par Cauchy-Schwarz) et $\\langle e_k,S_N\\rangle=a_k$ pour $N\\ge k$, donc $\\langle e_k,x\\rangle=a_k$. Enfin $\\|S_N\\|^2=\\sum_{n=0}^N|a_n|^2$ et la norme est continue : $\\|x\\|^2=\\sum_{n=0}^{+\\infty}|a_n|^2$.",
+      "exemple": "- Dans $\\ell^2$, la suite $(e_k)$ de la base canonique ($e_k$ a toutes ses coordonnées nulles sauf la $k$-ième, égale à $1$) est orthonormale, $\\langle e_k,x\\rangle=x_k$ et $\\|x-S_N(x)\\|^2=\\sum_{n>N}|x_n|^2\\to0$ : l'égalité de Parseval vaut pour tout $x$, et $c_{00}=\\mathrm{Vect}(e_k)$ est dense dans $\\ell^2$.\n- $x=\\left(\\frac1{n+1}\\right)_{n\\ge0}$ et $y=\\left(\\frac1{2^n}\\right)_{n\\ge0}$ sont dans $\\ell^2$, avec $\\|x\\|^2=\\frac{\\pi^2}6$, $\\|y\\|^2=\\frac43$ et $\\langle x,y\\rangle=\\sum_{n\\ge0}\\frac1{(n+1)2^n}=2\\ln2$ (série de $-\\ln(1-u)$ en $u=\\frac12$).",
+      "contre_exemple": "- **Un espace préhilbertien non complet** : $c_{00}$, muni du produit scalaire de $\\ell^2$, avec $e_k$ et $a_k=\\frac1{k+1}$. Les sommes partielles $S_N=\\sum_{k\\le N}\\frac{e_k}{k+1}$ forment une suite de Cauchy de $c_{00}$ ; si elles convergeaient dans $c_{00}$ vers $y$, elles convergeraient vers $y$ dans $\\ell^2$, où leur limite est $\\left(\\frac1{n+1}\\right)_n\\notin c_{00}$ : contradiction par unicité de la limite.\n- **$a_n\\to0$ ne suffit pas** : dans $\\ell^2$, avec $a_n=\\frac1{\\sqrt{n+1}}$, $\\|S_N\\|^2=\\sum_{n=0}^N\\frac1{n+1}\\to+\\infty$ : les sommes partielles ne sont pas bornées, donc ne convergent pas.\n- **La boule unité fermée de $\\ell^2$ n'est pas compacte** : $\\|e_n-e_m\\|^2=2$ pour $n\\neq m$, donc aucune sous-suite de $(e_n)$ n'est de Cauchy.",
+      "affirmations": [
+        {
+          "texte": "Toute suite de réels qui tend vers $0$ appartient à $\\ell^2$.",
+          "vrai": false,
+          "contre_exemple": "$\\left(\\frac1{\\sqrt{n+1}}\\right)_n$ tend vers $0$, mais $\\sum\\frac1{n+1}$ diverge."
+        },
+        {
+          "texte": "Le sous-espace $c_{00}$ des suites nulles à partir d'un certain rang est dense dans $\\ell^2$.",
+          "vrai": true,
+          "justification": "Pour $x\\in\\ell^2$, la suite tronquée $(x_0,\\dots,x_N,0,\\dots)$ est à la distance $\\left(\\sum_{n>N}|x_n|^2\\right)^{1/2}$ de $x$, qui tend vers $0$."
+        },
+        {
+          "texte": "Dans un espace de Hilbert, toute suite orthonormale vérifie l'égalité de Parseval pour tout vecteur.",
+          "vrai": false,
+          "contre_exemple": "Dans $\\ell^2$, la suite orthonormale $(e_{n+1})_{n\\in\\mathbb{N}}$ et $x=e_0$ : tous les coefficients sont nuls, et $0<1=\\|x\\|^2$."
+        },
+        {
+          "texte": "La boule unité fermée de $\\ell^2$ est compacte.",
+          "vrai": false,
+          "contre_exemple": "La suite $(e_n)$ de la base canonique y est, mais $\\|e_n-e_m\\|=\\sqrt2$ pour $n\\neq m$ : aucune sous-suite ne converge."
+        },
+        {
+          "texte": "Toute suite $x$ telle que $\\sum|x_n|$ converge appartient à $\\ell^2$.",
+          "vrai": true,
+          "justification": "$|x_n|\\le1$ à partir d'un certain rang, donc $|x_n|^2\\le|x_n|$."
+        }
+      ],
+      "prerequis": [
+        "top-l3-banach-bessel",
+        "top-l3-banach-banach",
+        "int-l1-riemann-nulle",
+        "int-l1-riemann-cauchy-schwarz"
+      ]
+    },
+    {
+      "id": "top-l3-banach-polynomes-orthogonaux",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "top-l3-banach",
+      "type": "theoreme",
+      "titre": "Suites de polynômes orthogonaux",
+      "recto": "Pour un poids $w$ sur un intervalle, énoncer l'existence et l'unicité de la suite des polynômes orthogonaux unitaires, la relation de récurrence à trois termes et la propriété de leurs racines.",
+      "cours": "Sur $\\mathbb{R}[X]$, une intégrale à poids $\\langle P,Q\\rangle=\\int_a^bP(t)Q(t)w(t)\\,\\mathrm{d}t$ définit un produit scalaire, et le procédé de Schmidt appliqué à $1,X,X^2,\\dots$ donne une suite de polynômes orthogonaux, déterminée par le poids si on les veut unitaires. Ce sont des outils de base de l'analyse numérique (méthodes de quadrature de Gauss, approximation en moyenne quadratique) et le sujet de nombreux problèmes d'écrit. On normalise ici par le coefficient dominant ; les normalisations classiques (Legendre avec $P_n(1)=1$, Tchebychev avec $T_n(\\cos\\theta)=\\cos(n\\theta)$, Hermite…) diffèrent d'une constante multiplicative, ce qui ne change ni l'orthogonalité ni les racines.\n\nDeux propriétés découlent de la seule identité $\\langle XP,Q\\rangle=\\langle P,XQ\\rangle$ et de ce que $P_n$ est orthogonal à tous les polynômes de degré $<n$. D'abord, $XP_n$ est orthogonal à $P_k$ dès que $k\\le n-2$, puisque $\\langle XP_n,P_k\\rangle=\\langle P_n,XP_k\\rangle$ ; il en résulte une relation de récurrence qui ne fait intervenir que trois termes consécutifs, et c'est elle qu'on utilise pour calculer les $P_n$. Ensuite, si $P_n$ changeait de signe en moins de $n$ points de $\\left]a,b\\right[$, son produit par le polynôme $Q$ qui s'annule exactement en ces points garderait un signe constant, et $\\langle P_n,Q\\rangle$ ne pourrait pas être nul : $P_n$ a donc $n$ racines simples dans $\\left]a,b\\right[$.\n\nCalculs : les produits scalaires se ramènent aux moments $\\int_a^bt^kw(t)\\,\\mathrm{d}t$. Pour un poids pair sur un intervalle symétrique, $a_n=0$ et $P_n$ a la parité de $n$. Pour le poids $1$ sur $\\left]-1,1\\right[$ (Legendre), $P_2=X^2-\\frac13$, $P_3=X^3-\\frac35X$ et $b_n=\\frac{n^2}{4n^2-1}$ ; pour $e^{-t^2}$ sur $\\mathbb{R}$ (Hermite), $b_n=\\frac n2$ ; pour $\\frac1{\\sqrt{1-t^2}}$ sur $\\left]-1,1\\right[$ (Tchebychev), $P_n=2^{1-n}T_n$ pour $n\\ge1$, de racines $\\cos\\frac{(2k-1)\\pi}{2n}$, $1\\le k\\le n$.\n\nPièges : l'orthogonalité de deux polynômes consécutifs ne suffit pas, il faut l'orthogonalité à tous ceux de degré inférieur ; $b_n$ est le quotient $\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}$, dans cet ordre, et il est strictement positif ; la propriété des racines utilise que l'on intègre sur un intervalle ; les $P_n$ sont orthogonaux mais pas unitaires pour la norme : pour une suite orthonormale, on divise par $\\|P_n\\|$.",
+      "hypotheses": [
+        "$w$ est continue et strictement positive sur l'intervalle $\\left]a,b\\right[$, et $\\int_a^b|t|^kw(t)\\,\\mathrm{d}t$ converge pour tout $k\\in\\mathbb{N}$.",
+        "Les $P_n$ sont unitaires, $\\deg P_n=n$, et deux à deux orthogonaux pour $\\langle P,Q\\rangle=\\int_a^bPQw$."
+      ],
+      "hypotheses_pieges": [
+        "$P_n$ est orthogonal à $P_{n-1}$ pour tout $n\\ge1$ (à la place de : deux à deux orthogonaux).",
+        "$w$ est continue et strictement positive sur une réunion de deux intervalles ouverts disjoints, sur laquelle on intègre (à la place d'un intervalle $\\left]a,b\\right[$)."
+      ],
+      "enonce": "Soient $-\\infty\\le a<b\\le+\\infty$ et $w:\\left]a,b\\right[\\to\\left]0,+\\infty\\right[$ une fonction continue (un **poids**) telle que l'intégrale $\\int_a^b|t|^kw(t)\\,\\mathrm{d}t$ converge pour tout $k\\in\\mathbb{N}$. Alors $\\langle P,Q\\rangle=\\int_a^bP(t)Q(t)w(t)\\,\\mathrm{d}t$ est un produit scalaire sur $\\mathbb{R}[X]$.\n\n**Théorème.**\n- Il existe une unique suite $(P_n)_{n\\in\\mathbb{N}}$ de polynômes **unitaires**, avec $\\deg P_n=n$, deux à deux orthogonaux. Elle s'obtient en appliquant le procédé de Schmidt, sans normaliser, à $(1,X,X^2,\\dots)$, et $P_n$ est orthogonal à $\\mathbb{R}_{n-1}[X]$ pour $n\\ge1$.\n- **Récurrence à trois termes.** On pose $a_n=\\frac{\\langle XP_n,P_n\\rangle}{\\|P_n\\|^2}$ et, pour $n\\ge1$, $b_n=\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}>0$. Alors $P_0=1$, $P_1=X-a_0$ et $P_{n+1}=(X-a_n)P_n-b_nP_{n-1}$ pour $n\\ge1$.\n- **Racines.** Pour $n\\ge1$, $P_n$ a $n$ racines réelles distinctes, toutes dans $\\left]a,b\\right[$ ; elles sont donc simples.\n\nExemples : poids $1$ sur $\\left]-1,1\\right[$ (polynômes de Legendre), $\\frac1{\\sqrt{1-t^2}}$ sur $\\left]-1,1\\right[$ (Tchebychev), $e^{-t^2}$ sur $\\mathbb{R}$ (Hermite), $e^{-t}$ sur $\\left]0,+\\infty\\right[$ (Laguerre).",
+      "enonce_trous": "Soient $w$ un poids continu et strictement positif sur $\\left]a,b\\right[$ et $(P_n)$ la suite des polynômes unitaires orthogonaux associée. Pour $n\\ge1$, $P_n$ possède {{1}}, et $P_{n+1}=(X-a_n)P_n-b_nP_{n-1}$ avec $a_n=$ {{2}} et $b_n=$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "$n$ racines réelles distinctes, toutes dans $\\left]a,b\\right[$",
+          "leurres": [
+            "une racine réelle de multiplicité $n$",
+            "exactement $n-1$ racines réelles distinctes",
+            "$n$ racines réelles distinctes, dont au moins une hors de $\\left]a,b\\right[$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\langle XP_n,P_n\\rangle}{\\|P_n\\|^2}$",
+          "leurres": [
+            "$\\langle XP_n,P_n\\rangle$",
+            "$\\frac{\\langle XP_n,P_{n-1}\\rangle}{\\|P_n\\|^2}$",
+            "$\\frac{\\|P_n\\|^2}{\\langle XP_n,P_n\\rangle}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}$",
+          "leurres": [
+            "$\\frac{\\|P_{n-1}\\|^2}{\\|P_n\\|^2}$",
+            "$\\frac{\\|P_n\\|}{\\|P_{n-1}\\|}$",
+            "$-\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}$"
+          ]
+        }
+      ],
+      "demo": "**Produit scalaire.** Si $PQ=\\sum_kc_kX^k$, alors $|P(t)Q(t)w(t)|\\le\\sum_k|c_k||t|^kw(t)$ : l'intégrale converge absolument. La forme est bilinéaire, symétrique et $\\langle P,P\\rangle\\ge0$. Si $\\langle P,P\\rangle=0$, alors pour tout segment $[c,d]\\subset\\left]a,b\\right[$, $0\\le\\int_c^dP^2w\\le\\int_a^bP^2w=0$, et $P^2w$ est continue et positive : elle est nulle sur $[c,d]$. Comme $w>0$, $P$ s'annule sur $\\left]a,b\\right[$, ensemble infini : $P=0$.\n\n**Existence.** On pose $P_0=1$ et, pour $n\\ge1$, $P_n=X^n-\\sum_{k=0}^{n-1}\\frac{\\langle P_k,X^n\\rangle}{\\|P_k\\|^2}P_k$. Par récurrence, $P_n$ est unitaire de degré $n$ et orthogonal à $P_0,\\dots,P_{n-1}$ (le terme d'indice $k$ est choisi pour que $\\langle P_k,P_n\\rangle=0$). Les degrés étant échelonnés, $(P_0,\\dots,P_{n-1})$ est une base de $\\mathbb{R}_{n-1}[X]$, donc $P_n$ est orthogonal à $\\mathbb{R}_{n-1}[X]$.\n\n**Unicité.** Si $(Q_n)$ a les mêmes propriétés, $Q_n$ est orthogonal à $Q_0,\\dots,Q_{n-1}$, qui forment une base de $\\mathbb{R}_{n-1}[X]$. Alors $P_n-Q_n$ est de degré au plus $n-1$ (deux polynômes unitaires de degré $n$) et orthogonal à $\\mathbb{R}_{n-1}[X]$, donc à lui-même : $P_n=Q_n$.\n\n**Récurrence.** On a $\\langle XP,Q\\rangle=\\langle P,XQ\\rangle$. Le polynôme $XP_n-P_{n+1}$ est de degré au plus $n$, donc $XP_n-P_{n+1}=\\sum_{k=0}^nc_kP_k$ avec $c_k=\\frac{\\langle P_k,XP_n-P_{n+1}\\rangle}{\\|P_k\\|^2}=\\frac{\\langle XP_k,P_n\\rangle}{\\|P_k\\|^2}$, car $P_{n+1}$ est orthogonal à $P_k$. Si $k\\le n-2$, $XP_k$ est de degré au plus $n-1$, donc $c_k=0$. Ensuite $c_n=a_n$. Pour $n\\ge1$, $XP_{n-1}-P_n$ est de degré au plus $n-1$, donc $\\langle XP_{n-1},P_n\\rangle=\\langle P_n,P_n\\rangle$ et $c_{n-1}=\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}=b_n>0$. D'où $XP_n-P_{n+1}=a_nP_n+b_nP_{n-1}$ ; pour $n=0$, $XP_0-P_1=c_0P_0=a_0$, soit $P_1=X-a_0$.\n\n**Racines.** Soit $n\\ge1$ et $x_1<\\dots<x_k$ les points de $\\left]a,b\\right[$ où $P_n$ s'annule avec une multiplicité impaire ($k\\ge0$), et $Q=\\prod_{i=1}^k(X-x_i)$ ($Q=1$ si $k=0$). Dans $\\left]a,b\\right[$, les racines de $P_nQ$ sont toutes de multiplicité paire : $P_nQ=R\\prod_j(X-y_j)^{2m_j}$, où $R$ ne s'annule pas sur $\\left]a,b\\right[$, donc y garde un signe constant (théorème des valeurs intermédiaires). Ainsi $P_nQw$ est continue, de signe constant et non identiquement nulle sur $\\left]a,b\\right[$, et le premier point donne $\\langle P_n,Q\\rangle\\neq0$. Si l'on avait $k<n$, $Q$ serait dans $\\mathbb{R}_{n-1}[X]$ et $\\langle P_n,Q\\rangle=0$ : contradiction. Donc $k\\ge n$ ; comme $P_n$ est de degré $n$, $k=n$, et les $x_i$ sont $n$ racines distinctes, toutes simples.",
+      "exemple": "- **Legendre** (poids $1$ sur $\\left]-1,1\\right[$) : $\\int_{-1}^1t^k\\,\\mathrm{d}t$ vaut $\\frac2{k+1}$ pour $k$ pair et $0$ pour $k$ impair. On trouve $P_0=1$, $a_0=0$, $P_1=X$, $\\|P_0\\|^2=2$, $\\|P_1\\|^2=\\frac23$, $b_1=\\frac13$, $P_2=X^2-\\frac13$, $\\|P_2\\|^2=\\frac25-\\frac49+\\frac29=\\frac8{45}$, $b_2=\\frac4{15}$ et $P_3=XP_2-\\frac4{15}X=X^3-\\frac35X$, de racines $0$ et $\\pm\\sqrt{\\frac35}$, dans $\\left]-1,1\\right[$.\n- **Tchebychev** : si $T_n(\\cos\\theta)=\\cos(n\\theta)$, le changement de variable $t=\\cos\\theta$ donne $\\int_{-1}^1\\frac{T_n(t)T_m(t)}{\\sqrt{1-t^2}}\\,\\mathrm{d}t=\\int_0^\\pi\\cos(n\\theta)\\cos(m\\theta)\\,\\mathrm{d}\\theta=0$ pour $n\\neq m$ ; comme $T_{n+1}=2XT_n-T_{n-1}$, $T_n$ a pour coefficient dominant $2^{n-1}$ ($n\\ge1$), et $P_n=2^{1-n}T_n$ s'annule en $\\cos\\frac{(2k-1)\\pi}{2n}$, $1\\le k\\le n$.",
+      "contre_exemple": "- **Orthogonalité au seul prédécesseur** : pour le poids $1$ sur $\\left]-1,1\\right[$, $P_0=1$, $P_1=X$ et $P_2=X^2+1$ vérifient $\\langle P_1,P_0\\rangle=0$ et $\\langle P_2,P_1\\rangle=\\int_{-1}^1(t^3+t)\\,\\mathrm{d}t=0$, mais $P_2$ n'a aucune racine réelle (et $\\langle P_2,P_0\\rangle=\\frac83\\neq0$).\n- **Réunion de deux intervalles** : poids $1$ sur $U=\\left]-2,-1\\right[\\cup\\left]1,2\\right[$ ; par symétrie $\\int_Ut\\,\\mathrm{d}t=0$, donc $P_1=X$, dont la racine $0$ n'est pas dans $U$.\n- **Quotient inversé** : pour Legendre, $\\frac{\\|P_0\\|^2}{\\|P_1\\|^2}=3$ donnerait $P_2=X^2-3$, qui n'est pas orthogonal à $1$ ($\\int_{-1}^1(t^2-3)\\,\\mathrm{d}t=-\\frac{16}3$).",
+      "affirmations": [
+        {
+          "texte": "Pour un poids pair sur $\\left]-c,c\\right[$, $P_n$ a la parité de $n$.",
+          "vrai": true,
+          "justification": "Le changement de variable $t\\mapsto-t$ montre que $((-1)^nP_n(-X))_n$ est encore une suite de polynômes unitaires orthogonaux ; par unicité, $(-1)^nP_n(-X)=P_n$."
+        },
+        {
+          "texte": "Deux polynômes orthogonaux consécutifs $P_n$ et $P_{n+1}$ ont toujours une racine commune.",
+          "vrai": false,
+          "contre_exemple": "Pour Legendre, $P_2=X^2-\\frac13$ a pour racines $\\pm\\frac1{\\sqrt3}$ et $P_3=X^3-\\frac35X$ a pour racines $0$ et $\\pm\\sqrt{\\frac35}$."
+        },
+        {
+          "texte": "La suite $(P_n)$ des polynômes unitaires orthogonaux est orthonormale.",
+          "vrai": false,
+          "contre_exemple": "Pour Legendre, $\\|P_1\\|^2=\\int_{-1}^1t^2\\,\\mathrm{d}t=\\frac23\\neq1$."
+        },
+        {
+          "texte": "Dans la relation de récurrence, $b_n>0$ pour tout $n\\ge1$.",
+          "vrai": true,
+          "justification": "$b_n=\\frac{\\|P_n\\|^2}{\\|P_{n-1}\\|^2}$, quotient de deux réels strictement positifs."
+        },
+        {
+          "texte": "$P_n$ est orthogonal à tout polynôme de degré au plus $n$.",
+          "vrai": false,
+          "contre_exemple": "$P_n$ est de degré $n$ et $\\langle P_n,P_n\\rangle>0$ ; il n'est orthogonal qu'aux polynômes de degré au plus $n-1$."
+        }
+      ],
+      "prerequis": [
+        "al-l2-euclidien-schmidt",
+        "arith-l1-racines-polynome",
+        "int-l1-riemann-nulle",
+        "int-l2-generalisees-comparaison",
+        "ar-t-tvi"
+      ]
+    }
+  ]
+}

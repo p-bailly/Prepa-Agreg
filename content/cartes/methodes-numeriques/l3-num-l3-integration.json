@@ -1,0 +1,418 @@
+{
+  "cartes": [
+    {
+      "id": "num-l3-integration-rectangles",
+      "theme": "methodes-numeriques",
+      "niveau": "l3",
+      "chapitre": "num-l3-integration",
+      "type": "theoreme",
+      "titre": "Méthodes des rectangles et du point milieu",
+      "recto": "Définir les méthodes des rectangles (à gauche) et du point milieu, et énoncer les majorations de leur erreur, avec leurs degrés d'exactitude.",
+      "cours": "Calculer une intégrale exactement est rarement possible : $\\int_0^1e^{-t^2}\\,\\mathrm{d}t$ ne s'exprime pas à l'aide des fonctions usuelles. Les méthodes **composées** découpent $[a,b]$ en $n$ sous-intervalles de même longueur $h=\\frac{b-a}n$ et remplacent, sur chacun, $f$ par une fonction simple dont on connaît l'intégrale. Les plus simples remplacent $f$ par une constante : sa valeur en l'extrémité gauche (rectangles à gauche $R_n$), en l'extrémité droite (rectangles à droite $R'_n$) ou au milieu (point milieu $M_n$). Ce sont des sommes de Riemann : elles tendent vers l'intégrale pour toute fonction continue par morceaux ; la question est ici la **vitesse** de convergence, qui dépend de la régularité de $f$.\n\nPour les rectangles, l'erreur sur un sous-intervalle est de l'ordre de $|f'|\\,h^2$, et ces $n$ erreurs, de même signe si $f'$ garde un signe, s'additionnent : l'erreur totale est en $O(h)=O\\left(\\frac1n\\right)$. Le point milieu fait beaucoup mieux pour le même nombre d'évaluations : le sous-intervalle étant symétrique par rapport à son milieu $c$, le terme $f'(c)(t-c)$ de la formule de Taylor a une intégrale nulle, l'erreur locale tombe à $O(h^3)$ et l'erreur totale à $O(h^2)$. Doubler $n$ divise la majoration par $2$ pour les rectangles, par $4$ pour le point milieu.\n\nMéthode : pour garantir une précision $\\varepsilon$, on majore $|f'|$ ou $|f''|$ sur **tout** $[a,b]$, puis on cherche le plus petit $n$ tel que $\\frac{(b-a)^2M_1}{2n}\\le\\varepsilon$, ou $\\frac{(b-a)^3M_2}{24n^2}\\le\\varepsilon$. Les constantes $\\frac12$ et $\\frac1{24}$ ne peuvent pas être améliorées (égalité pour $x\\mapsto x$ et pour $x\\mapsto x^2$). Si $f$ est convexe et dérivable, la tangente au milieu de chaque sous-intervalle est sous la courbe, donc $M_n\\le\\int_a^bf$.\n\nPièges : $M_2$ est le maximum de $|f''|$ sur tout le segment, pas sa valeur en un point ; la majoration ne dit rien si $f$ n'est pas assez régulière (pour $\\sqrt t$ sur $[0,1]$, $f''$ n'est pas bornée et l'erreur du point milieu n'est pas un $O(h^2)$) ; le point milieu est exact pour les fonctions affines, pas pour $x\\mapsto x^2$ ; les rectangles à droite vérifient la même majoration que les rectangles à gauche.",
+      "hypotheses": [
+        "$f$ est de classe $C^2$ sur $[a,b]$, et $M_2=\\max_{[a,b]}|f''|$.",
+        "$M_n$ évalue $f$ au milieu $x_k+\\frac h2$ de chaque sous-intervalle $[x_k,x_{k+1}]$."
+      ],
+      "hypotheses_pieges": [
+        "$M_n$ évalue $f$ en l'extrémité gauche $x_k$ de chaque sous-intervalle (à la place du milieu $x_k+\\frac h2$).",
+        "$M_2=|f''(a)|$ (à la place du maximum de $|f''|$ sur $[a,b]$).",
+        "$M_2=\\max_{[a,b]}|f'|$ (à la place du maximum de $|f''|$)."
+      ],
+      "enonce": "Soient $a<b$, $f:[a,b]\\to\\mathbb{R}$, $n\\ge1$, $h=\\frac{b-a}n$ et $x_k=a+kh$ ($0\\le k\\le n$). La méthode des **rectangles à gauche** et celle du **point milieu** approchent $I=\\int_a^bf(t)\\,\\mathrm{d}t$ par\n\n$$R_n=h\\sum_{k=0}^{n-1}f(x_k),\\qquad M_n=h\\sum_{k=0}^{n-1}f\\left(x_k+\\frac h2\\right).$$\n\n- Si $f$ est de classe $C^1$ et $M_1=\\max_{[a,b]}|f'|$, alors $|I-R_n|\\le\\frac{(b-a)^2M_1}{2n}$.\n- Si $f$ est de classe $C^2$ et $M_2=\\max_{[a,b]}|f''|$, alors $|I-M_n|\\le\\frac{(b-a)^3M_2}{24n^2}$.\n\nLa méthode des rectangles est exacte pour les fonctions constantes, pas pour $x\\mapsto x$ ; celle du point milieu est exacte pour les fonctions affines, pas pour $x\\mapsto x^2$. Les constantes $\\frac12$ et $\\frac1{24}$ sont optimales : il y a égalité pour $f(x)=x$ et pour $f(x)=x^2$ respectivement.",
+      "enonce_trous": "Soient $f$ de classe $C^2$ sur $[a,b]$, $n\\ge1$, $h=\\frac{b-a}n$ et $M_2=\\max_{[a,b]}|f''|$. La méthode du point milieu approche $\\int_a^bf(t)\\,\\mathrm{d}t$ par {{1}}, avec une erreur majorée en valeur absolue par {{2}}. Elle est exacte pour {{3}}.",
+      "trous": [
+        {
+          "reponse": "$h\\sum_{k=0}^{n-1}f\\left(a+\\left(k+\\frac12\\right)h\\right)$",
+          "leurres": [
+            "$h\\sum_{k=0}^{n-1}f(a+kh)$",
+            "$\\frac h2\\sum_{k=0}^{n-1}f\\left(a+\\left(k+\\frac12\\right)h\\right)$",
+            "$h\\sum_{k=1}^{n}f\\left(a+\\left(k+\\frac12\\right)h\\right)$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{(b-a)^3M_2}{24n^2}$",
+          "leurres": [
+            "$\\frac{(b-a)^3M_2}{48n^2}$",
+            "$\\frac{(b-a)^2M_2}{24n^2}$",
+            "$\\frac{(b-a)^3M_2}{24n^3}$"
+          ]
+        },
+        {
+          "reponse": "les fonctions affines",
+          "leurres": [
+            "les polynômes de degré au plus $2$",
+            "les fonctions constantes seulement",
+            "les polynômes de degré au plus $3$"
+          ]
+        }
+      ],
+      "demo": "**Rectangles.** Pour $t\\in[x_k,x_{k+1}]$, l'inégalité des accroissements finis donne $|f(t)-f(x_k)|\\le M_1(t-x_k)$. Donc\n\n$$\\left|\\int_{x_k}^{x_{k+1}}f(t)\\,\\mathrm{d}t-hf(x_k)\\right|=\\left|\\int_{x_k}^{x_{k+1}}\\left(f(t)-f(x_k)\\right)\\mathrm{d}t\\right|\\le M_1\\int_{x_k}^{x_{k+1}}(t-x_k)\\,\\mathrm{d}t=\\frac{M_1h^2}2.$$\n\nEn sommant ces $n$ inégalités (relation de Chasles et inégalité triangulaire), $|I-R_n|\\le n\\frac{M_1h^2}2=\\frac{(b-a)^2M_1}{2n}$.\n\n**Point milieu.** Soit $c=x_k+\\frac h2$. L'inégalité de Taylor-Lagrange à l'ordre $1$ donne, pour $t\\in[x_k,x_{k+1}]$, $\\left|f(t)-f(c)-f'(c)(t-c)\\right|\\le\\frac{M_2}2(t-c)^2$. Or $\\int_{x_k}^{x_{k+1}}(t-c)\\,\\mathrm{d}t=0$, car le segment est symétrique par rapport à $c$ ; donc\n\n$$\\left|\\int_{x_k}^{x_{k+1}}f(t)\\,\\mathrm{d}t-hf(c)\\right|=\\left|\\int_{x_k}^{x_{k+1}}\\left(f(t)-f(c)-f'(c)(t-c)\\right)\\mathrm{d}t\\right|\\le\\frac{M_2}2\\int_{x_k}^{x_{k+1}}(t-c)^2\\,\\mathrm{d}t=\\frac{M_2}2\\cdot\\frac{h^3}{12}.$$\n\nEn sommant, $|I-M_n|\\le n\\frac{M_2h^3}{24}=\\frac{(b-a)^3M_2}{24n^2}$.\n\n**Exactitude et optimalité.** Si $f$ est constante, $M_1=0$ et $R_n=I$ ; si $f$ est affine, $M_2=0$ et $M_n=I$. Pour $f(x)=x$ : $I-R_n=\\sum_k\\int_{x_k}^{x_{k+1}}(t-x_k)\\,\\mathrm{d}t=\\frac{nh^2}2=\\frac{(b-a)^2}{2n}\\neq0$, ce qui est la majoration avec $M_1=1$. Pour $f(x)=x^2$ : $\\int_{x_k}^{x_{k+1}}(t^2-c^2)\\,\\mathrm{d}t=\\int_{x_k}^{x_{k+1}}\\left((t-c)^2+2c(t-c)\\right)\\mathrm{d}t=\\frac{h^3}{12}$, donc $I-M_n=\\frac{nh^3}{12}=\\frac{(b-a)^3}{12n^2}\\neq0$, ce qui est la majoration avec $M_2=2$.",
+      "exemple": "Pour $\\int_0^1e^t\\,\\mathrm{d}t=e-1\\approx1{,}718282$ et $n=4$ :\n- $R_4\\approx1{,}512437$ : erreur $\\approx0{,}206$, majorée par $\\frac{e}{8}\\approx0{,}340$ ;\n- $M_4\\approx1{,}713815$ : erreur $\\approx4{,}5\\cdot10^{-3}$, majorée par $\\frac{e}{384}\\approx7{,}1\\cdot10^{-3}$.\n\nPour le même nombre d'évaluations de $f$, le point milieu est ici environ $46$ fois plus précis.",
+      "contre_exemple": "- **Le point milieu n'est pas exact pour $x^2$** : sur $[0,1]$ avec $n=1$, $M_1=\\frac14$ alors que $\\int_0^1t^2\\,\\mathrm{d}t=\\frac13$.\n- **Évaluer en l'extrémité gauche fait perdre l'ordre $2$** : pour $f(x)=x$ sur $[0,1]$, $M_2=0$ mais $I-R_n=\\frac1{2n}\\neq0$ ; la majoration $\\frac{(b-a)^3M_2}{24n^2}$ est fausse pour $R_n$.\n- **$|f''(a)|$ ne suffit pas** : pour $f(x)=x^3$ sur $[0,1]$ et $n=1$, $f''(0)=0$, mais $I-M_1=\\frac14-\\frac18=\\frac18$.\n- **$\\max|f'|$ à la place de $\\max|f''|$** : pour $f(x)=x^2$ sur $\\left[0,\\frac14\\right]$ et $n=1$, $I-M_1=\\frac1{768}$, alors que $\\frac{\\left(\\frac14\\right)^3\\cdot\\frac12}{24}=\\frac1{3072}$.",
+      "affirmations": [
+        {
+          "texte": "La méthode du point milieu est exacte pour les polynômes de degré au plus $2$.",
+          "vrai": false,
+          "contre_exemple": "Sur $[0,1]$ avec $n=1$, pour $x^2$ : $M_1=\\frac14\\neq\\frac13$."
+        },
+        {
+          "texte": "Si $f$ est de classe $C^2$ et convexe sur $[a,b]$, alors $M_n\\le\\int_a^bf(t)\\,\\mathrm{d}t$.",
+          "vrai": true,
+          "justification": "Sur chaque sous-intervalle, de milieu $c$, $f(t)\\ge f(c)+f'(c)(t-c)$ (courbe au-dessus de sa tangente) ; on intègre, et $\\int(t-c)\\,\\mathrm{d}t=0$."
+        },
+        {
+          "texte": "Doubler $n$ divise par $4$ la majoration $\\frac{(b-a)^3M_2}{24n^2}$ de l'erreur du point milieu.",
+          "vrai": true,
+          "justification": "Elle est proportionnelle à $\\frac1{n^2}$."
+        },
+        {
+          "texte": "Pour $f$ de classe $C^1$, $|I-R_n|\\le\\frac{(b-a)^2M_1}{4n}$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x)=x$ sur $[0,1]$ : $M_1=1$ et $I-R_n=\\frac1{2n}>\\frac1{4n}$."
+        },
+        {
+          "texte": "Les rectangles à droite $R'_n=h\\sum_{k=1}^nf(x_k)$ vérifient la même majoration $\\frac{(b-a)^2M_1}{2n}$ que les rectangles à gauche.",
+          "vrai": true,
+          "justification": "Même preuve avec $|f(t)-f(x_{k+1})|\\le M_1(x_{k+1}-t)$."
+        }
+      ],
+      "prerequis": [
+        "int-l1-riemann-sommes",
+        "int-t-integrale-proprietes",
+        "ar-l1-taf",
+        "ar-l1-taylor-lagrange"
+      ]
+    },
+    {
+      "id": "num-l3-integration-trapezes",
+      "theme": "methodes-numeriques",
+      "niveau": "l3",
+      "chapitre": "num-l3-integration",
+      "type": "theoreme",
+      "titre": "Méthode des trapèzes",
+      "recto": "Définir la méthode des trapèzes, énoncer la majoration de son erreur (et l'expression exacte de celle-ci) et la relation entre $T_{2n}$, $T_n$ et $M_n$.",
+      "cours": "La méthode des trapèzes remplace $f$, sur chaque sous-intervalle $[x_k,x_{k+1}]$, par la fonction affine qui coïncide avec $f$ aux deux extrémités : l'aire sous la corde est celle d'un trapèze, $h\\frac{f(x_k)+f(x_{k+1})}2$. Les points intérieurs servent à deux sous-intervalles, d'où les poids $\\frac h2$ aux extrémités $a$, $b$ et $h$ ailleurs. On a aussi $T_n=\\frac{R_n+R'_n}2$.\n\nL'erreur se calcule exactement par deux intégrations par parties : sur $[\\alpha,\\beta]$, $\\int_\\alpha^\\beta f-(\\beta-\\alpha)\\frac{f(\\alpha)+f(\\beta)}2=\\int_\\alpha^\\beta\\frac{(t-\\alpha)(t-\\beta)}2f''(t)\\,\\mathrm{d}t$. Ce noyau est négatif et d'intégrale $-\\frac{(\\beta-\\alpha)^3}{12}$ : l'erreur locale vaut $-\\frac{h^3}{12}f''(\\xi_k)$, l'erreur totale $-\\frac{(b-a)h^2}{12}f''(\\xi)$. La méthode est donc en $O(h^2)$ comme le point milieu, mais avec une constante double et de signe opposé : pour $f$ convexe, la corde est au-dessus de la courbe et $T_n\\ge\\int_a^bf\\ge M_n$.\n\nMéthode : pour raffiner, on passe de $n$ à $2n$ sans recalculer les anciennes valeurs, car $T_{2n}=\\frac{T_n+M_n}2$, où $M_n$ n'utilise que les nouveaux points (les milieux). C'est ce qui rend les trapèzes commodes pour l'accélération de Romberg. Pour une fonction périodique régulière intégrée sur une période, la méthode des trapèzes est remarquablement précise (voir les exercices).\n\nPièges : la méthode n'est pas exacte pour $x\\mapsto x^2$ ; elle n'est pas plus précise que le point milieu (pour $f''$ constante, son erreur est double) ; la majoration utilise le maximum de $|f''|$ sur tout $[a,b]$, pas ses valeurs aux extrémités.",
+      "hypotheses": [
+        "$f$ est de classe $C^2$ sur $[a,b]$, et $M_2=\\max_{[a,b]}|f''|$.",
+        "$T_n$ pondère $f(a)$ et $f(b)$ par $\\frac h2$ et les points intérieurs $x_1,\\dots,x_{n-1}$ par $h$."
+      ],
+      "hypotheses_pieges": [
+        "$M_2=\\max_{[a,b]}|f'|$ (à la place du maximum de $|f''|$).",
+        "$T_n$ pondère tous les points $x_0,\\dots,x_n$ par $h$ (à la place de $\\frac h2$ aux deux extrémités).",
+        "$M_2=\\max(|f''(a)|,|f''(b)|)$ (à la place du maximum de $|f''|$ sur tout $[a,b]$)."
+      ],
+      "enonce": "Soient $a<b$, $f:[a,b]\\to\\mathbb{R}$, $n\\ge1$, $h=\\frac{b-a}n$ et $x_k=a+kh$ ($0\\le k\\le n$). La méthode des **trapèzes** approche $I=\\int_a^bf(t)\\,\\mathrm{d}t$ par\n\n$$T_n=h\\left(\\frac{f(a)}2+\\sum_{k=1}^{n-1}f(x_k)+\\frac{f(b)}2\\right)=\\sum_{k=0}^{n-1}h\\,\\frac{f(x_k)+f(x_{k+1})}2.$$\n\nSi $f$ est de classe $C^2$ et $M_2=\\max_{[a,b]}|f''|$, il existe $\\xi\\in[a,b]$ tel que\n\n$$I-T_n=-\\frac{(b-a)h^2}{12}f''(\\xi),\\qquad\\text{donc}\\qquad|I-T_n|\\le\\frac{(b-a)^3M_2}{12n^2}.$$\n\nLa méthode est exacte pour les fonctions affines, pas pour $x\\mapsto x^2$ ; si $f''\\ge0$, alors $T_n\\ge I$. Enfin $T_{2n}=\\frac{T_n+M_n}2$, où $M_n$ est la somme du point milieu.",
+      "enonce_trous": "Soient $f$ de classe $C^2$ sur $[a,b]$, $n\\ge1$, $h=\\frac{b-a}n$, $x_k=a+kh$ et $M_2=\\max_{[a,b]}|f''|$. La méthode des trapèzes approche $\\int_a^bf(t)\\,\\mathrm{d}t$ par {{1}}, avec une erreur majorée en valeur absolue par {{2}}. Si de plus $f''\\ge0$ sur $[a,b]$, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "$h\\sum_{k=0}^{n-1}\\frac{f(x_k)+f(x_{k+1})}2$",
+          "leurres": [
+            "$h\\sum_{k=0}^{n}f(x_k)$",
+            "$\\frac h2\\sum_{k=0}^{n-1}f(x_k)$",
+            "$h\\sum_{k=1}^{n-1}f(x_k)$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{(b-a)^3M_2}{12n^2}$",
+          "leurres": [
+            "$\\frac{(b-a)^3M_2}{24n^2}$",
+            "$\\frac{(b-a)^3M_2}{12n^3}$",
+            "$\\frac{(b-a)^2M_2}{12n^2}$"
+          ]
+        },
+        {
+          "reponse": "$T_n\\ge\\int_a^bf(t)\\,\\mathrm{d}t$",
+          "leurres": [
+            "$T_n\\le\\int_a^bf(t)\\,\\mathrm{d}t$",
+            "$T_n=\\int_a^bf(t)\\,\\mathrm{d}t$",
+            "$T_n\\le M_n$"
+          ]
+        }
+      ],
+      "demo": "**Erreur sur un sous-intervalle.** Soient $[\\alpha,\\beta]=[x_k,x_{k+1}]$, $c=\\frac{\\alpha+\\beta}2$ et $\\varphi(t)=\\frac{(t-\\alpha)(t-\\beta)}2$, de sorte que $\\varphi(\\alpha)=\\varphi(\\beta)=0$ et $\\varphi'(t)=t-c$. Deux intégrations par parties ($f$ est de classe $C^2$) donnent\n\n$$\\int_\\alpha^\\beta\\varphi f''=\\left[\\varphi f'\\right]_\\alpha^\\beta-\\int_\\alpha^\\beta(t-c)f'(t)\\,\\mathrm{d}t=-\\left[(t-c)f(t)\\right]_\\alpha^\\beta+\\int_\\alpha^\\beta f=\\int_\\alpha^\\beta f-h\\,\\frac{f(\\alpha)+f(\\beta)}2.$$\n\nOr $\\varphi\\le0$ sur $[\\alpha,\\beta]$ et $\\int_\\alpha^\\beta\\varphi=-\\frac{h^3}{12}$. Si $m_k$ et $M'_k$ sont le minimum et le maximum de $f''$ sur $[\\alpha,\\beta]$ (bornes atteintes), on a $M'_k\\varphi\\le\\varphi f''\\le m_k\\varphi$, donc $\\int_\\alpha^\\beta\\varphi f''=-\\frac{h^3}{12}\\mu_k$ avec $\\mu_k\\in[m_k,M'_k]$ ; par le théorème des valeurs intermédiaires, $\\mu_k=f''(\\xi_k)$ pour un $\\xi_k\\in[\\alpha,\\beta]$.\n\n**Erreur totale.** En sommant, $I-T_n=-\\frac{h^3}{12}\\sum_{k=0}^{n-1}f''(\\xi_k)=-\\frac{nh^3}{12}\\mu$, où $\\mu=\\frac1n\\sum_kf''(\\xi_k)$ est compris entre le minimum et le maximum de $f''$ sur $[a,b]$ ; donc $\\mu=f''(\\xi)$ pour un $\\xi\\in[a,b]$ (valeurs intermédiaires), et $nh^3=(b-a)h^2$. On en déduit $|I-T_n|\\le\\frac{(b-a)h^2M_2}{12}=\\frac{(b-a)^3M_2}{12n^2}$.\n\n**Conséquences.** Si $f$ est affine, $f''=0$ et $T_n=I$ ; pour $f(x)=x^2$, $I-T_n=-\\frac{(b-a)h^2}6\\neq0$. Si $f''\\ge0$, $I-T_n\\le0$. Enfin, la subdivision de pas $\\frac h2$ a pour points les $x_k$ et les milieux $x_k+\\frac h2$, d'où\n\n$$T_{2n}=\\frac h2\\left(\\frac{f(a)}2+\\sum_{k=1}^{n-1}f(x_k)+\\frac{f(b)}2\\right)+\\frac h2\\sum_{k=0}^{n-1}f\\left(x_k+\\frac h2\\right)=\\frac{T_n+M_n}2.$$",
+      "exemple": "Pour $\\int_0^1e^t\\,\\mathrm{d}t=e-1\\approx1{,}718282$ et $n=4$ : $T_4\\approx1{,}727222$, erreur $I-T_4\\approx-8{,}9\\cdot10^{-3}$ (négative, car $\\exp$ est convexe), majorée en valeur absolue par $\\frac{e}{192}\\approx1{,}42\\cdot10^{-2}$. Avec $M_4\\approx1{,}713815$, on obtient sans nouveau calcul $T_8=\\frac{T_4+M_4}2\\approx1{,}720519$, et l'encadrement $M_4\\le e-1\\le T_4$.",
+      "contre_exemple": "- **Pas exacte pour $x^2$** : sur $[0,1]$, $T_1=\\frac12$ alors que $\\int_0^1t^2\\,\\mathrm{d}t=\\frac13$.\n- **Les valeurs de $f''$ aux extrémités ne suffisent pas** : pour $f(x)=\\sin(\\pi x)$ sur $[0,1]$, $f''(0)=f''(1)=0$, mais $T_1=0$ et $\\int_0^1\\sin(\\pi t)\\,\\mathrm{d}t=\\frac2\\pi$.\n- **$\\max|f'|$ à la place de $\\max|f''|$** : pour $f(x)=x^2$ sur $\\left[0,\\frac14\\right]$ et $n=1$, $|I-T_1|=\\frac1{384}$, alors que $\\frac{\\left(\\frac14\\right)^3\\cdot\\frac12}{12}=\\frac1{1536}$.\n- **Les trapèzes ne battent pas le point milieu** : pour $f(x)=x^2$, $I-T_n=-\\frac{(b-a)^3}{6n^2}=-2(I-M_n)$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$ est de classe $C^2$ et convexe sur $[a,b]$, alors $M_n\\le\\int_a^bf(t)\\,\\mathrm{d}t\\le T_n$.",
+          "vrai": true,
+          "justification": "La tangente au milieu de chaque sous-intervalle est sous la courbe, la corde au-dessus ; on intègre."
+        },
+        {
+          "texte": "Pour toute fonction de classe $C^2$, la méthode des trapèzes est au moins aussi précise que celle du point milieu.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x)=x^2$ sur $[0,1]$ et $n=1$ : $|I-T_1|=\\frac16$ et $|I-M_1|=\\frac1{12}$."
+        },
+        {
+          "texte": "$T_{2n}=\\frac{T_n+M_n}2$.",
+          "vrai": true,
+          "justification": "Les points de la subdivision de pas $\\frac h2$ sont les $x_k$ et les milieux $x_k+\\frac h2$."
+        },
+        {
+          "texte": "Si $f''$ s'annule en un point de $[a,b]$, alors $T_n=\\int_a^bf(t)\\,\\mathrm{d}t$ pour tout $n$.",
+          "vrai": false,
+          "contre_exemple": "Pour $f(x)=x^3$ sur $[0,1]$ : $f''(0)=0$, mais $T_1=\\frac12\\neq\\frac14$."
+        }
+      ],
+      "prerequis": [
+        "num-l3-integration-rectangles",
+        "int-t-integrale-ipp",
+        "ar-l1-bornes-atteintes",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "num-l3-integration-simpson",
+      "theme": "methodes-numeriques",
+      "niveau": "l3",
+      "chapitre": "num-l3-integration",
+      "type": "theoreme",
+      "titre": "Méthode de Simpson",
+      "recto": "Définir la méthode de Simpson (en précisant la convention sur $n$), donner son degré d'exactitude et la majoration de son erreur.",
+      "cours": "La méthode de Simpson remplace $f$, sur chaque panneau $[x_k,x_{k+1}]$, par le polynôme de degré au plus $2$ qui l'interpole aux deux extrémités et au milieu $m_k$ ; l'intégrale de ce polynôme vaut $\\frac h6\\left(f(x_k)+4f(m_k)+f(x_{k+1})\\right)$. On obtient $S_n=\\frac{T_n+2M_n}3$ : une moyenne pondérée des trapèzes et du point milieu, choisie pour que leurs erreurs principales, $-\\frac{(b-a)h^2}{12}f''$ et $+\\frac{(b-a)h^2}{24}f''$, se compensent.\n\nPar symétrie, la formule est aussi exacte pour $(t-m_k)^3$, donc pour tous les polynômes de degré au plus $3$ : un degré de plus que ce que l'interpolation de degré $2$ laisse attendre. L'erreur est alors en $h^4$ : $I-S_n=-\\frac{(b-a)h^4}{2880}f^{(4)}(\\xi)$, et doubler le nombre de panneaux divise l'erreur par environ $16$.\n\n**Convention.** Dans tout le chapitre, $n$ est le nombre de **panneaux** (sous-intervalles sur lesquels on applique la formule à trois points), $h=\\frac{b-a}n$ leur longueur, et $f$ est évaluée en $2n+1$ points. Beaucoup d'ouvrages notent plutôt $N=2n$ le nombre de demi-panneaux, de longueur $\\frac h2$ : la même majoration s'y écrit $\\frac{(b-a)^5M_4}{180N^4}$. Avant d'appliquer une formule d'erreur, vérifier la convention.\n\nPièges : $S_n$ n'est pas exacte pour $x\\mapsto x^4$ ; le signe de l'erreur $I-S_n$ est celui de $-f^{(4)}$ (si $f^{(4)}$ garde un signe) ; si $f$ n'est pas de classe $C^4$, par exemple $\\sqrt t$ près de $0$, l'erreur n'est plus en $h^4$.",
+      "hypotheses": [
+        "$f$ est de classe $C^4$ sur $[a,b]$, et $M_4=\\max_{[a,b]}|f^{(4)}|$.",
+        "Sur chaque panneau $[x_k,x_{k+1}]$, les poids de $f(x_k)$, $f(m_k)$ et $f(x_{k+1})$ sont $\\frac h6$, $\\frac{4h}6$ et $\\frac h6$."
+      ],
+      "hypotheses_pieges": [
+        "Les poids de $f(x_k)$, $f(m_k)$ et $f(x_{k+1})$ sont $\\frac h4$, $\\frac h2$ et $\\frac h4$ (à la place de $\\frac h6$, $\\frac{4h}6$ et $\\frac h6$).",
+        "$M_4=\\max_{[a,b]}|f''|$ (à la place du maximum de $|f^{(4)}|$).",
+        "$M_4=\\left|f^{(4)}\\left(\\frac{a+b}2\\right)\\right|$ (à la place du maximum de $|f^{(4)}|$ sur $[a,b]$)."
+      ],
+      "enonce": "Soient $a<b$, $f:[a,b]\\to\\mathbb{R}$, $n\\ge1$, $h=\\frac{b-a}n$ et $x_k=a+kh$ ($0\\le k\\le n$). On note $m_k=x_k+\\frac h2$. **Convention** : $n$ est le nombre de panneaux $[x_k,x_{k+1}]$, de longueur $h$, et la formule utilise sur chacun ses extrémités et son milieu ($2n+1$ points en tout). La méthode de **Simpson** approche $I=\\int_a^bf(t)\\,\\mathrm{d}t$ par\n\n$$S_n=\\frac h6\\sum_{k=0}^{n-1}\\left(f(x_k)+4f(m_k)+f(x_{k+1})\\right)=\\frac{T_n+2M_n}3,$$\n\noù $T_n$ et $M_n$ sont les sommes des trapèzes et du point milieu. Elle est exacte pour les polynômes de degré au plus $3$, pas pour $x\\mapsto x^4$. Si $f$ est de classe $C^4$ et $M_4=\\max_{[a,b]}|f^{(4)}|$, il existe $\\xi\\in[a,b]$ tel que\n\n$$I-S_n=-\\frac{(b-a)h^4}{2880}f^{(4)}(\\xi),\\qquad\\text{donc}\\qquad|I-S_n|\\le\\frac{(b-a)^5M_4}{2880n^4}.$$",
+      "enonce_trous": "Soient $f$ de classe $C^4$ sur $[a,b]$, $n\\ge1$ le nombre de panneaux, $h=\\frac{b-a}n$ et $M_4=\\max_{[a,b]}|f^{(4)}|$. La méthode de Simpson approche $\\int_a^bf(t)\\,\\mathrm{d}t$ par {{1}}, où $T_n$ et $M_n$ sont les sommes des trapèzes et du point milieu. Elle est exacte pour {{2}}, et son erreur est majorée en valeur absolue par {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{T_n+2M_n}3$",
+          "leurres": [
+            "$\\frac{2T_n+M_n}3$",
+            "$\\frac{T_n+M_n}2$",
+            "$\\frac{4T_n-M_n}3$"
+          ]
+        },
+        {
+          "reponse": "les polynômes de degré au plus $3$",
+          "leurres": [
+            "les polynômes de degré au plus $2$ seulement",
+            "les polynômes de degré au plus $4$",
+            "les polynômes de degré au plus $5$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{(b-a)^5M_4}{2880n^4}$",
+          "leurres": [
+            "$\\frac{(b-a)^5M_4}{2880n^5}$",
+            "$\\frac{(b-a)^4M_4}{2880n^4}$",
+            "$\\frac{(b-a)^5M_4}{5760n^4}$"
+          ]
+        }
+      ],
+      "demo": "**Formule.** $\\frac h6\\sum_k\\left(f(x_k)+f(x_{k+1})\\right)=\\frac13T_n$ et $\\frac{4h}6\\sum_kf(m_k)=\\frac23M_n$, d'où $S_n=\\frac{T_n+2M_n}3$.\n\n**Exactitude.** Sur un panneau, posons $t=m+s$ avec $m$ le milieu et $s\\in[-r,r]$, $r=\\frac h2$ ; la formule s'écrit $\\frac r3\\left(g(-r)+4g(0)+g(r)\\right)$ pour $g(s)=f(m+s)$. Pour $g=1$ : $2r$ des deux côtés ; pour $g=s$ et $g=s^3$ : $0$ des deux côtés (imparité) ; pour $g=s^2$ : $\\int_{-r}^rs^2\\,\\mathrm{d}s=\\frac{2r^3}3=\\frac r3\\cdot2r^2$. Par linéarité, la formule est exacte pour tout polynôme de degré au plus $3$ en $s$, donc en $t$. Pour $g=s^4$ : $\\frac{2r^5}5\\neq\\frac{2r^5}3$ ; et pour $f(x)=x^4$ sur $[0,1]$, $n=1$ : $S_1=\\frac5{24}\\neq\\frac15$.\n\n**Erreur sur un panneau.** Pour $u\\in[0,r]$, posons $F(u)=\\int_{m-u}^{m+u}f-\\frac u3\\left(f(m-u)+4f(m)+f(m+u)\\right)$, de sorte que $F(r)$ est l'erreur du panneau. $F$ est de classe $C^3$ et un calcul direct donne\n\n$$F'(u)=\\frac23\\left(f(m+u)+f(m-u)\\right)-\\frac43f(m)-\\frac u3\\left(f'(m+u)-f'(m-u)\\right),$$\n\n$$F''(u)=\\frac13\\left(f'(m+u)-f'(m-u)\\right)-\\frac u3\\left(f''(m+u)+f''(m-u)\\right),\\qquad F'''(u)=-\\frac u3\\left(f'''(m+u)-f'''(m-u)\\right).$$\n\nDonc $F(0)=F'(0)=F''(0)=0$. Pour $u>0$, l'égalité des accroissements finis donne $f'''(m+u)-f'''(m-u)=2uG(u)$, où $G(u)$ est une valeur de $f^{(4)}$ sur le panneau ; $G$ est continue sur $\\left]0,r\\right]$ et comprise entre le minimum $\\lambda$ et le maximum $\\Lambda$ de $f^{(4)}$ sur le panneau. La formule de Taylor avec reste intégral (à l'ordre $2$ en $0$) donne alors\n\n$$F(r)=\\int_0^r\\frac{(r-u)^2}2F'''(u)\\,\\mathrm{d}u=-\\frac13\\int_0^r(r-u)^2u^2G(u)\\,\\mathrm{d}u.$$\n\nComme $(r-u)^2u^2\\ge0$ et $\\int_0^r(r-u)^2u^2\\,\\mathrm{d}u=\\frac{r^5}{30}$, on a $F(r)=-\\frac{r^5}{90}\\mu$ avec $\\mu\\in[\\lambda,\\Lambda]$, et $\\mu=f^{(4)}(\\xi_k)$ par les valeurs intermédiaires. Enfin $\\frac{r^5}{90}=\\frac{h^5}{2880}$.\n\n**Erreur totale.** En sommant, $I-S_n=-\\frac{h^5}{2880}\\sum_kf^{(4)}(\\xi_k)=-\\frac{nh^5}{2880}f^{(4)}(\\xi)$ (une moyenne de valeurs de $f^{(4)}$ est une valeur de $f^{(4)}$), et $nh^5=(b-a)h^4=\\frac{(b-a)^5}{n^4}$.",
+      "exemple": "- Pour $\\int_0^1e^t\\,\\mathrm{d}t$ et $n=2$ panneaux ($5$ évaluations) : $S_2\\approx1{,}718319$, erreur $I-S_2\\approx-3{,}7\\cdot10^{-5}$, majorée en valeur absolue par $\\frac{e}{2880\\cdot16}\\approx5{,}9\\cdot10^{-5}$. Avec les mêmes $5$ points, $T_4$ fait une erreur $\\approx8{,}9\\cdot10^{-3}$.\n- Pour $\\int_0^1\\frac{\\mathrm{d}t}{1+t}=\\ln2$ et $n=2$ : $T_2=\\frac{17}{24}$, $M_2=\\frac{24}{35}$, $S_2=\\frac{1747}{2520}\\approx0{,}693254$, à comparer à $\\ln2\\approx0{,}693147$.",
+      "contre_exemple": "- **Pas exacte pour $x^4$** : sur $[0,1]$, $S_1=\\frac16\\left(0+4\\cdot\\frac1{16}+1\\right)=\\frac5{24}\\neq\\frac15$.\n- **Des poids $\\frac14,\\frac12,\\frac14$ ne conviennent pas** : ils donnent $\\frac{T_n+M_n}2=T_{2n}$, qui n'est pas exacte pour $x^2$ ($T_2=\\frac38$ sur $[0,1]$).\n- **$\\max|f''|$ à la place de $\\max|f^{(4)}|$** : pour $f(x)=x^4$ sur $[0,1]$ et $n=1$, $I-S_1=-\\frac1{120}$, alors que $\\frac{12}{2880}=\\frac1{240}$.\n- **$|f^{(4)}|$ au milieu ne suffit pas** : pour $f(x)=x^6$ sur $[0,1]$ et $n=1$, $|I-S_1|=\\frac{23}{672}\\approx0{,}0342$, alors que $\\frac{f^{(4)}\\left(\\frac12\\right)}{2880}=\\frac{90}{2880}=\\frac1{32}\\approx0{,}0313$.\n- **Simpson n'est pas toujours meilleure que les trapèzes** : pour $f(x)=5x^4-9x^2$ sur $[0,1]$ et $n=1$, $T_1=-2=I$ est exacte, mais $S_1=-\\frac{47}{24}$.",
+      "affirmations": [
+        {
+          "texte": "La méthode de Simpson est exacte pour tous les polynômes de degré au plus $3$.",
+          "vrai": true,
+          "justification": "Exacte pour $1$, $(t-m)$, $(t-m)^2$, $(t-m)^3$ sur chaque panneau de milieu $m$."
+        },
+        {
+          "texte": "$S_n=\\frac{4T_{2n}-T_n}3$.",
+          "vrai": true,
+          "justification": "$T_{2n}=\\frac{T_n+M_n}2$, donc $4T_{2n}-T_n=T_n+2M_n$."
+        },
+        {
+          "texte": "Si $f$ est de classe $C^4$ et $f^{(4)}\\ge0$, alors $S_n\\le\\int_a^bf(t)\\,\\mathrm{d}t$.",
+          "vrai": false,
+          "contre_exemple": "$I-S_n=-\\frac{(b-a)h^4}{2880}f^{(4)}(\\xi)\\le0$ : c'est l'inverse. Pour $x^4$ sur $[0,1]$, $S_1=\\frac5{24}>\\frac15$."
+        },
+        {
+          "texte": "Doubler le nombre de panneaux divise par $16$ la majoration $\\frac{(b-a)^5M_4}{2880n^4}$.",
+          "vrai": true,
+          "justification": "Elle est proportionnelle à $\\frac1{n^4}$."
+        },
+        {
+          "texte": "À $n$ égal, la méthode de Simpson est toujours au moins aussi précise que celle des trapèzes.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=5x^4-9x^2$ sur $[0,1]$, $n=1$ : $T_1=-2=\\int_0^1f$, mais $S_1=-\\frac{47}{24}$."
+        }
+      ],
+      "prerequis": [
+        "num-l3-integration-trapezes",
+        "num-l3-integration-rectangles",
+        "ar-l1-taf",
+        "ar-l1-taylor-reste-integral",
+        "arith-l1-polynomes-lagrange",
+        "ar-t-tvi"
+      ]
+    },
+    {
+      "id": "num-l3-integration-erreur",
+      "theme": "methodes-numeriques",
+      "niveau": "l3",
+      "chapitre": "num-l3-integration",
+      "type": "theoreme",
+      "titre": "Estimation de l'erreur : degré d'exactitude et encadrements",
+      "recto": "Définir le degré d'exactitude d'une formule de quadrature, énoncer la majoration de l'erreur de la méthode composée qui en découle, et l'encadrement de l'intégrale d'une fonction convexe.",
+      "cours": "Les méthodes précédentes suivent un même schéma : une **formule élémentaire** $Q_{[\\alpha,\\beta]}(g)=(\\beta-\\alpha)\\sum_jw_jg(\\alpha+\\theta_j(\\beta-\\alpha))$, appliquée sur chacun des $n$ sous-intervalles. Sa qualité se mesure par son **degré d'exactitude** : le plus grand $d$ tel qu'elle intègre exactement tous les polynômes de degré au plus $d$. Rectangles : $0$ ; point milieu et trapèzes : $1$ ; Simpson : $3$.\n\nLe principe est simple : sur un sous-intervalle de longueur $h$, $f$ diffère de son polynôme de Taylor de degré $d$ d'au plus $\\frac{M_{d+1}h^{d+1}}{(d+1)!}$ ; la formule intègre exactement ce polynôme, donc l'erreur locale est en $O(h^{d+2})$, et l'erreur totale, somme de $n=\\frac{b-a}h$ erreurs locales, en $O(h^{d+1})$. La constante obtenue ainsi est grossière ; les constantes optimales ($\\frac1{24}$, $\\frac1{12}$, $\\frac1{2880}$) viennent des calculs propres à chaque méthode. Une formule à $r+1$ nœuds ne peut pas dépasser le degré $2r+1$, atteint par les formules de Gauss (exercices).\n\nOn dispose aussi d'estimations **a posteriori**, faites avec les seules valeurs calculées : pour $f$ convexe, $M_n\\le I\\le T_n$, ce qui encadre $I$ sans majorer aucune dérivée ; et si l'erreur d'une méthode est équivalente à $Ch^p$, le rapport $\\frac{A_n-A_{2n}}{A_{2n}-A_{4n}}$ tend vers $2^p$, ce qui permet de lire l'ordre $p$ sur les résultats.\n\nPièges : le degré d'exactitude ne suffit pas sans régularité (pour $\\sqrt t$ sur $[0,1]$, Simpson ne fait pas mieux qu'une erreur en $h^{3/2}$) ; l'erreur peut être bien plus petite que $O(h^{d+1})$ pour certaines fonctions (fonctions périodiques et trapèzes) ; le degré d'exactitude se vérifie sur $1,X,\\dots,X^{d+1}$ et ne dépend pas du segment choisi.",
+      "hypotheses": [
+        "La formule élémentaire est exacte pour tous les polynômes de degré au plus $d$.",
+        "$f$ est de classe $C^{d+1}$ sur $[a,b]$, et $M_{d+1}=\\max_{[a,b]}|f^{(d+1)}|$."
+      ],
+      "hypotheses_pieges": [
+        "La formule élémentaire est exacte pour les polynômes de degré au plus $d-1$ seulement, avec $d\\ge1$ (à la place de $d$).",
+        "$M_{d+1}=|f^{(d+1)}(a)|$ (à la place du maximum de $|f^{(d+1)}|$ sur $[a,b]$)."
+      ],
+      "enonce": "Une **formule de quadrature élémentaire** associe à une fonction $g$ sur un segment $[\\alpha,\\beta]$ la valeur $Q_{[\\alpha,\\beta]}(g)=(\\beta-\\alpha)\\sum_{j=0}^{r}w_jg\\left(\\alpha+\\theta_j(\\beta-\\alpha)\\right)$, où les nœuds $\\theta_j\\in[0,1]$ et les poids réels $w_j$ sont fixés. Elle a pour **degré d'exactitude** $d$ si $Q_{[\\alpha,\\beta]}(P)=\\int_\\alpha^\\beta P$ pour tout polynôme $P$ de degré au plus $d$, mais pas pour $P=X^{d+1}$ (cela ne dépend pas du segment). Pour $f:[a,b]\\to\\mathbb{R}$, $n\\ge1$, $h=\\frac{b-a}n$ et $x_k=a+kh$, la **méthode composée** est $Q_n(f)=\\sum_{k=0}^{n-1}Q_{[x_k,x_{k+1}]}(f)$.\n\n**Théorème.**\n- Si la formule est exacte pour les polynômes de degré au plus $d$, si $f$ est de classe $C^{d+1}$ et $M_{d+1}=\\max_{[a,b]}|f^{(d+1)}|$, alors, avec $W=\\sum_j|w_j|$,\n$$\\left|\\int_a^bf(t)\\,\\mathrm{d}t-Q_n(f)\\right|\\le\\frac1{(d+1)!}\\left(W+\\frac1{d+2}\\right)(b-a)M_{d+1}h^{d+1}.$$\n- Les rectangles, le point milieu, les trapèzes et Simpson ont pour degrés d'exactitude $0$, $1$, $1$ et $3$ : leurs erreurs sont des $O(h)$, $O(h^2)$, $O(h^2)$ et $O(h^4)$ pour $f$ de classe $C^1$, $C^2$, $C^2$ et $C^4$ respectivement.\n- Si $f$ est convexe et continue sur $[a,b]$, alors $M_n\\le\\int_a^bf(t)\\,\\mathrm{d}t\\le T_n$, donc $\\left|\\int_a^bf(t)\\,\\mathrm{d}t-T_{2n}\\right|\\le\\frac{T_n-M_n}2$.",
+      "enonce_trous": "Soient une formule de quadrature élémentaire exacte pour les polynômes de degré au plus $d$ et $f$ de classe $C^{d+1}$ sur $[a,b]$. L'erreur de la méthode composée à $n$ sous-intervalles de longueur $h=\\frac{b-a}n$ est un {{1}} quand $n\\to+\\infty$. La méthode de Simpson a pour degré d'exactitude {{2}}. Si $f$ est convexe et continue sur $[a,b]$, l'intégrale $\\int_a^bf(t)\\,\\mathrm{d}t$ est comprise entre {{3}}.",
+      "trous": [
+        {
+          "reponse": "$O(h^{d+1})$",
+          "leurres": [
+            "$O(h^{d+2})$",
+            "$O(h^{2d+2})$",
+            "$o(h^{d+1})$"
+          ]
+        },
+        {
+          "reponse": "$3$",
+          "leurres": [
+            "$2$",
+            "$4$",
+            "$5$"
+          ]
+        },
+        {
+          "reponse": "$M_n$ et $T_n$",
+          "leurres": [
+            "$R_n$ et $M_n$",
+            "$T_n$ et $S_n$",
+            "$R_n$ et $T_n$"
+          ]
+        }
+      ],
+      "demo": "**Indépendance du segment.** Avec $\\psi(\\theta)=\\alpha+\\theta(\\beta-\\alpha)$, on a $\\int_\\alpha^\\beta g=(\\beta-\\alpha)\\int_0^1g\\circ\\psi$ et $Q_{[\\alpha,\\beta]}(g)=(\\beta-\\alpha)\\sum_jw_j\\,g\\circ\\psi(\\theta_j)$. Comme $P\\mapsto P\\circ\\psi$ est une bijection de l'espace des polynômes de degré au plus $d$ sur lui-même, l'exactitude sur $[\\alpha,\\beta]$ équivaut à l'exactitude sur $[0,1]$.\n\n**Majoration.** Sur $[x_k,x_{k+1}]$, soit $P$ le polynôme de Taylor de $f$ en $x_k$ de degré $d$. L'inégalité de Taylor-Lagrange donne $|f(t)-P(t)|\\le\\frac{M_{d+1}(t-x_k)^{d+1}}{(d+1)!}\\le\\frac{M_{d+1}h^{d+1}}{(d+1)!}$ pour $t\\in[x_k,x_{k+1}]$. Par exactitude et linéarité, l'erreur locale est $\\int_{x_k}^{x_{k+1}}(f-P)-Q_{[x_k,x_{k+1}]}(f-P)$. D'une part $\\left|\\int_{x_k}^{x_{k+1}}(f-P)\\right|\\le M_{d+1}\\int_0^h\\frac{s^{d+1}}{(d+1)!}\\,\\mathrm{d}s=\\frac{M_{d+1}h^{d+2}}{(d+2)!}$ ; d'autre part, les nœuds étant dans le sous-intervalle, $\\left|Q_{[x_k,x_{k+1}]}(f-P)\\right|\\le hW\\frac{M_{d+1}h^{d+1}}{(d+1)!}$. En sommant les $n$ erreurs locales, avec $nh=b-a$ :\n\n$$\\left|\\int_a^bf-Q_n(f)\\right|\\le n\\frac{M_{d+1}h^{d+2}}{(d+1)!}\\left(W+\\frac1{d+2}\\right)=\\frac{(b-a)M_{d+1}h^{d+1}}{(d+1)!}\\left(W+\\frac1{d+2}\\right).$$\n\n**Degrés.** Sur $[0,1]$ : les rectangles ($w_0=1$, $\\theta_0=0$) intègrent $1$ mais donnent $0$ pour $X$ ; le point milieu donne $\\frac12$ pour $X$ et $\\frac14\\neq\\frac13$ pour $X^2$ ; les trapèzes donnent $\\frac12$ pour $X$ et $\\frac12\\neq\\frac13$ pour $X^2$ ; Simpson est exacte jusqu'au degré $3$ et donne $\\frac5{24}\\neq\\frac15$ pour $X^4$. Le théorème donne les ordres annoncés (les cartes précédentes en donnent les constantes optimales).\n\n**Encadrement.** Soit $f$ convexe et continue. Sur $[x_k,x_{k+1}]$, la courbe est sous la corde : $f(t)\\le f(x_k)+\\frac{t-x_k}h\\left(f(x_{k+1})-f(x_k)\\right)$ ; en intégrant, $\\int_{x_k}^{x_{k+1}}f\\le h\\frac{f(x_k)+f(x_{k+1})}2$. Au milieu $c$, intérieur au segment, la croissance des pentes fournit un réel $p$ (compris entre les pentes à gauche et à droite en $c$) tel que $f(t)\\ge f(c)+p(t-c)$ pour tout $t$ ; en intégrant, $\\int_{x_k}^{x_{k+1}}f\\ge hf(c)$. On somme : $M_n\\le I\\le T_n$. Comme $T_{2n}=\\frac{T_n+M_n}2$ est le milieu de $[M_n,T_n]$, qui contient $I$, $|I-T_{2n}|\\le\\frac{T_n-M_n}2$.",
+      "exemple": "- **Formule de Gauss à deux points** : $Q_{[\\alpha,\\beta]}(g)=\\frac{\\beta-\\alpha}2\\left(g\\left(c-\\frac{\\beta-\\alpha}{2\\sqrt3}\\right)+g\\left(c+\\frac{\\beta-\\alpha}{2\\sqrt3}\\right)\\right)$, $c$ milieu, a pour degré d'exactitude $3$ ; la méthode composée est en $O(h^4)$ avec $2n$ évaluations, contre $2n+1$ pour Simpson.\n- **A posteriori** : pour $f(t)=\\frac1{1+t}$, convexe sur $[0,1]$, $M_2=\\frac{24}{35}$ et $T_2=\\frac{17}{24}$, donc $\\frac{24}{35}\\le\\ln2\\le\\frac{17}{24}$, et $|\\ln2-T_4|\\le\\frac{19}{1680}\\approx0{,}0113$ (en fait $\\approx0{,}0039$).",
+      "contre_exemple": "- **Le degré d'exactitude ne suffit pas sans régularité** : pour $f(t)=\\sqrt t$ sur $[0,1]$, l'erreur de Simpson sur le premier panneau vaut $\\frac{3-2\\sqrt2}6h^{3/2}$ et celles des autres panneaux sont positives, donc $I-S_n\\ge\\frac{3-2\\sqrt2}6h^{3/2}$ : ce n'est pas un $O(h^4)$.\n- **Sans convexité, l'encadrement tombe** : pour $f(t)=\\sqrt t$ (concave) sur $[0,1]$, $T_1=\\frac12<\\frac23<M_1=\\frac{\\sqrt2}2$.\n- **Une hypothèse de degré trop faible** : les rectangles sont exacts pour les constantes seulement ; avec $d=1$, la majoration donnerait $0$ pour $f(x)=x$, alors que $I-R_n=\\frac{(b-a)^2}{2n}\\neq0$.\n- **$|f^{(d+1)}(a)|$ ne suffit pas** : point milieu ($d=1$) et $f(x)=x^3$ sur $[0,1]$ : $f''(0)=0$ mais $I-M_1=\\frac18$.",
+      "affirmations": [
+        {
+          "texte": "Si une formule élémentaire est exacte pour $1$, $X$ et $X^2$ sur $[0,1]$, elle l'est pour tout polynôme de degré au plus $2$ sur tout segment.",
+          "vrai": true,
+          "justification": "Par linéarité, puis par le changement de variable affine qui ramène le segment à $[0,1]$."
+        },
+        {
+          "texte": "Pour une formule de degré d'exactitude $d$, l'erreur de la méthode composée est toujours équivalente à $Ch^{d+1}$ avec $C\\neq0$.",
+          "vrai": false,
+          "contre_exemple": "Trapèzes ($d=1$) et $f=\\cos$ sur $[0,2\\pi]$ : pour $n\\ge2$, $T_n=\\frac{2\\pi}n\\sum_{k=0}^{n-1}\\cos\\frac{2k\\pi}n=0=\\int_0^{2\\pi}\\cos t\\,\\mathrm{d}t$."
+        },
+        {
+          "texte": "Pour $f$ convexe et continue sur $[a,b]$, $T_{2n}$ approche $\\int_a^bf$ à $\\frac{T_n-M_n}2$ près.",
+          "vrai": true,
+          "justification": "$T_{2n}=\\frac{T_n+M_n}2$ est le milieu de $[M_n,T_n]$, qui contient l'intégrale."
+        },
+        {
+          "texte": "La méthode des trapèzes a pour degré d'exactitude $2$.",
+          "vrai": false,
+          "contre_exemple": "Sur $[0,1]$, pour $X^2$ : $T_1=\\frac12\\neq\\frac13$."
+        },
+        {
+          "texte": "Une formule élémentaire à $r+1$ nœuds a un degré d'exactitude au plus $2r+1$.",
+          "vrai": true,
+          "justification": "Le polynôme $P=\\prod_j(X-\\psi(\\theta_j))^2$, de degré $2r+2$, est positif et non nul, donc $\\int_\\alpha^\\beta P>0$, alors que la formule donne $0$."
+        }
+      ],
+      "prerequis": [
+        "num-l3-integration-simpson",
+        "num-l3-integration-trapezes",
+        "ar-l1-taylor-lagrange",
+        "ar-l1-convexite-jensen",
+        "ar-l1-convexite-pentes",
+        "int-l1-riemann-changement-variable"
+      ]
+    },
+    {
+      "id": "num-l3-integration-romberg",
+      "theme": "methodes-numeriques",
+      "niveau": "l3",
+      "chapitre": "num-l3-integration",
+      "type": "theoreme",
+      "titre": "Accélération de la convergence : Richardson et Romberg",
+      "recto": "Énoncer le principe de l'extrapolation de Richardson, le développement de l'erreur des trapèzes et la méthode de Romberg, en précisant ce qui est admis.",
+      "cours": "Si une méthode fournit $A(h)=A+ch^p+O(h^q)$, avec $c$ inconnu, deux calculs aux pas $h$ et $\\frac h2$ suffisent à éliminer le terme $ch^p$ : c'est l'**extrapolation de Richardson**. Les valeurs calculées ne sont pas plus précises ; on gagne en exploitant la forme connue de l'erreur.\n\nPour la méthode des trapèzes, cette forme est remarquable : pour $f$ de classe $C^4$, $T_n=I+\\frac{h^2}{12}\\left(f'(b)-f'(a)\\right)+O(h^4)$ (démontré ci-dessous). Plus généralement, la **formule d'Euler-Maclaurin**, admise ici, donne un développement en puissances **paires** de $h$ : pour $f$ de classe $C^{2m+2}$, $T_n=I+c_1h^2+c_2h^4+\\dots+c_mh^{2m}+O(h^{2m+2})$, avec $c_j=\\frac{B_{2j}}{(2j)!}\\left(f^{(2j-1)}(b)-f^{(2j-1)}(a)\\right)$, où $B_2=\\frac16$, $B_4=-\\frac1{30}$… sont les nombres de Bernoulli. La première extrapolation $\\frac{4T_{2n}-T_n}3$ redonne exactement Simpson ; la méthode de **Romberg** itère, chaque colonne du tableau éliminant une puissance de plus ; la deuxième colonne est la formule de Boole, de degré d'exactitude $5$.\n\nMéthode : on calcule $T_1,T_2,T_4,\\dots$ (chaque $T_{2n}=\\frac{T_n+M_n}2$ ne demande que les nouveaux points), puis le tableau triangulaire $R_{k,j}=\\frac{4^jR_{k,j-1}-R_{k-1,j-1}}{4^j-1}$. L'écart $\\frac{T_{2n}-T_n}3$ estime aussi l'erreur $I-T_{2n}$ sans connaître $I$.\n\nPièges : le facteur $4$ correspond à une erreur en $h^2$ ; pour un premier terme en $h^p$ il faut $2^p$ (rectangles : $2$) ; l'extrapolation suppose le développement : sans régularité (comme $\\sqrt t$ en $0$), ou si les $c_j$ sont nuls (fonction périodique intégrée sur une période, où les trapèzes sont déjà excellents), elle n'apporte rien ou dégrade le résultat ; quand $h$ est encore grand, une colonne peut être moins bonne que la précédente (pour $\\int_0^1\\frac4{1+t^2}\\,\\mathrm{d}t=\\pi$, $R_{2,2}$ est moins précis que $R_{2,1}$).",
+      "hypotheses": [
+        "$A(h)=A+ch^p+O(h^q)$ quand $h\\to0$, avec $q>p$ et $c$ indépendant de $h$.",
+        "La combinaison utilise les valeurs aux pas $h$ et $\\frac h2$, avec le facteur $2^p$, où $p$ est l'exposant du premier terme de l'erreur."
+      ],
+      "hypotheses_pieges": [
+        "La combinaison utilise le facteur $4$ quel que soit $p$ (à la place de $2^p$).",
+        "La combinaison utilise les valeurs aux pas $h$ et $\\frac h3$, avec le facteur $2^p$ (à la place des pas $h$ et $\\frac h2$)."
+      ],
+      "enonce": "**Extrapolation de Richardson.** Soient $p<q$ et $A(h)=A+ch^p+O(h^q)$ quand $h\\to0$, avec $c$ indépendant de $h$. Alors\n\n$$\\frac{2^pA\\left(\\frac h2\\right)-A(h)}{2^p-1}=A+O(h^q).$$\n\n**Trapèzes.** Si $f$ est de classe $C^4$ sur $[a,b]$, $I=\\int_a^bf$, $h=\\frac{b-a}n$ et $M_4=\\max_{[a,b]}|f^{(4)}|$, alors\n\n$$\\left|T_n-I-\\frac{h^2}{12}\\left(f'(b)-f'(a)\\right)\\right|\\le\\frac{19}{2880}(b-a)M_4h^4,$$\n\ndonc $T_n=I+c_1h^2+O(h^4)$ avec $c_1=\\frac{f'(b)-f'(a)}{12}$ ; la première extrapolation $\\frac{4T_{2n}-T_n}3$ est exactement la somme de Simpson $S_n$.\n\n**Méthode de Romberg.** On pose $R_{k,0}=T_{2^k}$ et, pour $1\\le j\\le k$, $R_{k,j}=\\frac{4^jR_{k,j-1}-R_{k-1,j-1}}{4^j-1}$. On **admet** (formule d'Euler-Maclaurin) que, pour $f$ de classe $C^{2m+2}$, $T_n=I+\\sum_{j=1}^mc_jh^{2j}+O(h^{2m+2})$, les $c_j$ ne dépendant pas de $n$. Alors, pour $j\\le m$ et $h_k=\\frac{b-a}{2^k}$, $R_{k,j}=I+O(h_k^{2j+2})$ quand $k\\to+\\infty$.",
+      "enonce_trous": "Si $A(h)=A+ch^p+O(h^q)$ avec $q>p$ et $c$ indépendant de $h$, alors {{1}} $=A+O(h^q)$. Pour la méthode des trapèzes et $f$ de classe $C^4$ sur $[a,b]$, $T_n=\\int_a^bf(t)\\,\\mathrm{d}t+c_1h^2+O(h^4)$ avec $c_1=$ {{2}}, et $\\frac{4T_{2n}-T_n}3$ est égal à {{3}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{2^pA\\left(\\frac h2\\right)-A(h)}{2^p-1}$",
+          "leurres": [
+            "$\\frac{2^pA(h)-A\\left(\\frac h2\\right)}{2^p-1}$",
+            "$\\frac{4A\\left(\\frac h2\\right)-A(h)}3$",
+            "$\\frac{A(h)+A\\left(\\frac h2\\right)}2$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{f'(b)-f'(a)}{12}$",
+          "leurres": [
+            "$\\frac{f'(a)-f'(b)}{12}$",
+            "$\\frac{f'(b)-f'(a)}{24}$",
+            "$\\frac{f''(b)-f''(a)}{12}$"
+          ]
+        },
+        {
+          "reponse": "la somme de Simpson $S_n$",
+          "leurres": [
+            "la somme du point milieu $M_n$",
+            "la somme des trapèzes $T_{4n}$",
+            "la somme des rectangles à gauche $R_{2n}$"
+          ]
+        }
+      ],
+      "demo": "**Richardson.** $2^pA\\left(\\frac h2\\right)-A(h)=(2^p-1)A+2^pc\\frac{h^p}{2^p}-ch^p+O(h^q)=(2^p-1)A+O(h^q)$ ; on divise par $2^p-1$.\n\n**Trapèzes, sur un sous-intervalle.** Soient $c$ le milieu de $[x_k,x_{k+1}]$ et $r=\\frac h2$. Taylor-Lagrange à l'ordre $3$ en $c$ : $f(c+s)=f(c)+f'(c)s+\\frac{f''(c)}2s^2+\\frac{f'''(c)}6s^3+\\rho(s)$ avec $|\\rho(s)|\\le\\frac{M_4s^4}{24}$. En intégrant sur $[-r,r]$ (les termes impairs disparaissent) : $\\int_{x_k}^{x_{k+1}}f=2rf(c)+\\frac{r^3}3f''(c)+\\rho_1$ avec $|\\rho_1|\\le\\frac{M_4r^5}{60}$. En évaluant en $\\pm r$ : $r\\left(f(c-r)+f(c+r)\\right)=2rf(c)+r^3f''(c)+\\rho_2$ avec $|\\rho_2|\\le\\frac{M_4r^5}{12}$. Donc l'erreur locale vaut $-\\frac23r^3f''(c)+\\rho_1-\\rho_2=-\\frac{h^3}{12}f''(c)+\\rho_3$, avec $|\\rho_3|\\le\\frac{M_4r^5}{10}=\\frac{M_4h^5}{320}$.\n\n**Somme.** $I-T_n=-\\frac{h^2}{12}\\,M_n(f'')+\\sum_k\\rho_3^{(k)}$, où $M_n(f'')=h\\sum_kf''(c_k)$ est la somme du point milieu de $f''$. La majoration du point milieu appliquée à $f''$ (de classe $C^2$) donne $\\left|M_n(f'')-\\left(f'(b)-f'(a)\\right)\\right|\\le\\frac{(b-a)h^2M_4}{24}$, et $\\left|\\sum_k\\rho_3^{(k)}\\right|\\le\\frac{nM_4h^5}{320}=\\frac{(b-a)M_4h^4}{320}$. D'où\n\n$$\\left|I-T_n+\\frac{h^2}{12}\\left(f'(b)-f'(a)\\right)\\right|\\le(b-a)M_4h^4\\left(\\frac1{288}+\\frac1{320}\\right)=\\frac{19}{2880}(b-a)M_4h^4.$$\n\n**Simpson.** $T_{2n}=\\frac{T_n+M_n}2$, donc $\\frac{4T_{2n}-T_n}3=\\frac{T_n+2M_n}3=S_n$ : c'est une identité, valable pour toute $f$.\n\n**Romberg.** Supposons le développement admis. Montrons par récurrence sur $j\\le m$ qu'il existe des constantes $a^{(j)}_i$ telles que $R_{k,j}=I+\\sum_{i=j+1}^ma^{(j)}_ih_k^{2i}+O(h_k^{2m+2})$. Pour $j=0$, c'est le développement, avec $h_k=\\frac{b-a}{2^k}$. Si c'est vrai pour $j-1$, comme $h_{k-1}=2h_k$ :\n\n$$R_{k,j}=\\frac{4^jR_{k,j-1}-R_{k-1,j-1}}{4^j-1}=I+\\sum_{i=j}^ma^{(j-1)}_i\\frac{4^j-4^i}{4^j-1}h_k^{2i}+O(h_k^{2m+2}),$$\n\net le terme $i=j$ est nul. Donc $R_{k,j}=I+O(h_k^{2j+2})$.",
+      "exemple": "Pour $\\int_0^1\\frac{\\mathrm{d}t}{1+t}=\\ln2\\approx0{,}6931472$ : $T_1=\\frac34$, $T_2=\\frac{17}{24}$, $T_4=\\frac{1171}{1680}\\approx0{,}6970238$ ; puis $R_{1,1}=\\frac{25}{36}\\approx0{,}6944444$, $R_{2,1}=\\frac{1747}{2520}\\approx0{,}6932540$ et $R_{2,2}=\\frac{4367}{6300}\\approx0{,}6931746$. Avec cinq évaluations de $f$, l'erreur passe de $3{,}9\\cdot10^{-3}$ ($T_4$) à $2{,}7\\cdot10^{-5}$ ($R_{2,2}$).",
+      "contre_exemple": "- **Mauvais facteur** : pour les rectangles à gauche, l'erreur commence en $h$. Pour $f(x)=x$ sur $[0,1]$, $R_1=0$ et $R_2=\\frac14$ : $\\frac{4R_2-R_1}3=\\frac13$ est faux, alors que $2R_2-R_1=\\frac12$ est exact.\n- **Fonction périodique** : pour $f=\\cos$ sur $[0,2\\pi]$, $T_1=2\\pi$ et $T_2=0$ (exact), mais $\\frac{4T_2-T_1}3=-\\frac{2\\pi}3$ : l'extrapolation dégrade le résultat, car $T_n$ n'a pas d'erreur en $h^2$ à éliminer.\n- **Pas de développement en $h^2$** : pour $f(t)=\\sqrt t$ sur $[0,1]$, on constate numériquement que, quand $n$ double, l'erreur de $T_n$ et celle de $\\frac{4T_{2n}-T_n}3$ sont toutes deux divisées par environ $2^{3/2}\\approx2{,}8$ : l'extrapolation ne change pas l'ordre.\n- **Pas $\\frac h3$ avec le facteur $2^p$** : pour $A(h)=A+h^2$, $\\frac{4A\\left(\\frac h3\\right)-A(h)}3=A-\\frac5{27}h^2$.",
+      "affirmations": [
+        {
+          "texte": "$\\frac{4T_{2n}-T_n}3=S_n$ pour toute fonction $f$.",
+          "vrai": true,
+          "justification": "$T_{2n}=\\frac{T_n+M_n}2$, donc $\\frac{4T_{2n}-T_n}3=\\frac{T_n+2M_n}3$."
+        },
+        {
+          "texte": "Pour appliquer la méthode de Romberg, il faut calculer les coefficients $c_j$ du développement de l'erreur.",
+          "vrai": false,
+          "contre_exemple": "Les $c_j$ sont éliminés sans être connus : $R_{1,1}=\\frac{4T_2-T_1}3$ ne dépend que de $T_1$ et $T_2$ ; pour $\\frac1{1+t}$ sur $[0,1]$, $R_{1,1}=\\frac{25}{36}$."
+        },
+        {
+          "texte": "Pour $f$ de classe $C^\\infty$ et $2\\pi$-périodique, l'extrapolation $\\frac{4T_{2n}-T_n}3$ sur $[0,2\\pi]$ est toujours plus précise que $T_{2n}$.",
+          "vrai": false,
+          "contre_exemple": "$f=\\cos$, $n=1$ : $T_2=0$ est exact, $\\frac{4T_2-T_1}3=-\\frac{2\\pi}3$."
+        },
+        {
+          "texte": "Pour $f$ de classe $C^4$ avec $f'(b)\\neq f'(a)$, $T_n-\\int_a^bf\\sim\\frac{h^2}{12}\\left(f'(b)-f'(a)\\right)$.",
+          "vrai": true,
+          "justification": "Le reste est un $O(h^4)$, négligeable devant $h^2$."
+        },
+        {
+          "texte": "Pour les rectangles à gauche, $2R_{2n}-R_n=M_n$.",
+          "vrai": true,
+          "justification": "$R_{2n}=\\frac{R_n+M_n}2$ : la subdivision de pas $\\frac h2$ ajoute les milieux."
+        }
+      ],
+      "prerequis": [
+        "num-l3-integration-trapezes",
+        "num-l3-integration-simpson",
+        "num-l3-integration-rectangles",
+        "ar-l1-taylor-lagrange",
+        "ar-l2-asymptotique-comparaison",
+        "ar-l2-asymptotique-vitesse"
+      ]
+    }
+  ]
+}

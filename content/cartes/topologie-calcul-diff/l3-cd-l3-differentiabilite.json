@@ -1,0 +1,627 @@
+{
+  "cartes": [
+    {
+      "id": "cd-l3-differentiabilite-differentielle",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Dérivée selon un vecteur et différentielle",
+      "recto": "Définir la dérivée selon un vecteur et la différentielle en un point, et énoncer les liens entre différentiabilité, continuité et dérivées selon les vecteurs, réciproques comprises.",
+      "cours": "Pour une fonction d'une variable, être dérivable en $a$, c'est s'approcher au premier ordre par une fonction affine. En plusieurs variables, deux idées se présentent. La **dérivée selon un vecteur** $v$ regarde $f$ sur la seule droite $a+\\mathbb{R}v$ : c'est la dérivée en $0$ de $t\\mapsto f(a+tv)$. La **différentielle** demande beaucoup plus : une application linéaire $L$ telle que $f(a+h)=f(a)+L(h)+o(\\|h\\|)$, l'approximation étant uniforme dans toutes les directions à la fois. En dimension finie, toutes les normes sont équivalentes, donc la notion ne dépend pas des normes choisies.\n\nSi $f$ est différentiable en $a$, elle est continue en $a$, elle admet une dérivée selon tout vecteur, et $D_vf(a)=df(a)(v)$ : en particulier $v\\mapsto D_vf(a)$ est **linéaire**. Pour $E=\\mathbb{R}$, on retrouve la dérivée usuelle : $df(a)(h)=h\\,f'(a)$.\n\nMéthode. Pour montrer que $f$ est différentiable en $a$ : deviner $L$ (par les dérivées selon les vecteurs de base, ou en développant $f(a+h)$), puis montrer que $\\frac{\\|f(a+h)-f(a)-L(h)\\|}{\\|h\\|}$ tend vers $0$, par une majoration ou en coordonnées polaires. Pour montrer qu'elle ne l'est pas : trouver une discontinuité en $a$, un vecteur $v$ selon lequel la dérivée n'existe pas, ou constater que $v\\mapsto D_vf(a)$ n'est pas linéaire.\n\nExemples à connaître : une application linéaire $u$ est sa propre différentielle en tout point ; $d\\big(\\|\\cdot\\|_2^2\\big)(a)(h)=2\\langle a,h\\rangle$ ; sur les matrices, la différentielle de $M\\mapsto M^2$ en $M$ est $H\\mapsto MH+HM$, et non $H\\mapsto2MH$.\n\nPièges : l'existence de toutes les dérivées selon les vecteurs n'entraîne même pas la continuité ; la continuité jointe à l'existence de toutes ces dérivées n'entraîne pas la différentiabilité ; la définition demande un point **intérieur** au domaine (ici un ouvert), sans quoi la différentielle peut ne pas être unique.",
+      "hypotheses": [
+        "$U$ est un ouvert de $E$ et $a\\in U$.",
+        "$f:U\\to F$ est différentiable en $a$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ admet en $a$ une dérivée selon tout vecteur $v\\in E$ (à la place de : $f$ différentiable en $a$).",
+        "$f$ est continue en $a$ et admet en $a$ des dérivées partielles (à la place de : $f$ différentiable en $a$).",
+        "$U$ est une partie quelconque de $E$ contenant $a$, la définition de la différentiabilité étant écrite pour les $h$ tels que $a+h\\in U$ (à la place de : $U$ ouvert)."
+      ],
+      "enonce": "Soient $E$ et $F$ deux espaces vectoriels normés de dimension finie (par exemple $\\mathbb{R}^n$ et $\\mathbb{R}^p$), $U$ un ouvert de $E$, $a\\in U$ et $f:U\\to F$.\n\n- Pour $v\\in E$, $f$ admet une **dérivée en $a$ selon $v$** si $\\frac{f(a+tv)-f(a)}{t}$ a une limite quand $t$ tend vers $0$ ($t\\neq0$) ; on la note $D_vf(a)$. Pour $E=\\mathbb{R}^n$ et $v=e_j$, c'est la dérivée partielle $\\frac{\\partial f}{\\partial x_j}(a)$.\n- $f$ est **différentiable en $a$** s'il existe une application linéaire $L:E\\to F$ telle que $f(a+h)=f(a)+L(h)+o(\\|h\\|)$ quand $h$ tend vers $0$, c'est-à-dire $\\frac{\\|f(a+h)-f(a)-L(h)\\|}{\\|h\\|}\\to0$. Cette notion ne dépend pas des normes choisies.\n\n**Théorème.** Si $f$ est différentiable en $a$ :\n- l'application $L$ est unique : c'est la **différentielle** de $f$ en $a$, notée $df(a)$ ;\n- $f$ est continue en $a$ ;\n- pour tout $v\\in E$, $f$ admet une dérivée en $a$ selon $v$, et $D_vf(a)=df(a)(v)$ ; en particulier $v\\mapsto D_vf(a)$ est linéaire.\n\nLes réciproques sont fausses : une fonction peut admettre en $a$ une dérivée selon tout vecteur sans être continue en $a$, ou être continue en $a$ et admettre une dérivée selon tout vecteur sans être différentiable en $a$.",
+      "enonce_trous": "Soient $U$ un ouvert d'un espace vectoriel normé $E$ de dimension finie, $a\\in U$ et $f:U\\to F$ différentiable en $a$. Alors {{1}} et, pour tout $v\\in E$, la dérivée de $f$ en $a$ selon $v$ existe et vaut {{2}}. La réciproque est fausse : il existe des fonctions qui admettent en $a$ une dérivée selon tout vecteur et {{3}}.",
+      "trous": [
+        {
+          "reponse": "$f$ est continue en $a$",
+          "leurres": [
+            "$f$ est lipschitzienne sur une boule de centre $a$",
+            "$f$ est différentiable en tout point d'une boule de centre $a$",
+            "$f$ est de classe $\\mathcal{C}^1$ sur une boule de centre $a$"
+          ]
+        },
+        {
+          "reponse": "$df(a)(v)$",
+          "leurres": [
+            "$|||df(a)|||\\,\\|v\\|$",
+            "$f(a)+df(a)(v)$",
+            "$df(a)\\left(\\frac{v}{\\|v\\|}\\right)$"
+          ]
+        },
+        {
+          "reponse": "qui ne sont pas continues en $a$",
+          "leurres": [
+            "qui n'admettent pas de dérivées partielles en $a$",
+            "dont la restriction à une droite passant par $a$ n'est pas continue en $a$",
+            "dont la dérivée selon $2v$ n'est pas le double de la dérivée selon $v$"
+          ]
+        }
+      ],
+      "demo": "Écrivons $f(a+h)=f(a)+L(h)+\\|h\\|\\,\\varepsilon(h)$, avec $\\varepsilon(h)\\to0$ quand $h\\to0$. Comme $U$ est ouvert, il contient une boule $B(a,\\rho)$, et $a+tv\\in U$ dès que $|t|\\,\\|v\\|<\\rho$.\n\n**Unicité.** Si $L$ et $L'$ conviennent, $(L-L')(h)=\\|h\\|\\,\\eta(h)$ avec $\\eta(h)\\to0$. Pour $v\\neq0$ fixé et $t>0$ petit, la linéarité donne $(L-L')(v)=\\frac{(L-L')(tv)}{t}=\\|v\\|\\,\\eta(tv)$, qui tend vers $0$ quand $t\\to0^+$ ; donc $(L-L')(v)=0$ pour tout $v$, et $L=L'$.\n\n**Continuité.** En dimension finie, l'application linéaire $L$ est continue, donc $L(h)\\to0$ ; de plus $\\|h\\|\\,\\varepsilon(h)\\to0$. Ainsi $f(a+h)\\to f(a)$.\n\n**Dérivées selon les vecteurs.** Pour $v=0$, le taux d'accroissement est nul et $D_0f(a)=0=L(0)$. Pour $v\\neq0$ et $t\\neq0$ petit, $$\\frac{f(a+tv)-f(a)}{t}=L(v)+\\frac{|t|}{t}\\,\\|v\\|\\,\\varepsilon(tv),$$ et le dernier terme tend vers $0$ quand $t\\to0$, puisque $tv\\to0$. Donc $D_vf(a)$ existe et vaut $L(v)=df(a)(v)$, fonction linéaire de $v$.\n\n**Indépendance vis-à-vis des normes.** Si $N$ et $N'$ sont deux normes sur $E$ (resp. $F$), il existe des constantes $c,C>0$ telles que $cN\\le N'\\le CN$ (équivalence des normes en dimension finie) ; le quotient qui définit la différentiabilité est alors multiplié par un facteur borné et minoré, et sa limite nulle ne change pas.",
+      "exemple": "- Pour $f(x,y)=x^2y$ et $a=(1,2)$ : $f(1+h_1,2+h_2)=2+4h_1+h_2+\\big(2h_1^2+2h_1h_2+h_1^2h_2\\big)$, et le terme entre parenthèses est majoré par $5\\|h\\|_\\infty^2$ pour $\\|h\\|_\\infty\\le1$. Donc $df(1,2)(h)=4h_1+h_2$ et, par exemple, $D_{(1,1)}f(1,2)=5$.\n- Sur $\\mathcal{M}_n(\\mathbb{R})$ muni d'une norme sous-multiplicative, $(M+H)^2=M^2+MH+HM+H^2$ et $\\|H^2\\|\\le\\|H\\|^2$ : la différentielle de $M\\mapsto M^2$ en $M$ est $H\\mapsto MH+HM$.\n- Pour la norme euclidienne, $\\|a+h\\|^2=\\|a\\|^2+2\\langle a,h\\rangle+\\|h\\|^2$ : la différentielle de $x\\mapsto\\|x\\|^2$ en $a$ est $h\\mapsto2\\langle a,h\\rangle$.",
+      "contre_exemple": "- **Dérivées selon tout vecteur, sans continuité.** $f(x,y)=\\frac{xy^2}{x^2+y^4}$ pour $(x,y)\\neq(0,0)$, $f(0,0)=0$. Pour $v=(v_1,v_2)$ et $t\\neq0$ : $\\frac{f(tv)}{t}=\\frac{v_1v_2^2}{v_1^2+t^2v_2^4}$, qui tend vers $\\frac{v_2^2}{v_1}$ si $v_1\\neq0$ et vaut $0$ si $v_1=0$. Pourtant $f(y^2,y)=\\frac12$ pour $y\\neq0$ : $f$ n'est pas continue en $(0,0)$, donc pas différentiable.\n- **Continue, avec dérivées selon tout vecteur, sans différentiabilité.** $f(x,y)=\\frac{x^3}{x^2+y^2}$, $f(0,0)=0$ : $|f(x,y)|\\le|x|$, donc $f$ est continue ; $f(tv)=tf(v)$, donc $D_vf(0,0)=f(v)$. Or $D_{(1,0)}f(0,0)=1$, $D_{(0,1)}f(0,0)=0$ et $D_{(1,1)}f(0,0)=\\frac12\\neq1+0$ : $v\\mapsto D_vf(0,0)$ n'est pas linéaire.\n- **Continue, avec dérivées partielles, sans dérivée selon $(1,1)$.** $f(x,y)=\\frac{xy}{\\sqrt{x^2+y^2}}$, $f(0,0)=0$ : $|f(x,y)|\\le\\frac12\\sqrt{x^2+y^2}$, $f(t,0)=f(0,t)=0$, mais $\\frac{f(t,t)}{t}=\\frac{|t|}{\\sqrt2\\,t}$ vaut $\\pm\\frac{1}{\\sqrt2}$ selon le signe de $t$.\n- **Hors d'un ouvert.** Sur $A=\\mathbb{R}\\times\\{0\\}$, la fonction nulle vérifie $0=0+L(h)+o(\\|h\\|)$ pour $a+h\\in A$ avec $L(h)=c\\,h_2$, quel que soit le réel $c$ : pas d'unicité.",
+      "affirmations": [
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ admet en $a$ une dérivée selon tout vecteur, alors $f$ est continue en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{xy^2}{x^2+y^4}$, $f(0,0)=0$ : $D_vf(0,0)$ existe pour tout $v$ (elle vaut $\\frac{v_2^2}{v_1}$ si $v_1\\neq0$, $0$ sinon), mais $f(y^2,y)=\\frac12$ pour $y\\neq0$."
+        },
+        {
+          "texte": "Si $f$ est différentiable en $a$, alors $D_{u+v}f(a)=D_uf(a)+D_vf(a)$ pour tous $u,v\\in E$.",
+          "vrai": true,
+          "justification": "$D_wf(a)=df(a)(w)$ pour tout $w$, et $df(a)$ est linéaire."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est continue en $0$, admet en $0$ une dérivée selon tout vecteur et si $v\\mapsto D_vf(0)$ est linéaire, alors $f$ est différentiable en $0$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{x^4y}{x^6+y^2}$, $f(0,0)=0$ : $|f|\\le\\frac{|x|}{2}$ car $x^6+y^2\\ge2|x^3y|$, et $\\frac{f(tv)}{t}=\\frac{t^2v_1^4v_2}{t^4v_1^6+v_2^2}\\to0$, donc $D_vf(0)=0$ pour tout $v$ ; mais $f(x,x^3)=\\frac x2$, qui n'est pas un $o\\big(\\|(x,x^3)\\|\\big)$."
+        },
+        {
+          "texte": "Si $f$ est différentiable en $a$, alors la dérivée de $f$ en $a$ selon $-v$ est l'opposée de la dérivée selon $v$.",
+          "vrai": true,
+          "justification": "$D_{-v}f(a)=df(a)(-v)=-df(a)(v)=-D_vf(a)$."
+        }
+      ],
+      "prerequis": [
+        "top-l2-evn-continuite-lineaire",
+        "top-l2-evn-equivalence-dim-finie",
+        "ar-l1-derivabilite-continuite"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-jacobienne",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Matrice jacobienne",
+      "recto": "Exprimer la différentielle d'une application de $\\mathbb{R}^n$ dans $\\mathbb{R}^p$ à l'aide de ses dérivées partielles : composantes, matrice jacobienne, déterminant jacobien.",
+      "cours": "En coordonnées, une différentielle se lit sur les **dérivées partielles** : la dérivée partielle $\\frac{\\partial f}{\\partial x_j}(a)$ est la dérivée de la fonction d'une variable obtenue en figeant toutes les coordonnées sauf la $j$-ième ; c'est la dérivée de $f$ selon le vecteur $e_j$. Si $f$ est différentiable en $a$, la linéarité donne $df(a)(h)=\\sum_j h_j\\frac{\\partial f}{\\partial x_j}(a)$ : la différentielle est entièrement déterminée par les $n$ dérivées partielles.\n\nLa matrice de $df(a)$ dans les bases canoniques est la **matrice jacobienne** $J_f(a)$ : la ligne $i$ correspond à la composante $f_i$, la colonne $j$ à la variable $x_j$. Elle a donc $p$ lignes et $n$ colonnes, et $df(a)(h)=J_f(a)h$ en écrivant $h$ en colonne. Pour $n=p$, son déterminant est le **déterminant jacobien**, qui mesure le facteur de dilatation des aires et volumes (formule de changement de variables des intégrales multiples). Une application à valeurs dans $\\mathbb{R}^p$ est différentiable si et seulement si chacune de ses composantes l'est : on raisonne composante par composante.\n\nMéthode. Calculer chaque dérivée partielle en considérant les autres variables comme des constantes, ranger les dérivées de $f_i$ sur la ligne $i$, puis justifier la différentiabilité, le plus souvent par le théorème sur la classe $\\mathcal{C}^1$ (carte suivante).\n\nPièges : la matrice jacobienne peut exister sans que $f$ soit différentiable, ni même continue (exemple $\\frac{xy}{x^2+y^2}$) ; ne pas transposer la matrice (lignes = composantes) ; pour $p=1$, la jacobienne est une ligne, dont la transposée est le gradient.",
+      "hypotheses": [
+        "$U$ est un ouvert de $\\mathbb{R}^n$ et $a\\in U$.",
+        "$f=(f_1,\\dots,f_p):U\\to\\mathbb{R}^p$ est différentiable en $a$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ admet en $a$ des dérivées partielles par rapport à chaque variable (à la place de : $f$ différentiable en $a$).",
+        "$f$ admet en $a$ une dérivée selon tout vecteur (à la place de : $f$ différentiable en $a$).",
+        "$f$ est continue en $a$ et admet en $a$ des dérivées partielles (à la place de : $f$ différentiable en $a$)."
+      ],
+      "enonce": "Soient $U$ un ouvert de $\\mathbb{R}^n$, $a\\in U$ et $f=(f_1,\\dots,f_p):U\\to\\mathbb{R}^p$. La **dérivée partielle** de $f$ en $a$ par rapport à $x_j$ est, si elle existe, $$\\frac{\\partial f}{\\partial x_j}(a)=\\lim_{t\\to0}\\frac{f(a+te_j)-f(a)}{t}=D_{e_j}f(a),$$ dérivée en $a_j$ de l'application partielle $x_j\\mapsto f(a_1,\\dots,a_{j-1},x_j,a_{j+1},\\dots,a_n)$.\n\n**Théorème.**\n- $f$ est différentiable en $a$ si et seulement si chacune de ses composantes $f_i$ l'est, et alors $df(a)(h)=\\big(df_1(a)(h),\\dots,df_p(a)(h)\\big)$.\n- Si $f$ est différentiable en $a$, ses dérivées partielles en $a$ existent, $df(a)(h)=\\sum_{j=1}^nh_j\\frac{\\partial f}{\\partial x_j}(a)$, et la matrice de $df(a)$ dans les bases canoniques est la **matrice jacobienne** $$J_f(a)=\\left(\\frac{\\partial f_i}{\\partial x_j}(a)\\right)_{1\\le i\\le p,\\ 1\\le j\\le n}\\in\\mathcal{M}_{p,n}(\\mathbb{R}),$$ c'est-à-dire $df(a)(h)=J_f(a)h$ pour tout $h\\in\\mathbb{R}^n$ écrit en colonne.\n- Pour $n=p$, $\\det J_f(a)$ est le **déterminant jacobien** de $f$ en $a$.\n\nL'existence des dérivées partielles n'entraîne pas la différentiabilité.",
+      "enonce_trous": "Soit $f=(f_1,\\dots,f_p):U\\to\\mathbb{R}^p$ différentiable en un point $a$ d'un ouvert $U$ de $\\mathbb{R}^n$. La matrice de $df(a)$ dans les bases canoniques est la matrice jacobienne $J_f(a)$, qui a {{1}}, et dont le coefficient de la ligne $i$ et de la colonne $j$ est {{2}}. En revanche, pour $n\\ge2$, une application qui admet en un point toutes ses dérivées partielles {{3}}.",
+      "trous": [
+        {
+          "reponse": "$p$ lignes et $n$ colonnes",
+          "leurres": [
+            "$n$ lignes et $p$ colonnes",
+            "$n$ lignes et $n$ colonnes",
+            "$p$ lignes et $p$ colonnes"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\partial f_i}{\\partial x_j}(a)$",
+          "leurres": [
+            "$\\frac{\\partial f_j}{\\partial x_i}(a)$",
+            "$\\frac{\\partial f_i}{\\partial x_i}(a)$",
+            "$\\frac{\\partial (f_1+\\dots+f_p)}{\\partial x_j}(a)$"
+          ]
+        },
+        {
+          "reponse": "n'est pas forcément continue en ce point",
+          "leurres": [
+            "est différentiable en ce point",
+            "est continue en ce point",
+            "admet en ce point une dérivée selon tout vecteur"
+          ]
+        }
+      ],
+      "demo": "**Composantes.** Munissons $\\mathbb{R}^p$ de la norme $\\|\\cdot\\|_\\infty$ (le choix est indifférent en dimension finie). Pour $L=(L_1,\\dots,L_p)$ : $$\\frac{\\|f(a+h)-f(a)-L(h)\\|_\\infty}{\\|h\\|}=\\max_{1\\le i\\le p}\\frac{|f_i(a+h)-f_i(a)-L_i(h)|}{\\|h\\|},$$ qui tend vers $0$ si et seulement si chacun des $p$ quotients tend vers $0$ ; et $L$ est linéaire si et seulement si chaque $L_i$ l'est. Donc $f$ est différentiable en $a$, de différentielle $L$, si et seulement si chaque $f_i$ l'est, de différentielle $L_i$.\n\n**Dérivées partielles et matrice.** Si $f$ est différentiable en $a$, elle admet une dérivée en $a$ selon tout vecteur, et $D_{e_j}f(a)=df(a)(e_j)$ : la dérivée partielle $\\frac{\\partial f}{\\partial x_j}(a)$ existe et vaut $df(a)(e_j)$. Par linéarité, $df(a)(h)=df(a)\\big(\\sum_jh_je_j\\big)=\\sum_jh_j\\frac{\\partial f}{\\partial x_j}(a)$. La colonne $j$ de la matrice de $df(a)$ est le vecteur $df(a)(e_j)=\\frac{\\partial f}{\\partial x_j}(a)$, dont la $i$-ème coordonnée est $\\frac{\\partial f_i}{\\partial x_j}(a)$ : c'est $J_f(a)$, matrice à $p$ lignes et $n$ colonnes.\n\n**Réciproque fausse.** Voir les contre-exemples : les dérivées partielles ne voient $f$ que sur les $n$ droites $a+\\mathbb{R}e_j$.",
+      "exemple": "- Pour $f(x,y)=(x^2y,\\ x-y^2,\\ xy)$, de $\\mathbb{R}^2$ dans $\\mathbb{R}^3$ : $J_f(x,y)=\\begin{pmatrix}2xy&x^2\\\\1&-2y\\\\y&x\\end{pmatrix}$, donc $J_f(1,2)=\\begin{pmatrix}4&1\\\\1&-4\\\\2&1\\end{pmatrix}$ et $df(1,2)(1,1)=(5,-3,3)$.\n- Coordonnées polaires : $\\varphi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$ a pour jacobienne $\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{pmatrix}$, de déterminant $r$.\n- Pour $p=1$, $f(x,y,z)=xyz$ : $J_f(x,y,z)=\\begin{pmatrix}yz&xz&xy\\end{pmatrix}$, matrice ligne.\n\nCes applications ont des dérivées partielles continues, donc sont différentiables (carte sur la classe $\\mathcal{C}^1$).",
+      "contre_exemple": "- **Jacobienne sans continuité.** $f(x,y)=\\frac{xy}{x^2+y^2}$, $f(0,0)=0$ : $f(t,0)=f(0,t)=0$, donc les deux dérivées partielles en $(0,0)$ existent et sont nulles ; mais $f(t,t)=\\frac12$ pour $t\\neq0$, donc $f$ n'est pas continue en $(0,0)$, ni différentiable.\n- **Dérivées selon tout vecteur, sans formule $J_f(a)v$.** $f(x,y)=\\frac{x^3}{x^2+y^2}$, $f(0,0)=0$ : les dérivées partielles en $(0,0)$ valent $1$ et $0$, mais $D_{(1,1)}f(0,0)=\\lim\\frac{f(t,t)}{t}=\\frac12\\neq1\\times1+0\\times1$.\n- **Continue, avec dérivées partielles, non différentiable.** $f(x,y)=\\frac{xy}{\\sqrt{x^2+y^2}}$, $f(0,0)=0$ : $|f|\\le\\frac12\\sqrt{x^2+y^2}$, les dérivées partielles en $(0,0)$ sont nulles, mais $\\frac{f(t,t)}{t}=\\frac{|t|}{\\sqrt2\\,t}$ n'a pas de limite en $0$.\n- **Ne pas transposer.** Pour $f(x,y)=(y,0)$, $J_f=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ ; la transposée $\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$ est la jacobienne de $(x,y)\\mapsto(0,x)$.",
+      "affirmations": [
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ admet des dérivées partielles en $a$, alors $f$ est continue en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{xy}{x^2+y^2}$, $f(0,0)=0$ : ses dérivées partielles en $(0,0)$ sont nulles, mais $f(t,t)=\\frac12$ pour $t\\neq0$."
+        },
+        {
+          "texte": "Si $f:U\\to\\mathbb{R}^p$ est différentiable en $a$, alors $D_vf(a)=J_f(a)v$ pour tout $v\\in\\mathbb{R}^n$.",
+          "vrai": true,
+          "justification": "$D_vf(a)=df(a)(v)$, et $J_f(a)$ est la matrice de $df(a)$."
+        },
+        {
+          "texte": "La matrice jacobienne en tout point de l'application linéaire $x\\mapsto Ax$, avec $A\\in\\mathcal{M}_{p,n}(\\mathbb{R})$, est la transposée de $A$.",
+          "vrai": false,
+          "contre_exemple": "Une application linéaire est sa propre différentielle, donc sa jacobienne est $A$. Pour $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, $x\\mapsto Ax=(x_2,0)$ a pour jacobienne $A$, différente de sa transposée."
+        },
+        {
+          "texte": "Une application $f:U\\to\\mathbb{R}^p$ est différentiable en $a$ si et seulement si chacune de ses composantes l'est.",
+          "vrai": true,
+          "justification": "Pour la norme $\\|\\cdot\\|_\\infty$ à l'arrivée, le reste de $f$ est un $o(\\|h\\|)$ si et seulement si le reste de chaque composante l'est."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-differentielle",
+        "al-l1-applications-matrice"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-classe-c1",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Classe $\\mathcal{C}^1$ et dérivées partielles continues",
+      "recto": "Énoncer le théorème qui déduit la différentiabilité de la continuité des dérivées partielles, et définir les applications de classe $\\mathcal{C}^1$ sur un ouvert.",
+      "cours": "Calculer une différentielle par la définition est lourd ; le théorème de cette carte donne un critère pratique : si les dérivées partielles existent au voisinage de $a$ et sont **continues en $a$**, alors $f$ est différentiable en $a$, et sa différentielle se lit sur la matrice jacobienne. L'idée de la preuve : on passe de $a$ à $a+h$ en modifiant une coordonnée à la fois, et l'on applique sur chaque morceau l'égalité des accroissements finis d'une variable ; la continuité des dérivées partielles en $a$ permet de remplacer les points intermédiaires par $a$.\n\nUne application est **de classe $\\mathcal{C}^1$** sur un ouvert $U$ si ses dérivées partielles existent et sont continues sur $U$ ; il revient au même de dire qu'elle est différentiable en tout point et que $x\\mapsto df(x)$ est continue. Les fonctions polynomiales, rationnelles (là où le dénominateur ne s'annule pas), et plus généralement les fonctions construites à partir des fonctions usuelles par sommes, produits, quotients et compositions sont de classe $\\mathcal{C}^1$ sur les ouverts où elles sont définies par ces formules.\n\nMéthode, pour une fonction définie par une formule hors d'un point et prolongée en ce point (souvent l'origine) : elle est $\\mathcal{C}^1$ hors du point par les théorèmes généraux ; au point, calculer les dérivées partielles par les taux d'accroissement, puis étudier la limite des dérivées partielles, par exemple en majorant $|x|$ et $|y|$ par $r=\\sqrt{x^2+y^2}$. Pour une fonction homogène de degré $d$ (c'est-à-dire $f(tx)=t^df(x)$ pour $t>0$), de classe $\\mathcal{C}^1$ hors de l'origine et prolongée par $0$ en l'origine : elle est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ dès que $d>1$, car ses dérivées partielles sont homogènes de degré $d-1>0$.\n\nPièges : la réciproque est fausse (une fonction peut être différentiable sans être $\\mathcal{C}^1$) ; des dérivées partielles qui existent partout, même bornées, ne suffisent pas ; ce qui compte est leur continuité au point étudié.",
+      "hypotheses": [
+        "$U$ est un ouvert de $\\mathbb{R}^n$ et $a\\in U$.",
+        "Les dérivées partielles de $f:U\\to\\mathbb{R}^p$ existent en tout point de $U$.",
+        "Les dérivées partielles de $f$ sont continues en $a$."
+      ],
+      "hypotheses_pieges": [
+        "Les dérivées partielles de $f$ sont bornées au voisinage de $a$ (à la place de : continues en $a$).",
+        "Les dérivées partielles de $f$ sont continues sur $U\\setminus\\{a\\}$ (à la place de : continues en $a$).",
+        "Les applications partielles $x_j\\mapsto f(a_1,\\dots,x_j,\\dots,a_n)$ sont de classe $\\mathcal{C}^1$ (à la place de : les dérivées partielles existent sur $U$ et sont continues en $a$)."
+      ],
+      "enonce": "Soient $U$ un ouvert de $\\mathbb{R}^n$, $a\\in U$ et $f:U\\to\\mathbb{R}^p$.\n\n**Théorème.** Si les dérivées partielles $\\frac{\\partial f}{\\partial x_1},\\dots,\\frac{\\partial f}{\\partial x_n}$ existent en tout point de $U$ et sont continues en $a$, alors $f$ est différentiable en $a$, et $df(a)(h)=\\sum_{j=1}^nh_j\\frac{\\partial f}{\\partial x_j}(a)$.\n\n**Classe $\\mathcal{C}^1$.** $f$ est **de classe $\\mathcal{C}^1$ sur $U$** si ses dérivées partielles existent et sont continues sur $U$. Il revient au même de dire que $f$ est différentiable en tout point de $U$ et que l'application $x\\mapsto df(x)$, de $U$ dans $\\mathcal{L}(\\mathbb{R}^n,\\mathbb{R}^p)$, est continue. Une application de classe $\\mathcal{C}^1$ sur $U$ est donc différentiable, et continue, sur $U$.\n\nLa réciproque est fausse : une application différentiable sur $U$ n'est pas forcément de classe $\\mathcal{C}^1$.",
+      "enonce_trous": "Soient $U$ un ouvert de $\\mathbb{R}^n$, $a\\in U$ et $f:U\\to\\mathbb{R}^p$. Si les dérivées partielles de $f$ existent sur $U$ et sont {{1}}, alors $f$ est différentiable en $a$. L'application $f$ est de classe $\\mathcal{C}^1$ sur $U$ si et seulement si elle est différentiable sur $U$ et si l'application {{2}} est continue sur $U$. Une application différentiable sur $U$ {{3}}.",
+      "trous": [
+        {
+          "reponse": "continues en $a$",
+          "leurres": [
+            "bornées au voisinage de $a$",
+            "continues sur $U\\setminus\\{a\\}$",
+            "nulles en $a$"
+          ]
+        },
+        {
+          "reponse": "$x\\mapsto df(x)$, de $U$ dans $\\mathcal{L}(\\mathbb{R}^n,\\mathbb{R}^p)$,",
+          "leurres": [
+            "$x\\mapsto f(x)$",
+            "$x\\mapsto df(x)(e_1)$",
+            "$x\\mapsto df(x)(e_1+\\dots+e_n)$"
+          ]
+        },
+        {
+          "reponse": "n'est pas forcément de classe $\\mathcal{C}^1$ sur $U$",
+          "leurres": [
+            "est de classe $\\mathcal{C}^1$ sur $U$",
+            "a des dérivées partielles continues sur $U$",
+            "a des dérivées partielles bornées au voisinage de chaque point de $U$"
+          ]
+        }
+      ],
+      "demo": "On raisonne composante par composante : on peut supposer $p=1$. Soit $r>0$ tel que la boule $B=\\{x:\\|x-a\\|_\\infty<r\\}$ soit incluse dans $U$ ; elle est convexe et « pavé ». Pour $h$ tel que $\\|h\\|_\\infty<r$, posons $a_0=a$ et $a_k=a+h_1e_1+\\dots+h_ke_k$ ($1\\le k\\le n$) : tous ces points sont dans $B$, et $a_n=a+h$. Alors $$f(a+h)-f(a)=\\sum_{k=1}^n\\big(f(a_k)-f(a_{k-1})\\big).$$ Sur le segment $[a_{k-1},a_k]\\subset B$, seule la $k$-ième coordonnée varie : la fonction $s\\mapsto f(a_{k-1}+se_k)$ est dérivable de dérivée $\\frac{\\partial f}{\\partial x_k}(a_{k-1}+se_k)$, car les dérivées partielles existent sur $U$. L'égalité des accroissements finis (fonction réelle d'une variable) fournit un point $c_k$ de ce segment tel que $f(a_k)-f(a_{k-1})=h_k\\frac{\\partial f}{\\partial x_k}(c_k)$ (si $h_k=0$, les deux membres sont nuls). Donc $$\\Big|f(a+h)-f(a)-\\sum_kh_k\\frac{\\partial f}{\\partial x_k}(a)\\Big|\\le\\|h\\|_\\infty\\sum_{k=1}^n\\Big|\\frac{\\partial f}{\\partial x_k}(c_k)-\\frac{\\partial f}{\\partial x_k}(a)\\Big|.$$ Comme $\\|c_k-a\\|_\\infty\\le\\|h\\|_\\infty$, les $c_k$ tendent vers $a$ quand $h\\to0$, et la continuité des dérivées partielles en $a$ fait tendre la somme de droite vers $0$ : le reste est négligeable devant $\\|h\\|_\\infty$, et $h\\mapsto\\sum_kh_k\\frac{\\partial f}{\\partial x_k}(a)$ est linéaire.\n\n**Caractérisation.** Si les dérivées partielles sont continues sur $U$, $f$ est différentiable en tout point, et la matrice de $df(x)$ est $J_f(x)$, dont les coefficients dépendent continûment de $x$ ; en dimension finie, une application à valeurs dans $\\mathcal{L}(\\mathbb{R}^n,\\mathbb{R}^p)\\simeq\\mathcal{M}_{p,n}(\\mathbb{R})$ est continue si et seulement si ses coefficients le sont (équivalence des normes). Réciproquement, si $f$ est différentiable sur $U$ et $x\\mapsto df(x)$ continue, alors $\\frac{\\partial f}{\\partial x_j}(x)=df(x)(e_j)$ est continue, comme composée de $x\\mapsto df(x)$ et de l'application linéaire $L\\mapsto L(e_j)$.",
+      "exemple": "- $f(x,y)=xe^{xy}$ : $\\frac{\\partial f}{\\partial x}=(1+xy)e^{xy}$ et $\\frac{\\partial f}{\\partial y}=x^2e^{xy}$ sont continues sur $\\mathbb{R}^2$, donc $f$ est de classe $\\mathcal{C}^1$, et $df(1,0)(h)=h_1+h_2$.\n- $f(x,y)=\\frac{x^2y^2}{x^2+y^2}$, $f(0,0)=0$ : hors de l'origine, $\\frac{\\partial f}{\\partial x}=\\frac{2xy^4}{(x^2+y^2)^2}$, majorée en valeur absolue par $2|x|$ ; en $(0,0)$, $f(t,0)=0$ donne $\\frac{\\partial f}{\\partial x}(0,0)=0$. La dérivée partielle est donc continue en $(0,0)$, de même pour $\\frac{\\partial f}{\\partial y}$ par symétrie : $f$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$.",
+      "contre_exemple": "- **Différentiable sans être de classe $\\mathcal{C}^1$.** $f(x,y)=(x^2+y^2)\\sin\\frac{1}{\\sqrt{x^2+y^2}}$, $f(0,0)=0$ : $|f(h)|\\le\\|h\\|_2^2$, donc $f$ est différentiable en $(0,0)$ et $df(0,0)=0$ ; elle l'est ailleurs par les théorèmes généraux. Mais pour $x>0$, $\\frac{\\partial f}{\\partial x}(x,0)=2x\\sin\\frac1x-\\cos\\frac1x$ vaut $-1$ en $x=\\frac1{2k\\pi}$ et $1$ en $x=\\frac1{(2k+1)\\pi}$ : pas de limite en $0$.\n- **Dérivées partielles partout, continues hors de l'origine.** $f(x,y)=\\frac{xy}{x^2+y^2}$, $f(0,0)=0$ : ses dérivées partielles existent partout (nulles en $(0,0)$), sont continues sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$, et $f$ n'est pas continue en $(0,0)$ ; ses applications partielles en $(0,0)$ sont nulles, donc de classe $\\mathcal{C}^1$.\n- **Dérivées partielles bornées.** $f(x,y)=\\frac{x^3}{x^2+y^2}$, $f(0,0)=0$ : $\\frac{\\partial f}{\\partial x}=\\frac{x^2(x^2+3y^2)}{(x^2+y^2)^2}$ et $\\frac{\\partial f}{\\partial y}=\\frac{-2x^3y}{(x^2+y^2)^2}$ sont bornées (par $3$ et $1$), mais $f$ n'est pas différentiable en $(0,0)$ : $D_{(1,1)}f(0,0)=\\frac12\\neq1$.",
+      "affirmations": [
+        {
+          "texte": "Une application différentiable sur un ouvert $U$ est de classe $\\mathcal{C}^1$ sur $U$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=(x^2+y^2)\\sin\\frac1{\\sqrt{x^2+y^2}}$, $f(0,0)=0$, est différentiable sur $\\mathbb{R}^2$, mais $\\frac{\\partial f}{\\partial x}(x,0)=2x\\sin\\frac1x-\\cos\\frac1x$ ($x>0$) n'a pas de limite en $0$."
+        },
+        {
+          "texte": "Si les dérivées partielles de $f:\\mathbb{R}^2\\to\\mathbb{R}$ existent et sont continues sur $\\mathbb{R}^2$, alors $f$ est continue sur $\\mathbb{R}^2$.",
+          "vrai": true,
+          "justification": "$f$ est alors de classe $\\mathcal{C}^1$, donc différentiable en tout point, donc continue."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ admet des dérivées partielles bornées sur $\\mathbb{R}^2$, alors $f$ est différentiable sur $\\mathbb{R}^2$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{x^3}{x^2+y^2}$, $f(0,0)=0$ : dérivées partielles bornées par $3$ et $1$, mais $D_{(1,1)}f(0,0)=\\frac12$ alors que $\\frac{\\partial f}{\\partial x}(0,0)+\\frac{\\partial f}{\\partial y}(0,0)=1$."
+        },
+        {
+          "texte": "Une application de classe $\\mathcal{C}^1$ sur un ouvert $U$ est différentiable en tout point de $U$.",
+          "vrai": true,
+          "justification": "En chaque point de $U$, les dérivées partielles existent au voisinage et sont continues en ce point."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-jacobienne",
+        "ar-l1-taf",
+        "top-l2-evn-equivalence-dim-finie"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Différentielle d'une composée",
+      "recto": "Énoncer le théorème de différentiation d'une composée, sous forme de différentielles, de matrices jacobiennes et de dérivées partielles.",
+      "cours": "La différentielle d'une composée est la composée des différentielles : c'est la règle de dérivation $(v\\circ u)'=u'\\times v'\\circ u$ de la Terminale, où le produit de nombres est remplacé par la composition d'applications linéaires, c'est-à-dire par le **produit des matrices jacobiennes**. L'ordre compte : on applique d'abord $df(a)$, puis la différentielle de $g$ **au point $f(a)$**.\n\nEn coordonnées, la règle s'écrit sur les dérivées partielles : si $u=f(x)$, $$\\frac{\\partial(g\\circ f)_i}{\\partial x_j}(a)=\\sum_k\\frac{\\partial g_i}{\\partial u_k}(f(a))\\,\\frac{\\partial f_k}{\\partial x_j}(a).$$ Deux cas reviennent sans cesse : la dérivée le long d'une courbe, $\\frac{d}{dt}g(\\gamma(t))=dg(\\gamma(t))(\\gamma'(t))=\\sum_k\\frac{\\partial g}{\\partial u_k}(\\gamma(t))\\,\\gamma_k'(t)$ ; et les changements de variables, par exemple en coordonnées polaires, $G(r,\\theta)=g(r\\cos\\theta,r\\sin\\theta)$, d'où $\\frac{\\partial G}{\\partial r}=\\cos\\theta\\,\\frac{\\partial g}{\\partial x}+\\sin\\theta\\,\\frac{\\partial g}{\\partial y}$ et $\\frac{\\partial G}{\\partial\\theta}=-r\\sin\\theta\\,\\frac{\\partial g}{\\partial x}+r\\cos\\theta\\,\\frac{\\partial g}{\\partial y}$.\n\nMéthode pour une équation aux dérivées partielles du premier ordre, comme $a\\frac{\\partial f}{\\partial x}+b\\frac{\\partial f}{\\partial y}=0$ : chercher un changement de variables linéaire $(u,v)$ dans lequel l'équation devient $\\frac{\\partial g}{\\partial v}=0$, ce qui donne $g(u,v)=\\varphi(u)$. La composée de deux applications de classe $\\mathcal{C}^1$ est de classe $\\mathcal{C}^1$ ; le produit de deux fonctions différentiables s'obtient en composant avec l'application bilinéaire $(s,t)\\mapsto st$.\n\nPiège : le théorème demande que $g$ soit **différentiable** en $f(a)$ ; des dérivées partielles, ou des dérivées selon tout vecteur, ne suffisent pas, et la formule avec les dérivées partielles peut alors être fausse même quand $g\\circ f$ est dérivable.",
+      "hypotheses": [
+        "$f:U\\to F$ est différentiable en $a$, et $f(U)\\subset V$.",
+        "$g:V\\to G$ est différentiable en $f(a)$."
+      ],
+      "hypotheses_pieges": [
+        "$g$ admet des dérivées partielles en $f(a)$ (à la place de : $g$ différentiable en $f(a)$).",
+        "$f$ admet en $a$ une dérivée selon tout vecteur (à la place de : $f$ différentiable en $a$).",
+        "$g$ est différentiable en $a$ (à la place de : en $f(a)$), avec $V=U$."
+      ],
+      "enonce": "Soient $E$, $F$, $G$ trois espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $V$ un ouvert de $F$, $f:U\\to F$ telle que $f(U)\\subset V$, $g:V\\to G$ et $a\\in U$.\n\n**Théorème.** Si $f$ est différentiable en $a$ et si $g$ est différentiable en $f(a)$, alors $g\\circ f$ est différentiable en $a$ et $$d(g\\circ f)(a)=dg\\big(f(a)\\big)\\circ df(a).$$\n- Matriciellement (pour $E=\\mathbb{R}^n$, $F=\\mathbb{R}^m$, $G=\\mathbb{R}^p$) : $J_{g\\circ f}(a)=J_g\\big(f(a)\\big)\\,J_f(a)$, c'est-à-dire $\\frac{\\partial(g\\circ f)_i}{\\partial x_j}(a)=\\sum_{k=1}^m\\frac{\\partial g_i}{\\partial u_k}\\big(f(a)\\big)\\,\\frac{\\partial f_k}{\\partial x_j}(a)$ ; pour $n=m=p$, $\\det J_{g\\circ f}(a)=\\det J_g\\big(f(a)\\big)\\det J_f(a)$.\n- Le long d'une courbe $\\gamma$ dérivable en $t_0$, avec $g$ différentiable en $\\gamma(t_0)$ : $(g\\circ\\gamma)'(t_0)=dg\\big(\\gamma(t_0)\\big)\\big(\\gamma'(t_0)\\big)$.\n- Si $f$ et $g$ sont de classe $\\mathcal{C}^1$, $g\\circ f$ est de classe $\\mathcal{C}^1$.",
+      "enonce_trous": "Soient $f:U\\to\\mathbb{R}^m$ différentiable en un point $a$ d'un ouvert $U$ de $\\mathbb{R}^n$, avec $f(U)\\subset V$ ouvert, et $g:V\\to\\mathbb{R}^p$. Si $g$ {{1}}, alors $g\\circ f$ est différentiable en $a$ et sa différentielle en $a$ est {{2}}. Matriciellement, $J_{g\\circ f}(a)$ est égale à {{3}}.",
+      "trous": [
+        {
+          "reponse": "est différentiable en $f(a)$",
+          "leurres": [
+            "est différentiable en $a$",
+            "admet des dérivées partielles en $f(a)$",
+            "admet en $f(a)$ une dérivée selon tout vecteur"
+          ]
+        },
+        {
+          "reponse": "$dg(f(a))\\circ df(a)$",
+          "leurres": [
+            "$df(a)\\circ dg(f(a))$",
+            "$dg(a)\\circ df(a)$",
+            "$dg(f(a))+df(a)$"
+          ]
+        },
+        {
+          "reponse": "$J_g(f(a))\\,J_f(a)$",
+          "leurres": [
+            "$J_f(a)\\,J_g(f(a))$",
+            "$J_g(a)\\,J_f(a)$",
+            "$J_g(f(a))+J_f(a)$"
+          ]
+        }
+      ],
+      "demo": "Notons $b=f(a)$, $L=df(a)$, $M=dg(b)$, et écrivons $$f(a+h)=b+L(h)+\\|h\\|\\,\\varepsilon_1(h),\\qquad g(b+k)=g(b)+M(k)+\\|k\\|\\,\\varepsilon_2(k),$$ avec $\\varepsilon_1(h)\\to0$ quand $h\\to0$, $\\varepsilon_2(k)\\to0$ quand $k\\to0$, et $\\varepsilon_2(0)=0$. Posons $k(h)=f(a+h)-b=L(h)+\\|h\\|\\,\\varepsilon_1(h)$. Comme $f$ est continue en $a$, $k(h)\\to0$, et $b+k(h)=f(a+h)\\in V$. De plus $\\|k(h)\\|\\le\\big(|||L|||+\\|\\varepsilon_1(h)\\|\\big)\\|h\\|$. Alors $$g\\big(f(a+h)\\big)=g(b)+M\\big(L(h)\\big)+\\|h\\|\\,M\\big(\\varepsilon_1(h)\\big)+\\|k(h)\\|\\,\\varepsilon_2\\big(k(h)\\big).$$ Le troisième terme est majoré en norme par $|||M|||\\,\\|h\\|\\,\\|\\varepsilon_1(h)\\|$, le quatrième par $\\big(|||L|||+\\|\\varepsilon_1(h)\\|\\big)\\|h\\|\\,\\|\\varepsilon_2(k(h))\\|$ ; comme $\\varepsilon_1(h)\\to0$ et $\\varepsilon_2(k(h))\\to0$ (car $k(h)\\to0$), ces deux termes sont des $o(\\|h\\|)$. L'application $M\\circ L$ est linéaire : $g\\circ f$ est différentiable en $a$, de différentielle $M\\circ L$.\n\n**Matrices.** La matrice d'une composée d'applications linéaires est le produit des matrices, d'où $J_{g\\circ f}(a)=J_g(b)J_f(a)$ et la formule sur les coefficients ; le déterminant d'un produit est le produit des déterminants. Le cas d'une courbe est le cas $E=\\mathbb{R}$, où $d\\gamma(t_0)(s)=s\\,\\gamma'(t_0)$.\n\n**Classe $\\mathcal{C}^1$.** Si $f$ et $g$ sont de classe $\\mathcal{C}^1$, les coefficients de $J_{g\\circ f}(x)=J_g(f(x))J_f(x)$ sont des sommes de produits de fonctions continues de $x$ ($f$ et les dérivées partielles de $g$ et de $f$ sont continues), donc sont continus.",
+      "exemple": "- En coordonnées polaires, pour $g(x,y)=x^2-y^2$ et $G(r,\\theta)=g(r\\cos\\theta,r\\sin\\theta)=r^2\\cos2\\theta$ : la formule donne $\\frac{\\partial G}{\\partial\\theta}=-r\\sin\\theta\\,(2r\\cos\\theta)+r\\cos\\theta\\,(-2r\\sin\\theta)=-2r^2\\sin2\\theta$, ce que confirme le calcul direct.\n- Pour $g(x,y)=x^2y+y^3$ et $\\gamma(t)=(e^t,1+2t)$ : $(g\\circ\\gamma)'(0)=\\frac{\\partial g}{\\partial x}(1,1)\\times1+\\frac{\\partial g}{\\partial y}(1,1)\\times2=2+4\\times2=10$.\n- Pour $f(x,y)=(x+y,xy)$ et $g(u,v)=(u^2-2v,u)$ : $g\\circ f(x,y)=(x^2+y^2,x+y)$ et, en $(2,1)$, $\\det J_g(3,2)\\det J_f(2,1)=2\\times1=2=\\det\\begin{pmatrix}4&2\\\\1&1\\end{pmatrix}$.",
+      "contre_exemple": "- **$g$ seulement munie de dérivées partielles.** $g(x,y)=\\frac{x^3}{x^2+y^2}$, $g(0,0)=0$, et $\\gamma(t)=(t,t)$ : $g(\\gamma(t))=\\frac t2$, de dérivée $\\frac12$ en $0$, alors que $\\frac{\\partial g}{\\partial x}(0,0)\\gamma_1'(0)+\\frac{\\partial g}{\\partial y}(0,0)\\gamma_2'(0)=1+0=1$.\n- **$f$ seulement munie de dérivées selon les vecteurs.** $f(x,y)=\\frac{xy^2}{x^2+y^4}$, $f(0,0)=0$, et $g=\\mathrm{id}_{\\mathbb{R}}$ : $g\\circ f=f$ n'est pas différentiable en $(0,0)$ (elle n'y est pas continue).\n- **Différentiabilité au mauvais point.** $f(x)=x+1$, $g(y)=|y-1|$ et $a=0$ : $g$ est dérivable en $a=0$, mais $g\\circ f(x)=|x|$ n'est pas dérivable en $0$ ; c'est en $f(0)=1$ que $g$ devait l'être.",
+      "affirmations": [
+        {
+          "texte": "Si $g:\\mathbb{R}^2\\to\\mathbb{R}$ admet des dérivées partielles en $(0,0)$ et si $\\gamma$ est dérivable avec $\\gamma(0)=(0,0)$ et $g\\circ\\gamma$ dérivable en $0$, alors $(g\\circ\\gamma)'(0)=\\gamma_1'(0)\\frac{\\partial g}{\\partial x}(0,0)+\\gamma_2'(0)\\frac{\\partial g}{\\partial y}(0,0)$.",
+          "vrai": false,
+          "contre_exemple": "$g(x,y)=\\frac{x^3}{x^2+y^2}$, $g(0,0)=0$, et $\\gamma(t)=(t,t)$ : $(g\\circ\\gamma)'(0)=\\frac12$, alors que le membre de droite vaut $1$."
+        },
+        {
+          "texte": "Si $g\\circ f$ est différentiable en $a$, alors $f$ est différentiable en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x)=|x|$ et $g(y)=y^2$ : $g\\circ f(x)=x^2$ est dérivable en $0$, mais $f$ ne l'est pas."
+        },
+        {
+          "texte": "Pour $n=m=p$, si $f$ est différentiable en $a$ et $g$ en $f(a)$, alors $\\det J_{g\\circ f}(a)=\\det J_g(f(a))\\,\\det J_f(a)$.",
+          "vrai": true,
+          "justification": "$J_{g\\circ f}(a)=J_g(f(a))J_f(a)$, et le déterminant d'un produit de matrices carrées est le produit des déterminants."
+        },
+        {
+          "texte": "La composée de deux applications de classe $\\mathcal{C}^1$ est de classe $\\mathcal{C}^1$.",
+          "vrai": true,
+          "justification": "Les coefficients de $J_g(f(x))J_f(x)$ sont des sommes de produits de fonctions continues de $x$."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-differentielle",
+        "cd-l3-differentiabilite-jacobienne",
+        "ar-t-derivation-composee",
+        "al-l1-applications-matrice"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Inégalité des accroissements finis",
+      "recto": "Énoncer l'inégalité des accroissements finis pour une application de plusieurs variables, avec ses hypothèses, et en déduire le cas d'une différentielle bornée ou nulle sur un ouvert convexe.",
+      "cours": "En dimension $1$, l'égalité des accroissements finis $f(b)-f(a)=f'(c)(b-a)$ repose sur le théorème de Rolle, donc sur l'ordre de $\\mathbb{R}$. Pour une fonction à valeurs dans $\\mathbb{R}^p$ avec $p\\ge2$, elle est fausse : le point $t\\mapsto(\\cos t,\\sin t)$ fait un tour complet entre $0$ et $2\\pi$ sans que sa vitesse s'annule jamais. Ce qui survit est l'**inégalité** : l'accroissement est majoré par la longueur du segment multipliée par une borne de la différentielle, mesurée par la **norme subordonnée** $|||df(x)|||$ aux normes choisies au départ et à l'arrivée.\n\nL'hypothèse essentielle est géométrique : le **segment** $[a,b]$ doit être inclus dans le domaine, car on fait parcourir à $x$ ce segment. Sur un ouvert **convexe**, cela vaut pour tous $a,b$ : une différentielle bornée par $M$ donne une application $M$-lipschitzienne, et une différentielle nulle une application constante. Le résultat sur la différentielle nulle reste vrai sur un ouvert connexe par arcs (on joint deux points par une ligne brisée), mais il est faux sur un ouvert non connexe.\n\nMéthode. Pour majorer $\\|f(b)-f(a)\\|$ ou montrer qu'une application est lipschitzienne : choisir les normes, calculer la jacobienne, majorer sa norme subordonnée (pour $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée, c'est le maximum sur les lignes des sommes des valeurs absolues des coefficients ; pour une fonction numérique sur un espace euclidien, c'est la norme du gradient), puis vérifier la convexité du domaine. Pour une fonction **à valeurs réelles**, l'égalité des accroissements finis reste vraie sur un segment inclus dans l'ouvert, en l'appliquant à $t\\mapsto f(a+t(b-a))$.\n\nPièges : la borne doit porter sur tout le segment, pas seulement sur ses extrémités ; elle doit porter sur la norme subordonnée, pas sur chaque dérivée partielle séparément ; sur un domaine non convexe, une différentielle bornée ne donne pas forcément une application lipschitzienne de même constante.",
+      "hypotheses": [
+        "$f:U\\to F$ est différentiable sur l'ouvert $U$ de $E$.",
+        "Le segment $[a,b]=\\{a+t(b-a) : t\\in[0,1]\\}$ est inclus dans $U$.",
+        "$|||df(x)|||\\le M$ pour tout $x\\in[a,b]$, pour la norme subordonnée aux normes de $E$ et de $F$."
+      ],
+      "hypotheses_pieges": [
+        "$a$ et $b$ sont deux points quelconques de $U$, et $|||df(x)|||\\le M$ pour tout $x\\in U$ (à la place de : $[a,b]\\subset U$ et la majoration sur le segment).",
+        "$|||df(a)|||\\le M$ et $|||df(b)|||\\le M$ (à la place de : $|||df(x)|||\\le M$ pour tout $x\\in[a,b]$).",
+        "$E=\\mathbb{R}^2$ est muni de $\\|\\cdot\\|_\\infty$, et les dérivées partielles vérifient $\\left\\|\\frac{\\partial f}{\\partial x_j}(x)\\right\\|\\le M$ pour tout $j$ et tout $x\\in[a,b]$ (à la place de : $|||df(x)|||\\le M$)."
+      ],
+      "enonce": "Soient $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$ et $f:U\\to F$ différentiable sur $U$ ; $|||df(x)|||$ désigne la norme de $df(x)$ subordonnée aux normes de $E$ et de $F$.\n\n**Théorème (inégalité des accroissements finis).** Si $a,b\\in U$ sont tels que le segment $[a,b]=\\{a+t(b-a) : t\\in[0,1]\\}$ est inclus dans $U$, et si $|||df(x)|||\\le M$ pour tout $x\\in[a,b]$, alors $$\\|f(b)-f(a)\\|\\le M\\,\\|b-a\\|.$$\n\n**Conséquences.** Si $U$ est **convexe** :\n- si $|||df(x)|||\\le M$ pour tout $x\\in U$, $f$ est $M$-lipschitzienne sur $U$ ;\n- si $df(x)=0$ pour tout $x\\in U$, $f$ est constante sur $U$.\n\nL'égalité des accroissements finis n'a pas d'analogue pour $F$ de dimension au moins $2$.",
+      "enonce_trous": "Soient $f:U\\to F$ différentiable sur un ouvert $U$ d'un espace normé de dimension finie, $a,b\\in U$ et $M\\ge0$ tel que $|||df(x)|||\\le M$ pour tout $x\\in U$. Si {{1}}, alors {{2}}. En particulier, une application différentiable de différentielle nulle sur un ouvert {{3}} est constante.",
+      "trous": [
+        {
+          "reponse": "le segment $[a,b]$ est inclus dans $U$",
+          "leurres": [
+            "$U$ est borné",
+            "$U$ est connexe par arcs",
+            "$a$ et $b$ sont deux points de $U$"
+          ]
+        },
+        {
+          "reponse": "$\\|f(b)-f(a)\\|\\le M\\,\\|b-a\\|$",
+          "leurres": [
+            "$f(b)-f(a)=df(c)(b-a)$ pour un point $c$ du segment $[a,b]$",
+            "$\\|f(b)-f(a)\\|\\le M\\,\\|b-a\\|^2$",
+            "$\\|f(b)-f(a)\\|\\ge M\\,\\|b-a\\|$"
+          ]
+        },
+        {
+          "reponse": "convexe",
+          "leurres": [
+            "borné",
+            "non vide",
+            "symétrique par rapport à l'origine"
+          ]
+        }
+      ],
+      "demo": "Posons $g(t)=f\\big(a+t(b-a)\\big)$ pour $t\\in[0,1]$ ; c'est possible car $[a,b]\\subset U$. Par la différentiation d'une composée, $g$ est dérivable sur $[0,1]$ (à droite en $0$, à gauche en $1$), de dérivée $g'(t)=df\\big(a+t(b-a)\\big)(b-a)$, donc $\\|g'(t)\\|\\le M\\,\\|b-a\\|=:K$.\n\nFixons $\\varepsilon>0$ et posons $A=\\{t\\in[0,1] : \\|g(s)-g(0)\\|\\le(K+\\varepsilon)s\\text{ pour tout }s\\in[0,t]\\}$. C'est un intervalle contenant $0$ ; soit $c$ sa borne supérieure. Par continuité de $g$, l'inégalité passe à la limite, donc $c\\in A$. Supposons $c<1$. Comme $g$ est dérivable en $c$, il existe $\\delta\\in\\left]0,1-c\\right]$ tel que $\\|g(s)-g(c)-(s-c)g'(c)\\|\\le\\varepsilon(s-c)$ pour $s\\in[c,c+\\delta]$ ; alors $\\|g(s)-g(c)\\|\\le(K+\\varepsilon)(s-c)$, puis $$\\|g(s)-g(0)\\|\\le\\|g(s)-g(c)\\|+\\|g(c)-g(0)\\|\\le(K+\\varepsilon)(s-c)+(K+\\varepsilon)c=(K+\\varepsilon)s,$$ de sorte que $c+\\delta\\in A$, ce qui contredit la définition de $c$. Donc $c=1$ et $\\|f(b)-f(a)\\|=\\|g(1)-g(0)\\|\\le K+\\varepsilon$. Cela vaut pour tout $\\varepsilon>0$, d'où $\\|f(b)-f(a)\\|\\le M\\|b-a\\|$.\n\n**Conséquences.** Si $U$ est convexe, le segment $[a,b]$ est inclus dans $U$ pour tous $a,b\\in U$ : on obtient $\\|f(b)-f(a)\\|\\le M\\|b-a\\|$, et pour $df=0$ on prend $M=0$.\n\n**L'égalité est fausse.** Pour $f(t)=(\\cos t,\\sin t)$ sur $[0,2\\pi]$, $f(2\\pi)-f(0)=0$ alors que $\\|f'(c)\\|_2=1$ pour tout $c$ : aucun $c$ ne vérifie $f(2\\pi)-f(0)=2\\pi f'(c)$.",
+      "exemple": "- $f(x,y)=\\sin x\\cos y$ sur $\\mathbb{R}^2$ euclidien : $\\nabla f=(\\cos x\\cos y,-\\sin x\\sin y)$ et $\\|\\nabla f\\|_2^2=\\cos^2x\\cos^2y+\\sin^2x\\sin^2y\\le\\cos^2x+\\sin^2x=1$. Comme la norme subordonnée de $h\\mapsto\\langle\\nabla f,h\\rangle$ est $\\|\\nabla f\\|_2$ (Cauchy-Schwarz), $|f(p)-f(q)|\\le\\|p-q\\|_2$ pour tous $p,q$.\n- $F(x,y)=\\left(\\frac13\\sin(x+y),\\frac13\\cos(x-y)\\right)$ avec $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée : les sommes des valeurs absolues des lignes de $J_F$ sont $\\frac23|\\cos(x+y)|$ et $\\frac23|\\sin(x-y)|$, donc $|||dF|||\\le\\frac23$ et $F$ est $\\frac23$-lipschitzienne sur $\\mathbb{R}^2$.",
+      "contre_exemple": "- **Pas d'égalité des accroissements finis.** $f(t)=(\\cos t,\\sin t)$ sur $[0,2\\pi]$ : $f(2\\pi)-f(0)=0$ et $f'(c)\\neq0$ pour tout $c$.\n- **Segment non inclus dans l'ouvert.** Sur $U=\\{(x,y) : 1<x^2+y^2<4\\}$ privé de la demi-droite $\\{(x,0) : x<0\\}$, la fonction angle $\\theta(x,y)=2\\arctan\\frac{y}{x+\\sqrt{x^2+y^2}}$, à valeurs dans $\\left]-\\pi,\\pi\\right[$, a pour gradient $\\frac{(-y,x)}{x^2+y^2}$, de norme $\\frac{1}{\\sqrt{x^2+y^2}}\\le1$. Pourtant, pour $a=\\left(-\\frac32,\\frac12\\right)$ et $b=\\left(-\\frac32,-\\frac12\\right)$, $\\theta(a)-\\theta(b)=2\\pi-2\\arctan\\frac13\\approx5{,}64>1=\\|a-b\\|_2$.\n- **Majoration aux extrémités seulement.** $f(x)=x-\\frac{x^3}{3}$ sur $\\mathbb{R}$, $a=-1$, $b=1$ : $f'(\\pm1)=0$, mais $f(1)-f(-1)=\\frac43\\neq0$.\n- **Dérivées partielles au lieu de la norme subordonnée.** $f(x,y)=x+y$ avec $\\|\\cdot\\|_\\infty$ sur $\\mathbb{R}^2$ : les dérivées partielles valent $1$, mais $|f(1,1)-f(0,0)|=2>1\\times\\|(1,1)\\|_\\infty$ ; en effet $|||df|||=2$.\n- **Ouvert non connexe.** Sur $U=\\left]0,1\\right[\\cup\\left]2,3\\right[$, la fonction égale à $0$ sur le premier intervalle et à $1$ sur le second a une dérivée nulle sans être constante.",
+      "affirmations": [
+        {
+          "texte": "Si $f:[0,1]\\to\\mathbb{R}^2$ est continue sur $[0,1]$ et dérivable sur $\\left]0,1\\right[$, il existe $c\\in\\left]0,1\\right[$ tel que $f(1)-f(0)=f'(c)$.",
+          "vrai": false,
+          "contre_exemple": "$f(t)=(\\cos2\\pi t,\\sin2\\pi t)$ : $f(1)-f(0)=0$, alors que $\\|f'(c)\\|_2=2\\pi$ pour tout $c$."
+        },
+        {
+          "texte": "Si $U$ est un ouvert convexe et si $|||df(x)|||\\le M$ pour tout $x\\in U$, alors $f$ est $M$-lipschitzienne sur $U$.",
+          "vrai": true,
+          "justification": "Pour $a,b\\in U$, le segment $[a,b]$ est inclus dans $U$ : on applique l'inégalité des accroissements finis."
+        },
+        {
+          "texte": "Une application différentiable de différentielle nulle sur un ouvert $U$ de $\\mathbb{R}^n$ est constante sur $U$.",
+          "vrai": false,
+          "contre_exemple": "Sur $U=\\left]0,1\\right[\\cup\\left]2,3\\right[$, la fonction qui vaut $0$ sur $\\left]0,1\\right[$ et $1$ sur $\\left]2,3\\right[$ a une dérivée nulle sans être constante."
+        },
+        {
+          "texte": "Si $f:U\\to\\mathbb{R}$ est différentiable et si $[a,b]\\subset U$ avec $a\\neq b$, il existe un point $c$ du segment, distinct de $a$ et de $b$, tel que $f(b)-f(a)=df(c)(b-a)$.",
+          "vrai": true,
+          "justification": "On applique l'égalité des accroissements finis à la fonction réelle $g(t)=f(a+t(b-a))$ sur $[0,1]$ : $g(1)-g(0)=g'(\\tau)=df(a+\\tau(b-a))(b-a)$ pour un $\\tau\\in\\left]0,1\\right[$."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-composee",
+        "ar-l1-taf",
+        "ar-l1-borne-sup",
+        "top-l2-evn-continuite-lineaire",
+        "top-l3-metriques-connexite"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Théorème de Schwarz",
+      "recto": "Définir les dérivées partielles d'ordre $2$ et la classe $\\mathcal{C}^2$, et énoncer le théorème de Schwarz avec ses hypothèses.",
+      "cours": "Les dérivées partielles d'une fonction peuvent à leur tour avoir des dérivées partielles : $\\frac{\\partial^2f}{\\partial x_i\\partial x_j}=\\frac{\\partial}{\\partial x_i}\\left(\\frac{\\partial f}{\\partial x_j}\\right)$ (on dérive d'abord par rapport à $x_j$, puis par rapport à $x_i$ ; la convention inverse existe, d'où l'intérêt du théorème). Le théorème de Schwarz affirme que, pour une fonction de classe $\\mathcal{C}^2$, l'ordre des dérivations n'a pas d'importance.\n\nL'idée de la preuve : la « différence seconde » $f(a+he_i+ke_j)-f(a+he_i)-f(a+ke_j)+f(a)$ est symétrique en les deux directions ; en lui appliquant deux fois l'égalité des accroissements finis, dans un ordre puis dans l'autre, on l'écrit $hk\\frac{\\partial^2f}{\\partial x_j\\partial x_i}$ en un point voisin de $a$, puis $hk\\frac{\\partial^2f}{\\partial x_i\\partial x_j}$ en un autre point voisin, et la continuité conclut.\n\nConséquences : la matrice hessienne $\\left(\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)\\right)$ d'une fonction numérique de classe $\\mathcal{C}^2$ est **symétrique**, ce qui sert pour la formule de Taylor-Young et l'étude des extremums. Autre usage : pour qu'un champ $(P,Q)$ de classe $\\mathcal{C}^1$ soit le gradient d'une fonction de classe $\\mathcal{C}^2$, il faut que $\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}$ ; par exemple $(y,-x)$ n'est pas un gradient. Le théorème permet aussi de simplifier les calculs de dérivées secondes dans les changements de variables (équation des ondes, laplacien en coordonnées polaires).\n\nPiège : l'existence de toutes les dérivées partielles secondes ne suffit pas, même pour une fonction de classe $\\mathcal{C}^1$ dont les dérivées secondes sont bornées : l'exemple $\\frac{xy(x^2-y^2)}{x^2+y^2}$ a des dérivées croisées $-1$ et $1$ à l'origine.",
+      "hypotheses": [
+        "$U$ est un ouvert de $\\mathbb{R}^n$.",
+        "$f:U\\to\\mathbb{R}^p$ est de classe $\\mathcal{C}^2$ sur $U$."
+      ],
+      "hypotheses_pieges": [
+        "$f$ est de classe $\\mathcal{C}^1$ sur $U$ et ses dérivées partielles secondes existent en tout point de $U$ (à la place de : $f$ de classe $\\mathcal{C}^2$).",
+        "$f$ est de classe $\\mathcal{C}^2$ sur $U$ privé d'un point $a$, et ses dérivées partielles secondes existent en $a$ (à la place de : $f$ de classe $\\mathcal{C}^2$ sur $U$).",
+        "$f$ est de classe $\\mathcal{C}^1$ sur $U$ et ses dérivées partielles secondes existent et sont bornées sur $U$ (à la place de : $f$ de classe $\\mathcal{C}^2$)."
+      ],
+      "enonce": "Soient $U$ un ouvert de $\\mathbb{R}^n$ et $f:U\\to\\mathbb{R}^p$. Lorsque $\\frac{\\partial f}{\\partial x_j}$ existe sur $U$ et admet une dérivée partielle par rapport à $x_i$, on note $$\\frac{\\partial^2f}{\\partial x_i\\partial x_j}=\\frac{\\partial}{\\partial x_i}\\left(\\frac{\\partial f}{\\partial x_j}\\right)\\qquad\\left(\\text{et }\\frac{\\partial^2f}{\\partial x_i^2}\\text{ si }i=j\\right).$$ $f$ est **de classe $\\mathcal{C}^2$ sur $U$** si toutes ses dérivées partielles secondes existent et sont continues sur $U$ ; alors $f$ et ses dérivées partielles sont de classe $\\mathcal{C}^1$.\n\n**Théorème de Schwarz.** Si $f$ est de classe $\\mathcal{C}^2$ sur $U$, alors pour tous $i,j\\in\\{1,\\dots,n\\}$ et tout $a\\in U$ : $$\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)=\\frac{\\partial^2f}{\\partial x_j\\partial x_i}(a).$$\n\nEn particulier, pour $p=1$, la **matrice hessienne** $H_f(a)=\\left(\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)\\right)_{i,j}$ est symétrique.",
+      "enonce_trous": "Soit $f$ une application {{1}} sur un ouvert $U$ de $\\mathbb{R}^n$. Alors, pour tous $i,j$ et tout $a\\in U$, {{2}}. L'hypothèse de régularité ne peut pas être remplacée par {{3}}.",
+      "trous": [
+        {
+          "reponse": "de classe $\\mathcal{C}^2$",
+          "leurres": [
+            "de classe $\\mathcal{C}^1$",
+            "de classe $\\mathcal{C}^1$ dont les dérivées partielles secondes existent en tout point",
+            "de classe $\\mathcal{C}^1$ dont les dérivées partielles secondes existent et sont bornées"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)=\\frac{\\partial^2f}{\\partial x_j\\partial x_i}(a)$",
+          "leurres": [
+            "$\\frac{\\partial^2f}{\\partial x_i^2}(a)=\\frac{\\partial^2f}{\\partial x_j^2}(a)$",
+            "$\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)=\\frac{\\partial f}{\\partial x_i}(a)\\,\\frac{\\partial f}{\\partial x_j}(a)$",
+            "$\\frac{\\partial^2f}{\\partial x_i\\partial x_j}(a)=0$ dès que $i\\neq j$"
+          ]
+        },
+        {
+          "reponse": "l'existence des dérivées partielles secondes en tout point de $U$, même pour $f$ de classe $\\mathcal{C}^1$",
+          "leurres": [
+            "la classe $\\mathcal{C}^3$",
+            "la classe $\\mathcal{C}^\\infty$",
+            "l'existence et la continuité des dérivées partielles secondes sur $U$"
+          ]
+        }
+      ],
+      "demo": "On peut supposer $p=1$ (composante par composante) et $i\\neq j$. En figeant les autres coordonnées, il suffit de traiter le cas de deux variables : $f(x,y)$ de classe $\\mathcal{C}^2$ près de $a=(a_1,a_2)$. Soit $r>0$ tel que le carré $\\{|x-a_1|<r,\\ |y-a_2|<r\\}$ soit inclus dans $U$. Pour $0<|h|,|k|<r$, posons $$\\Delta(h,k)=f(a_1+h,a_2+k)-f(a_1+h,a_2)-f(a_1,a_2+k)+f(a_1,a_2).$$\n\n**Premier calcul.** Soit $\\varphi(s)=f(s,a_2+k)-f(s,a_2)$ ; elle est dérivable, de dérivée $\\varphi'(s)=\\frac{\\partial f}{\\partial x}(s,a_2+k)-\\frac{\\partial f}{\\partial x}(s,a_2)$. L'égalité des accroissements finis donne $\\theta\\in\\left]0,1\\right[$ tel que $\\Delta(h,k)=\\varphi(a_1+h)-\\varphi(a_1)=h\\,\\varphi'(a_1+\\theta h)$. On l'applique ensuite à $y\\mapsto\\frac{\\partial f}{\\partial x}(a_1+\\theta h,y)$, dérivable de dérivée $\\frac{\\partial^2f}{\\partial y\\partial x}(a_1+\\theta h,y)$ : il existe $\\theta'\\in\\left]0,1\\right[$ tel que $$\\Delta(h,k)=hk\\,\\frac{\\partial^2f}{\\partial y\\partial x}(a_1+\\theta h,a_2+\\theta'k).$$\n\n**Second calcul.** En partant de $\\psi(t)=f(a_1+h,t)-f(a_1,t)$, de sorte que $\\Delta(h,k)=\\psi(a_2+k)-\\psi(a_2)$, on obtient de même $\\theta'',\\theta'''\\in\\left]0,1\\right[$ tels que $\\Delta(h,k)=hk\\,\\frac{\\partial^2f}{\\partial x\\partial y}(a_1+\\theta'''h,a_2+\\theta''k)$.\n\n**Conclusion.** En égalant et en divisant par $hk$ : $\\frac{\\partial^2f}{\\partial y\\partial x}(p_{h,k})=\\frac{\\partial^2f}{\\partial x\\partial y}(q_{h,k})$ avec $p_{h,k},q_{h,k}\\to a$ quand $(h,k)\\to0$. Les deux dérivées croisées étant continues en $a$, on obtient $\\frac{\\partial^2f}{\\partial y\\partial x}(a)=\\frac{\\partial^2f}{\\partial x\\partial y}(a)$.\n\nEnfin, si les dérivées secondes sont continues, les dérivées premières sont de classe $\\mathcal{C}^1$, donc continues : $f$ est de classe $\\mathcal{C}^1$.",
+      "exemple": "- $f(x,y)=x^3y^2+\\sin(xy)$ : $\\frac{\\partial f}{\\partial y}=2x^3y+x\\cos(xy)$ et $\\frac{\\partial f}{\\partial x}=3x^2y^2+y\\cos(xy)$, d'où $$\\frac{\\partial^2f}{\\partial x\\partial y}=\\frac{\\partial^2f}{\\partial y\\partial x}=6x^2y+\\cos(xy)-xy\\sin(xy).$$\n- Le champ $(P,Q)=(2xy+y,\\ x^2+x)$ vérifie $\\frac{\\partial P}{\\partial y}=2x+1=\\frac{\\partial Q}{\\partial x}$, et c'est le gradient de $f(x,y)=x^2y+xy$ ; le champ $(y,-x)$ ne l'est d'aucune fonction de classe $\\mathcal{C}^2$, car $\\frac{\\partial P}{\\partial y}=1\\neq-1=\\frac{\\partial Q}{\\partial x}$.",
+      "contre_exemple": "- **Dérivées croisées différentes.** $f(x,y)=\\frac{xy(x^2-y^2)}{x^2+y^2}$, $f(0,0)=0$. Pour $y\\neq0$, $\\frac{\\partial f}{\\partial x}(0,y)=\\lim_{h\\to0}\\frac{f(h,y)}{h}=\\lim_{h\\to0}\\frac{y(h^2-y^2)}{h^2+y^2}=-y$, et $\\frac{\\partial f}{\\partial x}(0,0)=0$ ; donc $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)=-1$. De même $\\frac{\\partial f}{\\partial y}(x,0)=x$, donc $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)=1$. Cette fonction est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ et de classe $\\mathcal{C}^\\infty$ hors de l'origine ; ses dérivées partielles secondes existent partout et sont bornées (homogènes de degré $0$ hors de l'origine), mais elles ne sont pas continues en $(0,0)$.\n- **Un champ qui n'est pas un gradient.** S'il existait $f$ de classe $\\mathcal{C}^2$ avec $\\frac{\\partial f}{\\partial x}=y$ et $\\frac{\\partial f}{\\partial y}=-x$, le théorème de Schwarz donnerait $1=\\frac{\\partial^2f}{\\partial y\\partial x}=\\frac{\\partial^2f}{\\partial x\\partial y}=-1$.",
+      "affirmations": [
+        {
+          "texte": "Si $f:U\\to\\mathbb{R}$ est de classe $\\mathcal{C}^2$, sa matrice hessienne est symétrique en tout point.",
+          "vrai": true,
+          "justification": "C'est le théorème de Schwarz : le coefficient $(i,j)$ est égal au coefficient $(j,i)$."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $\\mathcal{C}^1$ et si ses dérivées partielles croisées existent en tout point, elles sont égales en tout point.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=\\frac{xy(x^2-y^2)}{x^2+y^2}$, $f(0,0)=0$ : en $(0,0)$, $\\frac{\\partial^2f}{\\partial y\\partial x}=-1$ et $\\frac{\\partial^2f}{\\partial x\\partial y}=1$."
+        },
+        {
+          "texte": "Il existe $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$ telle que $\\frac{\\partial f}{\\partial x}(x,y)=y$ et $\\frac{\\partial f}{\\partial y}(x,y)=-x$.",
+          "vrai": false,
+          "contre_exemple": "Le théorème de Schwarz donnerait $\\frac{\\partial^2f}{\\partial y\\partial x}=1$ et $\\frac{\\partial^2f}{\\partial x\\partial y}=-1$, qui devraient être égales."
+        },
+        {
+          "texte": "Si $f:\\mathbb{R}^2\\to\\mathbb{R}$ est de classe $\\mathcal{C}^3$, alors $\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial^2f}{\\partial y\\partial x}\\right)=\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial^2f}{\\partial x\\partial y}\\right)$.",
+          "vrai": true,
+          "justification": "$f$ est de classe $\\mathcal{C}^2$, donc $\\frac{\\partial^2f}{\\partial y\\partial x}=\\frac{\\partial^2f}{\\partial x\\partial y}$ par le théorème de Schwarz ; on dérive cette égalité par rapport à $x$."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-classe-c1",
+        "ar-l1-taf"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "definition",
+      "titre": "Gradient",
+      "recto": "Définir le gradient d'une fonction numérique sur un espace euclidien, donner ses coordonnées en base orthonormée et ses deux propriétés géométriques (direction de plus forte pente, orthogonalité aux lignes de niveau).",
+      "cours": "Sur un espace euclidien, toute forme linéaire $\\ell$ s'écrit de façon unique $h\\mapsto\\langle w,h\\rangle$ : on représente donc la différentielle d'une fonction numérique par un **vecteur**, le gradient. Dans $\\mathbb{R}^n$ muni du produit scalaire canonique, c'est le vecteur des dérivées partielles, c'est-à-dire la transposée de la matrice jacobienne (qui est une ligne). Mais le gradient dépend du produit scalaire : pour $\\langle u,v\\rangle_S=u^{\\mathsf T}Sv$, le gradient devient $S^{-1}$ fois le gradient canonique, et ses coordonnées dans une base non orthonormée ne sont pas les dérivées partielles.\n\nDeux propriétés géométriques en découlent. **Plus forte pente** : pour $u$ unitaire, $D_uf(a)=\\langle\\nabla f(a),u\\rangle\\le\\|\\nabla f(a)\\|$ par Cauchy-Schwarz, avec égalité, si $\\nabla f(a)\\neq0$, seulement pour $u=\\frac{\\nabla f(a)}{\\|\\nabla f(a)\\|}$ : le gradient indique la direction dans laquelle $f$ croît le plus vite, et sa norme est cette pente maximale ; c'est le principe des méthodes de gradient en optimisation. **Lignes de niveau** : si une courbe dérivable $\\gamma$ reste dans $\\{f=c\\}$, alors $\\frac{d}{dt}f(\\gamma(t))=\\langle\\nabla f(\\gamma(t)),\\gamma'(t)\\rangle=0$ : le gradient est orthogonal aux vecteurs vitesse des courbes tracées sur la ligne de niveau. En un point où $\\nabla f(a)\\neq0$, la droite passant par $a$ et orthogonale à $\\nabla f(a)$ contient donc toutes ces vitesses ; c'est la tangente à la ligne de niveau (l'existence d'une telle courbe passant par $a$ relève du théorème des fonctions implicites, hors de ce chapitre).\n\nGradients à connaître : $\\nabla\\big(\\|x\\|^2\\big)=2x$, $\\nabla\\|x\\|=\\frac{x}{\\|x\\|}$ pour $x\\neq0$, $\\nabla\\langle Ax,x\\rangle=(A+A^{\\mathsf T})x$, et $\\nabla\\big(\\tfrac12\\langle Ax,x\\rangle-\\langle b,x\\rangle\\big)=Ax-b$ pour $A$ symétrique.\n\nPièges : un gradient nul (point critique) ne donne pas forcément un extremum ; les coordonnées du gradient ne sont les dérivées partielles que dans une base **orthonormée**.",
+      "hypotheses": [
+        "$E$ est un espace euclidien et $(e_1,\\dots,e_n)$ une base orthonormée de $E$, les dérivées partielles étant prises dans cette base.",
+        "$f:U\\to\\mathbb{R}$ est différentiable en $a$."
+      ],
+      "hypotheses_pieges": [
+        "$(e_1,\\dots,e_n)$ est une base de $E$ (à la place de : une base orthonormée).",
+        "$(e_1,\\dots,e_n)$ est une base orthogonale de $E$ (à la place de : une base orthonormée).",
+        "$f$ admet des dérivées partielles en $a$ (à la place de : $f$ différentiable en $a$)."
+      ],
+      "enonce": "Soient $E$ un espace euclidien de dimension $n\\ge1$, de produit scalaire $\\langle\\cdot,\\cdot\\rangle$ et de norme $\\|\\cdot\\|$, $U$ un ouvert de $E$, $a\\in U$ et $f:U\\to\\mathbb{R}$ différentiable en $a$. Il existe un unique vecteur $\\nabla f(a)\\in E$, le **gradient** de $f$ en $a$, tel que $$df(a)(h)=\\langle\\nabla f(a),h\\rangle\\quad\\text{pour tout }h\\in E.$$\n- Dans une base orthonormée $(e_1,\\dots,e_n)$, en notant $\\frac{\\partial f}{\\partial x_j}(a)=D_{e_j}f(a)$ : $\\nabla f(a)=\\sum_{j=1}^n\\frac{\\partial f}{\\partial x_j}(a)\\,e_j$. Pour $E=\\mathbb{R}^n$ muni du produit scalaire canonique, $\\nabla f(a)$ est la transposée de $J_f(a)$.\n- **Plus forte pente.** Pour tout $u$ unitaire, $|D_uf(a)|\\le\\|\\nabla f(a)\\|$, et la norme subordonnée de $df(a)$ est $\\|\\nabla f(a)\\|$. Si $\\nabla f(a)\\neq0$, $D_uf(a)$ est maximale, égale à $\\|\\nabla f(a)\\|$, pour $u=\\frac{\\nabla f(a)}{\\|\\nabla f(a)\\|}$ et pour ce seul $u$ unitaire.\n- **Lignes de niveau.** Si $\\gamma:I\\to U$ est dérivable en $t_0$, avec $\\gamma(t_0)=a$ et $f\\circ\\gamma$ constante sur l'intervalle $I$, alors $\\langle\\nabla f(a),\\gamma'(t_0)\\rangle=0$.",
+      "enonce_trous": "Soient $E$ un espace euclidien, $U$ un ouvert de $E$ et $f:U\\to\\mathbb{R}$ différentiable en $a\\in U$. Le gradient $\\nabla f(a)$ est l'unique vecteur tel que {{1}} pour tout $h\\in E$ ; ses coordonnées dans {{2}} sont les dérivées partielles de $f$ en $a$. Si $\\nabla f(a)\\neq0$, la dérivée $D_uf(a)$, pour $u$ unitaire, est maximale pour {{3}}.",
+      "trous": [
+        {
+          "reponse": "$df(a)(h)=\\langle\\nabla f(a),h\\rangle$",
+          "leurres": [
+            "$f(a+h)=f(a)+\\langle\\nabla f(a),h\\rangle$",
+            "$df(a)(h)=\\|\\nabla f(a)\\|\\,\\|h\\|$",
+            "$\\langle\\nabla f(a),h\\rangle=0$"
+          ]
+        },
+        {
+          "reponse": "toute base orthonormée de $E$",
+          "leurres": [
+            "toute base de $E$",
+            "toute base orthogonale de $E$",
+            "toute base de $E$ formée de vecteurs unitaires"
+          ]
+        },
+        {
+          "reponse": "$u=\\frac{\\nabla f(a)}{\\|\\nabla f(a)\\|}$",
+          "leurres": [
+            "$u=-\\frac{\\nabla f(a)}{\\|\\nabla f(a)\\|}$",
+            "$u$ orthogonal à $\\nabla f(a)$",
+            "$u$ colinéaire à $\\nabla f(a)$, de sens quelconque"
+          ]
+        }
+      ],
+      "demo": "**Existence et unicité.** L'application $\\Phi:w\\mapsto\\langle w,\\cdot\\rangle$, de $E$ dans l'espace $E^*$ des formes linéaires sur $E$, est linéaire et injective : si $\\langle w,h\\rangle=0$ pour tout $h$, alors $\\langle w,w\\rangle=0$, donc $w=0$. Comme $\\dim E^*=\\dim E$, $\\Phi$ est bijective : la forme linéaire $df(a)$ s'écrit $\\langle w,\\cdot\\rangle$ pour un unique $w$, noté $\\nabla f(a)$.\n\n**Coordonnées.** Dans une base orthonormée, tout vecteur $w$ s'écrit $w=\\sum_j\\langle w,e_j\\rangle e_j$, et $\\langle\\nabla f(a),e_j\\rangle=df(a)(e_j)=D_{e_j}f(a)=\\frac{\\partial f}{\\partial x_j}(a)$. Pour $E=\\mathbb{R}^n$ canonique, la colonne des dérivées partielles est la transposée de la ligne $J_f(a)$.\n\n**Plus forte pente.** Pour $u$ unitaire, $D_uf(a)=df(a)(u)=\\langle\\nabla f(a),u\\rangle$, et l'inégalité de Cauchy-Schwarz donne $|D_uf(a)|\\le\\|\\nabla f(a)\\|$ ; donc $|||df(a)|||\\le\\|\\nabla f(a)\\|$. Si $\\nabla f(a)\\neq0$, l'égalité $\\langle\\nabla f(a),u\\rangle=\\|\\nabla f(a)\\|\\,\\|u\\|$ a lieu si et seulement si $u$ est un multiple positif de $\\nabla f(a)$, c'est-à-dire, $u$ étant unitaire, $u=\\frac{\\nabla f(a)}{\\|\\nabla f(a)\\|}$ ; la valeur est alors $\\|\\nabla f(a)\\|$, d'où $|||df(a)|||=\\|\\nabla f(a)\\|$ (égalité évidente si $\\nabla f(a)=0$).\n\n**Lignes de niveau.** La fonction $f\\circ\\gamma$ est constante, donc de dérivée nulle en $t_0$ ; par la différentiation d'une composée, $(f\\circ\\gamma)'(t_0)=df(a)(\\gamma'(t_0))=\\langle\\nabla f(a),\\gamma'(t_0)\\rangle$.",
+      "exemple": "- $f(x,y)=x^2+3xy$ sur $\\mathbb{R}^2$ : $\\nabla f(1,1)=(5,3)$ ; la pente maximale en $(1,1)$ est $\\sqrt{34}$, dans la direction $\\frac{(5,3)}{\\sqrt{34}}$.\n- La courbe $x^2+xy+y^3=3$ passe par $(1,1)$, où le gradient de $(x,y)\\mapsto x^2+xy+y^3$ vaut $(3,4)$ : toute courbe dérivable tracée sur cette ligne de niveau et passant par $(1,1)$ y a une vitesse orthogonale à $(3,4)$, donc dirigée par $(4,-3)$ si elle est non nulle ; la tangente a pour équation $3x+4y=7$.\n- Pour $f(x)=\\|x\\|^2$, $f(a+h)=f(a)+\\langle2a,h\\rangle+\\|h\\|^2$, donc $\\nabla f(a)=2a$ ; pour $f(x)=\\langle Ax,x\\rangle$, $\\nabla f(x)=(A+A^{\\mathsf T})x$.",
+      "contre_exemple": "- **Base non orthonormée.** Dans $\\mathbb{R}^2$ canonique, avec la base $e_1=(1,0)$, $e_2=(1,1)$ et $f(x,y)=y$ : en coordonnées $(s,t)$ dans cette base, $f(se_1+te_2)=t$, donc les dérivées partielles valent $0$ et $1$, et $0\\,e_1+1\\,e_2=(1,1)$, alors que $\\nabla f=(0,1)$. Avec la base orthogonale $e_1=(2,0)$, $e_2=(0,1)$ et $f(x,y)=x$ : $f(se_1+te_2)=2s$, et $2e_1=(4,0)\\neq(1,0)=\\nabla f$.\n- **Le gradient dépend du produit scalaire.** Sur $\\mathbb{R}^2$ muni de $\\langle u,v\\rangle=2u_1v_1+u_2v_2$, la fonction $f(x,y)=x$ a pour gradient $\\left(\\frac12,0\\right)$, car $\\left\\langle\\left(\\frac12,0\\right),h\\right\\rangle=h_1$.\n- **Gradient nul sans extremum.** $f(x,y)=xy$ : $\\nabla f(0,0)=0$, mais $f(t,t)>0>f(t,-t)$ pour $t\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Le gradient d'une fonction en un point dépend du produit scalaire choisi sur $E$.",
+          "vrai": true,
+          "justification": "Sur $\\mathbb{R}^2$, $f(x,y)=x$ a pour gradient $(1,0)$ pour le produit scalaire canonique et $\\left(\\frac12,0\\right)$ pour $\\langle u,v\\rangle=2u_1v_1+u_2v_2$."
+        },
+        {
+          "texte": "Si $\\nabla f(a)=0$, alors $f$ admet un extremum local en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=xy$ : $\\nabla f(0,0)=0$, mais $f(t,t)=t^2>0$ et $f(t,-t)=-t^2<0$ pour $t\\neq0$."
+        },
+        {
+          "texte": "Pour $f(x)=\\|x\\|$ sur $\\mathbb{R}^n$ euclidien et $x\\neq0$, $\\nabla f(x)=x$.",
+          "vrai": false,
+          "contre_exemple": "$\\nabla f(x)=\\frac{x}{\\|x\\|}$ : pour $x=(2,0,\\dots,0)$, $\\nabla f(x)=(1,0,\\dots,0)\\neq x$."
+        },
+        {
+          "texte": "Pour tout vecteur unitaire $u$, $|D_uf(a)|\\le\\|\\nabla f(a)\\|$.",
+          "vrai": true,
+          "justification": "$D_uf(a)=\\langle\\nabla f(a),u\\rangle$ et l'inégalité de Cauchy-Schwarz."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-jacobienne",
+        "cd-l3-differentiabilite-composee",
+        "al-l2-euclidien-cauchy-schwarz"
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums",
+      "theme": "topologie-calcul-diff",
+      "niveau": "l3",
+      "chapitre": "cd-l3-differentiabilite",
+      "type": "theoreme",
+      "titre": "Formule de Taylor-Young et extremums de deux variables",
+      "recto": "Énoncer la formule de Taylor-Young à l'ordre $2$, la condition nécessaire d'extremum local sur un ouvert, et la discussion d'un point critique d'une fonction de deux variables à l'aide de $rt-s^2$.",
+      "cours": "Pour chercher les extremums d'une fonction de plusieurs variables sur un **ouvert**, on procède comme en dimension $1$. Au premier ordre : en un extremum local intérieur, chaque application partielle a un extremum, donc les dérivées partielles s'annulent ; on cherche donc d'abord les **points critiques**, où $df(a)=0$. Au second ordre : la formule de Taylor-Young montre que, près d'un point critique, $f(a+h)-f(a)$ se comporte comme la forme quadratique $\\frac12\\big(rh_1^2+2sh_1h_2+th_2^2\\big)$, dont le signe se lit sur le discriminant : $r\\big(rh_1^2+2sh_1h_2+th_2^2\\big)=(rh_1+sh_2)^2+(rt-s^2)h_2^2$ si $r\\neq0$.\n\nMéthode : (1) résoudre $\\frac{\\partial f}{\\partial x}=\\frac{\\partial f}{\\partial y}=0$ ; (2) en chaque point critique, calculer $r$, $s$, $t$ (notations de Monge) ; (3) conclure : $rt-s^2>0$ donne un extremum local strict, minimum si $r>0$, maximum si $r<0$ ; $rt-s^2<0$ donne un point col (pas d'extremum) ; $rt-s^2=0$ demande une étude directe (signe de $f(a+h)-f(a)$ le long de droites ou de courbes bien choisies). En dimension $n$, on étudie de même le signe de la forme quadratique $h\\mapsto h^{\\mathsf T}H_f(a)h$ associée à la hessienne : si elle est définie positive, minimum local strict ; définie négative, maximum local strict ; si elle prend des valeurs des deux signes, point col (pas d'extremum) ; on peut la réduire par la méthode de Gauss ou lire les signes des valeurs propres.\n\nPour un extremum **global** sur un compact (fermé borné), il existe par continuité ; on le cherche parmi les points critiques intérieurs et sur le bord, que l'on étudie séparément (le bord n'est pas ouvert : la condition $df(a)=0$ n'y est pas nécessaire).\n\nPièges : un point critique n'est pas forcément un extremum ; les signes de $r$ et de $t$ seuls ne suffisent pas ; un extremum local n'est pas forcément global ; le cas $rt-s^2=0$ ne permet aucune conclusion ; une fonction peut avoir un minimum strict à l'origine sur chaque droite sans en avoir un dans le plan (exemple de Peano).",
+      "hypotheses": [
+        "$U$ est un ouvert de $\\mathbb{R}^2$ et $f$ est de classe $\\mathcal{C}^2$ sur $U$.",
+        "$a$ est un point critique de $f$ : $\\frac{\\partial f}{\\partial x}(a)=\\frac{\\partial f}{\\partial y}(a)=0$.",
+        "$rt-s^2>0$ et $r>0$."
+      ],
+      "hypotheses_pieges": [
+        "$rt-s^2\\ge0$ et $r>0$ (à la place de : $rt-s^2>0$ et $r>0$).",
+        "$r>0$ et $t>0$ (à la place de : $rt-s^2>0$ et $r>0$).",
+        "$a$ est un point quelconque de $U$ (à la place de : un point critique)."
+      ],
+      "enonce": "Soient $U$ un ouvert de $\\mathbb{R}^2$, $f:U\\to\\mathbb{R}$ de classe $\\mathcal{C}^2$ et $a\\in U$. On note (notations de Monge) $$p=\\frac{\\partial f}{\\partial x}(a),\\quad q=\\frac{\\partial f}{\\partial y}(a),\\quad r=\\frac{\\partial^2f}{\\partial x^2}(a),\\quad s=\\frac{\\partial^2f}{\\partial x\\partial y}(a),\\quad t=\\frac{\\partial^2f}{\\partial y^2}(a).$$\n\n**Formule de Taylor-Young à l'ordre $2$.** Quand $(h,k)$ tend vers $(0,0)$, $$f\\big(a+(h,k)\\big)=f(a)+ph+qk+\\frac12\\big(rh^2+2shk+tk^2\\big)+o\\big(h^2+k^2\\big).$$ Plus généralement, sur un ouvert de $\\mathbb{R}^n$, $f(a+h)=f(a)+\\langle\\nabla f(a),h\\rangle+\\frac12h^{\\mathsf T}H_f(a)h+o(\\|h\\|^2)$, où $H_f(a)$ est la hessienne (symétrique).\n\n**Condition nécessaire d'ordre $1$.** Si $f$ (seulement supposée différentiable en $a$) admet un extremum local en $a$, alors $df(a)=0$, c'est-à-dire $p=q=0$ : $a$ est un **point critique**.\n\n**Conditions d'ordre $2$.** Soit $a$ un point critique de $f$.\n- Si $rt-s^2>0$ et $r>0$, $f$ admet en $a$ un minimum local strict.\n- Si $rt-s^2>0$ et $r<0$, $f$ admet en $a$ un maximum local strict.\n- Si $rt-s^2<0$, $f$ n'admet pas d'extremum local en $a$ (point col).\n- Si $rt-s^2=0$, on ne peut pas conclure sans étude supplémentaire.",
+      "enonce_trous": "Soient $f$ de classe $\\mathcal{C}^2$ sur un ouvert $U$ de $\\mathbb{R}^2$ et $a$ un point critique de $f$, avec $r=\\frac{\\partial^2f}{\\partial x^2}(a)$, $s=\\frac{\\partial^2f}{\\partial x\\partial y}(a)$ et $t=\\frac{\\partial^2f}{\\partial y^2}(a)$. Si {{1}}, $f$ admet en $a$ un minimum local strict. Si {{2}}, $f$ n'admet pas d'extremum local en $a$. Si $rt-s^2=0$, {{3}}.",
+      "trous": [
+        {
+          "reponse": "$rt-s^2>0$ et $r>0$",
+          "leurres": [
+            "$rt-s^2>0$ et $r<0$",
+            "$r>0$ et $t>0$",
+            "$rt-s^2\\ge0$ et $r>0$"
+          ]
+        },
+        {
+          "reponse": "$rt-s^2<0$",
+          "leurres": [
+            "$rt-s^2>0$",
+            "$r=0$",
+            "$rt-s^2=0$"
+          ]
+        },
+        {
+          "reponse": "on ne peut pas conclure sans étude supplémentaire",
+          "leurres": [
+            "$f$ n'admet pas d'extremum local en $a$",
+            "$f$ admet un extremum local en $a$",
+            "$f$ est constante au voisinage de $a$"
+          ]
+        }
+      ],
+      "demo": "**Taylor-Young.** Soit $\\rho>0$ tel que la boule euclidienne $B(a,\\rho)$ soit incluse dans $U$, et $v=(h,k)$ avec $\\|v\\|<\\rho$. La fonction $\\varphi(\\tau)=f(a+\\tau v)$ est de classe $\\mathcal{C}^2$ sur un intervalle contenant $[0,1]$ ; par la différentiation d'une composée et le théorème de Schwarz, $\\varphi'(\\tau)=h\\frac{\\partial f}{\\partial x}(a+\\tau v)+k\\frac{\\partial f}{\\partial y}(a+\\tau v)$ et $\\varphi''(\\tau)=Q_{a+\\tau v}(v)$, où $Q_x(v)=h^2\\frac{\\partial^2f}{\\partial x^2}(x)+2hk\\frac{\\partial^2f}{\\partial x\\partial y}(x)+k^2\\frac{\\partial^2f}{\\partial y^2}(x)$. La formule de Taylor avec reste intégral donne $\\varphi(1)=\\varphi(0)+\\varphi'(0)+\\int_0^1(1-\\tau)\\varphi''(\\tau)\\,\\mathrm{d}\\tau$, et, comme $\\int_0^1(1-\\tau)\\,\\mathrm{d}\\tau=\\frac12$, $$f(a+v)-f(a)-ph-qk-\\tfrac12Q_a(v)=\\int_0^1(1-\\tau)\\big(Q_{a+\\tau v}(v)-Q_a(v)\\big)\\,\\mathrm{d}\\tau.$$ Soit $\\omega(\\delta)$ le plus grand des écarts $\\big|\\frac{\\partial^2f}{\\partial x^2}(x)-r\\big|$, $\\big|\\frac{\\partial^2f}{\\partial x\\partial y}(x)-s\\big|$, $\\big|\\frac{\\partial^2f}{\\partial y^2}(x)-t\\big|$ pour $\\|x-a\\|\\le\\delta$ (fini pour $\\delta<\\rho$ par continuité sur ce compact) ; $\\omega(\\delta)\\to0$ quand $\\delta\\to0$ par continuité en $a$. Comme $h^2+2|hk|+k^2\\le2(h^2+k^2)$, le reste est majoré par $(h^2+k^2)\\,\\omega(\\|v\\|)$ : c'est un $o(h^2+k^2)$.\n\n**Condition nécessaire.** Si $f$ a un minimum local en $a$, la fonction $x\\mapsto f(x,a_2)$, définie au voisinage de $a_1$, a un minimum local en $a_1$, point intérieur : sa dérivée $p$ y est nulle. De même $q=0$. Même raisonnement pour un maximum.\n\n**Conditions d'ordre $2$.** Notons $Q(v)=rh^2+2shk+tk^2$, de sorte que $f(a+v)-f(a)=\\frac12Q(v)+\\|v\\|^2\\varepsilon(v)$ avec $\\varepsilon(v)\\to0$. Si $r\\neq0$, $rQ(h,k)=(rh+sk)^2+(rt-s^2)k^2$.\n- Si $rt-s^2>0$ et $r>0$ : $Q(v)>0$ pour $v\\neq0$ (les deux carrés ne s'annulent ensemble que pour $k=0$ puis $h=0$). La fonction continue $Q$ atteint sur le cercle unité, compact, un minimum $m>0$, et par homogénéité $Q(v)\\ge m\\|v\\|^2$. Pour $\\|v\\|$ assez petit, $|\\varepsilon(v)|\\le\\frac m4$, donc $f(a+v)-f(a)\\ge\\frac m4\\|v\\|^2>0$ pour $v\\neq0$ : minimum local strict.\n- Si $rt-s^2>0$ et $r<0$ : on applique ce qui précède à $-f$.\n- Si $rt-s^2<0$ : $Q$ prend les deux signes. Si $r\\neq0$, $Q(1,0)=r$ et $Q(-s,r)=r(rt-s^2)$ sont de signes opposés ; si $r=0$, alors $s\\neq0$ et $Q(1,\\kappa)=2s\\kappa+t\\kappa^2$ est du signe de $s\\kappa$ pour $\\kappa$ petit, positif ou négatif. Soient $u$, $w$ tels que $Q(u)>0>Q(w)$ : pour $\\tau\\neq0$ petit, $f(a+\\tau u)-f(a)=\\tau^2\\big(\\frac12Q(u)+\\|u\\|^2\\varepsilon(\\tau u)\\big)>0$ et de même $f(a+\\tau w)-f(a)<0$. Il n'y a pas d'extremum local.\n- Si $rt-s^2=0$ : les fonctions $x^2+y^4$, $x^2-y^4$ et $x^2+y^3$ ont toutes en $(0,0)$ un point critique avec $r=2$, $s=t=0$ ; la première y a un minimum strict, les deux autres n'ont pas d'extremum.",
+      "exemple": "$f(x,y)=x^3+y^3-3xy$ : les points critiques vérifient $x^2=y$ et $y^2=x$, d'où $(0,0)$ et $(1,1)$. On a $r=6x$, $s=-3$, $t=6y$.\n- En $(0,0)$ : $rt-s^2=-9<0$, point col.\n- En $(1,1)$ : $rt-s^2=36-9=27>0$ et $r=6>0$, minimum local strict, de valeur $f(1,1)=-1$. Ce minimum n'est pas global : $f(x,0)=x^3\\to-\\infty$ quand $x\\to-\\infty$.",
+      "contre_exemple": "- **Cas $rt-s^2=0$.** En $(0,0)$, $x^2+y^4$, $x^2-y^4$ et $x^2+y^3$ ont $r=2$, $s=t=0$ : la première a un minimum strict, la deuxième non ($f(0,y)=-y^4<0$), la troisième non ($f(0,y)=y^3$ change de signe).\n- **$r>0$ et $t>0$ ne suffisent pas.** $f(x,y)=x^2+3xy+y^2$ : $r=t=2$, $s=3$, $rt-s^2=-5<0$, et $f(\\tau,-\\tau)=-\\tau^2<0$ pour $\\tau\\neq0$ : pas de minimum en $(0,0)$.\n- **Point non critique.** $f(x,y)=x+x^2+y^2$ : en $(0,0)$, $rt-s^2=4>0$ et $r=2>0$, mais $\\frac{\\partial f}{\\partial x}(0,0)=1$ et $f(\\tau,0)<0=f(0,0)$ pour $-1<\\tau<0$.\n- **Hors d'un ouvert.** $f(x,y)=x$ sur le carré fermé $[0,1]^2$ a un minimum en $(0,0)$, où $df\\neq0$.",
+      "affirmations": [
+        {
+          "texte": "Si $f$, différentiable sur un ouvert $U$, admet un extremum local en $a\\in U$, alors $df(a)=0$.",
+          "vrai": true,
+          "justification": "Chaque application partielle a un extremum local en un point intérieur, donc une dérivée nulle : toutes les dérivées partielles, donc $df(a)$, sont nulles."
+        },
+        {
+          "texte": "Si $a$ est un point critique d'une fonction de classe $\\mathcal{C}^2$ où $r>0$ et $t>0$, alors $f$ admet un minimum local en $a$.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=x^2+3xy+y^2$ en $(0,0)$ : $r=t=2$, mais $f(\\tau,-\\tau)=-\\tau^2<0$."
+        },
+        {
+          "texte": "Un point critique où $rt-s^2=0$ n'est jamais un extremum local.",
+          "vrai": false,
+          "contre_exemple": "$f(x,y)=x^4+y^4$ a en $(0,0)$ un point critique avec $r=s=t=0$, et un minimum strict."
+        },
+        {
+          "texte": "Si $f$ de classe $\\mathcal{C}^2$ admet un minimum local en un point $a$ d'un ouvert, alors $r\\ge0$, $t\\ge0$ et $rt-s^2\\ge0$.",
+          "vrai": true,
+          "justification": "Sinon la forme $Q(v)=rh^2+2shk+tk^2$ prendrait une valeur strictement négative en un $v$, et $f(a+\\tau v)-f(a)=\\tau^2\\big(\\frac12Q(v)+o(1)\\big)<0$ pour $\\tau\\neq0$ petit."
+        }
+      ],
+      "prerequis": [
+        "cd-l3-differentiabilite-schwarz",
+        "cd-l3-differentiabilite-composee",
+        "ar-l1-taylor-reste-integral",
+        "top-l2-evn-compacts",
+        "al-l3-formes-quadratiques-gauss",
+        "top-l3-metriques-compacite"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,948 @@
+{
+  "exercices": [
+    {
+      "id": "top-l3-metriques-continuite-ex1",
+      "carte": "top-l3-metriques-continuite",
+      "difficulte": 1,
+      "titre": "Diamètre de $\\mathbb{R}$ pour une distance transportée",
+      "enonce": "Pour $x,y\\in\\mathbb{R}$, on pose $d(x,y)=|\\arctan x-\\arctan y|$. Montrer que $d$ est une distance sur $\\mathbb{R}$, puis déterminer le diamètre $\\sup_{x,y\\in\\mathbb{R}}d(x,y)$ de $\\mathbb{R}$ pour cette distance. Ce diamètre est-il atteint ?",
+      "duree_min": 8,
+      "indices": [
+        "Pour l'axiome de séparation, utiliser l'injectivité de $\\arctan$ ; l'inégalité triangulaire vient de celle de la valeur absolue.",
+        "Déterminer l'ensemble des valeurs prises par $\\arctan$ sur $\\mathbb{R}$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le diamètre de $\\mathbb{R}$ pour $d$ ?",
+        "propositions": [
+          "$\\pi$",
+          "$\\frac{\\pi}{2}$",
+          "$+\\infty$",
+          "$2\\pi$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Distance.** $d$ est à valeurs dans $\\left[0,+\\infty\\right[$ et symétrique. Comme $\\arctan$ est strictement croissante, donc injective, $d(x,y)=0\\iff\\arctan x=\\arctan y\\iff x=y$. Enfin, avec $u=\\arctan x$, $v=\\arctan y$, $w=\\arctan z$ : $|u-w|\\le|u-v|+|v-w|$, c'est-à-dire $d(x,z)\\le d(x,y)+d(y,z)$.\n\n**Diamètre.** $\\arctan$ prend ses valeurs dans $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, donc $d(x,y)<\\frac\\pi2-\\left(-\\frac\\pi2\\right)=\\pi$ pour tous $x,y$. D'autre part $d(n,-n)=2\\arctan n\\to\\pi$. Le diamètre vaut donc $\\pi$, et il n'est pas atteint : pour cette distance, $\\mathbb{R}$ est borné, alors qu'il ne l'est pas pour la distance usuelle.",
+      "variantes": [
+        {
+          "enonce": "Pour $x,y\\in\\mathbb{R}$, on pose $d(x,y)=|\\varphi(x)-\\varphi(y)|$, où $\\varphi(x)=\\frac{x}{1+|x|}$. Montrer que $d$ est une distance sur $\\mathbb{R}$, puis déterminer le diamètre $\\sup_{x,y\\in\\mathbb{R}}d(x,y)$ de $\\mathbb{R}$ pour cette distance. Ce diamètre est-il atteint ?",
+          "reponse_finale": {
+            "question": "Quel est le diamètre de $\\mathbb{R}$ pour $d$ ?",
+            "propositions": [
+              "$2$",
+              "$1$",
+              "$+\\infty$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Distance.** Sur $\\left[0,+\\infty\\right[$, $\\varphi(x)=1-\\frac1{1+x}$ est strictement croissante, à valeurs dans $\\left[0,1\\right[$ ; comme $\\varphi$ est impaire, elle est strictement croissante sur $\\mathbb{R}$, à valeurs dans $\\left]-1,1\\right[$, donc injective. La séparation en découle, la symétrie est claire, et l'inégalité triangulaire vient de celle de la valeur absolue appliquée à $\\varphi(x)$, $\\varphi(y)$, $\\varphi(z)$.\n\n**Diamètre.** Pour tous $x,y$, $d(x,y)<1-(-1)=2$, et $d(n,-n)=\\frac{2n}{1+n}\\to2$. Le diamètre vaut $2$ et n'est pas atteint.",
+          "indices": [
+            "Pour l'axiome de séparation, montrer que $\\varphi$ est injective (étudier $\\varphi$ sur $\\left[0,+\\infty\\right[$ et utiliser son imparité).",
+            "Déterminer l'ensemble des valeurs prises par $\\varphi$ sur $\\mathbb{R}$."
+          ]
+        },
+        {
+          "enonce": "Pour $x,y\\in\\mathbb{R}$, on pose $d(x,y)=|e^x-e^y|$. Montrer que $d$ est une distance sur $\\mathbb{R}$, puis déterminer le diamètre $\\sup_{x,y\\in\\mathbb{R}}d(x,y)$ de $\\mathbb{R}$ pour cette distance. Ce diamètre est-il atteint ?",
+          "reponse_finale": {
+            "question": "Quel est le diamètre de $\\mathbb{R}$ pour $d$ ?",
+            "propositions": [
+              "$+\\infty$",
+              "$1$",
+              "$e$",
+              "$e-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Distance.** L'exponentielle est strictement croissante, donc injective : $d(x,y)=0\\iff x=y$. La symétrie est claire et l'inégalité triangulaire vient de celle de la valeur absolue appliquée à $e^x$, $e^y$, $e^z$.\n\n**Diamètre.** $d(0,n)=e^n-1\\to+\\infty$ : $\\mathbb{R}$ n'est pas borné pour cette distance, son diamètre est $+\\infty$. (Ici l'image $\\left]0,+\\infty\\right[$ de l'exponentielle n'est pas bornée, contrairement à celle de $\\arctan$.)",
+          "indices": [
+            "Pour l'axiome de séparation, utiliser l'injectivité de l'exponentielle ; l'inégalité triangulaire vient de celle de la valeur absolue.",
+            "Déterminer l'ensemble des valeurs prises par l'exponentielle sur $\\mathbb{R}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-continuite-ex2",
+      "carte": "top-l3-metriques-continuite",
+      "difficulte": 2,
+      "titre": "Distance d'un point à une parabole",
+      "enonce": "Dans $\\mathbb{R}^2$ muni de la norme euclidienne, on note $P=\\{(t,t^2):t\\in\\mathbb{R}\\}$ et $a=(0,2)$. Montrer que $x\\mapsto d(x,P)$ est $1$-lipschitzienne et que $P$ est fermée, puis calculer $d(a,P)$ et dire si cette distance est atteinte.",
+      "duree_min": 12,
+      "indices": [
+        "Pour $y\\in P$ et $x,x'\\in\\mathbb{R}^2$, partir de $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$.",
+        "Le carré de la distance de $a$ au point $(t,t^2)$ est un polynôme en $u=t^2$, que l'on minimise sur $\\left[0,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $d(a,P)$ ?",
+        "propositions": [
+          "$\\frac{\\sqrt7}{2}$",
+          "$2$",
+          "$\\frac74$",
+          "$\\sqrt2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**Lipschitz.** Pour $y\\in P$, $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$ ; en passant à la borne inférieure en $y$, $d(x,P)\\le\\|x-x'\\|+d(x',P)$, puis, en échangeant $x$ et $x'$, $|d(x,P)-d(x',P)|\\le\\|x-x'\\|$.\n\n**$P$ est fermée** : c'est l'image réciproque du fermé $\\{0\\}$ par l'application continue $(x,y)\\mapsto y-x^2$.\n\n**Calcul.** Pour $t\\in\\mathbb{R}$, avec $u=t^2\\ge0$ :\n$$\\|a-(t,t^2)\\|^2=t^2+(t^2-2)^2=u^2-3u+4=\\left(u-\\frac32\\right)^2+\\frac74.$$\nLe minimum sur $u\\ge0$ est atteint en $u=\\frac32$ et vaut $\\frac74$. Donc $d(a,P)=\\frac{\\sqrt7}2$, atteinte aux deux points $\\left(\\pm\\sqrt{\\frac32},\\frac32\\right)$ (comme il se doit pour un fermé non vide de $\\mathbb{R}^2$). Le sommet $(0,0)$, à distance $2$, et le point $(\\sqrt2,2)$, à distance $\\sqrt2$, ne sont pas les plus proches.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}^2$ muni de la norme euclidienne, on note $P=\\{(t,t^2):t\\in\\mathbb{R}\\}$ et $a=(0,3)$. Montrer que $x\\mapsto d(x,P)$ est $1$-lipschitzienne et que $P$ est fermée, puis calculer $d(a,P)$ et dire si cette distance est atteinte.",
+          "reponse_finale": {
+            "question": "Que vaut $d(a,P)$ ?",
+            "propositions": [
+              "$\\frac{\\sqrt{11}}{2}$",
+              "$3$",
+              "$\\frac{11}{4}$",
+              "$\\sqrt3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Lipschitz.** Pour $y\\in P$, $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$ ; en passant à la borne inférieure en $y$ puis en échangeant $x$ et $x'$, $|d(x,P)-d(x',P)|\\le\\|x-x'\\|$.\n\n**$P$ est fermée** : c'est l'image réciproque de $\\{0\\}$ par l'application continue $(x,y)\\mapsto y-x^2$.\n\n**Calcul.** Avec $u=t^2\\ge0$ :\n$$\\|a-(t,t^2)\\|^2=t^2+(t^2-3)^2=u^2-5u+9=\\left(u-\\frac52\\right)^2+\\frac{11}4.$$\nLe minimum vaut $\\frac{11}4$, atteint en $u=\\frac52$ : $d(a,P)=\\frac{\\sqrt{11}}2$, atteinte aux points $\\left(\\pm\\sqrt{\\frac52},\\frac52\\right)$. Le sommet est à distance $3$ et le point $(\\sqrt3,3)$ à distance $\\sqrt3$.",
+          "indices": [
+            "Pour $y\\in P$ et $x,x'\\in\\mathbb{R}^2$, partir de $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$.",
+            "Le carré de la distance de $a$ au point $(t,t^2)$ est un polynôme en $u=t^2$, que l'on minimise sur $\\left[0,+\\infty\\right[$."
+          ]
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}^2$ muni de la norme euclidienne, on note $P=\\{(t,t^2):t\\in\\mathbb{R}\\}$ et $a=(0,4)$. Montrer que $x\\mapsto d(x,P)$ est $1$-lipschitzienne et que $P$ est fermée, puis calculer $d(a,P)$ et dire si cette distance est atteinte.",
+          "reponse_finale": {
+            "question": "Que vaut $d(a,P)$ ?",
+            "propositions": [
+              "$\\frac{\\sqrt{15}}{2}$",
+              "$4$",
+              "$\\frac{15}{4}$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**Lipschitz.** Pour $y\\in P$, $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$ ; en passant à la borne inférieure en $y$ puis en échangeant $x$ et $x'$, $|d(x,P)-d(x',P)|\\le\\|x-x'\\|$.\n\n**$P$ est fermée** : c'est l'image réciproque de $\\{0\\}$ par l'application continue $(x,y)\\mapsto y-x^2$.\n\n**Calcul.** Avec $u=t^2\\ge0$ :\n$$\\|a-(t,t^2)\\|^2=t^2+(t^2-4)^2=u^2-7u+16=\\left(u-\\frac72\\right)^2+\\frac{15}4.$$\nLe minimum vaut $\\frac{15}4$, atteint en $u=\\frac72$ : $d(a,P)=\\frac{\\sqrt{15}}2$, atteinte aux points $\\left(\\pm\\sqrt{\\frac72},\\frac72\\right)$. Le sommet est à distance $4$ et le point $(2,4)$ à distance $2$.",
+          "indices": [
+            "Pour $y\\in P$ et $x,x'\\in\\mathbb{R}^2$, partir de $d(x,P)\\le\\|x-y\\|\\le\\|x-x'\\|+\\|x'-y\\|$.",
+            "Le carré de la distance de $a$ au point $(t,t^2)$ est un polynôme en $u=t^2$, que l'on minimise sur $\\left[0,+\\infty\\right[$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-continuite-ex3",
+      "carte": "top-l3-metriques-continuite",
+      "difficulte": 3,
+      "titre": "Boule fermée et adhérence de la boule ouverte",
+      "enonce": "Soient $(E,d)$ un espace métrique, $a\\in E$ et $r>0$.\n\n**1.** Montrer que la boule fermée $B'(a,r)$ est une partie fermée de $E$ et que $\\overline{B(a,r)}\\subset B'(a,r)$.\n\n**2.** Montrer que si $E$ est un espace vectoriel normé (et $d$ la distance associée à la norme), alors $\\overline{B(a,r)}=B'(a,r)$.\n\n**3.** Soit $E$ un ensemble ayant au moins deux éléments, muni de la distance discrète : $d(x,y)=1$ si $x\\neq y$ et $d(x,x)=0$. Déterminer $B(a,1)$, son adhérence et $B'(a,1)$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, $B'(a,r)$ est l'image réciproque d'un fermé de $\\mathbb{R}$ par l'application continue $x\\mapsto d(x,a)$.",
+        "Pour la question 2, approcher un point $x$ tel que $N(x-a)=r$ par des points du segment $[a,x]$.",
+        "Pour la question 3, montrer que toute partie de $E$ est ouverte pour la distance discrète."
+      ],
+      "reponse_finale": {
+        "question": "Pour la distance discrète, que vaut $\\overline{B(a,1)}$ ?",
+        "propositions": [
+          "$\\{a\\}$",
+          "$E$",
+          "$E\\setminus\\{a\\}$",
+          "$\\emptyset$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** L'application $x\\mapsto d(x,a)$ est $1$-lipschitzienne ($|d(x,a)-d(y,a)|\\le d(x,y)$), donc continue, et $B'(a,r)$ est l'image réciproque du fermé $[0,r]$ : elle est fermée. Comme $B(a,r)\\subset B'(a,r)$ et que l'adhérence est le plus petit fermé contenant $B(a,r)$, on a $\\overline{B(a,r)}\\subset B'(a,r)$.\n\n**2.** Soit $x$ tel que $N(x-a)\\le r$. Pour $n\\ge1$, posons $x_n=a+\\left(1-\\frac1n\\right)(x-a)$ : $N(x_n-a)=\\left(1-\\frac1n\\right)N(x-a)<r$ (si $N(x-a)=0$, alors $x_n=a$), donc $x_n\\in B(a,r)$, et $N(x_n-x)=\\frac1nN(x-a)\\to0$. Ainsi $x\\in\\overline{B(a,r)}$, d'où l'égalité.\n\n**3.** Pour $r\\le1$, $B(x,r)=\\{x\\}$ : tout singleton est ouvert, donc toute partie (réunion de singletons) est ouverte, et par passage au complémentaire toute partie est fermée. En particulier $B(a,1)=\\{a\\}$ est fermée et $\\overline{B(a,1)}=\\{a\\}$, tandis que $B'(a,1)=E$, puisque tous les points sont à distance au plus $1$ de $a$. Comme $E$ a au moins deux éléments, l'inclusion de la question 1 est stricte."
+    },
+    {
+      "id": "top-l3-metriques-continuite-ex4",
+      "carte": "top-l3-metriques-continuite",
+      "difficulte": 4,
+      "titre": "Séparer deux fermés disjoints par une fonction continue",
+      "enonce": "Soient $(E,d)$ un espace métrique et $A$, $B$ deux parties fermées, non vides et disjointes de $E$.\n\n**1.** Montrer que $d(x,A)+d(x,B)>0$ pour tout $x\\in E$.\n\n**2.** On pose $f(x)=\\frac{d(x,A)}{d(x,A)+d(x,B)}$. Montrer que $f$ est continue de $E$ dans $[0,1]$, que $f^{-1}(\\{0\\})=A$ et que $f^{-1}(\\{1\\})=B$.\n\n**3.** En déduire qu'il existe deux ouverts disjoints $U$ et $V$ de $E$ tels que $A\\subset U$ et $B\\subset V$.\n\n**4.** Dans $\\mathbb{R}^2$ euclidien, on prend $A=\\{(x,y):xy=1\\}$ et $B=\\{(x,y):y=0\\}$. Vérifier que ce sont deux fermés disjoints et que $\\inf_{p\\in A}d(p,B)=0$. Est-ce en contradiction avec la question 3 ?",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, $d(x,A)=0$ si et seulement si $x\\in\\overline A=A$.",
+        "Pour la question 3, considérer les images réciproques par $f$ de $\\left]-\\infty,\\frac12\\right[$ et de $\\left]\\frac12,+\\infty\\right[$."
+      ],
+      "correction": "**1.** Si $d(x,A)+d(x,B)=0$, les deux termes, positifs, sont nuls, donc $x\\in\\overline A\\cap\\overline B=A\\cap B=\\emptyset$ : c'est impossible.\n\n**2.** Les fonctions $x\\mapsto d(x,A)$ et $x\\mapsto d(x,B)$ sont $1$-lipschitziennes, donc continues ; le dénominateur est continu et ne s'annule pas, donc $f$ est continue. Comme $0\\le d(x,A)\\le d(x,A)+d(x,B)$, $f$ est à valeurs dans $[0,1]$. Enfin $f(x)=0\\iff d(x,A)=0\\iff x\\in A$, et $f(x)=1\\iff d(x,B)=0\\iff x\\in B$.\n\n**3.** Posons $U=f^{-1}\\left(\\left]-\\infty,\\frac12\\right[\\right)$ et $V=f^{-1}\\left(\\left]\\frac12,+\\infty\\right[\\right)$ : ce sont des ouverts comme images réciproques d'ouverts par une application continue, ils sont disjoints, et $A\\subset U$ (où $f=0$), $B\\subset V$ (où $f=1$).\n\n**4.** $A$ est l'image réciproque de $\\{1\\}$ et $B$ celle de $\\{0\\}$ par les applications continues $(x,y)\\mapsto xy$ et $(x,y)\\mapsto y$ : ce sont des fermés, disjoints puisque $y=0$ entraîne $xy=0\\neq1$. Pour $n\\ge1$, $\\left(n,\\frac1n\\right)\\in A$ et $d\\left(\\left(n,\\frac1n\\right),B\\right)\\le\\left\\|\\left(n,\\frac1n\\right)-(n,0)\\right\\|=\\frac1n$, donc la borne inférieure est nulle. Ce n'est pas contradictoire : la question 3 fournit des ouverts disjoints $U\\supset A$ et $V\\supset B$, mais ils ne contiennent pas de « bandes » d'épaisseur fixe autour de $A$ et de $B$ ; une telle séparation uniforme est garantie quand l'un des deux fermés est compact, ce qui n'est pas le cas ici."
+    },
+    {
+      "id": "top-l3-metriques-continuite-ex5",
+      "carte": "top-l3-metriques-continuite",
+      "difficulte": 4,
+      "titre": "Une distance sur l'ensemble des suites réelles",
+      "enonce": "On note $E=\\mathbb{R}^{\\mathbb{N}}$ l'ensemble des suites réelles et, pour $x=(x_k)_{k\\in\\mathbb{N}}$ et $y=(y_k)_{k\\in\\mathbb{N}}$ dans $E$,\n$$d(x,y)=\\sum_{k=0}^{+\\infty}2^{-k}\\min(1,|x_k-y_k|).$$\n\n**1.** Montrer que $\\rho(s,t)=\\min(1,|s-t|)$ est une distance sur $\\mathbb{R}$, puis que $d$ est bien définie et que c'est une distance sur $E$.\n\n**2.** Soit $(x^{(n)})_{n\\in\\mathbb{N}}$ une suite d'éléments de $E$ et $x\\in E$. Montrer que $d(x^{(n)},x)\\to0$ si et seulement si, pour tout $k\\in\\mathbb{N}$, $x^{(n)}_k\\to x_k$ quand $n\\to+\\infty$.\n\n**3.** En déduire que, pour tout $k$, l'application $x\\mapsto x_k$ est continue de $(E,d)$ dans $\\mathbb{R}$, et que $E$ est borné pour $d$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour l'inégalité triangulaire de $\\rho$, distinguer selon que l'un des deux écarts $|s-u|$, $|u-t|$ dépasse $1$ ou non.",
+        "Pour le sens réciproque de la question 2, fixer $\\varepsilon>0$ et $K$ tel que $2^{-K}\\le\\varepsilon$, puis couper la somme en $k\\le K$ et $k>K$."
+      ],
+      "correction": "**1.** $\\rho$ est positive, symétrique, et $\\rho(s,t)=0\\iff s=t$. Pour l'inégalité triangulaire $\\rho(s,t)\\le\\rho(s,u)+\\rho(u,t)$ : si $|s-u|\\ge1$ ou $|u-t|\\ge1$, le second membre vaut au moins $1\\ge\\rho(s,t)$ ; sinon il vaut $|s-u|+|u-t|\\ge|s-t|\\ge\\rho(s,t)$.\n\nLe terme général de la série définissant $d$ est positif et majoré par $2^{-k}$ : la série converge et $0\\le d(x,y)\\le\\sum_k2^{-k}=2$. La symétrie et l'inégalité triangulaire s'obtiennent terme à terme à partir de celles de $\\rho$. Si $d(x,y)=0$, tous les termes, positifs, sont nuls, donc $x_k=y_k$ pour tout $k$ : $x=y$.\n\n**2.** Si $d(x^{(n)},x)\\to0$, alors pour $k$ fixé, $2^{-k}\\rho(x^{(n)}_k,x_k)\\le d(x^{(n)},x)\\to0$ ; dès que $\\rho(x^{(n)}_k,x_k)<1$, il vaut $|x^{(n)}_k-x_k|$, donc $x^{(n)}_k\\to x_k$.\n\nRéciproquement, supposons la convergence de chaque coordonnée. Soit $\\varepsilon>0$ et $K$ tel que $2^{-K}\\le\\varepsilon$. Alors\n$$d(x^{(n)},x)\\le\\sum_{k=0}^{K}|x^{(n)}_k-x_k|+\\sum_{k>K}2^{-k}\\le\\sum_{k=0}^{K}|x^{(n)}_k-x_k|+\\varepsilon.$$\nLa somme finie tend vers $0$ quand $n\\to+\\infty$ ; elle est donc inférieure à $\\varepsilon$ pour $n$ assez grand, et alors $d(x^{(n)},x)\\le2\\varepsilon$.\n\n**3.** Si $x^{(n)}\\to x$ pour $d$, la question 2 donne $x^{(n)}_k\\to x_k$ : par la caractérisation séquentielle, $x\\mapsto x_k$ est continue. Enfin $d\\le2$ : $E$ est borné, de diamètre au plus $2$. La convergence pour $d$ est donc exactement la convergence coordonnée par coordonnée."
+    },
+    {
+      "id": "top-l3-metriques-compacite-ex1",
+      "carte": "top-l3-metriques-compacite",
+      "difficulte": 1,
+      "titre": "Maximum d'une fonction linéaire sur le cercle unité",
+      "enonce": "On note $C=\\{(\\cos t,\\sin t):t\\in[0,2\\pi]\\}$ le cercle unité de $\\mathbb{R}^2$. Montrer que $C$ est compact, puis que la fonction $g(x,y)=x+2y$ atteint un maximum sur $C$, que l'on calculera.",
+      "duree_min": 8,
+      "indices": [
+        "$C$ est l'image du segment $[0,2\\pi]$ par une application continue.",
+        "Écrire $\\cos t+2\\sin t$ sous la forme $R\\cos(t-\\varphi)$ avec $R>0$, ou utiliser l'inégalité de Cauchy-Schwarz."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le maximum de $g$ sur $C$ ?",
+        "propositions": [
+          "$\\sqrt5$",
+          "$3$",
+          "$2$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "L'application $t\\mapsto(\\cos t,\\sin t)$ est continue et $[0,2\\pi]$ est compact (fermé borné de $\\mathbb{R}$) : $C$ est compact comme image continue d'un compact. La fonction $g$ est continue, donc atteint son maximum sur le compact non vide $C$.\n\nPour le calculer : $\\cos t+2\\sin t=\\sqrt5\\left(\\frac1{\\sqrt5}\\cos t+\\frac2{\\sqrt5}\\sin t\\right)=\\sqrt5\\cos(t-\\varphi)$, où $\\cos\\varphi=\\frac1{\\sqrt5}$ et $\\sin\\varphi=\\frac2{\\sqrt5}$. Le maximum vaut donc $\\sqrt5$, atteint en $t=\\varphi$, au point $\\left(\\frac1{\\sqrt5},\\frac2{\\sqrt5}\\right)$. (Cauchy-Schwarz donne la même chose : $x+2y\\le\\sqrt{1+4}\\sqrt{x^2+y^2}=\\sqrt5$, avec égalité pour $(x,y)$ proportionnel à $(1,2)$.)",
+      "variantes": [
+        {
+          "enonce": "On note $C=\\{(\\cos t,\\sin t):t\\in[0,2\\pi]\\}$ le cercle unité de $\\mathbb{R}^2$. Montrer que $C$ est compact, puis que la fonction $g(x,y)=3x+4y$ atteint un maximum sur $C$, que l'on calculera.",
+          "reponse_finale": {
+            "question": "Quel est le maximum de $g$ sur $C$ ?",
+            "propositions": [
+              "$5$",
+              "$7$",
+              "$4$",
+              "$25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$C$ est compact comme image du compact $[0,2\\pi]$ par l'application continue $t\\mapsto(\\cos t,\\sin t)$, et la fonction continue $g$ atteint son maximum sur ce compact non vide.\n\nOn écrit $3\\cos t+4\\sin t=5\\left(\\frac35\\cos t+\\frac45\\sin t\\right)=5\\cos(t-\\varphi)$ avec $\\cos\\varphi=\\frac35$, $\\sin\\varphi=\\frac45$. Le maximum vaut $5$, atteint au point $\\left(\\frac35,\\frac45\\right)$. Cauchy-Schwarz donne aussi $3x+4y\\le\\sqrt{9+16}\\sqrt{x^2+y^2}=5$.",
+          "indices": [
+            "$C$ est l'image du segment $[0,2\\pi]$ par une application continue.",
+            "Écrire $3\\cos t+4\\sin t$ sous la forme $R\\cos(t-\\varphi)$ avec $R>0$, ou utiliser l'inégalité de Cauchy-Schwarz."
+          ]
+        },
+        {
+          "enonce": "On note $C=\\{(\\cos t,\\sin t):t\\in[0,2\\pi]\\}$ le cercle unité de $\\mathbb{R}^2$. Montrer que $C$ est compact, puis que la fonction $g(x,y)=x-3y$ atteint un maximum sur $C$, que l'on calculera.",
+          "reponse_finale": {
+            "question": "Quel est le maximum de $g$ sur $C$ ?",
+            "propositions": [
+              "$\\sqrt{10}$",
+              "$4$",
+              "$3$",
+              "$10$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$C$ est compact comme image du compact $[0,2\\pi]$ par l'application continue $t\\mapsto(\\cos t,\\sin t)$, et la fonction continue $g$ atteint son maximum sur ce compact non vide.\n\nOn écrit $\\cos t-3\\sin t=\\sqrt{10}\\left(\\frac1{\\sqrt{10}}\\cos t-\\frac3{\\sqrt{10}}\\sin t\\right)=\\sqrt{10}\\cos(t-\\varphi)$ avec $\\cos\\varphi=\\frac1{\\sqrt{10}}$, $\\sin\\varphi=-\\frac3{\\sqrt{10}}$. Le maximum vaut $\\sqrt{10}$, atteint au point $\\left(\\frac1{\\sqrt{10}},-\\frac3{\\sqrt{10}}\\right)$.",
+          "indices": [
+            "$C$ est l'image du segment $[0,2\\pi]$ par une application continue.",
+            "Écrire $\\cos t-3\\sin t$ sous la forme $R\\cos(t-\\varphi)$ avec $R>0$, ou utiliser l'inégalité de Cauchy-Schwarz."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-compacite-ex2",
+      "carte": "top-l3-metriques-compacite",
+      "difficulte": 2,
+      "titre": "Distance entre un cercle et une droite",
+      "enonce": "Dans $\\mathbb{R}^2$ euclidien, soient $C$ le cercle unité et $D$ la droite d'équation $x+y=4$. Montrer que $\\delta=\\inf\\{\\|c-p\\|:c\\in C,\\ p\\in D\\}$ est atteint et strictement positif, puis le calculer.",
+      "duree_min": 12,
+      "indices": [
+        "Montrer que $\\delta=\\inf_{c\\in C}d(c,D)$ et utiliser la compacité de $C$.",
+        "La distance d'un point $(x,y)$ à la droite $D$ vaut $\\frac{|x+y-4|}{\\sqrt2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\delta$ ?",
+        "propositions": [
+          "$2\\sqrt2-1$",
+          "$2\\sqrt2$",
+          "$4-\\sqrt2$",
+          "$3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $\\delta=\\inf_{c\\in C}d(c,D)$. La fonction $c\\mapsto d(c,D)$ est continue ($1$-lipschitzienne) sur le compact non vide $C$ : elle y atteint son minimum en un point $c_0$. Elle ne s'annule pas sur $C$ : $D$ est fermée, donc $d(c,D)=0$ entraînerait $c\\in D$, alors que pour $(x,y)\\in C$, $|x+y|\\le\\sqrt2\\sqrt{x^2+y^2}=\\sqrt2<4$. Enfin $d(c_0,D)$ est atteinte en la projection orthogonale de $c_0$ sur $D$ : $\\delta$ est atteint et strictement positif.\n\nPour $(x,y)=(\\cos t,\\sin t)$, $d((x,y),D)=\\frac{4-x-y}{\\sqrt2}$ (car $x+y<4$), et $x+y=\\sqrt2\\cos\\left(t-\\frac\\pi4\\right)$ a pour maximum $\\sqrt2$. Donc\n$$\\delta=\\frac{4-\\sqrt2}{\\sqrt2}=2\\sqrt2-1,$$\natteint pour $c_0=\\left(\\frac{\\sqrt2}2,\\frac{\\sqrt2}2\\right)$ et $p_0=(2,2)$. C'est la distance de l'origine à $D$, $2\\sqrt2$, diminuée du rayon.",
+      "variantes": [
+        {
+          "enonce": "Dans $\\mathbb{R}^2$ euclidien, soient $C$ le cercle unité et $D$ la droite d'équation $x+y=3$. Montrer que $\\delta=\\inf\\{\\|c-p\\|:c\\in C,\\ p\\in D\\}$ est atteint et strictement positif, puis le calculer.",
+          "reponse_finale": {
+            "question": "Que vaut $\\delta$ ?",
+            "propositions": [
+              "$\\frac{3\\sqrt2}{2}-1$",
+              "$\\frac{3\\sqrt2}{2}$",
+              "$3-\\sqrt2$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\delta=\\inf_{c\\in C}d(c,D)$ ; la fonction continue $c\\mapsto d(c,D)$ atteint son minimum sur le compact non vide $C$, et ne s'y annule pas car $D$ est fermée et $|x+y|\\le\\sqrt2<3$ sur $C$. La distance d'un point à la droite fermée $D$ est atteinte en sa projection orthogonale : $\\delta$ est atteint et strictement positif.\n\nSur $C$, $d((x,y),D)=\\frac{3-x-y}{\\sqrt2}$ et $\\max_C(x+y)=\\sqrt2$, d'où\n$$\\delta=\\frac{3-\\sqrt2}{\\sqrt2}=\\frac{3\\sqrt2}2-1,$$\natteint pour $c_0=\\left(\\frac{\\sqrt2}2,\\frac{\\sqrt2}2\\right)$ et $p_0=\\left(\\frac32,\\frac32\\right)$.",
+          "indices": [
+            "Montrer que $\\delta=\\inf_{c\\in C}d(c,D)$ et utiliser la compacité de $C$.",
+            "La distance d'un point $(x,y)$ à la droite $D$ vaut $\\frac{|x+y-3|}{\\sqrt2}$."
+          ]
+        },
+        {
+          "enonce": "Dans $\\mathbb{R}^2$ euclidien, soient $C$ le cercle unité et $D$ la droite d'équation $x-2y=5$. Montrer que $\\delta=\\inf\\{\\|c-p\\|:c\\in C,\\ p\\in D\\}$ est atteint et strictement positif, puis le calculer.",
+          "reponse_finale": {
+            "question": "Que vaut $\\delta$ ?",
+            "propositions": [
+              "$\\sqrt5-1$",
+              "$\\sqrt5$",
+              "$5-\\sqrt5$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $\\delta=\\inf_{c\\in C}d(c,D)$ ; la fonction continue $c\\mapsto d(c,D)$ atteint son minimum sur le compact non vide $C$, et ne s'y annule pas car $D$ est fermée et $|x-2y|\\le\\sqrt5<5$ sur $C$ (Cauchy-Schwarz). La distance d'un point à la droite fermée $D$ est atteinte en sa projection orthogonale : $\\delta$ est atteint et strictement positif.\n\nSur $C$, $d((x,y),D)=\\frac{5-x+2y}{\\sqrt5}$ et $\\max_C(x-2y)=\\sqrt5$, atteint en $\\left(\\frac1{\\sqrt5},-\\frac2{\\sqrt5}\\right)$, d'où\n$$\\delta=\\frac{5-\\sqrt5}{\\sqrt5}=\\sqrt5-1.$$",
+          "indices": [
+            "Montrer que $\\delta=\\inf_{c\\in C}d(c,D)$ et utiliser la compacité de $C$.",
+            "La distance d'un point $(x,y)$ à la droite $D$ vaut $\\frac{|x-2y-5|}{\\sqrt5}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-compacite-ex3",
+      "carte": "top-l3-metriques-compacite",
+      "difficulte": 3,
+      "titre": "Une suite convergente et sa limite forment un compact",
+      "enonce": "Soient $(E,d)$ un espace métrique et $(x_n)$ une suite de $E$ qui converge vers $\\ell$. Montrer que $K=\\{x_n:n\\in\\mathbb{N}\\}\\cup\\{\\ell\\}$ est une partie compacte de $E$. La partie $\\{x_n:n\\in\\mathbb{N}\\}$ est-elle toujours compacte ?",
+      "duree_min": 15,
+      "indices": [
+        "Pour une suite $(y_p)$ de $K$, distinguer selon qu'un point de $K$ est pris une infinité de fois ou non.",
+        "Dans le second cas, écrire $y_p=x_{n_p}$ et montrer que $n_p\\to+\\infty$."
+      ],
+      "correction": "Soit $(y_p)$ une suite d'éléments de $K$.\n\n**Premier cas** : un point $z\\in K$ est égal à $y_p$ pour une infinité d'indices $p$. On en extrait une sous-suite constante égale à $z$, qui converge vers $z\\in K$.\n\n**Second cas** : chaque point de $K$ n'est pris qu'un nombre fini de fois. Alors $y_p\\neq\\ell$ pour $p$ assez grand, disons $p\\ge p_0$, et l'on note $n_p$ le plus petit entier tel que $y_p=x_{n_p}$. Pour tout $N$, l'ensemble fini $\\{x_0,\\dots,x_N\\}$ n'est atteint que pour un nombre fini d'indices $p$ ; donc $n_p>N$ pour $p$ assez grand : $n_p\\to+\\infty$. Comme $x_n\\to\\ell$, on en déduit $d(y_p,\\ell)=d(x_{n_p},\\ell)\\to0$ : toute la suite $(y_p)$ converge vers $\\ell\\in K$.\n\nDans les deux cas, $(y_p)$ a une sous-suite qui converge dans $K$ : $K$ est compacte.\n\n**Sans la limite**, ce n'est pas toujours vrai : dans $\\mathbb{R}$, $x_n=\\frac1{n+1}$ tend vers $0$, qui n'est pas dans $\\{x_n\\}$, donc cette partie n'est pas fermée, donc pas compacte. Elle l'est en revanche si $\\ell$ est l'un des $x_n$, puisqu'elle est alors égale à $K$."
+    },
+    {
+      "id": "top-l3-metriques-compacite-ex4",
+      "carte": "top-l3-metriques-compacite",
+      "difficulte": 4,
+      "titre": "Bijection continue définie sur un compact",
+      "enonce": "Soient $(K,d)$ un espace métrique compact, $(F,\\delta)$ un espace métrique et $f:K\\to F$ une bijection continue.\n\n**1.** Montrer que l'image par $f$ d'une partie fermée de $K$ est une partie fermée de $F$.\n\n**2.** En déduire que $f^{-1}:F\\to K$ est continue.\n\n**3.** Soit $\\mathbb{U}$ le cercle unité de $\\mathbb{C}$ et $g:\\left[0,2\\pi\\right[\\to\\mathbb{U}$, $g(t)=e^{it}$. Montrer que $g$ est une bijection continue, mais que $g^{-1}$ n'est pas continue en $1$. Quelle hypothèse de la question 2 fait défaut ?",
+      "duree_min": 20,
+      "indices": [
+        "Une partie fermée d'un compact est compacte, et une partie compacte est fermée.",
+        "Pour la continuité de $f^{-1}$, utiliser la caractérisation de la continuité par les images réciproques de fermés.",
+        "Pour la question 3, approcher $1$ par des points du cercle dont l'argument dans $\\left[0,2\\pi\\right[$ est proche de $2\\pi$."
+      ],
+      "correction": "**1.** Soit $G$ une partie fermée de $K$. Elle est compacte (une suite de $G$ a une sous-suite qui converge dans $K$, et la limite est dans $G$ qui est fermée). Son image $f(G)$ est compacte comme image continue d'un compact, donc fermée dans $F$.\n\n**2.** Pour toute partie fermée $G$ de $K$, l'image réciproque de $G$ par $f^{-1}$ est $(f^{-1})^{-1}(G)=f(G)$, qui est fermée d'après la question 1. Par la caractérisation de la continuité par les fermés, $f^{-1}$ est continue : $f$ est un homéomorphisme.\n\n**3.** $g$ est continue, et bijective : tout $z\\in\\mathbb{U}$ a un unique argument dans $\\left[0,2\\pi\\right[$. Pour $n\\ge1$, $z_n=e^{i(2\\pi-\\frac1n)}\\in\\mathbb{U}$ et $|z_n-1|=\\left|e^{-i/n}-1\\right|\\le\\frac1n\\to0$, mais $g^{-1}(z_n)=2\\pi-\\frac1n\\to2\\pi\\neq0=g^{-1}(1)$. Donc $g^{-1}$ n'est pas continue en $1$. L'hypothèse qui manque est la compacité de l'espace de départ : $\\left[0,2\\pi\\right[$ n'est pas fermé dans $\\mathbb{R}$, donc n'est pas compact."
+    },
+    {
+      "id": "top-l3-metriques-compacite-ex5",
+      "carte": "top-l3-metriques-compacite",
+      "difficulte": 5,
+      "titre": "Point fixe d'une application strictement contractante sur un compact",
+      "enonce": "Soient $(K,d)$ un espace métrique compact non vide et $f:K\\to K$ telle que $d(f(x),f(y))<d(x,y)$ pour tous $x\\neq y$ dans $K$.\n\n**1.** Montrer que $g:x\\mapsto d(x,f(x))$ est continue sur $K$ et qu'elle atteint son minimum en un point $a$.\n\n**2.** Montrer que $f(a)=a$, puis que $a$ est l'unique point fixe de $f$.\n\n**3.** Soient $x_0\\in K$ et $x_{n+1}=f(x_n)$ pour $n\\in\\mathbb{N}$. Montrer que la suite $(d(x_n,a))$ est décroissante ; on note $r$ sa limite.\n\n**4.** En extrayant de $(x_n)$ une sous-suite convergente, montrer que $r=0$, c'est-à-dire que $(x_n)$ converge vers $a$.\n\n**5.** Montrer que $h(x)=x+\\frac1x$ envoie $\\left[1,+\\infty\\right[$ dans lui-même et vérifie $|h(x)-h(y)|<|x-y|$ pour $x\\neq y$, mais n'a pas de point fixe. Quelle hypothèse fait défaut ?",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 2, comparer $g(f(a))$ et $g(a)$.",
+        "Pour la question 4, si $x_{\\varphi(n)}\\to b$, alors $x_{\\varphi(n)+1}\\to f(b)$ ; calculer $d(b,a)$ et $d(f(b),a)$ en fonction de $r$."
+      ],
+      "correction": "**1.** L'hypothèse donne $d(f(x),f(y))\\le d(x,y)$ pour tous $x,y$ : $f$ est $1$-lipschitzienne, donc continue. Par l'inégalité triangulaire, $|g(x)-g(y)|\\le d(x,y)+d(f(x),f(y))\\le2\\,d(x,y)$ : $g$ est continue sur le compact non vide $K$, donc atteint son minimum en un point $a$.\n\n**2.** Si $f(a)\\neq a$, alors $g(f(a))=d(f(a),f(f(a)))<d(a,f(a))=g(a)$, ce qui contredit la minimalité de $g(a)$. Donc $f(a)=a$. Si $b\\neq a$ était un autre point fixe, on aurait $d(a,b)=d(f(a),f(b))<d(a,b)$ : c'est impossible.\n\n**3.** $d(x_{n+1},a)=d(f(x_n),f(a))\\le d(x_n,a)$ (égalité si $x_n=a$, inégalité stricte sinon). La suite $(d(x_n,a))$ est décroissante et positive, donc converge vers un $r\\ge0$.\n\n**4.** Par compacité, une sous-suite $(x_{\\varphi(n)})$ converge vers un $b\\in K$. Par continuité de la distance, $d(x_{\\varphi(n)},a)\\to d(b,a)$, donc $d(b,a)=r$. Par continuité de $f$, $x_{\\varphi(n)+1}=f(x_{\\varphi(n)})\\to f(b)$, et $(d(x_{\\varphi(n)+1},a))$, extraite d'une suite qui tend vers $r$, tend vers $r$ : $d(f(b),a)=r$. Si $b\\neq a$, alors $r=d(f(b),f(a))<d(b,a)=r$, ce qui est absurde. Donc $b=a$ et $r=d(a,a)=0$ : $d(x_n,a)\\to0$.\n\n**5.** Pour $x\\ge1$, $h(x)\\ge2\\ge1$. Pour $1\\le x<y$ :\n$$h(y)-h(x)=(y-x)-\\frac{y-x}{xy}=(y-x)\\left(1-\\frac1{xy}\\right),$$\net $0<1-\\frac1{xy}<1$ car $xy>1$ ; donc $0<h(y)-h(x)<y-x$. Mais $h(x)=x$ équivaut à $\\frac1x=0$ : il n'y a pas de point fixe. L'hypothèse qui manque est la compacité : $\\left[1,+\\infty\\right[$ est fermé (et même complet) mais pas borné. Le théorème de Picard ne s'applique pas non plus : il n'existe pas de constante $k<1$, puisque $\\frac{h(y)-h(x)}{y-x}=1-\\frac1{xy}\\to1$ quand $x,y\\to+\\infty$."
+    },
+    {
+      "id": "top-l3-metriques-heine-ex1",
+      "carte": "top-l3-metriques-heine",
+      "difficulte": 2,
+      "titre": "Plus grand $\\eta$ pour la fonction carré sur un segment",
+      "enonce": "Soient $f(x)=x^2$ sur $[0,3]$ et $\\varepsilon=5$. Déterminer le plus grand réel $\\eta>0$ tel que, pour tous $x,y\\in[0,3]$, $|x-y|\\le\\eta$ entraîne $|f(x)-f(y)|\\le\\varepsilon$.",
+      "duree_min": 12,
+      "indices": [
+        "Pour $0\\le y\\le x\\le3$, écrire $x^2-y^2=(x-y)(x+y)$ et majorer $x+y$ à l'aide de $h=x-y$.",
+        "Calculer, pour $\\eta$ fixé, la borne supérieure de $x^2-y^2$ sur les couples tels que $0\\le x-y\\le\\eta$, puis la comparer à $\\varepsilon$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus grand $\\eta$ qui convient ?",
+        "propositions": [
+          "$1$",
+          "$\\frac56$",
+          "$\\frac53$",
+          "$\\sqrt5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Soient $0\\le y\\le x\\le3$ et $h=x-y$. Alors $x^2-y^2=h(x+y)=h(2x-h)\\le h(2\\times3-h)$, et la fonction $h\\mapsto h(6-h)$ est croissante sur $[0,3]$. Pour $0<\\eta\\le3$, la borne supérieure de $|x^2-y^2|$ sur les couples tels que $|x-y|\\le\\eta$ vaut donc $6\\eta-\\eta^2$, atteinte pour $x=3$, $y=3-\\eta$ ; pour $\\eta\\ge3$, elle vaut $9>\\varepsilon$.\n\nLa condition s'écrit donc $6\\eta-\\eta^2\\le5$, c'est-à-dire $\\eta^2-6\\eta+5\\ge0$, soit $(\\eta-1)(\\eta-5)\\ge0$ ; avec $\\eta\\le3$, cela équivaut à $\\eta\\le1$. Le plus grand $\\eta$ est $1$.\n\nLa majoration grossière $|x^2-y^2|\\le6|x-y|$ ne donne que $\\eta=\\frac{5}{6}$, qui convient mais n'est pas le plus grand. Le théorème de Heine garantit l'existence d'un tel $\\eta$ ; ici on le calcule exactement.",
+      "variantes": [
+        {
+          "enonce": "Soient $f(x)=x^2$ sur $[0,5]$ et $\\varepsilon=16$. Déterminer le plus grand réel $\\eta>0$ tel que, pour tous $x,y\\in[0,5]$, $|x-y|\\le\\eta$ entraîne $|f(x)-f(y)|\\le\\varepsilon$.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand $\\eta$ qui convient ?",
+            "propositions": [
+              "$2$",
+              "$\\frac85$",
+              "$\\frac{16}{5}$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soient $0\\le y\\le x\\le5$ et $h=x-y$. Alors $x^2-y^2=h(x+y)=h(2x-h)\\le h(2\\times5-h)$, et la fonction $h\\mapsto h(10-h)$ est croissante sur $[0,5]$. Pour $0<\\eta\\le5$, la borne supérieure de $|x^2-y^2|$ sur les couples tels que $|x-y|\\le\\eta$ vaut donc $10\\eta-\\eta^2$, atteinte pour $x=5$, $y=5-\\eta$ ; pour $\\eta\\ge5$, elle vaut $25>\\varepsilon$.\n\nLa condition s'écrit donc $10\\eta-\\eta^2\\le16$, c'est-à-dire $\\eta^2-10\\eta+16\\ge0$, soit $(\\eta-2)(\\eta-8)\\ge0$ ; avec $\\eta\\le5$, cela équivaut à $\\eta\\le2$. Le plus grand $\\eta$ est $2$.\n\nLa majoration grossière $|x^2-y^2|\\le10|x-y|$ ne donne que $\\eta=\\frac{16}{10}$, qui convient mais n'est pas le plus grand. Le théorème de Heine garantit l'existence d'un tel $\\eta$ ; ici on le calcule exactement.",
+          "indices": [
+            "Pour $0\\le y\\le x\\le5$, écrire $x^2-y^2=(x-y)(x+y)$ et majorer $x+y$ à l'aide de $h=x-y$.",
+            "Calculer, pour $\\eta$ fixé, la borne supérieure de $x^2-y^2$ sur les couples tels que $0\\le x-y\\le\\eta$, puis la comparer à $\\varepsilon$."
+          ]
+        },
+        {
+          "enonce": "Soient $f(x)=x^2$ sur $[0,4]$ et $\\varepsilon=15$. Déterminer le plus grand réel $\\eta>0$ tel que, pour tous $x,y\\in[0,4]$, $|x-y|\\le\\eta$ entraîne $|f(x)-f(y)|\\le\\varepsilon$.",
+          "reponse_finale": {
+            "question": "Quel est le plus grand $\\eta$ qui convient ?",
+            "propositions": [
+              "$3$",
+              "$\\frac{15}{8}$",
+              "$\\frac{15}{4}$",
+              "$\\sqrt{15}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Soient $0\\le y\\le x\\le4$ et $h=x-y$. Alors $x^2-y^2=h(x+y)=h(2x-h)\\le h(2\\times4-h)$, et la fonction $h\\mapsto h(8-h)$ est croissante sur $[0,4]$. Pour $0<\\eta\\le4$, la borne supérieure de $|x^2-y^2|$ sur les couples tels que $|x-y|\\le\\eta$ vaut donc $8\\eta-\\eta^2$, atteinte pour $x=4$, $y=4-\\eta$ ; pour $\\eta\\ge4$, elle vaut $16>\\varepsilon$.\n\nLa condition s'écrit donc $8\\eta-\\eta^2\\le15$, c'est-à-dire $\\eta^2-8\\eta+15\\ge0$, soit $(\\eta-3)(\\eta-5)\\ge0$ ; avec $\\eta\\le4$, cela équivaut à $\\eta\\le3$. Le plus grand $\\eta$ est $3$.\n\nLa majoration grossière $|x^2-y^2|\\le8|x-y|$ ne donne que $\\eta=\\frac{15}{8}$, qui convient mais n'est pas le plus grand. Le théorème de Heine garantit l'existence d'un tel $\\eta$ ; ici on le calcule exactement.",
+          "indices": [
+            "Pour $0\\le y\\le x\\le4$, écrire $x^2-y^2=(x-y)(x+y)$ et majorer $x+y$ à l'aide de $h=x-y$.",
+            "Calculer, pour $\\eta$ fixé, la borne supérieure de $x^2-y^2$ sur les couples tels que $0\\le x-y\\le\\eta$, puis la comparer à $\\varepsilon$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-heine-ex2",
+      "carte": "top-l3-metriques-heine",
+      "difficulte": 2,
+      "titre": "Continuité uniforme sur un intervalle borné non fermé",
+      "enonce": "Parmi les fonctions suivantes, définies sur $\\left]0,1\\right]$, déterminer celles qui sont uniformément continues :\n$$f_1(x)=\\sin\\frac1x,\\qquad f_2(x)=x\\sin\\frac1x,\\qquad f_3(x)=\\frac1x,\\qquad f_4(x)=\\ln x.$$",
+      "duree_min": 12,
+      "indices": [
+        "Si une fonction se prolonge en une fonction continue sur $[0,1]$, que dit le théorème de Heine ?",
+        "Pour montrer qu'une fonction n'est pas uniformément continue, chercher deux suites $(x_n)$ et $(y_n)$ telles que $x_n-y_n\\to0$ et $|f(x_n)-f(y_n)|\\ge c>0$."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fonctions est uniformément continue sur $\\left]0,1\\right]$ ?",
+        "propositions": [
+          "$x\\sin\\frac1x$",
+          "$\\sin\\frac1x$",
+          "$\\frac1x$",
+          "$\\ln x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- $f_2$ : comme $|f_2(x)|\\le x$, $f_2$ se prolonge par continuité en $0$ par $0$. Le prolongement est continu sur le compact $[0,1]$, donc uniformément continu (Heine), et sa restriction $f_2$ l'est aussi.\n- $f_1$ : $x_n=\\frac1{2n\\pi}$ et $y_n=\\frac1{2n\\pi+\\frac\\pi2}$ vérifient $x_n-y_n\\to0$, mais $|f_1(x_n)-f_1(y_n)|=|0-1|=1$.\n- $f_3$ : $x_n=\\frac1n$ et $y_n=\\frac1{n+1}$ vérifient $x_n-y_n=\\frac1{n(n+1)}\\to0$, mais $f_3(y_n)-f_3(x_n)=1$.\n- $f_4$ : $x_n=e^{-n}$ et $y_n=e^{-n-1}$ vérifient $x_n-y_n\\to0$, mais $f_4(x_n)-f_4(y_n)=1$.\n\nSeule $f_2$ est uniformément continue. On retiendra que, sur un intervalle borné, une fonction uniformément continue a des limites finies aux bornes (voir le critère de Cauchy pour les limites) : $f_1$, $f_3$ et $f_4$ n'en ont pas en $0$."
+    },
+    {
+      "id": "top-l3-metriques-heine-ex3",
+      "carte": "top-l3-metriques-heine",
+      "difficulte": 3,
+      "titre": "Croissance au plus affine d'une fonction uniformément continue",
+      "enonce": "Soit $f:\\mathbb{R}\\to\\mathbb{R}$ uniformément continue.\n\n**1.** Montrer qu'il existe $\\eta>0$ tel que $|f(x)-f(y)|\\le1$ dès que $|x-y|\\le\\eta$.\n\n**2.** En déduire qu'il existe des constantes $a,b\\ge0$ telles que $|f(x)|\\le a|x|+b$ pour tout $x\\in\\mathbb{R}$.\n\n**3.** Parmi les fonctions $x\\mapsto x^2$, $x\\mapsto\\sqrt{|x|}$, $x\\mapsto\\sin x$ et $x\\mapsto x+\\sin x$, laquelle n'est pas uniformément continue sur $\\mathbb{R}$ ? Justifier pour les quatre.",
+      "duree_min": 15,
+      "indices": [
+        "Pour la question 1, appliquer la définition avec $\\varepsilon=1$, puis diviser le $\\eta$ obtenu par $2$.",
+        "Pour la question 2, relier $0$ à $x$ par des points consécutifs distants d'au plus $\\eta$, et compter les pas."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fonctions n'est pas uniformément continue sur $\\mathbb{R}$ ?",
+        "propositions": [
+          "$x\\mapsto x^2$",
+          "$x\\mapsto\\sqrt{|x|}$",
+          "$x\\mapsto\\sin x$",
+          "$x\\mapsto x+\\sin x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** La définition avec $\\varepsilon=1$ donne $\\eta_0>0$ tel que $|x-y|<\\eta_0$ entraîne $|f(x)-f(y)|<1$ ; $\\eta=\\frac{\\eta_0}2$ convient avec des inégalités larges.\n\n**2.** Soit $x>0$ et $N=\\left\\lceil\\frac x\\eta\\right\\rceil$, de sorte que $N\\le\\frac x\\eta+1$. Les points $t_j=\\frac{jx}N$, $0\\le j\\le N$, vérifient $t_{j+1}-t_j=\\frac xN\\le\\eta$, donc\n$$|f(x)-f(0)|\\le\\sum_{j=0}^{N-1}|f(t_{j+1})-f(t_j)|\\le N\\le\\frac{x}{\\eta}+1.$$\nOn raisonne de même pour $x<0$. Ainsi $|f(x)|\\le\\frac1\\eta|x|+1+|f(0)|$ : $a=\\frac1\\eta$ et $b=1+|f(0)|$ conviennent.\n\n**3.** $x\\mapsto x^2$ n'est pas uniformément continue : $\\frac{x^2}{|x|}\\to+\\infty$, donc aucune majoration $x^2\\le a|x|+b$ n'est possible. Les trois autres le sont : $\\sin$ est $1$-lipschitzienne et $x\\mapsto x+\\sin x$ est $2$-lipschitzienne (inégalité des accroissements finis) ; pour $u,v\\ge0$, $|\\sqrt u-\\sqrt v|\\le\\sqrt{|u-v|}$ (si $u\\ge v$, $(\\sqrt v+\\sqrt{u-v})^2\\ge u$), donc $\\left|\\sqrt{|x|}-\\sqrt{|y|}\\right|\\le\\sqrt{||x|-|y||}\\le\\sqrt{|x-y|}$, et $\\eta=\\varepsilon^2$ convient."
+    },
+    {
+      "id": "top-l3-metriques-heine-ex4",
+      "carte": "top-l3-metriques-heine",
+      "difficulte": 3,
+      "titre": "Fonction continue ayant une limite finie en l'infini",
+      "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ continue, admettant une limite finie $\\ell$ en $+\\infty$. Montrer que $f$ est uniformément continue sur $\\left[0,+\\infty\\right[$. La réciproque est-elle vraie ?",
+      "duree_min": 15,
+      "indices": [
+        "Soit $\\varepsilon>0$. Fixer $A$ tel que $|f(x)-\\ell|<\\frac\\varepsilon2$ pour $x\\ge A$, et appliquer le théorème de Heine sur $[0,A+1]$.",
+        "Pour $|x-y|<\\eta\\le1$, distinguer selon que $x$ et $y$ sont tous deux supérieurs ou égaux à $A$, ou non."
+      ],
+      "correction": "Soit $\\varepsilon>0$. Il existe $A\\ge0$ tel que $|f(x)-\\ell|<\\frac\\varepsilon2$ pour $x\\ge A$. Sur le segment $[0,A+1]$, compact, $f$ est uniformément continue (Heine) : il existe $\\eta_1>0$ tel que pour $x,y\\in[0,A+1]$, $|x-y|<\\eta_1$ entraîne $|f(x)-f(y)|<\\varepsilon$. Posons $\\eta=\\min(\\eta_1,1)$ et soient $x,y\\ge0$ avec $|x-y|<\\eta$.\n- Si $x\\ge A$ et $y\\ge A$ : $|f(x)-f(y)|\\le|f(x)-\\ell|+|\\ell-f(y)|<\\varepsilon$.\n- Sinon, l'un des deux est inférieur à $A$, et comme $|x-y|<1$, les deux sont dans $[0,A+1]$ : $|f(x)-f(y)|<\\varepsilon$.\n\nDonc $f$ est uniformément continue. La réciproque est fausse : $x\\mapsto x$ et $\\sin$ sont lipschitziennes, donc uniformément continues, sans avoir de limite finie en $+\\infty$."
+    },
+    {
+      "id": "top-l3-metriques-heine-ex5",
+      "carte": "top-l3-metriques-heine",
+      "difficulte": 5,
+      "titre": "Approximation uniforme par des fonctions lipschitziennes",
+      "enonce": "Soient $(K,d)$ un espace métrique compact non vide et $f:K\\to\\mathbb{R}$ continue. On note $M=\\max_K|f|$ et, pour $n\\ge1$ et $x\\in K$,\n$$f_n(x)=\\inf_{y\\in K}\\big(f(y)+n\\,d(x,y)\\big).$$\n\n**1.** Montrer que $f_n$ est bien définie, que $-M\\le f_n\\le f$ et que $f_n\\le f_{n+1}$.\n\n**2.** Montrer que $f_n$ est $n$-lipschitzienne.\n\n**3.** Soient $\\varepsilon>0$ et $\\eta>0$ tel que $|f(x)-f(y)|\\le\\varepsilon$ dès que $d(x,y)<\\eta$. Justifier l'existence de $\\eta$, puis montrer que pour $n\\ge\\frac{2M}\\eta$ et tout $x\\in K$, $f_n(x)\\ge f(x)-\\varepsilon$.\n\n**4.** En déduire que toute fonction continue sur un espace métrique compact, à valeurs réelles, est limite uniforme d'une suite de fonctions lipschitziennes.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 2, majorer $f(y)+n\\,d(x,y)$ à l'aide de $d(x',y)$ et de $d(x,x')$, puis passer à la borne inférieure en $y$.",
+        "Pour la question 3, distinguer les $y$ tels que $d(x,y)<\\eta$ et les autres."
+      ],
+      "correction": "**1.** $M$ existe car $|f|$ est continue sur le compact non vide $K$. Pour tout $y$, $f(y)+n\\,d(x,y)\\ge-M$ : la borne inférieure existe et $f_n(x)\\ge-M$. Le choix $y=x$ donne $f_n(x)\\le f(x)$. Enfin $f(y)+n\\,d(x,y)\\le f(y)+(n+1)\\,d(x,y)$ pour tout $y$, d'où $f_n(x)\\le f_{n+1}(x)$.\n\n**2.** Pour $x,x',y\\in K$ : $f(y)+n\\,d(x,y)\\le f(y)+n\\,d(x',y)+n\\,d(x,x')$. En passant à la borne inférieure en $y$, $f_n(x)\\le f_n(x')+n\\,d(x,x')$ ; en échangeant $x$ et $x'$, $|f_n(x)-f_n(x')|\\le n\\,d(x,x')$.\n\n**3.** $\\eta$ existe par le théorème de Heine : $f$ est uniformément continue sur le compact $K$. Soient $n\\ge\\frac{2M}\\eta$, $x\\in K$ et $y\\in K$.\n- Si $d(x,y)<\\eta$ : $f(y)\\ge f(x)-\\varepsilon$, donc $f(y)+n\\,d(x,y)\\ge f(x)-\\varepsilon$.\n- Si $d(x,y)\\ge\\eta$ : $f(y)+n\\,d(x,y)\\ge-M+n\\eta\\ge-M+2M=M\\ge f(x)\\ge f(x)-\\varepsilon$.\n\nEn passant à la borne inférieure en $y$ : $f_n(x)\\ge f(x)-\\varepsilon$.\n\n**4.** Pour $n\\ge\\frac{2M}\\eta$, on a donc $0\\le f(x)-f_n(x)\\le\\varepsilon$ pour tout $x\\in K$ : $\\|f-f_n\\|_\\infty\\le\\varepsilon$. La suite $(f_n)$, formée de fonctions lipschitziennes (question 2), converge uniformément vers $f$ (en croissant)."
+    },
+    {
+      "id": "top-l3-metriques-connexite-ex1",
+      "carte": "top-l3-metriques-connexite",
+      "difficulte": 1,
+      "titre": "Découper une partie de $\\mathbb{R}$ en intervalles",
+      "enonce": "Soit $A=\\{x\\in\\mathbb{R}:x^3-x\\neq0\\}$. Dire si $A$ est connexe, puis écrire $A$ comme réunion disjointe d'intervalles, en nombre le plus petit possible. Combien en faut-il ?",
+      "duree_min": 6,
+      "indices": [
+        "Une partie connexe de $\\mathbb{R}$ est un intervalle.",
+        "Un intervalle contenu dans $A$ ne peut pas contenir deux points séparés par une racine du polynôme."
+      ],
+      "reponse_finale": {
+        "question": "Combien d'intervalles faut-il au minimum ?",
+        "propositions": [
+          "$4$",
+          "$3$",
+          "$2$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les racines réelles du polynôme sont $-1,\\ 0,\\ 1$. Donc\n$$A=\\left]-\\infty,-1\\right[\\cup\\left]-1,0\\right[\\cup\\left]0,1\\right[\\cup\\left]1,+\\infty\\right[,$$\nréunion disjointe de $4$ intervalles ouverts. $A$ n'est pas un intervalle (il contient des points de part et d'autre d'une racine, sans contenir cette racine), donc $A$ n'est pas connexe.\n\nOn ne peut pas faire avec moins de $4$ intervalles : un intervalle $I\\subset A$ ne contient aucune racine, donc ne peut pas contenir deux points séparés par une racine (il contiendrait la racine, située entre eux) ; il est donc contenu dans l'un des $4$ intervalles ci-dessus. Il faut alors au moins un intervalle par morceau, soit $4$ intervalles. Ces morceaux sont les plus grandes parties connexes de $A$ (ses composantes connexes).",
+      "variantes": [
+        {
+          "enonce": "Soit $A=\\{x\\in\\mathbb{R}:x^4-5x^2+4\\neq0\\}$. Dire si $A$ est connexe, puis écrire $A$ comme réunion disjointe d'intervalles, en nombre le plus petit possible. Combien en faut-il ?",
+          "reponse_finale": {
+            "question": "Combien d'intervalles faut-il au minimum ?",
+            "propositions": [
+              "$5$",
+              "$4$",
+              "$3$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les racines réelles du polynôme sont $-2,\\ -1,\\ 1,\\ 2$. Donc\n$$A=\\left]-\\infty,-2\\right[\\cup\\left]-2,-1\\right[\\cup\\left]-1,1\\right[\\cup\\left]1,2\\right[\\cup\\left]2,+\\infty\\right[,$$\nréunion disjointe de $5$ intervalles ouverts. $A$ n'est pas un intervalle (il contient des points de part et d'autre d'une racine, sans contenir cette racine), donc $A$ n'est pas connexe.\n\nOn ne peut pas faire avec moins de $5$ intervalles : un intervalle $I\\subset A$ ne contient aucune racine, donc ne peut pas contenir deux points séparés par une racine (il contiendrait la racine, située entre eux) ; il est donc contenu dans l'un des $5$ intervalles ci-dessus. Il faut alors au moins un intervalle par morceau, soit $5$ intervalles. Ces morceaux sont les plus grandes parties connexes de $A$ (ses composantes connexes).",
+          "indices": [
+            "Une partie connexe de $\\mathbb{R}$ est un intervalle.",
+            "Un intervalle contenu dans $A$ ne peut pas contenir deux points séparés par une racine du polynôme."
+          ]
+        },
+        {
+          "enonce": "Soit $A=\\{x\\in\\mathbb{R}:x^4-1\\neq0\\}$. Dire si $A$ est connexe, puis écrire $A$ comme réunion disjointe d'intervalles, en nombre le plus petit possible. Combien en faut-il ?",
+          "reponse_finale": {
+            "question": "Combien d'intervalles faut-il au minimum ?",
+            "propositions": [
+              "$3$",
+              "$2$",
+              "$5$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Les racines réelles du polynôme sont $-1,\\ 1$. Donc\n$$A=\\left]-\\infty,-1\\right[\\cup\\left]-1,1\\right[\\cup\\left]1,+\\infty\\right[,$$\nréunion disjointe de $3$ intervalles ouverts. $A$ n'est pas un intervalle (il contient des points de part et d'autre d'une racine, sans contenir cette racine), donc $A$ n'est pas connexe.\n\nOn ne peut pas faire avec moins de $3$ intervalles : un intervalle $I\\subset A$ ne contient aucune racine, donc ne peut pas contenir deux points séparés par une racine (il contiendrait la racine, située entre eux) ; il est donc contenu dans l'un des $3$ intervalles ci-dessus. Il faut alors au moins un intervalle par morceau, soit $3$ intervalles. Ces morceaux sont les plus grandes parties connexes de $A$ (ses composantes connexes).",
+          "indices": [
+            "Une partie connexe de $\\mathbb{R}$ est un intervalle.",
+            "Un intervalle contenu dans $A$ ne peut pas contenir deux points séparés par une racine du polynôme."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-connexite-ex2",
+      "carte": "top-l3-metriques-connexite",
+      "difficulte": 2,
+      "titre": "Parties connexes de $\\mathcal{M}_2(\\mathbb{R})$",
+      "enonce": "On munit $\\mathcal{M}_2(\\mathbb{R})$ d'une norme. Pour chacune des parties suivantes, dire si elle est connexe par arcs : $\\mathrm{GL}_2(\\mathbb{R})$, $\\mathcal{N}=\\{A:\\det A=0\\}$, $\\mathrm{O}_2(\\mathbb{R})$ et $\\mathcal{T}=\\{A:\\operatorname{tr}A\\neq0\\}$.",
+      "duree_min": 12,
+      "indices": [
+        "L'image d'un connexe par arcs par une application continue à valeurs réelles est un intervalle.",
+        "Penser aux applications continues $\\det$ et $\\operatorname{tr}$, et aux segments de $\\mathcal{M}_2(\\mathbb{R})$."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces parties est connexe par arcs ?",
+        "propositions": [
+          "$\\{A:\\det A=0\\}$",
+          "$\\mathrm{GL}_2(\\mathbb{R})$",
+          "$\\mathrm{O}_2(\\mathbb{R})$",
+          "$\\{A:\\operatorname{tr}A\\neq0\\}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- $\\mathcal{N}$ est connexe par arcs : si $\\det A=0$, alors $\\det(tA)=t^2\\det A=0$ pour tout $t\\in[0,1]$, donc le chemin continu $t\\mapsto(1-t)A$ relie $A$ à la matrice nulle dans $\\mathcal{N}$ ; deux matrices de $\\mathcal{N}$ se relient en passant par $0$ ($\\mathcal{N}$ est étoilée par rapport à $0$).\n- $\\mathrm{GL}_2(\\mathbb{R})$ ne l'est pas : $\\det$ est continue et prend sur $\\mathrm{GL}_2(\\mathbb{R})$ les valeurs $1$ (en $I_2$) et $-1$ (en $\\mathrm{diag}(-1,1)$), mais jamais $0$ ; son image n'est pas un intervalle, donc $\\mathrm{GL}_2(\\mathbb{R})$ n'est pas connexe, a fortiori pas connexe par arcs.\n- $\\mathrm{O}_2(\\mathbb{R})$ ne l'est pas : $\\det$ y prend exactement les valeurs $1$ et $-1$ (en $I_2$ et en $\\mathrm{diag}(-1,1)$).\n- $\\mathcal{T}$ ne l'est pas : $\\operatorname{tr}$ y prend les valeurs $2$ et $-2$ (en $I_2$ et $-I_2$) mais pas $0$."
+    },
+    {
+      "id": "top-l3-metriques-connexite-ex3",
+      "carte": "top-l3-metriques-connexite",
+      "difficulte": 3,
+      "titre": "Homéomorphismes et points qui déconnectent",
+      "enonce": "Un **homéomorphisme** est une bijection continue dont la réciproque est continue.\n\n**1.** Montrer que si $h:X\\to Y$ est un homéomorphisme entre espaces métriques et $x\\in X$, alors $h$ induit un homéomorphisme de $X\\setminus\\{x\\}$ sur $Y\\setminus\\{h(x)\\}$.\n\n**2.** Montrer que $\\mathbb{R}^2$ privé d'un point est connexe par arcs, puis que $\\mathbb{R}$ et $\\mathbb{R}^2$ ne sont pas homéomorphes.\n\n**3.** Parmi $\\mathbb{R}$, $\\left[0,1\\right[$, le cercle unité $\\mathbb{U}$ de $\\mathbb{C}$ et $\\mathbb{R}^2$, lequel est homéomorphe à $\\left]0,1\\right[$ ?",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, deux points $x,y$ de $\\mathbb{R}^2\\setminus\\{p\\}$ se relient par le segment $[x,y]$, ou, si $p\\in[x,y]$, par deux segments passant par un point hors de la droite $(xy)$.",
+        "Pour comparer deux espaces, retirer un point bien choisi à chacun et comparer la connexité de ce qui reste."
+      ],
+      "reponse_finale": {
+        "question": "Lequel de ces espaces est homéomorphe à $\\left]0,1\\right[$ ?",
+        "propositions": [
+          "$\\mathbb{R}$",
+          "$\\left[0,1\\right[$",
+          "le cercle $\\mathbb{U}$",
+          "$\\mathbb{R}^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** La restriction de $h$ à $X\\setminus\\{x\\}$ est continue, à valeurs dans $Y\\setminus\\{h(x)\\}$ (par injectivité) et bijective sur cet ensemble ; sa réciproque est la restriction de $h^{-1}$, continue.\n\n**2.** Soient $p\\in\\mathbb{R}^2$ et $x,y\\neq p$. Si $p\\notin[x,y]$, le segment convient. Sinon, $p$ est sur la droite $(xy)$ ; on choisit $z$ hors de cette droite : les segments $[x,z]$ et $[z,y]$ ne rencontrent la droite $(xy)$ qu'en $x$ et en $y$, donc évitent $p$. Ainsi $\\mathbb{R}^2\\setminus\\{p\\}$ est connexe par arcs, donc connexe. Si $h:\\mathbb{R}\\to\\mathbb{R}^2$ était un homéomorphisme, $h^{-1}$ induirait une application continue et surjective de $\\mathbb{R}^2\\setminus\\{h(0)\\}$, connexe, sur $\\mathbb{R}\\setminus\\{0\\}$, qui n'est pas un intervalle, donc pas connexe : c'est impossible.\n\n**3.** $\\mathbb{R}$ convient : $x\\mapsto\\frac12+\\frac1\\pi\\arctan x$ est une bijection continue de $\\mathbb{R}$ sur $\\left]0,1\\right[$, de réciproque continue $t\\mapsto\\tan\\left(\\pi\\left(t-\\frac12\\right)\\right)$. Les autres ne conviennent pas :\n- $\\left[0,1\\right[$ : un homéomorphisme $h:\\left[0,1\\right[\\to\\left]0,1\\right[$ induirait un homéomorphisme de $\\left]0,1\\right[$, connexe, sur $\\left]0,1\\right[\\setminus\\{h(0)\\}$, qui ne l'est pas ;\n- $\\mathbb{U}$ : $\\mathbb{U}$ privé d'un point $e^{i\\theta}$ est connexe par arcs (image de $\\left]\\theta,\\theta+2\\pi\\right[$ par $t\\mapsto e^{it}$), alors que $\\left]0,1\\right[$ privé de n'importe quel point ne l'est pas ;\n- $\\mathbb{R}^2$ : sinon $\\mathbb{R}$, homéomorphe à $\\left]0,1\\right[$, le serait à $\\mathbb{R}^2$, ce que la question 2 exclut."
+    },
+    {
+      "id": "top-l3-metriques-connexite-ex4",
+      "carte": "top-l3-metriques-connexite",
+      "difficulte": 4,
+      "titre": "Connexité par arcs du groupe linéaire complexe",
+      "enonce": "Soit $n\\ge1$. On munit $\\mathcal{M}_n(\\mathbb{C})$ d'une norme.\n\n**1.** Montrer que $\\mathbb{C}$ privé d'un nombre fini de points est connexe par arcs.\n\n**2.** Soient $A,B\\in\\mathrm{GL}_n(\\mathbb{C})$. Montrer que $P(z)=\\det\\big((1-z)A+zB\\big)$ est un polynôme non nul en $z$, et en déduire l'existence d'un chemin continu $\\gamma:[0,1]\\to\\mathbb{C}$ tel que $\\gamma(0)=0$, $\\gamma(1)=1$ et $P(\\gamma(t))\\neq0$ pour tout $t\\in[0,1]$.\n\n**3.** En déduire que $\\mathrm{GL}_n(\\mathbb{C})$ est connexe par arcs.\n\n**4.** Pourquoi l'argument ne s'applique-t-il pas à $\\mathrm{GL}_n(\\mathbb{R})$ ?",
+      "duree_min": 30,
+      "indices": [
+        "Pour la question 1, relier deux points $u$ et $v$ par deux segments $[u,w]$ et $[w,v]$, en choisissant $w$ hors d'un nombre fini de demi-droites.",
+        "Pour la question 2, calculer $P(0)$ et $P(1)$."
+      ],
+      "correction": "**1.** Soient $Z$ une partie finie de $\\mathbb{C}$ et $u,v\\notin Z$. Pour $z\\in Z$, $z\\in[u,w]$ impose que $w$ soit sur la demi-droite d'origine $u$ passant par $z$ ; de même $z\\in[w,v]$ impose que $w$ soit sur la demi-droite d'origine $v$ passant par $z$. Un cercle de centre $u$ ne rencontre chacune de ces $2|Z|$ demi-droites qu'en au plus deux points ; on peut donc y choisir $w$ hors de toutes. Les segments $[u,w]$ et $[w,v]$ évitent alors $Z$, et le chemin qui les parcourt l'un après l'autre relie $u$ à $v$ dans $\\mathbb{C}\\setminus Z$.\n\n**2.** Les coefficients de $(1-z)A+zB$ sont des polynômes de degré au plus $1$ en $z$, donc $P$, somme de produits de coefficients, est un polynôme en $z$. Il est non nul car $P(0)=\\det A\\neq0$. Son ensemble $Z$ de racines est donc fini, et ne contient ni $0$ ni $1$ (car $P(1)=\\det B\\neq0$). Par la question 1, il existe un chemin continu $\\gamma$ de $0$ à $1$ dans $\\mathbb{C}\\setminus Z$.\n\n**3.** Posons $\\Gamma(t)=(1-\\gamma(t))A+\\gamma(t)B$. C'est un chemin continu dans $\\mathcal{M}_n(\\mathbb{C})$, avec $\\Gamma(0)=A$, $\\Gamma(1)=B$ et $\\det\\Gamma(t)=P(\\gamma(t))\\neq0$ : il reste dans $\\mathrm{GL}_n(\\mathbb{C})$. Donc $\\mathrm{GL}_n(\\mathbb{C})$ est connexe par arcs.\n\n**4.** Pour rester dans les matrices réelles, il faudrait un chemin réel, donc dans $[0,1]$ ou plus généralement dans $\\mathbb{R}$ privé des racines réelles de $P$ ; or $\\mathbb{R}$ privé d'un point n'est pas connexe. Par exemple, pour $n=2$, $A=I_2$ et $B=\\mathrm{diag}(-1,1)$, $P(t)=1-2t$ s'annule en $\\frac12$. D'ailleurs $\\mathrm{GL}_n(\\mathbb{R})$ n'est pas connexe, puisque $\\det$ y prend des valeurs des deux signes sans s'annuler."
+    },
+    {
+      "id": "top-l3-metriques-connexite-ex5",
+      "carte": "top-l3-metriques-connexite",
+      "difficulte": 3,
+      "titre": "Pas d'injection continue du plan dans la droite",
+      "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ continue.\n\n**1.** Montrer que $f(\\mathbb{R}^2)$ est un intervalle $I$.\n\n**2.** On suppose $f$ injective. Montrer qu'il existe $p\\in\\mathbb{R}^2$ tel que $f(p)$ soit strictement compris entre $f(0,0)$ et $f(1,0)$.\n\n**3.** En considérant $f(\\mathbb{R}^2\\setminus\\{p\\})$, aboutir à une contradiction : il n'existe pas d'injection continue de $\\mathbb{R}^2$ dans $\\mathbb{R}$.\n\n**4.** Existe-t-il une injection continue de $\\mathbb{R}$ dans $\\mathbb{R}^2$ ?",
+      "duree_min": 20,
+      "indices": [
+        "$\\mathbb{R}^2$ et $\\mathbb{R}^2$ privé d'un point sont connexes par arcs.",
+        "Par injectivité, $f(\\mathbb{R}^2\\setminus\\{p\\})=I\\setminus\\{f(p)\\}$."
+      ],
+      "correction": "**1.** $\\mathbb{R}^2$ est convexe, donc connexe par arcs, donc connexe ; son image par l'application continue $f$ est une partie connexe de $\\mathbb{R}$, c'est-à-dire un intervalle.\n\n**2.** Par injectivité, $\\alpha=f(0,0)$ et $\\beta=f(1,0)$ sont distincts. Comme $I$ est un intervalle contenant $\\alpha$ et $\\beta$, il contient $c=\\frac{\\alpha+\\beta}2$, strictement compris entre eux : $c=f(p)$ pour un $p\\in\\mathbb{R}^2$.\n\n**3.** $\\mathbb{R}^2\\setminus\\{p\\}$ est connexe par arcs (on contourne $p$ par deux segments), donc connexe, et son image $J=f(\\mathbb{R}^2\\setminus\\{p\\})$ est un intervalle. Par injectivité, $J=I\\setminus\\{c\\}$. Or $(0,0)$ et $(1,0)$ sont différents de $p$ (leurs images diffèrent de $c$), donc $\\alpha,\\beta\\in J$, alors que $c\\notin J$ est strictement entre eux : $J$ n'est pas un intervalle. C'est une contradiction : $f$ ne peut pas être injective.\n\n**4.** Oui : $t\\mapsto(t,0)$ est continue et injective. L'argument ne se renverse pas, car $\\mathbb{R}^2$ privé d'un point reste connexe."
+    },
+    {
+      "id": "top-l3-metriques-point-fixe-ex1",
+      "carte": "top-l3-metriques-point-fixe",
+      "difficulte": 1,
+      "titre": "Nombre d'itérations garanti par l'estimation a priori",
+      "enonce": "Soit $g(x)=\\frac12\\cos x$ sur $\\mathbb{R}$. Montrer que $g$ est $\\frac12$-lipschitzienne, donc une contraction de $\\mathbb{R}$. On part de $x_0=0$ et l'on pose $x_{n+1}=g(x_n)$. Déterminer le plus petit entier $n$ pour lequel l'estimation a priori du théorème du point fixe, avec la constante $k=\\frac12$, garantit $|x_n-\\ell|\\le10^{-6}$, où $\\ell$ est le point fixe de $g$.",
+      "duree_min": 8,
+      "indices": [
+        "Majorer $|g'|$ et utiliser l'inégalité des accroissements finis.",
+        "L'estimation a priori s'écrit $|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|$ ; calculer d'abord $x_1$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit $n$ qui convient ?",
+        "propositions": [
+          "$20$",
+          "$19$",
+          "$21$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $g'(x)=-\\frac12\\sin x$, donc $|g'(x)|\\le\\frac12$ pour tout $x$, et par l'inégalité des accroissements finis $|g(x)-g(y)|\\le\\frac12|x-y|$. Comme $\\mathbb{R}$ est complet, le théorème du point fixe s'applique : $g$ a un unique point fixe $\\ell$ et $x_n\\to\\ell$.\n\nIci $x_1=g(0)=\\frac12$, et l'estimation a priori donne\n$$|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|=\\frac{(1/2)^n}{1/2}\\times\\frac12=\\frac1{2^n}.$$\nIl faut donc $2^n\\ge10^6$ ; or $2^{19}=524\\,288<10^6\\le2^{20}=1\\,048\\,576$. Le plus petit entier qui convient est donc $n=20$.",
+      "variantes": [
+        {
+          "enonce": "Soit $g(x)=1+\\frac13\\sin x$ sur $\\mathbb{R}$. Montrer que $g$ est $\\frac13$-lipschitzienne, donc une contraction de $\\mathbb{R}$. On part de $x_0=0$ et l'on pose $x_{n+1}=g(x_n)$. Déterminer le plus petit entier $n$ pour lequel l'estimation a priori du théorème du point fixe, avec la constante $k=\\frac13$, garantit $|x_n-\\ell|\\le10^{-6}$, où $\\ell$ est le point fixe de $g$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit $n$ qui convient ?",
+            "propositions": [
+              "$13$",
+              "$12$",
+              "$14$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $g'(x)=\\frac13\\cos x$, donc $|g'(x)|\\le\\frac13$ pour tout $x$, et par l'inégalité des accroissements finis $|g(x)-g(y)|\\le\\frac13|x-y|$. Comme $\\mathbb{R}$ est complet, le théorème du point fixe s'applique : $g$ a un unique point fixe $\\ell$ et $x_n\\to\\ell$.\n\nIci $x_1=g(0)=1$, et l'estimation a priori donne\n$$|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|=\\frac{(1/3)^n}{2/3}\\times1=\\frac{3}{2\\times3^n}.$$\nIl faut donc $3^n\\ge1{,}5\\times10^6$ ; or $3^{12}=531\\,441<1{,}5\\times10^6\\le3^{13}=1\\,594\\,323$. Le plus petit entier qui convient est donc $n=13$.",
+          "indices": [
+            "Majorer $|g'|$ et utiliser l'inégalité des accroissements finis.",
+            "L'estimation a priori s'écrit $|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|$ ; calculer d'abord $x_1$."
+          ]
+        },
+        {
+          "enonce": "Soit $g(x)=1+\\frac14\\arctan x$ sur $\\mathbb{R}$. Montrer que $g$ est $\\frac14$-lipschitzienne, donc une contraction de $\\mathbb{R}$. On part de $x_0=0$ et l'on pose $x_{n+1}=g(x_n)$. Déterminer le plus petit entier $n$ pour lequel l'estimation a priori du théorème du point fixe, avec la constante $k=\\frac14$, garantit $|x_n-\\ell|\\le10^{-6}$, où $\\ell$ est le point fixe de $g$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit $n$ qui convient ?",
+            "propositions": [
+              "$11$",
+              "$10$",
+              "$12$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $g'(x)=\\frac{1}{4(1+x^2)}$, donc $|g'(x)|\\le\\frac14$ pour tout $x$, et par l'inégalité des accroissements finis $|g(x)-g(y)|\\le\\frac14|x-y|$. Comme $\\mathbb{R}$ est complet, le théorème du point fixe s'applique : $g$ a un unique point fixe $\\ell$ et $x_n\\to\\ell$.\n\nIci $x_1=g(0)=1$, et l'estimation a priori donne\n$$|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|=\\frac{(1/4)^n}{3/4}\\times1=\\frac{4}{3\\times4^n}.$$\nIl faut donc $4^n\\ge\\frac43\\times10^6$ ; or $4^{10}=1\\,048\\,576<\\frac43\\times10^6\\le4^{11}=4\\,194\\,304$. Le plus petit entier qui convient est donc $n=11$.",
+          "indices": [
+            "Majorer $|g'|$ et utiliser l'inégalité des accroissements finis.",
+            "L'estimation a priori s'écrit $|x_n-\\ell|\\le\\frac{k^n}{1-k}|x_1-x_0|$ ; calculer d'abord $x_1$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-point-fixe-ex2",
+      "carte": "top-l3-metriques-point-fixe",
+      "difficulte": 2,
+      "titre": "Estimation a posteriori sur un segment",
+      "enonce": "Soit $g(x)=\\frac{1}{2+x}$. Montrer que $g$ envoie le segment $[0,1]$ dans lui-même et qu'elle y est $\\frac14$-lipschitzienne. On part de $x_0=0$ et l'on pose $x_{n+1}=g(x_n)$. Calculer $x_1$, $x_2$, $x_3$, puis la majoration de $|x_3-\\ell|$ fournie par l'estimation a posteriori avec $k=\\frac14$, où $\\ell$ est le point fixe de $g$ dans $[0,1]$.",
+      "duree_min": 12,
+      "indices": [
+        "Pour la constante de Lipschitz, majorer $|g'|$ sur le segment et utiliser l'inégalité des accroissements finis.",
+        "L'estimation a posteriori s'écrit $|x_n-\\ell|\\le\\frac{k}{1-k}|x_n-x_{n-1}|$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle majoration de $|x_3-\\ell|$ obtient-on ?",
+        "propositions": [
+          "$\\frac{1}{180}$",
+          "$\\frac{1}{60}$",
+          "$\\frac{1}{240}$",
+          "$\\frac{1}{96}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $x\\in[0,1]$, $g(x)\\in\\left[\\frac13,\\frac12\\right]\\subset[0,1]$ et $|g'(x)|=\\frac1{(2+x)^2}\\le\\frac14$, donc $g$ est $\\frac14$-lipschitzienne sur $[0,1]$ (accroissements finis). Le segment est fermé dans $\\mathbb{R}$, donc complet, et le théorème du point fixe s'applique.\n\nOn calcule $x_1=\\frac12$, $x_2=\\frac25$, $x_3=\\frac5{12}$, d'où $|x_3-x_2|=\\frac1{60}$. Avec $k=\\frac14$, on a $\\frac{k}{1-k}=\\frac13$, et l'estimation a posteriori donne\n$$|x_3-\\ell|\\le\\frac{k}{1-k}|x_3-x_2|=\\frac{1}{180}.$$\nContrôle : le point fixe est $\\ell=\\sqrt2-1$, et $|x_3-\\ell|=\\frac5{12}-(\\sqrt2-1)\\approx0{,}0025\\le\\frac1{180}\\approx0{,}0056$.",
+      "variantes": [
+        {
+          "enonce": "Soit $g(x)=\\frac{1}{3+x}$. Montrer que $g$ envoie le segment $[0,1]$ dans lui-même et qu'elle y est $\\frac19$-lipschitzienne. On part de $x_0=0$ et l'on pose $x_{n+1}=g(x_n)$. Calculer $x_1$, $x_2$, $x_3$, puis la majoration de $|x_3-\\ell|$ fournie par l'estimation a posteriori avec $k=\\frac19$, où $\\ell$ est le point fixe de $g$ dans $[0,1]$.",
+          "reponse_finale": {
+            "question": "Quelle majoration de $|x_3-\\ell|$ obtient-on ?",
+            "propositions": [
+              "$\\frac{1}{2640}$",
+              "$\\frac{1}{330}$",
+              "$\\frac{1}{2970}$",
+              "$\\frac{1}{1944}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $x\\in[0,1]$, $g(x)\\in\\left[\\frac14,\\frac13\\right]\\subset[0,1]$ et $|g'(x)|=\\frac1{(3+x)^2}\\le\\frac19$, donc $g$ est $\\frac19$-lipschitzienne sur $[0,1]$ (accroissements finis). Le segment est fermé dans $\\mathbb{R}$, donc complet, et le théorème du point fixe s'applique.\n\nOn calcule $x_1=\\frac13$, $x_2=\\frac3{10}$, $x_3=\\frac{10}{33}$, d'où $|x_3-x_2|=\\frac1{330}$. Avec $k=\\frac19$, on a $\\frac{k}{1-k}=\\frac18$, et l'estimation a posteriori donne\n$$|x_3-\\ell|\\le\\frac{k}{1-k}|x_3-x_2|=\\frac{1}{2640}.$$\nContrôle : le point fixe est $\\ell=\\frac{\\sqrt{13}-3}2$, et $|x_3-\\ell|\\approx0{,}00025\\le\\frac1{2640}\\approx0{,}00038$.",
+          "indices": [
+            "Pour la constante de Lipschitz, majorer $|g'|$ sur le segment et utiliser l'inégalité des accroissements finis.",
+            "L'estimation a posteriori s'écrit $|x_n-\\ell|\\le\\frac{k}{1-k}|x_n-x_{n-1}|$."
+          ]
+        },
+        {
+          "enonce": "Soit $g(x)=\\frac{1}{1+x}$. Montrer que $g$ envoie le segment $\\left[\\frac12,1\\right]$ dans lui-même et qu'elle y est $\\frac49$-lipschitzienne. On part de $x_0=1$ et l'on pose $x_{n+1}=g(x_n)$. Calculer $x_1$, $x_2$, $x_3$, puis la majoration de $|x_3-\\ell|$ fournie par l'estimation a posteriori avec $k=\\frac49$, où $\\ell$ est le point fixe de $g$ dans $\\left[\\frac12,1\\right]$.",
+          "reponse_finale": {
+            "question": "Quelle majoration de $|x_3-\\ell|$ obtient-on ?",
+            "propositions": [
+              "$\\frac{4}{75}$",
+              "$\\frac{1}{15}$",
+              "$\\frac{4}{135}$",
+              "$\\frac{32}{405}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $x\\in\\left[\\frac12,1\\right]$, $g(x)\\in\\left[\\frac12,\\frac23\\right]\\subset\\left[\\frac12,1\\right]$ et $|g'(x)|=\\frac1{(1+x)^2}\\le\\frac1{(3/2)^2}=\\frac49$, donc $g$ est $\\frac49$-lipschitzienne sur ce segment (accroissements finis). Le segment est fermé dans $\\mathbb{R}$, donc complet, et le théorème du point fixe s'applique.\n\nOn calcule $x_1=\\frac12$, $x_2=\\frac23$, $x_3=\\frac35$, d'où $|x_3-x_2|=\\frac1{15}$. Avec $k=\\frac49$, on a $\\frac{k}{1-k}=\\frac45$, et l'estimation a posteriori donne\n$$|x_3-\\ell|\\le\\frac{k}{1-k}|x_3-x_2|=\\frac{4}{75}.$$\nContrôle : le point fixe est $\\ell=\\frac{\\sqrt5-1}2$, et $|x_3-\\ell|\\approx0{,}018\\le\\frac4{75}\\approx0{,}053$.",
+          "indices": [
+            "Pour la constante de Lipschitz, majorer $|g'|$ sur le segment et utiliser l'inégalité des accroissements finis.",
+            "L'estimation a posteriori s'écrit $|x_n-\\ell|\\le\\frac{k}{1-k}|x_n-x_{n-1}|$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-point-fixe-ex3",
+      "carte": "top-l3-metriques-point-fixe",
+      "difficulte": 3,
+      "titre": "Une équation intégrale résolue par le point fixe",
+      "enonce": "On munit $E=C^0([0,1],\\mathbb{R})$ de la norme $\\|\\cdot\\|_\\infty$, pour laquelle il est complet. Pour $f\\in E$, on pose $T(f)(x)=x+\\lambda\\int_0^1xt\\,f(t)\\,\\mathrm{d}t$, avec $\\lambda=1$.\n\n**1.** Montrer que $T$ envoie $E$ dans $E$ et que $\\|T(f)-T(h)\\|_\\infty\\le\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty$ pour tous $f,h\\in E$.\n\n**2.** En déduire que l'équation $f=T(f)$ a une unique solution $f\\in E$.\n\n**3.** Chercher cette solution sous la forme $f(x)=cx$ et calculer $f(1)$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour $x\\in[0,1]$, majorer $\\left|\\int_0^1xt\\,(f-h)(t)\\,\\mathrm{d}t\\right|$ par $\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t$.",
+        "Avec $f(x)=cx$, calculer $\\int_0^1t\\,f(t)\\,\\mathrm{d}t$ en fonction de $c$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $f(1)$ ?",
+        "propositions": [
+          "$\\frac32$",
+          "$1$",
+          "$2$",
+          "$\\frac43$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $f\\in E$, $T(f)(x)=x\\left(1+\\lambda\\int_0^1t\\,f(t)\\,\\mathrm{d}t\\right)$ est une fonction affine de $x$, donc continue. Pour $f,h\\in E$ et $x\\in[0,1]$ :\n$$|T(f)(x)-T(h)(x)|=|\\lambda|\\,x\\left|\\int_0^1t\\,(f-h)(t)\\,\\mathrm{d}t\\right|\\le|\\lambda|\\,\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t=\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty.$$\n\n**2.** Ici $\\frac{|\\lambda|}2=\\frac12<1$ : $T$ est une contraction de l'espace complet $E$, qui a donc une unique solution de $f=T(f)$.\n\n**3.** Pour $f(x)=cx$, $\\int_0^1t\\cdot ct\\,\\mathrm{d}t=\\frac c3$, et $T(f)=f$ s'écrit $cx=x+\\lambda\\frac c3x$, soit $c\\left(1-\\frac\\lambda3\\right)=1$, c'est-à-dire $c=\\frac3{3-\\lambda}$. Avec $\\lambda=1$, $c=\\frac32$. Cette fonction est une solution, donc c'est l'unique solution, et $f(1)=\\frac32$.",
+      "variantes": [
+        {
+          "enonce": "On munit $E=C^0([0,1],\\mathbb{R})$ de la norme $\\|\\cdot\\|_\\infty$, pour laquelle il est complet. Pour $f\\in E$, on pose $T(f)(x)=x+\\lambda\\int_0^1xt\\,f(t)\\,\\mathrm{d}t$, avec $\\lambda=\\frac12$.\n\n**1.** Montrer que $T$ envoie $E$ dans $E$ et que $\\|T(f)-T(h)\\|_\\infty\\le\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty$ pour tous $f,h\\in E$.\n\n**2.** En déduire que l'équation $f=T(f)$ a une unique solution $f\\in E$.\n\n**3.** Chercher cette solution sous la forme $f(x)=cx$ et calculer $f(1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $f(1)$ ?",
+            "propositions": [
+              "$\\frac65$",
+              "$1$",
+              "$\\frac54$",
+              "$\\frac87$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $f\\in E$, $T(f)(x)=x\\left(1+\\lambda\\int_0^1t\\,f(t)\\,\\mathrm{d}t\\right)$ est une fonction affine de $x$, donc continue. Pour $f,h\\in E$ et $x\\in[0,1]$ :\n$$|T(f)(x)-T(h)(x)|=|\\lambda|\\,x\\left|\\int_0^1t\\,(f-h)(t)\\,\\mathrm{d}t\\right|\\le|\\lambda|\\,\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t=\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty.$$\n\n**2.** Ici $\\frac{|\\lambda|}2=\\frac14<1$ : $T$ est une contraction de l'espace complet $E$, qui a donc une unique solution de $f=T(f)$.\n\n**3.** Pour $f(x)=cx$, $\\int_0^1t\\cdot ct\\,\\mathrm{d}t=\\frac c3$, et $T(f)=f$ s'écrit $cx=x+\\lambda\\frac c3x$, soit $c\\left(1-\\frac\\lambda3\\right)=1$, c'est-à-dire $c=\\frac3{3-\\lambda}$. Avec $\\lambda=\\frac12$, $c=\\frac65$. Cette fonction est une solution, donc c'est l'unique solution, et $f(1)=\\frac65$.",
+          "indices": [
+            "Pour $x\\in[0,1]$, majorer $\\left|\\int_0^1xt\\,(f-h)(t)\\,\\mathrm{d}t\\right|$ par $\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t$.",
+            "Avec $f(x)=cx$, calculer $\\int_0^1t\\,f(t)\\,\\mathrm{d}t$ en fonction de $c$."
+          ]
+        },
+        {
+          "enonce": "On munit $E=C^0([0,1],\\mathbb{R})$ de la norme $\\|\\cdot\\|_\\infty$, pour laquelle il est complet. Pour $f\\in E$, on pose $T(f)(x)=x+\\lambda\\int_0^1xt\\,f(t)\\,\\mathrm{d}t$, avec $\\lambda=-1$.\n\n**1.** Montrer que $T$ envoie $E$ dans $E$ et que $\\|T(f)-T(h)\\|_\\infty\\le\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty$ pour tous $f,h\\in E$.\n\n**2.** En déduire que l'équation $f=T(f)$ a une unique solution $f\\in E$.\n\n**3.** Chercher cette solution sous la forme $f(x)=cx$ et calculer $f(1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $f(1)$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$1$",
+              "$\\frac32$",
+              "$\\frac23$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $f\\in E$, $T(f)(x)=x\\left(1+\\lambda\\int_0^1t\\,f(t)\\,\\mathrm{d}t\\right)$ est une fonction affine de $x$, donc continue. Pour $f,h\\in E$ et $x\\in[0,1]$ :\n$$|T(f)(x)-T(h)(x)|=|\\lambda|\\,x\\left|\\int_0^1t\\,(f-h)(t)\\,\\mathrm{d}t\\right|\\le|\\lambda|\\,\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t=\\frac{|\\lambda|}{2}\\|f-h\\|_\\infty.$$\n\n**2.** Ici $\\frac{|\\lambda|}2=\\frac12<1$ : $T$ est une contraction de l'espace complet $E$, qui a donc une unique solution de $f=T(f)$.\n\n**3.** Pour $f(x)=cx$, $\\int_0^1t\\cdot ct\\,\\mathrm{d}t=\\frac c3$, et $T(f)=f$ s'écrit $cx=x+\\lambda\\frac c3x$, soit $c\\left(1-\\frac\\lambda3\\right)=1$, c'est-à-dire $c=\\frac3{3-\\lambda}$. Avec $\\lambda=-1$, $c=\\frac34$. Cette fonction est une solution, donc c'est l'unique solution, et $f(1)=\\frac34$.",
+          "indices": [
+            "Pour $x\\in[0,1]$, majorer $\\left|\\int_0^1xt\\,(f-h)(t)\\,\\mathrm{d}t\\right|$ par $\\|f-h\\|_\\infty\\int_0^1t\\,\\mathrm{d}t$.",
+            "Avec $f(x)=cx$, calculer $\\int_0^1t\\,f(t)\\,\\mathrm{d}t$ en fonction de $c$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-point-fixe-ex4",
+      "carte": "top-l3-metriques-point-fixe",
+      "difficulte": 4,
+      "titre": "Il suffit qu'un itéré soit contractant",
+      "enonce": "**1.** Soient $(E,d)$ un espace métrique complet non vide et $\\Phi:E\\to E$ telle qu'un itéré $\\Phi^p=\\Phi\\circ\\dots\\circ\\Phi$ ($p\\ge1$ composantes) soit $k$-lipschitzien avec $0\\le k<1$. Montrer que $\\Phi^p$ admet un unique point fixe $\\ell$, puis que $\\Phi(\\ell)$ est aussi un point fixe de $\\Phi^p$. En déduire que $\\ell$ est l'unique point fixe de $\\Phi$.\n\n**2.** On munit $E=C^0([0,1],\\mathbb{R})$ de $\\|\\cdot\\|_\\infty$ et l'on pose $T(f)(x)=1+\\int_0^xf(t)\\,\\mathrm{d}t$. Montrer par récurrence que, pour tous $f,h\\in E$, $n\\in\\mathbb{N}$ et $x\\in[0,1]$, $|T^n(f)(x)-T^n(h)(x)|\\le\\frac{x^n}{n!}\\|f-h\\|_\\infty$.\n\n**3.** En déduire que $T$ a un unique point fixe, que l'on déterminera, bien que $T$ ne soit pas une contraction.",
+      "duree_min": 30,
+      "indices": [
+        "Pour la question 1, remarquer que $\\Phi^p\\circ\\Phi=\\Phi\\circ\\Phi^p$.",
+        "Pour la question 3, appliquer la question 1 avec $p=2$, puis transformer l'équation $T(f)=f$ en une équation différentielle avec condition initiale."
+      ],
+      "reponse_finale": {
+        "question": "Quel est l'unique point fixe de $T$ ?",
+        "propositions": [
+          "$x\\mapsto e^x$",
+          "$x\\mapsto1+x$",
+          "$x\\mapsto e^x-1$",
+          "$x\\mapsto e^{-x}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Le théorème du point fixe appliqué à $\\Phi^p$ fournit un unique point fixe $\\ell$. Alors $\\Phi^p(\\Phi(\\ell))=\\Phi(\\Phi^p(\\ell))=\\Phi(\\ell)$ : $\\Phi(\\ell)$ est un point fixe de $\\Phi^p$, donc $\\Phi(\\ell)=\\ell$ par unicité. Enfin tout point fixe de $\\Phi$ est un point fixe de $\\Phi^p$, donc égal à $\\ell$.\n\n**2.** Pour $n=0$, c'est $|f(x)-h(x)|\\le\\|f-h\\|_\\infty$. Si l'inégalité vaut au rang $n$, alors\n$$|T^{n+1}(f)(x)-T^{n+1}(h)(x)|=\\left|\\int_0^x\\big(T^n(f)-T^n(h)\\big)(t)\\,\\mathrm{d}t\\right|\\le\\int_0^x\\frac{t^n}{n!}\\|f-h\\|_\\infty\\,\\mathrm{d}t=\\frac{x^{n+1}}{(n+1)!}\\|f-h\\|_\\infty.$$\n(On a utilisé $T^{n+1}(f)=T(T^n(f))$ ; $T$ envoie bien $E$ dans $E$, une primitive d'une fonction continue étant continue.)\n\n**3.** Pour $n=2$, $\\|T^2(f)-T^2(h)\\|_\\infty\\le\\frac12\\|f-h\\|_\\infty$ : $T^2$ est une contraction de l'espace complet $E$, donc $T$ a un unique point fixe. Si $T(f)=f$, alors $f(x)=1+\\int_0^xf$ est de classe $C^1$, avec $f'=f$ et $f(0)=1$, donc $f=\\exp$ ; réciproquement $1+\\int_0^xe^t\\,\\mathrm{d}t=e^x$. Le point fixe est $x\\mapsto e^x$. Pourtant $T$ n'est pas une contraction : pour $f=1$ et $h=0$, $T(f)(x)-T(h)(x)=x$, donc $\\|T(f)-T(h)\\|_\\infty=1=\\|f-h\\|_\\infty$."
+    },
+    {
+      "id": "top-l3-metriques-point-fixe-ex5",
+      "carte": "top-l3-metriques-point-fixe",
+      "difficulte": 5,
+      "titre": "Théorème de Cauchy-Lipschitz global par le point fixe",
+      "enonce": "Soient $T>0$, $L>0$, $y_0\\in\\mathbb{R}$ et $F:[0,T]\\times\\mathbb{R}\\to\\mathbb{R}$ continue telle que $|F(t,y)-F(t,z)|\\le L|y-z|$ pour tous $t\\in[0,T]$ et $y,z\\in\\mathbb{R}$. On note $E=C^0([0,T],\\mathbb{R})$.\n\n**1.** Montrer qu'une fonction $y\\in E$ est dérivable et solution de $y'=F(t,y)$ sur $[0,T]$ avec $y(0)=y_0$ si et seulement si $y(t)=y_0+\\int_0^tF(s,y(s))\\,\\mathrm{d}s$ pour tout $t\\in[0,T]$.\n\n**2.** Pour $y\\in E$, on pose $N(y)=\\sup_{t\\in[0,T]}e^{-2Lt}|y(t)|$. Montrer que $N$ est une norme sur $E$, équivalente à $\\|\\cdot\\|_\\infty$, et que $(E,N)$ est complet.\n\n**3.** On pose $\\Phi(y)(t)=y_0+\\int_0^tF(s,y(s))\\,\\mathrm{d}s$. Montrer que $\\Phi$ envoie $E$ dans $E$ et que $N(\\Phi(y)-\\Phi(z))\\le\\frac12N(y-z)$ pour tous $y,z\\in E$.\n\n**4.** Conclure que le problème de Cauchy $y'=F(t,y)$, $y(0)=y_0$ a une unique solution sur $[0,T]$. Quel est l'intérêt de $N$ par rapport à $\\|\\cdot\\|_\\infty$ ?",
+      "duree_min": 45,
+      "indices": [
+        "Pour la question 2, encadrer $e^{-2Lt}$ sur $[0,T]$ pour comparer $N$ et $\\|\\cdot\\|_\\infty$.",
+        "Pour la question 3, majorer $|y(s)-z(s)|$ par $e^{2Ls}N(y-z)$ et intégrer.",
+        "Pour la question 4, calculer la constante de Lipschitz de $\\Phi$ que l'on obtient avec $\\|\\cdot\\|_\\infty$."
+      ],
+      "correction": "**1.** Si $y$ est dérivable et solution, $y'(t)=F(t,y(t))$ est continue (composée de fonctions continues), donc $y$ est de classe $C^1$ et $y(t)=y(0)+\\int_0^ty'(s)\\,\\mathrm{d}s$, ce qui est l'égalité annoncée. Réciproquement, si $y\\in E$ vérifie l'égalité, $s\\mapsto F(s,y(s))$ est continue, donc $y$ est de classe $C^1$, avec $y'(t)=F(t,y(t))$ et $y(0)=y_0$.\n\n**2.** Pour $t\\in[0,T]$, $e^{-2LT}\\le e^{-2Lt}\\le1$, d'où $e^{-2LT}\\|y\\|_\\infty\\le N(y)\\le\\|y\\|_\\infty$. En particulier $N(y)$ est fini, et $N(y)=0$ entraîne $y=0$ ; l'homogénéité et l'inégalité triangulaire viennent de celles de la valeur absolue, en passant à la borne supérieure. $N$ est donc une norme équivalente à $\\|\\cdot\\|_\\infty$. Une suite de Cauchy pour $N$ est de Cauchy pour $\\|\\cdot\\|_\\infty$ (car $\\|\\cdot\\|_\\infty\\le e^{2LT}N$), donc converge uniformément vers une fonction continue $y$ ($E$ est complet pour $\\|\\cdot\\|_\\infty$), et converge alors vers $y$ pour $N\\le\\|\\cdot\\|_\\infty$ : $(E,N)$ est complet.\n\n**3.** Pour $y\\in E$, $s\\mapsto F(s,y(s))$ est continue, donc $\\Phi(y)$, qui en est une primitive à une constante près, est continue. Pour $y,z\\in E$ et $t\\in[0,T]$ :\n$$|\\Phi(y)(t)-\\Phi(z)(t)|\\le\\int_0^tL|y(s)-z(s)|\\,\\mathrm{d}s\\le L\\,N(y-z)\\int_0^te^{2Ls}\\,\\mathrm{d}s=N(y-z)\\,\\frac{e^{2Lt}-1}{2}\\le\\frac12e^{2Lt}N(y-z).$$\nEn multipliant par $e^{-2Lt}$ et en passant à la borne supérieure, $N(\\Phi(y)-\\Phi(z))\\le\\frac12N(y-z)$.\n\n**4.** $\\Phi$ est une contraction de l'espace complet non vide $(E,N)$ : elle a un unique point fixe, c'est-à-dire, par la question 1, que le problème de Cauchy a une unique solution sur $[0,T]$. Avec $\\|\\cdot\\|_\\infty$, le même calcul donne seulement $\\|\\Phi(y)-\\Phi(z)\\|_\\infty\\le LT\\|y-z\\|_\\infty$, qui n'est une contraction que si $LT<1$ : on n'obtiendrait la solution que sur un petit intervalle. La norme à poids $e^{-2Lt}$ donne directement l'existence et l'unicité sur tout $[0,T]$."
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites-ex1",
+      "carte": "top-l3-metriques-cauchy-limites",
+      "difficulte": 1,
+      "titre": "Reconnaître le critère de Cauchy en $0$",
+      "enonce": "Pour chacune des fonctions suivantes, définies sur $\\left]0,1\\right]$, dire si elle vérifie le critère de Cauchy en $0$ :\n$$f_1(x)=x\\cos\\frac1{x^2},\\qquad f_2(x)=\\sin\\frac1x,\\qquad f_3(x)=\\cos(\\ln x),\\qquad f_4(x)=(1+x)\\sin\\frac1x.$$",
+      "duree_min": 10,
+      "indices": [
+        "Une fonction qui a une limite finie en $0$ vérifie le critère.",
+        "Pour montrer qu'une fonction ne le vérifie pas, trouver deux suites qui tendent vers $0$ le long desquelles les valeurs restent écartées."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fonctions vérifie le critère de Cauchy en $0$ ?",
+        "propositions": [
+          "$x\\cos\\frac{1}{x^2}$",
+          "$\\sin\\frac1x$",
+          "$\\cos(\\ln x)$",
+          "$(1+x)\\sin\\frac1x$"
+        ],
+        "bonne": 0
+      },
+      "correction": "- $f_1$ : pour $x,y\\in\\left]0,\\eta\\right[$, $|f_1(x)-f_1(y)|\\le x+y<2\\eta$ ; le critère est vérifié (avec $\\eta=\\frac\\varepsilon2$), et d'ailleurs $f_1\\to0$.\n- $f_2$ : $x_n=\\frac1{2n\\pi+\\frac\\pi2}$ et $y_n=\\frac1{2n\\pi}$ tendent vers $0$ et $|f_2(x_n)-f_2(y_n)|=1$ : pour tout $\\eta>0$, il existe $x,y\\in\\left]0,\\eta\\right[$ avec $|f_2(x)-f_2(y)|=1$.\n- $f_3$ : $x_n=e^{-2n\\pi}$ et $y_n=e^{-(2n+1)\\pi}$ tendent vers $0$, avec $f_3(x_n)=1$ et $f_3(y_n)=-1$.\n- $f_4$ : avec les mêmes suites que pour $f_2$, $|f_4(x_n)-f_4(y_n)|=1+x_n\\ge1$.\n\nSeule $f_1$ vérifie le critère ; c'est aussi la seule à avoir une limite en $0$."
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites-ex2",
+      "carte": "top-l3-metriques-cauchy-limites",
+      "difficulte": 2,
+      "titre": "Convergence d'une intégrale oscillante par le critère de Cauchy",
+      "enonce": "Pour $x\\ge1$, on pose $F(x)=\\int_1^x\\frac{\\sin t}{t}\\,\\mathrm{d}t$.\n\n**1.** Montrer à l'aide d'une intégration par parties que, pour $y\\ge x\\ge1$, $|F(y)-F(x)|\\le\\frac2x$.\n\n**2.** En déduire que $F$ a une limite finie en $+\\infty$.\n\n**3.** Déterminer le plus petit réel $A\\ge1$ tel que la majoration de la question 1 garantisse $|F(y)-F(x)|\\le10^{-2}$ pour tous $y\\ge x\\ge A$.",
+      "duree_min": 15,
+      "indices": [
+        "Intégrer par parties en dérivant la puissance de $t$ et en primitivant la fonction trigonométrique.",
+        "Appliquer le critère de Cauchy en $+\\infty$ à la fonction définie par l'intégrale."
+      ],
+      "reponse_finale": {
+        "question": "Quel est ce plus petit réel $A$ ?",
+        "propositions": [
+          "$200$",
+          "$100$",
+          "$50$",
+          "$400$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $y\\ge x\\ge1$, une intégration par parties donne\n$$\\int_x^y\\frac{\\sin t}{t}\\,\\mathrm{d}t=\\left[-\\frac{\\cos t}{t}\\right]_x^y-\\int_x^y\\frac{\\cos t}{t^2}\\,\\mathrm{d}t,\\quad\\text{donc}\\quad|F(y)-F(x)|\\le\\frac1x+\\frac1y+\\int_x^y\\frac{\\mathrm{d}t}{t^2}=\\frac1x+\\frac1y+\\frac1x-\\frac1y=\\frac2x.$$\n\n**2.** $\\mathbb{R}$ est complet, et pour $\\varepsilon>0$, la question 1 donne $|F(y)-F(x)|\\le\\varepsilon$ dès que $y\\ge x\\ge M$, pour $M$ assez grand ; c'est le critère de Cauchy en $+\\infty$ (la condition est symétrique en $x$ et $y$). Donc $F$ a une limite finie en $+\\infty$ : l'intégrale impropre converge.\n\n**3.** La majoration $\\frac2x\\le10^{-2}$ équivaut à $x\\ge200$ ; pour qu'elle vaille pour tous $x\\ge A$, il faut et il suffit que $A$ vérifie cette condition. Le plus petit $A$ est donc $200$.",
+      "variantes": [
+        {
+          "enonce": "Pour $x\\ge1$, on pose $G(x)=\\int_1^x\\frac{\\cos t}{t}\\,\\mathrm{d}t$.\n\n**1.** Montrer à l'aide d'une intégration par parties que, pour $y\\ge x\\ge1$, $|G(y)-G(x)|\\le\\frac2x$.\n\n**2.** En déduire que $G$ a une limite finie en $+\\infty$.\n\n**3.** Déterminer le plus petit réel $A\\ge1$ tel que la majoration de la question 1 garantisse $|G(y)-G(x)|\\le10^{-3}$ pour tous $y\\ge x\\ge A$.",
+          "reponse_finale": {
+            "question": "Quel est ce plus petit réel $A$ ?",
+            "propositions": [
+              "$2000$",
+              "$1000$",
+              "$500$",
+              "$4000$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $y\\ge x\\ge1$, une intégration par parties donne\n$$\\int_x^y\\frac{\\cos t}{t}\\,\\mathrm{d}t=\\left[\\frac{\\sin t}{t}\\right]_x^y+\\int_x^y\\frac{\\sin t}{t^2}\\,\\mathrm{d}t,\\quad\\text{donc}\\quad|G(y)-G(x)|\\le\\frac1y+\\frac1x+\\int_x^y\\frac{\\mathrm{d}t}{t^2}=\\frac2x.$$\n\n**2.** $\\mathbb{R}$ est complet, et pour $\\varepsilon>0$, la question 1 donne $|G(y)-G(x)|\\le\\varepsilon$ dès que $y\\ge x\\ge M$, pour $M$ assez grand ; c'est le critère de Cauchy en $+\\infty$ (la condition est symétrique en $x$ et $y$). Donc $G$ a une limite finie en $+\\infty$ : l'intégrale impropre converge.\n\n**3.** La majoration $\\frac2x\\le10^{-3}$ équivaut à $x\\ge2000$ ; pour qu'elle vaille pour tous $x\\ge A$, il faut et il suffit que $A$ vérifie cette condition. Le plus petit $A$ est donc $2000$.",
+          "indices": [
+            "Intégrer par parties en dérivant $\\frac1t$ et en primitivant $\\cos t$.",
+            "Appliquer le critère de Cauchy en $+\\infty$ à $G$."
+          ]
+        },
+        {
+          "enonce": "Pour $x\\ge1$, on pose $H(x)=\\int_1^x\\frac{\\sin t}{\\sqrt t}\\,\\mathrm{d}t$.\n\n**1.** Montrer à l'aide d'une intégration par parties que, pour $y\\ge x\\ge1$, $|H(y)-H(x)|\\le\\frac2{\\sqrt x}$.\n\n**2.** En déduire que $H$ a une limite finie en $+\\infty$.\n\n**3.** Déterminer le plus petit réel $A\\ge1$ tel que la majoration de la question 1 garantisse $|H(y)-H(x)|\\le10^{-2}$ pour tous $y\\ge x\\ge A$.",
+          "reponse_finale": {
+            "question": "Quel est ce plus petit réel $A$ ?",
+            "propositions": [
+              "$40\\,000$",
+              "$200$",
+              "$20\\,000$",
+              "$10\\,000$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $y\\ge x\\ge1$, une intégration par parties donne\n$$\\int_x^y\\frac{\\sin t}{\\sqrt t}\\,\\mathrm{d}t=\\left[-\\frac{\\cos t}{\\sqrt t}\\right]_x^y-\\frac12\\int_x^y\\frac{\\cos t}{t^{3/2}}\\,\\mathrm{d}t,\\quad\\text{donc}\\quad|H(y)-H(x)|\\le\\frac1{\\sqrt x}+\\frac1{\\sqrt y}+\\frac12\\int_x^y\\frac{\\mathrm{d}t}{t^{3/2}}=\\frac1{\\sqrt x}+\\frac1{\\sqrt y}+\\frac1{\\sqrt x}-\\frac1{\\sqrt y}=\\frac2{\\sqrt x}.$$\n\n**2.** $\\mathbb{R}$ est complet, et pour $\\varepsilon>0$, la question 1 donne $|H(y)-H(x)|\\le\\varepsilon$ dès que $y\\ge x\\ge M$, pour $M$ assez grand ; c'est le critère de Cauchy en $+\\infty$ (la condition est symétrique en $x$ et $y$). Donc $H$ a une limite finie en $+\\infty$ : l'intégrale impropre converge.\n\n**3.** La majoration $\\frac2{\\sqrt x}\\le10^{-2}$ équivaut à $\\sqrt x\\ge200$, c'est-à-dire $x\\ge40\\,000$ ; pour qu'elle vaille pour tous $x\\ge A$, il faut et il suffit que $A$ vérifie cette condition. Le plus petit $A$ est donc $40\\,000$.",
+          "indices": [
+            "Intégrer par parties en dérivant $\\frac1{\\sqrt t}$ et en primitivant $\\sin t$.",
+            "Appliquer le critère de Cauchy en $+\\infty$ à $H$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites-ex3",
+      "carte": "top-l3-metriques-cauchy-limites",
+      "difficulte": 3,
+      "titre": "Applications lipschitziennes et points adhérents",
+      "enonce": "Soient $(X,d)$ un espace métrique, $A$ une partie non vide de $X$, $(F,\\delta)$ un espace métrique complet et $f:A\\to F$ une application $k$-lipschitzienne.\n\n**1.** Montrer que $f$ admet une limite en tout point $a\\in\\overline A$.\n\n**2.** On note $g(a)$ cette limite. Montrer que $g:\\overline A\\to F$ prolonge $f$ et qu'elle est $k$-lipschitzienne.\n\n**3.** Montrer que la conclusion de la question 1 peut tomber en défaut si $F$ n'est pas complet, en prenant $X=\\mathbb{R}$, $A=F=\\mathbb{Q}$ (muni de $|x-y|$) et $f(x)=x$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 1, vérifier le critère de Cauchy en $a$ : deux points de $A\\cap B(a,\\eta)$ sont à distance inférieure à $2\\eta$.",
+        "Pour la question 2, écrire deux points de $\\overline A$ comme limites de suites de $A$ et passer à la limite dans l'inégalité de Lipschitz."
+      ],
+      "correction": "**1.** Soient $a\\in\\overline A$ et $\\varepsilon>0$ ; posons $\\eta=\\frac{\\varepsilon}{2k+1}$. Pour $x,y\\in A\\cap B(a,\\eta)$, $d(x,y)<2\\eta$, donc $\\delta(f(x),f(y))\\le2k\\eta<\\varepsilon$. Comme $F$ est complet, le critère de Cauchy donne l'existence d'une limite de $f$ en $a$.\n\n**2.** Si $a\\in A$, la limite de $f$ en $a$ est $f(a)$ (on peut prendre $x=a$ dans la définition), donc $g$ prolonge $f$. Soient $a,b\\in\\overline A$ et des suites $(a_n)$, $(b_n)$ de $A$ qui tendent vers $a$ et $b$. Par la caractérisation séquentielle de la limite, $f(a_n)\\to g(a)$ et $f(b_n)\\to g(b)$. En passant à la limite dans $\\delta(f(a_n),f(b_n))\\le k\\,d(a_n,b_n)$ (la distance est continue), on obtient $\\delta(g(a),g(b))\\le k\\,d(a,b)$.\n\n**3.** $f(x)=x$ est $1$-lipschitzienne sur $\\mathbb{Q}$, et $\\sqrt2\\in\\overline{\\mathbb{Q}}=\\mathbb{R}$. Si $f$ avait une limite $\\ell\\in\\mathbb{Q}$ en $\\sqrt2$, ce serait aussi sa limite dans $\\mathbb{R}$ ; or dans $\\mathbb{R}$, $f(x)=x\\to\\sqrt2$ quand $x\\to\\sqrt2$, d'où $\\ell=\\sqrt2$ par unicité de la limite, ce qui est absurde car $\\sqrt2\\notin\\mathbb{Q}$. Le critère de Cauchy est pourtant vérifié : c'est la complétude de $F$ qui fait défaut."
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites-ex4",
+      "carte": "top-l3-metriques-cauchy-limites",
+      "difficulte": 4,
+      "titre": "Prolongement des applications uniformément continues",
+      "enonce": "Soient $(X,d)$ un espace métrique, $D$ une partie dense de $X$ (c'est-à-dire $\\overline D=X$), $(F,\\delta)$ un espace métrique complet et $f:D\\to F$ uniformément continue.\n\n**1.** Montrer que $f$ admet une limite $g(a)$ en tout point $a\\in X$, et que $g(a)=f(a)$ si $a\\in D$.\n\n**2.** Montrer que $g:X\\to F$ est uniformément continue.\n\n**3.** Montrer que $g$ est l'unique application continue de $X$ dans $F$ qui prolonge $f$.\n\n**4.** La fonction $x\\mapsto\\sin\\frac1x$, définie sur la partie dense $\\mathbb{R}^*$ de $\\mathbb{R}$, se prolonge-t-elle en une fonction continue sur $\\mathbb{R}$ ? Quelle hypothèse fait défaut ?",
+      "duree_min": 30,
+      "indices": [
+        "Pour la question 1, la continuité uniforme fournit le critère de Cauchy en tout point de $X$.",
+        "Pour la question 2, approcher $a$ et $b$ par des suites de $D$ et passer à la limite dans l'inégalité de continuité uniforme."
+      ],
+      "correction": "**1.** Soient $a\\in X$, $\\varepsilon>0$ et $\\eta$ associé à $\\varepsilon$ par la continuité uniforme de $f$. Pour $x,y\\in D\\cap B\\left(a,\\frac\\eta2\\right)$, $d(x,y)<\\eta$, donc $\\delta(f(x),f(y))<\\varepsilon$. Comme $a\\in\\overline D$ et $F$ est complet, le critère de Cauchy donne une limite $g(a)$. Si $a\\in D$, cette limite est $f(a)$ (on peut prendre $x=a$).\n\n**2.** Soient $\\varepsilon>0$ et $\\eta$ associé comme ci-dessus. Soient $a,b\\in X$ avec $d(a,b)<\\eta$, et des suites $(a_n)$, $(b_n)$ de $D$ de limites $a$ et $b$. Comme $d(a_n,b_n)\\to d(a,b)<\\eta$, on a $d(a_n,b_n)<\\eta$ pour $n$ assez grand, donc $\\delta(f(a_n),f(b_n))<\\varepsilon$. Par la caractérisation séquentielle de la limite, $f(a_n)\\to g(a)$ et $f(b_n)\\to g(b)$, et à la limite $\\delta(g(a),g(b))\\le\\varepsilon$. Ainsi $d(a,b)<\\eta$ entraîne $\\delta(g(a),g(b))\\le\\varepsilon$ : $g$ est uniformément continue.\n\n**3.** Si $h:X\\to F$ est continue et prolonge $f$, soient $a\\in X$ et $(a_n)$ une suite de $D$ de limite $a$ : $h(a)=\\lim h(a_n)=\\lim f(a_n)=g(a)$.\n\n**4.** Non. Si $h$ était un prolongement continu, on aurait $h(0)=\\lim\\sin(2n\\pi)=0$ le long de $x_n=\\frac1{2n\\pi}$, et $h(0)=\\lim\\sin\\left(2n\\pi+\\frac\\pi2\\right)=1$ le long de $y_n=\\frac1{2n\\pi+\\frac\\pi2}$ : c'est impossible. La fonction est continue sur $\\mathbb{R}^*$ mais n'y est pas uniformément continue ($x_n-y_n\\to0$ alors que les valeurs diffèrent de $1$) : c'est l'hypothèse qui manque."
+    },
+    {
+      "id": "top-l3-metriques-cauchy-limites-ex5",
+      "carte": "top-l3-metriques-cauchy-limites",
+      "difficulte": 5,
+      "titre": "Une fonction uniformément continue d'intégrale convergente tend vers zéro",
+      "enonce": "Soit $f:\\left[0,+\\infty\\right[\\to\\mathbb{R}$ uniformément continue telle que l'intégrale $\\int_0^{+\\infty}f(t)\\,\\mathrm{d}t$ converge, c'est-à-dire que $F(x)=\\int_0^xf(t)\\,\\mathrm{d}t$ a une limite finie quand $x\\to+\\infty$.\n\n**1.** Montrer que pour tout $h>0$, $\\int_x^{x+h}f(t)\\,\\mathrm{d}t\\to0$ quand $x\\to+\\infty$.\n\n**2.** On suppose que $f(x)$ ne tend pas vers $0$ quand $x\\to+\\infty$. Justifier l'existence de $\\varepsilon>0$ et d'une suite $(x_n)$ de limite $+\\infty$ telle que $|f(x_n)|\\ge\\varepsilon$ pour tout $n$.\n\n**3.** Soit $\\eta>0$ tel que $|f(x)-f(y)|\\le\\frac\\varepsilon2$ dès que $|x-y|\\le\\eta$. Montrer que $f$ garde un signe constant sur $[x_n,x_n+\\eta]$ et que $\\left|\\int_{x_n}^{x_n+\\eta}f(t)\\,\\mathrm{d}t\\right|\\ge\\frac{\\varepsilon\\eta}{2}$. Conclure que $f(x)\\to0$ quand $x\\to+\\infty$.\n\n**4.** Construire une fonction continue et positive $f$ sur $\\left[0,+\\infty\\right[$, d'intégrale convergente, qui ne tend pas vers $0$ en $+\\infty$. Pourquoi n'est-elle pas uniformément continue ?",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, écrire $\\int_x^{x+h}f=F(x+h)-F(x)$.",
+        "Pour la question 3, minorer $|f(t)|$ sur $[x_n,x_n+\\eta]$ à l'aide de $|f(x_n)|$.",
+        "Pour la question 4, utiliser des « pics » triangulaires de hauteur $1$ centrés aux entiers, de plus en plus étroits."
+      ],
+      "correction": "**1.** Si $F\\to\\ell$, alors $\\int_x^{x+h}f=F(x+h)-F(x)\\to\\ell-\\ell=0$ (c'est le sens facile du critère de Cauchy en $+\\infty$).\n\n**2.** C'est la négation de « $f(x)\\to0$ » : il existe $\\varepsilon>0$ tel que pour tout $M$, il existe $x\\ge M$ avec $|f(x)|\\ge\\varepsilon$ ; en prenant $M=n$, on obtient $x_n\\ge n$ avec $|f(x_n)|\\ge\\varepsilon$.\n\n**3.** $\\eta$ existe par continuité uniforme (on prend un $\\eta$ associé à $\\frac\\varepsilon2$ pour une inégalité stricte, puis sa moitié). Pour $t\\in[x_n,x_n+\\eta]$, $|f(t)|\\ge|f(x_n)|-|f(t)-f(x_n)|\\ge\\varepsilon-\\frac\\varepsilon2=\\frac\\varepsilon2>0$. La fonction continue $f$ ne s'annule pas sur cet intervalle, donc garde un signe constant (valeurs intermédiaires), et\n$$\\left|\\int_{x_n}^{x_n+\\eta}f(t)\\,\\mathrm{d}t\\right|=\\int_{x_n}^{x_n+\\eta}|f(t)|\\,\\mathrm{d}t\\ge\\frac{\\varepsilon\\eta}2.$$\nComme $x_n\\to+\\infty$, ceci contredit la question 1 avec $h=\\eta$. Donc $f(x)\\to0$.\n\n**4.** Pour $n\\ge1$, soit $p_n$ la fonction « pic » nulle hors de $\\left[n-\\frac1{2n^2},n+\\frac1{2n^2}\\right]$, affine sur chaque moitié de cet intervalle, valant $1$ en $n$ ; ces intervalles sont deux à deux disjoints. Posons $f=\\sum_{n\\ge1}p_n$ (en chaque point, au plus un terme est non nul) : $f$ est continue, positive, $f(n)=1$ pour tout $n\\ge1$, donc $f$ ne tend pas vers $0$. L'intégrale du pic $p_n$ est l'aire d'un triangle de base $\\frac1{n^2}$ et de hauteur $1$, soit $\\frac1{2n^2}$. Donc $F$ est croissante et majorée par $\\sum_{n\\ge1}\\frac1{2n^2}=\\frac{\\pi^2}{12}$ : elle a une limite finie. Enfin $f$ n'est pas uniformément continue : $f(n)=1$ et $f\\left(n+\\frac1{2n^2}\\right)=0$, alors que l'écart entre les deux points tend vers $0$."
+    }
+  ]
+}

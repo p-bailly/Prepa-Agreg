@@ -1,0 +1,99 @@
+{
+  "chapitre": "proba-l3-densites",
+  "questions": [
+    {
+      "id": "proba-l3-densites-q1",
+      "carte": "proba-l3-densites-densite",
+      "genre": "choix",
+      "enonce": "Laquelle de ces fonctions est une densité de probabilité sur $\\mathbb{R}$ ?",
+      "propositions": [
+        "$x\\mapsto\\frac12e^{-|x|}$",
+        "$x\\mapsto\\frac1{1+x^2}$",
+        "$x\\mapsto e^{-x}$",
+        "$x\\mapsto x\\,\\mathbf{1}_{[-1,\\sqrt3]}(x)$"
+      ],
+      "bonne": 0,
+      "explication": "$\\int_{-\\infty}^{+\\infty}\\frac12e^{-|x|}\\,\\mathrm{d}x=2\\cdot\\frac12\\int_0^{+\\infty}e^{-x}\\,\\mathrm{d}x=1$, et cette fonction est positive et continue. En revanche $\\int\\frac{\\mathrm{d}x}{1+x^2}=\\pi$, $e^{-x}$ n'est pas intégrable en $-\\infty$, et $x\\,\\mathbf{1}_{[-1,\\sqrt3]}(x)$, bien que d'intégrale $\\frac{3-1}2=1$, prend des valeurs négatives sur $\\left[-1,0\\right[$."
+    },
+    {
+      "id": "proba-l3-densites-q2",
+      "carte": "proba-l3-densites-densite",
+      "genre": "vrai-faux",
+      "enonce": "Si $X$ admet une densité $f$, alors $P(X=x)=f(x)$ pour tout réel $x$.",
+      "vrai": false,
+      "explication": "Faux. Pour une variable à densité, $P(X=x)=0$ pour tout $x$, car $F_X$ est continue ; la valeur $f(x)$ n'est pas une probabilité et peut dépasser $1$ (densité $2x$ sur $[0,1]$, qui vaut $2$ en $1$)."
+    },
+    {
+      "id": "proba-l3-densites-q3",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "genre": "choix",
+      "enonce": "$X$ suit une loi exponentielle $\\mathcal{E}(\\lambda)$ et $P(X>1)=\\frac12$. Que vaut $\\lambda$ ?",
+      "propositions": [
+        "$\\ln2$",
+        "$\\frac12$",
+        "$2$",
+        "$\\frac1{\\ln2}$"
+      ],
+      "bonne": 0,
+      "explication": "$P(X>1)=e^{-\\lambda}=\\frac12$, donc $\\lambda=\\ln2\\approx0{,}69$."
+    },
+    {
+      "id": "proba-l3-densites-q4",
+      "carte": "proba-l3-densites-esperance",
+      "genre": "vrai-faux",
+      "enonce": "Une variable de loi de Cauchy, de densité paire $\\frac1{\\pi(1+x^2)}$, admet une espérance nulle.",
+      "vrai": false,
+      "explication": "Faux. L'intégrale $\\int_0^A\\frac{x\\,\\mathrm{d}x}{\\pi(1+x^2)}=\\frac{\\ln(1+A^2)}{2\\pi}$ tend vers $+\\infty$ : $\\int|x|f(x)\\,\\mathrm{d}x$ diverge, et la loi de Cauchy n'a pas d'espérance. La symétrie de la densité ne suffit pas."
+    },
+    {
+      "id": "proba-l3-densites-q5",
+      "carte": "proba-l3-densites-esperance",
+      "genre": "choix",
+      "enonce": "Soit $X$ de loi $\\mathcal{U}([0,1])$. Que vaut $E\\left(e^X\\right)$ ?",
+      "propositions": [
+        "$e-1$",
+        "$\\sqrt e$",
+        "$e$",
+        "$\\frac e2$"
+      ],
+      "bonne": 0,
+      "explication": "Par le théorème de transfert, $E\\left(e^X\\right)=\\int_0^1e^x\\,\\mathrm{d}x=e-1\\approx1{,}72$, qui diffère de $e^{E(X)}=\\sqrt e\\approx1{,}65$."
+    },
+    {
+      "id": "proba-l3-densites-q6",
+      "carte": "proba-l3-densites-vecteurs",
+      "genre": "vrai-faux",
+      "enonce": "Si le couple $(X,Y)$ est uniforme sur le rectangle $[0,1]\\times[0,2]$ (densité $\\frac12$ sur ce rectangle, $0$ ailleurs), alors $X$ et $Y$ sont indépendantes.",
+      "vrai": true,
+      "explication": "Vrai. $\\frac12\\mathbf{1}_{[0,1]\\times[0,2]}(x,y)=\\mathbf{1}_{[0,1]}(x)\\cdot\\frac12\\mathbf{1}_{[0,2]}(y)$ est le produit des densités marginales, uniformes sur $[0,1]$ et sur $[0,2]$."
+    },
+    {
+      "id": "proba-l3-densites-q7",
+      "carte": "proba-l3-densites-somme",
+      "genre": "choix",
+      "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{E}(1)$. Quelle est, pour $z>0$, la valeur en $z$ d'une densité de $X+Y$ (nulle sur $\\left]-\\infty,0\\right]$) ?",
+      "propositions": [
+        "$ze^{-z}$",
+        "$e^{-z}$",
+        "$2e^{-2z}$",
+        "$\\frac{z^2}2e^{-z}$"
+      ],
+      "bonne": 0,
+      "explication": "Par convolution, $h(z)=\\int_0^ze^{-x}e^{-(z-x)}\\,\\mathrm{d}x=ze^{-z}$ : $X+Y$ suit $\\gamma(2,1)$. La fonction $2e^{-2z}$ est la densité de $\\min(X,Y)$, et $\\frac{z^2}2e^{-z}$ celle de la somme de trois variables indépendantes de loi $\\mathcal{E}(1)$."
+    },
+    {
+      "id": "proba-l3-densites-q8",
+      "carte": "proba-l3-densites-normales",
+      "genre": "choix",
+      "enonce": "Soient $X$ et $Y$ indépendantes de lois $\\mathcal{N}(1,4)$ et $\\mathcal{N}(-1,5)$. Quelle est la loi de $X+2Y$ ?",
+      "propositions": [
+        "$\\mathcal{N}(-1,24)$",
+        "$\\mathcal{N}(-1,14)$",
+        "$\\mathcal{N}(-1,9)$",
+        "$\\mathcal{N}(1,24)$"
+      ],
+      "bonne": 0,
+      "explication": "$2Y$ suit $\\mathcal{N}(-2,4\\cdot5)=\\mathcal{N}(-2,20)$ et est indépendante de $X$ ; par stabilité, $X+2Y$ suit $\\mathcal{N}(1-2,4+20)=\\mathcal{N}(-1,24)$. Le coefficient $2$ multiplie la variance par $4$."
+    }
+  ]
+}

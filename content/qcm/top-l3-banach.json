@@ -1,0 +1,93 @@
+{
+  "chapitre": "top-l3-banach",
+  "questions": [
+    {
+      "id": "top-l3-banach-q1",
+      "carte": "top-l3-banach-banach",
+      "genre": "choix",
+      "enonce": "Lequel de ces espaces vectoriels normés n'est pas complet ?",
+      "propositions": [
+        "$\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|f\\|_1=\\int_0^1|f|$",
+        "$\\mathcal{C}([0,1],\\mathbb{R})$ muni de $\\|\\cdot\\|_\\infty$",
+        "$\\mathbb{R}^3$ muni de $\\|\\cdot\\|_1$",
+        "$\\ell^2$ muni de sa norme hilbertienne"
+      ],
+      "bonne": 0,
+      "explication": "$\\mathcal{C}([0,1],\\mathbb{R})$ n'est pas complet pour $\\|\\cdot\\|_1$ : les fonctions continues $f_n=\\min\\left(n,\\frac1{\\sqrt t}\\right)$ forment une suite de Cauchy pour $\\|\\cdot\\|_1$ dont la « limite » $\\frac1{\\sqrt t}$ n'est pas continue (ni même bornée). Les trois autres sont complets : $\\mathcal{C}([0,1],\\mathbb{R})$ pour la norme uniforme, $\\mathbb{R}^3$ (dimension finie) et $\\ell^2$ (espace de Hilbert)."
+    },
+    {
+      "id": "top-l3-banach-q2",
+      "carte": "top-l3-banach-banach",
+      "genre": "vrai-faux",
+      "enonce": "Dans tout espace vectoriel normé, si la série numérique $\\sum\\|x_n\\|$ converge, alors la série $\\sum x_n$ converge.",
+      "vrai": false,
+      "explication": "Faux : c'est exactement la caractérisation des espaces complets. Dans $\\mathbb{R}[X]$ muni de la norme $\\max_k|a_k|$ des coefficients, $\\sum\\left\\|\\frac{X^n}{2^n}\\right\\|=2$, mais $\\sum\\frac{X^n}{2^n}$ ne converge vers aucun polynôme : pour une limite $P$ de degré au plus $d$, le coefficient de $X^{d+1}$ resterait égal à $\\frac1{2^{d+1}}$."
+    },
+    {
+      "id": "top-l3-banach-q3",
+      "carte": "top-l3-banach-uniforme",
+      "genre": "vrai-faux",
+      "enonce": "Si $F$ est un espace de Banach et si $E$ est un espace vectoriel normé non nul qui n'est pas complet, alors $\\mathcal{L}_c(E,F)$, muni de la norme subordonnée, n'est pas complet.",
+      "vrai": false,
+      "explication": "Faux : $\\mathcal{L}_c(E,F)$ est complet dès que $F$ l'est, quel que soit $E$. Si $(u_n)$ est de Cauchy, $(u_n(x))$ est de Cauchy dans $F$ pour chaque $x$, car $\\|u_p(x)-u_q(x)\\|\\le|||u_p-u_q|||\\,\\|x\\|$ ; la limite $u(x)$ définit une application linéaire continue, et $|||u_n-u|||\\to0$. Seule la complétude de $F$ intervient."
+    },
+    {
+      "id": "top-l3-banach-q4",
+      "carte": "top-l3-banach-exponentielle",
+      "genre": "choix",
+      "enonce": "Soit $E$ un espace de Banach et $u\\in\\mathcal{L}_c(E)$ tel que $u^2=\\mathrm{id}_E$. Pour $t\\in\\mathbb{R}$, que vaut $e^{tu}$ ?",
+      "propositions": [
+        "$\\operatorname{ch}(t)\\,\\mathrm{id}_E+\\operatorname{sh}(t)\\,u$",
+        "$\\cos(t)\\,\\mathrm{id}_E+\\sin(t)\\,u$",
+        "$e^t\\,\\mathrm{id}_E$",
+        "$\\mathrm{id}_E+(e^t-1)\\,u$"
+      ],
+      "bonne": 0,
+      "explication": "On a $u^{2j}=\\mathrm{id}_E$ et $u^{2j+1}=u$, donc $e^{tu}=\\sum_j\\frac{t^{2j}}{(2j)!}\\mathrm{id}_E+\\sum_j\\frac{t^{2j+1}}{(2j+1)!}u=\\operatorname{ch}(t)\\,\\mathrm{id}_E+\\operatorname{sh}(t)\\,u$. Les autres propositions sont fausses pour $u=-\\mathrm{id}_E$, où $e^{tu}=e^{-t}\\mathrm{id}_E$ : $\\cos t-\\sin t$, $e^t$ et $2-e^t$ diffèrent de $e^{-t}$ pour $t=1$. La formule $\\cos(t)\\,\\mathrm{id}_E+\\sin(t)\\,u$ correspond au cas $u^2=-\\mathrm{id}_E$, et $\\mathrm{id}_E+(e^t-1)u$ au cas d'un projecteur."
+    },
+    {
+      "id": "top-l3-banach-q5",
+      "carte": "top-l3-banach-exponentielle",
+      "genre": "vrai-faux",
+      "enonce": "Pour tout endomorphisme continu $u$ d'un espace de Banach non nul, $|||e^u|||=e^{|||u|||}$.",
+      "vrai": false,
+      "explication": "Faux : on a seulement $|||e^u|||\\le e^{|||u|||}$. Pour $E=\\mathbb{R}$ et $u=-\\mathrm{id}$, $|||e^u|||=e^{-1}<e=e^{|||u|||}$ ; pour $u=\\begin{pmatrix}0&-\\theta\\\\\\theta&0\\end{pmatrix}$ dans le plan euclidien ($\\theta>0$), de norme $\\theta$, $e^u$ est la rotation d'angle $\\theta$, de norme $1<e^\\theta$."
+    },
+    {
+      "id": "top-l3-banach-q6",
+      "carte": "top-l3-banach-bessel",
+      "genre": "choix",
+      "enonce": "Soit $(e_n)$ une suite orthonormale d'un espace préhilbertien et $x$ un vecteur tel que $\\langle e_n,x\\rangle=\\frac1{2^n}$ pour tout $n\\in\\mathbb{N}$. Quelle est la plus petite valeur possible de $\\|x\\|^2$ ?",
+      "propositions": [
+        "$\\frac43$",
+        "$2$",
+        "$1$",
+        "$\\frac{16}9$"
+      ],
+      "bonne": 0,
+      "explication": "Par l'inégalité de Bessel, $\\|x\\|^2\\ge\\sum_{n\\ge0}\\frac1{4^n}=\\frac43$. Cette valeur est atteinte : dans $\\ell^2$, avec la base canonique, $x=\\left(\\frac1{2^n}\\right)_n$ a ces coefficients et $\\|x\\|^2=\\frac43$ (cas d'égalité de Parseval). La valeur $1$ contredit l'inégalité de Bessel ; $2$ et $\\frac{16}9$ sont possibles (en ajoutant à $x$ un vecteur orthogonal à tous les $e_n$, quand il en existe) mais ne sont pas minimales."
+    },
+    {
+      "id": "top-l3-banach-q7",
+      "carte": "top-l3-banach-hilbert",
+      "genre": "vrai-faux",
+      "enonce": "L'espace $\\mathcal{C}([0,1],\\mathbb{R})$ muni du produit scalaire $\\langle f,g\\rangle=\\int_0^1f(t)g(t)\\,\\mathrm{d}t$ est un espace de Hilbert.",
+      "vrai": false,
+      "explication": "Faux : il est préhilbertien mais pas complet. Les fonctions $f_n$ nulles sur $\\left[0,\\frac12\\right]$, égales à $1$ sur $\\left[\\frac12+\\frac1n,1\\right]$ et affines entre les deux forment une suite de Cauchy pour la norme associée ($\\int_0^1(f_n-h)^2=\\frac1{3n}$, où $h$ est la fonction en escalier qui vaut $0$ puis $1$), et une limite continue $g$ devrait coïncider avec $h$ sur $\\left[0,\\frac12\\right]$ et sur $\\left]\\frac12,1\\right]$, ce qui est impossible."
+    },
+    {
+      "id": "top-l3-banach-q8",
+      "carte": "top-l3-banach-polynomes-orthogonaux",
+      "genre": "choix",
+      "enonce": "Pour le poids $1$ sur $\\left]-1,1\\right[$, on a $P_1=X$ et $P_2=X^2-\\frac13$, et la relation de récurrence s'écrit $P_3=XP_2-b_2P_1$. Que vaut $b_2$ ?",
+      "propositions": [
+        "$\\frac4{15}$",
+        "$\\frac13$",
+        "$\\frac{15}4$",
+        "$\\frac25$"
+      ],
+      "bonne": 0,
+      "explication": "$b_2=\\frac{\\|P_2\\|^2}{\\|P_1\\|^2}$, avec $\\|P_1\\|^2=\\int_{-1}^1t^2\\,\\mathrm{d}t=\\frac23$ et $\\|P_2\\|^2=\\int_{-1}^1\\left(t^2-\\frac13\\right)^2\\mathrm{d}t=\\frac25-\\frac49+\\frac29=\\frac8{45}$ : $b_2=\\frac8{45}\\cdot\\frac32=\\frac4{15}$. On obtient $P_3=X^3-\\frac35X$, qui est bien orthogonal à $X$ : $\\int_{-1}^1\\left(t^4-\\frac35t^2\\right)\\mathrm{d}t=\\frac25-\\frac25=0$. Le quotient inversé donnerait $\\frac{15}4$, et $\\frac13$, $\\frac25$ ne rendent pas $P_3$ orthogonal à $X$."
+    }
+  ]
+}

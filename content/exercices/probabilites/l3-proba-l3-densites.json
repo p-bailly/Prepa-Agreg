@@ -1,0 +1,1683 @@
+{
+  "exercices": [
+    {
+      "id": "proba-l3-densites-densite-ex1",
+      "carte": "proba-l3-densites-densite",
+      "difficulte": 1,
+      "titre": "Constante de normalisation et probabilité d'un intervalle",
+      "enonce": "Soit $c$ un réel et $f$ la fonction définie par $f(x)=cx(2-x)$ si $x\\in[0,2]$ et $f(x)=0$ sinon. Déterminer $c$ pour que $f$ soit une densité, puis calculer $P\\left(X\\le\\frac12\\right)$ pour une variable $X$ de densité $f$.",
+      "duree_min": 8,
+      "indices": [
+        "Une densité est positive et d'intégrale $1$ sur $\\mathbb{R}$ : calculer $\\int_0^2x(2-x)\\,\\mathrm{d}x$.",
+        "$P\\left(X\\le\\frac12\\right)=\\int_{-\\infty}^{1/2}f(t)\\,\\mathrm{d}t$, et $f$ est nulle sur $\\left]-\\infty,0\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P\\left(X\\le\\frac12\\right)$ ?",
+        "propositions": [
+          "$\\frac5{32}$",
+          "$\\frac5{24}$",
+          "$\\frac{27}{32}$",
+          "$\\frac14$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La fonction $f$ est continue sauf peut-être en $0$ et $2$. Comme $x(2-x)>0$ sur $\\left]0,2\\right[$, $f$ est positive si et seulement si $c\\ge0$, et\n$$\\int_{-\\infty}^{+\\infty}f(x)\\,\\mathrm{d}x=c\\int_0^2(2x-x^2)\\,\\mathrm{d}x=c\\left(4-\\frac83\\right)=\\frac{4c}3.$$\nDonc $f$ est une densité si et seulement si $c=\\frac34$.\n\nEnsuite\n$$P\\left(X\\le\\frac12\\right)=\\frac34\\int_0^{1/2}(2x-x^2)\\,\\mathrm{d}x=\\frac34\\left(\\frac14-\\frac1{24}\\right)=\\frac34\\cdot\\frac5{24}=\\frac5{32}.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $c$ un réel et $f$ la fonction définie par $f(x)=cx^2$ si $x\\in[0,3]$ et $f(x)=0$ sinon. Déterminer $c$ pour que $f$ soit une densité, puis calculer $P(X\\le2)$ pour une variable $X$ de densité $f$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X\\le2)$ ?",
+            "propositions": [
+              "$\\frac8{27}$",
+              "$\\frac83$",
+              "$\\frac{19}{27}$",
+              "$\\frac23$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f$ est continue sauf en $3$ ; elle est positive si et seulement si $c\\ge0$, et $\\int_{-\\infty}^{+\\infty}f=c\\int_0^3x^2\\,\\mathrm{d}x=9c$. Donc $f$ est une densité si et seulement si $c=\\frac19$.\n\nEnsuite $P(X\\le2)=\\frac19\\int_0^2x^2\\,\\mathrm{d}x=\\frac19\\cdot\\frac83=\\frac8{27}$.",
+          "indices": [
+            "Une densité est positive et d'intégrale $1$ sur $\\mathbb{R}$ : calculer $\\int_0^3x^2\\,\\mathrm{d}x$.",
+            "$P(X\\le2)=\\int_{-\\infty}^2f(t)\\,\\mathrm{d}t$, et $f$ est nulle sur $\\left]-\\infty,0\\right[$."
+          ]
+        },
+        {
+          "enonce": "Soit $c$ un réel et $f$ la fonction définie par $f(x)=c(4-x^2)$ si $x\\in[-2,2]$ et $f(x)=0$ sinon. Déterminer $c$ pour que $f$ soit une densité, puis calculer $P(X\\le1)$ pour une variable $X$ de densité $f$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X\\le1)$ ?",
+            "propositions": [
+              "$\\frac{27}{32}$",
+              "$\\frac5{32}$",
+              "$\\frac34$",
+              "$\\frac{11}{32}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La fonction $f$ est continue sur $\\mathbb{R}$ ; comme $4-x^2>0$ sur $\\left]-2,2\\right[$, elle est positive si et seulement si $c\\ge0$, et\n$$\\int_{-\\infty}^{+\\infty}f=c\\int_{-2}^2(4-x^2)\\,\\mathrm{d}x=c\\left(16-\\frac{16}3\\right)=\\frac{32c}3.$$\nDonc $c=\\frac3{32}$. Ensuite\n$$P(X\\le1)=\\frac3{32}\\int_{-2}^1(4-x^2)\\,\\mathrm{d}x=\\frac3{32}\\left(12-\\frac{1+8}3\\right)=\\frac3{32}\\cdot9=\\frac{27}{32}.$$\nAttention à la borne inférieure : l'intégrale part de $-2$, et non de $0$.",
+          "indices": [
+            "Une densité est positive et d'intégrale $1$ sur $\\mathbb{R}$ : calculer $\\int_{-2}^2(4-x^2)\\,\\mathrm{d}x$.",
+            "$P(X\\le1)=\\int_{-\\infty}^1f(t)\\,\\mathrm{d}t$, et $f$ est nulle sur $\\left]-\\infty,-2\\right[$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-densite-ex2",
+      "carte": "proba-l3-densites-densite",
+      "difficulte": 2,
+      "titre": "Densité et médiane à partir de la fonction de répartition",
+      "enonce": "Soit $X$ une variable aléatoire de fonction de répartition $F$ définie par $F(x)=0$ si $x<0$ et $F(x)=1-\\frac1{(1+x)^2}$ si $x\\ge0$. Montrer que $X$ admet une densité et la déterminer, puis calculer la médiane de $X$, c'est-à-dire le réel $m$ tel que $F(m)=\\frac12$.",
+      "duree_min": 10,
+      "indices": [
+        "Vérifier que $F$ est continue en $0$ et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$, puis dériver.",
+        "Résoudre $F(m)=\\frac12$ en cherchant $m\\ge0$, puisque $F$ est nulle sur $\\left]-\\infty,0\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut la médiane $m$ de $X$ ?",
+        "propositions": [
+          "$\\sqrt2-1$",
+          "$1$",
+          "$\\frac12$",
+          "$\\sqrt2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$F$ est de classe $\\mathcal{C}^1$ sur $\\left]-\\infty,0\\right[$ (elle y est nulle) et sur $\\left]0,+\\infty\\right[$, et continue en $0$ : $F(0)=1-1=0=\\lim_{x\\to0^-}F(x)$. Par la réciproque du cours, $X$ admet la densité $f$ égale à $F'$ hors de $0$ :\n$$f(x)=\\frac2{(1+x)^3}\\ \\text{si}\\ x>0,\\qquad f(x)=0\\ \\text{si}\\ x\\le0.$$\nMédiane : $F(m)=\\frac12$ impose $m\\ge0$ et $(1+m)^2=2$, d'où $m=\\sqrt2-1\\approx0{,}414$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable aléatoire de fonction de répartition $F$ définie par $F(x)=0$ si $x<0$ et $F(x)=1-\\frac1{(1+x)^3}$ si $x\\ge0$. Montrer que $X$ admet une densité et la déterminer, puis calculer la médiane de $X$, c'est-à-dire le réel $m$ tel que $F(m)=\\frac12$.",
+          "reponse_finale": {
+            "question": "Que vaut la médiane $m$ de $X$ ?",
+            "propositions": [
+              "$\\sqrt[3]2-1$",
+              "$\\sqrt2-1$",
+              "$\\frac12$",
+              "$\\sqrt[3]2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$ et continue en $0$, où $F(0)=0$. Donc $X$ admet la densité $f(x)=\\frac3{(1+x)^4}$ pour $x>0$, $f(x)=0$ pour $x\\le0$.\n\nMédiane : $m\\ge0$ et $(1+m)^3=2$, d'où $m=\\sqrt[3]2-1\\approx0{,}26$.",
+          "indices": [
+            "Vérifier que $F$ est continue en $0$ et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$, puis dériver $1-(1+x)^{-3}$.",
+            "Résoudre $F(m)=\\frac12$ en cherchant $m\\ge0$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable aléatoire de fonction de répartition $F$ définie par $F(x)=0$ si $x<0$ et $F(x)=\\frac{x^2}{1+x^2}$ si $x\\ge0$. Montrer que $X$ admet une densité et la déterminer, puis calculer la médiane de $X$, c'est-à-dire le réel $m$ tel que $F(m)=\\frac12$.",
+          "reponse_finale": {
+            "question": "Que vaut la médiane $m$ de $X$ ?",
+            "propositions": [
+              "$1$",
+              "$\\sqrt2-1$",
+              "$\\frac12$",
+              "$\\sqrt2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$F$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$ et continue en $0$, où $F(0)=0$ ; elle tend vers $1$ en $+\\infty$. Donc $X$ admet la densité $f(x)=\\frac{2x}{(1+x^2)^2}$ pour $x>0$, $f(x)=0$ pour $x\\le0$.\n\nMédiane : $\\frac{m^2}{1+m^2}=\\frac12$ équivaut à $m^2=1$, et $m\\ge0$, donc $m=1$.",
+          "indices": [
+            "Vérifier que $F$ est continue en $0$ et de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^*$, puis dériver le quotient.",
+            "Résoudre $F(m)=\\frac12$ en cherchant $m\\ge0$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-densite-ex3",
+      "carte": "proba-l3-densites-densite",
+      "difficulte": 3,
+      "titre": "Carré d'une variable uniforme sur un intervalle non symétrique",
+      "enonce": "Soit $X$ une variable de densité $\\frac13\\mathbf{1}_{[-1,2]}$ (loi uniforme sur $[-1,2]$) et $Y=X^2$. Déterminer la fonction de répartition de $Y$, montrer que $Y$ admet une densité et la calculer, puis donner $P(Y\\le2)$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$ ; comparer $-\\sqrt y$ à la borne $-1$ et $\\sqrt y$ à la borne $2$.",
+        "Distinguer les cas $0\\le y\\le1$ et $1\\le y\\le4$, puis vérifier la continuité de $F_Y$ aux points de raccord."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(Y\\le2)$ ?",
+        "propositions": [
+          "$\\frac{1+\\sqrt2}3$",
+          "$\\frac{2\\sqrt2}3$",
+          "$\\frac{\\sqrt2}3$",
+          "$\\frac23$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$Y$ prend ses valeurs dans $[0,4]$, donc $F_Y(y)=0$ pour $y<0$ et $F_Y(y)=1$ pour $y\\ge4$. Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$.\n- Si $0\\le y\\le1$ : $[-\\sqrt y,\\sqrt y]\\subset[-1,2]$, donc $F_Y(y)=\\frac{2\\sqrt y}3$.\n- Si $1\\le y\\le4$ : $-\\sqrt y\\le-1$ et $\\sqrt y\\le2$, donc $F_Y(y)=P(-1\\le X\\le\\sqrt y)=\\frac{\\sqrt y+1}3$.\n\nLes deux formules donnent $\\frac23$ en $1$, la seconde donne $1$ en $4$ et la première $0$ en $0$ : $F_Y$ est continue sur $\\mathbb{R}$, et de classe $\\mathcal{C}^1$ hors de $\\{0,1,4\\}$. Donc $Y$ admet la densité\n$$f_Y(y)=\\frac1{3\\sqrt y}\\ \\text{sur}\\ \\left]0,1\\right[,\\qquad f_Y(y)=\\frac1{6\\sqrt y}\\ \\text{sur}\\ \\left]1,4\\right[,\\qquad f_Y(y)=0\\ \\text{ailleurs}.$$\nElle n'est pas bornée au voisinage de $0$, ce que permet la définition. Enfin $P(Y\\le2)=F_Y(2)=\\frac{1+\\sqrt2}3\\approx0{,}80$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de densité $\\frac14\\mathbf{1}_{[-1,3]}$ (loi uniforme sur $[-1,3]$) et $Y=X^2$. Déterminer la fonction de répartition de $Y$, montrer que $Y$ admet une densité et la calculer, puis donner $P(Y\\le4)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(Y\\le4)$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$1$",
+              "$\\frac12$",
+              "$\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$Y$ prend ses valeurs dans $[0,9]$. Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$.\n- Si $0\\le y\\le1$ : $F_Y(y)=\\frac{2\\sqrt y}4=\\frac{\\sqrt y}2$.\n- Si $1\\le y\\le9$ : $F_Y(y)=P(-1\\le X\\le\\sqrt y)=\\frac{\\sqrt y+1}4$.\n\n$F_Y$ vaut $0$ en $0$, $\\frac12$ en $1$ par les deux formules, $1$ en $9$ : elle est continue sur $\\mathbb{R}$ et de classe $\\mathcal{C}^1$ hors de $\\{0,1,9\\}$. Densité : $\\frac1{4\\sqrt y}$ sur $\\left]0,1\\right[$, $\\frac1{8\\sqrt y}$ sur $\\left]1,9\\right[$, $0$ ailleurs. Enfin $P(Y\\le4)=\\frac{2+1}4=\\frac34$ (et non $\\frac{2\\sqrt4}4=1$ : pour $y>1$, la borne $-\\sqrt y$ sort du support de $X$).",
+          "indices": [
+            "Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$ ; comparer $-\\sqrt y$ à la borne $-1$ et $\\sqrt y$ à la borne $3$.",
+            "Distinguer les cas $0\\le y\\le1$ et $1\\le y\\le9$, puis vérifier la continuité de $F_Y$ aux points de raccord."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de densité $\\frac15\\mathbf{1}_{[-2,3]}$ (loi uniforme sur $[-2,3]$) et $Y=X^2$. Déterminer la fonction de répartition de $Y$, montrer que $Y$ admet une densité et la calculer, puis donner $P(Y\\le6)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(Y\\le6)$ ?",
+            "propositions": [
+              "$\\frac{2+\\sqrt6}5$",
+              "$\\frac{2\\sqrt6}5$",
+              "$\\frac{\\sqrt6}5$",
+              "$\\frac45$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$Y$ prend ses valeurs dans $[0,9]$. Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$.\n- Si $0\\le y\\le4$ : $[-\\sqrt y,\\sqrt y]\\subset[-2,3]$, donc $F_Y(y)=\\frac{2\\sqrt y}5$.\n- Si $4\\le y\\le9$ : $F_Y(y)=P(-2\\le X\\le\\sqrt y)=\\frac{\\sqrt y+2}5$.\n\nEn $4$, les deux formules donnent $\\frac45$ ; en $9$, $1$ ; en $0$, $0$ : $F_Y$ est continue et de classe $\\mathcal{C}^1$ hors de $\\{0,4,9\\}$. Densité : $\\frac1{5\\sqrt y}$ sur $\\left]0,4\\right[$, $\\frac1{10\\sqrt y}$ sur $\\left]4,9\\right[$, $0$ ailleurs. Enfin $P(Y\\le6)=\\frac{2+\\sqrt6}5\\approx0{,}89$.",
+          "indices": [
+            "Pour $y\\ge0$, $\\{Y\\le y\\}=\\{-\\sqrt y\\le X\\le\\sqrt y\\}$ ; comparer $-\\sqrt y$ à la borne $-2$ et $\\sqrt y$ à la borne $3$.",
+            "Distinguer les cas $0\\le y\\le4$ et $4\\le y\\le9$, puis vérifier la continuité de $F_Y$ aux points de raccord."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-densite-ex4",
+      "carte": "proba-l3-densites-densite",
+      "difficulte": 4,
+      "titre": "Méthode d'inversion de la fonction de répartition",
+      "enonce": "1. Soit $X$ une variable aléatoire dont la fonction de répartition $F$ est continue sur $\\mathbb{R}$. Montrer que, pour tout $u\\in\\left]0,1\\right[$, l'ensemble $\\{x\\in\\mathbb{R}\\ :\\ F(x)\\le u\\}$ est un intervalle de la forme $\\left]-\\infty,x_u\\right]$ avec $F(x_u)=u$, puis que la variable $F(X)$ suit la loi uniforme sur $[0,1]$.\n2. Soit $I$ un intervalle ouvert et $F$ une fonction de répartition continue, nulle à gauche de $I$, égale à $1$ à droite de $I$, qui réalise une bijection strictement croissante de $I$ sur $\\left]0,1\\right[$ ; on note $G:\\left]0,1\\right[\\to I$ sa réciproque. Soit $U$ une variable à valeurs dans $\\left]0,1\\right[$ de loi uniforme sur $[0,1]$. Montrer que $G(U)$ a pour fonction de répartition $F$.\n3. Application : trouver une fonction $g$ telle que $g(U)$ suive la loi de Cauchy, de fonction de répartition $x\\mapsto\\frac12+\\frac1\\pi\\arctan x$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, l'ensemble $\\{F\\le u\\}$ est non vide, majoré, et c'est un intervalle fermé car $F$ est croissante et continue ; utiliser la continuité de $F$ en sa borne supérieure.",
+        "Pour la question 2, $G$ est strictement croissante : pour $y\\in I$, $G(U)\\le y$ équivaut à $U\\le F(y)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle fonction $g$ convient ?",
+        "propositions": [
+          "$u\\mapsto\\tan\\left(\\pi u-\\frac\\pi2\\right)$",
+          "$u\\mapsto\\tan\\left(\\frac{\\pi u}2\\right)$",
+          "$u\\mapsto\\frac1{\\pi(1+u^2)}$",
+          "$u\\mapsto\\frac1\\pi\\arctan u+\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $u\\in\\left]0,1\\right[$ et $E_u=\\{x\\ :\\ F(x)\\le u\\}$. Comme $F\\to0$ en $-\\infty$, $E_u$ est non vide ; comme $F\\to1$ en $+\\infty$, il est majoré ; comme $F$ est croissante, si $x\\in E_u$ et $x'\\le x$, alors $x'\\in E_u$ ; enfin $E_u$ est fermé car $F$ est continue. Donc $E_u=\\left]-\\infty,x_u\\right]$ avec $x_u=\\sup E_u$, et $F(x_u)\\le u$. Pour $x>x_u$, $F(x)>u$, et la continuité de $F$ en $x_u$ donne $F(x_u)\\ge u$ : donc $F(x_u)=u$.\n\nPar conséquent $\\{F(X)\\le u\\}=\\{X\\le x_u\\}$ est un événement, et $P\\left(F(X)\\le u\\right)=F(x_u)=u$ pour $u\\in\\left]0,1\\right[$. Comme $F(X)\\in[0,1]$, $P\\left(F(X)\\le u\\right)=0$ pour $u<0$ et $1$ pour $u\\ge1$ ; par continuité à droite, $P\\left(F(X)\\le0\\right)=\\lim_{u\\to0^+}u=0$. La fonction de répartition de $F(X)$ est donc celle de la loi uniforme sur $[0,1]$ (continue, de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$, de dérivée $\\mathbf{1}_{\\left]0,1\\right[}$).\n\n**2.** Pour $y\\in I$, comme $G$ est une bijection strictement croissante de $\\left]0,1\\right[$ sur $I$ et que $U$ prend ses valeurs dans $\\left]0,1\\right[$, $G(U)\\le y$ équivaut à $U\\le F(y)$. Donc $P\\left(G(U)\\le y\\right)=P\\left(U\\le F(y)\\right)=F(y)$, car $F(y)\\in\\left]0,1\\right[$. Si $y$ est à gauche de $I$, $\\{G(U)\\le y\\}=\\emptyset$ et $F(y)=0$ ; s'il est à droite, c'est $\\Omega$ et $F(y)=1$. Donc $G(U)$ a pour fonction de répartition $F$.\n\n**3.** Ici $I=\\mathbb{R}$ et $F(x)=\\frac12+\\frac1\\pi\\arctan x$ est une bijection strictement croissante et continue de $\\mathbb{R}$ sur $\\left]0,1\\right[$. On résout $u=\\frac12+\\frac1\\pi\\arctan x$ : $x=\\tan\\left(\\pi u-\\frac\\pi2\\right)$. Donc $g(u)=\\tan\\left(\\pi u-\\frac\\pi2\\right)$ convient. C'est la méthode d'inversion, utilisée pour simuler une loi à partir d'un générateur uniforme."
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles-ex1",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "difficulte": 1,
+      "titre": "Absence de mémoire d'une durée de vie exponentielle",
+      "enonce": "La durée de fonctionnement $T$ (en heures) d'un appareil suit la loi exponentielle de paramètre $\\lambda=\\frac12$. Sachant que l'appareil fonctionne encore au bout de $5$ heures, quelle est la probabilité qu'il fonctionne encore au bout de $8$ heures ?",
+      "duree_min": 5,
+      "indices": [
+        "Écrire la probabilité conditionnelle comme un quotient, en remarquant que $\\{T>8\\}\\subset\\{T>5\\}$.",
+        "Pour $t\\ge0$, $P(T>t)=e^{-\\lambda t}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut cette probabilité ?",
+        "propositions": [
+          "$e^{-3/2}$",
+          "$e^{-4}$",
+          "$e^{-5/2}$",
+          "$1-e^{-3/2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Comme $\\{T>8\\}\\subset\\{T>5\\}$,\n$$P(T>8\\mid T>5)=\\frac{P(T>8)}{P(T>5)}=\\frac{e^{-8/2}}{e^{-5/2}}=e^{-3/2}\\approx0{,}22.$$\nC'est $P(T>3)$ : l'appareil « ne se souvient pas » qu'il a déjà fonctionné $5$ heures (absence de mémoire).",
+      "variantes": [
+        {
+          "enonce": "La durée de fonctionnement $T$ (en heures) d'un appareil suit la loi exponentielle de paramètre $\\lambda=\\frac13$. Sachant que l'appareil fonctionne encore au bout de $4$ heures, quelle est la probabilité qu'il fonctionne encore au bout de $10$ heures ?",
+          "reponse_finale": {
+            "question": "Que vaut cette probabilité ?",
+            "propositions": [
+              "$e^{-2}$",
+              "$e^{-10/3}$",
+              "$e^{-4/3}$",
+              "$1-e^{-2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\{T>10\\}\\subset\\{T>4\\}$, $P(T>10\\mid T>4)=\\frac{e^{-10/3}}{e^{-4/3}}=e^{-2}\\approx0{,}14$, c'est-à-dire $P(T>6)$ : absence de mémoire.",
+          "indices": [
+            "Écrire la probabilité conditionnelle comme un quotient, en remarquant que $\\{T>10\\}\\subset\\{T>4\\}$.",
+            "Pour $t\\ge0$, $P(T>t)=e^{-\\lambda t}$."
+          ]
+        },
+        {
+          "enonce": "La durée de fonctionnement $T$ (en heures) d'un appareil suit la loi exponentielle de paramètre $\\lambda=\\frac14$. Sachant que l'appareil fonctionne encore au bout de $2$ heures, quelle est la probabilité qu'il fonctionne encore au bout de $6$ heures ?",
+          "reponse_finale": {
+            "question": "Que vaut cette probabilité ?",
+            "propositions": [
+              "$e^{-1}$",
+              "$e^{-3/2}$",
+              "$e^{-1/2}$",
+              "$1-e^{-1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Comme $\\{T>6\\}\\subset\\{T>2\\}$, $P(T>6\\mid T>2)=\\frac{e^{-6/4}}{e^{-2/4}}=e^{-1}\\approx0{,}37$, c'est-à-dire $P(T>4)$ : absence de mémoire.",
+          "indices": [
+            "Écrire la probabilité conditionnelle comme un quotient, en remarquant que $\\{T>6\\}\\subset\\{T>2\\}$.",
+            "Pour $t\\ge0$, $P(T>t)=e^{-\\lambda t}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles-ex2",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "difficulte": 2,
+      "titre": "Probabilités pour la loi de Cauchy",
+      "enonce": "Soit $X$ une variable de loi de Cauchy, de densité $x\\mapsto\\frac1{\\pi(1+x^2)}$. Calculer $P\\left(X>\\sqrt3\\right)$.",
+      "duree_min": 5,
+      "indices": [
+        "La fonction de répartition de la loi de Cauchy s'exprime avec la fonction arctangente.",
+        "$\\arctan\\sqrt3=\\frac\\pi3$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P\\left(X>\\sqrt3\\right)$ ?",
+        "propositions": [
+          "$\\frac16$",
+          "$\\frac13$",
+          "$\\frac14$",
+          "$\\frac56$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour tout réel $x$, $F_X(x)=\\int_{-\\infty}^x\\frac{\\mathrm{d}t}{\\pi(1+t^2)}=\\frac12+\\frac1\\pi\\arctan x$. Donc\n$$P\\left(X>\\sqrt3\\right)=1-F_X\\left(\\sqrt3\\right)=\\frac12-\\frac1\\pi\\cdot\\frac\\pi3=\\frac16.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de loi de Cauchy, de densité $x\\mapsto\\frac1{\\pi(1+x^2)}$. Calculer $P\\left(|X|\\le\\frac1{\\sqrt3}\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(|X|\\le\\frac1{\\sqrt3}\\right)$ ?",
+            "propositions": [
+              "$\\frac13$",
+              "$\\frac16$",
+              "$\\frac23$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$F_X(x)=\\frac12+\\frac1\\pi\\arctan x$, donc $P\\left(|X|\\le\\frac1{\\sqrt3}\\right)=F_X\\left(\\frac1{\\sqrt3}\\right)-F_X\\left(-\\frac1{\\sqrt3}\\right)=\\frac2\\pi\\arctan\\frac1{\\sqrt3}=\\frac2\\pi\\cdot\\frac\\pi6=\\frac13$.",
+          "indices": [
+            "La fonction de répartition de la loi de Cauchy s'exprime avec la fonction arctangente, qui est impaire.",
+            "$\\arctan\\frac1{\\sqrt3}=\\frac\\pi6$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de loi de Cauchy, de densité $x\\mapsto\\frac1{\\pi(1+x^2)}$. Calculer $P\\left(-1<X\\le\\sqrt3\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(-1<X\\le\\sqrt3\\right)$ ?",
+            "propositions": [
+              "$\\frac7{12}$",
+              "$\\frac1{12}$",
+              "$\\frac5{12}$",
+              "$\\frac34$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$F_X(x)=\\frac12+\\frac1\\pi\\arctan x$, donc $P\\left(-1<X\\le\\sqrt3\\right)=\\frac1\\pi\\left(\\arctan\\sqrt3-\\arctan(-1)\\right)=\\frac1\\pi\\left(\\frac\\pi3+\\frac\\pi4\\right)=\\frac7{12}$.",
+          "indices": [
+            "La fonction de répartition de la loi de Cauchy s'exprime avec la fonction arctangente.",
+            "$\\arctan\\sqrt3=\\frac\\pi3$ et $\\arctan1=\\frac\\pi4$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles-ex3",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "difficulte": 3,
+      "titre": "Reconnaître une loi Gamma",
+      "enonce": "Soit $c$ un réel et $f(x)=cx^2e^{-2x}$ pour $x>0$, $f(x)=0$ pour $x\\le0$. Déterminer $c$ pour que $f$ soit une densité et reconnaître la loi correspondante (la loi $\\gamma(a,\\lambda)$ a pour densité $\\frac{\\lambda^a}{\\Gamma(a)}x^{a-1}e^{-\\lambda x}$ sur $\\left]0,+\\infty\\right[$). Calculer ensuite $P(X>1)$ pour une variable $X$ de densité $f$.",
+      "duree_min": 15,
+      "indices": [
+        "Comparer $f$ à la densité de $\\gamma(a,\\lambda)$ pour des valeurs bien choisies de $a$ et $\\lambda$ ; on rappelle $\\Gamma(n+1)=n!$.",
+        "Pour $P(X>1)$, intégrer par parties de façon à abaisser l'exposant de $x$ à chaque étape."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X>1)$ ?",
+        "propositions": [
+          "$5e^{-2}$",
+          "$e^{-2}$",
+          "$3e^{-2}$",
+          "$1-5e^{-2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Avec $a=3$ et $\\lambda=2$, la densité de $\\gamma(3,2)$ est $\\frac{2^3}{\\Gamma(3)}x^2e^{-2x}=4x^2e^{-2x}$ sur $\\left]0,+\\infty\\right[$. Comme $\\int_0^{+\\infty}x^2e^{-2x}\\,\\mathrm{d}x=\\frac{\\Gamma(3)}{2^3}=\\frac14$, $f$ est une densité si et seulement si $c=4$, et c'est la loi $\\gamma(3,2)$.\n\nPour $t\\ge0$, deux intégrations par parties (les termes tout intégrés tendent vers $0$ en $+\\infty$) donnent\n$$\\int_t^{+\\infty}4x^2e^{-2x}\\,\\mathrm{d}x=2t^2e^{-2t}+\\int_t^{+\\infty}4xe^{-2x}\\,\\mathrm{d}x=2t^2e^{-2t}+2te^{-2t}+\\int_t^{+\\infty}2e^{-2x}\\,\\mathrm{d}x=\\left(2t^2+2t+1\\right)e^{-2t}.$$\nDonc $P(X>1)=5e^{-2}\\approx0{,}68$.",
+      "variantes": [
+        {
+          "enonce": "Soit $c$ un réel et $f(x)=cxe^{-3x}$ pour $x>0$, $f(x)=0$ pour $x\\le0$. Déterminer $c$ pour que $f$ soit une densité et reconnaître la loi correspondante (la loi $\\gamma(a,\\lambda)$ a pour densité $\\frac{\\lambda^a}{\\Gamma(a)}x^{a-1}e^{-\\lambda x}$ sur $\\left]0,+\\infty\\right[$). Calculer ensuite $P(X>1)$ pour une variable $X$ de densité $f$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X>1)$ ?",
+            "propositions": [
+              "$4e^{-3}$",
+              "$e^{-3}$",
+              "$3e^{-3}$",
+              "$1-4e^{-3}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La densité de $\\gamma(2,3)$ est $\\frac{3^2}{\\Gamma(2)}xe^{-3x}=9xe^{-3x}$ ; comme $\\int_0^{+\\infty}xe^{-3x}\\,\\mathrm{d}x=\\frac19$, $c=9$ et c'est la loi $\\gamma(2,3)$.\n\nPour $t\\ge0$, une intégration par parties donne $\\int_t^{+\\infty}9xe^{-3x}\\,\\mathrm{d}x=3te^{-3t}+\\int_t^{+\\infty}3e^{-3x}\\,\\mathrm{d}x=(3t+1)e^{-3t}$. Donc $P(X>1)=4e^{-3}\\approx0{,}20$.",
+          "indices": [
+            "Comparer $f$ à la densité de $\\gamma(a,\\lambda)$ pour des valeurs bien choisies de $a$ et $\\lambda$ ; on rappelle $\\Gamma(2)=1$.",
+            "Pour $P(X>1)$, intégrer par parties en dérivant le facteur $x$."
+          ]
+        },
+        {
+          "enonce": "Soit $c$ un réel et $f(x)=cx^3e^{-x}$ pour $x>0$, $f(x)=0$ pour $x\\le0$. Déterminer $c$ pour que $f$ soit une densité et reconnaître la loi correspondante (la loi $\\gamma(a,\\lambda)$ a pour densité $\\frac{\\lambda^a}{\\Gamma(a)}x^{a-1}e^{-\\lambda x}$ sur $\\left]0,+\\infty\\right[$). Calculer ensuite $P(X>2)$ pour une variable $X$ de densité $f$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X>2)$ ?",
+            "propositions": [
+              "$\\frac{19}3e^{-2}$",
+              "$5e^{-2}$",
+              "$\\frac43e^{-2}$",
+              "$1-\\frac{19}3e^{-2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La densité de $\\gamma(4,1)$ est $\\frac1{\\Gamma(4)}x^3e^{-x}=\\frac16x^3e^{-x}$ ; comme $\\int_0^{+\\infty}x^3e^{-x}\\,\\mathrm{d}x=3!=6$, $c=\\frac16$ et c'est la loi $\\gamma(4,1)$.\n\nPour $t\\ge0$, trois intégrations par parties donnent $\\int_t^{+\\infty}\\frac{x^3}6e^{-x}\\,\\mathrm{d}x=\\left(\\frac{t^3}6+\\frac{t^2}2+t+1\\right)e^{-t}$. Pour $t=2$ : $\\frac86+2+2+1=\\frac{19}3$, donc $P(X>2)=\\frac{19}3e^{-2}\\approx0{,}86$.",
+          "indices": [
+            "Comparer $f$ à la densité de $\\gamma(a,\\lambda)$ pour des valeurs bien choisies de $a$ et $\\lambda$ ; on rappelle $\\Gamma(n+1)=n!$.",
+            "Pour $P(X>2)$, intégrer par parties de façon à abaisser l'exposant de $x$ à chaque étape."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles-ex4",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "difficulte": 4,
+      "titre": "Partie entière et partie fractionnaire d'une variable exponentielle",
+      "enonce": "Soit $\\lambda>0$ et $X$ une variable de loi $\\mathcal{E}(\\lambda)$. On pose $N=\\lfloor X\\rfloor$ et $R=X-N\\in\\left[0,1\\right[$.\n1. Déterminer la loi de $N$.\n2. Montrer que $R$ admet une densité et la calculer.\n3. Montrer que $P(N=n,R\\le r)=P(N=n)P(R\\le r)$ pour tout $n\\in\\mathbb{N}$ et tout $r\\in\\left[0,1\\right[$.\n4. Application : pour $\\lambda=\\ln2$, calculer $P(N=2)$.",
+      "duree_min": 25,
+      "indices": [
+        "$\\{N=n\\}=\\{n\\le X<n+1\\}$ ; poser $q=e^{-\\lambda}$.",
+        "Pour $r\\in\\left[0,1\\right[$, l'événement $\\{R\\le r\\}$ est la réunion disjointe des $\\{n\\le X\\le n+r\\}$, $n\\in\\mathbb{N}$ : sommer une série géométrique.",
+        "Pour l'application, $e^{-\\lambda}=\\frac12$."
+      ],
+      "reponse_finale": {
+        "question": "Pour $\\lambda=\\ln2$, que vaut $P(N=2)$ ?",
+        "propositions": [
+          "$\\frac18$",
+          "$\\frac14$",
+          "$\\frac34$",
+          "$\\frac1{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Posons $q=e^{-\\lambda}\\in\\left]0,1\\right[$.\n\n**1.** $X\\ge0$, donc $N\\in\\mathbb{N}$, et pour $n\\in\\mathbb{N}$, $P(N=n)=P(n\\le X<n+1)=e^{-\\lambda n}-e^{-\\lambda(n+1)}=q^n(1-q)$. Ainsi $N+1$ suit la loi géométrique de paramètre $1-q=1-e^{-\\lambda}$.\n\n**2.** Pour $r\\in\\left[0,1\\right[$, $\\{R\\le r\\}$ est la réunion disjointe des $\\{n\\le X\\le n+r\\}$, $n\\in\\mathbb{N}$ (c'est donc un événement), et par $\\sigma$-additivité\n$$P(R\\le r)=\\sum_{n=0}^{+\\infty}\\left(e^{-\\lambda n}-e^{-\\lambda(n+r)}\\right)=\\left(1-e^{-\\lambda r}\\right)\\sum_{n=0}^{+\\infty}q^n=\\frac{1-e^{-\\lambda r}}{1-e^{-\\lambda}}.$$\nAvec $F_R=0$ sur $\\left]-\\infty,0\\right[$ et $F_R=1$ sur $\\left[1,+\\infty\\right[$, $F_R$ est continue (elle vaut $0$ en $0$ et tend vers $1$ en $1^-$) et de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$ : $R$ admet la densité $r\\mapsto\\frac{\\lambda e^{-\\lambda r}}{1-e^{-\\lambda}}$ sur $\\left[0,1\\right[$, nulle ailleurs.\n\n**3.** $\\{N=n,R\\le r\\}=\\{n\\le X\\le n+r\\}$, donc $P(N=n,R\\le r)=e^{-\\lambda n}\\left(1-e^{-\\lambda r}\\right)=q^n(1-q)\\cdot\\frac{1-e^{-\\lambda r}}{1-q}=P(N=n)P(R\\le r)$ : la partie entière et la partie fractionnaire sont indépendantes.\n\n**4.** Pour $\\lambda=\\ln2$, $q=\\frac12$ et $P(N=2)=\\frac14\\cdot\\frac12=\\frac18$.",
+      "variantes": [
+        {
+          "enonce": "Soit $\\lambda>0$ et $X$ une variable de loi $\\mathcal{E}(\\lambda)$. On pose $N=\\lfloor X\\rfloor$ et $R=X-N\\in\\left[0,1\\right[$.\n1. Déterminer la loi de $N$.\n2. Montrer que $R$ admet une densité et la calculer.\n3. Montrer que $P(N=n,R\\le r)=P(N=n)P(R\\le r)$ pour tout $n\\in\\mathbb{N}$ et tout $r\\in\\left[0,1\\right[$.\n4. Application : pour $\\lambda=\\ln3$, calculer $P(N=1)$.",
+          "reponse_finale": {
+            "question": "Pour $\\lambda=\\ln3$, que vaut $P(N=1)$ ?",
+            "propositions": [
+              "$\\frac29$",
+              "$\\frac13$",
+              "$\\frac23$",
+              "$\\frac19$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $q=e^{-\\lambda}$ : $P(N=n)=P(n\\le X<n+1)=q^n(1-q)$, donc $N+1$ suit la loi géométrique de paramètre $1-e^{-\\lambda}$. Pour $r\\in\\left[0,1\\right[$, $P(R\\le r)=\\sum_{n\\ge0}\\left(e^{-\\lambda n}-e^{-\\lambda(n+r)}\\right)=\\frac{1-e^{-\\lambda r}}{1-e^{-\\lambda}}$ : $F_R$ est continue, de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$, et $R$ a la densité $\\frac{\\lambda e^{-\\lambda r}}{1-e^{-\\lambda}}$ sur $\\left[0,1\\right[$. Enfin $P(N=n,R\\le r)=P(n\\le X\\le n+r)=q^n\\left(1-e^{-\\lambda r}\\right)=P(N=n)P(R\\le r)$.\n\nPour $\\lambda=\\ln3$, $q=\\frac13$ et $P(N=1)=\\frac13\\cdot\\frac23=\\frac29$.",
+          "indices": [
+            "$\\{N=n\\}=\\{n\\le X<n+1\\}$ ; poser $q=e^{-\\lambda}$.",
+            "Pour $r\\in\\left[0,1\\right[$, l'événement $\\{R\\le r\\}$ est la réunion disjointe des $\\{n\\le X\\le n+r\\}$, $n\\in\\mathbb{N}$ : sommer une série géométrique.",
+            "Pour l'application, $e^{-\\lambda}=\\frac13$."
+          ]
+        },
+        {
+          "enonce": "Soit $\\lambda>0$ et $X$ une variable de loi $\\mathcal{E}(\\lambda)$. On pose $N=\\lfloor X\\rfloor$ et $R=X-N\\in\\left[0,1\\right[$.\n1. Déterminer la loi de $N$.\n2. Montrer que $R$ admet une densité et la calculer.\n3. Montrer que $P(N=n,R\\le r)=P(N=n)P(R\\le r)$ pour tout $n\\in\\mathbb{N}$ et tout $r\\in\\left[0,1\\right[$.\n4. Application : pour $\\lambda=\\ln\\frac32$, calculer $P(N=2)$.",
+          "reponse_finale": {
+            "question": "Pour $\\lambda=\\ln\\frac32$, que vaut $P(N=2)$ ?",
+            "propositions": [
+              "$\\frac4{27}$",
+              "$\\frac49$",
+              "$\\frac59$",
+              "$\\frac8{27}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Avec $q=e^{-\\lambda}$ : $P(N=n)=P(n\\le X<n+1)=q^n(1-q)$, donc $N+1$ suit la loi géométrique de paramètre $1-e^{-\\lambda}$. Pour $r\\in\\left[0,1\\right[$, $P(R\\le r)=\\sum_{n\\ge0}\\left(e^{-\\lambda n}-e^{-\\lambda(n+r)}\\right)=\\frac{1-e^{-\\lambda r}}{1-e^{-\\lambda}}$ : $F_R$ est continue, de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$, et $R$ a la densité $\\frac{\\lambda e^{-\\lambda r}}{1-e^{-\\lambda}}$ sur $\\left[0,1\\right[$. Enfin $P(N=n,R\\le r)=P(n\\le X\\le n+r)=q^n\\left(1-e^{-\\lambda r}\\right)=P(N=n)P(R\\le r)$.\n\nPour $\\lambda=\\ln\\frac32$, $q=\\frac23$ et $P(N=2)=\\frac49\\cdot\\frac13=\\frac4{27}$.",
+          "indices": [
+            "$\\{N=n\\}=\\{n\\le X<n+1\\}$ ; poser $q=e^{-\\lambda}$.",
+            "Pour $r\\in\\left[0,1\\right[$, l'événement $\\{R\\le r\\}$ est la réunion disjointe des $\\{n\\le X\\le n+r\\}$, $n\\in\\mathbb{N}$ : sommer une série géométrique.",
+            "Pour l'application, $e^{-\\lambda}=\\frac23$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-lois-usuelles-ex5",
+      "carte": "proba-l3-densites-lois-usuelles",
+      "difficulte": 4,
+      "titre": "Le phare et la loi de Cauchy",
+      "enonce": "Un phare, placé à la distance $a>0$ d'une côte rectiligne, s'arrête dans une direction aléatoire. On gradue la côte à partir du pied de la perpendiculaire issue du phare, et l'on suppose que l'angle $\\Theta$ entre le rayon et cette perpendiculaire suit la loi uniforme sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, avec $\\Theta\\in\\left]-\\frac\\pi2,\\frac\\pi2\\right[$. Le rayon éclaire le point d'abscisse $X=a\\tan\\Theta$.\n1. Déterminer la fonction de répartition de $X$ et montrer que $X$ admet la densité $x\\mapsto\\frac a{\\pi(a^2+x^2)}$.\n2. On prend $a=1$. Montrer que $\\frac1X$ (défini avec probabilité $1$) suit encore la loi de Cauchy.\n3. On prend $a=1$. Montrer que $\\frac{2X}{1-X^2}$ (défini avec probabilité $1$) suit aussi la loi de Cauchy.",
+      "duree_min": 30,
+      "indices": [
+        "$\\tan$ est une bijection strictement croissante de $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ sur $\\mathbb{R}$ : $\\{X\\le x\\}=\\left\\{\\Theta\\le\\arctan\\frac xa\\right\\}$.",
+        "Pour la question 2, distinguer $y>0$, $y<0$ et $y=0$, et utiliser $\\arctan y+\\arctan\\frac1y=\\frac\\pi2$ pour $y>0$.",
+        "Pour la question 3, $\\frac{2\\tan\\theta}{1-\\tan^2\\theta}=\\tan2\\theta$ ; ramener $2\\Theta$ dans $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ en lui ajoutant ou retranchant $\\pi$, et montrer que l'angle obtenu est encore uniforme."
+      ],
+      "correction": "**1.** $\\Theta$ a pour densité $\\frac1\\pi$ sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$. Comme $\\theta\\mapsto a\\tan\\theta$ est une bijection strictement croissante de $\\left]-\\frac\\pi2,\\frac\\pi2\\right[$ sur $\\mathbb{R}$, $\\{X\\le x\\}=\\left\\{\\Theta\\le\\arctan\\frac xa\\right\\}$ et\n$$F_X(x)=\\frac1\\pi\\left(\\arctan\\frac xa+\\frac\\pi2\\right)=\\frac12+\\frac1\\pi\\arctan\\frac xa.$$\nCette fonction est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}$, de dérivée $\\frac1\\pi\\cdot\\frac{1/a}{1+x^2/a^2}=\\frac a{\\pi(a^2+x^2)}$ : c'est une densité de $X$.\n\n**2.** $P(X=0)=0$. Pour $y>0$ : $\\left\\{\\frac1X\\le y\\right\\}=\\{X<0\\}\\cup\\left\\{X\\ge\\frac1y\\right\\}$, donc\n$$P\\left(\\frac1X\\le y\\right)=\\frac12+\\frac12-\\frac1\\pi\\arctan\\frac1y=1-\\frac1\\pi\\left(\\frac\\pi2-\\arctan y\\right)=\\frac12+\\frac1\\pi\\arctan y.$$\nPour $y<0$ : $\\left\\{\\frac1X\\le y\\right\\}=\\left\\{\\frac1y\\le X<0\\right\\}$ et, comme $\\arctan\\frac1y=-\\frac\\pi2-\\arctan y$, $P\\left(\\frac1X\\le y\\right)=-\\frac1\\pi\\arctan\\frac1y=\\frac12+\\frac1\\pi\\arctan y$. Enfin $P\\left(\\frac1X\\le0\\right)=P(X<0)=\\frac12$. Donc $\\frac1X$ a la fonction de répartition de la loi de Cauchy.\n\n**3.** Hors de l'événement $\\left\\{\\Theta=\\pm\\frac\\pi4\\right\\}$, de probabilité nulle, $\\frac{2X}{1-X^2}=\\tan2\\Theta=\\tan\\Theta'$, où $\\Theta'=2\\Theta$ si $|\\Theta|\\le\\frac\\pi4$, $\\Theta'=2\\Theta-\\pi$ si $\\Theta>\\frac\\pi4$ et $\\Theta'=2\\Theta+\\pi$ si $\\Theta<-\\frac\\pi4$ ($\\tan$ est $\\pi$-périodique) ; $\\Theta'\\in\\left]-\\frac\\pi2,\\frac\\pi2\\right[$. Soit $t\\in\\left]-\\frac\\pi2,\\frac\\pi2\\right[$. L'événement $\\{\\Theta'\\le t\\}$ est la réunion disjointe de $A_1=\\left\\{-\\frac\\pi4\\le\\Theta\\le\\frac t2\\right\\}$, de $A_2=\\left\\{\\frac\\pi4<\\Theta<\\frac\\pi2,\\ 2\\Theta-\\pi\\le t\\right\\}$ et de $A_3=\\left\\{-\\frac\\pi2<\\Theta<-\\frac\\pi4,\\ 2\\Theta+\\pi\\le t\\right\\}$. L'intervalle de $A_1$ a pour longueur $\\frac t2+\\frac\\pi4$. Si $t\\ge0$, $A_2=\\left\\{\\frac\\pi4<\\Theta<\\frac\\pi2\\right\\}$ et $A_3=\\left\\{-\\frac\\pi2<\\Theta\\le\\frac{t-\\pi}2\\right\\}$, de longueurs $\\frac\\pi4$ et $\\frac t2$ ; si $t<0$, $A_2=\\left\\{\\frac\\pi4<\\Theta\\le\\frac{t+\\pi}2\\right\\}$, de longueur $\\frac t2+\\frac\\pi4$, et $A_3=\\emptyset$. Dans les deux cas, la longueur totale est $t+\\frac\\pi2$, donc $P(\\Theta'\\le t)=\\frac1\\pi\\left(t+\\frac\\pi2\\right)$ : $\\Theta'$ suit la loi uniforme sur $\\left[-\\frac\\pi2,\\frac\\pi2\\right]$, et par la question 1 (avec $a=1$), $\\tan\\Theta'$ suit la loi de Cauchy."
+    },
+    {
+      "id": "proba-l3-densites-esperance-ex1",
+      "carte": "proba-l3-densites-esperance",
+      "difficulte": 1,
+      "titre": "Espérance et variance d'une densité polynomiale",
+      "enonce": "Soit $X$ une variable de densité $f(x)=3x^2$ sur $[0,1]$, $f(x)=0$ ailleurs. Calculer $E(X)$ et $V(X)$.",
+      "duree_min": 6,
+      "indices": [
+        "$E(X)=\\int_0^1x\\cdot3x^2\\,\\mathrm{d}x$ et, par transfert, $E(X^2)=\\int_0^1x^2\\cdot3x^2\\,\\mathrm{d}x$.",
+        "Formule de König-Huygens : $V(X)=E(X^2)-E(X)^2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(X)$ ?",
+        "propositions": [
+          "$\\frac3{80}$",
+          "$\\frac35$",
+          "$\\frac34$",
+          "$\\frac9{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$E(X)=\\int_0^13x^3\\,\\mathrm{d}x=\\frac34$ et, par le théorème de transfert, $E(X^2)=\\int_0^13x^4\\,\\mathrm{d}x=\\frac35$. Donc $V(X)=\\frac35-\\frac9{16}=\\frac{48-45}{80}=\\frac3{80}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de densité $f(x)=2x$ sur $[0,1]$, $f(x)=0$ ailleurs. Calculer $E(X)$ et $V(X)$.",
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac1{18}$",
+              "$\\frac12$",
+              "$\\frac23$",
+              "$\\frac49$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$E(X)=\\int_0^12x^2\\,\\mathrm{d}x=\\frac23$ et $E(X^2)=\\int_0^12x^3\\,\\mathrm{d}x=\\frac12$. Donc $V(X)=\\frac12-\\frac49=\\frac1{18}$.",
+          "indices": [
+            "$E(X)=\\int_0^1x\\cdot2x\\,\\mathrm{d}x$ et, par transfert, $E(X^2)=\\int_0^1x^2\\cdot2x\\,\\mathrm{d}x$.",
+            "Formule de König-Huygens : $V(X)=E(X^2)-E(X)^2$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de densité $f(x)=4x^3$ sur $[0,1]$, $f(x)=0$ ailleurs. Calculer $E(X)$ et $V(X)$.",
+          "reponse_finale": {
+            "question": "Que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac2{75}$",
+              "$\\frac23$",
+              "$\\frac45$",
+              "$\\frac{16}{25}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$E(X)=\\int_0^14x^4\\,\\mathrm{d}x=\\frac45$ et $E(X^2)=\\int_0^14x^5\\,\\mathrm{d}x=\\frac23$. Donc $V(X)=\\frac23-\\frac{16}{25}=\\frac{50-48}{75}=\\frac2{75}$.",
+          "indices": [
+            "$E(X)=\\int_0^1x\\cdot4x^3\\,\\mathrm{d}x$ et, par transfert, $E(X^2)=\\int_0^1x^2\\cdot4x^3\\,\\mathrm{d}x$.",
+            "Formule de König-Huygens : $V(X)=E(X^2)-E(X)^2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-esperance-ex2",
+      "carte": "proba-l3-densites-esperance",
+      "difficulte": 2,
+      "titre": "Espérance d'une exponentielle d'une variable exponentielle",
+      "enonce": "Soit $X$ une variable de loi $\\mathcal{E}(2)$. Pour quels réels $t$ la variable $e^{tX}$ admet-elle une espérance ? Calculer $E\\left(e^X\\right)$.",
+      "duree_min": 8,
+      "indices": [
+        "Par le théorème de transfert, étudier la convergence de $\\int_0^{+\\infty}e^{tx}\\cdot2e^{-2x}\\,\\mathrm{d}x$.",
+        "Une intégrale $\\int_0^{+\\infty}e^{-\\alpha x}\\,\\mathrm{d}x$ converge si et seulement si $\\alpha>0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E\\left(e^X\\right)$ ?",
+        "propositions": [
+          "$2$",
+          "$e^{1/2}$",
+          "$\\frac12$",
+          "$\\frac23$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par le théorème de transfert (avec $\\varphi(x)=e^{tx}$, continue et positive), $e^{tX}$ admet une espérance si et seulement si $\\int_0^{+\\infty}2e^{(t-2)x}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $t<2$, et alors $E\\left(e^{tX}\\right)=\\frac2{2-t}$. En particulier $E\\left(e^X\\right)=2$.\n\nOn remarque que $E\\left(e^X\\right)\\ne e^{E(X)}=e^{1/2}\\approx1{,}65$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{E}(3)$. Pour quels réels $t$ la variable $e^{tX}$ admet-elle une espérance ? Calculer $E\\left(e^X\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(e^X\\right)$ ?",
+            "propositions": [
+              "$\\frac32$",
+              "$e^{1/3}$",
+              "$\\frac34$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par transfert, $e^{tX}$ admet une espérance si et seulement si $\\int_0^{+\\infty}3e^{(t-3)x}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $t<3$, et alors $E\\left(e^{tX}\\right)=\\frac3{3-t}$. En particulier $E\\left(e^X\\right)=\\frac32$, qui diffère de $e^{E(X)}=e^{1/3}$.",
+          "indices": [
+            "Par le théorème de transfert, étudier la convergence de $\\int_0^{+\\infty}e^{tx}\\cdot3e^{-3x}\\,\\mathrm{d}x$.",
+            "Une intégrale $\\int_0^{+\\infty}e^{-\\alpha x}\\,\\mathrm{d}x$ converge si et seulement si $\\alpha>0$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{E}(3)$. Pour quels réels $t$ la variable $e^{tX}$ admet-elle une espérance ? Calculer $E\\left(e^{2X}\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(e^{2X}\\right)$ ?",
+            "propositions": [
+              "$3$",
+              "$e^{2/3}$",
+              "$\\frac35$",
+              "$\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Par transfert, $e^{tX}$ admet une espérance si et seulement si $\\int_0^{+\\infty}3e^{(t-3)x}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $t<3$, et alors $E\\left(e^{tX}\\right)=\\frac3{3-t}$. Avec $t=2$ : $E\\left(e^{2X}\\right)=3$, qui diffère de $e^{2E(X)}=e^{2/3}$.",
+          "indices": [
+            "Par le théorème de transfert, étudier la convergence de $\\int_0^{+\\infty}e^{tx}\\cdot3e^{-3x}\\,\\mathrm{d}x$.",
+            "Une intégrale $\\int_0^{+\\infty}e^{-\\alpha x}\\,\\mathrm{d}x$ converge si et seulement si $\\alpha>0$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-esperance-ex3",
+      "carte": "proba-l3-densites-esperance",
+      "difficulte": 3,
+      "titre": "Moments d'une loi de Pareto",
+      "enonce": "Soit $a>0$ et $X$ de densité $f(x)=\\frac a{x^{a+1}}$ pour $x\\ge1$, $f(x)=0$ pour $x<1$.\n1. Vérifier que $f$ est une densité.\n2. Pour quels réels $r>0$ la variable $X^r$ admet-elle une espérance ? La calculer.\n3. On prend $a=3$. Calculer $V(X)$.",
+      "duree_min": 15,
+      "indices": [
+        "Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}x^r\\cdot\\frac a{x^{a+1}}\\,\\mathrm{d}x$ converge : c'est une intégrale de Riemann.",
+        "Comparer l'exposant $a+1-r$ à $1$, puis appliquer la formule de König-Huygens."
+      ],
+      "reponse_finale": {
+        "question": "Pour $a=3$, que vaut $V(X)$ ?",
+        "propositions": [
+          "$\\frac34$",
+          "$3$",
+          "$\\frac94$",
+          "$X$ n'admet pas de variance"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f$ est positive, continue hors de $1$, et $\\int_1^{+\\infty}\\frac a{x^{a+1}}\\,\\mathrm{d}x=\\left[-x^{-a}\\right]_1^{+\\infty}=1$.\n\n**2.** $X\\ge1$, donc $X^r$ est bien défini. Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}\\frac a{x^{a+1-r}}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $a+1-r>1$, soit $r<a$, et alors $E(X^r)=\\frac a{a-r}$.\n\n**3.** Pour $a=3$ : $E(X)=\\frac32$, $E(X^2)=\\frac31=3$, donc $V(X)=3-\\frac94=\\frac34$. (Pour $a\\le2$, $X$ n'aurait pas de variance.)",
+      "variantes": [
+        {
+          "enonce": "Soit $a>0$ et $X$ de densité $f(x)=\\frac a{x^{a+1}}$ pour $x\\ge1$, $f(x)=0$ pour $x<1$.\n1. Vérifier que $f$ est une densité.\n2. Pour quels réels $r>0$ la variable $X^r$ admet-elle une espérance ? La calculer.\n3. On prend $a=4$. Calculer $V(X)$.",
+          "reponse_finale": {
+            "question": "Pour $a=4$, que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac29$",
+              "$2$",
+              "$\\frac{16}9$",
+              "$X$ n'admet pas de variance"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\int_1^{+\\infty}\\frac a{x^{a+1}}\\,\\mathrm{d}x=\\left[-x^{-a}\\right]_1^{+\\infty}=1$.\n\n**2.** Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}\\frac a{x^{a+1-r}}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $r<a$, et alors $E(X^r)=\\frac a{a-r}$.\n\n**3.** Pour $a=4$ : $E(X)=\\frac43$, $E(X^2)=\\frac42=2$, donc $V(X)=2-\\frac{16}9=\\frac29$.",
+          "indices": [
+            "Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}x^r\\cdot\\frac a{x^{a+1}}\\,\\mathrm{d}x$ converge : c'est une intégrale de Riemann.",
+            "Comparer l'exposant $a+1-r$ à $1$, puis appliquer la formule de König-Huygens avec $a=4$."
+          ]
+        },
+        {
+          "enonce": "Soit $a>0$ et $X$ de densité $f(x)=\\frac a{x^{a+1}}$ pour $x\\ge1$, $f(x)=0$ pour $x<1$.\n1. Vérifier que $f$ est une densité.\n2. Pour quels réels $r>0$ la variable $X^r$ admet-elle une espérance ? La calculer.\n3. On prend $a=\\frac52$. Calculer $V(X)$.",
+          "reponse_finale": {
+            "question": "Pour $a=\\frac52$, que vaut $V(X)$ ?",
+            "propositions": [
+              "$\\frac{20}9$",
+              "$5$",
+              "$\\frac{25}9$",
+              "$X$ n'admet pas de variance"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\int_1^{+\\infty}\\frac a{x^{a+1}}\\,\\mathrm{d}x=\\left[-x^{-a}\\right]_1^{+\\infty}=1$.\n\n**2.** Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}\\frac a{x^{a+1-r}}\\,\\mathrm{d}x$ converge, c'est-à-dire si et seulement si $r<a$, et alors $E(X^r)=\\frac a{a-r}$.\n\n**3.** Pour $a=\\frac52>2$ : $E(X)=\\frac{5/2}{3/2}=\\frac53$, $E(X^2)=\\frac{5/2}{1/2}=5$, donc $V(X)=5-\\frac{25}9=\\frac{20}9$.",
+          "indices": [
+            "Par transfert, $X^r$ admet une espérance si et seulement si $\\int_1^{+\\infty}x^r\\cdot\\frac a{x^{a+1}}\\,\\mathrm{d}x$ converge : c'est une intégrale de Riemann.",
+            "Comparer l'exposant $a+1-r$ à $1$, puis appliquer la formule de König-Huygens avec $a=\\frac52$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-esperance-ex4",
+      "carte": "proba-l3-densites-esperance",
+      "difficulte": 4,
+      "titre": "Espérance et queue de distribution",
+      "enonce": "Soit $X$ une variable positive ($P(X\\ge0)=1$) admettant une densité $f$, nulle sur $\\left]-\\infty,0\\right[$.\n1. Montrer que, pour tout $A>0$, $\\int_0^AP(X>t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$.\n2. En déduire que $X$ admet une espérance si et seulement si $\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$ converge, et qu'alors $E(X)=\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$.\n3. Application : on suppose que $P(X>t)=\\frac1{1+t^2}$ pour tout $t\\ge0$. Vérifier que $X$ a bien une densité, et calculer $E(X)$.",
+      "duree_min": 20,
+      "indices": [
+        "Intégrer par parties sur $[0,A]$, en dérivant $t\\mapsto P(X>t)=1-F_X(t)$, de dérivée $-f$ sauf en un nombre fini de points, et en intégrant $1$ en $t$.",
+        "Si $X$ admet une espérance, majorer $AP(X>A)$ par $\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(X)$ dans l'application ?",
+        "propositions": [
+          "$\\frac\\pi2$",
+          "$\\pi$",
+          "$1$",
+          "$\\frac\\pi4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** La fonction $G=1-F_X$ est continue, et de classe $\\mathcal{C}^1$ de dérivée $-f$ sur chaque intervalle où $f$ est continue. Une intégration par parties sur chacun de ces intervalles (avec passage à la limite aux bornes, $G$ étant continue) donne\n$$\\int_0^AG(t)\\,\\mathrm{d}t=\\left[tG(t)\\right]_0^A+\\int_0^Atf(t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t.$$\n\n**2.** Si $X$ admet une espérance, $0\\le AP(X>A)=A\\int_A^{+\\infty}f\\le\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t$, reste d'une intégrale convergente, qui tend vers $0$. En faisant tendre $A$ vers $+\\infty$ dans la question 1, $\\int_0^{+\\infty}G$ converge et vaut $E(X)$. Réciproquement, si $\\int_0^{+\\infty}G$ converge, la question 1 donne $\\int_0^Atf(t)\\,\\mathrm{d}t\\le\\int_0^AG\\le\\int_0^{+\\infty}G$ : la fonction positive $tf(t)$ a une intégrale convergente sur $\\left[0,+\\infty\\right[$, donc $X$ admet une espérance.\n\n**3.** $F_X(t)=1-\\frac1{1+t^2}$ pour $t\\ge0$ et $F_X(t)=0$ pour $t<0$ ($X$ est positive) : $F_X$ est continue (elle vaut $0$ en $0$) et de classe $\\mathcal{C}^1$ hors de $0$, donc $X$ a une densité. Par la question 2, $E(X)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{1+t^2}=\\frac\\pi2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable positive ($P(X\\ge0)=1$) admettant une densité $f$, nulle sur $\\left]-\\infty,0\\right[$.\n1. Montrer que, pour tout $A>0$, $\\int_0^AP(X>t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$.\n2. En déduire que $X$ admet une espérance si et seulement si $\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$ converge, et qu'alors $E(X)=\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$.\n3. Application : on suppose que $P(X>t)=\\frac1{(1+t)^3}$ pour tout $t\\ge0$. Vérifier que $X$ a bien une densité, et calculer $E(X)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(X)$ dans l'application ?",
+            "propositions": [
+              "$\\frac12$",
+              "$\\frac13$",
+              "$1$",
+              "$\\frac32$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $G=1-F_X$ est continue et de dérivée $-f$ sauf en un nombre fini de points ; une intégration par parties donne $\\int_0^AG=\\left[tG(t)\\right]_0^A+\\int_0^Atf(t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$.\n\n**2.** Si $X$ admet une espérance, $0\\le AP(X>A)\\le\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t\\to0$, et la question 1 donne $\\int_0^{+\\infty}G=E(X)$. Réciproquement, si $\\int_0^{+\\infty}G$ converge, $\\int_0^Atf(t)\\,\\mathrm{d}t\\le\\int_0^{+\\infty}G$ pour tout $A$, donc $X$ admet une espérance.\n\n**3.** $F_X(t)=1-\\frac1{(1+t)^3}$ pour $t\\ge0$, $0$ pour $t<0$ : continue (nulle en $0$) et de classe $\\mathcal{C}^1$ hors de $0$. Donc $E(X)=\\int_0^{+\\infty}\\frac{\\mathrm{d}t}{(1+t)^3}=\\left[-\\frac1{2(1+t)^2}\\right]_0^{+\\infty}=\\frac12$.",
+          "indices": [
+            "Intégrer par parties sur $[0,A]$, en dérivant $t\\mapsto P(X>t)=1-F_X(t)$ et en intégrant $1$ en $t$.",
+            "Si $X$ admet une espérance, majorer $AP(X>A)$ par $\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t$ ; pour l'application, intégrer $(1+t)^{-3}$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable positive ($P(X\\ge0)=1$) admettant une densité $f$, nulle sur $\\left]-\\infty,0\\right[$.\n1. Montrer que, pour tout $A>0$, $\\int_0^AP(X>t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$.\n2. En déduire que $X$ admet une espérance si et seulement si $\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$ converge, et qu'alors $E(X)=\\int_0^{+\\infty}P(X>t)\\,\\mathrm{d}t$.\n3. Application : on suppose que $P(X>t)=e^{-t^2}$ pour tout $t\\ge0$. Vérifier que $X$ a bien une densité, et calculer $E(X)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(X)$ dans l'application ?",
+            "propositions": [
+              "$\\frac{\\sqrt\\pi}2$",
+              "$\\sqrt\\pi$",
+              "$\\frac12$",
+              "$\\frac\\pi2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $G=1-F_X$ est continue et de dérivée $-f$ sauf en un nombre fini de points ; une intégration par parties donne $\\int_0^AG=\\left[tG(t)\\right]_0^A+\\int_0^Atf(t)\\,\\mathrm{d}t=AP(X>A)+\\int_0^Atf(t)\\,\\mathrm{d}t$.\n\n**2.** Si $X$ admet une espérance, $0\\le AP(X>A)\\le\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t\\to0$, et la question 1 donne $\\int_0^{+\\infty}G=E(X)$. Réciproquement, si $\\int_0^{+\\infty}G$ converge, $\\int_0^Atf(t)\\,\\mathrm{d}t\\le\\int_0^{+\\infty}G$ pour tout $A$, donc $X$ admet une espérance.\n\n**3.** $F_X(t)=1-e^{-t^2}$ pour $t\\ge0$, $0$ pour $t<0$ : continue (nulle en $0$) et de classe $\\mathcal{C}^1$ hors de $0$, de densité $2te^{-t^2}$ sur $\\left]0,+\\infty\\right[$. Donc $E(X)=\\int_0^{+\\infty}e^{-t^2}\\,\\mathrm{d}t=\\frac{\\sqrt\\pi}2$ (intégrale de Gauss).",
+          "indices": [
+            "Intégrer par parties sur $[0,A]$, en dérivant $t\\mapsto P(X>t)=1-F_X(t)$ et en intégrant $1$ en $t$.",
+            "Si $X$ admet une espérance, majorer $AP(X>A)$ par $\\int_A^{+\\infty}tf(t)\\,\\mathrm{d}t$ ; pour l'application, penser à l'intégrale de Gauss."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-esperance-ex5",
+      "carte": "proba-l3-densites-esperance",
+      "difficulte": 4,
+      "titre": "La médiane minimise l'écart absolu moyen",
+      "enonce": "Soit $X$ une variable de densité $f$ admettant une espérance, et $F$ sa fonction de répartition. Pour $a\\in\\mathbb{R}$, on pose $\\varphi(a)=E\\left(|X-a|\\right)$.\n1. Justifier que $\\varphi(a)$ est défini, puis montrer que $\\varphi(a)=\\int_{-\\infty}^aF(t)\\,\\mathrm{d}t+\\int_a^{+\\infty}\\left(1-F(t)\\right)\\mathrm{d}t$.\n2. En déduire que $\\varphi$ est dérivable, de dérivée $2F-1$, et que $\\varphi$ atteint son minimum en tout réel $m$ tel que $F(m)=\\frac12$ (une médiane de $X$).\n3. Application : $X$ suit la loi $\\mathcal{E}(1)$. Calculer la médiane $m$ de $X$, la valeur minimale $\\varphi(m)$, et comparer avec $\\varphi\\left(E(X)\\right)$.",
+      "duree_min": 35,
+      "indices": [
+        "Sur $[a,A]$, intégrer par parties $\\int_a^A(x-a)f(x)\\,\\mathrm{d}x$ en dérivant $x-a$ et en prenant $-(1-F)$ comme primitive de $f$ ; le terme tout intégré se majore par $\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x$.",
+        "Pour la question 2, $F$ est continue : dériver chacune des deux intégrales par rapport à sa borne $a$.",
+        "Pour la loi $\\mathcal{E}(1)$, $F(t)=1-e^{-t}$ pour $t\\ge0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\varphi(m)$ dans l'application ?",
+        "propositions": [
+          "$\\ln2$",
+          "$\\frac2e$",
+          "$1$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $|x-a|\\le|x|+|a|$, donc par transfert $|X-a|$ admet une espérance, et $\\varphi(a)=\\int_{-\\infty}^a(a-x)f(x)\\,\\mathrm{d}x+\\int_a^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x$. Pour $A>a$, une intégration par parties ($1-F$ est continue, de dérivée $-f$ sauf en un nombre fini de points) donne\n$$\\int_a^A(x-a)f(x)\\,\\mathrm{d}x=-(A-a)\\left(1-F(A)\\right)+\\int_a^A\\left(1-F(t)\\right)\\mathrm{d}t,$$\net $0\\le(A-a)\\left(1-F(A)\\right)\\le\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x\\to0$. Donc $\\int_a^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x=\\int_a^{+\\infty}(1-F)$. De même, pour $B<a$, $\\int_B^a(a-x)f(x)\\,\\mathrm{d}x=-(a-B)F(B)+\\int_B^aF$, et $0\\le(a-B)F(B)\\le\\int_{-\\infty}^B(a-x)f(x)\\,\\mathrm{d}x\\to0$. D'où la formule.\n\n**2.** $F$ et $1-F$ sont continues, donc $a\\mapsto\\int_{-\\infty}^aF$ et $a\\mapsto\\int_a^{+\\infty}(1-F)$ sont dérivables, de dérivées $F(a)$ et $-\\left(1-F(a)\\right)$ : $\\varphi'(a)=2F(a)-1$. Si $F(m)=\\frac12$, la croissance de $F$ donne $\\varphi'\\le0$ sur $\\left]-\\infty,m\\right]$ et $\\varphi'\\ge0$ sur $\\left[m,+\\infty\\right[$ : $\\varphi$ est décroissante puis croissante, et $\\varphi(m)$ est son minimum.\n\n**3.** $F(m)=1-e^{-m}=\\frac12$ donne $m=\\ln2$. Pour $a\\ge0$, $\\varphi(a)=\\int_0^a\\left(1-e^{-t}\\right)\\mathrm{d}t+\\int_a^{+\\infty}e^{-t}\\,\\mathrm{d}t=a-1+2e^{-a}$. Donc $\\varphi(\\ln2)=\\ln2-1+1=\\ln2\\approx0{,}693$, tandis que $\\varphi\\left(E(X)\\right)=\\varphi(1)=\\frac2e\\approx0{,}736$ : l'écart absolu moyen est minimal en la médiane, pas en l'espérance.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de densité $f$ admettant une espérance, et $F$ sa fonction de répartition. Pour $a\\in\\mathbb{R}$, on pose $\\varphi(a)=E\\left(|X-a|\\right)$.\n1. Justifier que $\\varphi(a)$ est défini, puis montrer que $\\varphi(a)=\\int_{-\\infty}^aF(t)\\,\\mathrm{d}t+\\int_a^{+\\infty}\\left(1-F(t)\\right)\\mathrm{d}t$.\n2. En déduire que $\\varphi$ est dérivable, de dérivée $2F-1$, et que $\\varphi$ atteint son minimum en tout réel $m$ tel que $F(m)=\\frac12$ (une médiane de $X$).\n3. Application : $X$ suit la loi $\\mathcal{U}([0,1])$. Calculer la médiane $m$ de $X$ et la valeur minimale $\\varphi(m)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi(m)$ dans l'application ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac12$",
+              "$\\frac13$",
+              "$\\frac18$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|x-a|\\le|x|+|a|$ et le transfert donnent l'existence. Pour $A>a$, $\\int_a^A(x-a)f(x)\\,\\mathrm{d}x=-(A-a)\\left(1-F(A)\\right)+\\int_a^A(1-F)$, avec $0\\le(A-a)\\left(1-F(A)\\right)\\le\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x\\to0$ ; de même à gauche de $a$ avec $F$. D'où la formule.\n\n**2.** $F$ étant continue, $\\varphi'(a)=F(a)-\\left(1-F(a)\\right)=2F(a)-1$, négatif avant $m$ et positif après : $\\varphi(m)$ est le minimum.\n\n**3.** $F(t)=t$ sur $[0,1]$, donc $m=\\frac12$. Pour $a\\in[0,1]$, $\\varphi(a)=\\int_0^at\\,\\mathrm{d}t+\\int_a^1(1-t)\\,\\mathrm{d}t=\\frac{a^2}2+\\frac{(1-a)^2}2$, d'où $\\varphi\\left(\\frac12\\right)=\\frac14$. Ici médiane et espérance coïncident (densité symétrique par rapport à $\\frac12$).",
+          "indices": [
+            "Sur $[a,A]$, intégrer par parties $\\int_a^A(x-a)f(x)\\,\\mathrm{d}x$ en dérivant $x-a$ et en prenant $-(1-F)$ comme primitive de $f$ ; le terme tout intégré se majore par $\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x$.",
+            "Pour la question 2, $F$ est continue : dériver chacune des deux intégrales par rapport à sa borne $a$.",
+            "Pour la loi $\\mathcal{U}([0,1])$, $F(t)=t$ pour $t\\in[0,1]$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de densité $f$ admettant une espérance, et $F$ sa fonction de répartition. Pour $a\\in\\mathbb{R}$, on pose $\\varphi(a)=E\\left(|X-a|\\right)$.\n1. Justifier que $\\varphi(a)$ est défini, puis montrer que $\\varphi(a)=\\int_{-\\infty}^aF(t)\\,\\mathrm{d}t+\\int_a^{+\\infty}\\left(1-F(t)\\right)\\mathrm{d}t$.\n2. En déduire que $\\varphi$ est dérivable, de dérivée $2F-1$, et que $\\varphi$ atteint son minimum en tout réel $m$ tel que $F(m)=\\frac12$ (une médiane de $X$).\n3. Application : $X$ a la densité $2x$ sur $[0,1]$, $0$ ailleurs. Calculer la médiane $m$ de $X$, la valeur minimale $\\varphi(m)$, et comparer avec $\\varphi\\left(E(X)\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\varphi(m)$ dans l'application ?",
+            "propositions": [
+              "$\\frac{2-\\sqrt2}3$",
+              "$\\frac{16}{81}$",
+              "$\\frac{\\sqrt2}2$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|x-a|\\le|x|+|a|$ et le transfert donnent l'existence. Pour $A>a$, $\\int_a^A(x-a)f(x)\\,\\mathrm{d}x=-(A-a)\\left(1-F(A)\\right)+\\int_a^A(1-F)$, avec $0\\le(A-a)\\left(1-F(A)\\right)\\le\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x\\to0$ ; de même à gauche de $a$ avec $F$. D'où la formule.\n\n**2.** $F$ étant continue, $\\varphi'(a)=2F(a)-1$, négatif avant $m$ et positif après : $\\varphi(m)$ est le minimum.\n\n**3.** $F(t)=t^2$ sur $[0,1]$, donc $m=\\frac1{\\sqrt2}$. Pour $a\\in[0,1]$, $\\varphi(a)=\\int_0^at^2\\,\\mathrm{d}t+\\int_a^1(1-t^2)\\,\\mathrm{d}t=\\frac{2a^3}3-a+\\frac23$. Donc $\\varphi(m)=\\frac{\\sqrt2}6-\\frac{\\sqrt2}2+\\frac23=\\frac{2-\\sqrt2}3\\approx0{,}1953$. Avec $E(X)=\\frac23$, $\\varphi\\left(\\frac23\\right)=\\frac{16}{81}\\approx0{,}1975$, légèrement plus grand.",
+          "indices": [
+            "Sur $[a,A]$, intégrer par parties $\\int_a^A(x-a)f(x)\\,\\mathrm{d}x$ en dérivant $x-a$ et en prenant $-(1-F)$ comme primitive de $f$ ; le terme tout intégré se majore par $\\int_A^{+\\infty}(x-a)f(x)\\,\\mathrm{d}x$.",
+            "Pour la question 2, $F$ est continue : dériver chacune des deux intégrales par rapport à sa borne $a$.",
+            "Pour cette densité, $F(t)=t^2$ pour $t\\in[0,1]$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs-ex1",
+      "carte": "proba-l3-densites-vecteurs",
+      "difficulte": 1,
+      "titre": "Marginales d'une densité sur le carré",
+      "enonce": "Soit $c$ un réel et $f(x,y)=c(x+y)$ si $(x,y)\\in[0,1]^2$, $f(x,y)=0$ sinon. Déterminer $c$ pour que $f$ soit la densité d'un couple $(X,Y)$, puis la densité marginale de $X$.",
+      "duree_min": 8,
+      "indices": [
+        "L'intégrale double de $f$ sur $\\mathbb{R}^2$ doit valoir $1$ : appliquer la formule de Fubini sur le carré.",
+        "$f_X(x)=\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}y$, et $f(x,y)=0$ si $y\\notin[0,1]$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la densité marginale de $X$ sur $[0,1]$ (elle est nulle ailleurs) ?",
+        "propositions": [
+          "$x\\mapsto x+\\frac12$",
+          "$x\\mapsto x$",
+          "$x\\mapsto2x$",
+          "$x\\mapsto x+1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par Fubini, $\\iint_{[0,1]^2}(x+y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\int_0^1\\left(x+\\frac12\\right)\\mathrm{d}x=1$ ; $f$ est positive pour $c\\ge0$, donc $c=1$.\n\nPour $x\\in[0,1]$, $f_X(x)=\\int_0^1(x+y)\\,\\mathrm{d}y=x+\\frac12$, et $f_X(x)=0$ hors de $[0,1]$ : c'est une densité de $X$ (continue hors de $\\{0,1\\}$). Par symétrie, $f_Y(y)=y+\\frac12$ sur $[0,1]$.\n\n$X$ et $Y$ ne sont pas indépendantes : $P\\left(X\\le\\frac12,Y\\le\\frac12\\right)=\\int_0^{1/2}\\!\\int_0^{1/2}(x+y)\\,\\mathrm{d}y\\,\\mathrm{d}x=\\frac18$, alors que $P\\left(X\\le\\frac12\\right)^2=\\left(\\frac18+\\frac14\\right)^2=\\frac9{64}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $c$ un réel et $f(x,y)=cxy$ si $(x,y)\\in[0,1]^2$, $f(x,y)=0$ sinon. Déterminer $c$ pour que $f$ soit la densité d'un couple $(X,Y)$, puis la densité marginale de $X$.",
+          "reponse_finale": {
+            "question": "Quelle est la densité marginale de $X$ sur $[0,1]$ (elle est nulle ailleurs) ?",
+            "propositions": [
+              "$x\\mapsto2x$",
+              "$x\\mapsto4x$",
+              "$x\\mapsto x$",
+              "$x\\mapsto x+\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\iint_{[0,1]^2}xy\\,\\mathrm{d}x\\,\\mathrm{d}y=\\frac12\\cdot\\frac12=\\frac14$, donc $c=4$. Pour $x\\in[0,1]$, $f_X(x)=\\int_0^14xy\\,\\mathrm{d}y=2x$ ; de même $f_Y(y)=2y$. Ici $f(x,y)=f_X(x)f_Y(y)$ : $X$ et $Y$ sont indépendantes.",
+          "indices": [
+            "L'intégrale double de $f$ sur $\\mathbb{R}^2$ doit valoir $1$ : appliquer la formule de Fubini sur le carré.",
+            "$f_X(x)=\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}y$, et $f(x,y)=0$ si $y\\notin[0,1]$."
+          ]
+        },
+        {
+          "enonce": "Soit $c$ un réel et $f(x,y)=c(x^2+y)$ si $(x,y)\\in[0,1]^2$, $f(x,y)=0$ sinon. Déterminer $c$ pour que $f$ soit la densité d'un couple $(X,Y)$, puis la densité marginale de $X$.",
+          "reponse_finale": {
+            "question": "Quelle est la densité marginale de $X$ sur $[0,1]$ (elle est nulle ailleurs) ?",
+            "propositions": [
+              "$x\\mapsto\\frac{6x^2+3}5$",
+              "$x\\mapsto x^2+\\frac12$",
+              "$x\\mapsto\\frac{6x^2}5$",
+              "$x\\mapsto\\frac{6x^2+6}5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\iint_{[0,1]^2}(x^2+y)\\,\\mathrm{d}x\\,\\mathrm{d}y=\\frac13+\\frac12=\\frac56$, donc $c=\\frac65$. Pour $x\\in[0,1]$, $f_X(x)=\\frac65\\int_0^1(x^2+y)\\,\\mathrm{d}y=\\frac65\\left(x^2+\\frac12\\right)=\\frac{6x^2+3}5$, dont l'intégrale sur $[0,1]$ vaut bien $\\frac25+\\frac35=1$.",
+          "indices": [
+            "L'intégrale double de $f$ sur $\\mathbb{R}^2$ doit valoir $1$ : appliquer la formule de Fubini sur le carré.",
+            "$f_X(x)=\\int_{-\\infty}^{+\\infty}f(x,y)\\,\\mathrm{d}y$, sans oublier la constante $c$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs-ex2",
+      "carte": "proba-l3-densites-vecteurs",
+      "difficulte": 2,
+      "titre": "Course entre deux durées exponentielles indépendantes",
+      "enonce": "Le couple $(X,Y)$ a pour densité $f(x,y)=6e^{-2x-3y}$ si $x>0$ et $y>0$, $f(x,y)=0$ sinon. Montrer que $X$ et $Y$ sont indépendantes et reconnaître leurs lois, puis calculer $P(X<Y)$.",
+      "duree_min": 10,
+      "indices": [
+        "Écrire $f(x,y)$ comme un produit $g(x)h(y)$ de deux densités.",
+        "$P(X<Y)=\\iint_{x<y}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ : intégrer d'abord en $y$ sur $\\left]x,+\\infty\\right[$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X<Y)$ ?",
+        "propositions": [
+          "$\\frac25$",
+          "$\\frac35$",
+          "$\\frac12$",
+          "$\\frac23$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$f(x,y)=g(x)h(y)$ avec $g(x)=2e^{-2x}\\mathbf{1}_{x>0}$ et $h(y)=3e^{-3y}\\mathbf{1}_{y>0}$, densités de $\\mathcal{E}(2)$ et $\\mathcal{E}(3)$. En intégrant, $f_X=g$ et $f_Y=h$ ; la densité du couple est le produit des marginales, donc $X$ et $Y$ sont indépendantes, de lois $\\mathcal{E}(2)$ et $\\mathcal{E}(3)$.\n\nEnsuite\n$$P(X<Y)=\\int_0^{+\\infty}2e^{-2x}\\left(\\int_x^{+\\infty}3e^{-3y}\\,\\mathrm{d}y\\right)\\mathrm{d}x=\\int_0^{+\\infty}2e^{-5x}\\,\\mathrm{d}x=\\frac25.$$\nPlus généralement, pour des lois $\\mathcal{E}(\\lambda)$ et $\\mathcal{E}(\\mu)$ indépendantes, $P(X<Y)=\\frac\\lambda{\\lambda+\\mu}$ : la durée de plus forte intensité a plus de chances de finir la première.",
+      "variantes": [
+        {
+          "enonce": "Le couple $(X,Y)$ a pour densité $f(x,y)=4e^{-x-4y}$ si $x>0$ et $y>0$, $f(x,y)=0$ sinon. Montrer que $X$ et $Y$ sont indépendantes et reconnaître leurs lois, puis calculer $P(X<Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X<Y)$ ?",
+            "propositions": [
+              "$\\frac15$",
+              "$\\frac45$",
+              "$\\frac12$",
+              "$\\frac14$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f(x,y)=e^{-x}\\mathbf{1}_{x>0}\\cdot4e^{-4y}\\mathbf{1}_{y>0}$ : produit des densités de $\\mathcal{E}(1)$ et $\\mathcal{E}(4)$, qui sont les marginales ; $X$ et $Y$ sont indépendantes. Puis $P(X<Y)=\\int_0^{+\\infty}e^{-x}e^{-4x}\\,\\mathrm{d}x=\\frac15$.",
+          "indices": [
+            "Écrire $f(x,y)$ comme un produit $g(x)h(y)$ de deux densités.",
+            "$P(X<Y)=\\iint_{x<y}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ : intégrer d'abord en $y$ sur $\\left]x,+\\infty\\right[$."
+          ]
+        },
+        {
+          "enonce": "Le couple $(X,Y)$ a pour densité $f(x,y)=3e^{-3x-y}$ si $x>0$ et $y>0$, $f(x,y)=0$ sinon. Montrer que $X$ et $Y$ sont indépendantes et reconnaître leurs lois, puis calculer $P(X<Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X<Y)$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$\\frac14$",
+              "$\\frac12$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f(x,y)=3e^{-3x}\\mathbf{1}_{x>0}\\cdot e^{-y}\\mathbf{1}_{y>0}$ : produit des densités de $\\mathcal{E}(3)$ et $\\mathcal{E}(1)$, qui sont les marginales ; $X$ et $Y$ sont indépendantes. Puis $P(X<Y)=\\int_0^{+\\infty}3e^{-3x}e^{-x}\\,\\mathrm{d}x=\\frac34$.",
+          "indices": [
+            "Écrire $f(x,y)$ comme un produit $g(x)h(y)$ de deux densités.",
+            "$P(X<Y)=\\iint_{x<y}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y$ : intégrer d'abord en $y$ sur $\\left]x,+\\infty\\right[$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs-ex3",
+      "carte": "proba-l3-densites-vecteurs",
+      "difficulte": 3,
+      "titre": "Point uniforme dans un disque",
+      "enonce": "Le couple $(X,Y)$ est uniforme sur le disque unité $D=\\{(x,y)\\ :\\ x^2+y^2\\le1\\}$, c'est-à-dire de densité $\\frac1\\pi\\mathbf{1}_D$. Déterminer la densité de $X$, montrer que $X$ et $Y$ ne sont pas indépendantes, puis calculer $P\\left(X>\\frac12\\right)$.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $|x|\\le1$, la section verticale du disque en $x$ est le segment $\\left[-\\sqrt{1-x^2},\\sqrt{1-x^2}\\right]$.",
+        "Pour intégrer $\\sqrt{1-x^2}$, poser $x=\\sin\\theta$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P\\left(X>\\frac12\\right)$ ?",
+        "propositions": [
+          "$\\frac13-\\frac{\\sqrt3}{4\\pi}$",
+          "$\\frac14$",
+          "$\\frac13$",
+          "$\\frac16-\\frac{\\sqrt3}{8\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $|x|\\le1$, $f_X(x)=\\frac1\\pi\\int_{-\\sqrt{1-x^2}}^{\\sqrt{1-x^2}}\\mathrm{d}y=\\frac2\\pi\\sqrt{1-x^2}$, et $f_X(x)=0$ pour $|x|>1$ ; cette fonction est continue, c'est une densité de $X$, et de même pour $Y$.\n\n$X$ et $Y$ ne sont pas indépendantes : $P\\left(X>\\frac34,Y>\\frac34\\right)=0$, car $\\frac9{16}+\\frac9{16}>1$, alors que $P\\left(X>\\frac34\\right)=P\\left(Y>\\frac34\\right)>0$.\n\nEnfin, avec $x=\\sin\\theta$ :\n$$\\int_{1/2}^1\\sqrt{1-x^2}\\,\\mathrm{d}x=\\int_{\\pi/6}^{\\pi/2}\\cos^2\\theta\\,\\mathrm{d}\\theta=\\left[\\frac\\theta2+\\frac{\\sin2\\theta}4\\right]_{\\pi/6}^{\\pi/2}=\\frac\\pi6-\\frac{\\sqrt3}8,$$\ndonc $P\\left(X>\\frac12\\right)=\\frac2\\pi\\left(\\frac\\pi6-\\frac{\\sqrt3}8\\right)=\\frac13-\\frac{\\sqrt3}{4\\pi}\\approx0{,}196$ : c'est l'aire du segment circulaire divisée par $\\pi$.",
+      "variantes": [
+        {
+          "enonce": "Le couple $(X,Y)$ est uniforme sur le disque unité $D=\\{(x,y)\\ :\\ x^2+y^2\\le1\\}$, c'est-à-dire de densité $\\frac1\\pi\\mathbf{1}_D$. Déterminer la densité de $X$, montrer que $X$ et $Y$ ne sont pas indépendantes, puis calculer $P\\left(|X|\\le\\frac12\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(|X|\\le\\frac12\\right)$ ?",
+            "propositions": [
+              "$\\frac13+\\frac{\\sqrt3}{2\\pi}$",
+              "$\\frac12$",
+              "$\\frac23-\\frac{\\sqrt3}{4\\pi}$",
+              "$\\frac{\\sqrt3}{2\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_X(x)=\\frac2\\pi\\sqrt{1-x^2}$ sur $[-1,1]$, $0$ ailleurs. Non-indépendance : $P\\left(X>\\frac34,Y>\\frac34\\right)=0<P\\left(X>\\frac34\\right)^2$.\n\nAvec $x=\\sin\\theta$, $\\int_{-1/2}^{1/2}\\sqrt{1-x^2}\\,\\mathrm{d}x=\\left[\\frac\\theta2+\\frac{\\sin2\\theta}4\\right]_{-\\pi/6}^{\\pi/6}=\\frac\\pi6+\\frac{\\sqrt3}4$, donc $P\\left(|X|\\le\\frac12\\right)=\\frac2\\pi\\left(\\frac\\pi6+\\frac{\\sqrt3}4\\right)=\\frac13+\\frac{\\sqrt3}{2\\pi}\\approx0{,}609$.",
+          "indices": [
+            "Pour $|x|\\le1$, la section verticale du disque en $x$ est le segment $\\left[-\\sqrt{1-x^2},\\sqrt{1-x^2}\\right]$.",
+            "Pour intégrer $\\sqrt{1-x^2}$ entre $-\\frac12$ et $\\frac12$, poser $x=\\sin\\theta$."
+          ]
+        },
+        {
+          "enonce": "Le couple $(X,Y)$ est uniforme sur le disque unité $D=\\{(x,y)\\ :\\ x^2+y^2\\le1\\}$, c'est-à-dire de densité $\\frac1\\pi\\mathbf{1}_D$. Déterminer la densité de $X$, montrer que $X$ et $Y$ ne sont pas indépendantes, puis calculer $P\\left(X>\\frac{\\sqrt2}2\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(X>\\frac{\\sqrt2}2\\right)$ ?",
+            "propositions": [
+              "$\\frac14-\\frac1{2\\pi}$",
+              "$\\frac{2-\\sqrt2}4$",
+              "$\\frac14$",
+              "$\\frac12-\\frac1\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$f_X(x)=\\frac2\\pi\\sqrt{1-x^2}$ sur $[-1,1]$, $0$ ailleurs. Non-indépendance : $P\\left(X>\\frac34,Y>\\frac34\\right)=0<P\\left(X>\\frac34\\right)^2$.\n\nAvec $x=\\sin\\theta$, $\\int_{\\sqrt2/2}^1\\sqrt{1-x^2}\\,\\mathrm{d}x=\\left[\\frac\\theta2+\\frac{\\sin2\\theta}4\\right]_{\\pi/4}^{\\pi/2}=\\frac\\pi4-\\frac\\pi8-\\frac14=\\frac\\pi8-\\frac14$, donc $P\\left(X>\\frac{\\sqrt2}2\\right)=\\frac2\\pi\\left(\\frac\\pi8-\\frac14\\right)=\\frac14-\\frac1{2\\pi}\\approx0{,}091$.",
+          "indices": [
+            "Pour $|x|\\le1$, la section verticale du disque en $x$ est le segment $\\left[-\\sqrt{1-x^2},\\sqrt{1-x^2}\\right]$.",
+            "Pour intégrer $\\sqrt{1-x^2}$ entre $\\frac{\\sqrt2}2$ et $1$, poser $x=\\sin\\theta$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs-ex4",
+      "carte": "proba-l3-densites-vecteurs",
+      "difficulte": 3,
+      "titre": "Minimum, maximum et étendue d'un échantillon uniforme",
+      "enonce": "Soient $U_1$ et $U_2$ deux variables indépendantes de loi $\\mathcal{U}([0,1])$, $m=\\min(U_1,U_2)$ et $M=\\max(U_1,U_2)$.\n1. Déterminer les fonctions de répartition de $M$ et de $m$, puis leurs densités.\n2. Calculer $E(M)$ et $E(m)$, puis l'espérance de l'étendue $M-m$.",
+      "duree_min": 15,
+      "indices": [
+        "$\\{M\\le x\\}=\\{U_1\\le x\\}\\cap\\{U_2\\le x\\}$ et $\\{m>x\\}=\\{U_1>x\\}\\cap\\{U_2>x\\}$ : utiliser l'indépendance.",
+        "Une fois les densités obtenues, $E(M-m)=E(M)-E(m)$ par linéarité."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E(M-m)$ ?",
+        "propositions": [
+          "$\\frac13$",
+          "$\\frac23$",
+          "$\\frac12$",
+          "$\\frac16$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $x\\in[0,1]$, par indépendance, $P(M\\le x)=P(U_1\\le x)P(U_2\\le x)=x^2$ et $P(m>x)=P(U_1>x)P(U_2>x)=(1-x)^2$, donc $F_m(x)=1-(1-x)^2$. Ces fonctions sont continues sur $\\mathbb{R}$ (avec $0$ à gauche de $0$ et $1$ à droite de $1$) et de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$ : $M$ a la densité $2x$ et $m$ la densité $2(1-x)$ sur $[0,1]$.\n\n**2.** $E(M)=\\int_0^12x^2\\,\\mathrm{d}x=\\frac23$, $E(m)=\\int_0^12x(1-x)\\,\\mathrm{d}x=\\frac13$, et par linéarité $E(M-m)=\\frac13$ : en moyenne, deux points uniformes de $[0,1]$ découpent le segment en trois morceaux de même longueur moyenne.",
+      "variantes": [
+        {
+          "enonce": "Soient $U_1,U_2,U_3$ trois variables indépendantes de loi $\\mathcal{U}([0,1])$, $m=\\min(U_1,U_2,U_3)$ et $M=\\max(U_1,U_2,U_3)$.\n1. Déterminer les fonctions de répartition de $M$ et de $m$, puis leurs densités.\n2. Calculer $E(M)$ et $E(m)$, puis l'espérance de l'étendue $M-m$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(M-m)$ ?",
+            "propositions": [
+              "$\\frac12$",
+              "$\\frac34$",
+              "$\\frac14$",
+              "$\\frac13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x\\in[0,1]$, par indépendance, $P(M\\le x)=x^3$ et $P(m>x)=(1-x)^3$. Ces fonctions de répartition sont continues et de classe $\\mathcal{C}^1$ hors de $\\{0,1\\}$ : $M$ a la densité $3x^2$ et $m$ la densité $3(1-x)^2$ sur $[0,1]$.\n\n**2.** $E(M)=\\int_0^13x^3\\,\\mathrm{d}x=\\frac34$, $E(m)=\\int_0^13x(1-x)^2\\,\\mathrm{d}x=\\frac14$, donc $E(M-m)=\\frac12$.",
+          "indices": [
+            "$\\{M\\le x\\}=\\{U_1\\le x\\}\\cap\\{U_2\\le x\\}\\cap\\{U_3\\le x\\}$ et de même pour $\\{m>x\\}$ : utiliser l'indépendance mutuelle.",
+            "Une fois les densités obtenues, $E(M-m)=E(M)-E(m)$ par linéarité."
+          ]
+        },
+        {
+          "enonce": "Soient $U_1,U_2,U_3,U_4$ quatre variables indépendantes de loi $\\mathcal{U}([0,1])$, $m=\\min(U_1,\\dots,U_4)$ et $M=\\max(U_1,\\dots,U_4)$.\n1. Déterminer les fonctions de répartition de $M$ et de $m$, puis leurs densités.\n2. Calculer $E(M)$ et $E(m)$, puis l'espérance de l'étendue $M-m$.",
+          "reponse_finale": {
+            "question": "Que vaut $E(M-m)$ ?",
+            "propositions": [
+              "$\\frac35$",
+              "$\\frac45$",
+              "$\\frac15$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $x\\in[0,1]$, par indépendance, $P(M\\le x)=x^4$ et $P(m>x)=(1-x)^4$ : $M$ a la densité $4x^3$ et $m$ la densité $4(1-x)^3$ sur $[0,1]$.\n\n**2.** $E(M)=\\int_0^14x^4\\,\\mathrm{d}x=\\frac45$, $E(m)=\\int_0^14x(1-x)^3\\,\\mathrm{d}x=\\frac15$, donc $E(M-m)=\\frac35$.",
+          "indices": [
+            "$\\{M\\le x\\}$ est l'intersection des $\\{U_i\\le x\\}$ et $\\{m>x\\}$ celle des $\\{U_i>x\\}$ : utiliser l'indépendance mutuelle.",
+            "Une fois les densités obtenues, $E(M-m)=E(M)-E(m)$ par linéarité."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-vecteurs-ex5",
+      "carte": "proba-l3-densites-vecteurs",
+      "difficulte": 4,
+      "titre": "L'aiguille de Buffon",
+      "enonce": "Un parquet est formé de lames de largeur $d$ : les rainures sont les droites d'équation $y=kd$, $k\\in\\mathbb{Z}$. On y lance une aiguille de longueur $\\ell=d$. On note $X$ la distance de son milieu à la rainure la plus proche et $\\Theta$ l'angle géométrique (dans $\\left[0,\\frac\\pi2\\right]$) entre l'aiguille et la direction des rainures, et l'on suppose $X$ et $\\Theta$ indépendantes, de lois uniformes sur $\\left[0,\\frac d2\\right]$ et $\\left[0,\\frac\\pi2\\right]$.\n1. Justifier que l'aiguille coupe une rainure si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$.\n2. Calculer la probabilité $p$ que l'aiguille coupe une rainure.",
+      "duree_min": 20,
+      "indices": [
+        "Le couple $(X,\\Theta)$ a pour densité le produit des densités uniformes, par indépendance.",
+        "Intégrer d'abord en $x$, de $0$ à $\\frac\\ell2\\sin\\theta$, puis en $\\theta$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $p$ ?",
+        "propositions": [
+          "$\\frac2\\pi$",
+          "$\\frac1\\pi$",
+          "$\\frac12$",
+          "$\\frac\\pi4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les extrémités de l'aiguille sont à la distance $\\frac\\ell2\\sin\\Theta$ de son milieu, perpendiculairement aux rainures. L'aiguille coupe la rainure la plus proche si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$ ; elle ne peut pas atteindre une autre rainure, située à une distance $d-X\\ge\\frac d2\\ge\\frac\\ell2\\sin\\Theta$ du milieu (avec égalité sur un événement de probabilité nulle).\n\n**2.** Par indépendance, $(X,\\Theta)$ a pour densité $\\frac2d\\cdot\\frac2\\pi=\\frac4{\\pi d}$ sur $\\left[0,\\frac d2\\right]\\times\\left[0,\\frac\\pi2\\right]$. Comme $\\frac\\ell2\\sin\\theta\\le\\frac d2$,\n$$p=\\int_0^{\\pi/2}\\left(\\int_0^{\\frac\\ell2\\sin\\theta}\\frac4{\\pi d}\\,\\mathrm{d}x\\right)\\mathrm{d}\\theta=\\frac{2\\ell}{\\pi d}\\int_0^{\\pi/2}\\sin\\theta\\,\\mathrm{d}\\theta=\\frac{2\\ell}{\\pi d}.$$\nPour $\\ell=d$ : $p=\\frac2\\pi\\approx0{,}637$. En lançant l'aiguille un grand nombre de fois, la fréquence des intersections donne une estimation de $\\pi$.",
+      "variantes": [
+        {
+          "enonce": "Un parquet est formé de lames de largeur $d$ : les rainures sont les droites d'équation $y=kd$, $k\\in\\mathbb{Z}$. On y lance une aiguille de longueur $\\ell=\\frac d2$. On note $X$ la distance de son milieu à la rainure la plus proche et $\\Theta$ l'angle géométrique (dans $\\left[0,\\frac\\pi2\\right]$) entre l'aiguille et la direction des rainures, et l'on suppose $X$ et $\\Theta$ indépendantes, de lois uniformes sur $\\left[0,\\frac d2\\right]$ et $\\left[0,\\frac\\pi2\\right]$.\n1. Justifier que l'aiguille coupe une rainure si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$.\n2. Calculer la probabilité $p$ que l'aiguille coupe une rainure.",
+          "reponse_finale": {
+            "question": "Que vaut $p$ ?",
+            "propositions": [
+              "$\\frac1\\pi$",
+              "$\\frac2\\pi$",
+              "$\\frac14$",
+              "$\\frac\\pi8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les extrémités sont à la distance $\\frac\\ell2\\sin\\Theta$ du milieu perpendiculairement aux rainures ; l'aiguille coupe la rainure la plus proche si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$, et ne peut atteindre une autre rainure, à distance $d-X\\ge\\frac d2>\\frac\\ell2$.\n\n**2.** $(X,\\Theta)$ a pour densité $\\frac4{\\pi d}$ sur $\\left[0,\\frac d2\\right]\\times\\left[0,\\frac\\pi2\\right]$, et $p=\\int_0^{\\pi/2}\\frac4{\\pi d}\\cdot\\frac\\ell2\\sin\\theta\\,\\mathrm{d}\\theta=\\frac{2\\ell}{\\pi d}$. Pour $\\ell=\\frac d2$ : $p=\\frac1\\pi\\approx0{,}318$.",
+          "indices": [
+            "Le couple $(X,\\Theta)$ a pour densité le produit des densités uniformes, par indépendance.",
+            "Intégrer d'abord en $x$, de $0$ à $\\frac\\ell2\\sin\\theta$, puis en $\\theta$ ; remplacer enfin $\\ell$ par $\\frac d2$."
+          ]
+        },
+        {
+          "enonce": "Un parquet est formé de lames de largeur $d$ : les rainures sont les droites d'équation $y=kd$, $k\\in\\mathbb{Z}$. On y lance une aiguille de longueur $\\ell=\\frac{3d}4$. On note $X$ la distance de son milieu à la rainure la plus proche et $\\Theta$ l'angle géométrique (dans $\\left[0,\\frac\\pi2\\right]$) entre l'aiguille et la direction des rainures, et l'on suppose $X$ et $\\Theta$ indépendantes, de lois uniformes sur $\\left[0,\\frac d2\\right]$ et $\\left[0,\\frac\\pi2\\right]$.\n1. Justifier que l'aiguille coupe une rainure si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$.\n2. Calculer la probabilité $p$ que l'aiguille coupe une rainure.",
+          "reponse_finale": {
+            "question": "Que vaut $p$ ?",
+            "propositions": [
+              "$\\frac3{2\\pi}$",
+              "$\\frac3{4\\pi}$",
+              "$\\frac38$",
+              "$\\frac{3\\pi}{16}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Les extrémités sont à la distance $\\frac\\ell2\\sin\\Theta$ du milieu perpendiculairement aux rainures ; l'aiguille coupe la rainure la plus proche si et seulement si $X\\le\\frac\\ell2\\sin\\Theta$, et ne peut atteindre une autre rainure, à distance $d-X\\ge\\frac d2>\\frac\\ell2$.\n\n**2.** $(X,\\Theta)$ a pour densité $\\frac4{\\pi d}$ sur $\\left[0,\\frac d2\\right]\\times\\left[0,\\frac\\pi2\\right]$, et $p=\\int_0^{\\pi/2}\\frac4{\\pi d}\\cdot\\frac\\ell2\\sin\\theta\\,\\mathrm{d}\\theta=\\frac{2\\ell}{\\pi d}$. Pour $\\ell=\\frac{3d}4$ : $p=\\frac3{2\\pi}\\approx0{,}477$.",
+          "indices": [
+            "Le couple $(X,\\Theta)$ a pour densité le produit des densités uniformes, par indépendance.",
+            "Intégrer d'abord en $x$, de $0$ à $\\frac\\ell2\\sin\\theta$, puis en $\\theta$ ; remplacer enfin $\\ell$ par $\\frac{3d}4$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex1",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 1,
+      "titre": "Variance d'une combinaison de variables indépendantes",
+      "enonce": "Soient $X$ de loi $\\mathcal{U}([0,2])$ et $Y$ de loi $\\mathcal{E}(1)$, indépendantes. Calculer $V(2X-Y)$.",
+      "duree_min": 6,
+      "indices": [
+        "Pour des variables indépendantes, la variance d'une somme est la somme des variances ; que valent $V(2X)$ et $V(-Y)$ ?",
+        "La variance de $\\mathcal{U}([a,b])$ est $\\frac{(b-a)^2}{12}$, celle de $\\mathcal{E}(\\lambda)$ est $\\frac1{\\lambda^2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $V(2X-Y)$ ?",
+        "propositions": [
+          "$\\frac73$",
+          "$\\frac13$",
+          "$\\frac53$",
+          "$\\frac43$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$V(X)=\\frac{2^2}{12}=\\frac13$ et $V(Y)=1$. Les variables $2X$ et $-Y$ sont indépendantes, donc\n$$V(2X-Y)=V(2X)+V(-Y)=4V(X)+V(Y)=\\frac43+1=\\frac73.$$\nLe signe moins disparaît : $V(-Y)=(-1)^2V(Y)$.",
+      "variantes": [
+        {
+          "enonce": "Soient $X$ de loi $\\mathcal{U}([0,3])$ et $Y$ de loi $\\mathcal{E}(2)$, indépendantes. Calculer $V(X-2Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $V(X-2Y)$ ?",
+            "propositions": [
+              "$\\frac74$",
+              "$-\\frac14$",
+              "$\\frac54$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$V(X)=\\frac9{12}=\\frac34$ et $V(Y)=\\frac14$. Par indépendance, $V(X-2Y)=V(X)+4V(Y)=\\frac34+1=\\frac74$.",
+          "indices": [
+            "Pour des variables indépendantes, la variance d'une somme est la somme des variances ; que vaut $V(-2Y)$ ?",
+            "La variance de $\\mathcal{U}([a,b])$ est $\\frac{(b-a)^2}{12}$, celle de $\\mathcal{E}(\\lambda)$ est $\\frac1{\\lambda^2}$."
+          ]
+        },
+        {
+          "enonce": "Soient $X$ de loi $\\mathcal{U}([-1,1])$ et $Y$ de loi $\\mathcal{E}\\left(\\frac12\\right)$, indépendantes. Calculer $V(3X+Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $V(3X+Y)$ ?",
+            "propositions": [
+              "$7$",
+              "$5$",
+              "$\\frac{13}3$",
+              "$-1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$V(X)=\\frac4{12}=\\frac13$ et $V(Y)=\\frac1{(1/2)^2}=4$. Par indépendance, $V(3X+Y)=9V(X)+V(Y)=3+4=7$.",
+          "indices": [
+            "Pour des variables indépendantes, la variance d'une somme est la somme des variances ; que vaut $V(3X)$ ?",
+            "La variance de $\\mathcal{U}([a,b])$ est $\\frac{(b-a)^2}{12}$, celle de $\\mathcal{E}(\\lambda)$ est $\\frac1{\\lambda^2}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex2",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 2,
+      "titre": "Covariance d'un point aléatoire dans un triangle",
+      "enonce": "Le couple $(X,Y)$ est uniforme sur le triangle $T=\\{(x,y)\\ :\\ 0<x<y<1\\}$, c'est-à-dire de densité $2\\cdot\\mathbf{1}_T$. Calculer $\\mathrm{Cov}(X,Y)$.",
+      "duree_min": 10,
+      "indices": [
+        "Par le théorème de transfert (admis) pour un couple à densité, $E(XY)=\\iint_Txy\\cdot2\\,\\mathrm{d}x\\,\\mathrm{d}y$, et de même pour $E(X)$ et $E(Y)$.",
+        "Intégrer d'abord en $x$ de $0$ à $y$, puis en $y$ de $0$ à $1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+        "propositions": [
+          "$\\frac1{36}$",
+          "$\\frac14$",
+          "$-\\frac1{36}$",
+          "$\\frac29$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Par transfert et Fubini, en intégrant d'abord en $x\\in\\left]0,y\\right[$ :\n$$E(X)=\\int_0^1\\left(\\int_0^y2x\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1y^2\\,\\mathrm{d}y=\\frac13,\\qquad E(Y)=\\int_0^12y\\cdot y\\,\\mathrm{d}y=\\frac23,$$\n$$E(XY)=\\int_0^1\\left(\\int_0^y2xy\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1y^3\\,\\mathrm{d}y=\\frac14.$$\nDonc $\\mathrm{Cov}(X,Y)=\\frac14-\\frac13\\cdot\\frac23=\\frac14-\\frac29=\\frac1{36}>0$ : les deux coordonnées ont tendance à varier dans le même sens, puisque $X<Y$.",
+      "variantes": [
+        {
+          "enonce": "Le couple $(X,Y)$ a pour densité $f(x,y)=8xy$ si $0<x<y<1$, $f(x,y)=0$ sinon. Calculer $\\mathrm{Cov}(X,Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+            "propositions": [
+              "$\\frac4{225}$",
+              "$\\frac49$",
+              "$\\frac{32}{75}$",
+              "$-\\frac4{225}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On vérifie que $\\int_0^1\\left(\\int_0^y8xy\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^14y^3\\,\\mathrm{d}y=1$. Par transfert et Fubini :\n$E(X)=\\int_0^1\\left(\\int_0^y8x^2y\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1\\frac{8y^4}3\\,\\mathrm{d}y=\\frac8{15}$, $E(Y)=\\int_0^1\\left(\\int_0^y8xy^2\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^14y^4\\,\\mathrm{d}y=\\frac45$ et $E(XY)=\\int_0^1\\left(\\int_0^y8x^2y^2\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^1\\frac{8y^5}3\\,\\mathrm{d}y=\\frac49$.\n\nDonc $\\mathrm{Cov}(X,Y)=\\frac49-\\frac8{15}\\cdot\\frac45=\\frac49-\\frac{32}{75}=\\frac{100-96}{225}=\\frac4{225}$.",
+          "indices": [
+            "Par le théorème de transfert (admis) pour un couple à densité, $E(XY)=\\iint xy\\cdot8xy\\,\\mathrm{d}x\\,\\mathrm{d}y$ sur le triangle, et de même pour $E(X)$ et $E(Y)$.",
+            "Intégrer d'abord en $x$ de $0$ à $y$, puis en $y$ de $0$ à $1$."
+          ]
+        },
+        {
+          "enonce": "Le couple $(X,Y)$ est uniforme sur le triangle $T=\\{(x,y)\\ :\\ 0<x<y<2\\}$, c'est-à-dire de densité $\\frac12\\mathbf{1}_T$. Calculer $\\mathrm{Cov}(X,Y)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\mathrm{Cov}(X,Y)$ ?",
+            "propositions": [
+              "$\\frac19$",
+              "$1$",
+              "$\\frac89$",
+              "$-\\frac19$"
+            ],
+            "bonne": 0
+          },
+          "correction": "L'aire de $T$ est $2$, d'où la densité $\\frac12$. Par transfert et Fubini :\n$E(X)=\\int_0^2\\left(\\int_0^y\\frac x2\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^2\\frac{y^2}4\\,\\mathrm{d}y=\\frac23$, $E(Y)=\\int_0^2\\frac{y^2}2\\,\\mathrm{d}y=\\frac43$ et $E(XY)=\\int_0^2\\left(\\int_0^y\\frac{xy}2\\,\\mathrm{d}x\\right)\\mathrm{d}y=\\int_0^2\\frac{y^3}4\\,\\mathrm{d}y=1$.\n\nDonc $\\mathrm{Cov}(X,Y)=1-\\frac89=\\frac19$ (quatre fois la covariance pour le triangle de côté $1$, ce qu'on retrouve par l'homothétie de rapport $2$).",
+          "indices": [
+            "Par le théorème de transfert (admis) pour un couple à densité, $E(XY)=\\iint_Txy\\cdot\\frac12\\,\\mathrm{d}x\\,\\mathrm{d}y$, et de même pour $E(X)$ et $E(Y)$.",
+            "Intégrer d'abord en $x$ de $0$ à $y$, puis en $y$ de $0$ à $2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex3",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 2,
+      "titre": "Somme de deux variables uniformes indépendantes",
+      "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{U}([0,1])$. Déterminer une densité de $X+Y$, puis calculer $P\\left(X+Y\\le\\frac32\\right)$.",
+      "duree_min": 10,
+      "indices": [
+        "$h(z)=\\int_0^1\\mathbf{1}_{[0,1]}(z-x)\\,\\mathrm{d}x$ est la longueur de l'intervalle $[0,1]\\cap[z-1,z]$.",
+        "Distinguer $z\\in[0,1]$ et $z\\in[1,2]$ ; un dessin de la densité aide pour la probabilité."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P\\left(X+Y\\le\\frac32\\right)$ ?",
+        "propositions": [
+          "$\\frac78$",
+          "$\\frac34$",
+          "$\\frac18$",
+          "$\\frac12$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Avec $f=g=\\mathbf{1}_{[0,1]}$, $h(z)=\\int_0^1\\mathbf{1}_{[0,1]}(z-x)\\,\\mathrm{d}x$ est la longueur de $[0,1]\\cap[z-1,z]$ : $h(z)=z$ pour $z\\in[0,1]$, $h(z)=2-z$ pour $z\\in[1,2]$, $h(z)=0$ ailleurs. Cette fonction est continue sur $\\mathbb{R}$ : c'est une densité de $X+Y$ (loi triangulaire).\n\nDonc $P\\left(X+Y\\le\\frac32\\right)=1-\\int_{3/2}^2(2-z)\\,\\mathrm{d}z=1-\\frac18=\\frac78$.",
+      "variantes": [
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{U}([0,1])$. Déterminer une densité de $X+Y$, puis calculer $P\\left(X+Y\\le\\frac12\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(X+Y\\le\\frac12\\right)$ ?",
+            "propositions": [
+              "$\\frac18$",
+              "$\\frac14$",
+              "$\\frac78$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La densité de $X+Y$ est $h(z)=z$ sur $[0,1]$, $2-z$ sur $[1,2]$, $0$ ailleurs (longueur de $[0,1]\\cap[z-1,z]$), continue. Donc $P\\left(X+Y\\le\\frac12\\right)=\\int_0^{1/2}z\\,\\mathrm{d}z=\\frac18$, et non $\\frac14$ comme le donnerait à tort une loi uniforme sur $[0,2]$.",
+          "indices": [
+            "$h(z)=\\int_0^1\\mathbf{1}_{[0,1]}(z-x)\\,\\mathrm{d}x$ est la longueur de l'intervalle $[0,1]\\cap[z-1,z]$.",
+            "Distinguer $z\\in[0,1]$ et $z\\in[1,2]$, puis intégrer $h$ sur $\\left[0,\\frac12\\right]$."
+          ]
+        },
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{U}([0,1])$. Déterminer une densité de $X+Y$, puis calculer $P\\left(\\frac12\\le X+Y\\le\\frac32\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P\\left(\\frac12\\le X+Y\\le\\frac32\\right)$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$\\frac12$",
+              "$\\frac14$",
+              "$\\frac78$"
+            ],
+            "bonne": 0
+          },
+          "correction": "La densité de $X+Y$ est $h(z)=z$ sur $[0,1]$, $2-z$ sur $[1,2]$, $0$ ailleurs, continue. Par symétrie, $P\\left(X+Y<\\frac12\\right)=P\\left(X+Y>\\frac32\\right)=\\frac18$, donc $P\\left(\\frac12\\le X+Y\\le\\frac32\\right)=1-\\frac14=\\frac34$.",
+          "indices": [
+            "$h(z)=\\int_0^1\\mathbf{1}_{[0,1]}(z-x)\\,\\mathrm{d}x$ est la longueur de l'intervalle $[0,1]\\cap[z-1,z]$.",
+            "Distinguer $z\\in[0,1]$ et $z\\in[1,2]$, puis intégrer $h$ sur $\\left[\\frac12,\\frac32\\right]$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex4",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 3,
+      "titre": "Somme de deux durées exponentielles de paramètres différents",
+      "enonce": "Soient $X$ et $Y$ indépendantes de lois $\\mathcal{E}(1)$ et $\\mathcal{E}(2)$. Déterminer une densité de $X+Y$, puis calculer $P(X+Y\\le1)$.",
+      "duree_min": 15,
+      "indices": [
+        "$h(z)=\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ est nulle pour $z\\le0$ ; pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$.",
+        "Intégrer ensuite $h$ sur $[0,1]$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X+Y\\le1)$ ?",
+        "propositions": [
+          "$\\left(1-e^{-1}\\right)^2$",
+          "$1-e^{-3}$",
+          "$\\left(1-e^{-1}\\right)\\left(1-e^{-2}\\right)$",
+          "$1-2e^{-1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Pour $z\\le0$, $h(z)=0$. Pour $z>0$,\n$$h(z)=\\int_0^ze^{-x}\\cdot2e^{-2(z-x)}\\,\\mathrm{d}x=2e^{-2z}\\int_0^ze^x\\,\\mathrm{d}x=2e^{-2z}\\left(e^z-1\\right)=2\\left(e^{-z}-e^{-2z}\\right).$$\nCette fonction est continue sur $\\mathbb{R}$ : c'est une densité de $X+Y$. Donc\n$$P(X+Y\\le1)=\\int_0^12\\left(e^{-z}-e^{-2z}\\right)\\mathrm{d}z=2\\left(1-e^{-1}\\right)-\\left(1-e^{-2}\\right)=1-2e^{-1}+e^{-2}=\\left(1-e^{-1}\\right)^2\\approx0{,}40.$$",
+      "variantes": [
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de lois $\\mathcal{E}(1)$ et $\\mathcal{E}(3)$. Déterminer une densité de $X+Y$, puis calculer $P(X+Y\\le1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y\\le1)$ ?",
+            "propositions": [
+              "$1-\\frac32e^{-1}+\\frac12e^{-3}$",
+              "$1-e^{-4}$",
+              "$\\left(1-e^{-1}\\right)\\left(1-e^{-3}\\right)$",
+              "$1-\\frac32e^{-1}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $z>0$, $h(z)=\\int_0^ze^{-x}\\cdot3e^{-3(z-x)}\\,\\mathrm{d}x=3e^{-3z}\\cdot\\frac{e^{2z}-1}2=\\frac32\\left(e^{-z}-e^{-3z}\\right)$, et $h(z)=0$ pour $z\\le0$ ; $h$ est continue, c'est une densité de $X+Y$. Donc\n$$P(X+Y\\le1)=\\frac32\\left(1-e^{-1}\\right)-\\frac12\\left(1-e^{-3}\\right)=1-\\frac32e^{-1}+\\frac12e^{-3}\\approx0{,}47.$$",
+          "indices": [
+            "$h(z)=\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ est nulle pour $z\\le0$ ; pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$.",
+            "Intégrer ensuite $h$ sur $[0,1]$."
+          ]
+        },
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de lois $\\mathcal{E}(2)$ et $\\mathcal{E}(3)$. Déterminer une densité de $X+Y$, puis calculer $P(X+Y\\le1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X+Y\\le1)$ ?",
+            "propositions": [
+              "$1-3e^{-2}+2e^{-3}$",
+              "$1-e^{-5}$",
+              "$\\left(1-e^{-2}\\right)\\left(1-e^{-3}\\right)$",
+              "$1-3e^{-2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Pour $z>0$, $h(z)=\\int_0^z2e^{-2x}\\cdot3e^{-3(z-x)}\\,\\mathrm{d}x=6e^{-3z}\\left(e^z-1\\right)=6\\left(e^{-2z}-e^{-3z}\\right)$, et $h(z)=0$ pour $z\\le0$ ; $h$ est continue, c'est une densité de $X+Y$. Donc\n$$P(X+Y\\le1)=3\\left(1-e^{-2}\\right)-2\\left(1-e^{-3}\\right)=1-3e^{-2}+2e^{-3}\\approx0{,}69.$$",
+          "indices": [
+            "$h(z)=\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ est nulle pour $z\\le0$ ; pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$.",
+            "Intégrer ensuite $h$ sur $[0,1]$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex5",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 4,
+      "titre": "Lois Gamma, fonction Bêta et calcul d'une intégrale",
+      "enonce": "Pour $a,b>0$, on pose $B(a,b)=\\int_0^1u^{a-1}(1-u)^{b-1}\\,\\mathrm{d}u$ (intégrale convergente).\n1. Soient $X$ et $Y$ indépendantes de lois $\\gamma(a,1)$ et $\\gamma(b,1)$, de densités $f$ et $g$. Montrer que $h:z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ vaut $\\frac{B(a,b)}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}e^{-z}$ pour $z>0$ et $0$ pour $z\\le0$.\n2. En déduire que $X+Y$ suit $\\gamma(a+b,1)$ et que $B(a,b)=\\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}$.\n3. Application : calculer $\\int_0^1\\sqrt{x(1-x)}\\,\\mathrm{d}x$, sachant que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$.",
+      "duree_min": 25,
+      "indices": [
+        "Dans l'intégrale de convolution, l'intégrande n'est non nul que pour $0<x<z$ ; poser $x=zu$.",
+        "La fonction $h$ est continue sur $\\mathbb{R}^*$, donc c'est une densité de $X+Y$ : son intégrale vaut $1$, et $\\int_0^{+\\infty}z^{c-1}e^{-z}\\,\\mathrm{d}z=\\Gamma(c)$.",
+        "Pour l'application, écrire l'intégrale comme une valeur de $B$, puis utiliser $\\Gamma(x+1)=x\\Gamma(x)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\int_0^1\\sqrt{x(1-x)}\\,\\mathrm{d}x$ ?",
+        "propositions": [
+          "$\\frac\\pi8$",
+          "$\\frac\\pi4$",
+          "$\\frac16$",
+          "$\\frac\\pi{16}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $z\\le0$, $f(x)g(z-x)=0$ pour tout $x$ (l'une des deux variables $x$, $z-x$ est négative ou nulle). Pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$, et le changement de variable $x=zu$ donne\n$$h(z)=\\frac{e^{-z}}{\\Gamma(a)\\Gamma(b)}\\int_0^zx^{a-1}(z-x)^{b-1}\\,\\mathrm{d}x=\\frac{e^{-z}}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}\\int_0^1u^{a-1}(1-u)^{b-1}\\,\\mathrm{d}u=\\frac{B(a,b)}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}e^{-z}.$$\n\n**2.** $h$ est continue sur $\\mathbb{R}^*$ : par le théorème de convolution, c'est une densité de $X+Y$, donc\n$$1=\\int_0^{+\\infty}h(z)\\,\\mathrm{d}z=\\frac{B(a,b)}{\\Gamma(a)\\Gamma(b)}\\Gamma(a+b),$$\nd'où $B(a,b)=\\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}$, et alors $h(z)=\\frac{z^{a+b-1}e^{-z}}{\\Gamma(a+b)}$ : $X+Y$ suit $\\gamma(a+b,1)$.\n\n**3.** $\\int_0^1x^{1/2}(1-x)^{1/2}\\,\\mathrm{d}x=B\\left(\\frac32,\\frac32\\right)=\\frac{\\Gamma\\left(\\frac32\\right)^2}{\\Gamma(3)}$. Comme $\\Gamma\\left(\\frac32\\right)=\\frac12\\Gamma\\left(\\frac12\\right)=\\frac{\\sqrt\\pi}2$ et $\\Gamma(3)=2$, l'intégrale vaut $\\frac{\\pi/4}2=\\frac\\pi8$ (c'est l'aire d'un demi-disque de rayon $\\frac12$, ce qui confirme le calcul).",
+      "variantes": [
+        {
+          "enonce": "Pour $a,b>0$, on pose $B(a,b)=\\int_0^1u^{a-1}(1-u)^{b-1}\\,\\mathrm{d}u$ (intégrale convergente).\n1. Soient $X$ et $Y$ indépendantes de lois $\\gamma(a,1)$ et $\\gamma(b,1)$, de densités $f$ et $g$. Montrer que $h:z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ vaut $\\frac{B(a,b)}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}e^{-z}$ pour $z>0$ et $0$ pour $z\\le0$.\n2. En déduire que $X+Y$ suit $\\gamma(a+b,1)$ et que $B(a,b)=\\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}$.\n3. Application : calculer $\\int_0^1\\sqrt x\\,(1-x)^{3/2}\\,\\mathrm{d}x$, sachant que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\int_0^1\\sqrt x\\,(1-x)^{3/2}\\,\\mathrm{d}x$ ?",
+            "propositions": [
+              "$\\frac\\pi{16}$",
+              "$\\frac\\pi8$",
+              "$\\frac{3\\pi}{16}$",
+              "$\\frac\\pi{32}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $z\\le0$, $h(z)=0$. Pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$, et $x=zu$ donne $h(z)=\\frac{e^{-z}}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}B(a,b)$.\n\n**2.** $h$ est continue sur $\\mathbb{R}^*$, c'est une densité de $X+Y$ : $1=\\int_0^{+\\infty}h=\\frac{B(a,b)\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)}$, d'où la formule, et $X+Y$ suit $\\gamma(a+b,1)$.\n\n**3.** L'intégrale vaut $B\\left(\\frac32,\\frac52\\right)=\\frac{\\Gamma\\left(\\frac32\\right)\\Gamma\\left(\\frac52\\right)}{\\Gamma(4)}$, avec $\\Gamma\\left(\\frac32\\right)=\\frac{\\sqrt\\pi}2$, $\\Gamma\\left(\\frac52\\right)=\\frac32\\cdot\\frac{\\sqrt\\pi}2=\\frac{3\\sqrt\\pi}4$ et $\\Gamma(4)=6$ : elle vaut $\\frac{3\\pi/8}6=\\frac\\pi{16}$.",
+          "indices": [
+            "Dans l'intégrale de convolution, l'intégrande n'est non nul que pour $0<x<z$ ; poser $x=zu$.",
+            "La fonction $h$ est continue sur $\\mathbb{R}^*$, donc c'est une densité de $X+Y$ : son intégrale vaut $1$, et $\\int_0^{+\\infty}z^{c-1}e^{-z}\\,\\mathrm{d}z=\\Gamma(c)$.",
+            "Pour l'application, écrire l'intégrale comme une valeur de $B$, puis utiliser $\\Gamma(x+1)=x\\Gamma(x)$ deux fois."
+          ]
+        },
+        {
+          "enonce": "Pour $a,b>0$, on pose $B(a,b)=\\int_0^1u^{a-1}(1-u)^{b-1}\\,\\mathrm{d}u$ (intégrale convergente).\n1. Soient $X$ et $Y$ indépendantes de lois $\\gamma(a,1)$ et $\\gamma(b,1)$, de densités $f$ et $g$. Montrer que $h:z\\mapsto\\int_{-\\infty}^{+\\infty}f(x)g(z-x)\\,\\mathrm{d}x$ vaut $\\frac{B(a,b)}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}e^{-z}$ pour $z>0$ et $0$ pour $z\\le0$.\n2. En déduire que $X+Y$ suit $\\gamma(a+b,1)$ et que $B(a,b)=\\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}$.\n3. Application : calculer $\\int_0^1\\frac{\\mathrm{d}x}{\\sqrt{x(1-x)}}$, sachant que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\int_0^1\\frac{\\mathrm{d}x}{\\sqrt{x(1-x)}}$ ?",
+            "propositions": [
+              "$\\pi$",
+              "$\\frac\\pi2$",
+              "$2$",
+              "$\\sqrt\\pi$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $z\\le0$, $h(z)=0$. Pour $z>0$, l'intégrande n'est non nul que pour $0<x<z$, et $x=zu$ donne $h(z)=\\frac{e^{-z}}{\\Gamma(a)\\Gamma(b)}z^{a+b-1}B(a,b)$.\n\n**2.** $h$ est continue sur $\\mathbb{R}^*$ (pour $a+b<1$, elle n'est pas bornée en $0^+$, ce que permet la définition d'une densité), c'est une densité de $X+Y$ : $1=\\int_0^{+\\infty}h=\\frac{B(a,b)\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)}$, d'où la formule, et $X+Y$ suit $\\gamma(a+b,1)$.\n\n**3.** L'intégrale (impropre aux deux bornes) vaut $B\\left(\\frac12,\\frac12\\right)=\\frac{\\Gamma\\left(\\frac12\\right)^2}{\\Gamma(1)}=\\pi$. Contrôle : $x=\\sin^2\\theta$ donne $\\int_0^{\\pi/2}2\\,\\mathrm{d}\\theta=\\pi$.",
+          "indices": [
+            "Dans l'intégrale de convolution, l'intégrande n'est non nul que pour $0<x<z$ ; poser $x=zu$.",
+            "La fonction $h$ est continue sur $\\mathbb{R}^*$, donc c'est une densité de $X+Y$ : son intégrale vaut $1$, et $\\int_0^{+\\infty}z^{c-1}e^{-z}\\,\\mathrm{d}z=\\Gamma(c)$.",
+            "Pour l'application, écrire l'intégrale comme une valeur de $B$ ; on rappelle $\\Gamma(1)=1$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-somme-ex6",
+      "carte": "proba-l3-densites-somme",
+      "difficulte": 5,
+      "titre": "La moyenne de variables de Cauchy ne se concentre pas",
+      "enonce": "Soient $X$ et $Y$ indépendantes de loi de Cauchy, de densité $f(x)=\\frac1{\\pi(1+x^2)}$.\n1. Vérifier que, pour tous réels $x$ et $z\\ne0$,\n$$\\frac1{(1+x^2)\\left(1+(z-x)^2\\right)}=\\frac1{z^2+4}\\left(\\frac{1+\\frac{2x}z}{1+x^2}+\\frac{1+\\frac{2(z-x)}z}{1+(z-x)^2}\\right).$$\n2. En déduire que $h=f*f$ vaut $h(z)=\\frac2{\\pi(4+z^2)}$, puis que $\\frac{X+Y}2$ suit la loi de Cauchy.\n3. On admet plus généralement que, si $U$ et $V$ sont indépendantes de densités $\\frac a{\\pi(a^2+x^2)}$ et $\\frac b{\\pi(b^2+x^2)}$ ($a,b>0$), alors $U+V$ a la densité $\\frac{a+b}{\\pi\\left((a+b)^2+x^2\\right)}$, et que, si $X_1,\\dots,X_n$ sont indépendantes, $X_1+\\dots+X_{n-1}$ et $X_n$ le sont. Montrer que, si $X_1,\\dots,X_n$ sont indépendantes de loi de Cauchy, $\\overline{X}_n=\\frac{X_1+\\dots+X_n}n$ suit la loi de Cauchy, et calculer $P\\left(\\left|\\overline{X}_n\\right|>1\\right)$. Commenter.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 1, multiplier les deux membres par $(1+x^2)\\left(1+(z-x)^2\\right)$ et développer.",
+        "Intégrer sur $[-R,R]$ et faire tendre $R$ vers $+\\infty$ : les termes en $\\frac{2x}{z(1+x^2)}$ et $\\frac{2(z-x)}{z(1+(z-x)^2)}$ ont des primitives logarithmiques qui se compensent.",
+        "Si $S$ a la densité $\\frac2{\\pi(4+z^2)}$, calculer $P\\left(\\frac S2\\le u\\right)$ par le changement de variable $z=2t$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P\\left(\\left|\\frac{X+Y}2\\right|>1\\right)$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$\\frac14$",
+          "$\\frac2\\pi\\arctan\\frac12$",
+          "$\\frac1{2\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Multiplions le second membre par $(z^2+4)(1+x^2)\\left(1+(z-x)^2\\right)$ : on obtient $\\left(1+\\frac{2x}z\\right)\\left(1+(z-x)^2\\right)+\\left(1+\\frac{2(z-x)}z\\right)(1+x^2)$. La partie sans facteur $\\frac1z$ vaut $2+x^2+(z-x)^2$, et la partie en $\\frac2z$ vaut $\\frac2z\\left(x+x(z-x)^2+(z-x)+(z-x)x^2\\right)=\\frac2z\\left(z+x(z-x)z\\right)=2+2x(z-x)$. La somme est $4+x^2+2x(z-x)+(z-x)^2=4+z^2$ : l'identité est vraie.\n\n**2.** Pour $z\\ne0$ et $R>0$, une primitive de $\\frac{2x}{1+x^2}$ est $\\ln(1+x^2)$, et une primitive de $\\frac{2(z-x)}{1+(z-x)^2}$ est $-\\ln\\left(1+(z-x)^2\\right)$ ; donc\n$$\\int_{-R}^R\\frac{\\mathrm{d}x}{(1+x^2)\\left(1+(z-x)^2\\right)}=\\frac1{z^2+4}\\left(\\int_{-R}^R\\frac{\\mathrm{d}x}{1+x^2}+\\int_{-R}^R\\frac{\\mathrm{d}x}{1+(z-x)^2}+\\frac1z\\left[\\ln\\frac{1+x^2}{1+(z-x)^2}\\right]_{-R}^R\\right).$$\nQuand $R\\to+\\infty$, le crochet tend vers $0$ (le quotient tend vers $1$ en $\\pm\\infty$) et les deux intégrales tendent vers $\\pi$ : l'intégrale vaut $\\frac{2\\pi}{z^2+4}$, et $h(z)=\\frac1{\\pi^2}\\cdot\\frac{2\\pi}{z^2+4}=\\frac2{\\pi(4+z^2)}$. Pour $z=0$, $h(0)=\\frac1{\\pi^2}\\int\\frac{\\mathrm{d}x}{(1+x^2)^2}=\\frac1{\\pi^2}\\cdot\\frac\\pi2=\\frac1{2\\pi}$, même formule. $h$ est continue : c'est une densité de $X+Y$. Alors $P\\left(\\frac{X+Y}2\\le u\\right)=\\int_{-\\infty}^{2u}\\frac{2\\,\\mathrm{d}z}{\\pi(4+z^2)}=\\int_{-\\infty}^u\\frac{\\mathrm{d}t}{\\pi(1+t^2)}$ (avec $z=2t$) : $\\frac{X+Y}2$ suit la loi de Cauchy.\n\n**3.** Montrons par récurrence que $S_n=X_1+\\dots+X_n$ a la densité $\\frac n{\\pi(n^2+x^2)}$. C'est vrai pour $n=1$ ; si c'est vrai au rang $n-1$, $S_{n-1}$ et $X_n$ sont indépendantes, de densités $\\frac{n-1}{\\pi\\left((n-1)^2+x^2\\right)}$ et $\\frac1{\\pi(1+x^2)}$, et le résultat admis donne la densité $\\frac n{\\pi(n^2+x^2)}$ pour $S_n$. Alors, avec $x=nt$, $P\\left(\\overline{X}_n\\le u\\right)=\\int_{-\\infty}^{nu}\\frac{n\\,\\mathrm{d}x}{\\pi(n^2+x^2)}=\\int_{-\\infty}^u\\frac{\\mathrm{d}t}{\\pi(1+t^2)}$ : $\\overline{X}_n$ suit la loi de Cauchy, et\n$$P\\left(\\left|\\overline{X}_n\\right|>1\\right)=1-\\frac2\\pi\\arctan1=\\frac12\\quad\\text{pour tout }n.$$\nLa moyenne empirique ne se concentre pas : elle a la même loi qu'une seule observation. Cela ne contredit pas la loi des grands nombres, qui suppose l'existence d'une espérance, et la loi de Cauchy n'en a pas."
+    },
+    {
+      "id": "proba-l3-densites-normales-ex1",
+      "carte": "proba-l3-densites-normales",
+      "difficulte": 1,
+      "titre": "Centrer et réduire une variable normale",
+      "enonce": "Soit $X$ une variable de loi $\\mathcal{N}(3,4)$. Exprimer $P(X\\le5)$ à l'aide de la fonction de répartition $\\Phi$ de $\\mathcal{N}(0,1)$.",
+      "duree_min": 5,
+      "indices": [
+        "Écrire $X=m+\\sigma Z$ avec $Z$ de loi $\\mathcal{N}(0,1)$, en identifiant correctement $\\sigma$.",
+        "Utiliser $\\Phi(-x)=1-\\Phi(x)$ si besoin."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X\\le5)$ ?",
+        "propositions": [
+          "$\\Phi(1)$",
+          "$\\Phi\\left(\\frac12\\right)$",
+          "$\\Phi(2)$",
+          "$1-\\Phi(1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Le second paramètre est la variance : $\\sigma^2=4$, $\\sigma=2$. La variable $Z=\\frac{X-3}2$ suit $\\mathcal{N}(0,1)$, et\n$$P(X\\le5)=P\\left(Z\\le\\frac{5-3}2\\right)=\\Phi(1)\\approx0{,}841.$$",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{N}(-1,9)$. Exprimer $P(X>2)$ à l'aide de la fonction de répartition $\\Phi$ de $\\mathcal{N}(0,1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X>2)$ ?",
+            "propositions": [
+              "$1-\\Phi(1)$",
+              "$\\Phi(1)$",
+              "$1-\\Phi\\left(\\frac13\\right)$",
+              "$1-\\Phi(3)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sigma^2=9$, $\\sigma=3$, et $Z=\\frac{X+1}3$ suit $\\mathcal{N}(0,1)$. Donc $P(X>2)=P\\left(Z>\\frac{2+1}3\\right)=1-\\Phi(1)\\approx0{,}159$.",
+          "indices": [
+            "Écrire $X=m+\\sigma Z$ avec $Z$ de loi $\\mathcal{N}(0,1)$, en identifiant correctement $m$ et $\\sigma$.",
+            "$P(Z>x)=1-\\Phi(x)$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{N}\\left(10,\\frac14\\right)$. Exprimer $P(X\\le9)$ à l'aide de la fonction de répartition $\\Phi$ de $\\mathcal{N}(0,1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X\\le9)$ ?",
+            "propositions": [
+              "$1-\\Phi(2)$",
+              "$\\Phi(2)$",
+              "$1-\\Phi\\left(\\frac12\\right)$",
+              "$1-\\Phi(4)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sigma^2=\\frac14$, $\\sigma=\\frac12$, et $Z=\\frac{X-10}{1/2}=2(X-10)$ suit $\\mathcal{N}(0,1)$. Donc $P(X\\le9)=P(Z\\le-2)=\\Phi(-2)=1-\\Phi(2)\\approx0{,}023$.",
+          "indices": [
+            "Écrire $X=m+\\sigma Z$ avec $Z$ de loi $\\mathcal{N}(0,1)$, en identifiant correctement $\\sigma$.",
+            "Utiliser $\\Phi(-x)=1-\\Phi(x)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-normales-ex2",
+      "carte": "proba-l3-densites-normales",
+      "difficulte": 2,
+      "titre": "Écart absolu moyen d'une loi normale centrée",
+      "enonce": "Soit $X$ une variable de loi $\\mathcal{N}(0,4)$. Calculer $E\\left(|X|\\right)$.",
+      "duree_min": 8,
+      "indices": [
+        "Par transfert, $E\\left(|X|\\right)=\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$ ; utiliser la parité de l'intégrande.",
+        "Une primitive de $xe^{-x^2/(2s)}$ est $-se^{-x^2/(2s)}$, pour $s>0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $E\\left(|X|\\right)$ ?",
+        "propositions": [
+          "$2\\sqrt{\\frac2\\pi}$",
+          "$0$",
+          "$\\sqrt{\\frac2\\pi}$",
+          "$4\\sqrt{\\frac2\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "La densité de $X$ est $f(x)=\\frac1{2\\sqrt{2\\pi}}e^{-x^2/8}$ ($\\sigma=2$). Par transfert et parité,\n$$E\\left(|X|\\right)=2\\int_0^{+\\infty}x\\frac1{2\\sqrt{2\\pi}}e^{-x^2/8}\\,\\mathrm{d}x=\\frac1{\\sqrt{2\\pi}}\\left[-4e^{-x^2/8}\\right]_0^{+\\infty}=\\frac4{\\sqrt{2\\pi}}=2\\sqrt{\\frac2\\pi}\\approx1{,}60.$$\nEn général, pour $\\mathcal{N}(0,\\sigma^2)$, $E\\left(|X|\\right)=\\sigma\\sqrt{\\frac2\\pi}$ : proportionnel à l'écart-type, et non à la variance.",
+      "variantes": [
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{N}(0,9)$. Calculer $E\\left(|X|\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(|X|\\right)$ ?",
+            "propositions": [
+              "$3\\sqrt{\\frac2\\pi}$",
+              "$0$",
+              "$9\\sqrt{\\frac2\\pi}$",
+              "$\\frac13\\sqrt{\\frac2\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sigma=3$ et $f(x)=\\frac1{3\\sqrt{2\\pi}}e^{-x^2/18}$. Par transfert et parité, $E\\left(|X|\\right)=\\frac2{3\\sqrt{2\\pi}}\\left[-9e^{-x^2/18}\\right]_0^{+\\infty}=\\frac6{\\sqrt{2\\pi}}=3\\sqrt{\\frac2\\pi}\\approx2{,}39$.",
+          "indices": [
+            "Par transfert, $E\\left(|X|\\right)=\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$ ; utiliser la parité de l'intégrande.",
+            "Une primitive de $xe^{-x^2/18}$ est $-9e^{-x^2/18}$."
+          ]
+        },
+        {
+          "enonce": "Soit $X$ une variable de loi $\\mathcal{N}\\left(0,\\frac14\\right)$. Calculer $E\\left(|X|\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $E\\left(|X|\\right)$ ?",
+            "propositions": [
+              "$\\frac1{\\sqrt{2\\pi}}$",
+              "$0$",
+              "$\\frac14\\sqrt{\\frac2\\pi}$",
+              "$\\sqrt{\\frac2\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\sigma=\\frac12$ et $f(x)=\\frac2{\\sqrt{2\\pi}}e^{-2x^2}$. Par transfert et parité, $E\\left(|X|\\right)=\\frac4{\\sqrt{2\\pi}}\\int_0^{+\\infty}xe^{-2x^2}\\,\\mathrm{d}x=\\frac4{\\sqrt{2\\pi}}\\cdot\\frac14=\\frac1{\\sqrt{2\\pi}}\\approx0{,}40$, soit $\\sigma\\sqrt{\\frac2\\pi}$ avec $\\sigma=\\frac12$.",
+          "indices": [
+            "Par transfert, $E\\left(|X|\\right)=\\int_{-\\infty}^{+\\infty}|x|f(x)\\,\\mathrm{d}x$ ; utiliser la parité de l'intégrande.",
+            "Une primitive de $xe^{-2x^2}$ est $-\\frac14e^{-2x^2}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-normales-ex3",
+      "carte": "proba-l3-densites-normales",
+      "difficulte": 3,
+      "titre": "Comparer deux variables normales indépendantes",
+      "enonce": "Les temps $X$ et $Y$ (en minutes) de deux coureurs sont indépendants, de lois $\\mathcal{N}(50,1)$ et $\\mathcal{N}(51,4)$. Exprimer à l'aide de $\\Phi$ la probabilité que le second coureur soit plus rapide que le premier, c'est-à-dire $P(Y<X)$.",
+      "duree_min": 12,
+      "indices": [
+        "Déterminer la loi de $X-Y$, en remarquant que $-Y$ suit une loi normale et est indépendante de $X$.",
+        "Centrer et réduire $X-Y$, puis utiliser $\\Phi(-x)=1-\\Phi(x)$ si besoin."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(Y<X)$ ?",
+        "propositions": [
+          "$1-\\Phi\\left(\\frac1{\\sqrt5}\\right)$",
+          "$1-\\Phi\\left(\\frac1{\\sqrt3}\\right)$",
+          "$1-\\Phi\\left(\\frac13\\right)$",
+          "$\\Phi\\left(\\frac1{\\sqrt5}\\right)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$-Y$ suit $\\mathcal{N}(-51,4)$ (transformation affine) et est indépendante de $X$ (car $\\{-Y\\in J\\}=\\{Y\\in-J\\}$). Par stabilité, $X-Y$ suit $\\mathcal{N}(50-51,1+4)=\\mathcal{N}(-1,5)$. Avec $Z=\\frac{X-Y+1}{\\sqrt5}$ de loi $\\mathcal{N}(0,1)$,\n$$P(Y<X)=P(X-Y>0)=P\\left(Z>\\frac1{\\sqrt5}\\right)=1-\\Phi\\left(\\frac1{\\sqrt5}\\right)\\approx0{,}33.$$\nCe sont les variances qui s'additionnent : l'écart-type de $X-Y$ est $\\sqrt5$, et non $1+2=3$ ni $\\sqrt{4-1}$.",
+      "variantes": [
+        {
+          "enonce": "Soient $X$ et $Y$ deux variables indépendantes de lois $\\mathcal{N}(5,9)$ et $\\mathcal{N}(3,16)$. Exprimer $P(X>Y)$ à l'aide de $\\Phi$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X>Y)$ ?",
+            "propositions": [
+              "$\\Phi\\left(\\frac25\\right)$",
+              "$1-\\Phi\\left(\\frac25\\right)$",
+              "$\\Phi\\left(\\frac27\\right)$",
+              "$\\Phi\\left(\\frac2{\\sqrt7}\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$-Y$ suit $\\mathcal{N}(-3,16)$ et est indépendante de $X$ ; par stabilité, $X-Y$ suit $\\mathcal{N}(2,25)$, d'écart-type $5$. Avec $Z=\\frac{X-Y-2}5$, $P(X>Y)=P\\left(Z>-\\frac25\\right)=1-\\Phi\\left(-\\frac25\\right)=\\Phi\\left(\\frac25\\right)\\approx0{,}66$.",
+          "indices": [
+            "Déterminer la loi de $X-Y$, en remarquant que $-Y$ suit une loi normale et est indépendante de $X$.",
+            "Centrer et réduire $X-Y$, puis utiliser $\\Phi(-x)=1-\\Phi(x)$."
+          ]
+        },
+        {
+          "enonce": "Soient $X$ et $Y$ deux variables indépendantes de lois $\\mathcal{N}(0,2)$ et $\\mathcal{N}(1,2)$. Exprimer $P(X>Y)$ à l'aide de $\\Phi$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X>Y)$ ?",
+            "propositions": [
+              "$1-\\Phi\\left(\\frac12\\right)$",
+              "$\\Phi\\left(\\frac12\\right)$",
+              "$1-\\Phi\\left(\\frac14\\right)$",
+              "$1-\\Phi\\left(\\frac1{2\\sqrt2}\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$-Y$ suit $\\mathcal{N}(-1,2)$ et est indépendante de $X$ ; par stabilité, $X-Y$ suit $\\mathcal{N}(-1,4)$, d'écart-type $2$. Avec $Z=\\frac{X-Y+1}2$, $P(X>Y)=P\\left(Z>\\frac12\\right)=1-\\Phi\\left(\\frac12\\right)\\approx0{,}31$.",
+          "indices": [
+            "Déterminer la loi de $X-Y$, en remarquant que $-Y$ suit une loi normale et est indépendante de $X$.",
+            "Centrer et réduire $X-Y$, puis utiliser $\\Phi(-x)=1-\\Phi(x)$ si besoin."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proba-l3-densites-normales-ex4",
+      "carte": "proba-l3-densites-normales",
+      "difficulte": 3,
+      "titre": "Carré d'une variable normale centrée réduite",
+      "enonce": "Soit $X$ une variable de loi $\\mathcal{N}(0,1)$.\n1. Exprimer la fonction de répartition de $X^2$ à l'aide de $\\Phi$, montrer que $X^2$ admet une densité et la calculer.\n2. Reconnaître une loi Gamma, et en déduire $E(X^4)$.\n3. Soit $Y$ une variable de loi $\\mathcal{N}(0,1)$ indépendante de $X$. En admettant que $X^2$ et $Y^2$ sont indépendantes, déterminer la loi de $X^2+Y^2$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour $y>0$, $P(X^2\\le y)=P(-\\sqrt y\\le X\\le\\sqrt y)=2\\Phi(\\sqrt y)-1$.",
+        "Pour la question 2, comparer la densité obtenue à celles des lois $\\gamma(a,\\lambda)$, sachant que $\\Gamma\\left(\\frac12\\right)=\\sqrt\\pi$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est une densité de $X^2$ sur $\\left]0,+\\infty\\right[$ (elle est nulle sur $\\left]-\\infty,0\\right]$) ?",
+        "propositions": [
+          "$y\\mapsto\\frac{e^{-y/2}}{\\sqrt{2\\pi y}}$",
+          "$y\\mapsto\\frac{e^{-y/2}}{\\sqrt{2\\pi}}$",
+          "$y\\mapsto\\frac{2e^{-y/2}}{\\sqrt{2\\pi y}}$",
+          "$y\\mapsto\\frac{e^{-y^2/2}}{\\sqrt{2\\pi}}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $y<0$, $P(X^2\\le y)=0$ ; pour $y\\ge0$, $P(X^2\\le y)=P(-\\sqrt y\\le X\\le\\sqrt y)=\\Phi(\\sqrt y)-\\Phi(-\\sqrt y)=2\\Phi(\\sqrt y)-1$. Cette fonction est continue (elle vaut $0$ en $0$) et de classe $\\mathcal{C}^1$ hors de $0$, de dérivée\n$$2\\Phi'(\\sqrt y)\\cdot\\frac1{2\\sqrt y}=\\frac1{\\sqrt y}\\cdot\\frac{e^{-y/2}}{\\sqrt{2\\pi}}=\\frac{e^{-y/2}}{\\sqrt{2\\pi y}}\\quad(y>0).$$\nDonc $X^2$ a la densité $\\frac{e^{-y/2}}{\\sqrt{2\\pi y}}$ sur $\\left]0,+\\infty\\right[$, nulle ailleurs ; elle n'est pas bornée en $0^+$.\n\n**2.** La densité de $\\gamma\\left(\\frac12,\\frac12\\right)$ est $\\frac{(1/2)^{1/2}}{\\Gamma(1/2)}y^{-1/2}e^{-y/2}=\\frac{e^{-y/2}}{\\sqrt{2\\pi y}}$ : $X^2$ suit $\\gamma\\left(\\frac12,\\frac12\\right)$ (loi du khi-deux à un degré de liberté). Avec $E(T^2)=\\frac{a(a+1)}{\\lambda^2}$ pour $T$ de loi $\\gamma(a,\\lambda)$, $E(X^4)=E\\left((X^2)^2\\right)=\\frac{\\frac12\\cdot\\frac32}{1/4}=3$.\n\n**3.** Par stabilité des lois Gamma de même intensité, $X^2+Y^2$ suit $\\gamma\\left(1,\\frac12\\right)=\\mathcal{E}\\left(\\frac12\\right)$ : $P(X^2+Y^2>t)=e^{-t/2}$ pour $t\\ge0$."
+    },
+    {
+      "id": "proba-l3-densites-normales-ex5",
+      "carte": "proba-l3-densites-normales",
+      "difficulte": 4,
+      "titre": "Coordonnées polaires d'un couple gaussien",
+      "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{N}(0,1)$.\n1. Montrer que, pour $r>0$, $P(X^2+Y^2\\le r^2)=1-e^{-r^2/2}$. En déduire la loi de $X^2+Y^2$.\n2. Pour $0\\le\\alpha<\\beta\\le2\\pi$ et $r>0$, calculer la probabilité que $(X,Y)$ appartienne au secteur $\\{(\\rho\\cos\\theta,\\rho\\sin\\theta)\\ :\\ 0\\le\\rho\\le r,\\ \\alpha\\le\\theta\\le\\beta\\}$, et l'écrire comme un produit.\n3. Soit $U$ une variable à valeurs dans $\\left]0,1\\right]$, de loi uniforme sur $[0,1]$. Montrer que $\\sqrt{-2\\ln U}$ a la même loi que $\\sqrt{X^2+Y^2}$.\n4. Calculer $P(X^2+Y^2>4)$.",
+      "duree_min": 25,
+      "indices": [
+        "Par indépendance, $(X,Y)$ a pour densité $\\frac1{2\\pi}e^{-(x^2+y^2)/2}$ ; passer en coordonnées polaires sur le disque et sur le secteur.",
+        "Pour la question 3, $\\sqrt{-2\\ln U}\\le r$ équivaut à $U\\ge e^{-r^2/2}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $P(X^2+Y^2>4)$ ?",
+        "propositions": [
+          "$e^{-2}$",
+          "$1-e^{-2}$",
+          "$e^{-4}$",
+          "$e^{-1}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par indépendance, $(X,Y)$ a la densité $\\frac1{2\\pi}e^{-(x^2+y^2)/2}$. En coordonnées polaires,\n$$P(X^2+Y^2\\le r^2)=\\frac1{2\\pi}\\int_0^{2\\pi}\\left(\\int_0^re^{-\\rho^2/2}\\rho\\,\\mathrm{d}\\rho\\right)\\mathrm{d}\\theta=\\left[-e^{-\\rho^2/2}\\right]_0^r=1-e^{-r^2/2}.$$\nDonc, pour $t\\ge0$, $P(X^2+Y^2\\le t)=1-e^{-t/2}$ : $X^2+Y^2$ suit la loi $\\mathcal{E}\\left(\\frac12\\right)$.\n\n**2.** De même, la probabilité du secteur vaut $\\frac1{2\\pi}\\int_\\alpha^\\beta\\left(\\int_0^re^{-\\rho^2/2}\\rho\\,\\mathrm{d}\\rho\\right)\\mathrm{d}\\theta=\\frac{\\beta-\\alpha}{2\\pi}\\left(1-e^{-r^2/2}\\right)$ : c'est le produit de la probabilité qu'un angle uniforme sur $[0,2\\pi]$ tombe dans $[\\alpha,\\beta]$ par $P\\left(\\sqrt{X^2+Y^2}\\le r\\right)$. Le rayon et l'angle polaires de $(X,Y)$ se comportent comme deux variables indépendantes, l'angle étant uniforme.\n\n**3.** Pour $r>0$, $\\sqrt{-2\\ln U}\\le r$ équivaut à $\\ln U\\ge-\\frac{r^2}2$, c'est-à-dire $U\\ge e^{-r^2/2}$ ; donc $P\\left(\\sqrt{-2\\ln U}\\le r\\right)=1-e^{-r^2/2}=P\\left(\\sqrt{X^2+Y^2}\\le r\\right)$, et les deux variables, positives, ont la même fonction de répartition. C'est le principe de la méthode de Box-Muller, qui fabrique deux variables normales indépendantes à partir de deux variables uniformes : $\\sqrt{-2\\ln U}\\cos(2\\pi V)$ et $\\sqrt{-2\\ln U}\\sin(2\\pi V)$.\n\n**4.** $P(X^2+Y^2>4)=e^{-4/2}=e^{-2}\\approx0{,}135$.",
+      "variantes": [
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{N}(0,1)$.\n1. Montrer que, pour $r>0$, $P(X^2+Y^2\\le r^2)=1-e^{-r^2/2}$. En déduire la loi de $X^2+Y^2$.\n2. Pour $0\\le\\alpha<\\beta\\le2\\pi$ et $r>0$, calculer la probabilité que $(X,Y)$ appartienne au secteur $\\{(\\rho\\cos\\theta,\\rho\\sin\\theta)\\ :\\ 0\\le\\rho\\le r,\\ \\alpha\\le\\theta\\le\\beta\\}$, et l'écrire comme un produit.\n3. Soit $U$ une variable à valeurs dans $\\left]0,1\\right]$, de loi uniforme sur $[0,1]$. Montrer que $\\sqrt{-2\\ln U}$ a la même loi que $\\sqrt{X^2+Y^2}$.\n4. Calculer $P(X^2+Y^2>2)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X^2+Y^2>2)$ ?",
+            "propositions": [
+              "$e^{-1}$",
+              "$1-e^{-1}$",
+              "$e^{-2}$",
+              "$e^{-1/2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** En coordonnées polaires, $P(X^2+Y^2\\le r^2)=\\frac1{2\\pi}\\int_0^{2\\pi}\\left(\\int_0^re^{-\\rho^2/2}\\rho\\,\\mathrm{d}\\rho\\right)\\mathrm{d}\\theta=1-e^{-r^2/2}$ : $X^2+Y^2$ suit $\\mathcal{E}\\left(\\frac12\\right)$.\n\n**2.** La probabilité du secteur vaut $\\frac{\\beta-\\alpha}{2\\pi}\\left(1-e^{-r^2/2}\\right)$ : produit de la probabilité qu'un angle uniforme sur $[0,2\\pi]$ tombe dans $[\\alpha,\\beta]$ par $P\\left(\\sqrt{X^2+Y^2}\\le r\\right)$.\n\n**3.** $\\sqrt{-2\\ln U}\\le r$ équivaut à $U\\ge e^{-r^2/2}$, de probabilité $1-e^{-r^2/2}$ : même fonction de répartition que $\\sqrt{X^2+Y^2}$.\n\n**4.** $P(X^2+Y^2>2)=e^{-2/2}=e^{-1}\\approx0{,}368$.",
+          "indices": [
+            "Par indépendance, $(X,Y)$ a pour densité $\\frac1{2\\pi}e^{-(x^2+y^2)/2}$ ; passer en coordonnées polaires sur le disque et sur le secteur.",
+            "Pour la question 3, $\\sqrt{-2\\ln U}\\le r$ équivaut à $U\\ge e^{-r^2/2}$ ; pour la question 4, utiliser la loi de $X^2+Y^2$."
+          ]
+        },
+        {
+          "enonce": "Soient $X$ et $Y$ indépendantes de loi $\\mathcal{N}(0,1)$.\n1. Montrer que, pour $r>0$, $P(X^2+Y^2\\le r^2)=1-e^{-r^2/2}$. En déduire la loi de $X^2+Y^2$.\n2. Pour $0\\le\\alpha<\\beta\\le2\\pi$ et $r>0$, calculer la probabilité que $(X,Y)$ appartienne au secteur $\\{(\\rho\\cos\\theta,\\rho\\sin\\theta)\\ :\\ 0\\le\\rho\\le r,\\ \\alpha\\le\\theta\\le\\beta\\}$, et l'écrire comme un produit.\n3. Soit $U$ une variable à valeurs dans $\\left]0,1\\right]$, de loi uniforme sur $[0,1]$. Montrer que $\\sqrt{-2\\ln U}$ a la même loi que $\\sqrt{X^2+Y^2}$.\n4. Calculer $P(X^2+Y^2\\le6)$.",
+          "reponse_finale": {
+            "question": "Que vaut $P(X^2+Y^2\\le6)$ ?",
+            "propositions": [
+              "$1-e^{-3}$",
+              "$e^{-3}$",
+              "$1-e^{-6}$",
+              "$1-e^{-3/2}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** En coordonnées polaires, $P(X^2+Y^2\\le r^2)=\\frac1{2\\pi}\\int_0^{2\\pi}\\left(\\int_0^re^{-\\rho^2/2}\\rho\\,\\mathrm{d}\\rho\\right)\\mathrm{d}\\theta=1-e^{-r^2/2}$ : $X^2+Y^2$ suit $\\mathcal{E}\\left(\\frac12\\right)$.\n\n**2.** La probabilité du secteur vaut $\\frac{\\beta-\\alpha}{2\\pi}\\left(1-e^{-r^2/2}\\right)$ : produit de la probabilité qu'un angle uniforme sur $[0,2\\pi]$ tombe dans $[\\alpha,\\beta]$ par $P\\left(\\sqrt{X^2+Y^2}\\le r\\right)$.\n\n**3.** $\\sqrt{-2\\ln U}\\le r$ équivaut à $U\\ge e^{-r^2/2}$, de probabilité $1-e^{-r^2/2}$ : même fonction de répartition que $\\sqrt{X^2+Y^2}$.\n\n**4.** $P(X^2+Y^2\\le6)=1-e^{-6/2}=1-e^{-3}\\approx0{,}950$.",
+          "indices": [
+            "Par indépendance, $(X,Y)$ a pour densité $\\frac1{2\\pi}e^{-(x^2+y^2)/2}$ ; passer en coordonnées polaires sur le disque et sur le secteur.",
+            "Pour la question 3, $\\sqrt{-2\\ln U}\\le r$ équivaut à $U\\ge e^{-r^2/2}$ ; pour la question 4, utiliser la loi de $X^2+Y^2$."
+          ]
+        }
+      ]
+    }
+  ]
+}

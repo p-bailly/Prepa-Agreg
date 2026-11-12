@@ -1,0 +1,468 @@
+{
+  "cartes": [
+    {
+      "id": "proba-l3-limites-convergences",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Convergences presque sûre, en probabilité, en loi",
+      "recto": "Définir les convergences presque sûre, en probabilité et en loi d'une suite de variables aléatoires réelles, et énoncer les implications entre elles.",
+      "cours": "Une suite de variables aléatoires peut converger de plusieurs façons, de la plus forte à la plus faible. La convergence **presque sûre** demande que, pour presque toute issue $\\omega$, la suite de réels $\\left(X_n(\\omega)\\right)$ converge vers $X(\\omega)$ : c'est une convergence simple, à un événement de probabilité nulle près. La convergence **en probabilité** demande seulement que, pour chaque précision $\\varepsilon>0$, la probabilité d'un écart au moins égal à $\\varepsilon$ tende vers $0$ ; c'est la conclusion de la loi faible des grands nombres. La convergence **en loi** ne compare plus les variables, mais leurs fonctions de répartition : elle ne dépend que des lois, et les variables peuvent même être définies sur des espaces différents ; c'est la conclusion du théorème central limite.\n\nPourquoi seulement aux points de continuité de $F_X$ ? Parce que la variable constante $\\frac1n$ doit converger vers la variable nulle, alors que sa fonction de répartition vaut $0$ en $0$ pour tout $n$, quand celle de la limite y vaut $1$ : l'endroit exact d'un saut peut se déplacer à la limite.\n\nLes implications vont dans un seul sens : la convergence presque sûre entraîne la convergence en probabilité, qui entraîne la convergence en loi. Les réciproques sont fausses, avec une exception utile : une convergence en loi vers une **constante** est une convergence en probabilité.\n\n**Méthode.** Pour une convergence en probabilité, majorer $P\\left(|X_n-X|\\geq\\varepsilon\\right)$, souvent par l'inégalité de Markov ou de Bienaymé-Tchebychev. Pour une convergence presque sûre, décrire l'événement $\\{X_n\\to X\\}$ par des réunions et des intersections dénombrables, ou utiliser le lemme de Borel-Cantelli. Pour une convergence en loi, calculer $F_{X_n}(t)$ et passer à la limite aux points de continuité de la limite ; pour des variables à valeurs dans $\\mathbb{N}$, il suffit que $P(X_n=k)\\to P(X=k)$ pour tout entier $k$, car $F_{X_n}(t)$ est alors une somme finie.\n\n**Pièges.** La convergence en loi ne dit rien du lien entre $X_n$ et $X$ : si $X$ vaut $\\pm1$ avec probabilité $\\frac12$, la suite constante égale à $-X$ converge en loi vers $X$, alors que $|X_n-X|=2$. La convergence en probabilité n'entraîne pas la convergence des espérances. Enfin, presque sûre ne veut pas dire « en tout point » : un événement de probabilité nulle peut être non vide.",
+      "hypotheses": [
+        "Pour les convergences presque sûre et en probabilité : les $X_n$ et $X$ sont définies sur un même espace probabilisé.",
+        "Pour la convergence en loi : $F_{X_n}(t)\\to F_X(t)$ est demandé aux réels $t$ où $F_X$ est continue.",
+        "Pour la convergence en probabilité : $P\\left(|X_n-X|\\geq\\varepsilon\\right)\\to0$ pour tout réel $\\varepsilon>0$.",
+        "Pour la réciproque partielle : la limite en loi est une variable constante."
+      ],
+      "hypotheses_pieges": [
+        "Pour la convergence en loi : $F_{X_n}(t)\\to F_X(t)$ est demandé en tout réel $t$ (à la place de : aux réels où $F_X$ est continue).",
+        "Pour la convergence en probabilité : $P\\left(|X_n-X|\\geq\\varepsilon\\right)\\to0$ pour un réel $\\varepsilon>0$ donné (à la place de : pour tout réel $\\varepsilon>0$).",
+        "Pour la réciproque partielle : la limite en loi est une variable bornée (à la place de : une variable constante)."
+      ],
+      "enonce": "Soient $(\\Omega,\\mathcal{A},P)$ un espace probabilisé, $(X_n)_{n\\geq1}$ une suite de variables aléatoires réelles et $X$ une variable aléatoire réelle, définies sur $\\Omega$ ; on note $F_Y:t\\mapsto P(Y\\leq t)$ la fonction de répartition d'une variable $Y$.\n- $(X_n)$ converge **presque sûrement** vers $X$ si l'événement $\\left\\{\\omega\\in\\Omega : X_n(\\omega)\\to X(\\omega)\\right\\}$ est de probabilité $1$.\n- $(X_n)$ converge **en probabilité** vers $X$ si, pour tout réel $\\varepsilon>0$, $P\\left(|X_n-X|\\geq\\varepsilon\\right)\\to0$ quand $n\\to+\\infty$.\n- $(X_n)$ converge **en loi** vers $X$ si $F_{X_n}(t)\\to F_X(t)$ en tout réel $t$ où $F_X$ est continue. Cette définition ne fait intervenir que les lois : les $X_n$ et $X$ peuvent être définies sur des espaces différents.\n\n**Théorème.**\n- La convergence presque sûre entraîne la convergence en probabilité, qui entraîne la convergence en loi.\n- Les réciproques sont fausses en général.\n- Si $(X_n)$ converge en loi vers une variable constante $c$, alors $(X_n)$ converge en probabilité vers $c$.",
+      "enonce_trous": "Soient $(X_n)$ et $X$ des variables aléatoires réelles sur un même espace probabilisé. Si $(X_n)$ converge presque sûrement vers $X$, alors elle converge vers $X$ {{1}}, et donc en loi, c'est-à-dire que $F_{X_n}(t)\\to F_X(t)$ {{2}}. Inversement, la convergence en loi vers $X$ entraîne la convergence en probabilité vers $X$ lorsque {{3}}.",
+      "trous": [
+        {
+          "reponse": "en probabilité",
+          "leurres": [
+            "uniformément sur $\\Omega$",
+            "en tout point $\\omega$ de $\\Omega$",
+            "en moyenne, c'est-à-dire $E\\left(|X_n-X|\\right)\\to0$"
+          ]
+        },
+        {
+          "reponse": "en tout réel $t$ où $F_X$ est continue",
+          "leurres": [
+            "en tout réel $t$",
+            "uniformément sur $\\mathbb{R}$",
+            "en tout réel $t$ où $F_X$ est discontinue"
+          ]
+        },
+        {
+          "reponse": "$X$ est une variable constante",
+          "leurres": [
+            "$X$ est une variable bornée",
+            "$X$ ne prend que deux valeurs",
+            "$X$ admet une espérance"
+          ]
+        }
+      ],
+      "demo": "**Préliminaire.** On admet que les sommes, différences et valeurs absolues de variables aléatoires réelles sont des variables aléatoires. L'ensemble $C=\\{X_n\\to X\\}$ est alors un événement : $X_n(\\omega)\\to X(\\omega)$ signifie que pour tout entier $p\\geq1$, il existe $N$ tel que $|X_n(\\omega)-X(\\omega)|<\\frac1p$ pour tout $n\\geq N$, donc\n$$C=\\bigcap_{p\\geq1}\\bigcup_{N\\geq1}\\bigcap_{n\\geq N}\\left\\{|X_n-X|<\\tfrac1p\\right\\},$$\nobtenu par réunions et intersections dénombrables d'événements.\n\n**De presque sûre à en probabilité.** Soient $\\varepsilon>0$ et $B_N=\\bigcup_{n\\geq N}\\left\\{|X_n-X|\\geq\\varepsilon\\right\\}$. La suite $(B_N)$ est décroissante ; si $\\omega\\in C$, alors $|X_n(\\omega)-X(\\omega)|<\\varepsilon$ à partir d'un certain rang, donc $\\omega\\notin B_N$ pour $N$ grand : $\\bigcap_NB_N\\subset\\overline{C}$, qui est de probabilité nulle. Par continuité décroissante, $P(B_N)\\to P\\left(\\bigcap_NB_N\\right)=0$, et $P\\left(|X_N-X|\\geq\\varepsilon\\right)\\leq P(B_N)$.\n\n**D'en probabilité à en loi.** Soient $t$ un point de continuité de $F_X$ et $\\varepsilon>0$. Si $X_n\\leq t$ et $|X_n-X|<\\varepsilon$, alors $X<t+\\varepsilon$ ; donc $\\{X_n\\leq t\\}\\subset\\{X\\leq t+\\varepsilon\\}\\cup\\left\\{|X_n-X|\\geq\\varepsilon\\right\\}$ et\n$$F_{X_n}(t)\\leq F_X(t+\\varepsilon)+P\\left(|X_n-X|\\geq\\varepsilon\\right).$$\nDe même, si $X\\leq t-\\varepsilon$ et $|X_n-X|<\\varepsilon$, alors $X_n<t$, d'où $F_X(t-\\varepsilon)\\leq F_{X_n}(t)+P\\left(|X_n-X|\\geq\\varepsilon\\right)$. En faisant tendre $n$ vers $+\\infty$ :\n$$F_X(t-\\varepsilon)\\leq\\liminf_{n\\to+\\infty}F_{X_n}(t)\\leq\\limsup_{n\\to+\\infty}F_{X_n}(t)\\leq F_X(t+\\varepsilon).$$\nComme $F_X$ est continue en $t$, on fait tendre $\\varepsilon$ vers $0$ : $F_{X_n}(t)\\to F_X(t)$.\n\n**Limite constante.** La fonction de répartition de la constante $c$ vaut $0$ sur $\\left]-\\infty,c\\right[$ et $1$ sur $\\left[c,+\\infty\\right[$ : elle est continue en tout point sauf $c$. Pour $\\varepsilon>0$, $\\left\\{|X_n-c|\\geq\\varepsilon\\right\\}\\subset\\{X_n\\leq c-\\varepsilon\\}\\cup\\left\\{X_n>c+\\frac\\varepsilon2\\right\\}$, donc\n$$P\\left(|X_n-c|\\geq\\varepsilon\\right)\\leq F_{X_n}(c-\\varepsilon)+1-F_{X_n}\\left(c+\\tfrac\\varepsilon2\\right),$$\nqui tend vers $0+1-1=0$, car $c-\\varepsilon$ et $c+\\frac\\varepsilon2$ sont des points de continuité.\n\n**Réciproques.** Elles sont réfutées par les contre-exemples ci-dessous.",
+      "exemple": "- Si $X_n$ suit la loi uniforme sur $\\left\\{\\frac1n,\\frac2n,\\dots,\\frac nn\\right\\}$, alors $F_{X_n}(t)=\\frac{\\lfloor nt\\rfloor}n$ pour $t\\in[0,1]$, $F_{X_n}(t)=0$ pour $t<0$ et $F_{X_n}(t)=1$ pour $t>1$. Comme $nt-1<\\lfloor nt\\rfloor\\leq nt$, $F_{X_n}(t)\\to t$ sur $[0,1]$ : $(X_n)$ converge en loi vers une variable dont la fonction de répartition vaut $0$ sur $\\left]-\\infty,0\\right[$, $t$ sur $[0,1]$ et $1$ sur $\\left]1,+\\infty\\right[$ (la loi uniforme sur $[0,1]$), qui n'est pas discrète.\n- La variable constante $X_n=\\frac1n$ converge en tout point, donc presque sûrement, en probabilité et en loi vers $0$, bien que $F_{X_n}(0)=0$ ne tende pas vers $1$, valeur en $0$ de la fonction de répartition de la variable nulle : $0$ n'est pas un point de continuité de celle-ci.",
+      "contre_exemple": "- **En loi sans être en probabilité.** $X$ vaut $1$ ou $-1$ avec probabilité $\\frac12$, et $X_n=-X$ pour tout $n$ : $X_n$ a la même loi que $X$, donc $F_{X_n}=F_X$ et $(X_n)$ converge en loi vers $X$ ; mais $|X_n-X|=2$, donc $P\\left(|X_n-X|\\geq1\\right)=1$. La limite $X$ est pourtant bornée.\n- **En probabilité sans être presque sûre.** Soient $(X_n)_{n\\geq1}$ des variables mutuellement indépendantes (on admet qu'il en existe), $X_n$ de loi de Bernoulli de paramètre $\\frac1n$. Alors $P\\left(|X_n|\\geq\\varepsilon\\right)\\leq\\frac1n\\to0$. Mais pour $2\\leq n\\leq N$, $P(X_n=\\dots=X_N=0)=\\prod_{k=n}^N\\left(1-\\frac1k\\right)=\\frac{n-1}N$ ; par continuité décroissante, l'événement « $X_k=0$ pour tout $k\\geq n$ » est de probabilité nulle. Or une suite à valeurs dans $\\{0,1\\}$ qui tend vers $0$ est nulle à partir d'un certain rang : $\\{X_n\\to0\\}$ est contenu dans la réunion de ces événements, qui est de probabilité nulle.\n- **Pourquoi les points de continuité.** Avec $X_n=\\frac1n$ et $X=0$ : $F_{X_n}(0)=0$ ne tend pas vers $F_X(0)=1$, alors que $X_n\\to X$ en tout point.\n- **Un seul $\\varepsilon$ ne suffit pas.** $X_n=\\frac12$ et $X=0$ : $P\\left(|X_n-X|\\geq1\\right)=0$, mais $F_{X_n}\\left(\\frac14\\right)=0$ ne tend pas vers $F_X\\left(\\frac14\\right)=1$.",
+      "affirmations": [
+        {
+          "texte": "Si $(X_n)$ converge en loi vers $X$ et vers $Y$, alors $X=Y$ presque sûrement.",
+          "vrai": false,
+          "contre_exemple": "$X$ vaut $\\pm1$ avec probabilité $\\frac12$, $Y=-X$ et $X_n=X$ : $X$ et $Y$ ont même loi, donc $(X_n)$ converge en loi vers l'une et l'autre, mais $X\\neq Y$ en tout point. Seule la loi de la limite est déterminée."
+        },
+        {
+          "texte": "Si $(X_n)$ converge en probabilité vers $X$ et vers $Y$, alors $P(X=Y)=1$.",
+          "vrai": true,
+          "justification": "$\\left\\{|X-Y|\\geq2\\varepsilon\\right\\}\\subset\\left\\{|X_n-X|\\geq\\varepsilon\\right\\}\\cup\\left\\{|X_n-Y|\\geq\\varepsilon\\right\\}$, donc $P\\left(|X-Y|\\geq2\\varepsilon\\right)=0$ pour tout $\\varepsilon>0$ ; on conclut avec la réunion dénombrable des $\\left\\{|X-Y|\\geq\\frac2p\\right\\}$."
+        },
+        {
+          "texte": "Si $(X_n)$ converge en probabilité vers $0$ et si les $X_n$ admettent une espérance, alors $E(X_n)\\to0$.",
+          "vrai": false,
+          "contre_exemple": "$X_n$ vaut $n$ avec probabilité $\\frac1n$ et $0$ sinon : $P\\left(|X_n|\\geq\\varepsilon\\right)\\leq\\frac1n\\to0$, mais $E(X_n)=1$ pour tout $n$."
+        },
+        {
+          "texte": "Si $(X_n)$ converge en loi vers une variable constante $c$, alors elle converge en probabilité vers $c$.",
+          "vrai": true,
+          "justification": "$P\\left(|X_n-c|\\geq\\varepsilon\\right)\\leq F_{X_n}(c-\\varepsilon)+1-F_{X_n}\\left(c+\\frac\\varepsilon2\\right)\\to0$, car la fonction de répartition de $c$ est continue hors de $c$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-espace",
+        "proba-l2-discretes-repartition",
+        "proba-l3-densites-densite"
+      ]
+    },
+    {
+      "id": "proba-l3-limites-loi-faible",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Loi faible des grands nombres",
+      "recto": "Énoncer la loi faible des grands nombres pour une suite de variables de même loi admettant un moment d'ordre 2, avec l'inégalité qui la démontre.",
+      "cours": "La loi faible des grands nombres dit que la moyenne empirique $M_n=\\frac{X_1+\\dots+X_n}n$ d'observations répétées se concentre autour de l'espérance commune $\\mu$ : pour toute précision $\\varepsilon>0$, un écart au moins égal à $\\varepsilon$ devient improbable. En Terminale, elle est établie pour un échantillon d'une variable sur un univers fini ; on la reformule ici comme une **convergence en probabilité** de la suite $(M_n)$, définie sur un même espace probabilisé, pour des variables discrètes ou à densité.\n\nLa démonstration tient en deux lignes : $E(M_n)=\\mu$ par linéarité, et $V(M_n)=\\frac{\\sigma^2}n$ dès que les covariances $\\mathrm{Cov}(X_j,X_k)$, $j\\neq k$, sont nulles ; l'inégalité de Bienaymé-Tchebychev conclut. L'indépendance mutuelle n'est donc pas nécessaire : des variables **deux à deux non corrélées** suffisent, en particulier des variables indépendantes deux à deux. La même preuve s'applique à des lois différentes, pourvu que les espérances soient égales et les variances bornées.\n\n**Méthode.** Pour montrer qu'une suite $(Y_n)$ converge en probabilité vers une constante $\\ell$, calculer $E(Y_n)$ et $V(Y_n)$ : si $E(Y_n)\\to\\ell$ et $V(Y_n)\\to0$, l'inégalité de Bienaymé-Tchebychev appliquée à $Y_n$ conclut, car $|Y_n-\\ell|\\leq|Y_n-E(Y_n)|+|E(Y_n)-\\ell|$. Pour dimensionner un échantillon, on cherche $n$ tel que $\\frac{\\sigma^2}{n\\varepsilon^2}$ soit inférieur au risque fixé.\n\n**Pièges.** Sans hypothèse sur les covariances, rien ne va : des variables toutes égales à $X_1$ ont même loi, mais $M_n=X_1$. Avec des lois différentes de même espérance, des variances qui explosent peuvent empêcher la convergence. Enfin, la loi faible ne dit pas que $M_n(\\omega)\\to\\mu$ pour presque toute issue $\\omega$ : c'est l'objet de la loi forte.",
+      "hypotheses": [
+        "Les $X_k$ ont même loi et admettent un moment d'ordre $2$.",
+        "Les $X_k$ sont deux à deux non corrélées : $\\mathrm{Cov}(X_j,X_k)=0$ pour $j\\neq k$.",
+        "$\\varepsilon$ est un réel strictement positif."
+      ],
+      "hypotheses_pieges": [
+        "Les $X_k$ ont même espérance et admettent un moment d'ordre $2$ (à la place de : ont même loi et admettent un moment d'ordre $2$).",
+        "Les covariances $\\mathrm{Cov}(X_j,X_k)$, $j\\neq k$, sont positives (à la place de : nulles).",
+        "$\\varepsilon$ est un réel positif ou nul (à la place de : strictement positif)."
+      ],
+      "enonce": "Soit $(X_k)_{k\\geq1}$ une suite de variables aléatoires réelles définies sur un même espace probabilisé, de même loi, admettant un moment d'ordre $2$, et **deux à deux non corrélées** : $\\mathrm{Cov}(X_j,X_k)=0$ pour $j\\neq k$ (c'est le cas si elles sont indépendantes deux à deux). On note $\\mu$ leur espérance, $\\sigma^2$ leur variance et $M_n=\\frac{X_1+\\dots+X_n}n$. Alors, pour tout entier $n\\geq1$ et tout réel $\\varepsilon>0$,\n$$P\\left(|M_n-\\mu|\\geq\\varepsilon\\right)\\leq\\frac{\\sigma^2}{n\\varepsilon^2},$$\net la suite $(M_n)$ converge en probabilité vers $\\mu$ (donc aussi en loi).",
+      "enonce_trous": "Soient $(X_k)_{k\\geq1}$ une suite de variables {{1}}, de même loi, admettant un moment d'ordre $2$, d'espérance $\\mu$ et de variance $\\sigma^2$, et $M_n=\\frac{X_1+\\dots+X_n}n$. Pour tout réel $\\varepsilon>0$, $P\\left(|M_n-\\mu|\\geq\\varepsilon\\right)$ est majorée par {{2}} ; en particulier, $(M_n)$ converge en probabilité vers {{3}}.",
+      "trous": [
+        {
+          "reponse": "deux à deux non corrélées",
+          "leurres": [
+            "toutes égales à $X_1$",
+            "de covariances $\\mathrm{Cov}(X_j,X_k)$ strictement positives pour $j\\neq k$",
+            "de covariances $\\mathrm{Cov}(X_j,X_k)$ égales à $\\frac{\\sigma^2}2$ pour $j\\neq k$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{\\sigma^2}{n\\varepsilon^2}$",
+          "leurres": [
+            "$\\frac{\\sigma^2}{n\\varepsilon}$",
+            "$\\frac{\\sigma}{n\\varepsilon^2}$",
+            "$\\frac{\\sigma^2}{n^2\\varepsilon^2}$"
+          ]
+        },
+        {
+          "reponse": "$\\mu$",
+          "leurres": [
+            "$0$",
+            "$X_1$",
+            "$\\mu+\\sigma$"
+          ]
+        }
+      ],
+      "demo": "On admet, pour les variables considérées (discrètes ou à densité), les propriétés de l'espérance et de la variance établies dans le cas discret : linéarité de l'espérance, $V(aY)=a^2V(Y)$, variance d'une somme par les covariances, inégalité de Bienaymé-Tchebychev.\n\nPar linéarité, $E(M_n)=\\frac1n\\sum_{k=1}^nE(X_k)=\\mu$. Les covariances croisées étant nulles,\n$$V(X_1+\\dots+X_n)=\\sum_{k=1}^nV(X_k)+2\\sum_{1\\leq j<k\\leq n}\\mathrm{Cov}(X_j,X_k)=n\\sigma^2,$$\ndonc $V(M_n)=\\frac{n\\sigma^2}{n^2}=\\frac{\\sigma^2}n$. L'inégalité de Bienaymé-Tchebychev, appliquée à $M_n$, qui admet un moment d'ordre $2$, donne pour $\\varepsilon>0$ :\n$$P\\left(|M_n-\\mu|\\geq\\varepsilon\\right)\\leq\\frac{V(M_n)}{\\varepsilon^2}=\\frac{\\sigma^2}{n\\varepsilon^2}.$$\nCe majorant tend vers $0$ quand $n\\to+\\infty$ : c'est la convergence en probabilité de $(M_n)$ vers la variable constante $\\mu$, qui entraîne la convergence en loi.\n\nEnfin, deux variables indépendantes admettant un moment d'ordre $2$ vérifient $E(X_jX_k)=E(X_j)E(X_k)$, donc $\\mathrm{Cov}(X_j,X_k)=0$ : des variables indépendantes deux à deux sont deux à deux non corrélées.",
+      "exemple": "On répète une épreuve dont le succès a une probabilité $p$ inconnue, et $F_n$ est la fréquence des succès lors des $n$ premières épreuves, supposées indépendantes : c'est la moyenne de $n$ variables de Bernoulli de paramètre $p$, de variance $p(1-p)\\leq\\frac14$. Pour $\\varepsilon=\\frac1{20}$,\n$$P\\left(|F_n-p|\\geq\\tfrac1{20}\\right)\\leq\\frac{p(1-p)}{n\\varepsilon^2}\\leq\\frac{400}{4n}=\\frac{100}n,$$\nqui est inférieur à $\\frac1{20}$ dès que $n\\geq2\\,000$, quelle que soit la valeur de $p$.",
+      "contre_exemple": "- **Sans hypothèse sur les covariances.** $X$ vaut $\\pm1$ avec probabilité $\\frac12$ et $X_k=X$ pour tout $k$ : les $X_k$ ont même loi, $\\mu=0$, mais $M_n=X$ et $P\\left(|M_n|\\geq1\\right)=1$ pour tout $n$. Ici $\\mathrm{Cov}(X_j,X_k)=1>0$.\n- **Même espérance, lois différentes.** Soient des variables $X_k$ indépendantes, $X_k$ valant $3^k$ ou $-3^k$ avec probabilité $\\frac12$ : elles sont centrées, deux à deux non corrélées, admettent un moment d'ordre $2$, mais $|X_1+\\dots+X_n|\\geq3^n-\\sum_{k=1}^{n-1}3^k=\\frac{3^n+3}2$, donc $|M_n|\\geq\\frac{3^n+3}{2n}\\geq1$ et $P\\left(|M_n|\\geq1\\right)=1$ pour tout $n$.\n- **Un écart nul.** Pour $\\varepsilon=0$, $P\\left(|M_n-\\mu|\\geq0\\right)=1$ pour tout $n$.",
+      "affirmations": [
+        {
+          "texte": "Si les $X_k$ sont indépendantes deux à deux, de même loi, et admettent un moment d'ordre $2$, alors $(M_n)$ converge en probabilité vers $\\mu$.",
+          "vrai": true,
+          "justification": "Des variables indépendantes deux à deux sont deux à deux non corrélées, et la loi faible s'applique."
+        },
+        {
+          "texte": "Si les $X_k$ ont même loi et admettent un moment d'ordre $2$, alors $(M_n)$ converge en probabilité vers $\\mu$.",
+          "vrai": false,
+          "contre_exemple": "$X_k=X$ pour tout $k$, où $X$ vaut $\\pm1$ avec probabilité $\\frac12$ : $M_n=X$ et $P\\left(|M_n|\\geq1\\right)=1$."
+        },
+        {
+          "texte": "Sous les hypothèses de la loi faible, $P(M_n=\\mu)\\to1$.",
+          "vrai": false,
+          "contre_exemple": "Pour des variables de Bernoulli indépendantes de paramètre $\\frac12$, $M_n=\\frac12$ est impossible pour $n$ impair : $P\\left(M_n=\\frac12\\right)=0$."
+        },
+        {
+          "texte": "Si $E(Y_n)\\to\\ell$ et $V(Y_n)\\to0$, alors $(Y_n)$ converge en probabilité vers $\\ell$.",
+          "vrai": true,
+          "justification": "Pour $n$ assez grand, $|E(Y_n)-\\ell|<\\frac\\varepsilon2$, donc $P\\left(|Y_n-\\ell|\\geq\\varepsilon\\right)\\leq P\\left(|Y_n-E(Y_n)|\\geq\\frac\\varepsilon2\\right)\\leq\\frac{4V(Y_n)}{\\varepsilon^2}\\to0$."
+        }
+      ],
+      "prerequis": [
+        "proba-t-lgn",
+        "proba-l2-discretes-markov",
+        "proba-l2-discretes-independance",
+        "proba-l3-limites-convergences"
+      ]
+    },
+    {
+      "id": "proba-l3-limites-borel-cantelli",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Lemme de Borel-Cantelli",
+      "recto": "Énoncer les deux lemmes de Borel-Cantelli, avec leurs hypothèses.",
+      "cours": "Pour une suite d'événements $(A_n)$, l'événement « une infinité des $A_n$ sont réalisés » s'écrit $\\limsup A_n=\\bigcap_{n}\\bigcup_{k\\geq n}A_k$ : une issue y appartient si, pour tout rang $n$, l'un des $A_k$ avec $k\\geq n$ est réalisé. Son contraire, $\\bigcup_n\\bigcap_{k\\geq n}\\overline{A_k}$, est l'événement « à partir d'un certain rang, aucun $A_k$ n'est réalisé ».\n\nLe premier lemme est un argument de sommabilité : si la série des $P(A_n)$ converge, la probabilité qu'au moins un $A_k$ se réalise après le rang $n$ est majorée par le reste d'une série convergente. Aucune indépendance n'est demandée. Le second lemme est une réciproque partielle : si les $A_n$ sont **mutuellement indépendants** et si la série diverge, alors presque sûrement une infinité d'entre eux se réalisent. Pour des événements indépendants, $P(\\limsup A_n)$ vaut donc $0$ ou $1$, selon que $\\sum P(A_n)$ converge ou diverge.\n\n**Méthode.** Pour montrer une convergence presque sûre, on montre que $\\sum_nP\\left(|X_n-X|\\geq\\varepsilon\\right)<+\\infty$ pour tout $\\varepsilon>0$ : par le premier lemme, presque sûrement $|X_n-X|<\\varepsilon$ à partir d'un certain rang ; on prend alors $\\varepsilon=\\frac1p$ et l'on intersecte sur $p$. Pour montrer qu'un phénomène se reproduit indéfiniment, on cherche des événements indépendants, portant par exemple sur des blocs disjoints d'épreuves, dont la série des probabilités diverge.\n\n**Pièges.** Sans indépendance, une série divergente ne suffit pas : $A_n=A$ pour tout $n$, avec $P(A)=\\frac12$. Et $P(A_n)\\to0$ ne suffit pas pour le premier lemme : il faut la convergence de la série.",
+      "hypotheses": [
+        "Premier lemme : la série $\\sum P(A_n)$ converge.",
+        "Second lemme : les événements $A_n$ sont mutuellement indépendants.",
+        "Second lemme : la série $\\sum P(A_n)$ diverge."
+      ],
+      "hypotheses_pieges": [
+        "Premier lemme : $P(A_n)\\to0$ (à la place de : la série $\\sum P(A_n)$ converge).",
+        "Second lemme : la suite $(A_n)$ est décroissante pour l'inclusion (à la place de : les $A_n$ sont mutuellement indépendants).",
+        "Second lemme : $P(A_n)>0$ pour tout $n$ (à la place de : la série $\\sum P(A_n)$ diverge)."
+      ],
+      "enonce": "Soient $(\\Omega,\\mathcal{A},P)$ un espace probabilisé et $(A_n)_{n\\geq1}$ une suite d'événements. On note\n$$\\limsup_{n\\to+\\infty}A_n=\\bigcap_{n\\geq1}\\bigcup_{k\\geq n}A_k$$\nl'événement « une infinité des $A_n$ sont réalisés ».\n- **Premier lemme.** Si la série $\\sum P(A_n)$ converge, alors $P\\left(\\limsup A_n\\right)=0$ : presque sûrement, seul un nombre fini des $A_n$ sont réalisés.\n- **Second lemme.** Si les $A_n$ sont mutuellement indépendants et si la série $\\sum P(A_n)$ diverge, alors $P\\left(\\limsup A_n\\right)=1$ : presque sûrement, une infinité des $A_n$ sont réalisés.",
+      "enonce_trous": "Soit $(A_n)_{n\\geq1}$ une suite d'événements. Si {{1}}, alors presque sûrement seul un nombre fini des $A_n$ sont réalisés. Si les $A_n$ sont mutuellement indépendants et si {{2}}, alors {{3}}.",
+      "trous": [
+        {
+          "reponse": "la série $\\sum P(A_n)$ converge",
+          "leurres": [
+            "$P(A_n)\\to0$",
+            "la suite $\\left(P(A_n)\\right)$ est décroissante",
+            "$P(A_n)<1$ pour tout $n$"
+          ]
+        },
+        {
+          "reponse": "la série $\\sum P(A_n)$ diverge",
+          "leurres": [
+            "$P(A_n)>0$ pour tout $n$",
+            "la suite $\\left(P(A_n)\\right)$ est décroissante",
+            "$\\sum_{n\\geq1}P(A_n)\\geq1$"
+          ]
+        },
+        {
+          "reponse": "presque sûrement une infinité des $A_n$ sont réalisés",
+          "leurres": [
+            "presque sûrement tous les $A_n$ sont réalisés à partir d'un certain rang",
+            "une infinité des $A_n$ sont réalisés en toute issue $\\omega\\in\\Omega$",
+            "presque sûrement une infinité des $A_n$ ne sont pas réalisés"
+          ]
+        }
+      ],
+      "demo": "**Premier lemme.** Pour tout $n$, $\\limsup A_k\\subset\\bigcup_{k\\geq n}A_k$, donc, par sous-additivité (conséquence de la $\\sigma$-additivité),\n$$P\\left(\\limsup A_k\\right)\\leq P\\left(\\bigcup_{k\\geq n}A_k\\right)\\leq\\sum_{k=n}^{+\\infty}P(A_k).$$\nLe majorant est le reste d'une série convergente : il tend vers $0$ quand $n\\to+\\infty$, d'où $P\\left(\\limsup A_k\\right)=0$.\n\n**Second lemme.** On montre que le contraire, $\\bigcup_{n\\geq1}\\bigcap_{k\\geq n}\\overline{A_k}$, est de probabilité nulle ; une réunion dénombrable d'événements de probabilité nulle étant de probabilité nulle, il suffit que $P\\left(\\bigcap_{k\\geq n}\\overline{A_k}\\right)=0$ pour tout $n$. Les contraires d'événements mutuellement indépendants sont mutuellement indépendants ; pour $N\\geq n$, avec l'inégalité de convexité $1-x\\leq e^{-x}$ :\n$$P\\left(\\bigcap_{k=n}^N\\overline{A_k}\\right)=\\prod_{k=n}^N\\left(1-P(A_k)\\right)\\leq\\exp\\left(-\\sum_{k=n}^NP(A_k)\\right).$$\nLa série à termes positifs $\\sum P(A_k)$ étant divergente, $\\sum_{k=n}^NP(A_k)\\to+\\infty$ quand $N\\to+\\infty$, et le majorant tend vers $0$. Les événements $\\bigcap_{k=n}^N\\overline{A_k}$ décroissent quand $N$ croît et ont pour intersection $\\bigcap_{k\\geq n}\\overline{A_k}$ : par continuité décroissante, celui-ci est de probabilité nulle.",
+      "exemple": "Une pièce équilibrée est lancée indéfiniment, les lancers étant mutuellement indépendants ; on admet que des événements qui portent sur des blocs disjoints de lancers sont mutuellement indépendants.\n- Soit $A_n$ l'événement « les lancers $n$, $n+1$, …, $2n-1$ donnent tous pile ». Ces événements ne sont pas indépendants, mais $P(A_n)=2^{-n}$ et la série converge : par le premier lemme, presque sûrement seul un nombre fini des $A_n$ sont réalisés.\n- Soit $B_n$ l'événement « les lancers $2n-1$ et $2n$ donnent tous les deux pile ». Ils portent sur des blocs disjoints, donc sont mutuellement indépendants, et $\\sum P(B_n)=\\sum\\frac14=+\\infty$ : par le second lemme, presque sûrement une infinité des $B_n$ sont réalisés.",
+      "contre_exemple": "- **L'indépendance est nécessaire au second lemme.** $A_n=A$ pour tout $n$, avec $P(A)=\\frac12$ : $\\sum P(A_n)=+\\infty$, mais $\\limsup A_n=A$ est de probabilité $\\frac12$. La suite $(A_n)$ est d'ailleurs décroissante (au sens large).\n- **$P(A_n)\\to0$ ne suffit pas au premier lemme.** Pour des événements mutuellement indépendants tels que $P(A_n)=\\frac1{n+1}$ : $P(A_n)\\to0$, mais la série diverge et, par le second lemme, $P\\left(\\limsup A_n\\right)=1$.\n- **Des probabilités toutes strictement positives ne suffisent pas au second lemme.** Pour des événements mutuellement indépendants tels que $P(A_n)=2^{-n}$, le premier lemme donne $P\\left(\\limsup A_n\\right)=0$.",
+      "affirmations": [
+        {
+          "texte": "Si les $A_n$ sont mutuellement indépendants, alors $P\\left(\\limsup A_n\\right)$ vaut $0$ ou $1$.",
+          "vrai": true,
+          "justification": "Elle vaut $0$ si $\\sum P(A_n)$ converge (premier lemme) et $1$ si la série diverge (second lemme)."
+        },
+        {
+          "texte": "Si $\\sum P(A_n)=+\\infty$, alors $P\\left(\\limsup A_n\\right)=1$.",
+          "vrai": false,
+          "contre_exemple": "$A_n=A$ pour tout $n$, avec $P(A)=\\frac12$ : la série diverge, mais $\\limsup A_n=A$ est de probabilité $\\frac12$."
+        },
+        {
+          "texte": "Si $\\sum P(A_n)<+\\infty$, alors presque sûrement aucun des $A_n$ n'est réalisé.",
+          "vrai": false,
+          "contre_exemple": "$A_1=\\Omega$ et $A_n=\\emptyset$ pour $n\\geq2$ : la série vaut $1$, mais $A_1$ est toujours réalisé. Le lemme dit seulement : un nombre fini."
+        },
+        {
+          "texte": "Si $\\sum_nP\\left(|X_n-X|\\geq\\varepsilon\\right)<+\\infty$ pour tout $\\varepsilon>0$, alors $(X_n)$ converge presque sûrement vers $X$.",
+          "vrai": true,
+          "justification": "Pour $\\varepsilon=\\frac1p$, le premier lemme montre que presque sûrement $|X_n-X|<\\frac1p$ à partir d'un certain rang ; l'intersection sur $p\\geq1$ de ces événements de probabilité $1$ est de probabilité $1$."
+        }
+      ],
+      "prerequis": [
+        "proba-l2-discretes-espace",
+        "proba-l1-independance-mutuelle",
+        "ar-l2-series-positives"
+      ]
+    },
+    {
+      "id": "proba-l3-limites-loi-forte",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Loi forte des grands nombres (admise)",
+      "recto": "Énoncer la loi forte des grands nombres, avec ses hypothèses exactes.",
+      "cours": "La loi forte des grands nombres est la justification mathématique de l'interprétation fréquentiste des probabilités : si l'on répète indéfiniment, de façon indépendante, une même expérience, la fréquence d'un événement converge vers sa probabilité, **pour presque toute suite de résultats**. Pour des variables mutuellement indépendantes de même loi, elle renforce la loi faible : la convergence de $M_n$ vers $\\mu$ n'est plus seulement en probabilité, mais presque sûre, et il suffit que les variables admettent une espérance, sans moment d'ordre $2$ (en revanche, la loi faible se contente de variables deux à deux non corrélées).\n\nCe théorème est admis dans le cadre du programme de l'agrégation interne. Sa démonstration générale est délicate ; on démontre ci-dessous le cas où les variables admettent un moment d'ordre $4$, par l'inégalité de Markov et le premier lemme de Borel-Cantelli, ce qui couvre les variables bornées, en particulier les fréquences.\n\n**Méthode.** Pour étudier la limite presque sûre de $\\frac1n\\sum_{k=1}^ng(X_k)$, vérifier que les $g(X_k)$ sont mutuellement indépendantes (ce sont des fonctions de variables indépendantes), de même loi, et que $g(X_1)$ admet une espérance. Pour un produit $Y_1\\cdots Y_n$ de variables strictement positives, passer au logarithme. La loi forte justifie la **méthode de Monte-Carlo** : on approche une espérance par la moyenne d'un grand nombre de simulations indépendantes.\n\n**Pièges.** On ne peut supprimer ni l'indépendance ni l'égalité des lois (contre-exemples ci-dessous), et sans espérance la moyenne empirique ne converge pas presque sûrement, même pour une loi symétrique (contre-exemple ci-dessous). Presque sûre ne veut pas dire « pour toute suite de résultats » : la suite de lancers « face, face, face… » est possible, mais l'ensemble des suites dont la fréquence de pile ne tend pas vers $\\frac12$ est de probabilité nulle.",
+      "hypotheses": [
+        "Les $X_n$ sont mutuellement indépendantes.",
+        "Les $X_n$ ont même loi.",
+        "$X_1$ admet une espérance $\\mu$."
+      ],
+      "hypotheses_pieges": [
+        "Les $X_n$ sont toutes égales à $X_1$ (à la place de : mutuellement indépendantes).",
+        "Les $X_n$ ont même espérance $\\mu$ (à la place de : même loi).",
+        "La loi de $X_1$ est symétrique ($X_1$ et $-X_1$ ont même loi) et l'on prend $\\mu=0$ (à la place de : $X_1$ admet une espérance $\\mu$)."
+      ],
+      "enonce": "Soit $(X_n)_{n\\geq1}$ une suite de variables aléatoires réelles définies sur un même espace probabilisé, **mutuellement indépendantes**, **de même loi**, telles que $X_1$ admette une espérance $\\mu$. On note $M_n=\\frac{X_1+\\dots+X_n}n$. Alors $(M_n)$ converge presque sûrement vers $\\mu$ :\n$$P\\left(\\left\\{\\omega\\in\\Omega : M_n(\\omega)\\xrightarrow[n\\to+\\infty]{}\\mu\\right\\}\\right)=1.$$\nEn particulier, si $(A_n)$ est une suite d'événements mutuellement indépendants de même probabilité $p$, la fréquence $\\frac1n\\sum_{k=1}^n\\mathbf{1}_{A_k}$ converge presque sûrement vers $p$. Ce théorème est admis.",
+      "enonce_trous": "Soient $(X_n)_{n\\geq1}$ une suite de variables {{1}}, de même loi, telle que $X_1$ admette une espérance $\\mu$, et $M_n=\\frac{X_1+\\dots+X_n}n$. Alors $(M_n)$ converge vers $\\mu$ {{2}}, c'est-à-dire que {{3}}.",
+      "trous": [
+        {
+          "reponse": "mutuellement indépendantes",
+          "leurres": [
+            "toutes égales à $X_1$",
+            "telles que $X_n=X_1$ pour tout $n$ pair",
+            "telles que $X_n$ soit indépendante de $X_1$ pour tout $n\\geq2$"
+          ]
+        },
+        {
+          "reponse": "presque sûrement",
+          "leurres": [
+            "uniformément sur $\\Omega$",
+            "en tout point $\\omega$ de $\\Omega$",
+            "au sens où $P(M_n=\\mu)\\to1$"
+          ]
+        },
+        {
+          "reponse": "l'événement $\\{M_n\\to\\mu\\}$ est de probabilité $1$",
+          "leurres": [
+            "l'événement $\\{M_n\\to\\mu\\}$ est égal à $\\Omega$",
+            "pour tout $\\varepsilon>0$, $P\\left(|M_n-\\mu|\\geq\\varepsilon\\right)=0$ à partir d'un certain rang",
+            "$P(M_n=\\mu)=1$ à partir d'un certain rang"
+          ]
+        }
+      ],
+      "demo": "**Admis** dans le cadre du programme. On démontre le cas où $X_1$ admet un moment d'ordre $4$ ; il admet alors des moments d'ordre $1$, $2$ et $3$, car $|x|^r\\leq1+x^4$ pour $0\\leq r\\leq4$. On admet que $E(YZ)=E(Y)E(Z)$ pour des variables indépendantes admettant une espérance, et que des fonctions de variables mutuellement indépendantes (portant sur des indices distincts) sont mutuellement indépendantes. Quitte à remplacer $X_k$ par $X_k-\\mu$, on suppose $\\mu=0$ ; on note $\\sigma^2=E(X_1^2)$, $m_4=E(X_1^4)$ et $S_n=X_1+\\dots+X_n$.\n\n**Moment d'ordre 4.** En développant, $S_n^4=\\sum X_iX_jX_kX_l$, la somme portant sur les $n^4$ quadruplets $(i,j,k,l)$ d'indices de $\\{1,\\dots,n\\}$. Si l'un des indices n'apparaît qu'une fois, l'espérance du terme est nulle : par exemple $E(X_1X_2^3)=E(X_1)E(X_2^3)=0$ et $E(X_1X_2X_3^2)=0$. Restent les $n$ termes $X_i^4$ et les termes $X_i^2X_j^2$ avec $i\\neq j$ : chaque paire $\\{i,j\\}$ fournit $\\frac{4!}{2!\\,2!}=6$ quadruplets. D'où, avec $\\sigma^4\\leq m_4$ (car $V(X_1^2)\\geq0$) :\n$$E(S_n^4)=nm_4+6\\binom n2\\sigma^4=nm_4+3n(n-1)\\sigma^4\\leq n^2\\left(m_4+3\\sigma^4\\right).$$\n**Markov.** Pour $\\varepsilon>0$, l'inégalité de Markov appliquée à $S_n^4\\geq0$ donne\n$$P\\left(|M_n|\\geq\\varepsilon\\right)=P\\left(S_n^4\\geq n^4\\varepsilon^4\\right)\\leq\\frac{E(S_n^4)}{n^4\\varepsilon^4}\\leq\\frac{m_4+3\\sigma^4}{n^2\\varepsilon^4}.$$\n**Borel-Cantelli.** Cette série converge : par le premier lemme de Borel-Cantelli, l'événement $B_\\varepsilon$ « $|M_n|\\geq\\varepsilon$ pour une infinité de $n$ » est de probabilité nulle. Hors de la réunion dénombrable $\\bigcup_{p\\geq1}B_{1/p}$, de probabilité nulle, on a pour tout $p$ : $|M_n|<\\frac1p$ à partir d'un certain rang, c'est-à-dire $M_n\\to0$.",
+      "exemple": "- La fréquence des $6$ lors de lancers indépendants d'un dé équilibré converge presque sûrement vers $\\frac16$ : on applique le théorème aux indicatrices $\\mathbf{1}_{\\{D_k=6\\}}$, de loi de Bernoulli de paramètre $\\frac16$.\n- Si les $X_k$ sont mutuellement indépendantes de loi de Poisson $\\mathcal{P}(\\lambda)$, les $X_k^2$ sont mutuellement indépendantes, de même loi, d'espérance $E(X_1^2)=V(X_1)+E(X_1)^2=\\lambda+\\lambda^2$ : $\\frac1n\\sum_{k=1}^nX_k^2$ converge presque sûrement vers $\\lambda+\\lambda^2$.",
+      "contre_exemple": "- **Sans indépendance.** $X_n=X_1$ pour tout $n$, avec $X_1$ de loi de Bernoulli de paramètre $\\frac12$ : $M_n=X_1$ vaut $0$ ou $1$ et ne converge vers $\\frac12$ pour aucune issue.\n- **Sans espérance, même pour une loi symétrique.** Soit $X$ à valeurs dans $\\mathbb{Z}$ telle que $P(X=k)=P(X=-k)=\\frac1{2k(k+1)}$ pour tout entier $k\\geq1$ : sa loi est symétrique, $P(|X|\\geq n)=\\sum_{k\\geq n}\\left(\\frac1k-\\frac1{k+1}\\right)=\\frac1n$ et $E(|X|)=\\sum_{n\\geq1}P(|X|\\geq n)=+\\infty$. Si les $X_n$ sont mutuellement indépendantes de cette loi, $\\sum P(|X_n|\\geq n)=+\\infty$ : par le second lemme de Borel-Cantelli, presque sûrement $|X_n|\\geq n$ pour une infinité de $n$. Or si $M_n\\to\\ell\\in\\mathbb{R}$, alors $\\frac{X_n}n=M_n-\\frac{n-1}nM_{n-1}\\to0$. Donc, presque sûrement, $(M_n)$ ne converge pas, alors que la symétrie suggérerait la limite $0$.\n- **Même espérance, lois différentes.** Des variables indépendantes $X_n$ valant $\\pm3^n$ avec probabilité $\\frac12$ sont centrées, mais $|M_n|\\geq\\frac{3^n+3}{2n}\\to+\\infty$.",
+      "affirmations": [
+        {
+          "texte": "Sous les hypothèses de la loi forte, $(M_n)$ converge aussi en probabilité vers $\\mu$.",
+          "vrai": true,
+          "justification": "La convergence presque sûre entraîne la convergence en probabilité."
+        },
+        {
+          "texte": "La loi forte exige que $X_1$ admette un moment d'ordre $2$.",
+          "vrai": false,
+          "contre_exemple": "Si $X_1$ est à valeurs dans $\\mathbb{N}^*$ avec $P(X_1\\geq k)=\\frac1{k^2}$ pour tout entier $k\\geq1$, alors $E(X_1)=\\sum_{k\\geq1}P(X_1\\geq k)=\\frac{\\pi^2}6$ est finie, mais $E(X_1^2)=\\sum_{k\\geq1}(2k-1)P(X_1\\geq k)=+\\infty$ ; la loi forte s'applique pourtant."
+        },
+        {
+          "texte": "Si les $X_n$ sont mutuellement indépendantes, de même loi, et admettent une espérance $\\mu$, alors $M_n(\\omega)\\to\\mu$ pour toute issue $\\omega$.",
+          "vrai": false,
+          "contre_exemple": "Pour des lancers indépendants d'une pièce équilibrée, sur l'espace $\\{0,1\\}^{\\mathbb{N}^*}$ des suites de résultats, la suite qui ne contient que des faces est une issue où la fréquence de pile vaut $0$ pour tout $n$ ; l'ensemble de ces issues exceptionnelles est seulement de probabilité nulle."
+        },
+        {
+          "texte": "La fréquence d'un événement de probabilité $p$, lors d'épreuves mutuellement indépendantes, converge presque sûrement vers $p$.",
+          "vrai": true,
+          "justification": "C'est la loi forte appliquée aux indicatrices, de loi de Bernoulli de paramètre $p$, bornées donc admettant une espérance."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-limites-convergences",
+        "proba-l3-limites-loi-faible",
+        "proba-l3-limites-borel-cantelli"
+      ]
+    },
+    {
+      "id": "proba-l3-limites-tcl",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Théorème central limite (admis)",
+      "recto": "Énoncer le théorème central limite, avec ses hypothèses exactes et la normalisation.",
+      "cours": "La loi des grands nombres dit que $M_n-\\mu$ tend vers $0$ ; le théorème central limite précise à quelle échelle et avec quelle loi : les fluctuations sont de l'ordre de $\\frac\\sigma{\\sqrt n}$ et, une fois renormalisées, suivent approximativement la loi normale centrée réduite, **quelle que soit la loi de départ**, pourvu qu'elle ait une variance finie et non nulle. C'est ce qui explique le rôle central de la loi normale : une grandeur qui résulte de l'addition de nombreux effets indépendants et comparables est approximativement normale.\n\nOn note $\\Phi(t)=\\frac1{\\sqrt{2\\pi}}\\int_{-\\infty}^te^{-x^2/2}\\,\\mathrm{d}x$ la fonction de répartition de la loi normale centrée réduite. Elle est continue, ce qui donne la convergence de $P(Z_n\\leq t)$ en **tout** réel $t$ ; elle vérifie $\\Phi(-t)=1-\\Phi(t)$ par parité de $x\\mapsto e^{-x^2/2}$, et l'on retient $\\Phi(1{,}96)\\approx0{,}975$, d'où $\\Phi(1{,}96)-\\Phi(-1{,}96)\\approx0{,}95$.\n\nLe théorème est admis dans le cadre du programme ; sa démonstration usuelle passe par les fonctions caractéristiques. Le cas binomial (théorème de Moivre-Laplace) fait l'objet de la carte suivante.\n\n**Méthode.** Centrer et réduire : $S_n$ a pour espérance $n\\mu$ et pour écart type $\\sigma\\sqrt n$, la moyenne $M_n$ a pour espérance $\\mu$ et pour écart type $\\frac\\sigma{\\sqrt n}$. On écrit l'événement étudié à l'aide de $Z_n$ et l'on remplace, pour $n$ grand, $P(a\\leq Z_n\\leq b)$ par $\\Phi(b)-\\Phi(a)$. C'est une **approximation** : le théorème est un résultat de limite et ne donne, à lui seul, aucune majoration de l'erreur pour un $n$ fixé.\n\n**Pièges.** On divise $S_n-n\\mu$ par $\\sigma\\sqrt n$, et non par $\\sigma n$ (on obtiendrait une limite nulle, c'est la loi des grands nombres) ni par $\\sigma^2\\sqrt n$. L'indépendance mutuelle compte : des variables seulement non corrélées suffisent pour la loi faible, pas pour le théorème central limite. Et des variables indépendantes de même variance, mais de lois différentes, peuvent y échapper.",
+      "hypotheses": [
+        "Les $X_n$ sont mutuellement indépendantes.",
+        "Les $X_n$ ont même loi.",
+        "$X_1$ admet un moment d'ordre $2$ et $\\sigma^2=V(X_1)>0$."
+      ],
+      "hypotheses_pieges": [
+        "Les $X_n$ ont même espérance $\\mu$ et même variance $\\sigma^2>0$ (à la place de : même loi).",
+        "Les $X_n$ sont deux à deux non corrélées (à la place de : mutuellement indépendantes).",
+        "Les $X_n$ sont toutes égales à $X_1$ (à la place de : mutuellement indépendantes)."
+      ],
+      "enonce": "Soit $(X_n)_{n\\geq1}$ une suite de variables aléatoires réelles **mutuellement indépendantes**, **de même loi**, admettant un moment d'ordre $2$, d'espérance $\\mu$ et de variance $\\sigma^2>0$. On pose $S_n=X_1+\\dots+X_n$, $M_n=\\frac{S_n}n$ et\n$$Z_n=\\frac{S_n-n\\mu}{\\sigma\\sqrt n}=\\sqrt n\\,\\frac{M_n-\\mu}\\sigma.$$\nAlors $(Z_n)$ converge en loi vers la loi normale centrée réduite $\\mathcal{N}(0,1)$ : pour tout réel $t$,\n$$P(Z_n\\leq t)\\xrightarrow[n\\to+\\infty]{}\\Phi(t)=\\frac1{\\sqrt{2\\pi}}\\int_{-\\infty}^te^{-x^2/2}\\,\\mathrm{d}x.$$\nPar conséquent, pour tous réels $a\\leq b$, $P(a\\leq Z_n\\leq b)\\to\\Phi(b)-\\Phi(a)$, et de même avec des inégalités strictes. Ce théorème est admis.",
+      "enonce_trous": "Soit $(X_n)$ une suite de variables mutuellement indépendantes, de même loi, admettant un moment d'ordre $2$, d'espérance $\\mu$ et de variance $\\sigma^2>0$ ; on pose $S_n=X_1+\\dots+X_n$ et $\\Phi(t)=\\frac1{\\sqrt{2\\pi}}\\int_{-\\infty}^te^{-x^2/2}\\,\\mathrm{d}x$. Alors la suite des variables {{1}} converge en loi vers la loi normale centrée réduite : pour tous réels $a<b$, la probabilité que cette variable soit comprise entre $a$ et $b$ tend vers {{2}}.",
+      "trous": [
+        {
+          "reponse": "$\\frac{S_n-n\\mu}{\\sigma\\sqrt n}$",
+          "leurres": [
+            "$\\frac{S_n-n\\mu}{\\sigma n}$",
+            "$\\frac{S_n-n\\mu}{\\sigma^2\\sqrt n}$",
+            "$\\frac{S_n-\\mu}{\\sigma\\sqrt n}$"
+          ]
+        },
+        {
+          "reponse": "$\\Phi(b)-\\Phi(a)$",
+          "leurres": [
+            "$\\Phi(b-a)$",
+            "$2\\Phi(b)-1$",
+            "$\\frac1{\\sqrt{2\\pi}}\\int_a^be^{-x^2}\\,\\mathrm{d}x$"
+          ]
+        }
+      ],
+      "demo": "**Admis** dans le cadre du programme (la démonstration usuelle utilise les fonctions caractéristiques). On justifie les compléments.\n\n**Normalisation.** Par linéarité et indépendance, $E(S_n)=n\\mu$ et $V(S_n)=n\\sigma^2$, donc $E(Z_n)=0$ et $V(Z_n)=1$ : $Z_n$ est la somme centrée réduite.\n\n**En tout réel $t$.** $\\Phi$ est continue (c'est une primitive d'une fonction continue) : tous les réels sont des points de continuité de la limite, et la convergence en loi donne $P(Z_n\\leq t)\\to\\Phi(t)$ pour tout $t$.\n\n**Intervalles.** Pour $a\\leq b$, $P(a<Z_n\\leq b)=P(Z_n\\leq b)-P(Z_n\\leq a)\\to\\Phi(b)-\\Phi(a)$. De plus, pour tout $\\delta>0$, $P(Z_n=a)\\leq P(a-\\delta<Z_n\\leq a)$, qui tend vers $\\Phi(a)-\\Phi(a-\\delta)$ ; donc $\\limsup_nP(Z_n=a)\\leq\\Phi(a)-\\Phi(a-\\delta)$, qui tend vers $0$ quand $\\delta\\to0$, et $P(Z_n=a)\\to0$. On peut ainsi remplacer chaque inégalité stricte par une inégalité large, et inversement, sans changer la limite.",
+      "exemple": "On lance $n=3\\,600$ fois une pièce équilibrée ; le nombre de piles $S_n$ est une somme de $n$ variables de Bernoulli indépendantes de paramètre $\\frac12$ : $\\mu=\\frac12$, $\\sigma=\\frac12$, $E(S_n)=1\\,800$ et $\\sigma\\sqrt n=30$. Alors\n$$P(1\\,770\\leq S_n\\leq1\\,830)=P(-1\\leq Z_n\\leq1)\\approx\\Phi(1)-\\Phi(-1)=2\\Phi(1)-1\\approx0{,}683,$$\net $P\\left(|S_n-1\\,800|\\leq59\\right)\\approx0{,}95$, car $1{,}96\\times30\\approx59$.",
+      "contre_exemple": "- **Même variance, lois différentes.** Soient des variables $X_k$ indépendantes, $X_k$ valant $k$ ou $-k$ avec probabilité $\\frac1{2k^2}$ chacune et $0$ sinon : $E(X_k)=0$ et $V(X_k)=1$. Comme $\\sum P(X_k\\neq0)=\\sum\\frac1{k^2}<+\\infty$, le premier lemme de Borel-Cantelli montre que presque sûrement $X_k=0$ à partir d'un certain rang ; $S_n$ est alors constante à partir d'un certain rang et $\\frac{S_n}{\\sqrt n}\\to0$ presque sûrement, donc en loi : $P\\left(\\frac{S_n}{\\sqrt n}\\leq-1\\right)\\to0$, alors que $\\Phi(-1)>0$.\n- **Non corrélées sans être indépendantes.** Soient $Y$ valant $0$ ou $\\sqrt2$ avec probabilité $\\frac12$ et des variables $\\varepsilon_k$ valant $\\pm1$ avec probabilité $\\frac12$, $Y,\\varepsilon_1,\\varepsilon_2,\\dots$ étant mutuellement indépendantes ; on pose $X_k=\\varepsilon_kY$. Les $X_k$ ont même loi, $E(X_k)=0$, $V(X_k)=E(Y^2)=1$ et $E(X_jX_k)=E(\\varepsilon_j)E(\\varepsilon_k)E(Y^2)=0$ pour $j\\neq k$. Mais $\\frac{S_n}{\\sqrt n}$ est nulle sur $\\{Y=0\\}$, donc $P\\left(-\\frac12\\leq\\frac{S_n}{\\sqrt n}\\leq\\frac12\\right)\\geq\\frac12$ pour tout $n$, alors que $\\Phi\\left(\\frac12\\right)-\\Phi\\left(-\\frac12\\right)\\approx0{,}383$.\n- **Variables toutes égales.** $X_n=X_1$, de loi uniforme sur $\\{-1,1\\}$ : $Z_n=\\sqrt n\\,X_1$ et $P(Z_n\\leq1)=\\frac12$ pour $n\\geq2$, alors que $\\Phi(1)\\approx0{,}841$.",
+      "affirmations": [
+        {
+          "texte": "Sous les hypothèses du théorème, $P(S_n\\leq n\\mu)\\to\\frac12$.",
+          "vrai": true,
+          "justification": "$P(S_n\\leq n\\mu)=P(Z_n\\leq0)\\to\\Phi(0)=\\frac12$, par parité de $x\\mapsto e^{-x^2/2}$."
+        },
+        {
+          "texte": "Sous les hypothèses du théorème, $P\\left(|M_n-\\mu|\\leq\\frac{2\\sigma}{\\sqrt n}\\right)\\to2\\Phi(2)-1$.",
+          "vrai": true,
+          "justification": "L'événement est $\\{-2\\leq Z_n\\leq2\\}$, de probabilité tendant vers $\\Phi(2)-\\Phi(-2)=2\\Phi(2)-1$."
+        },
+        {
+          "texte": "Le théorème central limite reste vrai pour des variables de même loi, deux à deux non corrélées, de variance finie non nulle.",
+          "vrai": false,
+          "contre_exemple": "$X_k=\\varepsilon_kY$, avec $Y$ valant $0$ ou $\\sqrt2$ et les $\\varepsilon_k=\\pm1$, tous indépendants : $\\frac{S_n}{\\sqrt n}$ est nulle avec probabilité au moins $\\frac12$, ce qui est incompatible avec une limite normale."
+        },
+        {
+          "texte": "Si $X_1$ suit une loi de Bernoulli, $Z_n$ suit exactement la loi normale centrée réduite pour $n$ assez grand.",
+          "vrai": false,
+          "contre_exemple": "$Z_n$ ne prend qu'un nombre fini de valeurs : sa fonction de répartition est en escalier, alors que $\\Phi$ est continue. La convergence n'a lieu qu'à la limite."
+        }
+      ],
+      "prerequis": [
+        "proba-l3-limites-convergences",
+        "proba-l3-limites-loi-faible",
+        "proba-l3-densites-normales"
+      ]
+    },
+    {
+      "id": "proba-l3-limites-binomiale",
+      "theme": "probabilites",
+      "niveau": "l3",
+      "chapitre": "proba-l3-limites",
+      "type": "theoreme",
+      "titre": "Approximations de la loi binomiale",
+      "recto": "Énoncer l'approximation d'une loi binomiale par une loi de Poisson et le théorème de Moivre-Laplace, avec leurs hypothèses.",
+      "cours": "La loi binomiale $\\mathcal{B}(n,p)$ est explicite, mais ses probabilités deviennent pénibles à calculer pour $n$ grand. Deux régimes limites fournissent des approximations.\n\n**Événements rares.** Si $n$ est grand et $p$ petit, avec $np$ proche d'un réel $\\lambda$, le nombre de succès suit approximativement la loi de Poisson $\\mathcal{P}(\\lambda)$ : c'est la loi des événements rares (nombre de pannes, d'accidents, de fautes de frappe). La démonstration est élémentaire : on écrit $\\binom nkp_n^k(1-p_n)^{n-k}$ comme un produit de facteurs dont on calcule les limites.\n\n**Moivre-Laplace.** Si $p\\in\\left]0,1\\right[$ est fixé, une variable de loi $\\mathcal{B}(n,p)$ a la même loi qu'une somme de $n$ variables de Bernoulli indépendantes de paramètre $p$ : le théorème central limite donne la convergence en loi de $\\frac{X_n-np}{\\sqrt{np(1-p)}}$ vers $\\mathcal{N}(0,1)$. Historiquement, ce cas particulier, dû à Moivre puis à Laplace, a précédé le théorème général.\n\n**Méthode.** Pour approcher $P(a\\leq X_n\\leq b)$, où $a\\leq b$ sont des entiers, par la loi normale, on utilise souvent la **correction de continuité** : $X_n$ étant à valeurs entières, $P(a\\leq X_n\\leq b)=P\\left(a-\\frac12\\leq X_n\\leq b+\\frac12\\right)\\approx\\Phi\\left(\\frac{b+\\frac12-np}{\\sigma_n}\\right)-\\Phi\\left(\\frac{a-\\frac12-np}{\\sigma_n}\\right)$, avec $\\sigma_n=\\sqrt{np(1-p)}$ ; elle améliore en général nettement l'approximation pour des $n$ modérés. Les conditions d'usage (par exemple $n\\geq30$, $np\\geq5$ et $n(1-p)\\geq5$ pour la loi normale, $p$ petit et $np$ modéré pour la loi de Poisson) sont des conventions pratiques, pas des théorèmes.\n\n**Pièges.** Pour l'approximation de Poisson, c'est $np_n$ qui doit converger, et non $p_n$ ; pour celle de Moivre-Laplace, on divise par l'écart type $\\sqrt{np(1-p)}$, et non par la variance. Les deux régimes sont distincts : pour $p$ fixé, $np\\to+\\infty$ et chaque $P(X_n=k)$ tend vers $0$.",
+      "hypotheses": [
+        "Pour tout $n$, $X_n$ suit la loi binomiale $\\mathcal{B}(n,p_n)$.",
+        "$np_n\\to\\lambda$, où $\\lambda$ est un réel strictement positif.",
+        "Pour Moivre-Laplace : $p\\in\\left]0,1\\right[$ est fixé et $X_n$ suit la loi $\\mathcal{B}(n,p)$."
+      ],
+      "hypotheses_pieges": [
+        "$p_n\\to\\lambda$, où $0<\\lambda<1$ (à la place de : $np_n\\to\\lambda$).",
+        "$n^2p_n\\to\\lambda$, où $\\lambda>0$ (à la place de : $np_n\\to\\lambda$).",
+        "Pour tout $n$, $X_n$ suit la loi binomiale $\\mathcal{B}(2n,p_n)$ (à la place de : $\\mathcal{B}(n,p_n)$)."
+      ],
+      "enonce": "**Approximation de Poisson.** Soient $\\lambda>0$ et $(p_n)$ une suite d'éléments de $[0,1]$ telle que $np_n\\to\\lambda$. Si, pour tout $n$, $X_n$ suit la loi binomiale $\\mathcal{B}(n,p_n)$, alors pour tout entier naturel $k$,\n$$P(X_n=k)=\\binom nkp_n^k(1-p_n)^{n-k}\\xrightarrow[n\\to+\\infty]{}e^{-\\lambda}\\frac{\\lambda^k}{k!},$$\net $(X_n)$ converge en loi vers une variable de loi de Poisson $\\mathcal{P}(\\lambda)$.\n\n**Théorème de Moivre-Laplace.** Soient $p\\in\\left]0,1\\right[$ fixé et, pour tout $n$, $X_n$ de loi $\\mathcal{B}(n,p)$. Alors $\\frac{X_n-np}{\\sqrt{np(1-p)}}$ converge en loi vers la loi normale centrée réduite : pour tous réels $a\\leq b$,\n$$P\\left(a\\leq\\frac{X_n-np}{\\sqrt{np(1-p)}}\\leq b\\right)\\xrightarrow[n\\to+\\infty]{}\\Phi(b)-\\Phi(a),$$\noù $\\Phi$ est la fonction de répartition de $\\mathcal{N}(0,1)$.",
+      "enonce_trous": "Si, pour tout $n$, $X_n$ suit la loi $\\mathcal{B}(n,p_n)$ et si {{1}}, alors pour tout entier naturel $k$, $P(X_n=k)$ tend vers {{2}}. Si $X_n$ suit la loi $\\mathcal{B}(n,p)$ avec $p\\in\\left]0,1\\right[$ fixé, c'est {{3}} qui converge en loi vers la loi normale centrée réduite.",
+      "trous": [
+        {
+          "reponse": "$np_n\\to\\lambda$, où $\\lambda>0$",
+          "leurres": [
+            "$p_n\\to\\lambda$, où $0<\\lambda<1$",
+            "$n^2p_n\\to\\lambda$, où $\\lambda>0$",
+            "$\\sqrt n\\,p_n\\to\\lambda$, où $\\lambda>0$"
+          ]
+        },
+        {
+          "reponse": "$e^{-\\lambda}\\frac{\\lambda^k}{k!}$",
+          "leurres": [
+            "$\\frac{\\lambda^k}{k!}$",
+            "$e^{-\\lambda}\\lambda^k$",
+            "$e^{-k}\\frac{\\lambda^k}{k!}$"
+          ]
+        },
+        {
+          "reponse": "$\\frac{X_n-np}{\\sqrt{np(1-p)}}$",
+          "leurres": [
+            "$\\frac{X_n-np}{np(1-p)}$",
+            "$\\frac{X_n-p}{\\sqrt{np(1-p)}}$",
+            "$\\frac{X_n-np}{\\sqrt{p(1-p)}}$"
+          ]
+        }
+      ],
+      "demo": "**Poisson.** Comme $p_n=\\frac{np_n}n\\to0$, on a $p_n\\leq\\frac12$ pour $n$ assez grand. Fixons $k\\in\\mathbb{N}$ ; pour $n\\geq k$ assez grand,\n$$P(X_n=k)=\\frac{n(n-1)\\cdots(n-k+1)}{n^k}\\cdot\\frac{(np_n)^k}{k!}\\cdot(1-p_n)^{n}\\cdot(1-p_n)^{-k}.$$\nLe premier facteur est le produit des $k$ facteurs $1-\\frac jn$, $0\\leq j<k$, qui tendent vers $1$ ; le deuxième tend vers $\\frac{\\lambda^k}{k!}$ ; le quatrième tend vers $1$ car $p_n\\to0$. Pour le troisième, on utilise l'encadrement $-x-x^2\\leq\\ln(1-x)\\leq-x$ pour $0\\leq x\\leq\\frac12$ (la série $\\ln(1-x)=-\\sum_{m\\geq1}\\frac{x^m}m$ donne $0\\leq-\\ln(1-x)-x\\leq\\frac{x^2}2\\cdot\\frac1{1-x}\\leq x^2$) :\n$$\\left|n\\ln(1-p_n)+np_n\\right|\\leq np_n^2=(np_n)\\,p_n\\to\\lambda\\cdot0=0,$$\ndonc $n\\ln(1-p_n)\\to-\\lambda$ et $(1-p_n)^n\\to e^{-\\lambda}$. Ainsi $P(X_n=k)\\to e^{-\\lambda}\\frac{\\lambda^k}{k!}$. Pour la convergence en loi, si $Y$ suit la loi $\\mathcal{P}(\\lambda)$ : pour $t<0$, $F_{X_n}(t)=0=F_Y(t)$ ; pour $t\\geq0$, $F_{X_n}(t)=\\sum_{k=0}^{\\lfloor t\\rfloor}P(X_n=k)$ est une somme d'un nombre fixe de termes, qui tend vers $F_Y(t)$.\n\n**Moivre-Laplace.** On admet l'existence d'une suite $(B_k)$ de variables de Bernoulli de paramètre $p$ mutuellement indépendantes ; $B_1+\\dots+B_n$ suit la loi $\\mathcal{B}(n,p)$, comme $X_n$. Une convergence en loi ne dépendant que des lois, il suffit d'appliquer le théorème central limite aux $B_k$, d'espérance $p$ et de variance $p(1-p)>0$ ; $\\Phi$ étant continue, on obtient la convergence pour tous réels $a\\leq b$.",
+      "exemple": "- **Poisson.** Le nombre $X$ de pièces défectueuses dans un lot de $500$, chaque pièce étant défectueuse avec probabilité $0{,}002$ indépendamment des autres, suit la loi $\\mathcal{B}(500\\,;0{,}002)$ ; $np=1$, et $P(X=0)=0{,}998^{500}\\approx0{,}3675$ est proche de $e^{-1}\\approx0{,}3679$.\n- **Moivre-Laplace.** Pour $X$ de loi $\\mathcal{B}\\left(100,\\frac12\\right)$ : $np=50$ et $\\sqrt{np(1-p)}=5$. Avec la correction de continuité, $P(45\\leq X\\leq55)\\approx\\Phi\\left(\\frac{55{,}5-50}5\\right)-\\Phi\\left(\\frac{44{,}5-50}5\\right)=2\\Phi(1{,}1)-1\\approx0{,}729$, et la valeur exacte est elle aussi d'environ $0{,}729$ ; sans correction, on trouverait $2\\Phi(1)-1\\approx0{,}683$.",
+      "contre_exemple": "- **$p_n\\to\\lambda$ ne suffit pas.** Si $p_n=\\frac12$ pour tout $n$ : $P(X_n=0)=2^{-n}\\to0$, alors que $e^{-1/2}\\neq0$.\n- **$p_n$ trop petit.** Si $p_n=\\frac1{n^2}$, alors $n^2p_n\\to1$ mais $P(X_n=0)=\\left(1-\\frac1{n^2}\\right)^n\\to1\\neq e^{-1}$ : ici $np_n\\to0$.\n- **Pour $p$ fixé, pas de limite de Poisson.** Si $p\\in\\left]0,1\\right[$ est fixé, $P(X_n=k)\\leq n^k(1-p)^{n-k}\\to0$ pour tout entier $k$ : toutes les probabilités $P(X_n\\leq t)$ tendent vers $0$, et aucune loi sur $\\mathbb{N}$ n'est limite. C'est le régime de Moivre-Laplace.",
+      "affirmations": [
+        {
+          "texte": "Si $X_n$ suit la loi $\\mathcal{B}\\left(n,\\frac3n\\right)$ pour $n\\geq3$, alors $P(X_n=0)\\to e^{-3}$.",
+          "vrai": true,
+          "justification": "$np_n=3$ et $k=0$ : $P(X_n=0)=\\left(1-\\frac3n\\right)^n\\to e^{-3}$."
+        },
+        {
+          "texte": "Si $X_n$ suit la loi $\\mathcal{B}\\left(n,\\frac12\\right)$, alors $P\\left(X_n\\leq\\frac n2\\right)\\to\\frac12$.",
+          "vrai": true,
+          "justification": "Par Moivre-Laplace, $P\\left(\\frac{X_n-n/2}{\\sqrt n/2}\\leq0\\right)\\to\\Phi(0)=\\frac12$."
+        },
+        {
+          "texte": "Si $X_n$ suit la loi $\\mathcal{B}(n,p_n)$ et si $p_n\\to0$, alors $(X_n)$ converge en loi vers une loi de Poisson.",
+          "vrai": false,
+          "contre_exemple": "Pour $p_n=\\frac1{\\sqrt n}$, $P(X_n=k)\\leq\\frac{(np_n)^k}{k!}(1-p_n)^{n-k}\\leq\\frac{n^{k/2}}{k!}e^{-(n-k)/\\sqrt n}\\to0$ pour tout $k$ : aucune loi sur $\\mathbb{N}$ n'est limite (ici $np_n\\to+\\infty$)."
+        },
+        {
+          "texte": "Si $X_n$ suit la loi $\\mathcal{B}(n,p)$ avec $p\\in\\left]0,1\\right[$ fixé, alors $\\frac{X_n-np}{np(1-p)}$ converge en loi vers $\\mathcal{N}(0,1)$.",
+          "vrai": false,
+          "contre_exemple": "$\\frac{X_n-np}{np(1-p)}=\\frac{1}{p(1-p)}\\left(\\frac{X_n}n-p\\right)$ converge en probabilité, donc en loi, vers $0$ par la loi faible des grands nombres. Il faut diviser par l'écart type $\\sqrt{np(1-p)}$."
+        }
+      ],
+      "prerequis": [
+        "proba-t-binomiale",
+        "proba-l2-discretes-lois-usuelles",
+        "ar-t-fonctions-usuelles-limites-zero",
+        "proba-l3-limites-tcl",
+        "proba-l3-densites-normales"
+      ]
+    }
+  ]
+}

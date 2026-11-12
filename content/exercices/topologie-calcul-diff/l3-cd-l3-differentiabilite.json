@@ -1,0 +1,1871 @@
+{
+  "exercices": [
+    {
+      "id": "cd-l3-differentiabilite-differentielle-ex1",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "difficulte": 1,
+      "titre": "Dérivée selon un vecteur par le taux d'accroissement",
+      "enonce": "Soit $f(x,y)=x^2y-y^3$ sur $\\mathbb{R}^2$. En revenant à la définition, calculer la dérivée de $f$ au point $a=(1,2)$ selon le vecteur $v=(3,-1)$.",
+      "duree_min": 5,
+      "indices": [
+        "Développer $f(a+tv)$ comme un polynôme en $t$.",
+        "La dérivée selon $v$ est la limite de $\\frac{f(a+tv)-f(a)}{t}$ quand $t\\to0$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $D_vf(a)$ ?",
+        "propositions": [
+          "$23$",
+          "$1$",
+          "$12$",
+          "$-23$"
+        ],
+        "bonne": 0
+      },
+      "correction": "On a $a+tv=(1+3t,\\,2-t)$ et $$f(a+tv)=(1+3t)^2(2-t)-(2-t)^3=-6+23t+6t^2-8t^3.$$ Comme $f(a)=2-8=-6$, $\\frac{f(a+tv)-f(a)}{t}=23+6t-8t^2$, qui tend vers $23$ quand $t\\to0$. Donc $D_vf(a)=23$.\n\nContrôle : $\\frac{\\partial f}{\\partial x}(1,2)=2xy=4$ et $\\frac{\\partial f}{\\partial y}(1,2)=x^2-3y^2=-11$, et $f$ étant polynomiale, donc différentiable, $D_vf(a)=4\\times3+(-11)\\times(-1)=23$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=x^3+xy^2$ sur $\\mathbb{R}^2$. En revenant à la définition, calculer la dérivée de $f$ au point $a=(2,1)$ selon le vecteur $v=(1,2)$.",
+          "reponse_finale": {
+            "question": "Que vaut $D_vf(a)$ ?",
+            "propositions": [
+              "$21$",
+              "$13$",
+              "$17$",
+              "$42$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $a+tv=(2+t,\\,1+2t)$ et $$f(a+tv)=(2+t)^3+(2+t)(1+2t)^2=10+21t+18t^2+5t^3.$$ Comme $f(a)=8+2=10$, $\\frac{f(a+tv)-f(a)}{t}=21+18t+5t^2\\to21$. Donc $D_vf(a)=21$.\n\nContrôle : $\\frac{\\partial f}{\\partial x}(2,1)=3x^2+y^2=13$ et $\\frac{\\partial f}{\\partial y}(2,1)=2xy=4$, d'où $13\\times1+4\\times2=21$.",
+          "indices": [
+            "Développer $f(a+tv)$ comme un polynôme en $t$.",
+            "La dérivée selon $v$ est la limite de $\\frac{f(a+tv)-f(a)}{t}$ quand $t\\to0$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=x^2y+2xy^2$ sur $\\mathbb{R}^2$. En revenant à la définition, calculer la dérivée de $f$ au point $a=(1,-1)$ selon le vecteur $v=(2,3)$.",
+          "reponse_finale": {
+            "question": "Que vaut $D_vf(a)$ ?",
+            "propositions": [
+              "$-9$",
+              "$9$",
+              "$-3$",
+              "$-6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "On a $a+tv=(1+2t,\\,-1+3t)$ et $$f(a+tv)=(1+2t)^2(-1+3t)+2(1+2t)(-1+3t)^2=1-9t+2t^2+48t^3.$$ Comme $f(a)=-1+2=1$, $\\frac{f(a+tv)-f(a)}{t}=-9+2t+48t^2\\to-9$. Donc $D_vf(a)=-9$.\n\nContrôle : $\\frac{\\partial f}{\\partial x}(1,-1)=2xy+2y^2=0$ et $\\frac{\\partial f}{\\partial y}(1,-1)=x^2+4xy=-3$, d'où $0\\times2+(-3)\\times3=-9$.",
+          "indices": [
+            "Développer $f(a+tv)$ comme un polynôme en $t$.",
+            "La dérivée selon $v$ est la limite de $\\frac{f(a+tv)-f(a)}{t}$ quand $t\\to0$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-differentielle-ex2",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "difficulte": 2,
+      "titre": "Dérivées selon tout vecteur d'une fonction homogène",
+      "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{x^3}{x^2+y^2}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est continue en $(0,0)$.\n\n**2.** Pour $v=(v_1,v_2)\\in\\mathbb{R}^2$, montrer que $f$ admet en $(0,0)$ une dérivée selon $v$ et la calculer.\n\n**3.** En déduire que $f$ n'est pas différentiable en $(0,0)$.",
+      "duree_min": 10,
+      "indices": [
+        "Comparer $f(tv)$ et $tf(v)$.",
+        "Une différentielle est linéaire : comparer la dérivée selon $e_1+e_2$ à la somme des dérivées selon $e_1$ et $e_2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $D_{(1,1)}f(0,0)$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$1$",
+          "$0$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $(x,y)\\neq(0,0)$, $x^2\\le x^2+y^2$ donne $|f(x,y)|\\le|x|$, qui tend vers $0$ : $f$ est continue en $(0,0)$.\n\n**2.** Pour $t\\neq0$ et $v\\neq0$, $f(tv)=\\frac{t^3v_1^3}{t^2(v_1^2+v_2^2)}=tf(v)$ ; c'est vrai aussi pour $v=0$. Donc $\\frac{f(tv)-f(0,0)}{t}=f(v)$ et $$D_vf(0,0)=f(v)=\\frac{v_1^3}{v_1^2+v_2^2}\\quad(v\\neq0),\\qquad D_0f(0,0)=0.$$\n\n**3.** Si $f$ était différentiable en $(0,0)$, l'application $v\\mapsto D_vf(0,0)=df(0,0)(v)$ serait linéaire. Or $D_{(1,0)}f(0,0)=1$, $D_{(0,1)}f(0,0)=0$ et $D_{(1,1)}f(0,0)=\\frac12\\neq1+0$. Donc $f$ n'est pas différentiable en $(0,0)$, bien qu'elle y soit continue et y admette une dérivée selon tout vecteur.",
+      "variantes": [
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{x^2y}{x^2+y^2}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est continue en $(0,0)$.\n\n**2.** Pour $v=(v_1,v_2)\\in\\mathbb{R}^2$, montrer que $f$ admet en $(0,0)$ une dérivée selon $v$ et la calculer.\n\n**3.** En déduire que $f$ n'est pas différentiable en $(0,0)$.",
+          "reponse_finale": {
+            "question": "Que vaut $D_{(1,2)}f(0,0)$ ?",
+            "propositions": [
+              "$\\frac25$",
+              "$0$",
+              "$2$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|f(x,y)|\\le|y|$, car $x^2\\le x^2+y^2$ : $f$ est continue en $(0,0)$.\n\n**2.** $f(tv)=tf(v)$ pour tout $t$, donc $D_vf(0,0)=f(v)=\\frac{v_1^2v_2}{v_1^2+v_2^2}$ pour $v\\neq0$, et $D_0f(0,0)=0$.\n\n**3.** $D_{(1,0)}f(0,0)=0$ et $D_{(0,1)}f(0,0)=0$ ; si $f$ était différentiable en $(0,0)$, sa différentielle serait nulle et toutes les dérivées selon les vecteurs le seraient. Or $D_{(1,2)}f(0,0)=\\frac{2}{5}\\neq0$. Donc $f$ n'est pas différentiable en $(0,0)$.",
+          "indices": [
+            "Comparer $f(tv)$ et $tf(v)$.",
+            "Une différentielle est linéaire : la dérivée selon $v_1e_1+v_2e_2$ serait $v_1D_{e_1}f+v_2D_{e_2}f$."
+          ]
+        },
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{x^3+y^3}{x^2+y^2}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est continue en $(0,0)$.\n\n**2.** Pour $v=(v_1,v_2)\\in\\mathbb{R}^2$, montrer que $f$ admet en $(0,0)$ une dérivée selon $v$ et la calculer.\n\n**3.** En déduire que $f$ n'est pas différentiable en $(0,0)$.",
+          "reponse_finale": {
+            "question": "Que vaut $D_{(2,1)}f(0,0)$ ?",
+            "propositions": [
+              "$\\frac95$",
+              "$3$",
+              "$0$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|x^3+y^3|\\le|x|x^2+|y|y^2\\le(|x|+|y|)(x^2+y^2)$, donc $|f(x,y)|\\le|x|+|y|$ : $f$ est continue en $(0,0)$.\n\n**2.** $f(tv)=tf(v)$ pour tout $t$, donc $D_vf(0,0)=f(v)=\\frac{v_1^3+v_2^3}{v_1^2+v_2^2}$ pour $v\\neq0$, et $D_0f(0,0)=0$.\n\n**3.** $D_{(1,0)}f(0,0)=1$ et $D_{(0,1)}f(0,0)=1$ ; si $f$ était différentiable en $(0,0)$, on aurait $D_{(2,1)}f(0,0)=2\\times1+1\\times1=3$. Or $D_{(2,1)}f(0,0)=\\frac{8+1}{4+1}=\\frac95\\neq3$. Donc $f$ n'est pas différentiable en $(0,0)$.",
+          "indices": [
+            "Comparer $f(tv)$ et $tf(v)$.",
+            "Une différentielle est linéaire : la dérivée selon $v_1e_1+v_2e_2$ serait $v_1D_{e_1}f+v_2D_{e_2}f$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-differentielle-ex3",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "difficulte": 3,
+      "titre": "Dérivées selon tout vecteur et continuité",
+      "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{xy^2}{x^2+y^4}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ admet en $(0,0)$ une dérivée selon tout vecteur $v$, et la calculer.\n\n**2.** Calculer $f(y^2,y)$ pour $y\\neq0$.\n\n**3.** Conclure : $f$ est-elle continue en $(0,0)$ ? différentiable en $(0,0)$ ?",
+      "duree_min": 12,
+      "indices": [
+        "Pour $v=(v_1,v_2)$, simplifier $\\frac{f(tv)}{t}$ avant de faire tendre $t$ vers $0$ ; distinguer les cas $v_1\\neq0$ et $v_1=0$.",
+        "Le long d'une courbe passant par l'origine, une fonction continue en $(0,0)$ doit tendre vers $f(0,0)$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de $f(y^2,y)$ pour $y\\neq0$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$0$",
+          "$1$",
+          "$y$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Pour $t\\neq0$ : $\\frac{f(tv)}{t}=\\frac{t^3v_1v_2^2}{t\\,(t^2v_1^2+t^4v_2^4)}=\\frac{v_1v_2^2}{v_1^2+t^2v_2^4}$ pour $v\\neq0$. Si $v_1\\neq0$, ce quotient tend vers $\\frac{v_2^2}{v_1}$ ; si $v_1=0$, $f(tv)=0$ et le quotient est nul. Donc $D_vf(0,0)$ existe pour tout $v$ : elle vaut $\\frac{v_2^2}{v_1}$ si $v_1\\neq0$, et $0$ si $v_1=0$.\n\n**2.** Pour $y\\neq0$, $f(y^2,y)=\\frac{y^4}{y^4+y^4}=\\frac12$.\n\n**3.** Le point $(y^2,y)$ tend vers $(0,0)$ quand $y\\to0$, mais $f(y^2,y)=\\frac12$ ne tend pas vers $f(0,0)=0$ : $f$ n'est pas continue en $(0,0)$, donc pas différentiable en $(0,0)$. L'existence de toutes les dérivées selon les vecteurs ne garantit donc pas la continuité : elle ne regarde $f$ que sur les droites passant par l'origine, et la parabole $x=y^2$ n'en est pas une.",
+      "variantes": [
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{xy^2}{x^2+2y^4}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ admet en $(0,0)$ une dérivée selon tout vecteur $v$, et la calculer.\n\n**2.** Calculer $f(y^2,y)$ pour $y\\neq0$.\n\n**3.** Conclure : $f$ est-elle continue en $(0,0)$ ? différentiable en $(0,0)$ ?",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $f(y^2,y)$ pour $y\\neq0$ ?",
+            "propositions": [
+              "$\\frac13$",
+              "$\\frac12$",
+              "$0$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t\\neq0$ : $\\frac{f(tv)}{t}=\\frac{v_1v_2^2}{v_1^2+2t^2v_2^4}$. Si $v_1\\neq0$, ce quotient tend vers $\\frac{v_2^2}{v_1}$ ; si $v_1=0$, il est nul. Donc $D_vf(0,0)$ existe pour tout $v$.\n\n**2.** Pour $y\\neq0$, $f(y^2,y)=\\frac{y^4}{y^4+2y^4}=\\frac13$.\n\n**3.** $f(y^2,y)=\\frac13$ ne tend pas vers $f(0,0)=0$ quand $y\\to0$ : $f$ n'est pas continue en $(0,0)$, donc pas différentiable, bien qu'elle admette une dérivée selon tout vecteur.",
+          "indices": [
+            "Pour $v=(v_1,v_2)$, simplifier $\\frac{f(tv)}{t}$ avant de faire tendre $t$ vers $0$ ; distinguer les cas $v_1\\neq0$ et $v_1=0$.",
+            "Le long d'une courbe passant par l'origine, une fonction continue en $(0,0)$ doit tendre vers $f(0,0)$."
+          ]
+        },
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ définie par $f(x,y)=\\frac{x^2y}{x^4+3y^2}$ si $(x,y)\\neq(0,0)$ et $f(0,0)=0$.\n\n**1.** Montrer que $f$ admet en $(0,0)$ une dérivée selon tout vecteur $v$, et la calculer.\n\n**2.** Calculer $f(x,x^2)$ pour $x\\neq0$.\n\n**3.** Conclure : $f$ est-elle continue en $(0,0)$ ? différentiable en $(0,0)$ ?",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $f(x,x^2)$ pour $x\\neq0$ ?",
+            "propositions": [
+              "$\\frac14$",
+              "$\\frac13$",
+              "$0$",
+              "$\\frac12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Pour $t\\neq0$ : $\\frac{f(tv)}{t}=\\frac{v_1^2v_2}{t^2v_1^4+3v_2^2}$. Si $v_2\\neq0$, ce quotient tend vers $\\frac{v_1^2}{3v_2}$ ; si $v_2=0$, il est nul. Donc $D_vf(0,0)$ existe pour tout $v$.\n\n**2.** Pour $x\\neq0$, $f(x,x^2)=\\frac{x^4}{x^4+3x^4}=\\frac14$.\n\n**3.** $f(x,x^2)=\\frac14$ ne tend pas vers $f(0,0)=0$ quand $x\\to0$ : $f$ n'est pas continue en $(0,0)$, donc pas différentiable, bien qu'elle admette une dérivée selon tout vecteur.",
+          "indices": [
+            "Pour $v=(v_1,v_2)$, simplifier $\\frac{f(tv)}{t}$ avant de faire tendre $t$ vers $0$ ; distinguer les cas $v_2\\neq0$ et $v_2=0$.",
+            "Le long d'une courbe passant par l'origine, une fonction continue en $(0,0)$ doit tendre vers $f(0,0)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-differentielle-ex4",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "difficulte": 4,
+      "titre": "Fonctions homogènes de degré un différentiables à l'origine",
+      "enonce": "Soit $f:\\mathbb{R}^n\\to\\mathbb{R}$ telle que $f(\\lambda x)=\\lambda f(x)$ pour tout réel $\\lambda$ et tout $x\\in\\mathbb{R}^n$.\n\n**1.** Montrer que $f(0)=0$ et que, pour tout $v\\in\\mathbb{R}^n$, $f$ admet en $0$ une dérivée selon $v$, égale à $f(v)$.\n\n**2.** Montrer que $f$ est différentiable en $0$ si et seulement si $f$ est linéaire.\n\n**3.** Pour $\\alpha\\in\\mathbb{R}$, on pose $g_\\alpha(x,y)=\\frac{x^3+\\alpha y^3}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$ et $g_\\alpha(0,0)=0$. Vérifier que $g_\\alpha$ satisfait l'hypothèse ci-dessus (avec $n=2$), puis déterminer les réels $\\alpha$ pour lesquels $g_\\alpha$ est différentiable en $(0,0)$.",
+      "duree_min": 20,
+      "indices": [
+        "Pour la question 2, si $f$ est différentiable en $0$, comparer $df(0)(v)$ et $D_vf(0)$.",
+        "Pour la question 3, tester l'additivité de $g_\\alpha$ sur des vecteurs bien choisis du plan."
+      ],
+      "reponse_finale": {
+        "question": "Pour quelles valeurs de $\\alpha$ la fonction $g_\\alpha$ est-elle différentiable en $(0,0)$ ?",
+        "propositions": [
+          "Pour aucune valeur de $\\alpha$",
+          "Pour $\\alpha=-1$ seulement",
+          "Pour $\\alpha=1$ seulement",
+          "Pour tout réel $\\alpha$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Avec $\\lambda=0$ : $f(0)=0$. Pour $t\\neq0$, $\\frac{f(tv)-f(0)}{t}=\\frac{tf(v)}{t}=f(v)$ : la limite existe et $D_vf(0)=f(v)$.\n\n**2.** Si $f$ est différentiable en $0$, alors pour tout $v$, $f(v)=D_vf(0)=df(0)(v)$ : $f=df(0)$ est linéaire. Réciproquement, une application linéaire sur $\\mathbb{R}^n$ est différentiable en tout point, de différentielle elle-même (le reste est nul).\n\n**3.** Pour $\\lambda\\neq0$ et $(x,y)\\neq(0,0)$, $g_\\alpha(\\lambda x,\\lambda y)=\\frac{\\lambda^3(x^3+\\alpha y^3)}{\\lambda^2(x^2+y^2)}=\\lambda g_\\alpha(x,y)$ ; les cas $\\lambda=0$ ou $(x,y)=(0,0)$ sont immédiats. D'après la question 2, $g_\\alpha$ est différentiable en $(0,0)$ si et seulement si elle est linéaire. Si elle l'était, on aurait :\n- $g_\\alpha(1,1)=g_\\alpha(1,0)+g_\\alpha(0,1)$, soit $\\frac{1+\\alpha}{2}=1+\\alpha$, donc $\\alpha=-1$ ;\n- $g_\\alpha(1,-1)=g_\\alpha(1,0)-g_\\alpha(0,1)$, soit $\\frac{1-\\alpha}{2}=1-\\alpha$, donc $\\alpha=1$.\n\nCes deux conditions sont incompatibles : $g_\\alpha$ n'est linéaire pour aucun $\\alpha$, donc n'est différentiable en $(0,0)$ pour aucune valeur de $\\alpha$ (alors qu'elle y admet toujours une dérivée selon tout vecteur, et qu'elle y est continue car $|g_\\alpha(x,y)|\\le(1+|\\alpha|)\\sqrt{x^2+y^2}$)."
+    },
+    {
+      "id": "cd-l3-differentiabilite-differentielle-ex5",
+      "carte": "cd-l3-differentiabilite-differentielle",
+      "difficulte": 5,
+      "titre": "Différentiabilité des normes usuelles",
+      "enonce": "On munit $\\mathbb{R}^n$ du produit scalaire canonique $\\langle\\cdot,\\cdot\\rangle$ et l'on note $\\|x\\|_2=\\sqrt{\\langle x,x\\rangle}$, $\\|x\\|_1=\\sum_i|x_i|$, $\\|x\\|_\\infty=\\max_i|x_i|$.\n\n**1.** Montrer que $\\|\\cdot\\|_2$ est différentiable en tout point $a\\neq0$, de différentielle $h\\mapsto\\frac{\\langle a,h\\rangle}{\\|a\\|_2}$.\n\n**2.** Montrer qu'aucune norme $N$ sur $\\mathbb{R}^n$ n'est différentiable en $0$.\n\n**3.** Montrer que $\\|\\cdot\\|_1$ est différentiable en $a$ si et seulement si toutes les coordonnées de $a$ sont non nulles, et donner alors sa différentielle.\n\n**4.** Dans $\\mathbb{R}^2$, montrer que $\\|\\cdot\\|_\\infty$ est différentiable en $a=(a_1,a_2)$ si et seulement si $|a_1|\\neq|a_2|$.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, partir de $\\|a+h\\|_2-\\|a\\|_2=\\frac{\\|a+h\\|_2^2-\\|a\\|_2^2}{\\|a+h\\|_2+\\|a\\|_2}$.",
+        "Pour la question 2, comparer les limites à droite et à gauche de $\\frac{N(tv)}{t}$ en $0$.",
+        "Pour les questions 3 et 4, au voisinage d'un point où $a_i\\neq0$, $|x_i|$ coïncide avec $x_i$ ou avec $-x_i$ ; ailleurs, chercher un vecteur selon lequel la dérivée n'existe pas."
+      ],
+      "reponse_finale": {
+        "question": "En lequel de ces points la norme $\\|\\cdot\\|_\\infty$ de $\\mathbb{R}^2$ est-elle différentiable ?",
+        "propositions": [
+          "$(2,-1)$",
+          "$(1,1)$",
+          "$(1,-1)$",
+          "$(0,0)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Soit $a\\neq0$. Comme $\\|a+h\\|_2^2=\\|a\\|_2^2+2\\langle a,h\\rangle+\\|h\\|_2^2$, $$\\|a+h\\|_2-\\|a\\|_2-\\frac{\\langle a,h\\rangle}{\\|a\\|_2}=\\frac{\\big(2\\langle a,h\\rangle+\\|h\\|_2^2\\big)\\|a\\|_2-\\langle a,h\\rangle\\big(\\|a+h\\|_2+\\|a\\|_2\\big)}{\\|a\\|_2\\big(\\|a+h\\|_2+\\|a\\|_2\\big)}=\\frac{\\langle a,h\\rangle\\big(\\|a\\|_2-\\|a+h\\|_2\\big)+\\|h\\|_2^2\\,\\|a\\|_2}{\\|a\\|_2\\big(\\|a+h\\|_2+\\|a\\|_2\\big)}.$$ Par Cauchy-Schwarz et l'inégalité triangulaire, le numérateur est majoré en valeur absolue par $\\|a\\|_2\\|h\\|_2\\cdot\\|h\\|_2+\\|h\\|_2^2\\|a\\|_2$, et le dénominateur est minoré par $\\|a\\|_2^2$ : l'écart est majoré par $\\frac{2\\|h\\|_2^2}{\\|a\\|_2}=o(\\|h\\|_2)$. L'application $h\\mapsto\\frac{\\langle a,h\\rangle}{\\|a\\|_2}$ étant linéaire, c'est la différentielle.\n\n**2.** Soit $v\\neq0$. Pour $t\\neq0$, $\\frac{N(tv)-N(0)}{t}=\\frac{|t|}{t}N(v)$ vaut $N(v)$ pour $t>0$ et $-N(v)$ pour $t<0$ ; comme $N(v)>0$, il n'y a pas de limite en $0$. $N$ n'a pas de dérivée en $0$ selon $v$, donc n'est pas différentiable en $0$.\n\n**3.** Si toutes les coordonnées de $a$ sont non nulles, notons $\\varepsilon_i\\in\\{-1,1\\}$ le signe de $a_i$ et $\\rho=\\min_i|a_i|>0$. Pour $\\|h\\|_\\infty<\\rho$, $a_i+h_i$ a le signe $\\varepsilon_i$, donc $\\|a+h\\|_1=\\sum_i\\varepsilon_i(a_i+h_i)=\\|a\\|_1+\\sum_i\\varepsilon_ih_i$ : le reste est nul, et $\\|\\cdot\\|_1$ est différentiable en $a$, de différentielle $h\\mapsto\\sum_i\\varepsilon_ih_i$. Si $a_j=0$ pour un indice $j$, alors $\\|a+te_j\\|_1=\\sum_{i\\neq j}|a_i|+|t|$, qui n'est pas dérivable en $t=0$ : pas de dérivée selon $e_j$, donc pas de différentiabilité.\n\n**4.** Si $|a_1|>|a_2|$ : alors $a_1\\neq0$, et par continuité, pour $x$ assez proche de $a$, $|x_1|>|x_2|$ et $x_1$ a le signe $\\varepsilon_1$ de $a_1$ ; donc $\\|x\\|_\\infty=\\varepsilon_1x_1$ au voisinage de $a$, fonction linéaire : $\\|\\cdot\\|_\\infty$ est différentiable en $a$. Même chose si $|a_2|>|a_1|$. Si $|a_1|=|a_2|=c$ : pour $c=0$, c'est la question 2 ; pour $c>0$, posons $w=(\\varepsilon_1,0)$ ; pour $|t|<c$, $\\|a+tw\\|_\\infty=\\max(c+t,c)$, qui vaut $c+t$ pour $t\\ge0$ et $c$ pour $t\\le0$ : pas de dérivée selon $w$, donc pas de différentiabilité.\n\nAinsi $\\|\\cdot\\|_\\infty$ est différentiable en $(2,-1)$, mais ni en $(1,1)$, ni en $(1,-1)$, ni en $(0,0)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-jacobienne-ex1",
+      "carte": "cd-l3-differentiabilite-jacobienne",
+      "difficulte": 1,
+      "titre": "Matrice jacobienne d'une application polynomiale",
+      "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}^3$, $f(x,y)=(x^2y,\\ x-y^2,\\ xy)$, dont on admet qu'elle est différentiable (ses composantes sont polynomiales). Calculer la matrice jacobienne $J_f(1,2)$, puis $df(1,2)(h)$ pour $h=(1,1)$.",
+      "duree_min": 5,
+      "indices": [
+        "La ligne $i$ de $J_f(a)$ contient les dérivées partielles de la $i$-ième composante de $f$.",
+        "$df(a)(h)=J_f(a)h$, avec $h$ écrit en colonne."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $df(1,2)(1,1)$ ?",
+        "propositions": [
+          "$(5,-3,3)$",
+          "$(4,1,2)$",
+          "$(5,3,3)$",
+          "$(1,-4,1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Les dérivées partielles des composantes donnent $$J_f(x,y)=\\begin{pmatrix}2xy&x^2\\\\1&-2y\\\\y&x\\end{pmatrix},\\qquad J_f(1,2)=\\begin{pmatrix}4&1\\\\1&-4\\\\2&1\\end{pmatrix}.$$ Donc $df(1,2)(1,1)=J_f(1,2)\\begin{pmatrix}1\\\\1\\end{pmatrix}=(4+1,\\ 1-4,\\ 2+1)=(5,-3,3)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}^3$, $f(x,y)=(xy^2,\\ x^2+y,\\ x-y)$, dont on admet qu'elle est différentiable (ses composantes sont polynomiales). Calculer la matrice jacobienne $J_f(2,1)$, puis $df(2,1)(h)$ pour $h=(1,-1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $df(2,1)(1,-1)$ ?",
+            "propositions": [
+              "$(-3,3,2)$",
+              "$(1,4,1)$",
+              "$(5,5,0)$",
+              "$(3,-3,2)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$$J_f(x,y)=\\begin{pmatrix}y^2&2xy\\\\2x&1\\\\1&-1\\end{pmatrix},\\qquad J_f(2,1)=\\begin{pmatrix}1&4\\\\4&1\\\\1&-1\\end{pmatrix}.$$ Donc $df(2,1)(1,-1)=(1-4,\\ 4-1,\\ 1+1)=(-3,3,2)$.",
+          "indices": [
+            "La ligne $i$ de $J_f(a)$ contient les dérivées partielles de la $i$-ième composante de $f$.",
+            "$df(a)(h)=J_f(a)h$, avec $h$ écrit en colonne."
+          ]
+        },
+        {
+          "enonce": "Soit $f:\\mathbb{R}^2\\to\\mathbb{R}^3$, $f(x,y)=(x+y^2,\\ xy,\\ y^3)$, dont on admet qu'elle est différentiable (ses composantes sont polynomiales). Calculer la matrice jacobienne $J_f(1,-1)$, puis $df(1,-1)(h)$ pour $h=(2,1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $df(1,-1)(2,1)$ ?",
+            "propositions": [
+              "$(0,-1,3)$",
+              "$(1,-1,0)$",
+              "$(-1,0,3)$",
+              "$(0,1,3)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$$J_f(x,y)=\\begin{pmatrix}1&2y\\\\y&x\\\\0&3y^2\\end{pmatrix},\\qquad J_f(1,-1)=\\begin{pmatrix}1&-2\\\\-1&1\\\\0&3\\end{pmatrix}.$$ Donc $df(1,-1)(2,1)=(2-2,\\ -2+1,\\ 0+3)=(0,-1,3)$.",
+          "indices": [
+            "La ligne $i$ de $J_f(a)$ contient les dérivées partielles de la $i$-ième composante de $f$.",
+            "$df(a)(h)=J_f(a)h$, avec $h$ écrit en colonne."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-jacobienne-ex2",
+      "carte": "cd-l3-differentiabilite-jacobienne",
+      "difficulte": 2,
+      "titre": "Déterminant jacobien d'un changement de coordonnées",
+      "enonce": "Soit $\\varphi:\\left]0,+\\infty\\right[\\times\\mathbb{R}\\to\\mathbb{R}^2$, $\\varphi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$ (coordonnées polaires), de classe $\\mathcal{C}^1$. Calculer sa matrice jacobienne, puis son déterminant jacobien au point $(r,\\theta)=\\left(3,\\frac\\pi4\\right)$.",
+      "duree_min": 6,
+      "indices": [
+        "Les colonnes de la jacobienne sont les dérivées partielles de $\\varphi$ par rapport à $r$ puis à $\\theta$.",
+        "Simplifier le déterminant avec $\\cos^2+\\sin^2=1$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\det J_\\varphi\\left(3,\\frac\\pi4\\right)$ ?",
+        "propositions": [
+          "$3$",
+          "$9$",
+          "$1$",
+          "$\\frac{3\\sqrt2}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$$J_\\varphi(r,\\theta)=\\begin{pmatrix}\\cos\\theta&-r\\sin\\theta\\\\\\sin\\theta&r\\cos\\theta\\end{pmatrix},\\qquad\\det J_\\varphi(r,\\theta)=r\\cos^2\\theta+r\\sin^2\\theta=r.$$ Au point $\\left(3,\\frac\\pi4\\right)$, le déterminant jacobien vaut $3$ : il ne dépend que de $r$. C'est le facteur $r$ de l'élément d'aire $r\\,\\mathrm{d}r\\,\\mathrm{d}\\theta$ en coordonnées polaires.",
+      "variantes": [
+        {
+          "enonce": "Soit $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$, $\\varphi(u,v)=(u^2-v^2,\\ 2uv)$, de classe $\\mathcal{C}^1$. Calculer sa matrice jacobienne, puis son déterminant jacobien au point $(u,v)=(1,2)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\det J_\\varphi(1,2)$ ?",
+            "propositions": [
+              "$20$",
+              "$-12$",
+              "$10$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$$J_\\varphi(u,v)=\\begin{pmatrix}2u&-2v\\\\2v&2u\\end{pmatrix},\\qquad\\det J_\\varphi(u,v)=4u^2+4v^2.$$ Au point $(1,2)$ : $4+16=20$. (C'est l'application $z\\mapsto z^2$ de $\\mathbb{C}$, et $4(u^2+v^2)=|2z|^2$.)",
+          "indices": [
+            "Les colonnes de la jacobienne sont les dérivées partielles de $\\varphi$ par rapport à $u$ puis à $v$.",
+            "Attention au signe du coefficient $-2v$ dans le développement du déterminant."
+          ]
+        },
+        {
+          "enonce": "Soit $\\varphi:\\mathbb{R}^2\\to\\mathbb{R}^2$, $\\varphi(x,y)=(e^x\\cos y,\\ e^x\\sin y)$, de classe $\\mathcal{C}^1$. Calculer sa matrice jacobienne, puis son déterminant jacobien au point $\\left(\\ln2,\\frac\\pi6\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\det J_\\varphi\\left(\\ln2,\\frac\\pi6\\right)$ ?",
+            "propositions": [
+              "$4$",
+              "$2$",
+              "$1$",
+              "$8$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$$J_\\varphi(x,y)=\\begin{pmatrix}e^x\\cos y&-e^x\\sin y\\\\e^x\\sin y&e^x\\cos y\\end{pmatrix},\\qquad\\det J_\\varphi(x,y)=e^{2x}.$$ Au point $\\left(\\ln2,\\frac\\pi6\\right)$ : $e^{2\\ln2}=4$, indépendamment de $y$.",
+          "indices": [
+            "Les colonnes de la jacobienne sont les dérivées partielles de $\\varphi$ par rapport à $x$ puis à $y$.",
+            "Simplifier le déterminant avec $\\cos^2+\\sin^2=1$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-jacobienne-ex3",
+      "carte": "cd-l3-differentiabilite-jacobienne",
+      "difficulte": 3,
+      "titre": "Différentielle de l'élévation au carré des matrices",
+      "enonce": "On munit $\\mathcal{M}_2(\\mathbb{R})$ d'une norme sous-multiplicative et l'on considère $f(M)=M^2$.\n\n**1.** Montrer que $f$ est différentiable en tout $M$, avec $df(M)(H)=MH+HM$.\n\n**2.** On prend $M=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$. En identifiant $\\mathcal{M}_2(\\mathbb{R})$ à $\\mathbb{R}^4$ par la base $(E_{11},E_{12},E_{21},E_{22})$, écrire la matrice de $df(M)$ et calculer son déterminant.\n\n**3.** $df(M)$ est-elle inversible ?",
+      "duree_min": 15,
+      "indices": [
+        "Développer $(M+H)^2$ sans faire commuter $M$ et $H$, puis majorer le terme restant.",
+        "Pour $M$ diagonale de coefficients $d_1,d_2$, exprimer le coefficient $(i,j)$ de $MH+HM$ en fonction de $h_{ij}$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut le déterminant de $df(M)$ ?",
+        "propositions": [
+          "$72$",
+          "$64$",
+          "$24$",
+          "$10$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $(M+H)^2=M^2+MH+HM+H^2$ et $\\|H^2\\|\\le\\|H\\|^2=o(\\|H\\|)$ ; l'application $H\\mapsto MH+HM$ est linéaire. Donc $df(M)(H)=MH+HM$ (qui n'est égal à $2MH$ que si $M$ et $H$ commutent).\n\n**2.** Pour $M=\\mathrm{diag}(d_1,d_2)$, le coefficient $(i,j)$ de $MH+HM$ est $d_ih_{ij}+h_{ij}d_j=(d_i+d_j)h_{ij}$. Avec $d_1=1$, $d_2=2$, la matrice de $df(M)$ dans la base $(E_{11},E_{12},E_{21},E_{22})$ est $\\mathrm{diag}(2,3,3,4)$, de déterminant $2\\times3\\times3\\times4=72$.\n\n**3.** Le déterminant est non nul : $df(M)$ est inversible.",
+      "variantes": [
+        {
+          "enonce": "On munit $\\mathcal{M}_2(\\mathbb{R})$ d'une norme sous-multiplicative et l'on considère $f(M)=M^2$.\n\n**1.** Montrer que $f$ est différentiable en tout $M$, avec $df(M)(H)=MH+HM$.\n\n**2.** On prend $M=\\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}$. En identifiant $\\mathcal{M}_2(\\mathbb{R})$ à $\\mathbb{R}^4$ par la base $(E_{11},E_{12},E_{21},E_{22})$, écrire la matrice de $df(M)$ et calculer son déterminant.\n\n**3.** $df(M)$ est-elle inversible ?",
+          "reponse_finale": {
+            "question": "Que vaut le déterminant de $df(M)$ ?",
+            "propositions": [
+              "$192$",
+              "$144$",
+              "$48$",
+              "$16$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $(M+H)^2=M^2+MH+HM+H^2$ et $\\|H^2\\|\\le\\|H\\|^2=o(\\|H\\|)$, donc $df(M)(H)=MH+HM$.\n\n**2.** Le coefficient $(i,j)$ de $MH+HM$ est $(d_i+d_j)h_{ij}$, avec $d_1=1$, $d_2=3$ : la matrice de $df(M)$ est $\\mathrm{diag}(2,4,4,6)$, de déterminant $2\\times4\\times4\\times6=192$.\n\n**3.** Le déterminant est non nul : $df(M)$ est inversible.",
+          "indices": [
+            "Développer $(M+H)^2$ sans faire commuter $M$ et $H$, puis majorer le terme restant.",
+            "Pour $M$ diagonale de coefficients $d_1,d_2$, exprimer le coefficient $(i,j)$ de $MH+HM$ en fonction de $h_{ij}$."
+          ]
+        },
+        {
+          "enonce": "On munit $\\mathcal{M}_2(\\mathbb{R})$ d'une norme sous-multiplicative et l'on considère $f(M)=M^2$.\n\n**1.** Montrer que $f$ est différentiable en tout $M$, avec $df(M)(H)=MH+HM$.\n\n**2.** On prend $M=\\begin{pmatrix}2&0\\\\0&-1\\end{pmatrix}$. En identifiant $\\mathcal{M}_2(\\mathbb{R})$ à $\\mathbb{R}^4$ par la base $(E_{11},E_{12},E_{21},E_{22})$, écrire la matrice de $df(M)$ et calculer son déterminant.\n\n**3.** $df(M)$ est-elle inversible ?",
+          "reponse_finale": {
+            "question": "Que vaut le déterminant de $df(M)$ ?",
+            "propositions": [
+              "$-8$",
+              "$64$",
+              "$8$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $(M+H)^2=M^2+MH+HM+H^2$ et $\\|H^2\\|\\le\\|H\\|^2=o(\\|H\\|)$, donc $df(M)(H)=MH+HM$.\n\n**2.** Le coefficient $(i,j)$ de $MH+HM$ est $(d_i+d_j)h_{ij}$, avec $d_1=2$, $d_2=-1$ : la matrice de $df(M)$ est $\\mathrm{diag}(4,1,1,-2)$, de déterminant $4\\times1\\times1\\times(-2)=-8$.\n\n**3.** Le déterminant est non nul : $df(M)$ est inversible. (Elle ne le serait pas si $d_1+d_2=0$, par exemple pour $M=\\mathrm{diag}(1,-1)$.)",
+          "indices": [
+            "Développer $(M+H)^2$ sans faire commuter $M$ et $H$, puis majorer le terme restant.",
+            "Pour $M$ diagonale de coefficients $d_1,d_2$, exprimer le coefficient $(i,j)$ de $MH+HM$ en fonction de $h_{ij}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-jacobienne-ex4",
+      "carte": "cd-l3-differentiabilite-jacobienne",
+      "difficulte": 4,
+      "titre": "Différentielle du déterminant",
+      "enonce": "On admet que $\\det:\\mathcal{M}_n(\\mathbb{R})\\to\\mathbb{R}$, fonction polynomiale des coefficients, est différentiable. On note $C_{ij}(M)$ le cofacteur d'indice $(i,j)$ de $M$ et $\\operatorname{com}(M)=(C_{ij}(M))$ la comatrice.\n\n**1.** Montrer que $\\frac{\\partial\\det}{\\partial m_{ij}}(M)=C_{ij}(M)$.\n\n**2.** En déduire que $d(\\det)(M)(H)=\\sum_{i,j}C_{ij}(M)h_{ij}=\\operatorname{tr}\\big(\\operatorname{com}(M)^{\\mathsf T}H\\big)$.\n\n**3.** Montrer que, si $M$ est inversible, $d(\\det)(M)(H)=\\det(M)\\operatorname{tr}(M^{-1}H)$ ; en particulier $d(\\det)(I_n)(H)=\\operatorname{tr}H$.\n\n**4.** Calculer $d(\\det)(M)(H)$ pour $M=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ et $H=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$.",
+      "duree_min": 25,
+      "indices": [
+        "Développer $\\det M$ selon la ligne $i$ : le coefficient $m_{ij}$ n'y apparaît qu'au premier degré, et son cofacteur ne dépend pas de la ligne $i$.",
+        "Pour la question 3, utiliser $\\operatorname{com}(M)^{\\mathsf T}M=\\det(M)\\,I_n$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $d(\\det)(M)(H)$ à la question 4 ?",
+        "propositions": [
+          "$-5$",
+          "$-2$",
+          "$0$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Le développement selon la ligne $i$ donne $\\det M=\\sum_km_{ik}C_{ik}(M)$, où les cofacteurs $C_{ik}(M)$ ne dépendent pas des coefficients de la ligne $i$. Comme fonction de $m_{ij}$ seul, $\\det$ est donc affine, de coefficient directeur $C_{ij}(M)$.\n\n**2.** Par la carte sur la matrice jacobienne, $d(\\det)(M)(H)=\\sum_{i,j}h_{ij}\\frac{\\partial\\det}{\\partial m_{ij}}(M)=\\sum_{i,j}C_{ij}(M)h_{ij}$. Le coefficient diagonal $(j,j)$ de $\\operatorname{com}(M)^{\\mathsf T}H$ est $\\sum_iC_{ij}(M)h_{ij}$, d'où l'expression avec la trace.\n\n**3.** Si $M$ est inversible, $\\operatorname{com}(M)^{\\mathsf T}=\\det(M)M^{-1}$, d'où $d(\\det)(M)(H)=\\det(M)\\operatorname{tr}(M^{-1}H)$. Pour $M=I_n$ : $\\operatorname{tr}H$.\n\n**4.** $\\operatorname{com}(M)=\\begin{pmatrix}4&-3\\\\-2&1\\end{pmatrix}$ et seuls $h_{12}=h_{21}=1$ sont non nuls : $d(\\det)(M)(H)=C_{12}+C_{21}=-3-2=-5$. Vérification directe : $\\det(M+tH)=4-(2+t)(3+t)=-2-5t-t^2$, de dérivée $-5$ en $t=0$.",
+      "variantes": [
+        {
+          "enonce": "On admet que $\\det:\\mathcal{M}_n(\\mathbb{R})\\to\\mathbb{R}$, fonction polynomiale des coefficients, est différentiable. On note $C_{ij}(M)$ le cofacteur d'indice $(i,j)$ de $M$ et $\\operatorname{com}(M)=(C_{ij}(M))$ la comatrice.\n\n**1.** Montrer que $\\frac{\\partial\\det}{\\partial m_{ij}}(M)=C_{ij}(M)$.\n\n**2.** En déduire que $d(\\det)(M)(H)=\\sum_{i,j}C_{ij}(M)h_{ij}=\\operatorname{tr}\\big(\\operatorname{com}(M)^{\\mathsf T}H\\big)$.\n\n**3.** Montrer que, si $M$ est inversible, $d(\\det)(M)(H)=\\det(M)\\operatorname{tr}(M^{-1}H)$ ; en particulier $d(\\det)(I_n)(H)=\\operatorname{tr}H$.\n\n**4.** Calculer $d(\\det)(M)(H)$ pour $M=\\begin{pmatrix}2&1\\\\1&3\\end{pmatrix}$ et $H=I_2$.",
+          "reponse_finale": {
+            "question": "Que vaut $d(\\det)(M)(H)$ à la question 4 ?",
+            "propositions": [
+              "$5$",
+              "$2$",
+              "$10$",
+              "$-5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1 à 3.** Comme dans l'exercice : le développement selon la ligne $i$ montre que $\\det$ est affine en $m_{ij}$, de coefficient $C_{ij}(M)$ ; d'où $d(\\det)(M)(H)=\\sum C_{ij}(M)h_{ij}=\\operatorname{tr}(\\operatorname{com}(M)^{\\mathsf T}H)$, et $\\operatorname{com}(M)^{\\mathsf T}=\\det(M)M^{-1}$ si $M$ est inversible.\n\n**4.** $\\operatorname{com}(M)=\\begin{pmatrix}3&-1\\\\-1&2\\end{pmatrix}$ et $H=I_2$ : $d(\\det)(M)(I_2)=C_{11}+C_{22}=3+2=5$. Vérification : $\\det(M+tI_2)=(2+t)(3+t)-1=5+5t+t^2$, de dérivée $5$ en $0$ ; et $\\det(M)\\operatorname{tr}(M^{-1})=5\\times\\frac{5}{5}=5$.",
+          "indices": [
+            "Développer $\\det M$ selon la ligne $i$ : le coefficient $m_{ij}$ n'y apparaît qu'au premier degré, et son cofacteur ne dépend pas de la ligne $i$.",
+            "Pour la question 4, seuls les cofacteurs diagonaux interviennent."
+          ]
+        },
+        {
+          "enonce": "On admet que $\\det:\\mathcal{M}_n(\\mathbb{R})\\to\\mathbb{R}$, fonction polynomiale des coefficients, est différentiable. On note $C_{ij}(M)$ le cofacteur d'indice $(i,j)$ de $M$ et $\\operatorname{com}(M)=(C_{ij}(M))$ la comatrice.\n\n**1.** Montrer que $\\frac{\\partial\\det}{\\partial m_{ij}}(M)=C_{ij}(M)$.\n\n**2.** En déduire que $d(\\det)(M)(H)=\\sum_{i,j}C_{ij}(M)h_{ij}=\\operatorname{tr}\\big(\\operatorname{com}(M)^{\\mathsf T}H\\big)$.\n\n**3.** Montrer que, si $M$ est inversible, $d(\\det)(M)(H)=\\det(M)\\operatorname{tr}(M^{-1}H)$ ; en particulier $d(\\det)(I_n)(H)=\\operatorname{tr}H$.\n\n**4.** Calculer $d(\\det)(M)(H)$ pour $M=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}$ et $H=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}$.",
+          "reponse_finale": {
+            "question": "Que vaut $d(\\det)(M)(H)$ à la question 4 ?",
+            "propositions": [
+              "$-1$",
+              "$1$",
+              "$0$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1 à 3.** Comme dans l'exercice : le développement selon la ligne $i$ montre que $\\det$ est affine en $m_{ij}$, de coefficient $C_{ij}(M)$ ; d'où $d(\\det)(M)(H)=\\sum C_{ij}(M)h_{ij}=\\operatorname{tr}(\\operatorname{com}(M)^{\\mathsf T}H)$, et $\\operatorname{com}(M)^{\\mathsf T}=\\det(M)M^{-1}$ si $M$ est inversible.\n\n**4.** Seul $h_{21}=1$ est non nul, et $C_{21}(M)=(-1)^{2+1}m_{12}=-1$ : $d(\\det)(M)(H)=-1$. Vérification : $\\det(M+tH)=\\det\\begin{pmatrix}1&1\\\\t&2\\end{pmatrix}=2-t$, de dérivée $-1$.",
+          "indices": [
+            "Développer $\\det M$ selon la ligne $i$ : le coefficient $m_{ij}$ n'y apparaît qu'au premier degré, et son cofacteur ne dépend pas de la ligne $i$.",
+            "Pour la question 4, un seul cofacteur intervient ; attention au signe $(-1)^{i+j}$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-classe-c1-ex1",
+      "carte": "cd-l3-differentiabilite-classe-c1",
+      "difficulte": 1,
+      "titre": "Différentielle d'une fonction de classe C¹",
+      "enonce": "Soit $f(x,y)=xe^{xy}$ sur $\\mathbb{R}^2$. Montrer que $f$ est de classe $\\mathcal{C}^1$, puis calculer $df(1,0)(h)$ pour $h=(2,3)$.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer les deux dérivées partielles et justifier leur continuité sur $\\mathbb{R}^2$.",
+        "Pour une application de classe $\\mathcal{C}^1$, $df(a)(h)=h_1\\frac{\\partial f}{\\partial x}(a)+h_2\\frac{\\partial f}{\\partial y}(a)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $df(1,0)(2,3)$ ?",
+        "propositions": [
+          "$5$",
+          "$2$",
+          "$3$",
+          "$6$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\frac{\\partial f}{\\partial x}(x,y)=(1+xy)e^{xy}$ et $\\frac{\\partial f}{\\partial y}(x,y)=x^2e^{xy}$ sont continues sur $\\mathbb{R}^2$ (produits et composées de fonctions continues) : $f$ est de classe $\\mathcal{C}^1$, donc différentiable. En $(1,0)$, les deux dérivées partielles valent $1$, d'où $df(1,0)(2,3)=1\\times2+1\\times3=5$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=ye^x+xy^3$ sur $\\mathbb{R}^2$. Montrer que $f$ est de classe $\\mathcal{C}^1$, puis calculer $df(0,1)(h)$ pour $h=(1,2)$.",
+          "reponse_finale": {
+            "question": "Que vaut $df(0,1)(1,2)$ ?",
+            "propositions": [
+              "$4$",
+              "$2$",
+              "$3$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}(x,y)=ye^x+y^3$ et $\\frac{\\partial f}{\\partial y}(x,y)=e^x+3xy^2$ sont continues sur $\\mathbb{R}^2$ : $f$ est de classe $\\mathcal{C}^1$. En $(0,1)$, elles valent $2$ et $1$, d'où $df(0,1)(1,2)=2\\times1+1\\times2=4$.",
+          "indices": [
+            "Calculer les deux dérivées partielles et justifier leur continuité sur $\\mathbb{R}^2$.",
+            "Pour une application de classe $\\mathcal{C}^1$, $df(a)(h)=h_1\\frac{\\partial f}{\\partial x}(a)+h_2\\frac{\\partial f}{\\partial y}(a)$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=\\cos x+xy^2$ sur $\\mathbb{R}^2$. Montrer que $f$ est de classe $\\mathcal{C}^1$, puis calculer $df(0,2)(h)$ pour $h=(3,-1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $df(0,2)(3,-1)$ ?",
+            "propositions": [
+              "$12$",
+              "$4$",
+              "$13$",
+              "$-12$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}(x,y)=-\\sin x+y^2$ et $\\frac{\\partial f}{\\partial y}(x,y)=2xy$ sont continues sur $\\mathbb{R}^2$ : $f$ est de classe $\\mathcal{C}^1$. En $(0,2)$, elles valent $4$ et $0$, d'où $df(0,2)(3,-1)=4\\times3+0\\times(-1)=12$.",
+          "indices": [
+            "Calculer les deux dérivées partielles et justifier leur continuité sur $\\mathbb{R}^2$.",
+            "Pour une application de classe $\\mathcal{C}^1$, $df(a)(h)=h_1\\frac{\\partial f}{\\partial x}(a)+h_2\\frac{\\partial f}{\\partial y}(a)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-classe-c1-ex2",
+      "carte": "cd-l3-differentiabilite-classe-c1",
+      "difficulte": 2,
+      "titre": "Une fonction différentiable dont les dérivées partielles oscillent",
+      "enonce": "Soit $f(x,y)=(x^2+y^2)\\sin\\frac{1}{\\sqrt{x^2+y^2}}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est différentiable en $(0,0)$ et donner $df(0,0)$.\n\n**2.** Calculer $\\frac{\\partial f}{\\partial x}(x,0)$ pour $x>0$, puis sa valeur en $x=\\frac{1}{2k\\pi}$, $k\\ge1$ entier.\n\n**3.** $f$ est-elle de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+      "duree_min": 10,
+      "indices": [
+        "Majorer $|f(h)|$ par une puissance de $\\|h\\|_2$.",
+        "Sur le demi-axe $x>0$, $y=0$, on a $f(x,0)=x^2\\sin\\frac1x$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{\\partial f}{\\partial x}\\left(\\frac{1}{2k\\pi},0\\right)$ ?",
+        "propositions": [
+          "$-1$",
+          "$0$",
+          "$1$",
+          "$\\frac{1}{k\\pi}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $|f(h)|\\le\\|h\\|_2^2=o(\\|h\\|_2)$ : $f$ est différentiable en $(0,0)$, avec $df(0,0)=0$.\n\n**2.** Pour $x>0$, $f(x,0)=x^2\\sin\\frac1x$, et, $f$ étant de classe $\\mathcal{C}^1$ hors de l'origine, $\\frac{\\partial f}{\\partial x}(x,0)=2x\\sin\\frac1x-\\cos\\frac1x$. En $x=\\frac1{2k\\pi}$ : $\\sin(2k\\pi)=0$ et $\\cos(2k\\pi)=1$, d'où $\\frac{\\partial f}{\\partial x}\\left(\\frac1{2k\\pi},0\\right)=-1$.\n\n**3.** Quand $k\\to+\\infty$, $\\left(\\frac1{2k\\pi},0\\right)\\to(0,0)$ mais la dérivée partielle vaut $-1\\neq0=\\frac{\\partial f}{\\partial x}(0,0)$ ; elle n'est pas continue en $(0,0)$ (elle vaut d'ailleurs $1$ aux points $\\frac1{(2k+1)\\pi}$). $f$ est différentiable sur $\\mathbb{R}^2$ sans être de classe $\\mathcal{C}^1$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=(x^2+y^2)\\cos\\frac{1}{\\sqrt{x^2+y^2}}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est différentiable en $(0,0)$ et donner $df(0,0)$.\n\n**2.** Calculer $\\frac{\\partial f}{\\partial x}(x,0)$ pour $x>0$, puis sa valeur en $x=\\frac{2}{(4k+1)\\pi}$, $k\\ge1$ entier.\n\n**3.** $f$ est-elle de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial f}{\\partial x}\\left(\\frac{2}{(4k+1)\\pi},0\\right)$ ?",
+            "propositions": [
+              "$1$",
+              "$-1$",
+              "$0$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|f(h)|\\le\\|h\\|_2^2=o(\\|h\\|_2)$ : $f$ est différentiable en $(0,0)$, avec $df(0,0)=0$.\n\n**2.** Pour $x>0$, $f(x,0)=x^2\\cos\\frac1x$, d'où $\\frac{\\partial f}{\\partial x}(x,0)=2x\\cos\\frac1x+\\sin\\frac1x$. En $x=\\frac{2}{(4k+1)\\pi}$ : $\\frac1x=2k\\pi+\\frac\\pi2$, $\\cos\\frac1x=0$ et $\\sin\\frac1x=1$, d'où la valeur $1$.\n\n**3.** Ces points tendent vers $(0,0)$, où la dérivée partielle vaut $0$ : elle n'est pas continue en $(0,0)$, et $f$ n'est pas de classe $\\mathcal{C}^1$, bien que différentiable.",
+          "indices": [
+            "Majorer $|f(h)|$ par une puissance de $\\|h\\|_2$.",
+            "Sur le demi-axe $x>0$, $y=0$, on a $f(x,0)=x^2\\cos\\frac1x$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=(x^2+y^2)\\sin\\frac{1}{\\sqrt{x^2+y^2}}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Montrer que $f$ est différentiable en $(0,0)$ et donner $df(0,0)$.\n\n**2.** Calculer $\\frac{\\partial f}{\\partial y}(0,y)$ pour $y>0$, puis sa valeur en $y=\\frac{1}{(2k+1)\\pi}$, $k\\ge1$ entier.\n\n**3.** $f$ est-elle de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial f}{\\partial y}\\left(0,\\frac{1}{(2k+1)\\pi}\\right)$ ?",
+            "propositions": [
+              "$1$",
+              "$-1$",
+              "$0$",
+              "$\\frac{2}{(2k+1)\\pi}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $|f(h)|\\le\\|h\\|_2^2=o(\\|h\\|_2)$ : $f$ est différentiable en $(0,0)$, avec $df(0,0)=0$.\n\n**2.** Pour $y>0$, $f(0,y)=y^2\\sin\\frac1y$, d'où $\\frac{\\partial f}{\\partial y}(0,y)=2y\\sin\\frac1y-\\cos\\frac1y$. En $y=\\frac1{(2k+1)\\pi}$ : $\\sin\\frac1y=0$ et $\\cos\\frac1y=-1$, d'où la valeur $1$.\n\n**3.** Ces points tendent vers $(0,0)$, où la dérivée partielle vaut $0$ : elle n'est pas continue en $(0,0)$, et $f$ n'est pas de classe $\\mathcal{C}^1$, bien que différentiable.",
+          "indices": [
+            "Majorer $|f(h)|$ par une puissance de $\\|h\\|_2$.",
+            "Sur le demi-axe $x=0$, $y>0$, on a $f(0,y)=y^2\\sin\\frac1y$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-classe-c1-ex3",
+      "carte": "cd-l3-differentiabilite-classe-c1",
+      "difficulte": 3,
+      "titre": "Régularité d'une famille de fractions rationnelles",
+      "enonce": "Pour un entier $k\\ge1$, soit $f_k(x,y)=\\frac{x^ky}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$, et $f_k(0,0)=0$. On note $r=\\sqrt{x^2+y^2}$.\n\n**1.** Étudier la continuité de $f_1$ en $(0,0)$.\n\n**2.** Montrer que $f_2$ est continue en $(0,0)$, y admet des dérivées partielles, mais n'y est pas différentiable.\n\n**3.** Montrer que $f_k$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ pour $k\\ge3$.",
+      "duree_min": 20,
+      "indices": [
+        "Majorer $|x|$ et $|y|$ par $r$ dans les expressions des dérivées partielles hors de l'origine.",
+        "Pour les petites valeurs de $k$, étudier $f_k$ sur la droite $y=x$."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le plus petit entier $k\\ge1$ tel que $f_k$ soit de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+        "propositions": [
+          "$3$",
+          "$1$",
+          "$2$",
+          "$4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "Hors de l'origine, $f_k$ est de classe $\\mathcal{C}^1$ (fraction rationnelle dont le dénominateur ne s'annule pas). Sur les axes, $f_k(t,0)=f_k(0,t)=0$, donc $\\frac{\\partial f_k}{\\partial x}(0,0)=\\frac{\\partial f_k}{\\partial y}(0,0)=0$.\n\n**1.** $f_1(t,t)=\\frac12$ pour $t\\neq0$ : $f_1$ n'est pas continue en $(0,0)$.\n\n**2.** $|f_2(x,y)|\\le\\frac{x^2|y|}{x^2+y^2}\\le|y|$ : $f_2$ est continue en $(0,0)$, et ses dérivées partielles y sont nulles. Si $f_2$ était différentiable en $(0,0)$, sa différentielle serait nulle et $\\frac{f_2(t,t)}{t}$ tendrait vers $0$ ; or $\\frac{f_2(t,t)}{t}=\\frac{t^3}{2t^2\\cdot t}=\\frac12$. Donc $f_2$ n'est pas différentiable en $(0,0)$.\n\n**3.** Pour $k\\ge3$ et $(x,y)\\neq(0,0)$ : $$\\frac{\\partial f_k}{\\partial x}=\\frac{kx^{k-1}y(x^2+y^2)-2x^{k+1}y}{(x^2+y^2)^2},\\qquad\\frac{\\partial f_k}{\\partial y}=\\frac{x^k(x^2-y^2)}{(x^2+y^2)^2}.$$ Avec $|x|,|y|\\le r$ : $\\left|\\frac{\\partial f_k}{\\partial x}\\right|\\le\\frac{kr^{k+2}+2r^{k+2}}{r^4}=(k+2)r^{k-2}$ et $\\left|\\frac{\\partial f_k}{\\partial y}\\right|\\le\\frac{r^k\\cdot r^2}{r^4}=r^{k-2}$. Comme $k-2\\ge1$, ces majorants tendent vers $0$ : les dérivées partielles sont continues en $(0,0)$, où elles valent $0$. Donc $f_k$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$.\n\nLe plus petit entier $k$ pour lequel $f_k$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ est donc $3$.",
+      "variantes": [
+        {
+          "enonce": "Pour un entier $k\\ge1$, soit $f_k(x,y)=\\frac{xy^k}{x^4+y^4}$ pour $(x,y)\\neq(0,0)$, et $f_k(0,0)=0$. On note $r=\\sqrt{x^2+y^2}$ et l'on admet que $x^4+y^4\\ge\\frac{r^4}{2}$.\n\n**1.** Montrer que $f_k$ n'est pas continue en $(0,0)$ pour $k\\le3$.\n\n**2.** Montrer que $f_4$ est continue en $(0,0)$, y admet des dérivées partielles, mais n'y est pas différentiable.\n\n**3.** Montrer que $f_k$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ pour $k\\ge5$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $k\\ge1$ tel que $f_k$ soit de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$5$",
+              "$4$",
+              "$3$",
+              "$6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Hors de l'origine, $f_k$ est de classe $\\mathcal{C}^1$, et $f_k(t,0)=f_k(0,t)=0$, donc les dérivées partielles en $(0,0)$ sont nulles.\n\n**1.** $f_k(t,t)=\\frac{t^{k+1}}{2t^4}=\\frac{t^{k-3}}{2}$ : pour $k=3$, elle vaut $\\frac12$ ; pour $k\\le2$, elle n'est pas bornée au voisinage de $0$. Dans les deux cas, $f_k$ n'est pas continue en $(0,0)$.\n\n**2.** $|f_4(x,y)|\\le\\frac{r\\cdot r^4}{r^4/2}=2r$ : $f_4$ est continue en $(0,0)$, de dérivées partielles nulles. Mais $\\frac{f_4(t,t)}{t}=\\frac12$ ne tend pas vers $0$ : $f_4$ n'est pas différentiable en $(0,0)$.\n\n**3.** Pour $k\\ge5$ et $(x,y)\\neq(0,0)$ : $\\frac{\\partial f_k}{\\partial x}=\\frac{y^k(y^4-3x^4)}{(x^4+y^4)^2}$ et $\\frac{\\partial f_k}{\\partial y}=\\frac{xy^{k-1}\\big(k(x^4+y^4)-4y^4\\big)}{(x^4+y^4)^2}$. Avec $|x|,|y|\\le r$ et $(x^4+y^4)^2\\ge\\frac{r^8}{4}$ : $\\left|\\frac{\\partial f_k}{\\partial x}\\right|\\le\\frac{4r^k\\cdot4r^4}{r^8}=16r^{k-4}$ et $\\left|\\frac{\\partial f_k}{\\partial y}\\right|\\le\\frac{4r^k\\,(k+4)r^4}{r^8}=(4k+16)r^{k-4}$. Comme $k-4\\ge1$, les dérivées partielles tendent vers $0=\\frac{\\partial f_k}{\\partial x}(0,0)=\\frac{\\partial f_k}{\\partial y}(0,0)$ : $f_k$ est de classe $\\mathcal{C}^1$.\n\nLe plus petit entier $k$ convenable est donc $5$.",
+          "indices": [
+            "Majorer $|x|$ et $|y|$ par $r$ dans les expressions des dérivées partielles hors de l'origine, et minorer le dénominateur à l'aide de l'inégalité admise.",
+            "Pour les petites valeurs de $k$, étudier $f_k$ sur la droite $y=x$."
+          ]
+        },
+        {
+          "enonce": "Pour un entier $k\\ge1$, soit $f_k(x,y)=\\frac{x^ky^2}{(x^2+y^2)^2}$ pour $(x,y)\\neq(0,0)$, et $f_k(0,0)=0$. On note $r=\\sqrt{x^2+y^2}$.\n\n**1.** Montrer que $f_k$ n'est pas continue en $(0,0)$ pour $k\\le2$.\n\n**2.** Montrer que $f_3$ est continue en $(0,0)$, y admet des dérivées partielles, mais n'y est pas différentiable.\n\n**3.** Montrer que $f_k$ est de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ pour $k\\ge4$.",
+          "reponse_finale": {
+            "question": "Quel est le plus petit entier $k\\ge1$ tel que $f_k$ soit de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$4$",
+              "$3$",
+              "$2$",
+              "$5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "Hors de l'origine, $f_k$ est de classe $\\mathcal{C}^1$, et $f_k(t,0)=f_k(0,t)=0$, donc les dérivées partielles en $(0,0)$ sont nulles.\n\n**1.** $f_k(t,t)=\\frac{t^{k+2}}{4t^4}=\\frac{t^{k-2}}{4}$ : pour $k=2$, elle vaut $\\frac14$ ; pour $k=1$, elle n'est pas bornée au voisinage de $0$. Dans les deux cas, $f_k$ n'est pas continue en $(0,0)$.\n\n**2.** $|f_3(x,y)|\\le\\frac{r^3r^2}{r^4}=r$ : $f_3$ est continue en $(0,0)$, de dérivées partielles nulles. Mais $\\frac{f_3(t,t)}{t}=\\frac14$ ne tend pas vers $0$ : $f_3$ n'est pas différentiable en $(0,0)$.\n\n**3.** Pour $k\\ge4$ et $(x,y)\\neq(0,0)$ : $\\frac{\\partial f_k}{\\partial x}=\\frac{x^{k-1}y^2\\big(k(x^2+y^2)-4x^2\\big)}{(x^2+y^2)^3}$ et $\\frac{\\partial f_k}{\\partial y}=\\frac{2x^ky\\,(x^2-y^2)}{(x^2+y^2)^3}$. Avec $|x|,|y|\\le r$ : $\\left|\\frac{\\partial f_k}{\\partial x}\\right|\\le\\frac{r^{k+1}(k+4)r^2}{r^6}=(k+4)r^{k-3}$ et $\\left|\\frac{\\partial f_k}{\\partial y}\\right|\\le\\frac{2r^{k+1}r^2}{r^6}=2r^{k-3}$. Comme $k-3\\ge1$, les dérivées partielles tendent vers $0$ : $f_k$ est de classe $\\mathcal{C}^1$.\n\nLe plus petit entier $k$ convenable est donc $4$.",
+          "indices": [
+            "Majorer $|x|$ et $|y|$ par $r$ dans les expressions des dérivées partielles hors de l'origine.",
+            "Pour les petites valeurs de $k$, étudier $f_k$ sur la droite $y=x$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-classe-c1-ex4",
+      "carte": "cd-l3-differentiabilite-classe-c1",
+      "difficulte": 4,
+      "titre": "Dérivées partielles bornées",
+      "enonce": "**1.** Soit $f:\\mathbb{R}^2\\to\\mathbb{R}$ dont les dérivées partielles existent en tout point et vérifient $\\left|\\frac{\\partial f}{\\partial x}\\right|\\le M$ et $\\left|\\frac{\\partial f}{\\partial y}\\right|\\le M$ sur $\\mathbb{R}^2$. Montrer que $|f(x,y)-f(x',y')|\\le M\\big(|x-x'|+|y-y'|\\big)$ pour tous points, et en déduire que $f$ est continue.\n\n**2.** Soit $g(x,y)=\\frac{x^3}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$, $g(0,0)=0$. Calculer ses dérivées partielles, et déterminer la borne supérieure de $\\left|\\frac{\\partial g}{\\partial x}\\right|$ sur $\\mathbb{R}^2$.\n\n**3.** Montrer que $g$ n'est pas différentiable en $(0,0)$. Que montre cet exemple ?",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, passer de $(x,y)$ à $(x',y')$ en changeant une coordonnée à la fois, et appliquer l'inégalité des accroissements finis d'une variable.",
+        "Pour la question 2, en coordonnées polaires, $\\frac{\\partial g}{\\partial x}$ ne dépend que de l'angle."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la borne supérieure de $\\left|\\frac{\\partial g}{\\partial x}\\right|$ sur $\\mathbb{R}^2$ ?",
+        "propositions": [
+          "$\\frac98$",
+          "$1$",
+          "$3$",
+          "$\\frac{3\\sqrt3}{8}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Écrivons $f(x,y)-f(x',y')=\\big(f(x,y)-f(x',y)\\big)+\\big(f(x',y)-f(x',y')\\big)$. La fonction $s\\mapsto f(s,y)$ est dérivable, de dérivée bornée par $M$ : par l'inégalité des accroissements finis d'une variable, $|f(x,y)-f(x',y)|\\le M|x-x'|$. De même $|f(x',y)-f(x',y')|\\le M|y-y'|$. D'où l'inégalité : $f$ est $M$-lipschitzienne pour $\\|\\cdot\\|_1$, donc continue.\n\n**2.** Hors de l'origine, $\\frac{\\partial g}{\\partial x}=\\frac{x^2(x^2+3y^2)}{(x^2+y^2)^2}$ et $\\frac{\\partial g}{\\partial y}=\\frac{-2x^3y}{(x^2+y^2)^2}$ ; en $(0,0)$, $g(t,0)=t$ et $g(0,t)=0$ donnent $\\frac{\\partial g}{\\partial x}(0,0)=1$ et $\\frac{\\partial g}{\\partial y}(0,0)=0$. En posant $x=\\rho\\cos\\theta$, $y=\\rho\\sin\\theta$ et $c=\\cos^2\\theta\\in[0,1]$ : $\\frac{\\partial g}{\\partial x}=c\\,(c+3(1-c))=c(3-2c)$, dont le maximum sur $[0,1]$ est atteint en $c=\\frac34$ et vaut $\\frac34\\times\\frac32=\\frac98$. Comme $\\frac{\\partial g}{\\partial x}(0,0)=1\\le\\frac98$, la borne supérieure cherchée est $\\frac98$ (et $\\left|\\frac{\\partial g}{\\partial y}\\right|=2|\\cos\\theta|^3|\\sin\\theta|\\le1$).\n\n**3.** $g(tv)=tg(v)$, donc $D_vg(0,0)=g(v)$ ; or $D_{(1,1)}g(0,0)=\\frac12$ alors que $\\frac{\\partial g}{\\partial x}(0,0)+\\frac{\\partial g}{\\partial y}(0,0)=1$ : $v\\mapsto D_vg(0,0)$ n'est pas linéaire, et $g$ n'est pas différentiable en $(0,0)$. Des dérivées partielles bornées donnent la continuité (et même le caractère lipschitzien), mais pas la différentiabilité : c'est leur continuité qui compte."
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee-ex1",
+      "carte": "cd-l3-differentiabilite-composee",
+      "difficulte": 1,
+      "titre": "Dérivée le long d'une courbe",
+      "enonce": "Soient $f(x,y)=x^2y+y^3$ et $\\gamma(t)=(e^t,\\ 1+2t)$. Calculer $(f\\circ\\gamma)'(0)$ à l'aide de la différentielle d'une composée.",
+      "duree_min": 5,
+      "indices": [
+        "$(f\\circ\\gamma)'(t)=\\frac{\\partial f}{\\partial x}(\\gamma(t))\\,\\gamma_1'(t)+\\frac{\\partial f}{\\partial y}(\\gamma(t))\\,\\gamma_2'(t)$.",
+        "Commencer par calculer $\\gamma$ et $\\gamma'$ au point demandé."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $(f\\circ\\gamma)'(0)$ ?",
+        "propositions": [
+          "$10$",
+          "$6$",
+          "$2$",
+          "$8$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\gamma(0)=(1,1)$ et $\\gamma'(0)=(1,2)$. Les dérivées partielles $\\frac{\\partial f}{\\partial x}=2xy$ et $\\frac{\\partial f}{\\partial y}=x^2+3y^2$ valent $2$ et $4$ en $(1,1)$. Donc $(f\\circ\\gamma)'(0)=2\\times1+4\\times2=10$.\n\nVérification directe : $f(\\gamma(t))=e^{2t}(1+2t)+(1+2t)^3$, de dérivée en $0$ égale à $2+2+6=10$.",
+      "variantes": [
+        {
+          "enonce": "Soient $f(x,y)=xy-y^2$ et $\\gamma(t)=(\\cos t,\\ \\sin t)$. Calculer $(f\\circ\\gamma)'\\left(\\frac\\pi2\\right)$ à l'aide de la différentielle d'une composée.",
+          "reponse_finale": {
+            "question": "Que vaut $(f\\circ\\gamma)'\\left(\\frac\\pi2\\right)$ ?",
+            "propositions": [
+              "$-1$",
+              "$1$",
+              "$-2$",
+              "$0$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\gamma\\left(\\frac\\pi2\\right)=(0,1)$ et $\\gamma'\\left(\\frac\\pi2\\right)=(-1,0)$. Les dérivées partielles $\\frac{\\partial f}{\\partial x}=y$ et $\\frac{\\partial f}{\\partial y}=x-2y$ valent $1$ et $-2$ en $(0,1)$. Donc $(f\\circ\\gamma)'\\left(\\frac\\pi2\\right)=1\\times(-1)+(-2)\\times0=-1$.\n\nVérification : $f(\\gamma(t))=\\frac12\\sin2t-\\sin^2t$, de dérivée $\\cos2t-\\sin2t$, égale à $-1$ en $\\frac\\pi2$.",
+          "indices": [
+            "$(f\\circ\\gamma)'(t)=\\frac{\\partial f}{\\partial x}(\\gamma(t))\\,\\gamma_1'(t)+\\frac{\\partial f}{\\partial y}(\\gamma(t))\\,\\gamma_2'(t)$.",
+            "Commencer par calculer $\\gamma$ et $\\gamma'$ au point demandé."
+          ]
+        },
+        {
+          "enonce": "Soient $f(x,y)=xe^y$ et $\\gamma(t)=(t^2,\\ 3t)$. Calculer $(f\\circ\\gamma)'(1)$ à l'aide de la différentielle d'une composée.",
+          "reponse_finale": {
+            "question": "Que vaut $(f\\circ\\gamma)'(1)$ ?",
+            "propositions": [
+              "$5e^3$",
+              "$e^3$",
+              "$6e^3$",
+              "$2e^3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\gamma(1)=(1,3)$ et $\\gamma'(1)=(2,3)$. Les dérivées partielles $\\frac{\\partial f}{\\partial x}=e^y$ et $\\frac{\\partial f}{\\partial y}=xe^y$ valent toutes deux $e^3$ en $(1,3)$. Donc $(f\\circ\\gamma)'(1)=2e^3+3e^3=5e^3$.\n\nVérification : $f(\\gamma(t))=t^2e^{3t}$, de dérivée $(2t+3t^2)e^{3t}$, égale à $5e^3$ en $1$.",
+          "indices": [
+            "$(f\\circ\\gamma)'(t)=\\frac{\\partial f}{\\partial x}(\\gamma(t))\\,\\gamma_1'(t)+\\frac{\\partial f}{\\partial y}(\\gamma(t))\\,\\gamma_2'(t)$.",
+            "Commencer par calculer $\\gamma$ et $\\gamma'$ au point demandé."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee-ex2",
+      "carte": "cd-l3-differentiabilite-composee",
+      "difficulte": 2,
+      "titre": "Dérivées partielles en coordonnées polaires",
+      "enonce": "Soient $f:\\mathbb{R}^2\\to\\mathbb{R}$ de classe $\\mathcal{C}^1$ et $g(r,\\theta)=f(r\\cos\\theta,r\\sin\\theta)$.\n\n**1.** Exprimer $\\frac{\\partial g}{\\partial r}$ et $\\frac{\\partial g}{\\partial\\theta}$ à l'aide des dérivées partielles de $f$.\n\n**2.** Pour $f(x,y)=x^2-y^2$, calculer $\\frac{\\partial g}{\\partial\\theta}\\left(2,\\frac\\pi6\\right)$.",
+      "duree_min": 8,
+      "indices": [
+        "Appliquer la règle de la composée à $f\\circ\\varphi$, avec $\\varphi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$.",
+        "On peut contrôler le résultat en exprimant directement $g(r,\\theta)$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{\\partial g}{\\partial\\theta}\\left(2,\\frac\\pi6\\right)$ ?",
+        "propositions": [
+          "$-4\\sqrt3$",
+          "$4\\sqrt3$",
+          "$-4$",
+          "$-2\\sqrt3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Par la règle de la composée (dérivées partielles de $f$ prises en $(r\\cos\\theta,r\\sin\\theta)$) : $$\\frac{\\partial g}{\\partial r}=\\cos\\theta\\,\\frac{\\partial f}{\\partial x}+\\sin\\theta\\,\\frac{\\partial f}{\\partial y},\\qquad\\frac{\\partial g}{\\partial\\theta}=-r\\sin\\theta\\,\\frac{\\partial f}{\\partial x}+r\\cos\\theta\\,\\frac{\\partial f}{\\partial y}.$$\n\n**2.** $\\frac{\\partial f}{\\partial x}=2x$, $\\frac{\\partial f}{\\partial y}=-2y$, d'où $\\frac{\\partial g}{\\partial\\theta}=-r\\sin\\theta\\cdot2r\\cos\\theta+r\\cos\\theta\\cdot(-2r\\sin\\theta)=-2r^2\\sin2\\theta$. En $\\left(2,\\frac\\pi6\\right)$ : $-8\\sin\\frac\\pi3=-4\\sqrt3$. Contrôle : $g(r,\\theta)=r^2\\cos2\\theta$.",
+      "variantes": [
+        {
+          "enonce": "Soient $f:\\mathbb{R}^2\\to\\mathbb{R}$ de classe $\\mathcal{C}^1$ et $g(r,\\theta)=f(r\\cos\\theta,r\\sin\\theta)$.\n\n**1.** Exprimer $\\frac{\\partial g}{\\partial r}$ et $\\frac{\\partial g}{\\partial\\theta}$ à l'aide des dérivées partielles de $f$.\n\n**2.** Pour $f(x,y)=xy$, calculer $\\frac{\\partial g}{\\partial\\theta}\\left(2,\\frac\\pi3\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial g}{\\partial\\theta}\\left(2,\\frac\\pi3\\right)$ ?",
+            "propositions": [
+              "$-2$",
+              "$2$",
+              "$4$",
+              "$-2\\sqrt3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{\\partial g}{\\partial r}=\\cos\\theta\\,\\frac{\\partial f}{\\partial x}+\\sin\\theta\\,\\frac{\\partial f}{\\partial y}$ et $\\frac{\\partial g}{\\partial\\theta}=-r\\sin\\theta\\,\\frac{\\partial f}{\\partial x}+r\\cos\\theta\\,\\frac{\\partial f}{\\partial y}$.\n\n**2.** $\\frac{\\partial f}{\\partial x}=y$, $\\frac{\\partial f}{\\partial y}=x$, d'où $\\frac{\\partial g}{\\partial\\theta}=-r^2\\sin^2\\theta+r^2\\cos^2\\theta=r^2\\cos2\\theta$. En $\\left(2,\\frac\\pi3\\right)$ : $4\\cos\\frac{2\\pi}3=-2$. Contrôle : $g(r,\\theta)=\\frac{r^2}{2}\\sin2\\theta$.",
+          "indices": [
+            "Appliquer la règle de la composée à $f\\circ\\varphi$, avec $\\varphi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$.",
+            "On peut contrôler le résultat en exprimant directement $g(r,\\theta)$."
+          ]
+        },
+        {
+          "enonce": "Soient $f:\\mathbb{R}^2\\to\\mathbb{R}$ de classe $\\mathcal{C}^1$ et $g(r,\\theta)=f(r\\cos\\theta,r\\sin\\theta)$.\n\n**1.** Exprimer $\\frac{\\partial g}{\\partial r}$ et $\\frac{\\partial g}{\\partial\\theta}$ à l'aide des dérivées partielles de $f$.\n\n**2.** Pour $f(x,y)=x^2+2y^2$, calculer $\\frac{\\partial g}{\\partial r}\\left(3,\\frac\\pi4\\right)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial g}{\\partial r}\\left(3,\\frac\\pi4\\right)$ ?",
+            "propositions": [
+              "$9$",
+              "$\\frac{27}{2}$",
+              "$6$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{\\partial g}{\\partial r}=\\cos\\theta\\,\\frac{\\partial f}{\\partial x}+\\sin\\theta\\,\\frac{\\partial f}{\\partial y}$ et $\\frac{\\partial g}{\\partial\\theta}=-r\\sin\\theta\\,\\frac{\\partial f}{\\partial x}+r\\cos\\theta\\,\\frac{\\partial f}{\\partial y}$.\n\n**2.** $\\frac{\\partial f}{\\partial x}=2x$, $\\frac{\\partial f}{\\partial y}=4y$, d'où $\\frac{\\partial g}{\\partial r}=2r\\cos^2\\theta+4r\\sin^2\\theta$. En $\\left(3,\\frac\\pi4\\right)$ : $3+6=9$. Contrôle : $g(r,\\theta)=r^2(\\cos^2\\theta+2\\sin^2\\theta)$.",
+          "indices": [
+            "Appliquer la règle de la composée à $f\\circ\\varphi$, avec $\\varphi(r,\\theta)=(r\\cos\\theta,r\\sin\\theta)$.",
+            "On peut contrôler le résultat en exprimant directement $g(r,\\theta)$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee-ex3",
+      "carte": "cd-l3-differentiabilite-composee",
+      "difficulte": 3,
+      "titre": "Une équation de transport",
+      "enonce": "On cherche les fonctions $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ telles que $2\\frac{\\partial f}{\\partial x}-3\\frac{\\partial f}{\\partial y}=0$.\n\n**1.** On pose $g(u,v)=f\\left(\\frac{u-2v}{3},v\\right)$, de sorte que $f(x,y)=g(3x+2y,y)$. Calculer $\\frac{\\partial g}{\\partial v}$.\n\n**2.** En déduire les solutions.\n\n**3.** Parmi les fonctions proposées, laquelle est solution ?",
+      "duree_min": 12,
+      "indices": [
+        "Appliquer la règle de la composée à $g$, composée de $f$ et d'une application linéaire.",
+        "Une fonction de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ dont la dérivée partielle par rapport à $v$ est nulle ne dépend que de $u$."
+      ],
+      "reponse_finale": {
+        "question": "Laquelle de ces fonctions est solution ?",
+        "propositions": [
+          "$(3x+2y)^2$",
+          "$(2x-3y)^2$",
+          "$(2x+3y)^2$",
+          "$(3x-2y)^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $g=f\\circ\\psi$ avec $\\psi(u,v)=\\left(\\frac{u-2v}3,v\\right)$ linéaire : $\\frac{\\partial g}{\\partial v}=-\\frac23\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}=-\\frac13\\left(2\\frac{\\partial f}{\\partial x}-3\\frac{\\partial f}{\\partial y}\\right)$, dérivées de $f$ prises en $\\psi(u,v)$.\n\n**2.** $f$ est solution si et seulement si $\\frac{\\partial g}{\\partial v}=0$ sur $\\mathbb{R}^2$ ($\\psi$ est bijective). Pour $u$ fixé, $v\\mapsto g(u,v)$ a alors une dérivée nulle sur l'intervalle $\\mathbb{R}$, donc est constante : $g(u,v)=\\varphi(u)$ avec $\\varphi(u)=g(u,0)$ de classe $\\mathcal{C}^1$. Les solutions sont donc les $f(x,y)=\\varphi(3x+2y)$, $\\varphi\\in\\mathcal{C}^1(\\mathbb{R})$ ; réciproquement, ces fonctions conviennent : $2\\cdot3\\varphi'-3\\cdot2\\varphi'=0$.\n\n**3.** $(3x+2y)^2$ est de cette forme. Les autres ne conviennent pas : pour $(2x-3y)^2$, $(2x+3y)^2$ et $(3x-2y)^2$, l'expression $2\\frac{\\partial f}{\\partial x}-3\\frac{\\partial f}{\\partial y}$ vaut respectivement $26(2x-3y)$, $-10(2x+3y)$ et $24(3x-2y)$, non identiquement nulles.",
+      "variantes": [
+        {
+          "enonce": "On cherche les fonctions $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ telles que $\\frac{\\partial f}{\\partial x}+2\\frac{\\partial f}{\\partial y}=0$.\n\n**1.** On pose $g(u,v)=f\\left(\\frac{u+v}{2},v\\right)$, de sorte que $f(x,y)=g(2x-y,y)$. Calculer $\\frac{\\partial g}{\\partial v}$.\n\n**2.** En déduire les solutions.\n\n**3.** Parmi les fonctions proposées, laquelle est solution ?",
+          "reponse_finale": {
+            "question": "Laquelle de ces fonctions est solution ?",
+            "propositions": [
+              "$\\sin(2x-y)$",
+              "$\\sin(x-2y)$",
+              "$\\sin(x+2y)$",
+              "$\\sin(2x+y)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{\\partial g}{\\partial v}=\\frac12\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}=\\frac12\\left(\\frac{\\partial f}{\\partial x}+2\\frac{\\partial f}{\\partial y}\\right)$.\n\n**2.** $f$ est solution si et seulement si $\\frac{\\partial g}{\\partial v}=0$, c'est-à-dire $g(u,v)=\\varphi(u)$ : les solutions sont les $f(x,y)=\\varphi(2x-y)$, $\\varphi\\in\\mathcal{C}^1(\\mathbb{R})$ (elles conviennent : $2\\varphi'-2\\varphi'=0$).\n\n**3.** $\\sin(2x-y)$ est de cette forme. Pour $\\sin(x-2y)$, $\\sin(x+2y)$ et $\\sin(2x+y)$, l'expression $\\frac{\\partial f}{\\partial x}+2\\frac{\\partial f}{\\partial y}$ vaut $-3\\cos(x-2y)$, $5\\cos(x+2y)$ et $4\\cos(2x+y)$, non identiquement nulles.",
+          "indices": [
+            "Appliquer la règle de la composée à $g$, composée de $f$ et d'une application linéaire.",
+            "Une fonction de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ dont la dérivée partielle par rapport à $v$ est nulle ne dépend que de $u$."
+          ]
+        },
+        {
+          "enonce": "On cherche les fonctions $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ telles que $3\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}=0$.\n\n**1.** On pose $g(u,v)=f(u+3v,v)$, de sorte que $f(x,y)=g(x-3y,y)$. Calculer $\\frac{\\partial g}{\\partial v}$.\n\n**2.** En déduire les solutions.\n\n**3.** Parmi les fonctions proposées, laquelle est solution ?",
+          "reponse_finale": {
+            "question": "Laquelle de ces fonctions est solution ?",
+            "propositions": [
+              "$e^{x-3y}$",
+              "$e^{3x-y}$",
+              "$e^{x+3y}$",
+              "$e^{3x+y}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\frac{\\partial g}{\\partial v}=3\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}$, dérivées prises en $(u+3v,v)$.\n\n**2.** $f$ est solution si et seulement si $\\frac{\\partial g}{\\partial v}=0$, c'est-à-dire $g(u,v)=\\varphi(u)$ : les solutions sont les $f(x,y)=\\varphi(x-3y)$, $\\varphi\\in\\mathcal{C}^1(\\mathbb{R})$ (elles conviennent : $3\\varphi'-3\\varphi'=0$).\n\n**3.** $e^{x-3y}$ est de cette forme. Pour $e^{3x-y}$, $e^{x+3y}$ et $e^{3x+y}$, l'expression $3\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}$ vaut $8e^{3x-y}$, $6e^{x+3y}$ et $10e^{3x+y}$, jamais nulles.",
+          "indices": [
+            "Appliquer la règle de la composée à $g$, composée de $f$ et d'une application linéaire.",
+            "Une fonction de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2$ dont la dérivée partielle par rapport à $v$ est nulle ne dépend que de $u$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee-ex4",
+      "carte": "cd-l3-differentiabilite-composee",
+      "difficulte": 4,
+      "titre": "Différentielle de l'inversion des matrices",
+      "enonce": "On munit $\\mathcal{M}_n(\\mathbb{R})$ d'une norme sous-multiplicative ; $\\mathrm{GL}_n(\\mathbb{R})$ est un ouvert, et l'on admet que $\\mathrm{inv}:M\\mapsto M^{-1}$ est continue sur $\\mathrm{GL}_n(\\mathbb{R})$ (formule de la comatrice).\n\n**1.** Pour $M$ inversible et $H$ assez petite pour que $M+H$ soit inversible, vérifier que $$(M+H)^{-1}-M^{-1}+M^{-1}HM^{-1}=(M+H)^{-1}HM^{-1}HM^{-1}.$$\n\n**2.** En déduire que $\\mathrm{inv}$ est différentiable en $M$, avec $d\\,\\mathrm{inv}(M)(H)=-M^{-1}HM^{-1}$.\n\n**3.** Retrouver ce résultat en différentiant la relation $M\\,\\mathrm{inv}(M)=I_n$, une fois admise la différentiabilité de $\\mathrm{inv}$.\n\n**4.** Calculer $d\\,\\mathrm{inv}(M)(H)$ pour $M=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$ et $H=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$.",
+      "duree_min": 25,
+      "indices": [
+        "Pour la question 1, partir de $(M+H)^{-1}-M^{-1}=-(M+H)^{-1}HM^{-1}$, que l'on vérifie en multipliant à gauche par $M+H$.",
+        "Pour la question 3, l'application $(A,B)\\mapsto AB$ est bilinéaire : sa différentielle en $(A,B)$ est $(H,K)\\mapsto HB+AK$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $d\\,\\mathrm{inv}(M)(H)$ à la question 4 ?",
+        "propositions": [
+          "$\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}$",
+          "$\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$",
+          "$\\begin{pmatrix}-1&0\\\\0&0\\end{pmatrix}$",
+          "$\\begin{pmatrix}-2&0\\\\3&0\\end{pmatrix}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $(M+H)\\big((M+H)^{-1}-M^{-1}\\big)=I_n-(M+H)M^{-1}=-HM^{-1}$, donc $(M+H)^{-1}-M^{-1}=-(M+H)^{-1}HM^{-1}$. Alors $$(M+H)^{-1}-M^{-1}+M^{-1}HM^{-1}=\\big(M^{-1}-(M+H)^{-1}\\big)HM^{-1}=(M+H)^{-1}HM^{-1}HM^{-1}.$$\n\n**2.** Par sous-multiplicativité, le membre de droite est de norme au plus $\\|(M+H)^{-1}\\|\\,\\|M^{-1}\\|^2\\,\\|H\\|^2$. Par continuité de $\\mathrm{inv}$, $\\|(M+H)^{-1}\\|$ reste borné quand $H\\to0$ : c'est un $o(\\|H\\|)$. L'application $H\\mapsto-M^{-1}HM^{-1}$ est linéaire : c'est $d\\,\\mathrm{inv}(M)$.\n\n**3.** L'application $M\\mapsto M\\,\\mathrm{inv}(M)$ est la composée de $M\\mapsto(M,\\mathrm{inv}(M))$ et du produit $(A,B)\\mapsto AB$, bilinéaire. Elle est constante, de différentielle nulle : $H\\,M^{-1}+M\\,d\\,\\mathrm{inv}(M)(H)=0$, d'où $d\\,\\mathrm{inv}(M)(H)=-M^{-1}HM^{-1}$. Pour $n=1$, on retrouve $\\left(\\frac1x\\right)'=-\\frac1{x^2}$ ; en général, ce n'est pas $-M^{-2}H$, car $M$ et $H$ ne commutent pas.\n\n**4.** $M^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ et $M^{-1}HM^{-1}$ est le produit de la première colonne de $M^{-1}$ par sa première ligne : $\\begin{pmatrix}1\\\\-1\\end{pmatrix}\\begin{pmatrix}1&-1\\end{pmatrix}=\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$. Donc $d\\,\\mathrm{inv}(M)(H)=\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-composee-ex5",
+      "carte": "cd-l3-differentiabilite-composee",
+      "difficulte": 4,
+      "titre": "Relation d'Euler pour les fonctions homogènes",
+      "enonce": "Soient $\\alpha\\in\\mathbb{R}$ et $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^n\\setminus\\{0\\}$. On dit que $f$ est **homogène de degré $\\alpha$** si $f(tx)=t^\\alpha f(x)$ pour tout $t>0$ et tout $x\\neq0$.\n\n**1.** Montrer que si $f$ est homogène de degré $\\alpha$, alors $\\sum_{i=1}^nx_i\\frac{\\partial f}{\\partial x_i}(x)=\\alpha f(x)$ pour tout $x\\neq0$ (relation d'Euler).\n\n**2.** Réciproquement, on suppose la relation d'Euler vraie sur $\\mathbb{R}^n\\setminus\\{0\\}$. Pour $x\\neq0$ fixé, étudier $\\varphi(t)=t^{-\\alpha}f(tx)$ sur $\\left]0,+\\infty\\right[$ et conclure que $f$ est homogène de degré $\\alpha$.\n\n**3.** Montrer que les dérivées partielles d'une fonction homogène de degré $\\alpha$ sont homogènes de degré $\\alpha-1$.\n\n**4.** Déterminer les fonctions $f$ de classe $\\mathcal{C}^1$ sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ telles que $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=2f$ et $f=1$ sur le cercle unité.",
+      "duree_min": 35,
+      "indices": [
+        "Pour la question 1, dériver $t\\mapsto f(tx)$ de deux façons en $t=1$.",
+        "Pour la question 2, montrer que $\\varphi'(t)=0$ en utilisant la relation d'Euler au point $tx$.",
+        "Pour la question 4, écrire $x=\\|x\\|_2\\cdot\\frac{x}{\\|x\\|_2}$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la fonction cherchée à la question 4 ?",
+        "propositions": [
+          "$x^2+y^2$",
+          "$\\sqrt{x^2+y^2}$",
+          "$1$",
+          "$(x^2+y^2)^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Fixons $x\\neq0$. Par la règle de la composée, $t\\mapsto f(tx)$ est dérivable sur $\\left]0,+\\infty\\right[$, de dérivée $\\sum_ix_i\\frac{\\partial f}{\\partial x_i}(tx)$ ; c'est aussi la dérivée de $t\\mapsto t^\\alpha f(x)$, soit $\\alpha t^{\\alpha-1}f(x)$. En $t=1$ : $\\sum_ix_i\\frac{\\partial f}{\\partial x_i}(x)=\\alpha f(x)$.\n\n**2.** $\\varphi'(t)=-\\alpha t^{-\\alpha-1}f(tx)+t^{-\\alpha}\\sum_ix_i\\frac{\\partial f}{\\partial x_i}(tx)=t^{-\\alpha-1}\\Big(-\\alpha f(tx)+\\sum_i(tx_i)\\frac{\\partial f}{\\partial x_i}(tx)\\Big)=0$ par la relation d'Euler au point $tx$. Sur l'intervalle $\\left]0,+\\infty\\right[$, $\\varphi$ est donc constante : $\\varphi(t)=\\varphi(1)$, c'est-à-dire $f(tx)=t^\\alpha f(x)$.\n\n**3.** Dérivons $f(tx)=t^\\alpha f(x)$ par rapport à $x_i$ (à $t>0$ fixé) : par la règle de la composée, $t\\frac{\\partial f}{\\partial x_i}(tx)=t^\\alpha\\frac{\\partial f}{\\partial x_i}(x)$, d'où $\\frac{\\partial f}{\\partial x_i}(tx)=t^{\\alpha-1}\\frac{\\partial f}{\\partial x_i}(x)$.\n\n**4.** D'après les questions 1 et 2, $f$ est solution si et seulement si elle est homogène de degré $2$. Pour $x\\neq0$, en prenant $t=\\|x\\|_2$ et le point $\\frac{x}{\\|x\\|_2}$ du cercle unité : $f(x)=\\|x\\|_2^2\\,f\\left(\\frac{x}{\\|x\\|_2}\\right)=\\|x\\|_2^2$. Réciproquement, $f(x,y)=x^2+y^2$ convient : c'est la seule solution."
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis-ex1",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "difficulte": 2,
+      "titre": "Constante de Lipschitz optimale d'une fonction de deux variables",
+      "enonce": "Soit $f(x,y)=\\sin(x+2y)$ sur $\\mathbb{R}^2$, muni de la norme euclidienne.\n\n**1.** Montrer que $f$ est lipschitzienne et donner une constante de Lipschitz.\n\n**2.** Montrer que cette constante est la plus petite possible.",
+      "duree_min": 10,
+      "indices": [
+        "Pour la norme euclidienne au départ, la norme subordonnée de la forme linéaire $h\\mapsto\\langle w,h\\rangle$ est $\\|w\\|_2$.",
+        "Pour l'optimalité, regarder la dérivée de $f$ en un point bien choisi selon un vecteur unitaire bien choisi."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la plus petite constante $k$ telle que $f$ soit $k$-lipschitzienne pour la norme euclidienne ?",
+        "propositions": [
+          "$\\sqrt5$",
+          "$3$",
+          "$1$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\nabla f(x,y)=\\cos(x+2y)\\,(1,2)$, de norme $|\\cos(x+2y)|\\sqrt5\\le\\sqrt5$. Donc $|||df(x,y)|||\\le\\sqrt5$ partout ; $\\mathbb{R}^2$ étant convexe, l'inégalité des accroissements finis montre que $f$ est $\\sqrt5$-lipschitzienne.\n\n**2.** Si $|f(p)-f(q)|\\le k\\|p-q\\|_2$ pour tous $p,q$, alors pour $u$ unitaire, $|D_uf(0,0)|=\\lim_{t\\to0}\\frac{|f(tu)-f(0,0)|}{|t|}\\le k$. Avec $u=\\frac{(1,2)}{\\sqrt5}$ : $D_uf(0,0)=\\langle\\nabla f(0,0),u\\rangle=\\frac{1+4}{\\sqrt5}=\\sqrt5$. Donc $k\\ge\\sqrt5$ : la plus petite constante est $\\sqrt5$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=\\cos(3x-4y)$ sur $\\mathbb{R}^2$, muni de la norme euclidienne.\n\n**1.** Montrer que $f$ est lipschitzienne et donner une constante de Lipschitz.\n\n**2.** Montrer que cette constante est la plus petite possible.",
+          "reponse_finale": {
+            "question": "Quelle est la plus petite constante $k$ telle que $f$ soit $k$-lipschitzienne pour la norme euclidienne ?",
+            "propositions": [
+              "$5$",
+              "$7$",
+              "$1$",
+              "$25$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\nabla f(x,y)=-\\sin(3x-4y)\\,(3,-4)$, de norme $5|\\sin(3x-4y)|\\le5$ : par l'inégalité des accroissements finis sur le convexe $\\mathbb{R}^2$, $f$ est $5$-lipschitzienne.\n\n**2.** En un point $p_0$ où $\\sin(3x-4y)=-1$, par exemple $p_0=\\left(-\\frac\\pi6,0\\right)$, on a $\\nabla f(p_0)=(3,-4)$, et pour $u=\\frac{(3,-4)}{5}$, $D_uf(p_0)=5$. Une constante de Lipschitz $k$ majore $|D_uf(p_0)|$, donc $k\\ge5$.",
+          "indices": [
+            "Pour la norme euclidienne au départ, la norme subordonnée de la forme linéaire $h\\mapsto\\langle w,h\\rangle$ est $\\|w\\|_2$.",
+            "Pour l'optimalité, regarder la dérivée de $f$ en un point bien choisi selon un vecteur unitaire bien choisi."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=\\sin(x+y)$ sur $\\mathbb{R}^2$, muni cette fois de la norme $\\|\\cdot\\|_\\infty$.\n\n**1.** Montrer que $f$ est lipschitzienne pour cette norme et donner une constante de Lipschitz.\n\n**2.** Montrer que cette constante est la plus petite possible.",
+          "reponse_finale": {
+            "question": "Quelle est la plus petite constante $k$ telle que $f$ soit $k$-lipschitzienne pour $\\|\\cdot\\|_\\infty$ ?",
+            "propositions": [
+              "$2$",
+              "$\\sqrt2$",
+              "$1$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $df(x,y)(h)=\\cos(x+y)(h_1+h_2)$. Pour $\\|\\cdot\\|_\\infty$ au départ, la norme subordonnée de $h\\mapsto a h_1+bh_2$ est $|a|+|b|$ (atteinte en $h=(\\pm1,\\pm1)$) : $|||df(x,y)|||=2|\\cos(x+y)|\\le2$. Par l'inégalité des accroissements finis sur le convexe $\\mathbb{R}^2$, $f$ est $2$-lipschitzienne pour $\\|\\cdot\\|_\\infty$.\n\n**2.** Avec $h=(1,1)$, $\\|h\\|_\\infty=1$ et $\\frac{f(th)-f(0,0)}{t}=\\frac{\\sin2t}{t}\\to2$ : une constante $k$ vérifie $\\frac{|\\sin2t|}{|t|}\\le k$ pour tout $t\\neq0$, donc $k\\ge2$. (Pour la norme euclidienne, on trouverait $\\sqrt2$.)",
+          "indices": [
+            "Pour la norme $\\|\\cdot\\|_\\infty$ au départ, la norme subordonnée de la forme linéaire $h\\mapsto ah_1+bh_2$ est $|a|+|b|$.",
+            "Pour l'optimalité, regarder $f$ le long d'une droite passant par l'origine bien choisie."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis-ex2",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "difficulte": 1,
+      "titre": "Égalité des accroissements finis pour une courbe",
+      "enonce": "Soit $f:[0,1]\\to\\mathbb{R}^2$, $f(t)=(t^2,t^3)$.\n\n**1.** Déterminer les réels $c\\in\\left]0,1\\right[$ tels que $f(1)-f(0)=f'(c)$.\n\n**2.** Vérifier l'inégalité des accroissements finis $\\|f(1)-f(0)\\|_2\\le\\sup_{[0,1]}\\|f'\\|_2$.",
+      "duree_min": 6,
+      "indices": [
+        "Écrire l'égalité vectorielle coordonnée par coordonnée.",
+        "Calculer $\\|f'(t)\\|_2^2$ et étudier ses variations sur $[0,1]$."
+      ],
+      "reponse_finale": {
+        "question": "Combien de réels $c\\in\\left]0,1\\right[$ vérifient $f(1)-f(0)=f'(c)$ ?",
+        "propositions": [
+          "$0$",
+          "$1$",
+          "$2$",
+          "une infinité"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f(1)-f(0)=(1,1)$ et $f'(c)=(2c,3c^2)$. La première coordonnée impose $c=\\frac12$, et alors $3c^2=\\frac34\\neq1$. Aucun réel $c$ ne convient : l'égalité des accroissements finis est fausse pour une fonction à valeurs dans $\\mathbb{R}^2$.\n\n**2.** $\\|f'(t)\\|_2^2=4t^2+9t^4$ est croissante sur $[0,1]$, de maximum $13$ : $\\sup\\|f'\\|_2=\\sqrt{13}$, et $\\|f(1)-f(0)\\|_2=\\sqrt2\\le\\sqrt{13}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f:[0,1]\\to\\mathbb{R}^2$, $f(t)=(t^3,t)$.\n\n**1.** Déterminer les réels $c\\in\\left]0,1\\right[$ tels que $f(1)-f(0)=f'(c)$.\n\n**2.** Vérifier l'inégalité des accroissements finis $\\|f(1)-f(0)\\|_2\\le\\sup_{[0,1]}\\|f'\\|_2$.",
+          "reponse_finale": {
+            "question": "Combien de réels $c\\in\\left]0,1\\right[$ vérifient $f(1)-f(0)=f'(c)$ ?",
+            "propositions": [
+              "$1$",
+              "$0$",
+              "$2$",
+              "une infinité"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f(1)-f(0)=(1,1)$ et $f'(c)=(3c^2,1)$. La seconde coordonnée est toujours égale à $1$, et la première impose $c^2=\\frac13$, soit $c=\\frac{1}{\\sqrt3}\\in\\left]0,1\\right[$ : un seul réel convient. (Une coordonnée affine rend ici l'égalité possible, mais ce n'est pas le cas général.)\n\n**2.** $\\|f'(t)\\|_2^2=9t^4+1$, de maximum $10$ sur $[0,1]$ : $\\|f(1)-f(0)\\|_2=\\sqrt2\\le\\sqrt{10}$.",
+          "indices": [
+            "Écrire l'égalité vectorielle coordonnée par coordonnée.",
+            "Calculer $\\|f'(t)\\|_2^2$ et étudier ses variations sur $[0,1]$."
+          ]
+        },
+        {
+          "enonce": "Soit $f:[0,1]\\to\\mathbb{R}^2$, $f(t)=(\\cos\\pi t,\\sin\\pi t)$.\n\n**1.** Déterminer les réels $c\\in\\left]0,1\\right[$ tels que $f(1)-f(0)=f'(c)$.\n\n**2.** Vérifier l'inégalité des accroissements finis $\\|f(1)-f(0)\\|_2\\le\\sup_{[0,1]}\\|f'\\|_2$.",
+          "reponse_finale": {
+            "question": "Combien de réels $c\\in\\left]0,1\\right[$ vérifient $f(1)-f(0)=f'(c)$ ?",
+            "propositions": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "une infinité"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f(1)-f(0)=(-2,0)$ et $f'(c)=\\pi(-\\sin\\pi c,\\cos\\pi c)$. La seconde coordonnée impose $\\cos\\pi c=0$, soit $c=\\frac12$ ; la première vaut alors $-\\pi\\neq-2$. Aucun réel $c$ ne convient.\n\n**2.** $\\|f'(t)\\|_2=\\pi$ pour tout $t$, et $\\|f(1)-f(0)\\|_2=2\\le\\pi$ : la corde est plus courte que l'arc.",
+          "indices": [
+            "Écrire l'égalité vectorielle coordonnée par coordonnée.",
+            "Calculer $\\|f'(t)\\|_2$ pour tout $t$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis-ex3",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "difficulte": 3,
+      "titre": "Une application contractante pour la norme infinie",
+      "enonce": "On munit $\\mathbb{R}^2$ de la norme $\\|\\cdot\\|_\\infty$ et l'on pose $F(x,y)=\\left(\\frac13\\sin(x+y),\\ \\frac13\\cos(x-y)\\right)$.\n\n**1.** Calculer la matrice jacobienne de $F$ et majorer $|||dF(x,y)|||$, norme subordonnée à $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée. Cette borne est-elle atteinte ?\n\n**2.** En déduire que $F$ est $k$-lipschitzienne pour un $k<1$.\n\n**3.** Montrer que $F$ a au plus un point fixe.",
+      "duree_min": 15,
+      "indices": [
+        "Pour $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée, la norme subordonnée d'une matrice est le maximum, sur les lignes, des sommes des valeurs absolues des coefficients.",
+        "$\\mathbb{R}^2$ est convexe ; pour la question 3, comparer $\\|p-q\\|_\\infty$ et $\\|F(p)-F(q)\\|_\\infty$ pour deux points fixes."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la borne supérieure de $|||dF(x,y)|||$ sur $\\mathbb{R}^2$ ?",
+        "propositions": [
+          "$\\frac23$",
+          "$\\frac13$",
+          "$\\frac{2\\sqrt2}{3}$",
+          "$\\frac{\\sqrt2}{3}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $J_F(x,y)=\\frac13\\begin{pmatrix}\\cos(x+y)&\\cos(x+y)\\\\-\\sin(x-y)&\\sin(x-y)\\end{pmatrix}$. Les sommes des valeurs absolues des lignes valent $\\frac23|\\cos(x+y)|$ et $\\frac23|\\sin(x-y)|$, donc $|||dF(x,y)|||=\\frac23\\max\\big(|\\cos(x+y)|,|\\sin(x-y)|\\big)\\le\\frac23$, avec égalité par exemple en $(0,0)$ : la borne supérieure est $\\frac23$.\n\n**2.** $\\mathbb{R}^2$ est convexe : par l'inégalité des accroissements finis, $\\|F(p)-F(q)\\|_\\infty\\le\\frac23\\|p-q\\|_\\infty$.\n\n**3.** Si $F(p)=p$ et $F(q)=q$, alors $\\|p-q\\|_\\infty\\le\\frac23\\|p-q\\|_\\infty$, donc $p=q$. (Le théorème du point fixe montre de plus qu'il en existe un.)",
+      "variantes": [
+        {
+          "enonce": "On munit $\\mathbb{R}^2$ de la norme $\\|\\cdot\\|_\\infty$ et l'on pose $F(x,y)=\\left(\\frac14\\sin(x+y),\\ \\frac14\\cos(x-y)\\right)$.\n\n**1.** Calculer la matrice jacobienne de $F$ et majorer $|||dF(x,y)|||$, norme subordonnée à $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée. Cette borne est-elle atteinte ?\n\n**2.** En déduire que $F$ est $k$-lipschitzienne pour un $k<1$.\n\n**3.** Montrer que $F$ a au plus un point fixe.",
+          "reponse_finale": {
+            "question": "Quelle est la borne supérieure de $|||dF(x,y)|||$ sur $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$\\frac12$",
+              "$\\frac14$",
+              "$\\frac{\\sqrt2}{2}$",
+              "$\\frac{\\sqrt2}{4}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $J_F(x,y)=\\frac14\\begin{pmatrix}\\cos(x+y)&\\cos(x+y)\\\\-\\sin(x-y)&\\sin(x-y)\\end{pmatrix}$, donc $|||dF(x,y)|||=\\frac12\\max\\big(|\\cos(x+y)|,|\\sin(x-y)|\\big)\\le\\frac12$, avec égalité en $(0,0)$.\n\n**2.** Par l'inégalité des accroissements finis sur le convexe $\\mathbb{R}^2$, $F$ est $\\frac12$-lipschitzienne.\n\n**3.** Deux points fixes $p,q$ vérifient $\\|p-q\\|_\\infty\\le\\frac12\\|p-q\\|_\\infty$, donc $p=q$.",
+          "indices": [
+            "Pour $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée, la norme subordonnée d'une matrice est le maximum, sur les lignes, des sommes des valeurs absolues des coefficients.",
+            "$\\mathbb{R}^2$ est convexe ; pour la question 3, comparer $\\|p-q\\|_\\infty$ et $\\|F(p)-F(q)\\|_\\infty$ pour deux points fixes."
+          ]
+        },
+        {
+          "enonce": "On munit $\\mathbb{R}^2$ de la norme $\\|\\cdot\\|_\\infty$ et l'on pose $F(x,y)=\\left(\\frac12\\sin x+\\frac14\\cos y,\\ \\frac13\\sin(x-y)\\right)$.\n\n**1.** Calculer la matrice jacobienne de $F$ et majorer $|||dF(x,y)|||$, norme subordonnée à $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée. Cette borne est-elle atteinte ?\n\n**2.** En déduire que $F$ est $k$-lipschitzienne pour un $k<1$.\n\n**3.** Montrer que $F$ a au plus un point fixe.",
+          "reponse_finale": {
+            "question": "Quelle est la borne supérieure de $|||dF(x,y)|||$ sur $\\mathbb{R}^2$ ?",
+            "propositions": [
+              "$\\frac34$",
+              "$\\frac23$",
+              "$\\frac12$",
+              "$\\frac{\\sqrt5}{4}$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $J_F(x,y)=\\begin{pmatrix}\\frac12\\cos x&-\\frac14\\sin y\\\\\\frac13\\cos(x-y)&-\\frac13\\cos(x-y)\\end{pmatrix}$. Les sommes des valeurs absolues des lignes valent $\\frac12|\\cos x|+\\frac14|\\sin y|\\le\\frac34$ et $\\frac23|\\cos(x-y)|\\le\\frac23$. Donc $|||dF(x,y)|||\\le\\frac34$, avec égalité en $\\left(0,\\frac\\pi2\\right)$ : la borne supérieure est $\\frac34$.\n\n**2.** Par l'inégalité des accroissements finis sur le convexe $\\mathbb{R}^2$, $F$ est $\\frac34$-lipschitzienne.\n\n**3.** Deux points fixes $p,q$ vérifient $\\|p-q\\|_\\infty\\le\\frac34\\|p-q\\|_\\infty$, donc $p=q$.",
+          "indices": [
+            "Pour $\\|\\cdot\\|_\\infty$ au départ et à l'arrivée, la norme subordonnée d'une matrice est le maximum, sur les lignes, des sommes des valeurs absolues des coefficients.",
+            "$\\mathbb{R}^2$ est convexe ; pour la question 3, comparer $\\|p-q\\|_\\infty$ et $\\|F(p)-F(q)\\|_\\infty$ pour deux points fixes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis-ex4",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "difficulte": 4,
+      "titre": "Une fonction angle sur une couronne fendue",
+      "enonce": "Soit $U=\\{(x,y) : 1<x^2+y^2<4\\}\\setminus\\{(x,0) : x<0\\}$, et $\\theta(x,y)=2\\arctan\\frac{y}{x+\\sqrt{x^2+y^2}}$ pour $(x,y)\\in U$.\n\n**1.** Montrer que $\\theta$ est bien définie et de classe $\\mathcal{C}^1$ sur $U$, avec $\\nabla\\theta(x,y)=\\frac{(-y,x)}{x^2+y^2}$, et en déduire que $|||d\\theta(x,y)|||\\le1$ sur $U$ pour la norme euclidienne.\n\n**2.** Montrer que $\\theta(\\rho\\cos\\varphi,\\rho\\sin\\varphi)=\\varphi$ pour $1<\\rho<2$ et $\\varphi\\in\\left]-\\pi,\\pi\\right[$.\n\n**3.** Pour $a=\\left(-\\frac32,\\frac12\\right)$ et $b=\\left(-\\frac32,-\\frac12\\right)$, calculer $\\theta(a)-\\theta(b)$ et comparer à $\\|a-b\\|_2$. Quelle hypothèse de l'inégalité des accroissements finis fait défaut ?\n\n**4.** Montrer que $|\\theta(p)-\\theta(q)|\\le\\|p-q\\|_2$ dès que le segment $[p,q]$ est inclus dans $U$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour la question 1, vérifier que $x+\\sqrt{x^2+y^2}>0$ sur $U$, puis dériver ; pour la question 2, utiliser $\\tan\\frac\\varphi2=\\frac{\\sin\\varphi}{1+\\cos\\varphi}$.",
+        "Pour la question 3, $a$ et $b$ sont symétriques par rapport à l'axe des abscisses, de part et d'autre de la fente."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\theta(a)-\\theta(b)$ ?",
+        "propositions": [
+          "$2\\pi-2\\arctan\\frac13$",
+          "$2\\arctan\\frac13$",
+          "$\\pi-\\arctan\\frac13$",
+          "$1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $y\\neq0$, $\\sqrt{x^2+y^2}>|x|\\ge-x$ ; si $y=0$, alors $x>0$ (les points $(x,0)$ avec $x<0$ sont exclus et $x^2>1$). Dans les deux cas $x+\\sqrt{x^2+y^2}>0$ : $\\theta$ est bien définie et de classe $\\mathcal{C}^1$ (composée de fonctions de classe $\\mathcal{C}^1$). Avec $R=\\sqrt{x^2+y^2}$ et $w=\\frac{y}{x+R}$, on a $1+w^2=\\frac{(x+R)^2+y^2}{(x+R)^2}=\\frac{2R(x+R)}{(x+R)^2}=\\frac{2R}{x+R}$. Le calcul donne $\\frac{\\partial\\theta}{\\partial x}=-\\frac{y}{R^2}$ et $\\frac{\\partial\\theta}{\\partial y}=\\frac{x}{R^2}$, donc $\\|\\nabla\\theta\\|_2=\\frac1R<1$ sur $U$ : la norme subordonnée de $d\\theta$, égale à $\\|\\nabla\\theta\\|_2$, est majorée par $1$.\n\n**2.** Pour $x=\\rho\\cos\\varphi$, $y=\\rho\\sin\\varphi$ : $\\frac{y}{x+R}=\\frac{\\sin\\varphi}{1+\\cos\\varphi}=\\tan\\frac\\varphi2$, et $\\frac\\varphi2\\in\\left]-\\frac\\pi2,\\frac\\pi2\\right[$, donc $\\theta=2\\cdot\\frac\\varphi2=\\varphi$.\n\n**3.** $a$ et $b$ sont dans $U$ ($x^2+y^2=\\frac52$). On a $a=\\rho(\\cos\\varphi,\\sin\\varphi)$ avec $\\varphi=\\pi-\\arctan\\frac13$, et $b$ avec $-\\varphi$. Donc $\\theta(a)-\\theta(b)=2\\pi-2\\arctan\\frac13\\approx5{,}64$, alors que $\\|a-b\\|_2=1$. Bien que $|||d\\theta|||\\le1$ sur $U$, $\\theta$ n'est pas $1$-lipschitzienne : le segment $[a,b]$ coupe la fente au point $\\left(-\\frac32,0\\right)\\notin U$, et l'hypothèse « $[a,b]\\subset U$ » fait défaut.\n\n**4.** Si $[p,q]\\subset U$, l'inégalité des accroissements finis s'applique avec $M=1$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-accroissements-finis-ex5",
+      "carte": "cd-l3-differentiabilite-accroissements-finis",
+      "difficulte": 5,
+      "titre": "Perturbation contractante de l'identité",
+      "enonce": "On munit $\\mathbb{R}^n$ d'une norme $\\|\\cdot\\|$. Soit $g:\\mathbb{R}^n\\to\\mathbb{R}^n$ de classe $\\mathcal{C}^1$ telle que $|||dg(x)|||\\le k$ pour tout $x$, avec $0\\le k<1$, et $f=\\mathrm{id}+g$.\n\n**1.** Montrer que $\\|g(x)-g(y)\\|\\le k\\|x-y\\|$ pour tous $x,y$.\n\n**2.** Montrer que $\\|f(x)-f(y)\\|\\ge(1-k)\\|x-y\\|$ ; en déduire que $f$ est injective.\n\n**3.** Soit $y\\in\\mathbb{R}^n$. On pose $x_0=0$ et $x_{m+1}=y-g(x_m)$. Montrer que $\\|x_{m+1}-x_m\\|\\le k^m\\|x_1-x_0\\|$, puis que $(x_m)$ converge vers un $x$ tel que $f(x)=y$. Conclure que $f$ est une bijection de $\\mathbb{R}^n$ sur $\\mathbb{R}^n$.\n\n**4.** Montrer que $df(x)$ est inversible pour tout $x$.\n\n**5.** Application : avec la norme $\\|\\cdot\\|_\\infty$ sur $\\mathbb{R}^2$, montrer que $(x,y)\\mapsto\\left(x+\\frac12\\sin y,\\ y+\\frac12\\cos x\\right)$ est une bijection de $\\mathbb{R}^2$ sur lui-même.",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, $\\mathbb{R}^n$ est convexe ; pour la question 2, écrire $x-y=\\big(f(x)-f(y)\\big)-\\big(g(x)-g(y)\\big)$.",
+        "Pour la question 3, $x_{m+1}-x_m=g(x_{m-1})-g(x_m)$ ; une série de terme général majoré par $Ck^m$ converge, et une suite de Cauchy de $\\mathbb{R}^n$ converge.",
+        "Pour la question 4, si $df(x)(h)=0$, alors $h=-dg(x)(h)$."
+      ],
+      "reponse_finale": {
+        "question": "À la question 5, quelle est la borne supérieure de $|||dg(x,y)|||$ pour la norme $\\|\\cdot\\|_\\infty$ ?",
+        "propositions": [
+          "$\\frac12$",
+          "$\\frac{\\sqrt2}{4}$",
+          "$\\frac14$",
+          "$\\frac{\\sqrt2}{2}$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\mathbb{R}^n$ est convexe et $|||dg|||\\le k$ : c'est l'inégalité des accroissements finis.\n\n**2.** $\\|x-y\\|\\le\\|f(x)-f(y)\\|+\\|g(x)-g(y)\\|\\le\\|f(x)-f(y)\\|+k\\|x-y\\|$, d'où $\\|f(x)-f(y)\\|\\ge(1-k)\\|x-y\\|$. Si $f(x)=f(y)$, alors $\\|x-y\\|=0$ : $f$ est injective.\n\n**3.** $\\|x_{m+1}-x_m\\|=\\|g(x_{m-1})-g(x_m)\\|\\le k\\|x_m-x_{m-1}\\|$, et par récurrence $\\|x_{m+1}-x_m\\|\\le k^m\\|x_1-x_0\\|$. Pour $p>m$, $\\|x_p-x_m\\|\\le\\sum_{j=m}^{p-1}k^j\\|x_1-x_0\\|\\le\\frac{k^m}{1-k}\\|x_1-x_0\\|$ : la suite est de Cauchy, donc converge dans $\\mathbb{R}^n$ vers un $x$. Par continuité de $g$, $x=y-g(x)$, soit $f(x)=y$. Avec la question 2, $f$ est bijective (et sa réciproque est $\\frac{1}{1-k}$-lipschitzienne).\n\n**4.** $df(x)=\\mathrm{id}+dg(x)$. Si $df(x)(h)=0$, alors $\\|h\\|=\\|dg(x)(h)\\|\\le k\\|h\\|$, donc $h=0$ : $df(x)$ est injective, donc inversible en dimension finie.\n\n**5.** Ici $g(x,y)=\\left(\\frac12\\sin y,\\frac12\\cos x\\right)$, de jacobienne $\\begin{pmatrix}0&\\frac12\\cos y\\\\-\\frac12\\sin x&0\\end{pmatrix}$, dont la norme subordonnée à $\\|\\cdot\\|_\\infty$ est $\\frac12\\max(|\\cos y|,|\\sin x|)\\le\\frac12$, valeur atteinte en $(0,0)$. Avec $k=\\frac12<1$, la question 3 donne la bijectivité."
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz-ex1",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "difficulte": 1,
+      "titre": "Dérivées partielles secondes croisées",
+      "enonce": "Soit $f(x,y)=x^3y^2-2xy^3$. Calculer $\\frac{\\partial^2f}{\\partial x\\partial y}$ et $\\frac{\\partial^2f}{\\partial y\\partial x}$, puis leur valeur en $(1,2)$, et expliquer leur égalité.",
+      "duree_min": 5,
+      "indices": [
+        "Calculer $\\frac{\\partial f}{\\partial y}$, puis la dériver par rapport à $x$ ; recommencer dans l'autre ordre.",
+        "Une fonction polynomiale (ou construite à partir de fonctions usuelles) est de classe $\\mathcal{C}^2$."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{\\partial^2f}{\\partial x\\partial y}(1,2)$ ?",
+        "propositions": [
+          "$-12$",
+          "$12$",
+          "$-24$",
+          "$24$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\frac{\\partial f}{\\partial y}=2x^3y-6xy^2$, donc $\\frac{\\partial^2f}{\\partial x\\partial y}=6x^2y-6y^2$ ; $\\frac{\\partial f}{\\partial x}=3x^2y^2-2y^3$, donc $\\frac{\\partial^2f}{\\partial y\\partial x}=6x^2y-6y^2$. En $(1,2)$ : $12-24=-12$. L'égalité est celle du théorème de Schwarz, $f$ étant polynomiale, donc de classe $\\mathcal{C}^2$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=x^2y^3+3x^3y$. Calculer $\\frac{\\partial^2f}{\\partial x\\partial y}$ et $\\frac{\\partial^2f}{\\partial y\\partial x}$, puis leur valeur en $(1,1)$, et expliquer leur égalité.",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial^2f}{\\partial x\\partial y}(1,1)$ ?",
+            "propositions": [
+              "$15$",
+              "$6$",
+              "$9$",
+              "$-15$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial y}=3x^2y^2+3x^3$, donc $\\frac{\\partial^2f}{\\partial x\\partial y}=6xy^2+9x^2$ ; $\\frac{\\partial f}{\\partial x}=2xy^3+9x^2y$, donc $\\frac{\\partial^2f}{\\partial y\\partial x}=6xy^2+9x^2$. En $(1,1)$ : $15$. L'égalité est celle du théorème de Schwarz ($f$ polynomiale, donc de classe $\\mathcal{C}^2$).",
+          "indices": [
+            "Calculer $\\frac{\\partial f}{\\partial y}$, puis la dériver par rapport à $x$ ; recommencer dans l'autre ordre.",
+            "Une fonction polynomiale (ou construite à partir de fonctions usuelles) est de classe $\\mathcal{C}^2$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=xe^y+x^3y^2$. Calculer $\\frac{\\partial^2f}{\\partial x\\partial y}$ et $\\frac{\\partial^2f}{\\partial y\\partial x}$, puis leur valeur en $(2,0)$, et expliquer leur égalité.",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial^2f}{\\partial x\\partial y}(2,0)$ ?",
+            "propositions": [
+              "$1$",
+              "$0$",
+              "$2$",
+              "$13$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial y}=xe^y+2x^3y$, donc $\\frac{\\partial^2f}{\\partial x\\partial y}=e^y+6x^2y$ ; $\\frac{\\partial f}{\\partial x}=e^y+3x^2y^2$, donc $\\frac{\\partial^2f}{\\partial y\\partial x}=e^y+6x^2y$. En $(2,0)$ : $1$. L'égalité est celle du théorème de Schwarz ($f$ est de classe $\\mathcal{C}^2$).",
+          "indices": [
+            "Calculer $\\frac{\\partial f}{\\partial y}$, puis la dériver par rapport à $x$ ; recommencer dans l'autre ordre.",
+            "Une fonction polynomiale (ou construite à partir de fonctions usuelles) est de classe $\\mathcal{C}^2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz-ex2",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "difficulte": 2,
+      "titre": "Dérivées croisées d'une fraction rationnelle prolongée",
+      "enonce": "Soit $f(x,y)=\\frac{xy(x^2-y^2)}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Calculer $\\frac{\\partial f}{\\partial x}(0,y)$ pour tout $y$, et $\\frac{\\partial f}{\\partial y}(x,0)$ pour tout $x$.\n\n**2.** En déduire $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)=\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)(0,0)$ et $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)$.\n\n**3.** Pourquoi le théorème de Schwarz ne s'applique-t-il pas ?",
+      "duree_min": 10,
+      "indices": [
+        "Pour $y\\neq0$, $\\frac{\\partial f}{\\partial x}(0,y)=\\lim_{h\\to0}\\frac{f(h,y)-f(0,y)}{h}$ ; traiter $y=0$ à part.",
+        "Le théorème de Schwarz demande la continuité des dérivées secondes."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)$ ?",
+        "propositions": [
+          "$-1$",
+          "$1$",
+          "$0$",
+          "$2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f(0,y)=0$ pour tout $y$. Pour $y\\neq0$ : $\\frac{f(h,y)}{h}=\\frac{y(h^2-y^2)}{h^2+y^2}\\to-y$. Pour $y=0$, $f(h,0)=0$, d'où $\\frac{\\partial f}{\\partial x}(0,0)=0$. Donc $\\frac{\\partial f}{\\partial x}(0,y)=-y$ pour tout $y$. De même $f(x,0)=0$ et, pour $x\\neq0$, $\\frac{f(x,k)}{k}=\\frac{x(x^2-k^2)}{x^2+k^2}\\to x$ : $\\frac{\\partial f}{\\partial y}(x,0)=x$ pour tout $x$.\n\n**2.** $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)$ est la dérivée en $0$ de $y\\mapsto-y$, soit $-1$ ; $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)$ est la dérivée en $0$ de $x\\mapsto x$, soit $1$.\n\n**3.** Les dérivées croisées diffèrent en $(0,0)$ ; le théorème de Schwarz ne s'applique pas car $f$ n'est pas de classe $\\mathcal{C}^2$ au voisinage de $(0,0)$ : ses dérivées secondes, homogènes de degré $0$ hors de l'origine, n'y sont pas continues (bien que $f$ soit de classe $\\mathcal{C}^1$).",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=\\frac{xy(x^2-2y^2)}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Calculer $\\frac{\\partial f}{\\partial x}(0,y)$ pour tout $y$, et $\\frac{\\partial f}{\\partial y}(x,0)$ pour tout $x$.\n\n**2.** En déduire $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)=\\frac{\\partial}{\\partial y}\\left(\\frac{\\partial f}{\\partial x}\\right)(0,0)$ et $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)$.\n\n**3.** Pourquoi le théorème de Schwarz ne s'applique-t-il pas ?",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)$ ?",
+            "propositions": [
+              "$-2$",
+              "$1$",
+              "$0$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f(0,y)=0$, et pour $y\\neq0$, $\\frac{f(h,y)}{h}=\\frac{y(h^2-2y^2)}{h^2+y^2}\\to-2y$ ; pour $y=0$, la dérivée est nulle. Donc $\\frac{\\partial f}{\\partial x}(0,y)=-2y$. De même $\\frac{f(x,k)}{k}=\\frac{x(x^2-2k^2)}{x^2+k^2}\\to x$, donc $\\frac{\\partial f}{\\partial y}(x,0)=x$.\n\n**2.** $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)=-2$ et $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)=1$.\n\n**3.** Les dérivées secondes ne sont pas continues en $(0,0)$ : $f$ n'est pas de classe $\\mathcal{C}^2$ au voisinage de l'origine.",
+          "indices": [
+            "Pour $y\\neq0$, $\\frac{\\partial f}{\\partial x}(0,y)=\\lim_{h\\to0}\\frac{f(h,y)-f(0,y)}{h}$ ; traiter $y=0$ à part.",
+            "Le théorème de Schwarz demande la continuité des dérivées secondes."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=\\frac{xy(2x^2-y^2)}{x^2+y^2}$ pour $(x,y)\\neq(0,0)$, et $f(0,0)=0$.\n\n**1.** Calculer $\\frac{\\partial f}{\\partial x}(0,y)$ pour tout $y$, et $\\frac{\\partial f}{\\partial y}(x,0)$ pour tout $x$.\n\n**2.** En déduire $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)$ et $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)=\\frac{\\partial}{\\partial x}\\left(\\frac{\\partial f}{\\partial y}\\right)(0,0)$.\n\n**3.** Pourquoi le théorème de Schwarz ne s'applique-t-il pas ?",
+          "reponse_finale": {
+            "question": "Que vaut $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)$ ?",
+            "propositions": [
+              "$2$",
+              "$-1$",
+              "$0$",
+              "$1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f(0,y)=0$, et pour $y\\neq0$, $\\frac{f(h,y)}{h}=\\frac{y(2h^2-y^2)}{h^2+y^2}\\to-y$ ; donc $\\frac{\\partial f}{\\partial x}(0,y)=-y$. De même $\\frac{f(x,k)}{k}=\\frac{x(2x^2-k^2)}{x^2+k^2}\\to2x$, donc $\\frac{\\partial f}{\\partial y}(x,0)=2x$.\n\n**2.** $\\frac{\\partial^2f}{\\partial y\\partial x}(0,0)=-1$ et $\\frac{\\partial^2f}{\\partial x\\partial y}(0,0)=2$.\n\n**3.** Les dérivées secondes ne sont pas continues en $(0,0)$ : $f$ n'est pas de classe $\\mathcal{C}^2$ au voisinage de l'origine.",
+          "indices": [
+            "Pour $x\\neq0$, $\\frac{\\partial f}{\\partial y}(x,0)=\\lim_{k\\to0}\\frac{f(x,k)-f(x,0)}{k}$ ; traiter $x=0$ à part.",
+            "Le théorème de Schwarz demande la continuité des dérivées secondes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz-ex3",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "difficulte": 3,
+      "titre": "Champs de gradients",
+      "enonce": "Soit $a\\in\\mathbb{R}$ et $P(x,y)=2xy+y$, $Q(x,y)=x^2+ax$.\n\n**1.** Montrer que s'il existe $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$ telle que $\\frac{\\partial f}{\\partial x}=P$ et $\\frac{\\partial f}{\\partial y}=Q$, alors $a$ prend une valeur que l'on déterminera.\n\n**2.** Pour cette valeur, trouver une telle fonction $f$.",
+      "duree_min": 10,
+      "indices": [
+        "Si $f$ existe, appliquer le théorème de Schwarz à $f$.",
+        "Pour la question 2, chercher $f$ en intégrant $P$ par rapport à $x$, à une fonction de $y$ près."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la valeur de $a$ ?",
+        "propositions": [
+          "$1$",
+          "$0$",
+          "$2$",
+          "$-1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Si $f$ existe, le théorème de Schwarz donne $\\frac{\\partial P}{\\partial y}=\\frac{\\partial^2f}{\\partial y\\partial x}=\\frac{\\partial^2f}{\\partial x\\partial y}=\\frac{\\partial Q}{\\partial x}$, soit $2x+1=2x+a$ pour tout $x$ : $a=1$.\n\n**2.** $\\frac{\\partial f}{\\partial x}=2xy+y$ impose $f(x,y)=x^2y+xy+c(y)$ ; alors $\\frac{\\partial f}{\\partial y}=x^2+x+c'(y)$, égal à $Q=x^2+x$ si $c'=0$. La fonction $f(x,y)=x^2y+xy$ convient.",
+      "variantes": [
+        {
+          "enonce": "Soit $a\\in\\mathbb{R}$ et $P(x,y)=3x^2y^2+ay$, $Q(x,y)=2x^3y+2x$.\n\n**1.** Montrer que s'il existe $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$ telle que $\\frac{\\partial f}{\\partial x}=P$ et $\\frac{\\partial f}{\\partial y}=Q$, alors $a$ prend une valeur que l'on déterminera.\n\n**2.** Pour cette valeur, trouver une telle fonction $f$.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $a$ ?",
+            "propositions": [
+              "$2$",
+              "$0$",
+              "$1$",
+              "$3$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Schwarz : $\\frac{\\partial P}{\\partial y}=6x^2y+a$ doit être égal à $\\frac{\\partial Q}{\\partial x}=6x^2y+2$ : $a=2$.\n\n**2.** $f(x,y)=x^3y^2+2xy+c(y)$ et $\\frac{\\partial f}{\\partial y}=2x^3y+2x+c'(y)$ : $c'=0$, et $f(x,y)=x^3y^2+2xy$ convient.",
+          "indices": [
+            "Si $f$ existe, appliquer le théorème de Schwarz à $f$.",
+            "Pour la question 2, chercher $f$ en intégrant $P$ par rapport à $x$, à une fonction de $y$ près."
+          ]
+        },
+        {
+          "enonce": "Soit $a\\in\\mathbb{R}$ et $P(x,y)=ay^2+2x$, $Q(x,y)=6xy$.\n\n**1.** Montrer que s'il existe $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$ telle que $\\frac{\\partial f}{\\partial x}=P$ et $\\frac{\\partial f}{\\partial y}=Q$, alors $a$ prend une valeur que l'on déterminera.\n\n**2.** Pour cette valeur, trouver une telle fonction $f$.",
+          "reponse_finale": {
+            "question": "Quelle est la valeur de $a$ ?",
+            "propositions": [
+              "$3$",
+              "$6$",
+              "$1$",
+              "$2$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** Schwarz : $\\frac{\\partial P}{\\partial y}=2ay$ doit être égal à $\\frac{\\partial Q}{\\partial x}=6y$ : $a=3$.\n\n**2.** $f(x,y)=3xy^2+x^2+c(y)$ et $\\frac{\\partial f}{\\partial y}=6xy+c'(y)$ : $c'=0$, et $f(x,y)=3xy^2+x^2$ convient.",
+          "indices": [
+            "Si $f$ existe, appliquer le théorème de Schwarz à $f$.",
+            "Pour la question 2, chercher $f$ en intégrant $P$ par rapport à $x$, à une fonction de $y$ près."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz-ex4",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "difficulte": 4,
+      "titre": "L'équation des ondes",
+      "enonce": "Soit $c>0$. On cherche les fonctions $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2$, de variables $(x,t)$, telles que $\\frac{\\partial^2f}{\\partial t^2}=c^2\\frac{\\partial^2f}{\\partial x^2}$.\n\n**1.** On pose $g(u,v)=f\\left(\\frac{u+v}{2},\\frac{u-v}{2c}\\right)$, de sorte que $f(x,t)=g(x+ct,x-ct)$. Montrer que $\\frac{\\partial^2g}{\\partial u\\partial v}=\\frac14\\left(\\frac{\\partial^2f}{\\partial x^2}-\\frac{1}{c^2}\\frac{\\partial^2f}{\\partial t^2}\\right)$, les dérivées de $f$ étant prises au point correspondant.\n\n**2.** En déduire que les solutions sont les fonctions $f(x,t)=\\varphi(x+ct)+\\psi(x-ct)$, avec $\\varphi$ et $\\psi$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}$.\n\n**3.** Pour $c=1$, laquelle des fonctions proposées est solution ?",
+      "duree_min": 25,
+      "indices": [
+        "Dériver $g$ par rapport à $v$, puis le résultat par rapport à $u$, avec la règle de la composée ; le théorème de Schwarz permet de regrouper les dérivées croisées de $f$.",
+        "Pour la question 2, une fonction dont la dérivée partielle par rapport à $u$ est nulle sur $\\mathbb{R}^2$ ne dépend que de $v$."
+      ],
+      "reponse_finale": {
+        "question": "Pour $c=1$, laquelle de ces fonctions est solution ?",
+        "propositions": [
+          "$x^2+t^2$",
+          "$x^2-t^2$",
+          "$xt^2$",
+          "$e^x\\cos t$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $g=f\\circ\\Phi$ avec $\\Phi(u,v)=\\left(\\frac{u+v}{2},\\frac{u-v}{2c}\\right)$ linéaire. Par la règle de la composée, $\\frac{\\partial g}{\\partial v}=\\frac12\\frac{\\partial f}{\\partial x}-\\frac{1}{2c}\\frac{\\partial f}{\\partial t}$, puis $$\\frac{\\partial^2g}{\\partial u\\partial v}=\\frac12\\left(\\frac12\\frac{\\partial^2f}{\\partial x^2}+\\frac{1}{2c}\\frac{\\partial^2f}{\\partial t\\partial x}\\right)-\\frac{1}{2c}\\left(\\frac12\\frac{\\partial^2f}{\\partial x\\partial t}+\\frac{1}{2c}\\frac{\\partial^2f}{\\partial t^2}\\right).$$ Par le théorème de Schwarz ($f$ de classe $\\mathcal{C}^2$), les deux dérivées croisées sont égales et se compensent : il reste $\\frac14\\frac{\\partial^2f}{\\partial x^2}-\\frac{1}{4c^2}\\frac{\\partial^2f}{\\partial t^2}$.\n\n**2.** $\\Phi$ étant bijective, $f$ est solution si et seulement si $\\frac{\\partial}{\\partial u}\\left(\\frac{\\partial g}{\\partial v}\\right)=0$ sur $\\mathbb{R}^2$. Alors $\\frac{\\partial g}{\\partial v}(u,v)=\\psi_1(v)$ ne dépend que de $v$ ; en notant $\\psi$ une primitive de $\\psi_1$, la fonction $g(u,v)-\\psi(v)$ a une dérivée nulle par rapport à $v$, donc ne dépend que de $u$ : $g(u,v)=\\varphi(u)+\\psi(v)$, avec $\\varphi(u)=g(u,0)-\\psi(0)$ et $\\psi(v)=g(0,v)-\\varphi(0)$ de classe $\\mathcal{C}^2$. Donc $f(x,t)=\\varphi(x+ct)+\\psi(x-ct)$. Réciproquement, ces fonctions sont solutions : $\\frac{\\partial^2f}{\\partial t^2}=c^2\\big(\\varphi''(x+ct)+\\psi''(x-ct)\\big)=c^2\\frac{\\partial^2f}{\\partial x^2}$.\n\n**3.** $x^2+t^2=\\frac12(x+t)^2+\\frac12(x-t)^2$ est solution ($2=2$). Les autres ne le sont pas : pour $x^2-t^2$, $\\frac{\\partial^2f}{\\partial t^2}=-2\\neq2=\\frac{\\partial^2f}{\\partial x^2}$ ; pour $xt^2$, $2x\\neq0$ ; pour $e^x\\cos t$, $-e^x\\cos t\\neq e^x\\cos t$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-schwarz-ex5",
+      "carte": "cd-l3-differentiabilite-schwarz",
+      "difficulte": 5,
+      "titre": "Laplacien en coordonnées polaires et fonctions harmoniques radiales",
+      "enonce": "Pour $f$ de classe $\\mathcal{C}^2$ sur un ouvert de $\\mathbb{R}^2$, on note $\\Delta f=\\frac{\\partial^2f}{\\partial x^2}+\\frac{\\partial^2f}{\\partial y^2}$ ; $f$ est **harmonique** si $\\Delta f=0$.\n\n**1.** Soit $f$ de classe $\\mathcal{C}^2$ sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ et $g(r,\\theta)=f(r\\cos\\theta,r\\sin\\theta)$ pour $r>0$. Montrer que $$\\Delta f(r\\cos\\theta,r\\sin\\theta)=\\frac{\\partial^2g}{\\partial r^2}+\\frac1r\\frac{\\partial g}{\\partial r}+\\frac1{r^2}\\frac{\\partial^2g}{\\partial\\theta^2}.$$\n\n**2.** On cherche les fonctions **radiales** harmoniques sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$, c'est-à-dire $f(x,y)=\\varphi\\big(\\sqrt{x^2+y^2}\\big)$ avec $\\varphi$ de classe $\\mathcal{C}^2$ sur $\\left]0,+\\infty\\right[$. Montrer qu'elles correspondent aux $\\varphi$ telles que $(r\\varphi')'=0$, et les déterminer.\n\n**3.** Existe-t-il une fonction radiale harmonique non constante sur $\\mathbb{R}^2$ tout entier ?",
+      "duree_min": 40,
+      "indices": [
+        "Pour la question 1, exprimer $\\frac{\\partial g}{\\partial r}$ et $\\frac{\\partial g}{\\partial\\theta}$ par la règle de la composée, dériver une seconde fois, puis regrouper grâce au théorème de Schwarz.",
+        "Pour la question 2, $g(r,\\theta)=\\varphi(r)$ ne dépend pas de $\\theta$.",
+        "Pour la question 3, étudier le comportement de $\\varphi$ quand $r$ tend vers $0$."
+      ],
+      "reponse_finale": {
+        "question": "Quelles sont les fonctions $\\varphi$ telles que $f(x,y)=\\varphi\\big(\\sqrt{x^2+y^2}\\big)$ soit harmonique sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ ($a,b$ réels) ?",
+        "propositions": [
+          "$\\varphi(r)=a\\ln r+b$",
+          "$\\varphi(r)=\\frac ar+b$",
+          "$\\varphi(r)=ar^2+b$",
+          "$\\varphi(r)=\\frac{a}{r^2}+b$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Notons $f_x$, $f_y$, $f_{xx}$, $f_{xy}=f_{yx}$ (Schwarz), $f_{yy}$ les dérivées de $f$ au point $(r\\cos\\theta,r\\sin\\theta)$, et $c=\\cos\\theta$, $s=\\sin\\theta$. Par la règle de la composée : $g_r=cf_x+sf_y$ et $g_\\theta=-rsf_x+rcf_y$. En dérivant à nouveau : $$g_{rr}=c^2f_{xx}+2csf_{xy}+s^2f_{yy},$$ $$g_{\\theta\\theta}=r^2s^2f_{xx}-2r^2csf_{xy}+r^2c^2f_{yy}-rcf_x-rsf_y.$$ Donc $\\frac{1}{r^2}g_{\\theta\\theta}=s^2f_{xx}-2csf_{xy}+c^2f_{yy}-\\frac1r g_r$, et $g_{rr}+\\frac1rg_r+\\frac1{r^2}g_{\\theta\\theta}=(c^2+s^2)(f_{xx}+f_{yy})=\\Delta f$.\n\n**2.** Ici $g(r,\\theta)=\\varphi(r)$, donc $\\Delta f=\\varphi''+\\frac1r\\varphi'=\\frac1r(r\\varphi')'$. La fonction $f$ est harmonique si et seulement si $(r\\varphi')'=0$ sur $\\left]0,+\\infty\\right[$, c'est-à-dire $r\\varphi'(r)=a$ constante, soit $\\varphi'(r)=\\frac ar$ et $\\varphi(r)=a\\ln r+b$, avec $a,b\\in\\mathbb{R}$.\n\n**3.** Si $f$ est radiale harmonique sur $\\mathbb{R}^2$, sa restriction à $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ s'écrit $a\\ln r+b$ ; elle est continue en $(0,0)$, donc bornée au voisinage de l'origine, ce qui impose $a=0$ : $f$ est constante. Il n'en existe pas de non constante."
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient-ex1",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "difficulte": 1,
+      "titre": "Calcul d'un gradient",
+      "enonce": "Calculer le gradient de $f(x,y,z)=x^2y+yz^3$ au point $(1,2,1)$, $\\mathbb{R}^3$ étant muni du produit scalaire canonique.",
+      "duree_min": 4,
+      "indices": [
+        "Dans $\\mathbb{R}^3$ muni du produit scalaire canonique, le gradient est le vecteur des dérivées partielles.",
+        "Calculer chaque dérivée partielle en considérant les deux autres variables comme constantes."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\nabla f(1,2,1)$ ?",
+        "propositions": [
+          "$(4,2,6)$",
+          "$(4,1,6)$",
+          "$(2,2,6)$",
+          "$(6,2,4)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\nabla f(x,y,z)=\\left(2xy,\\ x^2+z^3,\\ 3yz^2\\right)$, d'où $\\nabla f(1,2,1)=(4,2,6)$.",
+      "variantes": [
+        {
+          "enonce": "Calculer le gradient de $f(x,y,z)=xyz+x^2$ au point $(1,-1,2)$, $\\mathbb{R}^3$ étant muni du produit scalaire canonique.",
+          "reponse_finale": {
+            "question": "Que vaut $\\nabla f(1,-1,2)$ ?",
+            "propositions": [
+              "$(0,2,-1)$",
+              "$(-2,2,-1)$",
+              "$(2,2,-1)$",
+              "$(0,-1,2)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\nabla f(x,y,z)=\\left(yz+2x,\\ xz,\\ xy\\right)$, d'où $\\nabla f(1,-1,2)=(0,2,-1)$.",
+          "indices": [
+            "Dans $\\mathbb{R}^3$ muni du produit scalaire canonique, le gradient est le vecteur des dérivées partielles.",
+            "Calculer chaque dérivée partielle en considérant les deux autres variables comme constantes."
+          ]
+        },
+        {
+          "enonce": "Calculer le gradient de $f(x,y,z)=e^{xy}+z^2$ au point $(0,3,1)$, $\\mathbb{R}^3$ étant muni du produit scalaire canonique.",
+          "reponse_finale": {
+            "question": "Que vaut $\\nabla f(0,3,1)$ ?",
+            "propositions": [
+              "$(3,0,2)$",
+              "$(0,3,2)$",
+              "$(3,0,1)$",
+              "$(1,0,2)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\nabla f(x,y,z)=\\left(ye^{xy},\\ xe^{xy},\\ 2z\\right)$, d'où $\\nabla f(0,3,1)=(3,0,2)$.",
+          "indices": [
+            "Dans $\\mathbb{R}^3$ muni du produit scalaire canonique, le gradient est le vecteur des dérivées partielles.",
+            "Calculer chaque dérivée partielle en considérant les deux autres variables comme constantes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient-ex2",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "difficulte": 2,
+      "titre": "Direction de plus forte pente",
+      "enonce": "Soit $f(x,y)=x^2+3xy$ sur $\\mathbb{R}^2$ euclidien, et $a=(1,1)$.\n\n**1.** Déterminer le maximum de $D_uf(a)$ lorsque $u$ décrit les vecteurs unitaires, et le vecteur $u$ qui le réalise.\n\n**2.** Quel est le minimum de $D_uf(a)$ ?",
+      "duree_min": 6,
+      "indices": [
+        "Pour $u$ unitaire, $D_uf(a)=\\langle\\nabla f(a),u\\rangle$.",
+        "Appliquer l'inégalité de Cauchy-Schwarz et son cas d'égalité."
+      ],
+      "reponse_finale": {
+        "question": "Quel est le maximum de $D_uf(1,1)$ pour $u$ unitaire ?",
+        "propositions": [
+          "$\\sqrt{34}$",
+          "$8$",
+          "$34$",
+          "$5$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $\\nabla f(x,y)=(2x+3y,\\ 3x)$, d'où $\\nabla f(1,1)=(5,3)$, de norme $\\sqrt{34}$. Pour $u$ unitaire, $D_uf(a)=\\langle(5,3),u\\rangle\\le\\sqrt{34}$ par Cauchy-Schwarz, avec égalité seulement pour $u=\\frac{(5,3)}{\\sqrt{34}}$. Le maximum est $\\sqrt{34}$.\n\n**2.** De même $D_uf(a)\\ge-\\sqrt{34}$, avec égalité pour $u=-\\frac{(5,3)}{\\sqrt{34}}$ : le minimum est $-\\sqrt{34}$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=xy^2$ sur $\\mathbb{R}^2$ euclidien, et $a=(2,1)$.\n\n**1.** Déterminer le maximum de $D_uf(a)$ lorsque $u$ décrit les vecteurs unitaires, et le vecteur $u$ qui le réalise.\n\n**2.** Quel est le minimum de $D_uf(a)$ ?",
+          "reponse_finale": {
+            "question": "Quel est le maximum de $D_uf(2,1)$ pour $u$ unitaire ?",
+            "propositions": [
+              "$\\sqrt{17}$",
+              "$5$",
+              "$17$",
+              "$4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\nabla f(x,y)=(y^2,\\ 2xy)$, d'où $\\nabla f(2,1)=(1,4)$, de norme $\\sqrt{17}$. Le maximum de $D_uf(a)$ est $\\sqrt{17}$, atteint seulement pour $u=\\frac{(1,4)}{\\sqrt{17}}$.\n\n**2.** Le minimum est $-\\sqrt{17}$, pour $u=-\\frac{(1,4)}{\\sqrt{17}}$.",
+          "indices": [
+            "Pour $u$ unitaire, $D_uf(a)=\\langle\\nabla f(a),u\\rangle$.",
+            "Appliquer l'inégalité de Cauchy-Schwarz et son cas d'égalité."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=\\ln(x^2+y^2)$ sur $\\mathbb{R}^2\\setminus\\{(0,0)\\}$ euclidien, et $a=(1,2)$.\n\n**1.** Déterminer le maximum de $D_uf(a)$ lorsque $u$ décrit les vecteurs unitaires, et le vecteur $u$ qui le réalise.\n\n**2.** Quel est le minimum de $D_uf(a)$ ?",
+          "reponse_finale": {
+            "question": "Quel est le maximum de $D_uf(1,2)$ pour $u$ unitaire ?",
+            "propositions": [
+              "$\\frac{2\\sqrt5}{5}$",
+              "$\\frac65$",
+              "$\\frac45$",
+              "$\\sqrt5$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\nabla f(x,y)=\\frac{(2x,\\ 2y)}{x^2+y^2}$, d'où $\\nabla f(1,2)=\\left(\\frac25,\\frac45\\right)$, de norme $\\frac{\\sqrt{20}}{5}=\\frac{2\\sqrt5}{5}$. Le maximum de $D_uf(a)$ est $\\frac{2\\sqrt5}{5}$, atteint seulement pour $u=\\frac{(1,2)}{\\sqrt5}$ : $f$ croît le plus vite en s'éloignant radialement de l'origine.\n\n**2.** Le minimum est $-\\frac{2\\sqrt5}{5}$, pour $u=-\\frac{(1,2)}{\\sqrt5}$.",
+          "indices": [
+            "Pour $u$ unitaire, $D_uf(a)=\\langle\\nabla f(a),u\\rangle$.",
+            "Appliquer l'inégalité de Cauchy-Schwarz et son cas d'égalité."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient-ex3",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "difficulte": 2,
+      "titre": "Tangente à une ligne de niveau",
+      "enonce": "Soit $f(x,y)=x^2+xy+y^3$ et $\\gamma:I\\to\\mathbb{R}^2$ une courbe dérivable, avec $\\gamma(0)=(1,1)$, $\\gamma'(0)\\neq0$ et $f(\\gamma(t))=3$ pour tout $t\\in I$, intervalle ouvert contenant $0$.\n\n**1.** Montrer que $\\gamma'(0)$ est orthogonal à $\\nabla f(1,1)$.\n\n**2.** En déduire une équation de la droite passant par $(1,1)$ et dirigée par $\\gamma'(0)$.",
+      "duree_min": 6,
+      "indices": [
+        "Dériver $t\\mapsto f(\\gamma(t))$, constante.",
+        "Une droite du plan passant par $a$ et orthogonale à un vecteur $w\\neq0$ a pour équation $\\langle w,(x,y)-a\\rangle=0$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est une équation de cette droite ?",
+        "propositions": [
+          "$3x+4y=7$",
+          "$4x-3y=1$",
+          "$3x+4y=3$",
+          "$2x+y=3$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $t\\mapsto f(\\gamma(t))$ est constante, donc sa dérivée en $0$ est nulle : $\\langle\\nabla f(1,1),\\gamma'(0)\\rangle=0$.\n\n**2.** $\\nabla f(x,y)=(2x+y,\\ x+3y^2)$, d'où $\\nabla f(1,1)=(3,4)\\neq0$. Le vecteur non nul $\\gamma'(0)$ est orthogonal à $(3,4)$, donc colinéaire à $(4,-3)$. La droite cherchée est la droite passant par $(1,1)$ orthogonale à $(3,4)$ : $3(x-1)+4(y-1)=0$, soit $3x+4y=7$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=x^3+y^3-xy$ et $\\gamma:I\\to\\mathbb{R}^2$ une courbe dérivable, avec $\\gamma(0)=(1,1)$, $\\gamma'(0)\\neq0$ et $f(\\gamma(t))=1$ pour tout $t\\in I$, intervalle ouvert contenant $0$.\n\n**1.** Montrer que $\\gamma'(0)$ est orthogonal à $\\nabla f(1,1)$.\n\n**2.** En déduire une équation de la droite passant par $(1,1)$ et dirigée par $\\gamma'(0)$.",
+          "reponse_finale": {
+            "question": "Quelle est une équation de cette droite ?",
+            "propositions": [
+              "$x+y=2$",
+              "$x-y=0$",
+              "$2x+2y=1$",
+              "$x+y=1$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f\\circ\\gamma$ est constante, donc $\\langle\\nabla f(1,1),\\gamma'(0)\\rangle=0$.\n\n**2.** $\\nabla f(x,y)=(3x^2-y,\\ 3y^2-x)$, d'où $\\nabla f(1,1)=(2,2)$. La droite passant par $(1,1)$ orthogonale à $(2,2)$ a pour équation $2(x-1)+2(y-1)=0$, soit $x+y=2$.",
+          "indices": [
+            "Dériver $t\\mapsto f(\\gamma(t))$, constante.",
+            "Une droite du plan passant par $a$ et orthogonale à un vecteur $w\\neq0$ a pour équation $\\langle w,(x,y)-a\\rangle=0$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=xe^y+y$ et $\\gamma:I\\to\\mathbb{R}^2$ une courbe dérivable, avec $\\gamma(0)=(2,0)$, $\\gamma'(0)\\neq0$ et $f(\\gamma(t))=2$ pour tout $t\\in I$, intervalle ouvert contenant $0$.\n\n**1.** Montrer que $\\gamma'(0)$ est orthogonal à $\\nabla f(2,0)$.\n\n**2.** En déduire une équation de la droite passant par $(2,0)$ et dirigée par $\\gamma'(0)$.",
+          "reponse_finale": {
+            "question": "Quelle est une équation de cette droite ?",
+            "propositions": [
+              "$x+3y=2$",
+              "$3x-y=6$",
+              "$x+3y=6$",
+              "$3x+y=6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $f\\circ\\gamma$ est constante, donc $\\langle\\nabla f(2,0),\\gamma'(0)\\rangle=0$.\n\n**2.** $\\nabla f(x,y)=(e^y,\\ xe^y+1)$, d'où $\\nabla f(2,0)=(1,3)$. La droite passant par $(2,0)$ orthogonale à $(1,3)$ a pour équation $(x-2)+3y=0$, soit $x+3y=2$.",
+          "indices": [
+            "Dériver $t\\mapsto f(\\gamma(t))$, constante.",
+            "Une droite du plan passant par $a$ et orthogonale à un vecteur $w\\neq0$ a pour équation $\\langle w,(x,y)-a\\rangle=0$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient-ex4",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "difficulte": 3,
+      "titre": "Gradient pour un autre produit scalaire",
+      "enonce": "Soit $S=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$. On munit $\\mathbb{R}^2$ du produit scalaire $\\langle u,v\\rangle_S=u^{\\mathsf T}Sv$ et l'on considère $f(x,y)=x^2+y$.\n\n**1.** Vérifier que $\\langle\\cdot,\\cdot\\rangle_S$ est un produit scalaire.\n\n**2.** Montrer que le gradient de $f$ en $a$ pour ce produit scalaire est $\\nabla_Sf(a)=S^{-1}\\nabla f(a)$, où $\\nabla f(a)$ est le gradient pour le produit scalaire canonique.\n\n**3.** Calculer $\\nabla_Sf(1,0)$.",
+      "duree_min": 12,
+      "indices": [
+        "Écrire $df(a)(h)=\\nabla f(a)^{\\mathsf T}h$ et chercher $w$ tel que $w^{\\mathsf T}Sh=\\nabla f(a)^{\\mathsf T}h$ pour tout $h$.",
+        "Une matrice symétrique réelle d'ordre $2$ définit un produit scalaire si et seulement si son déterminant et sa trace sont strictement positifs."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $\\nabla_Sf(1,0)$ ?",
+        "propositions": [
+          "$(1,0)$",
+          "$(2,1)$",
+          "$(5,3)$",
+          "$(1,1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $S$ est symétrique, de trace $3>0$ et de déterminant $1>0$ : ses deux valeurs propres sont strictement positives, donc $(u,v)\\mapsto u^{\\mathsf T}Sv$ est bilinéaire, symétrique et définie positive.\n\n**2.** On cherche $w$ tel que $w^{\\mathsf T}Sh=df(a)(h)=\\nabla f(a)^{\\mathsf T}h$ pour tout $h$, c'est-à-dire $Sw=\\nabla f(a)$ ($S$ étant symétrique) : $w=S^{-1}\\nabla f(a)$.\n\n**3.** $\\nabla f(1,0)=(2x,1)=(2,1)$ et $S^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$, d'où $\\nabla_Sf(1,0)=(2-1,\\ -2+2)=(1,0)$. Contrôle : $\\langle(1,0),h\\rangle_S=2h_1+h_2=df(1,0)(h)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $S=\\begin{pmatrix}1&0\\\\0&4\\end{pmatrix}$. On munit $\\mathbb{R}^2$ du produit scalaire $\\langle u,v\\rangle_S=u^{\\mathsf T}Sv$ et l'on considère $f(x,y)=xy$.\n\n**1.** Vérifier que $\\langle\\cdot,\\cdot\\rangle_S$ est un produit scalaire.\n\n**2.** Montrer que le gradient de $f$ en $a$ pour ce produit scalaire est $\\nabla_Sf(a)=S^{-1}\\nabla f(a)$, où $\\nabla f(a)$ est le gradient pour le produit scalaire canonique.\n\n**3.** Calculer $\\nabla_Sf(2,1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\nabla_Sf(2,1)$ ?",
+            "propositions": [
+              "$\\left(1,\\frac12\\right)$",
+              "$(1,2)$",
+              "$(1,8)$",
+              "$(2,1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $\\langle u,v\\rangle_S=u_1v_1+4u_2v_2$ est bilinéaire, symétrique, et $\\langle u,u\\rangle_S=u_1^2+4u_2^2>0$ pour $u\\neq0$.\n\n**2.** Comme dans l'exercice : $w^{\\mathsf T}Sh=\\nabla f(a)^{\\mathsf T}h$ pour tout $h$ équivaut à $Sw=\\nabla f(a)$.\n\n**3.** $\\nabla f(2,1)=(y,x)=(1,2)$, d'où $\\nabla_Sf(2,1)=\\left(1,\\frac24\\right)=\\left(1,\\frac12\\right)$. Contrôle : $\\left\\langle\\left(1,\\frac12\\right),h\\right\\rangle_S=h_1+2h_2=df(2,1)(h)$.",
+          "indices": [
+            "Écrire $df(a)(h)=\\nabla f(a)^{\\mathsf T}h$ et chercher $w$ tel que $w^{\\mathsf T}Sh=\\nabla f(a)^{\\mathsf T}h$ pour tout $h$.",
+            "Pour une matrice diagonale, la positivité se lit sur les coefficients diagonaux."
+          ]
+        },
+        {
+          "enonce": "Soit $S=\\begin{pmatrix}3&1\\\\1&1\\end{pmatrix}$. On munit $\\mathbb{R}^2$ du produit scalaire $\\langle u,v\\rangle_S=u^{\\mathsf T}Sv$ et l'on considère $f(x,y)=x+y^2$.\n\n**1.** Vérifier que $\\langle\\cdot,\\cdot\\rangle_S$ est un produit scalaire.\n\n**2.** Montrer que le gradient de $f$ en $a$ pour ce produit scalaire est $\\nabla_Sf(a)=S^{-1}\\nabla f(a)$, où $\\nabla f(a)$ est le gradient pour le produit scalaire canonique.\n\n**3.** Calculer $\\nabla_Sf(0,1)$.",
+          "reponse_finale": {
+            "question": "Que vaut $\\nabla_Sf(0,1)$ ?",
+            "propositions": [
+              "$\\left(-\\frac12,\\frac52\\right)$",
+              "$(1,2)$",
+              "$(5,3)$",
+              "$\\left(\\frac12,-\\frac52\\right)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $S$ est symétrique, de trace $4>0$ et de déterminant $2>0$ : c'est la matrice d'un produit scalaire.\n\n**2.** Comme dans l'exercice : $Sw=\\nabla f(a)$.\n\n**3.** $\\nabla f(0,1)=(1,2y)=(1,2)$ et $S^{-1}=\\frac12\\begin{pmatrix}1&-1\\\\-1&3\\end{pmatrix}$, d'où $\\nabla_Sf(0,1)=\\frac12(1-2,\\ -1+6)=\\left(-\\frac12,\\frac52\\right)$. Contrôle : $S\\left(-\\frac12,\\frac52\\right)=\\left(-\\frac32+\\frac52,\\ -\\frac12+\\frac52\\right)=(1,2)$.",
+          "indices": [
+            "Écrire $df(a)(h)=\\nabla f(a)^{\\mathsf T}h$ et chercher $w$ tel que $w^{\\mathsf T}Sh=\\nabla f(a)^{\\mathsf T}h$ pour tout $h$.",
+            "Une matrice symétrique réelle d'ordre $2$ définit un produit scalaire si et seulement si son déterminant et sa trace sont strictement positifs."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-gradient-ex5",
+      "carte": "cd-l3-differentiabilite-gradient",
+      "difficulte": 4,
+      "titre": "Méthode du gradient pour une fonction quadratique",
+      "enonce": "Soient $A\\in\\mathcal{M}_n(\\mathbb{R})$ symétrique définie positive, de valeurs propres $0<\\lambda_1\\le\\dots\\le\\lambda_n$, $b\\in\\mathbb{R}^n$, et $f(x)=\\frac12\\langle Ax,x\\rangle-\\langle b,x\\rangle$ sur $\\mathbb{R}^n$ euclidien canonique.\n\n**1.** Montrer que $\\nabla f(x)=Ax-b$.\n\n**2.** Montrer que $f$ a un unique point critique $x^*$, et que $f(x^*+h)=f(x^*)+\\frac12\\langle Ah,h\\rangle$ : $x^*$ est un minimum global strict.\n\n**3.** Pour $\\rho>0$, on pose $x_{k+1}=x_k-\\rho\\nabla f(x_k)$. Montrer que $x_{k+1}-x^*=(I_n-\\rho A)(x_k-x^*)$.\n\n**4.** Montrer que $(x_k)$ converge vers $x^*$ pour tout $x_0$ si et seulement si $0<\\rho<\\frac{2}{\\lambda_n}$.\n\n**5.** Application : $A=\\begin{pmatrix}1&0\\\\0&4\\end{pmatrix}$.",
+      "duree_min": 30,
+      "indices": [
+        "Pour la question 1, développer $f(x+h)$ et utiliser la symétrie de $A$.",
+        "Pour la question 4, se placer dans une base orthonormée de vecteurs propres de $A$ (théorème spectral) : $I_n-\\rho A$ y est diagonale."
+      ],
+      "reponse_finale": {
+        "question": "Pour $A=\\begin{pmatrix}1&0\\\\0&4\\end{pmatrix}$, pour quels $\\rho>0$ la suite converge-t-elle vers $x^*$ pour tout $x_0$ ?",
+        "propositions": [
+          "$0<\\rho<\\frac12$",
+          "$0<\\rho<2$",
+          "$0<\\rho<\\frac14$",
+          "$0<\\rho<1$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f(x+h)=f(x)+\\frac12\\langle Ax,h\\rangle+\\frac12\\langle Ah,x\\rangle-\\langle b,h\\rangle+\\frac12\\langle Ah,h\\rangle$. Comme $A$ est symétrique, $\\langle Ah,x\\rangle=\\langle Ax,h\\rangle$, d'où $f(x+h)=f(x)+\\langle Ax-b,h\\rangle+\\frac12\\langle Ah,h\\rangle$, et $|\\langle Ah,h\\rangle|\\le|||A|||\\,\\|h\\|^2$. Donc $df(x)(h)=\\langle Ax-b,h\\rangle$ et $\\nabla f(x)=Ax-b$.\n\n**2.** $\\nabla f(x)=0$ équivaut à $Ax=b$ ; $A$ est inversible (valeurs propres non nulles), d'où l'unique point critique $x^*=A^{-1}b$. Le calcul de la question 1 en $x^*$ donne $f(x^*+h)=f(x^*)+\\frac12\\langle Ah,h\\rangle>f(x^*)$ pour $h\\neq0$, car $A$ est définie positive.\n\n**3.** $x_{k+1}-x^*=x_k-x^*-\\rho(Ax_k-b)=x_k-x^*-\\rho A(x_k-x^*)$, puisque $b=Ax^*$.\n\n**4.** Donc $x_k-x^*=(I_n-\\rho A)^k(x_0-x^*)$. Dans une base orthonormée $(v_1,\\dots,v_n)$ de vecteurs propres de $A$ ($Av_i=\\lambda_iv_i$), la composante de $x_k-x^*$ sur $v_i$ est $(1-\\rho\\lambda_i)^k$ fois celle de $x_0-x^*$. La suite converge vers $x^*$ pour tout $x_0$ si et seulement si $|1-\\rho\\lambda_i|<1$ pour tout $i$ (prendre $x_0-x^*=v_i$ pour la nécessité), c'est-à-dire $0<\\rho\\lambda_i<2$ pour tout $i$, soit $\\rho<\\frac{2}{\\lambda_n}$ (avec $\\rho>0$).\n\n**5.** $\\lambda_1=1$, $\\lambda_2=4$ : convergence pour tout $x_0$ si et seulement si $0<\\rho<\\frac12$. Pour $\\rho=\\frac12$, $1-\\rho\\lambda_2=-1$ et la composante sur $e_2$ oscille sans tendre vers $0$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums-ex1",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "difficulte": 1,
+      "titre": "Nature d'un point critique",
+      "enonce": "Soit $f(x,y)=x^2+xy+y^2+x^3$. Vérifier que $(0,0)$ est un point critique de $f$ et déterminer sa nature.",
+      "duree_min": 5,
+      "indices": [
+        "Vérifier que $(0,0)$ est un point critique.",
+        "Calculer $r$, $s$, $t$ en $(0,0)$ et le signe de $rt-s^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la nature du point critique $(0,0)$ ?",
+        "propositions": [
+          "un minimum local strict",
+          "un maximum local strict",
+          "un point col (pas d'extremum local)",
+          "on ne peut pas conclure avec $rt-s^2$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\frac{\\partial f}{\\partial x}=2x+y+3x^2$ et $\\frac{\\partial f}{\\partial y}=x+2y$ s'annulent en $(0,0)$. On a $r=2+6x=2$, $s=1$, $t=2$ en $(0,0)$, d'où $rt-s^2=3>0$ et $r>0$ : $f$ admet en $(0,0)$ un minimum local strict.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=x^2+4xy+y^2+y^3$. Vérifier que $(0,0)$ est un point critique de $f$ et déterminer sa nature.",
+          "reponse_finale": {
+            "question": "Quelle est la nature du point critique $(0,0)$ ?",
+            "propositions": [
+              "un minimum local strict",
+              "un maximum local strict",
+              "un point col (pas d'extremum local)",
+              "on ne peut pas conclure avec $rt-s^2$"
+            ],
+            "bonne": 2
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}=2x+4y$ et $\\frac{\\partial f}{\\partial y}=4x+2y+3y^2$ s'annulent en $(0,0)$. On a $r=2$, $s=4$, $t=2+6y=2$ en $(0,0)$, d'où $rt-s^2=4-16=-12<0$ : point col. Par exemple $f(\\tau,-\\tau)=-2\\tau^2-\\tau^3<0$ et $f(\\tau,\\tau)=6\\tau^2+\\tau^3>0$ pour $\\tau\\neq0$ petit.",
+          "indices": [
+            "Vérifier que $(0,0)$ est un point critique.",
+            "Calculer $r$, $s$, $t$ en $(0,0)$ et le signe de $rt-s^2$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=-2x^2+2xy-y^2+x^4$. Vérifier que $(0,0)$ est un point critique de $f$ et déterminer sa nature.",
+          "reponse_finale": {
+            "question": "Quelle est la nature du point critique $(0,0)$ ?",
+            "propositions": [
+              "un minimum local strict",
+              "un maximum local strict",
+              "un point col (pas d'extremum local)",
+              "on ne peut pas conclure avec $rt-s^2$"
+            ],
+            "bonne": 1
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}=-4x+2y+4x^3$ et $\\frac{\\partial f}{\\partial y}=2x-2y$ s'annulent en $(0,0)$. On a $r=-4+12x^2=-4$, $s=2$, $t=-2$ en $(0,0)$, d'où $rt-s^2=8-4=4>0$ et $r<0$ : $f$ admet en $(0,0)$ un maximum local strict.",
+          "indices": [
+            "Vérifier que $(0,0)$ est un point critique.",
+            "Calculer $r$, $s$, $t$ en $(0,0)$ et le signe de $rt-s^2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums-ex2",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "difficulte": 2,
+      "titre": "Points critiques d'une fonction polynomiale",
+      "enonce": "Soit $f(x,y)=x^3-3x+y^2-2y$ sur $\\mathbb{R}^2$. Déterminer les points critiques de $f$ et leur nature.",
+      "duree_min": 10,
+      "indices": [
+        "Résoudre d'abord le système $\\frac{\\partial f}{\\partial x}=\\frac{\\partial f}{\\partial y}=0$.",
+        "En chaque point critique, calculer $r$, $s$, $t$ et le signe de $rt-s^2$."
+      ],
+      "reponse_finale": {
+        "question": "Quelle est la nature des points critiques de $f$ ?",
+        "propositions": [
+          "un minimum local strict en $(1,1)$ et un point col en $(-1,1)$",
+          "un minimum local strict en $(1,1)$ et un maximum local strict en $(-1,1)$",
+          "un point col en $(1,1)$ et un minimum local strict en $(-1,1)$",
+          "deux minimums locaux stricts, en $(1,1)$ et en $(-1,1)$"
+        ],
+        "bonne": 0
+      },
+      "correction": "$\\frac{\\partial f}{\\partial x}=3x^2-3$ et $\\frac{\\partial f}{\\partial y}=2y-2$ s'annulent en $(1,1)$ et $(-1,1)$. On a $r=6x$, $s=0$, $t=2$.\n- En $(1,1)$ : $rt-s^2=12>0$, $r=6>0$ : minimum local strict, de valeur $f(1,1)=-3$.\n- En $(-1,1)$ : $rt-s^2=-12<0$ : point col.\n\nLe minimum local n'est pas global : $f(x,1)=x^3-3x-1\\to-\\infty$ quand $x\\to-\\infty$.",
+      "variantes": [
+        {
+          "enonce": "Soit $f(x,y)=x^4+y^4-4xy$ sur $\\mathbb{R}^2$. Déterminer les points critiques de $f$ et leur nature.",
+          "reponse_finale": {
+            "question": "Quelle est la nature des points critiques de $f$ ?",
+            "propositions": [
+              "un point col en $(0,0)$ et un minimum local strict en $(1,1)$ et en $(-1,-1)$",
+              "un minimum local strict en $(0,0)$ et des points cols en $(1,1)$ et $(-1,-1)$",
+              "un maximum local strict en $(0,0)$ et un minimum local strict en $(1,1)$ et en $(-1,-1)$",
+              "des minimums locaux stricts en $(0,0)$, $(1,1)$ et $(-1,-1)$"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}=4x^3-4y$ et $\\frac{\\partial f}{\\partial y}=4y^3-4x$ s'annulent si $y=x^3$ et $x=y^3=x^9$, soit $x\\in\\{0,1,-1\\}$ : points critiques $(0,0)$, $(1,1)$, $(-1,-1)$. On a $r=12x^2$, $s=-4$, $t=12y^2$.\n- En $(0,0)$ : $rt-s^2=-16<0$ : point col (d'ailleurs $f(\\tau,\\tau)=2\\tau^4-4\\tau^2<0<f(\\tau,-\\tau)$ pour $\\tau\\neq0$ petit).\n- En $(1,1)$ et $(-1,-1)$ : $rt-s^2=144-16=128>0$, $r=12>0$ : minimums locaux stricts, de valeur $-2$.",
+          "indices": [
+            "Résoudre d'abord le système $\\frac{\\partial f}{\\partial x}=\\frac{\\partial f}{\\partial y}=0$.",
+            "En chaque point critique, calculer $r$, $s$, $t$ et le signe de $rt-s^2$."
+          ]
+        },
+        {
+          "enonce": "Soit $f(x,y)=x^2y+xy^2-3xy$ sur $\\mathbb{R}^2$. Déterminer les points critiques de $f$ et leur nature.",
+          "reponse_finale": {
+            "question": "Quelle est la nature des points critiques de $f$ ?",
+            "propositions": [
+              "trois points cols et un minimum local strict",
+              "quatre points cols",
+              "trois points cols et un maximum local strict",
+              "deux points cols et deux minimums locaux stricts"
+            ],
+            "bonne": 0
+          },
+          "correction": "$\\frac{\\partial f}{\\partial x}=y(2x+y-3)$ et $\\frac{\\partial f}{\\partial y}=x(x+2y-3)$. Les points critiques sont $(0,0)$, $(0,3)$, $(3,0)$ et la solution de $2x+y=3$, $x+2y=3$, soit $(1,1)$. On a $r=2y$, $s=2x+2y-3$, $t=2x$.\n- En $(0,0)$ : $r=t=0$, $s=-3$, $rt-s^2=-9<0$ : point col.\n- En $(0,3)$ : $r=6$, $s=3$, $t=0$, $rt-s^2=-9<0$ : point col.\n- En $(3,0)$ : $r=0$, $s=3$, $t=6$, $rt-s^2=-9<0$ : point col.\n- En $(1,1)$ : $r=2$, $s=1$, $t=2$, $rt-s^2=3>0$, $r>0$ : minimum local strict, de valeur $f(1,1)=-1$.",
+          "indices": [
+            "Résoudre d'abord le système $\\frac{\\partial f}{\\partial x}=\\frac{\\partial f}{\\partial y}=0$.",
+            "En chaque point critique, calculer $r$, $s$, $t$ et le signe de $rt-s^2$."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums-ex3",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "difficulte": 3,
+      "titre": "Quand rt − s² est nul",
+      "enonce": "On considère, sur $\\mathbb{R}^2$, les fonctions $f_1(x,y)=x^2+y^4$, $f_2(x,y)=x^2-y^4$, $f_3(x,y)=x^2+y^3$ et $f_4(x,y)=-x^4-y^4$.\n\n**1.** Vérifier que $(0,0)$ est un point critique de chacune, où $rt-s^2=0$.\n\n**2.** Déterminer, pour chacune, si $(0,0)$ est un extremum local.",
+      "duree_min": 10,
+      "indices": [
+        "Comparer $f_i(x,y)$ à $f_i(0,0)=0$ au voisinage de l'origine.",
+        "Pour montrer qu'il n'y a pas d'extremum, trouver des points arbitrairement proches de l'origine où $f_i$ prend des valeurs de signes opposés."
+      ],
+      "reponse_finale": {
+        "question": "Lesquelles de ces fonctions admettent un extremum local en $(0,0)$ ?",
+        "propositions": [
+          "$f_1$ et $f_4$ seulement",
+          "$f_1$, $f_3$ et $f_4$",
+          "$f_1$ seulement",
+          "aucune"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** Les quatre fonctions ont des dérivées partielles nulles en $(0,0)$. Pour $f_1$, $f_2$, $f_3$ : $r=2$, $s=0$, $t=0$ ; pour $f_4$ : $r=s=t=0$. Dans tous les cas, $rt-s^2=0$ : le critère ne conclut pas.\n\n**2.**\n- $f_1(x,y)=x^2+y^4>0$ pour $(x,y)\\neq(0,0)$ : minimum strict (global).\n- $f_2(\\tau,0)=\\tau^2>0$ et $f_2(0,\\tau)=-\\tau^4<0$ pour $\\tau\\neq0$ : pas d'extremum.\n- $f_3(0,\\tau)=\\tau^3$ change de signe avec $\\tau$ : pas d'extremum.\n- $f_4(x,y)<0$ pour $(x,y)\\neq(0,0)$ : maximum strict.\n\nSeules $f_1$ et $f_4$ ont un extremum local en $(0,0)$."
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums-ex4",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "difficulte": 4,
+      "titre": "Extremums sur un triangle fermé",
+      "enonce": "Soit $T=\\{(x,y) : x\\ge0,\\ y\\ge0,\\ x+y\\le2\\}$ et $f(x,y)=x^2-xy+y^2-x$.\n\n**1.** Justifier que $f$ atteint sur $T$ un minimum et un maximum.\n\n**2.** Déterminer les points critiques de $f$ intérieurs à $T$.\n\n**3.** Étudier $f$ sur chacun des trois côtés de $T$.\n\n**4.** En déduire le minimum et le maximum de $f$ sur $T$.",
+      "duree_min": 25,
+      "indices": [
+        "Une fonction continue sur un fermé borné de $\\mathbb{R}^2$ y atteint ses bornes ; un extremum atteint en un point intérieur est un point critique.",
+        "Sur chaque côté, se ramener à une fonction d'une variable sur un segment, sans oublier les sommets."
+      ],
+      "reponse_finale": {
+        "question": "Quels sont le minimum et le maximum de $f$ sur $T$ ?",
+        "propositions": [
+          "$-\\frac13$ et $4$",
+          "$-\\frac14$ et $4$",
+          "$-\\frac13$ et $2$",
+          "$-\\frac1{12}$ et $4$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $T$ est fermé et borné dans $\\mathbb{R}^2$, donc compact, et $f$ est continue : elle y atteint ses bornes.\n\n**2.** $\\frac{\\partial f}{\\partial x}=2x-y-1$ et $\\frac{\\partial f}{\\partial y}=-x+2y$ s'annulent en $\\left(\\frac23,\\frac13\\right)$, intérieur à $T$ ($\\frac23+\\frac13<2$), où $f=\\frac49-\\frac29+\\frac19-\\frac23=-\\frac13$.\n\n**3.**\n- Côté $y=0$, $x\\in[0,2]$ : $f=x^2-x$, de minimum $-\\frac14$ (en $x=\\frac12$) et de maximum $2$ (en $x=2$).\n- Côté $x=0$, $y\\in[0,2]$ : $f=y^2$, entre $0$ et $4$ (en $y=2$).\n- Côté $x+y=2$, $x\\in[0,2]$ : $f(x,2-x)=3x^2-7x+4$, de minimum $-\\frac1{12}$ (en $x=\\frac76$) et de maximum $4$ (en $x=0$).\n\n**4.** Un extremum atteint en un point intérieur est un point critique (l'intérieur de $T$ est ouvert) ; sinon il est atteint sur le bord. En comparant $-\\frac13$, $-\\frac14$, $-\\frac1{12}$, $0$, $2$ et $4$ : le minimum de $f$ sur $T$ est $-\\frac13$, atteint en $\\left(\\frac23,\\frac13\\right)$, et le maximum est $4$, atteint en $(0,2)$.",
+      "variantes": [
+        {
+          "enonce": "Soit $T=\\{(x,y) : x\\ge0,\\ y\\ge0,\\ x+y\\le3\\}$ et $f(x,y)=x^2+y^2-xy-x-y$.\n\n**1.** Justifier que $f$ atteint sur $T$ un minimum et un maximum.\n\n**2.** Déterminer les points critiques de $f$ intérieurs à $T$.\n\n**3.** Étudier $f$ sur chacun des trois côtés de $T$.\n\n**4.** En déduire le minimum et le maximum de $f$ sur $T$.",
+          "reponse_finale": {
+            "question": "Quels sont le minimum et le maximum de $f$ sur $T$ ?",
+            "propositions": [
+              "$-1$ et $6$",
+              "$-\\frac34$ et $6$",
+              "$-1$ et $3$",
+              "$-\\frac14$ et $6$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $T$ est compact et $f$ continue.\n\n**2.** $\\frac{\\partial f}{\\partial x}=2x-y-1$ et $\\frac{\\partial f}{\\partial y}=2y-x-1$ s'annulent en $(1,1)$, intérieur à $T$, où $f(1,1)=-1$.\n\n**3.**\n- Côté $y=0$, $x\\in[0,3]$ : $f=x^2-x$, entre $-\\frac14$ (en $x=\\frac12$) et $6$ (en $x=3$).\n- Côté $x=0$ : de même, entre $-\\frac14$ et $6$ (en $y=3$).\n- Côté $x+y=3$ : $f(x,3-x)=3x^2-9x+6$, entre $-\\frac34$ (en $x=\\frac32$) et $6$ (aux extrémités).\n\n**4.** Le minimum est $-1$, atteint en $(1,1)$ ; le maximum est $6$, atteint en $(3,0)$ et $(0,3)$.",
+          "indices": [
+            "Une fonction continue sur un fermé borné de $\\mathbb{R}^2$ y atteint ses bornes ; un extremum atteint en un point intérieur est un point critique.",
+            "Sur chaque côté, se ramener à une fonction d'une variable sur un segment, sans oublier les sommets."
+          ]
+        },
+        {
+          "titre": "Extremums sur un carré fermé",
+          "enonce": "Soit $K=[0,2]\\times[0,2]$ et $f(x,y)=x^2-2xy+2y^2-2y$.\n\n**1.** Justifier que $f$ atteint sur $K$ un minimum et un maximum.\n\n**2.** Déterminer les points critiques de $f$ intérieurs à $K$.\n\n**3.** Étudier $f$ sur chacun des quatre côtés de $K$.\n\n**4.** En déduire le minimum et le maximum de $f$ sur $K$.",
+          "reponse_finale": {
+            "question": "Quels sont le minimum et le maximum de $f$ sur $K$ ?",
+            "propositions": [
+              "$-1$ et $4$",
+              "$-\\frac12$ et $4$",
+              "$-1$ et $8$",
+              "$0$ et $4$"
+            ],
+            "bonne": 0
+          },
+          "correction": "**1.** $K$ est compact et $f$ continue.\n\n**2.** $\\frac{\\partial f}{\\partial x}=2x-2y$ et $\\frac{\\partial f}{\\partial y}=-2x+4y-2$ s'annulent en $(1,1)$, intérieur à $K$, où $f(1,1)=-1$.\n\n**3.**\n- $x=0$ : $f=2y^2-2y$, entre $-\\frac12$ (en $y=\\frac12$) et $4$ (en $y=2$).\n- $x=2$ : $f=2y^2-6y+4$, entre $-\\frac12$ (en $y=\\frac32$) et $4$ (en $y=0$).\n- $y=0$ : $f=x^2$, entre $0$ et $4$ (en $x=2$).\n- $y=2$ : $f=(x-2)^2$, entre $0$ (en $x=2$) et $4$ (en $x=0$).\n\n**4.** Le minimum est $-1$, atteint en $(1,1)$ ; le maximum est $4$, atteint en $(0,2)$ et en $(2,0)$.",
+          "indices": [
+            "Une fonction continue sur un fermé borné de $\\mathbb{R}^2$ y atteint ses bornes ; un extremum atteint en un point intérieur est un point critique.",
+            "Sur chaque côté, se ramener à une fonction d'une variable sur un segment, sans oublier les sommets."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd-l3-differentiabilite-extremums-ex5",
+      "carte": "cd-l3-differentiabilite-extremums",
+      "difficulte": 4,
+      "titre": "Un exemple de Peano",
+      "enonce": "Soit $f(x,y)=(y-x^2)(y-2x^2)$ sur $\\mathbb{R}^2$.\n\n**1.** Montrer que $(0,0)$ est un point critique de $f$ et calculer $rt-s^2$ en ce point.\n\n**2.** Montrer que, pour toute droite $D$ passant par l'origine, la restriction de $f$ à $D$ admet en $(0,0)$ un minimum local strict.\n\n**3.** Calculer $f\\left(x,\\frac32x^2\\right)$.\n\n**4.** $f$ admet-elle un extremum local en $(0,0)$ ? Conclure sur la portée de l'étude le long des droites.",
+      "duree_min": 30,
+      "indices": [
+        "Développer $f$ ; pour la question 2, distinguer la droite $x=0$ et les droites $y=mx$, et examiner le terme de plus bas degré.",
+        "Pour la question 4, comparer le signe de $f$ sur l'axe des ordonnées et sur la courbe de la question 3."
+      ],
+      "reponse_finale": {
+        "question": "Que vaut $f\\left(x,\\frac32x^2\\right)$ ?",
+        "propositions": [
+          "$-\\frac{x^4}{4}$",
+          "$\\frac{x^4}{4}$",
+          "$-\\frac{x^4}{2}$",
+          "$0$"
+        ],
+        "bonne": 0
+      },
+      "correction": "**1.** $f(x,y)=y^2-3x^2y+2x^4$, d'où $\\frac{\\partial f}{\\partial x}=-6xy+8x^3$ et $\\frac{\\partial f}{\\partial y}=2y-3x^2$, nulles en $(0,0)$. Puis $r=-6y+24x^2$, $s=-6x$, $t=2$, soit en $(0,0)$ : $r=0$, $s=0$, $t=2$ et $rt-s^2=0$. Le critère ne conclut pas.\n\n**2.** Sur la droite $x=0$ : $f(0,y)=y^2>0$ pour $y\\neq0$. Sur la droite $y=mx$ : $f(x,mx)=m^2x^2-3mx^3+2x^4$. Si $m\\neq0$, cette quantité vaut $x^2(m^2-3mx+2x^2)$, strictement positive pour $0<|x|$ assez petit (le facteur tend vers $m^2>0$) ; si $m=0$, elle vaut $2x^4>0$ pour $x\\neq0$. Dans tous les cas, minimum local strict en $0$ sur la droite.\n\n**3.** $f\\left(x,\\frac32x^2\\right)=\\frac12x^2\\cdot\\left(-\\frac12x^2\\right)=-\\frac{x^4}{4}$.\n\n**4.** Dans tout voisinage de l'origine, il y a des points $\\left(x,\\frac32x^2\\right)$, $x\\neq0$, où $f<0=f(0,0)$, et des points $(0,y)$, $y\\neq0$, où $f>0$ : $(0,0)$ n'est ni un minimum ni un maximum local. Un minimum strict sur chaque droite passant par un point ne donne donc pas un minimum local : les droites ne « voient » pas la région comprise entre les deux paraboles."
+    }
+  ]
+}
